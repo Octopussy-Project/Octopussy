@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Octopussy Help: Octopussy Internals</title>
+</head>
+<body>
+<h1>Octopussy Internals</h1>
+<h2>How Octopussy handles logs</h2>
+<ol>
+
+<li><b>syslog-ng</b> receives syslog messages and forward them to <b>octo_dispatcher</b></li>
+
+<li><b>octo_dispatcher</b> receives syslog messages and sort them by Device</li>
+Logs are stored in the Device Incoming Logs Directory.<br>
+(<b>/<i>DEFAULT_STORAGE_INCOMING</i>/<i>devicename</i>/Incoming/YYYY/MM/DD/msg_HHhMM.log</b>)<br>
+
+<li>one <b>octo_parser</b> by Device handle messages and sort them by Service</li>
+	<ul>
+	<li>Logs that have been recognized are stored and zipped in the Device Known Logs Directory.</li>
+	(<b>/<i>DEFAULT_STORAGE_KNOWN</i>/<i>devicename</i>/<i>servicename</i>/YYYY/MM/DD/msg_HHhMM.log.gz</b>)<br>
+	<li>Logs that haven't been recognized are stored and zipped in the Device Unknown Logs Directory.</li>
+	(<b>/<i>DEFAULT_STORAGE_UNKNOWN</i>/<i>devicename</i>/Unknown/YYYY/MM/DD/msg_HHhMM.log.gz</b>)<br>
+	</ul>
+</ol>
+
+You can change Default Storages Locations in <a href="./storages.html"><img src="../IMG/bt_storage.png" border="0"> Storages</a> page and <a href="./devices.html#device_storages"><img src="../IMG/bt_device.png" border="0"><img src="../IMG/bt_storage.png" border="0"> Device Storages</a> page.<br>
+By default, these locations are <i>/var/lib/octopussy/logs/</i><br>
+
+</body>
+</html>

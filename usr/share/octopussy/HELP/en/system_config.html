@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Octopussy Help: System Configuration</title>
+</head>
+<body>
+<h1><img src="../IMG/bt_config.png"> System Configuration</h1>
+Here you can set everything related to Octopussy System Configuration.<br>
+For each configuration, it will show if the connection is <img src="../IMG/bt_msg_ok.png"> ok or <img src="../IMG/bt_msg_critical.png"> not.<br>
+To save the configuration, click the 'Save Configuration' button at the bottom of this page.
+
+
+<h2>Database Configuration</h2>
+First, logs <b>ARE NOT</b> saved in Database ! Logs are stored in zipped text files.<br>
+Database is only used for 2 things:
+<ul>
+<li>save Alerts results</li>
+<li>handle Report Data during Report Generation</li>
+</ul>
+
+<div align="center"><img src="../IMG/octo_system_config_database.png" border="0"></div>
+<div align="center"><i><font size="-1">System Database Configuration Box</font></i></div>
+
+<h2>Proxy Configuration</h2>
+Proxy is only used by the <img src="../IMG/bt_web.png"> Updater to get updates (Reports, Services...) from Octopussy web site.<br>
+If you don't need proxy to access web sites or don't want to do updates from Octopussy web site, leave all fields blank.<br>
+<br>
+
+<div align="center"><img src="../IMG/octo_system_config_proxy.png" border="0"></div>
+<div align="center"><i><font size="-1">System Proxy Configuration Box</font></i></div>
+
+<h2>LDAP Contacts Configuration</h2>
+LDAP Contacts are used to add more contacts to <a href="./contacts.html"><img src="../IMG/bt_contact.png" border="0"> Contacts</a> list.<br>
+Your LDAP Contacts entries need to have a '<b><i>cn</i></b>' and a '<b><i>mail</i></b>' field.<br>
+These new entries will appear with the type '<b>LDAP</b>' in the <a href="./contacts.html"><img src="../IMG/bt_contact.png" border="0"> Contacts</a> list.<br>
+<br>
+
+<div align="center"><img src="../IMG/octo_system_config_ldap_contacts.png" border="0"></div>
+<div align="center"><i><font size="-1">System LDAP Contacts Configuration Box</font></i></div>
+
+<h2>LDAP Users Configuration</h2>
+LDAP Users are used to add more users to <a href="./users.html"><img src="../IMG/bt_users.png" border="0"> Users</a> list.<br>
+Your LDAP Users entries need to have a '<b><i>uid</i></b>' and a '<b><i>password</i></b>' field.<br>
+These new entries will appear with the type '<b>LDAP</b>' in the <a href="./users.html"><img src="../IMG/bt_users.png" border="0"> Users</a> list.<br>
+<br>
+
+<div align="center"><img src="../IMG/octo_system_config_ldap_users.png" border="0"></div>
+<div align="center"><i><font size="-1">System LDAP Users Configuration Box</font></i></div>
+
+<h2>SMTP Configuration</h2>
+SMTP is only used to send <a href="./alerts.html"><img src="../IMG/bt_alert.png" border="0"> Alerts</a> or <img src="../IMG/bt_report.png"> Reports by Email.<br>
+You can only send Email to Email Address defined in <a href="./contacts.html"><img src="../IMG/bt_contact.png" border="0"> Contacts</a>.<br>
+<br>
+
+<div align="center"><img src="../IMG/octo_system_config_smtp.png" border="0"></div>
+<div align="center"><i><font size="-1">System SMTP Configuration Box</font></i></div>
+
+<h2>Jabber Configuration</h2>
+Jabber (XMPP Protocol) is only used to send <a href="./alerts.html"><img src="../IMG/bt_alert.png" border="0"> Alerts</a> by Instant Messaging.<br>
+You can only send Message to Instant Messaging Address defined in <a href="./contacts.html"><img src="../IMG/bt_contact.png" border="0"> Contacts</a>.<br>
+<br>
+
+<div align="center"><img src="../IMG/octo_system_config_xmpp.png" border="0"></div>
+<div align="center"><i><font size="-1">System Jabber Configuration Box</font></i></div>
+
+<h2>NSCA Configuration</h2>
+NSCA is only used to send <a href="./alerts.html"><img src="../IMG/bt_alert.png" border="0"> Alerts</a> to a Nagios server.<br>
+It will use the specified '<b><i>NSCA Binary</i></b>' with the configuration file '<b><i>Configuration File</i></b>' to send the message to the server '<b><i>Nagios Server</i></b>'.<br>
+It will update the '<b><i>Host/Service</i></b> specified.<br>
+<br>
+
+<div align="center"><img src="../IMG/octo_system_config_nsca.png" border="0"></div>
+<div align="center"><i><font size="-1">System Nagios NSCA Configuration Box</font></i></div>
+
+</body>
+</html>

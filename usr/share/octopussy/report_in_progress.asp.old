@@ -1,0 +1,57 @@
+<%
+my $cmd = $Request->QueryString("cmd");
+my $cancel = $Request->QueryString("cancel");
+my $pid = $Request->QueryString("pid");
+my $reportname = $cmd;
+
+print $cmd;
+
+$reportname =~ s/.+\/(.+)?" 2>.+$/$1/g;
+my $report_type = $reportname;
+$report_type =~ s/(.+)-\d{8}.+/$1/;
+my $reportfile = $cmd;
+$reportfile =~ s/.+"(.+)?" 2>.+$/$1/g;
+my $pid_dir = Octopussy::Directory("running");
+
+my $error_file = $reportname;
+$error_file =~ s/(.+)\.(\w+)$/$1.err/;
+my $error_file = $pid_dir . "octo_reporter_" . $error_file;
+my $pid_file = $pid_dir . "octo_reporter_" . $reportname . ".pid";
+my $status_file = $pid_dir . "octo_reporter_" . $reportname . ".status";
+
+if (defined $cancel)
+{
+  kill KILL => $pid;
+	unlink("$pid_file");
+	unlink("$status_file");	
+  $Response->Redirect("./reports.asp");
+}
+$Response->Redirect("./report_show.asp?report_type=$report_type&filename=$reportname")
+  if (-f $reportfile);
+#$Response->Redirect("./report_error.asp?file=$error_file")	
+#	if (-s $error_file);
+	
+open(FILE, "< $pid_file");
+$pid = <FILE>;
+close(FILE);
+
+my $status = kill USR1 => $pid;
+open(FILE, "< $status_file");
+$status = <FILE>;
+close(FILE);
+%>
+<AAT:PageTop title="Octopussy Report Generation - $reportname" 
+	icon="IMG/octopussy.gif" refresh="3" />
+<%
+if ($status =~ /(.+)\[(\d+)\/(\d+)\]/)
+{
+	%><table align="center">
+	<tr><td>
+	<AAT:ProgressBar title="Report Generation $reportname" 
+		msg="Report Generation: $reportname" desc=$1 current=$2 total=$3
+		cancel="./report_in_progress.asp?cancel=yes&pid=$pid" /> 
+	</td></tr>
+	</table><%
+}
+%>
+<AAT:PageBottom />

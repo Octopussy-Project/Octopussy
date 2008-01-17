@@ -1,0 +1,69 @@
+#
+# global.asa
+#
+use utf8;
+use AAT;
+use Octopussy;
+
+#
+# Function: Script_OnStart
+#
+sub Script_OnStart
+{
+  my $g_params = $Request->Params();
+  foreach my $k (%{$g_params})
+  { 
+		$Session->{$k} = $g_params->{$k}
+			if (((defined $g_params->{$k}) && ($g_params->{$k} ne ""))
+				&& ((defined $k) && ($k ne ""))); 
+	}
+}
+
+#
+# Function: Purge_Session
+#
+sub Purge_Session
+{
+	foreach my $k (keys %{$Session}) 
+	{
+  	delete $Session->{$k}	if (($k !~ /^AAT_/) && ($k !~ /^OCTOPUSSY_/));
+ 	}
+}
+
+
+#
+# Package WebUI
+#
+package WebUI;
+
+#
+# Function: PageTop
+#
+sub PageTop
+{
+	my ($args, $body) = @_;
+
+	$main::Response->Include('INC/octo_page_top.inc', %{$args});
+}
+
+#
+# Function: PageTopRestricted
+#
+sub PageTopRestricted
+{
+  my ($args, $body) = @_;
+
+	$main::Response->Include('INC/octo_page_top_restricted.inc', %{$args});
+}
+						
+#
+# Function: PageBottom
+#
+sub PageBottom
+{
+	my ($args, $body) = @_;
+
+	$main::Response->Include('INC/octo_page_bottom.inc');	
+}
+
+1;
