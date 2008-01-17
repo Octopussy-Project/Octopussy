@@ -1,0 +1,23 @@
+<octopussy_table name="DenyAll_Filtering"
+     description="DenyAll Filtering Table" version="200608020001">
+  <field title="instance"
+         type="STRING" />
+  <field title="denyall_product"
+         type="STRING" />
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="action"
+         type="STRING" />
+  <field title="http_method"
+         type="STRING" />
+  <field title="url"
+         type="STRING" />
+  <field title="src_addr"
+         type="IP_ADDR" />
+  <field title="device"
+         type="WORD" />
+  <field title="rule"
+         type="STRING" />
+  <field title="proxy"
+         type="STRING" />
+</octopussy_table>

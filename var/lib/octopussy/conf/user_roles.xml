@@ -1,0 +1,8 @@
+<user_roles>
+
+	<role label="Admin" value="admin" />
+	<role label="Read Only" value="ro" />
+	<role label="Read Write" value="rw" />
+	<role label="Restricted" value="restricted" />
+
+</user_roles>

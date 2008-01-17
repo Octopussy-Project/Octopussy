@@ -1,0 +1,16 @@
+<octopussy_service name="CVS"
+     description="CVS Service"
+     version="200606130003">
+  <message loglevel="Warning"
+           msg_id="CVS:caught_signal"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvsd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;caught signal .+&quot;):msg@&gt;"
+           rank="01"
+           table="CVS_msg"
+           taxonomy="System.Errors" />
+  <message loglevel="Information"
+           msg_id="CVS:version_bailing_out"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvsd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;version .+ bailing out &quot;):msg@&gt;"
+           rank="02"
+           table="CVS_msg"
+           taxonomy="System" />
+</octopussy_service>

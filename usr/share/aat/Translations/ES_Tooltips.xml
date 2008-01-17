@@ -1,0 +1,69 @@
+<Tooltips language="Espanol" timestamp="200707032200">
+
+  <msg mid="_TOOLTIP_ALERT_MSG"
+    value="
+El Asunto y el Cuerpo del mensaje pueden usar estos valores predefinidos:&lt;br&gt;
+&lt;b&gt;__device__&lt;/b&gt;: el equipo que manda la linea de log que genera la alerta.&lt;br&gt;
+&lt;b&gt;__alert__&lt;/b&gt;: el Nombre de la Alerta.&lt;br&gt;
+&lt;b&gt;__level__&lt;/b&gt;: el Nivel de la Alerta.&lt;br&gt;
+&lt;b&gt;__log__&lt;/b&gt;: la linea completa de log.&lt;br&gt;" />
+
+  <msg mid="_TOOLTIP_DEVICE_STATUS"
+    value="
+El estado de la maquina puede ser:&lt;br&gt;
+&lt;b&gt;Parado&lt;/b&gt;: los logs son directamente descartados&lt;br&gt;
+&lt;b&gt;Pausado&lt;/b&gt;: los logs son escritps pero no analizados&lt;br&gt;
+&lt;b&gt;Iniciado&lt;/b&gt;: los logs son totalmente gestionados.&lt;br&gt;" />
+
+  <msg mid="_TOOLTIP_SYSTEM_DB"
+    value="
+La Base de Datos solo se usa para almacenar las alertas y ejecutar la preguntas SQL de los Informes.&lt;br&gt;
+&lt;b&gt;Servidor:&lt;/b&gt; (&lt;i&gt;default: localhost&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Usuario:&lt;/b&gt; (&lt;i&gt;default: octopussy&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Contraseña:&lt;/b&gt; (&lt;i&gt;default: octopussy&lt;/i&gt;)&lt;br&gt;&lt;b&gt;Base:&lt;/b&gt; (&lt;i&gt;default: octopussy&lt;/i&gt;)&lt;br&gt;" />
+
+  <msg mid="_TOOLTIP_SYSTEM_JABBER"
+    value="
+Jabber es usado para enviar Alertas a los Conctactos de Mensajeria Instantanea.&lt;br&gt;
+&lt;b&gt;Servidor:&lt;/b&gt; (&lt;i&gt;tujabber.tudominio.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Ususario:&lt;/b&gt; (&lt;i&gt;tuusuariojabber&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Contraseña:&lt;/b&gt; (&lt;i&gt;tucontraseñajabber&lt;/i&gt;)&lt;br&gt;&lt;hr&gt;
+Mas info sobre Jabber: http://www.jabber.org/" />
+
+  <msg mid="_TOOLTIP_SYSTEM_LDAP"
+    value="
+LDAP es usado para recuperar los Contactos y los Usuarios.&lt;br&gt;
+&lt;b&gt;Servidor de Contactos:&lt;/b&gt; (&lt;i&gt;tuservidorldap.tudominio.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Base de Contactos:&lt;/b&gt; (&lt;i&gt;ou=Contactos,dc=tudominio,dc=com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Filtro de Contactos:&lt;/b&gt; &lt;br&gt;
+&lt;b&gt;Servidor de Contactos:&lt;/b&gt; (&lt;i&gt;tuservidorldap.tudominio.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Base de Usuarios:&lt;/b&gt; (&lt;i&gt;ou=Usuarios,dc=tudominio,dc=com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Filtro de Usuarios:&lt;/b&gt; &lt;br&gt;
+&lt;hr&gt;
+Mas info sobre LDAP: http://www.openldap.org/" />
+
+  <msg mid="_TOOLTIP_SYSTEM_NSCA"
+    value="
+NSCA es usado para enviar Alertas a la consola de monitorización Nagios.&lt;br&gt;
+&lt;b&gt;Binario:&lt;/b&gt; Nombre del binario send_nsca&lt;br&gt;
+&lt;b&gt;Fichero de Configuracion:&lt;/b&gt; Fichero de configuracion de tu send_nsca&lt;br&gt;
+&lt;b&gt;Servidor Nagios:&lt;/b&gt; Direccion de tu servidor Nagios&lt;br&gt;
+&lt;b&gt;Equipo definido en Nagios:&lt;/b&gt; Nombre del Equipo definido en Nagios para gestionar las Alertas de Octopussy&lt;br&gt;
+&lt;b&gt;Servicio definido en Nagios:&lt;/b&gt; Nombre del Servicio definido en Nagios para gestionar las Alertas Octopussy&lt;br&gt;
+&lt;hr&gt;
+Mas info sobre Nagios y NSCA: http://www.nagios.org/" />
+
+  <msg mid="_TOOLTIP_SYSTEM_PROXY"
+    value="
+Proxy usado para conseguir la actualizaciones a traves de un proxy.&lt;br&gt;
+&lt;b&gt;Servidor:&lt;/b&gt; (&lt;i&gt;yourproxy.yourdomain.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Puerto:&lt;/b&gt; (&lt;i&gt;proxy_port&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Usuario:&lt;/b&gt; (&lt;i&gt;proxy_user&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Contraseña:&lt;/b&gt; (&lt;i&gt;proxy_password&lt;/i&gt;)&lt;br&gt;" />
+
+  <msg mid="_TOOLTIP_SYSTEM_SMTP"
+    value="
+SMTP es usado para enviar las Alertas e Informes a los Contactos o para contactar con el soporte de Octopussy.&lt;br&gt;
+&lt;b&gt;Servidor:&lt;/b&gt; (&lt;i&gt;tusmtp.tudominio.com&lt;/i&gt;)&lt;br&gt;&lt;b&gt;Remitente:&lt;/b&gt; (&lt;i&gt;tu@tudominio.com&lt;/i&gt;)&lt;br&gt;" />
+
+</Tooltips>

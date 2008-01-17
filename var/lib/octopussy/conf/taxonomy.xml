@@ -1,0 +1,41 @@
+<octopussy_taxonomy>
+
+	<taxonomy taxo_id="Attack"           	color="#FF0000"	desc="Attack message" />
+
+	<taxonomy taxo_id="Access"           	color="#FFFF00"	desc="Access message" />
+  <taxonomy taxo_id="Access.Failure"   	color="#FFF900"	desc="Access Failure message" />
+  <taxonomy taxo_id="Access.Success"   	color="#FFF000"	desc="Access Success message" />	
+
+  <taxonomy taxo_id="Auth" 							color="#00FFFF"	desc="Authentication message" />
+	<taxonomy taxo_id="Auth.Failure" 			color="#00FFF9"	desc="Authentication Failure message" />
+	<taxonomy taxo_id="Auth.Success" 			color="#00FFF0"	desc="Authentication Success message" />
+
+	<taxonomy taxo_id="Config" 						color="#FF00FF" desc="Configuration message" />
+	<taxonomy taxo_id="Config.Backup"    	color="#FB00FF" desc="Configuration Backup message" />
+	<taxonomy taxo_id="Config.Changes" 		color="#F700FF" desc="Configuration Changes message" />
+	<taxonomy taxo_id="Config.Errors"    	color="#F000FF" desc="Configuration Errors message" />
+
+	<taxonomy taxo_id="Email.Antivirus"   color="#E090E0"	desc="Email Antivirus message" />
+	<taxonomy taxo_id="Email.Spam"				color="#E090E0"	desc="Email Spam message" />
+	<taxonomy taxo_id="Email.Traffic"			color="#E090E0"	desc="Email Traffic message" />
+
+	<taxonomy taxo_id="Hardware"         	color="#AAAAAF" desc="Hardware Errors message" />
+  <taxonomy taxo_id="Hardware.Disk"    	color="#AAAAAC" desc="Hardware Disk Errors message" />
+	<taxonomy taxo_id="Hardware.Memory"   color="#AAAAA9" desc="Hardware Memory Errors message" />
+  <taxonomy taxo_id="Hardware.Network" 	color="#AAAAA5" desc="Hardware Network Errors message" />
+	<taxonomy taxo_id="Hardware.Power"  	color="#AAAAA0" desc="Hardware Power Supply Errors message" />
+
+	<taxonomy taxo_id="Network" 					color="#303090"	desc="Network message" />
+	<taxonomy taxo_id="Network.Errors"  	color="#303090"	desc="Network Errors message" />
+
+	<taxonomy taxo_id="System" 						color="#0000FF"	desc="System message" />
+	<taxonomy taxo_id="System.Boot"      	color="#0000F9"	desc="System Boot message" />
+	<taxonomy taxo_id="System.Errors"   	color="#0000F0"	desc="System Errors message" />
+
+	<taxonomy taxo_id="Traffic"           color="#00FF00"	desc="Traffic message" />
+  <taxonomy taxo_id="Traffic.Denied"    color="#00FF00"	desc="Traffic Denied message" />
+  <taxonomy taxo_id="Traffic.Granted"   color="#00FF00"	desc="Traffic Granted message" />
+
+	<taxonomy taxo_id="Other" 						desc="Other message" />
+
+</octopussy_taxonomy>

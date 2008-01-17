@@ -1,0 +1,7 @@
+<octopussy_table name="Vsftpd_msg"
+     description="Vsftpd Messages Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+</octopussy_table>

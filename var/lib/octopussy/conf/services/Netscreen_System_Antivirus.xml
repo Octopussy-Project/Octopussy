@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service name="Netscreen_System_Antivirus"
+                   description="Netscreen System Antivirus Service"
+                   icon="companies/logo_juniper"
+                   version="200706070004">
+	<message loglevel="Warning"
+           msg_id="Netscreen_System_Antivirus:scanmgr_internal_error_occured"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;SCAN-MGR: Internal error occurred .+&quot;):msg@&gt;"
+           rank="001"
+           table="Netscreen_System"
+           taxonomy="System.Error" />
+	<message loglevel="Warning"
+           msg_id="Netscreen_System_Antivirus:content_was_not_scanned"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;AV: Content from .+ was not scanned .+&quot;):msg@&gt;"
+           rank="002"
+           table="Netscreen_System"
+           taxonomy="System.Error" />
+	<message loglevel="Warning"
+           msg_id="Netscreen_System_Antivirus:scanmgr_pattern_file_updated"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;SCAN-MGR: New AV pattern file has been updated.+&quot;):msg@&gt;"
+           rank="003"
+           table="Netscreen_System"
+           taxonomy="Config.Changes" />
+	<message loglevel="Warning"
+           msg_id="Netscreen_System_Antivirus:av_parameter_been_set"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;AV .+ has been set to .+&quot;):msg@&gt;"
+           rank="004"
+           table="Netscreen_System"
+           taxonomy="Config.Changes" />
+	<message loglevel="Warning"
+           msg_id="Netscreen_System_Antivirus:scanmgr_update_server_modified"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;SCAN-MGR: URL for AV pattern update server has been .+&quot;):msg@&gt;"
+           rank="005"
+           table="Netscreen_System"
+           taxonomy="Config.Changes" />
+	<message loglevel="Warning"
+           msg_id="Netscreen_System_Antivirus:scanmgr_parameter_been_set"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;SCAN-MGR: .+ has been set to .+&quot;):msg@&gt;"
+           rank="006"
+           table="Netscreen_System"
+           taxonomy="Config.Changes" />
+</octopussy_service>

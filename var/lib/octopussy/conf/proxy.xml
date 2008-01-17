@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<aat_proxy>
+  <proxy password="toto"
+         port="3232"
+         server="10.12.13.14"
+         user="toto" />
+</aat_proxy>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table name="Mac_OS_X_Kernel"
+                 description="Mac OS X Kernel Table"
+                 version="200710240001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

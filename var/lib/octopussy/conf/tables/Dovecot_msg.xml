@@ -1,0 +1,9 @@
+<octopussy_table name="Dovecot_msg"
+     description="Dovecot IMAP Server messages Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

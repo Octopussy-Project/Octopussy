@@ -1,0 +1,8 @@
+<list name="AAT_IPVS_Packet_Forwarding_Method"
+			selected_by_default="gatewaying">
+
+	<item label="Direct Routing" value="gatewaying" />
+	<item label="Network Address Translation" value="masquerading" />
+	<item label="Tunneling" value="ipip" />
+
+</list>

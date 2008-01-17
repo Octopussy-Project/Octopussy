@@ -1,0 +1,94 @@
+#!/usr/bin/perl -w
+
+=head1 NAME
+
+octo_logrotate - Octopussy Logrotate program
+
+=head1 DESCRIPTION
+
+octo_logrotate deletes log files older than the number of days defined in Device configuration
+
+=cut
+
+use strict;
+use Date::Manip;
+use Octopussy;
+
+my $PROG_NAME = "octo_logrotate";
+
+=head1 FUNCTIONS
+
+=head2 Get_Directories($dir)
+
+Returns List of Directories
+
+=cut
+
+sub Get_Directories($)
+{
+	my $dir = shift;
+	opendir(DIR, $dir);
+	my @dirs = grep !/^\./, readdir(DIR);
+ 	closedir(DIR);
+
+	return (@dirs);
+}
+
+=head2 Files_Deletion($device_conf)
+
+Deletes Log Files for specified Device in '$device_conf'
+
+=cut
+
+sub Files_Deletion($)
+{
+	my $device_conf = shift;
+	my $limit = DateCalc("today", "-$device_conf->{logrotate} days");
+	$limit =~ s/^(\d{8}).+$/$1/;
+	my $device = $device_conf->{name};
+	my $storage = Octopussy::Storage::Default();
+
+	foreach my $t ("incoming", "unknown", "known")
+	{
+		my $dir = Octopussy::Storage::Directory($device_conf->{"storage_$t"} 
+			|| $storage->{$t});
+		foreach my $s (Get_Directories("$dir/$device/"))
+		{
+			foreach my $y (Get_Directories("$dir/$device/$s"))
+			{	
+				foreach my $m (Get_Directories("$dir/$device/$s/$y"))
+      	{
+					foreach my $d (Get_Directories("$dir/$device/$s/$y/$m"))
+        	{
+						`rmdir "$dir/$device/$s/$y/$m/$d/" 2> /dev/null`
+							if (($t eq "incoming") || ($t eq "unknown"));
+						`rm -rf "$dir/$device/$s/$y/$m/$d/"`
+							if (($y*10000+$m*100+$d) < $limit);		
+					}
+					`rmdir "$dir/$device/$s/$y/$m" 2> /dev/null`; 
+				}
+				`rmdir "$dir/$device/$s/$y" 2>  /dev/null`; 
+			}
+		}
+	}
+}
+
+#
+# MAIN
+#
+
+foreach my $d (Octopussy::Device::Configurations("name"))
+{
+	print "Removing '$d->{name}' [$d->{logrotate}] logs files...\n";
+	Files_Deletion($d)	if (defined $d->{logrotate});
+}	
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=head1 SEE ALSO
+
+octo_dispatcher, octo_extractor, octo_parser, octo_uparser, octo_scheduler
+
+=cut

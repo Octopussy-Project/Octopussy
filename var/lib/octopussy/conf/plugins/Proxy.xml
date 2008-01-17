@@ -1,0 +1,17 @@
+<octopussy_plugin name="Proxy">
+	<function label="MIME"
+	         	perl="Octopussy::Plugin::Proxy::Mime"
+						source="INPUT">
+		<field>Squid_Traffic:type</field>
+	</function>
+	<function label="TLD"
+            perl="Octopussy::Plugin::Proxy::TLD"
+            source="INPUT">
+    <field>Squid_Traffic:url</field>
+  </function>
+	<function label="WEBSITE"
+            perl="Octopussy::Plugin::Proxy::WebSite"
+            source="INPUT">
+    <field>Squid_Traffic:url</field>
+  </function>
+</octopussy_plugin>

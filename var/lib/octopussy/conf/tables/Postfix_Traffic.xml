@@ -1,0 +1,25 @@
+<octopussy_table name="Postfix_Traffic"
+     description="Postfix Traffic Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="mail_id"
+         type="WORD" />
+  <field title="from"
+         type="WORD" />
+  <field title="to"
+         type="WORD" />
+  <field title="relay"
+         type="WORD" />
+  <field title="delay"
+         type="NUMBER" />
+  <field title="status"
+         type="STRING" />
+  <field title="size"
+         type="NUMBER" />
+  <field title="nrcpt"
+         type="NUMBER" />
+  <field title="client"
+         type="WORD" />
+</octopussy_table>

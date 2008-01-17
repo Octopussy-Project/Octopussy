@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service name="Squid"
+                   description="Squid Service"
+                   nb_messages="001"
+                   version="200710290005">
+  <message loglevel="Information"
+           msg_id="Squid:traffic"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid: &lt;@NUMBER:NULL@&gt;.&lt;@NUMBER:duration@&gt; &lt;@STRING:NULL@&gt; &lt;@IP_ADDR:client_ip@&gt; &lt;@WORD:squid_code@&gt;/&lt;@NUMBER:http_code@&gt; &lt;@NUMBER:bytes@&gt; &lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; - &lt;@STRING:hierarchy_code@&gt; &lt;@STRING:type@&gt;"
+           rank="001"
+           table="Squid_Traffic"
+           taxonomy="Traffic" />
+</octopussy_service>

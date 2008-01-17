@@ -1,0 +1,17 @@
+<octopussy_table name="Cisco_Pix_traffic"
+     description="Cisco Pix traffic Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg_id"
+         type="STRING" />
+  <field title="src"
+         type="STRING" />
+  <field title="dst"
+         type="STRING" />
+  <field title="type"
+         type="STRING" />
+  <field title="acl"
+         type="STRING" />
+</octopussy_table>

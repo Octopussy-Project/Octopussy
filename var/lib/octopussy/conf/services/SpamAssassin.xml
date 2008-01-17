@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="SpamAssassin Service"
+                   name="SpamAssassin"
+                   version="200801160001">
+  <message loglevel="Information"
+           msg_id="SpamAssassin:server_started_on_port"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;spamd: server started on port .+&quot;):msg@&gt;"
+           rank="001"
+           table="SpamAssassin"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="SpamAssassin:successfully_spawned_child_process"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;spamd: server successfully spawned child process.+&quot;):msg@&gt;"
+           rank="002"
+           table="SpamAssassin"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="SpamAssassin:server_pid"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;spamd: server pid: \d+&quot;):msg@&gt;"
+           rank="003"
+           table="SpamAssassin"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="SpamAssassin:logger_removing_method"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;logger: removing .+ method&quot;):msg@&gt;"
+           rank="004"
+           table="SpamAssassin"
+           taxonomy="System" />
+</octopussy_service>

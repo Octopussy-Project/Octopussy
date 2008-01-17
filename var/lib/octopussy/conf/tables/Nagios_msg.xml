@@ -1,0 +1,9 @@
+<octopussy_table name="Nagios_msg"
+     description="Nagios Messages Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table name="Apache_Traffic"
+                 description="Apache Traffic Table"
+                 version="200708200001">
+  <field title="src_addr"
+         type="IP_ADDR" />
+  <field title="url"
+         type="STRING" />
+  <field title="status"
+         type="NUMBER" />
+  <field title="rec_bytes"
+         type="NUMBER" />
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="http_method"
+         type="STRING" />
+  <field title="http_version"
+         type="STRING" />
+  <field title="referer"
+         type="STRING" />
+  <field title="user_agent"
+         type="STRING" />
+  <field title="device"
+         type="WORD" />
+</octopussy_table>

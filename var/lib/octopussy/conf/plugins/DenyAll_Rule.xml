@@ -1,0 +1,14 @@
+<octopussy_plugin name="DENYALL_RULE">
+	<function label="INFO"
+						perl="Octopussy::Plugin::DenyAll_Rule::Info">
+		<field>DenyAll_Filtering:rule</field>
+	</function>
+	<function label="NESSUS_ID"
+            perl="Octopussy::Plugin::DenyAll_Rule::Nessus_Id">
+    <field>DenyAll_Filtering:rule</field>
+  </function>
+	<function label="REGEXP"
+            perl="Octopussy::Plugin::DenyAll_Rule::Regexp">
+    <field>DenyAll_Filtering:rule</field>
+  </function>
+</octopussy_plugin>

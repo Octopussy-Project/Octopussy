@@ -1,0 +1,13 @@
+<octopussy_table name="Samhain"
+     description="Samhain Messages Table" version="200608020001">
+  <field title="level"
+         type="STRING" />
+  <field title="msg"
+         type="STRING" />
+  <field title="device"
+         type="WORD" />
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="policy"
+         type="WORD" />
+</octopussy_table>

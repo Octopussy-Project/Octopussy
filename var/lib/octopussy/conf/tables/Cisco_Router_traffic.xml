@@ -1,0 +1,25 @@
+<octopussy_table name="Cisco_Router_traffic"
+     description="Cisco Router traffic Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="src_addr"
+         type="IP_ADDR" />
+  <field title="dst_addr"
+         type="IP_ADDR" />
+  <field title="src_port"
+         type="NUMBER" />
+  <field title="dst_port"
+         type="NUMBER" />
+  <field title="nb_packets"
+         type="NUMBER" />
+  <field title="protocol"
+         type="STRING" />
+  <field title="acl"
+         type="STRING" />
+  <field title="status"
+         type="STRING" />
+  <field title="msg_id"
+         type="STRING" />
+</octopussy_table>

@@ -1,0 +1,35 @@
+<octopussy_table name="Fortigate_Traffic"
+     description="Fortigate Traffic Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="STRING" />
+  <field title="policy_id"
+         type="NUMBER" />
+  <field title="status"
+         type="STRING" />
+  <field title="src_addr"
+         type="IP_ADDR" />
+  <field title="dst_addr"
+         type="IP_ADDR" />
+  <field title="src_interface"
+         type="STRING" />
+  <field title="dst_interface"
+         type="STRING" />
+  <field title="sent_bytes"
+         type="NUMBER" />
+  <field title="rcvd_bytes"
+         type="NUMBER" />
+  <field title="src_port"
+         type="NUMBER" />
+  <field title="dst_port"
+         type="NUMBER" />
+  <field title="sent_pkt"
+         type="NUMBER" />
+  <field title="rcvd_pkt"
+         type="NUMBER" />
+  <field title="translated_ip"
+         type="IP_ADDR" />
+  <field title="translated_port"
+         type="NUMBER" />
+</octopussy_table>

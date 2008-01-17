@@ -1,0 +1,11 @@
+<octopussy_table name="Apache_msg"
+     description="Apache msg Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="server"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

@@ -1,0 +1,10 @@
+<octopussy_table name="IronPort_System"
+                 description="IronPort System Table"
+                 version="200609200001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

@@ -1,0 +1,11 @@
+<octopussy_table name="Linux_PAM_msg"
+     description="Linux PAM Messages Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="pid"
+         type="NUMBER" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

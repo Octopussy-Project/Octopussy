@@ -1,0 +1,11 @@
+<octopussy_table name="Heartbeat"
+     description="Heartbeat Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="pid"
+         type="NUMBER" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

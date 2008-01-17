@@ -1,0 +1,180 @@
+body {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: Bold;
+  color: navy;
+}
+
+a:hover {
+  text-decoration: none;
+  font-weight: Bold;
+  color: blue;
+}
+
+table.box {
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+div.box {
+  background-color: #E7E7E7;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px;
+}
+
+tr.box {
+  background-color: #E7E7E7;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 1px;
+}
+
+tr.boxcolor1 {
+  background-color: #E7E7E7;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 1px;
+}
+tr.boxcolor1:hover {
+  background-color: #F5F5F5;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  color: blue;
+  font-size: 12px;
+  padding: 1px;
+}
+tr.boxcolor2 {
+  background-color: #E9E9E9;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 1px;
+}
+tr.boxcolor2:hover {
+  background-color: #F5F5F5;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  color: blue;
+  font-size: 12px;
+  padding: 1px;
+}
+
+tr.box-menu {
+  background-color: #E7E7E7;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 1px;
+}
+tr.box-menu:hover {
+  background-color: #F5F5F5;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: Bold;
+  color: blue;
+  padding: 1px;
+}
+
+td.box {
+  font-family: Geneva, Verdana, Arial, sans-serif;
+}
+td.boxtop {
+  background-image: url("EXTRAS/top_edge.gif");
+  height: 10px;
+}
+td.box-top-left {
+  background-image: url("EXTRAS/top_left.gif");
+  width: 10px;
+  height: 10px;
+}
+td.box-top-right {
+  background-image: url("EXTRAS/top_right.gif");
+  width: 10px;
+  height: 10px;
+}
+td.box-left {
+  background-image: url("EXTRAS/edge_left.gif");
+  width: 10px;
+}
+td.box-right {
+  background-image: url("EXTRAS/edge_right.gif");
+  width: 10px;
+}
+td.box-bottom {
+  background-image: url("EXTRAS/bottom_edge.gif");
+  height: 10px;
+}
+td.box-bottom-left {
+  background-image: url("EXTRAS/bottom_left.gif");
+  width: 10px;
+  height: 10px;
+}
+td.box-bottom-right {
+  background-image: url("EXTRAS/bottom_right.gif");
+  width: 10px;
+  height: 10px;
+}
+
+td.calendar-day-null {
+	background-color: #E7E7E7;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px;
+}
+
+td.calendar-day-free {
+  background-color: white;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px;
+}
+
+td.calendar-day-free:hover {
+  background-color: yellow;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px;
+}
+
+td.calendar-day-busy {
+  background-color: white;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px;
+}
+
+td.calendar-day-busy:hover {
+  background-color: yellow;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px;
+}
+
+td.calendar-time-free {
+  background-color: white;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px;
+}
+
+td.calendar-time-free:hover {
+  background-color: yellow;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 2px;
+}
+#tooltip {
+  position: absolute;
+  left: -300px;
+  width: 150px;
+  border: 1px solid black;
+  padding: 1px;
+  font-family: Geneva, Verdana, Arial, sans-serif;
+  font-size: 11px;
+  background-color: lightyellow;
+  visibility: hidden;
+  z-index: 100;
+}

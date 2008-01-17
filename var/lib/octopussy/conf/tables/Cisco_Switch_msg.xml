@@ -1,0 +1,11 @@
+<octopussy_table name="Cisco_Switch_msg"
+     description="Cisco Switch msg Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg_id"
+         type="STRING" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

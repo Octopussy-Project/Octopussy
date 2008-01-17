@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<aat_db>
+  <database db="octopussy"
+            host="localhost"
+            password="octopussy"
+            type="mysql"
+            user="octopussy" />
+</aat_db>

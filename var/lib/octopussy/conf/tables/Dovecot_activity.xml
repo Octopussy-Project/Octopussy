@@ -1,0 +1,15 @@
+<octopussy_table name="Dovecot_activity"
+     description="Dovecot Activity Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="user"
+         type="WORD" />
+  <field title="client_ip"
+         type="IP_ADDR" />
+  <field title="status"
+         type="STRING" />
+  <field title="module"
+         type="WORD" />
+</octopussy_table>

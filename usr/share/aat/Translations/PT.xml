@@ -1,0 +1,378 @@
+<Translation language="Portuguese" timestamp="200710021400">
+
+	<msg mid="_ENGLISH" value="English" />
+	<msg mid="_FRENCH" value="French" />
+	<msg mid="_GERMAN" value="German" />
+	<msg mid="_PORTUGUESE" value="Português" />
+	<msg mid="_SPANISH" value="Spanish" />
+	
+	<msg mid="_YES" value="Sim" />
+	<msg mid="_NO" value="Não" />
+
+	<msg mid="_MINUTE" value="_MINUTE" />
+  <msg mid="_MINUTES" value="_MINUTES" />
+	<msg mid="_HOUR" value="Hora" />	
+	<msg mid="_HOURS" value="_HOURS" />
+	<msg mid="_DAY" value="Dia" />
+	<msg mid="_DAYS" value="Dias" />
+	<msg mid="_WEEK" value="Semana" />
+	<msg mid="_MONTH" value="Mês" />
+	<msg mid="_YEAR" value="Ano" />
+	<msg mid="_EVERY_DAY" value="Todos os Dias" />
+	<msg mid="_EVERY_MONTH" value="Toda Semana" />
+	<msg mid="_TODAY" value="Hoje" />
+	<msg mid="_YESTERDAY" value="Ontem" />
+	<msg mid="_CURRENT_HOUR" value="_CURRENT_HOUR" />
+  <msg mid="_CURRENT_DAY" value="_CURRENT_DAY" />
+  <msg mid="_CURRENT_WEEK" value="_CURRENT_WEEK" />
+  <msg mid="_CURRENT_MONTH" value="_CURRENT_MONTH" />
+  <msg mid="_CURRENT_YEAR" value="_CURRENT_YEAR" />
+	<msg mid="_CUSTOMIZED" value="_CUSTOMIZED" />
+  <msg mid="_LAST_HOUR" value="_LAST_HOUR" />
+  <msg mid="_LAST_DAY" value="_LAST_DAY" />
+	<msg mid="_LAST_WEEK" value="Na Última Semana" />
+	<msg mid="_LAST_MONTH" value="No Último Mês" />
+	<msg mid="_LAST_YEAR" value="_LAST_YEAR" />
+ 
+	<msg mid="_MONDAY" value="Segunda-Feira" />
+  <msg mid="_TUESDAY" value="Terça-Feira" />
+  <msg mid="_WEDNESDAY" value="Quarta-Feira" />
+  <msg mid="_THURSDAY" value="Quinta-Feira" />
+  <msg mid="_FRIDAY" value="Sexta-Feira" /> 
+  <msg mid="_SATURDAY" value="Sábado" />
+  <msg mid="_SUNDAY" value="Domingo" />
+ 
+	<msg mid="_JANUARY" value="Janeiro" />
+	<msg mid="_FEBRUARY" value="Fevereiro" />
+	<msg mid="_MARCH" value="Março" />
+	<msg mid="_APRIL" value="Abril" />
+	<msg mid="_MAY" value="Maio" />
+	<msg mid="_JUNE" value="Junho" />
+	<msg mid="_JULY" value="Julho" />
+	<msg mid="_AUGUST" value="Agosto" />
+	<msg mid="_SEPTEMBER" value="Setembro" />
+	<msg mid="_OCTOBER" value="Outubro" />
+	<msg mid="_NOVEMBER" value="Novembro" />
+	<msg mid="_DECEMBER" value="Dezembro" />
+
+	<msg mid="_HOURLY_STATS" value="Status da Hora" />
+ 	<msg mid="_DAILY_STATS" value="Status do Dia" />
+	<msg mid="_WEEKLY_STATS" value="Status da Semana" />
+	<msg mid="_MONTHLY_STATS" value="Status do Mês" />
+	<msg mid="_YEARLY_STATS" value="_YEARLY_STATS" />
+
+	<msg mid="_ACTION" value="Ação" />
+	<msg mid="_BEGIN" value="Começo" />
+	<msg mid="_BINARY" value="Binário" />
+  <msg mid="_BODY" value="Corpo" />
+  <msg mid="_BUG_REPORT" value="Relatório de Bugs" />
+	<msg mid="_CANCEL" value="Cancela" />
+	<msg mid="_CONFIG_FILE" value="Arquivo de Configuração" />
+	<msg mid="_DASHBOARD" value="Painel de Controle" />
+	<msg mid="_DELETE" value="Deleta" />
+	<msg mid="_DIRECTORY" value="Diretório" />
+	<msg mid="_EDIT" value="Edita" />
+	<msg mid="_END" value="Fim" />
+	<msg mid="_FEATURE_REQUEST" value="Requisição de Característica" />
+	<msg mid="_FINISH" value="Finaliza" />
+	<msg mid="_HELP" value="Ajuda" />
+	<msg mid="_HOST" value="Host" />
+	<msg mid="_KEY" value="Chave" />
+	<msg mid="_LOGOUT" value="Logout" />
+	<msg mid="_MODIFY" value="Modifica" />
+	<msg mid="_NEXT" value="Próximo" />
+	<msg mid="_OK" value="Ok" />
+	<msg mid="_PAUSE" value="Parar" />
+	<msg mid="_PAUSED" value="Parado" />
+	<msg mid="_REMOVE" value="Remover" />
+  <msg mid="_SAVE" value="Gravar" />
+	<msg mid="_SERVER" value="Servidor" />
+	<msg mid="_START" value="Iniciar" />
+	<msg mid="_STARTED" value="Iniciado" />
+  <msg mid="_STATUS" value="Status" />
+	<msg mid="_STOP" value="Parar" />
+	<msg mid="_STOPPED" value="Parado" />
+	<msg mid="_UPDATE" value="Atualiza" />
+	<msg mid="_USER" value="Usuário" />
+	<msg mid="_USER_PREF" value="Preferências do Usuário" />
+	<msg mid="_USERS" value="Usuários" />
+
+	<msg mid="_BIRTHDATE" value="Data de Aniversário" />
+	<msg mid="_CALENDAR" value="Calendário" />
+	<msg mid="_CATEGORY" value="Categoria" />
+	<msg mid="_COMMENT" value="Comentário" />
+	<msg mid="_DATE_BEGIN" value="Data de Início" />
+	<msg mid="_DATE_END" value="Date de Fim" />
+	<msg mid="_DAY_OF_MONTH" value="Dia do Mês" />
+	<msg mid="_DAY_OF_WEEK" value="Dia da Semana" />
+	<msg mid="_DEFAULT_STORAGES" value="Repositório Padrão" />
+	<msg mid="_DESCRIPTION" value="Descrição" />
+	<msg mid="_EMAIL" value="Email" />
+	<msg mid="_EXPORT_FTP" value="Exportar via FTP" />
+	<msg mid="_EXPORT_MAIL" value="Exportar via E-Mail" />
+	<msg mid="_EXPORT_SCP" value="Exportar via SCP" />
+	<msg mid="_FIELD" value="Campo" />
+	<msg mid="_FILE" value="Arquivo" />
+	<msg mid="_FILTER" value="Filtro" />
+	<msg mid="_FIRSTNAME" value="Primeiro Nome" />
+	<msg mid="_LASTNAME" value="Último Nome" />
+	<msg mid="_LANGUAGE" value="Linguagem" />
+	<msg mid="_LOGIN" value="Login" />
+	<msg mid="_MAIL_SERVER" value="Servidor de E-Mail" />
+	<msg mid="_NAME" value="Nome" />
+	<msg mid="_PASSWORD" value="Senha" />
+	<msg mid="_PORT" value="Porta" />
+	<msg mid="_QUERY" value="Consulta" />
+	<msg mid="_RECIPIENTS" value="Receptores" />
+	<msg mid="_SELECT_ALL" value="Selecionar Tudo" />
+	<msg mid="_SQL_QUERY_DEFINITION" value="Definição de Consulta SQL" />
+	<msg mid="_SUBJECT" value="Assunto" />
+	<msg mid="_THEME" value="Tema" />
+	<msg mid="_TITLE" value="Título" />
+	<msg mid="_TYPE" value="Tipo" />
+	<msg mid="_UNKNOWN" value="Desconhecido" />
+	<msg mid="_USED_SPACE" value="_USED_SPACE" />
+	<msg mid="_USER_PREFS" value="Preferências do Usuário" />
+	<msg mid="_USER_RESTRICTIONS" value="_USER_RESTRICTIONS" />
+	<msg mid="_VALUE" value="Valor" />
+	<msg mid="_VERSION" value="Versão" />
+	<msg mid="_WEBSITE" value="Website" />
+
+	<msg mid="_ADD_NEW_SERVICE" value="Adicionar Novo Serviço" />
+	<msg mid="_ADD_SERVICE_TO_DEVICE" value="Adicionar Serviço ao Dispositivo" />
+	<msg mid="_ADD_STORAGE" value="Adicionar Repositório" />
+	<msg mid="_ALERT" value="Alerta" />
+  <msg mid="_ALERT_DESCRIPTION" value="Descrição do Alerta" />
+  <msg mid="_ALERT_LEVEL" value="Nível do Alerta" />
+  <msg mid="_ALERT_NAME" value="Nome do Alerta" />
+	<msg mid="_ALERTS" value="Alertas" />
+	<msg mid="_ALERTS_VIEWER" value="Visualizador de Alertas" />
+	<msg mid="_BASE" value="Base" />
+	<msg mid="_BUILDING" value="Prédio" />
+	<msg mid="_CITY" value="Cidade" />
+	<msg mid="_CONTACTS" value="Contatos" />
+	<msg mid="_CONTACTS_BASE" value="Base de Contatos" />
+	<msg mid="_CONTACTS_FILTER" value="Filtro de Contatos" />
+	<msg mid="_CONTACTS_SERVER" value="Servidor de Contatos" />
+	<msg mid="_COUNTRY" value="_COUNTRY" />
+	<msg mid="_CPU_USAGE" value="Uso de Processador" />
+	<msg mid="_CREATE_REPORT" value="_CREATE_REPORT" />
+	<msg mid="_DEVICE" value="Dispositivo" />
+	<msg mid="_DEVICE_ADDRESS" value="Endereço do Dispositivo" />
+	<msg mid="_DEVICE_DESCRIPTION" value="Descrição do Dispositivo" />
+	<msg mid="_DEVICE_MODEL" value="Modelo do Dispositivo" />
+	<msg mid="_DEVICE_NAME" value="Nome do Dispositivo" />
+	<msg mid="_DEVICE_TYPE" value="Tipo do Dispositivo" />
+	<msg mid="_DEVICES" value="Dispositivos" />
+	<msg mid="_DEVICEGROUPS" value="GrupoDeDispositivos" />
+	<msg mid="_DOWNLOAD_CSV_FILE" value="Download do Arquivo CSV " />
+	<msg mid="_DOWNLOAD_FILE" value="Download do Arquivo" />
+	<msg mid="_FINISH_PERIOD" value="_FINISH_PERIOD" />
+	<msg mid="_GET_LOGS" value="Coletar Logs" />
+	<msg mid="_GRAPH_HEIGHT" value="Altura do Gráfico" />
+	<msg mid="_GRAPH_TITLE" value="Título do Gráfico" />
+	<msg mid="_GRAPH_TYPE" value="Graph Type" />
+	<msg mid="_GRAPH_WIDTH" value="Largura do Gráfico" />
+	<msg mid="_GROUP_NAME" value="Nome do Grupo" />
+	<msg mid="_IP_ADDRESS" value="Endereço IP" />
+	<msg mid="_LAST_ALERTS" value="Últimos Alertas" />
+	<msg mid="_LAST_LOGS" value="Últimos Logs" />
+	<msg mid="_LAUNCH_REPORT" value="Relatório de Lançamento" />
+	<msg mid="_LEVEL" value="Nível" />
+	<msg mid="_LOAD" value="Carregar" />
+	<msg mid="_LOCATION" value="Local" />
+	<msg mid="_LOCATIONS" value="Locais" />
+	<msg mid="_LOG" value="Log" />
+	<msg mid="_LOG_LEVEL" value="Nível de Log" />
+	<msg mid="_LOG_TYPE" value="Tipo de Log" />
+	<msg mid="_LOGROTATE" value="Logrotate" />
+	<msg mid="_LOGS_VIEWER" value="Visualizador de Logs" />
+	<msg mid="_LOGS_WIZARD" value="Logs Wizard" />
+	<msg mid="_MAPS" value="Mapas" />
+	<msg mid="_MATCH" value="_MATCH" />
+	<msg mid="_MAX_TIME_WITHOUT_LOG" value="_MAX_TIME_WITHOUT_LOG" />
+	<msg mid="_MEM_USAGE" value="Uso de Memória" />
+	<msg mid="_MESSAGES" value="Mensagens" />
+	<msg mid="_MSG_ID" value="_MSG_ID" />
+	<msg mid="_NAGIOS_HOST_DEFINED" value="Host definido no Nagios" />
+	<msg mid="_NAGIOS_SERVER" value="Servidor do Nagios" />
+	<msg mid="_NAGIOS_SERVICE_DEFINED" value="Serviço definido no Nagios" />
+	<msg mid="_NB_MESSAGES" value="Mensagens Nb" />
+	<msg mid="_NB_REPORTS" value="Relatórios Nb" />
+	<msg mid="_NEW_ALERT" value="Novo Alerta" />
+	<msg mid="_NEW_BUILDING" value="Novo Prédio" />
+	<msg mid="_NEW_CITY" value="Nova Cidade" />
+	<msg mid="_NEW_CONTACT" value="Novo Contato" />
+	<msg mid="_NEW_DEVICE" value="Novo Dispositivo" />
+	<msg mid="_NEW_DEVICEGROUP" value="Novo Grupo de Dispositivos" />
+	<msg mid="_NEW_DYNAMIC_ALERT" value="Novo Alerta Dinâmico" />
+	<msg mid="_NEW_DYNAMIC_DEVICEGROUP" value="Novo Grupo de Dispositivos Dinâmico" />
+	<msg mid="_NEW_FIELD" value="Novo Campo" />
+	<msg mid="_NEW_RACK" value="Novo Rack" />
+	<msg mid="_NEW_REPORT" value="Novo Relatório" />
+	<msg mid="_NEW_ROOM" value="Nova Sala" />
+  <msg mid="_NEW_SERVICE" value="Novo Serviço" />
+	<msg mid="_NEW_STATIC_DEVICEGROUP" value="Novo Grupo de Dispositivos Estático" />
+  <msg mid="_NEW_TABLE" value="Nova Tabela" />
+	<msg mid="_NEW_TIMEPERIOD" value="Novo Períódo de Tempo" />
+	<msg mid="_NEW_USER" value="Novo Usuário" />
+	<msg mid="_PARTITION_LOGS" value="Partição de  Logs" />
+	<msg mid="_PERIOD" value="Período" />
+  <msg mid="_PERIODS" value="Períodos" />
+	<msg mid="_PROCESSOR" value="Processador" />
+	<msg mid="_RACK" value="Rack" />
+	<msg mid="_RANK" value="Rank" />
+	<msg mid="_REMOVE_LOG_MINUTE" value="Remover Log por Minuto" />
+	<msg mid="_REPORT" value="Report" />
+	<msg mid="_REPORT_CATEGORIES" value="Categorias de Relatório" />
+	<msg mid="_REPORT_CREATION" value="Criação de Relatório" />
+	<msg mid="_REPORT_CSV" value="Formato de Relatório CSV" />
+	<msg mid="_REPORT_EDITION" value="Edição de Relatório" />
+	<msg mid="_REPORT_HTML" value="Formato do Relatório HTML" />
+	<msg mid="_REPORT_NAME" value="Nome do Relatório" />
+	<msg mid="_REPORT_PDF" value="_REPORT_PDF" />
+	<msg mid="_REPORT_SCHEDULER" value="Agendador de Relatórios" />
+	<msg mid="_REPORT_XML" value="_REPORT_XML" />
+	<msg mid="_REPORTS" value="Relatórios" />
+	<msg mid="_REPORTS_UPDATES" value="Atualização de Relatórios" />
+	<msg mid="_REPORTS_VIEWER" value="Visualizador de Relatórios" />
+	<msg mid="_RIGHTS" value="Direitos" />
+	<msg mid="_ROLE" value="_ROLE" />
+	<msg mid="_ROOM" value="Sala" />
+	<msg mid="_SCHEDULE" value="Agendar" />
+	<msg mid="_SCHEDULE_REPORT" value="Relatório de Agenda" />
+	<msg mid="_SCHEDULER" value="Agenda" />	
+	<msg mid="_SELECT_THIS_MSG" value="Selecionar esta Mensagem" />
+	<msg mid="_SENDER" value="Sender" />
+	<msg mid="_SERVER" value="Servidor" />
+	<msg mid="_SERVICE" value="Serviço" />
+	<msg mid="_SERVICE_NAME" value="Nome do Serviço" />
+	<msg mid="_SERVICEGROUPS" value="Grupo de Serviços" />
+	<msg mid="_SERVICES" value="Serviços" />
+	<msg mid="_SERVICES_UPDATES" value="Atualização de Serviços" />
+	<msg mid="_START" value="Iniciar" />
+  <msg mid="_START_PERIOD" value="Período para Início" />
+  <msg mid="_START_TIME" value="Hora de Início" />
+	<msg mid="_STATIC" value="Estático" />
+	<msg mid="_STATISTIC_REPORTS" value="Relatório de Estatísticas" />
+	<msg mid="_STORAGES" value="Repositórios" />
+	<msg mid="_STREET" value="_STREET" />
+	<msg mid="_SUPPORT_REQUEST" value="Solicitar Suporte" />
+	<msg mid="_SWAP_USAGE" value="Uso de Swap" />
+	<msg mid="_SYSTEM_CONFIG" value="Configuração do Sistema" />
+	<msg mid="_TABLE" value="Tabela" />
+	<msg mid="_TABLE_NAME" value="Nome da Tabela" />
+	<msg mid="_TABLES" value="Tabelas" />
+	<msg mid="_TABLES_UPDATES" value="Atualizações de Tabelas" />
+	<msg mid="_TAXONOMY" value="Taxonomia" />
+	<msg mid="_TICKET_CLOSED" value="Fechado" />
+	<msg mid="_TICKET_OPENED" value="Aberto" />
+	<msg mid="_TICKET_WAIT_FOR_INFO" value="Aguardando Informação" />
+	<msg mid="_TICKET_WORK_PROGRESS" value="Em Progresso" />
+	<msg mid="_TIMEPERIOD" value="Período de Tempo" />
+	<msg mid="_TIMEPERIOD_NAME" value="Nome do Período de Tempo" />
+	<msg mid="_TIMEPERIODS" value="Períodos de Tempo" />
+	<msg mid="_UNKNOWN_MSGS" value="Mensagens Desconhecidas" />
+	<msg mid="_USERS_BASE" value="Base de Usuários" />
+  <msg mid="_USERS_FILTER" value="Filtro de Usuários" />
+  <msg mid="_USERS_SERVER" value="Servidor de Usuários" />
+
+	<msg mid="_MSG_ALERT_RAISED_ONLY"
+		value="O alerta vai ser disparado somente se acontecer n vezes em menos de d secundos em um dispositivo" />
+	<msg mid="_MSG_CHECK_UPDATES"
+		value="Checar por Atualizações" />
+	<msg mid="_MSG_CONTACT_ALREADY_EXIST"
+    value="Este contato já existe !" />
+	<msg mid="_MSG_CONTACT_INFO_INVALID"
+    value="Estas informações do contato pedem pelo menos ID e Email/IM !" />
+	<msg mid="_MSG_CONTACT_ME"
+		value="Para qualquer coisa além disto, me contate em octo.devel@gmail.com" />
+	<msg mid="_MSG_DYNAMIC_ALERT_CREATION"
+    value="Criação de Alerta Dinâmico" />
+	<msg mid="_MSG_FIELD_DONT_EXIST"
+    value="Campo não existe !" />
+	<msg mid="_MSG_INVALID_LOGIN_PASSWORD" 
+		value="Você digitou um usuário/senha inválido !" />
+	<msg mid="_MSG_INVALID_SCHEDULE_PERIOD"
+    value="_MSG_INVALID_SCHEDULE_PERIOD" />
+	<msg mid="_MSG_MAIL_SENT_TO_SUPPORT"
+		value="E-Mail enviado para o suporte Octopussy." />
+	<msg mid="_MSG_MAP_CREATION_INFO"
+		value="Para maiores informações sobre criação de Mapas, visite o Octopussy WebSite !" />
+	<msg mid="_MSG_MSGID_ALREADY_EXISTS"
+    value="ID de Mensagem já existente !" />
+	<msg mid="_MSG_MSGS_FOR_SERVICE"
+    value="Mensagens para o Serviço %s (versão %s)" />
+	<msg mid="_MSG_NB_LINES"
+    value="_MSG_NB_LINES: %d" />
+	<msg mid="_MSG_NEED_DEFINE_CONTACT"
+    value="Se você quer enviar Alertas, deve primeiro definir Contatos." />
+	<msg mid="_MSG_NEED_REPORT_FOR_SCHEDULE"
+    value="Você precisará  criar Relatórios antes de agendar qualquer coisa." />
+	<msg mid="_MSG_NEED_SMTP_SERVER_TO_SUBMIT"
+    value="Você precisa configurar um Servidor SMTP para contactar o suporte Octopussy !" />
+	<msg mid="_MSG_NO_GRAPH_AVAILABLE"
+    value="Nenhum gráfico disponível !" />
+	<msg mid="_MSG_NO_MSG_FOR_SERVICE"
+    value="_MSG_NO_MSG_FOR_SERVICE %s (%d)" />
+	<msg mid="_MSG_NO_UPDATES_AVAILABLE"
+		value="Nenhuma atualização disponível" />
+	<msg mid="_MSG_REACH_MAX_LINES"
+    value="_MSG_REACH_MAX_LINES %d" />
+	<msg mid="_MSG_REPORT_DATA_SOURCE"
+    value="Dados dos %d arquivos / %d linhas pegos em %d minutos e %d segundos." />
+  <msg mid="_MSG_REPORT_GENERATED_BY"
+    value="Gerado por Octopussy" />
+	<msg mid="_MSG_REPORT_PROGRESS_BUILDING_REPORT"
+    value="Construindo Relatório..." />
+  <msg mid="_MSG_REPORT_PROGRESS_INIT_DB"
+    value="Inicializando Banco de Dados..." />
+  <msg mid="_MSG_REPORT_PROGRESS_INIT_PLUGIN"
+    value="Inicializando Plugins..." />
+	<msg mid="_MSG_REPORT_PROGRESS_INSERTING_DATA" 
+    value="Inserindo Dados..." />
+	<msg mid="_MSG_REPORT_PROGRESS_LISTING_FILES"
+    value="Pegando arquivos de dados..." />
+	<msg mid="_MSG_REPORT_PROGRESS_QUERYING_DB"
+    value="Consultando Banco de Dados..." />
+	<msg mid="_MSG_RESTART_OCTOPUSSY"
+    value="Restart do Octopussy" />
+	<msg mid="_MSG_SCHEDULE_ALREADY_EXISTS"
+    value="_MSG_SCHEDULE_ALREADY_EXISTS" />
+	<msg mid="_MSG_SEND_MY_NEW"
+    value="Enviar meus novos/atualizados Serviços/Tabelas" />
+	<msg mid="_MSG_SERVICES_FOR_DEVICE" 
+		value="Serviços por Dispositivo %s" />
+	<msg mid="_MSG_SERVICES_FOR_SERVICEGROUP" 
+		value="Serviços por Grupo de Serviços %s" />
+	<msg mid="_MSG_SSH_PUBKEY_REQUIRED"
+    value="Chave Pública SSH Necessária" />
+	<msg mid="_MSG_STATIC_ALERT_CREATION"
+    value="Criação de Alerta Estático" />
+	<msg mid="_MSG_STORAGES_DEFAULT_DIRECTORIES"
+    value="_These Default Storage Directories are only used for New Devices ! If you want to change Logs Directory for a specific Device/Service, do it in the Devices/Storages Page." />
+	<msg mid="_MSG_STORAGES_FOR_DEVICE" 
+		value="Armazenamento para o Dispositivo %s" />
+	<msg mid="_MSG_SUBMIT_TO_IMPROVE"
+    value="Submeter meus Service/Tabelas para melhorar o Octopussy" />
+	<msg mid="_MSG_THIS_IS_MY_NEW"
+    value="Este é o meu novo/atualizado Serviço/Tabela" />
+	<msg mid="_MSG_TOTAL_EVENTS_LAST_MINUTE"
+    value="Total de Eventos no Último Minuto" />
+	<msg mid="_MSG_TOTAL_REPORTS"
+		value="Total: %d Relatórios" />
+	<msg mid="_MSG_UPDATE_CONFIG"
+    value="Atualizar Configuração" />
+	<msg mid="_MSG_UPDATE_PREFS"
+    value="Atualizar Preferências" />
+	<msg mid="_MSG_UPDATE_SELECTED_REPORTS"
+    value="Atualizar Relatórios Selecionados" />
+	<msg mid="_MSG_UPDATE_SELECTED_SERVICES"
+    value="Atualizar Serviços Selecionados" />
+	<msg mid="_MSG_UPDATE_SELECTED_TABLES"
+    value="Atualizar Tabelas Selecionadas" />
+	<msg mid="_MSG_USER_ALREADY_EXISTS"
+    value="Este usuário já existe !" />
+	<msg mid="_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
+    value="Wizard da lista de mensagens limitada a %d por padrão." />
+</Translation>

@@ -1,0 +1,35 @@
+<octopussy_table name="Netscreen_Traffic"
+     description="Netscreen Firewall Traffic Table" version="200508020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="vrouter"
+         type="STRING" />
+  <field title="policy_id"
+         type="NUMBER" />
+  <field title="duration"
+         type="NUMBER" />
+  <field title="ip_protocol"
+         type="NUMBER" />
+  <field title="service"
+         type="STRING" />
+  <field title="src_zone"
+         type="STRING" />
+  <field title="src_addr"
+         type="IP_ADDR" />
+  <field title="src_port"
+         type="NUMBER" />
+  <field title="dst_zone"
+         type="STRING" />
+  <field title="dst_addr"
+         type="IP_ADDR" />
+  <field title="dst_port"
+         type="NUMBER" />
+  <field title="bytes_sent"
+         type="NUMBER" />
+  <field title="bytes_rcvd"
+         type="NUMBER" />
+  <field title="device"
+         type="STRING" />
+  <field title="msg_id"
+         type="WORD" />
+</octopussy_table>

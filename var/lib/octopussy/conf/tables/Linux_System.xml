@@ -1,0 +1,13 @@
+<octopussy_table name="Linux_System"
+     description="Linux System Messages Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="pid"
+         type="NUMBER" />
+  <field title="msg"
+         type="STRING" />
+  <field title="daemon"
+         type="STRING" />
+</octopussy_table>

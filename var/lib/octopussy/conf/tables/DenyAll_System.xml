@@ -1,0 +1,15 @@
+<octopussy_table name="DenyAll_System"
+     description="DenyAll System Table" version="200608020001">
+  <field title="device"
+         type="WORD" />
+  <field title="denyall_product"
+         type="STRING" />
+  <field title="instance"
+         type="STRING" />
+  <field title="module"
+         type="STRING" />
+  <field title="msg"
+         type="STRING" />
+  <field title="datetime"
+         type="DATETIME" />
+</octopussy_table>

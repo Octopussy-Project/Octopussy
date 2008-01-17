@@ -1,0 +1,27 @@
+<octopussy_table name="IronPort"
+                 description="IronPort">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="icid"
+         type="NUMBER" />
+  <field title="mid"
+         type="NUMBER" />
+  <field title="msg"
+         type="STRING" />
+  <field title="dcid"
+         type="NUMBER" />
+  <field title="sender"
+         type="STRING" />
+  <field title="rcpt"
+         type="STRING" />
+  <field title="rid"
+         type="NUMBER" />
+  <field title="response"
+         type="STRING" />
+  <field title="bounce_reason"
+         type="STRING" />
+  <field title="subject"
+         type="STRING" />
+</octopussy_table>

@@ -1,0 +1,21 @@
+<octopussy_table name="Sendmail"
+     description="Sendmail Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="STRING" />
+  <field title="id"
+         type="STRING" />
+  <field title="msg_id"
+         type="STRING" />
+  <field title="from"
+         type="STRING" />
+  <field title="to"
+         type="STRING" />
+  <field title="status"
+         type="STRING" />
+  <field title="relay"
+         type="STRING" />
+  <field title="size"
+         type="NUMBER" />
+</octopussy_table>

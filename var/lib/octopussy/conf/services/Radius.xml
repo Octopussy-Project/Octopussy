@@ -1,0 +1,10 @@
+<octopussy_service name="Radius"
+     description="Radius Service"
+     version="200604280001">
+  <message loglevel="Information"
+           msg_id="Radius:1"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;radiusd: .+ : Info: Starting - reading configuration files ...&quot;):msg@&gt;"
+           rank="01"
+           table="Radius_msg"
+           taxonomy="System" />
+</octopussy_service>

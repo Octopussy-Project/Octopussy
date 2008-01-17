@@ -1,0 +1,12 @@
+<octopussy_table name="Exim"
+                 description="Exim Messages Table"
+                 version="200610020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="pid"
+         type="NUMBER" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

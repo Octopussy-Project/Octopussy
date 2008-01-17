@@ -1,0 +1,11 @@
+<octopussy_service name="Linux_Red_Hat_System"
+     description="Linux Red Hat System Service"
+		 icon="operating_systems/os_linux_redhat"
+     version="200606060001">
+  <message loglevel="Notice"
+           msg_id="Linux_Red_Hat_System:rhnsd"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@STRING:server@&gt; &lt;@REGEXP(&quot;rhnsd&quot;):daemon@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@STRING:msg@&gt;"
+           rank="01"
+           table="Linux Red Hat System"
+           taxonomy="System" />
+</octopussy_service>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<aat>
+
+	<application name="AAT" version="0.7.0"
+							 email="octo.devel@gmail.com"
+               website="http://www.8pussy.org/dokuwiki/doku.php?id=aat">
+
+		<directory name="lists" value="/etc/aat/Lists/" />
+		<directory name="objects" value="/etc/aat/Objects/" />
+		<directory name="themes" value="/usr/share/aat/THEMES/" />
+		<directory name="translations" value="/usr/share/aat/Translations/" />
+
+		<file name="db" value="/var/lib/octopussy/conf/db.xml" />
+		<file name="ldap" value="/var/lib/octopussy/conf/ldap.xml" />
+		<file name="message_logs" value="/var/lib/octopussy/conf/message_logs.xml" />
+		<file name="nsca" value="/var/lib/octopussy/conf/nsca.xml" />
+		<file name="proxy" value="/var/lib/octopussy/conf/proxy.xml" />		
+		<file name="schedule" value="/var/lib/octopussy/conf/schedule.xml" />
+		<file name="smtp" value="/var/lib/octopussy/conf/smtp.xml" />
+		<file name="xmpp" value="/var/lib/octopussy/conf/xmpp.xml" />
+
+  </application>
+
+	<application name="Octopussy" version="0.9.4.9"
+							 email="octo.devel@gmail.com"
+							 website="http://www.8pussy.org">
+
+		<directory name="alerts" value="/var/lib/octopussy/conf/alerts/" />
+		<directory name="contacts" value="/var/lib/octopussy/conf/contacts/" />
+		<directory name="devices" value="/var/lib/octopussy/conf/devices/" />
+		<directory name="main" value="/var/lib/octopussy/conf/" />
+		<directory name="maps" value="/var/lib/octopussy/conf/maps/" />
+		<directory name="plugins" value="/var/lib/octopussy/conf/plugins/" />
+		<directory name="reports" value="/var/lib/octopussy/conf/reports/" />
+		<directory name="services" value="/var/lib/octopussy/conf/services/" />
+		<directory name="statistic_reports" value="/var/lib/octopussy/conf/statistic_reports/" />
+		<directory name="tables" value="/var/lib/octopussy/conf/tables/" />
+		<directory name="data_logs" value="/var/lib/octopussy/logs/" />
+		<directory name="data_reports" value="/var/lib/octopussy/reports/" />
+		<directory name="data_rrd" value="/var/lib/octopussy/rrd/" />
+		<directory name="programs" value="/usr/sbin/" />
+		<directory name="running" value="/var/run/octopussy/" />
+		<directory name="web" value="/usr/share/octopussy/" />
+
+		<file name="device_models" value="/var/lib/octopussy/conf/device_models.xml" />
+		<file name="devicegroups" value="/var/lib/octopussy/conf/devicegroups.xml" />
+		<file name="dialogs" value="/etc/octopussy/dialogs.xml" />
+		<file name="locations" value="/var/lib/octopussy/conf/locations.xml" />
+		<file name="schedule" value="/var/lib/octopussy/conf/schedule.xml" />
+		<file name="servicegroups" value="/var/lib/octopussy/conf/servicegroups.xml" />
+		<file name="storages" value="/var/lib/octopussy/conf/storages.xml" />
+		<file name="taxonomy" value="/var/lib/octopussy/conf/taxonomy.xml" />
+		<file name="timeperiods" value="/var/lib/octopussy/conf/timeperiods.xml" />
+		<file name="types" value="/var/lib/octopussy/conf/types.xml" />
+		<file name="user_roles" value="/var/lib/octopussy/conf/user_roles.xml" />
+		<file name="users" value="/var/lib/octopussy/conf/users.xml" />
+		<file name="webservices" value="/var/lib/octopussy/conf/webservices.xml" />
+
+		<parameter name="devicetype" value="Unknown" />
+    <parameter name="devicemodel" value="Unknown" />
+    <parameter name="logrotate" value="90" />
+    <parameter name="max_alerts" value="100" />
+    <parameter name="wizard_max_msgs" value="50" />
+
+	</application>
+
+</aat>

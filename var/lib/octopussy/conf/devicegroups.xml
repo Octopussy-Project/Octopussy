@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_devicegroups>
+  <devicegroup description="Group just for Demo"
+               dg_id="Demo Group"
+               type="static">
+    <device>macbook</device>
+    <device>pcstt</device>
+  </devicegroup>
+  <devicegroup description="Hosts with Device Type == Desktop PC"
+               dg_id="Desktop Hosts"
+               type="dynamic">
+    <criteria field="type"
+              pattern="Desktop PC" />
+  </devicegroup>
+</octopussy_devicegroups>

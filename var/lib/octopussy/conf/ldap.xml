@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<aat_ldap>
+  <ldap contacts_base="ou=contacts,dc=nodomain"
+        contacts_filter="mail=*"
+        contacts_server="127.0.0.1"
+        users_base="ou=users,dc=nodomain"
+        users_filter="uid=*"
+        users_server="127.0.0.1" />
+</aat_ldap>

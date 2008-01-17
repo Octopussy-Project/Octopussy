@@ -1,0 +1,10 @@
+<octopussy_table name="Drbd"
+                 description="Drbd Table"
+                 version="200609280001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

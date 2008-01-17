@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<octopussy_service name="Netscreen_NSM_Traffic"
+                   description="Netscreen NSM Traffic Service"
+                   icon="companies/logo_juniper"
+                   version="200703120002">
+  <message loglevel="Notice"
+           msg_id="Netscreen_NSM_Traffic:traffic"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@NUMBER:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@DATE:NULL@&gt; &lt;@TIME:NULL@&gt;, &lt;@DATE:NULL@&gt; &lt;@TIME:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@IP_ADDR:NULL@&gt;, &lt;@REGEXP(&quot;traffic.*&quot;):category@&gt;, &lt;@REGEXP(&quot;traffic.*&quot;):subcategory@&gt;, &lt;@STRING:src_zone@&gt;, (NULL), &lt;@IP_ADDR:src_addr@&gt;, &lt;@NUMBER:src_port@&gt;, &lt;@IP_ADDR:src_nat_addr@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@STRING:dst_zone@&gt;, (NULL), &lt;@IP_ADDR:dst_addr@&gt;, &lt;@NUMBER:dst_port@&gt;, &lt;@IP_ADDR:dst_nat_addr@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:protocol@&gt;, &lt;@WORD:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@NUMBER:rule@&gt;, &lt;@STRING:action@&gt;, &lt;@WORD:severity@&gt;, &lt;@REGEXP(&quot;.+&quot;):NULL@&gt;"
+           rank="001"
+           table="Netscreen_NSM"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="Netscreen_NSM_Traffic:self_log"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@NUMBER:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@DATE:NULL@&gt; &lt;@TIME:NULL@&gt;, &lt;@DATE:NULL@&gt; &lt;@TIME:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@IP_ADDR:NULL@&gt;, &lt;@REGEXP(&quot;self&quot;):category@&gt;, &lt;@REGEXP(&quot;self log&quot;):subcategory@&gt;, &lt;@STRING:src_zone@&gt;, (NULL), &lt;@IP_ADDR:src_addr@&gt;, &lt;@NUMBER:src_port@&gt;, &lt;@IP_ADDR:src_nat_addr@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@STRING:dst_zone@&gt;, (NULL), &lt;@IP_ADDR:dst_addr@&gt;, &lt;@NUMBER:dst_port@&gt;, &lt;@IP_ADDR:dst_nat_addr@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:protocol@&gt;, &lt;@WORD:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@NUMBER:rule@&gt;, &lt;@STRING:action@&gt;, &lt;@WORD:severity@&gt;, &lt;@REGEXP(&quot;.+&quot;):NULL@&gt;"
+           rank="002"
+           table="Netscreen_NSM"
+           taxonomy="Traffic" />
+  <message loglevel="Notice"
+           msg_id="Netscreen_NSM_Traffic:idp"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@NUMBER:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@DATE:NULL@&gt; &lt;@TIME:NULL@&gt;, &lt;@DATE:NULL@&gt; &lt;@TIME:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:NULL@&gt;, &lt;@IP_ADDR:NULL@&gt;, &lt;@STRING:category@&gt;, &lt;@STRING:subcategory@&gt;, &lt;@STRING:src_zone@&gt;, (NULL), &lt;@IP_ADDR:src_addr@&gt;, &lt;@NUMBER:src_port@&gt;, &lt;@IP_ADDR:src_nat_addr@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@STRING:dst_zone@&gt;, (NULL), &lt;@IP_ADDR:dst_addr@&gt;, &lt;@NUMBER:dst_port@&gt;, &lt;@IP_ADDR:dst_nat_addr@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:protocol@&gt;, &lt;@WORD:NULL@&gt;, &lt;@NUMBER:NULL@&gt;, &lt;@WORD:NULL@&gt;, idp, &lt;@NUMBER:rule@&gt;, &lt;@STRING:action@&gt;, &lt;@WORD:severity@&gt;, &lt;@REGEXP(&quot;.+&quot;):NULL@&gt;"
+           rank="003"
+           table="Netscreen_NSM"
+           taxonomy="Other" />
+</octopussy_service>

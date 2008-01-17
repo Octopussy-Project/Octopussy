@@ -1,0 +1,11 @@
+<octopussy_table name="Octopussy_msg"
+     description="Octopussy Messages Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="module"
+         type="STRING" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

@@ -1,0 +1,31 @@
+<style type="text/css">
+body.report {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+  margin-bottom: 0px;
+}
+a.report {
+ 	font-weight: Bold;
+ 	color: navy;
+}
+table.report {
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+tr.report {
+	background-color: #E7E7E7;	
+	font-family: Geneva, Verdana, Arial, sans-serif;
+	font-size: 12px;
+	padding: 2px;
+}
+td.report {
+	font-family: Geneva, Verdana, Arial, sans-serif;
+	padding: 3px;
+}
+td.report-header {
+  font-family: Geneva, Verdana, Arial, sans-serif;	
+	font-size: 12px;
+	padding: 3px;
+}
+</style>

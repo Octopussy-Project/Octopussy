@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<octopussy_service name="Juniper_DX_Traffic"
+                   description="Juniper DX Traffic Service"
+									 icon="companies/logo_juniper"
+                   version="200701300005">
+  <message loglevel="Information"
+           msg_id="Juniper DX Traffic:traffic1"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@IP_ADDR:src_addr@&gt; - - [&lt;@DATE_TIME_APACHE_ACCESS:NULL@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@WORD:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &lt;@STRING:NULL@&gt;"
+           rank="001"
+           table="Juniper_DX_Traffic"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="Juniper_DX_Traffic:miss"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@IP_ADDR:src_addr@&gt; [&lt;@DATE_TIME_APACHE_ACCESS:NULL@&gt;] &lt;@WORD:http_method@&gt; &lt;@WORD:url@&gt; &lt;@WORD:http_version@&gt; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &lt;@STRING:NULL@&gt;"
+           rank="002"
+           table="Juniper_DX_Traffic"
+           taxonomy="Traffic" />
+</octopussy_service>

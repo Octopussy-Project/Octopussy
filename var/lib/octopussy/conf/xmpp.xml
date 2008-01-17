@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<aat_xmpp>
+  <xmpp password="toto"
+        server="10.12.13.14"
+        tls="1"
+        user="toto" />
+</aat_xmpp>

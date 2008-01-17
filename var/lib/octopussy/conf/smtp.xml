@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<aat_smtp>
+  <smtp sender="toto@toto.com"
+        server="10.12.13.14" />
+</aat_smtp>

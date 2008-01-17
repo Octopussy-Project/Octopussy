@@ -1,0 +1,26 @@
+<octopussy_table name="Squid_Traffic"
+                 description="Squid Traffic Table"
+                 version="200702220001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="duration"
+         type="NUMBER" />
+  <field title="client_ip"
+         type="IP_ADDR" />
+  <field title="squid_code"
+         type="WORD" />
+  <field title="http_code"
+         type="NUMBER" />
+  <field title="bytes"
+         type="NUMBER" />
+  <field title="http_method"
+         type="WORD" />
+  <field title="url"
+         type="STRING" />
+  <field title="hierarchy_code"
+         type="STRING" />
+  <field title="type"
+         type="STRING" />
+</octopussy_table>

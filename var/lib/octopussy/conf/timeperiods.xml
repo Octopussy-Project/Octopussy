@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_timeperiods>
+  <timeperiod label="Week">
+    <dt Monday="!00:00-00:00" />
+    <dt Tuesday="!00:00-00:00" />
+    <dt Wednesday="!00:00-00:00" />
+    <dt Thursday="!00:00-00:00" />
+    <dt Friday="!00:00-00:00" />
+    <dt Saturday="!00:00-00:00" />
+    <dt Sunday="!00:00-00:00" />
+  </timeperiod>
+  <timeperiod label="Week_End">
+    <dt Monday="00:00-00:00" />
+    <dt Tuesday="00:00-00:00" />
+    <dt Wednesday="00:00-00:00" />
+    <dt Thursday="00:00-00:00" />
+    <dt Friday="00:00-00:00" />
+    <dt Saturday="!00:00-00:00" />
+    <dt Sunday="!00:00-00:00" />
+  </timeperiod>
+  <timeperiod label="Work_Hours">
+    <dt Monday="08:00-20:00" />
+    <dt Tuesday="08:00-20:00" />
+    <dt Wednesday="08:00-20:00" />
+    <dt Thursday="08:00-20:00" />
+    <dt Friday="08:00-20:00" />
+    <dt Saturday="00:00-00:00" />
+    <dt Sunday="00:00-00:00" />
+  </timeperiod>
+</octopussy_timeperiods>

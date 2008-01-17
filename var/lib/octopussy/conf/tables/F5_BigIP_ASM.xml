@@ -1,0 +1,10 @@
+<octopussy_table name="F5_BigIP_ASM"
+                 description="F5 BigIP ASM Table"
+                 version="200703080001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>

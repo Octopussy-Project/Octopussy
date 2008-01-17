@@ -1,0 +1,15 @@
+<octopussy_table name="Rsync_error"
+     description="Rsync Error Messages Table" version="200608020001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="action"
+         type="STRING" />
+  <field title="object"
+         type="STRING" />
+  <field title="status"
+         type="STRING" />
+  <field title="pid"
+         type="NUMBER" />
+</octopussy_table>

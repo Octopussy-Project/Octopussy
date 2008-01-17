@@ -1,0 +1,12 @@
+<octopussy_table name="Dell_Switch_msg"
+                 description="Dell Switch Table"
+                 version="200701100001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+  <field title="msgid"
+         type="WORD" />
+</octopussy_table>

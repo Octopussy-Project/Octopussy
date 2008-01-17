@@ -1,0 +1,11 @@
+<octopussy_service name="F5_BigIP_ASM_Filtering"
+                   description="F5 BigIP ASM Filtering Service"
+                   icon="companies/logo_f5"
+                   version="200703080004">
+  <message loglevel="Notice"
+           msg_id="F5_BigIP_ASM_Filtering:secev_request_violations"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dcc[&lt;@NUMBER:NULL@&gt;]: &lt;@STRING:NULL@&gt;: [SECEV] Request violations: &lt;@STRING:request_violations@&gt; support id: &lt;@NUMBER:support_id@&gt;, source ip: &lt;@IP_ADDR:src_ip@&gt;, xff ip: &lt;@IP_ADDR:NULL@&gt;, HTTP classifier: &lt;@STRING:http_classifier@&gt; request: &lt;@STRING:request@&gt;"
+           rank="001"
+           table="F5_BigIP_ASM_Filtering"
+           taxonomy="Traffic.Denied" />
+</octopussy_service>

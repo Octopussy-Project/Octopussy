@@ -1,0 +1,59 @@
+<octopussy_service name="IP_Tables"
+                   description="IP Tables Service"
+									 icon="software/logo_netfilter"
+                   version="200702200018">
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_tcp"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; &lt;@WORD:fragment_flag@&gt; PROTO=&lt;@REGEXP(&quot;TCP&quot;):protocol@&gt; SPT=&lt;@NUMBER:src_port@&gt; DPT=&lt;@NUMBER:dst_port@&gt; WINDOW=&lt;@NUMBER:NULL@&gt; RES=&lt;@HEXA_NUMBER:NULL@&gt; &lt;@STRING:NULL@&gt;"
+           rank="001"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_tcp_mac"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; MAC=&lt;@MAC_ADDR:mac_addr@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; &lt;@WORD:fragment_flag@&gt; PROTO=&lt;@WORD:protocol@&gt; SPT=&lt;@NUMBER:src_port@&gt; DPT=&lt;@NUMBER:dst_port@&gt; WINDOW=&lt;@NUMBER:NULL@&gt; RES=&lt;@HEXA_NUMBER:NULL@&gt; &lt;@STRING:null@&gt;"
+           rank="006"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_udp_mac"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; MAC=&lt;@MAC_ADDR:mac_addr@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; &lt;@WORD:fragment_flag@&gt; PROTO=&lt;@REGEXP(&quot;UDP&quot;):protocol@&gt; SPT=&lt;@NUMBER:src_port@&gt; DPT=&lt;@NUMBER:dst_port@&gt; &lt;@STRING:NULL@&gt;"
+           rank="008"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_udp"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; &lt;@WORD:fragment_flag@&gt; PROTO=&lt;@REGEXP(&quot;UDP&quot;):protocol@&gt; SPT=&lt;@NUMBER:src_port@&gt; DPT=&lt;@NUMBER:dst_port@&gt; &lt;@STRING:NULL@&gt;"
+           rank="003"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_icmp"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; MAC=&lt;@MAC_ADDR:mac_addr@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; PROTO=&lt;@REGEXP(&quot;ICMP TYPE=\d+&quot;):proto@&gt; &lt;@STRING:NULL@&gt;"
+           rank="005"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_udp_mac2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; MAC=&lt;@MAC_ADDR:mac_addr@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; PROTO=&lt;@REGEXP(&quot;UDP&quot;):protocol@&gt; SPT=&lt;@NUMBER:src_port@&gt; DPT=&lt;@NUMBER:dst_port@&gt; &lt;@STRING:NULL@&gt;"
+           rank="007"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_tcp2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; PROTO=&lt;@REGEXP(&quot;TCP&quot;):protocol@&gt; SPT=&lt;@NUMBER:src_port@&gt; DPT=&lt;@NUMBER:dst_port@&gt; WINDOW=&lt;@NUMBER:NULL@&gt; RES=&lt;@HEXA_NUMBER:NULL@&gt; &lt;@STRING:NULL@&gt;"
+           rank="002"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_icmp_mac"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; MAC=&lt;@MAC_ADDR:mac_addr@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; &lt;@WORD:fragment_flag@&gt; PROTO=&lt;@REGEXP(&quot;ICMP TYPE=\d+&quot;):proto@&gt; &lt;@STRING:NULL@&gt;"
+           rank="009"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:traffic_udp2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: RULE &lt;@NUMBER:rule@&gt; -- &lt;@WORD:action@&gt; &lt;@REGEXP(&quot;IN=.* OUT=.*&quot;):interfaces@&gt; SRC=&lt;@IP_ADDR:src@&gt; DST=&lt;@IP_ADDR:dst@&gt; LEN=&lt;@NUMBER:length@&gt; TOS=&lt;@HEXA_NUMBER:NULL@&gt; PREC=&lt;@HEXA_NUMBER:NULL@&gt; TTL=&lt;@NUMBER:ttl@&gt; ID=&lt;@NUMBER:id@&gt; PROTO=&lt;@REGEXP(&quot;UDP&quot;):protocol@&gt; SPT=&lt;@NUMBER:src_port@&gt; DPT=&lt;@NUMBER:dst_port@&gt; &lt;@STRING:NULL@&gt;"
+           rank="004"
+           table="IP_Tables"
+           taxonomy="Traffic" />
+</octopussy_service>
