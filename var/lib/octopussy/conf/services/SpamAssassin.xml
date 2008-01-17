@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="SpamAssassin Service"
                    name="SpamAssassin"
-                   version="200801160001">
+                   nb_messages="006"
+                   version="200801170011">
   <message loglevel="Information"
            msg_id="SpamAssassin:server_started_on_port"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;spamd: server started on port .+&quot;):msg@&gt;"
@@ -23,7 +24,19 @@
   <message loglevel="Information"
            msg_id="SpamAssassin:logger_removing_method"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;logger: removing .+ method&quot;):msg@&gt;"
+           rank="005"
+           table="SpamAssassin"
+           taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="SpamAssassin:rules_undefined_dependency"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;rules: .+ has undefined dependency .+&quot;):msg@&gt;"
            rank="004"
+           table="SpamAssassin"
+           taxonomy="Config.Errors" />
+  <message loglevel="Debug"
+           msg_id="SpamAssassin:prefork_child_states"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;prefork: child states:.+&quot;):msg@&gt;"
+           rank="006"
            table="SpamAssassin"
            taxonomy="System" />
 </octopussy_service>

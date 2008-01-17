@@ -30,6 +30,7 @@ my %device_type;
 =cut
 sub Init()
 {
+	AAT::DEBUG("Dispatcher Init");
 	%device_dir = ();
 	%device_type = ();
 	AAT::Syslog($PROG_NAME, "Load Devices Configuration");

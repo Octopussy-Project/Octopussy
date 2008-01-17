@@ -288,6 +288,8 @@ sub Modify_Message($$$)
 
 =head2 Move_Message($service, $msgid, $direction)
 
+Move message '$msgid' up/down ('$direction') inside service '$service'
+
 =cut
 
 sub Move_Message($$$)
@@ -299,7 +301,7 @@ sub Move_Message($$$)
 	$conf->{version} = Octopussy::Timestamp_Version($conf);
   my @messages = ();
 	my $max = (defined $conf->{message} ? $#{$conf->{message}}+1 : 0);
-	$max = ("0"x(3-length($max))) . $max;
+	$max = AAT::Padding($max, 3);
 	foreach my $m (AAT::ARRAY($conf->{message}))
   {
     if ($m->{msg_id} eq $msgid)
@@ -532,13 +534,14 @@ Restart Device parsing for device with service '$service'
 sub Parse_Restart($)
 {
 	my $service = shift;
+	AAT::DEBUG("Service::Parse_Restart $service");
 
 	my @devices = Octopussy::Device::With_Service($service);
   foreach my $d (@devices)
   {
     if (Octopussy::Device::Parse_Status($d))
     {
-      Octopussy::Device::Parse_Stop($d);
+      Octopussy::Device::Parse_Pause($d);
       Octopussy::Device::Parse_Start($d);
     }
   }

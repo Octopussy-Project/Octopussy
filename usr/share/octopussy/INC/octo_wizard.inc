@@ -5,7 +5,7 @@ my $url = $arg{url};
 my $url_sort = $url . "?wizard_table_sort=";
 my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
 %>
-<AAT:Box icon="buttons/bt_wizard" title="_LOGS_WIZARD" align="center">
+<AAT:Box icon="buttons/bt_wizard" title="_LOGS_WIZARD" align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol>
 	<AAT:Label value="_NAME" link= "${url_sort}name" /></AAT:BoxCol>

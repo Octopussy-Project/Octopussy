@@ -29,6 +29,7 @@ my $NICE_UPARSER = "nice -n 20";
 my $dir_program = Octopussy::Directory("programs");
 my $dir_pid = Octopussy::Directory("running");
 my $device = $ARGV[0];
+my $reload_request = 0;
 
 my @services;
 my %alert;
@@ -43,11 +44,23 @@ my $pid_file = Octopussy::PID_File($PROG_NAME . "_$device");
 
 =head1 FUNCTIONS
 
+=head2 Reload()
+
+=cut
+
+sub Reload
+{
+	$reload_request = 1;
+}
+
+
 =head2 Init()
 
 =cut
+
 sub Init()
 {
+	AAT::DEBUG("Parser Init $device");
 	my $dconf = Octopussy::Device::Configuration($device);
 	exit()	if (!defined $dconf);
 
@@ -97,6 +110,7 @@ sub Init()
 =head2 Write_Logfile($file, $logs)
 
 =cut
+
 sub Write_Logfile($$)
 {
 	my ($logfile, $logs) = @_;
@@ -117,6 +131,7 @@ sub Write_Logfile($$)
 =head2 Write_Unknown_Logfile($file, $logs)
 
 =cut
+
 sub Write_Unknown_Logfile($$)
 {
   my ($logfile, $logs) = @_;
@@ -137,6 +152,7 @@ sub Write_Unknown_Logfile($$)
 =head2 Write_Stats($y, $m, $d, $hour, $min)
 
 =cut
+
 sub Write_Stats($$$$$)
 {
 	my ($y, $m, $d, $hour, $min) = @_;
@@ -151,6 +167,7 @@ sub Write_Stats($$$$$)
 =head2 Incoming_To_Unknown($incoming)
 
 =cut
+
 sub Incoming_To_Unknown($)
 {
 	my $incoming = shift;
@@ -166,6 +183,7 @@ sub Incoming_To_Unknown($)
 =head2 Alert_Handler($msg, $line)
 
 =cut
+
 sub Alert_Handler($$)
 {
 	my ($msg, $line) = @_;
@@ -256,6 +274,7 @@ sub Alert_Handler($$)
 =head2 Line_Handler($line, $serv, $msg, $known_msgs, $match)
 
 =cut
+
 sub Line_Handler($$$$$)
 {
 	my ($line, $serv, $msg, $known_msgs, $match) = @_;
@@ -277,6 +296,7 @@ sub Line_Handler($$$$$)
 =head2 Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new)
 
 =cut
+
 sub Service_Handler($$$$$$$$)
 {
 	my ($serv, $total, $y, $m, $d, $hour, $min, $file_new) = @_;	
@@ -300,6 +320,7 @@ sub Service_Handler($$$$$$$$)
 =head2 File_Handler($file)
 
 =cut
+
 sub File_Handler($)
 {
 	my $file = shift;
@@ -343,7 +364,7 @@ sub File_Handler($)
 # MAIN
 #
 
-$SIG{HUP} = \&Init;
+$SIG{HUP} = \&Reload;
 AAT::Syslog($PROG_NAME, "Device: $device Started !");
 Init();
 my $last_logs_time = time();
@@ -371,8 +392,17 @@ while (1)
     	{ Incoming_To_Unknown($file); }
     else
       { File_Handler($file); }
+		last	if ($reload_request);
 	}
-	sleep(50);
+	if ($reload_request)
+	{
+		$reload_request = 0;
+		Init();
+	}
+	else
+	{
+		sleep(50);
+	}
 	@files = ();
 }
 
