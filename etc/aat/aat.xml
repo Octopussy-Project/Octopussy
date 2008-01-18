@@ -5,8 +5,8 @@
 							 email="octo.devel@gmail.com"
                website="http://www.8pussy.org/dokuwiki/doku.php?id=aat">
 
-		<directory name="lists" value="/etc/aat/Lists/" />
-		<directory name="objects" value="/etc/aat/Objects/" />
+		<directory name="lists" value="/usr/share/aat/Lists/" />
+		<directory name="objects" value="/usr/share/aat/Objects/" />
 		<directory name="themes" value="/usr/share/aat/THEMES/" />
 		<directory name="translations" value="/usr/share/aat/Translations/" />
 

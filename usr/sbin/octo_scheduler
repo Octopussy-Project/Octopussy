@@ -1,5 +1,19 @@
 #!/usr/bin/perl -w
 
+=head1 NAME
+
+octo_scheduler - Octopussy Scheduler program
+
+=head1 SYNOPSIS
+
+octo_scheduler
+
+=head1 DESCRIPTION
+
+octo_scheduler is the program used by the Octopussy Project to launch Report that have been scheduled and generate Syslog Activity RRD Graphs 
+
+=cut
+
 use strict;
 no strict "refs";
 
@@ -15,10 +29,13 @@ my %month = ("January" => 1, "February" => 2, "March" => 3, "April" => 4,
 	"September" => 9, "October" => 10, "November" => 11, "December" => 12,
 	"Every Month" => 0);
 
-#
-# Function: Launch_Report($sched, $y, $m, $d, $hour, $min)
-#
-sub Launch_Report
+=head1 FUNCTIONS
+
+=head2 Launch_Report($sched, $y, $m, $d, $hour, $min)
+
+=cut
+
+sub Launch_Report($$$$$$)
 {
 	my ($sched, $y, $m, $d, $hour, $min) = @_;
 	my $start_day = $sched->{start_day};

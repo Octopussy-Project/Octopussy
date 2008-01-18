@@ -8,7 +8,12 @@ my @list = ();
 foreach my $f (@fields)
 { 
 	push(@list, $f->{title}); 
-	push(@list, "AVG($f->{title})")	if ($f->{type} =~ /NUMBER$/);
+	if ($f->{type} =~ /NUMBER$/)
+	{
+		push(@list, "AVG($f->{title})");
+		push(@list, "MIN($f->{title})");
+		push(@list, "MAX($f->{title})");
+	}
 	push(@list, "COUNT($f->{title})");
 	push(@list, "COUNT(DISTINCT($f->{title}))");
 	if (($f->{type} =~ /^DATE/) || ($f->{type} =~ /^TIME/))
@@ -34,6 +39,10 @@ foreach my $f (@fields)
     			{ 
 						push(@list, { label => "$label(AVG($f->{title}))", 
 													value => "$fc->{perl}(AVG($f->{title}))" }); 
+						push(@list, { label => "$label(MIN($f->{title}))",
+                          value => "$fc->{perl}(MIN($f->{title}))" });
+						push(@list, { label => "$label(MAX($f->{title}))",
+                          value => "$fc->{perl}(MAX($f->{title}))" });
 					}
 					push(@list, { label => "$label(COUNT($f->{title}))", 
 												value => "$fc->{perl}(COUNT($f->{title}))" });

@@ -201,6 +201,7 @@ sub Categories()
 Data Request with query '$query' from table '$table'
 
 =cut 
+
 sub Table_Creation($$)
 {
 	my ($table, $query) = @_;
@@ -228,6 +229,8 @@ sub Table_Creation($$)
 			$f =~ s/^\s*\(?distinct\(//gi;
 			$f =~ s/^\s*\(?sum\(//gi;
 			$f =~ s/^\s*\(?avg\(//gi;
+			$f =~ s/^\s*\(?min\(//gi;
+			$f =~ s/^\s*\(?max\(//gi;
 			$f =~ s/[\(,\)]//gi;
 			$f =~ s/^\s*//i;
 			$f =~ s/\s*$//i;

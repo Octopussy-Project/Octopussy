@@ -1,10 +1,18 @@
 #!/usr/bin/perl -w
 
-#
-# Daemon that get file with no syslog lines and dispatch into device directories
-#
-# files --> device_dir/device_ip/year/month/day/Unknown
-#
+=head1 NAME
+
+octo_pusher - Octopussy Pusher program
+
+=head1 SYNOPSIS
+
+octo_pusher
+
+=head1 DESCRIPTION
+
+octo_pusher is the program used by the Octopussy Project to parse 'no-syslog' Logs for 'no-syslog' Devices
+
+=cut
 
 use strict;
 use File::Copy;
@@ -25,10 +33,13 @@ my %month = ( Jan => "01", Feb => "02", Mar => "03", Apr => "04",
 my @months = (undef, "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
 	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
-#
-# Function: Init()
-#
-sub Init
+=head1 FUNCTIONS
+
+=head2 Init()
+
+=cut
+
+sub Init()
 {
 	%device_dir = ();
 	AAT::Syslog($PROG_NAME, "Load Devices Configuration");
@@ -49,10 +60,11 @@ sub Init
 	}		
 }
 
-#
-# Function: Handle_Dir($device, $day, $month, $year)
-#
-sub Handle_Dir
+=head2 Handle_Dir($device, $day, $month, $year)
+
+=cut
+
+sub Handle_Dir($$$$)
 {
 	my ($device, $day, $month, $year) = @_;
 
@@ -75,10 +87,11 @@ sub Handle_Dir
 	return ($dir_incoming);
 }
 
-#
-# Function: Convert_To_Syslog($line, $device)
-#
-sub Convert_To_Syslog
+=head2 Convert_To_Syslog($line, $device)
+
+=cut
+
+sub Convert_To_Syslog($$)
 {
 	my ($line, $device) = @_;
 	chomp($line);
@@ -110,9 +123,10 @@ sub Convert_To_Syslog
 	return ($syslog);	
 }
 
-#
-# Function: Write_To_Incoming($dev, $year, $month, $mday, $hour, $min, @lines)
-#
+=head2 Write_To_Incoming($dev, $year, $month, $mday, $hour, $min, @lines)
+
+=cut
+
 sub Write_To_Incoming
 {
 	my ($dev, $year, $month, $mday, $hour, $min, @lines) = @_;
