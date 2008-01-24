@@ -1,0 +1,50 @@
+#!/bin/sh -e
+
+# Source debconf library.
+. /usr/share/debconf/confmodule
+
+OCTO="octopussy"
+CRON_FILE="/etc/cron.daily/octo_logrotate"
+
+db_get octopussy/mysql_root_password
+
+MYSQL="/usr/bin/mysql --password=$RET --exec"
+RM="/bin/rm"
+UPDATERCD="/usr/sbin/update-rc.d"
+
+#
+# Delete Octopussy MySQL Database
+#
+$MYSQL="DROP DATABASE IF EXISTS $OCTO" || true
+
+#
+# Remove octo_logrotate from cron.daily
+#
+if [ -x "$CRON_FILE" ]; then
+	$RM -f $CRON_FILE || true
+fi
+
+#
+# Remove init files
+#
+if [ -x "/etc/init.d/octopussy" ]; then
+	$UPDATERCD -f $OCTO remove || true
+	$RM -f /etc/init.d/octopussy || true
+fi
+
+#
+# Remove Octopussy directories & files
+#
+if [ "$1" = "purge" ]; 
+then
+	$RM -rf /var/lib/octopussy/ || true
+	$RM -rf /var/run/octopussy/ || true
+	$RM -rf /usr/share/octopussy/ || true
+	$RM -f /etc/apache-ssl/octopussy.conf || true
+fi
+
+if [ "$1" = "purge" ]; 
+then
+	# Remove my changes to the db.
+	db_purge
+fi

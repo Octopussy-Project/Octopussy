@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+OCTO="octopussy"
+INVOKERCD="/usr/sbin/invoke-rc.d"
+USERDEL="/usr/sbin/userdel"
+
+if [ -x "/etc/init.d/$OCTO" ]; then
+	if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
+  	$INVOKERCD $OCTO stop || exit 0
+  else
+  	/etc/init.d/$OCTO stop || exit 0
+  fi
+fi
+
+#
+# Remove Octopussy User
+#
+$USERDEL $OCTO || true

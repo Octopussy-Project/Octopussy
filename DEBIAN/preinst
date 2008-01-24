@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+OCTO="octopussy"
+ADDGROUP="/usr/sbin/addgroup --system"
+ADDUSER="/usr/sbin/adduser --system --disabled-password --no-create-home"
+USERMOD="/usr/sbin/usermod -g"
+
+#
+# Add User & Group Octopussy
+#
+if id $OCTO >/dev/null 2>&1 ; then
+  if [ `id $OCTO -g -n` != "$OCTO" ] ; then
+    $ADDGROUP $OCTO || true
+    $USERMOD $OCTO $OCTO
+  fi
+else
+  $ADDUSER --group --quiet $OCTO
+fi
