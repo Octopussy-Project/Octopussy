@@ -51,6 +51,7 @@ my @sql_substitutions =
 Connect to the Octopussy Database
 
 =cut 
+
 sub Connect()
 {
 	my $error = AAT::DB::Connect();
@@ -60,7 +61,10 @@ sub Connect()
 
 =head2 Table_Creation($tablename, \@fields, \@indexes)
 
+Creates table '$tablename' with fields '\@fields'
+
 =cut
+
 sub Table_Creation($$$)
 {
 	my ($tablename, $fields, $indexes) = @_;
@@ -72,6 +76,7 @@ sub Table_Creation($$$)
 =head2 SQL_As_Substitution($field)
 
 =cut
+
 sub SQL_As_Substitution($)
 {
 	my $field = shift;
@@ -95,6 +100,7 @@ sub SQL_As_Substitution($)
 =head2 SQL_Select_Function(@fields)
 
 =cut
+
 sub SQL_Select_Function
 {
 	my @fields = @_;
@@ -138,6 +144,7 @@ sub SQL_Select_Function
 =head2 Column_Names($query)
 
 =cut
+
 sub Column_Names($)
 {
 	my $query = shift;
@@ -149,13 +156,13 @@ sub Column_Names($)
     my @data = split(/, /, $1);
     foreach my $f (@data)
     {
-      $f =~ s/\S+ as (.+)$/$1/i;
-      $f =~ s/^\s*\(?count\(//gi;
-      $f =~ s/^\s*\(?distinct\(//gi;
-      $f =~ s/^\s*\(?sum\(//gi;
-      $f =~ s/^\s*\(?avg\(//gi;
-			$f =~ s/^\s*\(?unix_timestamp\(//gi;
-      $f =~ s/^\s*date_format\((\S+),\'(.+)?\'\)/$1/gi;
+      $f =~ s/\S+ AS (.+)$/$1/i;
+      $f =~ s/^\s*\(?COUNT\(//gi;
+      $f =~ s/^\s*\(?DISTINCT\(//gi;
+      $f =~ s/^\s*\(?SUM\(//gi;
+      $f =~ s/^\s*\(?AVG\(//gi;
+			$f =~ s/^\s*\(?UNIX_TIMESTAMP\(//gi;
+      $f =~ s/^\s*DATE_FORMAT\((\S+),\'(.+)?\'\)/$1/gi;
       $f =~ s/[\(,\)]//gi;
       $f =~ s/^\s*//i;
       $f =~ s/\s*$//i;

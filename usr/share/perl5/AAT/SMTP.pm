@@ -19,7 +19,7 @@ Returns SMTP configuration
 
 =cut
 
-sub Configuration
+sub Configuration()
 {
 	$SMTP_FILE ||= AAT::File("smtp");
 	my $conf = AAT::XML::Read($SMTP_FILE, 1);
@@ -33,7 +33,7 @@ Checks the SMTP connection
 
 =cut
 
-sub Connection_Test
+sub Connection_Test()
 {
 	my $status = 0;
 	my $smtp_conf = Configuration();

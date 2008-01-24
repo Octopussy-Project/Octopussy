@@ -18,7 +18,7 @@ Returns list of available Themes
 
 =cut
 
-sub List
+sub List()
 {
 	opendir(DIR, "$DIR/");
   my @themes = grep !/^\.+/, readdir(DIR);

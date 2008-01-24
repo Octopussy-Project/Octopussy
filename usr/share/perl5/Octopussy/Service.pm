@@ -408,7 +408,7 @@ sub Messages_Statistics_Files($$$$$$$)
 	return ($files);
 }
 
-=head2 Messages_Statistics_Save($file, $service, %stat)
+=head2 Messages_Statistics_Save($dir_pid, $service, $y, $mon, $d, $h, $m, $total, %stat)
 
 =cut
 

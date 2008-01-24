@@ -126,11 +126,12 @@ sub Configuration($)
   return ($conf);
 }
 
-=head2 Configurations($sort)
+=head2 Configurations($sort, $category)
 
 Get the configuration for all reports
 
 =cut
+
 sub Configurations($$)
 {
   my ($sort, $category) = @_;
@@ -156,9 +157,10 @@ sub Configurations($$)
   return (@sorted_configurations);
 }
 
-=head2 Categories($report_restriction_list)
+=head2 Categories(@report_restriction_list)
 
 =cut
+
 sub Categories()
 {
 	my @report_restriction_list = @_;	
@@ -222,15 +224,15 @@ sub Table_Creation($$)
 		my @data = split(/, /, $1); #"$1, $2");
 		foreach my $f (@data)
 		{
-			$f =~ s/^\s*\(?unix_timestamp\(//gi;
-			$f =~ s/^\s*date_format\((\S+),'(.+)?'\)/$1/gi;
-			$f =~ s/ as .+$//i;
-			$f =~ s/^\s*\(?count\(//gi;
-			$f =~ s/^\s*\(?distinct\(//gi;
-			$f =~ s/^\s*\(?sum\(//gi;
-			$f =~ s/^\s*\(?avg\(//gi;
-			$f =~ s/^\s*\(?min\(//gi;
-			$f =~ s/^\s*\(?max\(//gi;
+			$f =~ s/^\s*\(?UNIX_TIMESTAMP\(//gi;
+			$f =~ s/^\s*DATE_FORMAT\((\S+),'(.+)?'\)/$1/gi;
+			$f =~ s/ AS .+$//i;
+			$f =~ s/^\s*\(?COUNT\(//gi;
+			$f =~ s/^\s*\(?DISTINCT\(//gi;
+			$f =~ s/^\s*\(?SUM\(//gi;
+			$f =~ s/^\s*\(?AVG\(//gi;
+			$f =~ s/^\s*\(?MIN\(//gi;
+			$f =~ s/^\s*\(?MAX\(//gi;
 			$f =~ s/[\(,\)]//gi;
 			$f =~ s/^\s*//i;
 			$f =~ s/\s*$//i;
@@ -248,6 +250,7 @@ sub Table_Creation($$)
 =head2 Generate($rc, $begin, $end, $outputfile, $devices, $data, $mail_conf, $ftp_conf, $scp_conf, $stats, $lang)
 
 =cut
+
 sub Generate($$$$$$$$$$$)
 {
 	my ($rc, $begin, $end, $outputfile, $devices, $data, 
@@ -303,6 +306,7 @@ sub Generate($$$$$$$$$$$)
 Generates Command Line Export Options (mail/ftp/scp) 
 
 =cut
+
 sub CmdLine_Export_Options($$$)
 {
 	my ($mail_conf, $ftp_conf, $scp_conf) = @_;
@@ -327,6 +331,7 @@ sub CmdLine_Export_Options($$$)
 Generates Command Line to launch octo_reporter
 
 =cut
+
 sub CmdLine($$$$$$$$$$)
 {
 	my ($device, $service, $taxonomy, $report, 
@@ -364,6 +369,7 @@ sub CmdLine($$$$$$$$$$)
 Exports generated report via Mail,FTP,SCP if defined
 
 =cut
+
 sub Export($$$$)
 {
 	my ($file, $mail_conf, $ftp_conf, $scp_conf) = @_;
@@ -376,6 +382,7 @@ sub Export($$$$)
 =head2 File_Info($file, $begin, $end, $devices, $stats)
 
 =cut
+
 sub File_Info
 {
 	my ($file, $begin, $end, $devices, $stats) = @_;
@@ -390,6 +397,7 @@ sub File_Info
 =head2 File_Info_Tooltip($file, $lang)
 
 =cut
+
 sub File_Info_Tooltip
 {
 	my ($file, $lang) = @_;
@@ -415,6 +423,7 @@ sub File_Info_Tooltip
 =head2 Updates_Installation(@reports)
 
 =cut
+
 sub Updates_Installation
 {
   my @reports = @_;

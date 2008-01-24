@@ -16,7 +16,8 @@ my $NSCA_FILE = undef;
 Returns NSCA Configuration
 
 =cut
-sub Configuration
+
+sub Configuration()
 {
 	$NSCA_FILE ||= AAT::File("nsca");
 	my $conf = AAT::XML::Read($NSCA_FILE, 1);
@@ -29,7 +30,8 @@ sub Configuration
 Send NSCA message '$msg' with level '$level'
 
 =cut
-sub Send
+
+sub Send($$)
 {
   my ($level, $msg) = @_;
 	

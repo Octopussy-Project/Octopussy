@@ -17,7 +17,7 @@ Returns Proxy Configuration
 
 =cut
 
-sub Configuration
+sub Configuration()
 {
 	$PROXY_FILE ||= AAT::File("proxy");
 	my $conf = AAT::XML::Read($PROXY_FILE, 1);
@@ -31,7 +31,7 @@ Check the Proxy Connection
 
 =cut
 
-sub Connection_Test
+sub Connection_Test()
 {
 	AAT::Download("http://www.google.com", "/tmp/test.html");
 	my $status = ((-s "/tmp/test.html" > 0) ? 1 : 0);

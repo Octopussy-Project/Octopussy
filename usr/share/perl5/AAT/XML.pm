@@ -45,7 +45,7 @@ Returns List of Names from XML Data from Directory '$dir'
 
 =cut
 
-sub Name_List
+sub Name_List($)
 {
 	my $dir = shift;
 	my @list = ();
@@ -65,7 +65,7 @@ Returns List of Values of each Field '$field' from File '$file', Array '$array'
 
 =cut
 
-sub File_Array_Values
+sub File_Array_Values($$$)
 {
 	my ($file, $array, $field) = @_;
 	my @list = ();

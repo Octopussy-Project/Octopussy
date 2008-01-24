@@ -36,6 +36,7 @@ sub Info($)
 Returns Directory for Application '$appli' Name '$name'
 
 =cut
+
 sub Directory($$)
 {
   my ($appli, $name) = @_;
@@ -59,6 +60,7 @@ sub Directory($$)
 Returns File for Application '$appli' Name '$name'
 
 =cut
+
 sub File($$)
 {
   my ($appli, $name) = @_;
@@ -82,6 +84,7 @@ sub File($$)
 Returns Parameter Default Value for Application '$appli' Parameter '$param'
 
 =cut
+
 sub Parameter($$)
 {
   my ($appli, $param) = @_;

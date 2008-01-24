@@ -65,6 +65,7 @@ my $AAT_CONF_FILE = "/etc/aat/aat.xml";
 =head2 DEBUG($text)
 
 =cut
+
 sub DEBUG($)
 {
   my $text = shift;
@@ -78,7 +79,10 @@ sub DEBUG($)
 
 =head2 NOT_NULL($value)
 
+Checks that value '$value' is not null (undef or '')
+
 =cut
+
 sub NOT_NULL($)
 {
 	my $value = shift;
@@ -88,7 +92,10 @@ sub NOT_NULL($)
 
 =head2 NULL($value)
 
+Checks that value '$value' is null (undef or '')
+
 =cut
+
 sub NULL($)
 {
 	my $value = shift;
@@ -98,7 +105,10 @@ sub NULL($)
 
 =head2 ARRAY($value)
 
+Converts $value to an array ( @{$value) )
+
 =cut
+
 sub ARRAY($)
 {
 	my $value = shift;
@@ -110,7 +120,10 @@ sub ARRAY($)
 
 =head2 ARRAY_REF($value)
 
+Converts $value to an array reference ( \@{$value} )
+
 =cut
+
 sub ARRAY_REF($)
 {
 	my $value = shift;
@@ -122,7 +135,10 @@ sub ARRAY_REF($)
 
 =head2 HASH($value)
 
+Converts $value to an hash ( %{$value} )
+
 =cut
+
 sub HASH($)
 {
   my $value = shift;
@@ -131,6 +147,8 @@ sub HASH($)
 }
 
 =head2 HASH_KEYS($value)
+
+Returns keys for the converted hash $value ( keys %{$value} )
 
 =cut
 
@@ -142,6 +160,9 @@ sub HASH_KEYS($)
 }
 
 =head2 Padding($str, $padding)
+
+Fills the string $str with '0' to have $padding characters 
+( ex: Padding("7", 3) returns "007" )
 
 =cut
 
@@ -180,6 +201,8 @@ sub File($)
 }
 
 =head2 Download($download, $dest)
+
+Downloads $download to local $dest
 
 =cut
 
@@ -243,6 +266,7 @@ sub WebSite()
 Get/Set AAT Language
 
 =cut
+
 sub Language
 {
   my $lang = shift;
@@ -257,6 +281,7 @@ sub Language
 Get/Set AAT Theme
 
 =cut
+
 sub Theme
 {
 	my $theme = shift;
@@ -268,7 +293,10 @@ sub Theme
 
 =head2 Translation($str)
 
+Translates $str with language $main::Session->{AAT_LANGUAGE}
+
 =cut
+
 sub Translation($)
 {
   my $str = shift;
@@ -278,7 +306,9 @@ sub Translation($)
 
 =head2 Syslog($module, $msg, @args)
 
+
 =cut
+
 sub Syslog
 {
 	my ($module, $msg, @args) = @_;

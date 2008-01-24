@@ -20,7 +20,8 @@ my $XMPP_FILE = undef;
 Returns the XMPP configuration
 
 =cut
-sub Configuration
+
+sub Configuration()
 {
 	$XMPP_FILE ||= AAT::File("xmpp");
 	my $conf = AAT::XML::Read($XMPP_FILE, 1);
@@ -33,7 +34,8 @@ sub Configuration
 Checks the XMPP Connection
 
 =cut
-sub Connection_Test
+
+sub Connection_Test()
 {
   my $status = 0;
 
@@ -59,6 +61,7 @@ sub Connection_Test
 Sends message '$msg' to '@dests' through XMPP
 
 =cut
+
 sub Send_Message
 {
   my ($msg, @dests) = @_;

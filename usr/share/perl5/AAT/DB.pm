@@ -18,7 +18,7 @@ my $dbh = undef;
 
 =cut
 
-sub Configuration
+sub Configuration()
 {
 	$DB_FILE ||= AAT::File("db");
   my $conf = AAT::XML::Read($DB_FILE, 1);
@@ -32,7 +32,7 @@ Connect to Database
 
 =cut
 
-sub Connect
+sub Connect()
 {
 	my $db_conf = Configuration();
 	my $type = $db_conf->{db_type} || "mysql";
@@ -49,7 +49,7 @@ Check the Database Connection
 
 =cut
 
-sub Connection_Test
+sub Connection_Test()
 {
 	Connect();
 	my $status = (defined $dbh ? 1 : 0);	
@@ -64,7 +64,7 @@ Disconnect from Database
 
 =cut
 
-sub Disconnect
+sub Disconnect()
 {
   $dbh->disconnect() if (defined $dbh);
 	$dbh = undef;

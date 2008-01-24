@@ -302,7 +302,7 @@ sub Move_Service($$$)
 	my $conf = AAT::XML::Read(Filename($device));
   my @services = ();
 	my $max = (defined $conf->{service} ? $#{$conf->{service}}+1 : 0);
-  $max = ("0"x(2-length($max))) . $max;
+  $max = AAT::Padding($max, 2);
   foreach my $s (AAT::ARRAY($conf->{service}))
   {
     if ($s->{sid} eq $service)

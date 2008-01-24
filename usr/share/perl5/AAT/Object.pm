@@ -12,7 +12,10 @@ use AAT::XML;
 
 =head2 Configuration($object)
 
+Returns Object configuration
+
 =cut
+
 sub Configuration($)
 {
 	my $object = shift;
@@ -25,14 +28,16 @@ sub Configuration($)
 
 =head2 Data($object)
 
+Returns Object data
+
 =cut
+
 sub Data($)
 {
 	my $object = shift;
 	my ($list_conf, $list)  = (undef, undef);
 
-	my $dir = AAT::Directory("objects");
-  my $conf = AAT::XML::Read("$dir${object}.xml");
+	my $conf = Configuration($object);
 	if ($conf->{backend} =~ /^XML$/i)
 	{
   	$list_conf = AAT::XML::Read($conf->{source});

@@ -21,7 +21,7 @@ my %filenames;
 
 =head2 New($conf)
 
-Creates a new Table
+Creates a new Table with configuration '$conf'
 
 =cut
  
@@ -36,7 +36,7 @@ sub New($)
 
 =head2 Remove($table)
 
-Removes a Table
+Removes the Table '$table'
 
 =cut
 

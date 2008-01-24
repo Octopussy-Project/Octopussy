@@ -12,7 +12,10 @@ use AAT::XML;
 
 =head2 Configuration($list)
 
+Returns List configuration
+
 =cut
+
 sub Configuration($)
 {
 	my $list = shift;
@@ -25,13 +28,15 @@ sub Configuration($)
 
 =head2 Items($list)
 
+Returns List items
+
 =cut
+
 sub Items($)
 {
 	my $list = shift;
 
-	my $dir = AAT::Directory("lists");
-	my $conf = AAT::XML::Read("$dir${list}.xml");
+	my $conf = Configuration($list);
 
 	return (AAT::ARRAY($conf->{item}));
 }

@@ -26,6 +26,7 @@ my %roles = ();
 Check Authentication from Users file and LDAP Users
 
 =cut
+
 sub Authentication($$)
 {
   my ($login, $pwd) = @_;
@@ -52,6 +53,7 @@ sub Authentication($$)
 Adds user with '$login', '$pwd', '$role' and '$lang'
 
 =cut
+
 sub Add($$$$)
 {
 	my ($login, $pwd, $role, $lang) = @_;
@@ -73,6 +75,7 @@ sub Add($$$$)
 Removes User with login '$login'
 
 =cut
+
 sub Remove($)
 {
   my $login = shift;
@@ -93,6 +96,7 @@ sub Remove($)
 Updates user '$login' with configuration '$update'
 
 =cut
+
 sub Update($$)
 {
   my ($login, $update) = @_;
@@ -123,6 +127,7 @@ sub Update($$)
 Returns User Restrictions for User '$login'
 
 =cut
+
 sub Restrictions($)
 {
 	my $login = shift;
@@ -137,7 +142,13 @@ sub Restrictions($)
 	return (undef);
 }
 
-sub Update_Restrictions
+=head2 Update_Restrictions($login, $restrictions)
+
+Updates restrictions '$restrictions' to user '$login'
+
+=cut
+
+sub Update_Restrictions($$)
 {
 	my ($login, $restrictions) = @_;
 
@@ -165,7 +176,8 @@ sub Update_Restrictions
 Lists all Users (from file & LDAP)
 
 =cut
-sub List
+
+sub List()
 {
 	$USERS_FILE ||= Octopussy::File("users");
   my $conf = AAT::XML::Read($USERS_FILE);
@@ -187,6 +199,7 @@ sub List
 Returns configurations for all Users
 
 =cut
+
 sub Configurations
 {
   my $sort = shift;
@@ -213,7 +226,8 @@ sub Configurations
 Inits Users Roles
 
 =cut
-sub Roles_Init
+
+sub Roles_Init()
 {
 	$ROLES_FILE ||= Octopussy::File("user_roles");
 	my $conf = AAT::XML::Read($ROLES_FILE);
@@ -226,7 +240,8 @@ sub Roles_Init
 Returns Users Roles Configurations
 
 =cut
-sub Roles_Configurations
+
+sub Roles_Configurations()
 {
 	$ROLES_FILE ||= Octopussy::File("user_roles");
 	my $conf = AAT::XML::Read($ROLES_FILE);
@@ -239,6 +254,7 @@ sub Roles_Configurations
 Returns name of a role
 
 =cut
+
 sub Role_Name($)
 {
 	my $role = shift;
