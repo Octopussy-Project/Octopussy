@@ -18,7 +18,7 @@ Inits Translation Data from directories '@dirs' for language '$lang'
 
 =cut
 
-sub Init
+sub Init($@)
 {
 	my ($lang, @dirs) = @_;
 	my @list = (AAT::Directory("translations"), @dirs);

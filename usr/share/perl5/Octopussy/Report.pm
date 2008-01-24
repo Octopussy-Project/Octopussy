@@ -161,7 +161,7 @@ sub Configurations($$)
 
 =cut
 
-sub Categories()
+sub Categories(@)
 {
 	my @report_restriction_list = @_;	
 	my %category = ();
@@ -383,7 +383,7 @@ sub Export($$$$)
 
 =cut
 
-sub File_Info
+sub File_Info($$$$$)
 {
 	my ($file, $begin, $end, $devices, $stats) = @_;
 
@@ -398,7 +398,7 @@ sub File_Info
 
 =cut
 
-sub File_Info_Tooltip
+sub File_Info_Tooltip($$)
 {
 	my ($file, $lang) = @_;
 	my $dir_reports = Octopussy::Directory("data_reports");
@@ -424,7 +424,7 @@ sub File_Info_Tooltip
 
 =cut
 
-sub Updates_Installation
+sub Updates_Installation(@)
 {
   my @reports = @_;
   my $web = Octopussy::WebSite();

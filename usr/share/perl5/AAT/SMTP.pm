@@ -60,7 +60,7 @@ Send message to @dests
 
 =cut
 
-sub Send_Message
+sub Send_Message($$@)
 {
   my ($subject, $body, @dests) = @_;
 
@@ -90,7 +90,7 @@ Send message with file to @dests
 
 =cut
 
-sub Send_Message_With_File
+sub Send_Message_With_File($$$@)
 {
   my ($subject, $body, $file, @dests) = @_;
 

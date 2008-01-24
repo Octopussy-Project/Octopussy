@@ -62,7 +62,7 @@ Sends message '$msg' to '@dests' through XMPP
 
 =cut
 
-sub Send_Message
+sub Send_Message($@)
 {
   my ($msg, @dests) = @_;
 

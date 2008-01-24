@@ -19,7 +19,7 @@ my %AAT_Syslog = ();
 
 =cut
 
-sub Message
+sub Message($$@)
 {
 	my ($module, $msg, @args) = @_;
 

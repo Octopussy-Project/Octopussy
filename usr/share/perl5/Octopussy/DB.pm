@@ -101,7 +101,7 @@ sub SQL_As_Substitution($)
 
 =cut
 
-sub SQL_Select_Function
+sub SQL_Select_Function(@)
 {
 	my @fields = @_;
 	my @new_fields = ();

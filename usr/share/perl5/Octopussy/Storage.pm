@@ -60,7 +60,7 @@ sub Remove($)
 
 =cut
 
-sub Default
+sub Default()
 {
 	my $conf = AAT::XML::Read(Octopussy::File("storages"));
 
