@@ -2,7 +2,7 @@
 <octopussy_service description="Sudo Service"
                    name="Sudo"
                    nb_messages="015"
-                   version="200711140001">
+                   version="200801240002">
   <message loglevel="Warning"
            msg_id="Sudo:check_pass_user_unknown"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sudo(pam_unix)[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;check pass; user unknown&quot;):msg@&gt;"
@@ -93,4 +93,10 @@
            rank="015"
            table="Sudo"
            taxonomy="Auth.Failure" />
+  <message loglevel="Notice"
+           msg_id="Sudo:command_not_allowed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sudo: &lt;@REGEXP(&quot;.* command not allowed .*&quot;):msg@&gt;"
+           rank="016"
+           table="Sudo"
+           taxonomy="System" />
 </octopussy_service>

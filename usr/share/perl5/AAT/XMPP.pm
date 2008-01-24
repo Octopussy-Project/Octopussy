@@ -37,10 +37,11 @@ sub Connection_Test
 {
   my $status = 0;
 
+	AAT::DEBUG("XMPP Connection::Test Begin");
 	my $xmpp_conf = Configuration();
   my $client = new Net::XMPP::Client();
   my @res = $client->Connect(hostname => $xmpp_conf->{server}, 
-		port => 5222, tls => $xmpp_conf->{tls});
+		port => 5222, tls => $xmpp_conf->{tls}, timeout => 3);
 	if (@res)
 	{
 		my @res = $client->AuthSend(username => $xmpp_conf->{user}, 
@@ -48,6 +49,7 @@ sub Connection_Test
 		$status = 1	
 			if ((\@res == 0) || ((@res == 1 && $res[0]) || $res[0] eq 'ok'));
 	}
+	AAT::DEBUG("XMPP Connection::Test End");
 
 	return ($status);
 }

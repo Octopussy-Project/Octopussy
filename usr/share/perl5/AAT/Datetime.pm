@@ -193,7 +193,7 @@ sub Current_Hour()
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
   ($begin{hour}, $begin{min}) = ($hour, 0);
   ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, $min);
+  ($end{hour}, $end{min}) = ($hour, 59);
 
   return (\%begin, \%end);
 }

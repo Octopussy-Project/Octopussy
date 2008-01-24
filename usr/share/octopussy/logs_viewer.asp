@@ -23,6 +23,7 @@ else
     { push(@services, $s); }
 }
 
+my $dt = $Session->{dt};
 my $d1 = $Session->{dt1_day};
 my $m1 = $Session->{dt1_month};
 my $y1 = $Session->{dt1_year};
@@ -113,6 +114,7 @@ my @used_services = Octopussy::Service::List_Used();
 <AAT:BoxRow>
 	<AAT:BoxCol align="center" cspan="4">
 	<AAT:Selector_DateTime_Simple name="dt" start_year="2000" url="$url"
+		selected="$dt"
   	selected1="$d1/$m1/$y1/$hour1/$min1" selected2="$d2/$m2/$y2/$hour2/$min2" />
 	</AAT:BoxCol>
 </AAT:BoxRow>

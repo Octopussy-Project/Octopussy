@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_service name="Postfix"
-                   description="Postfix Service"
+<octopussy_service description="Postfix Service"
                    icon="software/logo_postfix"
-                   version="200708200003">
+                   name="Postfix"
+                   nb_messages="055"
+                   version="200801220006">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/postalias[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;fatal: file .+: parameter .+&quot;):msg@&gt;"
@@ -275,7 +276,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_orig_to"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, &lt;@REGEXP(&quot;delay=.+&quot;):NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="046"
            table="Postfix_Traffic"
            taxonomy="Email.Traffic" />
@@ -285,4 +286,58 @@
            rank="047"
            table="Postfix_msg"
            taxonomy="Config.Changes" />
+  <message loglevel="Information"
+           msg_id="Postfix:traffic_to2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           rank="048"
+           table="Postfix_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Warning"
+           msg_id="Postfix:support_will_be removed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtpd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;warning: support for restriction .+ will be removed from Postfix; use .+ instead&quot;):msg@&gt; "
+           rank="049"
+           table="Postfix_msg"
+           taxonomy="Config.Errors" />
+  <message loglevel="Information"
+           msg_id="Postfix:traffic_from2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/pickup[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: uid=&lt;@NUMBER:NULL@&gt; from=&lt;@WORD:from@&gt;"
+           rank="050"
+           table="Postfix_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="Postfix:traffic_to3"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, relay=&lt;@WORD:relay@&gt;, conn_use=&lt;@NUMBER:NULL@&gt;, delay=&lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           rank="051"
+           table="Postfix_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="Postfix:traffic_orig_to2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/local[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           rank="052"
+           table="Postfix_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Critical"
+           msg_id="Postfix:fatal_open_file_directory"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;fatal: open /etc/postfix/.+: No such file or directory&quot;):msg@&gt; "
+           rank="053"
+           table="Postfix_msg"
+           taxonomy="Config.Errors" />
+  <message loglevel="Critical"
+           msg_id="Postfix:postmap_fatal_open_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/postmap[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;fatal: .+ No such file or directory&quot;):msg@&gt;"
+           rank="054"
+           table="Postfix_msg"
+           taxonomy="Config.Errors" />
+  <message loglevel="Critical"
+           msg_id="Postfix:database_older_source_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/local[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;warning: database .+ is older than source file .+&quot;):msg@&gt;"
+           rank="055"
+           table="Postfix_msg"
+           taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Postfix:etc_aliases"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/postmap[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;warning: .+aliases.+&quot;):msg@&gt;"
+           rank="056"
+           table="Postfix_msg"
+           taxonomy="Config.Errors" />
 </octopussy_service>

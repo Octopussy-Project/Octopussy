@@ -188,6 +188,8 @@ sub Insert_Data($$$$$$$$)
     . ($#msg_to_parse + 1) . " message(s).");
   my $i = 1;
   my $nb_lines = 0;
+	`touch "$FILE_DB.$$"`;
+	`chmod 744 "$FILE_DB.$$"`;
   foreach my $f (@{$files})
   {
     Progress("_MSG_REPORT_PROGRESS_INSERTING_DATA", $i . "/$total");
@@ -216,7 +218,7 @@ sub Insert_Data($$$$$$$$)
     $i++;
   }
   AAT::DB::Load_Infile($table, "$FILE_DB.$$", \@known_msgs);
-  unlink("$FILE_DB.$$");
+  #unlink("$FILE_DB.$$");
 
   return ($total, $nb_lines);
 }

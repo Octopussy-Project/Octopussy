@@ -1,16 +1,23 @@
-<octopussy_service name="CVS"
-     description="CVS Service"
-     version="200606130003">
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="CVS Service"
+                   name="CVS"
+                   version="200801210001">
   <message loglevel="Warning"
            msg_id="CVS:caught_signal"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvsd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;caught signal .+&quot;):msg@&gt;"
-           rank="01"
+           rank="001"
            table="CVS_msg"
            taxonomy="System.Errors" />
   <message loglevel="Information"
            msg_id="CVS:version_bailing_out"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvsd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;version .+ bailing out &quot;):msg@&gt;"
-           rank="02"
+           rank="002"
            table="CVS_msg"
            taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="CVS:unexpected_eof_during_authentication"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvs: &lt;@REGEXP(&quot;unexpected EOF encountered during authentication&quot;):msg@&gt; "
+           rank="003"
+           table="CVS_msg"
+           taxonomy="System.Errors" />
 </octopussy_service>

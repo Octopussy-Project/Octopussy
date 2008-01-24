@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_service name="Syslog-ng"
-                   description="Syslog-ng Service"
+<octopussy_service description="Syslog-ng Service"
                    icon="software/logo_syslog-ng"
-                   version="200709030001">
+                   name="Syslog-ng"
+                   nb_messages="020"
+                   version="200801220003">
   <message loglevel="Warning"
            msg_id="Syslog-ng:stats_dropped"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;STATS: dropped \d+&quot;):msg@&gt;"
@@ -33,9 +34,9 @@
            rank="001"
            table="Syslog-ng_msg"
            taxonomy="System" />
-  <message loglevel="Warning"
+  <message loglevel="Critical"
            msg_id="Syslog-ng:connection_broken"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Connection broken to .+, reopening in \d+ seconds&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Connection broken.+&quot;):msg@&gt;"
            rank="004"
            table="Syslog-ng_msg"
            taxonomy="Network.Errors" />
@@ -99,10 +100,28 @@
            rank="016"
            table="Syslog-ng_msg"
            taxonomy="System.Errors" />
-	<message loglevel="Warning"
+  <message loglevel="Warning"
            msg_id="Syslog-ng:Cannot open file"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@CONSTANT(&quot;Cannot open file .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Cannot open file .+&quot;):msg@&gt;"
            rank="017"
+           table="Syslog-ng_msg"
+           taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="Syslog-ng:error_resolving"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Error resolving .+&quot;):msg@&gt;"
+           rank="018"
+           table="Syslog-ng_msg"
+           taxonomy="Config.Errors" />
+  <message loglevel="Notice"
+           msg_id="Syslog-ng:sigterm_received_terminating"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;SIGTERM received, terminating;&quot;):msg@&gt;   "
+           rank="019"
+           table="Syslog-ng_msg"
+           taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="Syslog-ng:shutting_down"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;syslog-ng shutting down.+&quot;):msg@&gt;"
+           rank="020"
            table="Syslog-ng_msg"
            taxonomy="System" />
 </octopussy_service>

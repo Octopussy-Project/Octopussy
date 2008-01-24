@@ -228,6 +228,7 @@
   <msg mid="_REPORT_CREATION" value="Report Creation" />
   <msg mid="_REPORT_CSV" value="CSV Format Report" />
   <msg mid="_REPORT_EDITION" value="Report Edition" />
+	<msg mid="_REPORT_FIELDS_ORDER" value="Report Fields Order" />
   <msg mid="_REPORT_HTML" value="HTML Format Report" />
   <msg mid="_REPORT_NAME" value="Report Name" />
   <msg mid="_REPORT_PDF" value="PDF Format Report" />

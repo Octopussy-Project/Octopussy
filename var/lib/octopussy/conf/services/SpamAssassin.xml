@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="SpamAssassin Service"
                    name="SpamAssassin"
-                   nb_messages="006"
+									 icon="software/logo_spamassassin"	
                    version="200801170011">
   <message loglevel="Information"
            msg_id="SpamAssassin:server_started_on_port"

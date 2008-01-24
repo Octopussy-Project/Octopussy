@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_service description=""
+<octopussy_service description="PostgreSQL Service (FR version)"
                    icon="software/logo_postgresql"
                    name="PostgreSQL_FR"
                    version="200801070009">

@@ -133,6 +133,7 @@ sub HASH($)
 =head2 HASH_KEYS($value)
 
 =cut
+
 sub HASH_KEYS($)
 {
   my $value = shift;
@@ -143,6 +144,7 @@ sub HASH_KEYS($)
 =head2 Padding($str, $padding)
 
 =cut
+
 sub Padding
 {
   my ($str, $padding) = @_;
@@ -156,6 +158,7 @@ sub Padding
 Returns Configuration Directory for directory '$dir'
 
 =cut
+
 sub Directory($)
 {
 	my $dir = shift;
@@ -168,6 +171,7 @@ sub Directory($)
 Returns Configuration filename for file '$file'
 
 =cut
+
 sub File($)
 {
 	my $file = shift;
@@ -178,6 +182,7 @@ sub File($)
 =head2 Download($download, $dest)
 
 =cut
+
 sub Download($$)
 {
   my ($download, $dest) = @_;
@@ -186,17 +191,18 @@ sub Download($$)
   my $proxy = (NOT_NULL($pc->{server}) ? "http://$pc->{server}" : "")
     . (NOT_NULL($pc->{port}) ? ":$pc->{port}" : "");
   $ENV{http_proxy} = ($proxy ne "" ? "export http_proxy=\"$proxy\"" : "");
-  my $cmd = "wget -q "
+  my $cmd = "wget -q --timeout=3 --tries=1 "
     . (NOT_NULL($pc->{user}) ? "--proxy-user=\"$pc->{user}\" " : "")
     . (NOT_NULL($pc->{password}) ? "--proxy-passwd=\"$pc->{password}\" " : "")
     . $download . (defined $dest ? " -O \"$dest\"" : "");
-
+	AAT::DEBUG("Download $cmd");
   system(($ENV{http_proxy} ne "" ? "$ENV{http_proxy}; " : "") . $cmd);
 }
 
 =head2 Update_Configuration($file, $conf, $rootname)
 
 =cut
+
 sub Update_Configuration($$$)
 {
   my ($file, $conf, $rootname) = @_;
@@ -211,6 +217,7 @@ sub Update_Configuration($$$)
 Returns AAT Version
 
 =cut
+
 sub Version()
 {
  	my $info = AAT::Application::Info("AAT");
@@ -223,6 +230,7 @@ sub Version()
 Returns AAT WebSite
 
 =cut
+
 sub WebSite()
 {
 	my $info = AAT::Application::Info("AAT");

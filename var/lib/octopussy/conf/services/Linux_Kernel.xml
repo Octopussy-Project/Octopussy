@@ -2,7 +2,8 @@
 <octopussy_service description="Linux Kernel Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel"
-                   version="200801170001">
+                   nb_messages="174"
+                   version="200801240002">
   <message loglevel="Debug"
            msg_id="Linux_Kernel:linux_version"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Linux version .+&quot;):msg@&gt;"
@@ -1035,4 +1036,10 @@
            rank="172"
            table="Linux_Kernel_msg"
            taxonomy="Hardware" />
+  <message loglevel="Notice"
+           msg_id="Linux_Kernel:using_obsolete_setsockopt"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;process .+ is using obsolete setsockopt SO_BSDCOMPAT&quot;):msg@&gt; "
+           rank="173"
+           table="Linux_Kernel_msg"
+           taxonomy="System" />
 </octopussy_service>

@@ -30,7 +30,8 @@ my @list = ("_CUSTOMIZED",
   foreach my $e (@list)
   {
     $Response->Include("AAT/INC/AAT_OptionSelector.inc", 
-			label => $e, value => $e);
+			label => $e, value => $e, 
+			selected => ($arg{selected} eq $e ? "selected" : undef));
   }
   %>
   </select>

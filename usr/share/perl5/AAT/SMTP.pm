@@ -18,6 +18,7 @@ my $SMTP_FILE = undef;
 Returns SMTP configuration
 
 =cut
+
 sub Configuration
 {
 	$SMTP_FILE ||= AAT::File("smtp");
@@ -31,6 +32,7 @@ sub Configuration
 Checks the SMTP connection
 
 =cut
+
 sub Connection_Test
 {
 	my $status = 0;
@@ -38,6 +40,7 @@ sub Connection_Test
 	if (AAT::NOT_NULL($smtp_conf->{server})
     && AAT::NOT_NULL($smtp_conf->{sender}))
   {
+		AAT::DEBUG("SMTP Connection::Test Begin");
 		my $con = new Net::Telnet(Host => $smtp_conf->{server}, 
 			Port => 25, Errmode => "return", Timeout => 3);
 		if (defined $con)
@@ -45,6 +48,7 @@ sub Connection_Test
     	$status = 1;
 			$con->close();
 		}
+		AAT::DEBUG("SMTP Connection::Test End");
   }		
 
 	return ($status);
@@ -55,6 +59,7 @@ sub Connection_Test
 Send message to @dests
 
 =cut
+
 sub Send_Message
 {
   my ($subject, $body, @dests) = @_;
@@ -84,6 +89,7 @@ sub Send_Message
 Send message with file to @dests
 
 =cut
+
 sub Send_Message_With_File
 {
   my ($subject, $body, $file, @dests) = @_;

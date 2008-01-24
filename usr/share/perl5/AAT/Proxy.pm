@@ -13,9 +13,10 @@ my $PROXY_FILE = undef;
 
 =head2 Configuration()
 
-Returns Proxy COnfiguration
+Returns Proxy Configuration
 
 =cut
+
 sub Configuration
 {
 	$PROXY_FILE ||= AAT::File("proxy");
@@ -29,12 +30,13 @@ sub Configuration
 Check the Proxy Connection
 
 =cut
+
 sub Connection_Test
 {
 	AAT::Download("http://www.google.com", "/tmp/test.html");
 	my $status = ((-s "/tmp/test.html" > 0) ? 1 : 0);
 	unlink("/tmp/test.html")	if (-f "/tmp/test.html");
-  
+
 	return ($status);
 }
 

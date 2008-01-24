@@ -19,4 +19,9 @@
 						source="INPUT">
     <field_type>IP_ADDR</field_type>
   </function>
+	<function label="SERVICE"
+            perl="Octopussy::Plugin::Network::Service"
+            source="OUTPUT">
+    <field>IP_Tables:dst_port</field>
+  </function>
 </octopussy_plugin>
