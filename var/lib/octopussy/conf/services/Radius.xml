@@ -5,6 +5,6 @@
            msg_id="Radius:1"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;radiusd: .+ : Info: Starting - reading configuration files ...&quot;):msg@&gt;"
            rank="01"
-           table="Radius_msg"
+           table="Message"
            taxonomy="System" />
 </octopussy_service>

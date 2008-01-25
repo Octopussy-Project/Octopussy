@@ -205,7 +205,7 @@
            msg_id="IronPort:scanning_expiration_candidates"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Info: &lt;@REGEXP(&quot;Scanning .+ for expiration candidates.&quot;):msg@&gt;"
            rank="034"
-           table="IronPort_System"
+           table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="IronPort:done_scanning_remain_queue"

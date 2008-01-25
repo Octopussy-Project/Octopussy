@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Generic Message Table"
+                 name="Message"
+                 version="200801250001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+	<field title="daemon"
+         type="WORD" />
+  <field title="pid"
+         type="NUMBER" />
+  <field title="msg_id"
+         type="STRING" />
+  <field title="msg"
+         type="STRING" />
+  <field title="server"
+         type="WORD" />
+	<field title="module"
+         type="WORD" />
+	<field title="user"
+         type="WORD" />
+</octopussy_table>

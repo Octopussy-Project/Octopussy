@@ -4,8 +4,8 @@
      version="200606060001">
   <message loglevel="Notice"
            msg_id="Linux_Red_Hat_System:rhnsd"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@STRING:server@&gt; &lt;@REGEXP(&quot;rhnsd&quot;):daemon@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@STRING:msg@&gt;"
-           rank="01"
-           table="Linux Red Hat System"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rhnsd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:msg@&gt;"
+           rank="001"
+           table="Message"
            taxonomy="System" />
 </octopussy_service>

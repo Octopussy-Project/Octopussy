@@ -13,13 +13,13 @@
            msg_id="Apache_Mod_Security:client_denied_server_configuration"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; [&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;] &lt;@REGEXP(&quot;[error] [client .+] client denied by server configuration.*&quot;):msg@&gt;"
            rank="003"
-           table="Apache_msg"
+           table="Message"
            taxonomy="Access.Failure" />
   <message loglevel="Notice"
            msg_id="Apache_Mod_Security:file_does_not_exist"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; [&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;] &lt;@REGEXP(&quot;[error] [client .+] File does not exist: .+&quot;):msg@&gt;"
            rank="004"
-           table="Apache_msg"
+           table="Message"
            taxonomy="Access.Failure" />
   <message loglevel="Notice"
            msg_id="Apache_Mod_Security:error_reading_request_body"
@@ -31,6 +31,6 @@
            msg_id="Apache_Mod_Security:error_reading_headers"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; [&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;] &lt;@REGEXP(&quot;[error] [client .+] request failed: error reading the headers.*&quot;):msg@&gt;"
            rank="005"
-           table="Apache_msg"
+           table="Message"
            taxonomy="System.Errors" />
 </octopussy_service>

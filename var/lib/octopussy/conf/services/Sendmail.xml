@@ -24,7 +24,7 @@
            msg_id="Sendmail:can_not_chdir"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;NOQUEUE: SYSERR(\S+): can not chdir(.+): Permission denied&quot;):msg@&gt;"
            rank="005"
-           table="Sendmail_msg"
+           table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Sendmail:to"
@@ -36,19 +36,19 @@
            msg_id="Sendmail:alias_database_rebuilt_by"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;alias database .+ rebuilt by .+&quot;):msg@&gt;"
            rank="006"
-           table="Sendmail_msg"
+           table="Message"
            taxonomy="Config.Changes" />
   <message loglevel="Information"
            msg_id="Sendmail:starting_daemon"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;starting daemon.+&quot;):msg@&gt;"
            rank="007"
-           table="Sendmail_msg"
+           table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Sendmail:msp_queue_starting_daemon"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sm-msp-queue[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;starting daemon .+&quot;):msg@&gt;"
            rank="008"
-           table="Sendmail_msg"
+           table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Sendmail:msp_queue_relay"
@@ -60,13 +60,13 @@
            msg_id="Sendmail:grew_worklist"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sm-msp-queue[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;grew WorkList for .+&quot;):msg@&gt;"
            rank="010"
-           table="Sendmail_msg"
+           table="Message"
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Sendmail:couldnt_send_past_hours"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+: sender notify: Warning: could not send message for past \d+ hours&quot;):msg@&gt; "
            rank="011"
-           table="Sendmail_msg"
+           table="Message"
            taxonomy="System.Errors" />
   <message loglevel="Information"
            msg_id="Sendmail:to2"
@@ -78,6 +78,6 @@
            msg_id="Sendmail:cannot_send_message_for"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+: sender notify: Cannot send message for .+&quot;):msg@&gt;"
            rank="013"
-           table="Sendmail_msg"
+           table="Message"
            taxonomy="System.Errors" />
 </octopussy_service>

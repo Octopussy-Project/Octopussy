@@ -6,12 +6,12 @@
            msg_id="Linux_Gnome_Desktop:gconfd_msg"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;gconfd&quot;):daemon@&gt; &lt;@STRING:msg@&gt;"
            rank="01"
-           table="Linux_Gnome_Desktop"
+           table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Linux_Gnome_Desktop:gdm_msg"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;gdm&quot;):daemon@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@STRING:msg@&gt;"
            rank="02"
-           table="Linux_Gnome_Desktop"
+           table="Message"
            taxonomy="System" />
 </octopussy_service>

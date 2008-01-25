@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Generic Firewall Traffic Table"
+                 name="Firewall_Traffic"
+                 version="200801250001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+	<field title="src_interface"
+         type="WORD" />
+	<field title="src_zone"
+         type="STRING" />
+  <field title="src_addr"
+         type="IP_ADDR" />
+	<field title="src_port"
+         type="NUMBER" />
+	<field title="dst_interface"
+         type="WORD" />
+  <field title="dst_zone"
+         type="STRING" />
+  <field title="dst_addr"
+         type="IP_ADDR" />
+  <field title="dst_port"
+         type="NUMBER" />
+</octopussy_table>

@@ -153,7 +153,7 @@ my @used_services = Octopussy::Service::List_Used();
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol cspan="4">
-	<AAT:TextArea name="logs" cols="120" rows="25" wrap="off" data="$txt_area" />
+	<AAT:TextArea name="logs" cols="100" rows="25" wrap="off" data="$txt_area" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
