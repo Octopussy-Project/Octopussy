@@ -22,6 +22,6 @@
 	<function label="SERVICE"
             perl="Octopussy::Plugin::Network::Service"
             source="OUTPUT">
-    <field>IP_Tables:dst_port</field>
+    <field>Firewall_Traffic:dst_port</field>
   </function>
 </octopussy_plugin>

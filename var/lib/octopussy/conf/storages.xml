@@ -2,6 +2,4 @@
 <octopussy_storages default_incoming="DEFAULT"
                     default_known="DEFAULT"
                     default_unknown="DEFAULT">
-  <storage directory="/tmp/"
-           s_id="tmp" />
 </octopussy_storages>

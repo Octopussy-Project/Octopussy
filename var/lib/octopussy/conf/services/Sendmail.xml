@@ -4,21 +4,21 @@
                    version="200612200003">
   <message loglevel="Information"
            msg_id="Sendmail:from"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:id@&gt;: from=&lt;@WORD:from@&gt;, size=&lt;@NUMBER:size@&gt;, class=&lt;@NUMBER:NULL@&gt;, nrcpts=&lt;@NUMBER:NULL@&gt;, msgid=&lt;@WORD:msg_id@&gt;, relay=&lt;@STRING:relay@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;@STRING:sender@&gt;, size=&lt;@NUMBER:size@&gt;, class=&lt;@NUMBER:NULL@&gt;, nrcpts=&lt;@NUMBER:NULL@&gt;, msgid=&lt;@WORD:msg_id@&gt;, relay=&lt;@STRING:relay@&gt; "
            rank="001"
-           table="Sendmail"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Sendmail:to_relay"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:id@&gt;: to=&lt;@WORD:to@&gt; ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt; xdelay=&lt;@WORD:NULL@&gt; mailer=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt; relay=&lt;@STRING:relay@&gt;, dsn=&lt;@WORD:NULL@&gt; stat=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt; ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt; xdelay=&lt;@WORD:NULL@&gt; mailer=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt; relay=&lt;@STRING:relay@&gt;, dsn=&lt;@WORD:NULL@&gt; stat=&lt;@STRING:status@&gt;"
            rank="003"
-           table="Sendmail"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Notice"
            msg_id="Sendmail:from_proto"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:id@&gt;: from=&lt;@WORD:from@&gt;, size=&lt;@NUMBER:size@&gt;, class=&lt;@NUMBER:NULL@&gt;, nrcpts=&lt;@NUMBER:NULL@&gt;, msgid=&lt;@WORD:msg_id@&gt;, proto=&lt;@WORD:NULL@&gt;, daemon=&lt;@WORD:NULL@&gt;, relay=&lt;@STRING:relay@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;@STRING:sender@&gt;, size=&lt;@NUMBER:size@&gt;, class=&lt;@NUMBER:NULL@&gt;, nrcpts=&lt;@NUMBER:NULL@&gt;, msgid=&lt;@WORD:msg_id@&gt;, proto=&lt;@WORD:NULL@&gt;, daemon=&lt;@WORD:NULL@&gt;, relay=&lt;@STRING:relay@&gt;"
            rank="002"
-           table="Sendmail"
+           table="Mail_Traffic"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Sendmail:can_not_chdir"
@@ -28,9 +28,9 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Sendmail:to"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:id@&gt;: to=&lt;@WORD:to@&gt; ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt; xdelay=&lt;@WORD:NULL@&gt; mailer=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt; stat=&lt;@STRING:status@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt; ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt; xdelay=&lt;@WORD:NULL@&gt; mailer=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt; stat=&lt;@STRING:status@&gt; "
            rank="004"
-           table="Sendmail"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Warning"
            msg_id="Sendmail:alias_database_rebuilt_by"
@@ -52,9 +52,9 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Sendmail:msp_queue_relay"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sm-msp-queue[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:id@&gt;: to=&lt;@WORD:to@&gt; ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt; xdelay=&lt;@WORD:NULL@&gt; mailer=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt; relay=&lt;@STRING:relay@&gt;, dsn=&lt;@WORD:NULL@&gt; stat=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sm-msp-queue[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt; ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt; xdelay=&lt;@WORD:NULL@&gt; mailer=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt; relay=&lt;@STRING:relay@&gt;, dsn=&lt;@WORD:NULL@&gt; stat=&lt;@STRING:status@&gt;"
            rank="009"
-           table="Sendmail"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Sendmail:grew_worklist"
@@ -70,9 +70,9 @@
            taxonomy="System.Errors" />
   <message loglevel="Information"
            msg_id="Sendmail:to2"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:id@&gt;: to=&lt;@WORD:to@&gt;, delay=&lt;@STRING:NULL@&gt;, xdelay=&lt;@STRING:NULL@&gt;, mailer=&lt;@WORD:NULL@&gt;, pri=&lt;@WORD:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, stat=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, delay=&lt;@STRING:NULL@&gt;, xdelay=&lt;@STRING:NULL@&gt;, mailer=&lt;@WORD:NULL@&gt;, pri=&lt;@WORD:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, stat=&lt;@STRING:status@&gt;"
            rank="012"
-           table="Sendmail"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Warning"
            msg_id="Sendmail:cannot_send_message_for"

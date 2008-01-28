@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="CVS Service"
                    name="CVS"
-                   version="200801210001">
+                   version="200801280002">
   <message loglevel="Warning"
            msg_id="CVS:caught_signal"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvsd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;caught signal .+&quot;):msg@&gt;"
@@ -20,4 +20,16 @@
            rank="003"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="CVS:password_mismatch"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvs: &lt;@REGEXP(&quot;password mismatch for .+&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Auth.Failure" />
+  <message loglevel="Warning"
+           msg_id="CVS:login_failure"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvs: &lt;@REGEXP(&quot;login failure .+&quot;):msg@&gt;"
+           rank="005"
+           table="Message"
+           taxonomy="Auth.Failure" />
 </octopussy_service>

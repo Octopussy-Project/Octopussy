@@ -2,16 +2,16 @@
 	<function label="BROWSER"
 	         	perl="Octopussy::Plugin::HttpRequest::Browser"
 						source="INPUT">
-		<field>Apache_Traffic:user_agent</field>
+		<field>Web_Traffic:user_agent</field>
 	</function>
 	<function label="OPERATING_SYSTEM"
             perl="Octopussy::Plugin::HttpRequest::Operating_System"
             source="INPUT">
-    <field>Apache_Traffic:user_agent</field>
+    <field>Web_Traffic:user_agent</field>
   </function>
 	<function label="SIZE"
             perl="Octopussy::Plugin::HttpRequest::Size"
             source="OUTPUT">
-    <field>Apache_Traffic:rec_bytes</field>
+    <field>Web_Traffic:rec_bytes</field>
   </function>
 </octopussy_plugin>

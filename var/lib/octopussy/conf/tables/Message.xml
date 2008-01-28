@@ -6,7 +6,7 @@
          type="DATETIME" />
   <field title="device"
          type="WORD" />
-	<field title="daemon"
+  <field title="daemon"
          type="WORD" />
   <field title="pid"
          type="NUMBER" />
@@ -16,8 +16,10 @@
          type="STRING" />
   <field title="server"
          type="WORD" />
-	<field title="module"
+  <field title="module"
          type="WORD" />
-	<field title="user"
+  <field title="user"
+         type="WORD" />
+  <field title="level"
          type="WORD" />
 </octopussy_table>

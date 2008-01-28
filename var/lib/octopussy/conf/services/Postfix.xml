@@ -2,8 +2,8 @@
 <octopussy_service description="Postfix Service"
                    icon="software/logo_postfix"
                    name="Postfix"
-                   nb_messages="055"
-                   version="200801220006">
+                   nb_messages="056"
+                   version="200801280008">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/postalias[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;fatal: file .+: parameter .+&quot;):msg@&gt;"
@@ -78,27 +78,27 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_from"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/qmgr[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;@WORD:from@&gt;, size=&lt;@NUMBER:size@&gt;, nrcpt=&lt;@NUMBER:nrcpt@&gt; &lt;@STRING:NULL@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/qmgr[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;@STRING:sender@&gt;, size=&lt;@NUMBER:size@&gt;, nrcpt=&lt;@NUMBER:nrcpt@&gt; &lt;@STRING:NULL@&gt;"
            rank="012"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_to"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@NUMBER:delay@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@FLOAT_NUMBER:delay@&gt;, status=&lt;@STRING:status@&gt;"
            rank="013"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_messageid"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/cleanup[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: message-id=&lt;@STRING:NULL@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/cleanup[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: message-id=&lt;@WORD:msg_id@&gt;"
            rank="014"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_removed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: &lt;@REGEXP(&quot;removed&quot;):status@&gt; "
            rank="015"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Postfix:anvil_statistics"
@@ -110,13 +110,13 @@
            msg_id="Postfix:traffic_client"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtpd[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: client=&lt;@WORD:client@&gt;"
            rank="017"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_to_orig"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/local[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@NUMBER:delay@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/local[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@FLOAT_NUMBER:delay@&gt;, status=&lt;@STRING:status@&gt;"
            rank="018"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Notice"
            msg_id="Postfix:connect_disconnect_from"
@@ -276,9 +276,9 @@
            taxonomy="System.Errors" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_orig_to"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="046"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Warning"
            msg_id="Postfix:reload_configuration"
@@ -288,9 +288,9 @@
            taxonomy="Config.Changes" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_to2"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@FLOAT_NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="048"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Warning"
            msg_id="Postfix:support_will_be removed"
@@ -300,21 +300,21 @@
            taxonomy="Config.Errors" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_from2"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/pickup[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: uid=&lt;@NUMBER:NULL@&gt; from=&lt;@WORD:from@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/pickup[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: uid=&lt;@NUMBER:NULL@&gt; from=&lt;@STRING:sender@&gt;"
            rank="050"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_to3"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, relay=&lt;@WORD:relay@&gt;, conn_use=&lt;@NUMBER:NULL@&gt;, delay=&lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, conn_use=&lt;@NUMBER:NULL@&gt;, delay=&lt;@FLOAT_NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="051"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_orig_to2"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/local[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:to@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/local[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@FLOAT_NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="052"
-           table="Postfix_Traffic"
+           table="Mail_Traffic"
            taxonomy="Email.Traffic" />
   <message loglevel="Critical"
            msg_id="Postfix:fatal_open_file_directory"

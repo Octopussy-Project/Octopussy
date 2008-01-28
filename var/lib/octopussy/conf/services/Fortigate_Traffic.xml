@@ -6,24 +6,24 @@
            msg_id="Fortigate Traffic:1"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; date=&lt;@WORD:NULL@&gt; time=&lt;@WORD:NULL@&gt; device_id=&lt;@WORD:NULL@&gt; log_id=&lt;@WORD:NULL@&gt; type=&lt;@WORD:NULL@&gt; subtype=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt; vd=&lt;@WORD:NULL@&gt; SN=&lt;@WORD:NULL@&gt; duration=&lt;@WORD:NULL@&gt; policyid=&lt;@NUMBER:policy_id@&gt; proto=&lt;@WORD:NULL@&gt; service=&lt;@WORD:NULL@&gt; status=&lt;@STRING:status@&gt; src=&lt;@IP_ADDR:src_addr@&gt; srcname=&lt;@WORD:NULL@&gt; dst=&lt;@IP_ADDR:dst_addr@&gt; dstname=&lt;@WORD:NULL@&gt; src_int=&lt;@STRING:src_interface@&gt; dst_int=&lt;@STRING:dst_interface@&gt; sent=&lt;@NUMBER:sent_bytes@&gt; rcvd=&lt;@NUMBER:rcvd_bytes@&gt; sent_pkt=&lt;@NUMBER:sent_pkt@&gt; rcvd_pkt=&lt;@NUMBER:rcvd_pkt@&gt; src_port=&lt;@NUMBER:src_port@&gt; dst_port=&lt;@NUMBER:dst_port@&gt; vpn=&lt;@WORD:NULL@&gt; tran_ip=&lt;@IP_ADDR:translated_ip@&gt; tran_port=&lt;@NUMBER:translated_port@&gt; dir_disp=&lt;@WORD:NULL@&gt; tran_disp=&lt;@WORD:NULL@&gt; "
            rank="003"
-           table="Fortigate_Traffic"
+           table="Firewall_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Notice"
            msg_id="Fortigate Traffic:2"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; date=&lt;@WORD:NULL@&gt; time=&lt;@WORD:NULL@&gt; device_id=&lt;@WORD:NULL@&gt; log_id=&lt;@WORD:NULL@&gt; type=&lt;@WORD:NULL@&gt; subtype=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt; vd=&lt;@WORD:NULL@&gt; SN=&lt;@WORD:NULL@&gt; duration=&lt;@WORD:NULL@&gt; policyid=&lt;@NUMBER:policy_id@&gt; proto=&lt;@WORD:NULL@&gt; service=&lt;@WORD:NULL@&gt; status=&lt;@STRING:status@&gt; src=&lt;@IP_ADDR:src_addr@&gt; srcname=&lt;@WORD:NULL@&gt; dst=&lt;@IP_ADDR:dst_addr@&gt; dstname=&lt;@WORD:NULL@&gt; src_int=&lt;@STRING:src_interface@&gt; dst_int=&lt;@STRING:dst_interface@&gt; sent=&lt;@NUMBER:sent_bytes@&gt; rcvd=&lt;@NUMBER:rcvd_bytes@&gt; src_port=&lt;@NUMBER:src_port@&gt; dst_port=&lt;@NUMBER:dst_port@&gt; vpn=&lt;@WORD:NULL@&gt; tran_ip=&lt;@IP_ADDR:translated_ip@&gt; tran_port=&lt;@NUMBER:translated_port@&gt;"
            rank="004"
-           table="Fortigate_Traffic"
+           table="Firewall_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Notice"
            msg_id="Fortigate Traffic:3"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; date=&lt;@WORD:NULL@&gt; time=&lt;@WORD:NULL@&gt; devname=&lt;@WORD:NULL@&gt; device_id=&lt;@WORD:NULL@&gt; log_id=&lt;@WORD:NULL@&gt; type=&lt;@WORD:NULL@&gt; subtype=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt; vd=&lt;@WORD:NULL@&gt; SN=&lt;@WORD:NULL@&gt; duration=&lt;@WORD:NULL@&gt; user=&lt;@WORD:NULL@&gt; group=&lt;@WORD:NULL@&gt; policyid=&lt;@NUMBER:policy_id@&gt; proto=&lt;@WORD:NULL@&gt; service=&lt;@WORD:NULL@&gt; status=&lt;@STRING:status@&gt; src=&lt;@IP_ADDR:src_addr@&gt; srcname=&lt;@WORD:NULL@&gt; dst=&lt;@IP_ADDR:dst_addr@&gt; dstname=&lt;@WORD:NULL@&gt; src_int=&lt;@STRING:src_interface@&gt; dst_int=&lt;@STRING:dst_interface@&gt; sent=&lt;@NUMBER:sent_bytes@&gt; rcvd=&lt;@NUMBER:rcvd_bytes@&gt; src_port=&lt;@NUMBER:src_port@&gt; dst_port=&lt;@NUMBER:dst_port@&gt; vpn=&lt;@WORD:NULL@&gt; tran_ip=&lt;@IP_ADDR:translated_ip@&gt; tran_port=&lt;@NUMBER:translated_port@&gt;"
            rank="002"
-           table="Fortigate_Traffic"
+           table="Firewall_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Notice"
            msg_id="Fortigate Traffic:4"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; date=&lt;@WORD:NULL@&gt; time=&lt;@WORD:NULL@&gt; devname=&lt;@WORD:NULL@&gt; device_id=&lt;@WORD:NULL@&gt; log_id=&lt;@WORD:NULL@&gt; type=&lt;@WORD:NULL@&gt; subtype=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt; vd=&lt;@WORD:NULL@&gt; SN=&lt;@WORD:NULL@&gt; duration=&lt;@WORD:NULL@&gt; user=&lt;@WORD:NULL@&gt; group=&lt;@WORD:NULL@&gt; policyid=&lt;@NUMBER:policy_id@&gt; proto=&lt;@WORD:NULL@&gt; service=&lt;@WORD:NULL@&gt; status=&lt;@STRING:status@&gt; src=&lt;@IP_ADDR:src_addr@&gt; srcname=&lt;@WORD:NULL@&gt; dst=&lt;@IP_ADDR:dst_addr@&gt; dstname=&lt;@WORD:NULL@&gt; src_int=&lt;@STRING:src_interface@&gt; dst_int=&lt;@STRING:dst_interface@&gt; sent=&lt;@NUMBER:sent_bytes@&gt; rcvd=&lt;@NUMBER:rcvd_bytes@&gt; sent_pkt=&lt;@NUMBER:sent_pkt@&gt; rcvd_pkt=&lt;@NUMBER:rcvd_pkt@&gt; src_port=&lt;@NUMBER:src_port@&gt; dst_port=&lt;@NUMBER:dst_port@&gt; vpn=&lt;@WORD:NULL@&gt; tran_ip=&lt;@IP_ADDR:translated_ip@&gt; tran_port=&lt;@NUMBER:translated_port@&gt; dir_disp=&lt;@WORD:NULL@&gt; tran_disp=&lt;@WORD:NULL@&gt;  "
            rank="001"
-           table="Fortigate_Traffic"
+           table="Firewall_Traffic"
            taxonomy="Traffic" />
 </octopussy_service>

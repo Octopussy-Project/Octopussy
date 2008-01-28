@@ -84,10 +84,10 @@
 		re="0x[0-9A-E]+" 
 		simple_type="HEXA_NUMBER"
 		sql_type="VARCHAR(16)"
-   	color="green" />
+   	color="blue" />
 	<type type_id="FLOAT_NUMBER"
   	re="\d+\.\d+"
 		simple_type="FLOAT_NUMBER"
   	sql_type="FLOAT"
-   	color="green" />	
+   	color="blue" />	
 </octopussy_types>

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Squid Service"
                    name="Squid"
-                   nb_messages="064"
-                   version="200801250001">
+                   nb_messages="065"
+                   version="200801280002">
   <message loglevel="Information"
            msg_id="Squid:traffic"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:NULL@&gt;]: &lt;@NUMBER:NULL@&gt;.&lt;@NUMBER:duration@&gt; &lt;@STRING:NULL@&gt; &lt;@IP_ADDR:client_ip@&gt; &lt;@WORD:squid_code@&gt;/&lt;@NUMBER:http_code@&gt; &lt;@NUMBER:bytes@&gt; &lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; - &lt;@STRING:hierarchy_code@&gt; &lt;@STRING:type@&gt;"
@@ -393,4 +393,16 @@
            rank="065"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Information"
+           msg_id="Squid:resolv.conf_no_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.*resolv.conf.*No such file or directory.*&quot;):msg@&gt;"
+           rank="066"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="Squid:disk_space_over_limit"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*Disk space over limit:.+&quot;):msg@&gt;"
+           rank="067"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

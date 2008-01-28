@@ -1,7 +1,8 @@
-<octopussy_table name="Netscreen_NSM"
-                 description="Netscreen NSM Table"
-								 version="200705070001">
-  <field title="datetime"
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Netscreen NSM Table"
+                 name="Netscreen_NSM"
+                 version="200705070001">
+	<field title="datetime"
          type="DATETIME" />
   <field title="device"
          type="WORD" />
