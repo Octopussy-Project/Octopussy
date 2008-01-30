@@ -51,7 +51,7 @@ my $table = $Session->{table};
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="_GRAPH_HEIGHT" style="B"/></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Selector_Number name="graph_width" min="200" max="2000"
+  <AAT:BoxCol><AAT:Selector_Number name="graph_height" min="200" max="2000"
 		step="50" selected="600" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>

@@ -6,6 +6,7 @@ Octopussy::Report::XML - Octopussy XML Report module
 package Octopussy::Report::XML;
 
 use strict;
+no strict 'refs';
 use AAT;
 
 =head1 FUNCTIONS

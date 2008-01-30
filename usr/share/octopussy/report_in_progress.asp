@@ -15,11 +15,15 @@ $reportname =~ s/.+\/(.+)?" 2>.+$/$1/g;
 #}
 %>
 <AAT:PageTop onLoad="report_progress()" />
+<%
+print $cmd;
+%>
 <script type="text/javascript">
 var http_request = false;
 var href = window.location.href;
 var cmd = href.substr(href.indexOf("="));
 var bars = 40;
+var started = 0;
 
 function report_progress()
 {
@@ -53,6 +57,7 @@ function Update_Progress()
   {
     if (http_request.status == 200)
     {
+			started = 1;
       var xml =  http_request.responseXML;
       var root = xml.documentElement;
       var desc = root.getElementsByTagName('desc')[0].firstChild.data;
@@ -76,6 +81,10 @@ function Update_Progress()
 			bar+= "</tr></table>";
 			progressbar_bar.innerHTML = bar; 
     }
+		else
+		{
+			self.location="./report_show.asp?<%= $reportname %>";
+		}
   }
 }
 
