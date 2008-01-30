@@ -69,7 +69,8 @@ else
 					taxonomy => $Session->{taxonomy}, query => $query,
       		graph_title => $f->{graph_title}, graph_ylabel => $f->{graph_ylabel},
       		graph_width => $f->{graph_width}, graph_height => $f->{graph_height} }
-    		);	
+				);
+			AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Report", $Session->{title});	
 		}
 		Purge_Session();
 	}
