@@ -4,7 +4,8 @@ my $cancel = $Request->QueryString("cancel");
 my $pid = $Request->QueryString("pid");
 
 my $reportname = $cmd;
-$reportname =~ s/.+\/(.+)?" 2>.+$/$1/g;
+#$reportname =~ s/.+\/(.+)?" 2>.+$/$1/g;
+$reportname =~ s/.+\/(.+)?"$/$1/g;
 
 #if (defined $cancel)
 #{

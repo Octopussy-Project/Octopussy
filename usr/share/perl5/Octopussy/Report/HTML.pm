@@ -3,6 +3,7 @@
 Octopussy::Report::HTML - Octopussy HTML Report module
 
 =cut
+
 package Octopussy::Report::HTML;
 
 use strict;
@@ -15,6 +16,7 @@ use Octopussy;
 =head2 CSS($style)
 
 =cut
+
 sub CSS
 {
 	my $style = shift;
@@ -31,6 +33,7 @@ sub CSS
 =head2 Encode($data)
 
 =cut
+
 sub Encode
 {
   my $data = shift;
@@ -47,6 +50,7 @@ sub Encode
 Returns Page Header HTML code
 
 =cut
+
 sub Header
 {
   my ($title, $devices, $begin, $end, $fields, $headers, $lang) = @_;
@@ -87,6 +91,7 @@ sub Header
 Returns Page Footer HTML code
 
 =cut
+
 sub Footer
 {
   my ($stats, $fields, $lang) = @_;
@@ -114,6 +119,7 @@ sub Footer
  $fields, $headers, $stats, $lang)
 
 =cut
+
 sub Generate
 {
   my ($file, $title, $begin, $end, $devices, $data, $fields, $headers, 

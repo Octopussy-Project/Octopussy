@@ -1,0 +1,259 @@
+<octopussy_dialogs version="200709190001">
+
+	<dialog d_id="delete_alert"
+		type="warning"
+		link_ok="./alerts.asp?alert=%%arg1%%&amp;action=remove"
+    link_cancel="./alerts.asp"
+		msg_DE="Wollen Sie wirklich den Alarm '%%arg1%%' loeschen?"
+		msg_EN="Do you really want to delete Alert '%%arg1%%' ?" 
+		msg_ES="Estas seguro de que quieres borrar la Alerta '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment supprimer l'Alerte '%%arg1%%' ?" />
+
+	<dialog d_id="delete_contact"
+		type="warning"
+		link_ok="./contacts.asp?cid=%%arg1%%&amp;action=remove"
+  	link_cancel="./contacts.asp"
+		msg_DE="Wollen Sie wirklich den Kontakt '%%arg1%%' loeschen?"
+		msg_EN="Do you really want to delete Contact '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Contacto '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment supprimer le Contact '%%arg1%%' ?" />
+
+	<dialog d_id="delete_device"
+		type="warning"
+		link_ok="./devices.asp?device=%%arg1%%&amp;action=remove"
+   	link_cancel="./devices.asp"
+		msg_DE="Wollen Sie wirklich das Geraet '%%arg1%%' loeschen?"
+		msg_EN="Do you really want to delete Device '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Equipo '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment supprimer la Machine '%%arg1%%' ?" />
+
+	<dialog d_id="delete_devicegroup"
+    type="warning"
+    link_ok="./devicegroups.asp?devicegroup=%%arg1%%&amp;action=remove"
+    link_cancel="./devicegroups.asp"
+		msg_DE="Wollen Sie wirklich die Geraetegruppe '%%arg1%%' loeschen?"
+    msg_EN="Do you really want to delete Device Group '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Grupo de Equipos '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment supprimer le Groupe d'Equipements '%%arg1%%' ?" />
+
+	<dialog d_id="delete_device_service"
+		type="warning"
+		link_ok="./device_services.asp?device=%%arg2%%&amp;service=%%arg1%%&amp;action=remove"
+    link_cancel="./device_services.asp?device=%%arg2%%"
+		msg_DE="Wollen Sie wirklich den Service '%%arg1%%' von Geraet '%%arg2%%' loeschen?"
+		msg_EN="Do you really want to delete Service '%%arg1%%' from Device '%%arg2%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Servicio '%%arg1%%' del Equipo '%%arg2%%' ?"
+		msg_FR="Voulez vous vraiment supprimer le Service '%%arg1%%' de la Machine '%%arg2%%' ?" />
+
+	<dialog d_id="delete_location_building"
+  	type="warning"
+		link_ok="./locations.asp?city=%%arg1%%&amp;building=%%arg2%%&amp;action=remove"
+    link_cancel="./locations.asp"
+		msg_DE="Wollen Sie wirklich Standort '%%arg1%%' Gebaeude '%%arg2%%' loeschen?"
+    msg_EN="Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' ?"
+		msg_ES="Estas seguro de que quieres borrar la Ciudad '%%arg1%%' Edificio '%%arg2%%' ?"
+  	msg_FR="Voulez vous vraiment supprimer la Location Ville '%%arg1%%' Batiment '%%arg2%%' ?" />
+		
+	<dialog d_id="delete_location_city"
+  	type="warning"
+		link_ok="./locations.asp?city=%%arg1%%&amp;action=remove"
+    link_cancel="./locations.asp"
+		msg_DE="Wollen Sie wirklich Standort '%%arg1%%' loeschen?"
+    msg_EN="Do you really want to delete Location City '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar la Ciudad '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment supprimer la Location Ville '%%arg1%%' ?" />
+		
+	<dialog d_id="delete_location_rack"
+  	type="warning"
+		link_ok="./locations.asp?city=%%arg1%%&amp;building=%%arg2%%&amp;room=%%arg3%%&amp;rack=%%arg4%%&amp;action=remove"
+    link_cancel="./locations.asp"
+		msg_DE="Wollen Sie wirklich den Standort '%%arg1%%' Gebaeude '%%arg2%%' Raum '%%arg3%%' Rack '%%arg4%%' loeschen?"
+    msg_EN="Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' Rack '%%arg4%%' ?"
+		msg_ES="Estas seguro de que quieres borrar la Ciudad '%%arg1%%' Edificio '%%arg2%%' Habitacion '%%arg3%%' Rack '%%arg4%%' ?"
+   	msg_FR="Voulez vous vraiment supprimer la Location Ville '%%arg1%%' Batiment '%%arg2%%' Salle '%%arg3%%' Rack '%%arg4%%'?" />
+		
+	<dialog d_id="delete_location_room"
+  	type="warning"
+		link_ok="./locations.asp?city=%%arg1%%&amp;building=%%arg2%%&amp;room=%%arg3%%&amp;action=remove"
+    link_cancel="./locations.asp"
+		msg_DE="Wollen Sie wirklich den Standort '%%arg1%%' Gebaeude '%%arg2%%' Raum '%%arg3%%' loeschen?"
+   	msg_EN="Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' ?"
+		msg_ES="Estas seguro de que quieres borrar la Ciudad '%%arg1%%' Edificio '%%arg2%%' Habitacion '%%arg3%%' ?"
+  	msg_FR="Voulez vous vraiment supprimer la Location Ville '%%arg1%%' Batiment '%%arg2%%' Salle '%%arg3%%' ?" />
+	
+	<dialog d_id="delete_log"
+  	type="warning"
+		link_ok="./wizard.asp?device=%%device%%&amp;log=%%log%%&amp;action=remove"
+    link_cancel="./wizard.asp?device=%%device%%"
+		msg_DE="Wollen Sie wirklich diese Logzeile loeschen?"
+   	msg_EN="Do you really want to delete this Log line #%%log%% ?"
+		msg_ES="Estas seguro de que quieres borrar la linea de Log #%%log%% ?"
+    msg_FR="Voulez vous vraiment supprimer la ligne de Log #%%log%% ?" />
+
+	<dialog d_id="delete_log_minute"
+    type="warning"
+    link_ok="./wizard.asp?device=%%device%%&amp;timestamp=%%timestamp%%&amp;action=remove_minute"
+    link_cancel="./wizard.asp?device=%%device%%"
+		msg_DE="Wollen Sie wirklich die Log Datei %%datetime%% loeschen?"
+    msg_EN="Do you really want to delete this Log File %%datetime%% ?"
+		msg_ES="Estas seguro de que quieres borrar el Fichero de Log #%%datetime%% ?"
+    msg_FR="Voulez vous vraiment supprimer le fichier de Log %%datetime%% ?" />
+
+	<dialog d_id="delete_message"
+		type="warning"
+		link_ok="./services.asp?service=%%service%%&amp;msgid=%%msg%%&amp;action=remove"
+   	link_cancel="./services.asp?service=%%service%%"
+		msg_DE="Wollen Sie wirklich die Nachricht '%%msg%%' von Service '%%service%%' loeschen?"
+		msg_EN="Do you really want to delete Message '%%msg%%' from Service '%%service%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Mensaje '%%msg%%' del Servicio '%%service%%' ?"
+		msg_FR="Voulez vous vraiment supprimer le Message '%%msg%%' du Service '%%service%%' ?" />
+
+	<dialog d_id="delete_report"
+		type="warning"
+		link_ok="./reports.asp?report=%%arg1%%&amp;action=remove"
+   	link_cancel="./reports.asp"
+		msg_DE="Wollen Sie wirklich den Bericht '%%arg1%%' loeschen?"
+		msg_EN="Do you really want to delete Report '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Informe '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment supprimer le Rapport '%%arg1%%' ?" />
+
+	  <dialog d_id="delete_report_data"
+    type="warning"
+    link_ok="./reports_viewer.asp?report=%%arg1%%&amp;filename=%%arg3%%&amp;action=remove"
+    link_cancel="./reports_viewer.asp?report=%%arg1%%"
+    msg_DE="Wollen Sie wirklich Report '%%arg1%%' '%%arg2%%' loeschen?"
+    msg_EN="Do you really want to delete Report '%%arg1%%' '%%arg2%%' ?"
+    msg_ES="Estas seguro de que quieres borrar el Informe '%%arg1%%' '%%arg2%%' ?"
+    msg_FR="Voulez vous vraiment supprimer le Rapport '%%arg1%%' '%%arg2%%' ?" />
+
+	<dialog d_id="delete_report_month"
+    type="warning"
+    link_ok="./reports_viewer.asp?report=%%arg1%%&amp;month=%%arg2%%&amp;year=%%arg3%%"
+    link_cancel="./reports_viewer.asp?report=%%arg1%%"
+    msg_EN="Do you really want to delete Report Month '%%arg1%%' '%%arg2%% %%arg3%%' ?"
+    msg_FR="Voulez vous vraiment supprimer le Mois de Rapport '%%arg1%%' '%%arg2%% %%arg3%%' ?" />
+
+	<dialog d_id="delete_report_schedule"
+		type="warning"
+		link_ok="./report_scheduler.asp?name=%%arg1%%&amp;action=remove"
+   	link_cancel="./report_scheduler.asp"
+		msg_DE="Wollen Sie wirklich die Berichts-Zeitplanung '%%arg1%%' loeschen?"
+		msg_EN="Do you really want to delete Report Schedule '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar la planificacion del Informe '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment supprimer la planification du Rapport '%%arg1%%' ?" />
+
+	<dialog d_id="delete_service"
+		type="warning"
+		link_ok="./services.asp?service=%%arg1%%&amp;action=remove"
+   	link_cancel="./services.asp"
+		msg_DE="Wollen Sie wirklich den Service '%%arg1%%' loeschen?"
+		msg_EN="Do you really want to delete Service '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Servicio '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment supprimer le Service '%%arg1%%' ?" />
+
+	<dialog d_id="delete_servicegroup"
+    type="warning"
+    link_ok="./servicegroups.asp?servicegroup=%%arg1%%&amp;action=remove"
+    link_cancel="./servicegroups.asp"
+    msg_EN="Do you really want to delete Service Group '%%arg1%%' ?"
+    msg_ES="Estas seguro de que quieres borrar el Grupo de Servicios '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment supprimer le Groupe de Services '%%arg1%%' ?" />
+
+	<dialog d_id="delete_servicegroup_service"
+    type="warning"
+    link_ok="./servicegroup_edit.asp?servicegroup=%%arg1%%&amp;service=%%arg2%%&amp;action=remove"
+    link_cancel="./servicegroup_edit.asp"
+    msg_EN="Do you really want to delete Service '%%arg2%%' from Service Group '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment supprimer le Service '%%arg2%%' du Groupe de Services '%%arg1%%' ?" />	
+
+	<dialog d_id="delete_statistic_report"
+    type="warning"
+    link_ok="./statistic_reports.asp?statistic_report=%%arg1%%&amp;action=remove"
+    link_cancel="./statistic_reports.asp"
+		msg_DE="Wollen Sie wirklich die Statistik '%%arg1%%' loeschen?"
+    msg_EN="Do you really want to delete Statistic Report '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Informe Estadistico '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment supprimer le Rapport Statistique '%%arg1%%' ?" />
+	
+	<dialog d_id="delete_statistic_report_schedule"
+    type="warning"
+    link_ok="./statistic_report_scheduler.asp?name=%%arg1%%&amp;action=remove"
+    link_cancel="./statistic_report_scheduler.asp"
+		msg_DE="Wollen Sie wirklich den Zeitplan '%%arg1%%' der Statistikberichte loeschen?"
+    msg_EN="Do you really want to delete Statistic Report Schedule '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quiere borrar la planificación del Informe Estdistico '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment supprimer la Planification du Rapport Statistique '%%arg1%%' ?" />
+
+	<dialog d_id="delete_storage"
+    type="warning"
+    link_ok="./storages.asp?name=%%arg1%%&amp;action=remove"
+    link_cancel="./storages.asp"
+    msg_DE="[EN] Do you really want to delete Storage '%%arg1%%' ?"
+    msg_EN="Do you really want to delete Storage '%%arg1%%' ?"
+    msg_ES="[EN] Do you really want to delete Storage '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment supprimer le Stockage '%%arg1%%' ?" />
+
+	<dialog d_id="delete_table"
+		type="warning"
+		link_ok="./tables.asp?table=%%arg1%%&amp;action=remove"
+		link_cancel="./tables.asp"
+		msg_DE="Wollen Sie wirklich Tabelle '%%arg1%%' loeschen?"
+		msg_EN="Do you really want to delete Table '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar la Tabla '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment supprimer la Table '%%arg1%%' ?" />
+
+	<dialog d_id="delete_timeperiod"
+    type="warning"
+    link_ok="./timeperiods.asp?timeperiod=%%arg1%%&amp;action=remove"
+    link_cancel="./timeperiods.asp"
+		msg_DE="Wollen Sie wirklich den Zeitabschnitt '%%arg1%%' loeschen?"
+    msg_EN="Do you really want to delete TimePeriod '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar el Periodo de Tiempo '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment supprimer la Periode '%%arg1%%' ?" />
+
+	<dialog d_id="delete_user"
+		type="warning"
+		link_ok="./user.asp?login=%%arg1%%&amp;action=remove"
+    link_cancel="./user.asp"
+		msg_DE="Wollen Sie wirklich den Benutzer '%%arg1%%' loeschen?"
+		msg_EN="Do you really want to delete User '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres borrar al Usuario '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment supprimer l'Utilisateur '%%arg1%%' ?" />
+
+	<dialog d_id="logout"
+		type="warning"
+		link_ok="./logout.asp"
+    link_cancel="./index.asp"
+		msg_DE="Wollen Sie sich wirklich abmelden?"
+		msg_EN="Do you really want to logout ?"
+		msg_ES="Estas seguro de que quieres desconectar ?"
+		msg_FR="Voulez vous vraiment vous deconnecter ?" />
+
+	<dialog d_id="parse_pause"
+    type="warning"
+    link_ok="./devices.asp?device=%%arg1%%&amp;action=parse_pause"
+    link_cancel="./devices.asp"
+		msg_DE="Wollen Sie wirklich das Analysieren der Maschine '%%arg1%%' unterbrechen?"
+    msg_EN="Do you really want to pause parsing Device '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres pausar el analisis del Equipo '%%arg1%%' ?"
+    msg_FR="Voulez vous vraiment mettre en pause le parseur de la Machine '%%arg1%%' ?" />
+	
+	<dialog d_id="parse_start"
+		type="warning"
+		link_ok="./devices.asp?device=%%arg1%%&amp;action=parse_start"
+  	link_cancel="./devices.asp"					
+		msg_DE="Wollen Sie wirklich die Analyse der Maschine '%%arg1%%' starten?"
+		msg_EN="Do you really want to start parsing Device '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres comenzar a analizar el Equipo '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment demarrer le parseur de la Machine '%%arg1%%' ?" />
+
+	<dialog d_id="parse_stop"
+		type="warning"
+		link_ok="./devices.asp?device=%%arg1%%&amp;action=parse_stop"
+  	link_cancel="./devices.asp"
+		msg_DE="Wollen Sie wirklich die Analyse der Maschine '%%arg1%%' stoppen?"
+		msg_EN="Do you really want to stop parsing Device '%%arg1%%' ?"
+		msg_ES="Estas seguro de que quieres dejar de analizar el Equipo '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment arreter le parseur de la Machine '%%arg1%%' ?" />
+
+</octopussy_dialogs>

@@ -269,9 +269,11 @@ sub Generate($$$$$$$$$$$)
 		Octopussy::Report::XML::Generate($xml_file, $rc->{name},
       $begin, $end, $devices, $data, $rc->{columns}, $rc->{columns_name},
       $stats, $lang);
+		Octopussy::Chown($xml_file);
 		my $csv_file = Octopussy::File_Ext($outputfile, "csv");
 		Octopussy::Report::CSV::Generate($csv_file, $data, 
 			$rc->{columns}, $rc->{columns_name}, $stats, $lang);
+		Octopussy::Chown($csv_file);
 		Octopussy::Report::PDF::Generate_From_HTML($outputfile);
 
 		#my $odt_file = AAT::File_Ext($outputfile, "odt");
@@ -296,8 +298,10 @@ sub Generate($$$$$$$$$$$)
 		}
 		Octopussy::Graph::Generate(\%conf, $outputfile);
 	}
+	Octopussy::Chown($outputfile);
 	my $file_info = Octopussy::File_Ext($outputfile, "info");
 	File_Info($file_info, $begin, $end, $devices, $stats);
+	Octopussy::Chown($file_info);
 	Export($outputfile, $mail_conf, $ftp_conf, $scp_conf);		
 }
 
@@ -356,8 +360,8 @@ sub CmdLine($$$$$$$$$$)
 		. " --taxonomy $taxonomy "
 		. " --begin $start --end $finish --lang \"$lang\" " 
 		. CmdLine_Export_Options($mail_conf, $ftp_conf, $scp_conf)
-		. " --output \"$output\""
-		. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
+		. " --output \"$output\"";
+		#. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
 
 	system("$cmd &");
 

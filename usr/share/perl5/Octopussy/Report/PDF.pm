@@ -26,6 +26,7 @@ sub Generate_From_HTML($)
 	my $pdf_file = Octopussy::File_Ext($file, "pdf");
 	`$SED "s/AAT_THEMES/\\\/usr\\\/share\\\/octopussy\\\/AAT_THEMES/g" "$file" > "$file.tmp"`;
 	`$HTMLDOC -f "$pdf_file" "$file.tmp"`;
+	Octopussy::Chown($pdf_file);
 	unlink("$file.tmp");
 }
 

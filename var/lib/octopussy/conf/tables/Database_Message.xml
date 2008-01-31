@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Database Messages Table"
+                 name="Database_Message"
+                 version="200801310001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+	<field title="pid"
+         type="NUMBER" />
+  <field title="client"
+         type="STRING" />
+  <field title="user"
+         type="WORD" />
+  <field title="db"
+         type="WORD" />
+  <field title="table"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+</octopussy_table>
