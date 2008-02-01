@@ -2,7 +2,7 @@
 <octopussy_service description="Ntp Service"
                    name="Ntp"
                    nb_messages="023"
-                   version="200801310001">
+                   version="200802010001">
   <message loglevel="Information"
            msg_id="Ntp:step_time_server"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpdate[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;step time server \S+ offset \S+ sec&quot;):msg@&gt;"
@@ -141,4 +141,10 @@
            rank="023"
            table="Message"
            taxonomy="Network.Errors" />
+  <message loglevel="Notice"
+           msg_id="Ntp:parent_died_before_finished"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd_initres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;parent died before we finished, exiting&quot;):msg@&gt; "
+           rank="024"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

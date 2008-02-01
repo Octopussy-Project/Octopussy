@@ -5,13 +5,13 @@ my $cmd = $Request->QueryString("cmd");
 my $pid = $Request->QueryString("pid");
 
 my $reportname = $cmd;
-#$reportname =~ s/.+\/(.+)?" 2>.+$/$1/g;
-$reportname =~ s/.+\/(.+)?"$/$1/g;
+$reportname =~ s/.+\/(.+)?" 2>.+$/$1/g;
+#$reportname =~ s/.+\/(.+)?"$/$1/g;
 my $report_type = $reportname;
 $report_type =~ s/(.+)-\d{8}.+/$1/;
 my $reportfile = $cmd;
-#$reportfile =~ s/.+"(.+)?" 2>.+$/$1/g;
-$reportfile =~ s/.+"(.+)?"$/$1/g;
+$reportfile =~ s/.+"(.+)?" 2>.+$/$1/g;
+#$reportfile =~ s/.+"(.+)?"$/$1/g;
 
 my $pid_dir = Octopussy::Directory("running");
 

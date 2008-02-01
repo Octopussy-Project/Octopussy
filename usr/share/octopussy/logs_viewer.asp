@@ -74,16 +74,22 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 	}
 	else
 	{
+		$text = "<table>";
 		foreach my $l (@{$logs})
-    { 
-			$text .= $l; 
-			$nb_lines++;
-		}
+  	{
+			my $line = $Server->HTMLEncode($l);
+			$line =~ s/($regexp_include)/<font color="red"><b>$1<\/b><\/font>/g	
+				if (AAT::NOT_NULL($regexp_include));
+			$line =~ s/($regexp_include2)/<font color="blue"><b>$1<\/b><\/font>/g
+				if (AAT::NOT_NULL($regexp_include2));
+			$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
+   		$nb_lines++;
+  	}
+		$text .= "</table>"; 
 	}
 }
 ($Session->{logs}, $Session->{file}, $Session->{csv}, $Session->{zip}) =
 	(undef, undef, undef, undef);
-my $txt_area = $Server->HTMLEncode($text);
 my @used_services = Octopussy::Service::List_Used();
 %>
 <WebUI:PageTop title="Logs" />
@@ -151,24 +157,24 @@ my @used_services = Octopussy::Service::List_Used();
 	<AAT:BoxCol align="center">
 	<AAT:Form_Submit name="csv" value="_DOWNLOAD_CSV_FILE" /></AAT:BoxCol>
 </AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol cspan="4">
-	<AAT:TextArea name="logs" cols="100" rows="25" wrap="off" data="$txt_area" />
-	</AAT:BoxCol>
-</AAT:BoxRow>
-<AAT:BoxRow>
-	<AAT:BoxCol cspan="4" align="C">
+  <AAT:BoxCol cspan="4" align="C">
 <%if ($nb_lines<$MAX_LINES)
 {
-	my $str = sprintf(AAT::Translation("_MSG_NB_LINES"), $nb_lines);
+  my $str = sprintf(AAT::Translation("_MSG_NB_LINES"), $nb_lines);
 %><AAT:Label value="$str" style="B"/><%
 }
 else
 {
-	my $str = sprintf(AAT::Translation("_MSG_REACH_MAX_LINES"), $MAX_LINES);
+  my $str = sprintf(AAT::Translation("_MSG_REACH_MAX_LINES"), $MAX_LINES);
 %><AAT:Message level="1" msg="$str" /><%
 }
 %></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol cspan="4"><%= $text %></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>
 </AAT:Form>

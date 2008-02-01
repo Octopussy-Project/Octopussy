@@ -1,7 +1,9 @@
-<octopussy_service name="Linux_PAM"
-                   description="Linux PAM Service"
-									 icon="operating_systems/os_linux_generic"
-                   version="200610050001">
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Linux PAM Service"
+                   icon="operating_systems/os_linux_generic"
+                   name="Linux_PAM"
+                   nb_messages="007"
+                   version="200802010002">
   <message loglevel="Warning"
            msg_id="Linux_PAM:user_access_denied"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; pam_access[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;access denied for user .+&quot;):msg@&gt;"
@@ -44,4 +46,16 @@
            rank="07"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Linux_PAM:tty_not_secure"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; login[&lt;@NUMBER:pid@&gt;]: (pam_securetty) access denied: tty 'tty1' is not secure ! "
+           rank="008"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="Linux_PAM:password_expired"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; su[&lt;@NUMBER:pid@&gt;]: (pam_unix) expired password for user &lt;@WORD:user@&gt; (password aged) "
+           rank="009"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

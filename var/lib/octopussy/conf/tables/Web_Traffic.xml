@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_table description="Web Traffic Generic Table"
+<octopussy_table description="Generic Web Traffic Table"
                  name="Web_Traffic"
                  version="200801250001">
   <field title="datetime"

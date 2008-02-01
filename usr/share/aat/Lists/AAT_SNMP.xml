@@ -1,0 +1,37 @@
+<list name="AAT_SNMP">
+
+	<item label="TableAddressIP"
+        value=".1.3.6.1.2.1.4.20.1.1" />
+	<item label="TableAddressNetmask"
+        value=".1.3.6.1.2.1.4.20.1.3" />
+
+	<item label="TableInterfaceDescription"
+				value=".1.3.6.1.2.1.2.2.1.2" />
+	<item label="TableInterfaceSpeed"
+        value=".1.3.6.1.2.1.2.2.1.5" />
+	<item label="TableInterfaceMAC"
+        value=".1.3.6.1.2.1.2.2.1.6" />
+	<item label="TableInterfaceAdminStatus"
+        value=".1.3.6.1.2.1.2.2.1.7" />
+
+	<item label="StorageType" 
+				value=".1.3.6.1.2.1.25.2.3.1.2" />
+	<item label="StorageDescription"
+        value=".1.3.6.1.2.1.25.2.3.1.3" />
+	<item label="StorageBlockSize"
+        value=".1.3.6.1.2.1.25.2.3.1.4" />
+	<item label="StorageSizeTotal (in blocks)"
+        value=".1.3.6.1.2.1.25.2.3.1.5" />
+	<item label="StorageSizeUsed (in blocks)"
+        value=".1.3.6.1.2.1.25.2.3.1.6" />
+
+	<item label="SystemUptime"
+        value=".1.3.6.1.2.1.25.1.1" />
+	<item label="SystemDate"
+        value=".1.3.6.1.2.1.25.1.2" />
+	<item label="SystemNbUser"
+        value=".1.3.6.1.2.1.25.1.5" />
+	<item label="SystemNbProcess"
+        value=".1.3.6.1.2.1.25.1.5" />
+
+</list>

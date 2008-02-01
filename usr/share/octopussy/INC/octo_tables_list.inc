@@ -34,7 +34,7 @@ if ($role !~ /ro/i)
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 	<AAT:BoxCol><AAT:Entry name="table" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Entry name="description" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Entry name="description" size="40" /></AAT:BoxCol>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol cspan="2" align="C">

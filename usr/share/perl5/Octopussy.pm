@@ -152,8 +152,12 @@ sub Chown
 {
 	my @files = @_;
 
-	#my ($login, $pass, $uid, $gid) = getpwnam($USER);
-	`chown -R $USER:$USER @files`;
+	my $list = "";
+	foreach my $f (@files)
+	{
+		$list .= "\"$f\" ";
+	}
+	`chown -R $USER:$USER $list`;
 }
 
 =head2 Create_Directory($dir)

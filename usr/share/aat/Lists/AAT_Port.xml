@@ -1,0 +1,36 @@
+<list name="AAT_Port"
+			selected_by_default="HTTP">
+
+	<item label="BGP" value="179" />
+	<item label="DNS" value="53" />
+	<item label="HTTP" value="80" />
+	<item label="HTTPS" value="443" />
+	<item label="IMAP" value="143" />
+	<item label="IMAPS" value="993" />
+	<item label="KAZAA" value="1214" />
+	<item label="LDAP" value="389" />
+	<item label="LDAPS" value="636" />
+	<item label="LOTUS NOTES" value="1352" />
+	<item label="MYSQL" value="3306" />
+	<item label="NAGIOS NSCA" value="5667" />
+	<item label="NESSUS" value="1241" />
+	<item label="NETBIOS-NS" value="137" />
+	<item label="NETBIOS-DGM" value="138" />
+	<item label="NETBIOS-SSN" value="139" />
+	<item label="NTP" value="123" />
+	<item label="POP3" value="110" />
+	<item label="POP3S" value="995" />
+	<item label="POSTGRESQL" value="5432" />
+	<item label="RSYNC" value="873" />
+	<item label="SIP" value="5060" />
+	<item label="SMTP" value="25" />
+	<item label="SNMP" value="161" />
+	<item label="SNMP-TRAP" value="162" />
+	<item label="SSH" value="22" />
+	<item label="SVN" value="3690" />
+	<item label="SYSLOG" value="514" />
+	<item label="TELNET" value="23" />
+	<item label="TFTP" value="69" />
+	<item label="XMPP CLIENT" value="5222" />
+	<item label="XMPP SERVER" value="5269" />
+</list>

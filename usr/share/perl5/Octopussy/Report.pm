@@ -360,8 +360,8 @@ sub CmdLine($$$$$$$$$$)
 		. " --taxonomy $taxonomy "
 		. " --begin $start --end $finish --lang \"$lang\" " 
 		. CmdLine_Export_Options($mail_conf, $ftp_conf, $scp_conf)
-		. " --output \"$output\"";
-		#. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
+		. " --output \"$output\""
+		. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
 
 	system("$cmd &");
 
@@ -370,7 +370,7 @@ sub CmdLine($$$$$$$$$$)
 
 =head2 Export($file, $mail_conf, $ftp_conf, $scp_conf)
 
-Exports generated report via Mail,FTP,SCP if defined
+Exports generated report via Mail, FTP, SCP if defined
 
 =cut
 
@@ -384,6 +384,8 @@ sub Export($$$$)
 }
 
 =head2 File_Info($file, $begin, $end, $devices, $stats)
+
+Generates Report's File Information
 
 =cut
 
@@ -399,6 +401,8 @@ sub File_Info($$$$$)
 }
 
 =head2 File_Info_Tooltip($file, $lang)
+
+Print Report's File Information in Tooltip
 
 =cut
 

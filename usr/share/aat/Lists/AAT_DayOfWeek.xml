@@ -1,0 +1,12 @@
+<list name="AAT_DayOfWeek"
+			selected_by_default="_MONDAY">
+
+	<item label="_MONDAY" value="Monday" />
+	<item label="_TUESDAY" value="Tuesday" />
+	<item label="_WEDNESDAY" value="Wednesday" />
+	<item label="_THURSDAY" value="Thursday" />
+  <item label="_FRIDAY" value="Friday" />
+  <item label="_SATURDAY" value="Saturday" />
+	<item label="_SUNDAY" value="Sunday" />
+
+</list>
