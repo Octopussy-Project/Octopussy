@@ -2,7 +2,7 @@
 <octopussy_service description="PostgreSQL Service (FR version)"
                    icon="software/logo_postgresql"
                    name="PostgreSQL_FR"
-                   nb_messages="015"
+                   website="http://www.postgresql.org"
                    version="200802040002">
   <message loglevel="Notice"
            msg_id="PostgreSQL_FR:autovacuum_traitement_base"

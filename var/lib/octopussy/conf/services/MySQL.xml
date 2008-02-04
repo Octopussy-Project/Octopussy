@@ -2,6 +2,7 @@
 <octopussy_service name="MySQL"
                    description="MySQL Service"
                    icon="software/logo_mysql"
+									 website="http://www.mysql.com"
                    version="200708230003">
   <message loglevel="Critical"
            msg_id="MySQL:cant_connect_through_socket"

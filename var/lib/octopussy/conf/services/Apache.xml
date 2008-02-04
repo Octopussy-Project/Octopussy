@@ -1,6 +1,7 @@
 <octopussy_service name="Apache"
                    description="Apache Service"
 									 icon="software/logo_apache"
+                   website="http://httpd.apache.org/"
                    version="200704300001">
   <message loglevel="Critical"
            msg_id="Apache:syntax_error_on_line"

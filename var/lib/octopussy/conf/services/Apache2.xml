@@ -2,6 +2,7 @@
 <octopussy_service name="Apache2"
                    description="Apache2 Service"
                    icon="software/logo_apache"
+									 website="http://httpd.apache.org/"
                    version="200701290001">
   <message loglevel="Notice"
            msg_id="Apache2:php_warning"

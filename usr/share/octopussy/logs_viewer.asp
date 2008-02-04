@@ -74,7 +74,8 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 	}
 	else
 	{
-		$text = "<table width=\"100%\">";
+		$text = "<table id=\"resultsTable\" width=\"100%\">";
+		$text .= "<tbody>";
 		foreach my $l (@{$logs})
   	{
 			my $line = $Server->HTMLEncode($l);
@@ -85,6 +86,7 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 			$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
    		$nb_lines++;
   	}
+		$text .= "</tbody>";
 		$text .= "</table>"; 
 	}
 }
@@ -93,6 +95,60 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 my @used_services = Octopussy::Service::List_Used();
 %>
 <WebUI:PageTop title="Logs" />
+
+<script language="javascript">
+
+var numberOfLines=0;
+
+function find(name) {
+	return document.getElementById(name);
+}
+
+function FilterData() {
+	numberOfLines=0;
+	filter = find("filter").value;
+	rows = find("resultsTable").tBodies[0].rows;
+	for (i=0; i<rows.length; i++) {
+		// 2 caractères minimum
+		if (filter.length>1) {
+			str = rows[i].cells[0].innerHTML;
+			// On enlève les styles
+			var regStyle = new RegExp ("<\/?(font|b).*?>","gi");
+			var newstr = str.replace(regStyle,"");
+			// filter peut être une expression régulière
+			var recherche = new RegExp("("+filter+")","g");
+			if (filter.length>0  && ! recherche.test(newstr)) {
+				rows[i].style.display = "none";
+			}
+			else {
+				numberOfLines ++;
+				rows[i].style.display = "";
+				HighlightWords(rows[i], newstr, recherche);
+			} 
+		}
+		else {
+				// On a moins de 2 caractères dans la rechereche : remise à zéro
+				numberOfLines ++;
+				rows[i].style.display = "";
+		}
+		spanNumber = find("NumberOfLines");
+		spanNumber.innerHTML = "<b>" + numberOfLines + "</b>";
+	}
+}
+
+function HighlightWords(row, text, rech) {
+	cell = row.cells[0];
+	if (filter.length>0) {
+		var resultat = rech.exec(text);
+		newtext = text.replace(rech,"<font color=\"orange\"><b>$1</b></font>");
+		cell.innerHTML = newtext;
+	}
+	else {
+		newtext = text;
+	}
+	cell.innerHTML = newtext;
+}
+</script>
 
 <AAT:Form action="$url">
 <AAT:Box align="center">
@@ -158,19 +214,22 @@ my @used_services = Octopussy::Service::List_Used();
 	<AAT:Form_Submit name="csv" value="_DOWNLOAD_CSV_FILE" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
-<AAT:BoxRow>
-  <AAT:BoxCol cspan="4" align="C">
-<%if ($nb_lines<$MAX_LINES)
+	<td colspan="1" align="left"><input id="filter" onkeyup="FilterData();"/></td>
+  <AAT:BoxCol cspan="1" align="C">
+<%
+  my $str = AAT::Translation("_MSG_NB_LINES");
+%><AAT:Label value="$str" style="B"/>
+<span id="NumberOfLines"><b><%= $nb_lines%></b></span>
+	</AAT:BoxCol>
+  <AAT:BoxCol cspan="2" align="C">
+<%if ($nb_lines>=$MAX_LINES)
 {
-  my $str = sprintf(AAT::Translation("_MSG_NB_LINES"), $nb_lines);
-%><AAT:Label value="$str" style="B"/><%
+my $str = sprintf(AAT::Translation("_MSG_REACH_MAX_LINES"), $MAX_LINES);
+%><AAT:Message level="1" msg="$str" />
+<%
 }
-else
-{
-  my $str = sprintf(AAT::Translation("_MSG_REACH_MAX_LINES"), $MAX_LINES);
-%><AAT:Message level="1" msg="$str" /><%
-}
-%></AAT:BoxCol>
+%>
+</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

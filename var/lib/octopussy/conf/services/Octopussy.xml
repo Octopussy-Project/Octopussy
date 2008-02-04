@@ -2,6 +2,7 @@
 <octopussy_service description="Octopussy Service"
                    icon="software/logo_octopussy"
                    name="Octopussy"
+									 website="http://www.8pussy.org"
                    version="200801150005">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"

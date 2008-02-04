@@ -2,6 +2,7 @@
 <octopussy_service name="Apache_Traffic"
                    description="Apache Traffic Service"
                    icon="software/logo_apache"
+                   website="http://httpd.apache.org/"
                    version="200708230002">
   <message loglevel="Information"
            msg_id="Apache_Traffic:code_200"

@@ -3,7 +3,8 @@
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
                    nb_messages="011"
-                   version="200802040005">
+									 website="http://www.postgresql.org"
+                   version="200802040006">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@REGEXP(&quot;LOG:  autovacuum: processing database&quot;):msg@&gt; &quot;&lt;@WORD:db@&gt;&quot;"
@@ -70,4 +71,10 @@
            rank="011"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="PostgreSQL:duplicate_key_unique_constraint"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;ERROR:  duplicate key violates unique constraint .+&quot;):msg@&gt;"
+           rank="012"
+           table="Database_Message"
+           taxonomy="System.Errors" />
 </octopussy_service>

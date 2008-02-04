@@ -34,7 +34,12 @@ if ($role !~ /ro/i)
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Entry name="service" /></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Entry name="description" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="description" size="40" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol align="R">
+	<AAT:Label value="_OFFICIAL_WEBSITE" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="website" size="40" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

@@ -305,7 +305,7 @@
 	<msg mid="_MSG_MSGS_FOR_SERVICE"
     value="Mensagens para o Serviço %s (versão %s)" />
 	<msg mid="_MSG_NB_LINES"
-    value="_MSG_NB_LINES: %d" />
+    value="_MSG_NB_LINES: " />
 	<msg mid="_MSG_NEED_DEFINE_CONTACT"
     value="Se você quer enviar Alertas, deve primeiro definir Contatos." />
 	<msg mid="_MSG_NEED_REPORT_FOR_SCHEDULE"
@@ -319,7 +319,7 @@
 	<msg mid="_MSG_NO_UPDATES_AVAILABLE"
 		value="Nenhuma atualização disponível" />
 	<msg mid="_MSG_REACH_MAX_LINES"
-    value="_MSG_REACH_MAX_LINES %d" />
+    value="_MSG_REACH_MAX_LINES: " />
 	<msg mid="_MSG_REPORT_DATA_SOURCE"
     value="Dados dos %d arquivos / %d linhas pegos em %d minutos e %d segundos." />
   <msg mid="_MSG_REPORT_GENERATED_BY"

@@ -1,6 +1,7 @@
 <octopussy_service name="Nagios"
                    description="Nagios Service"
 									 icon="software/logo_nagios"
+									 website="http://www.nagios.org"
                    version="200704270002">
   <message loglevel="Notice"
            msg_id="Nagios:service_alert"

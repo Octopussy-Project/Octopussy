@@ -2,7 +2,7 @@
 <octopussy_service description="Monit Service"
                    icon="software/logo_monit"
                    name="Monit"
-                   nb_messages="000"
+									 website="http://www.tildeslash.com/monit/"
                    version="200802040003">
   <message loglevel="Notice"
            msg_id="Monit:process_pid_changed_to"

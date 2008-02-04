@@ -2,6 +2,7 @@
 <octopussy_service description="Apache ModSecurity Service"
                    icon="software/logo_modsecurity"
                    name="Apache_Mod_Security"
+									 website="http://www.modsecurity.org/"
                    version="200711130023">
   <message loglevel="Warning"
            msg_id="Apache_Mod_Security:access_denied"

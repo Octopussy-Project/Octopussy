@@ -2,6 +2,7 @@
 <octopussy_service description="Bind DNS Server Service"
                    name="Bind"
                    nb_messages="078"
+									 website="http://www.isc.org/index.pl?/sw/bind/index.php"
                    version="200711140004">
   <message loglevel="Notice"
            msg_id="Bind:query"

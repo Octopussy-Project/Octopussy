@@ -1,6 +1,7 @@
 <octopussy_service name="Exim"
                    description=" Exim Service"
                    icon="software/logo_exim"
+									 website="http://www.exim.org/"
                    version="200611090002">
   <message loglevel="Warning"
            msg_id="Exim:cannot_open_main_logfile"
