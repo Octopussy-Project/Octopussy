@@ -2,8 +2,8 @@
 <octopussy_service description="PostgreSQL Service"
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
-                   nb_messages="010"
-                   version="200802010003">
+                   nb_messages="011"
+                   version="200802040005">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@REGEXP(&quot;LOG:  autovacuum: processing database&quot;):msg@&gt; &quot;&lt;@WORD:db@&gt;&quot;"
@@ -64,4 +64,10 @@
            rank="010"
            table="Message"
            taxonomy="Config.Changes" />
+  <message loglevel="Information"
+           msg_id="PostgreSQL:function_at_perform"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@REGEXP(&quot;.*pgSQL function .+ line \d+ at perform&quot;):msg@&gt; "
+           rank="011"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

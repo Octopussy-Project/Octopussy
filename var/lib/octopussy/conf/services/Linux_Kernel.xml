@@ -2,8 +2,8 @@
 <octopussy_service description="Linux Kernel Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel"
-                   nb_messages="174"
-                   version="200801240002">
+                   nb_messages="173"
+                   version="200802040001">
   <message loglevel="Debug"
            msg_id="Linux_Kernel:linux_version"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Linux version .+&quot;):msg@&gt;"
@@ -1032,7 +1032,7 @@
            taxonomy="System.Boot" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:usb_configuration_chosen"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;usb \d+-\d+: configuration #\d+ chosen from \d+ choices&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;usb \d+-\d+: configuration #\d+ chosen from \d+ choice.*&quot;):msg@&gt;"
            rank="172"
            table="Message"
            taxonomy="Hardware" />

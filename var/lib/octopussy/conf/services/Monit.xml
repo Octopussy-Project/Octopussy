@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Monit Service"
+                   icon="software/logo_monit"
+                   name="Monit"
+                   nb_messages="000"
+                   version="200802040003">
+  <message loglevel="Notice"
+           msg_id="Monit:process_pid_changed_to"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' process PID changed to \d+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Monit:pid_has_not_changed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' PID has not changed&quot;):msg@&gt; "
+           rank="002"
+           table="Message"
+           taxonomy="System" />
+</octopussy_service>

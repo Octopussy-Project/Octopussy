@@ -74,7 +74,7 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 	}
 	else
 	{
-		$text = "<table>";
+		$text = "<table width=\"100%\">";
 		foreach my $l (@{$logs})
   	{
 			my $line = $Server->HTMLEncode($l);

@@ -3,7 +3,7 @@
                    icon="software/logo_postfix"
                    name="Postfix"
                    nb_messages="056"
-                   version="200801280008">
+                   version="200802040001">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/postalias[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;fatal: file .+: parameter .+&quot;):msg@&gt;"
@@ -340,4 +340,10 @@
            rank="056"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Information"
+           msg_id="Postfix:traffic_to4"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           rank="057"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
 </octopussy_service>

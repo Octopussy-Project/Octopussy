@@ -2,7 +2,8 @@
 <octopussy_service description="PostgreSQL Service (FR version)"
                    icon="software/logo_postgresql"
                    name="PostgreSQL_FR"
-                   version="200801070009">
+                   nb_messages="015"
+                   version="200802040002">
   <message loglevel="Notice"
            msg_id="PostgreSQL_FR:autovacuum_traitement_base"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  autovacuum : traitement de la base de données .+&quot;):msg@&gt;"
@@ -85,6 +86,18 @@
            msg_id="PostgreSQL_FR:systeme_est_pret"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  le système de bases de données est prêt&quot;):msg@&gt;"
            rank="014"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="PostgreSQL_FR:pas_pu_ecrire_statistiques"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  n'a pas pu écrire le fichier temporaire des statistiques .+: Aucun espace disponible sur le&quot;):msg@&gt; "
+           rank="015"
+           table="Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Information"
+           msg_id="PostgreSQL_FR:pas_pu_ecrire_statistiques2"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:NULL@&gt; postgres[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.*  périphérique&quot;):NULL@&gt; "
+           rank="016"
            table="Message"
            taxonomy="System" />
 </octopussy_service>
