@@ -2,6 +2,7 @@
 <octopussy_service name="Linux_Kernel_RAID"
                    description="Linux Kernel RAID Service"
 									 icon="operating_systems/os_linux_generic"
+                   website="http://www.kernel.org/"
                    version="200702160013">
   <message loglevel="Notice"
            msg_id="Linux_Kernel_RAID:raid_status_change"

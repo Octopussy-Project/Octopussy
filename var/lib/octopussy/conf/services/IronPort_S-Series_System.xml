@@ -1,6 +1,7 @@
 <octopussy_service name="IronPort_S-Series_System"
                    description="IronPort S-Series System Service"
 									 icon="companies/logo_ironport"
+									 website="http://www.ironport.com/products/web_security_appliances.html"
                    version="200702200010">
   <message loglevel="Warning"
            msg_id="IronPort_S-Series_System:user_entered_to_prompt"

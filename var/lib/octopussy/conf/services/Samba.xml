@@ -1,6 +1,7 @@
 <octopussy_service name="Samba"
                    description="Samba Service"
                    icon="software/logo_samba"
+									 website="http://samba.org"
                    version="200610050001">
   <message loglevel="Notice"
            msg_id="Samba:reconnecting_ldap_server"

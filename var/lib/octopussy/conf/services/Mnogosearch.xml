@@ -1,6 +1,7 @@
 <octopussy_service name="Mnogosearch"
                    description="Mnogosearch Web Search Engine Service"
                    icon="software/logo_mnogosearch"
+									 website="http://www.mnogosearch.org/"
                    version="200704260003">
   <message loglevel="Information"
            msg_id="Mnogosearch:indexer_started"

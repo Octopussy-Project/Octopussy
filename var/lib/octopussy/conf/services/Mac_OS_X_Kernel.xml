@@ -2,7 +2,7 @@
 <octopussy_service description="Mac OS X Kernel"
                    icon="operating_systems/os_mac"
                    name="Mac_OS_X_Kernel"
-                   nb_messages="028"
+									 website="http://www.apple.com/macosx/"
                    version="200711260002">
   <message loglevel="Information"
            msg_id="Mac_OS_X_Kernel:appleacpicpu_enabled"

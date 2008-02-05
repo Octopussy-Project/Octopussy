@@ -37,6 +37,11 @@ if ($#services > -1)
 		selected => ($selected ? "selected" : ""), 
 		label => AAT::Translation("-ANY-"));
 }
+
+$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "Unknown",
+    selected => ($selected ? "selected" : ""),
+    label => AAT::Translation("<Unknown>"));
+
 foreach my $s (@services)
 {
 	my $selected = 0;

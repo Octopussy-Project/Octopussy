@@ -1,5 +1,6 @@
 <octopussy_service name="Heartbeat"
                    description="Heartbeat Service"
+									 website="http://www.linux-ha.org/Heartbeat"
                    version="200703080001">
   <message loglevel="Information"
            msg_id="Heartbeat:info_msg"

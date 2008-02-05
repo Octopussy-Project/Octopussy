@@ -2,6 +2,7 @@
 <octopussy_service name="Samhain"
                    description="Samhain Service"
 									 icon="software/logo_samhain"
+									 website="http://www.la-samhna.de/samhain/"
                    version="200703060001">
   <message loglevel="Information"
            msg_id="Samhain:file_check_completed"

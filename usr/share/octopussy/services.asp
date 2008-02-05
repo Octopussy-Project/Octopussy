@@ -17,9 +17,12 @@ else
 	if ((!defined Octopussy::Service::Filename($service))
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
-  	Octopussy::Service::New({ name => $service, 
-			description => $f->{description} });
-		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Service", $service);
+		if (($service !~ /^Incoming/i) && ($service !~ /^Unknown/i))
+		{
+  		Octopussy::Service::New({ name => $service, 
+				description => $f->{description} });
+			AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Service", $service);
+		}
 		$Response->Redirect("./services.asp");
  	}
 
@@ -44,7 +47,7 @@ else
 		AAT::Syslog("octo_WebUI", "MESSAGE_MOVED_IN_SERVICE", 
 			$msgid, $action, $service);
 	}
-	%><AAT:Inc file="service_messages_list" url="./services.asp"
+	%><AAT:Inc file="octo_service_messages_list" url="./services.asp"
 			service="$service" sort="$msg_sort" /><%
 }
 %>

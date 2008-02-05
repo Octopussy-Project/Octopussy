@@ -1,6 +1,7 @@
 <octopussy_service name="Netscreen_NSM_System"
                    description="Netscreen NSM System Service"
 									 icon="companies/logo_juniper"
+                   website="http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/"
                    version="200704300011">
   <message loglevel="Warning"
            msg_id="Netscreen_NSM_System:ip_spoofing"

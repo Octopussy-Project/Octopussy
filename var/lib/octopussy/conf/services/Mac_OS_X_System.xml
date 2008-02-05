@@ -2,7 +2,7 @@
 <octopussy_service description="Mac OS X System"
                    icon="operating_systems/os_mac"
                    name="Mac_OS_X_System"
-                   nb_messages="024"
+                   website="http://www.apple.com/macosx/"
                    version="200711140002">
   <message loglevel="Warning"
            msg_id="Mac_OS_X_System:authinternal_authenticated_user"

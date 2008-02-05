@@ -2,6 +2,7 @@
 <octopussy_service name="Fortigate_System"
                    description="Fortigate System Service"
 									 icon="companies/logo_fortinet"
+									 website="http://www.fortinet.com/products/fortigate_overview.html"
                    version="200709070001">
   <message loglevel="Notice"
            msg_id="Fortigate_System:user_login_successfully"

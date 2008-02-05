@@ -2,6 +2,7 @@
 <octopussy_service description="Slony-I replication system Service"
 									 icon="software/logo_slony-i"
                    name="Slony-I"
+									 website="http://slony.info/"
                    version="200802040009">
   <message loglevel="Notice"
            msg_id="Slony-I:logswitch_initiated"

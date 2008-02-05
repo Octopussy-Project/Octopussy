@@ -2,6 +2,7 @@
 <octopussy_service name="Netscreen_System"
                    description="Netscreen System Service"
                    icon="companies/logo_juniper"
+									 website="http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/"
                    version="200706070004">
   <message loglevel="Information"
            msg_id="Netscreen_System:clock_updated_from_ntp"

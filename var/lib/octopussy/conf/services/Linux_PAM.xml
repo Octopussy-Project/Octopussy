@@ -2,7 +2,7 @@
 <octopussy_service description="Linux PAM Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_PAM"
-                   nb_messages="007"
+									 website="http://www.kernel.org/pub/linux/libs/pam/"
                    version="200802010002">
   <message loglevel="Warning"
            msg_id="Linux_PAM:user_access_denied"

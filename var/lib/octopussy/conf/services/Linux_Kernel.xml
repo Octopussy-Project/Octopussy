@@ -2,7 +2,7 @@
 <octopussy_service description="Linux Kernel Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel"
-                   nb_messages="173"
+									 website="http://www.kernel.org/"
                    version="200802040001">
   <message loglevel="Debug"
            msg_id="Linux_Kernel:linux_version"

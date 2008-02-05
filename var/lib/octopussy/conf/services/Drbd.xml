@@ -2,7 +2,7 @@
 <octopussy_service description="Drbd Service"
                    icon="software/logo_drbd"
                    name="Drbd"
-                   nb_messages="038"
+									 website="http://www.drbd.org/"
                    version="200801240010">
   <message loglevel="Information"
            msg_id="Drbd:resync_done"

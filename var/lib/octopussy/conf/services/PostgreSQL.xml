@@ -2,9 +2,9 @@
 <octopussy_service description="PostgreSQL Service"
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
-                   nb_messages="011"
-									 website="http://www.postgresql.org"
-                   version="200802040006">
+                   nb_messages="012"
+                   version="200802050001"
+                   website="http://www.postgresql.org">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@REGEXP(&quot;LOG:  autovacuum: processing database&quot;):msg@&gt; &quot;&lt;@WORD:db@&gt;&quot;"
@@ -43,7 +43,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Notice"
            msg_id="PostgreSQL:invalid_byte_sequence_encoding3"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;not match the encoding expected by the server, .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*expected by the server, which is controlled by .+&quot;):msg@&gt;"
            rank="006"
            table="Message"
            taxonomy="System.Errors" />

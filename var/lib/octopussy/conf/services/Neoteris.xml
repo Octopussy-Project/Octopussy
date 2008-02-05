@@ -1,6 +1,7 @@
 <octopussy_service name="Neoteris"
                    description="Neoteris Service"
                    icon="companies/logo_juniper"
+									 website="http://www.juniper.net/products_and_services/ssl_vpn_secure_access/index.html"
                    version="200704300018">
   <message loglevel="Information"
            msg_id="Neoteris:statistics_archive"

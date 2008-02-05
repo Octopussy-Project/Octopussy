@@ -1,6 +1,7 @@
 <octopussy_service name="DenyAll_System"
                    description="DenyAll System Service"
                    icon="companies/logo_denyall"
+                   website="http://www.deny-all.com"
                    version="200705090016">
   <message loglevel="Warning"
            msg_id="DenyAll System:sslhandshake_interrupted"

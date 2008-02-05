@@ -1,6 +1,7 @@
 <octopussy_service name="DenyAll_Traffic"
                    description="DenyAll Traffic (access.log) Service"
                    icon="companies/logo_denyall"
+                   website="http://www.deny-all.com"
                    version="200705090005">
   <message loglevel="Information"
            msg_id="DenyAll Traffic:1"

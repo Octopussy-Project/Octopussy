@@ -2,6 +2,7 @@
 <octopussy_service name="Netscreen_System_Antivirus"
                    description="Netscreen System Antivirus Service"
                    icon="companies/logo_juniper"
+                   website="http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/"
                    version="200706070004">
 	<message loglevel="Warning"
            msg_id="Netscreen_System_Antivirus:scanmgr_internal_error_occured"

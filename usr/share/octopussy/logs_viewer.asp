@@ -167,7 +167,7 @@ function HighlightWords(row, text, rech) {
   <AAT:BoxCol align="right">
   <AAT:Label value="_SERVICE" align="right" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Inc file="octo_selector_service_dynamic"
-    multiple="1" size="5" device=\@devices selected=\@services 
+    unknown="1" multiple="1" size="5" device=\@devices selected=\@services 
 		restricted_services=\@used_services /></AAT:BoxCol>
 	</AAT:BoxRow>
 	</AAT:Box>

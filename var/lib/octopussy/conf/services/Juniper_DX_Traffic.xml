@@ -2,6 +2,7 @@
 <octopussy_service name="Juniper_DX_Traffic"
                    description="Juniper DX Traffic Service"
 									 icon="companies/logo_juniper"
+									 website="http://www.juniper.net/products_and_services/application_acceleration/data_center_acceleration/dx_application_acceleration/"
                    version="200701300005">
   <message loglevel="Information"
            msg_id="Juniper DX Traffic:traffic1"

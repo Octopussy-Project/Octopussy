@@ -2,6 +2,7 @@
 <octopussy_service name="Linux_Debian_System"
                    description="Linux Debian System Service"
 									 icon="operating_systems/os_linux_debian"
+									 website="http://www.debian.org"
                    version="200710010001">
   <message loglevel="Warning"
            msg_id="Linux_Debian_System:mysql_closed_table_properly"

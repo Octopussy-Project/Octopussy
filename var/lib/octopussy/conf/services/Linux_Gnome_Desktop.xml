@@ -1,7 +1,8 @@
 <octopussy_service name="Linux_Gnome_Desktop"
-     description="Linux Gnome Desktop Service"
-		 icon="linux_desktops/linux_desktop_gnome"
-     version="200606060003">
+     							 description="Linux Gnome Desktop Service"
+		 							 icon="linux_desktops/linux_desktop_gnome"
+		 							 website="http://www.gnome.org/"
+     							 version="200606060003">
   <message loglevel="Information"
            msg_id="Linux_Gnome_Desktop:gconfd_msg"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;gconfd&quot;):daemon@&gt; &lt;@STRING:msg@&gt;"

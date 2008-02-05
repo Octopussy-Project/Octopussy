@@ -1,6 +1,7 @@
 <octopussy_service name="Blue_Coat_System"
                    description="Blue Coat System Service"
 									 icon="companies/logo_bluecoat"
+									 website="http://www.bluecoat.com"
                    version="200702150029">
   <message loglevel="Warning"
            msg_id="Blue_Coat_System:enabled_syslog"

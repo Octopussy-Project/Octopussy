@@ -1,6 +1,7 @@
 <octopussy_service name="F5_BigIP"
                    description="F5 BigIP Service"
 									 icon="companies/logo_f5"
+									 website="http://www.f5.com/products/big-ip/"
                    version="200705020003">
   <message loglevel="Warning"
            msg_id="F5 BigIP:monitor_address_port"

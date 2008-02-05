@@ -1,5 +1,7 @@
 <octopussy_service name="Rsync"
                    description="Rsync Service"
+									 icon="software/logo_rsync"
+									 website="http://samba.org/rsync/"
                    version="200610020003">
   <message loglevel="Warning"
            msg_id="Rsync:1"

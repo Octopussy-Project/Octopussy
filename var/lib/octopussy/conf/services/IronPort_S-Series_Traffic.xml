@@ -1,6 +1,7 @@
 <octopussy_service name="IronPort_S-Series_Traffic"
                    description="IronPort S-Series Traffic Service"
                    icon="companies/logo_ironport"
+                   website="http://www.ironport.com/products/web_security_appliances.html"
                    version="200703080001">
   <message loglevel="Information"
            msg_id="IronPort_S-Series_Traffic:tcp_miss"

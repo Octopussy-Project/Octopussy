@@ -1,6 +1,7 @@
 <octopussy_service name="NetApp_NetCache"
                    description="NetApp NetCache Service"
                    icon="companies/logo_netapp"
+									 website="http://www.netapp.com/"
                    version="200705070001">
   <message loglevel="Warning"
            msg_id="NetApp_NetCache:webwasher_communicating_server"

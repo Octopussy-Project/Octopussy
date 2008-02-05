@@ -1,6 +1,7 @@
 <octopussy_service name="Dovecot"
                    description="Dovecot IMAP Server Service"
 									 icon="software/logo_dovecot"
+									 website="http://www.dovecot.org/"
                    version="200612220002">
   <message loglevel="Notice"
            msg_id="Dovecot:reconnecting_ldap_server"

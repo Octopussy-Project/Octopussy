@@ -2,6 +2,7 @@
 <octopussy_service name="Ldap"
                    description="Ldap Service"
 									 icon="software/logo_openldap"
+									 website="http://www.openldap.org"
                    version="200708200001">
   <message loglevel="Information"
            msg_id="Ldap:daemon_activity_on_descriptors"

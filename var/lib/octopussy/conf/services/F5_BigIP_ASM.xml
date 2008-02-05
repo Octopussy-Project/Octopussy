@@ -2,6 +2,7 @@
 <octopussy_service name="F5_BigIP_ASM"
                    description="F5 BigIP ASM Service"
                    icon="companies/logo_f5"
+                   website="http://www.f5.com/products/big-ip/"
                    version="200705110004">
   <message loglevel="Warning"
            msg_id="F5_BigIP_ASM:asm_config_saved"

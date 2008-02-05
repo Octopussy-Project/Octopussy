@@ -1,6 +1,7 @@
 <octopussy_service name="DenyAll_Filtering"
                    description="DenyAll Filtering (eaccess.log) Service"
                    icon="companies/logo_denyall"
+									 website="http://www.deny-all.com"
                    version="200705090004">
   <message loglevel="Notice"
            msg_id="DenyAll Filtering:1"

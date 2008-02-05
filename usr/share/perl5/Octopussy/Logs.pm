@@ -67,6 +67,7 @@ sub Service_List($)
         $e =~ s/ /_/g;
         $hash_serv{$e} = 1;
       }
+			$hash_serv{"Unknown"} = 1;
 		}
 		else
 		{
@@ -164,7 +165,7 @@ sub Files($$$$)
 
 	foreach my $dev (sort keys %devs)
   {
-		foreach my $s (sort (Octopussy::Device::Services($dev)))
+		foreach my $s (sort (Octopussy::Device::Services($dev), "Unknown"))
 		{
 			if (AAT::NOT_NULL($servs{$s}))
 			{

@@ -2,6 +2,7 @@
 <octopussy_service name="Dell_Switch"
                    description="Dell Switch Service"
                    icon="companies/logo_dell"
+									 website="http://www.dell.com/content/products/category.aspx/networking?c=us&cs=555&l=en&s=biz"
                    version="200703070003">
   <message loglevel="Warning"
            msg_id="Dell_Switch:authentication_failed_for"

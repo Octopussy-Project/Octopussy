@@ -2,6 +2,7 @@
 <octopussy_service name="IronPort_System"
                    description="IronPort System Service"
                    icon="companies/logo_ironport"
+                   website="http://www.ironport.com/products/email_security_appliances.html"
                    version="200706060002">
   <message loglevel="Information"
            msg_id="IronPort_System:log_pushed_remote_host"

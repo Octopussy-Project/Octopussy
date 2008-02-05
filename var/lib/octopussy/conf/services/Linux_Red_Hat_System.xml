@@ -1,7 +1,8 @@
 <octopussy_service name="Linux_Red_Hat_System"
-     description="Linux Red Hat System Service"
-		 icon="operating_systems/os_linux_redhat"
-     version="200606060001">
+     							 description="Linux Red Hat System Service"
+		 							 icon="operating_systems/os_linux_redhat"
+		 							 website="http://www.redhat.com/"
+     							 version="200606060001">
   <message loglevel="Notice"
            msg_id="Linux_Red_Hat_System:rhnsd"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rhnsd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:msg@&gt;"

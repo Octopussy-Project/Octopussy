@@ -2,7 +2,7 @@
 <octopussy_service description="IP Tables Service"
                    icon="software/logo_netfilter"
                    name="IP_Tables"
-                   nb_messages="008"
+									 website="http://www.netfilter.org/"
                    version="200801280009">
   <message loglevel="Information"
            msg_id="IP_Tables:traffic_tcp_fragmented"

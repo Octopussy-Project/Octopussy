@@ -1,6 +1,7 @@
 <octopussy_service name="Fortigate_Traffic"
                    description="Fortigate Traffic Service"
                    icon="companies/logo_fortinet"
+                   website="http://www.fortinet.com/products/fortigate_overview.html"
                    version="200612200005">
   <message loglevel="Notice"
            msg_id="Fortigate Traffic:1"

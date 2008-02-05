@@ -2,7 +2,7 @@
 <octopussy_service description="Postfix Service"
                    icon="software/logo_postfix"
                    name="Postfix"
-                   nb_messages="056"
+									 website="http://www.postfix.org/"
                    version="200802040001">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"

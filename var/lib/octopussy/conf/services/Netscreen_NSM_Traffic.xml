@@ -2,6 +2,7 @@
 <octopussy_service name="Netscreen_NSM_Traffic"
                    description="Netscreen NSM Traffic Service"
                    icon="companies/logo_juniper"
+                   website="http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/"
                    version="200703120002">
   <message loglevel="Notice"
            msg_id="Netscreen_NSM_Traffic:traffic"

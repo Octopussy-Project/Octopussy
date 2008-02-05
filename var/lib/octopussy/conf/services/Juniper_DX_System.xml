@@ -1,6 +1,7 @@
 <octopussy_service name="Juniper_DX_System"
                    description="Juniper DX System Service"
 									 icon="companies/logo_juniper"
+									 website="http://www.juniper.net/products_and_services/application_acceleration/data_center_acceleration/dx_application_acceleration/"
                    version="200704300001">
   <message loglevel="Notice"
            msg_id="Juniper DX System:lstn_up"

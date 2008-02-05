@@ -1,6 +1,7 @@
 <octopussy_service name="Sendmail"
                    description="Sendmail Service"
                    icon="software/logo_sendmail"
+									 website="http://www.sendmail.org/"
                    version="200612200003">
   <message loglevel="Information"
            msg_id="Sendmail:from"
