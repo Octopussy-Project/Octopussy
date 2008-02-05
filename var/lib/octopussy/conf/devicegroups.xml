@@ -1,3 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_devicegroups>
+  <devicegroup description=""
+               dg_id="RP"
+               type="static">
+    <device>XDRPP1</device>
+    <device>XDRPP2</device>
+  </devicegroup>
 </octopussy_devicegroups>

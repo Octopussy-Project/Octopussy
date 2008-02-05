@@ -37,6 +37,8 @@ if ($#services > -1)
 		selected => ($selected ? "selected" : ""), 
 		label => AAT::Translation("-ANY-"));
 }
+foreach my $s (AAT::ARRAY($selecteds))
+  { $selected = 1 if ($s eq "Unknown"); }
 
 $Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "Unknown",
     selected => ($selected ? "selected" : ""),
@@ -61,13 +63,14 @@ for (i=0; i<device; i++)
 <%
 my $i = 0;
 my $i2 = 0;
-
-my @services = (AAT::Translation("-ANY-"), Octopussy::Service::List());
+my $tr_any = AAT::Translation("-ANY-");
+my $tr_unknown = "<" . AAT::Translation("_UNKNOWN") . ">";
+my @services = Octopussy::Service::List();
+%>service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $tr_any %>", "-ANY-");<%
+if (defined $arg{unknown})
+	{ %> service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $tr_unknown %>", "Unknown"); <% }
 foreach my $s (@services)
-{%>
-service[<%= $i %>][<%= $i2 %>]=new Option("<%= $s %>","<%= $s %>");<%
-	$i2++;
-}
+	{	%> service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $s %>","<%= $s %>"); <% }
 $i++;
 
 my @dgs = Octopussy::DeviceGroup::List();
@@ -76,28 +79,26 @@ foreach my $d (sort @dgs)
 	my @dg_devices = Octopussy::DeviceGroup::Devices($d);
 	if ($#dg_devices >= 0)
 	{
-		my @services = (AAT::Translation("-ANY-"), 
-			Octopussy::DeviceGroup::Services($d));
+		my @services = Octopussy::DeviceGroup::Services($d);
 		my $i2 = 0;
+		%>service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $tr_any %>", "-ANY-");<%
+		if (defined $arg{unknown})
+			{ %> service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $tr_unknown %>", "Unknown"); <% }
 		foreach my $s (@services)
-		{%>
-service[<%= $i %>][<%= $i2 %>]=new Option("<%= $s %>","<%= $s %>");<%
-			$i2++;
-		}
+			{ %> service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $s %>","<%= $s %>"); <% }
 		$i++;
 	}
 }
 foreach my $d (Octopussy::Device::List())
 {
-	my @services = (AAT::Translation("-ANY-")
-		, ((defined $d && $d ne "" && $d ne "-ANY-")
-      	? sort(Octopussy::Device::Services($d)) : Octopussy::Service::List())); 
+	my @services = ((AAT::NOT_NULL($d) && ($d ne "-ANY-"))
+      	? sort(Octopussy::Device::Services($d)) : Octopussy::Service::List()); 
 	my $i2 = 0;
+	%>service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $tr_any %>", "-ANY-");<%
+ 	if (defined $arg{unknown})
+  	{ %> service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $tr_unknown %>", "Unknown"); <% }
   foreach my $s (@services)
-  {%>
-service[<%= $i %>][<%= $i2 %>]=new Option("<%= $s %>","<%= $s %>");<%
-  $i2++;
-  }
+  	{	%> service[<%= $i %>][<%= $i2++ %>]=new Option("<%= $s %>","<%= $s %>"); <% }
   $i++;
 }
 %>

@@ -216,6 +216,7 @@
   <msg mid="_NEW_TABLE" value="New Table" />
   <msg mid="_NEW_TIMEPERIOD" value="New TimePeriod" />
   <msg mid="_NEW_USER" value="New User" />
+	<msg mid="_OFFICIAL_WEBSITE" value="Official Website" />
   <msg mid="_PARTITION_LOGS" value="Partition Logs" />
   <msg mid="_PERIOD" value="Period" />
   <msg mid="_PERIODS" value="Periods" />
