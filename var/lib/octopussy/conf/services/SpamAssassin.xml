@@ -2,6 +2,7 @@
 <octopussy_service description="SpamAssassin Service"
                    name="SpamAssassin"
 									 icon="software/logo_spamassassin"	
+									 website="http://spamassassin.apache.org/"
                    version="200801170011">
   <message loglevel="Information"
            msg_id="SpamAssassin:server_started_on_port"

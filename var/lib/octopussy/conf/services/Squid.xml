@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Squid Service"
                    name="Squid"
-                   nb_messages="065"
+									 icon="software/logo_squid"
+									 website="http://www.squid-cache.org/"
                    version="200801300001">
   <message loglevel="Information"
            msg_id="Squid:traffic"

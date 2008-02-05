@@ -2,7 +2,7 @@
 <octopussy_service description="Syslog-ng Service"
                    icon="software/logo_syslog-ng"
                    name="Syslog-ng"
-                   nb_messages="020"
+									 website="http://www.balabit.com/network-security/syslog-ng/"
                    version="200801220003">
   <message loglevel="Warning"
            msg_id="Syslog-ng:stats_dropped"

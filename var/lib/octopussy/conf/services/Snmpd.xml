@@ -2,6 +2,7 @@
 <octopussy_service name="Snmpd"
                    description="Snmpd Service"
                    nb_messages="016"
+									 website="http://net-snmp.sourceforge.net/"
                    version="200709190001">
   <message loglevel="Warning"
            msg_id="Snmpd:shutdown_failed"

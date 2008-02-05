@@ -2,7 +2,7 @@
 <octopussy_service description="Xen Service"
                    icon="software/logo_xen"
                    name="Xen"
-                   nb_messages="075"
+									 website="http://www.xensource.com/"
                    version="200801250003">
   <message loglevel="Notice"
            msg_id="Xen:xend_started"
