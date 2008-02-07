@@ -15,6 +15,7 @@ use XML::Simple;
 # qw(:strict);
 
 my %XML_CACHE = ();
+my %filenames = ();
 
 =head1 FUNCTIONS
 
@@ -29,10 +30,12 @@ sub Filename($$)
 {
 	my ($dir, $name) = @_;
 
+	return ($filenames{$dir}{$name})	if (defined $filenames{$dir}{$name});
 	my @files = AAT::FS::Directory_Files($dir, qr/.+\.xml$/);
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir/$f");
+		$filenames{$dir}{$name} = "$dir/$f";
     return ("$dir/$f")	if ($conf->{name} eq $name);
   }
 

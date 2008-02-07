@@ -1,4 +1,9 @@
 <octopussy_plugin name="Proxy">
+	<function label="CACHE_STATUS"
+            perl="Octopussy::Plugin::Proxy::Cache_Status"
+            source="INPUT">
+    <field>Squid_Traffic:squid_code</field>
+  </function>
 	<function label="MIME"
 	         	perl="Octopussy::Plugin::Proxy::Mime"
 						source="INPUT">

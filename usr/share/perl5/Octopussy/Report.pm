@@ -360,9 +360,8 @@ sub CmdLine($$$$$$$$$$)
 		. " --taxonomy $taxonomy "
 		. " --begin $start --end $finish --lang \"$lang\" " 
 		. CmdLine_Export_Options($mail_conf, $ftp_conf, $scp_conf)
-		. " --output \"$output\""
-		. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
-
+		. " --output \"$output\"";
+		#. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
 	system("$cmd &");
 
 	return ($cmd);

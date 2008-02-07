@@ -515,6 +515,7 @@ sub CheckBox($$)
 Usage: <AAT:Config_Database tooltip="_TOOLTIP_SYSTEM_DB" />
 
 =cut
+
 sub Config_Database($$)
 {
 	my ($args, $body) = @_;
@@ -527,6 +528,7 @@ sub Config_Database($$)
 Usage: <AAT:Config_LDAP_Contacts tooltip="_TOOLTIP_SYSTEM_LDAP" />
 
 =cut
+
 sub Config_LDAP_Contacts($$)
 {
   my ($args, $body) = @_;
@@ -539,6 +541,7 @@ sub Config_LDAP_Contacts($$)
 Usage: <AAT:Config_LDAP_Users tooltip="_TOOLTIP_SYSTEM_LDAP" />
 
 =cut
+
 sub Config_LDAP_Users($$)
 {
   my ($args, $body) = @_;
@@ -551,6 +554,7 @@ sub Config_LDAP_Users($$)
 Usage: <AAT:Config_NSCA tooltip="_TOOLTIP_SYSTEM_NSCA" />
 
 =cut
+
 sub Config_NSCA($$)
 {
   my ($args, $body) = @_;
@@ -563,6 +567,7 @@ sub Config_NSCA($$)
 Usage: <AAT:Config_Proxy tooltip="_TOOLTIP_SYSTEM_PROXY" />
 
 =cut
+
 sub Config_Proxy($$)
 {
   my ($args, $body) = @_;
@@ -575,6 +580,7 @@ sub Config_Proxy($$)
 Usage: <AAT:Config_SMTP tooltip="_TOOLTIP_SYSTEM_SMTP" />
 
 =cut
+
 sub Config_SMTP($$)
 {
   my ($args, $body) = @_;
@@ -587,6 +593,7 @@ sub Config_SMTP($$)
 Usage: <AAT:Config_XMPP tooltip="_TOOLTIP_SYSTEM_JABBER" />
 
 =cut
+
 sub Config_XMPP($$)
 {
 	my ($args, $body) = @_;
@@ -599,6 +606,7 @@ sub Config_XMPP($$)
 Usage: <AAT:Entry name="directory" size="40" />
 
 =cut
+
 sub Entry($$)
 {
   my ($args, $body) = @_;
@@ -611,6 +619,7 @@ sub Entry($$)
 Usage: <AAT:Export_FTP width="100%" />
 
 =cut
+
 sub Export_FTP($$)
 {
 	my ($args, $body) = @_;
@@ -623,6 +632,7 @@ sub Export_FTP($$)
 Usage: <AAT:Export_SCP width="100%" />
 
 =cut
+
 sub Export_SCP($$)
 {
   my ($args, $body) = @_;
@@ -635,6 +645,7 @@ sub Export_SCP($$)
 Usage: <AAT:Form_Begin method="POST" action="$action" />
 
 =cut
+
 sub Form($$)
 {
   my ($args, $body) = @_;
@@ -649,6 +660,7 @@ sub Form($$)
 Usage: <AAT:Form_Hidden name="msg_pattern" value="$pattern" />
 
 =cut
+
 sub Form_Hidden($$)
 {
 	my ($args, $body) = @_;
@@ -661,6 +673,7 @@ sub Form_Hidden($$)
 Usage: <AAT:Form_Submit value="_EDIT" />
 
 =cut
+
 sub Form_Submit($$)
 {
   my ($args, $body) = @_;
@@ -687,6 +700,7 @@ Usage: <AAT:IMG name="mime/pdf" tooltip="_REPORT_PDF"
         link="${url_base}&filename=$report.$ext" />
 
 =cut
+
 sub IMG($$)
 {
 	my ($args, $body) = @_;
@@ -699,6 +713,7 @@ sub IMG($$)
 Usage: <AAT:Label value="_MODIFICATION" style="B" />
 
 =cut
+
 sub Label($$)
 {
   my ($args, $body) = @_;
@@ -713,6 +728,7 @@ Usage:
 Print Logo of the item $args{name} from the List $args{list}
 
 =cut
+
 sub Logo($$)
 {
 	my ($args, $body) = @_;
@@ -725,6 +741,7 @@ sub Logo($$)
 Usage: <AAT:Menu align="C" items=\@items />
 
 =cut
+
 sub Menu($$)
 {
 	my ($args, $body) = @_;
@@ -737,6 +754,7 @@ sub Menu($$)
 Usage: <AAT:Message level="$level" msg="$msg" />
 
 =cut
+
 sub Message($$)
 {
 	my ($args, $body) = @_;
@@ -749,6 +767,7 @@ sub Message($$)
 Usage:
 
 =cut
+
 sub Msg_Error
 {
 	if (NOT_NULL($main::Session->{AAT_MSG_ERROR}))
@@ -766,6 +785,7 @@ sub Msg_Error
 Usage: <AAT:Password name="pword" value="$pwd" size="12" />
 
 =cut
+
 sub Password($$)
 {
   my ($args, $body) = @_;
@@ -780,6 +800,7 @@ Usage: <AAT:Picture file="IMG/octopussy.gif" width="200"
         alt="Octopussy Logo" />
 
 =cut
+
 sub Picture($$)
 {
   my ($args, $body) = @_;
@@ -795,6 +816,7 @@ Usage: <AAT:ProgressBar title="Report Generation $reportname"
         cancel="./report_in_progress.asp?cancel=yes&pid=$pid" />
 
 =cut
+
 sub ProgressBar($$)
 {
 	my ($args, $body) = @_;
@@ -807,6 +829,7 @@ sub ProgressBar($$)
 Usage: <AAT:RRD_Graph url="./index.asp" name="syslog_dtype" mode="$rrd_mode" />
 
 =cut
+
 sub RRD_Graph($$)
 {
   my ($args, $body) = @_;
@@ -819,6 +842,7 @@ sub RRD_Graph($$)
 Usage: <AAT:Selector name="report" list=\@report_list />
 
 =cut
+
 sub Selector($$)
 {
   my ($args, $body) = @_;
@@ -831,6 +855,7 @@ sub Selector($$)
 Usage: <AAT:Selector_Color name="color" selected="red" />
 
 =cut
+
 sub Selector_Color($$)
 {
   my ($args, $body) = @_;
@@ -843,6 +868,7 @@ sub Selector_Color($$)
 Usage: <AAT:Selector_Database name="db_type" selected="$type" />
 
 =cut
+
 sub Selector_Database($$)
 {
   my ($args, $body) = @_;
@@ -855,6 +881,7 @@ sub Selector_Database($$)
 Usage: <AAT:Selector_Date name="$name" start_year="1920" />
 
 =cut
+
 sub Selector_Date($$)
 {
   my ($args, $body) = @_;
@@ -868,6 +895,7 @@ Usage: <AAT:Selector_DateTime name="dt" start_year="2000"
         url="$url" selected="$selected" />
 
 =cut
+
 sub Selector_DateTime($$)
 {
   my ($args, $body) = @_;
@@ -883,6 +911,7 @@ Usage: <AAT:Selector_DateTime_Simple name="dt"
         selected2="$d2/$m2/$y2/$hour2/$min2" />
 
 =cut
+
 sub Selector_DateTime_Simple($$)
 {
   my ($args, $body) = @_;
@@ -890,11 +919,25 @@ sub Selector_DateTime_Simple($$)
   $main::Response->Include('AAT/INC/AAT_Selector_DateTime_Simple.inc', %{$args});
 }
 
+=head2 Selector_EnabledDisabled($args, $body)
+
+Usage: <AAT:Selector_EnabledDisabled name="status" selected="$status" />
+
+=cut
+
+sub Selector_EnabledDisabled($$)
+{
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_Selector_EnabledDisabled.inc', %{$args});
+}
+
 =head2 Selector_Language($args, $body)
 
 Usage: <AAT:Selector_Language />
 
 =cut
+
 sub Selector_Language($$)
 {
   my ($args, $body) = @_;
@@ -914,6 +957,7 @@ sub Selector_Language($$)
 Usage:
 
 =cut
+
 sub Selector_List($$)
 {
   my ($args, $body) = @_;
@@ -927,6 +971,7 @@ Usage: <AAT:Selector_Number name="graph_width"
         min="300" max="3000" step="50" selected="$g_width" />
 
 =cut
+
 sub Selector_Number($$)
 {
   my ($args, $body) = @_;
@@ -939,6 +984,7 @@ sub Selector_Number($$)
 Usage: <AAT:Selector_Theme />
 
 =cut
+
 sub Selector_Theme($$)
 {
   my ($args, $body) = @_;

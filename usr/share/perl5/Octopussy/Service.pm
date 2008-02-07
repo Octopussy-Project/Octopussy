@@ -100,7 +100,8 @@ sub Filename($)
 
 	return ($filenames{$service_name})   if (defined $filenames{$service_name});
 	$services_dir ||= Octopussy::Directory($SERVICE_DIR);
-	$filenames{$service_name} = AAT::XML::Filename($services_dir, $service_name);
+	$filenames{$service_name} = "$services_dir/$service_name.xml";
+	#AAT::XML::Filename($services_dir, $service_name);
 
 	return ($filenames{$service_name});
 }

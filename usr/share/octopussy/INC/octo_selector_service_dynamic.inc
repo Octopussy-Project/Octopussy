@@ -1,9 +1,12 @@
 <% 
 my %arg = @_; 
 my $selecteds = $arg{selected};
-my $selected = 0;
+my ($selected, $sel_unknown) = (0, 0);
 foreach my $s (AAT::ARRAY($selecteds))
-  { $selected = 1 if ($s eq "-ANY-"); }
+{ 
+	$selected = 1 if ($s eq "-ANY-"); 
+	$sel_unknown = 1 if ($s eq "Unknown");
+}
 my %service;
 my @services = ();
 my $arg_devices = $arg{device};
@@ -37,13 +40,15 @@ if ($#services > -1)
 		selected => ($selected ? "selected" : ""), 
 		label => AAT::Translation("-ANY-"));
 }
-foreach my $s (AAT::ARRAY($selecteds))
-  { $selected = 1 if ($s eq "Unknown"); }
+#foreach my $s (AAT::ARRAY($selecteds))
+#  { $selected = 1 if ($s eq "Unknown"); }
 
-$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "Unknown",
-    selected => ($selected ? "selected" : ""),
+if (defined $arg{unknown})
+{
+	$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "Unknown",
+    selected => ($sel_unknown ? "selected" : ""),
     label => AAT::Translation("<Unknown>"));
-
+}
 foreach my $s (@services)
 {
 	my $selected = 0;

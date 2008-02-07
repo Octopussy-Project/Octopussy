@@ -69,6 +69,7 @@ else
 	my $cmd = Octopussy::Report::CmdLine($device, $service, $taxonomy, $r, 
 		$start, $finish, \%mail_conf, \%ftp_conf, \%scp_conf, 
 		$Session->{AAT_LANGUAGE});
+	sleep(2);
  	$Response->Redirect("./report_in_progress.asp?cmd=" 
 		. $Server->URLEncode($cmd));
 }

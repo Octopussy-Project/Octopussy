@@ -3,6 +3,7 @@
 Octopussy::Plugin::Proxy - Octopussy Plugin Proxy
 
 =cut
+
 package Octopussy::Plugin::Proxy;
 
 use strict;
@@ -15,6 +16,7 @@ my @mimes = ();
 =head2 Init()
 
 =cut
+
 sub Init
 {
 	my $mime_conf = AAT::List::Configuration("AAT_Mime");
@@ -27,9 +29,22 @@ sub Init
   }
 }
 
+=head2 Cache_Status($str)
+
+=cut
+
+sub Cache_Status
+{
+	my $str = shift;
+
+	return ("Cached")	if ($str =~ /.+_HIT.*/);
+	return ("Not Cached");
+}
+
 =head2 Logo($logo, $alt)
 
 =cut
+
 sub Logo($$)
 {
   my ($logo, $alt) = @_;
@@ -41,6 +56,7 @@ sub Logo($$)
 =head2 Mime($str) 
 
 =cut
+
 sub Mime($)
 {
 	my $str = shift;
@@ -57,6 +73,7 @@ sub Mime($)
 =head2 TLD($url)
 
 =cut
+
 sub TLD
 {
 	my $url = shift;
@@ -74,11 +91,13 @@ sub TLD
 =head2 WebSite($url)
 
 =cut
+
 sub WebSite
 {
 	my $url = shift;
 
-	return ($3)	if (($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*$/i)
+	return ($3)	if (($url =~ /^(https?:\/\/)?[^\/]*?(\.)?(\d+\.\d+\.\d+\.\d+)(:\d+)*$/i)
+		|| ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*$/i)
     || ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*\/.*$/i));
 
 	return ($url);

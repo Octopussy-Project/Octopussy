@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Ntp Service"
                    name="Ntp"
-                   nb_messages="023"
-                   version="200802010001">
+                   nb_messages="024"
+                   version="200802070001">
   <message loglevel="Information"
            msg_id="Ntp:step_time_server"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpdate[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;step time server \S+ offset \S+ sec&quot;):msg@&gt;"
@@ -147,4 +147,10 @@
            rank="024"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="Ntp:invalid_host_address_ignored"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;getaddrinfo: .+ invalid host address, ignored&quot;):msg@&gt; "
+           rank="025"
+           table="Message"
+           taxonomy="System.Errors" />
 </octopussy_service>

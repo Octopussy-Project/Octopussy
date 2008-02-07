@@ -2,7 +2,8 @@
 <octopussy_service description="Linux System Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_System"
-                   version="200711260001">
+                   nb_messages="065"
+                   version="200802070004">
   <message loglevel="Information"
            msg_id="Linux_System:removing_device_node"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udev&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;removing device node .+&quot;):msg@&gt;"
@@ -387,4 +388,16 @@
            rank="065"
            table="Message"
            taxonomy="Auth.Failure" />
+  <message loglevel="Warning"
+           msg_id="Linux_System:set_members_to"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; gpasswd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;set members of \w+ to .+&quot;):msg@&gt;"
+           rank="065"
+           table="Message"
+           taxonomy="Config.Changes" />
+  <message loglevel="Warning"
+           msg_id="Linux_System:delete_user_from_group"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;userdel&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;delete .+ from .*group .+&quot;):msg@&gt;"
+           rank="066"
+           table="Message"
+           taxonomy="Config.Changes" />
 </octopussy_service>

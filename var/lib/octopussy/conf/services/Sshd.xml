@@ -1,7 +1,8 @@
-<octopussy_service name="Sshd"
-                   description="SSH Daemon Service"
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="SSH Daemon Service"
+                   name="Sshd"
                    nb_messages="064"
-                   version="200704300003">
+                   version="200802060002">
   <message loglevel="Information"
            msg_id="sshd:session_for_user"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*session .+ for user .+&quot;):msg@&gt;"
@@ -386,4 +387,16 @@
            rank="064"
            table="Message"
            taxonomy="Access.Failure" />
+  <message loglevel="Warning"
+           msg_id="Sshd:password_will_expire"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*password for user \w+ will expire in \d+ days&quot;):msg@&gt; "
+           rank="065"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="Sshd:protocol_major_versions_differ"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Protocol major versions differ for .+&quot;):msg@&gt;"
+           rank="066"
+           table="Message"
+           taxonomy="System.Errors" />
 </octopussy_service>
