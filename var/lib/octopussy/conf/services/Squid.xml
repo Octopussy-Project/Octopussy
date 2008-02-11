@@ -3,7 +3,7 @@
                    icon="software/logo_squid"
                    name="Squid"
                    nb_messages="071"
-                   version="200802070001"
+                   version="200802110001"
                    website="http://www.squid-cache.org/">
   <message loglevel="Information"
            msg_id="Squid:traffic"
@@ -441,6 +441,12 @@
            msg_id="Squid:file_permission_denied"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+: .*Permission denied&quot;):msg@&gt; "
            rank="073"
+           table="Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Squid:url_too_large"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;urlParse: URL too large .+&quot;):msg@&gt;"
+           rank="074"
            table="Message"
            taxonomy="System.Errors" />
 </octopussy_service>

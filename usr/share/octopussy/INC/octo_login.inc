@@ -14,18 +14,18 @@ my $website = Octopussy::WebSite();
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
- 	<AAT:BoxCol align="R"><AAT:Label value="Login" style="B" /></AAT:BoxCol>
+ 	<AAT:BoxCol align="R"><AAT:Label value="_LOGIN" style="B" /></AAT:BoxCol>
  	<AAT:BoxCol><AAT:Entry name="login" value="" size="12" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol align="R"><AAT:Label value="Password " style="B" /></AAT:BoxCol>
+  <AAT:BoxCol align="R"><AAT:Label value="_PASSWORD" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Password name="password" value="" size="12" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol align="R">
 	<AAT:Button name="web" link="$website" width="24" /></AAT:BoxCol>
 	<AAT:BoxCol>
- 	<AAT:Label value="WebSite" link="$website" size="-1"/></AAT:BoxCol>
+	<AAT:Label value="_WEBSITE" link="$website" size="-1"/></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol align="C"><AAT:Label value="$version" /></AAT:BoxCol>

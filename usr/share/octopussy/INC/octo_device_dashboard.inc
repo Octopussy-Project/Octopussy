@@ -26,7 +26,7 @@ my $str_status = ($status == 2 ? "Started" : ($status == 1 ? "Paused" : "Stopped
   <AAT:BoxRow>
 		<AAT:BoxCol><AAT:Label value="_DEVICE" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol><AAT:Label value="$name" /></AAT:BoxCol>
-		<AAT:BoxCol><AAT:Label value="($address)" /></AAT:BoxCol>
+		<AAT:BoxCol><%= "($address)" %></AAT:BoxCol>
 	</AAT:BoxRow>
 	<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 	<AAT:BoxRow>

@@ -9,8 +9,6 @@ package Octopussy::Logs;
 use strict;
 use Octopussy;
 
-my $WIZARD_NB_LINES = 20;
-
 =head2 Device_List($devices)
 
 Returns Device List
@@ -301,6 +299,7 @@ sub Unknown_Number($)
 {
 	my $device = shift;
 
+	my $max_nb = Octopussy::Parameter("wizard_max_msgs");
 	my @files = Unknown_Files($device);
 	my ($total, $nb) = (0, 0);
 	foreach my $f (sort @files)
@@ -309,7 +308,7 @@ sub Unknown_Number($)
 		$nb = `zcat "$f" | wc -l`; 
 		chomp($nb);
 		$total += $nb	if ($nb >= 0);
-		last	if ($total > $WIZARD_NB_LINES);
+		last	if ($total > $max_nb);
 	}
 	
 	return ($total);

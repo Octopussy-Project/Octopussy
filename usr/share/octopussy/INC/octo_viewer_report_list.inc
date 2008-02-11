@@ -51,8 +51,7 @@ foreach my $r (sort keys %{$reports})
       ($month, $year) = ($3, $2);
       my $month_name = AAT::Translation(AAT::Datetime::Month_Name($month));
 			%><AAT:BoxRow>
-			<AAT:BoxCol align="C">
-			<AAT:Label value="--- $month_name $year ---" style="B" /></AAT:BoxCol>
+			<AAT:BoxCol align="C"><b>--- <%= "$month_name $year" %> ---</b></AAT:BoxCol>
 			<AAT:BoxCol cspan="4" align="R"><%
 			if (($role !~ /ro/i) && ($role !~ /restricted/i))
 			{%>

@@ -11,7 +11,7 @@ if (!defined $alert)
 }
 else
 {
-  if ((!defined Octopussy::Alert::Filename($alert)) 
+  if ((!-f Octopussy::Alert::Filename($alert)) 
 			&& ($Session->{AAT_ROLE} !~ /ro/i))
   {
 		my @devices = AAT::ARRAY($f->{device});
@@ -37,7 +37,7 @@ else
   {
     Octopussy::Alert::Remove($alert);
 		AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Alert", $alert);
-    $Response->Redirect("./alerts.asp");
+   	$Response->Redirect("./alerts.asp");
   }
   #else
   #{

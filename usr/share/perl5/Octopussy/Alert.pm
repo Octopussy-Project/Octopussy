@@ -68,8 +68,7 @@ Modify the configuration for the alert '$old_alert'
 sub Modify($$)
 {
 	my ($old_alert, $new_conf) = @_;
-	my $old_file = Filename($old_alert);
-  unlink($old_file);
+	Remove($old_alert);
 	New($new_conf);
 }
 
@@ -84,6 +83,7 @@ sub Remove($)
 	my $alert = shift;
 
  	unlink(Filename($alert));
+	$filenames{$alert} = undef;
 }
 
 =head2 List()

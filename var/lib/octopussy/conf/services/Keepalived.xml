@@ -2,8 +2,9 @@
 <octopussy_service description="Keepalived Service"
                    icon="software/logo_keepalived"
                    name="Keepalived"
-									 website="http://www.keepalived.org/"
-                   version="200802050002">
+                   nb_messages="037"
+                   version="200802110002"
+                   website="http://www.keepalived.org/">
   <message loglevel="Information"
            msg_id="Keepalived:ip_added"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Keepalived_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Netlink reflector reports IP .+ added&quot;):msg@&gt; "
@@ -226,4 +227,10 @@
            rank="037"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Keepalived:read_error_with_server"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Keepalived_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Read error with server .+: Connection reset by peer&quot;):msg@&gt;"
+           rank="038"
+           table="Message"
+           taxonomy="Network.Errors" />
 </octopussy_service>

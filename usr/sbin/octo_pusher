@@ -96,7 +96,7 @@ sub Convert_To_Syslog($$)
 	my ($line, $device) = @_;
 	chomp($line);
 	my $syslog = $line;
-	foreach my $as (@{$conf{$device}})
+	foreach my $as (AAT::ARRAY($conf{$device}))
 	{
 		if (AAT::NOT_NULL($as->{output}))
 		{
@@ -179,7 +179,7 @@ while (1)
 					{
 						$device = $5;
 						($n_min, $n_hour, $n_mday, $n_month, $n_year) = 
-							($4, $3, $2, $month{$1}, $n_year);
+							($4, $3, $2, $month{$1}, ($month{$1} > $n_month ? $n_year - 1 : $n_year));
 						if (($n_min ne $min) || ($n_hour ne $hour) || ($n_mday ne $mday) 
 							|| ($n_month ne $month))
 						{

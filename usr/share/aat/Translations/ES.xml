@@ -6,6 +6,8 @@
 	<msg mid="_PORTUGUESE" value="_PORTUGUESE" />
 	<msg mid="_SPANISH" value="Spanish" />
 
+	<msg mid="_DISABLED" value="_DISABLED" />
+  <msg mid="_ENABLED" value="_ENABLED" />
 	<msg mid="_YES" value="Si" />
   <msg mid="_NO" value="No" />
 
@@ -155,6 +157,9 @@
 	<msg mid="_COUNTRY" value="_COUNTRY" />
 	<msg mid="_CPU_USAGE" value="Uso de CPU" />
 	<msg mid="_CREATE_REPORT" value="_CREATE_REPORT" />	
+	<msg mid="_DEFAULT_DIR_INCOMING_LOGS" value="_DEFAULT_DIR_INCOMING_LOGS" />
+  <msg mid="_DEFAULT_DIR_KNOWN_LOGS" value="_DEFAULT_DIR_KNOWN_LOGS" />
+  <msg mid="_DEFAULT_DIR_UNKNOWN_LOGS" value="_DEFAULT_DIR_UNKNOWN_LOGS" />
 	<msg mid="_DEVICE" value="Equipo" />
 	<msg mid="_DEVICE_ADDRESS" value="Device Address" />
 	<msg mid="_DEVICE_DESCRIPTION" value="Device Description" />
@@ -163,6 +168,9 @@
 	<msg mid="_DEVICE_TYPE" value="Tipo del Equipo" />
 	<msg mid="_DEVICES" value="Equipos" />
 	<msg mid="_DEVICEGROUPS" value="Grupo de Equipos" />
+	<msg mid="_DIR_INCOMING_LOGS" value="_DIR_INCOMING_LOGS" />
+  <msg mid="_DIR_KNOWN_LOGS" value="_DIR_KNOWN_LOGS" />
+  <msg mid="_DIR_UNKNOWN_LOGS" value="_DIR_UNKNOWN_LOGS" />
 	<msg mid="_DOWNLOAD_CSV_FILE" value="Descargar Archivo CSV" />
   <msg mid="_DOWNLOAD_FILE" value="Descargar Archivo" />
 	<msg mid="_FINISH_PERIOD" value="_FINISH_PERIOD" />
@@ -221,6 +229,8 @@
 	<msg mid="_PROCESSOR" value="Procesador" />
 	<msg mid="_RACK" value="Rack" />
 	<msg mid="_RANK" value="Puesto" />
+	<msg mid="_REGEXP_EXC" value="Regexp (Excl.)" />
+  <msg mid="_REGEXP_INC" value="Regexp (Incl.)" />
 	<msg mid="_REMOVE_LOG_MINUTE" value="_REMOVE_LOG_MINUTE" />
 	<msg mid="_REPORT" value="Informe" />
 	<msg mid="_REPORT_CATEGORIES" value="_REPORT_CATEGORIES" />

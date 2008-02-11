@@ -1,5 +1,5 @@
 <%
-my $MAX_LINES = 5000;
+my $max_lines = Octopussy::Parameter("logs_viewer_max_lines");
 my $url = "./logs_viewer.asp";
 my $nb_lines = 0;
 
@@ -8,7 +8,7 @@ my $devs = $Session->{device};
 my $servs = $Session->{service}; 
 my (@devices, @services) = ((),());
 my $msg_nb_lines = AAT::Translation("_MSG_NB_LINES");
-my $msg_max_lines = sprintf(AAT::Translation("_MSG_REACH_MAX_LINES"), $MAX_LINES);
+my $msg_max_lines = sprintf(AAT::Translation("_MSG_REACH_MAX_LINES"), $max_lines);
 
 if (!ref ($devs))
   { push(@devices, $devs); }
@@ -51,7 +51,7 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 
   my $logs = Octopussy::Logs::Get(\@devices, \@services, \%start, \%finish,
     [$regexp_include, $regexp_include2], [$regexp_exclude, $regexp_exclude2], 
-		$MAX_LINES);
+		$max_lines);
 
 	if (defined $f->{file})
 	{
@@ -182,27 +182,23 @@ function FilterData()
 	<AAT:BoxCol cspan="2">
 	<AAT:Box>
 	<AAT:BoxRow>
-	<AAT:BoxCol align="R">
-		<AAT:Label value="Regexp (include)" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol align="R"><AAT:Label value="_REGEXP_INC" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol>
 		<AAT:Entry name="regexp_include" value="$regexp_include" 
 		size="40" style="color:red" />
 	</AAT:BoxCol>
-	<AAT:BoxCol align="R">
-    <AAT:Label value="Regexp (exclude)" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol align="R"><AAT:Label value="_REGEXP_EXC" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
     <AAT:Entry name="regexp_exclude" value="$regexp_exclude" size="40" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol align="R">
-		<AAT:Label value="Regexp (include)" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol align="R"><AAT:Label value="_REGEXP_INC" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
     <AAT:Entry name="regexp_include2" value="$regexp_include2" 
 		size="40" style="color:blue" />
 	</AAT:BoxCol>
-	<AAT:BoxCol align="R">
-    <AAT:Label value="Regexp (exclude)" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol align="R"><AAT:Label value="_REGEXP_EXC" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
     <AAT:Entry name="regexp_exclude2" value="$regexp_exclude2" size="40" />
 	</AAT:BoxCol>
@@ -227,7 +223,7 @@ function FilterData()
 	<input id="filter" size="40" style="color:orange" onkeydown="Timer();" />
 	<AAT:Label value="$msg_nb_lines" style="B"/>
 	<span id="nb_lines"><b><%= $nb_lines %></b></span>
-<%if ($nb_lines >= $MAX_LINES)
+<%if ($nb_lines >= $max_lines)
 	{ %><AAT:Message level="1" msg="$msg_max_lines" /><% } %>
 </AAT:BoxCol>
 </AAT:BoxRow>

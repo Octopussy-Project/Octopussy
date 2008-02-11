@@ -143,12 +143,12 @@ elsif ($r_type =~ /rrd/)
 {
   my ($r_x, $r_y) = ($conf->{x}, $conf->{y});
 %><AAT:BoxRow>
-  <AAT:BoxCol align="R"><AAT:Label value="X" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol align="R"><b>X</b></AAT:BoxCol>
   <AAT:BoxCol><AAT:Entry name="x" value="$r_x" size="50" />
   </AAT:BoxCol>
   </AAT:BoxRow>
 	<AAT:BoxRow>
-  <AAT:BoxCol align="R"><AAT:Label value="Y" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol align="R"><b>Y</b></AAT:BoxCol>
   <AAT:BoxCol><AAT:Entry name="y" value="$r_y" size="50" />
   </AAT:BoxCol>
   </AAT:BoxRow>

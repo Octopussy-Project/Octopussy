@@ -88,12 +88,11 @@ my @used_services = Octopussy::Service::List_Used();
 <%
 if ($#contacts >= 0)
 {
-	my @actions = ("Jabber", "Mail", "NSCA");
 %><AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Selector name="action" multiple="1" size="3" 
-	list=\@actions /></AAT:BoxCol>
+	<AAT:BoxCol>
+	<AAT:Inc file="octo_selector_action" multiple="1" size="3" /></AAT:BoxCol>
 	</AAT:BoxRow>
 	<AAT:BoxRow>
 	<AAT:BoxCol><AAT:Button name="contact" /></AAT:BoxCol>
@@ -110,7 +109,8 @@ if ($#contacts >= 0)
   </AAT:BoxRow>
 	<AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Label value="_BODY" tooltip="_TOOLTIP_ALERT_MSG" style="B"/>   </AAT:BoxCol>
+  <AAT:BoxCol>
+	<AAT:Label value="_BODY" tooltip="_TOOLTIP_ALERT_MSG" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:TextArea name="body" cols="60" rows="5" /></AAT:BoxCol>
   </AAT:BoxRow>
 <%

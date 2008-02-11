@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="SpamAssassin Service"
+                   icon="software/logo_spamassassin"
                    name="SpamAssassin"
-									 icon="software/logo_spamassassin"	
-									 website="http://spamassassin.apache.org/"
-                   version="200801170011">
+                   nb_messages="006"
+                   version="200802110001"
+                   website="http://spamassassin.apache.org/">
   <message loglevel="Information"
            msg_id="SpamAssassin:server_started_on_port"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;spamd: server started on port .+&quot;):msg@&gt;"
@@ -38,6 +39,12 @@
            msg_id="SpamAssassin:prefork_child_states"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;prefork: child states:.+&quot;):msg@&gt;"
            rank="006"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="SpamAssassin:server_killed_shutting_down"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; spamd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;spamd: server killed by SIGTERM, shutting down&quot;):msg@&gt; "
+           rank="007"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

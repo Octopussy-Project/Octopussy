@@ -49,7 +49,7 @@ foreach my $line (&{$arg{function}}(AAT::ARRAY($arg{function_args})))
 		elsif ($field->{type} =~ /IMG/)
 		{
 			push(@row, { type => "AAT_IMG", align => $field->{alignment},
-				args => { name => $value, width => 32 } } );
+				args => { name => $value, width => 24 } } );
 		}
 	}
 
@@ -70,12 +70,12 @@ foreach my $line (&{$arg{function}}(AAT::ARRAY($arg{function_args})))
 		{
 			if ($a->{link_type} eq "popup")
 			{
-				push(@row, { type => "AAT_Button", align => "center", 
+				push(@row, { type => "AAT_Button", align => "center",
 										args => { name => $name, tooltip => $a->{tooltip}, popup_link => $link } } );
 			}
 			else
 			{
-				push(@row, { type => "AAT_Button", align => "center",
+				push(@row, { type => "AAT_Button", align => "center", 
         	          args => { name => $name, tooltip => $a->{tooltip}, link => $link } } );
 			}
 		}

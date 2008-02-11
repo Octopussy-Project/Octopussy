@@ -1,2 +1,5 @@
-<% my %a = @_; %>
-<option <%= $a{selected} %> value="<%= $a{value} %>"<%= (defined $a{style} ? " style=\"$a{style}\"" : "") %>><%= $Server->HTMLEncode(AAT::Translation($a{label})) %></option>
+<% 
+my %a = @_; 
+my $selected = (AAT::NOT_NULL($a{selected}) ? "$a{selected} " : "");
+%>
+<option <%= "$selected" %>value="<%= $a{value} %>"<%= (AAT::NOT_NULL($a{style}) ? " style=\"$a{style}\"" : "") %>><%= $Server->HTMLEncode(AAT::Translation($a{label})) %></option>

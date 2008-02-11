@@ -2,8 +2,9 @@
 <octopussy_service description="PostgreSQL Service (FR version)"
                    icon="software/logo_postgresql"
                    name="PostgreSQL_FR"
-                   website="http://www.postgresql.org"
-                   version="200802040002">
+                   nb_messages="016"
+                   version="200802110001"
+                   website="http://www.postgresql.org">
   <message loglevel="Notice"
            msg_id="PostgreSQL_FR:autovacuum_traitement_base"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  autovacuum : traitement de la base de données .+&quot;):msg@&gt;"
@@ -98,6 +99,12 @@
            msg_id="PostgreSQL_FR:pas_pu_ecrire_statistiques2"
            pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:NULL@&gt; postgres[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.*  périphérique&quot;):NULL@&gt; "
            rank="016"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="PostgreSQL_FR:systeme_est_arrete"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  le système de base de données est arrêté&quot;):msg@&gt; "
+           rank="017"
            table="Message"
            taxonomy="System" />
 </octopussy_service>
