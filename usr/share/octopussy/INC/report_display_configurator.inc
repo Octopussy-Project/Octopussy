@@ -22,7 +22,7 @@ $Session->{select} = \@selected;
 my @box = (
 	[ { type => "AAT_Form_Hidden", args => { name => "selected", value => 1 } },
 		{ type => "form", args => { method => "post", action => $arg{url} } },
-   	{ label => "_REPORT_FIELD_ORDER", align => "center", 
+   	{ label => "_REPORT_FIELDS_ORDER", align => "center", 
 			style => "bold", colspan => 4 } ],
  	[ { label => "<hr>", colspan => 4 } ] );
 

@@ -1,9 +1,0 @@
-<list name="AAT_IM"
-			selected_by_default="">
-
-	<item label="AOL Instant Messenger" value="im_aim" logo="im_aim" />
-	<item label="ICQ" value="im_icq" logo="im_icq" />
-	<item label="Microsoft Messenger" value="im_msn" logo="im_msn" />
-	<item label="Yahoo Messenger" value="im_yahoo" logo="im_yahoo" />
-
-</list>

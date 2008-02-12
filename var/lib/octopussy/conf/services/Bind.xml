@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Bind DNS Server Service"
                    name="Bind"
-                   nb_messages="078"
-									 website="http://www.isc.org/index.pl?/sw/bind/index.php"
-                   version="200711140004">
+                   nb_messages="080"
+                   version="200802120001"
+                   website="http://www.isc.org/index.pl?/sw/bind/index.php">
   <message loglevel="Notice"
            msg_id="Bind:query"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: client &lt;@IP_ADDR:client@&gt;#&lt;@NUMBER:NULL@&gt;: query: &lt;@WORD:query@&gt; &lt;@STRING:query_type@&gt;"
@@ -484,4 +484,10 @@
            rank="080"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="Bind:option_obsolete"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+:\d+: option '.+' is obsolete&quot;):msg@&gt; "
+           rank="081"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

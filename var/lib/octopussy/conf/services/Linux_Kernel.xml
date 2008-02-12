@@ -2,8 +2,8 @@
 <octopussy_service description="Linux Kernel Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel"
-									 website="http://www.kernel.org/"
-                   version="200802040001">
+                   version="200802120001"
+                   website="http://www.kernel.org/">
   <message loglevel="Debug"
            msg_id="Linux_Kernel:linux_version"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Linux version .+&quot;):msg@&gt;"
@@ -1042,4 +1042,10 @@
            rank="173"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Alert"
+           msg_id="Linux_Kernel:ip_conntrack_table_full"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;ip_conntrack: table full, dropping packet.&quot;):msg@&gt; "
+           rank="174"
+           table="Message"
+           taxonomy="Network.Errors" />
 </octopussy_service>

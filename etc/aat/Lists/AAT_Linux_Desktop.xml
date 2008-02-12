@@ -1,8 +1,0 @@
-<list name="AAT_Linux_Desktop"
-			selected_by_default="Gnome">
-
-	<item label="Gnome" value="gnome" logo="linux_desktop_gnome" />
-	<item label="KDE" value="kde" logo="linux_desktop_kde" />
-	<item label="XFCE" value="xfce" logo="linux_desktop_xfce" />
-
-</list>

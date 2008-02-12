@@ -1,30 +1,22 @@
 <%
 my $cmd = $Request->QueryString("cmd");
-my $cancel = $Request->QueryString("cancel");
-my $pid = $Request->QueryString("pid");
-
+my $url_cmd = $Server->URLEncode($cmd);
 my $reportname = $cmd;
-#$reportname =~ s/.+\/(.+)?" 2>.+$/$1/g;
-$reportname =~ s/.+\/(.+)?"$/$1/g;
-
-#if (defined $cancel)
-#{
-#  kill KILL => $pid;
-#	unlink("$pid_file");
-#	unlink("$status_file");	
-#  $Response->Redirect("./reports.asp");
-#}
+my $reporttype = undef;
+if ($reportname =~ /.+\/((.+)-\d{8}-\d{4}.+)?"$/)
+{
+	$reportname = $1;
+	$reporttype = $2;
+}
 %>
 <AAT:PageTop onLoad="report_progress()" />
-<%
-print $cmd;
-%>
 <script type="text/javascript">
 var http_request = false;
 var href = window.location.href;
 var cmd = href.substr(href.indexOf("="));
 var bars = 40;
 var started = 0;
+var loop = 0;
 
 function report_progress()
 {
@@ -49,7 +41,7 @@ function report_progress()
   http_request.onreadystatechange = Update_Progress;
   http_request.open('GET', "ajax_report_progress.asp?cmd=" + cmd, true);
   http_request.send(null);
-	setTimeout("report_progress()", 1000);
+	loop = setTimeout("report_progress()", 1000);
 }
 
 function Update_Progress()
@@ -58,9 +50,17 @@ function Update_Progress()
   {
     if (http_request.status == 200)
     {
-			started = 1;
       var xml =  http_request.responseXML;
-      var root = xml.documentElement;
+			var root = xml.documentElement;
+			if ((!root.getElementsByTagName('desc')[0].firstChild) && (started))
+			{
+				clearTimeout(loop);
+  	  	window.location="./report_show.asp?report_type=<%= $reporttype %>&filename=<%= $reportname %>";
+  		}
+			else
+			{
+				started = 1;
+			}
       var desc = root.getElementsByTagName('desc')[0].firstChild.data;
 			var current = root.getElementsByTagName('current')[0].firstChild.data;
 			var total = root.getElementsByTagName('total')[0].firstChild.data;
@@ -68,7 +68,7 @@ function Update_Progress()
 			cbars = current * bars / total;
       progressbar_desc.innerHTML = desc;
 			progressbar_progress.innerHTML = current + "/" + total + "(" + percent + "%)";
-			var bar = "<table border=1 bgcolor=#E7E7E7><tr>";
+			var bar = root.getElementsByTagName('desc')[0].firstChild.data + "<table border=1 bgcolor=#E7E7E7><tr>";
 			
 			for (var i = 0; i < cbars; i++)
 			{
@@ -82,22 +82,14 @@ function Update_Progress()
 			bar+= "</tr></table>";
 			progressbar_bar.innerHTML = bar; 
     }
-		//else
-		//{
-		//	self.location="./report_show.asp?<%= $reportname %>";
-		//}
   }
-	//else
-  //{
-  //	self.location="./report_show.asp?<%= $reportname %>";
- 	//}
 }
 </script>
 <table align="center">
 	<tr><td>
 	<AAT:ProgressBar title="Report Generation $reportname" 
 		msg="Report Generation: $reportname"
-		cancel="./report_in_progress.asp?cancel=yes&pid=$pid" /> 
+		cancel="./report_cancel.asp?cmd=$url_cmd" /> 
 	</td></tr>
 </table>
 <AAT:PageBottom />

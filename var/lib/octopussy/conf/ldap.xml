@@ -2,8 +2,8 @@
 <aat_ldap>
   <ldap contacts_base="ou=contacts,dc=nodomain"
         contacts_filter="mail=*"
-        contacts_server="127.0.0.1"
+        contacts_server=""
         users_base="ou=users,dc=nodomain"
         users_filter="uid=*"
-        users_server="127.0.0.1" />
+        users_server="" />
 </aat_ldap>

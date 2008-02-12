@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_users>
-  <user language="FR"
+  <user language="EN"
         login="admin"
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restriction=""
         role="admin"
         theme="DEFAULT"
-        type="local">
-  </user>
+        type="local" />
   <user language="EN"
         login="ro"
         password="$1$OP$7X3NZt2hgf0cjMTbJLNRj."
@@ -20,23 +19,4 @@
         role="rw"
         theme="DEFAULT"
         type="local" />
-  <user language="EN"
-        login="restricted"
-        password="$1$OP$NaQ6wY/25N0rhfrANK99C/"
-        role="restricted"
-        theme="DEFAULT"
-        type="local">
-    <restrictions>
-      <alert>Auth failure</alert>
-      <device>XDXSMAD</device>
-      <device>XDXSMAR</device>
-      <report>Squid Cache Activity</report>
-      <report>Squid File Type Activity</report>
-      <report>Squid File Type Mime Activity</report>
-      <report>Squid TLD</report>
-      <report>Squid WebSites</report>
-      <service>Linux_Kernel</service>
-      <service>Linux_System</service>
-    </restrictions>
-  </user>
 </octopussy_users>
