@@ -25,6 +25,8 @@ else
 			status => ($f->{status} || "Enabled"),
 			timeperiod => $f->{timeperiod}, 
 			device => \@devices, service => \@services,
+			regexp_include => $f->{regexp_include},
+			regexp_exclude => $f->{regexp_exclude},
 			thresold_time => $f->{thresold_time},
 			thresold_duration => $f->{thresold_duration},
 			action => \@actions, contact => \@contacts, 

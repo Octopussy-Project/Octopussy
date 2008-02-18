@@ -56,11 +56,12 @@ sub Reload
 
 =head2 Init()
 
+Inits Parser & launch UParser if needed
+
 =cut
 
 sub Init()
 {
-	AAT::DEBUG("Parser Init $device");
 	my $dconf = Octopussy::Device::Configuration($device);
 	exit()	if (!defined $dconf);
 
@@ -95,10 +96,11 @@ sub Init()
 					$alert{$a->{name}}->{action_nsca} = 1 	if ($act =~ /NSCA/i);
 				}
 				push(@msg_alerts, $a->{name});
+				AAT::DEBUG("Add Alert $a->{name}");
 			}
 			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
       push(@{$service{$serv}{msgs}}, 
-				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i, pattern => $m->{pattern},
+				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i,
 					taxo => $m->{taxonomy}, alerts => \@msg_alerts } ); 
 		}
 	}
@@ -108,6 +110,8 @@ sub Init()
 }
 
 =head2 Write_Logfile($file, $logs)
+
+Write Known Logs '$logs' in Logfile '$file'
 
 =cut
 
@@ -130,6 +134,8 @@ sub Write_Logfile($$)
 
 =head2 Write_Unknown_Logfile($file, $logs)
 
+Write Unknown Logs '$logs' in Logfile '$file'
+
 =cut
 
 sub Write_Unknown_Logfile($$)
@@ -150,6 +156,8 @@ sub Write_Unknown_Logfile($$)
 }
 
 =head2 Write_Stats($y, $m, $d, $hour, $min)
+
+Write Services Statistics
 
 =cut
 
@@ -188,17 +196,21 @@ sub Alert_Handler($$)
 {
 	my ($msg, $line) = @_;
 
-	foreach my $msg_alert (@{$msg->{alerts}})
-  {
-		my $a = $alert{$msg_alert};
-		if ($line =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) \S+/)
-		{
-			my $date = $1;
-			my $date_tp	= Date::Manip::UnixDate(Date::Manip::ParseDate($date),
-				"%A %H:%M");
-			my $secs = Date::Manip::UnixDate(Date::Manip::ParseDate($date), "%s");
-			if (Octopussy::TimePeriod::Match($a->{timeperiod}, $date_tp))
+	if ($line =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) \S+/)
+	{
+  	my $date = $1;
+		my $parse_date = Date::Manip::ParseDate($date);
+   	my $date_tp = Date::Manip::UnixDate($parse_date, "%A %H:%M");
+   	my $secs = Date::Manip::UnixDate($parse_date, "%s");
+		foreach my $msg_alert (@{$msg->{alerts}})
+  	{
+			my $a = $alert{$msg_alert};
+			AAT::DEBUG("Alert Handler $a->{name} - $line");
+			if ((Octopussy::TimePeriod::Match($a->{timeperiod}, $date_tp))
+				&& (($line =~ /$a->{regexp_incl}/) || (AAT::NULL($a->{regexp_incl})))
+        && (($line !~ /$a->{regexp_excl}/) || (AAT::NULL($a->{regexp_excl}))))
 			{
+				AAT::DEBUG("Alert Handler 2 $a->{name} - $line");
 				if (defined $a->{thresold_time})
 				{
 					push(@{$a_thresold{$a->{name}}{values}}, 
@@ -207,41 +219,19 @@ sub Alert_Handler($$)
 				if ((!defined $a->{thresold_time}) 
 					|| (($#{$a_thresold{$a->{name}}{values}}+1) >= $a->{thresold_time}))
 				{
-					my $match = 0;
-					if (defined $a->{fields})
+					my $match = 1;
+					if (defined $a->{thresold_time})
 					{
-						my $negate = 0;
-					#	foreach my $f (@{$a->{fields}})
-					#		{ $negate = 1	if (defined $f->{negate}); }
-					#	my $regexp = 
-					#		Octopussy::Message::Pattern_To_Regexp_Field_Values($msg, 
-					#			@{$a->{fields}});
-						#if (($line =~ $regexp) && (!$negate))
-						#{
-						#	print "NOT NEGATE !\n";
-						#	$match = 1;
-						#}
-						#if (($line !~ $regexp) && ($negate))
-						#{
-						#	print "NEGATE !\n";
-						#	$match = 1; 
-						#}
-					}
-					else 
-					{ 
-						$match = 1;
-						if (defined $a->{thresold_time})
+						while (($secs - ${$a_thresold{$a->{name}}{values}}[0]->{timestamp})
+										> $a->{thresold_duration})
 						{
-							while (($secs - ${$a_thresold{$a->{name}}{values}}[0]->{timestamp}) > $a->{thresold_duration})
-							{
-								shift @{$a_thresold{$a->{name}}{values}};
-								$match = 0;
-							}
+							shift @{$a_thresold{$a->{name}}{values}};
+							$match = 0;
 						}
 					}
-					
 					if ($match)
 					{
+						AAT::DEBUG("Alert Match $line !");
 						my $data = "";
 						if (defined $a->{thresold_time})
 						{

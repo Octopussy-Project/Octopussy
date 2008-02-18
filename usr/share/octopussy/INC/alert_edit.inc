@@ -6,6 +6,8 @@ my ($a_name, $a_desc, $a_level, $a_status, $a_taxo, $a_timeperiod,
 	$a_thresold_time, $a_thresold_duration) = ($conf->{name}, 
 	$conf->{description}, $conf->{level}, $conf->{status}, $conf->{taxonomy}, 
 	$conf->{timeperiod}, $conf->{thresold_time}, $conf->{thresold_duration});
+my ($a_re_include, $a_re_exclude) = 
+	($conf->{regexp_include}, $conf->{regexp_exclude});
 my ($a_msg_subject, $a_msg_body) = ($conf->{msgsubject}, $conf->{msgbody});
 my @devices = AAT::ARRAY($conf->{device});
 my @services = AAT::ARRAY($conf->{service});
@@ -68,6 +70,20 @@ my $msg_alert_raised_only = AAT::Translation("_MSG_ALERT_RAISED_ONLY");
   <AAT:BoxCol>
   <AAT:Inc file="octo_selector_timeperiod" 
 		name="timeperiod" selected="$a_timeperiod" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_REGEXP_INC" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Entry name="regexp_include" value="$a_re_include" size="40" />
+  </AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_REGEXP_EXC" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Entry name="regexp_exclude" value="$a_re_exclude" size="40" />
+  </AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

@@ -14,6 +14,8 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 		{ name => $f->{name}, description => $f->{description},
       level => $f->{level}, type => "Dynamic", taxonomy => $f->{taxonomy},
       status => $f->{status}, timeperiod => $f->{timeperiod},
+			regexp_include => $f->{regexp_include},
+      regexp_exclude => $f->{regexp_exclude},
 			thresold_time => $f->{thresold_time},
 			thresold_duration => $f->{thresold_duration},
       device => \@devices, service => \@services, action => \@actions,

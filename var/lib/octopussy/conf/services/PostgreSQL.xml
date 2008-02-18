@@ -3,7 +3,7 @@
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
                    nb_messages="012"
-                   version="200802050001"
+                   version="200802180002"
                    website="http://www.postgresql.org">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
@@ -77,4 +77,16 @@
            rank="012"
            table="Database_Message"
            taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="PostgreSQL:checkpoints_occuring_too_frequently"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  checkpoints are occurring too frequently .+&quot;):smg@&gt;"
+           rank="013"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="PostgreSQL:checkpoints_occuring_too_frequently2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* HINT:  Consider increasing the configuration parameter \&quot;checkpoint_segments\&quot;.&quot;):msg@&gt; "
+           rank="014"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

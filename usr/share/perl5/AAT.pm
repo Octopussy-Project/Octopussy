@@ -40,6 +40,7 @@ use strict;
 no strict 'refs';
 
 use AAT::Application;
+use AAT::Certificate;
 use AAT::Datetime;
 use AAT::DB;
 use AAT::File;
@@ -510,6 +511,19 @@ sub CheckBox($$)
   $main::Response->Include('AAT/INC/AAT_CheckBox.inc', %{$args});
 }
 
+=head2 Config_Certificate($args, $body)
+
+Usage: <AAT:Config_Certificate tooltip="_TOOLTIP_SYSTEM_CERTIFICATE" />
+
+=cut
+
+sub Config_Certificate($$)
+{
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_Config_Certificate.inc', %{$args});
+}
+
 =head2 Config_Database($args, $body)
 
 Usage: <AAT:Config_Database tooltip="_TOOLTIP_SYSTEM_DB" />
@@ -946,6 +960,7 @@ sub Selector_Language($$)
     { label => "_FRENCH", value => "FR" },
     { label => "_GERMAN", value => "DE" },
 		{ label => "_PORTUGUESE", value => "PT" },
+		{ label => "_RUSSIAN", value => "RU" },
     { label => "_SPANISH", value => "ES" } );
 
   $main::Response->Include('AAT/INC/AAT_Selector.inc', name => "AAT_Language",

@@ -54,7 +54,7 @@ sub New($)
 	}
 	foreach my $d (sort keys %devices)
 	{
-		Octopussy::Device::Parse_Stop($d);
+		Octopussy::Device::Parse_Pause($d);
 		Octopussy::Device::Parse_Start($d);
 	}
 }

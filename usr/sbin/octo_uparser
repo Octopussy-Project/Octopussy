@@ -37,6 +37,7 @@ my $pid_file = Octopussy::PID_File($PROG_NAME . "_$device");
 =head2 Init()
 
 =cut
+
 sub Init()
 {
 	my $dconf = Octopussy::Device::Configuration($device);
@@ -56,7 +57,7 @@ sub Init()
     { 
 			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
       push(@{$service{$serv}{msgs}}, 
-				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i, pattern => $m->{pattern} } );
+				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i } );
 		}
 	}
 	($file, $last_file) = (undef, undef);
@@ -66,6 +67,7 @@ sub Init()
 =head2 Write_Logfile($file, $logs)
 
 =cut
+
 sub Write_Logfile($$)
 {
 	my ($logfile, $logs) = @_;
@@ -86,6 +88,7 @@ sub Write_Logfile($$)
 =head2 Write_Unknown_Logfile($file, $logs)
 
 =cut
+
 sub Write_Unknown_Logfile($$)
 {
   my ($logfile, $logs) = @_;
@@ -106,6 +109,7 @@ sub Write_Unknown_Logfile($$)
 =head2 Line_Handler($line, $serv, $msg, $known_msgs, $match)
 
 =cut
+
 sub Line_Handler($$$$$)
 {
 	my ($line, $serv, $msg, $known_msgs, $match) = @_;
@@ -119,6 +123,7 @@ sub Line_Handler($$$$$)
 =head2 Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new)
 
 =cut
+
 sub Service_Handler($$$$$$$$)
 {
 	my ($serv, $total, $y, $m, $d, $hour, $min, $file_new) = @_;	
@@ -135,6 +140,7 @@ sub Service_Handler($$$$$$$$)
 =head2 File_Handler($file)
 
 =cut
+
 sub File_Handler($)
 {
 	my $file = shift;

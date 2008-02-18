@@ -19,6 +19,10 @@
 	<AAT:Config_Database tooltip="_TOOLTIP_SYSTEM_DB" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
+  <AAT:BoxCol cspan="2">
+  <AAT:Config_Certificate tooltip="_TOOLTIP_SYSTEM_CERTIFICATE" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol cspan="2">
 	<AAT:Config_Proxy tooltip="_TOOLTIP_SYSTEM_PROXY" /></AAT:BoxCol>
 </AAT:BoxRow>

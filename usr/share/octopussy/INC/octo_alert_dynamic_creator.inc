@@ -65,6 +65,20 @@ my @used_services = Octopussy::Service::List_Used();
   <AAT:BoxCol><AAT:Label value="_TIMEPERIOD" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:Inc file="octo_selector_timeperiod" /></AAT:BoxCol>
 </AAT:BoxRow>
+<AAT:BoxRow>
+	<AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_REGEXP_INC" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol>
+	<AAT:Entry name="regexp_include" value="$regexp_include" size="40" />
+  </AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+	<AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_REGEXP_EXC" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Entry name="regexp_exclude" value="$regexp_exclude" size="40" />
+  </AAT:BoxCol>
+</AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>

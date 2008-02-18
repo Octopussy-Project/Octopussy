@@ -4,13 +4,13 @@ my $login = $Session->{AAT_LOGIN};
 my $logout_lnk = "./dialog.asp?id=logout";
 my $version = "Octopussy " . Octopussy::Version(); 
 my $lang = lc($Session->{AAT_LANGUAGE} || "en");
-my $help_page = $arg{help} || "index";
+my $help_lnk = $arg{help} || "index";
 $lang = (-f "HELP/$lang/${help_page}.html" ? $lang : "en");
 %>
 <AAT:Box width="100%">
 <AAT:BoxRow>
 	<AAT:BoxCol>
-	<AAT:Button name="user_prefs" tooltip="_USER_PREFS" link="./user_pref.asp"/>
+	<AAT:Button name="user_prefs" tooltip="_USER_PREFS" link="./restricted_user_pref.asp"/>
   </AAT:BoxCol>
 	<AAT:BoxCol width="100%" align="C">
 	<AAT:Label value="$version" style="B" link="./index.asp" /><br>

@@ -4,6 +4,7 @@
 	<msg mid="_FRENCH" value="French" />
 	<msg mid="_GERMAN" value="German" />
 	<msg mid="_PORTUGUESE" value="Portuguese" />
+	<msg mid="_RUSSIAN" value="Russian" />
 	<msg mid="_SPANISH" value="Spanish" />
 
 	<msg mid="_DISABLED" value="Disabled" />

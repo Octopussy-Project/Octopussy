@@ -2,8 +2,8 @@
 <octopussy_service description="Monit Service"
                    icon="software/logo_monit"
                    name="Monit"
-									 website="http://www.tildeslash.com/monit/"
-                   version="200802040003">
+                   version="200802140003"
+                   website="http://www.tildeslash.com/monit/">
   <message loglevel="Notice"
            msg_id="Monit:process_pid_changed_to"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' process PID changed to \d+&quot;):msg@&gt;"
@@ -14,6 +14,24 @@
            msg_id="Monit:pid_has_not_changed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' PID has not changed&quot;):msg@&gt; "
            rank="002"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Monit:starting_daemon"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Starting monit daemon&quot;):msg@&gt; "
+           rank="003"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Monit:started"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Monit started&quot;):msg@&gt; "
+           rank="004"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Monit:has_not_changed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Monit has not changed&quot;):msg@&gt; "
+           rank="005"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

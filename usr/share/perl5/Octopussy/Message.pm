@@ -499,6 +499,8 @@ sub Alerts($$$)
           push(@alerts, { name => $ac->{name}, level => $ac->{level},
             thresold_time => $ac->{thresold_time},
             thresold_duration => $ac->{thresold_duration},
+						regexp_incl => $ac->{regexp_include}, 
+						regexp_excl => $ac->{regexp_exclude}, 
             timeperiod => $ac->{timeperiod}, action => $ac->{action},
             msgsubject => $ac->{msgsubject},  msgbody => $ac->{msgbody},
             imdest => \@ims, maildest => \@mails } );
@@ -518,6 +520,8 @@ sub Alerts($$$)
               fields => \@fields,
               thresold_time => $ac->{thresold_time},
               thresold_duration => $ac->{thresold_duration},
+							regexp_include => $ac->{regexp_include},
+	            regexp_exclude => $ac->{regexp_exclude},
               timeperiod => $ac->{timeperiod}, action => $ac->{action},
               msgsubject => $ac->{msgsubject}, msgbody => $ac->{msgbody},
               imdest => \@ims, maildest => \@mails } );

@@ -2,7 +2,7 @@
 <octopussy_service description="Ntp Service"
                    name="Ntp"
                    nb_messages="025"
-                   version="200802110001">
+                   version="200802130002">
   <message loglevel="Information"
            msg_id="Ntp:step_time_server"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpdate[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;step time server \S+ offset \S+ sec&quot;):msg@&gt;"
@@ -157,6 +157,18 @@
            msg_id="Ntp:no_server_synchronization_found"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpdate[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;no server suitable for synchronization found&quot;):msg@&gt; "
            rank="026"
+           table="Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Ntp:operation_not_permitted"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+: Operation not permitted&quot;):msg@&gt;"
+           rank="027"
+           table="Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Ntp:cant_open_peerstats"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;can't open .+peerstats.+: Permission denied&quot;):msg@&gt; "
+           rank="028"
            table="Message"
            taxonomy="System.Errors" />
 </octopussy_service>

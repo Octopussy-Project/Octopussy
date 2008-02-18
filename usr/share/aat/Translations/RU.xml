@@ -1,0 +1,391 @@
+<Translation language="Russian" timestamp="200802131600">
+
+	<msg mid="_ENGLISH" value="Английский" />
+	<msg mid="_FRENCH" value="Французский" />
+	<msg mid="_GERMAN" value="Немецкий" />
+	<msg mid="_PORTUGUESE" value="Португальский" />
+	<msg mid="_RUSSIAN" value="_RUSSIAN" />
+	<msg mid="_SPANISH" value="Испанский" />
+
+	<msg mid="_DISABLED" value="Выключено" />
+  <msg mid="_ENABLED" value="Включено" />	
+	<msg mid="_YES" value="Да" />
+	<msg mid="_NO" value="Нет" />
+
+	<msg mid="_MINUTE" value="Минута" />
+	<msg mid="_MINUTES" value="Минут" />
+	<msg mid="_HOUR" value="Час" />
+	<msg mid="_HOURS" value="Часов" />
+	<msg mid="_DAY" value="День" />
+	<msg mid="_DAYS" value="Дней" />
+	<msg mid="_WEEK" value="Неделя" />
+	<msg mid="_MONTH" value="Месяц" />
+	<msg mid="_YEAR" value="Год" />
+	<msg mid="_EVERY_DAY" value="Каждый день" />
+	<msg mid="_EVERY_MONTH" value="Каждый месяц" />
+	<msg mid="_TODAY" value="Сегодня" />
+	<msg mid="_YESTERDAY" value="Вчера" />
+	<msg mid="_CURRENT_HOUR" value="Текущий час" />
+  <msg mid="_CURRENT_DAY" value="Текущий день" />
+	<msg mid="_CURRENT_WEEK" value="Текущая неделя" />
+  <msg mid="_CURRENT_MONTH" value="Текущий месяц" />
+	<msg mid="_CURRENT_YEAR" value="Текущий год" />
+	<msg mid="_CUSTOMIZED" value="Настроено" />
+	<msg mid="_LAST_HOUR" value="Последний час" />
+  <msg mid="_LAST_DAY" value="Последний день" />
+	<msg mid="_LAST_WEEK" value="Последняя неделя" />
+	<msg mid="_LAST_MONTH" value="Последний месяц" />
+	<msg mid="_LAST_YEAR" value="Последний год" /> 
+
+	<msg mid="_MONDAY" value="Понедельник" />
+  <msg mid="_TUESDAY" value="Вторник" />
+  <msg mid="_WEDNESDAY" value="Среда" />
+  <msg mid="_THURSDAY" value="Четверг" />
+  <msg mid="_FRIDAY" value="Пятница" /> 
+  <msg mid="_SATURDAY" value="Суббота" />
+  <msg mid="_SUNDAY" value="Воскресенье" />
+ 
+	<msg mid="_JANUARY" value="Январь" />
+	<msg mid="_FEBRUARY" value="Февраль" />
+	<msg mid="_MARCH" value="Март" />
+	<msg mid="_APRIL" value="Апрель" />
+	<msg mid="_MAY" value="Май" />
+	<msg mid="_JUNE" value="Июнь" />
+	<msg mid="_JULY" value="Июль" />
+	<msg mid="_AUGUST" value="Август" />
+	<msg mid="_SEPTEMBER" value="Сентябрь" />
+	<msg mid="_OCTOBER" value="Октябрь" />
+	<msg mid="_NOVEMBER" value="Ноябрь" />
+	<msg mid="_DECEMBER" value="Декабрь" />
+
+	<msg mid="_HOURLY_STATS" value="Почасовая статистика" />
+  <msg mid="_DAILY_STATS" value="Ежедневная статистика" />
+  <msg mid="_WEEKLY_STATS" value="Еженедельная статистика" />
+  <msg mid="_MONTHLY_STATS" value="Ежемесячная статистика" />
+	<msg mid="_YEARLY_STATS" value="Ежегодная статистика" />
+
+	<msg mid="_ACTION" value="Действие" />
+	<msg mid="_BEGIN" value="Начать" />
+	<msg mid="_BINARY" value="Бинарный" />
+  <msg mid="_BODY" value="Тело" />
+  <msg mid="_BUG_REPORT" value="Отчёт об ошибке" />
+	<msg mid="_CANCEL" value="Отменить" />
+	<msg mid="_CONFIG_FILE" value="Конфигурационнай файл" />
+	<msg mid="_DASHBOARD" value="Панель управления" />
+	<msg mid="_DELETE" value="Удалить" />
+	<msg mid="_DIRECTORY" value="Директория" />
+	<msg mid="_EDIT" value="Редактировать" />
+	<msg mid="_END" value="Конец" />
+	<msg mid="_FEATURE_REQUEST" value="Просьба о функции" />
+	<msg mid="_FINISH" value="Закончить" />
+	<msg mid="_HELP" value="Помощь" />
+	<msg mid="_HOST" value="Хост" />
+	<msg mid="_KEY" value="Ключ" />
+	<msg mid="_LOGOUT" value="Выйти" />
+	<msg mid="_MODIFY" value="Изменить" />
+	<msg mid="_NEXT" value="Следующий" />
+	<msg mid="_OK" value="Ok" />
+	<msg mid="_PAUSE" value="Пауза" />
+	<msg mid="_PAUSED" value="На паузе" />
+	<msg mid="_REMOVE" value="Убрать" />
+  <msg mid="_SAVE" value="Сохранить" />
+	<msg mid="_SERVER" value="Сервер" />
+	<msg mid="_START" value="Пуск" />
+	<msg mid="_STARTED" value="Запущено" />
+  <msg mid="_STATUS" value="Статус" />
+	<msg mid="_STOP" value="Стоп" />
+	<msg mid="_STOPPED" value="Остановлено" />
+	<msg mid="_UPDATE" value="Обновить" />
+	<msg mid="_USER" value="Пользователь" />
+	<msg mid="_USER_PREF" value="Настройки пользователя" />
+	<msg mid="_USERS" value="Пользователи" />
+
+	<msg mid="_BIRTHDATE" value="День рождения" />
+	<msg mid="_CALENDAR" value="Календарь" />
+	<msg mid="_CATEGORY" value="Категория" />
+	<msg mid="_COMMENT" value="Заметка" />
+	<msg mid="_DATE_BEGIN" value="Дата начала" />
+	<msg mid="_DATE_END" value="Дата конца" />
+	<msg mid="_DAY_OF_MONTH" value="День месяца" />
+	<msg mid="_DAY_OF_WEEK" value="День недели" />
+	<msg mid="_DEFAULT_STORAGES" value="Хранилища по умолчанию" />
+	<msg mid="_DESCRIPTION" value="Описание" />
+	<msg mid="_EMAIL" value="Email" />
+	<msg mid="_EXPORT_FTP" value="Экспорт по FTP" />
+	<msg mid="_EXPORT_MAIL" value="Экспорт по почте" />
+	<msg mid="_EXPORT_SCP" value="Экспорт по SCP" />
+	<msg mid="_FIELD" value="Поле" />
+	<msg mid="_FILE" value="Файл" />
+	<msg mid="_FILTER" value="Фильтр" />
+	<msg mid="_FIRSTNAME" value="Имя" />
+	<msg mid="_LASTNAME" value="Фамилия" />
+	<msg mid="_LANGUAGE" value="Язык" />
+	<msg mid="_LOGIN" value="Логин" />
+	<msg mid="_MAIL_SERVER" value="Почтовый сервер" />
+	<msg mid="_NAME" value="Название" />
+	<msg mid="_PASSWORD" value="Пароль" />
+	<msg mid="_PORT" value="Порт" />
+	<msg mid="_QUERY" value="Запрос" />
+	<msg mid="_RECIPIENTS" value="Получатели" />
+	<msg mid="_SELECT_ALL" value="Выбрать всё" />
+	<msg mid="_SQL_QUERY_DEFINITION" value="Формулировка SQL-запроса" />
+	<msg mid="_SUBJECT" value="Тема" />
+	<msg mid="_THEME" value="Стиль" />
+	<msg mid="_TITLE" value="Название" />
+	<msg mid="_TYPE" value="Тип" />
+	<msg mid="_UNKNOWN" value="Неизвестно" />
+	<msg mid="_USED_SPACE" value="Использовано места" />
+	<msg mid="_USER_PREFS" value="Настройки пользователя" />
+	<msg mid="_USER_RESTRICTIONS" value="Ограничения пользователя" />
+	<msg mid="_VALUE" value="Значение" />
+	<msg mid="_VERSION" value="Версия" />
+	<msg mid="_WEBSITE" value="Веб-сайт" />
+
+	<msg mid="_ADD_NEW_SERVICE" value="Добавить новый сервис" />
+  <msg mid="_ADD_SERVICE_TO_DEVICE" value="Добавить сервис устройсву" />
+  <msg mid="_ADD_STORAGE" value="Добавить хранилище" />
+  <msg mid="_ALERT" value="Тревога" />
+  <msg mid="_ALERT_DESCRIPTION" value="Описание тревоги" />
+  <msg mid="_ALERT_LEVEL" value="Уровень тревоги" />
+  <msg mid="_ALERT_NAME" value="Название тревоги" />
+  <msg mid="_ALERTS" value="Тревоги" />
+  <msg mid="_ALERTS_VIEWER" value="Просмотр тревог" />
+  <msg mid="_BASE" value="База" />
+  <msg mid="_BUILDING" value="Здание" />
+  <msg mid="_CITY" value="Город" />
+  <msg mid="_CONTACTS" value="Контакты" />
+  <msg mid="_CONTACTS_BASE" value="База контактов" />
+  <msg mid="_CONTACTS_FILTER" value="Фильтр контактов" />
+  <msg mid="_CONTACTS_SERVER" value="Сервер контактов" />
+  <msg mid="_COUNTRY" value="Страна" />
+  <msg mid="_CPU_USAGE" value="Использование процессора" />
+  <msg mid="_CREATE_REPORT" value="Создать отчёт" />
+	<msg mid="_DEFAULT_DIR_INCOMING_LOGS" value="Директория по умолчанию для входящих логов" />
+  <msg mid="_DEFAULT_DIR_KNOWN_LOGS" value="Директория по умолчанию для известных логов" />
+  <msg mid="_DEFAULT_DIR_UNKNOWN_LOGS" value="Директория по умолчанию для неизвестных логов" />
+  <msg mid="_DEVICE" value="Устройство" />
+  <msg mid="_DEVICE_ADDRESS" value="Адрес устройства" />
+  <msg mid="_DEVICE_DESCRIPTION" value="Описание устройства" />
+  <msg mid="_DEVICE_MODEL" value="Модель устройства" />
+  <msg mid="_DEVICE_NAME" value="Название устройства" />
+  <msg mid="_DEVICE_TYPE" value="Тип устройства" />
+  <msg mid="_DEVICES" value="Устройства" />
+  <msg mid="_DEVICEGROUPS" value="Группы устройств" />
+	<msg mid="_DIR_INCOMING_LOGS" value="Директория для входящих логов" />
+  <msg mid="_DIR_KNOWN_LOGS" value="Директория для известных логов" />
+  <msg mid="_DIR_UNKNOWN_LOGS" value="Директория для неизвестных логов" />
+  <msg mid="_DOWNLOAD_CSV_FILE" value="Скачать CSV-файл" />
+  <msg mid="_DOWNLOAD_FILE" value="Скачать файл" />
+	<msg mid="_FINISH_PERIOD" value="Окончить период" />
+  <msg mid="_GET_LOGS" value="Получить логи" />
+  <msg mid="_GRAPH_HEIGHT" value="Высота графика" />
+  <msg mid="_GRAPH_TITLE" value="Заголовок графика" />
+  <msg mid="_GRAPH_TYPE" value="Тип графика" />
+  <msg mid="_GRAPH_WIDTH" value="Ширина графика" />
+  <msg mid="_GROUP_NAME" value="Название графика" />
+  <msg mid="_IP_ADDRESS" value="IP-адрес" />
+  <msg mid="_LAST_ALERTS" value="Последние тревоги" />
+  <msg mid="_LAST_LOGS" value="Последние логи" />
+  <msg mid="_LAUNCH_REPORT" value="Запустить отчёт" />
+  <msg mid="_LEVEL" value="Уровень" />
+  <msg mid="_LOAD" value="Загрузить" />
+  <msg mid="_LOCATION" value="Местоположение" />
+  <msg mid="_LOCATIONS" value="Местоположения" />
+	<msg mid="_LOG" value="Лог" />
+  <msg mid="_LOG_LEVEL" value="Уровень лога" />
+  <msg mid="_LOG_TYPE" value="Тип лога" />
+  <msg mid="_LOGROTATE" value="Вращение лога" />
+  <msg mid="_LOGS_VIEWER" value="Просмотр логов" />
+  <msg mid="_LOGS_WIZARD" value="Мастер логов" />
+  <msg mid="_MAPS" value="Карты" />
+  <msg mid="_MATCH" value="Сопоставить" />
+	<msg mid="_MAX_TIME_WITHOUT_LOG" value="Макс. время без логов" />
+  <msg mid="_MEM_USAGE" value="Использование памяти" />
+  <msg mid="_MESSAGES" value="Сообщения" />
+  <msg mid="_MSG_ID" value="ID сообщения" />
+  <msg mid="_NAGIOS_HOST_DEFINED" value="Хост задан в Nagios" />
+  <msg mid="_NAGIOS_SERVER" value="Сервер Nagios" />
+  <msg mid="_NAGIOS_SERVICE_DEFINED" value="Сервис задан в Nagios" />
+  <msg mid="_NB_MESSAGES" value="Nb-сообщения" />
+  <msg mid="_NB_REPORTS" value="Nb-отчёты" />
+  <msg mid="_NEW_ALERT" value="Новая тревога" />
+  <msg mid="_NEW_BUILDING" value="Новое здание" />
+  <msg mid="_NEW_CITY" value="Новый город" />
+  <msg mid="_NEW_CONTACT" value="Новый контакт" />
+  <msg mid="_NEW_DEVICE" value="Новое устройство" />
+  <msg mid="_NEW_DEVICEGROUP" value="Новая группа устройств" />
+  <msg mid="_NEW_DYNAMIC_ALERT" value="Новая динамическая тервога" />
+  <msg mid="_NEW_DYNAMIC_DEVICEGROUP" value="Новая динамическая группа устройств" />
+  <msg mid="_NEW_FIELD" value="Новое поле" />
+  <msg mid="_NEW_RACK" value="Новая стойка" />
+  <msg mid="_NEW_REPORT" value="Новый отчёт" />
+  <msg mid="_NEW_ROOM" value="Новая комната" />
+  <msg mid="_NEW_SERVICE" value="Новый сервис" />
+  <msg mid="_NEW_STATIC_DEVICEGROUP" value="Новая статическая группа устройств" />
+  <msg mid="_NEW_TABLE" value="Новая таблица" />
+  <msg mid="_NEW_TIMEPERIOD" value="Новый период времени" />
+  <msg mid="_NEW_USER" value="Новый пользователь" />
+	<msg mid="_OFFICIAL_WEBSITE" value="Официальный веб-сайт" />
+  <msg mid="_PARTITION_LOGS" value="Разграничить логи" />
+  <msg mid="_PERIOD" value="Период" />
+  <msg mid="_PERIODS" value="Периоды" />
+  <msg mid="_PROCESSOR" value="Процессор" />
+  <msg mid="_RACK" value="Стойка" />
+  <msg mid="_RANK" value="Ранг" />
+	<msg mid="_REGEXP_EXC" value="Регулярное выражение (искл.)" />
+  <msg mid="_REGEXP_INC" value="Регулярное выражение (вкл.)" />
+  <msg mid="_REMOVE_LOG_MINUTE" value="Убрать минуту лога" />
+  <msg mid="_REPORT" value="Отчёт" />
+  <msg mid="_REPORT_CATEGORIES" value="Категории отчёта" />
+  <msg mid="_REPORT_CREATION" value="Создание отчёта" />
+  <msg mid="_REPORT_CSV" value="Отчёт в формате CSV" />
+  <msg mid="_REPORT_EDITION" value="Правка отчёта" />
+	<msg mid="_REPORT_FIELDS_ORDER" value="Порядок полей в отчёте" />
+  <msg mid="_REPORT_HTML" value="Отчёт в формате HTML" />
+  <msg mid="_REPORT_NAME" value="Название отчёта" />
+  <msg mid="_REPORT_PDF" value="Отчёт в формате PDF" />
+  <msg mid="_REPORT_SCHEDULER" value="Расписание отчёта" />
+	<msg mid="_REPORT_XML" value="Отчёт в формате XML" />
+  <msg mid="_REPORTS" value="Отчёты" />
+  <msg mid="_REPORTS_UPDATES" value="Обновления отчётов" />
+  <msg mid="_REPORTS_VIEWER" value="Просмотр отчётов" />
+  <msg mid="_RIGHTS" value="Права" />
+  <msg mid="_ROLE" value="Роль" />
+  <msg mid="_ROOM" value="Комната" />
+  <msg mid="_SCHEDULE" value="Расписание" />
+  <msg mid="_SCHEDULE_REPORT" value="Отчёт по планировщику" />
+  <msg mid="_SCHEDULER" value="Планировщик" />
+  <msg mid="_SELECT_THIS_MSG" value="Выбрать это сообщение" />
+  <msg mid="_SENDER" value="Отправитель" />
+  <msg mid="_SERVER" value="Сервер" />
+  <msg mid="_SERVICE" value="Сервис" />
+  <msg mid="_SERVICE_NAME" value="Название сервиса" />
+  <msg mid="_SERVICEGROUPS" value="Группы сервисов" />
+  <msg mid="_SERVICES" value="Сервисы" />
+  <msg mid="_SERVICES_UPDATES" value="Обновления сервисов" />
+  <msg mid="_START" value="Пуск" />
+  <msg mid="_START_PERIOD" value="Период пуска" />
+  <msg mid="_START_TIME" value="Время пуска" />
+  <msg mid="_STATIC" value="Статический" />
+  <msg mid="_STATISTIC_REPORTS" value="Статистические отчёты" />
+  <msg mid="_STORAGES" value="Хранилища" />
+  <msg mid="_STREET" value="Улица" />
+  <msg mid="_SUPPORT_REQUEST" value="Запрос поддержки" />
+  <msg mid="_SWAP_USAGE" value="Использование swap" />
+  <msg mid="_SYSTEM_CONFIG" value="Системная конфигурация" />
+  <msg mid="_TABLE" value="Таблица" />
+  <msg mid="_TABLE_NAME" value="Название таблицы" />
+  <msg mid="_TABLES" value="Таблицы" />
+  <msg mid="_TABLES_UPDATES" value="Обновления таблиц" />
+  <msg mid="_TAXONOMY" value="Таксономия" />
+  <msg mid="_TICKET_CLOSED" value="Закрыт" />
+  <msg mid="_TICKET_OPENED" value="Открыт" />
+  <msg mid="_TICKET_WAIT_FOR_INFO" value="Ожидание информации" />
+  <msg mid="_TICKET_WORK_PROGRESS" value="В процессе" />
+  <msg mid="_TIMEPERIOD" value="Период времени" />
+  <msg mid="_TIMEPERIOD_NAME" value="Название периода времени" />
+  <msg mid="_TIMEPERIODS" value="Периоды времени" />
+  <msg mid="_UNKNOWN_MSGS" value="Неизвестные сообщения" />
+  <msg mid="_USERS_BASE" value="База пользователей" />
+  <msg mid="_USERS_FILTER" value="Фильтр пользователей" />
+  <msg mid="_USERS_SERVER" value="Сервер пользователей" />
+
+  <msg mid="_MSG_ALERT_RAISED_ONLY"
+    value="Тревога будет поднята, только если мы попадём n раз меньше, чем за d секунд на одном устройстве" />
+  <msg mid="_MSG_CHECK_UPDATES"
+    value="Проверить обновления" />
+  <msg mid="_MSG_CONTACT_ALREADY_EXIST"
+    value="Контакт уже существует!" />
+  <msg mid="_MSG_CONTACT_INFO_INVALID"
+	  value="Информация о контакте требует по крайней мере ID и Email/IM" />
+  <msg mid="_MSG_CONTACT_ME"
+    value="По всем другим вопросам обращайтесь ко мне на octo.devel@gmail.com" />
+  <msg mid="_MSG_DYNAMIC_ALERT_CREATION"
+    value="Создание динамической тревоги" />
+  <msg mid="_MSG_FIELD_DONT_EXIST"
+    value="Поле не существует!" />
+  <msg mid="_MSG_INVALID_LOGIN_PASSWORD"
+	  value="Вы ввели неправильный логин/пароль!" />
+	<msg mid="_MSG_INVALID_SCHEDULE_PERIOD"
+    value="Вы ввели неправильный период для этого расписания!" />
+  <msg mid="_MSG_MAIL_SENT_TO_SUPPORT"
+    value="Письмо отправлено в поддержку Octopussy." />
+  <msg mid="_MSG_MAP_CREATION_INFO"
+    value="За более подробной информацией по созданию карт, зайдите на сайт Octopussy!" />
+  <msg mid="_MSG_MSGID_ALREADY_EXISTS"
+    value="ID сообщения уже существует!" />
+  <msg mid="_MSG_MSGS_FOR_SERVICE"
+    value="Сообщения для сервиса %s (версия %s)" />
+  <msg mid="_MSG_NB_LINES"
+    value="Число строк: " />
+  <msg mid="_MSG_NEED_DEFINE_CONTACT"
+    value="Если вы хотите посылать тревоги, задайте контакты." />
+  <msg mid="_MSG_NEED_REPORT_FOR_SCHEDULE"
+    value="Вы должны создать отчёт, прежде чем создавать расписание для чего-либо." />
+  <msg mid="_MSG_NEED_SMTP_SERVER_TO_SUBMIT"
+    value="Вы должны задать SMTP-сервер для связи с поддержкой Octopussy!" />
+  <msg mid="_MSG_NO_GRAPH_AVAILABLE"
+    value="Не доступно ни одного графика!" />
+  <msg mid="_MSG_NO_MSG_FOR_SERVICE"
+    value="Нет заданных сообщений для сервиса %s (версия %s)" />		
+	<msg mid="_MSG_NO_UPDATES_AVAILABLE"
+    value="Обновлений нет" />
+  <msg mid="_MSG_REACH_MAX_LINES"
+    value="Максимум %d строк достигнут!" />
+  <msg mid="_MSG_REPORT_DATA_SOURCE"
+    value="Данные из %d файлов / %d строк обработыны за %d минут %d секунд." />
+  <msg mid="_MSG_REPORT_GENERATED_BY"
+    value="Сгенерировано Octopussy" />
+  <msg mid="_MSG_REPORT_PROGRESS_BUILDING_REPORT"
+    value="Создание отчёта..." />
+  <msg mid="_MSG_REPORT_PROGRESS_INIT_DB"
+    value="Инициализация базы данных..." />
+  <msg mid="_MSG_REPORT_PROGRESS_INIT_PLUGIN"
+    value="Инициализация плагинов..." />
+  <msg mid="_MSG_REPORT_PROGRESS_INSERTING_DATA"
+    value="Загрузка данных..." />
+  <msg mid="_MSG_REPORT_PROGRESS_LISTING_FILES"
+    value="Получение файлов данных..." />
+  <msg mid="_MSG_REPORT_PROGRESS_QUERYING_DB"
+    value="Опрашивание базы данных..." />
+  <msg mid="_MSG_RESTART_OCTOPUSSY"
+    value="Перезагрузить Octopussy" />
+	<msg mid="_MSG_SCHEDULE_ALREADY_EXISTS"
+    value="Расписание уже существует!" />
+  <msg mid="_MSG_SEND_MY_NEW"
+	  value="Отправить мой новый/обновленный сервис/таблицу" />
+  <msg mid="_MSG_SERVICES_FOR_DEVICE"
+    value="Сервисы устройства %s" />
+  <msg mid="_MSG_SERVICES_FOR_SERVICEGROUP"
+    value="Сервисы группы %s" />
+  <msg mid="_MSG_SSH_PUBKEY_REQUIRED"
+    value="Необходим публичный ключ SSH" />
+  <msg mid="_MSG_STATIC_ALERT_CREATION"
+    value="Создание статической тревоги" />
+  <msg mid="_MSG_STORAGES_DEFAULT_DIRECTORIES"
+	  value="Эти директории хранилищ по умолчанию используются лишь для новых устройств! Если вы хотите сменить директорию логов для конкретного устройства/сервиса, сделайте это нв страничке Устройства/Хранилища." />
+  <msg mid="_MSG_STORAGES_FOR_DEVICE"
+    value="Хранилища для устройства %s" />
+  <msg mid="_MSG_SUBMIT_TO_IMPROVE"
+	  value="Отправить мой Сервис/Таблицу, чтобы улучшить Octopussy" />
+  <msg mid="_MSG_THIS_IS_MY_NEW"
+	  value="Это мой новый/обновленный сервис/таблица" />
+  <msg mid="_MSG_TOTAL_EVENTS_LAST_MINUTE"
+    value="Всего событий за последнюю минуту" />
+  <msg mid="_MSG_TOTAL_REPORTS"
+    value="Всего: %d отчётов" />
+  <msg mid="_MSG_UPDATE_CONFIG"
+    value="Обновить конфигурацию" />
+  <msg mid="_MSG_UPDATE_PREFS"
+    value="Обновить настройки" />
+  <msg mid="_MSG_UPDATE_SELECTED_REPORTS"
+    value="Обновить выбранные отчёты" />
+  <msg mid="_MSG_UPDATE_SELECTED_SERVICES"
+    value="Обноыить выбранные сервисы" />
+	<msg mid="_MSG_UPDATE_SELECTED_TABLES"
+    value="Обноыить выбранные таблицы" />
+  <msg mid="_MSG_USER_ALREADY_EXISTS"
+    value="Пользователь уже существует!" />
+  <msg mid="_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
+    value="Список сообщенией мастера ограничен %d по умолчанию." />
+</Translation>

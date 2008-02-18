@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="CVS Service"
                    name="CVS"
-                   version="200802120004">
+                   version="200802130001">
   <message loglevel="Warning"
            msg_id="CVS:caught_signal"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvsd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;caught signal .+&quot;):msg@&gt;"
@@ -66,6 +66,12 @@
            msg_id="CVS:checkout_aborted_broken_pipe"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvs: &lt;@REGEXP(&quot;cvs [checkout aborted]: received broken pipe signal&quot;):msg@&gt; "
            rank="011"
+           table="Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="CVS:dying_gasps_from_client"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvs: &lt;@REGEXP(&quot;Dying gasps received from client.&quot;):msg@&gt; "
+           rank="012"
            table="Message"
            taxonomy="System.Errors" />
 </octopussy_service>

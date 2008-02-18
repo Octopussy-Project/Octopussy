@@ -37,7 +37,6 @@ use Octopussy::TimePeriod;
 use Octopussy::Type;
 
 my $APPLICATION_NAME = "Octopussy";
-my $USER = "octopussy";
 
 =head1 FUNCTIONS
 
@@ -52,6 +51,19 @@ sub Email
 	my $info = AAT::Application::Info($APPLICATION_NAME);
 
   return ($info->{email});
+}
+
+=head2 User()
+
+Returns Octopussy System User
+
+=cut
+
+sub User
+{
+	my $info = AAT::Application::Info($APPLICATION_NAME);
+
+  return ($info->{user});
 }
 
 =head2 Version()
@@ -152,12 +164,13 @@ sub Chown
 {
 	my @files = @_;
 
+	my $user = User();
 	my $list = "";
 	foreach my $f (@files)
 	{
 		$list .= "\"$f\" ";
 	}
-	`chown -R $USER:$USER $list`;
+	`chown -R $user:$user $list`;
 }
 
 =head2 Create_Directory($dir)
@@ -204,10 +217,11 @@ sub PID_File
 
 	my $dir_pid = Octopussy::Directory("running");
 	my $pid_file = $dir_pid . $name . ".pid";
+	my $user = User();
 
-	my $line = `id $USER`;
+	my $line = `id $user`;
 	my ($uid, $gid) = ($1, $2)
-  	if ($line =~ /uid=(\d+)\($USER\) gid=(\d+)\($USER\)/);
+  	if ($line =~ /uid=(\d+)\($user\) gid=(\d+)\($user\)/);
 	my @attr = stat($pid_file);
 
 	if ((-f $pid_file) && (($uid != $attr[4]) || ($gid != $attr[5])))

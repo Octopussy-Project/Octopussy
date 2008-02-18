@@ -2,8 +2,8 @@
 <octopussy_service description="Postfix Service"
                    icon="software/logo_postfix"
                    name="Postfix"
-                   nb_messages="057"
-                   version="200802120010"
+                   nb_messages="058"
+                   version="200802140001"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -351,6 +351,12 @@
            msg_id="Postfix:traffic_to5"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, conn_use=&lt;@NUMBER:NULL@&gt;, delay=&lt;@NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="058"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="Postfix:traffic_orig_to3"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/local[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           rank="059"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
 </octopussy_service>
