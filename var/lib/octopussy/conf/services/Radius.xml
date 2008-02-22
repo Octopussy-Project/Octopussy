@@ -1,10 +1,12 @@
-<octopussy_service name="Radius"
-     description="Radius Service"
-     version="200604280001">
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Radius Service"
+                   name="Radius"
+                   nb_messages="001"
+                   version="200802210002">
   <message loglevel="Information"
-           msg_id="Radius:1"
+           msg_id="Radius:starting"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;radiusd: .+ : Info: Starting - reading configuration files ...&quot;):msg@&gt;"
            rank="01"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application.Start" />
 </octopussy_service>

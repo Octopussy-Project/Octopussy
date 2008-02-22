@@ -20,6 +20,7 @@ my @operating_systems = ();
 =head2 Init()
 
 =cut
+
 sub Init
 {
 	my $bot_conf = AAT::List::Configuration("AAT_Bot");
@@ -47,6 +48,7 @@ sub Init
 =head2 Logo($logo, $alt)
 
 =cut
+
 sub Logo($$)
 {
 	my ($logo, $alt) = @_;
@@ -58,6 +60,7 @@ sub Logo($$)
 =head2 Browser($ua)
 
 =cut
+
 sub Browser($)
 {
 	my $ua = shift;
@@ -66,7 +69,7 @@ sub Browser($)
 	{
 		if ((defined $i->{regexp}) && ($ua =~ /$i->{regexp}/))
 		{
-			return (Logo("browsers/$i->{logo}", $i->{label}))
+			return (Logo("$i->{logo}", $i->{label}))
 				if (defined $i->{logo});
 			return ($i->{label});
 		}
@@ -78,6 +81,7 @@ sub Browser($)
 =head2 Operating_System($ua)
 
 =cut
+
 sub Operating_System($)
 {
 	my $ua = shift;
@@ -86,7 +90,7 @@ sub Operating_System($)
   {
 		if ((defined $i->{regexp}) && ($ua =~ /$i->{regexp}/))
     {
-    	return (Logo("operating_systems/$i->{logo}", $i->{label})) 
+    	return (Logo("$i->{logo}", $i->{label})) 
 				if (defined $i->{logo});
 			return ($i->{label});
 		}
@@ -98,6 +102,7 @@ sub Operating_System($)
 =head2 Size($bytes)
 
 =cut
+
 sub Size($)
 {
 	my $bytes = shift;

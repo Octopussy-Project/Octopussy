@@ -1,5 +1,7 @@
-<octopussy_table name="Octopussy"
-     description="Octopussy Table" version="200608020001">
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Octopussy Table"
+                 name="Octopussy"
+                 version="200608020001">
   <field title="server"
          type="STRING" />
   <field title="module"
@@ -14,4 +16,6 @@
          type="NUMBER" />
   <field title="datetime"
          type="DATETIME" />
+  <field title="seconds"
+         type="NUMBER" />
 </octopussy_table>

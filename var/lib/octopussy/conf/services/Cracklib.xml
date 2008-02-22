@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_service name="Cracklib"
-                   description="Pro-active password checker library"
-                   version="200707250003">
+<octopussy_service description="Pro-active password checker library"
+                   name="Cracklib"
+                   nb_messages="001"
+                   version="200802210001">
   <message loglevel="Information"
            msg_id="Cracklib:update"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cracklib:&lt;@REGEXP(&quot;.+updated dictionary.+&quot;):msg@&gt;"
            rank="001"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application" />
 </octopussy_service>

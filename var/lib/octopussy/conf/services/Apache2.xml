@@ -1,27 +1,28 @@
-<?xml version='1.0' encoding='iso-8859-1'?>
-<octopussy_service name="Apache2"
-                   description="Apache2 Service"
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Apache2 Service"
                    icon="software/logo_apache"
-									 website="http://httpd.apache.org/"
-                   version="200701290001">
+                   name="Apache2"
+                   nb_messages="013"
+                   version="200802210006"
+                   website="http://httpd.apache.org/">
   <message loglevel="Notice"
            msg_id="Apache2:php_warning"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;apache2\S*: PHP Warning: .+&quot;):msg@&gt;"
            rank="005"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application.Errors" />
   <message loglevel="Critical"
            msg_id="Apache2:php_fatal_error"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;apache2\S*: PHP Fatal error: .+&quot;):msg@&gt;"
            rank="006"
            table="Message"
-           taxonomy="System.Errors" />
+           taxonomy="Application.Errors" />
   <message loglevel="Critical"
            msg_id="Apache2:php_parse_error"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;apache2\S*: PHP Parse error:.+&quot;):msg@&gt;"
            rank="007"
            table="Message"
-           taxonomy="System.Errors" />
+           taxonomy="Application.Errors" />
   <message loglevel="Notice"
            msg_id="Apache2:file_does_not_exist"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; apache2[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;[error] .+ File does not exist: .+&quot;):msg@&gt;"
@@ -57,7 +58,7 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; apache2[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;PAJAX: .+&quot;):msg@&gt;"
            rank="009"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application" />
   <message loglevel="Warning"
            msg_id="Apache2:couldnt_connect_ldap_server"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;apache\S+&quot;):NULL@&gt;: &lt;@REGEXP(&quot;nss_ldap: could not connect to any LDAP server.+&quot;):msg@&gt;"
@@ -81,5 +82,5 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; apache2: &lt;@REGEXP(&quot;PAJAX: .+&quot;):msg@&gt;"
            rank="013"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application" />
 </octopussy_service>

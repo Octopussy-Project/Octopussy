@@ -2,8 +2,8 @@
 <octopussy_service description="Squid System Service"
                    icon="software/logo_squid"
                    name="Squid_System"
-                   nb_messages="071"
-                   version="200802110001"
+                   nb_messages="073"
+                   version="200802220003"
                    website="http://www.squid-cache.org/">
   <message loglevel="Information"
            msg_id="Squid_System:logfile_rotate"
@@ -408,7 +408,7 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Critical"
-           msg_id="Squid_System:bungle_squid_conf_line"
+           msg_id="Squid_System:bungled_squid_conf_line2"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; (squid): &lt;@REGEXP(&quot;Bungled squid.conf line \d+: .+&quot;):msg@&gt;"
            rank="069"
            table="Message"
@@ -443,4 +443,10 @@
            rank="001"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Squid_System:bungled_squid_conf_line"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Bungled squid.conf line .+&quot;):msg@&gt;"
+           rank="074"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

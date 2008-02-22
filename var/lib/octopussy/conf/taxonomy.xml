@@ -1,10 +1,15 @@
 <octopussy_taxonomy>
 
-	<taxonomy taxo_id="Attack"           	color="#FF0000"	desc="Attack message" />
+	<taxonomy taxo_id="Access"            color="#FFFF00" desc="Access message" />
+  <taxonomy taxo_id="Access.Failure"    color="#FFF900" desc="Access Failure message" />
+  <taxonomy taxo_id="Access.Success"    color="#FFF000" desc="Access Success message" />
 
-	<taxonomy taxo_id="Access"           	color="#FFFF00"	desc="Access message" />
-  <taxonomy taxo_id="Access.Failure"   	color="#FFF900"	desc="Access Failure message" />
-  <taxonomy taxo_id="Access.Success"   	color="#FFF000"	desc="Access Success message" />	
+	<taxonomy taxo_id="Application"        	color="#0000FF" desc="Application message" />
+	<taxonomy taxo_id="Application.Errors" 	color="#0000FF" desc="Application Errors message" />
+	<taxonomy taxo_id="Application.Start"  	color="#0000FF" desc="Application Start message" />
+	<taxonomy taxo_id="Application.Stop"   	color="#0000FF" desc="Application Stop message" />
+
+	<taxonomy taxo_id="Attack"           	color="#FF0000"	desc="Attack message" />
 
   <taxonomy taxo_id="Auth" 							color="#00FFFF"	desc="Authentication message" />
 	<taxonomy taxo_id="Auth.Failure" 			color="#00FFF9"	desc="Authentication Failure message" />

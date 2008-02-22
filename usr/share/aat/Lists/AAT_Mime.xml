@@ -1,52 +1,52 @@
 <list name="AAT_Mime">
 
 	<item label="Image Bitmap (BMP)" value="bmp"
-        regexp="image\/bmp" logo="bmp" />
+        regexp="image\/bmp" logo="mime/bmp" />
 	<item label="Archive BZIP2 (bz2)" value="bz2"
-        regexp="x-bzip2" logo="bz2" />
+        regexp="x-bzip2" logo="mime/bz2" />
 	<item label="Calendar" value="calendar"
-        regexp="text\/calendar" logo="vcalendar" />
+        regexp="text\/calendar" logo="mime/vcalendar" />
 	<item label="Cascading Style Sheet (CSS)" value="css"
-        regexp="text\/css" logo="css" />
+        regexp="text\/css" logo="mime/css" />
 	<item label="Debian Package (DEB)" value="deb"
-        regexp="debian-package" logo="deb" />
+        regexp="debian-package" logo="mime/deb" />
 	<item label="Flash" value="flash"
-				regexp="x-shockwave-flash" logo="flash" />
+				regexp="x-shockwave-flash" logo="mime/flash" />
 	<item label="Video Flash" value="flv"
-        regexp="video\/(x-)?flv" logo="video" />
+        regexp="video\/(x-)?flv" logo="mime/video" />
 	<item label="Image GIF (GIF)" value="gif"
-        regexp="image\/gif" logo="gif" />
+        regexp="image\/gif" logo="mime/gif" />
 	<item label="Archive GZIP (gz)" value="gzip"
-        regexp="application\/(x-)*gzip" logo="gz" />
+        regexp="application\/(x-)*gzip" logo="mime/gz" />
 	<item label="HyperText Markup Language (HTML)" value="html"
-        regexp="text\/html" logo="html" />
+        regexp="text\/html" logo="mime/html" />
 	<item label="Applet Java" value="java"
-        regexp="x-java-applet" logo="js" />
+        regexp="x-java-applet" logo="mime/js" />
 	<item label="Archive Java" value="java"
-        regexp="java-archive" logo="java" />
+        regexp="java-archive" logo="mime/java" />
 	<item label="Image JPEG (JPG)" value="jpg"
-        regexp="image\/jpe?g" logo="jpg" />
+        regexp="image\/jpe?g" logo="mime/jpg" />
 	<item label="Javascript (JS)" value="js"
-        regexp="javascript" logo="js" />
+        regexp="javascript" logo="mime/js" />
 	<item label="Portable Document Format (PDF)" value="pdf"
-        regexp="application\/pdf" logo="pdf" />
+        regexp="application\/pdf" logo="mime/pdf" />
 	<item label="Image PNG (PNG)" value="png"
-        regexp="image\/png" logo="png" />
+        regexp="image\/png" logo="mime/png" />
 	<item label="Really Simple Syndication (RSS)" value="rss"
-        regexp="application\/rss\+xml" logo="rss" />
+        regexp="application\/rss\+xml" logo="mime/rss" />
 	<item label="Resource Description Framework (RDF)" value="rdf"
-        regexp="application\/rdf\+xml" logo="rss" />
+        regexp="application\/rdf\+xml" logo="mime/rss" />
 	<item label="Resource Description Framework (RDF)" value="rdf"
-        regexp="text\/rdf" logo="rss" />
+        regexp="text\/rdf" logo="mime/rss" />
 	<item label="Stream" value="stream"
-        regexp="application\/octet-stream" logo="stream" />
+        regexp="application\/octet-stream" logo="mime/stream" />
 	<item label="Archive TAR (tar)" value="tar"
-        regexp="x-tar" logo="tar" />
+        regexp="x-tar" logo="mime/tar" />
 	<item label="Plain text (TXT)" value="txt"
-        regexp="text\/plain" logo="txt" />
+        regexp="text\/plain" logo="mime/txt" />
 	<item label="eXtensible HyperText Markup Language (XHTML)" value="xhtml"
-        regexp="xhtml" logo="xhtml" />
+        regexp="xhtml" logo="mime/xhtml" />
 	<item label="eXtensible Markup Language (XML)" value="xml"
-        regexp="\w+\/xml" logo="xml" />
+        regexp="\w+\/xml" logo="mime/xml" />
 
 </list>

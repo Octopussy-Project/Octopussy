@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <aat_proxy>
   <proxy password=""
-         port="8080"
+         port=""
          server=""
          user="" />
 </aat_proxy>

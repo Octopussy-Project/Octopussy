@@ -5,24 +5,5 @@
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restriction=""
         role="admin"
-        theme="DEFAULT"
-        type="local" />
-  <user language="EN"
-        login="ro"
-        password="$1$OP$7X3NZt2hgf0cjMTbJLNRj."
-        role="ro"
-        theme="DEFAULT"
-        type="local" />
-  <user language="RU"
-        login="rw"
-        password="$1$OP$znMAlgmy5RWyW4MoivnDk1"
-        role="rw"
-        theme="DEFAULT"
-        type="local" />
-  <user language="RU"
-        login="demo"
-        password="$1$OP$/KopKNn/Uo14vdgWgPddF/"
-        role="restricted"
-        theme="Black&amp;White">
-  </user>
+        theme="DEFAULT" />
 </octopussy_users>

@@ -228,9 +228,9 @@ sub Get($$$$$$$)
 			my $line = $_;
 			my $match = 1;
 			foreach my $inc (AAT::ARRAY($re_incl))
-				{ $match = 0	if (($inc ne "") && ($line !~ /$inc/i)); }
+				{ $match = 0	if (($inc ne "") && ($line !~ /$inc/)); }
 			foreach my $excl (AAT::ARRAY($re_excl))
-				{ $match = 0	if (($excl ne "") && ($line =~ /$excl/i)); }
+				{ $match = 0	if (($excl ne "") && ($line =~ /$excl/)); }
 			if ($match)
 			{
 				$counter++; 

@@ -2,8 +2,8 @@
 <octopussy_service description="Linux Kernel Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel"
-                   nb_messages="177"
-                   version="200802150007"
+                   nb_messages="183"
+                   version="200802190002"
                    website="http://www.kernel.org/">
   <message loglevel="Debug"
            msg_id="Linux_Kernel:linux_version"
@@ -1103,4 +1103,16 @@
            rank="183"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Debug"
+           msg_id="Linux_Kernel:smp_alternatives_switching_code"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;SMP alternatives: switching to \w+ code&quot;):msg@&gt; "
+           rank="184"
+           table="Message"
+           taxonomy="System.Boot" />
+  <message loglevel="Debug"
+           msg_id="Linux_Kernel:io_scheduler_registered"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;io scheduler \w+ registered.*&quot;):msg@&gt;"
+           rank="185"
+           table="Message"
+           taxonomy="System.Boot" />
 </octopussy_service>

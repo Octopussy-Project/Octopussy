@@ -76,7 +76,7 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 	}
 	else
 	{
-		$text = "<table id=\"resultsTable\" width=\"100%\">";
+		$text = "<table id=\"resultsTable\">";
 		$text .= "<tbody>";
 		foreach my $l (@{$logs})
   	{
@@ -85,6 +85,7 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 				if (AAT::NOT_NULL($regexp_include));
 			$line =~ s/($regexp_include2)/<font color="blue"><b>$1<\/b><\/font>/g
 				if (AAT::NOT_NULL($regexp_include2));
+			$line =~ s/(\S{150})(\S+?)/$1\n$2/g;
 			$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
    		$nb_lines++;
   	}

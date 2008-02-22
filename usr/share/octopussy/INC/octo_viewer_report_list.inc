@@ -75,8 +75,8 @@ foreach my $r (sort keys %{$reports})
 	    {
 				if ($ext =~ /rrd$/)
         {
-        %><td><AAT:IMG name="mime/bin" tooltip="RRD Data"
-          link="./rrd_data_manipulation.asp?report_type=$report&filename=$r.$ext" /></td><%
+        %><td><AAT:IMG name="mime/bin" tooltip="RRD Data" /></td><%
+#          link="./rrd_data_manipulation.asp?report_type=$report&filename=$r.$ext" /></td><%
         }
 				elsif (defined $type{$ext})
         {

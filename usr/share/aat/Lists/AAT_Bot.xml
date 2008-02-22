@@ -2,14 +2,14 @@
 
 	<item label="Google Bot" value="bot_google"
         regexp="http://www.google.com/bot.html" 
-				logo="browser_bot" />
+				logo="browsers/browser_bot" />
 	
 	<item label="MSN Bot" value="bot_msn"
         regexp="http://search.msn.com/msnbot.htm" 
-				logo="browser_bot" />
+				logo="browsers/browser_bot" />
 
 	<item label="Yahoo Slurp" value="bot_yahoo"
 				regexp="http://help.yahoo.com/help/us/ysearch/slurp" 
-				logo="browser_bot" />
+				logo="browsers/browser_bot" />
 
 </list>

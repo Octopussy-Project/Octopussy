@@ -24,8 +24,6 @@
          type="NUMBER" />
   <field title="policy_id"
          type="NUMBER" />
-  <field title="status"
-         type="WORD" />
   <field title="sent_bytes"
          type="NUMBER" />
   <field title="rcvd_bytes"
@@ -55,5 +53,7 @@
   <field title="ip_protocol"
          type="STRING" />
   <field title="service"
+         type="STRING" />
+  <field title="status"
          type="STRING" />
 </octopussy_table>

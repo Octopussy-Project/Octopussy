@@ -13,11 +13,12 @@ my $CIPHER = "rsa:1024";
 
 my $CONF = "/etc/aat/openssl.cnf";
 my $CONF_CA = "/var/run/aat/openssl_ca.cnf";
+my $CONF_CLIENT = "/var/run/aat/openssl_client.cnf";
 my $CONF_SERVER = "/var/run/aat/openssl_server.cnf";
 
 my $OPENSSL = "/usr/bin/openssl";
-my $SSL_CA = "$OPENSSL ca";
-my $SSL_REQ = "$OPENSSL req"; 
+my $SSL_CA = "$OPENSSL ca -batch";
+my $SSL_REQ = "$OPENSSL req -batch"; 
 
 =head1 FUNCTIONS
 
@@ -50,10 +51,45 @@ sub Authority_Create($$)
 	}
 	close(FILE); 
 	close(OUT);
-	`$SSL_REQ -batch -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $ca_dir/private/cakey.pem -out $ca_dir/cacert.pem`;
+	`$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $ca_dir/private/cakey.pem -out $ca_dir/cacert.pem`;
 	`chmod -R 600 $ca_dir/private`;
 }
 
+=head2 Client_Create($appli, $file, $password, \%conf)
+
+=cut
+
+sub Client_Create($$$$)
+{
+	my ($appli, $file, $password, $conf) = @_;
+
+	my $ca_dir = AAT::Application::Directory($appli, "certificate_authority");
+	my $info = AAT::Application::Info($appli);
+	`cp $CONF $CONF_CLIENT.tmp`;
+  open(FILE, "< $CONF_CLIENT.tmp");
+  open(OUT, "> $CONF_CLIENT");
+  while (<FILE>)
+  {
+    my $line = $_;
+    foreach my $k (keys %{$conf})
+    {
+      my $sub = "<" . uc($k) . ">";
+      $line =~ s/$sub/$conf->{$k}/g;
+    }
+    $line =~ s/<DIR>/$ca_dir/g;
+    print OUT $line;
+  }
+  close(FILE);
+  close(OUT);
+	`$SSL_REQ -config $CONF_CLIENT -passout pass:octo -newkey $CIPHER -keyout ${file}.key -out ${file}.req`;
+	`$SSL_CA -config $CONF_CLIENT -passin pass:octo -in ${file}.req -out ${file}.pem`;
+  `$OPENSSL pkcs12 -export -passin pass:octo -passout pass:$password -in ${file}.pem -inkey ${file}.key -out ${file}.p12 -name "$conf->{common_name}"`;
+	`chown $info->{user}: ${file}.p12`;
+}
+
+=head2 Server_Create()
+
+=cut
 
 sub Server_Create
 {
@@ -77,8 +113,8 @@ sub Server_Create
   }
   close(FILE);
   close(OUT);
-	`$SSL_REQ -batch -config $CONF_SERVER -newkey $CIPHER -keyout $dest/server.key -out $dest/server.req`;
-	`$SSL_CA -batch -config $CONF_SERVER -in $dest/server.req -out $dest/server.crt`;
+	`$SSL_REQ -config $CONF_SERVER -newkey $CIPHER -keyout $dest/server.key -out $dest/server.req`;
+	`$SSL_CA -config $CONF_SERVER -in $dest/server.req -out $dest/server.crt`;
 	`$OPENSSL rsa -passout pass:octo -in $dest/server.key -out $dest/server.key`;
 	`chown $info->{user}: $dest/*`;
 }

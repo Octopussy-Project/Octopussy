@@ -3,7 +3,7 @@
 
 	<item label="Apple MacOS X" value="macosx" 
 				regexp="(Mac OS X|Mac_PowerPC|Macintosh)" 
-				logo="os_mac" />
+				logo="operating_systems/os_mac" />
 
 	<item label="Archos" value="pmp_archos"
 				regexp="U; ARCHOS;" />
@@ -11,55 +11,55 @@
 	<item label="BlackBerry OS" value="mobile_blackberry"
         regexp="^BlackBerry" />
 	
-	<item label="FreeBSD" value="freebsd" logo="os_freebsd" />
-	<item label="NetBSD" value="netbsd" logo="os_netbsd" />
+	<item label="FreeBSD" value="freebsd" logo="operating_systems/os_freebsd" />
+	<item label="NetBSD" value="netbsd" logo="operating_systems/os_netbsd" />
 	<item label="OpenBSD" value="openbsd" 
-				regexp="OpenBSD" logo="os_openbsd" />
+				regexp="OpenBSD" logo="operating_systems/os_openbsd" />
 
 	<item label="Linux" value="linux_generic"
-				logo="os_linux_generic" />
+				logo="operating_systems/os_linux_generic" />
 	<item label="Linux Debian" value="linux_debian" 
-				regexp="Debian" logo="os_linux_debian" />
+				regexp="Debian" logo="operating_systems/os_linux_debian" />
 	<item label="Linux Mandriva" value="linux_mandriva" 
-				regexp="Mandriva" logo="os_linux_mandriva" />
+				regexp="Mandriva" logo="operating_systems/os_linux_mandriva" />
 	<item label="Linux RedHat Fedora" value="linux_redhat_fedora" 
-				regexp="Fedora" logo="os_linux_redhat" />
+				regexp="Fedora" logo="operating_systems/os_linux_redhat" />
 	<item label="Linux Slackware" value="linux_slackware" 
-				logo="os_linux_slackware" />
+				logo="operating_systems/os_linux_slackware" />
 	<item label="Linux Suse" value="linux_suse" 
-				regexp="SUSE" logo="os_linux_suse" />	
+				regexp="SUSE" logo="operating_systems/os_linux_suse" />	
 	<item label="Linux Ubuntu" value="linux_ubuntu" 
-				regexp="K?[uU]buntu" logo="os_linux_ubuntu" />
+				regexp="K?[uU]buntu" logo="operating_systems/os_linux_ubuntu" />
 
 	<item label="PC Linux OS" value="linux_pclinuxos"
 				regexp="PCLinuxOS" />
 
 	<item label="Microsoft Windows 95" value="windows_95" 
-				regexp="(Win95|Windows 95)" logo="os_windows" />
+				regexp="(Win95|Windows 95)" logo="operating_systems/os_windows" />
 	<item label="Microsoft Windows 98" value="windows_98" 
-				regexp="(Win98|Windows 98)" logo="os_windows" />
+				regexp="(Win98|Windows 98)" logo="operating_systems/os_windows" />
 	<item label="Microsoft Windows Me" value="windows_me"
-        regexp="(Win\w* 9x 4.90|Windows ME)" logo="os_windows" />
+        regexp="(Win\w* 9x 4.90|Windows ME)" logo="operating_systems/os_windows" />
 	<item label="Windows CE" value="windows_ce"
-				regexp="Windows CE" logo="os_windows" />
+				regexp="Windows CE" logo="operating_systems/os_windows" />
 	<item label="Microsoft Windows NT" value="windows_nt" 
 				regexp="(WinNT|Windows NT;|Windows NT\)|Windows NT 4)" 
-				logo="os_windows" />
+				logo="operating_systems/os_windows" />
 	<item label="Microsoft Windows Vista" value="windows_vista" 
-				regexp="Windows NT 6" logo="os_windows" />
+				regexp="Windows NT 6" logo="operating_systems/os_windows" />
 	<item label="Microsoft Windows XP" value="windows_xp" 
-				regexp="Windows NT 5" logo="os_windows" />
+				regexp="Windows NT 5" logo="operating_systems/os_windows" />
 
 	<item label="Mobile OS (various)" value="mobile_various"
 				regexp="( [pP]rofile\/MIDP-|portalmmm\/2)" />
 
 	<item label="Nintendo Wii" value="game_nintendo_wii"
-				regexp="Nintendo Wii" logo="os_wii" />
+				regexp="Nintendo Wii" logo="operating_systems/os_wii" />
 	<item label="Sony PSP" value="game_sony_psp"
 				regexp="PlayStation Portable" />
 
 	<item label="Sun Solaris" value="sun_solaris"
-        regexp="SunOS" logo="os_sun" />
+        regexp="SunOS" logo="operating_systems/os_sun" />
 
 	<item label="Symbian OS" value="mobile_symbian"
 				regexp="SymbianOS" />

@@ -2,8 +2,9 @@
 <octopussy_service description="Apache ModSecurity Service"
                    icon="software/logo_modsecurity"
                    name="Apache_Mod_Security"
-									 website="http://www.modsecurity.org/"
-                   version="200711130023">
+                   nb_messages="005"
+                   version="200802210002"
+                   website="http://www.modsecurity.org/">
   <message loglevel="Warning"
            msg_id="Apache_Mod_Security:access_denied"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; [&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;] [error] [client &lt;@IP_ADDR:client@&gt;] ModSecurity: &lt;@STRING:msg@&gt; [id &quot;&lt;@NUMBER:msg_id@&gt;&quot;] [msg &quot;&lt;@STRING:msg_category@&gt;&quot;] [severity &quot;&lt;@WORD:severity@&gt;&quot;] [hostname &quot;&lt;@WORD:hostname@&gt;&quot;] [uri &quot;&lt;@STRING:uri@&gt;&quot;] [unique_id &quot;&lt;@WORD:unique_id@&gt;&quot;]"
@@ -27,11 +28,11 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; [&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;] [error] [client &lt;@IP_ADDR:client@&gt;] ModSecurity: &lt;@REGEXP(&quot;Error reading request body: .+&quot;):msg@&gt; [hostname &quot;&lt;@WORD:hostname@&gt;&quot;] [uri &quot;&lt;@STRING:uri@&gt;&quot;] [unique_id &quot;&lt;@WORD:unique_id@&gt;&quot;]"
            rank="002"
            table="Apache_ModSecurity"
-           taxonomy="System.Errors" />
+           taxonomy="Application.Errors" />
   <message loglevel="Notice"
            msg_id="Apache_Mod_Security:error_reading_headers"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; [&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;] &lt;@REGEXP(&quot;[error] [client .+] request failed: error reading the headers.*&quot;):msg@&gt;"
            rank="005"
            table="Message"
-           taxonomy="System.Errors" />
+           taxonomy="Application.Errors" />
 </octopussy_service>

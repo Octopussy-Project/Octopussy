@@ -48,23 +48,24 @@ sub Authentication($$)
   return (undef);
 }
 
-=head2 Add($login, $pwd, $role, $lang)
+=head2 Add($login, $pwd, $certificate, $role, $lang)
 
 Adds user with '$login', '$pwd', '$role' and '$lang'
 
 =cut
 
-sub Add($$$$)
+sub Add($$$$$)
 {
-	my ($login, $pwd, $role, $lang) = @_;
+	my ($login, $pwd, $certificate, $role, $lang) = @_;
 
 	$USERS_FILE ||= Octopussy::File("users");
 	my $conf = AAT::XML::Read($USERS_FILE);
   foreach my $u (AAT::ARRAY($conf->{user}))
     { return ("_MSG_USER_ALREADY_EXISTS") if ($u->{login} eq $login); }
   push(@{$conf->{user}}, { login => $login,
-    password => unix_md5_crypt($pwd, $SALT), role => $role,
-    language => $lang || $DEFAULT_LANGUAGE, theme => $DEFAULT_THEME });
+    password => unix_md5_crypt($pwd, $SALT), certificate => $certificate, 
+		role => $role, language => $lang || $DEFAULT_LANGUAGE, 
+		theme => $DEFAULT_THEME });
   AAT::XML::Write($USERS_FILE, $conf, "octopussy_users");
 
   return (undef);	

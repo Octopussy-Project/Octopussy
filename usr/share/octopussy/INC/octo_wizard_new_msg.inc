@@ -33,10 +33,10 @@ my $modified_color = Octopussy::Message::Color_Without_Field($modified);
 	<AAT:Inc file="octo_selector_service" device="$device" /></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="_LOG_LEVEL" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol>
-  <AAT:Inc file="octo_selector_loglevel" selected="Information"/></AAT:BoxCol>
+  <AAT:Inc file="octo_selector_loglevel" selected="Information" /></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="_TABLE" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol>
-  <AAT:Inc file="octo_selector_table" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Inc file="octo_selector_table" /></AAT:BoxCol>
+	<AAT:BoxCol width="100%"></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol>
@@ -52,15 +52,16 @@ my $modified_color = Octopussy::Message::Color_Without_Field($modified);
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol align="center">
 	<AAT:Form_Submit value="_SELECT_THIS_MSG" /></AAT:BoxCol>
+	<AAT:BoxCol width="100%"></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="Pattern: " style="B" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="6"><AAT:Label value="$modified_color"/></AAT:BoxCol>
+	<AAT:BoxCol cspan="7"><AAT:Label value="$modified_color" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="Sample: " style="B" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="6"><AAT:Label value="$html_orig"/></AAT:BoxCol>
+  <AAT:BoxCol cspan="7"><AAT:Label value="$html_orig" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>
 </AAT:Form>

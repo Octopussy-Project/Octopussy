@@ -1,8 +1,10 @@
-<octopussy_service name="Apache"
-                   description="Apache Service"
-									 icon="software/logo_apache"
-                   website="http://httpd.apache.org/"
-                   version="200704300001">
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Apache Service"
+                   icon="software/logo_apache"
+                   name="Apache"
+                   nb_messages="012"
+                   version="200802210005"
+                   website="http://httpd.apache.org/">
   <message loglevel="Critical"
            msg_id="Apache:syntax_error_on_line"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:server@&gt;: &lt;@REGEXP(&quot;Syntax error on line \d+ of .+:&quot;):msg@&gt;"
@@ -26,19 +28,19 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:server@&gt;: &lt;@REGEXP(&quot;\S+ startup failed&quot;):msg@&gt; "
            rank="004"
            table="Message"
-           taxonomy="System.Errors" />
+           taxonomy="Application.Errors" />
   <message loglevel="Warning"
            msg_id="Apache:shutdown_failed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:server@&gt;: &lt;@REGEXP(&quot;\S+ shutdown failed&quot;):msg@&gt; "
            rank="005"
            table="Message"
-           taxonomy="System.Errors" />
+           taxonomy="Application.Errors" />
   <message loglevel="Notice"
            msg_id="Apache:hup_succeeded"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:server@&gt;: &lt;@REGEXP(&quot;\S+ -HUP succeeded&quot;):msg@&gt;"
            rank="006"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application" />
   <message loglevel="Notice"
            msg_id="Apache:unable_include_file"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:server@&gt;: &lt;@REGEXP(&quot;[error] .+ unable to include .+ in parsed file .+&quot;):msg@&gt;"
@@ -56,7 +58,7 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:server@&gt;: &lt;@REGEXP(&quot;[error] .+&quot;):msg@&gt;"
            rank="010"
            table="Message"
-           taxonomy="System.Errors" />
+           taxonomy="Application.Errors" />
   <message loglevel="Warning"
            msg_id="Apache:authentication_failure"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:server@&gt;: &lt;@REGEXP(&quot;[error] .+ Authentication failure.+&quot;):msg@&gt;"
@@ -74,5 +76,5 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; httpd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;[warn] RSA server certificate CommonName .+ does NOT match server name.+&quot;):msg@&gt;"
            rank="012"
            table="Message"
-           taxonomy="System.Errors" />
+           taxonomy="Config.Errors" />
 </octopussy_service>

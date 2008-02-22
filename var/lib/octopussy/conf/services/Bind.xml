@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Bind DNS Server Service"
                    name="Bind"
-                   nb_messages="080"
-                   version="200802120001"
+                   nb_messages="081"
+                   version="200802210002"
                    website="http://www.isc.org/index.pl?/sw/bind/index.php">
   <message loglevel="Notice"
            msg_id="Bind:query"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: client &lt;@IP_ADDR:client@&gt;#&lt;@NUMBER:NULL@&gt;: query: &lt;@WORD:query@&gt; &lt;@STRING:query_type@&gt;"
            rank="001"
            table="Bind_query"
-           taxonomy="System" />
+           taxonomy="Application" />
   <message loglevel="Notice"
            msg_id="Bind:lame_server_resolving"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: lame server resolving &lt;@SINGLE_QUOTED_STRING:query@&gt; (in &lt;@SINGLE_QUOTED_STRING:NULL@&gt;?): &lt;@IP_ADDR:client@&gt;#&lt;@NUMBER:NULL@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;lame server resolving .+&quot;):msg@&gt;"
            rank="002"
-           table="Bind_lame_server"
+           table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
            msg_id="Bind:5"
@@ -315,7 +315,7 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;exiting&quot;):msg@&gt; "
            rank="052"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application.Stop" />
   <message loglevel="Warning"
            msg_id="Bind:zone_serial_gone_backwards"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;zone .+: zone serial has gone backwards&quot;):msg@&gt; "

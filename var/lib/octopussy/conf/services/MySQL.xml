@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_service name="MySQL"
-                   description="MySQL Service"
+<octopussy_service description="MySQL Service"
                    icon="software/logo_mysql"
-									 website="http://www.mysql.com"
-                   version="200708230003">
+                   name="MySQL"
+                   nb_messages="056"
+                   version="200802210002"
+                   website="http://www.mysql.com">
   <message loglevel="Critical"
            msg_id="MySQL:cant_connect_through_socket"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; /etc/init.d/mysql[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;error: 'Can't connect to local MySQL server through socket.+&quot;):msg@&gt;"
@@ -93,7 +94,7 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+mysqld: Shutdown Complete&quot;):msg@&gt; "
            rank="015"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application.Stop" />
   <message loglevel="Warning"
            msg_id="MySQL:normal_shutdown"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+mysqld: Normal shutdown&quot;):msg@&gt; "
@@ -273,7 +274,7 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld: &lt;@REGEXP(&quot;Stopping MySQL:.*succeeded&quot;):msg@&gt; "
            rank="045"
            table="Message"
-           taxonomy="System" />
+           taxonomy="Application.Stop" />
   <message loglevel="Warning"
            msg_id="MySQL:forcing_close_thread"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+ Forcing close of thread .+&quot;):msg@&gt;"
