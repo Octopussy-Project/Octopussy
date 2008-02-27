@@ -220,6 +220,13 @@ sub Get($$$$$$$)
 	my $files = Files($devices, $services, $start, $finish);
 	my @logs = ();
 	my $counter = 0;
+	my @includes = ();
+	my @excludes = ();
+	foreach my $inc (AAT::ARRAY($re_incl))
+		{ push(@includes, qr/$inc/)	if (AAT::NOT_NULL($inc)); }
+	foreach my $excl (AAT::ARRAY($re_excl))
+		{ push(@excludes, qr/$excl/) if (AAT::NOT_NULL($excl)); }
+
 	foreach my $f (sort (AAT::ARRAY($files)))
 	{
   	open(FILE, "zcat '$f' |");
@@ -227,10 +234,10 @@ sub Get($$$$$$$)
     {
 			my $line = $_;
 			my $match = 1;
-			foreach my $inc (AAT::ARRAY($re_incl))
-				{ $match = 0	if (($inc ne "") && ($line !~ /$inc/)); }
-			foreach my $excl (AAT::ARRAY($re_excl))
-				{ $match = 0	if (($excl ne "") && ($line =~ /$excl/)); }
+			foreach my $inc (@includes)
+				{ $match = 0	if ($line !~ $inc); }
+			foreach my $excl (@excludes)
+				{ $match = 0	if ($line =~ $excl); }
 			if ($match)
 			{
 				$counter++; 
@@ -323,6 +330,7 @@ Removes Log '$log' from Unknown Logs for Device '$device'
 sub Remove($$)
 {
 	my ($device, $log) = @_;
+	my $re = qr/^$log\s*$/;
 	my $match = 0;
 	my @files = Unknown_Files($device);
 	foreach my $f (sort @files)
@@ -332,7 +340,7 @@ sub Remove($$)
     open(FILE, "zcat '$f' |");
     while (<FILE>)
     { 
-			if ($_ =~ /^$log\s*$/)
+			if ($_ =~ $re)
 				{ $match = 1; }
 			else
 				{ push(@logs, $_); }
@@ -356,13 +364,12 @@ Removes 1 minute of Log File for Device '$device'
 sub Remove_Minute($$$$$$)
 {
 	my ($device, $year, $month, $day, $hour, $min) = @_;
-
+	my $re = qr/.+Unknown\/$year\/$month\/$day\/msg_${hour}h$min/;
 	my @files = Unknown_Files($device);
 	foreach my $f (sort @files)
   {
 		chomp($f);
-		unlink($f)	
-			if ($f =~ /.+Unknown\/$year\/$month\/$day\/msg_${hour}h$min/);
+		unlink($f)	if ($f =~ $re);
 	}
 }
 

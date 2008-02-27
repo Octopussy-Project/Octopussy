@@ -3,7 +3,7 @@ my %arg = @_;
 
 my $regexp = $arg{regexp};
 my $orig = $arg{orig_msg};
-my @fields = $orig =~ /$regexp/;
+my @fields = $orig =~ /$regexp/i;
 my $constant = $fields[$arg{field_number} - 1];
 my @list = ( { label => "$constant", value => "CONST $constant" },
 							{ label => "[NULL]", value => "NULL" } );

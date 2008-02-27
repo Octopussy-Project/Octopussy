@@ -70,6 +70,7 @@
   <msg mid="_BODY" value="Тело" />
   <msg mid="_BUG_REPORT" value="Отчёт об ошибке" />
 	<msg mid="_CANCEL" value="Отменить" />
+  <msg mid="_CERTIFICATE" value="_CERTIFICATE" />
 	<msg mid="_CONFIG_FILE" value="Конфигурационнай файл" />
 	<msg mid="_DASHBOARD" value="Панель управления" />
 	<msg mid="_DELETE" value="Удалить" />
@@ -123,6 +124,7 @@
 	<msg mid="_LOGIN" value="Логин" />
 	<msg mid="_MAIL_SERVER" value="Почтовый сервер" />
 	<msg mid="_NAME" value="Название" />
+	<msg mid="_NEW_PASSWORD" value="_NEW_PASSWORD" />
 	<msg mid="_PASSWORD" value="Пароль" />
 	<msg mid="_PORT" value="Порт" />
 	<msg mid="_QUERY" value="Запрос" />
@@ -226,6 +228,8 @@
   <msg mid="_NEW_TIMEPERIOD" value="Новый период времени" />
   <msg mid="_NEW_USER" value="Новый пользователь" />
 	<msg mid="_OFFICIAL_WEBSITE" value="Официальный веб-сайт" />
+  <msg mid="_ORGANIZATION" value="_ORGANIZATION" />
+  <msg mid="_ORGANIZATIONAL_UNIT" value="_ORGANIZATIONAL_UNIT" />
   <msg mid="_PARTITION_LOGS" value="Разграничить логи" />
   <msg mid="_PERIOD" value="Период" />
   <msg mid="_PERIODS" value="Периоды" />
@@ -266,6 +270,7 @@
   <msg mid="_START" value="Пуск" />
   <msg mid="_START_PERIOD" value="Период пуска" />
   <msg mid="_START_TIME" value="Время пуска" />
+	<msg mid="_STATE" value="_STATE" />
   <msg mid="_STATIC" value="Статический" />
   <msg mid="_STATISTIC_REPORTS" value="Статистические отчёты" />
   <msg mid="_STORAGES" value="Хранилища" />

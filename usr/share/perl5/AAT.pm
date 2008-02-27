@@ -877,6 +877,19 @@ sub Selector_Color($$)
   $main::Response->Include('AAT/INC/AAT_Selector_Color.inc', %{$args});
 }
 
+=head2 Selector_Country_Code($args, $body)
+
+Usage: <AAT:Selector Country_Code name="country" selected="fr" />
+
+=cut
+
+sub Selector_Country_Code($$)
+{
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_Selector_Country_Code.inc', %{$args});
+}
+
 =head2 Selector_Database($args, $body)
 
 Usage: <AAT:Selector_Database name="db_type" selected="$type" />

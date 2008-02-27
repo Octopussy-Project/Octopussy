@@ -19,8 +19,33 @@ my $CONF_SERVER = "/var/run/aat/openssl_server.cnf";
 my $OPENSSL = "/usr/bin/openssl";
 my $SSL_CA = "$OPENSSL ca -batch";
 my $SSL_REQ = "$OPENSSL req -batch"; 
+my $SSL_X509 = "$OPENSSL x509";
 
 =head1 FUNCTIONS
+
+=head2 Authority_Configuration()
+
+=cut
+
+sub Authority_Configuration($)
+{
+	my $appli = shift;
+	my %conf = ();
+
+	my $ca_dir = AAT::Application::Directory($appli, "certificate_authority");
+	my @lines = `$SSL_X509 -text -noout -in $ca_dir/cacert.pem`;
+	foreach my $line (@lines)
+	{
+		AAT::DEBUG($line);
+		if ($line =~ /Subject: C=(\w+), ST=(.+?), L=(.+?), O=(.+?), OU=(.+?), CN=(.+?)\/emailAddress=(\S+)$/)
+		{
+			($conf{country}, $conf{state}, $conf{city}, $conf{org}, $conf{org_unit},
+			$conf{common_name}, $conf{email}) = ($1, $2, $3, $4, $5, $6, $7);
+		}	
+	}
+
+	return (%conf);
+}
 
 =head2 Authority_Create($appli, \%conf)
 

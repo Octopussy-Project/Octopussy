@@ -44,7 +44,7 @@ my @table = (
 		{ label => "_SELECTION", align => "center" } ],
 	[ { label => "<hr>", colspan => 6 } ] );
 
-my $restricts = AAT::User::Restrictions($Session->{AAT_LOGIN});
+my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 my @res_alerts = AAT::ARRAY($restricts->{alert});
 my $limit = (($#res_alerts >= 0) ? undef : $nb_alerts_max);
 my @alerts = Octopussy::Alert::Tracker($al, $dev, $stat, "", $limit);

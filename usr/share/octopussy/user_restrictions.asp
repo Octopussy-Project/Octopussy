@@ -4,7 +4,7 @@ my $url = "./user_restrictions.asp";
 my $f = $Request->Form();
 my $user = $Request->QueryString("user");
 
-my $restricts = AAT::User::Restrictions($user);
+my $restricts = AAT::User::Restrictions("Octopussy", $user);
 
 my @devices_sel = AAT::ARRAY($f->{device} || $Request->QueryString("device")
   || $restricts->{device} || "-ANY-");
@@ -22,7 +22,7 @@ if (AAT::NOT_NULL($f->{submit}))
 {
   my $conf = { device => \@devices_sel, service => \@services_sel,
 		alert => \@alerts_sel, report => \@reports_sel };
-	AAT::User::Update_Restrictions($user, $conf);
+	AAT::User::Update_Restrictions("Octopussy", $user, $conf);
 }
 %>
 <AAT:Form action="$url?user=$user">

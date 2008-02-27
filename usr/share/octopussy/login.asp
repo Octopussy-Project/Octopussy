@@ -5,14 +5,14 @@ my $f = $Request->Form();
 
 if ((defined $f->{login}) && (defined $f->{password}))
 {
-	my $auth_login = AAT::User::Authentication($f->{login}, $f->{password});
- 	if (defined $auth_login->{login})
+	my $auth = 
+		AAT::User::Authentication("Octopussy", $f->{login}, $f->{password});
+ 	if (defined $auth->{login})
  	{
-  	$Session->{AAT_LOGIN} = $auth_login->{login};
-		$Session->{AAT_PASSWORD} = $f->{password};
-		$Session->{AAT_ROLE} = $auth_login->{role};
-		$Session->{AAT_LANGUAGE} = $auth_login->{language};
-		$Session->{AAT_THEME} = $auth_login->{theme};
+  	$Session->{AAT_LOGIN} = $auth->{login};
+		$Session->{AAT_ROLE} = $auth->{role};
+		$Session->{AAT_LANGUAGE} = $auth->{language};
+		$Session->{AAT_THEME} = $auth->{theme};
 		AAT::Syslog("octo_WebUI", "USER_LOGGED_IN");
  	}
  	else
@@ -21,7 +21,7 @@ if ((defined $f->{login}) && (defined $f->{password}))
 		AAT::Syslog("octo_WebUI", "USER_FAILED_LOGIN");
   	$Response->Redirect("./login.asp");
  	}
-	my $redirect = ($auth_login->{role} =~  /restricted/i 
+	my $redirect = ($auth->{role} =~  /restricted/i 
 		? "./restricted_logs_viewer.asp" : "./index.asp");
 	$Response->Redirect($redirect);
 }

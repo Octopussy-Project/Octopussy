@@ -52,13 +52,14 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
   my $logs = Octopussy::Logs::Get(\@devices, \@services, \%start, \%finish,
     [$regexp_include, $regexp_include2], [$regexp_exclude, $regexp_exclude2], 
 		$max_lines);
-
+	my $filename = "logs_" . join("-", @devices) . "_" . join("-", @services) 
+		. "_$y1$m1$d1$hour1$min1-$y2$m2$d2$hour2$min2";
 	if (defined $f->{file})
 	{
 		foreach my $l (@{$logs})
       { $text .= "$l" }
 		$Response->{ContentType} = "text/txt";
-		$Response->AddHeader('Content-Disposition', "filename=\"logs.txt\"");
+		$Response->AddHeader('Content-Disposition', "filename=\"${filename}.txt\"");
 		print $text;
 		$Response->End();
 	}
@@ -70,7 +71,7 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 				if ($l =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) (\S+) (.+)$/);
   	}
   	$Response->{ContentType} = "text/csv";
-		$Response->AddHeader('Content-Disposition', "filename=\"logs.csv\"");
+		$Response->AddHeader('Content-Disposition', "filename=\"${filename}.csv\"");
   	print $text;
 		$Response->End();
 	}

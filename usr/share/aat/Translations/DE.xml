@@ -70,6 +70,7 @@
   <msg mid="_BODY" value="Hauptteil" />
   <msg mid="_BUG_REPORT" value="Fehlerbericht" />
 	<msg mid="_CANCEL" value="Abbrechen" />
+	<msg mid="_CERTIFICATE" value="_CERTIFICATE" />
 	<msg mid="_CONFIG_FILE" value="Konfigurationsdatei" />
 	<msg mid="_DASHBOARD" value="_DASHBOARD" />
 	<msg mid="_DELETE" value="Loeschen" />
@@ -122,6 +123,7 @@
 	<msg mid="_LOGIN" value="Login" />
 	<msg mid="_MAIL_SERVER" value="Mail Server" />
 	<msg mid="_NAME" value="Name" />
+	<msg mid="_NEW_PASSWORD" value="_NEW_PASSWORD" />
 	<msg mid="_PASSWORD" value="Passwort" />
 	<msg mid="_PORT" value="Port" />
 	<msg mid="_QUERY" value="Anfrage" />
@@ -225,6 +227,8 @@
 	<msg mid="_NEW_TIMEPERIOD" value="Neuer Zeitabschnitt" />
 	<msg mid="_NEW_USER" value="Neuer Benutzer" />
 	<msg mid="_OFFICIAL_WEBSITE" value="_OFFICIAL_WEBSITE" />
+  <msg mid="_ORGANIZATION" value="_ORGANIZATION" />
+  <msg mid="_ORGANIZATIONAL_UNIT" value="_ORGANIZATIONAL_UNIT" />
 	<msg mid="_PARTITION_LOGS" value="Partition Logs" />
 	<msg mid="_PERIOD" value="Periode" />
   <msg mid="_PERIODS" value="Perioden" />
@@ -265,6 +269,7 @@
 	<msg mid="_START" value="_START" />
   <msg mid="_START_PERIOD" value="Start des Logs" />
   <msg mid="_START_TIME" value="Startzeit" />
+	<msg mid="_STATE" value="_STATE" />
 	<msg mid="_STATIC" value="Statisch" />
 	<msg mid="_STATISTIC_REPORTS" value="Statistic Reports" />
 	<msg mid="_STORAGES" value="_STORAGES" />

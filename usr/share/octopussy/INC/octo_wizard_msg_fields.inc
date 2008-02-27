@@ -27,7 +27,7 @@ while ($pattern =~ /<\@(.+?)\@>/)
 	<AAT:BoxCol><AAT:Label value="$msg_color" /></AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Inc file="octo_selector_table_field" table="$arg{table}" 
-		field_type="$2" field_number="$i" regexp="$re" orig_msg="$orig" 
+		field_type="$type" field_number="$i" regexp="$re" orig_msg="$orig" 
 		selected="$selected" />
 	</AAT:BoxCol></AAT:BoxRow><%
   $i++;

@@ -8,7 +8,7 @@ my $reports = Octopussy::Data_Report::List($report);
 my $url_base = "./report_show.asp?report_type=$report";
 my $lang = $Session->{AAT_LANGUAGE};
 
-my $restricts = AAT::User::Restrictions($Session->{AAT_LOGIN});
+my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 my @res_reports = AAT::ARRAY($restricts->{report});
 my $in_restriction = ($#res_reports >= 0 ? 0 : 1);
 foreach my $res (@res_reports)

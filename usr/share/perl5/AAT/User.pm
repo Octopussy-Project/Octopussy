@@ -21,17 +21,17 @@ my %roles = ();
 
 =head1 FUNCTIONS
 
-=head2 Authentication($login, $pwd)
+=head2 Authentication($appli, $login, $pwd)
 
 Check Authentication from Users file and LDAP Users
 
 =cut
 
-sub Authentication($$)
+sub Authentication($$$)
 {
-  my ($login, $pwd) = @_;
+  my ($appli, $login, $pwd) = @_;
 
-	$USERS_FILE ||= Octopussy::File("users");
+	$USERS_FILE ||= AAT::Application::File($appli, "users");
 	my $conf = AAT::XML::Read($USERS_FILE);
   my $md5 = unix_md5_crypt($pwd, $SALT);
   foreach my $u (AAT::ARRAY($conf->{user}))
@@ -48,17 +48,17 @@ sub Authentication($$)
   return (undef);
 }
 
-=head2 Add($login, $pwd, $certificate, $role, $lang)
+=head2 Add($appli, $login, $pwd, $certificate, $role, $lang)
 
 Adds user with '$login', '$pwd', '$role' and '$lang'
 
 =cut
 
-sub Add($$$$$)
+sub Add($$$$$$)
 {
-	my ($login, $pwd, $certificate, $role, $lang) = @_;
+	my ($appli, $login, $pwd, $certificate, $role, $lang) = @_;
 
-	$USERS_FILE ||= Octopussy::File("users");
+	$USERS_FILE ||= AAT::Application::File($appli, "users");
 	my $conf = AAT::XML::Read($USERS_FILE);
   foreach my $u (AAT::ARRAY($conf->{user}))
     { return ("_MSG_USER_ALREADY_EXISTS") if ($u->{login} eq $login); }
@@ -71,17 +71,17 @@ sub Add($$$$$)
   return (undef);	
 }
 
-=head2 Remove($login)
+=head2 Remove($appli, $login)
 
 Removes User with login '$login'
 
 =cut
 
-sub Remove($)
+sub Remove($$)
 {
-  my $login = shift;
+  my ($appli, $login) = @_;
 
-	$USERS_FILE ||= Octopussy::File("users");
+	$USERS_FILE ||= AAT::Application::File($appli, "users");
   my $conf = AAT::XML::Read($USERS_FILE);
   my @users = ();
   foreach my $u (AAT::ARRAY($conf->{user}))
@@ -92,17 +92,17 @@ sub Remove($)
   AAT::XML::Write($USERS_FILE, $conf, "octopussy_users");
 }
 
-=head2 Update($login, $update)
+=head2 Update($appli, $login, $update)
 
 Updates user '$login' with configuration '$update'
 
 =cut
 
-sub Update($$)
+sub Update($$$)
 {
-  my ($login, $update) = @_;
+  my ($appli, $login, $update) = @_;
 
-	$USERS_FILE ||= Octopussy::File("users");
+	$USERS_FILE ||= AAT::Application::File($appli, "users");
   my $conf = AAT::XML::Read($USERS_FILE);
   my @users = ();
   foreach my $u (AAT::ARRAY($conf->{user}))
@@ -113,27 +113,30 @@ sub Update($$)
     }
     else
     {
-      my $pwd = unix_md5_crypt($update->{password}, $SALT);
-      push(@users, { login => $update->{login}, password => $pwd,
-        role => $update->{role}, language => $update->{language},
-        theme => $update->{theme}, restriction => $u->{restrictions} });
+      my $pwd = (AAT::NOT_NULL($update->{password}) 
+				? unix_md5_crypt($update->{password}, $SALT) : $u->{password});
+      push(@users, { login => $update->{login} || $login, 
+				password => $pwd, role => $update->{role} || $u->{role}, 
+				language => $update->{language} || $u->{language},
+        theme => $update->{theme} || $u->{theme}, 
+				restrictions => $u->{restrictions} });
     }
   }
   $conf->{user} = \@users;
   AAT::XML::Write($USERS_FILE, $conf, "octopussy_users");
 }
 
-=head2 Restrictions($login)
+=head2 Restrictions($appli, $login)
 
 Returns User Restrictions for User '$login'
 
 =cut
 
-sub Restrictions($)
+sub Restrictions($$)
 {
-	my $login = shift;
+	my ($appli, $login) = @_;
 
-	$USERS_FILE ||= Octopussy::File("users");
+	$USERS_FILE ||= AAT::Application::File($appli, "users");
   my $conf = AAT::XML::Read($USERS_FILE);
   foreach my $u (AAT::ARRAY($conf->{user}))
   {
@@ -143,17 +146,17 @@ sub Restrictions($)
 	return (undef);
 }
 
-=head2 Update_Restrictions($login, $restrictions)
+=head2 Update_Restrictions($appli, $login, $restrictions)
 
 Updates restrictions '$restrictions' to user '$login'
 
 =cut
 
-sub Update_Restrictions($$)
+sub Update_Restrictions($$$)
 {
-	my ($login, $restrictions) = @_;
+	my ($appli, $login, $restrictions) = @_;
 
-  $USERS_FILE ||= Octopussy::File("users");
+  $USERS_FILE ||= AAT::Application::File($appli, "users");
   my $conf = AAT::XML::Read($USERS_FILE);
   my @users = ();
   foreach my $u (AAT::ARRAY($conf->{user}))
@@ -172,15 +175,17 @@ sub Update_Restrictions($$)
   AAT::XML::Write($USERS_FILE, $conf, "octopussy_users");	
 }
 
-=head2 List()
+=head2 List($appli)
 
 Lists all Users (from file & LDAP)
 
 =cut
 
-sub List()
+sub List($)
 {
-	$USERS_FILE ||= Octopussy::File("users");
+	my $appli = shift;
+
+	$USERS_FILE ||= AAT::Application::File($appli, "users");
   my $conf = AAT::XML::Read($USERS_FILE);
   my @users = ();
   foreach my $u (AAT::ARRAY($conf->{user}))
@@ -195,7 +200,7 @@ sub List()
   return (@users);
 }
 
-=head2 Configurations($sort)
+=head2 Configurations($appli, $sort)
 
 Returns configurations for all Users
 
@@ -203,9 +208,9 @@ Returns configurations for all Users
 
 sub Configurations
 {
-  my $sort = shift;
+  my ($appli, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
-  my @users = List();
+  my @users = List($appli);
   my %field;
 
   foreach my $conf (@users)
@@ -222,45 +227,49 @@ sub Configurations
   return (@sorted_configurations);
 }
 
-=head2 Roles_Init()
+=head2 Roles_Init($appli)
 
 Inits Users Roles
 
 =cut
 
-sub Roles_Init()
+sub Roles_Init($)
 {
-	$ROLES_FILE ||= Octopussy::File("user_roles");
+	my $appli = shift;
+
+	$ROLES_FILE ||= AAT::Application::File($appli, "user_roles");
 	my $conf = AAT::XML::Read($ROLES_FILE);
 	foreach my $r (AAT::ARRAY($conf->{role}))
 		{ $roles{$r->{value}}{label} = $r->{label}; }	
 }
 
-=head2 Roles_Configurations()
+=head2 Roles_Configurations($appli)
 
 Returns Users Roles Configurations
 
 =cut
 
-sub Roles_Configurations()
+sub Roles_Configurations($)
 {
-	$ROLES_FILE ||= Octopussy::File("user_roles");
+	my $appli = shift;
+
+	$ROLES_FILE ||= AAT::Application::File($appli, "user_roles");
 	my $conf = AAT::XML::Read($ROLES_FILE);
 
 	return (AAT::ARRAY($conf->{role}))
 }
 
-=head2 Role_Name($role)
+=head2 Role_Name($appli, $role)
 
 Returns name of a role
 
 =cut
 
-sub Role_Name($)
+sub Role_Name($$)
 {
-	my $role = shift;
+	my ($appli, $role) = @_;
 	
-	Roles_Init()	if (! %roles);
+	Roles_Init($appli)	if (! %roles);
 
 	return ($roles{$role}{label}); 
 }

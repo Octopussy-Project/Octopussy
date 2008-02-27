@@ -5,7 +5,7 @@ my $logout_lnk = "./dialog.asp?id=logout";
 my $version = "Octopussy " . Octopussy::Version(); 
 my $lang = lc($Session->{AAT_LANGUAGE} || "en");
 my $help_lnk = $arg{help} || "index";
-$lang = (-f "HELP/$lang/${help_page}.html" ? $lang : "en");
+$lang = (-f "HELP/$lang/${help_lnk}.html" ? $lang : "en");
 %>
 <AAT:Box width="100%">
 <AAT:BoxRow>

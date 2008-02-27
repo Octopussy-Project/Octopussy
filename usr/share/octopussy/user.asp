@@ -6,15 +6,15 @@ my $sort = $Request->QueryString("users_table_sort");
 
 if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))
 {
-  AAT::User::Remove($login);
+  AAT::User::Remove("Octopussy", $login);
   AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "User", $login);
   $Response->Redirect("./user.asp");
 }
 elsif ((AAT::NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	$Session->{AAT_MSG_ERROR} =
-    AAT::User::Add($login, $f->{password}, $f->{certificate}, $f->{user_role},
-      $f->{AAT_Language});
+    AAT::User::Add("Octopussy", $login, $f->{password}, 
+			$f->{certificate}, $f->{user_role}, $f->{AAT_Language});
   AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "User", $login)
   	if (AAT::NOT_NULL($Session->{AAT_MSG_ERROR}));
 	if ($f->{certificate})
@@ -30,9 +30,7 @@ elsif ((AAT::NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
    	$Response->AddHeader('Content-Disposition', "filename=\"${login}.p12\"");
    	open(FILE, "< ${login}.p12");
    	while (<FILE>)
-   	{
-    	print $_;
-   	}
+   		{ print $_; }
    	$Response->End();
 	}
 	$Response->Redirect("./user.asp");

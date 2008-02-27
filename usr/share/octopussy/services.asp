@@ -14,13 +14,13 @@ if (!defined $service)
 }
 else
 {
-	if ((!defined Octopussy::Service::Filename($service))
+	if ((!-f Octopussy::Service::Filename($service))
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		if (($service !~ /^Incoming/i) && ($service !~ /^Unknown/i))
 		{
   		Octopussy::Service::New({ name => $service, 
-				description => $f->{description} });
+				description => $f->{description}, website => $f->{website} });
 			AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Service", $service);
 		}
 		$Response->Redirect("./services.asp");

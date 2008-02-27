@@ -1,22 +1,21 @@
 <%
 my %arg = @_;
 my $name = $arg{name};
-my $start_year = $arg{start_year};
+my $s_year = $arg{start_year};
 
-my ($cur_hour1, $cur_hour2) = AAT::Datetime::Current_Hour();
-my ($cur_day1, $cur_day2) = AAT::Datetime::Current_Day();
-my ($cur_week1, $cur_week2) = AAT::Datetime::Current_Week();
-my ($cur_month1, $cur_month2) = AAT::Datetime::Current_Month();
-my ($cur_year1, $cur_year2) = AAT::Datetime::Current_Year();
-my ($last_hour1, $last_hour2) = AAT::Datetime::Last_Hour();
-my ($last_day1, $last_day2) = AAT::Datetime::Last_Day();
-my ($last_week1, $last_week2) = AAT::Datetime::Last_Week();
-my ($last_month1, $last_month2) = AAT::Datetime::Last_Month();
-my ($last_year1, $last_year2) = AAT::Datetime::Last_Year();
+my ($c_h1, $c_h2) = AAT::Datetime::Current_Hour();
+my ($c_d1, $c_d2) = AAT::Datetime::Current_Day();
+my ($c_w1, $c_w2) = AAT::Datetime::Current_Week();
+my ($c_m1, $c_m2) = AAT::Datetime::Current_Month();
+my ($c_y1, $c_y2) = AAT::Datetime::Current_Year();
+my ($l_h1, $l_h2) = AAT::Datetime::Last_Hour();
+my ($l_d1, $l_d2) = AAT::Datetime::Last_Day();
+my ($l_w1, $l_w2) = AAT::Datetime::Last_Week();
+my ($l_m1, $l_m2) = AAT::Datetime::Last_Month();
+my ($l_y1, $l_y2) = AAT::Datetime::Last_Year();
 
-my @list = ("_CUSTOMIZED", 
-	"_CURRENT_HOUR", "_CURRENT_DAY", "_CURRENT_WEEK", 
-	"_CURRENT_MONTH", "_CURRENT_YEAR", 
+my @list = ("_CUSTOMIZED", "_CURRENT_HOUR", "_CURRENT_DAY", 
+	"_CURRENT_WEEK", "_CURRENT_MONTH", "_CURRENT_YEAR", 
   "_LAST_HOUR", "_LAST_DAY", "_LAST_WEEK", "_LAST_MONTH", "_LAST_YEAR" );
 %>
 <AAT:Box align="C">
@@ -40,7 +39,7 @@ my @list = ("_CUSTOMIZED",
 <AAT:BoxRow>
   <AAT:BoxCol align="right">
     <AAT:Label value="_BEGIN" align="right" style="B" /></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Selector_DateTime name="${name}1" start_year="$start_year"
+  <AAT:BoxCol><AAT:Selector_DateTime name="${name}1" start_year="$s_year"
   	selected="$arg{selected1}" />
   </AAT:BoxCol>
 </AAT:BoxRow>
@@ -48,7 +47,7 @@ my @list = ("_CUSTOMIZED",
   <AAT:BoxCol align="right">
     <AAT:Label value="_END" align="right" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
-	<AAT:Selector_DateTime name="${name}2" start_year="$start_year"
+	<AAT:Selector_DateTime name="${name}2" start_year="$s_year"
   	selected="$arg{selected2}" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>
@@ -63,26 +62,26 @@ for (i=0; i<len; i++)
   dts2[i]=new Array(5);
 }
 
-dts1[0]=['<%= $cur_hour1->{year}-$start_year %>','<%= $cur_hour1->{month}-1 %>','<%= $cur_hour1->{day}-1 %>','<%= $cur_hour1->{hour} %>','<%= $cur_hour1->{min} %>'];
-dts2[0]=['<%= $cur_hour2->{year}-$start_year %>','<%= $cur_hour2->{month}-1 %>','<%= $cur_hour2->{day}-1 %>','<%= $cur_hour2->{hour} %>','<%= $cur_hour2->{min} %>'];
-dts1[1]=['<%= $cur_day1->{year}-$start_year %>','<%= $cur_day1->{month}-1 %>','<%= $cur_day1->{day}-1 %>','<%= $cur_day1->{hour} %>','<%= $cur_day1->{min} %>'];
-dts2[1]=['<%= $cur_day2->{year}-$start_year %>','<%= $cur_day2->{month}-1 %>','<%= $cur_day2->{day}-1 %>','<%= $cur_day2->{hour} %>','<%= $cur_day2->{min} %>'];
-dts1[2]=['<%= $cur_week1->{year}-$start_year %>','<%= $cur_week1->{month}-1 %>','<%= $cur_week1->{day}-1 %>','<%= $cur_week1->{hour} %>','<%= $cur_week1->{min} %>'];
-dts2[2]=['<%= $cur_week2->{year}-$start_year %>','<%= $cur_week2->{month}-1 %>','<%= $cur_week2->{day}-1 %>','<%= $cur_week2->{hour} %>','<%= $cur_week2->{min} %>'];
-dts1[3]=['<%= $cur_month1->{year}-$start_year %>','<%= $cur_month1->{month}-1 %>','<%= $cur_month1->{day}-1 %>','<%= $cur_month1->{hour} %>','<%= $cur_month1->{min} %>'];
-dts2[3]=['<%= $cur_month2->{year}-$start_year %>','<%= $cur_month2->{month}-1 %>','<%= $cur_month2->{day}-1 %>','<%= $cur_month2->{hour} %>','<%= $cur_month2->{min} %>'];
-dts1[4]=['<%= $cur_year1->{year}-$start_year %>','<%= $cur_year1->{month}-1 %>','<%= $cur_year1->{day}-1 %>','<%= $cur_year1->{hour} %>','<%= $cur_year1->{min} %>'];
-dts2[4]=['<%= $cur_year2->{year}-$start_year %>','<%= $cur_year2->{month}-1 %>','<%= $cur_year2->{day}-1 %>','<%= $cur_year2->{hour} %>','<%= $cur_year2->{min} %>'];
-dts1[5]=['<%= $last_hour1->{year}-$start_year %>','<%= $last_hour1->{month}-1 %>','<%= $last_hour1->{day}-1 %>','<%= $last_hour1->{hour} %>','<%= $last_hour1->{min} %>'];
-dts2[5]=['<%= $last_hour2->{year}-$start_year %>','<%= $last_hour2->{month}-1 %>','<%= $last_hour2->{day}-1 %>','<%= $last_hour2->{hour} %>','<%= $last_hour2->{min} %>'];
-dts1[6]=['<%= $last_day1->{year}-$start_year %>','<%= $last_day1->{month}-1 %>','<%= $last_day1->{day}-1 %>','<%= $last_day1->{hour} %>','<%= $last_day1->{min} %>'];
-dts2[6]=['<%= $last_day2->{year}-$start_year %>','<%= $last_day2->{month}-1 %>','<%= $last_day2->{day}-1 %>','<%= $last_day2->{hour} %>','<%= $last_day2->{min} %>'];
-dts1[7]=['<%= $last_week1->{year}-$start_year %>','<%= $last_week1->{month}-1 %>','<%= $last_week1->{day}-1 %>','<%= $last_week1->{hour} %>','<%= $last_week1->{min} %>'];
-dts2[7]=['<%= $last_week2->{year}-$start_year %>','<%= $last_week2->{month}-1 %>','<%= $last_week2->{day}-1 %>','<%= $last_week2->{hour} %>','<%= $last_week2->{min} %>'];
-dts1[8]=['<%= $last_month1->{year}-$start_year %>','<%= $last_month1->{month}-1 %>','<%= $last_month1->{day}-1 %>','<%= $last_month1->{hour} %>','<%= $last_month1->{min} %>'];
-dts2[8]=['<%= $last_month2->{year}-$start_year %>','<%= $last_month2->{month}-1 %>','<%= $last_month2->{day}-1 %>','<%= $last_month2->{hour} %>','<%= $last_month2->{min} %>'];
-dts1[9]=['<%= $last_year1->{year}-$start_year %>','<%= $last_year1->{month}-1 %>','<%= $last_year1->{day}-1 %>','<%= $last_year1->{hour} %>','<%= $last_year1->{min} %>'];
-dts2[9]=['<%= $last_year2->{year}-$start_year %>','<%= $last_year2->{month}-1 %>','<%= $last_year2->{day}-1 %>','<%= $last_year2->{hour} %>','<%= $last_year2->{min} %>'];
+dts1[0]=['<%= $c_h1->{year}-$s_year %>','<%= $c_h1->{month}-1 %>','<%= $c_h1->{day}-1 %>','<%= $c_h1->{hour} %>','<%= $c_h1->{min} %>'];
+dts2[0]=['<%= $c_h2->{year}-$s_year %>','<%= $c_h2->{month}-1 %>','<%= $c_h2->{day}-1 %>','<%= $c_h2->{hour} %>','<%= $c_h2->{min} %>'];
+dts1[1]=['<%= $c_d1->{year}-$s_year %>','<%= $c_d1->{month}-1 %>','<%= $c_d1->{day}-1 %>','<%= $c_d1->{hour} %>','<%= $c_d1->{min} %>'];
+dts2[1]=['<%= $c_d2->{year}-$s_year %>','<%= $c_d2->{month}-1 %>','<%= $c_d2->{day}-1 %>','<%= $c_d2->{hour} %>','<%= $c_d2->{min} %>'];
+dts1[2]=['<%= $c_w1->{year}-$s_year %>','<%= $c_w1->{month}-1 %>','<%= $c_w1->{day}-1 %>','<%= $c_w1->{hour} %>','<%= $c_w1->{min} %>'];
+dts2[2]=['<%= $c_w2->{year}-$s_year %>','<%= $c_w2->{month}-1 %>','<%= $c_w2->{day}-1 %>','<%= $c_w2->{hour} %>','<%= $c_w2->{min} %>'];
+dts1[3]=['<%= $c_m1->{year}-$s_year %>','<%= $c_m1->{month}-1 %>','<%= $c_m1->{day}-1 %>','<%= $c_m1->{hour} %>','<%= $c_m1->{min} %>'];
+dts2[3]=['<%= $c_m2->{year}-$s_year %>','<%= $c_m2->{month}-1 %>','<%= $c_m2->{day}-1 %>','<%= $c_m2->{hour} %>','<%= $c_m2->{min} %>'];
+dts1[4]=['<%= $c_y1->{year}-$s_year %>','<%= $c_y1->{month}-1 %>','<%= $c_y1->{day}-1 %>','<%= $c_y1->{hour} %>','<%= $c_y1->{min} %>'];
+dts2[4]=['<%= $c_y2->{year}-$s_year %>','<%= $c_y2->{month}-1 %>','<%= $c_y2->{day}-1 %>','<%= $c_y2->{hour} %>','<%= $c_y2->{min} %>'];
+dts1[5]=['<%= $l_h1->{year}-$s_year %>','<%= $l_h1->{month}-1 %>','<%= $l_h1->{day}-1 %>','<%= $l_h1->{hour} %>','<%= $l_h1->{min} %>'];
+dts2[5]=['<%= $l_h2->{year}-$s_year %>','<%= $l_h2->{month}-1 %>','<%= $l_h2->{day}-1 %>','<%= $l_h2->{hour} %>','<%= $l_h2->{min} %>'];
+dts1[6]=['<%= $l_d1->{year}-$s_year %>','<%= $l_d1->{month}-1 %>','<%= $l_d1->{day}-1 %>','<%= $l_d1->{hour} %>','<%= $l_d1->{min} %>'];
+dts2[6]=['<%= $l_d2->{year}-$s_year %>','<%= $l_d2->{month}-1 %>','<%= $l_d2->{day}-1 %>','<%= $l_d2->{hour} %>','<%= $l_d2->{min} %>'];
+dts1[7]=['<%= $l_w1->{year}-$s_year %>','<%= $l_w1->{month}-1 %>','<%= $l_w1->{day}-1 %>','<%= $l_w1->{hour} %>','<%= $l_w1->{min} %>'];
+dts2[7]=['<%= $l_w2->{year}-$s_year %>','<%= $l_w2->{month}-1 %>','<%= $l_w2->{day}-1 %>','<%= $l_w2->{hour} %>','<%= $l_w2->{min} %>'];
+dts1[8]=['<%= $l_m1->{year}-$s_year %>','<%= $l_m1->{month}-1 %>','<%= $l_m1->{day}-1 %>','<%= $l_m1->{hour} %>','<%= $l_m1->{min} %>'];
+dts2[8]=['<%= $l_m2->{year}-$s_year %>','<%= $l_m2->{month}-1 %>','<%= $l_m2->{day}-1 %>','<%= $l_m2->{hour} %>','<%= $l_m2->{min} %>'];
+dts1[9]=['<%= $l_y1->{year}-$s_year %>','<%= $l_y1->{month}-1 %>','<%= $l_y1->{day}-1 %>','<%= $l_y1->{hour} %>','<%= $l_y1->{min} %>'];
+dts2[9]=['<%= $l_y2->{year}-$s_year %>','<%= $l_y2->{month}-1 %>','<%= $l_y2->{day}-1 %>','<%= $l_y2->{hour} %>','<%= $l_y2->{min} %>'];
 
 function update_dt_selector(x)
 {

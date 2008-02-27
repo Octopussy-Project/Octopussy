@@ -26,11 +26,11 @@ else
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
-foreach my $c (AAT::User::Configurations($sort))
+foreach my $c (AAT::User::Configurations("Octopussy", $sort))
 {
 	my ($login, $certif, $r, $type) = 
 		($c->{login}, $c->{certificate}, $c->{role}, $c->{type});
-	my $role_name = AAT::User::Role_Name($r);
+	my $role_name = AAT::User::Role_Name("Octopussy", $r);
 	my $flagfile = "AAT/IMG/flags/" . lc($c->{language}) . ".png"
 	%><AAT:BoxRowMenu>
 	<AAT:BoxCol><AAT:Label value="$login" no_trans="1"/></AAT:BoxCol>
@@ -52,8 +52,8 @@ if ($role_name =~ /restricted/i)
 else
 {
 %><AAT:BoxCol><AAT:Label value="$role_name" /></AAT:BoxCol><%	
-}%>
-	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol><%
+}
+%><AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol><%
 	if (($role =~ /admin/i) && ($c->{type} =~ /local/))
   {
 		my $dialog = "./dialog.asp?id=delete_user&arg1=$c->{login}";

@@ -2,7 +2,6 @@
 my %arg = @_;
 my $url = $arg{url};
 my $login = $Session->{AAT_LOGIN};
-my $pwd = $Session->{AAT_PASSWORD};
 %>
 <AAT:Form method="POST" action="$url">
 <AAT:Box icon="buttons/bt_user_prefs" title="_USER_PREFS" align="center">
@@ -13,10 +12,20 @@ my $pwd = $Session->{AAT_PASSWORD};
 		<AAT:BoxCol><AAT:Label value="$login" /></AAT:BoxCol>
   </AAT:BoxRow>
 	<AAT:BoxRow>
-		<AAT:BoxCol><AAT:Button name="locked" /></AAT:BoxCol>
+		<AAT:BoxCol rspan="3"><AAT:Button name="locked" /></AAT:BoxCol>
     <AAT:BoxCol><AAT:Label value="_PASSWORD" /></AAT:BoxCol>
-    <AAT:BoxCol><AAT:Password name="pword" value="$pwd" size="12" />
+    <AAT:BoxCol><AAT:Password name="old_pwd" size="12" />
 		</AAT:BoxCol>
+  </AAT:BoxRow>
+	<AAT:BoxRow>
+    <AAT:BoxCol><AAT:Label value="_NEW_PASSWORD" /></AAT:BoxCol>
+    <AAT:BoxCol><AAT:Password name="new_pwd1" size="12" />
+    </AAT:BoxCol>
+  </AAT:BoxRow>
+	<AAT:BoxRow>
+    <AAT:BoxCol><AAT:Label value="_NEW_PASSWORD" /></AAT:BoxCol>
+    <AAT:BoxCol><AAT:Password name="new_pwd2" size="12" />
+    </AAT:BoxCol>
   </AAT:BoxRow>
 	<AAT:BoxRow>
     <AAT:BoxCol><AAT:Button name="keyboard_layout" /></AAT:BoxCol>

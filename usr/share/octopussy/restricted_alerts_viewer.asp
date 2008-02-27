@@ -1,6 +1,6 @@
 <WebUI:PageTopRestricted title="Restricted Alerts Viewer" />
 <%
-my $restrictions = AAT::User::Restrictions($Session->{AAT_LOGIN});
+my $restrictions = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 my @restricted_devices = AAT::ARRAY($restrictions->{device});
 my @restricted_alerts = AAT::ARRAY($restrictions->{alert});
 

@@ -3,7 +3,7 @@ my %arg = @_;
 my $url = $arg{url};
 my $url_sort = $url . "?reports_table_sort=";
 
-my $restricts = AAT::User::Restrictions($Session->{AAT_LOGIN});
+my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 my @res_reports = AAT::ARRAY($restricts->{report});
 
 my @report_types = Octopussy::Report::List($arg{category}, \@res_reports);

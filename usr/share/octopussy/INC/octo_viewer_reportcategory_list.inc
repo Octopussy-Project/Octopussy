@@ -4,7 +4,7 @@ my %arg = @_;
 my $url = $arg{url};
 my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
 
-my $restricts = AAT::User::Restrictions($Session->{AAT_LOGIN});
+my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 my @res_reports = AAT::ARRAY($restricts->{report});
  
 $Response->Include("AAT/INC/AAT_Table_Function.inc",

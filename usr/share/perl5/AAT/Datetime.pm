@@ -334,7 +334,7 @@ sub Last_Week()
 {
 	my ($year, $month, $day, $hour, $min) = Now();
   my $wday = WeekDay($year, $month, $day);
-   $wday--;
+  $wday--;
 	my $date = Date::Manip::DateCalc("today", "-1week -${wday}day");
   my (%begin, %end) = ((), ());
   ($year, $month, $day, $hour, $min) =
