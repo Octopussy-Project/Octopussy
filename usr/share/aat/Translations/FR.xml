@@ -71,6 +71,7 @@
   <msg mid="_BUG_REPORT" value="Rapport de Bug" />
 	<msg mid="_CANCEL" value="Annuler" />
 	<msg mid="_CERTIFICATE" value="Certificat" />
+	<msg mid="_COMMON_NAME" value="Nom Commun" />
 	<msg mid="_CONFIG_FILE" value="Fichier de Configuration" />
 	<msg mid="_DASHBOARD" value="Tableau de Bord" />
   <msg mid="_DELETE" value="Supprimer" />	
@@ -177,6 +178,7 @@
   <msg mid="_DIR_UNKNOWN_LOGS" value="Répertoire pour les Logs 'Inconnus'" />
 	<msg mid="_DOWNLOAD_CSV_FILE" value="Télécharger Fichier CSV" />
   <msg mid="_DOWNLOAD_FILE" value="Télécharger Fichier" />
+	<msg mid="_DURATION_D" value="Durée (d)" />
 	<msg mid="_FINISH_PERIOD" value="Fin de Période" />
 	<msg mid="_GET_LOGS" value="Récupération des Logs" />
 	<msg mid="_GRAPH_HEIGHT" value="Hauteur du Graphique" />
@@ -238,6 +240,7 @@
 	<msg mid="_REGEXP_EXC" value="Regexp (Excl.)" />
   <msg mid="_REGEXP_INC" value="Regexp (Incl.)" />
 	<msg mid="_REMOVE_LOG_MINUTE" value="Suppression de la Minute de Log" />
+	<msg mid="_REPETITION_N" value="Répétition (n)" />
 	<msg mid="_REPORT" value="Rapport" />
 	<msg mid="_REPORT_CATEGORIES" value="Categories de Rapport" />
 	<msg mid="_REPORT_CREATION" value="Création de Rapport" />

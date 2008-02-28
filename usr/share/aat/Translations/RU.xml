@@ -71,6 +71,7 @@
   <msg mid="_BUG_REPORT" value="Отчёт об ошибке" />
 	<msg mid="_CANCEL" value="Отменить" />
   <msg mid="_CERTIFICATE" value="_CERTIFICATE" />
+	<msg mid="_COMMON_NAME" value="_COMMON_NAME" />
 	<msg mid="_CONFIG_FILE" value="Конфигурационнай файл" />
 	<msg mid="_DASHBOARD" value="Панель управления" />
 	<msg mid="_DELETE" value="Удалить" />
@@ -178,6 +179,7 @@
   <msg mid="_DIR_UNKNOWN_LOGS" value="Директория для неизвестных логов" />
   <msg mid="_DOWNLOAD_CSV_FILE" value="Скачать CSV-файл" />
   <msg mid="_DOWNLOAD_FILE" value="Скачать файл" />
+	<msg mid="_DURATION_D" value="_DURATION_D" />
 	<msg mid="_FINISH_PERIOD" value="Окончить период" />
   <msg mid="_GET_LOGS" value="Получить логи" />
   <msg mid="_GRAPH_HEIGHT" value="Высота графика" />
@@ -239,6 +241,7 @@
 	<msg mid="_REGEXP_EXC" value="Регулярное выражение (искл.)" />
   <msg mid="_REGEXP_INC" value="Регулярное выражение (вкл.)" />
   <msg mid="_REMOVE_LOG_MINUTE" value="Убрать минуту лога" />
+	<msg mid="_REPETITION_N" value="_REPETITION_N" />
   <msg mid="_REPORT" value="Отчёт" />
   <msg mid="_REPORT_CATEGORIES" value="Категории отчёта" />
   <msg mid="_REPORT_CREATION" value="Создание отчёта" />

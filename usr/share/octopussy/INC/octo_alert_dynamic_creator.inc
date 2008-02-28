@@ -82,13 +82,13 @@ my @used_services = Octopussy::Service::List_Used();
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Label value="Repetition (n)" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_REPETITION_N" style="B"/></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Selector_Number name="thresold_time" min="1" max="100" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Label value="Duration (d)" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_DURATION_D" style="B"/></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Selector_Number name="thresold_duration" min="0" max="600" step="5"/>
 	</AAT:BoxCol>

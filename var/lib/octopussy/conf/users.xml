@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_users>
-  <user language="EN"
+<Octopussy_users>
+  <user language="FR"
         login="admin"
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
-        restriction=""
+        restrictions=""
         role="admin"
-        theme=""
-        type="local" />
+        theme="DEFAULT" />
   <user language="FR"
         login="demo"
         password="$1$OP$6/aq2lLW.Tv..izZpWWax1"
@@ -24,4 +23,4 @@
       <service>Xen</service>
     </restrictions>
   </user>
-</octopussy_users>
+</Octopussy_users>
