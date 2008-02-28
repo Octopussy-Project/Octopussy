@@ -16,7 +16,7 @@ if (defined $f->{edit_status})
 		{
 			my $id = $1;
 			Octopussy::Alert::Update_Status($id, $f->{edit_status}, $comment);
-			AAT::NSCA::Send(0, "OK: No Alerts !")	
+			AAT::NSCA::Send("Octopussy", 0, "OK: No Alerts !")	
 				if (Octopussy::Alert::Check_All_Closed());
 		}
 	}

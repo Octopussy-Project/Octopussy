@@ -234,7 +234,7 @@ sub Insert_In_DB($$$$)
 	
 	my $datestr = Date::Manip::UnixDate(Date::Manip::ParseDate($date),
 		"%Y/%m/%d %H:%M:%S");
-	AAT::DB::Insert("_alerts_",
+	AAT::DB::Insert("Octopussy", "_alerts_",
 		{ alert_id => $alert->{name}, date_time => $datestr, device => $device,
 			level => $alert->{level}, log => $line } );
 }
@@ -247,7 +247,7 @@ Checks if all Alerts are closed
 
 sub Check_All_Closed()
 {	
-	my @result = AAT::DB::Query("SELECT * FROM _alerts_ "
+	my @result = AAT::DB::Query("Octopussy", "SELECT * FROM _alerts_ "
 		. "WHERE status NOT LIKE 'Closed'");
 	
 	return ($#result < 0 ? 1 : 0);
@@ -266,7 +266,7 @@ sub Opened_List($)
 	my $query = "SELECT * FROM _alerts_ "	
 		. "WHERE device='$device' AND status='Opened'";
 	
-	return (AAT::DB::Query($query));
+	return (AAT::DB::Query("Octopussy", $query));
 }
 
 =head2 Update_Status($id, $status, $comment
@@ -279,8 +279,8 @@ sub Update_Status($$$)
 {
 	my ($id, $status, $comment) = @_;
 	
-	AAT::DB::Do("UPDATE _alerts_ SET status='$status', comment='$comment'" 
-		. " WHERE log_id=$id");
+	AAT::DB::Do("Octopussy", "UPDATE _alerts_ SET status='$status', "
+		. "comment='$comment' WHERE log_id=$id");
 }
 
 #
@@ -426,7 +426,7 @@ sub From_Device($$)
 	my @alerts = ();
 	my $query = "SELECT * FROM _alerts_ WHERE device='$device'";
 	$query .= (defined $status ? " AND status='$status'" : "");
-	@alerts = AAT::DB::Query($query);	
+	@alerts = AAT::DB::Query("Octopussy", $query);	
 
 	return (@alerts);
 }
@@ -476,7 +476,7 @@ sub Tracker($$$$$)
   . "status='$stat'" : "") : "")
   . " ORDER BY $sort " . ($sort ne "date_time" ? "ASC" : "DESC")
   . (AAT::NOT_NULL($limit) ? " LIMIT $limit" : "");
-	my @alerts = AAT::DB::Query($query);
+	my @alerts = AAT::DB::Query("Octopussy", $query);
 
 	return (@alerts);	
 }

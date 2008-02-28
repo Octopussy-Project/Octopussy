@@ -1,6 +1,6 @@
 <%
 my @list = ();
-my $smtp_conf = AAT::SMTP::Configuration();
+my $smtp_conf = AAT::SMTP::Configuration("Octopussy");
 foreach my $s (Octopussy::Service::List())
 {
   push(@list, { label => "SERVICE $s",

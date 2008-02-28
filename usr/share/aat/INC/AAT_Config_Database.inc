@@ -1,11 +1,11 @@
 <%
 my %arg = @_;
 my $tt = $arg{tooltip};
-my $db = AAT::DB::Configuration();
+my $db = AAT::DB::Configuration($arg{appli});
 my ($type, $host, $user, $password, $base) =
   ($db->{type}, $db->{host}, $db->{user}, $db->{password}, $db->{db});
 
-my $status = AAT::DB::Connection_Test();
+my $status = AAT::DB::Connection_Test($arg{appli});
 my ($level, $msg) = ($status ? (0, "Database Connection is OK !") 
 	: (2, "Database Connection is NOT OK !"));
 %>

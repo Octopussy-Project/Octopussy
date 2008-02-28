@@ -441,7 +441,7 @@ sub Updates_Installation(@)
   {
 		my $url = "$web/Download/Reports/$r.xml";
 		$url =~ s/ /\%20/g;
-    AAT::Download($url, "$reports_dir/$r.xml");
+    AAT::Download("Octopussy", $url, "$reports_dir/$r.xml");
   }
 }
 

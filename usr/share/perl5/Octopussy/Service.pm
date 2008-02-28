@@ -558,7 +558,7 @@ sub Updates()
 	my $web = Octopussy::WebSite();
 	my $run_dir = Octopussy::Directory("running");	
 
-	AAT::Download("$web/Download/Services/_services.idx", 
+	AAT::Download("Octopussy", "$web/Download/Services/_services.idx", 
 		"$run_dir/_services.idx");
 	open(UPDATE, "< $run_dir/_services.idx");
 	while (<UPDATE>)
@@ -581,7 +581,8 @@ sub Updates_Installation
 
   foreach my $s (@services)
   {
-    AAT::Download("$web/Download/Services/$s.xml", "$services_dir/$s.xml");
+    AAT::Download("Octopussy", "$web/Download/Services/$s.xml", 
+			"$services_dir/$s.xml");
     Parse_Restart($s);
   }
 }
@@ -596,7 +597,7 @@ sub Update_Get_Messages($)
 	my $web = Octopussy::WebSite();
 	my $run_dir = Octopussy::Directory("running");
 
-	AAT::Download("$web/Download/Services/$service.xml", 
+	AAT::Download("Octopussy", "$web/Download/Services/$service.xml", 
 		"$run_dir$service.xml");
 	my $new_conf =  AAT::XML::Read("$run_dir$service.xml");
 	

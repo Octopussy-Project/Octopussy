@@ -26,15 +26,15 @@ sub Configuration($)
 	return ($conf);	
 }
 
-=head2 Data($object)
+=head2 Data($appli, $object)
 
 Returns Object data
 
 =cut
 
-sub Data($)
+sub Data($$)
 {
-	my $object = shift;
+	my ($appli, $object) = @_;
 	my ($list_conf, $list)  = (undef, undef);
 
 	my $conf = Configuration($object);
@@ -46,7 +46,7 @@ sub Data($)
 	}
 	elsif ($conf->{backend} =~ /^DB$/i)
 	{
-  	my @data = AAT::DB::Query("SELECT * FROM $conf->{source}");
+  	my @data = AAT::DB::Query($appli, "SELECT * FROM $conf->{source}");
   	$list = \@data;
 	}
 

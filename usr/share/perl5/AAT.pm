@@ -201,16 +201,16 @@ sub File($)
 	return (AAT::Application::File("AAT", $file));
 }
 
-=head2 Download($download, $dest)
+=head2 Download($appli, $download, $dest)
 
 Downloads $download to local $dest
 
 =cut
 
-sub Download($$)
+sub Download($$$)
 {
-  my ($download, $dest) = @_;
-  my $pc = AAT::Proxy::Configuration();
+  my ($appli, $download, $dest) = @_;
+  my $pc = AAT::Proxy::Configuration($appli);
 
   my $proxy = (NOT_NULL($pc->{server}) ? "http://$pc->{server}" : "")
     . (NOT_NULL($pc->{port}) ? ":$pc->{port}" : "");
@@ -223,16 +223,16 @@ sub Download($$)
   system(($ENV{http_proxy} ne "" ? "$ENV{http_proxy}; " : "") . $cmd);
 }
 
-=head2 Update_Configuration($file, $conf, $rootname)
+=head2 Update_Configuration($appli, $file, $conf, $rootname)
 
 =cut
 
-sub Update_Configuration($$$)
+sub Update_Configuration($$$$)
 {
-  my ($file, $conf, $rootname) = @_;
+  my ($appli, $file, $conf, $rootname) = @_;
 
-	my $xml_file = File($file);
-  AAT::XML::Write(File($file), $conf, $rootname)
+	my $xml_file = AAT::Application::File($appli, $file);
+  AAT::XML::Write(AAT::Application::File($appli, $file), $conf, $rootname)
 		if (NOT_NULL($xml_file));
 }
 

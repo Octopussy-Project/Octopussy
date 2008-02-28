@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <aat>
 
-	<application name="AAT" version="0.7.0"
+	<application name="AAT" version="0.7.2"
 							 email="octo.devel@gmail.com"
                website="http://www.8pussy.org/dokuwiki/doku.php?id=aat">
 
@@ -10,14 +10,7 @@
 		<directory name="themes" value="/usr/share/aat/THEMES/" />
 		<directory name="translations" value="/usr/share/aat/Translations/" />
 
-		<file name="db" value="/var/lib/octopussy/conf/db.xml" />
-		<file name="ldap" value="/var/lib/octopussy/conf/ldap.xml" />
 		<file name="message_logs" value="/var/lib/octopussy/conf/message_logs.xml" />
-		<file name="nsca" value="/var/lib/octopussy/conf/nsca.xml" />
-		<file name="proxy" value="/var/lib/octopussy/conf/proxy.xml" />		
-		<file name="schedule" value="/var/lib/octopussy/conf/schedule.xml" />
-		<file name="smtp" value="/var/lib/octopussy/conf/smtp.xml" />
-		<file name="xmpp" value="/var/lib/octopussy/conf/xmpp.xml" />
 
   </application>
 
@@ -44,12 +37,17 @@
 		<directory name="running" value="/var/run/octopussy/" />
 		<directory name="web" value="/usr/share/octopussy/" />
 
+		<file name="db" value="/var/lib/octopussy/conf/db.xml" />
 		<file name="device_models" value="/var/lib/octopussy/conf/device_models.xml" />
 		<file name="devicegroups" value="/var/lib/octopussy/conf/devicegroups.xml" />
 		<file name="dialogs" value="/etc/octopussy/dialogs.xml" />
+		<file name="ldap" value="/var/lib/octopussy/conf/ldap.xml" />
 		<file name="locations" value="/var/lib/octopussy/conf/locations.xml" />
+		<file name="nsca" value="/var/lib/octopussy/conf/nsca.xml" />
+		<file name="proxy" value="/var/lib/octopussy/conf/proxy.xml" />
 		<file name="schedule" value="/var/lib/octopussy/conf/schedule.xml" />
 		<file name="servicegroups" value="/var/lib/octopussy/conf/servicegroups.xml" />
+		<file name="smtp" value="/var/lib/octopussy/conf/smtp.xml" />
 		<file name="storages" value="/var/lib/octopussy/conf/storages.xml" />
 		<file name="taxonomy" value="/var/lib/octopussy/conf/taxonomy.xml" />
 		<file name="timeperiods" value="/var/lib/octopussy/conf/timeperiods.xml" />
@@ -57,6 +55,7 @@
 		<file name="user_roles" value="/var/lib/octopussy/conf/user_roles.xml" />
 		<file name="users" value="/var/lib/octopussy/conf/users.xml" />
 		<file name="webservices" value="/var/lib/octopussy/conf/webservices.xml" />
+		<file name="xmpp" value="/var/lib/octopussy/conf/xmpp.xml" />
 
 		<parameter name="devicetype" value="Unknown" />
     <parameter name="devicemodel" value="Unknown" />

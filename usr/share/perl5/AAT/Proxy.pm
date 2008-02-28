@@ -7,33 +7,37 @@ package AAT::Proxy;
 
 use strict;
 
-my $PROXY_FILE = undef;
+my %conf_file = ();
 
 =head1 FUNCTIONS
 
-=head2 Configuration()
+=head2 Configuration($appli)
 
 Returns Proxy Configuration
 
 =cut
 
-sub Configuration()
+sub Configuration($)
 {
-	$PROXY_FILE ||= AAT::File("proxy");
-	my $conf = AAT::XML::Read($PROXY_FILE, 1);
+	my $appli = shift;
+
+	$conf_file{$appli} ||= AAT::Application::File($appli, "proxy");
+	my $conf = AAT::XML::Read($conf_file{$appli}, 1);
 
 	return ($conf->{proxy});
 }
 
-=head2 Connection_Test()
+=head2 Connection_Test($appli)
 
 Check the Proxy Connection
 
 =cut
 
-sub Connection_Test()
+sub Connection_Test($)
 {
-	AAT::Download("http://www.google.com", "/tmp/test.html");
+	my $appli = shift;
+
+	AAT::Download($appli, "http://www.google.com", "/tmp/test.html");
 	my $status = ((-s "/tmp/test.html" > 0) ? 1 : 0);
 	unlink("/tmp/test.html")	if (-f "/tmp/test.html");
 

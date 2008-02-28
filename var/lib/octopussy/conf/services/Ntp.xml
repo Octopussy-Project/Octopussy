@@ -2,7 +2,7 @@
 <octopussy_service description="Ntp Service"
                    name="Ntp"
                    nb_messages="025"
-                   version="200802130002">
+                   version="200802280001">
   <message loglevel="Information"
            msg_id="Ntp:step_time_server"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpdate[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;step time server \S+ offset \S+ sec&quot;):msg@&gt;"
@@ -171,4 +171,10 @@
            rank="028"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Ntp:cant_open_permission_denied"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;can't open .+: Permission denied&quot;):msg@&gt;"
+           rank="029"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

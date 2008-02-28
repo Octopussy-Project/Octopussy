@@ -339,7 +339,8 @@ sub Updates_Installation
 
   foreach my $t (@tables)
   {
-		AAT::Download("$web/Download/Tables/$t.xml", "$tables_dir/$t.xml");
+		AAT::Download("Octopussy", "$web/Download/Tables/$t.xml", 
+			"$tables_dir/$t.xml");
   }
 }
 
@@ -352,7 +353,8 @@ sub Update_Get_Fields($)
 	my $table = shift;
 	my $web = Octopussy::WebSite();
 
-	AAT::Download("$web/Download/Tables/$table.xml", "/tmp/$table.xml");
+	AAT::Download("Octopussy", "$web/Download/Tables/$table.xml", 
+		"/tmp/$table.xml");
 	my $new_conf =  AAT::XML::Read("/tmp/$table.xml");
 
 	return (AAT::ARRAY($new_conf->{field}));

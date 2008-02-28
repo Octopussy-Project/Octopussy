@@ -77,7 +77,7 @@ if ($role =~ /admin/i)
 	<AAT:BoxCol><AAT:Password name="password" /></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Selector_YesNo name="certificate" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Selector_Language /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Selector_User_Role /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Selector_User_Role appli="Octopussy" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="2"><AAT:Form_Submit value="_NEW_USER" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Form>

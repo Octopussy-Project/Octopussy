@@ -2,8 +2,8 @@
 <octopussy_service description="Postfix Service"
                    icon="software/logo_postfix"
                    name="Postfix"
-                   nb_messages="058"
-                   version="200802140001"
+                   nb_messages="059"
+                   version="200802260001"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -359,4 +359,10 @@
            rank="059"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
+  <message loglevel="Warning"
+           msg_id="Postfix:message_queued_n_days"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/pickup[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;warning: .+ message has been queued for \d+ days&quot;):msg@&gt;"
+           rank="060"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

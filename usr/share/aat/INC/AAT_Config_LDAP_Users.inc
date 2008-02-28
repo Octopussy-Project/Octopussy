@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 my $tt = $arg{tooltip};
-my $ldap = AAT::LDAP::Configuration();
+my $ldap = AAT::LDAP::Configuration($arg{appli});
 my ($server, $base, $filter) =
   ($ldap->{users_server}, $ldap->{users_base}, $ldap->{users_filter});
 %>
@@ -39,7 +39,7 @@ my ($server, $base, $filter) =
 <%
 if (AAT::NOT_NULL($server))
 {
-  my ($level, $msg) = ((AAT::LDAP::Users_Connection_Test())
+  my ($level, $msg) = ((AAT::LDAP::Users_Connection_Test($arg{appli}))
 		? (0, "LDAP Connection is OK !") : (2, "LDAP Connection is NOT OK !"));
 	%><AAT:Message level="$level" msg="$msg" /><%
 }

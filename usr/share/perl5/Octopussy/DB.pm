@@ -54,7 +54,7 @@ Connect to the Octopussy Database
 
 sub Connect()
 {
-	my $error = AAT::DB::Connect();
+	my $error = AAT::DB::Connect("Octopussy");
 
 	AAT::Syslog("octo_DBI", "$error")	if (defined $error);
 }
@@ -70,7 +70,7 @@ sub Table_Creation($$$)
 	my ($tablename, $fields, $indexes) = @_;
 
 	my $sql = Octopussy::Table::SQL($tablename, $fields, $indexes);
-	AAT::DB::Do($sql);
+	AAT::DB::Do("Octopussy", $sql);
 }
 
 =head2 SQL_As_Substitution($field)

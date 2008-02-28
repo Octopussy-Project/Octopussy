@@ -91,7 +91,7 @@ sub List()
 		my $conf = AAT::XML::Read("$contacts_dir/$f");
 		push(@contacts, $conf->{cid})	if (defined $conf->{cid});
 	}
-	foreach my $c (AAT::LDAP::Contacts())
+	foreach my $c (AAT::LDAP::Contacts("Octopussy"))
   	{ push(@contacts, $c->{cid})		if (defined $c->{cid}); }
 	
 	return (@contacts);
@@ -186,7 +186,7 @@ sub Configurations($)
 			push(@configurations, $conf);
 		}
 	}
-	foreach my $c (AAT::LDAP::Contacts())
+	foreach my $c (AAT::LDAP::Contacts("Octopussy"))
 	{
 		$field{$c->{$sort}} = 1;
 		push(@configurations, $c);

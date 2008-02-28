@@ -246,14 +246,13 @@ sub Alert_Handler($$)
 							Octopussy::Alert::Message_Building($a, $device, $data, $msg);
 						if (defined $a->{action_jabber})
 						{
-							AAT::XMPP::Send_Message($subject, @{$a->{imdest}});
+							AAT::XMPP::Send_Message("Octopussy", $subject, @{$a->{imdest}});
 							foreach my $line (split(/\n/, $body))
-    						{ AAT::XMPP::Send_Message($line, @{$a->{imdest}}); }
+    					{ AAT::XMPP::Send_Message("Octopussy", $line, @{$a->{imdest}}); }
 						}
-						AAT::SMTP::Send_Message($subject, $body, @{$a->{maildest}})
-							if (defined $a->{action_mail});
-						AAT::NSCA::Send((($a->{level} =~ /Warning/i) ? 1 : 2), "$subject")
-							if (defined $a->{action_nsca}); 
+						AAT::SMTP::Send_Message("Octopussy", $subject, $body, 
+							@{$a->{maildest}}) if (defined $a->{action_mail});
+						AAT::NSCA::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),								"$subject") if (defined $a->{action_nsca}); 
 					}
 				}
 			}

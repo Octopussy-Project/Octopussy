@@ -39,6 +39,7 @@ my $regexp_exclude = $f->{regexp_exclude};
 my $regexp_include2 = $f->{regexp_include2}; 
 my $regexp_exclude2 = $f->{regexp_exclude2};
 
+my $time = time();
 my $text = "";
 if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 	&& (($#devices >= 0) && ($#services >= 0) 
@@ -94,6 +95,10 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 		$text .= "</table>"; 
 	}
 }
+AAT::Syslog("octo_WebUI", "LOG_SEARCH", join(",", @devices), 
+	join(",", @services), "$y1$m1$d1$hour1$min1-$y2$m2$d2$hour2$min2", 
+	time() - $time);
+
 ($Session->{logs}, $Session->{file}, $Session->{csv}, $Session->{zip}) =
 	(undef, undef, undef, undef);
 my @used_services = Octopussy::Service::List_Used();

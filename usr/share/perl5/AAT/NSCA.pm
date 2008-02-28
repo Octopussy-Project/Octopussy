@@ -7,35 +7,37 @@ package AAT::NSCA;
 
 use strict;
 
-my $NSCA_FILE = undef;
+my %conf_file = ();
 
 =head1 FUNCTIONS
 
-=head2 Configuration()
+=head2 Configuration($appli)
 
 Returns NSCA Configuration
 
 =cut
 
-sub Configuration()
+sub Configuration($)
 {
-	$NSCA_FILE ||= AAT::File("nsca");
-	my $conf = AAT::XML::Read($NSCA_FILE, 1);
+	my $appli = shift;
+
+	$conf_file{$appli} ||= AAT::Application::File($appli, "nsca");
+	my $conf = AAT::XML::Read($conf_file{$appli}, 1);
 
 	return ($conf->{nsca});
 }
 
-=head2 Send($level, $msg)
+=head2 Send($appli, $level, $msg)
 
 Send NSCA message '$msg' with level '$level'
 
 =cut
 
-sub Send($$)
+sub Send($$$)
 {
-  my ($level, $msg) = @_;
+  my ($appli, $level, $msg) = @_;
 	
-	my $nsca_conf = Configuration();
+	my $nsca_conf = Configuration($appli);
   if ((defined $nsca_conf)
     && (defined $nsca_conf->{bin}) && (defined $nsca_conf->{conf})
     && (-e $nsca_conf->{bin}) && (-e $nsca_conf->{conf}))

@@ -11,36 +11,39 @@ use strict;
 
 use Net::XMPP;
 
-my $XMPP_FILE = undef;
+my %conf_file = ();
 
 =head1 FUNCTIONS
 
-=head2 Configuration()
+=head2 Configuration($appli)
 
 Returns the XMPP configuration
 
 =cut
 
-sub Configuration()
+sub Configuration($)
 {
-	$XMPP_FILE ||= AAT::File("xmpp");
-	my $conf = AAT::XML::Read($XMPP_FILE, 1);
+	my $appli = shift;
+
+	$conf_file{$appli} ||= AAT::Application::File($appli, "xmpp");
+	my $conf = AAT::XML::Read($conf_file{$appli}, 1);
 
 	return ($conf->{xmpp});
 }
 
-=head2 Connection_Test()
+=head2 Connection_Test($appli)
 
 Checks the XMPP Connection
 
 =cut
 
-sub Connection_Test()
+sub Connection_Test($)
 {
+	my $appli = shift;
   my $status = 0;
 
 	AAT::DEBUG("XMPP Connection::Test Begin");
-	my $xmpp_conf = Configuration();
+	my $xmpp_conf = Configuration($appli);
   my $client = new Net::XMPP::Client();
   my @res = $client->Connect(hostname => $xmpp_conf->{server}, 
 		port => 5222, tls => $xmpp_conf->{tls}, timeout => 3);
@@ -56,17 +59,17 @@ sub Connection_Test()
 	return ($status);
 }
 
-=head2 Send_Message($msg, @dests)
+=head2 Send_Message($appli, $msg, @dests)
 
 Sends message '$msg' to '@dests' through XMPP
 
 =cut
 
-sub Send_Message($@)
+sub Send_Message($$@)
 {
-  my ($msg, @dests) = @_;
+  my ($appli, $msg, @dests) = @_;
 
-	my $xmpp_conf = Configuration();
+	my $xmpp_conf = Configuration($appli);
 	my $client = new Net::XMPP::Client();
 	my @res = $client->Connect(hostname => $xmpp_conf->{server}, 
 		port => 5222, tls => $xmpp_conf->{tls});

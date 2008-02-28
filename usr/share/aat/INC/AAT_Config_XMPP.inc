@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 my $tt = $arg{tooltip};
-my $xmpp = AAT::XMPP::Configuration();
+my $xmpp = AAT::XMPP::Configuration($arg{appli});
 my ($server, $tls, $user, $pwd) = 
 	($xmpp->{server}, $xmpp->{tls}, $xmpp->{user}, $xmpp->{password});
 %>
@@ -43,7 +43,7 @@ my ($server, $tls, $user, $pwd) =
 <%
 if (AAT::NOT_NULL($server))
 {
-	my ($level, $msg) = ((AAT::XMPP::Connection_Test()) 
+	my ($level, $msg) = ((AAT::XMPP::Connection_Test($arg{appli})) 
 		? (0, "XMPP Connection is OK !") : (2, "XMPP Connection is NOT OK !"));
 	%><AAT:Message level="$level" msg="$msg" /><%
 }

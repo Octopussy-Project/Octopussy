@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 my $tt = $arg{tooltip};
-my $smtp = AAT::SMTP::Configuration();
+my $smtp = AAT::SMTP::Configuration($arg{appli});
 my ($server, $sender) = ($smtp->{server}, $smtp->{sender});
 %>
 <AAT:Form method="POST" action="$arg{action}">
@@ -28,7 +28,7 @@ my ($server, $sender) = ($smtp->{server}, $smtp->{sender});
 <%
 if (AAT::NOT_NULL($server))
 {
-	my ($level, $msg) = ((AAT::SMTP::Connection_Test()) 
+	my ($level, $msg) = ((AAT::SMTP::Connection_Test($arg{appli})) 
 		? (0, "SMTP Connection is OK !") : (2, "SMTP Connection is NOT OK !"));
 	%><AAT:Message level="$level" msg="$msg" /><%
 }

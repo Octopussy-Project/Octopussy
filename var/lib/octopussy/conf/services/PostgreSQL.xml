@@ -2,8 +2,8 @@
 <octopussy_service description="PostgreSQL Service"
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
-                   nb_messages="025"
-                   version="200802210006"
+                   nb_messages="026"
+                   version="200802280004"
                    website="http://www.postgresql.org">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
@@ -49,9 +49,9 @@
            taxonomy="Application.Errors" />
   <message loglevel="Warning"
            msg_id="PostgreSQL:column_does_not_exist"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;ERROR:  column .+ does not exist&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;ERROR:  column .+ does not exist&quot;):msg@&gt; "
            rank="008"
-           table="Message"
+           table="Database_Message"
            taxonomy="Application.Errors" />
   <message loglevel="Notice"
            msg_id="PostgreSQL:reset_by_peer"

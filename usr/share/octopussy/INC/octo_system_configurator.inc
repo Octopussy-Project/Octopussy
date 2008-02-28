@@ -14,44 +14,35 @@ my $action = $arg{action};
 </AAT:BoxRow> 
 <AAT:BoxRow><AAT:BoxCol><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol>
-	<AAT:Config_Database action="$action" tooltip="_TOOLTIP_SYSTEM_DB" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:Config_Database appli="Octopussy" action="$action" 
+		tooltip="_TOOLTIP_SYSTEM_DB" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol>
-  <AAT:Config_Certificate action="$action" 
-		tooltip="_TOOLTIP_SYSTEM_CERTIFICATE" />
-	</AAT:BoxCol>
+  <AAT:BoxCol><AAT:Config_Certificate appli="Octopussy" action="$action" 
+		tooltip="_TOOLTIP_SYSTEM_CERTIFICATE" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol>
-	<AAT:Config_Proxy action="$action" tooltip="_TOOLTIP_SYSTEM_PROXY" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:Config_Proxy appli="Octopussy" action="$action" 
+		tooltip="_TOOLTIP_SYSTEM_PROXY" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol>
-  <AAT:Config_LDAP_Contacts action="$action" tooltip="_TOOLTIP_SYSTEM_LDAP" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:Config_LDAP_Contacts appli="Octopussy" action="$action" 
+		tooltip="_TOOLTIP_SYSTEM_LDAP" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol>
-	<AAT:Config_LDAP_Users action="$action" tooltip="_TOOLTIP_SYSTEM_LDAP" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:Config_LDAP_Users appli="Octopussy" action="$action" 
+		tooltip="_TOOLTIP_SYSTEM_LDAP" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol>
-	<AAT:Config_SMTP action="$action" tooltip="_TOOLTIP_SYSTEM_SMTP" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:Config_SMTP appli="Octopussy" action="$action" 
+		tooltip="_TOOLTIP_SYSTEM_SMTP" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol>
-	<AAT:Config_XMPP action="$action" tooltip="_TOOLTIP_SYSTEM_JABBER" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:Config_XMPP appli="Octopussy" action="$action" 
+		tooltip="_TOOLTIP_SYSTEM_JABBER" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol>
-	<AAT:Config_NSCA action="$action" tooltip="_TOOLTIP_SYSTEM_NSCA" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:Config_NSCA appli="Octopussy" action="$action" 
+		tooltip="_TOOLTIP_SYSTEM_NSCA" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>

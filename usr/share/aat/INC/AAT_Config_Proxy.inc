@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 my $tt = $arg{tooltip};
-my $proxy = AAT::Proxy::Configuration();
+my $proxy = AAT::Proxy::Configuration($arg{appli});
 my ($server, $port, $user, $pwd) =
   ($proxy->{server}, $proxy->{port}, $proxy->{user}, $proxy->{password});
 %>
@@ -41,7 +41,7 @@ my ($server, $port, $user, $pwd) =
 <%
 if (AAT::NOT_NULL($server))
 {
-	my ($level, $msg) = ((AAT::Proxy::Connection_Test())
+	my ($level, $msg) = ((AAT::Proxy::Connection_Test($arg{appli}))
   	? (0, "Proxy Connection is OK !") : (2, "Proxy Connection is NOT OK !"));
 	%><AAT:Message level="$level" msg="$msg" /><%
 }

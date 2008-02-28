@@ -13,6 +13,9 @@
 	<log mid="GENERIC_REMOVED_FROM"
     message="%%ARG1%% '%%ARG2%%' has been removed from %%ARG3%% '%%ARG4%%' by %%LOGIN%%" />
 
+	<log mid="LOG_SEARCH"
+		message="Logs Search on Device[%%ARG1%%] Service[%%ARG2%%] Period[%%ARG3%%] by %%LOGIN%% takes %%ARG4%% seconds." />
+
 	<log mid="SMTP_INVALID_CONFIG"
 		message="Invalid SMTP Configuration. Can't send any mail !" />
 	

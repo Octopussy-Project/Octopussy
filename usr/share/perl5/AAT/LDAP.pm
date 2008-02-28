@@ -10,33 +10,37 @@ use strict;
 use Net::LDAP;
 
 my $DEFAULT_ROLE = "rw";
-my $LDAP_FILE = undef;
+my %conf_file = ();
 
 =head1 FUNCTIONS
 
-=head2 Configuration()
+=head2 Configuration($appli)
 
 Returns LDAP Configuration
 
 =cut
 
-sub Configuration()
+sub Configuration($)
 {
-	$LDAP_FILE ||= AAT::File("ldap");
-	my $conf = AAT::XML::Read($LDAP_FILE, 1);
+	my $appli = shift;
+
+	$conf_file{$appli} ||= AAT::Application::File($appli, "ldap");
+	my $conf = AAT::XML::Read($conf_file{$appli}, 1);
 
 	return ($conf->{ldap});
 }
 
-=head2 Contacts_Connection_Test()
+=head2 Contacts_Connection_Test($appli)
 
 Checks LDAP Contacts connectivity
 
 =cut
 
-sub Contacts_Connection_Test()
+sub Contacts_Connection_Test($)
 {
-	my $ldap = Configuration();
+	my $appli = shift;
+
+	my $ldap = Configuration($appli);
 	my $l = Net::LDAP->new($ldap->{contacts_server});
  	return (0) if (!defined $l);
   my $msg = $l->bind();
@@ -47,15 +51,17 @@ sub Contacts_Connection_Test()
   return (1);
 }
 
-=head2 Users_Connection_Test()
+=head2 Users_Connection_Test($appli)
 
 Checks LDAP Users connectivity
 
 =cut
 
-sub Users_Connection_Test()
+sub Users_Connection_Test($)
 {
-	my $ldap = Configuration();
+	my $appli = shift;
+
+	my $ldap = Configuration($appli);
   my $l = Net::LDAP->new($ldap->{users_server});
   return (0) if (!defined $l);
   my $msg = $l->bind();
@@ -66,17 +72,17 @@ sub Users_Connection_Test()
   return (1);
 }
 
-=head2 Check_Password($user, $pwd)
+=head2 Check_Password($appli, $user, $pwd)
 
 Checks User/Password from LDAP
 
 =cut
 
-sub Check_Password($$)
+sub Check_Password($$$)
 {
-  my ($user, $pwd) = @_;
+  my ($appli, $user, $pwd) = @_;
 
-	my $ldap = Configuration();
+	my $ldap = Configuration($appli);
 	if (defined $ldap)
 	{
   	my $l = Net::LDAP->new($ldap->{users_server});
@@ -95,17 +101,18 @@ sub Check_Password($$)
   return (0);
 }
 
-=head2 Contacts()
+=head2 Contacts($appli)
 
 Returns Contacts List from LDAP
 
 =cut
 
-sub Contacts()
+sub Contacts($)
 {
+	my $appli = shift;
   my @contacts = ();
 
-	my $ldap = Configuration();
+	my $ldap = Configuration($appli);
 	if (defined $ldap)
 	{
   	my $l = Net::LDAP->new($ldap->{contacts_server});
@@ -128,17 +135,18 @@ sub Contacts()
   return (@contacts);
 }
 
-=head2 Users()
+=head2 Users($appli)
 
 Returns Users List from LDAP
 
 =cut
 
-sub Users()
+sub Users($)
 {
+	my $appli = shift;
   my @users = ();
 
-	my $ldap = Configuration();
+	my $ldap = Configuration($appli);
 	if (defined $ldap)
 	{
   	my $l = Net::LDAP->new($ldap->{users_server});

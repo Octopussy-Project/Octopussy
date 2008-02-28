@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 my $tt = $arg{tooltip};
-my $nsca = AAT::NSCA::Configuration();
+my $nsca = AAT::NSCA::Configuration($arg{appli});
 my ($bin, $conf, $server, $host, $service) = 
 	($nsca->{bin}, $nsca->{conf}, $nsca->{nagios_server}, 
 		$nsca->{nagios_host}, $nsca->{nagios_service});

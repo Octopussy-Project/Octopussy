@@ -144,7 +144,8 @@ sub Web_Updates
 	my %update;
 	my $website = WebSite();
 	my $running_dir = Octopussy::Directory("running");
-	AAT::Download("$website/Download/$type/$file", "$running_dir$file");
+	AAT::Download("Octopussy", "$website/Download/$type/$file", 
+		"$running_dir$file");
 	open(UPDATE, "< $running_dir$file");
 	while (<UPDATE>)
 		{ $update{$1} = $2  if ($_ =~ /^(.+):(\d+)$/); }
@@ -358,7 +359,10 @@ sub Updates_Installation
   my $main_dir = Octopussy::Directory("main");
 
   foreach my $u (@updates)
-  	{ AAT::Download("$web/Download/System/$u.xml", "$main_dir/$u.xml"); }
+  { 
+		AAT::Download("Octopussy", "$web/Download/System/$u.xml", 
+			"$main_dir/$u.xml"); 
+	}
 }
 
 1;

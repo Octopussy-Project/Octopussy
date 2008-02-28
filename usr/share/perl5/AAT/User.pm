@@ -39,7 +39,7 @@ sub Authentication($$$)
     return ($u) if (($u->{login} eq $login) && ($u->{password} eq $md5));
   }
 
-  if (AAT::LDAP::Check_Password($login, $pwd))
+  if (AAT::LDAP::Check_Password($appli, $login, $pwd))
   {
     return ({ login => $login, password => $pwd, role => $DEFAULT_ROLE,
       language => $DEFAULT_LANGUAGE, theme => $DEFAULT_THEME });
@@ -66,7 +66,7 @@ sub Add($$$$$$)
     password => unix_md5_crypt($pwd, $SALT), certificate => $certificate, 
 		role => $role, language => $lang || $DEFAULT_LANGUAGE, 
 		theme => $DEFAULT_THEME });
-  AAT::XML::Write($USERS_FILE, $conf, "octopussy_users");
+  AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 
   return (undef);	
 }
@@ -89,7 +89,7 @@ sub Remove($$)
     push(@users, $u)       if ($u->{login} ne $login);
   }
   $conf->{user} = \@users;
-  AAT::XML::Write($USERS_FILE, $conf, "octopussy_users");
+  AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 }
 
 =head2 Update($appli, $login, $update)
@@ -123,7 +123,7 @@ sub Update($$$)
     }
   }
   $conf->{user} = \@users;
-  AAT::XML::Write($USERS_FILE, $conf, "octopussy_users");
+  AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 }
 
 =head2 Restrictions($appli, $login)
@@ -172,7 +172,7 @@ sub Update_Restrictions($$$)
     }
   }
   $conf->{user} = \@users;
-  AAT::XML::Write($USERS_FILE, $conf, "octopussy_users");	
+  AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");	
 }
 
 =head2 List($appli)
@@ -193,7 +193,7 @@ sub List($)
     $u->{type} = "local";
     push(@users, $u);
   }
-  my @ldap_users = AAT::LDAP::Users();
+  my @ldap_users = AAT::LDAP::Users($appli);
   foreach my $u (@ldap_users)
     { push(@users, $u); }
 

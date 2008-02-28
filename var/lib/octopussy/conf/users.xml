@@ -5,5 +5,23 @@
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restriction=""
         role="admin"
-        theme="DEFAULT" />
+        theme=""
+        type="local" />
+  <user language="FR"
+        login="demo"
+        password="$1$OP$6/aq2lLW.Tv..izZpWWax1"
+        role="restricted"
+        theme="DEFAULT">
+    <restrictions>
+      <alert>-ANY-</alert>
+      <device>XDXEN1</device>
+      <device>XDXEN2</device>
+      <device>XDXEN3</device>
+      <device>XDXEN4</device>
+      <report>-ANY-</report>
+      <service>Linux_System</service>
+      <service>Sshd</service>
+      <service>Xen</service>
+    </restrictions>
+  </user>
 </octopussy_users>
