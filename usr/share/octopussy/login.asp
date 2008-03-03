@@ -9,6 +9,7 @@ if ((defined $f->{login}) && (defined $f->{password}))
 		AAT::User::Authentication("Octopussy", $f->{login}, $f->{password});
  	if (defined $auth->{login})
  	{
+		$Session->{Timeout} = 60;
   	$Session->{AAT_LOGIN} = $auth->{login};
 		$Session->{AAT_ROLE} = $auth->{role};
 		$Session->{AAT_LANGUAGE} = $auth->{language};

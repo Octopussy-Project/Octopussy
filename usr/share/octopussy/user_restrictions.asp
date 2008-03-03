@@ -18,12 +18,14 @@ push(@alerts, Octopussy::Alert::List());
 my @reports = ("-ANY-");
 push(@reports, Octopussy::Report::List(undef, undef));
 
-if (AAT::NOT_NULL($f->{submit}))
+if ($Session->{AAT_ROLE} =~ /admin/i)
 {
-  my $conf = { device => \@devices_sel, service => \@services_sel,
-		alert => \@alerts_sel, report => \@reports_sel };
-	AAT::User::Update_Restrictions("Octopussy", $user, $conf);
-}
+	if (AAT::NOT_NULL($f->{submit}))
+	{
+  	my $conf = { device => \@devices_sel, service => \@services_sel,
+			alert => \@alerts_sel, report => \@reports_sel };
+		AAT::User::Update_Restrictions("Octopussy", $user, $conf);
+	}
 %>
 <AAT:Form action="$url?user=$user">
 <AAT:Box align="C" icon="buttons/bt_users" title="_USER_RESTRICTIONS">
@@ -63,5 +65,7 @@ if (AAT::NOT_NULL($f->{submit}))
 		value="Apply these restrictions to user $user" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>
-</AAT:Form>
+</AAT:Form><%
+}
+%>
 <WebUI:PageBottom />

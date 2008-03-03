@@ -82,8 +82,11 @@
 	<msg mid="_FINISH" value="Final" />
 	<msg mid="_HELP" value="Ayuda" />
 	<msg mid="_HOST" value="Host" />
+	<msg mid="_ICONS_AND_TEXT" value="_ICONS_AND_TEXT" />
+  <msg mid="_ICONS_ONLY" value="_ICONS_ONLY" />
 	<msg mid="_KEY" value="Llave" />
 	<msg mid="_LOGOUT" value="Desconexion" />
+	<msg mid="_MENU_DISPLAY" value="_MENU_DISPLAY" />
 	<msg mid="_MODIFY" value="Modificar" />
 	<msg mid="_NEXT" value="Siguiente" />
 	<msg mid="_OK" value="Ok" />
@@ -97,6 +100,7 @@
   <msg mid="_STATUS" value="Estado" />
 	<msg mid="_STOP" value="Stop" />
 	<msg mid="_STOPPED" value="Detenido" />
+	<msg mid="_TEXT_ONLY" value="_TEXT_ONLY" />
 	<msg mid="_UPDATE" value="Actualizar" />
 	<msg mid="_USER" value="Usuario" />
 	<msg mid="_USERS" value="Usuarios" />

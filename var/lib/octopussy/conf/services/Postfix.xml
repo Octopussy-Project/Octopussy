@@ -3,7 +3,7 @@
                    icon="software/logo_postfix"
                    name="Postfix"
                    nb_messages="059"
-                   version="200802260001"
+                   version="200803030001"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -365,4 +365,10 @@
            rank="060"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Postfix:no_route_to_host"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;connect to .+: No route to host.*&quot;):msg@&gt;"
+           rank="061"
+           table="Message"
+           taxonomy="Network.Errors" />
 </octopussy_service>

@@ -277,6 +277,21 @@ sub Language
 	return ($main::Session->{AAT_LANGUAGE} || "EN");
 }
 
+=head2 Menu_Mode($mode)
+
+Get/Set AAT Menu Mode (Icons&Text, IconsOnly, TextOnly)
+
+=cut
+
+sub Menu_Mode
+{
+  my $mode = shift;
+
+  $main::Session->{AAT_MENU_MODE} = $mode  if (NOT_NULL($mode));
+
+  return ($main::Session->{AAT_MENU_MODE} || "ICONS_AND_TEXT");
+}
+
 =head2 Theme($theme)
 
 Get/Set AAT Theme
@@ -991,6 +1006,22 @@ sub Selector_List($$)
   my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_Selector_List.inc', %{$args});
+}
+
+=head2 Selector_MenuMode($args, $body)
+
+=cut
+
+sub Selector_MenuMode($$)
+{
+  my ($args, $body) = @_;
+	my $mode = Menu_Mode();
+	my @list = ( { label => "_ICONS_AND_TEXT", value => "ICONS_AND_TEXT" },
+  	{ label => "_ICONS_ONLY", value => "ICONS_ONLY" },
+  	{ label => "_TEXT_ONLY", value => "TEXT_ONLY" } );
+
+	$main::Response->Include('AAT/INC/AAT_Selector.inc', name => "AAT_MenuMode",
+    list =>\@list , selected => $mode);
 }
 
 =head2 Selector_Number($args, $body)

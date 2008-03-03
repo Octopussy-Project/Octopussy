@@ -36,7 +36,7 @@ foreach my $c (AAT::User::Configurations("Octopussy", $sort))
 	<AAT:BoxCol><AAT:Label value="$login" no_trans="1"/></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="--------" /></AAT:BoxCol>
 	<AAT:BoxCol align="C"><% 
-	if (AAT::NOT_NULL($certif))
+	if ((AAT::NOT_NULL($certif)) && ($certif == 1))
 	{
 	%><AAT:IMG name="generic_keys" width="32" /><%
 	}
@@ -45,8 +45,13 @@ foreach my $c (AAT::User::Configurations("Octopussy", $sort))
 <%
 if ($role_name =~ /restricted/i)
 {
-%><AAT:BoxCol>
-	<AAT:Label value="$role_name" link="./user_restrictions.asp?user=$login" />
+%><AAT:BoxCol><%
+	if ($role =~ /admin/i)
+	{ %>
+	<AAT:Label value="$role_name" link="./user_restrictions.asp?user=$login" /><%
+	}
+	else
+		{ %><AAT:Label value="$role_name" /><% } %>
 	</AAT:BoxCol><%
 }
 else

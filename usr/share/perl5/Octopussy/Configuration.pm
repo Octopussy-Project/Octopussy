@@ -58,10 +58,13 @@ sub Backup_List()
 	my @backups = ();
 	
 	my @list = AAT::FS::Directory_Files("$BACKUP_DIR/", qr/^backup_.+$/);
-	foreach my $e (@list)
-		{ push(@backups, $1)	if ($e =~ /(backup_.+)\.tgz/); }
+	foreach my $e (reverse sort @list)
+	{ 
+		push(@backups, { label => "Backup $2/$3/$4 $5:$6", value => $1 })	
+			if ($e =~ /(backup_(\d{4})(\d{2})(\d{2})(\d{2})(\d{2}))\.tgz/); 
+	}
 
-	return (sort @backups);
+	return (@backups);
 }
 
 =head2 Restore($file)

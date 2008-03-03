@@ -37,6 +37,11 @@ my $login = $Session->{AAT_LOGIN};
     <AAT:BoxCol><AAT:Label value="_THEME" /></AAT:BoxCol>
     <AAT:BoxCol><AAT:Selector_Theme /></AAT:BoxCol>
   </AAT:BoxRow>
+	<AAT:BoxRow>
+    <AAT:BoxCol><AAT:Button name="menu_config" /></AAT:BoxCol>
+    <AAT:BoxCol><AAT:Label value="_MENU_DISPLAY" /></AAT:BoxCol>
+    <AAT:BoxCol><AAT:Selector_MenuMode /></AAT:BoxCol>
+  </AAT:BoxRow>
 	<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 	<AAT:BoxRow>
 		<AAT:BoxCol cspan="3" align="center">

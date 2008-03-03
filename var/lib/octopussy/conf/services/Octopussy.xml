@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="048"
-                   version="200802210021"
+                   version="200803030001"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -293,4 +293,10 @@
            rank="048"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Notice"
+           msg_id="Octopussy:logs_search"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Logs Search on Device[.*] Service[.*] Period[.+] by \w+ takes \d+ seconds.&quot;):msg@&gt;"
+           rank="049"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

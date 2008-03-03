@@ -17,7 +17,7 @@ elsif ((AAT::NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
 			$f->{certificate}, $f->{user_role}, $f->{AAT_Language});
   AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "User", $login)
   	if (AAT::NOT_NULL($Session->{AAT_MSG_ERROR}));
-	if ($f->{certificate})
+	if ($f->{certificate} == 1)
  	{
   	my %conf = ( country => "FR", state => "Ile de France", city => "Paris",
         organization => "Octopussy Project", organizational_unit => "Devel",
