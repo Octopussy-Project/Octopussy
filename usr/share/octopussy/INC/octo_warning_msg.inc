@@ -1,12 +1,16 @@
 <%
-my $nb_alerts_max = Octopussy::Parameter("max_alerts");
-my @alerts = Octopussy::Alert::Tracker("", "", "Opened", 
-"", $nb_alerts_max);
+my @alerts = Octopussy::Alert::Tracker("-ANY-", "-ANY-", "Opened", 
+	"", Octopussy::Parameter("max_alerts"));
 my $nb_alerts = $#alerts+1;
 my $alerts_color = (($#alerts >= 0) ? "red" : "green");
+
 my $nb_unknown = 0;
-foreach my $conf (Octopussy::Device::Configurations())
-	{ $nb_unknown += Octopussy::Logs::Unknown_Number($conf->{name}); }
+my $max_nb_unknown = Octopussy::Parameter("wizard_max_msgs");
+foreach my $conf (Octopussy::Device::Configurations())	
+{ 
+	$nb_unknown += Octopussy::Logs::Unknown_Number($conf->{name}); 
+	last	if ($nb_unknown >= $max_nb_unknown);
+}
 my $unknown_color = (($nb_unknown > 0) ? "red" : "green");
 
 if (($#alerts >= 0) || ($nb_unknown >0))

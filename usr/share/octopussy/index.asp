@@ -4,10 +4,6 @@ Purge_Session();
 my $action = $Request->QueryString("action");
 my $rrd_mode = $Request->QueryString("rrd_mode");
 Octopussy::Restart()	if ($action eq "restart");
-#my $nb_alerts_max = Octopussy::Parameter("max_alerts");
-my @alerts = Octopussy::Alert::Tracker("-ANY-", "-ANY-", "Opened", 
-	undef, $nb_alerts_max);
-my $nb_unknown = 0;
 %>
 <AAT:Box align="C">
 <AAT:BoxRow valign="top">
