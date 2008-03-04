@@ -17,14 +17,14 @@ if (!defined $device)
 }
 else
 {
-	if ((!defined Octopussy::Device::Filename($device)) && (AAT::NOT_NULL($device))
+	if ((!-f Octopussy::Device::Filename($device)) && (AAT::NOT_NULL($device))
 			&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Device::New({ name => $device, address => $f->{address}, 
 			logtype => $f->{logtype}, type => $f->{device_type}, 
 			model => $f->{device_model}, description => $f->{description} });
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Device", $device);
-		$Response->Redirect("./devices.asp");
+		$Response->Redirect("./device_services.asp?device=$device");
 	}
 	$Response->Redirect("./device_services.asp?device=$device")
 		if (!defined $action);

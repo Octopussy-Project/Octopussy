@@ -12,8 +12,8 @@ if (!defined $table)
 }
 else
 {
-	if ((!defined Octopussy::Table::Filename($table))
-			&& ($Session->{AAT_ROLE} !~ /ro/i))
+	if ((!-f Octopussy::Table::Filename($table)) 
+		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Table::New({ name => $table, description => $f->{description} });
 		Octopussy::Table::Add_Field($table, "datetime", "DATETIME");

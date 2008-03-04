@@ -55,7 +55,7 @@ if ($role !~ /ro/i)
 	my @log_type = ("asynchronous", "syslog");
 %>
 <AAT:Form action="$url">
-<AAT:Box align="center">
+<AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_DEVICE_NAME" style="B"/></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_IP_ADDRESS" style="B"/></AAT:BoxCol>
