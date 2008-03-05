@@ -9,9 +9,9 @@ my $status = AAT::DB::Connection_Test($arg{appli});
 my ($level, $msg) = ($status ? (0, "Database Connection is OK !") 
 	: (2, "Database Connection is NOT OK !"));
 %>
+<AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
 <AAT:Form_Hidden name="config" value="database" />
-<AAT:Box width="100%">
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="Database" style="B" tooltip="$tt" />
 	</AAT:BoxCol>
@@ -51,5 +51,5 @@ my ($level, $msg) = ($status ? (0, "Database Connection is OK !")
 	<AAT:BoxCol><AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Message level="$level" msg="$msg" /></AAT:BoxCol>
 </AAT:BoxRow>
-</AAT:Box>
 </AAT:Form>
+</AAT:Box>

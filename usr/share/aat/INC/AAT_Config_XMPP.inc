@@ -5,9 +5,9 @@ my $xmpp = AAT::XMPP::Configuration($arg{appli});
 my ($server, $tls, $user, $pwd) = 
 	($xmpp->{server}, $xmpp->{tls}, $xmpp->{user}, $xmpp->{password});
 %>
+<AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
 <AAT:Form_Hidden name="config" value="xmpp" />
-<AAT:Box width="100%">
 <AAT:BoxRow>
   <AAT:BoxCol>
   <AAT:Label value="Jabber(IM)" style="B" tooltip="$tt" /></AAT:BoxCol>
@@ -49,5 +49,5 @@ if (AAT::NOT_NULL($server))
 }
 %></AAT:BoxCol>
 </AAT:BoxRow>
-</AAT:Box>
 </AAT:Form>
+</AAT:Box>

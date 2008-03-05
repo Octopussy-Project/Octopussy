@@ -65,6 +65,7 @@
 	<msg mid="_YEARLY_STATS" value="Stats de l'Année" />
 
 	<msg mid="_ACTION" value="Action" />
+	<msg mid="_BACKUP" value="Sauvegarder" />
 	<msg mid="_BEGIN" value="Début" />
 	<msg mid="_BINARY" value="Binaire" />
   <msg mid="_BODY" value="Corps du Message" />
@@ -93,6 +94,8 @@
 	<msg mid="_PAUSE" value="Mettre en Pause" />
 	<msg mid="_PAUSED" value="En Pause" />
 	<msg mid="_REMOVE" value="Supprimer" />
+	<msg mid="_RESTORE" value="Restaurer" />
+  <msg mid="_RESTORE_FROM_FILE" value="Restaurer à partir du Fichier" />
 	<msg mid="_SAVE" value="Sauver" />
 	<msg mid="_SERVER" value="Serveur" />
 	<msg mid="_START" value="Démarrer" />

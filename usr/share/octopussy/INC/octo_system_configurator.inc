@@ -4,15 +4,27 @@ my $action = $arg{action};
 %>
 <AAT:Box icon="buttons/bt_config" title="_SYSTEM_CONFIG" align="C">
 <AAT:BoxRow>
-	<AAT:Form method="POST" action="$action">
 	<AAT:BoxCol align="C">
-	<AAT:Button name="save" link="$action?action=backup" />
-	<AAT:Inc file="octo_selector_backup" name="file" />
-  <AAT:Form_Submit name="restore" value="_RESTORE" />
-  </AAT:BoxCol>
-	</AAT:Form>
+	<AAT:Box align="C">
+	<AAT:BoxRow>
+    <AAT:BoxCol><AAT:Label value="_BACKUP" style="B" /></AAT:BoxCol>
+		<AAT:BoxCol><AAT:Label value="_RESTORE" style="B" /></AAT:BoxCol>
+		<AAT:BoxCol><AAT:Label value="_RESTORE_FROM_FILE" style="B" /></AAT:BoxCol>
+	</AAT:BoxRow>
+	<AAT:BoxRow>
+		<AAT:BoxCol align="C">
+    <AAT:Button name="backup" link="$action?action=backup" /></AAT:BoxCol>
+		<AAT:Form action="$action">
+    <AAT:BoxCol align="C">
+    <AAT:Form_Submit name="action" value="restore" btname="restore" />
+		</AAT:BoxCol>
+		<AAT:BoxCol>
+		<AAT:Inc file="octo_selector_backup" name="file" /></AAT:BoxCol>
+		</AAT:Form>
+	</AAT:BoxRow>
+	</AAT:Box>
+	</AAT:BoxCol>
 </AAT:BoxRow> 
-<AAT:BoxRow><AAT:BoxCol><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Config_Database appli="Octopussy" action="$action" 
 		tooltip="_TOOLTIP_SYSTEM_DB" /></AAT:BoxCol>

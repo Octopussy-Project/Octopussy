@@ -27,6 +27,7 @@ my $WORD_COLOR = "green";
 Get list of type configurations
 
 =cut
+
 sub Configurations()
 {
 	my $conf = AAT::XML::Read(Octopussy::File("types"));
@@ -43,6 +44,7 @@ sub Configurations()
 Get an hash of Colors for each Type
 
 =cut
+
 sub Colors()
 {
 	my @types = Octopussy::Type::Configurations();
@@ -50,6 +52,8 @@ sub Colors()
   foreach my $t (@types)
   	{ $color{"$t->{type_id}"} = $t->{color}; }
   $color{"NUMBER"} = $NUMBER_COLOR;
+	$color{"BYTES"} = $NUMBER_COLOR;
+	$color{"SECONDS"} = $NUMBER_COLOR;
   $color{"WORD"} = $WORD_COLOR;
   $color{"STRING"} = $STRING_COLOR;
 	$color{"LONG_STRING"} = $LONG_STRING_COLOR;
@@ -63,6 +67,7 @@ sub Colors()
 Get list of types
 
 =cut 
+
 sub List()
 {
  	my $conf = AAT::XML::Read(Octopussy::File("types"));
@@ -72,6 +77,8 @@ sub List()
  	foreach my $t (AAT::ARRAY($conf->{type}))
  		{ $type{"$t->{type_id}"} = 1; }
 	push(@list, "NUMBER");
+	push(@list, "BYTES");
+	push(@list, "SECONDS");
 	push(@list, "STRING");
 	push(@list, "LONG_STRING");
 	push(@list, "WORD");
@@ -86,6 +93,7 @@ sub List()
 Get list of simple types (*_DATETIME -> DATETIME, *_STRING -> STRING...)
 
 =cut
+
 sub Simple_List()
 {
   my $conf = AAT::XML::Read(Octopussy::File("types"));
@@ -93,6 +101,8 @@ sub Simple_List()
   my %type;
 
 	$type{"NUMBER"} = 1;
+	$type{"BYTES"} = 1;
+	$type{"SECONDS"} = 1;
 	$type{"STRING"} = 1;
 	$type{"LONG_STRING"} = 1;
 	$type{"WORD"} = 1;
@@ -109,6 +119,7 @@ sub Simple_List()
 Get list of SQL types
 
 =cut
+
 sub SQL_List()
 {
 	my $conf = AAT::XML::Read(Octopussy::File("types"));
@@ -130,6 +141,7 @@ sub SQL_List()
 Get regexp from type '$type'
 
 =cut 
+
 sub Regexp($)
 {
 	my $type = shift;
@@ -148,11 +160,18 @@ sub Regexp($)
 Get regexps from all types
 
 =cut
+
 sub Regexps()
 {
 	my %re_types = ();
 	
 	my @list = Configurations();
+	$re_types{"NUMBER"} = "[-+]?\\d+";
+	$re_types{"BYTES"} = "[-+]?\\d+";
+	$re_types{"SECONDS"} = "[-+]?\\d+";
+	$re_types{"WORD"} = "\\S+";
+	$re_types{"STRING"} = ".+";
+	$re_types{"LONG_STRING"} = ".+";
 	foreach my $t (@list)
 		{ $re_types{"$t->{type_id}"} = $t->{re}; }
 	
@@ -164,6 +183,7 @@ sub Regexps()
 Get Simple type from type '$type'
 
 =cut 
+
 sub Simple_Type($)
 {
 	my $type = shift;
@@ -180,6 +200,7 @@ sub Simple_Type($)
 Get SQL type from type '$type'
 
 =cut
+
 sub SQL_Type($)
 {
 	my $type = shift;
@@ -187,7 +208,7 @@ sub SQL_Type($)
 	my @list = Configurations();
 	foreach my $t (@list)
 		{ return ($t->{sql_type}) if ($t->{simple_type} =~ /^$type/); }
-	if ($type eq "NUMBER")
+	if ($type eq "NUMBER" || $type eq "BYTES" || $type eq "SECONDS") 
 		{ return ("BIGINT"); }
 	elsif ($type eq "STRING" || $type eq "WORD")
 		{ return ("VARCHAR(250)"); }
@@ -202,6 +223,7 @@ sub SQL_Type($)
 Convert '$dt' to SQL datetime
 
 =cut
+
 sub SQL_Datetime($)
 {
 	my $dt = shift;

@@ -65,6 +65,7 @@
 	<msg mid="_YEARLY_STATS" value="Ежегодная статистика" />
 
 	<msg mid="_ACTION" value="Действие" />
+	<msg mid="_BACKUP" value="_BACKUP" />
 	<msg mid="_BEGIN" value="Начать" />
 	<msg mid="_BINARY" value="Бинарный" />
   <msg mid="_BODY" value="Тело" />
@@ -93,6 +94,8 @@
 	<msg mid="_PAUSE" value="Пауза" />
 	<msg mid="_PAUSED" value="На паузе" />
 	<msg mid="_REMOVE" value="Убрать" />
+	<msg mid="_RESTORE" value="_RESTORE" />
+  <msg mid="_RESTORE_FROM_FILE" value="_RESTORE_FROM_FILE" />
   <msg mid="_SAVE" value="Сохранить" />
 	<msg mid="_SERVER" value="Сервер" />
 	<msg mid="_START" value="Пуск" />

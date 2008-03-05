@@ -23,7 +23,7 @@ sub Backup()
 	my ($year, $mon, $mday, $h, $m) = AAT::Datetime::Now();
 	my $timestamp = "$year$mon$mday$h$m";
 	my $main_dir = Octopussy::Directory("main");
-	my $sys_conf = "$main_dir/{db,ldap,nsca,proxy,smtp,xmpp}.xml";
+	my $sys_conf = "${main_dir}{db,ldap,nsca,proxy,smtp,xmpp}.xml";
 
 	my $alerts_conf = Octopussy::Directory("alerts");
 	my $contacts_conf = Octopussy::Directory("contacts");
@@ -41,8 +41,8 @@ sub Backup()
 	my $storages_conf = Octopussy::File("storages");
 	my $timeperiods_conf = Octopussy::File("timeperiods");
 	my $users_conf = Octopussy::File("users");
-	
-	`tar Pcvfz $BACKUP_DIR/backup_$timestamp.tgz $sys_conf $alerts_conf $contacts_conf $devices_conf $maps_conf $plugins_conf $reports_conf $services_conf $tables_conf $devicegroup_conf $locations_conf $schedule_conf $servicegroup_conf $storages_conf $timeperiods_conf $users_conf`;
+
+	`tar Picvfz $BACKUP_DIR/backup_$timestamp.tgz $sys_conf $alerts_conf $contacts_conf $devices_conf $maps_conf $plugins_conf $reports_conf $services_conf $tables_conf $devicegroup_conf $locations_conf $schedule_conf $servicegroup_conf $storages_conf $timeperiods_conf $users_conf`;
 
 	return ("$BACKUP_DIR/backup_$timestamp.tgz");
 }

@@ -4,9 +4,9 @@ my $tt = $arg{tooltip};
 my $smtp = AAT::SMTP::Configuration($arg{appli});
 my ($server, $sender) = ($smtp->{server}, $smtp->{sender});
 %>
+<AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
 <AAT:Form_Hidden name="config" value="smtp" />
-<AAT:Box width="100%">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="SMTP" style="B" tooltip="$tt" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_SERVER" style="B" tooltip="$tt" /></AAT:BoxCol>
@@ -34,5 +34,5 @@ if (AAT::NOT_NULL($server))
 }
 %></AAT:BoxCol>
 </AAT:BoxRow>
-</AAT:Box>
 </AAT:Form>
+</AAT:Box>

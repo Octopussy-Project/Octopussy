@@ -5,9 +5,9 @@ my $ldap = AAT::LDAP::Configuration($arg{appli});
 my ($server, $base, $filter) =
   ($ldap->{users_server}, $ldap->{users_base}, $ldap->{users_filter});
 %>
+<AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
 <AAT:Form_Hidden name="config" value="ldap_users" />
-<AAT:Box width="100%">
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="LDAP" style="B" tooltip="$tt" /></AAT:BoxCol>
   <AAT:BoxCol>
@@ -45,5 +45,5 @@ if (AAT::NOT_NULL($server))
 }
 %></AAT:BoxCol>
 </AAT:BoxRow>
-</AAT:Box>
 </AAT:Form>
+</AAT:Box>

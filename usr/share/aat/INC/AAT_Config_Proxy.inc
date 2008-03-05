@@ -5,9 +5,9 @@ my $proxy = AAT::Proxy::Configuration($arg{appli});
 my ($server, $port, $user, $pwd) =
   ($proxy->{server}, $proxy->{port}, $proxy->{user}, $proxy->{password});
 %>
+<AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
 <AAT:Form_Hidden name="config" value="proxy" />
-<AAT:Box width="100%">
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="Proxy" style="B" tooltip="$arg{tooltip}" />
 	</AAT:BoxCol>
@@ -47,5 +47,5 @@ if (AAT::NOT_NULL($server))
 }
 %></AAT:BoxCol>
 </AAT:BoxRow>
-</AAT:Box>
 </AAT:Form>
+</AAT:Box>

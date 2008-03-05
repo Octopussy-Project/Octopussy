@@ -3,7 +3,7 @@
                    icon="software/logo_slony-i"
                    name="Slony-I"
                    nb_messages="008"
-                   version="200802210002"
+                   version="200803050001"
                    website="http://slony.info/">
   <message loglevel="Notice"
            msg_id="Slony-I:logswitch_initiated"
@@ -53,4 +53,10 @@
            rank="008"
            table="Database_Message"
            taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Slony-I:table_replicated_cant_modified"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;ERROR:  Slony-I: Table \S+ is replicated and cannot be modified .+&quot;):msg@&gt;"
+           rank="009"
+           table="Database_Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

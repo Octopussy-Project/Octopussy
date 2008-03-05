@@ -1,16 +1,29 @@
-<WebUI:PageTop title="System" help="system_config"/>
 <%
 $Response->Redirect("./index.asp")	
 	if ($Session->{AAT_ROLE} !~ /admin/);
 
 my $f = $Request->Form();
-my $action = $Request->QueryString("action");
+my $q = $Request->QueryString();
+my $action = $f->{action} || $q->{action};
+my $file = $f->{file} || $q->{file};
 
 if (AAT::NOT_NULL($action) && ($action eq "backup"))
-	{ Octopussy::Configuration::Backup(); }
-elsif ((AAT::NOT_NULL($f->{file})) && (AAT::NOT_NULL($f->{restore})))
-	{ Octopussy::Configuration::Restore($f->{file}); }
-
+{ 
+	$file = Octopussy::Configuration::Backup(); 
+	if ($file =~ /(backup_\d{12}.tgz)/)
+	{
+		my $filename = $1;
+		AAT::File_Save( { contenttype => "archive/gzip", 
+			input_file => $file, output_file => $filename } );
+	}
+}
+elsif ((AAT::NOT_NULL($file)) && ($action eq "restore"))
+	{ $Response->Redirect("./dialog.asp?id=restore_config&arg1=$file"); }
+elsif ((AAT::NOT_NULL($file)) && ($action eq "restore_confirmed"))
+	{ Octopussy::Configuration::Restore($file); }
+%>
+<WebUI:PageTop title="System" help="system_config"/>
+<%
 if (defined $f->{config})
 {
 	if ($f->{config} eq "database")

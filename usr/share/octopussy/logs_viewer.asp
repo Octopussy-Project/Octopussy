@@ -59,10 +59,8 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
 	{
 		foreach my $l (@{$logs})
       { $text .= "$l" }
-		$Response->{ContentType} = "text/txt";
-		$Response->AddHeader('Content-Disposition', "filename=\"${filename}.txt\"");
-		print $text;
-		$Response->End();
+		AAT::File_Save( { contenttype => "text/txt", 
+			input_data => $text, output_file => "${filename}.txt" } );
 	}
 	elsif (defined $f->{csv})
 	{
@@ -71,10 +69,8 @@ if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
     	$text .= "$1;$2;$3\n" 
 				if ($l =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) (\S+) (.+)$/);
   	}
-  	$Response->{ContentType} = "text/csv";
-		$Response->AddHeader('Content-Disposition', "filename=\"${filename}.csv\"");
-  	print $text;
-		$Response->End();
+		AAT::File_Save( { contenttype => "text/csv",
+      input_data => $text, output_file => "${filename}.csv" } );
 	}
 	else
 	{

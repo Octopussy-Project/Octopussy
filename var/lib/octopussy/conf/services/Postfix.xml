@@ -2,8 +2,8 @@
 <octopussy_service description="Postfix Service"
                    icon="software/logo_postfix"
                    name="Postfix"
-                   nb_messages="059"
-                   version="200803030001"
+                   nb_messages="061"
+                   version="200803050004"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -289,7 +289,7 @@
            taxonomy="Config.Changes" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_to2"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@FLOAT_NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@FLOAT_NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="048"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
@@ -343,7 +343,7 @@
            taxonomy="Config.Errors" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_to4"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, dsn=&lt;@WORD:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="057"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
@@ -355,7 +355,7 @@
            taxonomy="Email.Traffic" />
   <message loglevel="Information"
            msg_id="Postfix:traffic_orig_to3"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/local[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@STRING:recipient@&gt;, orig_to=&lt;@WORD:NULL@&gt;, relay=&lt;@WORD:relay@&gt;, delay=&lt;@NUMBER:delay@&gt;, &lt;@STRING:NULL@&gt;, status=&lt;@STRING:status@&gt;"
            rank="059"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
@@ -369,6 +369,12 @@
            msg_id="Postfix:no_route_to_host"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;connect to .+: No route to host.*&quot;):msg@&gt;"
            rank="061"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Postfix:connection_timed_out"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;connect to .+: Connection timed out.*&quot;):msg@&gt;"
+           rank="062"
            table="Message"
            taxonomy="Network.Errors" />
 </octopussy_service>

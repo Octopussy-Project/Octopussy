@@ -195,12 +195,12 @@ sub Pattern_To_Regexp($)
 		my ($start, $const, $field, $finish) = ($1, $2, $3, $4);
 		$regexp = $start . (($field =~ /NULL/i) ? $const : "\($const\)") . $finish;
 	}
-  $regexp =~ s/<\@NUMBER:null\@>/[-+]?\\d+/gi;
-  $regexp =~ s/<\@NUMBER:\S+?\@>/\([-+]?\\d+\)/gi;
-  $regexp =~ s/<\@WORD:null\@>/\\S+/gi;
-  $regexp =~ s/<\@WORD:\S+?\@>/\(\\S+\)/gi;
-  $regexp =~ s/<\@STRING:null\@>/.+/gi;
-  $regexp =~ s/<\@STRING:\S+?\@>/\(.+\)/gi;
+  #$regexp =~ s/<\@NUMBER:null\@>/[-+]?\\d+/gi;
+  #$regexp =~ s/<\@NUMBER:\S+?\@>/\([-+]?\\d+\)/gi;
+  #$regexp =~ s/<\@WORD:null\@>/\\S+/gi;
+  #$regexp =~ s/<\@WORD:\S+?\@>/\(\\S+\)/gi;
+  #$regexp =~ s/<\@STRING:null\@>/.+/gi;
+  #$regexp =~ s/<\@STRING:\S+?\@>/\(.+\)/gi;
   $regexp =~ s/<\@(\S+?):null\@>/$re_types{$1}/gi;
   $regexp =~ s/<\@(\S+?):\S+?\@>/\($re_types{$1}\)/gi;
 	$regexp =~ s/\s+$//g;
@@ -218,9 +218,9 @@ sub Short_Pattern_To_Regexp($)
 	my %re_types = Octopussy::Type::Regexps();
   my $regexp = Escape_Characters($msg->{pattern});
 
-	$regexp =~ s/<\@NUMBER\@>/\([-+]?\\d+\)/gi;
-  $regexp =~ s/<\@WORD\@>/\(\\S+\)/gi;
-  $regexp =~ s/<\@STRING\@>/\(.+\)/gi;
+	#$regexp =~ s/<\@NUMBER\@>/\([-+]?\\d+\)/gi;
+  #$regexp =~ s/<\@WORD\@>/\(\\S+\)/gi;
+  #$regexp =~ s/<\@STRING\@>/\(.+\)/gi;
   $regexp =~ s/<\@(\S+?)\@>/\($re_types{$1}\)/gi;
 
   return ($regexp);
@@ -363,12 +363,12 @@ sub Pattern_To_Regexp_Field_Values($$)
     {
 			if ($type =~ /^REGEXP$/)
 				{ $regexp =~ s/<\@REGEXP\\\(\\\"(.+?)\\\"\\\):\S+?\@>/$1/i; }		
-			elsif ($type =~ /^NUMBER$/)
-        { $regexp =~ s/<\@NUMBER:\S+?\@>/[-+]?\\d+/i; }
-      elsif ($type =~ /^WORD$/)
-        { $regexp =~ s/<\@WORD:\S+?\@>/\\S+/i; }
-      elsif ($type =~ /^STRING$/)
-        { $regexp =~ s/<\@STRING:\S+?\@>/.+/i; }
+#			elsif ($type =~ /^NUMBER$/)
+#        { $regexp =~ s/<\@NUMBER:\S+?\@>/[-+]?\\d+/i; }
+#      elsif ($type =~ /^WORD$/)
+#        { $regexp =~ s/<\@WORD:\S+?\@>/\\S+/i; }
+#      elsif ($type =~ /^STRING$/)
+#        { $regexp =~ s/<\@STRING:\S+?\@>/.+/i; }
       else
         { $regexp =~ s/<\@(\S+?):\S+?\@>/$re_types{$1}/i; }
     }

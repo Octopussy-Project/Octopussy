@@ -2,8 +2,8 @@
 <octopussy_service description="Linux Kernel Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel"
-                   nb_messages="204"
-                   version="200802280002"
+                   nb_messages="210"
+                   version="200803050004"
                    website="http://www.kernel.org/">
   <message loglevel="Debug"
            msg_id="Linux_Kernel:linux_version"
@@ -1199,7 +1199,7 @@
            rank="199"
            table="Message"
            taxonomy="System" />
-  <message loglevel="Information"
+  <message loglevel="Debug"
            msg_id="Linux_Kernel:sys_gettimeofday"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;sys_gettimeofday\+.*&quot;):msg@&gt;"
            rank="200"
@@ -1253,4 +1253,22 @@
            rank="208"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Critical"
+           msg_id="Linux_Kernel:bug_soft_lockup_detected"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;BUG: soft lockup detected on .+&quot;):msg@&gt; "
+           rank="209"
+           table="Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Linux_Kernel:own_address_source_address"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;\w+: received packet with  own address as source address&quot;):msg@&gt; "
+           rank="210"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel:no_ipv6_routers_present"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;\w+: no IPv6 routers present&quot;):msg@&gt; "
+           rank="211"
+           table="Message"
+           taxonomy="Network" />
 </octopussy_service>

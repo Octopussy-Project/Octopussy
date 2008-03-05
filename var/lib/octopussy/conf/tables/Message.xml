@@ -22,4 +22,8 @@
          type="WORD" />
   <field title="level"
          type="WORD" />
+  <field title="client_ip"
+         type="IP_ADDR" />
+  <field title="status"
+         type="STRING" />
 </octopussy_table>

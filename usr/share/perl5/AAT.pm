@@ -390,6 +390,7 @@ sub Inc($$)
 Usage:
 
 =cut
+
 sub CSS_Inc($$)
 {
   my ($args, $body) = @_;
@@ -402,11 +403,37 @@ sub CSS_Inc($$)
 Usage: <AAT:JS_Inc file="INC/AAT_tooltip.js" />
 
 =cut
+
 sub JS_Inc($$)
 {
 	my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_JS_Inc.inc', %{$args});
+}
+
+=head2 File_Save
+
+=cut 
+
+sub File_Save
+{
+	my $conf = shift;
+
+	$main::Response->{ContentType} = $conf->{contenttype};
+  $main::Response->AddHeader('Content-Disposition', 
+		"filename=\"$conf->{output_file}\"");
+	if (AAT::NOT_NULL($conf->{input_file}))
+	{
+  	open(FILE, "< $conf->{input_file}");
+  	while(<FILE>)
+  		{ $main::Response->BinaryWrite($_); }
+  	close(FILE);
+	}
+	elsif (AAT::NOT_NULL($conf->{input_data}))
+	{
+		$main::Response->BinaryWrite($conf->{input_data});
+	}
+	$main::Response->End();
 }
 
 =head2 Button($args, $body)

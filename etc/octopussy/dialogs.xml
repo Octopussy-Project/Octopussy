@@ -256,4 +256,11 @@
 		msg_ES="Estas seguro de que quieres dejar de analizar el Equipo '%%arg1%%' ?"
 		msg_FR="Voulez vous vraiment arreter le parseur de la Machine '%%arg1%%' ?" />
 
+	<dialog d_id="restore_config"
+		type="warning"
+		link_ok="./system.asp?action=restore_confirmed&amp;file=%%arg1%%"
+		link_cancel="./system.asp"
+		msg_EN="Do you really want to restore configuration from file '%%arg1%%' ?"
+		msg_FR="Voulez vous vraiment restaurer la configuration a partir du fichier '%%arg1%%' ?" />
+
 </octopussy_dialogs>

@@ -6,9 +6,9 @@ my ($bin, $conf, $server, $host, $service) =
 	($nsca->{bin}, $nsca->{conf}, $nsca->{nagios_server}, 
 		$nsca->{nagios_host}, $nsca->{nagios_service});
 %>
+<AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
 <AAT:Form_Hidden name="config" value="nsca" />
-<AAT:Box width="100%">
 <AAT:BoxRow>
   <AAT:BoxCol>
 	<AAT:Label value="NSCA(Nagios)" style="B" tooltip="$tt" /></AAT:BoxCol>
@@ -52,5 +52,5 @@ my ($bin, $conf, $server, $host, $service) =
   <AAT:BoxCol cspan="2"></AAT:BoxCol>
   <AAT:BoxCol><AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
 </AAT:BoxRow>
-</AAT:Box>
 </AAT:Form>
+</AAT:Box>

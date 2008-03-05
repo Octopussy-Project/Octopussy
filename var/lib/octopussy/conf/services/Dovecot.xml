@@ -37,13 +37,13 @@
            msg_id="Dovecot:pop_imap_login"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:module@&gt;-login: &lt;@REGEXP(&quot;Login&quot;):status@&gt;: &lt;@WORD:user@&gt; [&lt;@IP_ADDR:client_ip@&gt;] "
            rank="001"
-           table="Dovecot_activity"
+           table="Message"
            taxonomy="Auth.Success" />
   <message loglevel="Warning"
            msg_id="Dovecot:pop_imap_login_aborted"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:module@&gt;-login: &lt;@REGEXP(&quot;Aborted login&quot;):status@&gt; [&lt;@IP_ADDR:client_ip@&gt;] "
            rank="007"
-           table="Dovecot_activity"
+           table="Message"
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Dovecot:fdsend_broken_pipe"
@@ -79,7 +79,7 @@
            msg_id="Dovecot:pop_imap_disconnected"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:module@&gt;-login: &lt;@REGEXP(&quot;Disconnected&quot;):status@&gt; [&lt;@IP_ADDR:client_ip@&gt;] "
            rank="013"
-           table="Dovecot_activity"
+           table="Message"
            taxonomy="Network" />
   <message loglevel="Warning"
            msg_id="Dovecot:pam_doesnt_support_method"
