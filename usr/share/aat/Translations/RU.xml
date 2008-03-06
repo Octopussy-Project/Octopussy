@@ -309,6 +309,8 @@
     value="Тревога будет поднята, только если мы попадём n раз меньше, чем за d секунд на одном устройстве" />
   <msg mid="_MSG_CHECK_UPDATES"
     value="Проверить обновления" />
+	<msg mid="_MSG_CONFIG_RESTORED"
+    value="_MSG_CONFIG_RESTORED %s" />
   <msg mid="_MSG_CONTACT_ALREADY_EXIST"
     value="Контакт уже существует!" />
   <msg mid="_MSG_CONTACT_INFO_INVALID"

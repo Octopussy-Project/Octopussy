@@ -3,8 +3,8 @@ my %button =
 	( info => "info", warning => "msg_warning", critical => "msg_critical" );
 my $arg = $Request->QueryString();
 my $d = Octopussy::Dialog($arg->{id});
-my $img = "AAT/IMG/buttons/bt_" . $button{$d->{type}} . ".png";
-my $msg = $d->{"msg_$Session->{AAT_LANGUAGE}"} || $d->{msg_EN};
+my $bt = $button{$d->{type}};
+my $msg = AAT::Translation($d->{msg});
 my $link_ok = $d->{link_ok};
 my $link_cancel = $d->{link_cancel};
 $msg =~ s/\%\%(\S+)\%\%/$arg->{$1}/g;
@@ -14,7 +14,7 @@ $link_cancel =~ s/\%\%([^\%]+)\%\%/$arg->{$1}/g;
 <AAT:PageTop title="Octopussy Dialog" closepopup="Y" />
 <AAT:Box align="C" cellpadding="0">
 <AAT:BoxRow>
-	<AAT:BoxCol><AAT:Picture file="$img" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Button name="$bt" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="2">
 	<AAT:Label value="$msg" size="+1" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol></AAT:BoxCol>

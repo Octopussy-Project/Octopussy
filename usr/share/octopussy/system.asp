@@ -6,6 +6,7 @@ my $f = $Request->Form();
 my $q = $Request->QueryString();
 my $action = $f->{action} || $q->{action};
 my $file = $f->{file} || $q->{file};
+my $restored = 0;
 
 if (AAT::NOT_NULL($action) && ($action eq "backup"))
 { 
@@ -20,10 +21,18 @@ if (AAT::NOT_NULL($action) && ($action eq "backup"))
 elsif ((AAT::NOT_NULL($file)) && ($action eq "restore"))
 	{ $Response->Redirect("./dialog.asp?id=restore_config&arg1=$file"); }
 elsif ((AAT::NOT_NULL($file)) && ($action eq "restore_confirmed"))
-	{ Octopussy::Configuration::Restore($file); }
+{ 
+	Octopussy::Configuration::Restore($file); 
+	$restored = 1;
+}
 %>
 <WebUI:PageTop title="System" help="system_config"/>
 <%
+if ($restored)
+{ 
+	my $msg = sprintf(AAT::Translation("_MSG_CONFIG_RESTORED"), $file);
+	%><AAT:Message level="0" msg="$msg" /><% 
+}
 if (defined $f->{config})
 {
 	if ($f->{config} eq "database")

@@ -309,6 +309,8 @@
 		value="O alerta vai ser disparado somente se acontecer n vezes em menos de d secundos em um dispositivo" />
 	<msg mid="_MSG_CHECK_UPDATES"
 		value="Checar por Atualizações" />
+	<msg mid="_MSG_CONFIG_RESTORED"
+		value="_MSG_CONFIG_RESTORED %s" />
 	<msg mid="_MSG_CONTACT_ALREADY_EXIST"
     value="Este contato já existe !" />
 	<msg mid="_MSG_CONTACT_INFO_INVALID"
