@@ -132,7 +132,6 @@ sub Filename($)
 	return ($filenames{$alert_name})  if (defined $filenames{$alert_name});
 	$alerts_dir ||= Octopussy::Directory($ALERT_DIR);
 	$filenames{$alert_name} =	"$alerts_dir/$alert_name.xml"; 
-	#AAT::XML::Filename($alerts_dir, $alert_name);
 
 	return ($filenames{$alert_name});
 }

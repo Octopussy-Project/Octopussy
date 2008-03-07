@@ -27,7 +27,7 @@ sub Configuration($$)
 {
 	my ($service, $msg_id) = @_;
 
-	my $conf = AAT::XML::Read(Octopussy::Service::Filename($service));
+	my $conf = Octopussy::Service::Configuration($service);
 	foreach my $m (AAT::ARRAY($conf->{message}))
   	{ return ($m) if ($m->{msg_id} eq $msg_id); }
 
@@ -44,7 +44,7 @@ sub Fields($$)
 {
 	my ($service, $msg_id) = @_;
 	my @fields = ();
-	my $conf = AAT::XML::Read(Octopussy::Service::Filename($service));
+	my $conf = Octopussy::Service::Configuration($service);
 	my $msg = undef;
  	foreach my $m (AAT::ARRAY($conf->{message}))
  		{ $msg = $m	if ($m->{msg_id} eq "$msg_id"); }	
@@ -65,7 +65,7 @@ sub Table($$)
 {
 	my ($service, $msg_id) = @_;
 
-	my $conf = AAT::XML::Read(Octopussy::Service::Filename($service));
+	my $conf = Octopussy::Service::Configuration($service);
 	
 	foreach my $m (AAT::ARRAY($conf->{message}))
 		{ return ($m->{table})	if ($m->{msg_id} eq "$msg_id"); }

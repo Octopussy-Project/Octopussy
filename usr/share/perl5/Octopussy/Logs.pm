@@ -121,7 +121,7 @@ sub Remove_Directories($)
 {
 	my $device = shift;
 	
-	my $conf = AAT::XML::Read(Octopussy::Device::Filename($device));
+	my $conf = Octopussy::Device::Configuration($device);
   my $storage = Octopussy::Storage::Default();
   my $incoming = Octopussy::Storage::Directory($storage->{incoming});
   my $unknown = Octopussy::Storage::Directory($storage->{unknown});

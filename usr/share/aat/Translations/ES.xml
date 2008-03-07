@@ -360,7 +360,9 @@
     value="Estas seguro de que quieres comenzar a analizar el Equipo '%%arg1%%' ?" />  
 	<msg mid="_DLG_PARSE_STOP"
     value="Estas seguro de que quieres dejar de analizar el Equipo '%%arg1%%' ?" />
-	
+	<msg mid="_DLG_RESTORE_CONFIG"
+    value="_DLG_RESTORE_CONFIG" />	
+
 	<msg mid="_MSG_ALERT_RAISED_ONLY"
     value="_MSG_ALERT_RAISED_ONLY" />
 	<msg mid="_MSG_CHECK_UPDATES"

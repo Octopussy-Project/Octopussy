@@ -22,7 +22,8 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
       contact => \@contacts, msgsubject => $f->{subject}, msgbody => $f->{body}
 			});			
 	AAT::Syslog("octo_WebUI", "GENERIC_MODIFIED", "Alert", $f->{old_alert});
-	$Response->Redirect("./alerts.asp");
+	print "Body: $f->{body}";	
+	#$Response->Redirect("./alerts.asp");
 }
 else
 {

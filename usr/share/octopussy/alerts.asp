@@ -32,7 +32,8 @@ else
 			action => \@actions, contact => \@contacts, 
 			msgsubject => $f->{subject}, msgbody => $f->{body} });
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Alert", $alert);
-		$Response->Redirect("./alerts.asp");
+		print "Body: $f->{body}";
+		#$Response->Redirect("./alerts.asp");
   }
 
   if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))

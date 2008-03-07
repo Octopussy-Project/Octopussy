@@ -17,7 +17,7 @@ if (!defined $device)
 }
 else
 {
-	if ((!-f Octopussy::Device::Filename($device)) && (AAT::NOT_NULL($device))
+	if ((AAT::NOT_NULL($device) && (!-f Octopussy::Device::Filename($device)))
 			&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Device::New({ name => $device, address => $f->{address}, 

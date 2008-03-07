@@ -70,7 +70,7 @@ sub Handle_Dir($$$$)
 
 	if (!defined $device_dir{$device})
 	{
-  	if (!defined Octopussy::Device::Filename($device))
+  	if (!-f Octopussy::Device::Filename($device))
   	{
     	Octopussy::Device::New({ name => $device, address => $device,
       	description => "New Device !" });

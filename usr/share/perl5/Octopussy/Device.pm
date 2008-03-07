@@ -124,7 +124,6 @@ sub Filename($)
 	return ($filenames{$device_name})		if (defined $filenames{$device_name});
 	$devices_dir ||= Octopussy::Directory($DEVICE_DIR);
 	$filenames{$device_name} = "$devices_dir/$device_name.xml"; 
-	#AAT::XML::Filename($devices_dir, $device_name);
 
  	return ($filenames{$device_name});
 }

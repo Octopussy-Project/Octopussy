@@ -363,6 +363,8 @@
     value="Do you really want to start parsing Device '%%arg1%%' ?" />
   <msg mid="_DLG_PARSE_STOP"
     value="Do you really want to stop parsing Device '%%arg1%%' ?" />
+	<msg mid="_DLG_RESTORE_CONFIG"
+    value="Do you really want to restore configuration from file '%%arg1%%' ?" />
 
   <msg mid="_MSG_ALERT_RAISED_ONLY"
     value="Alert will be raised only if we match n Times in less than d Seconds in one Device" />
