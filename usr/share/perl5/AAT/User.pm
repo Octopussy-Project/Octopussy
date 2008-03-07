@@ -142,7 +142,10 @@ sub Restrictions($$)
 	$USERS_FILE ||= AAT::Application::File($appli, "users");
   my $conf = AAT::XML::Read($USERS_FILE);
   foreach my $u (AAT::ARRAY($conf->{user}))
-  	{ return ($u->{restrictions}[0])	if ($u->{login} eq $login); }
+  { 
+		return ($u->{restrictions}[0])	
+			if (($u->{login} eq $login) && (AAT::NOT_NULL($u->{restrictions}))); 
+	}
 
 	return (undef);
 }

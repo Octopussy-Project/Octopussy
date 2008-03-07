@@ -70,6 +70,7 @@
 	<msg mid="_BINARY" value="Binaire" />
   <msg mid="_BODY" value="Corps du Message" />
   <msg mid="_BUG_REPORT" value="Rapport de Bug" />
+	<msg mid="_BYTES" value="Octets" />
 	<msg mid="_CANCEL" value="Annuler" />
 	<msg mid="_CERTIFICATE" value="Certificat" />
 	<msg mid="_COMMON_NAME" value="Nom Commun" />

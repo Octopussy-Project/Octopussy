@@ -33,29 +33,31 @@ BEGIN
 
 =head1 FUNCTIONS
 
-=head2 Init_All()
+=head2 Init_All(\%conf)
 
 =cut
 
-sub Init_All()
+sub Init_All
 {
+	my $conf = shift;
+
 	my @plugins = AAT::FS::Directory_Files($PLUGINS_MODULES_DIR, qr/.+\.pm$/);
   foreach my $p (@plugins)
   { 
 		$p =~ s/\.pm$//;
 		my $func = "Octopussy::Plugin::" . $p . "::Init";
 		print "Init Plugin $p\n";
-		&{$func}(); 
+		&{$func}($conf); 
 	}
 }
 
-=head2 Init(@plugins)
+=head2 Init(\%conf, @plugins)
 
 =cut
 
 sub Init
 {
-	my @plugins = @_;
+	my ($conf, @plugins) = @_;
 	my %done = ();
 
   foreach my $p (@plugins)
@@ -65,7 +67,7 @@ sub Init
     	my $func = "Octopussy::Plugin::" . $1 . "::Init";
     	print "Init Plugin $1\n";
 			$done{$1} = 1;
-    	&{$func}();
+    	&{$func}($conf);
 		}
   }
 }

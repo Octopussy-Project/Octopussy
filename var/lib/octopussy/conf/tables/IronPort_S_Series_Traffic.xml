@@ -10,7 +10,7 @@
   <field title="http_response"
          type="NUMBER" />
   <field title="total_bytes"
-         type="NUMBER" />
+         type="BYTES" />
   <field title="action"
          type="WORD" />
   <field title="http_method"

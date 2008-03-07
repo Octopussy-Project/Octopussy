@@ -6,7 +6,7 @@
                    version="200708230002">
   <message loglevel="Information"
            msg_id="Apache_Traffic:code_200"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:device@&gt; apache: &lt;@IP_ADDR:src_addr@&gt; - - [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; HTTP/&lt;@WORD:http_version@&gt;&quot; &lt;@REGEXP(&quot;200&quot;):status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:user_agent@&gt;&quot; &lt;@STRING:NULL@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:device@&gt; apache: &lt;@IP_ADDR:src_addr@&gt; - - [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; HTTP/&lt;@WORD:http_version@&gt;&quot; &lt;@REGEXP(&quot;200&quot;):status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:user_agent@&gt;&quot; &lt;@STRING:NULL@&gt;"
            rank="001"
            table="Web_Traffic"
            taxonomy="Traffic.Granted" />
@@ -30,7 +30,7 @@
            taxonomy="Traffic.Denied" />
   <message loglevel="Notice"
            msg_id="Apache_Traffic:code_400"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:device@&gt; apache: &lt;@IP_ADDR:src_addr@&gt; - - [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt;&quot; &lt;@REGEXP(&quot;400&quot;):status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:user_agent@&gt;&quot; &lt;@STRING:NULL@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:device@&gt; apache: &lt;@IP_ADDR:src_addr@&gt; - - [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt;&quot; &lt;@REGEXP(&quot;400&quot;):status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:user_agent@&gt;&quot; &lt;@STRING:NULL@&gt;"
            rank="005"
            table="Web_Traffic"
            taxonomy="Traffic" />

@@ -10,7 +10,7 @@
   <field title="status"
          type="NUMBER" />
   <field title="rec_bytes"
-         type="NUMBER" />
+         type="BYTES" />
   <field title="browser"
          type="STRING" />
   <field title="total_time"

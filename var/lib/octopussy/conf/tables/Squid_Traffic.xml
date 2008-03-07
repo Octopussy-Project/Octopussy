@@ -14,7 +14,7 @@
   <field title="http_code"
          type="NUMBER" />
   <field title="bytes"
-         type="NUMBER" />
+         type="BYTES" />
   <field title="http_method"
          type="WORD" />
   <field title="url"

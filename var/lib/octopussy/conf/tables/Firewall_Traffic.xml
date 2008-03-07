@@ -25,9 +25,9 @@
   <field title="policy_id"
          type="NUMBER" />
   <field title="sent_bytes"
-         type="NUMBER" />
+         type="BYTES" />
   <field title="rcvd_bytes"
-         type="NUMBER" />
+         type="BYTES" />
   <field title="sent_pkt"
          type="NUMBER" />
   <field title="rcvd_pkt"

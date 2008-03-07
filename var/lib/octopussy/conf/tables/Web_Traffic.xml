@@ -17,7 +17,7 @@
   <field title="status"
          type="NUMBER" />
   <field title="rec_bytes"
-         type="NUMBER" />
+         type="BYTES" />
   <field title="referer"
          type="STRING" />
   <field title="user_agent"

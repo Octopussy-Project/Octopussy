@@ -5,7 +5,7 @@
                    version="200705090005">
   <message loglevel="Information"
            msg_id="DenyAll Traffic:1"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
            rank="001"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
@@ -17,13 +17,13 @@
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:3"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt; &quot;-&quot;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt; &quot;-&quot;"
            rank="003"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Notice"
            msg_id="DenyAll Traffic:4"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; localhost &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@STRING:url@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; localhost &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@STRING:url@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
            rank="004"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
@@ -35,7 +35,7 @@
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:6"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; "
            rank="007"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
@@ -53,19 +53,19 @@
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:10"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; [&lt;@WORD:ssl_version@&gt; &lt;@WORD:ssl_bits@&gt;] &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; [&lt;@WORD:ssl_version@&gt; &lt;@WORD:ssl_bits@&gt;] &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
            rank="010"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:miss_from"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;&lt;@REGEXP(&quot;MISS from \S+&quot;):NULL@&gt;&quot; "
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;&lt;@REGEXP(&quot;MISS from \S+&quot;):NULL@&gt;&quot; "
            rank="013"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:hit_from"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;&lt;@REGEXP(&quot;HIT from .+&quot;):NULL@&gt;&quot;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;&lt;@REGEXP(&quot;HIT from .+&quot;):NULL@&gt;&quot;"
            rank="012"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
@@ -77,7 +77,7 @@
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:11"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:denyall_time@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:denyall_time@&gt;"
            rank="006"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
@@ -107,13 +107,13 @@
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:15"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
            rank="018"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:16"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;-&quot;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;-&quot;"
            rank="019"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
@@ -125,19 +125,19 @@
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:cache_info"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;&lt;@WORD:cache_status@&gt; from &lt;@WORD:NULL@&gt;&quot;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;&lt;@WORD:cache_status@&gt; from &lt;@WORD:NULL@&gt;&quot;"
            rank="021"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:18"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;&lt;@WORD:cache_status@&gt; from &lt;@WORD:NULL@&gt;&quot;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;&lt;@WORD:cache_status@&gt; from &lt;@WORD:NULL@&gt;&quot;"
            rank="022"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:httpcode_406"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@STRING:NULL@&gt;&quot; &lt;@REGEXP(&quot;406&quot;):status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;-&quot; &quot;-&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;-&quot;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@STRING:NULL@&gt;&quot; &lt;@REGEXP(&quot;406&quot;):status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;-&quot; &quot;-&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;-&quot;"
            rank="023"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
@@ -149,7 +149,7 @@
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:20"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@STRING:NULL@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@STRING:NULL@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt; "
            rank="025"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
@@ -161,13 +161,13 @@
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll Traffic:22"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;-&quot;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:denyall_time@&gt; &quot;-&quot;"
            rank="027"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
   <message loglevel="Information"
            msg_id="DenyAll_Traffic:traffic_ssl_cypher"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; &quot;&lt;@WORD:ssl_version@&gt;&quot; &quot;&lt;@WORD:NULL@&gt;&quot; &quot;&lt;@WORD:ssl_bits@&gt;&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@NUMBER:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:server@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: &lt;@IP_ADDR:src_addr@&gt; - &quot;-&quot; &quot;&lt;@WORD:ssl_version@&gt;&quot; &quot;&lt;@WORD:NULL@&gt;&quot; &quot;&lt;@WORD:ssl_bits@&gt;&quot; [&lt;@DATE_TIME_APACHE_ACCESS:datetime@&gt;] &quot;&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt; &lt;@WORD:http_version@&gt;&quot; &lt;@NUMBER:status@&gt; &lt;@BYTES:rec_bytes@&gt; &quot;&lt;@STRING:referer@&gt;&quot; &quot;&lt;@STRING:browser@&gt;&quot; &lt;@FLOAT_NUMBER:total_time@&gt;-&lt;@FLOAT_NUMBER:server_time@&gt;=&lt;@FLOAT_NUMBER:denyall_time@&gt;"
            rank="028"
            table="DenyAll_Traffic"
            taxonomy="Traffic" />
