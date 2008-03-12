@@ -1,0 +1,12 @@
+<octopussy_plugin name="Web">
+	<function label="USERAGENT_BROWSER"
+	         	perl="Octopussy::Plugin::Web::UserAgent_Browser"
+						source="INPUT">
+		<field_type>USER_AGENT</field_type>
+	</function>
+	<function label="USERAGENT_OS"
+            perl="Octopussy::Plugin::Web::UserAgent_OS"
+            source="INPUT">
+    <field_type>USER_AGENT</field_type>
+  </function>
+</octopussy_plugin>

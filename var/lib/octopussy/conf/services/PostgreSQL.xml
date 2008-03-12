@@ -2,8 +2,8 @@
 <octopussy_service description="PostgreSQL Service"
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
-                   nb_messages="029"
-                   version="200803070004"
+                   nb_messages="038"
+                   version="200803100012"
                    website="http://www.postgresql.org">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
@@ -223,8 +223,14 @@
            taxonomy="Application" />
   <message loglevel="Warning"
            msg_id="PostgreSQL:syntax_error"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: [1-1] &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;ERROR:  syntax error at or near .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: [1-1] &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;ERROR:  syntax error at .+&quot;):msg@&gt;"
            rank="037"
+           table="Database_Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="PostgreSQL:invalid_input_syntax_for"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: [1-1] &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;ERROR:  invalid input syntax for .+&quot;):msg@&gt;"
+           rank="038"
            table="Database_Message"
            taxonomy="Application.Errors" />
 </octopussy_service>

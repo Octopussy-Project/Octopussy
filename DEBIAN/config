@@ -4,8 +4,8 @@
 . /usr/share/debconf/confmodule
 
 # Ask mysql root password?
-db_input medium octopussy/mysql_root_password || true
+db_input high octopussy/mysql_root_password || true
 db_go
 
 # Check their answer.
-db_get octopussy/mysql_root_password
+#db_get octopussy/mysql_root_password

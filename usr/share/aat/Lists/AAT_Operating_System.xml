@@ -48,7 +48,7 @@
 	<item label="Microsoft Windows Vista" value="windows_vista" 
 				regexp="Windows NT 6" logo="operating_systems/os_windows" />
 	<item label="Microsoft Windows XP" value="windows_xp" 
-				regexp="Windows NT 5" logo="operating_systems/os_windows" />
+				regexp="(Windows NT 5|Windows XP 5.1)" logo="operating_systems/os_windows" />
 
 	<item label="Mobile OS (various)" value="mobile_various"
 				regexp="( [pP]rofile\/MIDP-|portalmmm\/2)" />

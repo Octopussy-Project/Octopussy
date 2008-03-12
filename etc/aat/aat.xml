@@ -40,7 +40,7 @@
 		<file name="db" value="/var/lib/octopussy/conf/db.xml" />
 		<file name="device_models" value="/var/lib/octopussy/conf/device_models.xml" />
 		<file name="devicegroups" value="/var/lib/octopussy/conf/devicegroups.xml" />
-		<file name="dialogs" value="/etc/octopussy/dialogs.xml" />
+		<file name="dialogs" value="/var/lib/octopussy/conf/dialogs.xml" />
 		<file name="ldap" value="/var/lib/octopussy/conf/ldap.xml" />
 		<file name="locations" value="/var/lib/octopussy/conf/locations.xml" />
 		<file name="nsca" value="/var/lib/octopussy/conf/nsca.xml" />

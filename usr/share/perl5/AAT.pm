@@ -219,7 +219,6 @@ sub Download($$$)
     . (NOT_NULL($pc->{user}) ? "--proxy-user=\"$pc->{user}\" " : "")
     . (NOT_NULL($pc->{password}) ? "--proxy-passwd=\"$pc->{password}\" " : "")
     . $download . (defined $dest ? " -O \"$dest\"" : "");
-	AAT::DEBUG("Download $cmd");
   system(($ENV{http_proxy} ne "" ? "$ENV{http_proxy}; " : "") . $cmd);
 }
 

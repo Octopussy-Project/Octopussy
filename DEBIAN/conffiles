@@ -1,9 +1,7 @@
-/var/lib/octopussy/conf/db.xml
-/var/lib/octopussy/conf/devicegroups.xml
-/var/lib/octopussy/conf/ldap.xml
-/var/lib/octopussy/conf/nsca.xml
-/var/lib/octopussy/conf/proxy.xml
-/var/lib/octopussy/conf/smtp.xml
-/var/lib/octopussy/conf/timeperiods.xml
-/var/lib/octopussy/conf/users.xml
-/var/lib/octopussy/conf/xmpp.xml
+/etc/aat/aat.xml
+/etc/aat/openssl.cnf
+/etc/octopussy/apache.conf
+/etc/octopussy/apache2.conf
+/etc/octopussy/server.crt
+/etc/octopussy/server.key
+/etc/octopussy/syslog-ng.conf

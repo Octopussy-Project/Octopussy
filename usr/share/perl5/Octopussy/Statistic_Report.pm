@@ -1,8 +1,9 @@
-#
-# Package: Octopussy::Statistic_Report
-#
-# Octopussy Statistic Report module
-# 
+=head1 NAME
+
+Octopussy::Statistic_Report - Octopussy Statistic Report module
+
+=cut
+
 package Octopussy::Statistic_Report;
 
 use strict;
@@ -13,11 +14,14 @@ my $STAT_REPORT_DIR = "statistic_reports";
 my $stat_reports_dir = undef;
 my %filenames;
 
-#
-# Function: New($conf)
-# 
-# Create a new statistic report
-#
+=head1 FUNCTIONS
+
+=head2 New($conf)
+
+Create a new statistic report
+
+=cut
+
 sub New($)
 {
 	my $conf = shift;
@@ -27,11 +31,12 @@ sub New($)
 		$conf, "octopussy_statistic_report");
 }
 
-#
-# Function: Remove($statistic_report)
-#
-# Remove a statistic report
-#
+=head2 Remove($statistic_report)
+
+Remove a statistic report
+
+=cut
+
 sub Remove($)
 {
   my $statistic_report = shift;
@@ -40,11 +45,12 @@ sub Remove($)
 	unlink(Filename($statistic_report));
 }
 
-#
-# Function: Modify($old_report, $new_conf)
-#
-# Modify the configuration for the statistic_report '$old_report'
-#
+=head2 Modify($old_report, $new_conf)
+
+Modify the configuration for the statistic_report '$old_report'
+
+=cut
+
 sub Modify($$)
 {
 	my ($old_report, $new_conf) = @_;
@@ -53,11 +59,12 @@ sub Modify($$)
 	New($new_conf);
 }
 
-#
-# Function: List()
-#
-# Get List of Statistic Report
-#
+=head2 List()
+
+Get List of Statistic Report
+
+=cut
+
 sub List()
 {
   $stat_reports_dir ||= Octopussy::Directory($STAT_REPORT_DIR);
@@ -65,11 +72,12 @@ sub List()
 	return (AAT::XML::Name_List($stat_reports_dir));
 }
 
-#
-# Function: Filename($statistic_report_name)
-#
-# Get the XML filename for the statistic report '$statistic_report_name'
-# 
+=head2 Filename($statistic_report_name)
+
+Get the XML filename for the statistic report '$statistic_report_name'
+
+=cut
+
 sub Filename($)
 {
 	my $statistic_report_name = shift;
@@ -83,11 +91,12 @@ sub Filename($)
 	return ($filenames{$statistic_report_name});
 }
 
-#
-# Function: Configuration($statistic_report)
-#
-# Get the configuration for the accounting '$statistic_report'
-# 
+=head2 Configuration($statistic_report)
+
+Get the configuration for the accounting '$statistic_report'
+
+=cut
+ 
 sub Configuration($)
 {
 	my $statistic_report = shift;
@@ -97,9 +106,10 @@ sub Configuration($)
  	return ($conf);
 }
 
-#
-# Function: Configurations($sort)
-#
+=head2 Configurations($sort)
+
+=cut
+
 sub Configurations
 {
   my $sort = shift || "name";
@@ -122,9 +132,10 @@ sub Configurations
   return (@sorted_configurations);
 }
 
-#
-# Function: Messages($statistic_report, $services)
-#
+=head2 Messages($statistic_report, $services)
+
+=cut
+
 sub Messages($$)
 {
 	my ($statistic_report, $services) = @_;
@@ -189,3 +200,9 @@ sub Messages($$)
 }
 
 1;
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=cut

@@ -55,6 +55,7 @@ sub Colors()
 	$color{"BYTES"} = $NUMBER_COLOR;
 	$color{"SECONDS"} = $NUMBER_COLOR;
   $color{"WORD"} = $WORD_COLOR;
+	$color{"USER_AGENT"} = $WORD_COLOR;
   $color{"STRING"} = $STRING_COLOR;
 	$color{"LONG_STRING"} = $LONG_STRING_COLOR;
 	$color{"REGEXP"} = $REGEXP_COLOR;
@@ -82,6 +83,7 @@ sub List()
 	push(@list, "STRING");
 	push(@list, "LONG_STRING");
 	push(@list, "WORD");
+	push(@list, "USER_AGENT");
 	foreach my $k (keys %type)
 		{ push(@list, $k); }
 				
@@ -106,6 +108,7 @@ sub Simple_List()
 	$type{"STRING"} = 1;
 	$type{"LONG_STRING"} = 1;
 	$type{"WORD"} = 1;
+	$type{"USER_AGENT"} = 1;
   foreach my $t (AAT::ARRAY($conf->{type}))
     { $type{"$t->{simple_type}"} = 1; }
   foreach my $k (sort keys %type)
@@ -170,6 +173,7 @@ sub Regexps()
 	$re_types{"BYTES"} = "[-+]?\\d+";
 	$re_types{"SECONDS"} = "[-+]?\\d+";
 	$re_types{"WORD"} = "\\S+";
+	$re_types{"USER_AGENT"} = ".+";
 	$re_types{"STRING"} = ".+";
 	$re_types{"LONG_STRING"} = ".+";
 	foreach my $t (@list)
@@ -210,7 +214,7 @@ sub SQL_Type($)
 		{ return ($t->{sql_type}) if ($t->{simple_type} =~ /^$type/); }
 	if ($type eq "NUMBER" || $type eq "BYTES" || $type eq "SECONDS") 
 		{ return ("BIGINT"); }
-	elsif ($type eq "STRING" || $type eq "WORD")
+	elsif (($type eq "STRING") || ($type eq "WORD") || ($type eq "USER_AGENT"))
 		{ return ("VARCHAR(250)"); }
 	elsif ($type eq "LONG_STRING")
 		{ return ("TEXT"); }

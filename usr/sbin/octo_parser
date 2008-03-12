@@ -96,7 +96,6 @@ sub Init()
 					$alert{$a->{name}}->{action_nsca} = 1 	if ($act =~ /NSCA/i);
 				}
 				push(@msg_alerts, $a->{name});
-				AAT::DEBUG("Add Alert $a->{name}");
 			}
 			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
       push(@{$service{$serv}{msgs}}, 
@@ -205,12 +204,10 @@ sub Alert_Handler($$)
 		foreach my $msg_alert (@{$msg->{alerts}})
   	{
 			my $a = $alert{$msg_alert};
-			AAT::DEBUG("Alert Handler $a->{name} - $line");
 			if ((Octopussy::TimePeriod::Match($a->{timeperiod}, $date_tp))
-				&& (($line =~ /$a->{regexp_incl}/) || (AAT::NULL($a->{regexp_incl})))
-        && (($line !~ /$a->{regexp_excl}/) || (AAT::NULL($a->{regexp_excl}))))
+				&& ((AAT::NULL($a->{regexp_incl}) || ($line =~ /$a->{regexp_incl}/)))
+        && ((AAT::NULL($a->{regexp_excl}) || ($line !~ /$a->{regexp_excl}/))))
 			{
-				AAT::DEBUG("Alert Handler 2 $a->{name} - $line");
 				if (defined $a->{thresold_time})
 				{
 					push(@{$a_thresold{$a->{name}}{values}}, 
@@ -231,7 +228,6 @@ sub Alert_Handler($$)
 					}
 					if ($match)
 					{
-						AAT::DEBUG("Alert Match $line !");
 						my $data = "";
 						if (defined $a->{thresold_time})
 						{

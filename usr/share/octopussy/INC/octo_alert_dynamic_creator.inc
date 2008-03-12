@@ -4,7 +4,6 @@ my $lang = $Session->{AAT_LANGUAGE};
 my $devs = $Session->{device} || "-ANY-";
 my $servs = $Session->{service} || "-ANY-";
 my (@devices, @services) = ((),());
-my @contacts = Octopussy::Contact::List();
 
 if (!ref ($devs))
   { push(@devices, $devs); }
@@ -99,45 +98,31 @@ my @used_services = Octopussy::Service::List_Used();
 	<AAT:Label value="_MSG_ALERT_RAISED_ONLY" color="blue" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
-<%
-if ($#contacts >= 0)
-{
-%><AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Inc file="octo_selector_action" multiple="1" size="3" /></AAT:BoxCol>
-	</AAT:BoxRow>
-	<AAT:BoxRow>
+</AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol><AAT:Button name="contact" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_CONTACTS" style="B"/></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Inc file="octo_selector_contact" multiple="1" size="3" /></AAT:BoxCol>
-  </AAT:BoxRow>
-	<AAT:BoxRow>
+</AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Label value="_SUBJECT" tooltip="_TOOLTIP_ALERT_MSG" style="B"/>
 	</AAT:BoxCol>
   <AAT:BoxCol><AAT:Entry name="subject" size="60" /></AAT:BoxCol>
-  </AAT:BoxRow>
-	<AAT:BoxRow>
+</AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Label value="_BODY" tooltip="_TOOLTIP_ALERT_MSG" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:TextArea name="body" cols="60" rows="5" /></AAT:BoxCol>
-  </AAT:BoxRow>
-<%
-}
-else
-{
-	%><AAT:BoxRow>
-  <AAT:BoxCol cspan="3" align="C">
-	<AAT:Label value="_MSG_NEED_DEFINE_CONTACT" style="B" link="./contacts.asp"/>
-	</AAT:BoxCol>
-	</AAT:BoxRow><%
-}
-%>
+</AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol cspan="3" align="C">

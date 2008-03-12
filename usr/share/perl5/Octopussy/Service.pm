@@ -534,7 +534,6 @@ Restart Device parsing for device with service '$service'
 sub Parse_Restart($)
 {
 	my $service = shift;
-	AAT::DEBUG("Service::Parse_Restart $service");
 
 	my @devices = Octopussy::Device::With_Service($service);
   foreach my $d (@devices)

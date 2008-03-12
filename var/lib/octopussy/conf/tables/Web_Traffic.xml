@@ -21,5 +21,5 @@
   <field title="referer"
          type="STRING" />
   <field title="user_agent"
-         type="STRING" />
+         type="USER_AGENT" />
 </octopussy_table>

@@ -22,9 +22,19 @@ foreach my $e (AAT::ARRAY($a{items}))
 		{
 			my $alt = "Icon Menu " . AAT::Translation($label);
 			if (AAT::NOT_NULL($link))
-				{ %><AAT:IMG name="$icon" link="$link" alt="$alt" /><% }
+			{
+				if ($mode eq "ICONS_ONLY")
+					{ %><AAT:IMG name="$icon" link="$link" tooltip="$label" alt="$alt" /><% }
+				else
+					{ %><AAT:IMG name="$icon" link="$link" alt="$alt" /><% }
+			}
 			elsif (AAT::NOT_NULL($p_link))
-				{ %><AAT:IMG name="$icon" popup_link="$p_link" alt="$alt" /><% }
+			{ 
+				if ($mode eq "ICONS_ONLY")
+          { %><AAT:IMG name="$icon" popup_link="$p_link" tooltip="$label" alt="$alt" /><% }
+				else
+					{ %><AAT:IMG name="$icon" popup_link="$p_link" alt="$alt" /><% }
+			}
 		}%>
 		</AAT:BoxCol><AAT:BoxCol valign="middle"><%
 		if ((AAT::NULL($link)) && (AAT::NULL($p_link)) 

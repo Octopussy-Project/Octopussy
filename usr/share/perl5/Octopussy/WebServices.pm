@@ -1,8 +1,9 @@
-#
-# Package: Octopussy::WebServices
-#
-# Octopussy WebServices module
-#
+=head1 NAME
+
+Octopussy::WebServices - Octopussy WebServices module
+
+=cut
+
 package Octopussy::WebServices;
 
 use XML::Simple;
@@ -32,18 +33,22 @@ my %api = (
 
 my %function = ();
 
-#
-# Function: API_Init()
-#
+=head1 FUNCTIONS
+
+=head2 API_Init()
+
+=cut
+
 sub API_Init()
 {
 	foreach my $f (AAT::ARRAY($api{function}))
 		{ $function{$f->{name}} = $f->{cmd}; }
 }
 
-#
-# Function: Request($cmd, $arg1, $arg2)
-#
+=head2 Request($cmd, $arg1, $arg2)
+
+=cut
+
 sub Request($$$)
 {
 	my ($cmd, $arg1, $arg2) = @_;
@@ -60,9 +65,10 @@ sub Request($$$)
 	}
 }
 
-#
-# Function: PrintFile($file)
-#
+=head2 PrintFile($file)
+
+=cut 
+
 sub PrintFile($)
 {
 	my $file = shift;
@@ -75,9 +81,10 @@ sub PrintFile($)
   close(FILE);
 }
 
-#
-# Function: AlertConfiguration($alert)
-#
+=head2 AlertConfiguration($alert)
+
+=cut
+
 sub AlertConfiguration($)
 {
 	my $alert = shift;
@@ -86,9 +93,10 @@ sub AlertConfiguration($)
   PrintFile($file)  if (AAT::NOT_NULL($file));
 }
 
-#
-# Function: AlertTracker($alert, $device, $status, $sort)
-#
+=head2 AlertTracker($alert, $device, $status, $sort)
+
+=cut
+
 sub AlertViewer($$$$)
 {
 	my ($alert, $device, $status, $sort) = @_;
@@ -99,9 +107,10 @@ sub AlertViewer($$$$)
 	print $xml;
 }
 
-#
-# Function: ContactConfiguration($contact)
-#
+=head2 ContactConfiguration($contact)
+
+=cut
+
 sub ContactConfiguration($)
 {
 	my $contact = shift;
@@ -110,9 +119,10 @@ sub ContactConfiguration($)
   PrintFile($file)  if (AAT::NOT_NULL($file));
 }
 
-#
-# Function: DeviceConfiguration($device)
-#
+=head2 DeviceConfiguration($device)
+
+=cut
+
 sub DeviceConfiguration($)
 {
 	my $device = shift;
@@ -121,9 +131,10 @@ sub DeviceConfiguration($)
 	PrintFile($file)	if (AAT::NOT_NULL($file));
 }
 
-#
-# Function: ServiceConfiguration($service)
-#
+=head2 ServiceConfiguration($service)
+
+=cut
+
 sub ServiceConfiguration($)
 {
 	my $service = shift;
@@ -132,14 +143,19 @@ sub ServiceConfiguration($)
   PrintFile($file)	if (AAT::NOT_NULL($file));
 }
 
+=head2 SystemConfiguration()
+
+=cut
+
 sub SystemConfiguration()
 {
   PrintFile($CONF_FILE);
 }
 
-#
-# Function: TableConfiguration($table)
-#
+=head2 TableConfiguration($table)
+
+=cut
+
 sub TableConfiguration($)
 {
   my $table = shift;
@@ -149,3 +165,9 @@ sub TableConfiguration($)
 }
 
 1;
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=cut

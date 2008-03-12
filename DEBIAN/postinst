@@ -3,46 +3,51 @@
 # Source debconf library.
 . /usr/share/debconf/confmodule
 
-
 if [ "$1" != configure ]; then
     exit 0
 fi
 
 AAT="aat"
 OCTO="octopussy"
-CRON_FILE="/etc/cron.daily/octo_logrotate"
-APACHE2_FILE="/etc/apache2/apache2.conf"
-SYSLOG_NG_FILE="/etc/syslog-ng/syslog-ng.conf"
+CHMOD="/bin/chmod 644"
 CHOWN="/bin/chown -R $OCTO:$OCTO"
 CP="/bin/cp -f"
 ECHO="/bin/echo"
+FIND="/usr/bin/find"
 LN="/bin/ln -f -s"
 MKDIR="/bin/mkdir -p"
-
-db_get octopussy/mysql_root_password
-
-MYSQL="/usr/bin/mysql --password=$RET --exec"
 SED="/bin/sed -i"
 INVOKERC="/usr/sbin/invoke-rc.d"
 UPDATERC="/usr/sbin/update-rc.d"
-A2ENSITE="/usr/sbin/a2ensite"
-A2ENMOD="/usr/sbin/a2enmod"
 
+#
 # Create Directories & Change Octopussy permission files
+#
 $MKDIR /var/lib/$OCTO/
 $MKDIR /var/run/$AAT/
 $MKDIR /var/run/$OCTO/
-$CHOWN /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ /usr/sbin/octo* || true
+$CHOWN /etc/$AAT/ /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ /usr/sbin/octo* || true
 $CHOWN /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ || true
+$FIND /usr/share/perl5/AAT* -name "*.pm" |xargs $CHMOD
+$FIND /usr/share/perl5/Octopussy* -name "*.pm" |xargs $CHMOD
 
+#
 # Create Octopussy MySQL Database
+#
+db_get octopussy/mysql_root_password && MYSQL="/usr/bin/mysql -u root --password=$RET --exec"
+
 $MYSQL="CREATE DATABASE IF NOT EXISTS $OCTO" || true
 $MYSQL="CREATE TABLE IF NOT EXISTS $OCTO._alerts_ (log_id bigint(20) NOT NULL auto_increment, alert_id varchar(250) default NULL, status varchar(50) default 'Opened', level varchar(50) default NULL, date_time datetime default NULL, device varchar(250) default NULL, log text default NULL, comment text default NULL, PRIMARY KEY(log_id))" || true
 $MYSQL="INSERT IGNORE INTO mysql.user (host,user,password, file_priv) values ('localhost','octopussy',password('octopussy'), 'Y')" || true
 $MYSQL="INSERT IGNORE INTO mysql.db (host,user,db,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv) values ('localhost','octopussy','octopussy','Y','Y','Y','Y','Y','Y')" || true
 $MYSQL="FLUSH PRIVILEGES" || true
 
+
+#
 # Add octo_logrotate to cron.daily
+#
+CRON_FILE="/etc/cron.daily/octo_logrotate"
+
 $ECHO "#!/bin/sh" > $CRON_FILE
 $ECHO "" >> $CRON_FILE
 $ECHO "test -x /usr/sbin/octo_logrotate || exit 0" >> $CRON_FILE
@@ -52,26 +57,41 @@ $ECHO "/usr/sbin/octo_logrotate" >> $CRON_FILE
 $LN /usr/sbin/$OCTO /etc/init.d/$OCTO || true
 $UPDATERC $OCTO defaults 99 || true
 
+#
 # Apache2 Configuration
+#
+A2ENSITE="/usr/sbin/a2ensite"
+A2ENMOD="/usr/sbin/a2enmod"
+APACHE2_FILE="/etc/apache2/apache2.conf"
+
 $CP $APACHE2_FILE $APACHE2_FILE.old
 $SED "s?^User.*?User $OCTO?g" $APACHE2_FILE
 $SED "s?^Group.*?Group $OCTO?g" $APACHE2_FILE
 $LN /etc/$OCTO/apache2.conf /etc/apache2/sites-available/$OCTO
-$A2ENSITE $OCTO
-$A2ENMOD dir
-$A2ENMOD ssl
+$A2ENSITE $OCTO >> /dev/null
+$A2ENMOD dir >> /dev/null
+$A2ENMOD ssl >> /dev/null
 $MKDIR /var/cache/$OCTO/asp/
 $CHOWN /var/cache/$OCTO/asp/
-grep "Listen 443" /etc/apache2/ports.conf
-if [ $? -eq 0 ]; then
+grep "Listen 443" /etc/apache2/ports.conf >> /dev/null
+if [ $? -ne 0 ]; then
 	$ECHO "Listen 443" >> /etc/apache2/ports.conf
 fi
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
 
+#
 # Syslog-ng Configuration
+#
+SYSLOG_NG_FILE="/etc/syslog-ng/syslog-ng.conf"
+
 $SED "s?^#CONSOLE_LOG_LEVEL.*?CONSOLE_LOG_LEVEL=0?g" /etc/default/syslog-ng 
 $SED "s?^#KERNEL_RINGBUF_SIZE.*?KERNEL_RINGBUF_SIZE=16392?g" /etc/default/syslog-ng
 $CP $SYSLOG_NG_FILE /etc/syslog-ng/syslog-ng.conf.old
 $CP /etc/$OCTO/syslog-ng.conf $SYSLOG_NG_FILE
 
-$INVOKERC apache2 restart || true
+$INVOKERC apache2 restart
+$INVOKERC octopussy start
+
+db_stop
+
+exit 0

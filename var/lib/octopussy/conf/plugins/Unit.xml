@@ -1,0 +1,22 @@
+<octopussy_plugin name="UNIT">
+	<function label="KILOBYTES"
+						perl="Octopussy::Plugin::Unit::KiloBytes"
+						source="OUTPUT">
+		<field_type>BYTES</field_type>
+	</function>
+	<function label="MEGABYTES"
+            perl="Octopussy::Plugin::Unit::MegaBytes"
+            source="OUTPUT">
+    <field_type>BYTES</field_type>
+  </function>
+	<function label="GIGABYTES"
+            perl="Octopussy::Plugin::Unit::GigaBytes"
+            source="OUTPUT">
+    <field_type>BYTES</field_type>
+  </function>
+	<function label="TERABYTES"
+            perl="Octopussy::Plugin::Unit::TeraBytes"
+            source="OUTPUT">
+    <field_type>BYTES</field_type>
+  </function>
+</octopussy_plugin>

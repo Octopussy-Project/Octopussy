@@ -11,7 +11,7 @@ my @table = ();
 <AAT:BoxRow>
 <AAT:BoxCol><AAT:Label value="_USER" style="B" /></AAT:BoxCol>
 <AAT:BoxCol><AAT:Label value="_PASSWORD" style="B" /></AAT:BoxCol>
-<AAT:BoxCol><AAT:Label value="_CERTIFICATE" style="B" /></AAT:BoxCol>
+<AAT:BoxCol><!--<AAT:Label value="_CERTIFICATE" style="B" />--></AAT:BoxCol>
 <AAT:BoxCol align="C"><AAT:Label value="_LANGUAGE" style="B" /></AAT:BoxCol>
 <AAT:BoxCol><AAT:Label value="_ROLE" style="B" /></AAT:BoxCol>
 <AAT:BoxCol><AAT:Label value="_TYPE" style="B" /></AAT:BoxCol>
@@ -38,7 +38,9 @@ foreach my $c (AAT::User::Configurations("Octopussy", $sort))
 	<AAT:BoxCol align="C"><% 
 	if ((AAT::NOT_NULL($certif)) && ($certif == 1))
 	{
-	%><AAT:IMG name="generic_keys" width="32" /><%
+	%>
+<!--<AAT:IMG name="generic_keys" width="32" />-->
+<%
 	}
 	%></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Picture file="$flagfile" /></AAT:BoxCol>
@@ -80,7 +82,7 @@ if ($role =~ /admin/i)
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Entry name="login" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Password name="password" /></AAT:BoxCol>
-	<AAT:BoxCol align="C"><AAT:Selector_YesNo name="certificate" /></AAT:BoxCol>
+	<AAT:BoxCol align="C"><!--<AAT:Selector_YesNo name="certificate" />--></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Selector_Language /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Selector_User_Role appli="Octopussy" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="2"><AAT:Form_Submit value="_NEW_USER" /></AAT:BoxCol>

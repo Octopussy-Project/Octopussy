@@ -550,7 +550,6 @@ Pauses Parsing for Device '$device'
 sub Parse_Pause($)
 {
 	my $device = shift;
-  AAT::DEBUG("Device::Parse_Pause $device");
 	$pid_dir ||= Octopussy::Directory("running");
 	my $pid = $PARSER_BIN . "_$device\.pid";
 	my @files = AAT::FS::Directory_Files($pid_dir, qr/^$pid$/);
@@ -593,7 +592,6 @@ Starts Parsing for Device '$device'
 sub Parse_Start($)
 {
 	my $device = shift;
-	AAT::DEBUG("Device::Parse_Start $device");
 	my $base = Octopussy::Directory("programs");
 	my $conf = Configuration($device);
 
@@ -617,7 +615,6 @@ Stops Parsing for Device '$device'
 sub Parse_Stop($)
 {
 	my $device = shift;
-	AAT::DEBUG("Device::Parse_Stop $device");
 
 	Parse_Pause($device);
 	my $conf = Configuration($device);

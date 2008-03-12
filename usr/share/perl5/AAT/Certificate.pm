@@ -36,7 +36,6 @@ sub Authority_Configuration($)
 	my @lines = `$SSL_X509 -text -noout -in $ca_dir/cacert.pem`;
 	foreach my $line (@lines)
 	{
-		AAT::DEBUG($line);
 		if ($line =~ /Subject: C=(\w+), ST=(.+?), L=(.+?), O=(.+?), OU=(.+?), CN=(.+?)\/emailAddress=(\S+)$/)
 		{
 			($conf{country}, $conf{state}, $conf{city}, $conf{org}, $conf{org_unit},

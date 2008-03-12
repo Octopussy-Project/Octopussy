@@ -9,7 +9,7 @@ my $action = $arg{action};
 	<AAT:BoxRow>
     <AAT:BoxCol><AAT:Label value="_BACKUP" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol><AAT:Label value="_RESTORE" style="B" /></AAT:BoxCol>
-		<AAT:BoxCol><AAT:Label value="_RESTORE_FROM_FILE" style="B" /></AAT:BoxCol>
+		<AAT:BoxCol align="C"><AAT:Label value="_RESTORE_FROM_FILE" style="B" /></AAT:BoxCol>
 	</AAT:BoxRow>
 	<AAT:BoxRow>
 		<AAT:BoxCol align="C">
@@ -30,8 +30,9 @@ my $action = $arg{action};
 		tooltip="_TOOLTIP_SYSTEM_DB" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol><AAT:Config_Certificate appli="Octopussy" action="$action" 
-		tooltip="_TOOLTIP_SYSTEM_CERTIFICATE" /></AAT:BoxCol>
+  <AAT:BoxCol>
+	<!-- AAT:ConfigCertificate -->
+	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Config_Proxy appli="Octopussy" action="$action" 

@@ -1,16 +1,13 @@
 =head1 NAME
 
-Octopussy::Plugin::HttpRequest - Octopussy Plugin HttpRequest
+Octopussy::Plugin::Web - Octopussy Plugin Web
 
 =cut
-package Octopussy::Plugin::HttpRequest;
+
+package Octopussy::Plugin::Web;
 
 use strict;
 use Octopussy;
-
-my $KILO = 1024;
-my $MEGA = $KILO*1024;
-my $GIGA = $MEGA*1024;
 
 my @browsers = ();
 my @operating_systems = ();
@@ -53,15 +50,17 @@ sub Logo($$)
 {
 	my ($logo, $alt) = @_;
 
-	return ("<img src=\"AAT/IMG/${logo}.png\" alt=\"$alt\"><b>$alt</b>"); 
+	my $file = "AAT/IMG/${logo}.png";
+	
+	return ("<img src=\"$file\" alt=\"$alt\"><b>$alt</b>"); 
 	return ($alt);
 }
 
-=head2 Browser($ua)
+=head2 UserAgent_Browser($ua)
 
 =cut
 
-sub Browser($)
+sub UserAgent_Browser($)
 {
 	my $ua = shift;
 	
@@ -78,43 +77,21 @@ sub Browser($)
 	return ($ua);
 }
 
-=head2 Operating_System($ua)
+=head2 UserAgent_OS($ua)
 
 =cut
 
-sub Operating_System($)
+sub UserAgent_OS($)
 {
 	my $ua = shift;
 
   foreach my $i (@operating_systems)
   {
-		if ((defined $i->{regexp}) && ($ua =~ /$i->{regexp}/))
-    {
-    	return (Logo("$i->{logo}", $i->{label})) 
-				if (defined $i->{logo});
-			return ($i->{label});
-		}
+    return (Logo(($i->{logo} || ""), $i->{label})) 
+			if ((defined $i->{regexp}) && ($ua =~ /$i->{regexp}/));
   }
 
   return ($ua);
-}
-
-=head2 Size($bytes)
-
-=cut
-
-sub Size($)
-{
-	my $bytes = shift;
-
-	if (($bytes / $GIGA) > 1)
-  	{ return (sprintf("%.1f%s", $bytes / $GIGA, " G")); }
-	elsif (($bytes / $MEGA) > 1)	
-		{ return (sprintf("%.1f%s", $bytes / $MEGA, " M")); }
-	elsif (($bytes / $KILO) > 1)
-		{ return (sprintf("%.1f%s", $bytes / $KILO, " K")); }
-	
-	return ($bytes);
 }
 
 1;

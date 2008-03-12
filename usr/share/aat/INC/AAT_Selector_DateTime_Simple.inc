@@ -22,7 +22,7 @@ my @list = ("_CUSTOMIZED", "_CURRENT_HOUR", "_CURRENT_DAY",
 <AAT:BoxRow>
   <AAT:BoxCol>
   </AAT:BoxCol>
-  <AAT:BoxCol align="L">
+  <AAT:BoxCol align="C">
   <select name="<%= $name %>"
     onchange="update_dt_selector(this.options.selectedIndex)">
   <%
@@ -37,18 +37,17 @@ my @list = ("_CUSTOMIZED", "_CURRENT_HOUR", "_CURRENT_DAY",
   </AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol align="right">
+  <AAT:BoxCol align="R">
     <AAT:Label value="_BEGIN" align="right" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Selector_DateTime name="${name}1" start_year="$s_year"
-  	selected="$arg{selected1}" />
-  </AAT:BoxCol>
+  	selected="$arg{selected1}" onchange="custom_dt()" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol align="right">
+  <AAT:BoxCol align="R">
     <AAT:Label value="_END" align="right" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Selector_DateTime name="${name}2" start_year="$s_year"
-  	selected="$arg{selected2}" /></AAT:BoxCol>
+  	selected="$arg{selected2}" onchange="custom_dt()" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>
 
@@ -99,5 +98,10 @@ function update_dt_selector(x)
   document.forms[0].dt2_hour.options[dts2[x][3]].selected=true;
   document.forms[0].dt2_min.options[dts2[x][4]].selected=true;
   }
+}
+
+function custom_dt()
+{
+	document.forms[0].<%= $name %>.options[0].selected=true;	
 }
 </script>

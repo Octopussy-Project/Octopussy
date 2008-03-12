@@ -43,7 +43,6 @@ sub Connection_Test($)
 	if (AAT::NOT_NULL($smtp_conf->{server})
     && AAT::NOT_NULL($smtp_conf->{sender}))
   {
-		AAT::DEBUG("SMTP Connection::Test Begin");
 		my $con = new Net::Telnet(Host => $smtp_conf->{server}, 
 			Port => 25, Errmode => "return", Timeout => 3);
 		if (defined $con)
@@ -51,7 +50,6 @@ sub Connection_Test($)
     	$status = 1;
 			$con->close();
 		}
-		AAT::DEBUG("SMTP Connection::Test End");
   }		
 
 	return ($status);

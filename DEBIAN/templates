@@ -1,7 +1,7 @@
 Template: octopussy/mysql_root_password
 Type: password
 Description: MySQL root password:
- Octopussy needs your MySQL root password to initialize MySQL Databases & Tables.
+ Octopussy needs your MySQL root password to initialize MySQL Databases and Tables.
 Description-es: Introduzca su contraseña de root para MySQL.
  Octopussy necesita la contraseña de root para MySQL para inicializa la Base de Datos y sus Tablas.
 Description-fr: Pouvez vous entrer votre mot de passe root MySQL ?
