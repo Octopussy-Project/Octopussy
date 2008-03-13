@@ -9,13 +9,24 @@ my $role = $Session->{AAT_ROLE};
 my @services = Octopussy::Device::Services($device);
 my %stats = Octopussy::Device::Services_Statistics($device);
 my $str = sprintf(AAT::Translation("_MSG_SERVICES_FOR_DEVICE"), $device);
+my $dconf = Octopussy::Device::Configuration($device);
+
+if (AAT::NOT_NULL($dconf->{reload_required}))
+{
+	%><AAT:Box align="C"><AAT:BoxRow>
+	<AAT:BoxCol><AAT:Message level="1" msg="_RELOAD_REQUIRED" /></AAT:BoxCol>
+	<AAT:BoxCol>
+	<AAT:Button name="reload" tooltip="_RELOAD" 
+	link="./devices.asp?device=$device&action=parse_reload"/></AAT:BoxCol>
+	</AAT:BoxRow></AAT:Box><%
+}
 my @table = (
 	[ { label => $str, size => "+1", align => "C", colspan => 5 } ],
 	[ { label => "<hr>", colspan => 5 } ],
   [ { label => "_RANK", link => $url_sort . "rank"  }, 
 		{ label => "_SERVICE", link => $url_sort . "sid" },
    	{ label => (($role !~ /ro/i) ? "_ACTION" : ""), 
-			colspan => 3, align => "C" } ],
+			align => "center", colspan => 3 } ],
 	[ { label => "<hr>", 			colspan => 5 } ]
   );
 

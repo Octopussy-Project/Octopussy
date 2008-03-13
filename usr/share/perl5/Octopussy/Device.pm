@@ -77,6 +77,21 @@ sub Modify($)
 	Parse_Start($new_conf->{name})	if ($status == STARTED);
 }
 
+=head2 Reload_Required($device)
+
+Set 'reload_required' to device '$device'
+
+=cut
+
+sub Reload_Required($)
+{
+	my $device = shift;
+
+	my $conf = AAT::XML::Read(Filename($device));	
+	$conf->{reload_required} = 1;
+	AAT::XML::Write("$devices_dir/$conf->{name}.xml", $conf, "octopussy_device");
+}
+
 =head2 Remove($device)
 
 Removes device '$device'
@@ -327,9 +342,8 @@ sub Move_Service($$$)
     push(@services2, $s);
   }
   $conf->{service} = \@services2;
-	Parse_Pause($device)  if ($old_status == STARTED);
+	$conf->{reload_required} = 1;
 	AAT::XML::Write(Filename($device), $conf, "octopussy_device");
-	Parse_Start($device)  if ($old_status == STARTED);
 }
 
 =head2 Services(@devices)
@@ -601,6 +615,7 @@ sub Parse_Start($)
 		$devices_dir ||= Octopussy::Directory($DEVICE_DIR);	
 		Octopussy::Dispatcher_Reload()	if ($conf->{status} eq "Stopped");
 		$conf->{status} = "Started";
+		$conf->{reload_required} = undef;
 		AAT::XML::Write("$devices_dir/$conf->{name}.xml",       
 			$conf, "octopussy_device");
 	}

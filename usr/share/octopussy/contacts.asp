@@ -3,15 +3,17 @@
 my $f = $Request->Form();
 my $cid = $f->{cid} || $Request->QueryString("cid");
 my $action = $f->{action} || $Request->QueryString("action");
-my $sort = $Request->QueryString("contacts_table_sort");	
+my $sort = $Request->QueryString("contacts_table_sort") || "lastname";	
 
-if (($action eq "remove") && ($Session->{AAT_ROLE} !~ /ro/i))
+if ((AAT::NOT_NULL($action)) && ($action eq "remove") 
+		&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	Octopussy::Contact::Remove($cid);
 	AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Contact", $cid);
 	$Response->Redirect("./contacts.asp");
 }
-elsif (($action eq "new") && ($Session->{AAT_ROLE} !~ /ro/i))
+elsif ((AAT::NOT_NULL($action)) && ($action eq "new") 
+			&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
  	$Session->{AAT_MSG_ERROR} = Octopussy::Contact::New( { 
 		cid => $f->{cid}, lastname => $f->{lastname}, firstname => $f->{firstname},

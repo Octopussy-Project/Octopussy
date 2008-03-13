@@ -3,7 +3,7 @@ my %a = @_;
 my $align = (defined $a{align} ? 
 	(($a{align} =~ /^C/i) ? "center" 
 		: (($a{align} =~ /^R/i) ? "right" : $a{align} )) : "left");
-my $mode = $Session->{AAT_MENU_MODE};
+my $mode = AAT::Menu_Mode();
 %>
 <AAT:Box align="$align">
 <%
@@ -18,7 +18,7 @@ foreach my $e (AAT::ARRAY($a{items}))
 	else
 	{
 		%><AAT:BoxRowMenu><AAT:BoxCol valign="middle"><%
-		if ((defined $icon) && ($icon ne "") && ($mode ne "TEXT_ONLY"))
+		if ((AAT::NOT_NULL($icon)) && ($mode ne "TEXT_ONLY"))
 		{
 			my $alt = "Icon Menu " . AAT::Translation($label);
 			if (AAT::NOT_NULL($link))

@@ -3,9 +3,8 @@ my %arg = @_;
 
 if ((defined $arg{file}) && (-f $arg{file}))
 {
-	my $href = "";
-	my $tooltip = AAT::Translation($arg{tooltip});
-	$tooltip =~ s/'/\\'/g;
+	my $tooltip = AAT::Translation($arg{tooltip} || "");
+	$tooltip =~ s/'/\\'/g if (defined $tooltip);
 	my $twidth = (defined $tooltip ? ((length($tooltip) < 50) ? length($tooltip)*8 : 400) : 0);
 	my $str_tooltip = (AAT::NOT_NULL($tooltip) ?
 	  "<div onMouseover=\"tooltip('" . $tooltip . "', " . $twidth . ")\"; onMouseout=\"hidetooltip()\">" : "");

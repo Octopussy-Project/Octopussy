@@ -14,6 +14,7 @@ if ((defined $f->{login}) && (defined $f->{password}))
 		$Session->{AAT_ROLE} = $auth->{role};
 		$Session->{AAT_LANGUAGE} = $auth->{language};
 		$Session->{AAT_THEME} = $auth->{theme};
+		$Session->{AAT_MENU_MODE} = $auth->{menu_mode};
 		AAT::Syslog("octo_WebUI", "USER_LOGGED_IN");
  	}
  	else

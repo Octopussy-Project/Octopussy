@@ -9,11 +9,29 @@ my $sort = $Request->QueryString("devices_table_sort");
 
 if (!defined $device)
 {
+	if ($action eq "parse_reload_all")
+  {
+  	my @dconfs = Octopussy::Device::Configurations();
+   	foreach my $dc (@dconfs)
+   	{
+    	my $status = Octopussy::Device::Parse_Status($dc->{name});
+     	if ((AAT::NOT_NULL($dc->{reload_required})) && ($status == 2))
+      {
+      	Octopussy::Device::Parse_Pause($dc->{name});
+        Octopussy::Device::Parse_Start($dc->{name});
+       	AAT::Syslog("octo_WebUI", "PARSING_DEVICE", "reload", $dc->{name});
+      }
+    }
+		$Response->Redirect("./devices.asp");
+	}
+	else
+	{
 	#print "filter dtype=$f->{device_type} dmodel=$f->{device_model}";
 	#<AAT:Inc file="octo_devices_filter_box" url="./devices.asp" 
 	#	dtype="$dtype" dmodel="$dmodel" />
 	%><AAT:Inc file="octo_devices_list" url="./devices.asp" 
 		dtype="$dtype" dmodel="$dmodel" sort="$sort" /><%
+	}
 }
 else
 {
@@ -35,21 +53,28 @@ else
 			Octopussy::Device::Remove($device);
 			AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Device", $device);
 		}
-		if ($action eq "parse_start")
+		elsif ($action eq "parse_reload")
+    {
+      Octopussy::Device::Parse_Pause($device);
+			Octopussy::Device::Parse_Start($device);
+      AAT::Syslog("octo_WebUI", "PARSING_DEVICE", "reload", $device);
+    }
+		elsif ($action eq "parse_start")
 		{
 			Octopussy::Device::Parse_Start($device);
 			AAT::Syslog("octo_WebUI", "PARSING_DEVICE", "started", $device);
 		}
-		if ($action eq "parse_pause")
+		elsif ($action eq "parse_pause")
 		{
 			Octopussy::Device::Parse_Pause($device);
 			AAT::Syslog("octo_WebUI", "PARSING_DEVICE", "paused", $device);
 		}
-		if ($action eq "parse_stop")
+		elsif ($action eq "parse_stop")
 		{
 			Octopussy::Device::Parse_Stop($device);
 			AAT::Syslog("octo_WebUI", "PARSING_DEVICE", "stopped", $device);
 		}
+		
 		$Response->Redirect("./devices.asp");
 	}
 }

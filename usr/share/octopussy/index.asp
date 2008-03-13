@@ -2,8 +2,8 @@
 <%
 Purge_Session();
 my $action = $Request->QueryString("action");
-my $rrd_mode = $Request->QueryString("rrd_mode");
-Octopussy::Restart()	if ($action eq "restart");
+my $rrd_mode = $Request->QueryString("rrd_mode") || "daily";
+Octopussy::Restart()  if ((AAT::NOT_NULL($action)) && ($action eq "restart"));
 %>
 <AAT:Box align="C">
 <AAT:BoxRow valign="top">

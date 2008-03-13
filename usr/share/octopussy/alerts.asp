@@ -3,7 +3,7 @@
 my $f = $Request->Form();
 my $alert = $f->{alert} || $Request->QueryString("alert");
 my $action = $Request->QueryString("action");
-my $sort = $Request->QueryString("alerts_table_sort");
+my $sort = $Request->QueryString("alerts_table_sort") || "name";
 
 if (!defined $alert)
 {

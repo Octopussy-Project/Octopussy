@@ -50,6 +50,7 @@ sub Get($$)
 {
 	my ($lang, $str) = @_;
 
+	return (undef) if (AAT::NULL($str));
 	Init($lang)	if (!defined $AAT_Translation{$lang}{"_DAY"});
 
   return ($AAT_Translation{$lang}{$str} || $str);

@@ -327,7 +327,7 @@ sub Move_Message($$$)
   }
 	$conf->{message} = \@messages2;
 	AAT::XML::Write(Filename($service), $conf, "octopussy_service");
-	Parse_Restart($service);
+	Parse_Restart_Required($service);
 }
 
 =head2 Messages($service)
@@ -543,6 +543,24 @@ sub Parse_Restart($)
       Octopussy::Device::Parse_Pause($d);
       Octopussy::Device::Parse_Start($d);
     }
+  }
+}
+
+=head2 Parse_Restart_Required($service)
+
+Set 'reload_required' for device with service '$service'
+
+=cut
+
+sub Parse_Restart_Required($)
+{
+  my $service = shift;
+
+  my @devices = Octopussy::Device::With_Service($service);
+  foreach my $d (@devices)
+  {
+		Octopussy::Device::Reload_Required($d)
+    	if (Octopussy::Device::Parse_Status($d));
   }
 }
 

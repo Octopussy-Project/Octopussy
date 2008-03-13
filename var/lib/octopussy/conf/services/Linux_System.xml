@@ -2,8 +2,8 @@
 <octopussy_service description="Linux System Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_System"
-                   nb_messages="067"
-                   version="200802220001">
+                   nb_messages="068"
+                   version="200803130005">
   <message loglevel="Information"
            msg_id="Linux_System:removing_device_node"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udev&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;removing device node .+&quot;):msg@&gt;"
@@ -115,7 +115,7 @@
   <message loglevel="Warning"
            msg_id="Linux_System:successful_su"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Successful su for \S+ by \S+&quot;):msg@&gt;"
-           rank="030"
+           rank="028"
            table="Message"
            taxonomy="Auth.Success" />
   <message loglevel="Warning"
@@ -145,7 +145,7 @@
   <message loglevel="Warning"
            msg_id="Linux_System:su_session_closed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;(pam_unix) session closed for user \S+&quot;):msg@&gt;"
-           rank="028"
+           rank="026"
            table="Message"
            taxonomy="System" />
   <message loglevel="Warning"
@@ -193,7 +193,7 @@
   <message loglevel="Warning"
            msg_id="Linux_System:failed_login"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;login&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;FAILED LOGIN .+&quot;):msg@&gt; "
-           rank="026"
+           rank="027"
            table="Message"
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
@@ -205,7 +205,7 @@
   <message loglevel="Warning"
            msg_id="Linux_System:login_session_closed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;login&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;(pam_unix) session closed for user \S+&quot;):msg@&gt;"
-           rank="027"
+           rank="030"
            table="Message"
            taxonomy="Access.Failure" />
   <message loglevel="Warning"

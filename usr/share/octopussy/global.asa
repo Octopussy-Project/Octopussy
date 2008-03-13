@@ -13,9 +13,7 @@ sub Script_OnStart
   my $g_params = $Request->Params();
   foreach my $k (%{$g_params})
   { 
-		$Session->{$k} = $g_params->{$k}
-			if (((defined $g_params->{$k}) && ($g_params->{$k} ne ""))
-				&& ((defined $k) && ($k ne ""))); 
+		$Session->{$k} = $g_params->{$k}  if (AAT::NOT_NULL($g_params->{$k}));
 	}
 }
 
