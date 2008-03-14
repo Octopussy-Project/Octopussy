@@ -1,3 +1,6 @@
+#################### Octopussy Project ####################
+# $Id$
+###########################################################
 =head1 NAME
 
 Octopussy::Report::OpenDocument - Octopussy Report OpenDocument module

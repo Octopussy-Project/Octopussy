@@ -1,3 +1,6 @@
+#################### Octopussy Project ####################
+# $Id$
+###########################################################
 =head1 NAME
 
 Octopussy::Plugin::Unit - Octopussy Plugin Unit
