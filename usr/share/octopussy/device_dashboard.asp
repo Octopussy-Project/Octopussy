@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTop title="Device DashBoard" help="devices" />
 <%
 my $device = $Request->Form("device") || $Request->QueryString("device");

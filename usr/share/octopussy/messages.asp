@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTop title="Messages" help="#messages_page" />
 <%
 my $service = $Session->{service};

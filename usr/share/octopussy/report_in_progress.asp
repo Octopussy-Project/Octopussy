@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my $cmd = $Request->QueryString("cmd");
 my $url_cmd = $Server->URLEncode($cmd);

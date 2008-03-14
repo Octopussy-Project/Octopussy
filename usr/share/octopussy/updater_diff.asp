@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTop title="Updater" help="Updater" />
 <%
 my $service = $Request->QueryString("service");

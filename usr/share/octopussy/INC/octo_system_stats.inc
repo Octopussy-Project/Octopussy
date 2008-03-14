@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my $cpu = Octopussy::Stats::CPU_Usage();
 my $cpu_str = "User: $cpu->{user}% System: $cpu->{system}% "

@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my %button = 
 	( info => "info", warning => "msg_warning", critical => "msg_critical" );

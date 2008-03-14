@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my ($time, $device_events) = Octopussy::Stats::Events();
 my $total = 0;

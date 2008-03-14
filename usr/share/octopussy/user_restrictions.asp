@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTop title="User Restrictions" />
 <%
 my $url = "./user_restrictions.asp";

@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTopRestricted title="Restricted Alerts Viewer" />
 <%
 my $restrictions = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});

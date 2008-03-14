@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTopRestricted title="Reports Viewer" />
 <%
 my $role = $Session->{AAT_ROLE};

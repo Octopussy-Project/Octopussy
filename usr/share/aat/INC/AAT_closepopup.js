@@ -1,3 +1,8 @@
+/*
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+*/
 function targetopener(mylink, closeme, closeonly)
 {
 	if (! (window.focus && window.opener)) return true;

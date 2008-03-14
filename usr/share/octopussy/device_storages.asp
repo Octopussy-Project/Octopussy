@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTop title="Device Storages" help="devices" />
 <%
 my $device = $Request->QueryString("device");

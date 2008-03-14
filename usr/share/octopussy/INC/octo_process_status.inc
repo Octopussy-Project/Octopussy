@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <AAT:Box align="center">
 <%
 my %proc = Octopussy::Process_Status();

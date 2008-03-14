@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <% 
 my $version = "Octopussy " . Octopussy::Version();
 my $website = Octopussy::WebSite(); 

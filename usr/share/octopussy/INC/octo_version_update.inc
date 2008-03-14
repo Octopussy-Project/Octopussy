@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <% my $version = "Octopussy v" . Octopussy::Version(); %>
 <AAT:Box align="center">
 <AAT:BoxRow>

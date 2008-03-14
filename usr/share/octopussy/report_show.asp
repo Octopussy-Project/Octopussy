@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my $role = $Session->{AAT_ROLE};
 my $report_type = $Request->QueryString("report_type");

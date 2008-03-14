@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my %arg = @_;
 my $nb_alerts_max = Octopussy::Parameter("max_alerts");

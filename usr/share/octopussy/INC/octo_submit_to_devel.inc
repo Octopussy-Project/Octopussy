@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my @list = ();
 my $smtp_conf = AAT::SMTP::Configuration("Octopussy");

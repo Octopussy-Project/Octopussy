@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTop title="Service Group Edition" help="#servicegroups_page" />
 <%
 my $f = $Request->Form();

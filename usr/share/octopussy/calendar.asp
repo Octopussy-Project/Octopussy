@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <WebUI:PageTop title="Calendar" help="Calendar" />
 <%
 my $url = $Request->QueryString("url");

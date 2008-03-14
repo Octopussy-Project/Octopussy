@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 $Response->Include("AAT/INC/AAT_Table_Function.inc",
   id => "statistic_reports_table", url => $url, sort => $sort || "name",

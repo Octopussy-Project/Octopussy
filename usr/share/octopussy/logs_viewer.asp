@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my $max_lines = Octopussy::Parameter("logs_viewer_max_lines");
 my $url = "./logs_viewer.asp";

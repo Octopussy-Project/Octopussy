@@ -1,3 +1,8 @@
+<!--
+#################### Octopussy Project ####################
+ $Id$
+###########################################################
+-->
 <%
 my $action = $Request->QueryString("action");
 my $s_report = $Request->QueryString("statistic_report");
