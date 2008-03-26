@@ -1,8 +1,3 @@
-/*
-#################### Octopussy Project ####################
- $Id$
-###########################################################
-*/
 var offsetfromcursorX=2 
 var offsetfromcursorY=2  
 

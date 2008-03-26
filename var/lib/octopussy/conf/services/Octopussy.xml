@@ -2,8 +2,8 @@
 <octopussy_service description="Octopussy Service"
                    icon="software/logo_octopussy"
                    name="Octopussy"
-                   nb_messages="048"
-                   version="200803030001"
+                   nb_messages="049"
+                   version="200803140001"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -169,7 +169,7 @@
            taxonomy="Config.Changes" />
   <message loglevel="Warning"
            msg_id="Octopussy:parsing_device_modification"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Parsing \S+ed for device '.+' by .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Parsing \S+d for device '.+' by .+&quot;):msg@&gt;"
            rank="029"
            table="Message"
            taxonomy="Config.Changes" />

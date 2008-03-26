@@ -7,7 +7,7 @@ octo_extractor - Octopussy Logs Extractor program
 =head1 SYNOPSIS
 
 octo_extractor --device <device> --service <service> --taxonomy <taxonomy>
-  --begin <begin_datetime> --end <end_datetime>
+  --begin YYYYMMDDHHMM --end YYYYMMDDHHMM [ --output <outputfile> ]
 
 =head1 DESCRIPTION
 
@@ -28,13 +28,19 @@ my $PROG_VERSION = Octopussy::Version();
 
 my $help;
 my (@devices, @services) = ((), ());
-my ($taxonomy, $begin, $end);
+my ($taxonomy, $begin, $end, $output);
+my ($progress_msg, $progress_num) = (0, 0);
+my ($include1, $include2, $exclude1, $exclude2);
+my $dir_pid = Octopussy::Directory("running");
+my $pid_file = Octopussy::PID_File($PROG_NAME);
+my $status_file = $dir_pid . $PROG_NAME . ".status";
 
 =head1 FUNCTIONS
 
 =head2 String_List($fct, @args)
 
 =cut
+
 sub String_List
 {
 	my ($fct, @args) = @_;
@@ -45,12 +51,14 @@ sub String_List
 =head2 Help()
 
 =cut
+
 sub Help()
 {
 	print "\n$PROG_NAME (version $PROG_VERSION)\n\n";		
 	print	" Usage: $PROG_NAME --device <device> --service <service>";
 	print " --taxonomy <taxonomy>";
-	print " --begin <begin_datetime> --end <end_datetime>\n\n";
+	print " --begin YYYYMMDDHHMM --end YYYYMMDDHHMM";
+	print " [ --output <outputfile> ]\n\n";
 
 	if (! @devices)
 		{ print "device list: " . String_List("Octopussy::Device::List") . "\n"; }
@@ -66,9 +74,28 @@ sub Help()
 	exit();
 }
 
+=head2 Progress($msg, $num)
+
+=cut
+
+sub Progress
+{
+  my ($msg, $num) = @_;
+
+  if (defined $num)
+    { ($progress_msg, $progress_num) = ($msg, $num); }
+  else
+  { # kill -USR1 --> write current progress in status file
+    open(STATUS_FILE, "> $status_file");
+    print STATUS_FILE AAT::Translation($progress_msg) . " [$progress_num]\n";
+    close(STATUS_FILE);
+  }
+}
+
 =head2 Get_Messages_To_Parse($services, $taxonomy)
 
 =cut
+
 sub Get_Messages_To_Parse($$)
 {
 	my ($services, $taxonomy) = @_;
@@ -82,6 +109,7 @@ sub Get_Messages_To_Parse($$)
 =head2 Get_TimePeriod_Files($devices, $services, $begin, $end)
 
 =cut
+
 sub Get_TimePeriod_Files($$$$)
 {
 	my ($devices, $services, $begin, $end) = @_;
@@ -99,64 +127,128 @@ sub Get_TimePeriod_Files($$$$)
 	return ($files);
 }
 
-=head2 Print_Logs($devices, $services, $taxonomy, $begin, $end)
+=head2 Print_Logs($devices, $services, $taxonomy, $begin, $end, $re_incl, $re_excl)
 
 =cut
-sub Print_Logs($$$$$)
-{
-  my ($devices, $services, $taxonomy, $begin, $end) = @_;
-	my $files = Get_TimePeriod_Files($devices, $services, $begin, $end);
 
-	print "Nb Files: $#{$files}\n";
+sub Print_Logs($$$$$$$)
+{
+  my ($devices, $services, $taxonomy, $begin, $end, $re_incl, $re_excl) = @_;
+	my $time = time();
+	my @includes = ();
+  my @excludes = ();
+  foreach my $inc (AAT::ARRAY($re_incl))
+    { push(@includes, qr/$inc/) if (AAT::NOT_NULL($inc)); }
+  foreach my $excl (AAT::ARRAY($re_excl))
+    { push(@excludes, qr/$excl/) if (AAT::NOT_NULL($excl)); }
+	
+	Progress("_MSG_EXTRACT_PROGRESS_LISTING_FILES", "1/1");
+	my $files = Get_TimePeriod_Files($devices, $services, $begin, $end);
+	my $total = $#{$files} + 1;
+	my $nb_match = 0;
+	
+	if (AAT::NOT_NULL($output))
+		{ open(OUT, "> $output"); }
+	else
+		{ open(OUT, ">&STDOUT"); }
+
 	if ((@{$services}[0] =~ /-ANY-/i) && ($taxonomy =~ /-ANY-/i))
 	{
+		my $i = 1;
 		foreach my $f (@{$files})
 		{
-			open(FILE, "zcat \"$f\" |");
-			while (<FILE>)
-			{
-				print $_;
-			}
-			close(FILE);
-		}
-	}
-	else
-	{
-		my @msg_to_parse = Get_Messages_To_Parse($services, $taxonomy);
-		foreach my $f (@{$files})
-  	{
+			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total");
 			open(FILE, "zcat \"$f\" |");
 			while (<FILE>)
 			{
 				my $line = $_;
-				chomp($line);
+				my $match = 1;
+      	foreach my $inc (@includes)
+        	{ $match = 0  if ($line !~ $inc); }
+      	foreach my $excl (@excludes)
+        	{ $match = 0  if ($line =~ $excl); }
+      	if ($match) 
+				{
+					print OUT $line; 
+					$nb_match++;
+				}
+			}
+			close(FILE);
+			$i++;
+		}
+	}
+	else
+	{
+		my $i = 1;
+		my @msg_to_parse = Get_Messages_To_Parse($services, $taxonomy);
+		foreach my $f (@{$files})
+  	{
+			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total");
+			open(FILE, "zcat \"$f\" |");
+			while (<FILE>)
+			{
+				my $line = $_;
 				foreach my $msg (@msg_to_parse)
 				{
-					if (my (@args) = $line =~ $msg->{re})
+					if ($line =~ $msg->{re})
 					{
-						print "$line\n";
+						my $match = 1;
+		        foreach my $inc (@includes)
+    		      { $match = 0  if ($line !~ $inc); }
+        		foreach my $excl (@excludes)
+          		{ $match = 0  if ($line =~ $excl); }
+						if ($match)
+        		{
+          		print OUT $line;
+          		$nb_match++;
+        		}
 						last;
 					}
 				}
 			}
 			close(FILE);
+			$i++;
 		}
 	}
+	AAT::Syslog("octo_extractor", "LOG_SEARCH", join(",", @{$devices}),
+  	join(",", @{$services}), "${begin}-${end}", time() - $time);
+}
+
+=head2 End()
+
+=cut
+
+sub End
+{
+  AAT::Syslog($PROG_NAME, "Logs Extraction Aborted !");
+  unlink($pid_file);
+  unlink($status_file);
+  exit();
 }
 
 #
 # MAIN
 #
 
+$SIG{HUP} = \&End;
+$SIG{USR1} = \&Progress;
+
 my $status = GetOptions(
-		"h" => \$help, "help" => \$help,
-   	"devices=s" => \@devices, "services=s" => \@services,
-		"taxonomy=s" => \$taxonomy, "begin=s" => \$begin, "end=s" => \$end );
+	"h" => \$help, "help" => \$help,
+	"devices=s" => \@devices, "services=s" => \@services, 
+	"taxonomy=s" => \$taxonomy, "begin=s" => \$begin, "end=s" => \$end, 
+	"include1=s" => \$include1, "include2=s" => \$include2,
+	"exclude1=s" => \$exclude1, "exclude2=s" => \$exclude2,
+	"output=s" => \$output );
 
 Help()	if ((! $status) || ($help) 
 	|| (! @devices) || (! @services) || (!defined $begin) || (!defined $end));
 
-Print_Logs(\@devices, \@services, $taxonomy, $begin, $end);
+Print_Logs(\@devices, \@services, $taxonomy, $begin, $end, 
+	[$include1, $include2], [$exclude1, $exclude2]);
+
+unlink($pid_file);
+unlink($status_file);
 
 =head1 AUTHOR
 

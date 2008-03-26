@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <html>
 <head>
 <meta http-equiv="Pragma" content="no-cache" charset="utf-8">

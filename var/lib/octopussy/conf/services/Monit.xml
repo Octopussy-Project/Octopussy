@@ -2,8 +2,8 @@
 <octopussy_service description="Monit Service"
                    icon="software/logo_monit"
                    name="Monit"
-                   nb_messages="006"
-                   version="200802210003"
+                   nb_messages="007"
+                   version="200803250003"
                    website="http://www.tildeslash.com/monit/">
   <message loglevel="Notice"
            msg_id="Monit:process_pid_changed_to"
@@ -47,4 +47,22 @@
            rank="007"
            table="Message"
            taxonomy="Application.Stop" />
+  <message loglevel="Warning"
+           msg_id="Monit:process_is_not_running"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' process is not running&quot;):msg@&gt; "
+           rank="008"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Notice"
+           msg_id="Monit:trying_to_restart"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' trying to restart&quot;):msg@&gt; "
+           rank="009"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Monit:failed_to_start"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' failed to start&quot;):msg@&gt; "
+           rank="010"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

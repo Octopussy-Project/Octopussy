@@ -209,7 +209,7 @@ sub Files($$$$)
 	return (\@list);
 }
 
-=head2 Get($devices, $services, $start, $finish)
+=head2 Get($devices, $services, $start, $finish, $re_incl, $re_excl, $limit)
 
 Get logs lines from '$services' on devices '$devices'
 between '$start' & '$finish'

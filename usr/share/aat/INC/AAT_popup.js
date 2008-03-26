@@ -1,8 +1,3 @@
-/*
-#################### Octopussy Project ####################
- $Id$
-###########################################################
-*/
 function popup(mylink, name)
 {
 	if (! window.focus)return true;

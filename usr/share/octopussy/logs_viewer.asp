@@ -4,105 +4,176 @@
 ###########################################################
 -->
 <%
+my $run_dir = Octopussy::Directory("running");
 my $max_lines = Octopussy::Parameter("logs_viewer_max_lines");
+my $msg_max_lines = sprintf(AAT::Translation("_MSG_REACH_MAX_LINES"), $max_lines);
+my $msg_nb_lines = AAT::Translation("_MSG_NB_LINES");
 my $url = "./logs_viewer.asp";
 my $nb_lines = 0;
+my $text = "";
 
-my $f = $Request->Form();
-my $devs = $Session->{device}; 
-my $servs = $Session->{service}; 
-my (@devices, @services) = ((),());
-my $msg_nb_lines = AAT::Translation("_MSG_NB_LINES");
-my $msg_max_lines = sprintf(AAT::Translation("_MSG_REACH_MAX_LINES"), $max_lines);
-
-if (!ref ($devs))
-  { push(@devices, $devs); }
-else
-{
-  foreach my $d (AAT::ARRAY($devs))
-    { push(@devices, $d); }
-}
-if (!ref ($servs))
-  { push(@services, $servs); }
-else
-{
-  foreach my $s (AAT::ARRAY($servs))
-    { push(@services, $s); }
-}
+my @devices = AAT::ARRAY($Session->{device});
+my @services = AAT::ARRAY($Session->{service});
 
 my $dt = $Session->{dt};
-my $d1 = $Session->{dt1_day};
-my $m1 = $Session->{dt1_month};
-my $y1 = $Session->{dt1_year};
-my ($hour1, $min1) = ($Session->{dt1_hour}, $Session->{dt1_min});
-my $d2 = $Session->{dt2_day};
-my $m2 = $Session->{dt2_month};
-my $y2 = $Session->{dt2_year};
-my ($hour2, $min2) = ($Session->{dt2_hour}, $Session->{dt2_min});
-my $regexp_include = $f->{regexp_include}; 
-my $regexp_exclude = $f->{regexp_exclude};
-my $regexp_include2 = $f->{regexp_include2}; 
-my $regexp_exclude2 = $f->{regexp_exclude2};
+my ($d1, $m1, $y1, $hour1, $min1) = 
+	($Session->{dt1_day}, $Session->{dt1_month}, $Session->{dt1_year}, 
+	$Session->{dt1_hour}, $Session->{dt1_min});
+my ($d2, $m2, $y2, $hour2, $min2) = 
+	($Session->{dt2_day}, $Session->{dt2_month}, $Session->{dt2_year},
+	$Session->{dt2_hour}, $Session->{dt2_min});
+my ($re_include, $re_include2) = 
+	($Session->{re_include}, $Session->{re_include2});
+my ($re_exclude, $re_exclude2) = 
+	($Session->{re_exclude}, $Session->{re_exclude2});
 
-my $time = time();
-my $text = "";
-if (((defined $f->{logs}) || (defined $f->{file}) || (defined $f->{csv}))
+if ((AAT::NULL($Session->{extractor})) && 
+		((AAT::NOT_NULL($Session->{logs})) || (AAT::NOT_NULL($Session->{file})) 
+			|| (AAT::NOT_NULL($session->{csv})))
 	&& (($#devices >= 0) && ($#services >= 0) 
-			&& ($devices[0] ne "") && ($services[0] ne "")))
+	&& ($devices[0] ne "") && ($services[0] ne "")))
 {
-  my %start = ( year => $y1, month => $m1, day => $d1,
-    hour => $hour1, min => $min1 );
-  my %finish = ( year => $y2, month => $m2, day => $d2,
-    hour => $hour2, min => $min2 );
+	my $dev_str = "--device " . join(" --device ", @devices);
+	my $serv_str = "--service " . join(" --service ", @services);
+	my $filename = "logs_" . join("-", @devices) . "_" . join("-", @services)
+    . "_$y1$m1$d1$hour1$min1-$y2$m2$d2$hour2$min2";
+	my $cmd = "/usr/sbin/octo_extractor $dev_str $serv_str --taxonomy \"-ANY-\""
+		. " --begin $y1$m1$d1$hour1$min1 --end $y2$m2$d2$hour2$min2" 
+		. " --include1 '$re_include' --include2 '$re_include2'"
+		. " --exclude1 '$re_exclude' --exclude2 '$re_exclude2'"
+		. " --output $run_dir/$filename";
+	system("$cmd &");
+	sleep(1);
+  $Response->Redirect("./logs_viewer.asp?extractor=$filename");
+}
 
-  my $logs = Octopussy::Logs::Get(\@devices, \@services, \%start, \%finish,
-    [$regexp_include, $regexp_include2], [$regexp_exclude, $regexp_exclude2], 
-		$max_lines);
-	my $filename = "logs_" . join("-", @devices) . "_" . join("-", @services) 
-		. "_$y1$m1$d1$hour1$min1-$y2$m2$d2$hour2$min2";
-	if (defined $f->{file})
+if (AAT::NOT_NULL($Session->{logfile}))
+{
+	my $filename = $Session->{logfile};
+	if (AAT::NOT_NULL($Session->{file}))
 	{
-		foreach my $l (@{$logs})
-      { $text .= "$l" }
 		AAT::File_Save( { contenttype => "text/txt", 
-			input_data => $text, output_file => "${filename}.txt" } );
+			input_file => "$run_dir/$filename", 
+			output_file => "${filename}.txt" } );
+		$Response->Redirect("./logs_viewer.asp");
 	}
-	elsif (defined $f->{csv})
+	elsif (AAT::NOT_NULL($Session->{csv}))
 	{
-  	foreach my $l (@{$logs})
-  	{
-    	$text .= "$1;$2;$3\n" 
-				if ($l =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) (\S+) (.+)$/);
+		open(FILE, "< $run_dir/$filename");
+		while (<FILE>)
+		{
+   		$text .= "$1;$2;$3\n" 
+				if ($_ =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) (\S+) (.+)$/);
   	}
+		close(FILE);
 		AAT::File_Save( { contenttype => "text/csv",
-      input_data => $text, output_file => "${filename}.csv" } );
+     	input_data => $text, output_file => "${filename}.csv" } );
 	}
 	else
 	{
-		$text = "<table id=\"resultsTable\">";
-		$text .= "<tbody>";
-		foreach my $l (@{$logs})
-  	{
-			my $line = $Server->HTMLEncode($l);
-			$line =~ s/($regexp_include)/<font color="red"><b>$1<\/b><\/font>/g	
-				if (AAT::NOT_NULL($regexp_include));
-			$line =~ s/($regexp_include2)/<font color="blue"><b>$1<\/b><\/font>/g
-				if (AAT::NOT_NULL($regexp_include2));
+		$text = "<table id=\"resultsTable\"><tbody>";
+		open(FILE, "< /var/run/octopussy/$filename");
+    while (<FILE>)
+    {
+			my $line = $Server->HTMLEncode($_);
+			$line =~ s/($re_include)/<font color="red"><b>$1<\/b><\/font>/g	
+				if (AAT::NOT_NULL($re_include));
+			$line =~ s/($re_include2)/<font color="blue"><b>$1<\/b><\/font>/g
+				if (AAT::NOT_NULL($re_include2));
 			$line =~ s/(\S{150})(\S+?)/$1\n$2/g;
 			$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
    		$nb_lines++;
   	}
-		$text .= "</tbody>";
-		$text .= "</table>"; 
+		close(FILE);
+		$text .= "</tbody></table>"; 
 	}
+	($Session->{extractor}, $Session->{logfile}, 
+	$Session->{logs}, $Session->{file}, $Session->{csv}, $Session->{zip}) =
+  	(undef, undef, undef, undef, undef, undef);
 }
-AAT::Syslog("octo_WebUI", "LOG_SEARCH", join(",", @devices), 
-	join(",", @services), "$y1$m1$d1$hour1$min1-$y2$m2$d2$hour2$min2", 
-	time() - $time);
 
-($Session->{logs}, $Session->{file}, $Session->{csv}, $Session->{zip}) =
-	(undef, undef, undef, undef);
 my @used_services = Octopussy::Service::List_Used();
+
+if (AAT::NOT_NULL($Session->{extractor}))
+{
+%>
+<WebUI:PageTop title="Logs" onLoad="extract_progress()" />
+<script type="text/javascript">
+var http_request = false;
+var href = window.location.href;
+var bars = 40;
+var started = 0;
+var loop = 0;
+
+function extract_progress()
+{
+  http_request = false;
+  if (window.XMLHttpRequest)
+  { // Mozilla, Safari,...
+    http_request = new XMLHttpRequest();
+    if (http_request.overrideMimeType)
+      { http_request.overrideMimeType('text/xml'); }
+  }
+  else if (window.ActiveXObject)
+  { // IE
+    try { http_request = new ActiveXObject("Msxml2.XMLHTTP"); }
+    catch (e)
+    {
+      try { http_request = new ActiveXObject("Microsoft.XMLHTTP"); }
+      catch (e) {}
+    }
+  }
+  if (!http_request)
+    { return false; }
+  http_request.onreadystatechange = Update_Progress;
+  http_request.open('GET', "ajax_extract_progress.asp", true);
+  http_request.send(null);
+  loop = setTimeout("extract_progress()", 1000);
+}
+
+function Update_Progress()
+{
+  if (http_request.readyState == 4)
+  {
+    if (http_request.status == 200)
+    {
+      var xml =  http_request.responseXML;
+      var root = xml.documentElement;
+      if ((!root.getElementsByTagName('total')[0].firstChild) && (started))
+      {
+        clearTimeout(loop);
+        window.location = "./logs_viewer.asp?logfile=<%= $Session->{extractor} %>";
+      }
+      else
+      {
+        started = 1;
+      }
+      var current = root.getElementsByTagName('current')[0].firstChild.data;
+      var total = root.getElementsByTagName('total')[0].firstChild.data;
+      var percent = root.getElementsByTagName('percent')[0].firstChild.data;
+      var cbars = current * bars / total;
+			var progress_str = current + "/" + total + " (" + percent + "%)";
+      progressbar_progress.innerHTML = progress_str;
+
+      var bar = "<table border=1 bgcolor=#E7E7E7><tr>";
+      for (var i = 0; i < cbars; i++)
+      {
+        var color = 99 - (i*50/bars);
+        bar+= "<td width=10 height=20 bgcolor=\"rgb(0,0," + color + ")\"></td>";      }
+      for (var i = cbars; i < bars; i++)
+      {
+        bar+= "<td width=10 height=20 bgcolor=\"white\"></td>";
+      }
+      bar+= "</tr></table>";
+      progressbar_bar.innerHTML = bar;
+    }
+  }
+}
+</script>
+<%
+}
+else
+{
 %>
 <WebUI:PageTop title="Logs" />
 
@@ -157,23 +228,23 @@ function FilterData()
 	}
 }
 </script>
-
+<%
+}
+%>
 <AAT:Form action="$url">
-<AAT:Box align="C">
-<AAT:BoxRow><AAT:BoxCol align="C" cspan="2">
-	<AAT:Label value="_LOGS_VIEWER" style="B" /></AAT:BoxCol>
-</AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol align="C" cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:Box align="C" title="_LOGS_VIEWER" icon="buttons/bt_search">
 <AAT:BoxRow>
 	<AAT:BoxCol>
 	<AAT:Box align="C">
 	<AAT:BoxRow>
-		<AAT:BoxCol align="R">
-  	<AAT:Label value="_DEVICE" align="right" style="B" /></AAT:BoxCol>
+		<AAT:BoxCol align="C">
+		<AAT:Button name="device" /><br>
+  	<AAT:Label value="_DEVICE" align="R" style="B" /></AAT:BoxCol>
   	<AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
     	unknown="1" multiple="1" size="5" selected=\@devices /></AAT:BoxCol>
-  	<AAT:BoxCol align="right">
-  	<AAT:Label value="_SERVICE" align="right" style="B" /></AAT:BoxCol>
+  	<AAT:BoxCol align="C">
+		<AAT:Button name="service" /><br>
+  	<AAT:Label value="_SERVICE" align="R" style="B" /></AAT:BoxCol>
   	<AAT:BoxCol><AAT:Inc file="octo_selector_service_dynamic"
     	unknown="1" multiple="1" size="5" device=\@devices selected=\@services 
 			restricted_services=\@used_services /></AAT:BoxCol>
@@ -188,27 +259,31 @@ function FilterData()
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol cspan="2">
-	<AAT:Box>
+	<AAT:Box align="C">
 	<AAT:BoxRow>
-	<AAT:BoxCol align="R"><AAT:Label value="_REGEXP_INC" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol align="R">
+	<AAT:Button name="msg_ok" tooltip="_REGEXP_INC"/></AAT:BoxCol>
 	<AAT:BoxCol>
-		<AAT:Entry name="regexp_include" value="$regexp_include" 
-		size="40" style="color:red" />
+		<AAT:Entry name="re_include" value="$re_include" 
+			size="50" style="color:red" />
 	</AAT:BoxCol>
-	<AAT:BoxCol align="R"><AAT:Label value="_REGEXP_EXC" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol align="R">
+	<AAT:Button name="msg_critical" tooltip="_REGEXP_EXC"/></AAT:BoxCol>
   <AAT:BoxCol>
-    <AAT:Entry name="regexp_exclude" value="$regexp_exclude" size="40" />
+    <AAT:Entry name="re_exclude" value="$re_exclude" size="50" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol align="R"><AAT:Label value="_REGEXP_INC" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol align="R">
+	<AAT:Button name="msg_ok" tooltip="_REGEXP_INC"/></AAT:BoxCol>
   <AAT:BoxCol>
-    <AAT:Entry name="regexp_include2" value="$regexp_include2" 
-		size="40" style="color:blue" />
+    <AAT:Entry name="re_include2" value="$re_include2" 
+			size="50" style="color:blue" />
 	</AAT:BoxCol>
-	<AAT:BoxCol align="R"><AAT:Label value="_REGEXP_EXC" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol align="R">
+	<AAT:Button name="msg_critical" tooltip="_REGEXP_EXC"/></AAT:BoxCol>
   <AAT:BoxCol>
-    <AAT:Entry name="regexp_exclude2" value="$regexp_exclude2" size="40" />
+    <AAT:Entry name="re_exclude2" value="$re_exclude2" size="50" />
 	</AAT:BoxCol>
 	</AAT:BoxRow>
 	</AAT:Box>
@@ -216,7 +291,7 @@ function FilterData()
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol align="center" cspan="2">
+	<AAT:BoxCol align="C" cspan="2">
 	<AAT:Form_Submit name="logs" value="_GET_LOGS" />
 	<AAT:Form_Submit name="file" value="_DOWNLOAD_FILE" />
 	<AAT:Form_Submit name="csv" value="_DOWNLOAD_CSV_FILE" />
@@ -227,7 +302,7 @@ function FilterData()
 
 <AAT:Box align="C">
 <AAT:BoxRow>
-	<AAT:BoxCol><AAT:Label value="Quick Search" style="B" />
+	<AAT:BoxCol cspan="2"><AAT:Label value="Quick Search" style="B" />
 	<input id="filter" size="40" style="color:orange" onkeydown="Timer();" />
 	<AAT:Label value="$msg_nb_lines" style="B"/>
 	<span id="nb_lines"><b><%= $nb_lines %></b></span>
@@ -235,7 +310,11 @@ function FilterData()
 	{ %><AAT:Message level="1" msg="$msg_max_lines" /><% } %>
 </AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol><hr></AAT:BoxCol></AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol><%= $text %></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow>
+	<AAT:BoxCol><div id="progressbar_bar"></div></AAT:BoxCol>
+	<AAT:BoxCol><div id="progressbar_progress"></div></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="2"><%= $text %></AAT:BoxCol></AAT:BoxRow>
 </AAT:Box>
 <WebUI:PageBottom />

@@ -22,7 +22,7 @@ if ($#report_list >= 0)
 	<AAT:BoxCol align="R"><AAT:Label value="_NAME" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Entry name="name" size="30" /></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Button name="report" /></AAT:BoxCol>
-	<AAT:BoxCol align="R"><AAT:Label value="_REPORT" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_REPORT" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Selector name="report" list=\@report_list /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
@@ -40,7 +40,7 @@ if ($#report_list >= 0)
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
-	<AAT:BoxCol align="R"><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Inc file="octo_selector_taxonomy" any="1" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="3"></AAT:BoxCol>
 </AAT:BoxRow>

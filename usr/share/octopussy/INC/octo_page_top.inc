@@ -14,13 +14,13 @@ $Response->Redirect("./login.asp")
 my $title = "Octopussy " . ($arg{title} || "");
 if (defined $arg{refresh})
 {
-  %><AAT:PageTop title="$title" icon="IMG/octopussy.gif"
+  %><AAT:PageTop title="$title" icon="IMG/octopussy.gif" onLoad="$arg{onLoad}"
   refresh="$arg{refresh}" close_popup="y" popup="y" tooltip="y" /><%
 }
 else
 {
   %><AAT:PageTop title="$title" icon="IMG/octopussy.gif"
-  close_popup="y" popup="y" tooltip="y" /><%
+  close_popup="y" popup="y" tooltip="y" onLoad="$arg{onLoad}" /><%
 }%>
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
 <tr><td colspan="2"><% $Response->Include('INC/octo_top_menu.inc', help => $arg{help}) %></td></tr>

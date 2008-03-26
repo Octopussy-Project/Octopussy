@@ -7,7 +7,7 @@ octo_reporter - Octopussy Reporter program
 =head1 SYNOPSIS
 
 octo_reporter --report <report> --device <device> --service <service>
-  --taxonomy <taxonomy> --begin <begin_datetime> --end <end_datetime>
+  --taxonomy <taxonomy> --begin YYYYMMDDHHMM --end YYYYMMDDHHMM
   --output <output_file>
 
 Mail options:

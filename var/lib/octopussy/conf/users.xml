@@ -6,5 +6,20 @@
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restrictions=""
         role="admin"
-        theme="DEFAULT" />
+        theme="DEFAULT"
+        type="local" />
+  <user language="EN"
+        login="res"
+        menu_mode="TEXT_AND_ICONS"
+        password="$1$OP$q6QVGa9p8uHf9vqwVSiza/"
+        role="restricted"
+        theme="DEFAULT">
+    <restrictions>
+      <alert>-ANY-</alert>
+      <device>XDRPP1</device>
+      <device>XDRPP2</device>
+      <report>-ANY-</report>
+      <service>CA_SYN_Apache_Traffic</service>
+    </restrictions>
+  </user>
 </Octopussy_users>
