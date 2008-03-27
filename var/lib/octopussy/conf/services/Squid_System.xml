@@ -3,7 +3,7 @@
                    icon="software/logo_squid"
                    name="Squid_System"
                    nb_messages="073"
-                   version="200802220003"
+                   version="200803270001"
                    website="http://www.squid-cache.org/">
   <message loglevel="Information"
            msg_id="Squid_System:logfile_rotate"
@@ -447,6 +447,12 @@
            msg_id="Squid_System:bungled_squid_conf_line"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Bungled squid.conf line .+&quot;):msg@&gt;"
            rank="074"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Critical"
+           msg_id="Squid_System:invalid_ip_address"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid: &lt;@REGEXP(&quot;decode_addr: Invalid IP address .+&quot;):msg@&gt;"
+           rank="075"
            table="Message"
            taxonomy="Config.Errors" />
 </octopussy_service>

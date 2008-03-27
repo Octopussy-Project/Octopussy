@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my $run_dir = Octopussy::Directory("running");
 my $max_lines = Octopussy::Parameter("logs_viewer_max_lines");
@@ -26,6 +21,26 @@ my ($re_include, $re_include2) =
 	($Session->{re_include}, $Session->{re_include2});
 my ($re_exclude, $re_exclude2) = 
 	($Session->{re_exclude}, $Session->{re_exclude2});
+
+if (AAT::NOT_NULL($Session->{cancel}))
+{
+	my $pid_file = $run_dir . "octo_extractor.pid";
+	$pid = `cat "$pid_file"`;
+	kill HUP => $pid;	
+
+	($Session->{extractor}, $Session->{logfile}, $Session->{cancel},
+  $Session->{logs}, $Session->{file}, $Session->{csv}, $Session->{zip}) =
+    (undef, undef, undef, undef, undef, undef, undef);	
+}
+
+if (AAT::NOT_NULL($Session->{template}))
+{
+	Octopussy::Search_Template::New( { name => $Session->{template}, 
+	device => \@devices, service => \@services, 
+	re_include => $Session->{re_include}, re_include2 => $Session->{re_include2},
+	re_exclude => $Session->{re_exclude}, re_exclude2 => $Session->{re_exclude2} 
+	} );
+}
 
 if ((AAT::NULL($Session->{extractor})) && 
 		((AAT::NOT_NULL($Session->{logs})) || (AAT::NOT_NULL($Session->{file})) 
@@ -55,7 +70,6 @@ if (AAT::NOT_NULL($Session->{logfile}))
 		AAT::File_Save( { contenttype => "text/txt", 
 			input_file => "$run_dir/$filename", 
 			output_file => "${filename}.txt" } );
-		$Response->Redirect("./logs_viewer.asp");
 	}
 	elsif (AAT::NOT_NULL($Session->{csv}))
 	{
@@ -87,9 +101,9 @@ if (AAT::NOT_NULL($Session->{logfile}))
 		close(FILE);
 		$text .= "</tbody></table>"; 
 	}
-	($Session->{extractor}, $Session->{logfile}, 
+	($Session->{extractor}, $Session->{logfile}, $Session->{cancel}, 
 	$Session->{logs}, $Session->{file}, $Session->{csv}, $Session->{zip}) =
-  	(undef, undef, undef, undef, undef, undef);
+  	(undef, undef, undef, undef, undef, undef, undef);
 }
 
 my @used_services = Octopussy::Service::List_Used();
@@ -152,6 +166,7 @@ function Update_Progress()
       var total = root.getElementsByTagName('total')[0].firstChild.data;
       var percent = root.getElementsByTagName('percent')[0].firstChild.data;
       var cbars = current * bars / total;
+			progressbar_cancel.innerHTML = "<a href=\"./logs_viewer.asp?cancel=<%= $Session->{extractor} %>\">Cancel</a>";
 			var progress_str = current + "/" + total + " (" + percent + "%)";
       progressbar_progress.innerHTML = progress_str;
 
@@ -234,17 +249,35 @@ function FilterData()
 <AAT:Form action="$url">
 <AAT:Box align="C" title="_LOGS_VIEWER" icon="buttons/bt_search">
 <AAT:BoxRow>
+  <AAT:BoxCol cspan="2">
+  <AAT:Form action="$url">
+  <AAT:Box align="C">
+	<AAT:BoxRow>
+    <AAT:BoxCol cspan="2">
+		<AAT:Inc file="octo_selector_search_template" selected="" /></AAT:BoxCol>
+	</AAT:BoxRow>
+  <AAT:BoxRow>
+    <AAT:BoxCol>
+    <AAT:Entry name="template" value="enter your template name" size="40" />
+    </AAT:BoxCol>
+    <AAT:BoxCol><AAT:Form_Submit value="_SAVE_AS_TEMPLATE" /></AAT:BoxCol>
+  </AAT:BoxRow>
+  </AAT:Box>
+  </AAT:Form>
+  </AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol>
 	<AAT:Box align="C">
 	<AAT:BoxRow>
 		<AAT:BoxCol align="C">
 		<AAT:Button name="device" /><br>
-  	<AAT:Label value="_DEVICE" align="R" style="B" /></AAT:BoxCol>
+  	<AAT:Label value="_DEVICES" align="R" style="B" /></AAT:BoxCol>
   	<AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
     	unknown="1" multiple="1" size="5" selected=\@devices /></AAT:BoxCol>
   	<AAT:BoxCol align="C">
 		<AAT:Button name="service" /><br>
-  	<AAT:Label value="_SERVICE" align="R" style="B" /></AAT:BoxCol>
+  	<AAT:Label value="_SERVICES" align="R" style="B" /></AAT:BoxCol>
   	<AAT:BoxCol><AAT:Inc file="octo_selector_service_dynamic"
     	unknown="1" multiple="1" size="5" device=\@devices selected=\@services 
 			restricted_services=\@used_services /></AAT:BoxCol>
@@ -302,7 +335,7 @@ function FilterData()
 
 <AAT:Box align="C">
 <AAT:BoxRow>
-	<AAT:BoxCol cspan="2"><AAT:Label value="Quick Search" style="B" />
+	<AAT:BoxCol cspan="3"><AAT:Label value="Quick Search" style="B" />
 	<input id="filter" size="40" style="color:orange" onkeydown="Timer();" />
 	<AAT:Label value="$msg_nb_lines" style="B"/>
 	<span id="nb_lines"><b><%= $nb_lines %></b></span>
@@ -310,11 +343,12 @@ function FilterData()
 	{ %><AAT:Message level="1" msg="$msg_max_lines" /><% } %>
 </AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
+	<AAT:BoxCol><div id="progressbar_cancel"></div></AAT:BoxCol>
 	<AAT:BoxCol><div id="progressbar_bar"></div></AAT:BoxCol>
 	<AAT:BoxCol><div id="progressbar_progress"></div></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="2"><%= $text %></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="3"><%= $text %></AAT:BoxCol></AAT:BoxRow>
 </AAT:Box>
 <WebUI:PageBottom />

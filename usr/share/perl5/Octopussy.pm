@@ -29,6 +29,7 @@ use Octopussy::Plugin;
 use Octopussy::Report;
 use Octopussy::RRDTool;
 use Octopussy::Schedule;
+use Octopussy::Search_Template;
 use Octopussy::Service;
 use Octopussy::ServiceGroup;
 use Octopussy::Statistic_Report;

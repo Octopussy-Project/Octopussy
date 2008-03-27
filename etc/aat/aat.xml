@@ -14,7 +14,7 @@
 
   </application>
 
-	<application name="Octopussy" version="0.9.5.5"
+	<application name="Octopussy" version="0.9.5.6"
 							 email="octo.devel@gmail.com"
 							 user="octopussy"
 							 website="http://www.8pussy.org">
@@ -27,6 +27,7 @@
 		<directory name="maps" value="/var/lib/octopussy/conf/maps/" />
 		<directory name="plugins" value="/var/lib/octopussy/conf/plugins/" />
 		<directory name="reports" value="/var/lib/octopussy/conf/reports/" />
+		<directory name="search_templates" value="/var/lib/octopussy/conf/search_templates/" />
 		<directory name="services" value="/var/lib/octopussy/conf/services/" />
 		<directory name="statistic_reports" value="/var/lib/octopussy/conf/statistic_reports/" />
 		<directory name="tables" value="/var/lib/octopussy/conf/tables/" />
