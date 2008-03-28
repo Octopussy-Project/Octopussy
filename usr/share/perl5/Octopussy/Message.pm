@@ -157,7 +157,7 @@ sub Color($)
 	my $re = $pattern; 
 	$re =~ s/<(\w)/&lt;$1/g;
 	$re =~ s/(<\@REGEXP\(".+?"\):\S+?\@>)/<b><font color="$color{REGEXP}">$1<\/font><\/b>/gi;
-	$re =~ s/(<\@(\S+?):\S+?\@>)/<b><font color="$color{$2}">$1<\/font><\/b>/gi;
+	$re =~ s/(<\@([^\@]+?):\S+?\@>)/<b><font color="$color{$2}">$1<\/font><\/b>/gi;
 
 	return ($re);
 }
@@ -172,9 +172,6 @@ sub Color_Without_Field($)
 
 	my %color = Octopussy::Type::Colors();
   my $re = $pattern;
-  #$re =~ s/<(\w)/&lt;$1/g;
-#  $re =~ s/(<\@REGEXP\(".+?"\):\S+?\@>)/<b><font color="$color{REGEXP}">$1<\/font><\/b>/gi;
-#  $re =~ s/(<\@(\S+?):\S+?\@>)/<b><font color="$color{$2}">$1<\/font><\/b>/gi;
   $re =~ s/(<\@([^\@]+?)\@>)/<b><font color="$color{$2}">$1<\/font><\/b>/gi;
 
   return ($re);
@@ -198,14 +195,8 @@ sub Pattern_To_Regexp($)
 		my ($start, $const, $field, $finish) = ($1, $2, $3, $4);
 		$regexp = $start . (($field =~ /NULL/i) ? $const : "\($const\)") . $finish;
 	}
-  #$regexp =~ s/<\@NUMBER:null\@>/[-+]?\\d+/gi;
-  #$regexp =~ s/<\@NUMBER:\S+?\@>/\([-+]?\\d+\)/gi;
-  #$regexp =~ s/<\@WORD:null\@>/\\S+/gi;
-  #$regexp =~ s/<\@WORD:\S+?\@>/\(\\S+\)/gi;
-  #$regexp =~ s/<\@STRING:null\@>/.+/gi;
-  #$regexp =~ s/<\@STRING:\S+?\@>/\(.+\)/gi;
-  $regexp =~ s/<\@(\S+?):null\@>/$re_types{$1}/gi;
-  $regexp =~ s/<\@(\S+?):\S+?\@>/\($re_types{$1}\)/gi;
+  $regexp =~ s/<\@([^\@]+?):null\@>/$re_types{$1}/gi;
+  $regexp =~ s/<\@([^\@]+?):\S+?\@>/\($re_types{$1}\)/gi;
 	$regexp =~ s/\s+$//g;
 
 	return ($regexp);
@@ -220,11 +211,7 @@ sub Short_Pattern_To_Regexp($)
 	my $msg = shift;
 	my %re_types = Octopussy::Type::Regexps();
   my $regexp = Escape_Characters($msg->{pattern});
-
-	#$regexp =~ s/<\@NUMBER\@>/\([-+]?\\d+\)/gi;
-  #$regexp =~ s/<\@WORD\@>/\(\\S+\)/gi;
-  #$regexp =~ s/<\@STRING\@>/\(.+\)/gi;
-  $regexp =~ s/<\@(\S+?)\@>/\($re_types{$1}\)/gi;
+  $regexp =~ s/<\@([^\@]+?)\@>/\($re_types{$1}\)/gi;
 
   return ($regexp);
 }
@@ -262,7 +249,7 @@ sub Pattern_Field_Substitution($$$$$$)
    	$regexp =~ s/<\@STRING:\S+?\@>/\($substitution\)/i;
 	}
   else
-  	{ $regexp =~ s/<\@(\S+?):(\S+?)\@>/\($re_types->{$1}\)/i; }	
+  	{ $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/\($re_types->{$1}\)/i; }	
 
 	return ($regexp, $function);
 }
@@ -293,7 +280,7 @@ sub Pattern_Field_Unmatched_Substitution($$$$)
     	{ $regexp = $1 . (defined $field_regexp ? $field_regexp->{$2} || ".+" : ".+") . $3; }
  	}
 	else
-  	{ $regexp =~ s/<\@(\S+?):(\S+?)\@>/$re_types->{$1}/; }
+  	{ $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/$re_types->{$1}/; }
 	
 	return ($regexp);		
 }
@@ -366,14 +353,8 @@ sub Pattern_To_Regexp_Field_Values($$)
     {
 			if ($type =~ /^REGEXP$/)
 				{ $regexp =~ s/<\@REGEXP\\\(\\\"(.+?)\\\"\\\):\S+?\@>/$1/i; }		
-#			elsif ($type =~ /^NUMBER$/)
-#        { $regexp =~ s/<\@NUMBER:\S+?\@>/[-+]?\\d+/i; }
-#      elsif ($type =~ /^WORD$/)
-#        { $regexp =~ s/<\@WORD:\S+?\@>/\\S+/i; }
-#      elsif ($type =~ /^STRING$/)
-#        { $regexp =~ s/<\@STRING:\S+?\@>/.+/i; }
       else
-        { $regexp =~ s/<\@(\S+?):\S+?\@>/$re_types{$1}/i; }
+        { $regexp =~ s/<\@([^\@]+?):\S+?\@>/$re_types{$1}/i; }
     }
   }
 
