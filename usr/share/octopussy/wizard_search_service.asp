@@ -23,7 +23,7 @@ foreach my $serv (Octopussy::Service::List())
     foreach my $m (@messages)
     {
       my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-			if ($msg =~ /$regexp/)
+			if ($msg =~ /^$regexp\s*[^\t\n\r\f -~]?$/i)
 			{
 				$match = 1;
 				%><AAT:BoxRow><AAT:BoxCol>
