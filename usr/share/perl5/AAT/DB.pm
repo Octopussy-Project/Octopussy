@@ -46,7 +46,7 @@ sub Connect($)
 	$dbh{$appli} = DBI->connect("DBI:$type:database=$db_conf->{db};host=$db_conf->{host}",
 		$db_conf->{user}, $db_conf->{password});
 
-	return ("$DBI::err: $DBI::errstr")  if (!defined $dbh{appli});
+	return ("$DBI::err: $DBI::errstr")  if (!defined $dbh{$appli});
 	return (undef);
 }
 

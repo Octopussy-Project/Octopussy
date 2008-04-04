@@ -1,7 +1,7 @@
 <% my %arg = @_; %>
 <AAT:Box width="$arg{width}">
 <AAT:BoxRow>
-	<AAT:BoxCol cspan="4"><AAT:Label value="_EXPORT_SCP" style="B"/></AAT:BoxCol>
+	<AAT:BoxCol cspan="6"><AAT:Label value="_EXPORT_SCP" style="B"/></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

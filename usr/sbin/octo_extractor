@@ -29,7 +29,7 @@ my $PROG_VERSION = Octopussy::Version();
 my $help;
 my (@devices, @services) = ((), ());
 my ($taxonomy, $begin, $end, $output);
-my ($progress_msg, $progress_num) = (0, 0);
+my ($progress_msg, $progress_num, $progress_match) = (0, 0, 0);
 my ($include1, $include2, $exclude1, $exclude2);
 my $dir_pid = Octopussy::Directory("running");
 my $pid_file = Octopussy::PID_File($PROG_NAME);
@@ -74,20 +74,22 @@ sub Help()
 	exit();
 }
 
-=head2 Progress($msg, $num)
+=head2 Progress($msg, $num, $nb_match)
 
 =cut
 
 sub Progress
 {
-  my ($msg, $num) = @_;
+  my ($msg, $num, $nb_match) = @_;
 
   if (defined $num)
-    { ($progress_msg, $progress_num) = ($msg, $num); }
+  { 
+		($progress_msg, $progress_num, $progress_match) = ($msg, $num, $nb_match);
+	}
   else
   { # kill -USR1 --> write current progress in status file
     open(STATUS_FILE, "> $status_file");
-    print STATUS_FILE AAT::Translation($progress_msg) . " [$progress_num]\n";
+    print STATUS_FILE AAT::Translation($progress_msg) . " [$progress_num] [$progress_match]\n";
     close(STATUS_FILE);
   }
 }
@@ -135,6 +137,7 @@ sub Print_Logs($$$$$$$)
 {
   my ($devices, $services, $taxonomy, $begin, $end, $re_incl, $re_excl) = @_;
 	my $time = time();
+	my @lines = ();
 	my @includes = ();
   my @excludes = ();
   foreach my $inc (AAT::ARRAY($re_incl))
@@ -142,22 +145,17 @@ sub Print_Logs($$$$$$$)
   foreach my $excl (AAT::ARRAY($re_excl))
     { push(@excludes, qr/$excl/) if (AAT::NOT_NULL($excl)); }
 	
-	Progress("_MSG_EXTRACT_PROGRESS_LISTING_FILES", "1/1");
+	Progress("_MSG_EXTRACT_PROGRESS_LISTING_FILES", "1/1", 0);
 	my $files = Get_TimePeriod_Files($devices, $services, $begin, $end);
 	my $total = $#{$files} + 1;
 	my $nb_match = 0;
-	
-	if (AAT::NOT_NULL($output))
-		{ open(OUT, "> $output"); }
-	else
-		{ open(OUT, ">&STDOUT"); }
 
 	if ((@{$services}[0] =~ /-ANY-/i) && ($taxonomy =~ /-ANY-/i))
 	{
 		my $i = 1;
 		foreach my $f (@{$files})
 		{
-			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total");
+			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
 			open(FILE, "zcat \"$f\" |");
 			while (<FILE>)
 			{
@@ -169,7 +167,7 @@ sub Print_Logs($$$$$$$)
         	{ $match = 0  if ($line =~ $excl); }
       	if ($match) 
 				{
-					print OUT $line; 
+					push(@lines, $line);
 					$nb_match++;
 				}
 			}
@@ -183,7 +181,7 @@ sub Print_Logs($$$$$$$)
 		my @msg_to_parse = Get_Messages_To_Parse($services, $taxonomy);
 		foreach my $f (@{$files})
   	{
-			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total");
+			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
 			open(FILE, "zcat \"$f\" |");
 			while (<FILE>)
 			{
@@ -199,7 +197,7 @@ sub Print_Logs($$$$$$$)
           		{ $match = 0  if ($line =~ $excl); }
 						if ($match)
         		{
-          		print OUT $line;
+							push(@lines, $line);
           		$nb_match++;
         		}
 						last;
@@ -210,6 +208,19 @@ sub Print_Logs($$$$$$$)
 			$i++;
 		}
 	}
+	if (AAT::NOT_NULL($output))
+  { 
+		open(OUT, "> $output"); 
+		foreach my $l (sort @lines)
+			{ print OUT $l; }
+		close(OUT);
+	}
+  else
+  { 
+		foreach my $l (sort @lines)
+    	{ print $l; }
+	}
+	
 	AAT::Syslog("octo_extractor", "LOG_SEARCH", join(",", @{$devices}),
   	join(",", @{$services}), "${begin}-${end}", time() - $time);
 }

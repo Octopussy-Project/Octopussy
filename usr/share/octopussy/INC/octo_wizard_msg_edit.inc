@@ -57,28 +57,14 @@ foreach my $f ((Octopussy::Table::Fields($table)))
 }%>
   </AAT:Box>
 </AAT:BoxCol>
+<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 <script type="text/javascript">
 var http_request_msgid = false;
 var http_request_pattern = false;
 
 function check_msgid(msgid)
 {
-  http_request_msgid = false;
-  if (window.XMLHttpRequest)
-  { // Mozilla, Safari,...
-    http_request_msgid = new XMLHttpRequest();
-    if (http_request_msgid.overrideMimeType)
-      { http_request_msgid.overrideMimeType('text/xml'); }
-  }
-  else if (window.ActiveXObject)
-  { // IE
-    try { http_request_msgid = new ActiveXObject("Msxml2.XMLHTTP"); }
-    catch (e)
-    {
-      try { http_request_msgid = new ActiveXObject("Microsoft.XMLHTTP"); }
-      catch (e) {}
-    }
-  }
+  http_request_msgid = HttpRequest();
   if (!http_request_msgid)
     { return false; }
   service = document.form.service.value;
@@ -91,22 +77,7 @@ function check_msgid(msgid)
 
 function check_pattern(pattern)
 {
-  http_request_pattern = false;
-  if (window.XMLHttpRequest)
-  { // Mozilla, Safari,...
-    http_request_pattern = new XMLHttpRequest();
-    if (http_request_pattern.overrideMimeType)
-      { http_request_pattern.overrideMimeType('text/xml'); }
-  }
-  else if (window.ActiveXObject)
-  { // IE
-    try { http_request_pattern = new ActiveXObject("Msxml2.XMLHTTP"); }
-    catch (e)
-    {
-      try { http_request_pattern = new ActiveXObject("Microsoft.XMLHTTP"); }
-      catch (e) {}
-    }
-  }
+  http_request_pattern = HttpRequest();
   if (!http_request_pattern)
     { return false; }
   log = document.form.log.value;

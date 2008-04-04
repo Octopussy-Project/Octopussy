@@ -20,8 +20,7 @@ my @list = ("_CUSTOMIZED", "_CURRENT_HOUR", "_CURRENT_DAY",
 %>
 <AAT:Box align="C">
 <AAT:BoxRow>
-  <AAT:BoxCol>
-  </AAT:BoxCol>
+  <AAT:BoxCol align="C"><AAT:Button name="scheduler" /></AAT:BoxCol>
   <AAT:BoxCol align="C">
   <select name="<%= $name %>"
     onchange="update_dt_selector(this.options.selectedIndex)">

@@ -29,9 +29,9 @@ my @table = (
 	[ { label => $str, size => "+1", align => "C", colspan => 5 } ],
 	[ { label => "<hr>", colspan => 5 } ],
   [ { label => "_RANK", link => $url_sort . "rank"  }, 
-		{ label => "_SERVICE", link => $url_sort . "sid" },
+		{ label => "_SERVICE", align=> "center", link => $url_sort . "sid" },
    	{ label => (($role !~ /ro/i) ? "_ACTION" : ""), 
-			align => "center", colspan => 3 } ],
+			align => "center", style => "bold", colspan => 3 } ],
 	[ { label => "<hr>", 			colspan => 5 } ]
   );
 

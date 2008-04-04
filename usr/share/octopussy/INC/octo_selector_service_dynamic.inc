@@ -45,9 +45,6 @@ if ($#services > -1)
 		selected => ($selected ? "selected" : ""), 
 		label => AAT::Translation("-ANY-"));
 }
-#foreach my $s (AAT::ARRAY($selecteds))
-#  { $selected = 1 if ($s eq "Unknown"); }
-
 if (defined $arg{unknown})
 {
 	$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "Unknown",
@@ -116,10 +113,18 @@ var temp=document.forms[0].service;
 
 function update_service(x)
 {
-	for (m=temp.options.length-1; m>0; m--)
-		temp.options[m]=null;
-	for (i=0; i<service[x].length; i++)
-		temp.options[i]=new Option(service[x][i].text,service[x][i].value);
-	temp.options[0].selected=true;
+	var selected = 0;
+	for (i = 0; i < document.forms[0].device.options.length; i++)
+	{
+		if (document.forms[0].device.options[i].selected == 1)
+			selected++;
+	}
+	if (selected > 1)
+		x = 0; // full service list if more than one device selected
+	for (m = temp.options.length-1; m > 0; m--)
+		temp.options[m] = null;
+	for (i = 0; i < service[x].length; i++)
+		temp.options[i] = new Option(service[x][i].text, service[x][i].value);
+	temp.options[0].selected = true;
 }
 </script>

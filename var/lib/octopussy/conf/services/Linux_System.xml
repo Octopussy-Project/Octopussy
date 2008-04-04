@@ -3,7 +3,7 @@
                    icon="operating_systems/os_linux_generic"
                    name="Linux_System"
                    nb_messages="068"
-                   version="200803140001">
+                   version="200804030008">
   <message loglevel="Information"
            msg_id="Linux_System:removing_device_node"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udev&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;removing device node .+&quot;):msg@&gt;"
@@ -306,19 +306,19 @@
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Linux_System:su_unknown_uid"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; su[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Unknown UID: \d+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Unknown UID: \d+&quot;):msg@&gt;"
            rank="052"
            table="Message"
            taxonomy="Config.Errors" />
   <message loglevel="Warning"
            msg_id="Linux_System:su_failed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; su[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;FAILED su for .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;FAILED su for .+&quot;):msg@&gt;"
            rank="053"
            table="Message"
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Linux_System:could_not_identify_user"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; login[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*could not identify user .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;login&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*could not identify user .+&quot;):msg@&gt;"
            rank="054"
            table="Message"
            taxonomy="Auth.Failure" />
@@ -330,13 +330,13 @@
            taxonomy="System.Errors" />
   <message loglevel="Critical"
            msg_id="Linux_System:inetd_address_already_used"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; inetd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+: Address already in use&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;inetd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+: Address already in use&quot;):msg@&gt; "
            rank="056"
            table="Message"
            taxonomy="Config.Errors" />
   <message loglevel="Warning"
            msg_id="Linux_System:inetd_service_terminated"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; inetd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+ server failing (looping), service terminated&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;inetd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+ server failing (looping), service terminated&quot;):msg@&gt; "
            rank="057"
            table="Message"
            taxonomy="Network.Errors" />
@@ -402,7 +402,7 @@
            taxonomy="Config.Changes" />
   <message loglevel="Critical"
            msg_id="Linux_System:password_will_expire"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; su[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*password for user \w+ will expire in \d+ days&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*password for user \w+ will expire in \d+ days&quot;):msg@&gt;"
            rank="067"
            table="Message"
            taxonomy="System" />
@@ -418,4 +418,10 @@
            rank="069"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Linux_System:couldnt_recover_authentication_token"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;passwd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*could not recover authentication token&quot;):msg@&gt; "
+           rank="070"
+           table="Message"
+           taxonomy="Auth.Failure" />
 </octopussy_service>

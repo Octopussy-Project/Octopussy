@@ -12,11 +12,11 @@ open(FILE, "cat \"$status_file\" |");
 $status = <FILE>;
 close(FILE);
 
-my ($desc, $current, $total, $percent) = (undef, undef, undef, undef); 
-if ($status =~ /(.+)\[(\d+)\/(\d+)\]/)
+my ($desc, $current, $total, $percent, $match) = 
+	(undef, undef, undef, undef, undef); 
+if ($status =~ /(.+)\[(\d+)\/(\d+)\] \[(\d+)\]$/)
 {
-	($desc, $current, $total) = ($1, $2, $3);
-	$percent = int($current*100/$total);
+	($desc, $current, $total, $match) = ($1, $2, $3, $4);
 }
 %>
 <?xml version='1.0' encoding='UTF-8'?>
@@ -24,5 +24,5 @@ if ($status =~ /(.+)\[(\d+)\/(\d+)\]/)
 	<desc><%= $desc %></desc>
 	<current><%= $current %></current>
 	<total><%= $total %></total>
-	<percent><%= $percent %></percent>
+	<match><%= $match %></match>
 </root>

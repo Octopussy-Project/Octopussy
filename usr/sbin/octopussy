@@ -53,7 +53,6 @@ sub Usage
 sub Dispatcher_Start
 {
 	`$INITD_SYSLOG_NG start`;
-	#system("sudo -u $USER $base$DISPATCHER $LOGFILE &");
   print "$PROG_NAME Dispatcher started.\n";
 }
 
@@ -64,18 +63,7 @@ sub Dispatcher_Start
 sub Dispatcher_Stop
 {
 	`$INITD_SYSLOG_NG stop`;
-  #opendir(DIR, $pid_dir);
-  #my @files = grep /octo_dispatcher.*\.pid$/, readdir DIR;
-  #closedir(DIR);
-
-  #foreach my $file (@files)
-  #{
-  #  my $pid = `cat $pid_dir$file`;
-  #  unlink("$pid_dir$file");
-  #  chomp($pid);
-	#	kill KILL => $pid;
-		print "$PROG_NAME Dispatcher stopped.\n";
-  #}
+	print "$PROG_NAME Dispatcher stopped.\n";
 }
 
 =head2 Dispatcher_Reload()
@@ -85,16 +73,6 @@ sub Dispatcher_Stop
 sub Dispatcher_Reload
 {
 	`$INITD_SYSLOG_NG restart`;
-  #opendir(DIR, $pid_dir);
-  #my @files = grep /octo_dispatcher.*\.pid$/, readdir DIR;
-  #closedir(DIR);
-
-  #foreach my $file (@files)
-  #{
-  #  my $pid = `cat $pid_dir$file`;
-  #  chomp($pid);
-  #  kill HUP => $pid;
-  #}
   print "$PROG_NAME Dispatcher reloaded.\n";
 }
 

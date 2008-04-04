@@ -10,37 +10,22 @@ my $reportname = $cmd;
 my $reporttype = undef;
 if ($reportname =~ /.+\/((.+)-\d{8}-\d{4}.+)?"$/)
 {
-	$reportname = $1;
-	$reporttype = $2;
+	($reportname, $reporttype) = ($1, $2);
 }
 %>
 <AAT:PageTop onLoad="report_progress()" />
+<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
+<AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
 <script type="text/javascript">
 var http_request = false;
 var href = window.location.href;
 var cmd = href.substr(href.indexOf("="));
-var bars = 40;
 var started = 0;
 var loop = 0;
 
 function report_progress()
 {
-  http_request = false;
-  if (window.XMLHttpRequest)
-  { // Mozilla, Safari,...
-    http_request = new XMLHttpRequest();
-    if (http_request.overrideMimeType)
-      { http_request.overrideMimeType('text/xml'); }
-  }
-  else if (window.ActiveXObject)
-  { // IE
-    try { http_request = new ActiveXObject("Msxml2.XMLHTTP"); }
-    catch (e)
-    {
-      try { http_request = new ActiveXObject("Microsoft.XMLHTTP"); }
-      catch (e) {}
-    }
-  }
+  http_request = HttpRequest();
   if (!http_request)
     { return false; }
   http_request.onreadystatechange = Update_Progress;
@@ -69,23 +54,8 @@ function Update_Progress()
       var desc = root.getElementsByTagName('desc')[0].firstChild.data;
 			var current = root.getElementsByTagName('current')[0].firstChild.data;
 			var total = root.getElementsByTagName('total')[0].firstChild.data;
-			var percent = root.getElementsByTagName('percent')[0].firstChild.data;
-			cbars = current * bars / total;
       progressbar_desc.innerHTML = desc;
-			progressbar_progress.innerHTML = current + "/" + total + "(" + percent + "%)";
-			var bar = root.getElementsByTagName('desc')[0].firstChild.data + "<table border=1 bgcolor=#E7E7E7><tr>";
-			
-			for (var i = 0; i < cbars; i++)
-			{
-				var color = 99 - (i*50/bars);
-      	bar+= "<td width=10 height=20 bgcolor=\"rgb(0,0," + color + ")\"></td>";
-			}
-			for (var i = cbars; i < bars; i++)
-      {
-        bar+= "<td width=10 height=20 bgcolor=\"white\"></td>";
-      }
-			bar+= "</tr></table>";
-			progressbar_bar.innerHTML = bar; 
+			Progress_Bar(current, total);
     }
   }
 }

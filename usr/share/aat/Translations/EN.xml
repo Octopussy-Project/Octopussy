@@ -240,6 +240,11 @@
 	<msg mid="_OFFICIAL_WEBSITE" value="Official Website" />
 	<msg mid="_ORGANIZATION" value="Organization" />
   <msg mid="_ORGANIZATIONAL_UNIT" value="Organizational Unit" />
+	<msg mid="_PAGE" value="Page" />
+	<msg mid="_PAGE_FIRST" value="First Page" />
+	<msg mid="_PAGE_LAST" value="Last Page" />
+	<msg mid="_PAGE_NEXT" value="Next Page" />
+	<msg mid="_PAGE_PREVIOUS" value="Previous Page" />
   <msg mid="_PARTITION_LOGS" value="Partition Logs" />
   <msg mid="_PERIOD" value="Period" />
   <msg mid="_PERIODS" value="Periods" />

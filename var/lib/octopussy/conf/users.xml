@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <Octopussy_users>
-  <user language="EN"
+  <user language="FR"
         login="admin"
         menu_mode="ICONS_AND_TEXT"
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
@@ -13,7 +13,8 @@
         menu_mode="TEXT_AND_ICONS"
         password="$1$OP$q6QVGa9p8uHf9vqwVSiza/"
         role="restricted"
-        theme="DEFAULT">
+        theme="DEFAULT"
+        type="local">
     <restrictions>
       <alert>-ANY-</alert>
       <device>XDRPP1</device>
@@ -22,4 +23,11 @@
       <service>CA_SYN_Apache_Traffic</service>
     </restrictions>
   </user>
+  <user certificate=""
+        language="FR"
+        login="demo"
+        menu_mode="TEXT_AND_ICONS"
+        password="$1$OP$/KopKNn/Uo14vdgWgPddF/"
+        role="restricted"
+        theme="DEFAULT" />
 </Octopussy_users>

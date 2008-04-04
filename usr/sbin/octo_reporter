@@ -62,7 +62,7 @@ sub Help()
 	print "\n$PROG_NAME (version $PROG_VERSION)\n\n";		
 	print	" Usage: $PROG_NAME --report <report>";
 	print " --device <device> --service <service> --taxonomy <taxonomy>";
-	print " --begin <begin_datetime> --end <end_datetime>";
+	print " --begin YYYYMMDDHHMM --end YYYYMMDDHHMM";
 	print " --output <output_file>\n\n";
 	print " Mail options:\n";
 	print "  --mail_subject <subject> --mail_recipients <recipients>\n";
@@ -263,12 +263,16 @@ my $status = GetOptions(
 	"scp_host=s" => \$scp_host, "scp_dir=s" => \$scp_dir,
 	"scp_user=s" => \$scp_user);
 
-Progress("_MSG_REPORT_PROGRESS_REPORT_CONFIG", "1/1");
-$rc = (defined $report ? Octopussy::Report::Configuration($report) : undef);
-$lang ||= "EN";
 Help()	if ((! $status) || ($help) 
 	|| (!defined $report) || (! @devices) || (! @services) 
 	|| (!defined $begin) || (!defined $end) || (!defined $output));
+
+Progress("_MSG_REPORT_PROGRESS_REPORT_CONFIG", "1/1");
+$rc = (defined $report ? Octopussy::Report::Configuration($report) : undef);
+print "Error: Unable to get configuration for Report [$report]\n"
+	if (!defined $rc);
+
+$lang ||= "EN";
 
 print "Report: $rc->{name}\n";
 print "Description: $rc->{description}\n";

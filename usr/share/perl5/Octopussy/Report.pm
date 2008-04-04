@@ -278,11 +278,6 @@ sub Generate($$$$$$$$$$$)
 			$rc->{columns}, $rc->{columns_name}, $stats, $lang);
 		Octopussy::Chown($csv_file);
 		Octopussy::Report::PDF::Generate_From_HTML($outputfile);
-
-		#my $odt_file = AAT::File_Ext($outputfile, "odt");
-		#Octopussy::OpenDocument::Text($odt_file,
-		# { title => $title, headers => $headers,
-		#   fields => $fields, data => $data });
 	}
 	elsif ($rc->{graph_type} =~ /^rrd_/)
 	{

@@ -29,7 +29,7 @@ my $NICE_UPARSER = "nice -n 20";
 my $dir_program = Octopussy::Directory("programs");
 my $dir_pid = Octopussy::Directory("running");
 my $device = $ARGV[0];
-my $reload_request = 0;
+my ($reload_request, $exit_request) = (0, 0);
 
 my @services;
 my %alert;
@@ -43,6 +43,17 @@ my ($file, $last_file) = (undef, undef);
 my $pid_file = Octopussy::PID_File($PROG_NAME . "_$device");
 
 =head1 FUNCTIONS
+
+=head2 Exit()
+
+Stop softly the parser (current file is fully parsed before exiting)
+
+=cut
+
+sub Exit
+{
+	$exit_request = 1;
+}
 
 =head2 Reload()
 
@@ -99,7 +110,8 @@ sub Init()
 			}
 			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
       push(@{$service{$serv}{msgs}}, 
-				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i,
+				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i, 
+					pattern => (($#msg_alerts >= 0) ? $m->{pattern} : undef),
 					taxo => $m->{taxonomy}, alerts => \@msg_alerts } ); 
 		}
 	}
@@ -350,10 +362,12 @@ sub File_Handler($)
 #
 
 $SIG{HUP} = \&Reload;
+$SIG{USR1} = \&Exit;
+
 AAT::Syslog($PROG_NAME, "Device: $device Started !");
 Init();
 my $last_logs_time = time();
-while (1)
+while (!$exit_request)
 {
 	push(@files, Octopussy::Logs::Incoming_Files($device));
 	AAT::Syslog($PROG_NAME, ($#files + 1) . 
@@ -380,14 +394,12 @@ while (1)
 		last	if ($reload_request);
 	}
 	if ($reload_request)
-	{
-		$reload_request = 0;
-		Init();
-	}
-	else
-	{
-		sleep(50);
-	}
+  {
+    $reload_request = 0;
+    Init();
+  }
+	elsif (!$exit_request)
+		{ sleep(30); }
 	@files = ();
 }
 

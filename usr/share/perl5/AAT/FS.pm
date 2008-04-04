@@ -27,7 +27,7 @@ sub Directory_Files($$)
   my @files = grep /$pattern/, readdir(DIR);
   closedir(DIR);
 
-	return (@files);
+	return (sort @files);
 }
 
 1;

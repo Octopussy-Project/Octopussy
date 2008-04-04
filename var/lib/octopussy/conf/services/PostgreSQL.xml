@@ -2,8 +2,8 @@
 <octopussy_service description="PostgreSQL Service"
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
-                   nb_messages="040"
-                   version="200803250003"
+                   nb_messages="042"
+                   version="200804030002"
                    website="http://www.postgresql.org">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
@@ -256,5 +256,17 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;ERROR:  unterminated quoted identifier .+&quot;):msg@&gt;"
            rank="042"
            table="Database_Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Notice"
+           msg_id="PostgreSQL:logger_shutting_down"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  logger shutting down&quot;):msg@&gt; "
+           rank="043"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="PostgreSQL:couldnt_create_ipv6_socket"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  could not create IPv6 socket: Address family not supported by protocol&quot;):msg@&gt; "
+           rank="044"
+           table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>

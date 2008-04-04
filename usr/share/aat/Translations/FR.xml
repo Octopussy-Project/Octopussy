@@ -239,6 +239,11 @@
 	<msg mid="_OFFICIAL_WEBSITE" value="Site Web Officiel" />
 	<msg mid="_ORGANIZATION" value="Organisation" />
 	<msg mid="_ORGANIZATIONAL_UNIT" value="Unité Organisationnelle" />
+	<msg mid="_PAGE" value="Page" />
+  <msg mid="_PAGE_FIRST" value="Première Page" />
+  <msg mid="_PAGE_LAST" value="Dernière Page" />
+  <msg mid="_PAGE_NEXT" value="Page Suivante" />
+  <msg mid="_PAGE_PREVIOUS" value="Page Précédente" />
   <msg mid="_PARTITION_LOGS" value="Partition des Logs" />
 	<msg mid="_PERIOD" value="Période" />
 	<msg mid="_PERIODS" value="Périodes" />

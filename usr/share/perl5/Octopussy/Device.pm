@@ -532,32 +532,6 @@ sub Parse_Status($)
 	return (undef);
 }
 
-=head2 Parse_Action_Button1($device)
-
-=cut
-
-sub Parse_Action_Button1($)
-{
-	my $device = shift;
-	my $status = Parse_Status($device);
-	my @button = ("pause", "stop", "stop");
-
-	return ($button[$status]);
-}
-
-=head2 Parse_Action_Button2($device)
-
-=cut
-
-sub Parse_Action_Button2($)
-{
-  my $device = shift;
-  my $status = Parse_Status($device);
-	my @button = ("start", "start", "pause");
-
-	return ($button[$status]);
-}
-
 =head2 Parse_Pause($device)
 
 Pauses Parsing for Device '$device'
@@ -567,28 +541,25 @@ Pauses Parsing for Device '$device'
 sub Parse_Pause($)
 {
 	my $device = shift;
-	$pid_dir ||= Octopussy::Directory("running");
-	my $pid = $PARSER_BIN . "_$device\.pid";
-	my @files = AAT::FS::Directory_Files($pid_dir, qr/^$pid$/);
-  foreach my $file (@files)
-  {
-    $file =~ /_(.+)\.pid/;
-    my $pid = `cat $pid_dir$file`;
-    unlink("$pid_dir$file");
-    chomp($pid);
-    kill KILL => $pid;
-  }
 
-	$pid = $UPARSER_BIN . "_$device\.pid";
-	@files = AAT::FS::Directory_Files($pid_dir, qr/^$pid$/);
-  foreach my $file (@files)
+	$pid_dir ||= Octopussy::Directory("running");
+	my $pid_file = "$pid_dir/${PARSER_BIN}_${device}.pid";
+	if (-f $pid_file)
+	{
+  	my $pid = `cat $pid_file`;
+  	chomp($pid);
+  	kill USR1 => $pid;
+		unlink("$pid_file");
+	}
+
+	$pid_file = "$pid_dir/${UPARSER_BIN}_${device}.pid";
+	if (-f $pid_file)
   {
-    $file =~ /_(.+)\.pid/;
-    my $pid = `cat $pid_dir$file`;
-    unlink("$pid_dir$file");
-    chomp($pid);
-    kill KILL => $pid;
-  }	
+  	my $pid = `cat $pid_file`;
+  	chomp($pid);
+  	kill USR1 => $pid;
+		unlink("$pid_file");
+	}
 
 	$devices_dir ||= Octopussy::Directory($DEVICE_DIR);
 	my $conf = Configuration($device);

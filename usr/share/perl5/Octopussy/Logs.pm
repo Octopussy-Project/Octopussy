@@ -94,7 +94,7 @@ sub Get_Directories($)
 	my @dirs = grep !/^\./, readdir(DIR);
 	closedir(DIR);
 
-	return (@dirs);
+	return (sort @dirs);
 }
 
 =head2 Init_Directories($device)
@@ -145,7 +145,7 @@ sub Remove_Directories($)
 =head2 Files($devices, $services, $start, $finish)
 
 Get logs files from '$services' on devices '$devices' 
-between '$start' & '$finish' (don't get Incoming/Unknown logs files)
+between '$start' & '$finish' (don't get Incoming logs files)
 
 =cut
  
@@ -188,11 +188,11 @@ sub Files($$$$)
 									if (($start_day <= $num_day) && ($num_day <= $finish_day))
 									{
 										my @files = 
-											AAT::FS::Directory_Files("$dir/$dev/$s/$y/$m/$d", qr/msg_/);
+											AAT::FS::Directory_Files("$dir/$dev/$s/$y/$m/$d", qr/^msg_/);
 										foreach my $f (@files)
 										{		
 											my $num = ($num_day + $1*100 + $2)	
-												if ($f =~ /msg_(\d{2})h(\d{2})/);
+												if ($f =~ /^msg_(\d{2})h(\d{2})/);
 											push(@list, "$dir/$dev/$s/$y/$m/$d/$f")
 												if (($start_num <= $num) && ($num <= $finish_num));
 										}
@@ -292,7 +292,6 @@ sub Unknown_Files
 	my @files = `find "$dir/$device/Unknown/" -name "msg_*.log.gz"`;	
 	my @sorted_files = sort @files;
 	return (@sorted_files)	if (!defined $first_file);
-	
 	foreach my $f (@sorted_files)	
 		{ push(@unknown, $f)	if ($f ge $first_file); }
 
@@ -374,6 +373,29 @@ sub Remove_Minute($$$$$$)
 		chomp($f);
 		unlink($f)	if ($f =~ $re);
 	}
+}
+
+=head2 Extract_Cmd_Line($conf)
+
+Generate Command Line for octo_extractor
+
+=cut
+
+sub Extract_Cmd_Line($)
+{
+	my $conf = shift;
+	my $run_dir = Octopussy::Directory("running");	
+	my @devices = AAT::ARRAY($conf->{devices});
+	my @services = AAT::ARRAY($conf->{services});
+	my $dev_str = "--device " . join(" --device ", @devices);
+  my $serv_str = "--service " . join(" --service ", @services);
+  my $cmd = "/usr/sbin/octo_extractor $dev_str $serv_str --taxonomy \"-ANY-\""
+    . " --begin $conf->{begin} --end $conf->{end}"
+    . " --include1 '$conf->{incl1}' --include2 '$conf->{incl2}'"
+    . " --exclude1 '$conf->{excl1}' --exclude2 '$conf->{excl2}'"
+    . " --output \"$conf->{output}\"";
+	
+	return ($cmd);
 }
 
 1;
