@@ -68,18 +68,18 @@ if ($#report_list >= 0)
 <AAT:BoxRow>
 	<AAT:BoxCol align="R">
 	<AAT:Label value="_DAY_OF_WEEK" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="5"><AAT:Inc file="checkbox_dayofweek" name="dow" />
+	<AAT:BoxCol cspan="5"><AAT:CheckBox_DayOfWeek name="dow" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol align="R">
   <AAT:Label value="_DAY_OF_MONTH" style="B" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="5"><AAT:Inc file="checkbox_dayofmonth" name="dom" />
+  <AAT:BoxCol cspan="5"><AAT:CheckBox_DayOfMonth name="dom" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol align="R"><AAT:Label value="_MONTH" style="B" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="5"><AAT:Inc file="checkbox_month" name="month" />
+  <AAT:BoxCol cspan="5"><AAT:CheckBox_Month name="month" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>

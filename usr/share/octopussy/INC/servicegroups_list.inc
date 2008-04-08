@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 $Response->Include("AAT/INC/AAT_Table_Function.inc",
   id => "servicegroups_table", url => $url, sort => $sort,

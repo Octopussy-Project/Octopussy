@@ -18,7 +18,7 @@ my @services = AAT::ARRAY($Session->{service});
 my @restricted_devices = AAT::ARRAY($arg{restricted_devices});
 my @restricted_services = AAT::ARRAY($arg{restricted_services});
 %>
-<AAT:Form action="$arg{session}">
+<AAT:Form action="$arg{url}">
 <AAT:Box align="C" title="_LOGS_VIEWER" icon="buttons/bt_search">
 <AAT:BoxRow>
   <AAT:BoxCol cspan="2">
@@ -86,6 +86,7 @@ my @restricted_services = AAT::ARRAY($arg{restricted_services});
   <AAT:Form_Submit name="logs" value="_GET_LOGS" />
   <AAT:Form_Submit name="file" value="_DOWNLOAD_FILE" />
   <AAT:Form_Submit name="csv" value="_DOWNLOAD_CSV_FILE" />
+	<AAT:Form_Submit name="zip" value="_DOWNLOAD_ZIP_FILE" />
   </AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>

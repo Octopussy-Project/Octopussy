@@ -1,6 +1,7 @@
 var http_request = false;
 var href = window.location.href;
 var started = 0;
+var finished = 0;
 var loop = 0;
 
 function extract_progress()
@@ -45,7 +46,7 @@ function Update_Progress()
 			}       
 			else       
 			{
-        progressbar_cancel.innerHTML = '<a href="./logs_viewer.asp?cancel=<%= $Session->{extractor} %>">Cancel</a>';
+        progressbar_cancel.innerHTML = '<a href="./logs_viewer.asp?cancel=1"><img src="AAT/IMG/buttons/bt_remove.png" /></a>';
       }
       nb_lines.innerHTML = '<b>'+ match +'</b>';
       Progress_Bar(current, total);
