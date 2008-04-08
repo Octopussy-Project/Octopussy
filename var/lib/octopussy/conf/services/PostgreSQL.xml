@@ -2,8 +2,8 @@
 <octopussy_service description="PostgreSQL Service"
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
-                   nb_messages="042"
-                   version="200804030002"
+                   nb_messages="044"
+                   version="200804080001"
                    website="http://www.postgresql.org">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
@@ -269,4 +269,10 @@
            rank="044"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Critical"
+           msg_id="PostgreSQL:no_conf_entry"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;FATAL:  no pg_hba.conf entry for .+&quot;):msg@&gt;"
+           rank="045"
+           table="Database_Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

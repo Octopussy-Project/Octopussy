@@ -3,7 +3,7 @@
                    icon="software/logo_mysql"
                    name="MySQL"
                    nb_messages="056"
-                   version="200802210002"
+                   version="200804070003"
                    website="http://www.mysql.com">
   <message loglevel="Critical"
            msg_id="MySQL:cant_connect_through_socket"
@@ -341,4 +341,22 @@
            rank="056"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="MySQL:recovering_after_crash"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*[Note] Recovering after a crash using .+&quot;):msg@&gt;"
+           rank="057"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Notice"
+           msg_id="MySQL:starting_crash_recovery"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*[Note] Starting crash recovery...&quot;):msg@&gt;"
+           rank="058"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="MySQL:crash_recovery_finished"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*[Note] Crash recovery finished.&quot;):msg@&gt;"
+           rank="059"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

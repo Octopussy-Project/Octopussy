@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="IP Virtual Server Service"
+                   name="IPVS"
+									 icon="software/logo_lvs"
+                   nb_messages="000"
+                   version="200803060005"
+                   website="http://www.linuxvirtualserver.org/software/ipvs.html">
+  <message loglevel="Warning"
+           msg_id="IPVS:sync_thread_stopped"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IPVS: sync thread stopped!&quot;):msg@&gt; "
+           rank="001"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="IPVS:sync_thread_started"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IPVS: sync thread started: .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="IPVS:stopping_sync_thread"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IPVS: stopping sync thread .+&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Application" />
+</octopussy_service>
