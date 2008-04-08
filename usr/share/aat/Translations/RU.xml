@@ -187,6 +187,7 @@
   <msg mid="_DIR_UNKNOWN_LOGS" value="Директория для неизвестных логов" />
   <msg mid="_DOWNLOAD_CSV_FILE" value="Скачать CSV-файл" />
   <msg mid="_DOWNLOAD_FILE" value="Скачать файл" />
+	<msg mid="_DOWNLOAD_ZIP_FILE" value="_DOWNLOAD_ZIP_FILE" />
 	<msg mid="_DURATION_D" value="_DURATION_D" />
 	<msg mid="_FINISH_PERIOD" value="Окончить период" />
   <msg mid="_GET_LOGS" value="Получить логи" />
