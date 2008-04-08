@@ -150,12 +150,16 @@ sub Print_Logs($$$$$$$)
 	my $total = $#{$files} + 1;
 	my $nb_match = 0;
 
+	my %logs = ();
+  my ($year, $month);
+
 	if ((@{$services}[0] =~ /-ANY-/i) && ($taxonomy =~ /-ANY-/i))
 	{
 		my $i = 1;
 		foreach my $f (@{$files})
 		{
 			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
+			($year, $month) = ($1, $2)  if ($f =~ /(\d{4})\/(\d{2})\/\d{2}\/msg_/);
 			open(FILE, "zcat \"$f\" |");
 			while (<FILE>)
 			{
@@ -167,7 +171,7 @@ sub Print_Logs($$$$$$$)
         	{ $match = 0  if ($line =~ $excl); }
       	if ($match) 
 				{
-					push(@lines, $line);
+					push(@{$logs{"$year$month"}}, $line);
 					$nb_match++;
 				}
 			}
@@ -182,6 +186,7 @@ sub Print_Logs($$$$$$$)
 		foreach my $f (@{$files})
   	{
 			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
+			($year, $month) = ($1, $2)  if ($f =~ /(\d{4})\/(\d{2})\/\d{2}\/msg_/);
 			open(FILE, "zcat \"$f\" |");
 			while (<FILE>)
 			{
@@ -197,7 +202,7 @@ sub Print_Logs($$$$$$$)
           		{ $match = 0  if ($line =~ $excl); }
 						if ($match)
         		{
-							push(@lines, $line);
+							push(@{$logs{"$year$month"}}, $line);
           		$nb_match++;
         		}
 						last;
@@ -211,14 +216,20 @@ sub Print_Logs($$$$$$$)
 	if (AAT::NOT_NULL($output))
   { 
 		open(OUT, "> $output"); 
-		foreach my $l (sort @lines)
-			{ print OUT $l; }
+		foreach my $k (sort keys %logs)
+  	{
+			foreach my $l (sort @{$logs{$k}})
+				{ print OUT $l; }
+		}
 		close(OUT);
 	}
   else
-  { 
-		foreach my $l (sort @lines)
-    	{ print $l; }
+  {
+		foreach my $k (sort keys %logs)
+    { 
+			foreach my $l (sort @{$logs{$k}})
+    		{ print $l; }
+		}
 	}
 	
 	AAT::Syslog("octo_extractor", "LOG_SEARCH", join(",", @{$devices}),

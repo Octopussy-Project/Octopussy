@@ -248,10 +248,14 @@
 	<msg mid="_PERIOD" value="Periodo" />
   <msg mid="_PERIODS" value="Periodos" />
 	<msg mid="_PROCESSOR" value="Procesador" />
+	<msg mid="_QUICK_SEARCH_ON_THIS_PAGE" value="_QUICK_SEARCH_ON_THIS_PAGE" />
 	<msg mid="_RACK" value="Rack" />
 	<msg mid="_RANK" value="Puesto" />
 	<msg mid="_REGEXP_EXC" value="Regexp (Excl.)" />
   <msg mid="_REGEXP_INC" value="Regexp (Incl.)" />
+	<msg mid="_RELOAD" value="_RELOAD" />
+	<msg mid="_RELOAD_ALL" value="_RELOAD_ALL" />
+  <msg mid="_RELOAD_REQUIRED" value="_RELOAD_REQUIRED" />
 	<msg mid="_REMOVE_LOG_MINUTE" value="_REMOVE_LOG_MINUTE" />
 	<msg mid="_REPETITION_N" value="_REPETITION_N" />
 	<msg mid="_REPORT" value="Informe" />
@@ -271,6 +275,7 @@
 	<msg mid="_RIGHTS" value="Derechos" />
 	<msg mid="_ROLE" value="_ROLE" />
 	<msg mid="_ROOM" value="Sala" />
+	<msg mid="_SAVE_AS_SEARCH_TEMPLATE" value="_SAVE_AS_SEARCH_TEMPLATE" />
 	<msg mid="_SCHEDULE" value="Planificar" />
 	<msg mid="_SCHEDULE_REPORT" value="Planificar un Informe" />
 	<msg mid="_SCHEDULER" value="Planificador" />	

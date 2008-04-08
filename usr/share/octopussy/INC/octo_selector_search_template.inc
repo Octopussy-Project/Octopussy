@@ -2,9 +2,10 @@
 <select name="search_template" 
 	onchange="update_search_params(this.options.selectedIndex)">
 <%
+my $login = $Session->{AAT_LOGIN};
 $Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "",
 	selected => ($arg{selected} eq "" ? "selected" : ""), label => "-NONE-");
-foreach my $e (Octopussy::Search_Template::List())
+foreach my $e (Octopussy::Search_Template::List($login))
 {
 	$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => $e,
     selected => ($arg{selected} eq $e ? "selected" : ""), label => $e );
@@ -18,7 +19,7 @@ for (i = 0; i < nb_tpl; i++)
   tpl[i] = new Array();
 <%
 my $i = 1;
-foreach my $t (Octopussy::Search_Template::Configurations("name"))
+foreach my $t (Octopussy::Search_Template::Configurations($login, "name"))
 {
 	my $dev_str = join(",", AAT::ARRAY($t->{device}));
 	my $serv_str = join(",", AAT::ARRAY($t->{service}));

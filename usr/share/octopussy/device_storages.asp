@@ -8,7 +8,7 @@
 my $device = $Request->QueryString("device");
 my $f = $Request->Form();
 
-if ($Session->{role} !~ /ro/)
+if ($Session->{AAT_ROLE} !~ /ro/)
 {
 	if ($f->{action} eq "update")
 	{

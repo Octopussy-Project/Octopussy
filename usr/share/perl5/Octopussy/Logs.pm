@@ -221,7 +221,9 @@ sub Get($$$$$$$)
 	my ($devices, $services, $start, $finish, $re_incl, $re_excl, $limit) = @_;
 
 	my $files = Files($devices, $services, $start, $finish);
-	my @logs = ();
+	my @sorted_logs = ();
+	my %logs = ();
+	my ($year, $month);
 	my $counter = 0;
 	my @includes = ();
 	my @excludes = ();
@@ -232,6 +234,7 @@ sub Get($$$$$$$)
 
 	foreach my $f (sort (AAT::ARRAY($files)))
 	{
+		($year, $month) = ($1, $2)  if ($f =~ /(\d{4})\/(\d{2})\/\d{2}\/msg_/);
   	open(FILE, "zcat '$f' |");
   	while (<FILE>) 
     {
@@ -244,14 +247,15 @@ sub Get($$$$$$$)
 			if ($match)
 			{
 				$counter++; 
-				push(@logs, $_);
+				push(@{$logs{"$year$month"}}, $_);
 			}
 			last  if ($counter >= $limit); 
 		}
 		close(FILE);
 		last	if ($counter >= $limit);
 	}
-	my @sorted_logs = sort @logs;
+	foreach my $k (sort keys %logs)
+		{ push(@sorted_logs, sort @{$logs{$k}}); }
 
 	return (\@sorted_logs);
 }

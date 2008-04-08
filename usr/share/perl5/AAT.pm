@@ -555,6 +555,45 @@ sub CheckBox($$)
   $main::Response->Include('AAT/INC/AAT_CheckBox.inc', %{$args});
 }
 
+=head2 CheckBox_DayOfMonth($args, $body)
+
+Usage: <AAT:CheckBox_DayOfMonth name="$value" />
+
+=cut
+
+sub CheckBox_DayOfMonth($$)
+{
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_CheckBox_DayOfMonth.inc', %{$args});
+}
+
+=head2 CheckBox_DayOfWeek($args, $body)
+
+Usage: <AAT:CheckBox_DayOfWeek name="$value" />
+
+=cut
+
+sub CheckBox_DayOfWeek($$)
+{
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_CheckBox_DayOfWeek.inc', %{$args});
+}
+
+=head2 CheckBox_Month($args, $body)
+
+Usage: <AAT:CheckBox_Month name="$value" />
+
+=cut
+
+sub CheckBox_Month($$)
+{
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_CheckBox_Month.inc', %{$args});
+}
+
 =head2 Config_Certificate($args, $body)
 
 Usage: <AAT:Config_Certificate tooltip="_TOOLTIP_SYSTEM_CERTIFICATE" />

@@ -9,7 +9,7 @@ my $f = $Request->Form();
 my $action = $f->{action} || $Request->QueryString("action");
 my $name = $f->{name} || $Request->QueryString("name");
 
-if ($Session->{role} !~ /ro/)
+if ($Session->{AAT_ROLE} !~ /ro/)
 {
 	if ($action eq "add")
 	{

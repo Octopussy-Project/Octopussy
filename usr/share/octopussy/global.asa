@@ -1,45 +1,89 @@
 #################### Octopussy Project ####################
 # $Id$
 ###########################################################
-#
-# global.asa
-#
+=head1 NAME
+
+global.asa
+
+=cut
+
 use utf8;
 use AAT;
 use Octopussy;
 
-#
-# Function: Script_OnStart
-#
-sub Script_OnStart
+=head1 FUNCTIONS
+
+=head2 Script_OnStart()
+
+Function executed before any .asp page code
+(see http://apache-asp.org/events.html)
+
+Stores all parameters (QueryString & Form) in $Session hash
+ 
+=cut
+
+sub Script_OnStart()
 {
-  my $g_params = $Request->Params();
-  foreach my $k (%{$g_params})
+  my $q = $Request->QueryString();
+	my $f = $Request->Form();
+  foreach my $k (%{$q})
   { 
-		$Session->{$k} = $g_params->{$k}  if (AAT::NOT_NULL($g_params->{$k}));
+		$Session->{$k} = $q->{$k}  
+			if ((AAT::NOT_NULL($q->{$k})) && ($k !~ /^AAT_/));
 	}
+	foreach my $k (%{$f})
+  {
+    $Session->{$k} = $f->{$k}
+      if ((AAT::NOT_NULL($f->{$k})) && ($k !~ /^AAT_/));
+  }
 }
 
-#
-# Function: Purge_Session
-#
+=head2 Session_OnEnd()
+
+Function executed at the End of the Session 
+(see http://apache-asp.org/events.html)
+
+Removes any Logs Search files
+
+=cut
+
+sub Session_OnEnd()
+{
+	my $run_dir = Octopussy::Directory("running");
+	my $login = $Session->{AAT_LOGIN};
+
+	`rm -f $run_dir/logs_${login}_*`;	
+}
+
+=head2 Purge_Session()
+
+Purges $Session hash
+
+=cut
+
 sub Purge_Session
 {
 	foreach my $k (keys %{$Session}) 
 	{
-  	delete $Session->{$k}	if (($k !~ /^AAT_/) && ($k !~ /^OCTOPUSSY_/));
+  	delete $Session->{$k}	if (($k !~ /^AAT_/));
  	}
 }
 
 
-#
-# Package WebUI
-#
+=head1 NAME
+
+WebUI
+
+=cut
+
 package WebUI;
 
-#
-# Function: PageTop
-#
+=head1 FUNCTIONS
+
+=head2 PageTop($args, $body)
+
+=cut
+
 sub PageTop
 {
 	my ($args, $body) = @_;
@@ -47,9 +91,10 @@ sub PageTop
 	$main::Response->Include('INC/octo_page_top.inc', %{$args});
 }
 
-#
-# Function: PageTopRestricted
-#
+=head2 PageTopRestricted($args, $body)
+
+=cut
+
 sub PageTopRestricted
 {
   my ($args, $body) = @_;
@@ -57,9 +102,10 @@ sub PageTopRestricted
 	$main::Response->Include('INC/octo_page_top_restricted.inc', %{$args});
 }
 						
-#
-# Function: PageBottom
-#
+=head2 PageBottom($args, $body)
+
+=cut
+
 sub PageBottom
 {
 	my ($args, $body) = @_;

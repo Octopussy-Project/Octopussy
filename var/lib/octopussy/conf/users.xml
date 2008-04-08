@@ -2,7 +2,7 @@
 <Octopussy_users>
   <user language="FR"
         login="admin"
-        menu_mode="ICONS_AND_TEXT"
+        menu_mode="ICONS_ONLY"
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restrictions=""
         role="admin"
@@ -23,11 +23,22 @@
       <service>CA_SYN_Apache_Traffic</service>
     </restrictions>
   </user>
-  <user certificate=""
-        language="FR"
+  <user language="FR"
         login="demo"
         menu_mode="TEXT_AND_ICONS"
         password="$1$OP$/KopKNn/Uo14vdgWgPddF/"
         role="restricted"
-        theme="DEFAULT" />
+        theme="DEFAULT">
+    <restrictions>
+      <alert>-NONE-</alert>
+      <device>XDRPP1</device>
+      <device>XDRPP2</device>
+      <report>-NONE-</report>
+      <service>-ANY-</service>
+      <service>CA_SYN_Apache_ModSecurity</service>
+      <service>CA_SYN_Apache_System</service>
+      <service>CA_SYN_Apache_Traffic</service>
+      <service>CA_SYN_Keepalived</service>
+    </restrictions>
+  </user>
 </Octopussy_users>

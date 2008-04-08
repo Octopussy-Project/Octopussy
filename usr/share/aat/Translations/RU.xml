@@ -250,10 +250,14 @@
   <msg mid="_PERIOD" value="Период" />
   <msg mid="_PERIODS" value="Периоды" />
   <msg mid="_PROCESSOR" value="Процессор" />
+	<msg mid="_QUICK_SEARCH_ON_THIS_PAGE" value="_QUICK_SEARCH_ON_THIS_PAGE" />
   <msg mid="_RACK" value="Стойка" />
   <msg mid="_RANK" value="Ранг" />
 	<msg mid="_REGEXP_EXC" value="Регулярное выражение (искл.)" />
   <msg mid="_REGEXP_INC" value="Регулярное выражение (вкл.)" />
+	<msg mid="_RELOAD" value="_RELOAD" />
+	<msg mid="_RELOAD_ALL" value="_RELOAD_ALL" />
+  <msg mid="_RELOAD_REQUIRED" value="_RELOAD_REQUIRED" />
   <msg mid="_REMOVE_LOG_MINUTE" value="Убрать минуту лога" />
 	<msg mid="_REPETITION_N" value="_REPETITION_N" />
   <msg mid="_REPORT" value="Отчёт" />
@@ -273,6 +277,7 @@
   <msg mid="_RIGHTS" value="Права" />
   <msg mid="_ROLE" value="Роль" />
   <msg mid="_ROOM" value="Комната" />
+	<msg mid="_SAVE_AS_SEARCH_TEMPLATE" value="_SAVE_AS_SEARCH_TEMPLATE" />
   <msg mid="_SCHEDULE" value="Расписание" />
   <msg mid="_SCHEDULE_REPORT" value="Отчёт по планировщику" />
   <msg mid="_SCHEDULER" value="Планировщик" />

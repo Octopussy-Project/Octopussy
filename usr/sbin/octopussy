@@ -200,8 +200,8 @@ sub Scheduler_Stop
 
 sub Start
 {
-	`$INITD_MYSQL restart`;	
 	Dispatcher_Start();
+	`$INITD_MYSQL restart`;	
 	Parser_Start();
 	Scheduler_Start();
 	Pusher_Start();
@@ -213,10 +213,10 @@ sub Start
 
 sub Stop
 {
-	Dispatcher_Stop();
 	Parser_Stop();
 	Scheduler_Stop();
 	Pusher_Stop();
+	Dispatcher_Stop();
 	`rm -f $pid_dir/*.{err,pid}`;
 }
 

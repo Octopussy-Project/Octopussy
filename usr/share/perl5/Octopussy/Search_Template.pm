@@ -19,73 +19,83 @@ my %filenames;
 
 =head1 FUNCTIONS
 
-=head2 New(\%conf)
+=head2 New($user, \%conf)
 
 Create a new Search Template
  
 Parameters:
 
+$user - user who create this template
 \%conf - hashref of the new Search Template configuration
 
 =cut
 
-sub New($)
+sub New($$)
 {
-	my $conf = shift;
+	my ($user, $conf) = @_;
 
 	$search_tpl_dir ||= Octopussy::Directory($SEARCH_TPL_DIR);
-	AAT::XML::Write("$search_tpl_dir/$conf->{name}.xml", 
+	Octopussy::Create_Directory("$search_tpl_dir/$user");	
+	AAT::XML::Write("$search_tpl_dir/$user/$conf->{name}.xml", 
 				$conf, "octopussy_search_template");
 }
 
-=head2 Remove($search_tpl)
+=head2 Remove($user, $search_tpl)
 
 Remove the Search Template '$search_tpl'
  
 Parameters:
 
+$user - user who created this template
 $search_tpl - Name of the Search Template to remove
 
 =cut
  
-sub Remove($)
+sub Remove($$)
 {
-	my $search_tpl = shift;
+	my ($user, $search_tpl) = @_;
 
-	$filenames{$search_tpl} = undef;
-	unlink(Filename($search_tpl));
+	$filenames{$user}{$search_tpl} = undef;
+	unlink(Filename($user, $search_tpl));
 }
 
-=head2 List()
+=head2 List($user)
 
 Get list of Search Templates
  
+Parameters:
+
+$user - user who created this template
+
 Returns:
 
 @tpls - Array of Search Templates names
 
 =cut
  
-sub List()
+sub List($)
 {
+	my $user = shift;
+
 	$search_tpl_dir ||= Octopussy::Directory($SEARCH_TPL_DIR);
-	my @files = AAT::FS::Directory_Files($search_tpl_dir, qr/.+\.xml$/);
+	my @files = AAT::FS::Directory_Files("$search_tpl_dir/$user/", qr/.+\.xml$/);
 	my @tpls = ();
 	foreach my $f (@files)
 	{
-		my $conf = AAT::XML::Read("$search_tpl_dir/$f");
+		my $conf = AAT::XML::Read("$search_tpl_dir/$user/$f");
 		push(@tpls, $conf->{name})	if (defined $conf->{name});
 	}
 	
 	return (sort @tpls);
 }
 
-=head2 Filename($search_tpl)
+=head2 Filename($user, $search_tpl)
 
 Get the XML filename for the Search Template '$search_tpl'
 
 Parameters:
 
+$user - user who created this template
 $search_tpl - Name of the Search Template
 
 Returns:
@@ -94,20 +104,22 @@ $filename - Filename of the XML file for Search Template '$search_tpl'
 
 =cut
  
-sub Filename($)
+sub Filename($$)
 {
-	my $search_tpl = shift;
+	my ($user, $search_tpl) = @_;
 
-	return ($filenames{$search_tpl})   if (defined $filenames{$search_tpl});
+	return ($filenames{$user}{$search_tpl})   
+		if (defined $filenames{$user}{$search_tpl});
 	if (AAT::NOT_NULL($search_tpl))
 	{
 		$search_tpl_dir ||= Octopussy::Directory($SEARCH_TPL_DIR);
-		my @files = AAT::FS::Directory_Files($search_tpl_dir, qr/.+\.xml$/);
+		my @files = 
+			AAT::FS::Directory_Files("$search_tpl_dir/$user/", qr/.+\.xml$/);
 		foreach my $f (@files)
   	{
-  		my $conf = AAT::XML::Read("$search_tpl_dir/$f");
-			$filenames{$search_tpl} = "$search_tpl_dir/$f";
-   		return ("$search_tpl_dir/$f")     
+  		my $conf = AAT::XML::Read("$search_tpl_dir/$user/$f");
+			$filenames{$user}{$search_tpl} = "$search_tpl_dir/$user/$f";
+   		return ("$search_tpl_dir/$user/$f")     
 				if ((defined $conf) && ($conf->{name} =~ /^$search_tpl$/));
 		}
 	}
@@ -115,12 +127,13 @@ sub Filename($)
 	return (undef);
 }
 
-=head2 Configuration($search_tpl)
+=head2 Configuration($user, $search_tpl)
 
 Get the configuration for the Search Template '$search_tpl'
  
 Parameters:
 
+$user - user who created this template
 $search_tpl - Name of the Search Template
 
 Returns:
@@ -129,19 +142,20 @@ Returns:
 
 =cut
  
-sub Configuration($)
+sub Configuration($$)
 {
-	my $search_tpl = shift;
+	my ($user, $search_tpl) = @_;
 
-	return (AAT::XML::Read(Filename($search_tpl)));
+	return (AAT::XML::Read(Filename($user, $search_tpl)));
 }
 
-=head2 Configurations($sort)
+=head2 Configurations($user, $sort)
 
-Get the configuration for all Search Templates
+Get the configuration for all Search Templates from User $user
 
 Parameters:
 
+$user - user who created this template
 $sort - selected field to sort configurations
 
 Returns:
@@ -150,16 +164,16 @@ Returns:
 
 =cut
  
-sub Configurations($)
+sub Configurations($$)
 {
-  my $sort = shift;
+  my ($user, $sort) = @_;
 	my (@configurations, @sorted_configurations) = ((), ());
-	my @tpls = List();
+	my @tpls = List($user);
 	my %field;
 
 	foreach my $t (@tpls)
 	{
-		my $conf = Configuration($t);
+		my $conf = Configuration($user, $t);
 		if (defined $conf->{name})
 		{
 			$field{$conf->{$sort}} = 1;

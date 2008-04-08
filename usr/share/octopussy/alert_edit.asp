@@ -31,7 +31,7 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 }
 else
 {
-	%><AAT:Inc file="alert_edit" alert="$alert" /><%
+	%><AAT:Inc file="octo_alert_edit" alert="$alert" /><%
 }
 %>
 <WebUI:PageBottom />
