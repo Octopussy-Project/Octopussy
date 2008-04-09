@@ -73,8 +73,7 @@ $A2ENMOD dir >> /dev/null
 $A2ENMOD ssl >> /dev/null
 $MKDIR /var/cache/$OCTO/asp/
 $CHOWN /var/cache/$OCTO/asp/
-grep "Listen 443" /etc/apache2/ports.conf >> /dev/null
-if [ $? -ne 0 ]; then
+if ! grep "Listen 443" /etc/apache2/ports.conf >> /dev/null; then
 	$ECHO "Listen 443" >> /etc/apache2/ports.conf
 fi
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT

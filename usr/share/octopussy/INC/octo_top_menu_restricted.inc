@@ -18,7 +18,7 @@ $lang = (-f "HELP/$lang/${help_lnk}.html" ? $lang : "en");
 	<AAT:Button name="user_prefs" tooltip="_USER_PREFS" link="./restricted_user_pref.asp"/>
   </AAT:BoxCol>
 	<AAT:BoxCol width="100%" align="C">
-	<AAT:Label value="$version" style="B" link="./index.asp" /><br>
+	<AAT:Label value="$version" style="B" /><br>
 	<AAT:Label value="_USER" /><%= ": $login" %>
 	</AAT:BoxCol>	
 	<AAT:BoxCol><AAT:Help page="HELP/$lang/${help_lnk}.html" /></AAT:BoxCol>

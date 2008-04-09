@@ -6,6 +6,7 @@ my $LINES_BY_PAGE = 1000;
 my $nb_lines = 0;
 my $last_page = 1;
 my $text = "";
+my $url = "./logs_viewer.asp";
 
 my @devices = AAT::ARRAY($Session->{device});
 my @services = AAT::ARRAY($Session->{service});
@@ -65,7 +66,7 @@ if ((AAT::NULL($Session->{extractor})) &&
 	sleep(1);
 	$Session->{page} = 1;
 	$Session->{extracted} = $output;
-	$Response->Redirect("./logs_viewer.asp?extractor=$output");
+	$Response->Redirect("$url?extractor=$output");
 }
 
 if ($Session->{extractor} eq "done")
@@ -157,8 +158,8 @@ else
 <%
 }
 my @restricted_services = Octopussy::Service::List_Used();
-$Response->Include("INC/octo_logs_viewer_form.inc", 
-	url => "./logs_viewer.asp", restricted_services => \@restricted_services);
+$Response->Include("INC/octo_logs_viewer_form.inc", url => $url, 
+	restricted_services => \@restricted_services);
 %>
 <AAT:Box align="C">
 <AAT:BoxRow>
@@ -179,7 +180,7 @@ $Response->Include("INC/octo_logs_viewer_form.inc",
 	<AAT:BoxCol cspan="3">
 <% 
 $Response->Include("INC/octo_page_navigator.inc", 
-	url => "./logs_viewer.asp?extractor=done&extracted=" . $Session->{extracted}, 
+	url => "$url?extractor=done&extracted=" . $Session->{extracted}, 
 	page => $page, page_last => $last_page)	if ($last_page > 1);
 %>
 	</AAT:BoxCol>
@@ -189,7 +190,7 @@ $Response->Include("INC/octo_page_navigator.inc",
   <AAT:BoxCol cspan="3">
 <% 
 $Response->Include("INC/octo_page_navigator.inc",
-  url => "./logs_viewer.asp?extractor=done&extracted=" . $Session->{extracted},
+  url => "$url?extractor=done&extracted=" . $Session->{extracted},
   page => $page, page_last => $last_page)	if ($last_page > 1);
 %>
   </AAT:BoxCol>

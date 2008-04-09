@@ -14,7 +14,7 @@
 
   </application>
 
-	<application name="Octopussy" version="0.9.5.6"
+	<application name="Octopussy" version="0.9.5.8"
 							 email="octo.devel@gmail.com"
 							 user="octopussy"
 							 website="http://www.8pussy.org">
@@ -62,7 +62,6 @@
     <parameter name="devicemodel" value="Unknown" />
     <parameter name="logrotate" value="90" />
     <parameter name="max_alerts" value="100" />
-		<parameter name="logs_viewer_max_lines" value="5000" />
     <parameter name="wizard_max_msgs" value="50" />
 
 	</application>

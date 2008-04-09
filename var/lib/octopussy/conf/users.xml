@@ -28,17 +28,55 @@
         menu_mode="TEXT_AND_ICONS"
         password="$1$OP$/KopKNn/Uo14vdgWgPddF/"
         role="restricted"
-        theme="DEFAULT">
+        theme="DEFAULT"
+        type="local">
     <restrictions>
       <alert>-NONE-</alert>
       <device>XDRPP1</device>
       <device>XDRPP2</device>
+      <device>XDXEN1</device>
+      <device>XDXEN2</device>
+      <device>XDXEN3</device>
+      <device>XDXEN4</device>
+      <device>XDXSMAR</device>
       <report>-NONE-</report>
       <service>-ANY-</service>
       <service>CA_SYN_Apache_ModSecurity</service>
       <service>CA_SYN_Apache_System</service>
       <service>CA_SYN_Apache_Traffic</service>
       <service>CA_SYN_Keepalived</service>
+      <service>Linux_Kernel</service>
+      <service>Linux_System</service>
+      <service>Squid_System</service>
+      <service>Squid_Traffic</service>
+      <service>Sshd</service>
+    </restrictions>
+  </user>
+  <user language="FR"
+        login="ru"
+        menu_mode="TEXT_AND_ICONS"
+        password="$1$OP$gyS.jCdZZlhPnDeKhaevW1"
+        role="restricted"
+        theme="DEFAULT">
+    <restrictions>
+      <alert>-NONE-</alert>
+      <device>XDRPP1</device>
+      <device>XDRPP2</device>
+      <device>XDXEN1</device>
+      <device>XDXEN2</device>
+      <device>XDXEN3</device>
+      <device>XDXEN4</device>
+      <device>XDXSMAR</device>
+      <report>-NONE-</report>
+      <service>CA_SYN_Apache_ModSecurity</service>
+      <service>CA_SYN_Apache_System</service>
+      <service>CA_SYN_Apache_Traffic</service>
+      <service>CA_SYN_Keepalived</service>
+      <service>Linux_Kernel</service>
+      <service>Linux_System</service>
+      <service>Squid_System</service>
+      <service>Squid_Traffic</service>
+      <service>Sshd</service>
     </restrictions>
   </user>
 </Octopussy_users>

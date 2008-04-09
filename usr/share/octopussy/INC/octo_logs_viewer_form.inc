@@ -12,8 +12,8 @@ my ($re_include, $re_include2) =
 my ($re_exclude, $re_exclude2) =
   ($Session->{re_exclude}, $Session->{re_exclude2});
 
-my @devices = AAT::ARRAY($Session->{device});
-my @services = AAT::ARRAY($Session->{service});
+my @devices = AAT::ARRAY($arg{devices});
+my @services = AAT::ARRAY($arg{services});
 
 my @restricted_devices = AAT::ARRAY($arg{restricted_devices});
 my @restricted_services = AAT::ARRAY($arg{restricted_services});
@@ -33,7 +33,8 @@ my @restricted_services = AAT::ARRAY($arg{restricted_services});
     <AAT:Button name="device" /><br>
     <AAT:Label value="_DEVICES" align="R" style="B" /></AAT:BoxCol>
     <AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
-      unknown="1" multiple="1" size="6" selected=\@devices /></AAT:BoxCol>
+      unknown="1" multiple="1" size="6" selected=\@devices 
+			restricted_devices=\@restricted_devices /></AAT:BoxCol>
     <AAT:BoxCol align="C">
     <AAT:Button name="service" /><br>
     <AAT:Label value="_SERVICES" align="R" style="B" /></AAT:BoxCol>
@@ -44,7 +45,7 @@ my @restricted_services = AAT::ARRAY($arg{restricted_services});
   </AAT:Box>
   </AAT:BoxCol>
   <AAT:BoxCol>
-  <AAT:Selector_DateTime_Simple name="dt" start_year="2000" url="$url"
+  <AAT:Selector_DateTime_Simple name="dt" start_year="2000" url="$arg{url}"
     selected="$dt"
     selected1="$d1/$m1/$y1/$hour1/$min1" selected2="$d2/$m2/$y2/$hour2/$min2" />  </AAT:BoxCol>
 </AAT:BoxRow>

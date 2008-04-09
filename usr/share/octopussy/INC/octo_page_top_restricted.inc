@@ -1,16 +1,12 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <% 
 my %arg = @_; 
-
 use AAT;
 
 $Response->Redirect("./login.asp") if (AAT::NULL($Session->{AAT_LOGIN}));
+
+my $title = "Octopussy " . ($arg{title} || "");
 %>
-<AAT:PageTop title="Octopussy $arg{title}" icon="IMG/octopussy.gif"
+<AAT:PageTop title="$title" icon="IMG/octopussy.gif" onLoad="$arg{onLoad}"
   refresh="$arg{refresh}" close_popup="y" popup="y" tooltip="y" />
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
 <tr><td colspan="2">

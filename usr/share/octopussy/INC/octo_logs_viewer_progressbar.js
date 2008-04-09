@@ -46,7 +46,7 @@ function Update_Progress()
 			}       
 			else       
 			{
-        progressbar_cancel.innerHTML = '<a href="./logs_viewer.asp?cancel=1"><img src="AAT/IMG/buttons/bt_remove.png" /></a>';
+        progressbar_cancel.innerHTML = '<a href="./logs_viewer.asp?cancel=1"><img border="0" src="AAT/IMG/buttons/bt_remove.png" /></a>';
       }
       nb_lines.innerHTML = '<b>'+ match +'</b>';
       Progress_Bar(current, total);
