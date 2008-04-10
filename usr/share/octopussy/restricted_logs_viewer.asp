@@ -7,26 +7,12 @@ my $nb_lines = 0;
 my $last_page = 1;
 my $text = "";
 my $url = "./restricted_logs_viewer.asp";
-my @devices = ();
-my @services = ();
 
+my @devices = AAT::ARRAY($Session->{device});
+my @services = AAT::ARRAY($Session->{service});
 my $restrictions = AAT::User::Restrictions("Octopussy", $login);
 my @restricted_devices = AAT::ARRAY($restrictions->{device});
 my @restricted_services = AAT::ARRAY($restrictions->{service});
-
-#  @devices = @restricted_devices  if ($devs eq "-ANY-");
-foreach my $d (AAT::ARRAY($Session->{device}))
-{
-	foreach my $rd (@restricted_devices)
-    { push(@devices, $d) if ($rd eq $d); }
-}
-
-#  @services = @restricted_services  if ($servs eq "-ANY-");
-  foreach my $s (AAT::ARRAY($Session->{service}))
-  {
-    foreach my $rs (@restricted_services)
-      { push(@services, $s) if ($rs eq $s); }
-  }
 
 my $page = $Session->{page} || 1;
 my $dt = $Session->{dt};
@@ -70,8 +56,18 @@ if ((AAT::NULL($Session->{extractor})) &&
 	use Crypt::PasswdMD5;
 	my $output = unix_md5_crypt(time() * rand(99));
 	$output =~ s/[\/\&\$\.\?]//g;
+	
+	my $any = 0;
+	foreach my $d (@devices)
+		{ $any = 1 if ($d =~ /-ANY-/); }
+	my @devices_cmd = ($any ? @restricted_devices : @devices);
+	$any = 0;
+	foreach my $s (@services)
+    { $any = 1 if ($s =~ /-ANY-/); }	
+	my @services_cmd = ($any ? @restricted_services : @services);
+
 	my $cmd = Octopussy::Logs::Extract_Cmd_Line( { 
-		devices => \@devices, services =>\@services, 
+		devices => \@devices_cmd, services =>\@services_cmd, 
 		begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
 		incl1 => $re_include, incl2 => $re_include2,
 		excl1 => $re_exclude, excl2 => $re_exclude2, 
@@ -174,7 +170,6 @@ else
 </script>
 <%
 }
-my @restricted_services = Octopussy::Service::List_Used();
 $Response->Include("INC/octo_logs_viewer_form.inc", url => $url, 
 	devices => \@devices, services => \@services,
 	restricted_devices => \@restricted_devices,

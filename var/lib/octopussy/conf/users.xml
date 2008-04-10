@@ -1,82 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <Octopussy_users>
-  <user language="FR"
+  <user language="EN"
         login="admin"
-        menu_mode="ICONS_ONLY"
+        menu_mode="ICONS_AND_TEXT"
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restrictions=""
         role="admin"
-        theme="DEFAULT"
-        type="local" />
-  <user language="EN"
-        login="res"
-        menu_mode="TEXT_AND_ICONS"
-        password="$1$OP$q6QVGa9p8uHf9vqwVSiza/"
-        role="restricted"
-        theme="DEFAULT"
-        type="local">
-    <restrictions>
-      <alert>-ANY-</alert>
-      <device>XDRPP1</device>
-      <device>XDRPP2</device>
-      <report>-ANY-</report>
-      <service>CA_SYN_Apache_Traffic</service>
-    </restrictions>
-  </user>
-  <user language="FR"
-        login="demo"
-        menu_mode="TEXT_AND_ICONS"
-        password="$1$OP$/KopKNn/Uo14vdgWgPddF/"
-        role="restricted"
-        theme="DEFAULT"
-        type="local">
-    <restrictions>
-      <alert>-NONE-</alert>
-      <device>XDRPP1</device>
-      <device>XDRPP2</device>
-      <device>XDXEN1</device>
-      <device>XDXEN2</device>
-      <device>XDXEN3</device>
-      <device>XDXEN4</device>
-      <device>XDXSMAR</device>
-      <report>-NONE-</report>
-      <service>-ANY-</service>
-      <service>CA_SYN_Apache_ModSecurity</service>
-      <service>CA_SYN_Apache_System</service>
-      <service>CA_SYN_Apache_Traffic</service>
-      <service>CA_SYN_Keepalived</service>
-      <service>Linux_Kernel</service>
-      <service>Linux_System</service>
-      <service>Squid_System</service>
-      <service>Squid_Traffic</service>
-      <service>Sshd</service>
-    </restrictions>
-  </user>
-  <user language="FR"
-        login="ru"
-        menu_mode="TEXT_AND_ICONS"
-        password="$1$OP$gyS.jCdZZlhPnDeKhaevW1"
-        role="restricted"
-        theme="DEFAULT">
-    <restrictions>
-      <alert>-NONE-</alert>
-      <device>XDRPP1</device>
-      <device>XDRPP2</device>
-      <device>XDXEN1</device>
-      <device>XDXEN2</device>
-      <device>XDXEN3</device>
-      <device>XDXEN4</device>
-      <device>XDXSMAR</device>
-      <report>-NONE-</report>
-      <service>CA_SYN_Apache_ModSecurity</service>
-      <service>CA_SYN_Apache_System</service>
-      <service>CA_SYN_Apache_Traffic</service>
-      <service>CA_SYN_Keepalived</service>
-      <service>Linux_Kernel</service>
-      <service>Linux_System</service>
-      <service>Squid_System</service>
-      <service>Squid_Traffic</service>
-      <service>Sshd</service>
-    </restrictions>
-  </user>
+        theme="DEFAULT" />
 </Octopussy_users>

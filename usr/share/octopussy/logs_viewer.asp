@@ -158,7 +158,8 @@ else
 <%
 }
 my @restricted_services = Octopussy::Service::List_Used();
-$Response->Include("INC/octo_logs_viewer_form.inc", url => $url, 
+$Response->Include("INC/octo_logs_viewer_form.inc", url => $url, unknwon => 1,
+	devices => \@devices, services => \@services,
 	restricted_services => \@restricted_services);
 %>
 <AAT:Box align="C">

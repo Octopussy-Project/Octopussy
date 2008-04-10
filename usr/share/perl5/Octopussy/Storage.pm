@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Storage - Octopussy Storage module

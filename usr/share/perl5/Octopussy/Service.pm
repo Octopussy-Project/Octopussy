@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Service - Octopussy Service module

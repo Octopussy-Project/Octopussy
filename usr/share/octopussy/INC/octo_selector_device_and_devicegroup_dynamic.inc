@@ -1,58 +1,47 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <% 
 my %arg = @_; 
-my $selecteds = $arg{selected};
-my $selected = 0;
-foreach my $s (AAT::ARRAY($selecteds))
-	{ $selected = 1 if ($s eq "-ANY-"); }
-my %dg_hash;
-%>
-<select<%= (defined $arg{multiple} ? " multiple" : "") %><%= (defined $arg{size} ? " size=$arg{size}" : "") %> name="device" 
-	onchange="update_service(this.options.selectedIndex)">
-<%
-my @dgs = Octopussy::DeviceGroup::List();
-my @dlist = (defined $arg{restricted_devices} 
-	? AAT::ARRAY($arg{restricted_devices}) : Octopussy::Device::List());
-my @devices = (defined $arg{list} ? AAT::ARRAY($arg{list}) : @dlist);
+my $select_options = (defined $arg{multiple} ? " multiple" : "") 
+	. (defined $arg{size} ? " size=$arg{size}" : "");
 
-foreach my $dg (sort @dgs)
+my %selected = ();
+foreach my $s (AAT::ARRAY($arg{selected}))
+  { $selected{$s} = 1; }
+
+my @restricted_devices = (AAT::NOT_NULL($arg{restricted_devices})
+	? AAT::ARRAY($arg{restricted_devices}) : ());
+my (@dg_list, @d_list) = ((), ());
+
+if (AAT::NOT_NULL(\@restricted_devices))
 {
-	my @dg_devices = Octopussy::DeviceGroup::Devices($dg);
-	foreach my $d (@devices)
-	{
-		foreach my $dgd (@dg_devices)
-		{
-			if ($dgd =~ /^$d$/)
-			{
-				$dg_hash{$dg} = 1;
-				last;
-			}
-		}
-	}
+	foreach my $e (@restricted_devices)
+		{ push(@dg_list, $1) if ($e =~ /^group (.+)$/); }
 }
+else
+	{ @dg_list = Octopussy::DeviceGroup::List(); }
+
+if (AAT::NOT_NULL(\@restricted_devices))
+{
+	foreach my $e (@restricted_devices)
+    { push(@d_list, $e) if ($e !~ /^group /); }
+}
+else
+	{ @d_list = Octopussy::Device::List(); }
+%>
+<select<%= $select_options %> name="device"
+  onchange="update_service(this.options.selectedIndex)">
+<%
 $Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "-ANY-",
-    selected => ($selected ? "selected" : ""), 
-		label => AAT::Translation("-ANY-"));
-		
-foreach my $dg (sort keys %dg_hash)
+	selected => ($selected{"-ANY-"} ? "selected" : ""), 
+	label => AAT::Translation("-ANY-"));
+foreach my $dg (sort @dg_list)
 {
-	my $selected = 0;
- 	foreach my $s (AAT::ARRAY($selecteds))
- 		{ $selected = 1 if ($s eq "group $dg"); }
 	$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "group $dg",
-		selected => ($selected ? "selected" : ""), label => "< $dg >");
+		selected => ($selected{"group $dg"} ? "selected" : ""), label => "< $dg >");
 }
-foreach my $d (@devices)
+foreach my $d (sort @d_list)
 {
-	my $selected = 0;
-  foreach my $s (AAT::ARRAY($selecteds))
-    { $selected = 1 if ($s eq $d); }
 	$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => $d,
-    selected => ($selected ? "selected" : ""), label => $d);
+  	selected => ($selected{$d} ? "selected" : ""), label => $d);
 }
 %>
 </select>

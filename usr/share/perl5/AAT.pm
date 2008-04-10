@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 AAT - Apache::ASP Toolkit module
@@ -91,6 +88,9 @@ sub NOT_NULL($)
 {
 	my $value = shift;
 
+	if (ref $value eq "ARRAY")
+		{ return ($#{$value} >= 0 ? 1 : 0); }
+
 	return (((defined $value) && ($value ne "")) ? 1 : 0);
 }
 
@@ -103,6 +103,9 @@ Checks that value '$value' is null (undef or '')
 sub NULL($)
 {
 	my $value = shift;
+
+	if (ref $value eq "ARRAY")
+    { return ($#{$value} >= 0 ? 0 : 1); }
 
   return (((defined $value) && ($value ne "")) ? 0 : 1);
 }

@@ -17,6 +17,7 @@ my @services = AAT::ARRAY($arg{services});
 
 my @restricted_devices = AAT::ARRAY($arg{restricted_devices});
 my @restricted_services = AAT::ARRAY($arg{restricted_services});
+my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
 %>
 <AAT:Form action="$arg{url}">
 <AAT:Box align="C" title="_LOGS_VIEWER" icon="buttons/bt_search">
@@ -33,14 +34,15 @@ my @restricted_services = AAT::ARRAY($arg{restricted_services});
     <AAT:Button name="device" /><br>
     <AAT:Label value="_DEVICES" align="R" style="B" /></AAT:BoxCol>
     <AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
-      unknown="1" multiple="1" size="6" selected=\@devices 
+      unknown=$unknown multiple="1" size="6" selected=\@devices 
 			restricted_devices=\@restricted_devices /></AAT:BoxCol>
     <AAT:BoxCol align="C">
     <AAT:Button name="service" /><br>
     <AAT:Label value="_SERVICES" align="R" style="B" /></AAT:BoxCol>
     <AAT:BoxCol><AAT:Inc file="octo_selector_service_dynamic"
-      unknown="1" multiple="1" size="6" device=\@devices selected=\@services
-      restricted_services=\@restricted_services /></AAT:BoxCol>
+      unknown=$unknown multiple="1" size="6" device=\@restricted_devices 
+			selected=\@services restricted_services=\@restricted_services />
+		</AAT:BoxCol>
   </AAT:BoxRow>
   </AAT:Box>
   </AAT:BoxCol>

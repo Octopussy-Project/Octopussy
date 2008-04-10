@@ -1,12 +1,8 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::WebServices - Octopussy WebServices module
 
 =cut
-
 package Octopussy::WebServices;
 
 use XML::Simple;
