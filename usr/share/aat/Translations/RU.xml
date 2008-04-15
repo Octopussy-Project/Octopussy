@@ -116,6 +116,7 @@
 	<msg mid="_COMMENT" value="Заметка" />
 	<msg mid="_DATE_BEGIN" value="Дата начала" />
 	<msg mid="_DATE_END" value="Дата конца" />
+	<msg mid="_DATETIME" value="_DATETIME" />
 	<msg mid="_DAY_OF_MONTH" value="День месяца" />
 	<msg mid="_DAY_OF_WEEK" value="День недели" />
 	<msg mid="_DEFAULT_STORAGES" value="Хранилища по умолчанию" />
@@ -133,6 +134,7 @@
 	<msg mid="_LOGIN" value="Логин" />
 	<msg mid="_MAIL_SERVER" value="Почтовый сервер" />
 	<msg mid="_NAME" value="Название" />
+	<msg mid="_NB" value="_NB" />
 	<msg mid="_NEW_PASSWORD" value="_NEW_PASSWORD" />
 	<msg mid="_PASSWORD" value="Пароль" />
 	<msg mid="_PORT" value="Порт" />

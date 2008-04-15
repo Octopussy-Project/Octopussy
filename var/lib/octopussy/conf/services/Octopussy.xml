@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="049"
-                   version="200803270001"
+                   version="200804150001"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -299,4 +299,10 @@
            rank="049"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Octopussy:logs_extraction_aborted"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@REGEXP(&quot;extractor&quot;):module@&gt;: &lt;@REGEXP(&quot;Logs Extraction Aborted !&quot;):msg@&gt;"
+           rank="050"
+           table="Message"
+           taxonomy="Application.Stop" />
 </octopussy_service>

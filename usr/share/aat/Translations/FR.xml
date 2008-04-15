@@ -115,6 +115,7 @@
 	<msg mid="_COMMENT" value="Commentaire" />
 	<msg mid="_DATE_BEGIN" value="Date Debut" />
   <msg mid="_DATE_END" value="Date Fin" />
+	<msg mid="_DATETIME" value="Date/Heure" />
 	<msg mid="_DAY_OF_MONTH" value="Jour du Mois" />
   <msg mid="_DAY_OF_WEEK" value="Jour de la Semaine" />
 	<msg mid="_DEFAULT_STORAGES" value="Stockages par Defaut" />
@@ -132,6 +133,7 @@
   <msg mid="_LOGIN" value="Login" />
 	<msg mid="_MAIL_SERVER" value="Serveur Messagerie" />
 	<msg mid="_NAME" value="Nom" />
+	<msg mid="_NB" value="Nb" />
 	<msg mid="_NEW_PASSWORD" value="Nouveau Mot de Passe" />
   <msg mid="_PASSWORD" value="Mot de Passe" />
 	<msg mid="_PORT" value="Port" />

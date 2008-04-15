@@ -115,6 +115,7 @@
 	<msg mid="_COMMENT" value="Comentario" />
 	<msg mid="_DATE_BEGIN" value="Date Begin" />
 	<msg mid="_DATE_END" value="Date End" />
+	<msg mid="_DATETIME" value="_DATETIME" />
 	<msg mid="_DAY_OF_MONTH" value="Dia del Mes" />
   <msg mid="_DAY_OF_WEEK" value="Dia de la Semana" />
 	<msg mid="_DEFAULT_STORAGES" value="_DEFAULT_STORAGES" />
@@ -134,6 +135,7 @@
 	<msg mid="_NAME" value="Nombre" />
 	<msg mid="_NEW_PASSWORD" value="_NEW_PASSWORD" />
 	<msg mid="_PASSWORD" value="Contrasena" />
+	<msg mid="_NB" value="_NB" />
 	<msg mid="_PORT" value="Port" />
 	<msg mid="_QUERY" value="Peticion" />
 	<msg mid="_RECIPIENTS" value="Destinatarios" />

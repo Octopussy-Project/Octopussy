@@ -23,6 +23,10 @@ foreach my $t (Octopussy::Search_Template::Configurations($login, "name"))
 {
 	my $dev_str = join(",", AAT::ARRAY($t->{device}));
 	my $serv_str = join(",", AAT::ARRAY($t->{service}));
+	$t->{re_include} =~ s/\\/\\\\/g;
+	$t->{re_include2} =~ s/\\/\\\\/g;
+	$t->{re_exclude} =~ s/\\/\\\\/g;
+	$t->{re_exclude2} =~ s/\\/\\\\/g;
 %>
 tpl[<%= $i %>].template = '<%= $t->{name} %>';
 tpl[<%= $i %>].device = '<%= $dev_str %>';
