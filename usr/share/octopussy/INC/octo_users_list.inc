@@ -31,6 +31,9 @@ else
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
+my $nb_admin = 0;
+foreach my $c (AAT::User::Configurations("Octopussy", $sort))
+	{ $nb_admin++	if ($c->{role} =~ /^admin$/); }
 foreach my $c (AAT::User::Configurations("Octopussy", $sort))
 {
 	my ($login, $certif, $r, $type) = 
@@ -66,7 +69,8 @@ else
 %><AAT:BoxCol><AAT:Label value="$role_name" /></AAT:BoxCol><%	
 }
 %><AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol><%
-	if (($role =~ /admin/i) && ($c->{type} =~ /local/))
+	if ((($role =~ /admin/i) && ($c->{type} =~ /local/))
+		&& (($c->{role} !~ /^admin$/) || ($nb_admin > 1)))
   {
 		my $dialog = "./dialog.asp?id=delete_user&arg1=$c->{login}";
 		%><AAT:BoxCol align="center">

@@ -17,10 +17,10 @@ if (AAT::NOT_NULL($total))
 	foreach my $i (1..$cbars)
 	{ 
 		my $color = 99 - ($i*50/$BARS);
-		$str_bar .= "<td width=10 height=20 bgcolor=\"rgb(0,0,$color)\"></td>";
+		$str_bar .= "<td width=10 height=32 bgcolor=\"rgb(0,0,$color)\"></td>";
 	} 
 	foreach my $i ($cbars+1..$BARS)
-		{ $str_bar .= "<td width=10 height=20 bgcolor=\"white\"></td>"; }
+		{ $str_bar .= "<td width=10 height=32 bgcolor=\"white\"></td>"; }
 	$str_bar .= "</tr></table>";
 }
 %>

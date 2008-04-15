@@ -32,6 +32,8 @@ function Update_Progress()
 			}
 			else
 			{
+				progressbar_cancel.innerHTML = '<a href="./logs_viewer.asp?cancel=1">'
+					+ '<img border="0" src="AAT/IMG/buttons/bt_remove.png" /></a>';
 				started = 1;
 				finished = 0;
 			}       
@@ -44,10 +46,6 @@ function Update_Progress()
 				total = 1;
 				progressbar_cancel.innerHTML = "";       
 			}       
-			else       
-			{
-        progressbar_cancel.innerHTML = '<a href="./logs_viewer.asp?cancel=1"><img border="0" src="AAT/IMG/buttons/bt_remove.png" /></a>';
-      }
       nb_lines.innerHTML = '<b>'+ match +'</b>';
       Progress_Bar(current, total);
     }

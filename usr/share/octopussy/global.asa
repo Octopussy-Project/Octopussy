@@ -27,15 +27,9 @@ sub Script_OnStart()
   my $q = $Request->QueryString();
 	my $f = $Request->Form();
   foreach my $k (%{$q})
-  { 
-		$Session->{$k} = $q->{$k}  
-			if ((AAT::NOT_NULL($q->{$k})) && ($k !~ /^AAT_/));
-	}
+  	{ $Session->{$k} = $q->{$k} if ($k !~ /^AAT_/); }
 	foreach my $k (%{$f})
-  {
-    $Session->{$k} = $f->{$k}
-      if ((AAT::NOT_NULL($f->{$k})) && ($k !~ /^AAT_/));
-  }
+  	{ $Session->{$k} = $f->{$k} if ($k !~ /^AAT_/); }
 }
 
 =head2 Session_OnEnd()

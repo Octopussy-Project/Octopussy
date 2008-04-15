@@ -166,7 +166,7 @@ $Response->Include("INC/octo_logs_viewer_form.inc", url => $url, unknown => 1,
 <AAT:BoxRow>
 	<AAT:BoxCol cspan="3">
 	<AAT:Label value="_QUICK_SEARCH_ON_THIS_PAGE" style="B" />
-	<input id="filter" size="40" style="color:orange" onkeydown="Timer();" />
+	<input id="filter" size="30" style="color:orange" onkeydown="Timer();" />
 	<AAT:Label value="$msg_nb_lines" style="B"/>
 	<span id="nb_lines"><b><%= $nb_lines %></b></span>
 </AAT:BoxCol>
