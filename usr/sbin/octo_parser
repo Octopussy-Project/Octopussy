@@ -73,13 +73,14 @@ Inits Parser & launch UParser if needed
 
 sub Init()
 {
-	my $dconf = Octopussy::Device::Configuration($device);
-	exit()	if (!defined $dconf);
-
-	my $storage = Octopussy::Storage::Default();
+	my $dconf = Octopussy::Device::Configuration($device) or 
+		die("[OCTOPUSSY ERROR: Unable to get Device configuration for '$device']");
+	my $storage = Octopussy::Storage::Default() 
+		or die("[OCTOPUSSY ERROR: Unable to get Default Storage configuration]");
 	$minutes_without_logs = $dconf->{minutes_without_logs};
 	@services = Octopussy::Device::Services($device);	
-	@taxo_list = Octopussy::Taxonomy::List();
+	@taxo_list = Octopussy::Taxonomy::List()
+		or die("[OCTOPUSSY ERROR: Unable to get Taxonomy configuration]");
 	$dir_data{"Unknown"} = 
 		Octopussy::Storage::Directory($dconf->{storage_unknown})
 			|| Octopussy::Storage::Directory($storage->{unknown});

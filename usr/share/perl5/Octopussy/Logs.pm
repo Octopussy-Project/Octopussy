@@ -394,7 +394,7 @@ sub Extract_Cmd_Line($)
     . " --begin $conf->{begin} --end $conf->{end}"
     . " --include1 '$conf->{incl1}' --include2 '$conf->{incl2}'"
     . " --exclude1 '$conf->{excl1}' --exclude2 '$conf->{excl2}'"
-    . " --output \"$conf->{output}\"";
+    . " --pid_param \"$conf->{pid_param}\" --output \"$conf->{output}\"";
 	
 	return ($cmd);
 }

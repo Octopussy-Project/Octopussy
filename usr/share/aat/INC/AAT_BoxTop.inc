@@ -25,8 +25,9 @@ if ((defined $arg{icon}) || (defined $arg{title}))
 	<AAT:BoxRow>
 	<AAT:BoxCol align="right"><AAT:IMG name="$arg{icon}" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$arg{title}" style="B" size="+1" />
-	</AAT:BoxCol></AAT:BoxRow>
-	<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
+	</AAT:BoxCol>
+	</AAT:BoxRow>
+	<AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 	</table>
 	</td><td class="box-right"></td></tr><%
 }%>

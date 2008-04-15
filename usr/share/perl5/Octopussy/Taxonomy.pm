@@ -23,6 +23,7 @@ sub List()
 	my @list = AAT::XML::File_Array_Values(Octopussy::File("taxonomy"), 
 		"taxonomy", "taxo_id");
 
+	return (undef) if ($#list == -1);
 	return (@list);
 }
 
@@ -37,6 +38,7 @@ sub List_And_Any()
   my @list = ("-ANY-");
   push(@list, List());
 
+	return (undef) if ($#list == -1);
   return (@list);
 }
 

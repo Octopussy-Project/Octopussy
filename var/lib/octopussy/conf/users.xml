@@ -6,5 +6,14 @@
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restrictions=""
         role="admin"
-        theme="DEFAULT" />
+        theme="DEFAULT"
+        type="local" />
+  <user certificate=""
+        language="EN"
+        login="test"
+        menu_mode="TEXT_AND_ICONS"
+        password="$1$OP$PpInJ.GfFkDhTTAcRCmJY."
+        role="admin"
+        theme="DEFAULT"
+        type="local" />
 </Octopussy_users>

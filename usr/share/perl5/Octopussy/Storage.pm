@@ -64,6 +64,7 @@ sub Default()
 {
 	my $conf = AAT::XML::Read(Octopussy::File("storages"));
 
+	return (undef)	if (!defined $conf);
 	return ( { incoming => $conf->{default_incoming}, 
 		unknown => $conf->{default_unknown}, known => $conf->{default_known} } );
 }

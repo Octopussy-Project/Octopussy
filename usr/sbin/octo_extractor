@@ -7,7 +7,8 @@ octo_extractor - Octopussy Logs Extractor program
 =head1 SYNOPSIS
 
 octo_extractor --device <device> --service <service> --taxonomy <taxonomy>
-  --begin YYYYMMDDHHMM --end YYYYMMDDHHMM [ --output <outputfile> ]
+  --begin YYYYMMDDHHMM --end YYYYMMDDHHMM [ --pid_param <string> ] 
+	[ --output <outputfile> ]
 
 =head1 DESCRIPTION
 
@@ -28,11 +29,11 @@ my $PROG_VERSION = Octopussy::Version();
 
 my $help;
 my (@devices, @services) = ((), ());
-my ($taxonomy, $begin, $end, $output);
+my ($taxonomy, $begin, $end, $pid_param, $output);
 my ($progress_msg, $progress_num, $progress_match) = (0, 0, 0);
 my ($include1, $include2, $exclude1, $exclude2);
+my $pid_file = undef;
 my $dir_pid = Octopussy::Directory("running");
-my $pid_file = Octopussy::PID_File($PROG_NAME);
 my $status_file = $dir_pid . $PROG_NAME . ".status";
 
 =head1 FUNCTIONS
@@ -58,7 +59,7 @@ sub Help()
 	print	" Usage: $PROG_NAME --device <device> --service <service>";
 	print " --taxonomy <taxonomy>";
 	print " --begin YYYYMMDDHHMM --end YYYYMMDDHHMM";
-	print " [ --output <outputfile> ]\n\n";
+	print " [ --pid_param <string> ] [ --output <outputfile> ]\n\n";
 
 	if (! @devices)
 		{ print "device list: " . String_List("Octopussy::Device::List") . "\n"; }
@@ -252,19 +253,22 @@ sub End
 # MAIN
 #
 
-$SIG{HUP} = \&End;
-$SIG{USR1} = \&Progress;
-
 my $status = GetOptions(
 	"h" => \$help, "help" => \$help,
 	"devices=s" => \@devices, "services=s" => \@services, 
 	"taxonomy=s" => \$taxonomy, "begin=s" => \$begin, "end=s" => \$end, 
 	"include1=s" => \$include1, "include2=s" => \$include2,
 	"exclude1=s" => \$exclude1, "exclude2=s" => \$exclude2,
-	"output=s" => \$output );
+	"pid_param=s" => \$pid_param, "output=s" => \$output );
 
 Help()	if ((! $status) || ($help) 
 	|| (! @devices) || (! @services) || (!defined $begin) || (!defined $end));
+
+my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
+$pid_file = Octopussy::PID_File($pid_name);
+
+$SIG{USR1} = \&Progress;
+$SIG{USR2} = \&End;
 
 Print_Logs(\@devices, \@services, $taxonomy, $begin, $end, 
 	[$include1, $include2], [$exclude1, $exclude2]);

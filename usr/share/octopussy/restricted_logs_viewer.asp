@@ -29,9 +29,10 @@ my ($re_exclude, $re_exclude2) =
 
 if (AAT::NOT_NULL($Session->{cancel}))
 {
-	my $pid_file = $run_dir . "octo_extractor.pid";
+	my $pid_param = $Session->{extracted};
+	my $pid_file = $run_dir . "octo_extractor_${pid_param}.pid";
 	$pid = `cat "$pid_file"`;
-	kill HUP => $pid;	
+	kill USR2 => $pid;	
 
 	($Session->{extractor}, $Session->{cancel}, $Session->{logs}, 
 	$Session->{file}, $Session->{csv}, $Session->{zip}) =
@@ -71,7 +72,7 @@ if ((AAT::NULL($Session->{extractor})) &&
 		begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
 		incl1 => $re_include, incl2 => $re_include2,
 		excl1 => $re_exclude, excl2 => $re_exclude2, 
-		output => "$run_dir/logs_${login}_$output" } );
+		pid_param => $output, output => "$run_dir/logs_${login}_$output" } );
 	$Session->{export} = 
 		"logs_" . join("-", @devices) . "_" . join("-", @services)
     	. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";

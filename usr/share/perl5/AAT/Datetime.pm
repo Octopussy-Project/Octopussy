@@ -169,6 +169,8 @@ Returns an Array of 2 hashrefs with the Begin & End of the Day
 sub Current_Day()
 {
 	my ($year, $month, $day, $hour, $min) = Now();
+	$hour =~ s/^0//;
+  $min =~ s/^0//;
 
 	my (%begin, %end)	= ((), ());
 	($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
@@ -188,7 +190,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Hour
 sub Current_Hour()
 {
 	my ($year, $month, $day, $hour, $min) = Now();
-
+	$hour =~ s/^0//;
 	my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
   ($begin{hour}, $begin{min}) = ($hour, 0);
@@ -207,6 +209,8 @@ Returns an Array of 2 hashrefs with the Begin & End of the Month
 sub Current_Month()
 {
 	my ($year, $month, $day, $hour, $min) = Now();
+	$hour =~ s/^0//;
+  $min =~ s/^0//;
 
   my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, 1);
@@ -228,6 +232,8 @@ sub Current_Week()
 	my ($year, $month, $day, $hour, $min) = Now();
 	my $wday = WeekDay($year, $month, $day);
 	$wday--;
+	$hour =~ s/^0//;
+  $min =~ s/^0//;
 	my $date = Date::Manip::DateCalc("today", "-${wday}day");
 	my (%begin, %end) = ((), ());
 	($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
@@ -249,6 +255,8 @@ Returns an Array of 2 hashrefs with the Begin & End of the Year
 sub Current_Year()
 {
 	my ($year, $month, $day, $hour, $min) = Now();
+	$hour =~ s/^0//;
+	$min =~ s/^0//;
 
   my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year, 1, 1);
@@ -292,6 +300,7 @@ sub Last_Hour()
 	my $date = Date::Manip::DateCalc("today", "-1hour");
 	my ($year, $month, $day, $hour, $min) = 
 		Date::Manip::UnixDate($date, "%Y", "%f", "%e", "%k", "%M");
+	$hour =~ s/^0//;
 
   my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);

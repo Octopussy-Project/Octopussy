@@ -24,6 +24,7 @@ foreach my $t (Octopussy::Search_Template::Configurations($login, "name"))
 	my $dev_str = join(",", AAT::ARRAY($t->{device}));
 	my $serv_str = join(",", AAT::ARRAY($t->{service}));
 %>
+tpl[<%= $i %>].template = '<%= $t->{name} %>';
 tpl[<%= $i %>].device = '<%= $dev_str %>';
 tpl[<%= $i %>].service = '<%= $serv_str %>';
 tpl[<%= $i %>].re_include = '<%= $t->{re_include} %>';
@@ -68,6 +69,7 @@ function update_search_params(x)
       		doc.service.options[i].selected = 1;
 			}
   	}
+		doc.template.value = tpl[x].template;
 		doc.re_include.value = tpl[x].re_include;
 		doc.re_include2.value = tpl[x].re_include2;
 		doc.re_exclude.value = tpl[x].re_exclude;
