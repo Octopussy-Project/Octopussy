@@ -37,11 +37,14 @@ if (AAT::NOT_NULL($Session->{cancel}))
 
 if (AAT::NOT_NULL($Session->{template}))
 {
+	$re_include =~ s/\\/\\\\/g;
+  $re_include2 =~ s/\\/\\\\/g;
+  $re_exclude =~ s/\\/\\\\/g;
+  $re_exclude2 =~ s/\\/\\\\/g;
 	Octopussy::Search_Template::New($login, { name => $Session->{template}, 
 	device => \@devices, service => \@services, 
-	re_include => $Session->{re_include}, re_include2 => $Session->{re_include2},
-	re_exclude => $Session->{re_exclude}, re_exclude2 => $Session->{re_exclude2} 
-	} );
+	re_include => $re_include, re_include2 => $re_include2,
+	re_exclude => $re_exclude, re_exclude2 => $re_exclude2 } );
 }
 
 if ((AAT::NULL($Session->{extractor})) && 
