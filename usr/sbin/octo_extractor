@@ -32,9 +32,8 @@ my (@devices, @services) = ((), ());
 my ($taxonomy, $begin, $end, $pid_param, $output);
 my ($progress_msg, $progress_num, $progress_match) = (0, 0, 0);
 my ($include1, $include2, $exclude1, $exclude2);
-my $pid_file = undef;
+my ($pid_file, $status_file) = (undef, undef);
 my $dir_pid = Octopussy::Directory("running");
-my $status_file = $dir_pid . $PROG_NAME . ".status";
 
 =head1 FUNCTIONS
 
@@ -266,6 +265,8 @@ Help()	if ((! $status) || ($help)
 
 my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
 $pid_file = Octopussy::PID_File($pid_name);
+$status_file = "${dir_pid}${PROG_NAME}" 
+	. (defined $pid_param ?"_$pid_param" : "") . ".status";
 
 $SIG{USR1} = \&Progress;
 $SIG{USR2} = \&End;

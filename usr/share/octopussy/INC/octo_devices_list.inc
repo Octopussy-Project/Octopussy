@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 
@@ -49,6 +44,12 @@ foreach my $d (@dconfs)
 	my $status = $d->{status};
 	my $status_color = (($status =~ /Started/) 
 		? "green" : (($status =~ /Paused/) ? "orange" : "red"));
+	my $bt1 = ($status =~ /Stopped/ ? "pause" : "stop");
+	my $bt2 = ($status =~ /Started/ ? "pause" : "start");
+	my $tt1 = "_" . uc($bt1);
+	my $tt2 = "_" . uc($bt1);
+	my $link1 = "./dialog.asp?id=parse_$bt1&arg1=$name";
+	my $link2 = "./dialog.asp?id=parse_$bt2&arg1=$name";
 %><AAT:BoxRow>
   <AAT:BoxCol><%
 	if ($d->{reload_required})
@@ -64,29 +65,10 @@ foreach my $d (@dconfs)
 	<AAT:BoxCol><%= $d->{model} %></AAT:BoxCol>
   <AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$status" color="$status_color" /></AAT:BoxCol>
-	<%
-	if ($status =~ /Stopped/)
-	{
-	%><AAT:BoxCol><AAT:Button name="pause" tooltip="_PAUSE"
-    popup_link="./dialog.asp?id=parse_pause&arg1=$name" /></AAT:BoxCol>
-		<AAT:BoxCol><AAT:Button name="start" tooltip="_START"
-    popup_link="./dialog.asp?id=parse_start&arg1=$name" /></AAT:BoxCol><%
-	}
-	elsif ($status =~ /Paused/)
-	{
-	%><AAT:BoxCol><AAT:Button name="stop" tooltip="_STOP"
-    popup_link="./dialog.asp?id=parse_stop&arg1=$name" /></AAT:BoxCol>
-    <AAT:BoxCol><AAT:Button name="start" tooltip="_START"
-    popup_link="./dialog.asp?id=parse_start&arg1=$name" /></AAT:BoxCol><%
-	}
-	elsif ($status =~ /Started/)
-  {
-  %><AAT:BoxCol><AAT:Button name="stop" tooltip="_STOP"
-    popup_link="./dialog.asp?id=parse_stop&arg1=$name" /></AAT:BoxCol>
-    <AAT:BoxCol><AAT:Button name="pause" tooltip="_PAUSE"
-    popup_link="./dialog.asp?id=parse_pause&arg1=$name" /></AAT:BoxCol><%
-  }
-	%>
+	<AAT:BoxCol>
+	<AAT:Button name="$bt1" tooltip="$tt1" popup_link="$link1" /></AAT:BoxCol>
+  <AAT:BoxCol>
+	<AAT:Button name="$bt2" tooltip="$tt2" popup_link="$link2" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Button name="service" tooltip="_SERVICES"
 		link="./device_services.asp?device=$name" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Button name="storage" tooltip="_STORAGES"     
@@ -100,27 +82,16 @@ foreach my $d (@dconfs)
 	</AAT:BoxCol>
 	</AAT:BoxRow><%
 }
-%>
-</AAT:Box>
-<%
 if ($role !~ /ro/i)
 {
 	my @log_type = ("asynchronous", "syslog");
 %>
 <AAT:Form action="$url">
-<AAT:Box align="C">
+<AAT:BoxRow><AAT:BoxCol cspan="15"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol><AAT:Label value="_DEVICE_NAME" style="B"/></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_IP_ADDRESS" style="B"/></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_LOG_TYPE" style="B"/></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_DEVICE_TYPE" style="B"/></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_DEVICE_MODEL" style="B"/></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B"/></AAT:BoxCol>
-</AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
-<AAT:BoxRow>
-  <AAT:BoxCol><AAT:Entry name="device" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Entry name="address" /></AAT:BoxCol>
+	<AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="device" size="16" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Entry name="address" size="16" /></AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Selector name="logtype" list=\@log_type selected="syslog"/></AAT:BoxCol>
 	<AAT:BoxCol>
@@ -129,14 +100,10 @@ if ($role !~ /ro/i)
 	<AAT:BoxCol><AAT:Inc file="octo_selector_device_model" 
 		device_type="$arg{dtype}" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Entry name="description" /></AAT:BoxCol>
-</AAT:BoxRow>	
-<AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
-<AAT:BoxRow>
-	<AAT:BoxCol align="C" cspan="6">
-	<AAT:Form_Submit value="_NEW_DEVICE" /></AAT:BoxCol>
+	<AAT:BoxCol cspan="8" align="C"><AAT:Form_Submit value="_NEW_DEVICE" /></AAT:BoxCol>
 </AAT:BoxRow>
-</AAT:Box>
 </AAT:Form>
 <%
 }
 %>
+</AAT:Box>

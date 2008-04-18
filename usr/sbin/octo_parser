@@ -276,7 +276,8 @@ sub Alert_Handler($$)
 sub Line_Handler($$$$$)
 {
 	my ($line, $serv, $msg, $known_msgs, $match) = @_;
- 	if ($line =~ $msg->{re})
+ 
+	if ($line =~ $msg->{re})
   {
   	Alert_Handler($msg, $line)  if ($#{$msg->{alerts}} >= 0);
     push(@{$known_msgs->{$serv}}, $line);

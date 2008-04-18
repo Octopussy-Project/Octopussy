@@ -2,8 +2,9 @@
 use Octopussy;
 
 my $pid_dir = Octopussy::Directory("running");
-my $pid_file = $pid_dir . "octo_extractor.pid";
-my $status_file = $pid_dir . "octo_extractor.status";
+my $pid_param = $Session->{extracted};
+my $pid_file = $pid_dir . "octo_extractor_${pid_param}.pid";
+my $status_file = $pid_dir . "octo_extractor_${pid_param}.status";
 my $pid = `cat "$pid_file"`;
 
 my $status = "";
