@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Service Group Edition" help="#servicegroups_page" />
 <%
 my $f = $Request->Form();
@@ -25,6 +20,6 @@ if ((defined $servicegroup) && ($Session->{AAT_ROLE} !~ /ro/i))
     { Octopussy::ServiceGroup::Add_Service($servicegroup, $service); }
 }
 %>
-<AAT:Inc file="servicegroup_edit" url="./servicegroup_edit.asp"
+<AAT:Inc file="octo_servicegroup_edit" url="./servicegroup_edit.asp"
 	servicegroup="$servicegroup" sort="$msg_sort" />
 <WebUI:PageBottom />

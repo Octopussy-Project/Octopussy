@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="ServiceGroups" help="#servicegroups_page" />
 <%
 my $f = $Request->Form();
@@ -12,7 +7,7 @@ my $sort = $Request->QueryString("servicegroups_table_sort");
 
 if (!defined $sg)
 {
-	%><AAT:Inc file="servicegroups_list" url="./servicegroups.asp" 
+	%><AAT:Inc file="octo_servicegroups_list" url="./servicegroups.asp" 
 		sort="$sort" /><%
 }
 elsif ((defined $sg) && ($Session->{AAT_ROLE} !~ /ro/i))

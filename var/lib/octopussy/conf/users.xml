@@ -8,19 +8,4 @@
         role="admin"
         theme="DEFAULT"
         type="local" />
-  <user certificate=""
-        language="EN"
-        login="demo"
-        menu_mode="TEXT_AND_ICONS"
-        password="$1$OP$/KopKNn/Uo14vdgWgPddF/"
-        role="ro"
-        theme="DEFAULT"
-        type="local" />
-  <user certificate=""
-        language="EN"
-        login="test"
-        menu_mode="TEXT_AND_ICONS"
-        password="$1$OP$jsgfesjHKRu5KMgKmYyXi0"
-        role="admin"
-        theme="DEFAULT" />
 </Octopussy_users>

@@ -155,6 +155,7 @@
 
 	<msg mid="_ADD_NEW_SERVICE" value="Ajouter un nouveau Service" />
 	<msg mid="_ADD_SERVICE_TO_DEVICE" value="Ajout du Service a l'Equipement" />
+	<msg mid="_ADD_SERVICE_TO_SERVICEGROUP" value="Ajout du Service au Groupe de Services" />
 	<msg mid="_ADD_STORAGE" value="Ajouter Stockage" />
 	<msg mid="_ALERT" value="Alarme" />
   <msg mid="_ALERT_DESCRIPTION" value="Description de l'Alerte" />
@@ -235,6 +236,7 @@
 	<msg mid="_NEW_REPORT" value="Nouveau Rapport" />
 	<msg mid="_NEW_ROOM" value="Nouvelle Salle" />
 	<msg mid="_NEW_SERVICE" value="Nouveau Service" />
+	<msg mid="_NEW_SERVICEGROUP" value="Nouveau Groupe de Services" />
 	<msg mid="_NEW_STATIC_DEVICEGROUP" value="Nouveau Groupe d'Equipement Statique" />
 	<msg mid="_NEW_TABLE" value="Nouvelle Table" />
 	<msg mid="_NEW_TIMEPERIOD" value="Nouvelle Période" />

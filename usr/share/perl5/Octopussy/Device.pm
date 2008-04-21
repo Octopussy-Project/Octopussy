@@ -236,7 +236,7 @@ sub Filtered_Configurations($$$)
 
 =head2 Add_Service($device, $service)
 
-Add a service '$service' to device '$device'
+Add a service or servicegroup '$service' to device '$device'
 
 =cut
 
@@ -253,8 +253,14 @@ sub Add_Service($$)
 	{
 		foreach my $s (Octopussy::ServiceGroup::Services($1))
 		{	
-			push(@{$conf->{service}}, { sid => $s->{sid}, rank => $rank }); 
-			$rank++;
+			my $exists = 0;
+			foreach my $dev_serv (AAT::ARRAY($conf->{service}))
+				{ $exists = 1	if ($dev_serv->{sid} =~ /^$s->{sid}$/); }
+			if (! $exists)
+			{
+				push(@{$conf->{service}}, { sid => $s->{sid}, rank => $rank });
+				$rank++;
+			}
 		}
 	}
 	else

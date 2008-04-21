@@ -91,7 +91,7 @@ Get the configuration for all servicegroups
 
 =cut
 
-sub Configurations
+sub Configurations($)
 {
 	my $sort = shift || "sg_id";
 	my (@configurations, @sorted_configurations) = ((), ());	
@@ -101,9 +101,6 @@ sub Configurations
 	foreach my $sg (@sgs)
 	{
 		my $conf = Configuration($sg);
-		@{$conf->{service}} = ();
-		foreach my $s (AAT::ARRAY($conf->{service}))
-			{ push(@{$conf->{service}}, $s->{sid}); }
 		$field{$conf->{$sort}} = 1;
 		push(@configurations, $conf);
 	}

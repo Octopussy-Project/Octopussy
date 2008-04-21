@@ -5,16 +5,21 @@ my $pid_dir = Octopussy::Directory("running");
 my $pid_param = $Session->{extracted};
 my $pid_file = $pid_dir . "octo_extractor_${pid_param}.pid";
 my $status_file = $pid_dir . "octo_extractor_${pid_param}.status";
-my $pid = `cat "$pid_file"`;
-
 my $status = "";
-kill USR1 => $pid;
-open(FILE, "cat \"$status_file\" |");
-$status = <FILE>;
-close(FILE);
+my ($desc, $current, $total, $percent, $match) =
+  (undef, undef, undef, undef, undef);
 
-my ($desc, $current, $total, $percent, $match) = 
-	(undef, undef, undef, undef, undef); 
+if (-f $pid_file)
+{
+	my $pid = `cat "$pid_file"`;
+	kill USR1 => $pid;
+}
+if (-f $status_file)
+{
+	open(FILE, "cat \"$status_file\" |");
+	$status = <FILE>;
+	close(FILE);
+}
 if ($status =~ /(.+)\[(\d+)\/(\d+)\] \[(\d+)\]$/)
 {
 	($desc, $current, $total, $match) = ($1, $2, $3, $4);

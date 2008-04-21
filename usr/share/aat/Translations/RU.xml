@@ -156,6 +156,7 @@
 
 	<msg mid="_ADD_NEW_SERVICE" value="Добавить новый сервис" />
   <msg mid="_ADD_SERVICE_TO_DEVICE" value="Добавить сервис устройсву" />
+	<msg mid="_ADD_SERVICE_TO_SERVICEGROUP" value="_ADD_SERVICE_TO_SERVICEGROUP" />
   <msg mid="_ADD_STORAGE" value="Добавить хранилище" />
   <msg mid="_ALERT" value="Тревога" />
   <msg mid="_ALERT_DESCRIPTION" value="Описание тревоги" />
@@ -236,6 +237,7 @@
   <msg mid="_NEW_REPORT" value="Новый отчёт" />
   <msg mid="_NEW_ROOM" value="Новая комната" />
   <msg mid="_NEW_SERVICE" value="Новый сервис" />
+	<msg mid="_NEW_SERVICEGROUP" value="_NEW_SERVICEGROUP" />
   <msg mid="_NEW_STATIC_DEVICEGROUP" value="Новая статическая группа устройств" />
   <msg mid="_NEW_TABLE" value="Новая таблица" />
   <msg mid="_NEW_TIMEPERIOD" value="Новый период времени" />

@@ -37,6 +37,7 @@ foreach my $d (@dconfs)
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="15"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
+my $i = 0;
 foreach my $d (@dconfs)
 {
 	my $name = $d->{name};
@@ -50,7 +51,9 @@ foreach my $d (@dconfs)
 	my $tt2 = "_" . uc($bt1);
 	my $link1 = "./dialog.asp?id=parse_$bt1&arg1=$name";
 	my $link2 = "./dialog.asp?id=parse_$bt2&arg1=$name";
-%><AAT:BoxRow>
+	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
+  $i++;	
+%><AAT:BoxRow class="$class">
   <AAT:BoxCol><%
 	if ($d->{reload_required})
 	{

@@ -550,14 +550,10 @@ sub Wizard_Msg_Regexp($$)
 {
 	my ($re, $types) = @_;
 
-#	use bytes;
-
 	foreach my $t (AAT::ARRAY($types))
   	{ $re =~ s/<\@$t->{type_id}\@>/$t->{re}/mgi; }
   $re =~ s/<\@NUMBER\@>/[-+]?\\d+/mgi;
  	$re =~ s/<\@WORD\@>/\\S+/gi;
-
-#	no bytes;
 
 	return ($re);
 }
@@ -570,20 +566,14 @@ sub Wizard_Add_Message($$$)
 {
 	my ($timestamp, $line, $types) = @_;
 	my $sample = $line;
-
-#	use bytes;
-	
+	$line =~ s/\\/\\\\/g;
 	my $pattern = $line = Wizard_Msg_Modified($line, $types);
 	$line =~ s/\[/\\\[/g;
   $line =~ s/\]/\\\]/g;
   $line =~ s/\(/\\\(/g;
   $line =~ s/\)/\\\)/g;
   $line =~ s/\//\\\//g;	
-	#my $re = Escape_Characters($line);
-	#$re = Wizard_Msg_Regexp($re, @types);
 	my $re = Wizard_Msg_Regexp($line, $types);
-
-#	no bytes;
 	
 	return ( { re => qr/$re/, modified => $pattern, orig => $sample, 
 		timestamp => $timestamp, nb => 1 } );

@@ -1,13 +1,5 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Wizard Message" />
 <%
-#use utf8;
-#use encoding 'utf8';
-
 my $msg_orig = $Request->Form("msg_orig");
 my $msg_pattern = $Request->Form("msg_pattern");
 my $service = $Request->Form("service");

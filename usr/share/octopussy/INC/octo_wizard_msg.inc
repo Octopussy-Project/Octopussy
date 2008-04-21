@@ -1,11 +1,4 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
-#use encoding 'utf8';
-
 my %arg = @_;
 my $msg_orig = $Server->HTMLEncode($arg{msg_orig});
 my $msg_pattern = Octopussy::Message::Color_Without_Field($arg{msg_pattern});

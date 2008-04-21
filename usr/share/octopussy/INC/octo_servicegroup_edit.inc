@@ -9,10 +9,7 @@ my $role = $Session->{AAT_ROLE};
 my @services = Octopussy::ServiceGroup::Services($servicegroup);
 my @exclude = ();
 foreach my $s (@services)
-{
-	print $s->{sid} . "<br>";
-	push(@exclude, $s->{sid});
-}
+	{ push(@exclude, $s->{sid}); }
 my $str = sprintf(AAT::Translation("_MSG_SERVICES_FOR_SERVICEGROUP"),
 	$servicegroup);
 my @table = (
@@ -20,7 +17,7 @@ my @table = (
 	[ { label => "<hr>", 			colspan => 5 } ],
   [ { label => "_RANK", 			link => $url_sort . "rank"  }, 
 		{ label => "_SERVICE", 	link => $url_sort . "sid" },
-   	{ label => (($role !~ /ro/i) ? "_ACTION" : ""), 
+   	{ label => (($role !~ /ro/i) ? "_ACTION" : ""), style => "bold", 
 			colspan => 3, 				align => "center" } ],
 	[ { label => "<hr>", 			colspan => 5 } ]
   );

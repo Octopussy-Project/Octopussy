@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my @main_menu = ();
 push(@main_menu, { icon => "buttons/bt_config",
@@ -30,10 +25,12 @@ push(@main_menu,
 #    link => buttons/"./statistic_reports.asp" },
   { icon => "buttons/bt_scheduler", 
 		label => "_SCHEDULER", link => "./scheduler.asp" },
+#	{ icon => "buttons/bt_search_template",
+#    label => "_SEARCH_TEMPLATES", link => "./search_templates.asp" },
   { icon => "buttons/bt_service", 
 		label => "_SERVICES", link => "./services.asp" },
-# 	{ icon => "buttons/bt_servicegroup", 
-#		label => "_SERVICEGROUPS", link => "./servicegroups.asp" },
+ 	{ icon => "buttons/bt_servicegroup", 
+		label => "_SERVICEGROUPS", link => "./servicegroups.asp" },
 	{ icon => "buttons/bt_storage",
    	label => "_STORAGES", link => "./storages.asp" },
   { icon => "buttons/bt_table", 
