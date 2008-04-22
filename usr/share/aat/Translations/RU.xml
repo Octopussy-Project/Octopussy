@@ -285,7 +285,9 @@
   <msg mid="_SCHEDULE" value="Расписание" />
   <msg mid="_SCHEDULE_REPORT" value="Отчёт по планировщику" />
   <msg mid="_SCHEDULER" value="Планировщик" />
+	<msg mid="_SEARCH_TEMPLATES" value="_SEARCH_TEMPLATES" />
   <msg mid="_SELECT_THIS_MSG" value="Выбрать это сообщение" />
+	<msg mid="_SELECTION" value="_SELECTION" />
   <msg mid="_SENDER" value="Отправитель" />
   <msg mid="_SERVER" value="Сервер" />
   <msg mid="_SERVICE" value="Сервис" />

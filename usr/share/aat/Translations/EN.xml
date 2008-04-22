@@ -285,7 +285,9 @@
   <msg mid="_SCHEDULE" value="Schedule" />
   <msg mid="_SCHEDULE_REPORT" value="Scheduler Report" />
   <msg mid="_SCHEDULER" value="Scheduler" />
+	<msg mid="_SEARCH_TEMPLATES" value="Search Templates" />
   <msg mid="_SELECT_THIS_MSG" value="Select this Message" />
+	<msg mid="_SELECTION" value="Selection" />
   <msg mid="_SENDER" value="Sender" />
   <msg mid="_SERVER" value="Server" />
   <msg mid="_SERVICE" value="Service" />

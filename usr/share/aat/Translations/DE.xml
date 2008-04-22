@@ -284,7 +284,9 @@
 	<msg mid="_SCHEDULE" value="Planer" />
 	<msg mid="_SCHEDULE_REPORT" value="Berichte planen" />
 	<msg mid="_SCHEDULER" value="Planer" />	
+	<msg mid="_SEARCH_TEMPLATES" value="_SEARCH_TEMPLATES" />
 	<msg mid="_SELECT_THIS_MSG" value="_SELECT_THIS_MSG" />
+	<msg mid="_SELECTION" value="_SELECTION" />
 	<msg mid="_SENDER" value="Sender" />
 	<msg mid="_SERVER" value="Server" />
 	<msg mid="_SERVICE" value="Service" />
