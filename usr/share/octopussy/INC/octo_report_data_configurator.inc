@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 
@@ -12,7 +7,8 @@ foreach my $c (Octopussy::Report::Categories())
 push(@categories, "base")	if ($#categories < 0);			
 %>
 <AAT:Form action="$arg{url}">
-<AAT:Box icon="buttons/bt_report" title="_REPORT_CREATION">
+<AAT:Box align="C" 
+	icon="buttons/bt_report" title="_REPORT_CREATION">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_TITLE" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="2"><AAT:Entry name="title" size="40" /></AAT:BoxCol>

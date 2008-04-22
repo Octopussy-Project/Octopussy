@@ -1,4 +1,5 @@
 <%
+my $f = $Request->Form();
 my $run_dir = Octopussy::Directory("running");
 my $login = $Session->{AAT_LOGIN};
 my $msg_nb_lines = AAT::Translation("_MSG_NB_LINES");
@@ -39,7 +40,7 @@ if (AAT::NOT_NULL($Session->{cancel}))
     (undef, undef, undef, undef, undef, undef);	
 }
 
-if (AAT::NOT_NULL($Session->{template}))
+if (AAT::NOT_NULL($f->{template}))
 {
 	$re_include =~ s/\\/\\\\/g;
   $re_include2 =~ s/\\/\\\\/g;

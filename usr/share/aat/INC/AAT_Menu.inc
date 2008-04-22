@@ -37,12 +37,14 @@ foreach my $e (AAT::ARRAY($a{items}))
 			}
 		}%>
 		</AAT:BoxCol><AAT:BoxCol valign="middle"><%
-		if ((AAT::NULL($link)) && (AAT::NULL($p_link)) 
-				&& (AAT::NOT_NULL($label)) && ($mode ne "ICONS_ONLY"))
+		if ((AAT::NULL($link)) && (AAT::NULL($p_link)) && (AAT::NOT_NULL($label)) 
+				&& ((AAT::NULL($icon)) || ($mode ne "ICONS_ONLY")))
 			{ %><AAT:Label value="$label" /><% }
-		elsif ((AAT::NOT_NULL($link)) && ($mode ne "ICONS_ONLY"))
+		elsif ((AAT::NOT_NULL($link)) 
+						&& ((AAT::NULL($icon)) || ($mode ne "ICONS_ONLY")))
 			{ %><AAT:Label value="$label" link="$link" /><% }
-		elsif ((AAT::NOT_NULL($p_link)) && ($mode ne "ICONS_ONLY"))
+		elsif ((AAT::NOT_NULL($p_link)) 
+						&& ((AAT::NULL($icon)) || ($mode ne "ICONS_ONLY")))
 			{ %><AAT:Label value="$label" popup_link="$p_link" /><% }
 		%></AAT:BoxCol></AAT:BoxRowMenu><%
 	}
