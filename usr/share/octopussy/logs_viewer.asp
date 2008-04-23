@@ -67,12 +67,13 @@ if ((AAT::NULL($Session->{extractor})) &&
 		"logs_" . join("-", @devices) . "_" . join("-", @services)
     	. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";
 	system("$cmd &");
-	
 	my $status_file = $run_dir . "octo_extractor_${output}.status";
 	open(STATUS_FILE, "> $status_file");
   print STATUS_FILE "INIT [1/1] [0]\n";
   close(STATUS_FILE);
-
+	$Session->{extract_progress_current} = 0;
+  $Session->{extract_progress_total} = 0;
+  $Session->{extract_progress_match} = 0;	
 	$Session->{page} = 1;
 	$Session->{extracted} = $output;
 	$Response->Redirect("$url?extractor=$output");
