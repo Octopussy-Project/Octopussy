@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Alert" help="alerts" />
 <%
 my $f = $Request->Form();
@@ -37,8 +32,7 @@ else
 			action => \@actions, contact => \@contacts, 
 			msgsubject => $f->{subject}, msgbody => $f->{body} });
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Alert", $alert);
-		print "Body: $f->{body}";
-		#$Response->Redirect("./alerts.asp");
+		$Response->Redirect("./alerts.asp");
   }
 
   if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))

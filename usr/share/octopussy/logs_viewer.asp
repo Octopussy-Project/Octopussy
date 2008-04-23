@@ -67,6 +67,9 @@ if ((AAT::NULL($Session->{extractor})) &&
 		"logs_" . join("-", @devices) . "_" . join("-", @services)
     	. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";
 	system("$cmd &");
+	$Session->{extract_progress_current} = 0;
+	$Session->{extract_progress_total} = 0;
+	$Session->{extract_progress_match} = 0;
 	sleep(1);
 	$Session->{page} = 1;
 	$Session->{extracted} = $output;
