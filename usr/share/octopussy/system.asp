@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 $Response->Redirect("./index.asp")	
 	if ($Session->{AAT_ROLE} !~ /admin/);
@@ -19,7 +14,7 @@ if (AAT::NOT_NULL($action) && ($action eq "backup"))
 	if ($file =~ /(backup_\d{12}.tgz)/)
 	{
 		my $filename = $1;
-		AAT::File_Save( { contenttype => "archive/gzip", 
+		AAT::File_Save( { contenttype => "archive/tar", 
 			input_file => $file, output_file => $filename } );
 	}
 }

@@ -7,8 +7,10 @@ octo_extractor - Octopussy Logs Extractor program
 =head1 SYNOPSIS
 
 octo_extractor --device <device> --service <service> --taxonomy <taxonomy>
-  --begin YYYYMMDDHHMM --end YYYYMMDDHHMM [ --pid_param <string> ] 
-	[ --output <outputfile> ]
+  --begin YYYYMMDDHHMM --end YYYYMMDDHHMM 
+	[ --include1 '<regexp to include>' ] [ --include2 '<regexp to include>' ]
+  [ --exclude1 '<regexp to exclude>' ] [ --exclude2 '<regexp to exclude>' ]
+	[ --pid_param <string> ] [ --output <outputfile> ]
 
 =head1 DESCRIPTION
 
@@ -54,21 +56,35 @@ sub String_List
 
 sub Help()
 {
-	print "\n$PROG_NAME (version $PROG_VERSION)\n\n";		
-	print	" Usage: $PROG_NAME --device <device> --service <service>";
-	print " --taxonomy <taxonomy>";
-	print " --begin YYYYMMDDHHMM --end YYYYMMDDHHMM";
-	print " [ --pid_param <string> ] [ --output <outputfile> ]\n\n";
+my $help_str = <<EOF;
 
+$PROG_NAME (version $PROG_VERSION)
+
+ Usage: $PROG_NAME --device <device> --service <service> --taxonomy <taxonomy>
+        --begin YYYYMMDDHHMM --end YYYYMMDDHHMM";
+        [ --include1 '<regexp to include>' ] [ --include2 '<regexp to include>' ]
+        [ --exclude1 '<regexp to exclude>' ] [ --exclude2 '<regexp to exclude>' ]
+        [ --pid_param <string> ] [ --output <outputfile> ]
+
+EOF
+
+	print $help_str;
 	if (! @devices)
-		{ print "device list: " . String_List("Octopussy::Device::List") . "\n"; }
+	{ 
+		print " device list: " . String_List("Octopussy::Device::List") . "\n"; 
+	}
 	elsif (! @services)
 	{	
-		my @servs = Octopussy::Device::Services(@devices);
-		print "service list: " . join (", ", sort @servs) . "\n"; 
+#		my @servs = Octopussy::Device::Services(@devices);
+		print " service list: "
+      . String_List("Octopussy::Device::Services", @devices) . "\n";
+		#print " service list: " . join (", ", sort @servs) . "\n"; 
 	}
 	elsif (!defined $taxonomy)
-		{ print "taxonomy list: " . String_List("Octopussy::Taxonomy::List_And_Any") . "\n"; }
+	{ 
+		print " taxonomy list: " 
+			. String_List("Octopussy::Taxonomy::List_And_Any") . "\n"; 
+	}
 	print "\n";
 
 	exit();
@@ -262,6 +278,9 @@ my $status = GetOptions(
 
 Help()	if ((! $status) || ($help) 
 	|| (! @devices) || (! @services) || (!defined $begin) || (!defined $end));
+
+print @devices;
+print @services;
 
 my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
 $pid_file = Octopussy::PID_File($pid_name);
