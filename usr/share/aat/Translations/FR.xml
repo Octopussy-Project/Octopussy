@@ -353,6 +353,8 @@
     value="Voulez vous vraiment supprimer le Mois de Rapport '%%arg1%%' '%%arg2%% %%arg3%%' ?" />
   <msg mid="_DLG_DELETE_REPORT_SCHEDULE"
     value="Voulez vous vraiment supprimer la planification du Rapport '%%arg1%%' ?" />
+	<msg mid="_DLG_DELETE_SEARCH_TEMPLATE"
+    value="Voulez vous vraiment supprimer le Modèle de Recherche '%%arg1%%' de l'utilisateur '%%arg2%%' ?" />
   <msg mid="_DLG_DELETE_SERVICE"
     value="Voulez vous vraiment supprimer le Service '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_SERVICEGROUP"

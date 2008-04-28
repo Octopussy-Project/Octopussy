@@ -31,6 +31,7 @@ sub Backup()
 	my $maps_conf = Octopussy::Directory("maps");
 	my $plugins_conf = Octopussy::Directory("plugins");
 	my $reports_conf = Octopussy::Directory("reports");
+	my $search_templates_conf = Octopussy::Directory("search_templates");
 	my $services_conf = Octopussy::Directory("services");
 	my $tables_conf = Octopussy::Directory("tables");
 
@@ -42,7 +43,7 @@ sub Backup()
 	my $timeperiods_conf = Octopussy::File("timeperiods");
 	my $users_conf = Octopussy::File("users");
 
-	`tar Picvfz $BACKUP_DIR/backup_$timestamp.tgz $sys_conf $alerts_conf $contacts_conf $devices_conf $maps_conf $plugins_conf $reports_conf $services_conf $tables_conf $devicegroup_conf $locations_conf $schedule_conf $servicegroup_conf $storages_conf $timeperiods_conf $users_conf`;
+	`tar Picvfz $BACKUP_DIR/backup_$timestamp.tgz $sys_conf $alerts_conf $contacts_conf $devices_conf $maps_conf $plugins_conf $reports_conf $search_templates_conf $services_conf $tables_conf $devicegroup_conf $locations_conf $schedule_conf $servicegroup_conf $storages_conf $timeperiods_conf $users_conf`;
 
 	return ("$BACKUP_DIR/backup_$timestamp.tgz");
 }

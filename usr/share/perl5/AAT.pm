@@ -740,9 +740,9 @@ sub Export_SCP($$)
   $main::Response->Include('AAT/INC/AAT_Export_SCP.inc', %{$args});
 }
 
-=head2 Form_Begin($args, $body)
+=head2 Form($args, $body)
 
-Usage: <AAT:Form_Begin method="POST" action="$action" />
+Usage: <AAT:Form method="POST" action="$action">
 
 =cut
 
@@ -753,6 +753,19 @@ sub Form($$)
   $main::Response->Include('AAT/INC/AAT_Form_Begin.inc', %{$args});
 	print $body;
 	$main::Response->Include('AAT/INC/AAT_Form_End.inc', %{$args});
+}
+
+=head2 Form_Button($args, $body)
+
+Usage: <AAT:Form_Button name="remove" value="remove_template" />
+
+=cut
+
+sub Form_Button($$)
+{
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_Form_Button.inc', %{$args});
 }
 
 =head2 Form_Hidden($args, $body)

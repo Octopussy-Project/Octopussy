@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Scheduler" help="#scheduler_page" />
 <%
 my $f = $Request->Form();
@@ -70,7 +65,7 @@ if ((defined $name) && ($Session->{AAT_ROLE} !~ /ro/i))
 	}
 }
 %>
-<AAT:Inc file="report_schedules_list" 
+<AAT:Inc file="octo_report_schedules_list" 
 	url="./report_scheduler.asp" sort="$sort" />
 <% $Response->Include("INC/octo_report_scheduler.inc", form => $f, 
 	url => "./report_scheduler.asp")	if ($Session->{AAT_ROLE} !~ /ro/i) %>

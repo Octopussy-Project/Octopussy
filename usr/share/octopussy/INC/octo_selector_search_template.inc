@@ -29,8 +29,10 @@ tpl[<%= $i %>].device = '<%= $dev_str %>';
 tpl[<%= $i %>].service = '<%= $serv_str %>';
 tpl[<%= $i %>].re_include = '<%= $t->{re_include} %>';
 tpl[<%= $i %>].re_include2 = '<%= $t->{re_include2} %>';
+tpl[<%= $i %>].re_include3 = '<%= $t->{re_include3} %>';
 tpl[<%= $i %>].re_exclude = '<%= $t->{re_exclude} %>';
 tpl[<%= $i %>].re_exclude2 = '<%= $t->{re_exclude2} %>';
+tpl[<%= $i %>].re_exclude3 = '<%= $t->{re_exclude3} %>';
 <%
 	$i++;
 }
@@ -72,8 +74,10 @@ function update_search_params(x)
 		doc.template.value = tpl[x].template;
 		doc.re_include.value = tpl[x].re_include;
 		doc.re_include2.value = tpl[x].re_include2;
+		doc.re_include3.value = tpl[x].re_include3;
 		doc.re_exclude.value = tpl[x].re_exclude;
   	doc.re_exclude2.value = tpl[x].re_exclude2;
+		doc.re_exclude3.value = tpl[x].re_exclude3;	
 	}
 }
 </script>

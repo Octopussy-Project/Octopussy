@@ -351,21 +351,23 @@
   <msg mid="_DLG_DELETE_REPORT_DATA"
     value="Wollen Sie wirklich Report '%%arg1%%' '%%arg2%%' loeschen ?" />
 	<msg mid="_DLG_DELETE_REPORT_MONTH"
-    value="_DLG_DELETE_REPORT_MONTH" />
+    value="_DLG_DELETE_REPORT_MONTH '%%arg1%%' '%%arg2%% %%arg3%%' ?" />
   <msg mid="_DLG_DELETE_REPORT_SCHEDULE"
     value="Wollen Sie wirklich die Berichts-Zeitplanung '%%arg1%%' loeschen ?" />
+	<msg mid="_DLG_DELETE_SEARCH_TEMPLATE"
+    value="_DLG_DELETE_SEARCH_TEMPLATE '%%arg1%%' '%%arg2%%' ?" />
   <msg mid="_DLG_DELETE_SERVICE"
     value="Wollen Sie wirklich den Service '%%arg1%%' loeschen ?" />
   <msg mid="_DLG_DELETE_SERVICEGROUP"
-    value="_DLG_DELETE_SERVICEGROUP" />   
+    value="_DLG_DELETE_SERVICEGROUP '%%arg1%%' ?" />   
 	<msg mid="_DLG_DELETE_SERVICEGROUP_SERVICE"
-    value="_DLG_DELETE_SERVICEGROUP_SERVICE" />	
+    value="_DLG_DELETE_SERVICEGROUP_SERVICE '%%arg2%%' FROM '%%arg1%%' ?" />	
 	<msg mid="_DLG_DELETE_STATISTIC_REPORT"
     value="Wollen Sie wirklich die Statistik '%%arg1%%' loeschen ?" />
   <msg mid="_DLG_DELETE_STATISTIC_REPORT_SCHEDULE"
     value="Wollen Sie wirklich den Zeitplan '%%arg1%%' der Statistikberichte loeschen ?" />
   <msg mid="_DLG_DELETE_STORAGE"     
-		value="_DLG_DELETE_STORAGE" />
+		value="_DLG_DELETE_STORAGE '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_TABLE"
     value="Wollen Sie wirklich Tabelle '%%arg1%%' loeschen ?" />
 	<msg mid="_DLG_DELETE_TIMEPERIOD"
@@ -381,7 +383,7 @@
   <msg mid="_DLG_PARSE_STOP"
     value="Wollen Sie wirklich die Analyse der Maschine '%%arg1%%' stoppen ?" />
 	<msg mid="_DLG_RESTORE_CONFIG"
-    value="_DLG_RESTORE_CONFIG" />
+    value="_DLG_RESTORE_CONFIG '%%arg1%%' ?" />
 
 	<msg mid="_MSG_ALERT_RAISED_ONLY"
     value="_MSG_ALERT_RAISED_ONLY" />

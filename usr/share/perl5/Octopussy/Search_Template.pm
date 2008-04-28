@@ -86,6 +86,50 @@ sub List($)
 	return (sort @tpls);
 }
 
+=head2 List_Any_User($sort)
+
+Get template name / user List
+
+Parameters:
+
+$sort - selected field to sort List
+
+Returns:
+
+@sorted_list - Array of Search Templates names for all users
+
+=cut
+
+sub List_Any_User($)
+{
+	my $sort = shift;
+
+	my (@list, @sorted_list) = ();
+	my %field;
+
+	$search_tpl_dir ||= Octopussy::Directory($SEARCH_TPL_DIR);
+	my @dirs = AAT::FS::Directory_Files("$search_tpl_dir/", qr/\w+$/);
+	foreach my $d (@dirs)
+	{
+		my @files = AAT::FS::Directory_Files("$search_tpl_dir/$d/", qr/.+\.xml$/);
+		foreach my $f (@files)
+  	{
+    	my $conf = AAT::XML::Read("$search_tpl_dir/$d/$f");
+			my $key = (defined $conf->{$sort} ? $conf->{$sort} : $d);
+			$field{$key} = 1;
+			push(@list, { name => $conf->{name}, user => $d })
+				if (defined $conf->{name});
+		}
+  }
+  foreach my $f (sort keys %field)
+  {
+    foreach my $e (@list)
+      { push(@sorted_list, $e)    if ($e->{$sort} eq $f); }
+  }
+
+	return (@sorted_list);
+}
+
 =head2 Filename($user, $search_tpl)
 
 Get the XML filename for the Search Template '$search_tpl'

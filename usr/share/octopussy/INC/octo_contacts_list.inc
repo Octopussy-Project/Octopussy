@@ -1,66 +1,71 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
-
 my $url = $arg{url};
 my $sort = defined $arg{sort} ? lc($arg{sort}) : "cid";
 my $role = $Session->{AAT_ROLE};
-
-$Response->Include("AAT/INC/AAT_Table_Function.inc",
-  id => "contacts_table", url => $url, sort => $sort || "cid",
-  header_icon => "buttons/bt_contact", header_title => "_CONTACTS",
-  function => "Octopussy::Contact::Configurations",
-  function_args => [ $sort ],
-  fields => [
-    { name => "cid", label => "ID", alignment => "left" },
-    { name => "lastname", label => "_LASTNAME", alignment => "left" },
-    { name => "firstname", label => "_FIRSTNAME", alignment => "left" },
-    { name => "description", label => "_DESCRIPTION", alignment => "left" },
-		{ name => "email", label => "_EMAIL", alignment => "left" },
-		{ name => "im", label => "IM", alignment => "left" },
-		{ name => "type", label => "_TYPE", alignment => "left" } ],
-  actions => [
-    { name => "remove", link_url => "./dialog.asp",
-			tooltip => "_REMOVE", link_type => "popup",
-      link_args => [ { name => "id", value => "delete_contact" },
-                      { name => "arg1", field_value => "cid" },
-                      { name => "action", value => "remove" } ], 
-			condition => sub { my $type = shift; return ($type eq "local") },
- 			condition_args => "type" } ] );
+my $lnk = "${url}?contacts_table_sort";
+%>
+<AAT:Box align="C" title="_CONTACTS" icon="buttons/bt_contact">
+<AAT:BoxRow>
+  <AAT:BoxCol>
+  <AAT:Label value="ID" link="$lnk=cid" /></AAT:BoxCol>
+	<AAT:BoxCol>
+  <AAT:Label value="_LASTNAME" link="$lnk=lastname" /></AAT:BoxCol>
+	<AAT:BoxCol>
+  <AAT:Label value="_FIRSTNAME" link="$lnk=firstname" /></AAT:BoxCol>
+	<AAT:BoxCol>
+  <AAT:Label value="_DESCRIPTION" link="$lnk=description" /></AAT:BoxCol>
+	<AAT:BoxCol>
+  <AAT:Label value="_EMAIL" link="$lnk=email" /></AAT:BoxCol>
+	<AAT:BoxCol>
+  <AAT:Label value="IM" link="$lnk=im" /></AAT:BoxCol>
+	<AAT:BoxCol>
+  <AAT:Label value="_TYPE" link="$lnk=type" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
+<%
+my $i = 0;
+foreach my $c (Octopussy::Contact::Configurations($sort))
+{
+	my ($id, $lastname, $firstname, $desc, $email, $im, $type) =
+		($c->{cid}, $c->{lastname}, $c->{firstname}, $c->{description}, 
+		$c->{email}, $c->{im}, $c->{type});
+	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
+  $i++;
+%><AAT:BoxRow class="$class">
+	<AAT:BoxCol><AAT:Label value="$id" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="$lastname" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="$firstname" /></AAT:BoxCol>
+	<AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="$email" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="$im" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
+	<AAT:BoxCol align="C"><%
+	if ($type eq "local")
+	{ 
+		%><AAT:Button name="remove" tooltip="_REMOVE"
+    popup_link="./dialog.asp?id=delete_contact&arg1=$id&action=remove" /><%
+	}%>
+	</AAT:BoxCol>
+</AAT:BoxRow><%
+}
 
 if ($role !~ /ro/i)
 {
 %>
 <AAT:Form action="$url">
-<AAT:Box align="center">
+<AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol><AAT:Label value="ID" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_LASTNAME" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_FIRSTNAME" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_EMAIL" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="IM" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="cid" size="12" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="lastname" size="16" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="firstname" size="16" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="description" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="email" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="im" /></AAT:BoxCol>
+	<AAT:BoxCol cspan="2"><AAT:Form_Submit value="_NEW_CONTACT" /></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
-<AAT:BoxRow>
-	<AAT:BoxCol><AAT:Entry name="cid" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Entry name="lastname" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Entry name="firstname" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Entry name="description" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Entry name="email" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Entry name="im" /></AAT:BoxCol>
-</AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
-<AAT:BoxRow>
-	<AAT:BoxCol cspan="7" align="C">
-	<AAT:Form_Submit value="_NEW_CONTACT" /></AAT:BoxCol>
-</AAT:BoxRow>
-</AAT:Box>
 <AAT:Form_Hidden name="action" value="new" />
 </AAT:Form><%
-}
-%>
+}%>
+</AAT:Box>

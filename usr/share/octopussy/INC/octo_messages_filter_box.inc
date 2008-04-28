@@ -1,11 +1,6 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <% my %arg = @_; %>
 <AAT:Form action="$arg{url}">
-<AAT:Box>
+<AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol align="R"><AAT:Label value="_SERVICE" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol>

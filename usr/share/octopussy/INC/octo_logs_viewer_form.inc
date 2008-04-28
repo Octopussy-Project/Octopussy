@@ -7,10 +7,10 @@ my ($d1, $m1, $y1, $hour1, $min1) =
 my ($d2, $m2, $y2, $hour2, $min2) =
   ($Session->{dt2_day}, $Session->{dt2_month}, $Session->{dt2_year},
   $Session->{dt2_hour}, $Session->{dt2_min});
-my ($re_include, $re_include2) =
-  ($Session->{re_include}, $Session->{re_include2});
-my ($re_exclude, $re_exclude2) =
-  ($Session->{re_exclude}, $Session->{re_exclude2});
+my ($re_include, $re_include2, $re_include3) =
+  ($Session->{re_include}, $Session->{re_include2}, $Session->{re_include3});
+my ($re_exclude, $re_exclude2, $re_exclude3) =
+  ($Session->{re_exclude}, $Session->{re_exclude2}, $Session->{re_exclude3});
 
 my @devices = AAT::ARRAY($arg{devices});
 my @services = AAT::ARRAY($arg{services});
@@ -66,18 +66,31 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
   <AAT:BoxCol>
     <AAT:Entry name="re_exclude" value="$re_exclude" size="50" />
   </AAT:BoxCol>
-</AAT:BoxRow>
-<AAT:BoxRow>
+	</AAT:BoxRow>
+	<AAT:BoxRow>
   <AAT:BoxCol align="R">
   <AAT:Button name="msg_ok" tooltip="_REGEXP_INC"/></AAT:BoxCol>
   <AAT:BoxCol>
     <AAT:Entry name="re_include2" value="$re_include2"
-      size="50" style="color:blue" />
+      size="50" style="color:green" />
   </AAT:BoxCol>
   <AAT:BoxCol align="R">
   <AAT:Button name="msg_critical" tooltip="_REGEXP_EXC"/></AAT:BoxCol>
   <AAT:BoxCol>
     <AAT:Entry name="re_exclude2" value="$re_exclude2" size="50" />
+  </AAT:BoxCol>
+  </AAT:BoxRow>
+	<AAT:BoxRow>
+  <AAT:BoxCol align="R">
+  <AAT:Button name="msg_ok" tooltip="_REGEXP_INC"/></AAT:BoxCol>
+  <AAT:BoxCol>
+    <AAT:Entry name="re_include3" value="$re_include3"
+      size="50" style="color:blue" />
+  </AAT:BoxCol>
+  <AAT:BoxCol align="R">
+  <AAT:Button name="msg_critical" tooltip="_REGEXP_EXC"/></AAT:BoxCol>
+  <AAT:BoxCol>
+    <AAT:Entry name="re_exclude3" value="$re_exclude3" size="50" />
   </AAT:BoxCol>
   </AAT:BoxRow>
   </AAT:Box>

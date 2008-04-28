@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <AAT:PageTop title="Octopussy Login" icon="IMG/octopussy.gif" />
 <AAT:PageTheme />
 <%

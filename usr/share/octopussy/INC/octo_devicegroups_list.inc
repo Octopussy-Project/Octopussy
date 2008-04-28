@@ -1,36 +1,50 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
-
-my @dgs = Octopussy::DeviceGroup::List();
 my $url = $arg{url};
 my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
 my $role = $Session->{AAT_ROLE};
-
-$Response->Include("AAT/INC/AAT_Table_Function.inc",
-  id => "devicegroups_table", url => $url, sort => $sort,
-  header_icon => "buttons/bt_device", header_title => "_DEVICEGROUPS",
-  function => "Octopussy::DeviceGroup::Configurations",
-  function_args => [ $sort ],
-
-  fields => [
-    { name => "dg_id", label => "_GROUP_NAME" },
-    { name => "description", label => "_DESCRIPTION" },
-		{ name => "type", label => "_TYPE" }, 
-		{ name => "device", label => "_DEVICES" } ],
-
-  actions => [
-    { name => "remove", link_url => "./dialog.asp", 
-			tooltip => "_REMOVE", link_type => "popup",
-      link_args => [ { name => "id", value => "delete_devicegroup" },
-                      { name => "arg1", field_value => "dg_id" },
-                      { name => "action", value => "remove" }] } ],
-  );
-
+my $lnk = "${url}?devicegroups_table_sort";
+%>
+<AAT:Box align="C" title="_DEVICEGROUPS" icon="buttons/bt_device">
+<AAT:BoxRow>
+  <AAT:BoxCol>
+  <AAT:Label value="_GROUP_NAME" link="$lnk=dg_id" /></AAT:BoxCol>
+	<AAT:BoxCol>
+	<AAT:Label value="_DESCRIPTION" link="$lnk=description" /></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Label value="_TYPE" link="$lnk=type" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_DEVICES" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol><%
+if ($role !~ /ro/i)
+	{ %><AAT:Label value="_ACTION" style="B" /><% }
+%></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="5"><hr></AAT:BoxCol></AAT:BoxRow>
+<%
+my $i = 0;
+foreach my $dg (Octopussy::DeviceGroup::Configurations($sort))
+{
+  my ($id, $desc, $type, $devices) = ($dg->{dg_id}, $dg->{description}, 
+		$dg->{type}, join(", ", @{$dg->{device}}));
+	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
+  $i++;
+%><AAT:BoxRow class="$class">
+	<AAT:BoxCol><AAT:Label value="$id" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
+	<AAT:BoxCol><i><AAT:Label value="$devices" /></i></AAT:BoxCol>
+	<AAT:BoxCol align="C"><%
+if ($role !~ /ro/i)
+{
+%><AAT:Button name="remove" tooltip="_REMOVE"
+    popup_link="./dialog.asp?id=delete_devicegroup&arg1=$id&action=remove" /><%
+}
+%></AAT:BoxCol>
+</AAT:BoxRow><%
+}
+%>
+</AAT:Box>
+<%
 if ($role !~ /ro/i)
 {
 	my @device_fields = ( 
@@ -58,8 +72,8 @@ if ($role !~ /ro/i)
 	<AAT:BoxCol><AAT:Inc file="selector_multi_device" name="devices" />
 	</AAT:BoxCol>
 	</AAT:BoxRow>
-  <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
-	<AAT:BoxRow><AAT:BoxCol align="center" cspan="3">
+  <AAT:BoxRow><AAT:BoxCol cspan="5"><hr></AAT:BoxCol></AAT:BoxRow>
+	<AAT:BoxRow><AAT:BoxCol align="C" cspan="3">
 	<AAT:Form_Submit value="_NEW_STATIC_DEVICEGROUP" /></AAT:BoxCol></AAT:BoxRow>
 </AAT:Box>
 </AAT:Form>

@@ -87,6 +87,7 @@ sub Configuration($)
 					$str .= "$day: $dt->{$k}, "; 
 				}
 			}
+			$str =~ s/, $//;
   		return ({ label => $tp->{label}, periods => $str })    
 		}
  	}

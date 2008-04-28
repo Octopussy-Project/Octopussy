@@ -1,30 +1,19 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Reports Viewer" />
 <%
 my $role = $Session->{AAT_ROLE};
+my $q = $Request->QueryString();
 my $url = "./reports_viewer.asp";
-my $sort = $Request->QueryString("sort");
 my $url_sort = $url . "?reports_table_sort=";
-my $category = $Request->QueryString("category");
-my $report = $Request->QueryString("report");
-my $month = $Request->QueryString("month");
-my $year = $Request->QueryString("year");
-my $action = $Request->QueryString("action");
-my $filename = $Request->QueryString("filename");
+my $sort = $q->{sort};
+my ($category, $report) = ($q->{category}, $q->{report});
+my ($month, $year) = ($q->{month}, $q->{year});
+my ($action, $filename) = ($q->{action}, $q->{filename});
 
 if ((!defined $report) && (!defined $category))
-{
-%><AAT:Inc file="octo_viewer_reportcategory_list" url="$url" /><%
-}
+	{ %><AAT:Inc file="octo_viewer_reportcategory_list" url="$url" /><% }
 elsif (!defined $report)
-{
-%><AAT:Inc file="octo_viewer_reporttype_list" 
-	category="$category" url="$url" /><%
-}
+	{ %><AAT:Inc file="octo_viewer_reporttype_list" 
+		category="$category" url="$url" /><% }
 else
 {
 	if ((defined $month) && (defined $year) && ($role !~ /ro/i))

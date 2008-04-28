@@ -23,7 +23,7 @@ sub Cities()
  	foreach my $c (AAT::ARRAY($conf->{city}))
  		{ push(@list, $c->{c_name}); }
 
-	return (@list);
+	return (sort @list);
 }
 
 =head2 City_Add($city)
@@ -66,7 +66,7 @@ sub City_Remove($)
 =head2 Buildings($city)
 
 Returns Buildings List
-*
+
 =cut 
 sub Buildings($)
 {
@@ -85,7 +85,7 @@ sub Buildings($)
 		}
   }
 
-	return (@list);
+	return (sort @list);
 }
 
 =head2 Building_Add
@@ -175,7 +175,7 @@ sub Rooms($$)
     }
   }
 
-  return (@list);
+  return (sort @list);
 }
 
 =head2 Room_Add($city, $building, $room)
@@ -292,7 +292,7 @@ sub Racks($$$)
     }
   }
 
-  return (@list);
+  return (sort @list);
 }
 
 =head2 Rack_Add($city, $building, $room, $rack)

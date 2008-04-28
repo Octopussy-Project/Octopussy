@@ -1,24 +1,32 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
+<% my %arg = @_; %>
+<AAT:Box align="C" title="_TIMEPERIODS" icon="buttons/bt_period">
+<AAT:BoxRow>
+  <AAT:BoxCol><AAT:Label value="_NAME" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol align="C"><AAT:Label value="_PERIODS" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol><%
+if ($role !~ /ro/i)
+  { %><AAT:Label value="_ACTION" style="B" /><% }
+%></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
-my %arg = @_;
-
-$Response->Include("AAT/INC/AAT_Table_Function.inc",
-  id => "timeperiods_table", url => $arg{url}, sort => $arg{sort},
-  header_icon => "buttons/bt_period", header_title => "_TIMEPERIODS",
-  function => "Octopussy::TimePeriod::Configurations",
-  function_args => [ $arg{sort} ],
-  fields => [
-    { name => "label", label => "_NAME", alignment => "left" },
-    { name => "periods", label => "_PERIODS", alignment => "left" } ],
-  actions => [
-    { name => "remove", tooltip => "_REMOVE",
-			link_url => "./dialog.asp", link_type => "popup",
-      link_args => [ { name => "id", value => "delete_timeperiod" },
-                      { name => "arg1", field_value => "label" },
-                      { name => "action", value => "remove" }] } ],
-  );
+my $i = 0;
+foreach my $t (Octopussy::TimePeriod::Configurations($arg{sort}))
+{
+	my ($label, $periods) = ($t->{label}, $t->{periods});
+	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
+  $i++;
+	%><AAT:BoxRow class="$class">
+  <AAT:BoxCol><AAT:Label value="$label" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol><i><AAT:Label value="$periods" /></i></AAT:BoxCol>
+  <AAT:BoxCol align="C"><%
+	if ($role !~ /ro/i)	
+	{
+%><AAT:Button name="remove" tooltip="_REMOVE"
+    popup_link="./dialog.asp?id=delete_timeperiod&arg1=$label&action=remove" /><%
+	}
+%></AAT:BoxCol>
+</AAT:BoxRow><%
+}
 %>
+</AAT:Box>

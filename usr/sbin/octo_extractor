@@ -8,8 +8,7 @@ octo_extractor - Octopussy Logs Extractor program
 
 octo_extractor --device <device> --service <service> --taxonomy <taxonomy>
   --begin YYYYMMDDHHMM --end YYYYMMDDHHMM 
-	[ --include1 '<regexp to include>' ] [ --include2 '<regexp to include>' ]
-  [ --exclude1 '<regexp to exclude>' ] [ --exclude2 '<regexp to exclude>' ]
+	[ --include '<regexp to include>' ] [ --exclude '<regexp to exclude>' ] 
 	[ --pid_param <string> ] [ --output <outputfile> ]
 
 =head1 DESCRIPTION
@@ -30,10 +29,10 @@ my $PROG_NAME = "octo_extractor";
 my $PROG_VERSION = Octopussy::Version();
 
 my $help;
-my (@devices, @services) = ((), ());
-my ($taxonomy, $begin, $end, $pid_param, $output);
+my (@opt_devices, @opt_services) = ((), ());
+my ($opt_taxonomy, $opt_begin, $opt_end, $pid_param, $output);
+my (@opt_include, @opt_exclude);
 my ($progress_msg, $progress_num, $progress_match) = (0, 0, 0);
-my ($include1, $include2, $exclude1, $exclude2);
 my ($pid_file, $status_file) = (undef, undef);
 my $dir_pid = Octopussy::Directory("running");
 
@@ -62,25 +61,22 @@ $PROG_NAME (version $PROG_VERSION)
 
  Usage: $PROG_NAME --device <device> --service <service> --taxonomy <taxonomy>
         --begin YYYYMMDDHHMM --end YYYYMMDDHHMM";
-        [ --include1 '<regexp to include>' ] [ --include2 '<regexp to include>' ]
-        [ --exclude1 '<regexp to exclude>' ] [ --exclude2 '<regexp to exclude>' ]
+        [ --include '<regexp to include>' ] [ --exclude '<regexp to exclude>' ] 
         [ --pid_param <string> ] [ --output <outputfile> ]
 
 EOF
 
 	print $help_str;
-	if (! @devices)
+	if (! @opt_devices)
 	{ 
 		print " device list: " . String_List("Octopussy::Device::List") . "\n"; 
 	}
-	elsif (! @services)
+	elsif (! @opt_services)
 	{	
-#		my @servs = Octopussy::Device::Services(@devices);
 		print " service list: "
-      . String_List("Octopussy::Device::Services", @devices) . "\n";
-		#print " service list: " . join (", ", sort @servs) . "\n"; 
+      . String_List("Octopussy::Device::Services", @opt_devices) . "\n";
 	}
-	elsif (!defined $taxonomy)
+	elsif (!defined $opt_taxonomy)
 	{ 
 		print " taxonomy list: " 
 			. String_List("Octopussy::Taxonomy::List_And_Any") . "\n"; 
@@ -145,13 +141,13 @@ sub Get_TimePeriod_Files($$$$)
 	return ($files);
 }
 
-=head2 Print_Logs($devices, $services, $taxonomy, $begin, $end, $re_incl, $re_excl)
+=head2 Print_Logs($devices, $services, $taxo, $begin, $end, $re_incl, $re_excl)
 
 =cut
 
 sub Print_Logs($$$$$$$)
 {
-  my ($devices, $services, $taxonomy, $begin, $end, $re_incl, $re_excl) = @_;
+  my ($devices, $services, $taxo, $begin, $end, $re_incl, $re_excl) = @_;
 	my $time = time();
 	my @lines = ();
 	my @includes = ();
@@ -169,7 +165,7 @@ sub Print_Logs($$$$$$$)
 	my %logs = ();
   my ($year, $month);
 
-	if ((@{$services}[0] =~ /-ANY-/i) && ($taxonomy =~ /-ANY-/i))
+	if ((@{$services}[0] =~ /-ANY-/i) && ($taxo =~ /-ANY-/i))
 	{
 		my $i = 1;
 		foreach my $f (@{$files})
@@ -198,7 +194,7 @@ sub Print_Logs($$$$$$$)
 	else
 	{
 		my $i = 1;
-		my @msg_to_parse = Get_Messages_To_Parse($services, $taxonomy);
+		my @msg_to_parse = Get_Messages_To_Parse($services, $taxo);
 		foreach my $f (@{$files})
   	{
 			Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
@@ -248,8 +244,8 @@ sub Print_Logs($$$$$$$)
 		}
 	}
 	
-	AAT::Syslog("octo_extractor", "LOG_SEARCH", join(",", @{$devices}),
-  	join(",", @{$services}), "${begin}-${end}", time() - $time);
+	AAT::Syslog("octo_extractor", "LOG_SEARCH", join(",", @opt_devices),
+  	join(",", @opt_services), "${opt_begin}-${opt_end}", time() - $time);
 }
 
 =head2 End()
@@ -270,17 +266,14 @@ sub End
 
 my $status = GetOptions(
 	"h" => \$help, "help" => \$help,
-	"devices=s" => \@devices, "services=s" => \@services, 
-	"taxonomy=s" => \$taxonomy, "begin=s" => \$begin, "end=s" => \$end, 
-	"include1=s" => \$include1, "include2=s" => \$include2,
-	"exclude1=s" => \$exclude1, "exclude2=s" => \$exclude2,
+	"device=s" => \@opt_devices, "service=s" => \@opt_services, 
+	"taxonomy=s" => \$opt_taxonomy, 
+	"begin=s" => \$opt_begin, "end=s" => \$opt_end, 
+	"include=s" => \@opt_include, "exclude=s" => \@opt_exclude, 
 	"pid_param=s" => \$pid_param, "output=s" => \$output );
 
 Help()	if ((! $status) || ($help) 
-	|| (! @devices) || (! @services) || (!defined $begin) || (!defined $end));
-
-print @devices;
-print @services;
+	|| (! @opt_devices) || (! @opt_services) || (!defined $opt_begin) || (!defined $opt_end));
 
 my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
 $pid_file = Octopussy::PID_File($pid_name);
@@ -290,8 +283,8 @@ $status_file = "${dir_pid}${PROG_NAME}"
 $SIG{USR1} = \&Progress;
 $SIG{USR2} = \&End;
 
-Print_Logs(\@devices, \@services, $taxonomy, $begin, $end, 
-	[$include1, $include2], [$exclude1, $exclude2]);
+Print_Logs(\@opt_devices, \@opt_services, $opt_taxonomy, 
+	$opt_begin, $opt_end, \@opt_include, \@opt_exclude);
 
 unlink($pid_file);
 unlink($status_file);

@@ -15,7 +15,7 @@ a {
 a:hover {
   text-decoration: none;
   font-weight: Bold;
-  color: blue;
+  color: red;
 }
 
 table.box {
@@ -24,58 +24,58 @@ table.box {
 }
 
 div.box {
-  background-color: lightgreen;
+  background-color: pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
   font-size: 12px;
   padding: 2px;
 }
 
 tr.box {
-  background-color: lightgreen;
+  background-color: pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
   font-size: 12px;
   padding: 1px;
 }
 
 tr.boxcolor1 {
-  background-color: lightgreen;
+  background-color: pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
   font-size: 12px;
   padding: 1px;
 }
 tr.boxcolor1:hover {
-  background-color: #lightgreen;
+  background-color: #pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
-  color: blue;
+  color: red;
   font-size: 12px;
   padding: 1px;
 }
 tr.boxcolor2 {
-  background-color: lightgreen;
+  background-color: pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
   font-size: 12px;
   padding: 1px;
 }
 tr.boxcolor2:hover {
-  background-color: lightgreen;
+  background-color: pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
-  color: blue;
+  color: red;
   font-size: 12px;
   padding: 1px;
 }
 
 tr.box-menu {
-  background-color: lightgreen;
+  background-color: pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
   font-size: 12px;
   padding: 1px;
 }
 tr.box-menu:hover {
-  background-color: lightgreen;
+  background-color: pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
   font-size: 12px;
   font-weight: Bold;
-  color: blue;
+  color: red;
   padding: 1px;
 }
 
@@ -83,44 +83,44 @@ td.box {
   font-family: Geneva, Verdana, Arial, sans-serif;
 }
 td.boxtop {
-	background-color: green;
+	background-color: red;
   height: 1px;
 }
 td.box-top-left {
-	background-color: green;
+	background-color: red;
   width: 1px;
   height: 1px;
 }
 td.box-top-right {
-	background-color: green;
+	background-color: red;
   width: 1px;
   height: 1px;
 }
 td.box-left {
-	background-color: green;
+	background-color: red;
   width: 1px;
 }
 td.box-right {
-	background-color: green;
+	background-color: red;
   width: 1px;
 }
 td.box-bottom {
-	background-color: green;
+	background-color: red;
   height: 1px;
 }
 td.box-bottom-left {
-	background-color: green;
+	background-color: red;
   width: 1px;
   height: 1px;
 }
 td.box-bottom-right {
-	background-color: green;
+	background-color: red;
   width: 1px;
   height: 1px;
 }
 
 td.calendar-day-null {
-	background-color: lightgreen;
+	background-color: pink;
   font-family: Geneva, Verdana, Arial, sans-serif;
   font-size: 12px;
   padding: 1px;
@@ -175,7 +175,7 @@ td.calendar-time-free:hover {
   padding: 1px;
   font-family: Geneva, Verdana, Arial, sans-serif;
   font-size: 12px;
-  background-color: darkgreen;
+  background-color: red;
   visibility: hidden;
   z-index: 100;
 }

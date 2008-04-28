@@ -390,10 +390,13 @@ sub Extract_Cmd_Line($)
 	my @services = AAT::ARRAY($conf->{services});
 	my $dev_str = "--device " . join(" --device ", @devices);
   my $serv_str = "--service " . join(" --service ", @services);
+	my ($incl_str, $excl_str) = ("", "");
+	foreach my $inc (AAT::ARRAY($conf->{includes}))
+		{ $incl_str .= "--include \"$inc\" "	if (AAT::NOT_NULL($inc)); } 
+	foreach my $exc (AAT::ARRAY($conf->{excludes}))
+    { $excl_str .= "--exclude \"$exc\" "  if (AAT::NOT_NULL($exc)); }
   my $cmd = "/usr/sbin/octo_extractor $dev_str $serv_str --taxonomy \"-ANY-\""
-    . " --begin $conf->{begin} --end $conf->{end}"
-    . " --include1 '$conf->{incl1}' --include2 '$conf->{incl2}'"
-    . " --exclude1 '$conf->{excl1}' --exclude2 '$conf->{excl2}'"
+    . " --begin $conf->{begin} --end $conf->{end} $incl_str $excl_str"
     . " --pid_param \"$conf->{pid_param}\" --output \"$conf->{output}\"";
 	
 	return ($cmd);

@@ -1,10 +1,6 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Scheduler" help="#scheduler_page" />
-<AAT:Inc file="report_schedules_list" url="./scheduler.asp" sort="$sort" />
+<AAT:Inc file="octo_report_schedules_list" 
+	url="./scheduler.asp" sort="$sort" />
 <%
 my @items = ( 
 	{ label => "_SCHEDULE_REPORT", link => "./report_scheduler.asp" },

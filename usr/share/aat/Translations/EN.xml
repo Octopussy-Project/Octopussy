@@ -107,7 +107,6 @@
 	<msg mid="_TEXT_ONLY" value="Text Only" />
 	<msg mid="_UPDATE" value="Update" />
 	<msg mid="_USER" value="User" />
-	<msg mid="_USER_PREF" value="User Preferences" />
 	<msg mid="_USERS" value="Users" />
 
 	<msg mid="_BIRTHDATE" value="Birthdate" />
@@ -355,6 +354,8 @@
 		value="Do you really want to delete Report Month '%%arg1%%' '%%arg2%% %%arg3%%' ?" />
 	<msg mid="_DLG_DELETE_REPORT_SCHEDULE"     
 		value="Do you really want to delete Report Schedule '%%arg1%%' ?" />
+	<msg mid="_DLG_DELETE_SEARCH_TEMPLATE"
+		value="Do you really want to delete Search Template '%%arg1%%' from user '%%arg2%%' ?" />
 	<msg mid="_DLG_DELETE_SERVICE"
     value="Do you really want to delete Service '%%arg1%%' ?" />
 	<msg mid="_DLG_DELETE_SERVICEGROUP"

@@ -1,12 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
-=head1 NAME
-
-global.asa
-
-=cut
-
 use utf8;
 use AAT;
 use Octopussy;
@@ -26,10 +17,16 @@ sub Script_OnStart()
 {
   my $q = $Request->QueryString();
 	my $f = $Request->Form();
-  foreach my $k (%{$q})
-  	{ $Session->{$k} = $q->{$k} if ($k !~ /^AAT_/); }
-	foreach my $k (%{$f})
-  	{ $Session->{$k} = $f->{$k} if ($k !~ /^AAT_/); }
+  foreach my $k (keys %{$q})
+  {
+		$k = $1	if ($k =~ /(.{1000}).*/); #(SDBM limited to 1008 bytes key)
+		$Session->{$k} = $q->{$k} if ($k !~ /^AAT_/); 
+	}
+	foreach my $k (keys %{$f})
+  {
+		$k = $1 if ($k =~ /(.{1000}).*/); #(SDBM limited to 1008 bytes key)
+		$Session->{$k} = $f->{$k} if ($k !~ /^AAT_/); 
+	}
 }
 
 =head2 Session_OnEnd()

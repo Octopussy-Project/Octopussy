@@ -107,7 +107,6 @@
 	<msg mid="_TEXT_ONLY" value="_TEXT_ONLY" />
 	<msg mid="_UPDATE" value="Atualiza" />
 	<msg mid="_USER" value="Usuário" />
-	<msg mid="_USER_PREF" value="Preferências do Usuário" />
 	<msg mid="_USERS" value="Usuários" />
 
 	<msg mid="_BIRTHDATE" value="Data de Aniversário" />
@@ -322,6 +321,68 @@
 	<msg mid="_USERS_BASE" value="Base de Usuários" />
   <msg mid="_USERS_FILTER" value="Filtro de Usuários" />
   <msg mid="_USERS_SERVER" value="Servidor de Usuários" />
+
+	<msg mid="_DLG_DELETE_ALERT"
+    value="_Do you really want to delete Alert '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_CONTACT"
+    value="_Do you really want to delete Contact '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_DEVICE"
+    value="_Do you really want to delete Device '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_DEVICEGROUP"
+    value="_Do you really want to delete Device Group '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_DEVICE_SERVICE"
+    value="_Do you really want to delete Service '%%arg1%%' from Device '%%arg2%%' ?" />
+  <msg mid="_DLG_DELETE_LOCATION_BUILDING"
+    value="_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' ?" />
+  <msg mid="_DLG_DELETE_LOCATION_CITY"
+    value="_Do you really want to delete Location City '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_LOCATION_RACK"
+    value="_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' Rack '%%arg4%%' ?" />
+  <msg mid="_DLG_DELETE_LOCATION_ROOM"
+    value="_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' ?" />
+  <msg mid="_DLG_DELETE_LOG"
+    value="_Do you really want to delete this Log line #%%log%% ?" />
+  <msg mid="_DLG_DELETE_LOG_MINUTE"
+    value="_Do you really want to delete this Log File %%datetime%% ?" />
+  <msg mid="_DLG_DELETE_MESSAGE"
+    value="_Do you really want to delete Message '%%msg%%' from Service '%%service%%' ?" />
+  <msg mid="_DLG_DELETE_REPORT"
+    value="_Do you really want to delete Report '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_REPORT_DATA"
+    value="_Do you really want to delete Report '%%arg1%%' '%%arg2%%' ?" />
+  <msg mid="_DLG_DELETE_REPORT_MONTH"
+    value="_Do you really want to delete Report Month '%%arg1%%' '%%arg2%% %%arg3%%' ?" />
+  <msg mid="_DLG_DELETE_REPORT_SCHEDULE"
+    value="_Do you really want to delete Report Schedule '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_SEARCH_TEMPLATE"
+    value="_Do you really want to delete Search Template '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_SERVICE"     value="_Do you really want to delete Service '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_SERVICEGROUP"
+    value="_Do you really want to delete Service Group '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_SERVICEGROUP_SERVICE"
+    value="_Do you really want to delete Service '%%arg2%%' from Service Group '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_STATISTIC_REPORT"
+    value="_Do you really want to delete Statistic Report '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_STATISTIC_REPORT_SCHEDULE"
+    value="_Do you really want to delete Statistic Report Schedule '%%arg1%%' ?" />
+	<msg mid="_DLG_DELETE_STORAGE"
+    value="_Do you really want to delete Storage '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_TABLE"
+    value="_Do you really want to delete Table '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_TIMEPERIOD"
+    value="_Do you really want to delete TimePeriod '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_USER"
+    value="_Do you really want to delete User '%%arg1%%' ?" />
+  <msg mid="_DLG_LOGOUT"
+    value="_Do you really want to logout ?" />
+  <msg mid="_DLG_PARSE_PAUSE"
+    value="_Do you really want to pause parsing Device '%%arg1%%' ?" />
+  <msg mid="_DLG_PARSE_START"
+    value="_Do you really want to start parsing Device '%%arg1%%' ?" />
+  <msg mid="_DLG_PARSE_STOP"
+    value="_Do you really want to stop parsing Device '%%arg1%%' ?" />
+  <msg mid="_DLG_RESTORE_CONFIG"
+    value="_Do you really want to restore configuration from file '%%arg1%%' ?" />
 
 	<msg mid="_MSG_ALERT_RAISED_ONLY"
 		value="O alerta vai ser disparado somente se acontecer n vezes em menos de d secundos em um dispositivo" />

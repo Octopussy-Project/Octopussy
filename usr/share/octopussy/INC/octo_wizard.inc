@@ -1,11 +1,5 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
-
 my $url = $arg{url};
 my $url_sort = $url . "?wizard_table_sort=";
 my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
@@ -22,8 +16,7 @@ my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
 	<AAT:Label value="_DEVICE_MODEL" link= "${url_sort}model" /></AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Label value="_DESCRIPTION" link= "${url_sort}description" /></AAT:BoxCol>
-	<AAT:BoxCol>
-	<AAT:Label value="_UNKNOWN_MSGS" /></AAT:BoxCol>
+	<AAT:BoxCol align="R"><AAT:Label value="_UNKNOWN_MSGS" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
@@ -38,8 +31,8 @@ foreach my $conf (Octopussy::Device::Configurations($sort))
 	<AAT:BoxCol><%= $conf->{address} %></AAT:BoxCol>
 	<AAT:BoxCol><%= $conf->{type} %></AAT:BoxCol>
 	<AAT:BoxCol><%= $conf->{model} %></AAT:BoxCol>
-	<AAT:BoxCol><%= $conf->{description} %></AAT:BoxCol>
-	<AAT:BoxCol align="right"><%= ($nb>20 ? "$nb+" : $nb) %></AAT:BoxCol>
+	<AAT:BoxCol><i><%= $conf->{description} %></i></AAT:BoxCol>
+	<AAT:BoxCol align="R"><%= ($nb > 20 ? "$nb+" : $nb) %></AAT:BoxCol>
 	</AAT:BoxRow><%
 	}
 }

@@ -1,19 +1,12 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $url = $arg{url};
-my $url_sort = $url . "?reports_table_sort=";
-
+my $url_sort = $url . "?category=$arg{category}&reports_table_sort=";
 my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 my @res_reports = AAT::ARRAY($restricts->{report});
-
 my @report_types = Octopussy::Report::List($arg{category}, \@res_reports);
 %>
-<AAT:Box icon="buttons/bt_report" title="_REPORTS_VIEWER">
+<AAT:Box align="C" icon="buttons/bt_report" title="_REPORTS_VIEWER">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_NAME" link="${url_sort}name" /></AAT:BoxCol>
 	<AAT:BoxCol align="R">
@@ -29,14 +22,14 @@ foreach my $r (@report_types)
     { $nb++; }
 %><AAT:BoxRow><%
 	if ($nb > 0)
-  {
-	%><AAT:BoxCol><AAT:Label value="$r" link="$url?report=$r" /></AAT:BoxCol><%
+  { 
+%><AAT:BoxCol><AAT:Label value="$r" link="$url?report=$r" /></AAT:BoxCol><%
 	}
 	else
 	{
-	%><AAT:BoxCol><AAT:Label value="$r" /></AAT:BoxCol><%
+%><AAT:BoxCol><AAT:Label value="$r" /></AAT:BoxCol><%
 	}
-	%><AAT:BoxCol align="R"><AAT:Label value="$nb" /></AAT:BoxCol>
+%><AAT:BoxCol align="R"><AAT:Label value="$nb" /></AAT:BoxCol>
 </AAT:BoxRow><%
 }
 %>

@@ -7,7 +7,7 @@ my $sort = $Request->QueryString("alerts_table_sort") || "name";
 
 if (!defined $alert)
 {
-	%><AAT:Inc file="alerts_list" url="./alerts.asp" sort="$sort" /><%
+	%><AAT:Inc file="octo_alerts_list" url="./alerts.asp" sort="$sort" /><%
 }
 else
 {
@@ -41,10 +41,6 @@ else
 		AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Alert", $alert);
    	$Response->Redirect("./alerts.asp");
   }
-  #else
-  #{
-  #  $Response->Redirect("./alert_configuration.asp?alert=$alert");
-  #}
 }
 %>
 <WebUI:PageBottom />

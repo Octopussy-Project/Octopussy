@@ -1,12 +1,5 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
-#use utf8;
-
 my $url = $arg{url};
 my $service = $arg{service};
 $url .= "?service=$service";

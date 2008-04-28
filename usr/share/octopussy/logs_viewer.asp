@@ -20,10 +20,10 @@ my ($d1, $m1, $y1, $hour1, $min1) =
 my ($d2, $m2, $y2, $hour2, $min2) = 
 	($Session->{dt2_day}, $Session->{dt2_month}, $Session->{dt2_year},
 	$Session->{dt2_hour}, $Session->{dt2_min});
-my ($re_include, $re_include2) = 
-	($Session->{re_include}, $Session->{re_include2});
-my ($re_exclude, $re_exclude2) = 
-	($Session->{re_exclude}, $Session->{re_exclude2});
+my ($re_include, $re_include2, $re_include3) = 
+	($Session->{re_include}, $Session->{re_include2}, $Session->{re_include3});
+my ($re_exclude, $re_exclude2, $re_exclude3) = 
+	($Session->{re_exclude}, $Session->{re_exclude2}, $Session->{re_exclude3});
 
 if (AAT::NOT_NULL($Session->{cancel}))
 {
@@ -38,14 +38,22 @@ if (AAT::NOT_NULL($Session->{cancel}))
 
 if (AAT::NOT_NULL($f->{template}))
 {
-	$re_include =~ s/\\/\\\\/g;
-  $re_include2 =~ s/\\/\\\\/g;
-  $re_exclude =~ s/\\/\\\\/g;
-  $re_exclude2 =~ s/\\/\\\\/g;
-	Octopussy::Search_Template::New($login, { name => $Session->{template}, 
-	device => \@devices, service => \@services, 
-	re_include => $re_include, re_include2 => $re_include2,
-	re_exclude => $re_exclude, re_exclude2 => $re_exclude2 } );
+	if (AAT::NOT_NULL($f->{template_save}))
+	{
+		$re_include =~ s/\\/\\\\/g;
+  	$re_include2 =~ s/\\/\\\\/g;
+  	$re_include3 =~ s/\\/\\\\/g;
+  	$re_exclude =~ s/\\/\\\\/g;
+  	$re_exclude2 =~ s/\\/\\\\/g;
+  	$re_exclude3 =~ s/\\/\\\\/g;
+  	Octopussy::Search_Template::New($login, { name => $Session->{template},
+  		device => \@devices, service => \@services,
+  		re_include => $re_include, re_include2 => $re_include2,
+  		re_include3 => $re_include3, re_exclude => $re_exclude,
+  		re_exclude2 => $re_exclude2, re_exclude3 => $re_exclude3 } );		
+	}
+	elsif (AAT::NOT_NULL($f->{template_remove}))
+		{ Octopussy::Search_Template::Remove($login, $f->{template}); }
 }
 
 if ((AAT::NULL($Session->{extractor})) && 
@@ -60,8 +68,8 @@ if ((AAT::NULL($Session->{extractor})) &&
 	my $cmd = Octopussy::Logs::Extract_Cmd_Line( { 
 		devices => \@devices, services =>\@services, 
 		begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
-		incl1 => $re_include, incl2 => $re_include2,
-		excl1 => $re_exclude, excl2 => $re_exclude2, 
+		includes => [$re_include, $re_include2, $re_include3],
+		excludes => [$re_exclude, $re_exclude2, $re_exclude3],
 		pid_param => $output, output => "$run_dir/logs_${login}_$output" } );
 	$Session->{export} = 
 		"logs_" . join("-", @devices) . "_" . join("-", @services)
@@ -69,7 +77,7 @@ if ((AAT::NULL($Session->{extractor})) &&
 	system("$cmd &");
 	my $status_file = $run_dir . "octo_extractor_${output}.status";
 	open(STATUS_FILE, "> $status_file");
-  print STATUS_FILE "INIT [1/1] [0]\n";
+  print STATUS_FILE "INIT [0/1] [0]\n";
   close(STATUS_FILE);
 	$Session->{extract_progress_current} = 0;
   $Session->{extract_progress_total} = 0;
@@ -81,48 +89,14 @@ if ((AAT::NULL($Session->{extractor})) &&
 
 if ($Session->{extractor} eq "done")
 {
-	my $filename = $Session->{extracted};
-	if (AAT::NOT_NULL($Session->{file}))
+	if (AAT::NOT_NULL($Session->{file}) || AAT::NOT_NULL($Session->{csv})
+		|| AAT::NOT_NULL($Session->{zip}))
 	{
-		my $output = $Session->{export} . ".txt";
-		($Session->{file}, $Session->{export}, $Session->{extractor}, 
-			$Session->{extracted}) = (undef, undef, undef, undef);
-		AAT::File_Save( { contenttype => "text/txt", 
-			input_file => "${run_dir}/logs_${login}_$filename", 
-			output_file => $output } );
-	}
-	elsif (AAT::NOT_NULL($Session->{csv}))
-	{
-		open(FILE, "< $run_dir/logs_${login}_$filename");
-		while (<FILE>)
-		{
-   		$text .= "$1;$2;$3\n" 
-				if ($_ =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) (\S+) (.+)$/);
-  	}
-		close(FILE);
-		my $output = $Session->{export} . ".csv";
-		($Session->{csv}, $Session->{export}, $Session->{extractor},
-			$Session->{extracted}) = (undef, undef, undef, undef);
-		AAT::File_Save( { contenttype => "text/csv",
-     	input_data => $text, output_file => $output } );
-	}
-	elsif (AAT::NOT_NULL($Session->{zip})) 
-	{
-		my $output = $Session->{export} . ".txt.gz";
-		open(ZIP, "|gzip >> $run_dir/logs_${login}_$filename.gz");
-		open(FILE, "< $run_dir/logs_${login}_$filename");
-    while (<FILE>)
-			{ print ZIP $_; }
-		close(FILE);
-		close(ZIP);
-    ($Session->{zip}, $Session->{export}, $Session->{extractor},
-			$Session->{extracted}) = (undef, undef, undef, undef);
-    AAT::File_Save( { contenttype => "archive/gzip",
-      input_file => "$run_dir/logs_${login}_$filename.gz", 
-			output_file => $output } );
+		$Response->Redirect("./export_extract.asp");
 	}
 	else
 	{
+		my $filename = $Session->{extracted};
 		$text = "<table id=\"resultsTable\">";
 		my $page = $Session->{page} || 1;
 		open(FILE, "< $run_dir/logs_${login}_$filename");
@@ -134,8 +108,10 @@ if ($Session->{extractor} eq "done")
 				my $line = $Server->HTMLEncode($_);
 				$line =~ s/($re_include)/<font color="red"><b>$1<\/b><\/font>/g	
 					if (AAT::NOT_NULL($re_include));
-				$line =~ s/($re_include2)/<font color="blue"><b>$1<\/b><\/font>/g
+				$line =~ s/($re_include2)/<font color="green"><b>$1<\/b><\/font>/g
 					if (AAT::NOT_NULL($re_include2));
+				$line =~ s/($re_include3)/<font color="blue"><b>$1<\/b><\/font>/g
+          if (AAT::NOT_NULL($re_include3));
 				$line =~ s/(\S{120})(\S+?)/$1\n$2/g;
 				$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
 			}
@@ -151,21 +127,17 @@ if ($Session->{extractor} eq "done")
 
 if ((AAT::NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
 {
-%>
-<WebUI:PageTop title="Logs" onLoad="extract_progress()" />
-<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
-<AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
-<script type="text/javascript" src="INC/octo_logs_viewer_progressbar.js"> 
-</script>
-<%
+%><WebUI:PageTop title="Logs" onLoad="extract_progress()" />
+	<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
+	<AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
+	<script type="text/javascript" src="INC/octo_logs_viewer_progressbar.js"> 
+	</script><%
 }
 else
 {
-%>
-<WebUI:PageTop title="Logs" />
-<script type="text/javascript" src="INC/octo_logs_viewer_quick_search.js">
-</script>
-<%
+%><WebUI:PageTop title="Logs" />
+	<script type="text/javascript" src="INC/octo_logs_viewer_quick_search.js">
+	</script><%
 }
 my @restricted_services = Octopussy::Service::List_Used();
 $Response->Include("INC/octo_logs_viewer_form.inc", url => $url, unknown => 1,
