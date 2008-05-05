@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 
@@ -11,6 +6,7 @@ my $url = $arg{url};
 my $device = $arg{device};
 my $service = $arg{service};
 my @report_list = Octopussy::Report::List(undef, undef);
+my @used_services = Octopussy::Service::List_Used();
 
 if ($#report_list >= 0)
 {
@@ -35,7 +31,8 @@ if ($#report_list >= 0)
 	<AAT:BoxCol><AAT:Label value="_SERVICE" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Inc file="octo_selector_service_dynamic" 
-		url="$url?device=$device&service=" device="$device" selected="$service" />
+		url="$url?device=$device&service=" selected="$service" 
+		restricted_services=\@used_services />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

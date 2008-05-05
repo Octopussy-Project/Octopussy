@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="User Restrictions" />
 <%
 my $url = "./user_restrictions.asp";
@@ -22,6 +17,7 @@ my @alerts = ("-NONE-", "-ANY-");
 push(@alerts, Octopussy::Alert::List());
 my @reports = ("-NONE-", "-ANY-");
 push(@reports, Octopussy::Report::List(undef, undef));
+my @used_services = Octopussy::Service::List_Used();
 
 if ($Session->{AAT_ROLE} =~ /admin/i)
 {
@@ -41,13 +37,14 @@ if ($Session->{AAT_ROLE} =~ /admin/i)
 	<AAT:Label value="_SERVICES" style="B" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol width="200"><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
-    url="$url?user=$user&device=" multiple="1" size="15"
-    selected=\@devices_sel />
+  <AAT:BoxCol width="200">
+	<AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
+    url="$url?user=$user&device=" multiple="1" size="15" 
+	selected=\@devices_sel />
   </AAT:BoxCol>
   <AAT:BoxCol width="200"><AAT:Inc file="octo_selector_service_dynamic"
     url="$url?user=$user&device=$device&service=" multiple="1" size="15"
-    device=\@devices_sel selected=\@services_sel />
+    selected=\@services_sel restricted_services=\@used_services />
   </AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>

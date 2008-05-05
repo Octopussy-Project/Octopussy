@@ -14,6 +14,7 @@ my @services = AAT::ARRAY($conf->{service});
 my @actions = AAT::ARRAY($conf->{action});
 my @contacts = AAT::ARRAY($conf->{contact});
 my $msg_alert_raised_only = AAT::Translation("_MSG_ALERT_RAISED_ONLY");
+my @used_services = Octopussy::Service::List_Used();
 %>
 <AAT:Form action="./alert_edit.asp">
 <AAT:Form_Hidden name="old_alert" value="$a_name" />
@@ -54,8 +55,8 @@ my $msg_alert_raised_only = AAT::Translation("_MSG_ALERT_RAISED_ONLY");
   <AAT:BoxCol align="R"><AAT:Button name="service" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_SERVICES" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
-  <AAT:Inc file="octo_selector_service_dynamic"
-    multiple="1" size="3" device=\@devices selected=\@services /></AAT:BoxCol>
+  <AAT:Inc file="octo_selector_service_dynamic" multiple="1" size="5" 
+		selected=\@services restricted_services=\@used_services /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol></AAT:BoxCol>
@@ -72,14 +73,14 @@ my $msg_alert_raised_only = AAT::Translation("_MSG_ALERT_RAISED_ONLY");
 		name="timeperiod" selected="$a_timeperiod" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol align="R"><AAT:Button name="msg_ok" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_REGEXP_INC" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Entry name="regexp_include" value="$a_re_include" size="40" />
   </AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol align="R"><AAT:Button name="msg_critical" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_REGEXP_EXC" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Entry name="regexp_exclude" value="$a_re_exclude" size="40" />

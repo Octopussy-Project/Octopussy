@@ -2,8 +2,8 @@
 <octopussy_service description="Squid System Service"
                    icon="software/logo_squid"
                    name="Squid_System"
-                   nb_messages="075"
-                   version="200803310016"
+                   nb_messages="080"
+                   version="200805050001"
                    website="http://www.squid-cache.org/">
   <message loglevel="Information"
            msg_id="Squid_System:logfile_rotate"
@@ -485,4 +485,10 @@
            rank="080"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Squid_System:parsehttprequest_unsupported_method"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;parseHttpRequest: Unsupported method .+&quot;):msg@&gt;"
+           rank="081"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

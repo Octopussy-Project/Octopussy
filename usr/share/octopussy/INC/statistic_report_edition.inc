@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 
@@ -36,7 +31,7 @@ my @table = (
 	[ { label => "_SERVICE", style => "bold" },
 	 	{ type => "octo_selector_service_dynamic",
 			args => { url => "$url?statistic_report=$statistic_report&device=$device&service=",
-						   	device => $device, selected => $service } } ],
+						   	selected => $service } } ],
 	[ { label => "_TABLE", style => "bold" },
 		{ type => "selector_dynamic", 
 			args => { name => "table", 

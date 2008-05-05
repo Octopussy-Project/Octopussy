@@ -7,7 +7,7 @@ my $role = $Session->{AAT_ROLE};
 %>
 <AAT:Box icon="buttons/bt_home" title="_LOCATIONS" align="center">
 	<AAT:Form action="$url">
-  <AAT:BoxRow>
+	<AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_CITY" style="B"/></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_BUILDING" style="B"/></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_ROOM" style="B"/></AAT:BoxCol>
@@ -20,7 +20,7 @@ my $role = $Session->{AAT_ROLE};
 	<AAT:BoxCol><AAT:Form_Submit value="_NEW_CITY" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="4"></AAT:BoxCol>
 	</AAT:BoxRow>
-  <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
+	<AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
 	</AAT:Form>
 <%
 foreach my $c (Octopussy::Location::Cities())

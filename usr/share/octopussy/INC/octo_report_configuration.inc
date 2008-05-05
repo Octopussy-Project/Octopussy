@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $report = $arg{report};
@@ -14,7 +9,6 @@ my $desc = $r->{description};
 my $query = $r->{query};
 $query =~ s/(SELECT |FROM |WHERE |GROUP BY |ORDER BY |LIMIT )/<b>$1<\/b>/g;
 $query =~ s/FROM/\<br\>FROM/g;
-
 my $taxo = $r->{taxonomy};
 my $url_dt = "./reports.asp?report=$report&query=$query";
 %>
@@ -49,7 +43,7 @@ my $url_dt = "./reports.asp?report=$report&query=$query";
 		<AAT:BoxCol><AAT:Label value="_DEVICE" style="B" /></AAT:BoxCol>
   	<AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
     	url="./reports.asp?report=$report&device=" 
-			list=$devices selected="$device" /></AAT:BoxCol>
+			restricted_devices=$devices selected="$device" /></AAT:BoxCol>
 	</AAT:BoxRow>
 	<AAT:BoxRow>
   	<AAT:BoxCol><AAT:Button name="service" /></AAT:BoxCol>
@@ -57,7 +51,7 @@ my $url_dt = "./reports.asp?report=$report&query=$query";
   	<AAT:BoxCol>
   	<AAT:Inc file="octo_selector_service_dynamic"
     	url="./reports.asp?report=$report&device=$device&service="
-    	device="$device" list=$services selected="$service" />
+    	selected="$service" restricted_services=$services />
   	</AAT:BoxCol>
 	</AAT:BoxRow>
 	<AAT:BoxRow>

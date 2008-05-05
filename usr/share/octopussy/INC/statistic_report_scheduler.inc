@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 
@@ -29,7 +24,7 @@ if ($#report_list >= 0)
     { label => "_SERVICE", align => "right", style => "bold" },
     { type => "octo_selector_service_dynamic",
       args => { url => "$url?device=$device&service=",
-      device => $device, selected => $service } },
+      	selected => $service } },
     { label => "_TAXONOMY", align => "right", style => "bold" },
     { type => "octo_selector_taxonomy", args => { any => 1 } } ],
   [ { label => "<hr>", colspan => 6 } ],

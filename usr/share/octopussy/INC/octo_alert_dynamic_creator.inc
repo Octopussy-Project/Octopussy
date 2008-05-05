@@ -1,29 +1,8 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $lang = $Session->{AAT_LANGUAGE};
-my $devs = $Session->{device} || "-ANY-";
-my $servs = $Session->{service} || "-ANY-";
-my (@devices, @services) = ((),());
-
-if (!ref ($devs))
-  { push(@devices, $devs); }
-else
-{
-  foreach my $d (@{$devs})
-    { push(@devices, $d); }
-}
-if (!ref ($servs))
-  { push(@services, $servs); }
-else
-{
-  foreach my $s (@{$servs})
-    { push(@services, $s); }
-}
+my @devices = AAT::ARRAY($arg{devices});
+my @services = AAT::ARRAY($arg{services});
 my @used_services = Octopussy::Service::List_Used();
 %>
 <AAT:Form action="$arg{url}">
@@ -56,7 +35,7 @@ my @used_services = Octopussy::Service::List_Used();
 	<AAT:BoxCol><AAT:Button name="service" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_SERVICES" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:Inc file="octo_selector_service_dynamic"
-  multiple="1" size="5" device=\@devices selected=\@services 
+  multiple="1" size="5" selected=\@services 
 	restricted_services=\@used_services /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

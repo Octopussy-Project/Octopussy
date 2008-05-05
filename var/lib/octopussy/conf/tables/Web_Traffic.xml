@@ -2,10 +2,6 @@
 <octopussy_table description="Generic Web Traffic Table"
                  name="Web_Traffic"
                  version="200801250001">
-  <field title="datetime"
-         type="DATETIME" />
-  <field title="device"
-         type="WORD" />
   <field title="src_addr"
          type="IP_ADDR" />
   <field title="http_method"

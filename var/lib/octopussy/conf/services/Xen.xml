@@ -2,8 +2,8 @@
 <octopussy_service description="Xen Service"
                    icon="software/logo_xen"
                    name="Xen"
-                   nb_messages="078"
-                   version="200802200003"
+                   nb_messages="084"
+                   version="200805050003"
                    website="http://www.xensource.com/">
   <message loglevel="Notice"
            msg_id="Xen:xend_started"
@@ -421,19 +421,19 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Xen:remove_xenbus_path"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/block: remove XENBUS_PATH=.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/.+: remove XENBUS_PATH=.+&quot;):msg@&gt;"
            rank="070"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Xen:add_xenbus_path"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/block: add XENBUS_PATH=.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/.+: add XENBUS_PATH=.+&quot;):msg@&gt;"
            rank="071"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Xen:writing_to_xenstore"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/block: Writing .+ to xenstore.&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/\S+: Writing .+ to xenstore.&quot;):msg@&gt; "
            rank="072"
            table="Message"
            taxonomy="System" />

@@ -2,8 +2,8 @@
 <octopussy_service description="Postfix Service"
                    icon="software/logo_postfix"
                    name="Postfix"
-                   nb_messages="061"
-                   version="200803050004"
+                   nb_messages="063"
+                   version="200805050002"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -375,6 +375,18 @@
            msg_id="Postfix:connection_timed_out"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;connect to .+: Connection timed out.*&quot;):msg@&gt;"
            rank="062"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Postfix:recipient_address_rejected"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtpd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;NOQUEUE: reject: RCPT from .+: Recipient address rejected:.+&quot;):msg@&gt;"
+           rank="063"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Postfix:connection_refused"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;connect to .+: Connection refused.*&quot;):msg@&gt;"
+           rank="064"
            table="Message"
            taxonomy="Network.Errors" />
 </octopussy_service>

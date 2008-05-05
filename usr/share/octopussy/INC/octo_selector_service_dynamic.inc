@@ -9,9 +9,8 @@ my %selected = ();
 foreach my $s (AAT::ARRAY($arg{selected}))
   { $selected{$s} = 1; }
 
-my @services = (defined $arg{restricted_services} 
+my @services = (AAT::NOT_NULL($arg{restricted_services}) 
 	? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
-@services = AAT::ARRAY($arg{list})	if (defined $arg{list});
 %>
 <select<%= $select_options %> name="service">
 <% 
@@ -44,7 +43,7 @@ if (defined $arg{unknown})
 { %> 
 service[<%=$i%>][<%=$i2++%>] = new Option("<%= $str_unknown %>", "Unknown"); 
 <% }
-my @services = (defined $arg{restricted_services}
+my @services = (AAT::NOT_NULL($arg{restricted_services})
   ? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
 foreach my $s (@services)
 {	%> 
@@ -80,9 +79,11 @@ service[<%=$i%>][<%=$i2++%>] = new Option("<%= $str_unknown %>", "Unknown");<% 	
 	my @services = ();
 	foreach my $dg_s (Octopussy::DeviceGroup::Services($d))
 		{ $service{$dg_s} = 1; }
+	my @res_services = (AAT::NOT_NULL($arg{restricted_services})
+  	? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
 	foreach my $k (sort keys %service)
 	{	
-		foreach my $rs (AAT::ARRAY($arg{restricted_services}))
+		foreach my $rs (@res_services)
 		{
 			if ($rs =~ /^$k$/)
 			{
@@ -100,11 +101,12 @@ service[<%=$i%>][<%=$i2++%>] = new Option("<%= $s %>","<%= $s %>"); <%
 
 foreach my $d (sort @d_list) 
 {
-	my @rs = AAT::ARRAY($arg{restricted_services});
+	my @res_services = (AAT::NOT_NULL($arg{restricted_services})
+    ? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
 	my @services = ((AAT::NOT_NULL($d) && ($d ne "-ANY-"))
       	? sort(Octopussy::Device::Services($d)) : Octopussy::Service::List()); 
 	my @list = ();
-	foreach my $r (@rs)
+	foreach my $r (@res_services)
 	{
 		my $match = 0;
 		foreach my $s (@services)

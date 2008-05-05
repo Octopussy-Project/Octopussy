@@ -8,6 +8,13 @@ check_octopussy.pl - Nagios Plugin for Octopussy
 
 check_octopussy.pl <options>
 
+  Options:
+  -h / --help: prints usage
+  --all: check all
+  --process: check process (octo_dispatcher, octo_scheduler & syslog-ng)
+  --parser: check parsers states
+  --partition: check logs partitions
+
 =head1 DESCRIPTION
 
 check_octopussy.pl is the Nagios Plugin to check that Octopussy is working well
@@ -24,6 +31,9 @@ use constant STATE_WARNING => 1;
 use constant STATE_CRITICAL => 2;
 use constant STATE_UNKNOWN => 3;
 
+my $PROG_NAME = "check_octopussy.pl";
+my $VERSION = "0.2";
+
 my ($help, $opt_all, $opt_process, $opt_parser, $opt_partition);
 my $state = STATE_OK;
 
@@ -31,12 +41,16 @@ my $state = STATE_OK;
 
 =head2 Help()
 
+Prints Help about the program
+
 =cut
 sub Help()
 {
 my $help_str = <<EOF;
 
-  Usage: check_octopussy.pl <options>
+  $PROG_NAME ($VERSION)
+
+  Usage: $PROG_NAME <options>
 
   Options:
   -h / --help: prints usage
@@ -129,7 +143,8 @@ my $status = GetOptions(
   "h" => \$help, "help" => \$help, "all" => \$opt_all,
 	"process" => \$opt_process, "parser" => \$opt_parser, 
 	"partition" => \$opt_partition);
-Help()	if ((! $status) || ($help));
+Help()	if ((! $status) || ($help) || 
+	((! $opt_all) && (! $opt_process) && (! $opt_parser) && (! $opt_partition)));
 
 Check_Process()	if ($opt_process || $opt_all);
 Check_Parsers_States() if ($opt_parser || $opt_all);

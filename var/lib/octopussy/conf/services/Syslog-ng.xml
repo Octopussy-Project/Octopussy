@@ -2,8 +2,9 @@
 <octopussy_service description="Syslog-ng Service"
                    icon="software/logo_syslog-ng"
                    name="Syslog-ng"
-									 website="http://www.balabit.com/network-security/syslog-ng/"
-                   version="200801220003">
+                   nb_messages="021"
+                   version="200804140001"
+                   website="http://www.balabit.com/network-security/syslog-ng/">
   <message loglevel="Warning"
            msg_id="Syslog-ng:stats_dropped"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;STATS: dropped \d+&quot;):msg@&gt;"
@@ -122,6 +123,18 @@
            msg_id="Syslog-ng:shutting_down"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;syslog-ng shutting down.+&quot;):msg@&gt;"
            rank="020"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="Syslog-ng:connection_failed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Connection failed;.+&quot;):msg@&gt;"
+           rank="021"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Syslog-ng:eof_occured_while_idle"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;EOF occurred while idle;.*&quot;):msg@&gt; "
+           rank="022"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

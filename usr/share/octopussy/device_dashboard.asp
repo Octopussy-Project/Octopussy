@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Device DashBoard" help="devices" />
 <%
 my $device = $Request->Form("device") || $Request->QueryString("device");
@@ -18,8 +13,12 @@ if (!-f "./rrd/taxonomy_${device}_${mode}.png")
 else
 {
 	my @stats = stat("./rrd/taxonomy_${device}_${mode}.png");
+	print "total: " . (time() - $stats[9]);
 	if (((time() - $stats[9]) > 60) && ($mode eq "hourly"))
-		{ Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Hourly_Graph($device); }
+	{ 
+		print "hourly";
+		Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Hourly_Graph($device); 
+	}
 	elsif (((time() - $stats[9]) > (10*60)) && ($mode eq "daily"))
 		{ Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Daily_Graph($device); }
 	elsif (((time() - $stats[9]) > (30*60)) && ($mode eq "weekly"))

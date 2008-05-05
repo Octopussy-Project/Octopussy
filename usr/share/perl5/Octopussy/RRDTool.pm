@@ -48,7 +48,6 @@ my @colors = (
 Counts number of Data Sources in RRD file
 
 =cut
-
 sub DS_Count($)
 {
 	my $file = shift;
@@ -63,7 +62,6 @@ sub DS_Count($)
 Set RRD Graph Legend (Min, Avg, Max) for Command Line
 
 =cut
-
 sub Graph_Legend($)
 {
 	my $cdef = shift;
@@ -78,7 +76,6 @@ sub Graph_Legend($)
 =head2 Graph_Line($cdef, $type, $color, $title)
 
 =cut
-
 sub Graph_Line($$$$)
 {
 	my ($cdef, $type, $color, $title) = @_;
@@ -93,7 +90,6 @@ sub Graph_Line($$$$)
 Set RRD Graph Parameters for Command Line
 
 =cut
-
 sub Graph_Parameters($$$$$$$)
 {
 	my ($file, $start, $end, $title, $w, $h, $vlabel) = @_;
@@ -107,8 +103,9 @@ sub Graph_Parameters($$$$$$$)
 
 =head2 Syslog_By_DeviceType_Init()
 
-=cut
+Initializes RRD Data for 'Syslog by Device Type' stats
 
+=cut
 sub Syslog_By_DeviceType_Init()
 {
 	my @dtypes = Octopussy::Device::Types();
@@ -131,8 +128,9 @@ sub Syslog_By_DeviceType_Init()
 
 =head2 Syslog_By_DeviceType_Update($values)
 
-=cut
+Updates RRD Data for 'Syslog by Device Type' stats
 
+=cut
 sub Syslog_By_DeviceType_Update($)
 {
 	my $values = shift;
@@ -144,8 +142,9 @@ sub Syslog_By_DeviceType_Update($)
 
 =head2 Syslog_By_DeviceType_Graph($file, $title, $length)
 
-=cut
+Graphs RRD Data for 'Syslog by Device Type' stats
 
+=cut
 sub Syslog_By_DeviceType_Graph($$$)
 {
   my ($file, $title, $length) = @_;
@@ -175,8 +174,9 @@ sub Syslog_By_DeviceType_Graph($$$)
 
 =head2 Syslog_By_DeviceType_Hourly_Graph()
 
-=cut
+Graphs RRD Data for 'Syslog by Device Type' hourly stats
 
+=cut
 sub Syslog_By_DeviceType_Hourly_Graph()
 {
 	Syslog_By_DeviceType_Graph("syslog_dtype_hourly", "Hourly Stats", $HOURLY);	
@@ -184,8 +184,9 @@ sub Syslog_By_DeviceType_Hourly_Graph()
 
 =head2 Syslog_By_DeviceType_Daily_Graph()
 
-=cut
+Graphs RRD Data for 'Syslog by Device Type' daily stats
 
+=cut
 sub Syslog_By_DeviceType_Daily_Graph()
 {
   Syslog_By_DeviceType_Graph("syslog_dtype_daily", "Daily Stats", $DAILY);
@@ -193,8 +194,9 @@ sub Syslog_By_DeviceType_Daily_Graph()
 
 =head2 Syslog_By_DeviceType_Weekly_Graph()
 
-=cut
+Graphs RRD Data for 'Syslog by Device Type' weekly stats
 
+=cut
 sub Syslog_By_DeviceType_Weekly_Graph()
 {
   Syslog_By_DeviceType_Graph("syslog_dtype_weekly", "Weekly Stats", $WEEKLY);
@@ -202,8 +204,9 @@ sub Syslog_By_DeviceType_Weekly_Graph()
 
 =head2 Syslog_By_DeviceType_Monthly_Graph()
 
-=cut
+Graphs RRD Data for 'Syslog by Device Type' monthly stats
 
+=cut
 sub Syslog_By_DeviceType_Monthly_Graph()
 {
 	Syslog_By_DeviceType_Graph("syslog_dtype_monthly", "Monthly Stats", $MONTHLY);
@@ -211,8 +214,9 @@ sub Syslog_By_DeviceType_Monthly_Graph()
 
 =head2 Syslog_By_DeviceType_Yearly_Graph()
 
-=cut
+Graphs RRD Data for 'Syslog by Device Type' yearly stats
 
+=cut
 sub Syslog_By_DeviceType_Yearly_Graph()
 {
   Syslog_By_DeviceType_Graph("syslog_dtype_yearly", "Yearly Stats", $YEARLY);
@@ -222,8 +226,9 @@ sub Syslog_By_DeviceType_Yearly_Graph()
 
 =head2 Syslog_By_Device_Service_Taxonomy_Init($device, $service)
 
-=cut
+Initializes RRD Data for 'Syslog by Device/Service Taxonomy' stats
 
+=cut
 sub Syslog_By_Device_Service_Taxonomy_Init($$)
 {
 	my ($device, $service) = @_;
@@ -247,27 +252,30 @@ sub Syslog_By_Device_Service_Taxonomy_Init($$)
 =head2 Syslog_By_Device_Service_Taxonomy_Update($seconds, $device, $service, 
 $values)
 
-=cut
+Updates RRD Data for 'Syslog by Device/Service Taxonomy' stats
 
+=cut
 sub Syslog_By_Device_Service_Taxonomy_Update($$$$)
 {
   my ($seconds, $device, $service, $values) = @_;
 	my $file = "$RRD_DIR/$device/taxonomy_$service.rrd";
 	my $value_str = join(":", AAT::ARRAY($values));
 
+	AAT::DEBUG("$RRD_UPDATE \"$file\" $seconds:$value_str");
 	`$RRD_UPDATE "$file" $seconds:$value_str 2> /dev/null`;
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Graph($device, $service, $file, 
 $title, $length)
 
-=cut
+Graphs RRD Data for 'Syslog by Device/Service Taxonomy' stats
 
+=cut
 sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
 {
   my ($device, $service, $file, $title, $length) = @_;
   my $cmd = "$NICE_RRDGRAPH " . Graph_Parameters("$RRD_PNG_DIR/${file}.png",
-		"-$length", "-120", $title, $GRAPH_HEIGHT, $GRAPH_WIDTH, 
+		"-$length", "-120", $title, $GRAPH_WIDTH, $GRAPH_HEIGHT,
 		"Logs Taxonomy for $service");
 
 	my %taxo_color = Octopussy::Taxonomy::Colors();	
@@ -290,8 +298,9 @@ sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
 
 =head2 Syslog_By_Device_Service_Taxonomy_Hourly_Graph($device, $service)
 
-=cut
+Graphs RRD Data for 'Syslog by Device/Service Taxonomy' hourly stats
 
+=cut
 sub Syslog_By_Device_Service_Taxonomy_Hourly_Graph($$)
 {
 	my ($device, $service) = @_;
@@ -302,8 +311,9 @@ sub Syslog_By_Device_Service_Taxonomy_Hourly_Graph($$)
 
 =head2 Syslog_By_Device_Service_Taxonomy_Daily_Graph($device, $service)
 
-=cut
+Graphs RRD Data for 'Syslog by Device/Service Taxonomy' daily stats
 
+=cut
 sub Syslog_By_Device_Service_Taxonomy_Daily_Graph($$)
 {
   my ($device, $service) = @_;
@@ -314,8 +324,9 @@ sub Syslog_By_Device_Service_Taxonomy_Daily_Graph($$)
 
 =head2 Syslog_By_Device_Taxonomy_Graph($device)
 
-=cut
+Graphs RRD Data for 'Syslog by Device Taxonomy' stats
 
+=cut
 sub Syslog_By_Device_Taxonomy_Graph($$$$)
 {
 	my ($device, $file, $title, $length) = @_;
@@ -353,13 +364,15 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 		$first = 0;
 	}
 	$cmd .= " $def $cdef $legend";
+	AAT::DEBUG("[$cdef] [$def] $cmd");
 	`$cmd`	if (($cdef ne "") && ($def ne ""));
 }
 
 =head2 Syslog_By_Device_Taxonomy_Hourly_Graph($device)
 
-=cut
+Graphs RRD Data for 'Syslog by Device Taxonomy' hourly stats
 
+=cut
 sub Syslog_By_Device_Taxonomy_Hourly_Graph($)
 {
 	my $device = shift;
@@ -370,8 +383,9 @@ sub Syslog_By_Device_Taxonomy_Hourly_Graph($)
 
 =head2 Syslog_By_Device_Taxonomy_Daily_Graph($device)
 
-=cut
+Graphs RRD Data for 'Syslog by Device Taxonomy' daily stats
 
+=cut
 sub Syslog_By_Device_Taxonomy_Daily_Graph($)
 {
   my $device = shift;
@@ -382,8 +396,9 @@ sub Syslog_By_Device_Taxonomy_Daily_Graph($)
 
 =head2 Syslog_By_Device_Taxonomy_Weekly_Graph($device)
 
-=cut
+Graphs RRD Data for 'Syslog by Device Taxonomy' weekly stats
 
+=cut
 sub Syslog_By_Device_Taxonomy_Weekly_Graph($)
 {
   my $device = shift;
@@ -394,8 +409,9 @@ sub Syslog_By_Device_Taxonomy_Weekly_Graph($)
 
 =head2 Syslog_By_Device_Taxonomy_Monthly_Graph($device)
 
-=cut
+Graphs RRD Data for 'Syslog by Device Taxonomy' monthly stats
 
+=cut
 sub Syslog_By_Device_Taxonomy_Monthly_Graph($)
 {
   my $device = shift;
@@ -406,8 +422,9 @@ sub Syslog_By_Device_Taxonomy_Monthly_Graph($)
 
 =head2 Syslog_By_Device_Taxonomy_Yearly_Graph($device)
 
-=cut
+Graphs RRD Data for 'Syslog by Device Taxonomy' yearly stats
 
+=cut
 sub Syslog_By_Device_Taxonomy_Yearly_Graph($)
 {
   my $device = shift;
@@ -419,8 +436,9 @@ sub Syslog_By_Device_Taxonomy_Yearly_Graph($)
 
 =head2 Report_Graph($rconf, $begin, $end, $output, $data, $stats, $lang)
 
-=cut
+Graphs RRD Report
 
+=cut
 sub Report_Graph($$$$$$$)
 {
 	my ($rconf, $begin, $end, $output, $data, $stats, $lang) = @_;

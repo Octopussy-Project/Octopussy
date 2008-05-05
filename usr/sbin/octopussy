@@ -39,8 +39,9 @@ my $pid_dir = Octopussy::Directory("running");
 
 =head2 Usage()
 
-=cut
+Prints usage for Octopussy program
 
+=cut
 sub Usage
 {
 	print "Usage: /etc/init.d/$PROG_NAME {start|stop|restart|dispatcher-start|dispatcher-stop|dispatcher-restart|dispatcher-reload|parser-start|parser-stop|parser-restart|scheduler-stop|scheduler-start|scheduler-restart} <device>\n";
@@ -48,8 +49,9 @@ sub Usage
 
 =head2 Dispatcher_Start()
 
-=cut
+Starts syslog-ng that launchs octo_dispatcher
 
+=cut
 sub Dispatcher_Start
 {
 	`$INITD_SYSLOG_NG start`;
@@ -58,8 +60,9 @@ sub Dispatcher_Start
 
 =head2 Dispatcher_Stop()
 
-=cut
+Stops syslog-ng that stops octo_dispatcher
 
+=cut
 sub Dispatcher_Stop
 {
 	`$INITD_SYSLOG_NG stop`;
@@ -68,8 +71,9 @@ sub Dispatcher_Stop
 
 =head2 Dispatcher_Reload()
 
-=cut
+Restarts syslog-ng and octo_dispatcher
 
+=cut
 sub Dispatcher_Reload
 {
 	`$INITD_SYSLOG_NG restart`;
@@ -78,8 +82,9 @@ sub Dispatcher_Reload
 
 =head2 Parser_Start($device)
 
-=cut
+Starts octo_parser for device '$device' (all devices if no device specified)
 
+=cut
 sub Parser_Start
 {
 	my $device = shift;
@@ -116,8 +121,9 @@ sub Parser_Start
 
 =head2 Parser_Stop($device)
 
-=cut
+Stops octo_parser for device '$device' (all devices if no device specified)
 
+=cut
 sub Parser_Stop
 {
 	my $device = shift;
@@ -156,8 +162,9 @@ sub Parser_Stop
 
 =head2 Pusher_Start
 
-=cut
+Starts octo_pusher
 
+=cut
 sub Pusher_Start
 {
 	system("sudo -u $USER $NICE_PUSHER $base$PUSHER &");
@@ -166,8 +173,9 @@ sub Pusher_Start
 
 =head2 Pusher_Stop
 
-=cut
+Stops octo_pusher
 
+=cut
 sub Pusher_Stop
 {
   `/usr/bin/killall $PUSHER`;
@@ -176,8 +184,9 @@ sub Pusher_Stop
 
 =head2 Scheduler_Start
 
-=cut
+Starts octo_scheduler
 
+=cut
 sub Scheduler_Start
 {
 	system("sudo -u $USER $NICE_SCHEDULER $base$SCHEDULER &");
@@ -186,8 +195,9 @@ sub Scheduler_Start
 
 =head2 Scheduler_Stop
 
-=cut
+Stops octo_scheduler
 
+=cut
 sub Scheduler_Stop
 {
 	`/usr/bin/killall $SCHEDULER`;
@@ -196,8 +206,9 @@ sub Scheduler_Stop
 
 =head2 Start()
 
-=cut
+Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
 
+=cut
 sub Start
 {
 	Dispatcher_Start();
@@ -209,8 +220,9 @@ sub Start
 
 =head2 Stop()
 
-=cut
+Stops all Octopussy programs (parsers, scheduler, pusher & dispatcher)
 
+=cut
 sub Stop
 {
 	Parser_Stop();

@@ -1,10 +1,6 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
+my @used_services = Octopussy::Service::List_Used();
 
 my @table = (
   [ { type => "form", args => { method => "post", action => $arg{url} } },
@@ -23,8 +19,8 @@ my @table = (
 #      args => { multiple => 1, size => 3, selected => \@devices } } ],
 #  [ { label => "Services" },
 #    { type => "octo_selector_service_dynamic",
-#      args => { multiple => 1, size => 3, device => \@devices,
-#        selected => \@services} } ],
+#      args => { multiple => 1, size => 3, selected => \@services,
+#				restricted_services => \@used_services } } ],
 #  [ { label => "Taxonomy" },
 #    { type => "octo_selector_taxonomy", args => { name => "taxonomy" } } ],
 #  [ { label => "TimePeriod" },

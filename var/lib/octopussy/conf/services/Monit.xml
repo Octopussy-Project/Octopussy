@@ -3,7 +3,7 @@
                    icon="software/logo_monit"
                    name="Monit"
                    nb_messages="007"
-                   version="200803250003"
+                   version="200804110003"
                    website="http://www.tildeslash.com/monit/">
   <message loglevel="Notice"
            msg_id="Monit:process_pid_changed_to"
@@ -65,4 +65,16 @@
            rank="010"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Information"
+           msg_id="Monit:process_running_with_pid"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' process is running with pid \d+&quot;):msg@&gt;"
+           rank="011"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Monit:start_script"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' start: .+&quot;):msg@&gt;"
+           rank="012"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>
