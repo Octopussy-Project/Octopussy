@@ -37,8 +37,9 @@ my @months = (undef, "Jan", "Feb", "Mar", "Apr", "May", "Jun",
 
 =head2 Init()
 
-=cut
+Inits Pusher
 
+=cut
 sub Init()
 {
 	%device_dir = ();
@@ -62,8 +63,9 @@ sub Init()
 
 =head2 Handle_Dir($device, $day, $month, $year)
 
-=cut
+Handles Directory ($device/$year/$month/$day)
 
+=cut
 sub Handle_Dir($$$$)
 {
 	my ($device, $day, $month, $year) = @_;
@@ -89,8 +91,9 @@ sub Handle_Dir($$$$)
 
 =head2 Convert_To_Syslog($line, $device)
 
-=cut
+Converts line $line to a syslog line
 
+=cut
 sub Convert_To_Syslog($$)
 {
 	my ($line, $device) = @_;
@@ -125,8 +128,9 @@ sub Convert_To_Syslog($$)
 
 =head2 Write_To_Incoming($dev, $year, $month, $mday, $hour, $min, @lines)
 
-=cut
+Writes to Incoming Directory
 
+=cut
 sub Write_To_Incoming
 {
 	my ($dev, $year, $month, $mday, $hour, $min, @lines) = @_;

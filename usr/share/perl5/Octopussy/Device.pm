@@ -25,10 +25,9 @@ my %filenames;
 
 =head2 New($conf)
 
-Create a new device
+Creates a new device
 
 =cut
- 
 sub New($)
 {
 	my $conf = shift;
@@ -49,10 +48,9 @@ sub New($)
 
 =head2 Modify($new_conf)
 
-Modify the configuration of a device
+Modifies the configuration of a device
 
 =cut
-
 sub Modify($)
 {
 	my $new_conf = shift;
@@ -79,10 +77,9 @@ sub Modify($)
 
 =head2 Reload_Required($device)
 
-Set 'reload_required' to device '$device'
+Sets 'reload_required' to Device '$device'
 
 =cut
-
 sub Reload_Required($)
 {
 	my $device = shift;
@@ -97,7 +94,6 @@ sub Reload_Required($)
 Removes device '$device'
 
 =cut
- 
 sub Remove($)
 {
 	my $device = shift;
@@ -115,10 +111,9 @@ sub Remove($)
 
 =head2 List()
 
-Get List of Devices
+Gets List of Devices
 
 =cut
- 
 sub List()
 {
 	$devices_dir ||= Octopussy::Directory($DEVICE_DIR);
@@ -128,10 +123,9 @@ sub List()
 
 =head2 Filename($device_name)
 
-Get the XML filename for the device '$device_name'
+Gets the XML filename for the device '$device_name'
 
 =cut
- 
 sub Filename($)
 {
 	my $device_name = shift;
@@ -145,10 +139,9 @@ sub Filename($)
 
 =head2 Configuration($device_name)
 
-Get the configuration for the device '$device_name'
+Gets the configuration for the device '$device_name'
 
 =cut
- 
 sub Configuration($)
 {
 	my $device_name = shift;
@@ -162,10 +155,9 @@ sub Configuration($)
 
 =head2 Configurations($sort)
 
-Get the configuration for all devices 
+Gets the configuration for all devices 
 
 =cut
-
 sub Configurations
 {
 	my $sort = shift || "name";
@@ -197,10 +189,9 @@ sub Configurations
 
 =head2 Filtered_Configurations($sort)
 
-Get the configuration for devices filtered by DeviceType/Model 
+Gets the configuration for devices filtered by DeviceType/Model 
 
 =cut
-
 sub Filtered_Configurations($$$)
 {
 	my ($type, $model, $sort) = @_;
@@ -236,19 +227,20 @@ sub Filtered_Configurations($$$)
 
 =head2 Add_Service($device, $service)
 
-Add a service or servicegroup '$service' to device '$device'
+Adds Service or Servicegroup '$service' to Device '$device'
 
 =cut
-
 sub Add_Service($$)
 {
 	my ($device, $service) = @_;
-	my $old_status = Parse_Status($device);
-  Parse_Pause($device)  if ($old_status == STARTED);
 
 	my $conf = AAT::XML::Read(Filename($device));
-	my $rank = $#{$conf->{service}} + 2;
-  $rank = AAT::Padding($rank, 2);
+	foreach my $dev_serv (AAT::ARRAY($conf->{service}))
+  	{ return()	if ($dev_serv->{sid} =~ /^$service$/); }
+
+	my $old_status = Parse_Status($device);
+  Parse_Pause($device)  if ($old_status == STARTED);
+  my $rank = AAT::Padding(($#{$conf->{service}} + 2), 2);
 	if ($service =~ /^group (.+)$/)
 	{
 		foreach my $s (Octopussy::ServiceGroup::Services($1))
@@ -271,10 +263,9 @@ sub Add_Service($$)
 
 =head2 Remove_Service($device_name, $service_name)
 
-Remove a service '$service_name' from device '$device_name'
+Removes a service '$service_name' from device '$device_name'
 
 =cut
-
 sub Remove_Service($$)
 {
 	my ($device_name, $service_name) = @_;
@@ -310,10 +301,9 @@ sub Remove_Service($$)
 =head2 Move_Service($device, $service, $direction)
 
 Moves Service '$service' into Device '$device' Services List 
-in DIrection Up or Down ('$direction')
+in Direction Up or Down ('$direction')
 
 =cut
-
 sub Move_Service($$$)
 {
 	my ($device, $service, $direction) = @_;
@@ -354,10 +344,9 @@ sub Move_Service($$$)
 
 =head2 Services(@devices)
 
-Get Service list from Device list '@devices'
+Gets Service list from Device list '@devices'
 
 =cut
- 
 sub Services
 {
 	my @devices = @_;
@@ -386,7 +375,6 @@ sub Services
 =head2 Services_Configurations($device_name, $sort)
 
 =cut
-
 sub Services_Configurations($$)
 {
   my ($device_name, $sort) = @_;
@@ -411,7 +399,6 @@ sub Services_Configurations($$)
 =head2 Services_Statistics($device)
 
 =cut
-
 sub Services_Statistics($)
 {
 	my $device = shift;
@@ -439,7 +426,6 @@ sub Services_Statistics($)
 Returns List of Device which have Service '$service' in its Devices List
 
 =cut
-
 sub With_Service($)
 {
 	my $service = shift;
@@ -460,7 +446,6 @@ sub With_Service($)
 Returns Device Types List
 
 =cut
-
 sub Types()
 {
 	my $conf = AAT::XML::Read(Octopussy::File("device_models"));
@@ -474,7 +459,6 @@ sub Types()
 =head2 Type_Configurations()
 
 =cut
-
 sub Type_Configurations()
 {
   my $conf = AAT::XML::Read(Octopussy::File("device_models"));
@@ -490,7 +474,6 @@ sub Type_Configurations()
 Returns Device Models List
 
 =cut
- 
 sub Models($)
 {
 	my $type = shift;
@@ -517,7 +500,6 @@ sub Models($)
 Returns Parsing status of the Device '$device'
 
 =cut
-
 sub Parse_Status($)
 {
 	my $device = shift;
@@ -540,7 +522,6 @@ sub Parse_Status($)
 Pauses Parsing for Device '$device'
 
 =cut
-
 sub Parse_Pause($)
 {
 	my $device = shift;
@@ -579,7 +560,6 @@ sub Parse_Pause($)
 Starts Parsing for Device '$device'
 
 =cut
-
 sub Parse_Start($)
 {
 	my $device = shift;
@@ -603,7 +583,6 @@ sub Parse_Start($)
 Stops Parsing for Device '$device'
 
 =cut
-
 sub Parse_Stop($)
 {
 	my $device = shift;

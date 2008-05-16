@@ -1,17 +1,17 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
-<WebUI:PageTop title="Devices" help="devices" />
 <%
 my $f = $Request->Form();
 my $device = $f->{device} || $Request->QueryString("device");
 my $dtype = $f->{device_type} || $Request->QueryString("dtype");
-my $dmodel = $f->{device_model};
+my $dmodel = $f->{device_model_filter};
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("devices_table_sort");	
 
+$Session->{AAT_PAGE_CURRENT} = 
+	"./devices.asp" . (AAT::NOT_NULL($sort) ? "?devices_table_sort=$sort" : "");
+
+%>
+<WebUI:PageTop title="Devices" help="devices" />
+<%
 if (!defined $device)
 {
 	if ($action eq "parse_reload_all")
@@ -31,10 +31,9 @@ if (!defined $device)
 	}
 	else
 	{
-	#print "filter dtype=$f->{device_type} dmodel=$f->{device_model}";
-	#<AAT:Inc file="octo_devices_filter_box" url="./devices.asp" 
-	#	dtype="$dtype" dmodel="$dmodel" />
-	%><AAT:Inc file="octo_devices_list" url="./devices.asp" 
+	%><AAT:Inc file="octo_devices_filter_box" url="./devices.asp" 
+		dtype="$dtype" dmodel="$dmodel" />
+	<AAT:Inc file="octo_devices_list" url="./devices.asp" 
 		dtype="$dtype" dmodel="$dmodel" sort="$sort" /><%
 	}
 }

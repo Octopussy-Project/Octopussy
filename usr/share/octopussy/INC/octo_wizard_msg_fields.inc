@@ -13,7 +13,7 @@ my $html_msg_orig = $Server->HTMLEncode($orig);
 <AAT:Form_Hidden name="table" value="$arg{table}" />
 <AAT:Form_Hidden name="msg_orig" value="$html_msg_orig" />
 <AAT:Form_Hidden name="msg_pattern" value="$html_msg_pattern" />
-<AAT:Box align="center">
+<AAT:Box align="C">
 <%
 my $re = Octopussy::Message::Short_Pattern_To_Regexp({ pattern => $pattern });
 my $i = 1;
@@ -35,7 +35,7 @@ while ($pattern =~ /<\@(.+?)\@>/)
 %>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol cspan="2" align="center">
+	<AAT:BoxCol cspan="2" align="C">
 	<AAT:Form_Submit value="_EDIT" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>

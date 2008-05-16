@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 
@@ -20,7 +15,7 @@ my $r_query = $conf->{query};
 <AAT:Form_Hidden name="old_report" value="$r_name" />
 <AAT:Form_Hidden name="graph_type" value="$r_type" />
 <AAT:Form_Hidden name="modify" value="yes" />
-<AAT:Box align="center" icon="buttons/bt_report" title="_REPORT_EDITION">
+<AAT:Box align="C" icon="buttons/bt_report" title="_REPORT_EDITION">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_NAME" style="B"/></AAT:BoxCol>
 	<AAT:BoxCol>

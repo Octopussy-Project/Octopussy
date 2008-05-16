@@ -7,7 +7,6 @@ package Octopussy::DB;
 
 use strict;
 no strict 'refs';
-
 use DBI;
 use Octopussy;
 
@@ -48,10 +47,9 @@ my @sql_substitutions =
 
 =head2 Connect()
 
-Connect to the Octopussy Database
+Connects to the Octopussy Database
 
 =cut 
-
 sub Connect()
 {
 	my $error = AAT::DB::Connect("Octopussy");
@@ -61,10 +59,9 @@ sub Connect()
 
 =head2 Table_Creation($tablename, \@fields, \@indexes)
 
-Creates table '$tablename' with fields '\@fields'
+Creates Table '$tablename' with fields '\@fields'
 
 =cut
-
 sub Table_Creation($$$)
 {
 	my ($tablename, $fields, $indexes) = @_;
@@ -76,7 +73,6 @@ sub Table_Creation($$$)
 =head2 SQL_As_Substitution($field)
 
 =cut
-
 sub SQL_As_Substitution($)
 {
 	my $field = shift;
@@ -84,14 +80,9 @@ sub SQL_As_Substitution($)
 	foreach my $s (@sql_substitutions)
  	{
 		if ($field =~ /^(\S+::\S+?)\((\S+)\)/)
-		{
-			$field = $2;
-		}
+			{ $field = $2; }
   	elsif ($field =~ /$s->{regexp}/)
-    {
-    	my ($first, $second) = ($1, $2);
-     	$field = "$s->{value}$second";
-   	}
+    	{ $field = "$s->{value}$2"; }
  	}
 
 	return ($field);
@@ -100,7 +91,6 @@ sub SQL_As_Substitution($)
 =head2 SQL_Select_Function(@fields)
 
 =cut
-
 sub SQL_Select_Function(@)
 {
 	my @fields = @_;
@@ -143,8 +133,9 @@ sub SQL_Select_Function(@)
 
 =head2 Column_Names($query)
 
-=cut
+Returns list of Column names from an SQL query
 
+=cut
 sub Column_Names($)
 {
 	my $query = shift;

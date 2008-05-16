@@ -288,7 +288,10 @@ sub Devices_and_Services_With($)
 	foreach my $dc (@dconfs)
 	{
 		foreach my $s (AAT::ARRAY($dc->{service}))
-			{ $device{$dc->{name}} = 1	if (defined $service{$s->{sid}}); }
+		{ 
+			print "$dc->{name} $s->{sid} ?\n";
+			$device{$dc->{name}} = 1	if (AAT::NOT_NULL($service{$s->{sid}})); 
+		}
 	}
 	foreach my $d (sort keys %device)
     { push(@devices, $d); }

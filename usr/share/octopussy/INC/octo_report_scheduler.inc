@@ -12,7 +12,7 @@ if ($#report_list >= 0)
 {
 %>
 <AAT:Form action="./report_scheduler.asp">
-<AAT:Box align="center">
+<AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="_NAME" style="B" /></AAT:BoxCol>
@@ -51,13 +51,13 @@ if ($#report_list >= 0)
 	<AAT:BoxCol align="R" rspan="2">
 	<AAT:Label value="_PERIOD" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="3">
-	<AAT:Inc file="selector_dayhour_relative" day_name="Day1" 
+	<AAT:Inc file="octo_selector_dayhour_relative" day_name="Day1" 
 		hour_name="Hour1" selected="$day1" />
 	</AAT:BoxCol>	
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol cspan="3">
-	<AAT:Inc file="selector_dayhour_relative" day_name="Day2"
+	<AAT:Inc file="octo_selector_dayhour_relative" day_name="Day2"
     hour_name="Hour2" selected="$day2" />
   </AAT:BoxCol>
 </AAT:BoxRow>
@@ -92,7 +92,7 @@ if ($#report_list >= 0)
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol align="center" cspan="6">
+  <AAT:BoxCol align="C" cspan="6">
 	<AAT:Form_Submit value="_SCHEDULE" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>

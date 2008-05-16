@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my @list = ();
 my $smtp_conf = AAT::SMTP::Configuration("Octopussy");
@@ -21,7 +16,7 @@ if (AAT::NOT_NULL($smtp_conf->{server}))
 {
 %>
 <AAT:Form method="POST" action="./submit.asp">
-<AAT:Box align="center">
+<AAT:Box align="C">
 <AAT:BoxRow>
 <AAT:BoxCol><AAT:Label value="_EMAIL" style="B" /></AAT:BoxCol>
 <AAT:BoxCol><AAT:Entry name="from" size="80" /></AAT:BoxCol>
@@ -39,7 +34,7 @@ if (AAT::NOT_NULL($smtp_conf->{server}))
 <AAT:BoxCol><AAT:TextArea name="comment" cols="80" rows="10" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="2" align="center">
+<AAT:BoxRow><AAT:BoxCol cspan="2" align="C">
 <AAT:Form_Submit value="_MSG_SEND_MY_NEW" />
 </AAT:BoxCol></AAT:BoxRow>
 </AAT:Box>

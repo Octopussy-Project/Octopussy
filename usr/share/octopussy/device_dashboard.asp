@@ -13,12 +13,8 @@ if (!-f "./rrd/taxonomy_${device}_${mode}.png")
 else
 {
 	my @stats = stat("./rrd/taxonomy_${device}_${mode}.png");
-	print "total: " . (time() - $stats[9]);
 	if (((time() - $stats[9]) > 60) && ($mode eq "hourly"))
-	{ 
-		print "hourly";
-		Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Hourly_Graph($device); 
-	}
+		{ Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Hourly_Graph($device); }
 	elsif (((time() - $stats[9]) > (10*60)) && ($mode eq "daily"))
 		{ Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Daily_Graph($device); }
 	elsif (((time() - $stats[9]) > (30*60)) && ($mode eq "weekly"))
@@ -32,8 +28,10 @@ else
 <table>
 <tr valign="top">
 <td><AAT:Inc file="octo_device_dashboard" device="$device" /></td>
-<td><AAT:RRD_Graph url="./device_dashboard.asp?device=$device"
+<td rowspan="2"><AAT:RRD_Graph url="./device_dashboard.asp?device=$device"
 	name="taxonomy_$device" mode="$mode" /></td>
+</tr><tr valign="top">
+<td><AAT:BackButton /></td>
 </tr>
 </table>
 <WebUI:PageBottom />

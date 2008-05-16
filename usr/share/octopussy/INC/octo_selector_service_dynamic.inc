@@ -1,5 +1,6 @@
 <% 
 my %arg = @_; 
+my $form_number = $arg{form_number} || 0;
 my $select_options = (defined $arg{multiple} ? " multiple" : "")
   . (defined $arg{size} ? " size=$arg{size}" : "");
 
@@ -29,7 +30,7 @@ foreach my $s (@services)
 %>
 </select>
 <script type="text/javascript">
-var device = document.forms[0].device.options.length;
+var device = document.forms[<%= $form_number %>].device.options.length;
 var service = new Array(device);
 for (i = 0; i < device; i++)
 	service[i] = new Array();
@@ -126,14 +127,14 @@ service[<%=$i%>][<%=$i2++%>] = new Option("<%= $s %>","<%= $s %>"); <%
   $i++;
 }
 %>
-var temp = document.forms[0].service;
+var temp = document.forms[<%= $form_number %>].service;
 
 function update_service(x)
 {
 	var selected = 0;
-	for (i = 0; i < document.forms[0].device.options.length; i++)
+	for (i = 0; i < document.forms[<%= $form_number %>].device.options.length; i++)
 	{
-		if (document.forms[0].device.options[i].selected == 1)
+		if (document.forms[<%= $form_number %>].device.options[i].selected == 1)
 			selected++;
 	}
 	if (selected > 1)

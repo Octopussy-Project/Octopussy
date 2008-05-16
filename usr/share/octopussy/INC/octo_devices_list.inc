@@ -5,12 +5,15 @@ my $url = $arg{url};
 my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
 my $role = $Session->{AAT_ROLE};
 my $lnk = "./devices.asp?devices_table_sort";
+my @list = Octopussy::Device::List();
 my @dconfs = Octopussy::Device::Filtered_Configurations($arg{dtype}, $arg{dmodel}, $sort);
 my $reload = 0;
 foreach my $d (@dconfs)
 	{ $reload = 1	if (AAT::NOT_NULL($d->{reload_required})); }
+my $title = AAT::Translation("_DEVICES");
+$title .= " (" . ($#dconfs+1) . "/" . ($#list+1) . ")";
 %>
-<AAT:Box align="C" title="_DEVICES" icon="buttons/bt_device">
+<AAT:Box align="C" title="$title" icon="buttons/bt_device">
 <AAT:BoxRow>
 	<AAT:BoxCol><%
 	if ($reload)
@@ -48,7 +51,7 @@ foreach my $d (@dconfs)
 	my $bt1 = ($status =~ /Stopped/ ? "pause" : "stop");
 	my $bt2 = ($status =~ /Started/ ? "pause" : "start");
 	my $tt1 = "_" . uc($bt1);
-	my $tt2 = "_" . uc($bt1);
+	my $tt2 = "_" . uc($bt2);
 	my $link1 = "./dialog.asp?id=parse_$bt1&arg1=$name";
 	my $link2 = "./dialog.asp?id=parse_$bt2&arg1=$name";
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
@@ -98,10 +101,10 @@ if ($role !~ /ro/i)
 	<AAT:BoxCol>
 	<AAT:Selector name="logtype" list=\@log_type selected="syslog"/></AAT:BoxCol>
 	<AAT:BoxCol>
-	<AAT:Inc file="selector_device_type_dynamic" 
+	<AAT:Inc file="octo_selector_device_type_dynamic" 
 		selected="$arg{dtype}" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Inc file="octo_selector_device_model" 
-		device_type="$arg{dtype}" /></AAT:BoxCol>
+		form_number="1" device_type="$arg{dtype}" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Entry name="description" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="8" align="C"><AAT:Form_Submit value="_NEW_DEVICE" /></AAT:BoxCol>
 </AAT:BoxRow>

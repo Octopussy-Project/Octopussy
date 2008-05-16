@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $device = $arg{device};
@@ -14,7 +9,7 @@ my $dialog = "./dialog.asp?id=delete_log_minute";
 my $remove_link = "$dialog&device=$device&datetime="
 	. "$y%20$m%20$d%20$hour:$min&timestamp=$timestamp&action=remove_minute";
 %>
-<AAT:Box align="left">
+<AAT:Box>
 <AAT:BoxRow>
 <AAT:BoxCol><AAT:Button name="remove" popup_link="$remove_link" /></AAT:BoxCol>
 <AAT:BoxCol><AAT:Label value="_REMOVE_LOG_MINUTE" style="B" />

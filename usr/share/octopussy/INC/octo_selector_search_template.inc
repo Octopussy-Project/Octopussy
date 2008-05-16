@@ -1,4 +1,7 @@
-<% my %arg = @_; %>
+<% 
+my %arg = @_; 
+my $form_number = $arg{form_number} || 0;
+%>
 <select name="search_template" 
 	onchange="update_search_params(this.options.selectedIndex)">
 <%
@@ -13,7 +16,7 @@ foreach my $e (Octopussy::Search_Template::List($login))
 %>
 </select>
 <script type="text/javascript">
-var nb_tpl = document.forms[0].search_template.options.length;
+var nb_tpl = document.forms[<%= $form_number %>].search_template.options.length;
 var tpl = new Array(nb_tpl);
 for (i = 0; i < nb_tpl; i++)
   tpl[i] = new Array();
@@ -40,19 +43,19 @@ tpl[<%= $i %>].re_exclude3 = '<%= $t->{re_exclude3} %>';
 
 function update_search_params(x)
 {
-	var doc = document.forms[0];
+	var form = document.forms[<%= $form_number %>];
 	if (x > 0)
 	{
 		var device_list = tpl[x].device.split(','); 
 		var device_index = 0;
-		for (i = 0; i < doc.device.options.length; i++)
+		for (i = 0; i < form.device.options.length; i++)
 		{
-			doc.device.options[i].selected = 0;
+			form.device.options[i].selected = 0;
 			for (i2 = 0; i2 < device_list.length; i2++)
 			{
-				if (doc.device.options[i].value == device_list[i2])
+				if (form.device.options[i].value == device_list[i2])
 				{
-					doc.device.options[i].selected = 1;
+					form.device.options[i].selected = 1;
 					device_index = i;
 				}
 			}
@@ -62,22 +65,22 @@ function update_search_params(x)
 		else
 			{ update_service(device_index); }
 		var service_list = tpl[x].service.split(',');
-		for (i = 0; i < doc.service.options.length; i++)
+		for (i = 0; i < form.service.options.length; i++)
   	{	
-			doc.service.options[i].selected = 0;
+			form.service.options[i].selected = 0;
 			for (i2 = 0; i2 < service_list.length; i2++)
       {
-    		if (doc.service.options[i].value == service_list[i2])
-      		doc.service.options[i].selected = 1;
+    		if (form.service.options[i].value == service_list[i2])
+      		form.service.options[i].selected = 1;
 			}
   	}
-		doc.template.value = tpl[x].template;
-		doc.re_include.value = tpl[x].re_include;
-		doc.re_include2.value = tpl[x].re_include2;
-		doc.re_include3.value = tpl[x].re_include3;
-		doc.re_exclude.value = tpl[x].re_exclude;
-  	doc.re_exclude2.value = tpl[x].re_exclude2;
-		doc.re_exclude3.value = tpl[x].re_exclude3;	
+		form.template.value = tpl[x].template;
+		form.re_include.value = tpl[x].re_include;
+		form.re_include2.value = tpl[x].re_include2;
+		form.re_include3.value = tpl[x].re_include3;
+		form.re_exclude.value = tpl[x].re_exclude;
+  	form.re_exclude2.value = tpl[x].re_exclude2;
+		form.re_exclude3.value = tpl[x].re_exclude3;	
 	}
 }
 </script>

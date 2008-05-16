@@ -20,14 +20,13 @@ my %filenames;
 
 =head2 New(\%conf)
 
-Create a new service
+Create a new Service
 
 Parameters:
 
 \%conf - hashref of the new service configuration
 
 =cut
- 
 sub New($)
 {
 	my $conf = shift;
@@ -40,14 +39,13 @@ sub New($)
 
 =head2 Remove($service)
 
-Remove the service '$service'
+Removes the Service '$service'
 
 Parameters:
 
-$service - Name of the service to remove
+$service - Name of the Service to remove
 
 =cut
-
 sub Remove($)
 {
 	my $service = shift;
@@ -58,10 +56,9 @@ sub Remove($)
 
 =head2 List()
 
-Get List of Services
+Returns List of Services
 
 =cut
-
 sub List()
 {
 	$services_dir ||= Octopussy::Directory($SERVICE_DIR);
@@ -71,10 +68,9 @@ sub List()
 
 =head2 List_Used()
 
-Get List of Services used
+Returns List of Services used
 
 =cut
-
 sub List_Used()
 {
 	my %service = ();
@@ -88,44 +84,41 @@ sub List_Used()
 	return (sort keys %service);
 }
 
-=head2 Filename($service_name)
+=head2 Filename($service)
 
-Get the XML filename for the service '$service_name'
+Returns the XML filename for the service '$service'
 
 =cut
-
 sub Filename($)
 {
-	my $service_name = shift;
+	my $service = shift;
 
-	return ($filenames{$service_name})   if (defined $filenames{$service_name});
+	return ($filenames{$service})   if (defined $filenames{$service});
 	$services_dir ||= Octopussy::Directory($SERVICE_DIR);
-	$filenames{$service_name} = "$services_dir/$service_name.xml";
+	$filenames{$service} = "$services_dir/$service.xml";
 
-	return ($filenames{$service_name});
+	return ($filenames{$service});
 }
 
-=head2 Configuration($service_name)
+=head2 Configuration($service)
 
-Get the configuration for the service '$service_name'
+Returns the configuration for the Service '$service'
 
 =cut
-
 sub Configuration($)
 {
-	my $service_name = shift;
+	my $service = shift;
 
-	my $conf = AAT::XML::Read(Filename($service_name));
+	my $conf = AAT::XML::Read(Filename($service));
 
  	return ($conf);
 }
 
 =head2 Configurations($sort)
 
-Get the configuration for all services
+Returns the configuration for all Services
 
 =cut
-
 sub Configurations
 {
   my $sort = shift || "name";
@@ -154,7 +147,6 @@ sub Configurations
 Returns the next available message id for Service '$service'
 
 =cut
-
 sub Msg_ID($)
 {
 	my $service = shift;
@@ -177,8 +169,9 @@ sub Msg_ID($)
 
 =head2 Msg_ID_unique($service, $msgid)
 
-=cut
+Checks if $msgid is valid & unique for Service $service
 
+=cut
 sub Msg_ID_unique($$)
 {
 	my ($service, $msgid) = @_;
@@ -193,12 +186,11 @@ sub Msg_ID_unique($$)
 	return (1);
 }
 
-=head2 Add_Message($service_name, $mconf)
+=head2 Add_Message($service, $mconf)
 
-Add a message '$mconf' to service '$service_name'
+Adds Message '$mconf' to Service '$service'
 
 =cut
-
 sub Add_Message($$)
 {
 	my ($service, $mconf) = @_;
@@ -221,10 +213,9 @@ sub Add_Message($$)
 
 =head2 Remove_Message($service, $msgid)
 
-Remove a message with id '$msgid' from service '$service'
+Removes Message with id '$msgid' from Service '$service'
 
 =cut
-
 sub Remove_Message($$)
 {
 	my ($service, $msgid) = @_;
@@ -256,10 +247,9 @@ sub Remove_Message($$)
 
 =head2 Modify_Message($service, $msgid, $modified_conf)
 
-Modify a message with id '$msgid' from service '$service'
+Modifies Message with id '$msgid' from Service '$service'
 
 =cut
-
 sub Modify_Message($$$)
 {
 	my ($service, $msgid, $modified_conf) = @_;
@@ -288,10 +278,9 @@ sub Modify_Message($$$)
 
 =head2 Move_Message($service, $msgid, $direction)
 
-Move message '$msgid' up/down ('$direction') inside service '$service'
+Moves Message '$msgid' up/down ('$direction') inside Service '$service'
 
 =cut
-
 sub Move_Message($$$)
 {
 	my ($service, $msgid, $direction) = @_;
@@ -335,7 +324,6 @@ sub Move_Message($$$)
 Get messages from service '$service'
 
 =cut
-
 sub Messages($)
 {
 	my $service = shift;
@@ -361,7 +349,6 @@ sub Messages($)
 Get the configuration for all messages from '$service'
 
 =cut
-
 sub Messages_Configurations($$)
 {
 	my ($service, $sort) = @_;
@@ -391,7 +378,6 @@ sub Messages_Configurations($$)
 =head2 Messages_Statistics_Files($service, $y, $mon, $d, $h, $m, $minutes)
 
 =cut
-
 sub Messages_Statistics_Files($$$$$$$)
 {
 	my ($service, $y, $mon, $d, $h, $m, $minutes) = @_;
@@ -411,7 +397,6 @@ sub Messages_Statistics_Files($$$$$$$)
 =head2 Messages_Statistics_Save($dir_pid, $service, $y, $mon, $d, $h, $m, $total, %stat)
 
 =cut
-
 sub Messages_Statistics_Save
 {
 	my ($dir_pid, $service, $y, $mon, $d, $h, $m, $total, %stat) = @_;
@@ -430,8 +415,9 @@ sub Messages_Statistics_Save
 
 =head2 Messages_Statistics($service, $minutes)
 
-=cut
+Returns Messages statistics for Service $service for the last $minutes
 
+=cut
 sub Messages_Statistics($$)
 {
 	my ($service, $minutes) = @_;
@@ -485,7 +471,6 @@ sub Messages_Statistics($$)
 Get tables from service '$service'
 
 =cut
-
 sub Tables($)
 {
 	my $service = shift;
@@ -504,7 +489,6 @@ sub Tables($)
 =head2 Global_Regexp($service)
 
 =cut
-
 sub Global_Regexp($)
 {
 	my $service = shift;
@@ -530,7 +514,6 @@ sub Global_Regexp($)
 Restart Device parsing for device with service '$service'
 
 =cut
-
 sub Parse_Restart($)
 {
 	my $service = shift;
@@ -551,7 +534,6 @@ sub Parse_Restart($)
 Set 'reload_required' for device with service '$service'
 
 =cut
-
 sub Parse_Restart_Required($)
 {
   my $service = shift;
@@ -566,8 +548,9 @@ sub Parse_Restart_Required($)
 
 =head2 Updates()
 
-=cut
+Gets Services Updates from Internet
 
+=cut
 sub Updates()
 {
 	my %update;
@@ -587,8 +570,9 @@ sub Updates()
 
 =head2 Updates_Installation(@services)
 
-=cut
+Installs Services Updates
 
+=cut
 sub Updates_Installation
 {
   my @services = @_;
@@ -605,8 +589,9 @@ sub Updates_Installation
 
 =head2 Update_Get_Messages($service)
 
-=cut
+Returns Service Updates Messages
 
+=cut
 sub Update_Get_Messages($)
 {
 	my $service = shift;
@@ -622,8 +607,9 @@ sub Update_Get_Messages($)
 
 =head2 Updates_Diff($service)
 
-=cut
+Returns Service Updates differences
 
+=cut
 sub Updates_Diff($)
 {
   my $service = shift;

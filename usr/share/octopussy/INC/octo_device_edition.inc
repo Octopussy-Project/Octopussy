@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $device = $arg{device};
@@ -30,7 +25,7 @@ foreach my $m (@models)
 }
 %>
 <AAT:Form action="./device_edit.asp">
-<AAT:Box align="center">
+<AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_DEVICE" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="2"><AAT:Label value="$name" style="B" /></AAT:BoxCol>
@@ -43,7 +38,7 @@ if (defined $icon)
 	</AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_DEVICE_TYPE" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="2">
-	<AAT:Inc file="selector_device_type_dynamic" selected="$type" 
+	<AAT:Inc file="octo_selector_device_type_dynamic" selected="$type" 
 		url="./device_edit.asp?device=$device&device_type=" />
 	</AAT:BoxCol>
 </AAT:BoxRow>

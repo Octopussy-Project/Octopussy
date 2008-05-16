@@ -1,5 +1,5 @@
 <% my %arg = @_; %>
-<AAT:Box align="center" title="_STORAGES" icon="buttons/bt_storage">
+<AAT:Box align="C" title="_STORAGES" icon="buttons/bt_storage">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_NAME" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_DIRECTORY" style="B" /></AAT:BoxCol>

@@ -6,11 +6,12 @@ var loop = 0;
 
 function extract_progress()
 {
-  http_request = HttpRequest("Update_Progress", "ajax_extract_progress.asp");
+  http_request = HttpRequest("Update_Progress", 
+		"ajax_progress.asp?bin=octo_extractor");
   if (!http_request)
     { return false; }
   http_request.onreadystatechange = Update_Progress;
-  http_request.open('GET', "ajax_extract_progress.asp", true);
+  http_request.open('GET', "ajax_progress.asp?bin=octo_extractor", true);
   http_request.send(null);
   loop = setTimeout("extract_progress()", 1000);
 }
@@ -23,7 +24,7 @@ function Update_Progress()
     {
       var xml =  http_request.responseXML;
       var root = xml.documentElement;
-      if ((!root.getElementsByTagName('total')[0].firstChild) && (started))
+			if ((root.getElementsByTagName('desc')[0].firstChild.data == "FINISHED")         && (started))
       {
         finished = 1;
         started = 0;

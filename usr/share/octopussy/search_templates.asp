@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Services" help="#search_templates" />
+<WebUI:PageTop title="Search Templates" help="#search_templates" />
 <%
 my $role = $Session->{AAT_ROLE};
 my $action = $Request->QueryString("action");

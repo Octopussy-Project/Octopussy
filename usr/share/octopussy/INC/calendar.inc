@@ -1,14 +1,9 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $url = $arg{url};
-my $dayfield = $arg{dayfield};
-my $monthfield = $arg{monthfield};
-my $yearfield = $arg{yearfield};
+my $dayfield = $arg{dayfield} || "day";
+my $monthfield = $arg{monthfield} || "month";
+my $yearfield = $arg{yearfield} || "year";
 my $arg_str = "";
 foreach my $k (keys %arg)
 	{ $arg_str .= "&$k=$arg{$k}"; }
@@ -25,50 +20,66 @@ my $nb_days = AAT::Datetime::Month_Nb_Days($y, $m);
 my $link_prev = "./calendar.asp?year=$prev_y&month=$prev_m&$arg_str";
 my $link_next = "./calendar.asp?year=$next_y&month=$next_m&$arg_str";
 my $month_name = AAT::Datetime::Month_Name($m);
-
-my @table = (
-	[ { label => "<<", link => $link_prev, align => "left", style => "bold" },
-		{ label => AAT::Translation($month_name) . " $y", 
-			align => "center", style => "bold", colspan => 5 }, 
-		{ label => ">>", link => $link_next, align => "right", style => "bold" } ],
-	[ { label => "<hr>", colspan => 7 } ] );
-my @row_week = ();
+my $month_str = AAT::Translation($month_name) . " $y";
+%>
+<AAT:Box align="C">
+<AAT:BoxRow>
+	<AAT:BoxCol><b><a href="<%= $link_prev %>"> << </a></b></AAT:BoxCol>
+	<AAT:BoxCol cspan="5" align="C">
+	<AAT:Label value="$month_str" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol align="R"><b><a href="<%= $link_next %>"> >> </a></b></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><%
 for my $i (1..7)
 {
-	my $dname = AAT::Datetime::WeekDay_Name($i); 
-	$dname = AAT::Translation($dname);
-	push(@row_week, { label => substr($dname, 0, 3), style => "bold" } ); 
+  my $dname = AAT::Datetime::WeekDay_Name($i);
+	my $d_str = substr(AAT::Translation($dname), 0, 3);
+%><AAT:BoxCol><AAT:Label value="$d_str" style="B" /></AAT:BoxCol><%
 }
-push(@table, \@row_week);
-push(@table, [ { label => "<hr>", colspan => 7 } ] );
+%>
+</AAT:BoxRow>
+<%
 my $col = 0;
 my $row = 0;
 while ($col < AAT::Datetime::WeekDay($y, $m, 1))
-	{ $col++; }
-my @rows = ();
+{ 
+	$rows[$row][$col] = { label => "" };
+	$col++; 
+}
+
 for my $i (1..$nb_days)
 {
-	my $day_link = "";
-	if ($url =~ /.+\?.+/)
-	{
-		$day_link = "$url&$dayfield=" . (($i < 10) && ($i !~ /^0/) ? "0$i" : $i) 
-			. "&$monthfield=" . (($m < 10) && ($m !~ /^0/) ? "0$m" : $m) . "&$yearfield=$y";
-	}
-	else
-	{
-		$day_link = "$url?$dayfield=" . (($i < 10) && ($i !~ /^0/) ? "0$i" : $i)
+  my $day_link = "";
+  if ($url =~ /.+\?.+/)
+  {
+    $day_link = "$url&$dayfield=" . (($i < 10) && ($i !~ /^0/) ? "0$i" : $i)
       . "&$monthfield=" . (($m < 10) && ($m !~ /^0/) ? "0$m" : $m) . "&$yearfield=$y";
-	}
-	$rows[$row][$col-1] = { label => (($i < 10) && ($i !~ /^0/) ? "0$i" : $i), link => $day_link };
-	$row++	if ($col == 7);
-	$col = ($col == 7 ? 1 : $col + 1);
+  }
+  else
+  {
+    $day_link = "$url?$dayfield=" . (($i < 10) && ($i !~ /^0/) ? "0$i" : $i)
+      . "&$monthfield=" . (($m < 10) && ($m !~ /^0/) ? "0$m" : $m) . "&$yearfield=$y";
+  }
+  $rows[$row][$col-1] = { label => (($i < 10) && ($i !~ /^0/) ? "0$i" : $i), link => $day_link };
+  $row++  if ($col == 7);
+  $col = ($col == 7 ? 1 : $col + 1);
 }
 while ($col <= 7)
-{ 
-	$rows[$row][$col-1] = { label => "" }; 
-	$col++;
+{
+  $rows[$row][$col-1] = { label => "" };
+  $col++;
 }
 foreach my $row (@rows)
-	{ push(@table, $row); }
+{ 
+	%><AAT:BoxRow><%
+	foreach my $col (@{$row})
+	{
+		my ($label, $link) = ($col->{label}, $col->{link});
+	%><AAT:BoxCol align="R">
+	<AAT:Label value="$label" link="$link"/></AAT:BoxCol><%
+	}
+	%></AAT:BoxRow><%
+}
 %>
-<% $Response->Include('INC/box.inc', elements => \@table) %>
+</AAT:Box>

@@ -1,4 +1,4 @@
-<WebUI:PageTop title="ServiceGroups" help="#servicegroups_page" />
+<WebUI:PageTop title="ServiceGroups" help="servicegroups" />
 <%
 my $f = $Request->Form();
 my $sg = $f->{servicegroup} || $Request->QueryString("servicegroup");

@@ -261,7 +261,6 @@ sub Syslog_By_Device_Service_Taxonomy_Update($$$$)
 	my $file = "$RRD_DIR/$device/taxonomy_$service.rrd";
 	my $value_str = join(":", AAT::ARRAY($values));
 
-	AAT::DEBUG("$RRD_UPDATE \"$file\" $seconds:$value_str");
 	`$RRD_UPDATE "$file" $seconds:$value_str 2> /dev/null`;
 }
 
@@ -332,7 +331,7 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 	my ($device, $file, $title, $length) = @_;
 
 	my $cmd = Graph_Parameters("$RRD_PNG_DIR/${file}.png", "-$length", "-120",
-		$title, $GRAPH_WIDTH, $GRAPH_HEIGHT, "Logs Taxonomy for $device");
+		$title, $GRAPH_WIDTH, $GRAPH_HEIGHT, "Taxonomy for $device");
 	my @services = Octopussy::Device::Services($device);
 	my %taxo_color = Octopussy::Taxonomy::Colors();
   my @list = Octopussy::Taxonomy::List();
@@ -342,7 +341,6 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
   {
 		my $i = 0;
 		my $type_name = $t;
-		#$cdef .= " CDEF:$t=$t" . chr(65+$i) . ",UN,0,$t" . chr(65+$i) . ",IF,";
     my $color = $taxo_color{$t} || "#909090";
 		$t =~ s/\./_/g;
     my $type = ($first ? "AREA" : "STACK");
@@ -354,17 +352,16 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 					. "=\"$RRD_DIR/$device/taxonomy_$s.rrd\":$t:AVERAGE ";
 				$cdef .= ($i == 0 ? " CDEF:$t=" : "") . "$t" . chr(65+$i) 
 					. ",UN,0,$t" . chr(65+$i) . ",IF," . ($i > 0 ? "+," : "");
-					#. ",IF,+,"	if ($i > 0);
 				$i++;
 			}
 		}
 		$cdef =~ s/,$//;
-		$legend .= Graph_Line($t, $type, $color, "Logs $type_name")
+		$legend .= Graph_Line($t, $type, $color, $type_name)
 			. " " . Graph_Legend($t) . " ";
 		$first = 0;
 	}
 	$cmd .= " $def $cdef $legend";
-	AAT::DEBUG("[$cdef] [$def] $cmd");
+	AAT::DEBUG("CMD: $cmd LEN: " . length($cmd));
 	`$cmd`	if (($cdef ne "") && ($def ne ""));
 }
 

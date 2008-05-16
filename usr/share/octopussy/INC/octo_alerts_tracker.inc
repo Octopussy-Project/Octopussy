@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $nb_alerts_max = Octopussy::Parameter("max_alerts");
@@ -12,47 +7,56 @@ my $stat = $arg{status} || "";
 $al =~ s/-ANY-//gi;
 $dev =~ s/-ANY-//gi;
 $stat =~ s/-ANY-//gi;
-
 my $today = AAT::Datetime::Now_String();
-
-my $sort = ((defined $arg{sort} && $arg{sort} ne "") 
-	? lc($arg{sort}) : "date_time");
-my $url_sort = $arg{url} . "?sort=";
-
-my @table = (
-	[ { type => "form", args => { method => "post", action => $arg{url} } },
-		{ type => "AAT_Form_Hidden",
-      args => { name => "alert" , value => $al } },
-    { type => "AAT_Form_Hidden",
-      args => { name => "device" , value => $dev } },
-    { type => "AAT_Form_Hidden",
-      args => { name => "status" , value => $stat } } ],
-	[ { label => "_COMMENT", colspan => 4, align => "center", style => "B" }, 
-		{ label => "_STATUS", align => "center", style => "B" },
-    { label => "_SELECTION", align => "center", style => "B" } ],
-	[ { type => "AAT_TextArea", align => "center", colspan => 4, rowspan => 2,
-      args => { name => "comment", cols => 100, rows => 3,
-                wrap => "on", data => $today } },
-    { type => "octo_selector_alert_status", 
-			args => { name => "edit_status" } },
-		{ type => "AAT_Form_Submit", align => "center",
-      args => { name => "selectall", value => "Select All" } } ],
-  [ { type => "AAT_Form_Submit", colspan => 2, align => "center",
-      args => { value => "_UPDATE" } } ],
-	[ { label => "<hr>", colspan => 6 } ],
-	[	{ label => "_ALERT_NAME", align => "center", 
-			link => $url_sort . "alert_id" },
-   	{ label => "_DEVICE", align => "center", link => $url_sort . "device" },
-		{ label => "_DATETIME", align => "center", link => $url_sort . "date_time" },
-   	{ label => "_LOG", align => "center", link => $url_sort . "log" },
-		{ label => "_STATUS", align => "center", link => $url_sort . "status" }, 
-		{ label => "_SELECTION", align => "center" } ],
-	[ { label => "<hr>", colspan => 6 } ] );
-
+my $sort = (AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "date_time");
+my $url_sort = $arg{url} . "?sort";
+%>
+<AAT:Form action="$arg{url}">
+<AAT:Form_Hidden name="alert" value="$al" />
+<AAT:Form_Hidden name="device" value="$dev" />
+<AAT:Form_Hidden name="status" value="$stat" />
+<AAT:Box>
+<AAT:BoxRow>
+	<AAT:BoxCol align="C" cspan="4">
+	<AAT:Label value="_COMMENT" style="B"/></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+	<AAT:Label value="_STATUS" style="B"/></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+  <AAT:Label value="_SELECTION" style="B"/></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol align="C" cspan="4" rspan="2">
+	<AAT:TextArea name="comment" cols="100" rows="3" wrap="on" data="$today" />
+	</AAT:BoxCol>
+	<AAT:BoxCol>
+	<AAT:Inc file="octo_selector_alert_status" name="edit_status" /></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+  <AAT:Form_Submit name="selectall" value="_SELECT_ALL" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+	<AAT:BoxCol align="C" cspan="2">
+	<AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol align="C">
+	<AAT:Label value="_ALERT_NAME" link="$url_sort=alert_id" /></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+  <AAT:Label value="_DEVICE" link="$url_sort=device" /></AAT:BoxCol>	
+	<AAT:BoxCol align="C">
+  <AAT:Label value="_DATETIME" link="$url_sort=date_time" /></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+  <AAT:Label value="_LOG" link="$url_sort=log" /></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+  <AAT:Label value="_STATUS" link="$url_sort=status" /></AAT:BoxCol>
+	<AAT:BoxCol align="C"><AAT:Label value="_SELECTION" /></AAT:BoxCol>
+</AAT:BoxRow>	
+<AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
+<%
 my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 my @res_alerts = AAT::ARRAY($restricts->{alert});
 my $limit = (($#res_alerts >= 0) ? undef : $nb_alerts_max);
-my @alerts = Octopussy::Alert::Tracker($al, $dev, $stat, "", $limit);
+my @alerts = Octopussy::Alert::Tracker($al, $dev, $stat, $sort, $limit);
 my $nb = 0;
 foreach my $a (@alerts)
 {
@@ -63,26 +67,28 @@ foreach my $a (@alerts)
   		{	$match = 1	if ($res eq $a->{alert_id}); }
 	}
 	else
-	{
-		$match = 1;
-	}
+		{ $match = 1; }
 	if ($match)
 	{
-		my $color = ($a->{level} =~ /Critical/i ? "red" : "orange");
-  	push(@table, [ { label => $a->{alert_id}, color => $color },
-  	{ label => $a->{device}, color => $color },
-		{ label => $a->{date_time}, color => $color },
-  	{ label => $Server->HTMLEncode($a->{log})
-    	. "<br><i><b>" . $Server->HTMLEncode($a->{comment}). "</b></i>" },
-   	{ label => $a->{status}, align => "center" },
-   	{ type => "AAT_CheckBox", align => "center",
-    	args => { name => "alert_id_$a->{log_id}",           
-			selected => $arg{selectall} } } ] );
+		my ($alert_id, $device, $dt, $log, $comment, $status, $log_id) 
+			= ($a->{alert_id}, $a->{device}, $a->{date_time}, 
+					$Server->HTMLEncode($a->{log}), $Server->HTMLEncode($a->{comment}), 
+					$a->{status}, $a->{log_id});
+		my $color = ($a->{level} =~ /Critical/i ? "red" : "orange"); %>
+	<AAT:BoxRow>
+		<AAT:BoxCol><AAT:Label value="$alert_id" color="$color"/></AAT:BoxCol>
+		<AAT:BoxCol><AAT:Label value="$device" color="$color"/></AAT:BoxCol>
+		<AAT:BoxCol><AAT:Label value="$dt" color="$color"/></AAT:BoxCol>
+		<AAT:BoxCol><%= "$log<br><i><b>$comment</b></i>" %></AAT:BoxCol>
+		<AAT:BoxCol align="C"><AAT:Label value="$status" /></AAT:BoxCol>
+		<AAT:BoxCol align="C">
+		<AAT:CheckBox name="alert_id_$log_id" selected="$arg{selectall}" />
+		</AAT:BoxCol>
+	</AAT:BoxRow><%
 		$nb++;
 	}
-	last	if ($nb>=$nb_alerts_max);
+	last	if ($nb >= $nb_alerts_max);
 }
-push(@table, [ { type => "end_form" } ]);
-
-$Response->Include('INC/box.inc', width => "100%", elements => \@table);
 %>
+</AAT:Box>
+</AAT:Form>

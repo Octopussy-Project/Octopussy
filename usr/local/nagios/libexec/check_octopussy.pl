@@ -1,8 +1,7 @@
-#!/usr/bin/perl -w
-
+#! /usr/bin/perl -w
 =head1 NAME
 
-check_octopussy.pl - Nagios Plugin for Octopussy
+check_octopussy.pl - Nagios Plugin for Octopussy (www.8pussy.org)
 
 =head1 SYNOPSIS
 
@@ -32,10 +31,11 @@ use constant STATE_CRITICAL => 2;
 use constant STATE_UNKNOWN => 3;
 
 my $PROG_NAME = "check_octopussy.pl";
-my $VERSION = "0.2";
+my $VERSION = "0.3";
 
 my ($help, $opt_all, $opt_process, $opt_parser, $opt_partition);
 my $state = STATE_OK;
+my $out = undef;
 
 =head1 FUNCTIONS
 
@@ -72,15 +72,23 @@ Checks that octo_dispatcher,  octo_scheduler & syslog-ng are running
 =cut
 sub Check_Process()
 {
-	my %proc = Octopussy::Process_Status();	
+	my $localState = STATE_OK;
+	my %proc = Octopussy::Process_Status();
+	my @processNotRunning = ();
 	foreach my $k (sort keys %proc)
 	{
-		if ($proc{$k} == 0)
-		{
-			print "Process $k is not running !\n";
-			$state = STATE_CRITICAL;
-		}
+		push(@processNotRunning, $k)	if ($proc{$k} == 0);
 	}
+	$out .= " - " if (defined($out));
+	$out .= "Process : ";
+	if ($#processNotRunning > -1)
+	{
+		$localState = STATE_CRITICAL;
+		$out .= join(",", sort @processNotRunning) . " not running !";
+	}
+	else
+		{ $out .= "OK"; } 
+	$state = ($state < $localState ? $localState : $state);
 }
 
 =head2 Check_Parsers_States()
@@ -90,27 +98,49 @@ Checks parsers states
 =cut
 sub Check_Parsers_States()
 {
+	my $localState = STATE_OK;
 	my @dconfs = Octopussy::Device::Configurations();
+	my @parserNotRunning = ();
+	my %parserWrongNumber = ();
 	foreach my $dc (@dconfs)
 	{
 		my ($name, $status) = ($dc->{name}, $dc->{status});
 		my @lines = `ps -edf | egrep "octo_parser $name\$" | grep -v grep`;
 		if (($#lines >= 0) && ($status !~ /^Started$/))
 		{ # one or more parsers for 'unstarted' device
-			print "There is " . ($#lines+1) . " parser(s) for $status device '$name' !\n";
-			$state = ($state < STATE_WARNING ? STATE_WARNING : $state);
+			$parserWrongNumber{$name} = ($#lines+1)." ($status)";
+			$localState = ($localState < STATE_WARNING ? STATE_WARNING : $localState);
 		}
 		elsif ($#lines > 0)
-  	{ # more than one parser for the same device
-  		print "There is " . ($#lines+1) . " parsers for device '$name' !\n";
-    	$state = STATE_CRITICAL;
-  	}	
+  		{ # more than one parser for the same device
+			$parserWrongNumber{$name} = ($#lines+1)." ($status)";
+			$localState = STATE_CRITICAL;
+  		}	
 		elsif (($#lines == -1) && ($status =~ /^Started$/))
 		{ # no parser for a 'started' device
-			print "There is no parser for device '$dc->{name}' !\n";
-			$state = STATE_CRITICAL;
+			push(@parserNotRunning, $dc->{name});
 		}
 	}
+	$out .= " - " if (defined($out));
+	$out .= "Parser : ";
+	if ($#parserNotRunning > -1)
+	{
+		$localState = STATE_CRITICAL;
+		$out .= "No parser for devices : ".join(",", sort @parserNotRunning)." !";
+	}
+	my @tab = keys(%parserWrongNumber);
+	if ( $#tab > -1 )
+	{
+		my @res = ();
+		foreach my $d (sort @tab)
+		{
+			push(@res, "$d [$parserWrongNumber{$d}]");
+		}
+		$out .= " ; " if ($#parserNotRunning > -1);
+		$out .= "Wrong number of parsers for devices : " . join(",", @res) . " !";
+	}
+	$out .= "OK" if ($localState == STATE_OK);
+	$state = ($state < $localState ? $localState : $state);
 }
 
 =head2 Check_Partitions()
@@ -120,21 +150,38 @@ Checks partitions space
 =cut
 sub Check_Partitions()
 {
+	my $localState = STATE_OK;
 	my @storages = Octopussy::Stats::Partition_Logs();
+	my %storageError = ();
 	foreach my $s (@storages)
 	{
 		my ($name, $used) = ($s->{directory}, $s->{usage});
 		if (($used =~ /9[0-4]\%/) || ($used =~ /8\d\%/))
-  	{ # 80%-94%
-    	print "Partition $name used space $used !\n";
-    	$state = ($state < STATE_WARNING ? STATE_WARNING : $state);
-  	}
+  		{ # 80%-94%
+			$storageError{$name} = $used;
+			$localState = ($localState < STATE_WARNING ? STATE_WARNING : $localState);
+  		}
 		elsif (($used =~ /9[5-9]\%/) || ($used =~ /100\%/))
 		{ # 95%-100%
-			print "Partition $name used space $used !\n";
-			$state = STATE_CRITICAL;
+			$storageError{$name} = $used;
+			$localState = STATE_CRITICAL;
 		}
 	}
+	$out .= " - " if (defined($out));
+	$out .= "Partition : ";
+	my @tab = keys(%storageError);
+	if ( $#tab > -1 )
+	{
+		my @res = ();
+		foreach my $s (sort @tab)
+		{
+			push(@res, "$s [$storageError{$s}]");
+		}
+		$out .= "Over limits : " . join(",", @res) . " !";
+	}
+	else
+		{ $out .= "OK"; }
+	$state = ($state < $localState ? $localState : $state);
 }
 
 ###########################################################
@@ -150,7 +197,8 @@ Check_Process()	if ($opt_process || $opt_all);
 Check_Parsers_States() if ($opt_parser || $opt_all);
 Check_Partitions() if ($opt_partition || $opt_all);
 
-print "Octopussy is OK !\n"	if ($state == STATE_OK);
+print "Octopussy $out\n";
+
 exit($state);
 
 =head1 AUTHOR

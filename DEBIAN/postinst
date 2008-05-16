@@ -60,6 +60,7 @@ $UPDATERC $OCTO defaults 99 || true
 #
 # Apache2 Configuration
 #
+A2DISSITE="/usr/sbin/a2dissite"
 A2ENSITE="/usr/sbin/a2ensite"
 A2ENMOD="/usr/sbin/a2enmod"
 APACHE2_FILE="/etc/apache2/apache2.conf"
@@ -68,6 +69,7 @@ $CP $APACHE2_FILE $APACHE2_FILE.old
 $SED "s?^User.*?User $OCTO?g" $APACHE2_FILE
 $SED "s?^Group.*?Group $OCTO?g" $APACHE2_FILE
 $LN /etc/$OCTO/apache2.conf /etc/apache2/sites-available/$OCTO
+$A2DISSITE default >> /dev/null
 $A2ENSITE $OCTO >> /dev/null
 $A2ENMOD dir >> /dev/null
 $A2ENMOD ssl >> /dev/null

@@ -232,6 +232,7 @@
   <msg mid="_NEW_DYNAMIC_ALERT" value="New Dynamic Alert" />
   <msg mid="_NEW_DYNAMIC_DEVICEGROUP" value="New Dynamic DeviceGroup" />
   <msg mid="_NEW_FIELD" value="New Field" />
+	<msg mid="_NEW_OCTOPUSSY_VERSION_AVAILABLE" value="New Version of Octopussy Available" />
   <msg mid="_NEW_RACK" value="New Rack" />
   <msg mid="_NEW_REPORT" value="New Report" />
   <msg mid="_NEW_ROOM" value="New Room" />

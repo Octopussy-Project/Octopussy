@@ -1,12 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Linux Gnome Desktop Service (FR version)"
                    name="Linux_Gnome_Desktop_FR"
-                   nb_messages="000"
-                   version="200802260002">
+									 icon="linux_desktops/linux_desktop_gnome"
+                   version="200805130001">
   <message loglevel="Information"
            msg_id="Linux_Gnome_Desktop_FR:source_configuration_lecture_seule"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; (&lt;@WORD:user@&gt;-&lt;@NUMBER:NULL@&gt;): &lt;@REGEXP(&quot;Adresse .+ résolue vers une source de configuration en lecture seule .+&quot;):msg@&gt;"
            rank="001"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_Gnome_Desktop_FR:source_configuration_ecriture"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; (&lt;@WORD:user@&gt;-&lt;@NUMBER:NULL@&gt;): &lt;@REGEXP(&quot;Adresse .+ résolue vers une source de configuration accessible en écriture .+&quot;):msg@&gt;"
+           rank="002"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

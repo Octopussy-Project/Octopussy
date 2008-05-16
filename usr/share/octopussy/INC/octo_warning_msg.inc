@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my @alerts = Octopussy::Alert::Tracker("-ANY-", "-ANY-", "Opened", 
 	"", Octopussy::Parameter("max_alerts"));
@@ -21,7 +16,7 @@ my $unknown_color = (($nb_unknown > 0) ? "red" : "green");
 if (($#alerts >= 0) || ($nb_unknown >0))
 {
 %>
-<AAT:Box align="center">
+<AAT:Box align="C">
   <AAT:BoxRow>
 		<AAT:BoxCol align="R">
 			<AAT:Button name="alert" link="./alerts_viewer.asp" />

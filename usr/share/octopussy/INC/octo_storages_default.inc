@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my @storages = ("DEFAULT", Octopussy::Storage::List());
@@ -11,7 +6,7 @@ my ($d_incoming, $d_unknown, $d_known) =
 	($d->{incoming}, $d->{unknown}, $d->{known});
 %>
 <AAT:Form action="$arg{url}">
-<AAT:Box align="center" title="_DEFAULT_STORAGES" icon="buttons/bt_storage">
+<AAT:Box align="C" title="_DEFAULT_STORAGES" icon="buttons/bt_storage">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_DEFAULT_DIR_INCOMING_LOGS" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><%= "[ $d_incoming ]" %></AAT:BoxCol>

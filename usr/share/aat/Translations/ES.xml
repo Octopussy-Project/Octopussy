@@ -232,6 +232,7 @@
 	<msg mid="_NEW_DYNAMIC_ALERT" value="_NEW_DYNAMIC_ALERT" />
 	<msg mid="_NEW_DYNAMIC_DEVICEGROUP" value="Nuevo Grupo de Equipos Dinamico" />
 	<msg mid="_NEW_FIELD" value="_NEW_FIELD" />
+  <msg mid="_NEW_OCTOPUSSY_VERSION_AVAILABLE" value="_NEW_OCTOPUSSY_VERSION_AVAILABLE" />
 	<msg mid="_NEW_RACK" value="Nuevo Rack" />
 	<msg mid="_NEW_REPORT" value="Nuevo Informe" />
 	<msg mid="_NEW_ROOM" value="Nueva Sala" />

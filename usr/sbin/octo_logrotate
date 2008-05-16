@@ -20,10 +20,9 @@ my $PROG_NAME = "octo_logrotate";
 
 =head2 Get_Directories($dir)
 
-Returns List of Directories
+Returns list of Directories from Directory $dir
 
 =cut
-
 sub Get_Directories($)
 {
 	my $dir = shift;
@@ -39,7 +38,6 @@ sub Get_Directories($)
 Deletes Log Files for specified Device in '$device_conf'
 
 =cut
-
 sub Files_Deletion($)
 {
 	my $device_conf = shift;

@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Updater" help="Updater" />
 <%
 my $form_fields = $Request->Form();
@@ -22,6 +17,7 @@ Octopussy::Service::Updates_Installation(@service_updates);
 Octopussy::Table::Updates_Installation(@table_updates);
 Octopussy::Updates_Installation(@translation_updates);
 %>
+<AAT:Inc file="octo_updater_software" />
 <AAT:Inc file="octo_updater_reports_list" url="./updater.asp" />
 <AAT:Inc file="octo_updater_services_list" url="./updater.asp" />
 <AAT:Inc file="octo_updater_tables_list" url="./updater.asp" />

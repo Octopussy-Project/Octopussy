@@ -59,7 +59,7 @@ if ($role !~ /ro/i)
 		{ label => "_RACK", value => "rack" } );
 %>
 <AAT:Form action="$url">
-<AAT:Box align="center">
+<AAT:Box align="C">
 	<AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="_GROUP_NAME" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B"/></AAT:BoxCol>	
@@ -79,7 +79,7 @@ if ($role !~ /ro/i)
 </AAT:Form>
 
 <AAT:Form action="$url">
-<AAT:Box align="center">
+<AAT:Box align="C">
   <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_GROUP_NAME" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B"/></AAT:BoxCol>

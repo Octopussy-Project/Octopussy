@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my $cpu = Octopussy::Stats::CPU_Usage();
 my $cpu_str = "User: $cpu->{user}% System: $cpu->{system}% "
@@ -10,7 +5,7 @@ my $cpu_str = "User: $cpu->{user}% System: $cpu->{system}% "
 my @storages = Octopussy::Stats::Partition_Logs();
 my $nb_storages = $#storages+2;
 %>
-<AAT:Box align="center">
+<AAT:Box align="C">
   <AAT:BoxRow>
 		<AAT:BoxCol rspan="2"><AAT:IMG name="hardware_cpu" /></AAT:BoxCol>
     <AAT:BoxCol valign="top">

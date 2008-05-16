@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $number = $arg{number};
@@ -55,7 +50,7 @@ my $modified_color = Octopussy::Message::Color_Without_Field($modified);
 	<AAT:BoxCol>
 	<AAT:Inc file="octo_selector_taxonomy" selected="System" /></AAT:BoxCol>
 	<AAT:BoxCol></AAT:BoxCol>
-	<AAT:BoxCol align="center">
+	<AAT:BoxCol align="C">
 	<AAT:Form_Submit value="_SELECT_THIS_MSG" /></AAT:BoxCol>
 	<AAT:BoxCol width="100%"></AAT:BoxCol>
 </AAT:BoxRow>

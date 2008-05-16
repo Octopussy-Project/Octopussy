@@ -10,7 +10,8 @@ octo_uparser <device>
 
 =head1 DESCRIPTION
 
-octo_uparser is the program used by the Octopussy Project to parse Unknown Logs for each Device
+octo_uparser is the program used by the Octopussy Project 
+to parse Unknown Logs for each Device
 
 =cut
 
@@ -37,10 +38,10 @@ my $exit_request = 0;
 
 =head2 Exit()
 
-Stop softly the uparser (current file is fully parsed before exiting)
+Softly stops the uparser 
+(current file is fully parsed before exiting)
 
 =cut
-
 sub Exit
 {
 	$exit_request = 1;
@@ -48,14 +49,17 @@ sub Exit
 
 =head2 Init()
 
-=cut
+Inits UParser
 
+=cut
 sub Init()
 {
 	my $dconf = Octopussy::Device::Configuration($device);
 	my $storage = Octopussy::Storage::Default();
 	@services = Octopussy::Device::Services($device);	
-	
+
+	$dir_data{"unknown"} = Octopussy::Storage::Directory($dconf->{storage_unknown})
+		|| Octopussy::Storage::Directory($storage->{unknown});	
 	foreach my $serv (@services)
  	{
 		$dir_data{$serv} = Octopussy::Storage::Directory($dconf->{"storage_$serv"})
@@ -78,8 +82,9 @@ sub Init()
 
 =head2 Write_Logfile($file, $logs)
 
-=cut
+Writes Known Logs '$logs' into Logfile '$file'
 
+=cut
 sub Write_Logfile($$)
 {
 	my ($logfile, $logs) = @_;
@@ -99,12 +104,14 @@ sub Write_Logfile($$)
 
 =head2 Write_Unknown_Logfile($file, $logs)
 
-=cut
+Writes Unknown Logs '$logs' into Logfile '$file'
 
+=cut
 sub Write_Unknown_Logfile($$)
 {
   my ($logfile, $logs) = @_;
-	$logfile =~ s/\/Incoming\//\/Unknown\//g;
+	$logfile =~ s/^.+\/Incoming\//$dir_data{unknown}\/$device\/Unknown\//;
+#	$logfile =~ s/\/Incoming\//\/Unknown\//g;
   
 	if ($#{@{$logs}} >= 0)
   {
@@ -120,11 +127,13 @@ sub Write_Unknown_Logfile($$)
 
 =head2 Line_Handler($line, $serv, $msg, $known_msgs, $match)
 
-=cut
+Handles line $line for Service $serv & Message $msg
 
+=cut
 sub Line_Handler($$$$$)
 {
 	my ($line, $serv, $msg, $known_msgs, $match) = @_;
+
  	if (($line =~ $msg->{re}) || ($line =~ /last message repeated \d+ time/))
   {
     push(@{$known_msgs->{$serv}}, $line);
@@ -134,8 +143,9 @@ sub Line_Handler($$$$$)
 
 =head2 Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new)
 
-=cut
+Handles Service $serv
 
+=cut
 sub Service_Handler($$$$$$$$)
 {
 	my ($serv, $total, $y, $m, $d, $hour, $min, $file_new) = @_;	
@@ -151,8 +161,9 @@ sub Service_Handler($$$$$$$$)
 
 =head2 File_Handler($file)
 
-=cut
+Handles file $file
 
+=cut
 sub File_Handler($)
 {
 	my $file = shift;

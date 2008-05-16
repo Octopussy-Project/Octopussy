@@ -66,8 +66,15 @@ else
 	my %scp_conf = (host => $f->{scp_host}, dir => $f->{scp_dir},
     user => $f->{scp_user} );
 
+	use Crypt::PasswdMD5;
+  my $pid_param = unix_md5_crypt(time() * rand(99));
+	$pid_param =~ s/[\/\&\$\.\?]//g;
+	$Session->{progress_running} = $pid_param;
+	$Session->{progress_current} = 0;
+  $Session->{progress_total} = 0;
+
 	my $cmd = Octopussy::Report::CmdLine($device, $service, $taxonomy, $r, 
-		$start, $finish, \%mail_conf, \%ftp_conf, \%scp_conf, 
+		$start, $finish, $pid_param, \%mail_conf, \%ftp_conf, \%scp_conf, 
 		$Session->{AAT_LANGUAGE});
 	sleep(2);
  	$Response->Redirect("./report_in_progress.asp?cmd=" 

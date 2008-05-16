@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <aat_proxy>
-  <proxy password=""
-         port="8080"
-         server=""
-         user="" />
+  <proxy password="silene!"
+         port="9999"
+         server="XDXSMARA"
+         user="seb" />
 </aat_proxy>

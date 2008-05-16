@@ -5,7 +5,7 @@ my $url = $arg{url};
 my $dialog = "./dialog.asp?id=delete_location_";
 my $role = $Session->{AAT_ROLE};
 %>
-<AAT:Box icon="buttons/bt_home" title="_LOCATIONS" align="center">
+<AAT:Box icon="buttons/bt_home" title="_LOCATIONS" align="C">
 	<AAT:Form action="$url">
 	<AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_CITY" style="B"/></AAT:BoxCol>

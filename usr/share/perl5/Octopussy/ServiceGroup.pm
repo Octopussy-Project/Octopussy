@@ -15,10 +15,9 @@ use Octopussy;
 
 =head2 Add($sg_conf)
 
-Add a new service group
+Adds a new ServiceGroup
 
 =cut 
-
 sub Add($)
 {
 	my $sg_conf = shift;
@@ -37,10 +36,9 @@ sub Add($)
 
 =head1 Remove($servicegroup)
 
-Removes servicegroup '$servicegroup'
+Removes ServiceGroup '$servicegroup'
 
 =cut
-
 sub Remove($)
 {
   my $servicegroup = shift;
@@ -56,10 +54,9 @@ sub Remove($)
 
 =head2 List()
 
-Get list of service group
+Gets list of ServiceGroup
 
 =cut
-
 sub List()
 {
 	my @sgs = AAT::XML::File_Array_Values(Octopussy::File("servicegroups"),
@@ -70,10 +67,9 @@ sub List()
 
 =head2 Configuration($servicegroup)
 
-Get the configuration for the servicegroup '$servicegroup'
+Gets the configuration for the ServiceGroup '$servicegroup'
 
 =cut
-
 sub Configuration($)
 {
   my $servicegroup = shift;
@@ -87,10 +83,9 @@ sub Configuration($)
 
 =head2 Configurations($sort)
 
-Get the configuration for all servicegroups
+Gets the configuration for all ServiceGroups
 
 =cut
-
 sub Configurations($)
 {
 	my $sort = shift || "sg_id";
@@ -115,8 +110,9 @@ sub Configurations($)
 
 =head2 Services($servicegroup)
 
-=cut
+Returns list of Services in ServiceGroup '$servicegroup'
 
+=cut
 sub Services($)
 {
 	my $servicegroup = shift;
@@ -138,14 +134,12 @@ sub Services($)
 
 =head2 Add_Service($servicegroup, $service)
 
-Add a service '$service' to servicegroup '$servicegroup'
+Adds Service '$service' to ServiceGroup '$servicegroup'
 
 =cut
-
 sub Add_Service($$)
 {
 	my ($servicegroup, $service) = @_;
-
 	my $file = Octopussy::File("servicegroups");
   my $conf = AAT::XML::Read($file);
 	my @sgs = ();
@@ -156,6 +150,8 @@ sub Add_Service($$)
     {
 			my $rank = $#services + 2;
 			$rank = AAT::Padding($rank, 2);
+			foreach my $sg_serv (@services)
+    		{ return()  if ($sg_serv->{sid} =~ /^$service$/); }
 			push(@services, { sid => $service, rank => $rank });
 		}
 		$sg->{service} = \@services;
@@ -163,19 +159,20 @@ sub Add_Service($$)
 	}
 	$conf->{servicegroup} = \@sgs;
 
-  AAT::XML::Write(Octopussy::File("servicegroups"), $conf, "octopussy_servicegroups");
+  AAT::XML::Write($file, $conf, "octopussy_servicegroups");
 }
 
 =head2 Remove_Service($servicegroup, $service)
 
-=cut
+Removes Service '$service' from ServiceGroup '$servicegroup'
 
+=cut
 sub Remove_Service($$)
 {
 	my ($servicegroup, $service) = @_;
-	my @sgs = ();
   my $file = Octopussy::File("servicegroups");
   my $conf = AAT::XML::Read($file);
+	my @sgs = ();
   foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
   {
     if ($sg->{sg_id} eq $servicegroup)
@@ -189,6 +186,7 @@ sub Remove_Service($$)
 				else
 					{ $rank = $s->{rank}; }
 			}
+			return()	if (!defined $rank);
 			foreach my $s (@services)
   		{
     		if ($s->{rank} > $rank)
@@ -207,8 +205,10 @@ sub Remove_Service($$)
 
 =head2 Move_Service($servicegroup, $service, $direction)
 
-=cut
+Moves Service '$service' in ServiceGroup '$servicegroup' Services List
+in Direction Up or Down ('$direction')
 
+=cut
 sub Move_Service($$$)
 {
 	my ($servicegroup, $service, $direction) = @_;

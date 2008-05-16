@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Device Edit" help="devices" />
 <%
 my $f = $Request->Form();
@@ -30,7 +25,8 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 }
 else
 {
-	%><AAT:Inc file="octo_device_edition" device="$device" type="$dtype" /><%
+	%><AAT:Inc file="octo_device_edition" device="$device" type="$dtype" />
+	<AAT:BackButton /><%
 }
 %>
 <WebUI:PageBottom />

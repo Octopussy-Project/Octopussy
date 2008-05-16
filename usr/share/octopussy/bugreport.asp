@@ -1,13 +1,8 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my $url = "http://sourceforge.net/tracker/?func=add&group_id=154314"
 %>
 <WebUI:PageTop title="Bug Report" />
-<AAT:Box align="center">
+<AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol rspan="3"><AAT:IMG name="generic_bug" /></AAT:BoxCol>
 	<AAT:BoxCol align="C">

@@ -10,13 +10,14 @@ octo_scheduler
 
 =head1 DESCRIPTION
 
-octo_scheduler is the program used by the Octopussy Project to launch Report that have been scheduled and generate Syslog Activity RRD Graphs 
+octo_scheduler is the program used by the Octopussy Project 
+to launch Report that have been scheduled 
+and generate Syslog Activity RRD Graphs 
 
 =cut
 
 use strict;
 no strict "refs";
-
 use AAT;
 use Octopussy;
 use Date::Manip;
@@ -33,8 +34,9 @@ my %month = ("January" => 1, "February" => 2, "March" => 3, "April" => 4,
 
 =head2 Launch_Report($sched, $y, $m, $d, $hour, $min)
 
-=cut
+Launches Report
 
+=cut
 sub Launch_Report($$$$$$)
 {
 	my ($sched, $y, $m, $d, $hour, $min) = @_;

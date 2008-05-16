@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 
@@ -14,7 +9,7 @@ push(@devices, (defined $arg{restricted_devices}
 	? AAT::ARRAY($arg{restricted_devices}) : Octopussy::Device::List()));
 %>
 <AAT:Form action="$arg{url}">
-<AAT:Box align="center">
+<AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol align="R"><AAT:Label value="_ALERT" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol>

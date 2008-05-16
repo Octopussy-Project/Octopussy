@@ -1,15 +1,10 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my ($time, $device_events) = Octopussy::Stats::Events();
 my $total = 0;
 foreach my $k (keys %{$device_events})
   { $total += $device_events->{$k}; }
 %>
-<AAT:Box align="center">
+<AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol>
   <AAT:Label value="_MSG_TOTAL_EVENTS_LAST_MINUTE" style="B" size="-1" />

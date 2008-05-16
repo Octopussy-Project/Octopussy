@@ -1,14 +1,9 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <% 
 my $version = "Octopussy " . Octopussy::Version();
 my $website = Octopussy::WebSite(); 
 %>
 <AAT:Form method="POST" action="./login.asp">
-<AAT:Box align="center" cellpadding="0">
+<AAT:Box align="C" cellpadding="0">
 <AAT:BoxRow valign="top">
 	<AAT:BoxCol valign="top" rspan="4">
 	<AAT:Picture file="IMG/octo_login1.png" alt="Octopussy Logo" /></AAT:BoxCol>

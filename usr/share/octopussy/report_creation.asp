@@ -4,24 +4,19 @@ my $f = $Request->Form();
 my $category = $Request->QueryString("category");
 my $x = $Session->{x};
 my $y = $Session->{y};
+my $url = "./report_creation.asp";
 
 if (!defined $Session->{title})
 {
 	%><AAT:Inc file="octo_report_data_configurator" category="$category" 
-		url="./report_creation.asp" /><%
+		url="$url" /><%
 }
 elsif ((!defined $Session->{selected}) && (!defined $f->{datasource1}))
 {
 	if ($Session->{graph_type} !~ /^rrd_/)
-	{
-	%><AAT:Inc file="octo_report_query_configurator"
-			url="./report_creation.asp"/><%
-	}
+		{ %><AAT:Inc file="octo_report_query_configurator" url="$url"/><% }
 	else
-	{
-	%><AAT:Inc file="octo_report_rrdgraph_configurator" 
-			url="./report_creation.asp" /><%
-	}
+		{ %><AAT:Inc file="octo_report_rrdgraph_configurator" url="$url" /><% }
 }
 elsif (($Session->{graph_type} !~ /^rrd_/) && (!defined $x))
 {
@@ -36,14 +31,13 @@ elsif (($Session->{graph_type} !~ /^rrd_/) && (!defined $x))
 			" ORDER BY $order_by " . ($sort_dir eq "ASCENDING" ? "asc" : "desc") : "")
 		. ($Session->{limit} ne "" ? " LIMIT $Session->{limit}" : "");
 	$Session->{query} = $query;
-	%><AAT:Inc file="report_display_configurator" url="./report_creation.asp" /><%
+	%><AAT:Inc file="octo_report_display_configurator" url="$url" /><%
 }
 else
 {
 	if ($Session->{graph_type} =~ /^rrd_/)
 	{
 		my @datasources = ();
-
 		for my $i (1..3)
 		{
   		push(@datasources, 

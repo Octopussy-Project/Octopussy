@@ -19,7 +19,6 @@ octo_extractor is the program used by the Octopussy Project to extract Logs
 
 use strict;
 no strict 'refs';
-
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
@@ -40,8 +39,9 @@ my $dir_pid = Octopussy::Directory("running");
 
 =head2 String_List($fct, @args)
 
-=cut
+Returns List of elements separated by ", " from one function and args
 
+=cut
 sub String_List
 {
 	my ($fct, @args) = @_;
@@ -51,8 +51,9 @@ sub String_List
 
 =head2 Help()
 
-=cut
+Prints Help
 
+=cut
 sub Help()
 {
 my $help_str = <<EOF;
@@ -69,16 +70,16 @@ EOF
 	print $help_str;
 	if (! @opt_devices)
 	{ 
-		print " device list: " . String_List("Octopussy::Device::List") . "\n"; 
+		print " Device list: " . String_List("Octopussy::Device::List") . "\n"; 
 	}
 	elsif (! @opt_services)
 	{	
-		print " service list: "
+		print " Service list: "
       . String_List("Octopussy::Device::Services", @opt_devices) . "\n";
 	}
 	elsif (!defined $opt_taxonomy)
 	{ 
-		print " taxonomy list: " 
+		print " Taxonomy list: " 
 			. String_List("Octopussy::Taxonomy::List_And_Any") . "\n"; 
 	}
 	print "\n";
@@ -88,8 +89,9 @@ EOF
 
 =head2 Progress($msg, $num, $nb_match)
 
-=cut
+Sets progress status
 
+=cut
 sub Progress
 {
   my ($msg, $num, $nb_match) = @_;
@@ -108,8 +110,9 @@ sub Progress
 
 =head2 Get_Messages_To_Parse($services, $taxonomy)
 
-=cut
+Returns list of Messages to parse
 
+=cut
 sub Get_Messages_To_Parse($$)
 {
 	my ($services, $taxonomy) = @_;
@@ -122,8 +125,10 @@ sub Get_Messages_To_Parse($$)
 
 =head2 Get_TimePeriod_Files($devices, $services, $begin, $end)
 
-=cut
+Returns list of Files for Devices $devices, Services $services 
+and Period $begin-$end
 
+=cut
 sub Get_TimePeriod_Files($$$$)
 {
 	my ($devices, $services, $begin, $end) = @_;
@@ -143,8 +148,9 @@ sub Get_TimePeriod_Files($$$$)
 
 =head2 Print_Logs($devices, $services, $taxo, $begin, $end, $re_incl, $re_excl)
 
-=cut
+Prints Logs
 
+=cut
 sub Print_Logs($$$$$$$)
 {
   my ($devices, $services, $taxo, $begin, $end, $re_incl, $re_excl) = @_;
@@ -249,6 +255,8 @@ sub Print_Logs($$$$$$$)
 }
 
 =head2 End()
+
+Ends Extraction
 
 =cut
 

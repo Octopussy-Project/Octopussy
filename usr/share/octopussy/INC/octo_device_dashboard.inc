@@ -22,7 +22,7 @@ foreach my $m (@models)
 }
 my $str_status = ($status == 2 ? "Started" : ($status == 1 ? "Paused" : "Stopped"));
 %>
-<AAT:Box align="center">
+<AAT:Box align="C">
   <AAT:BoxRow>
 		<AAT:BoxCol><AAT:Label value="_DEVICE" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol><AAT:Label value="$name" /></AAT:BoxCol>
@@ -57,13 +57,13 @@ my $str_status = ($status == 2 ? "Started" : ($status == 1 ? "Paused" : "Stopped
 			link="./alerts_viewer.asp?device=$device&status=Opened" /></AAT:BoxCol>
   </AAT:BoxRow>
 	<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
-	<AAT:BoxRow><AAT:BoxCol align="center" cspan="3">
+	<AAT:BoxRow><AAT:BoxCol align="C" cspan="3">
 	<AAT:Label value="_SERVICES" style="B" /></AAT:BoxCol></AAT:BoxRow>
 <%
 foreach my $s (Octopussy::Device::Services_Configurations($device, "rank"))
 {
 	my ($rank, $serv) = ($s->{rank}, $s->{sid});
-	%><AAT:BoxRow><AAT:BoxCol align="right">
+	%><AAT:BoxRow><AAT:BoxCol align="R">
 	<AAT:Label value="$rank" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="2">
 	<AAT:Label value="$serv" link="./services.asp?service=$serv" />

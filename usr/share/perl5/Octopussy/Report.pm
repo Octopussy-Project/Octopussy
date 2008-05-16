@@ -305,7 +305,6 @@ sub Generate($$$$$$$$$$$)
 Generates Command Line Export Options (mail/ftp/scp) 
 
 =cut
-
 sub CmdLine_Export_Options($$$)
 {
 	my ($mail_conf, $ftp_conf, $scp_conf) = @_;
@@ -325,16 +324,15 @@ sub CmdLine_Export_Options($$$)
 	return ($options);
 }
 
-=head2 CmdLine($device, $service, $taxonomy, $report, $start, $finish)
+=head2 CmdLine($device, $service, $taxonomy, $report, $start, $finish, $pid_param)
 
-Generates Command Line to launch octo_reporter
+Generates Command Line and launch octo_reporter
 
 =cut
-
-sub CmdLine($$$$$$$$$$)
+sub CmdLine($$$$$$$$$$$)
 {
 	my ($device, $service, $taxonomy, $report, 
-		$start, $finish, $mail_conf, $ftp_conf, $scp_conf, $lang) = @_;
+		$start, $finish, $pid_param, $mail_conf, $ftp_conf, $scp_conf, $lang) = @_;
 
 	my $base = Octopussy::Directory("programs");
 	my $dir_pid = Octopussy::Directory("running");
@@ -352,7 +350,7 @@ sub CmdLine($$$$$$$$$$)
 
 	my $cmd = $base . REPORTER_BIN . " --report \"$report->{name}\""
 		. " --device $device_list --service \"$service\""
-		. " --taxonomy $taxonomy "
+		. " --taxonomy $taxonomy --pid_param \"$pid_param\""
 		. " --begin $start --end $finish --lang \"$lang\" " 
 		. CmdLine_Export_Options($mail_conf, $ftp_conf, $scp_conf)
 		. " --output \"$output\"";
@@ -367,7 +365,6 @@ sub CmdLine($$$$$$$$$$)
 Exports generated report via Mail, FTP, SCP if defined
 
 =cut
-
 sub Export($$$$)
 {
 	my ($file, $mail_conf, $ftp_conf, $scp_conf) = @_;
@@ -382,7 +379,6 @@ sub Export($$$$)
 Generates Report's File Information
 
 =cut
-
 sub File_Info($$$$$)
 {
 	my ($file, $begin, $end, $devices, $stats) = @_;
@@ -396,10 +392,9 @@ sub File_Info($$$$$)
 
 =head2 File_Info_Tooltip($file, $lang)
 
-Print Report's File Information in Tooltip
+Prints Report's File Information in Tooltip
 
 =cut
-
 sub File_Info_Tooltip($$)
 {
 	my ($file, $lang) = @_;
@@ -425,7 +420,6 @@ sub File_Info_Tooltip($$)
 =head2 Updates_Installation(@reports)
 
 =cut
-
 sub Updates_Installation(@)
 {
   my @reports = @_;

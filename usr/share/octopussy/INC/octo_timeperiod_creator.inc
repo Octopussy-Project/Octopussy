@@ -27,7 +27,7 @@ foreach my $i (1..7)
 %>
 <AAT:BoxRow><AAT:BoxCol cspan="5"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol align="center" cspan="5">
+	<AAT:BoxCol align="C" cspan="5">
 	<AAT:Form_Submit value="_NEW_TIMEPERIOD" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>

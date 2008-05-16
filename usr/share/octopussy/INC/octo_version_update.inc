@@ -1,10 +1,5 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <% my $version = "Octopussy v" . Octopussy::Version(); %>
-<AAT:Box align="center">
+<AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol align="C" cspan="2">
 	<AAT:Label value="$version" size="+1" style="B" />

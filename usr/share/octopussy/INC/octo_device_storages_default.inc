@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my @storages = ("DEFAULT", Octopussy::Storage::List());
@@ -15,7 +10,7 @@ my ($device_incoming, $device_unknown, $device_known) =
 my $title = sprintf(AAT::Translation("_MSG_STORAGES_FOR_DEVICE"), $arg{device});
 %>
 <AAT:Form action="$arg{url}">
-<AAT:Box align="center" title="$title" icon="buttons/bt_storage">
+<AAT:Box align="C" title="$title" icon="buttons/bt_storage">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_DIR_INCOMING_LOGS" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><%= "[ $device_incoming ]" %></AAT:BoxCol>

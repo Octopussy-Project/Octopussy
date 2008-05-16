@@ -232,6 +232,7 @@
   <msg mid="_NEW_DYNAMIC_ALERT" value="Новая динамическая тервога" />
   <msg mid="_NEW_DYNAMIC_DEVICEGROUP" value="Новая динамическая группа устройств" />
   <msg mid="_NEW_FIELD" value="Новое поле" />
+  <msg mid="_NEW_OCTOPUSSY_VERSION_AVAILABLE" value="_NEW_OCTOPUSSY_VERSION_AVAILABLE" />
   <msg mid="_NEW_RACK" value="Новая стойка" />
   <msg mid="_NEW_REPORT" value="Новый отчёт" />
   <msg mid="_NEW_ROOM" value="Новая комната" />

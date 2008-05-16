@@ -10,7 +10,8 @@ octo_parser <device>
 
 =head1 DESCRIPTION
 
-octo_parser is the program used by the Octopussy Project to parse Logs for each Device
+octo_parser is the program used by the Octopussy Project 
+to parse Logs for each Device
 
 =cut
 
@@ -19,7 +20,6 @@ use bytes; # Fix the 'Malformed UTF-8 character' warning
 use utf8;
 use File::Copy;
 use File::Path;
-
 use AAT;
 use Octopussy;
 
@@ -46,10 +46,10 @@ my $pid_file = Octopussy::PID_File($PROG_NAME . "_$device");
 
 =head2 Exit()
 
-Stop softly the parser (current file is fully parsed before exiting)
+Softly stops the parser 
+(current file is fully parsed before exiting)
 
 =cut
-
 sub Exit
 {
 	$exit_request = 1;
@@ -57,8 +57,10 @@ sub Exit
 
 =head2 Reload()
 
-=cut
+Softly reloads the configuration of the parser 
+(current file is fully parsed before reload)
 
+=cut
 sub Reload
 {
 	$reload_request = 1;
@@ -70,7 +72,6 @@ sub Reload
 Inits Parser & launch UParser if needed
 
 =cut
-
 sub Init()
 {
 	my $dconf = Octopussy::Device::Configuration($device) or 
@@ -123,10 +124,9 @@ sub Init()
 
 =head2 Write_Logfile($file, $logs)
 
-Write Known Logs '$logs' in Logfile '$file'
+Writes Known Logs '$logs' into Logfile '$file'
 
 =cut
-
 sub Write_Logfile($$)
 {
 	my ($logfile, $logs) = @_;
@@ -146,10 +146,9 @@ sub Write_Logfile($$)
 
 =head2 Write_Unknown_Logfile($file, $logs)
 
-Write Unknown Logs '$logs' in Logfile '$file'
+Writes Unknown Logs '$logs' into Logfile '$file'
 
 =cut
-
 sub Write_Unknown_Logfile($$)
 {
   my ($logfile, $logs) = @_;
@@ -169,10 +168,9 @@ sub Write_Unknown_Logfile($$)
 
 =head2 Write_Stats($y, $m, $d, $hour, $min)
 
-Write Services Statistics
+Writes Services Statistics
 
 =cut
-
 sub Write_Stats($$$$$)
 {
 	my ($y, $m, $d, $hour, $min) = @_;
@@ -186,8 +184,9 @@ sub Write_Stats($$$$$)
 
 =head2 Incoming_To_Unknown($incoming)
 
-=cut
+Moves Incoming file to Unknown file
 
+=cut
 sub Incoming_To_Unknown($)
 {
 	my $incoming = shift;
@@ -202,8 +201,9 @@ sub Incoming_To_Unknown($)
 
 =head2 Alert_Handler($msg, $line)
 
-=cut
+Handles Alert(s) for the Message $msg on line $line
 
+=cut
 sub Alert_Handler($$)
 {
 	my ($msg, $line) = @_;
@@ -271,8 +271,9 @@ sub Alert_Handler($$)
 
 =head2 Line_Handler($line, $serv, $msg, $known_msgs, $match)
 
-=cut
+Handles line $line for Service $serv & Message $msg
 
+=cut
 sub Line_Handler($$$$$)
 {
 	my ($line, $serv, $msg, $known_msgs, $match) = @_;
@@ -294,8 +295,9 @@ sub Line_Handler($$$$$)
 
 =head2 Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new)
 
-=cut
+Handles Service $serv
 
+=cut
 sub Service_Handler($$$$$$$$)
 {
 	my ($serv, $total, $y, $m, $d, $hour, $min, $file_new) = @_;	
@@ -318,8 +320,9 @@ sub Service_Handler($$$$$$$$)
 
 =head2 File_Handler($file)
 
-=cut
+Handles file $file
 
+=cut
 sub File_Handler($)
 {
 	my $file = shift;

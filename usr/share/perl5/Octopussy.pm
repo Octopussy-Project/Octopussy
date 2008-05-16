@@ -124,7 +124,6 @@ sub File($)
 Returns Octopussy Parameter '$param' Default Value
 
 =cut
-
 sub Parameter($)
 {
 	my $param = shift;
@@ -132,12 +131,62 @@ sub Parameter($)
   return (AAT::Application::Parameter($APPLICATION_NAME, $param));
 }
 
+=head2 Status_Progress($bin, $param)
+
+Returns Status Progress line for ProgressBar of program $bin
+
+=cut
+sub Status_Progress($$)
+{
+	my ($bin, $param) = @_;
+	my $pid_dir = Octopussy::Directory("running");
+	my $pid_file = $pid_dir . "${bin}_${param}.pid";
+	my $status_file = $pid_dir . "${bin}_${param}.status";
+	my $status = "";
+
+	if (-f $pid_file)
+	{
+  	my $pid = `cat "$pid_file"`;
+  	kill USR1 => $pid;
+	}
+	if (-f $status_file)
+	{
+  	open(FILE, "cat \"$status_file\" |");
+  	$status = <FILE>;
+  	close(FILE);
+	}
+
+	return ($status);
+}
+
+=head2 Sourceforge_Version
+
+Get version of the last release on Sourceforge
+
+=cut
+sub Sourceforge_Version
+{
+	my $SF_SITE = "http://sourceforge.net/project/showfiles.php?group_id=154314";
+
+	my $running_dir = Octopussy::Directory("running");
+	my $version = undef;
+	AAT::Download("Octopussy", $SF_SITE, "${running_dir}/octopussy.sf_version");
+	open(UPDATE, "< ${running_dir}/octopussy.sf_version");
+	while (<UPDATE>)
+	{
+		$version = $1
+  		if ($_ =~ /showfiles.php\?group_id=154314&amp;package_id=\d+&amp;release_id=\d+">Octopussy (\S+)<\/a>/);
+	}
+	close(UPDATE);
+	unlink("${running_dir}octopussy.sf_version");
+	return ($version);
+}
+
 =head2 Web_Updates($type)
 
 Downloads Updates from the Web
 
 =cut
-
 sub Web_Updates
 {
 	my $type = shift;
