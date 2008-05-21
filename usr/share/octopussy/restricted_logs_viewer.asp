@@ -93,9 +93,9 @@ if ((AAT::NULL($Session->{extractor})) &&
   open(STATUS_FILE, "> $status_file");
   print STATUS_FILE "INIT [0/1] [0]\n";
   close(STATUS_FILE);
-	$Session->{extract_progress_current} = 0;
-  $Session->{extract_progress_total} = 0;
-  $Session->{extract_progress_match} = 0;
+	$Session->{progress_current} = 0;
+  $Session->{progress_total} = 0;
+  $Session->{progress_match} = 0;
 	$Session->{page} = 1;
 	$Session->{extracted} = $output;
 	$Response->Redirect("$url?extractor=$output");

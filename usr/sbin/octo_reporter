@@ -211,23 +211,30 @@ sub Insert_Data($$$$$$$$)
   foreach my $f (@{$files})
   {
     Progress("_MSG_REPORT_PROGRESS_INSERTING_DATA", $i . "/$total");
-    open(FILE, "zcat \"$f\" |");
-    while (<FILE>)
+    if (defined open(FILE, "zcat \"$f\" |"))
+		{
+    	while (<FILE>)
+    	{
+      	$nb_lines++;
+      	my $line = $_;
+      	chomp($line);
+      	foreach my $msg (@msg_to_parse)
+      	{
+        	if (my (@args) = $line =~ $msg->{re})
+        	{
+						my $sql = SQL($msg->{positions}, @args);
+          	push(@known_msgs, $sql)	if (defined $sql);
+          	last;
+        	}
+      	}
+    	}
+    	close(FILE);
+		}
+		else
     {
-      $nb_lines++;
-      my $line = $_;
-      chomp($line);
-      foreach my $msg (@msg_to_parse)
-      {
-        if (my (@args) = $line =~ $msg->{re})
-        {
-					my $sql = SQL($msg->{positions}, @args);
-          push(@known_msgs, $sql)	if (defined $sql);
-          last;
-        }
-      }
+    	print "Unable to open file '$f'\n";
+     	AAT::Syslog("octo_extractor", "UNABLE_OPEN_FILE", $f);
     }
-    close(FILE);
     if ($i%10 == 0)
     {
       AAT::DB::Load_Infile("Octopussy", $table, "$FILE_DB.$$", \@known_msgs);

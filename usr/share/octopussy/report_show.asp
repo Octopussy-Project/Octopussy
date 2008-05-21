@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my $role = $Session->{AAT_ROLE};
 my $report_type = $Request->QueryString("report_type");
@@ -25,10 +20,12 @@ if (($filename !~ /\.html$/) && ($filename !~ /\.png$/))
 	my $ext = $1	if ($filename =~ /\.(\w+)$/);	
 	$Response->{ContentType} = "text/$ext";
   $Response->AddHeader('Content-Disposition', "filename=\"$filename\"");
-  open(FILE, "< $dir_reports/$report_type/$filename");
-  while (<FILE>)
-    { print $_; }
-  close(FILE);
+  if (defined open(FILE, "< $dir_reports/$report_type/$filename"))
+	{
+  	while (<FILE>)
+    	{ print $_; }
+  	close(FILE);
+	}
   $Response->End();
 }
 else
@@ -39,10 +36,12 @@ else
   	{ %><WebUI:PageTop title="Report Show" /><% }
 	if ($filename =~ /\.html$/)
 	{
-		open(FILE, "< $dir_reports/$report_type/$filename");
-		while (<FILE>)
-			{ print $_; }
-		close(FILE);
+		if (defined open(FILE, "< $dir_reports/$report_type/$filename"))
+		{
+			while (<FILE>)
+				{ print $_; }
+			close(FILE);
+		}
 	}
 	else
 	{

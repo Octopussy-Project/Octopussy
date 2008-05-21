@@ -113,10 +113,17 @@ while (<>)
 				my $dir = Handle_Dir($device, $mday, $month, $year);
 				my $file = "$dir/msg_$hour" . "h$min.log";
 				my $i = 0;
-				open(FILE, ">> $file");	
-				foreach my $l (@{$logs{$device}})
-					{ print FILE "$l\n"; $i++; }
-				close(FILE);
+				if (defined open(FILE, ">> $file"))
+				{
+					foreach my $l (@{$logs{$device}})
+						{ print FILE "$l\n"; $i++; }
+					close(FILE);
+				}
+				else
+      	{
+        	print "Unable to open file '$file'\n";
+        	AAT::Syslog("octo_dispatcher", "UNABLE_OPEN_FILE", $file);
+      	}
 				AAT::Syslog($PROG_NAME, "Device: $device - Events: $i");
 				$dtype_stats{$device_type{$device}} += $i;
 				print STATS "$device: $i\n";

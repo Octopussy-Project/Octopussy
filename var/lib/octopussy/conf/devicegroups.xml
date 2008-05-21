@@ -1,3 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_devicegroups>
+  <devicegroup description="test desc"
+               dg_id="test"
+               type="dynamic">
+    <criteria field="name"
+              pattern="10.112.+" />
+  </devicegroup>
 </octopussy_devicegroups>

@@ -206,6 +206,72 @@ sub Files($$$$)
 	return (\@list);
 }
 
+
+sub Minutes_Hash
+{
+	my ($ref_devices, $ref_services, $start, $finish) = @_;
+  my $start_year = $start->{year}*100000000;
+  my $start_month = $start_year + $start->{month}*1000000;
+  my $start_day = $start_month + $start->{day}*10000;
+  my $start_num = $start_day + $start->{hour}*100 + $start->{min};
+  my $finish_year = $finish->{year}*100000000;
+  my $finish_month = $finish_year + $finish->{month}*1000000;
+  my $finish_day = $finish_month + $finish->{day}*10000;
+  my $finish_num = $finish_day + $finish->{hour}*100 + $finish->{min};
+  my %devs = Device_List($ref_devices);
+  my %servs = Service_List($ref_services);	
+	my %minute_files = ();
+	my $nb_files = 0;
+	foreach my $dev (sort keys %devs)
+  {
+    foreach my $s (sort (Octopussy::Device::Services($dev), "Unknown"))
+    {
+      if (AAT::NOT_NULL($servs{$s}))
+      {
+        my $dir = Octopussy::Storage::Directory_Service($dev, $s);
+        my $dconf =  Octopussy::Device::Configuration($dev);
+        foreach my $y (Get_Directories("$dir/$dev/$s"))
+        {
+          my $num_year = $y*100000000;
+          if (($start_year <= $num_year) && ($num_year <= $finish_year))
+          {
+            foreach my $m (Get_Directories("$dir/$dev/$s/$y"))
+            {
+              my $num_month = $num_year + $m*1000000;
+              if (($start_month <= $num_month) && ($num_month <= $finish_month))
+              {
+                foreach my $d (Get_Directories("$dir/$dev/$s/$y/$m"))
+                {
+                  my $num_day = $num_month + $d*10000;
+                  if (($start_day <= $num_day) && ($num_day <= $finish_day))
+                  {
+                    my @files =
+                      AAT::FS::Directory_Files("$dir/$dev/$s/$y/$m/$d", qr/^msg_/);
+                    foreach my $f (@files)
+                    {
+                      my $num = ($num_day + $1*100 + $2)
+                        if ($f =~ /^msg_(\d{2})h(\d{2})/);
+											if (($start_num <= $num) && ($num <= $finish_num))
+											{
+												push(@{$minute_files{$num}}, "$dir/$dev/$s/$y/$m/$d/$f");
+												$nb_files++;
+											}
+#                      push(@list, "$dir/$dev/$s/$y/$m/$d/$f")
+                      #  if (($start_num <= $num) && ($num <= $finish_num));
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return (\%minute_files, $nb_files);	
+}
+
 =head2 Get($devices, $services, $start, $finish, $re_incl, $re_excl, $limit)
 
 Get logs lines from '$services' on devices '$devices'
@@ -388,8 +454,8 @@ sub Extract_Cmd_Line($)
 	my $run_dir = Octopussy::Directory("running");	
 	my @devices = AAT::ARRAY($conf->{devices});
 	my @services = AAT::ARRAY($conf->{services});
-	my $dev_str = "--device " . join(" --device ", @devices);
-  my $serv_str = "--service " . join(" --service ", @services);
+	my $dev_str = "--device \"" . join("\" --device \"", @devices) . "\"";
+  my $serv_str = "--service \"" . join("\" --service \"", @services) . "\"";
 	my ($incl_str, $excl_str) = ("", "");
 	foreach my $inc (AAT::ARRAY($conf->{includes}))
 		{ $incl_str .= "--include \"$inc\" "	if (AAT::NOT_NULL($inc)); } 

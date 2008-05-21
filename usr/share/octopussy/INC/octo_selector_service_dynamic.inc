@@ -129,6 +129,7 @@ service[<%=$i%>][<%=$i2++%>] = new Option("<%= $s %>","<%= $s %>"); <%
 %>
 var temp = document.forms[<%= $form_number %>].service;
 
+
 function update_service(x)
 {
 	var selected = 0;
@@ -143,6 +144,8 @@ function update_service(x)
 		temp.options[m] = null;
 	for (i = 0; i < service[x].length; i++)
 		temp.options[i] = new Option(service[x][i].text, service[x][i].value);
-	temp.options[0].selected = true;
+//	temp.options[0].selected = true;
 }
+
+update_service(document.forms[<%= $form_number %>].device.options.selectedIndex);
 </script>

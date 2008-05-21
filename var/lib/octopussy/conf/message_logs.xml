@@ -25,6 +25,9 @@
 	<log mid="SYSTEM_CONFIG_MODIFIED"
 		message="System Configuration has been modified by %%LOGIN%%." />
 
+	<log mid="UNABLE_OPEN_FILE"
+		message="Unable to open file '%%ARG1%%'" />
+
 	<log mid="USER_FAILED_LOGIN"
     message="User %%LOGIN%% failed to login." />
 	<log mid="USER_LOGGED_IN"

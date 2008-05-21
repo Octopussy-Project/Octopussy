@@ -60,7 +60,7 @@ sub Launch_Report($$$$$$)
 	print "               $start $finish\n";
 
 	Octopussy::Report::CmdLine($sched->{device}, $sched->{service},
-    ($report->{taxonomy} || "-ANY-"), $report, $start, $finish,
+    ($report->{taxonomy} || "-ANY-"), $report, $start, $finish, "sched_${report}_$$",
     $sched->{mail}[0], $sched->{ftp}[0], $sched->{scp}[0], "EN");
 }
 

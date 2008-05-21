@@ -136,10 +136,17 @@ sub Write_Logfile($$)
 		my $dir = $logfile;
 		$dir =~ s/^(.+)\/.+?\.log/$1\//g;
 		Octopussy::Create_Directory($dir);
-   	open(FILE, "|gzip >> $logfile.gz");
-		foreach my $log (@{$logs})
-   		{ print FILE "$log\n"; }
-		close(FILE);
+   	if (defined open(FILE, "|gzip >> $logfile.gz"))
+		{
+			foreach my $log (@{$logs})
+   			{ print FILE "$log\n"; }
+			close(FILE);
+		}
+		else
+    {
+    	print "Unable to open file '$logfile.gz'\n";
+     	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", "$logfile.gz");
+   	}
 	}
 }
 
@@ -159,10 +166,17 @@ sub Write_Unknown_Logfile($$)
     my $dir = $logfile;
     $dir =~ s/^(.+)\/.+?\.log/$1\//g;
     Octopussy::Create_Directory($dir);
-   	open(FILE, "|gzip >> $logfile.gz");
-    foreach my $log (@{$logs})
-      { print FILE "$log\n"; }
-    close(FILE);
+   	if (defined open(FILE, "|gzip >> $logfile.gz"))
+		{
+    	foreach my $log (@{$logs})
+      	{ print FILE "$log\n"; }
+    	close(FILE);
+		}
+		else
+    {
+      print "Unable to open file '$logfile.gz'\n";
+      AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", "$logfile.gz");
+    }
   }
 }
 
@@ -333,26 +347,33 @@ sub File_Handler($)
 		my ($y, $m, $d, $file_new, $hour, $min) = ($1, $2, $3, $4, $5, $6);
     (%taxo, %known_msgs, @unknown_msgs) = ((), (), ());
 		my $total = 0;	
-		open(FILE, ($file =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$file\" |");
-		while (<FILE>)
- 		{
-  		my $line = $_;
-   		chomp($line);
-			my $match = 0;
-    	foreach my $serv (@services)
-    	{
-   			foreach my $msg (@{$service{$serv}{msgs}})
-      	{ 
-					Line_Handler($line, $serv, $msg, \%known_msgs, \$match); 
+		if (defined open(FILE, ($file =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$file\" |"))
+		{
+			while (<FILE>)
+ 			{
+  			my $line = $_;
+   			chomp($line);
+				my $match = 0;
+    		foreach my $serv (@services)
+    		{
+   				foreach my $msg (@{$service{$serv}{msgs}})
+      		{ 
+						Line_Handler($line, $serv, $msg, \%known_msgs, \$match); 
+						last if ($match);
+					}
 					last if ($match);
 				}
-				last if ($match);
+				push(@unknown_msgs, $line)	if (! $match);
+				$total++;
 			}
-			push(@unknown_msgs, $line)	if (! $match);
-			$total++;
+			close(FILE);
+			unlink $file;	
 		}
-		close(FILE);
-		unlink $file;	
+		else
+    {
+    	print "Unable to open file '$file'\n";
+     	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", $file);
+    }
 		foreach my $serv (keys %known_msgs)
 			{	Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new); }
 		Write_Unknown_Logfile($file, \@unknown_msgs);

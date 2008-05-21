@@ -139,11 +139,18 @@ sub Write_To_Incoming
 	{
 		my $dir = Handle_Dir($dev, $mday, $month, $year);
  		my $file = "$dir/msg_$hour" . "h$min.log";
- 		open(INCOMING, ">> $file");
- 		foreach my $l (@lines)
-  		{ print INCOMING "$l\n"; }
- 		close(INCOMING);
- 		Octopussy::Chown($file);
+ 		if (defined open(INCOMING, ">> $file"))
+		{
+ 			foreach my $l (@lines)
+  			{ print INCOMING "$l\n"; }
+ 			close(INCOMING);
+ 			Octopussy::Chown($file);
+		}
+		else
+		{
+     	print "Unable to open file '$file'\n";
+     	AAT::Syslog("octo_pusher", "UNABLE_OPEN_FILE", $file);
+    }
 	}
 }
 
@@ -174,31 +181,38 @@ while (1)
     	my @files = grep !/^\./, readdir(DIR2);	
 			foreach my $f (@files)
     	{
-     		open(FILE, "$FTP_DIR/$d/$f");
-				my @lines = ();
-				while (<FILE>)
+     		if (defined open(FILE, "$FTP_DIR/$d/$f"))
 				{
-					my $syslog = Convert_To_Syslog($_, $d);
-					if ($syslog =~ /^(\w{3}) \s?(\d{1,2}) (\d\d):(\d\d):\d\d (\S+)/)
+					my @lines = ();
+					while (<FILE>)
 					{
-						$device = $5;
-						($n_min, $n_hour, $n_mday, $n_month, $n_year) = 
-							($4, $3, $2, $month{$1}, ($month{$1} > $n_month ? $n_year - 1 : $n_year));
-						if (($n_min ne $min) || ($n_hour ne $hour) || ($n_mday ne $mday) 
-							|| ($n_month ne $month))
+						my $syslog = Convert_To_Syslog($_, $d);
+						if ($syslog =~ /^(\w{3}) \s?(\d{1,2}) (\d\d):(\d\d):\d\d (\S+)/)
 						{
-							Write_To_Incoming($device, $year, $month, $mday, $hour, $min, @lines);
-							($year, $month, $mday, $hour, $min) = 
-								($n_year, $n_month, $n_mday, $n_hour, $n_min);
-							@lines = ();
+							$device = $5;
+							($n_min, $n_hour, $n_mday, $n_month, $n_year) = 
+								($4, $3, $2, $month{$1}, ($month{$1} > $n_month ? $n_year - 1 : $n_year));
+							if (($n_min ne $min) || ($n_hour ne $hour) || ($n_mday ne $mday) 
+								|| ($n_month ne $month))
+							{
+								Write_To_Incoming($device, $year, $month, $mday, $hour, $min, @lines);
+								($year, $month, $mday, $hour, $min) = 
+									($n_year, $n_month, $n_mday, $n_hour, $n_min);
+								@lines = ();
+							}
+							push(@lines, $syslog);  
 						}
-						push(@lines, $syslog);  
 					}
+					close(FILE);
+					unlink("$FTP_DIR/$d/$f")	if (($#lines >= 0) || (-z "$FTP_DIR/$d/$f"));
+					Write_To_Incoming($device, $year, $month, $mday, $hour, $min, @lines)	
+						if (defined $device);	
 				}
-				close(FILE);
-				unlink("$FTP_DIR/$d/$f")	if (($#lines >= 0) || (-z "$FTP_DIR/$d/$f"));
-				Write_To_Incoming($device, $year, $month, $mday, $hour, $min, @lines)	
-					if (defined $device);	
+				else
+      	{
+        	print "Unable to open file '$f'\n";
+        	AAT::Syslog("octo_pusher", "UNABLE_OPEN_FILE", $f);
+      	}
   		}
     	closedir(DIR2);
 		}

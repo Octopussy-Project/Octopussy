@@ -14,5 +14,20 @@
         menu_mode="TEXT_AND_ICONS"
         password="$1$OP$k9xUWummMPX6VvI3fCvYF0"
         role="restricted"
-        theme="DEFAULT" />
+        theme="DEFAULT"
+        type="local" />
+  <user certificate=""
+        language="FR"
+        login="fred"
+        menu_mode="TEXT_AND_ICONS"
+        password="$1$OP$G5oHbI4Iv55G6XSlRR0hU1"
+        role="restricted"
+        theme="DEFAULT">
+    <restrictions>
+      <alert>-NONE-</alert>
+      <device>10.112.244.184</device>
+      <report>-NONE-</report>
+      <service>Logger_Fred</service>
+    </restrictions>
+  </user>
 </Octopussy_users>
