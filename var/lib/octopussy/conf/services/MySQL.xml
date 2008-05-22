@@ -3,7 +3,7 @@
                    icon="software/logo_mysql"
                    name="MySQL"
                    nb_messages="056"
-                   version="200804070003"
+                   version="200805220003"
                    website="http://www.mysql.com">
   <message loglevel="Critical"
            msg_id="MySQL:cant_connect_through_socket"
@@ -359,4 +359,22 @@
            rank="059"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Critical"
+           msg_id="MySQL:fatal_error_defaults_handling"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; /etc/init.d/mysql[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Fatal error in defaults handling. Program aborted&quot;):msg@&gt;"
+           rank="060"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="MySQL:cant_remove_pid_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld_safe[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Fatal error: Can't remove the pid file: .+&quot;):msg@&gt;"
+           rank="061"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="MySQL:couldnt_open_defaults_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; /etc/init.d/mysql[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Could not open required defaults file: .+&quot;):msg@&gt;"
+           rank="062"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

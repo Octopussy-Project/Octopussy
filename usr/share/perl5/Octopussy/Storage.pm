@@ -116,8 +116,7 @@ Returns:
 
 \%conf - Hashref of the storage configuration
 
-=cut
- 
+=cut 
 sub Configuration($)
 {
 	my $storage = shift;
@@ -144,7 +143,6 @@ Returns:
 @configurations - Array of Hashref storage configurations  
 
 =cut
-
 sub Configurations($)
 {
   my $sort = shift || "s_id";
@@ -178,7 +176,6 @@ sub Configurations($)
 Returns directory for Storage '$storage'
 
 =cut
-
 sub Directory($)
 {
   my $storage = shift;
@@ -197,7 +194,6 @@ sub Directory($)
 Returns directory for Device '$device' Service '$service' Logs
 
 =cut
-
 sub Directory_Service($$)
 {
 	my ($device, $service) = @_;
@@ -215,7 +211,6 @@ sub Directory_Service($$)
 Returns directory for Device '$device' Incoming Logs
 
 =cut
-
 sub Directory_Incoming($)
 {
   my $device = shift;
@@ -233,7 +228,6 @@ sub Directory_Incoming($)
 Returns directory for Device '$device' Unknown Logs
 
 =cut
-
 sub Directory_Unknown($)
 {
   my $device = shift;

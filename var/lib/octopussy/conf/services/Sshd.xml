@@ -2,7 +2,7 @@
 <octopussy_service description="SSH Daemon Service"
                    name="Sshd"
                    nb_messages="067"
-                   version="200805050002">
+                   version="200805220001">
   <message loglevel="Information"
            msg_id="sshd:session_for_user"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*session .+ for user .+&quot;):msg@&gt;"
@@ -405,4 +405,10 @@
            rank="067"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Critical"
+           msg_id="Sshd:public_key_blacklisted"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Public key \S+ blacklisted.*&quot;):msg@&gt;"
+           rank="068"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

@@ -34,18 +34,14 @@ sub Init()
 	%device_dir = ();
 	%device_type = ();
 	AAT::Syslog($PROG_NAME, "Load Devices Configuration");
-	my $storage = Octopussy::Storage::Default();
 	foreach my $d (Octopussy::Device::Configurations("name"))
 	{
   	my $type = $d->{type};
   	$type =~ s/ /_/g;
 		my $status = (defined $d->{status} ? $d->{status} : "Paused");
 		$device_type{$d->{name}} = ($status ne "Stopped" ? $type : "");
-		#my $type = (AAT::NOT_NULL($device_type{$d->{name}})
-    #	? $device_type{$d->{name}} : "Unknown");
 		$device_dir{$d->{name}} = 
-			Octopussy::Storage::Directory($d->{storage_incoming}) 
-			|| Octopussy::Storage::Directory($storage->{incoming});
+			Octopussy::Storage::Directory_Incoming($d->{name});
 	}		
 	Octopussy::RRDTool::Syslog_By_DeviceType_Init();
 }
@@ -64,9 +60,7 @@ sub Handle_Dir($$$$)
   	{
     	Octopussy::Device::New({ name => $device, address => $device,
       	description => "New Device !" });
-			my $storage = Octopussy::Storage::Default();
-    	$device_dir{$device} = 
-				Octopussy::Storage::Directory($storage->{incoming});
+    	$device_dir{$device} = Octopussy::Storage::Directory_Incoming($device);
   	}
 	}
 	my $type = (AAT::NOT_NULL($device_type{$device})

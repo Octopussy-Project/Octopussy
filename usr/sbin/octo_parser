@@ -82,14 +82,10 @@ sub Init()
 	@services = Octopussy::Device::Services($device);	
 	@taxo_list = Octopussy::Taxonomy::List()
 		or die("[OCTOPUSSY ERROR: Unable to get Taxonomy configuration]");
-	$dir_data{"Unknown"} = 
-		Octopussy::Storage::Directory($dconf->{storage_unknown})
-			|| Octopussy::Storage::Directory($storage->{unknown});
+	$dir_data{"Unknown"} = Octopussy::Storage::Directory_Unknown($device); 
 	foreach my $serv (@services)
  	{
-		$dir_data{$serv} = Octopussy::Storage::Directory($dconf->{"storage_$serv"})
-			|| Octopussy::Storage::Directory($dconf->{storage_known}) 
-			|| Octopussy::Storage::Directory($storage->{known});
+		$dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
 		Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Init($device, $serv);
   	my @msg_to_parse = ();
    	my @messages = Octopussy::Service::Messages($serv);

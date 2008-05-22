@@ -29,29 +29,10 @@ foreach my $s (@services)
 }
 %>
 </select>
-<script type="text/javascript">
-var device = document.forms[<%= $form_number %>].device.options.length;
-var service = new Array(device);
-for (i = 0; i < device; i++)
-	service[i] = new Array();
 <%
-my $i = 0;
-my $i2 = 0;
-%>
-service[<%=$i%>][<%=$i2++%>] = new Option("<%= $str_any %>", "-ANY-");
-<%
-if (defined $arg{unknown})
-{ %> 
-service[<%=$i%>][<%=$i2++%>] = new Option("<%= $str_unknown %>", "Unknown"); 
-<% }
+my ($i, $i2) = (0, 0);
 my @services = (AAT::NOT_NULL($arg{restricted_services})
   ? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
-foreach my $s (@services)
-{	%> 
-service[<%=$i%>][<%=$i2++%>] = new Option("<%= $s %>","<%= $s %>"); 
-<% }
-$i++;
-
 my (@dg_list, @d_list) = ((), ());
 if (AAT::NOT_NULL($arg{device}))
 {
@@ -67,6 +48,26 @@ if (AAT::NOT_NULL($arg{device}))
 }
 else
   { @d_list = Octopussy::Device::List(); }
+%>
+<script type="text/javascript">
+var selector_device = document.forms[<%= $form_number %>].device;
+var selector_service = document.forms[<%= $form_number %>].service;
+var nb_device = selector_device.options.length;
+var service = new Array(nb_device);
+for (i = 0; i < nb_device; i++)
+	service[i] = new Array();
+
+service[<%=$i%>][<%=$i2++%>] = new Option("<%= $str_any %>", "-ANY-");
+<%
+if (defined $arg{unknown})
+{ %> 
+service[<%=$i%>][<%=$i2++%>] = new Option("<%= $str_unknown %>", "Unknown"); 
+<% }
+foreach my $s (@services)
+{	%> 
+service[<%=$i%>][<%=$i2++%>] = new Option("<%= $s %>","<%= $s %>"); 
+<% }
+$i++;
 
 foreach my $d (sort @dg_list)
 {
@@ -127,25 +128,41 @@ service[<%=$i%>][<%=$i2++%>] = new Option("<%= $s %>","<%= $s %>"); <%
   $i++;
 }
 %>
-var temp = document.forms[<%= $form_number %>].service;
-
 
 function update_service(x)
 {
 	var selected = 0;
-	for (i = 0; i < document.forms[<%= $form_number %>].device.options.length; i++)
+	for (i = 0; i < selector_device.options.length; i++)
 	{
-		if (document.forms[<%= $form_number %>].device.options[i].selected == 1)
+		if (selector_device.options[i].selected == 1)
 			selected++;
 	}
 	if (selected > 1)
 		x = 0; // full service list if more than one device selected
-	for (m = temp.options.length-1; m > 0; m--)
-		temp.options[m] = null;
+	for (m = selector_service.options.length-1; m > 0; m--)
+		selector_service.options[m] = null;
 	for (i = 0; i < service[x].length; i++)
-		temp.options[i] = new Option(service[x][i].text, service[x][i].value);
-//	temp.options[0].selected = true;
+		selector_service.options[i] = new Option(service[x][i].text, service[x][i].value);
 }
 
-update_service(document.forms[<%= $form_number %>].device.options.selectedIndex);
+update_service(selector_device.options.selectedIndex);
+
+<%
+my @selected_serv = keys %selected;
+%>
+var selected_serv = new Array(<%= $#selected_serv+1 %>);
+<%
+foreach my $s (AAT::ARRAY($arg{selected}))
+{
+%>selected_serv[i] = "<%= $s %>";<%
+}
+%>
+for (i = 0; i < service[selector_device.options.selectedIndex].length; i++)
+{
+	for (j = 0; j < selected_serv.length; j++)
+	{
+		if (selector_service.options[i].value == selected_serv[j])
+			selector_service.options[i].selected = true;
+	}
+}
 </script>

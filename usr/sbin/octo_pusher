@@ -55,8 +55,8 @@ sub Init()
 				push(@{$conf{$d->{name}}},
 					{ regexp => qr/$as->{regexp}/, output => $as->{output} });
 			}
-			$device_dir{$d->{name}} = Octopussy::Storage::Directory(
-				$d->{storage_incoming} || $storage->{incoming});
+			$device_dir{$d->{name}} = 
+				Octopussy::Storage::Directory_Incoming($d->{name});
 		}
 	}		
 }
@@ -77,8 +77,7 @@ sub Handle_Dir($$$$)
     	Octopussy::Device::New({ name => $device, address => $device,
       	description => "New Device !" });
 			my $storage = Octopussy::Storage::Default();
-    	$device_dir{$device} = 
-				Octopussy::Storage::Directory($storage->{incoming});
+    	$device_dir{$device} = Octopussy::Storage::Directory_Incoming($device);
   	}
 	}
 	$day = ($day < 10 ? "0" . $day : $day);

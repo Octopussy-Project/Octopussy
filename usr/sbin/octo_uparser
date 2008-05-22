@@ -58,13 +58,10 @@ sub Init()
 	my $storage = Octopussy::Storage::Default();
 	@services = Octopussy::Device::Services($device);	
 
-	$dir_data{"unknown"} = Octopussy::Storage::Directory($dconf->{storage_unknown})
-		|| Octopussy::Storage::Directory($storage->{unknown});	
+	$dir_data{"Unknown"} = Octopussy::Storage::Directory_Unknown($device);
 	foreach my $serv (@services)
  	{
-		$dir_data{$serv} = Octopussy::Storage::Directory($dconf->{"storage_$serv"})
-      || Octopussy::Storage::Directory($dconf->{storage_known}) 
-			|| Octopussy::Storage::Directory($storage->{known});
+		$dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
   	my @msg_to_parse = ();
    	my @messages = Octopussy::Service::Messages($serv);
 		AAT::Syslog($PROG_NAME, "Init Service: $serv - " 
