@@ -6,8 +6,6 @@
 my %arg = @_; 
 use utf8;
 
-$Session->{AAT_PAGE_PREVIOUS} = $Session->{AAT_PAGE_CURRENT};
-
 if (defined $arg{icon})
 	{ %><link rel="icon" type="image/gif" href="<%= $arg{icon} %>"><% }
 if (defined $arg{refresh})

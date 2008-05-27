@@ -16,5 +16,4 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 %>
 <AAT:Inc file="octo_device_storages_default" device="$device" 
 	url="./device_storages.asp?device=$device" />
-<AAT:BackButton />
 <WebUI:PageBottom />

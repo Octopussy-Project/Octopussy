@@ -21,5 +21,5 @@ else
 <tr><td colspan="2"><% $Response->Include('INC/octo_top_menu.inc', help => $arg{help}) %></td></tr>
 <tr>
 <td valign="top"><% $Response->Include('INC/octo_main_menu.inc') %></td>
-<td align="center" width="*">
+<td valign="top" align="center" width="*">
 <AAT:Msg_Error/>

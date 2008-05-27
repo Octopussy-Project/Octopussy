@@ -24,7 +24,6 @@ my %filenames;
 Creates a new Table with configuration '$conf'
 
 =cut
- 
 sub New($)
 {
 	my $conf = shift;
@@ -39,7 +38,6 @@ sub New($)
 Removes the Table '$table'
 
 =cut
-
 sub Remove($)
 {
 	my $table = shift;
@@ -54,7 +52,6 @@ sub Remove($)
 Get List of Tables
 
 =cut
-
 sub List()
 {
 	$tables_dir ||= Octopussy::Directory($TABLE_DIR);
@@ -67,7 +64,6 @@ sub List()
 Get the XML filename for the Table '$table_name'
 
 =cut
-
 sub Filename($)
 {
 	my $table_name = shift;
@@ -84,7 +80,6 @@ sub Filename($)
 Get the configuration for the Table '$table_name'
 
 =cut
- 
 sub Configuration($)
 {
 	my $table_name = shift;
@@ -99,7 +94,6 @@ sub Configuration($)
 Get the configuration for all Tables
 
 =cut
-
 sub Configurations
 {
   my $sort = shift || "name";
@@ -126,7 +120,6 @@ sub Configurations
 Adds Field '$fieldname' of type '$fieldtype' to Table '$table'
 
 =cut
-
 sub Add_Field($$$)
 {
 	my ($table, $fieldname, $fieldtype) = @_;
@@ -141,7 +134,6 @@ sub Add_Field($$$)
 Removes Field '$fieldname' from Table '$table'
 
 =cut
-
 sub Remove_Field($$)
 {
 	my ($table, $fieldname) = @_;
@@ -161,7 +153,6 @@ sub Remove_Field($$)
 Gets fields from Table '$table'
 
 =cut
- 
 sub Fields($)
 {
 	my $table = shift;
@@ -176,7 +167,6 @@ sub Fields($)
 Gets the configuration for all Fields
 
 =cut
-
 sub Fields_Configurations($$)
 {
 	my ($table, $sort) = @_;
@@ -203,7 +193,6 @@ sub Fields_Configurations($$)
 Generates SQL code to create the Table '$table'
 
 =cut
-
 sub SQL($$$)
 {
 	my ($table, $fields, $indexes) = @_;
@@ -244,7 +233,6 @@ sub SQL($$$)
 Gets field list from Table '$table' where Field type is '$type'
 
 =cut
-
 sub Field_Type_List($$)
 {
 	my ($table, $type) = @_;
@@ -263,7 +251,6 @@ Returns one hashref of devices and one hashref of services
 wich contains messages with table '$table'
 
 =cut
-
 sub Devices_and_Services_With($)
 {
 	my $table = shift;
@@ -304,7 +291,6 @@ sub Devices_and_Services_With($)
 =head2 Valid_Pattern($table, $pattern)
 
 =cut
-
 sub Valid_Pattern($$)
 {
 	my ($table, $pattern) = @_;
@@ -333,7 +319,6 @@ sub Valid_Pattern($$)
 =head2 Updates_Installation(@tables)
 
 =cut
-
 sub Updates_Installation
 {
   my @tables = @_;
@@ -350,7 +335,6 @@ sub Updates_Installation
 =head2 Update_Get_Fields($table)
 
 =cut
-
 sub Update_Get_Fields($)
 {
 	my $table = shift;
@@ -366,7 +350,6 @@ sub Update_Get_Fields($)
 =head2 Updates_Diff($table)
 
 =cut
-
 sub Updates_Diff($)
 {
   my $table = shift;

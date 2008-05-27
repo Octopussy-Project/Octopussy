@@ -13,10 +13,9 @@ use Octopussy;
 
 =head2 Add($storage_conf)
 
-Add a new storage
+Add a new Storage
 
 =cut
-
 sub Add($)
 {
 	my $storage_conf = shift;
@@ -37,10 +36,9 @@ sub Add($)
 
 =head2 Remove($storage)
 
-Removes storage '$storage'
+Removes Storage '$storage'
 
 =cut
-
 sub Remove($)
 {
   my $storage = shift;
@@ -59,7 +57,6 @@ sub Remove($)
 =head2 Default()
 
 =cut
-
 sub Default()
 {
 	my $conf = AAT::XML::Read(Octopussy::File("storages"));
@@ -72,7 +69,6 @@ sub Default()
 =head2 Default_Set($new_conf)
 
 =cut
-
 sub Default_Set($)
 {
 	my $new_conf = shift;
@@ -95,7 +91,6 @@ Returns:
 @storages - Array of storages names
 
 =cut
- 
 sub List()
 {
 	my @storages = AAT::XML::File_Array_Values(Octopussy::File("storages"),

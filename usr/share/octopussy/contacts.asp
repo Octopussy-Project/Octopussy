@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Contacts" help="contacts" />
 <%
 my $f = $Request->Form();

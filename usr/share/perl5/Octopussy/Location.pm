@@ -41,8 +41,13 @@ sub City_Add($)
 	my $exists = 0;
 	foreach my $c (Cities())
 		{ $exists = 1	if ($c eq $city); }
-	push(@{$conf->{city}}, { c_name => $city })	if (!$exists);
-	AAT::XML::Write($file, $conf, "octopussy_locations");
+	if (!$exists)
+	{
+		push(@{$conf->{city}}, { c_name => $city });
+		AAT::XML::Write($file, $conf, "octopussy_locations");
+		return ($city);
+	}
+	return (undef);
 }
 
 =head2 City_Remove($city)
@@ -101,6 +106,7 @@ sub Building_Add($$)
 	my $file = Octopussy::File("locations");
   my $conf = AAT::XML::Read($file);
 	my @cities = ();
+	my $result = undef;
 
 	foreach my $c (AAT::ARRAY($conf->{city}))
   {
@@ -109,13 +115,18 @@ sub Building_Add($$)
 			my $exists = 0;
 			foreach my $b (Buildings($city))
 				{ $exists = 1 if ($b eq $building); }
-			push(@{$c->{building}}, { b_name => $building })	if (!$exists); 
+			if (!$exists)
+			{
+				push(@{$c->{building}}, { b_name => $building });
+				$result = $building;
+			} 
 		}
 		push(@cities, $c); 
 	}
 	
 	$conf->{city} = \@cities;
 	AAT::XML::Write($file, $conf, "octopussy_locations");
+	return ($result);
 }
 
 =head2 Building_Remove
@@ -193,6 +204,7 @@ sub Room_Add($$$)
   my @cities = ();
 	my @buildings = ();
 	my @rooms = ();
+	my $result = undef;
 
   foreach my $c (AAT::ARRAY($conf->{city}))
   {
@@ -205,7 +217,11 @@ sub Room_Add($$$)
 					my $exists = 0;
       		foreach my $r (Rooms($city, $building))
         		{ $exists = 1 if ($r eq $room); }
-					push(@{$b->{room}}, { r_name => $room })	if (!$exists); 
+					if (!$exists)
+					{
+						push(@{$b->{room}}, { r_name => $room });
+						$result = $room;
+					} 
 				}
 				push(@buildings, $b);
 			}
@@ -216,6 +232,7 @@ sub Room_Add($$$)
 
   $conf->{city} = \@cities;
 	AAT::XML::Write($file, $conf, "octopussy_locations");
+	return ($result);
 }
 
 =head2 Room_Remove($city, $building, $room)
@@ -308,6 +325,7 @@ sub Rack_Add($$$$)
   my $file = Octopussy::File("locations");
   my $conf = AAT::XML::Read($file);
   my (@cities, @buildings, @rooms) = ((), (), ());
+	my $result = undef;
 
   foreach my $c (AAT::ARRAY($conf->{city}))
   {
@@ -324,7 +342,11 @@ sub Rack_Add($$$$)
 							my $exists = 0;
           		foreach my $ra (Racks($city, $building, $room))
             		{ $exists = 1 if ($ra eq $rack); } 
-							push(@{$r->{rack}}, { r_name => $rack })	if (!$exists); 
+							if (!$exists)
+							{
+								push(@{$r->{rack}}, { r_name => $rack });
+								$result = $rack;
+							} 
 						}
         		push(@rooms, $r);
 					}
@@ -338,6 +360,7 @@ sub Rack_Add($$$$)
   }
   $conf->{city} = \@cities;
 	AAT::XML::Write($file, $conf, "octopussy_locations");
+	return ($result);
 }
 
 =head2 Rack_Remove 

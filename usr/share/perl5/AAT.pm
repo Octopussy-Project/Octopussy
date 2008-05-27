@@ -447,18 +447,6 @@ sub File_Save
 	$main::Response->End();
 }
 
-=head2 BackButton($args, $body)
-
-Usage: <AAT:BackButton />
-
-=cut
-sub BackButton
-{
-	my ($args, $body) = @_;
-
-  $main::Response->Include('AAT/INC/AAT_BackButton.inc', %{$args});
-}
-
 =head2 Button($args, $body)
 
 Usage: <AAT:Button name="remove" popup_link="$remove_link" />

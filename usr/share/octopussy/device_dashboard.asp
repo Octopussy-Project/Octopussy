@@ -30,8 +30,6 @@ else
 <td><AAT:Inc file="octo_device_dashboard" device="$device" /></td>
 <td rowspan="2"><AAT:RRD_Graph url="./device_dashboard.asp?device=$device"
 	name="taxonomy_$device" mode="$mode" /></td>
-</tr><tr valign="top">
-<td><AAT:BackButton /></td>
 </tr>
 </table>
 <WebUI:PageBottom />

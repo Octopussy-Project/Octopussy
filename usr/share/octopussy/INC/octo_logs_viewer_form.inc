@@ -49,7 +49,8 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
   <AAT:BoxCol>
   <AAT:Selector_DateTime_Simple name="dt" start_year="2000" url="$arg{url}"
     selected="$dt"
-    selected1="$d1/$m1/$y1/$hour1/$min1" selected2="$d2/$m2/$y2/$hour2/$min2" />  </AAT:BoxCol>
+    selected1="$d1/$m1/$y1/$hour1/$min1" selected2="$d2/$m2/$y2/$hour2/$min2" />
+	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol cspan="2">

@@ -21,5 +21,4 @@ if (defined $service)
 %>
 <AAT:Inc file="octo_device_services_list" 
 	url="./device_services.asp" device="$device" sort="$sort" />
-<AAT:BackButton />
 <WebUI:PageBottom />

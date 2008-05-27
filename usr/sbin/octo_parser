@@ -76,8 +76,6 @@ sub Init()
 {
 	my $dconf = Octopussy::Device::Configuration($device) or 
 		die("[OCTOPUSSY ERROR: Unable to get Device configuration for '$device']");
-	my $storage = Octopussy::Storage::Default() 
-		or die("[OCTOPUSSY ERROR: Unable to get Default Storage configuration]");
 	$minutes_without_logs = $dconf->{minutes_without_logs};
 	@services = Octopussy::Device::Services($device);	
 	@taxo_list = Octopussy::Taxonomy::List()

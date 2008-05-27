@@ -14,7 +14,6 @@ use Octopussy;
 Returns Device List
 
 =cut
-
 sub Device_List($)
 {
 	my $devices = shift;
@@ -50,7 +49,6 @@ sub Device_List($)
 Returns Service List
 
 =cut
-
 sub Service_List($)
 {
 	my $services = shift;
@@ -82,7 +80,6 @@ sub Service_List($)
 Gets Logs Directories
 
 =cut
-
 sub Get_Directories($)
 {
   my $dir = shift;
@@ -99,7 +96,6 @@ sub Get_Directories($)
 Inits Logs Directories for Device '$device'
 
 =cut
-
 sub Init_Directories($)
 {
 	my $device = shift;
@@ -116,7 +112,6 @@ sub Init_Directories($)
 Removes Logs Directories for Device '$device'
 
 =cut
-
 sub Remove_Directories($)
 {
 	my $device = shift;
@@ -145,7 +140,6 @@ Get logs files from '$services' on devices '$devices'
 between '$start' & '$finish' (don't get Incoming logs files)
 
 =cut
- 
 sub Files($$$$)
 {
 	my ($ref_devices, $ref_services, $start, $finish) = @_;
@@ -168,7 +162,6 @@ sub Files($$$$)
 			if (AAT::NOT_NULL($servs{$s}))
 			{
 				my $dir = Octopussy::Storage::Directory_Service($dev, $s);
-				my $dconf =  Octopussy::Device::Configuration($dev);
 				foreach my $y (Get_Directories("$dir/$dev/$s"))
 				{
 					my $num_year = $y*100000000;
@@ -229,7 +222,6 @@ sub Minutes_Hash
       if (AAT::NOT_NULL($servs{$s}))
       {
         my $dir = Octopussy::Storage::Directory_Service($dev, $s);
-        my $dconf =  Octopussy::Device::Configuration($dev);
         foreach my $y (Get_Directories("$dir/$dev/$s"))
         {
           my $num_year = $y*100000000;
@@ -278,7 +270,6 @@ Get logs lines from '$services' on devices '$devices'
 between '$start' & '$finish'
 
 =cut
- 
 sub Get($$$$$$$)
 {
 	my ($devices, $services, $start, $finish, $re_incl, $re_excl, $limit) = @_;
@@ -328,12 +319,10 @@ sub Get($$$$$$$)
 Returns list of 'Incoming Files'
 
 =cut
-
 sub Incoming_Files($)
 {
 	my $device = shift;
 
-	my $dconf = Octopussy::Device::Configuration($device);
 	my $dir =  Octopussy::Storage::Directory_Incoming($device);
 	Octopussy::Create_Directory("$dir/$device/Incoming/");
 	my @files = `find "$dir/$device/Incoming/" -name "msg_*.log"`;
@@ -347,13 +336,11 @@ Returns list of 'Unknown Files'
 (lines of these files doesn't match any defined message)
 
 =cut
-
 sub Unknown_Files
 {
 	my ($device, $first_file) = @_;
 	my @unknown = ();
 
-	my $dconf = Octopussy::Device::Configuration($device);
 	my $dir = Octopussy::Storage::Directory_Unknown($device);
 	Octopussy::Create_Directory("$dir/$device/Unknown/");
 	my @files = `find "$dir/$device/Unknown/" -name "msg_*.log.gz"`;	
@@ -370,7 +357,6 @@ sub Unknown_Files
 Returns number of unknown log messages for device '$device'
 
 =cut
-  
 sub Unknown_Number($)
 {
 	my $device = shift;
@@ -395,7 +381,6 @@ sub Unknown_Number($)
 Removes Log '$log' from Unknown Logs for Device '$device'
 
 =cut
-
 sub Remove($$)
 {
 	my ($device, $log) = @_;
@@ -429,7 +414,6 @@ sub Remove($$)
 Removes 1 minute of Log File for Device '$device'
 
 =cut
-
 sub Remove_Minute($$$$$$)
 {
 	my ($device, $year, $month, $day, $hour, $min) = @_;
@@ -447,7 +431,6 @@ sub Remove_Minute($$$$$$)
 Generate Command Line for octo_extractor
 
 =cut
-
 sub Extract_Cmd_Line($)
 {
 	my $conf = shift;
