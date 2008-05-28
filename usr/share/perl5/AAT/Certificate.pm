@@ -23,10 +23,11 @@ my $SSL_X509 = "$OPENSSL x509";
 
 =head1 FUNCTIONS
 
-=head2 Authority_Configuration()
+=head2 Authority_Configuration($appli)
+
+Returns the Authority configuration
 
 =cut
-
 sub Authority_Configuration($)
 {
 	my $appli = shift;
@@ -48,8 +49,9 @@ sub Authority_Configuration($)
 
 =head2 Authority_Create($appli, \%conf)
 
-=cut
+Creates a Certificate Authority
 
+=cut
 sub Authority_Create($$)
 {
 	my ($appli, $conf) = @_;
@@ -81,8 +83,9 @@ sub Authority_Create($$)
 
 =head2 Client_Create($appli, $file, $password, \%conf)
 
-=cut
+Creates a Client Certificate
 
+=cut
 sub Client_Create($$$$)
 {
 	my ($appli, $file, $password, $conf) = @_;
@@ -113,8 +116,9 @@ sub Client_Create($$$$)
 
 =head2 Server_Create()
 
-=cut
+Creates a Server Certificate
 
+=cut
 sub Server_Create
 {
 	my ($appli, $dest, $conf) = @_;

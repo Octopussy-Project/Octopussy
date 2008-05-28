@@ -406,13 +406,20 @@ sub Services_Statistics($)
 
 	my $file = Octopussy::Device_Stats_File($device);  
 	my $total = 0;
-	open(STATS, "< $file");
-  while (<STATS>)
-  {
-		$stats{$1} = $2	if ($_ =~ /^(.+): (\d+)$/); 
-		$total += $2;
-  }
-  close(STATS);
+	if (defined open(STATS, "< $file"))
+	{
+  	while (<STATS>)
+  	{
+			$stats{$1} = $2	if ($_ =~ /^(.+): (\d+)$/); 
+			$total += $2;
+  	}
+  	close(STATS);
+	}
+	else
+	{
+		my ($pack, $pack_file, $line, $sub) = caller(0);
+    AAT::Syslog("Octopussy::Device", "Unable to open file '$file' in $sub");
+	}
 	foreach my $k (keys %stats)
 	{
 		$stats{$k} = ($total == 0 ? "0%" : (int($stats{$k} * 100 / $total) . "%"));

@@ -506,7 +506,7 @@ sub Report_Graph($$$$$$$)
  	$i = 1;	
 	foreach my $k (sort keys %ds)
   {
-  	my $color = $colors[$i-1];
+  	my $color = (($i < 30) ? $colors[$i-1] : "#909090");
   	my $rtype = (($rconf->{graph_type} =~ /rrd_line/) ? "LINE" 
 			: (($i == 1) ? "AREA" : "STACK"));
     $cmd .= "DEF:def$i=\"$rrd_file\":ds$i:AVERAGE CDEF:cdef$i=def$i ";

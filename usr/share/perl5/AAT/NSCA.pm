@@ -16,7 +16,6 @@ my %conf_file = ();
 Returns NSCA Configuration
 
 =cut
-
 sub Configuration($)
 {
 	my $appli = shift;
@@ -29,10 +28,9 @@ sub Configuration($)
 
 =head2 Send($appli, $level, $msg)
 
-Send NSCA message '$msg' with level '$level'
+Sends NSCA message '$msg' with level '$level'
 
 =cut
-
 sub Send($$$)
 {
   my ($appli, $level, $msg) = @_;

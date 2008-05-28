@@ -16,8 +16,9 @@ my %dbh = ();
 
 =head2 Configuration($appli)
 
-=cut
+Returns the Database configuration for the application '$appli'
 
+=cut
 sub Configuration($)
 {
 	my $appli = shift;
@@ -30,10 +31,9 @@ sub Configuration($)
 
 =head2 Connect($appli)
 
-Connect to Database
+Connects to the Database for the application '$appli'
 
 =cut
-
 sub Connect($)
 {
 	my $appli = shift;
@@ -49,10 +49,9 @@ sub Connect($)
 
 =head2 Connection_Test($appli)
 
-Check the Database Connection
+Checks the Database Connection for the application '$appli'
 
 =cut
-
 sub Connection_Test($)
 {
 	my $appli = shift;
@@ -66,10 +65,9 @@ sub Connection_Test($)
 
 =head2 Disconnect($appli)
 
-Disconnect from Database
+Disconnects from Database application '$appli'
 
 =cut
-
 sub Disconnect($)
 {
 	my $appli = shift;
@@ -80,10 +78,9 @@ sub Disconnect($)
 
 =head2 Do($appli, $sql)
 
-Do the SQL action '$sql'
+Does the SQL action '$sql' in application '$appli'
 
 =cut
-
 sub Do($$)
 {
   my ($appli, $sql) = @_;
@@ -93,21 +90,23 @@ sub Do($$)
   Disconnect($appli);
 }
 
-=head2 Table_Destruction($appli, $tablename)
+=head2 Table_Destruction($appli, $table)
+
+Drops the Table '$table' in application '$appli'
 
 =cut
-
 sub Table_Destruction($$)
 {
-  my ($appli, $tablename) = @_;
+  my ($appli, $table) = @_;
 
-	Do($appli, "DROP TABLE IF EXISTS $tablename");
+	Do($appli, "DROP TABLE IF EXISTS $table");
 }
 
 =head2 Insert($appli, $table, $field_values)
 
-=cut
+Inserts values '$field_values' in Table '$table' in application '$appli'
 
+=cut
 sub Insert($$$)
 {
   my ($appli, $table, $field_values) = @_;
@@ -128,10 +127,9 @@ sub Insert($$$)
 
 =head2 Prepare($appli, $sql)
 
-Prepare the SQL statement '$sql'
+Prepares the SQL statement '$sql' in application '$appli'
 
 =cut
-
 sub Prepare($$)
 {
   my ($appli, $sql) = @_;
@@ -145,10 +143,9 @@ sub Prepare($$)
 
 =head2 Query($appli, $query)
 
-Execute the SQL Query '$query'
+Executes the SQL Query '$query' in application '$appli'
 
 =cut
-
 sub Query($$)
 {
   my ($appli, $query) = @_;
@@ -168,21 +165,28 @@ sub Query($$)
 	return (undef);
 }
 
-=head2 Load_File($appli, $table, $file)
+=head2 Load_File($appli, $table, $file, $lines)
 
-Load Data File '$file' with lines '$lines' into table '$table'
+Loads Data File '$file' with lines '$lines' 
+into table '$table' in application '$appli'
 
 =cut
-
 sub Load_Infile($$$$)
 {
   my ($appli, $table, $file, $lines) = @_;
 
-  open(DBFILE, "> $file");
-  foreach my $l (AAT::ARRAY($lines))
-    { print DBFILE "$l\n" if ($l =~ /\S+/); }
-  close(DBFILE);
-	Do($appli, "LOAD DATA INFILE '$file' INTO TABLE $table" . "_$$");
+  if (defined open(DBFILE, "> $file"))
+	{
+  	foreach my $l (AAT::ARRAY($lines))
+    	{ print DBFILE "$l\n" if ($l =~ /\S+/); }
+  	close(DBFILE);
+		Do($appli, "LOAD DATA INFILE '$file' INTO TABLE $table" . "_$$");
+	}
+	else
+	{ 
+		my ($pack, $file, $line, $sub) = caller(0);
+		AAT::Syslog("AAT::DB", "Unable to open file '$file' in $sub");
+	}
 }
 
 1;

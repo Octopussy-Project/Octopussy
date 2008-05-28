@@ -114,7 +114,7 @@ Writes Unknown Logs '$logs' into Logfile '$file'
 sub Write_Unknown_Logfile($$)
 {
   my ($logfile, $logs) = @_;
-	$logfile =~ s/^.+\/Incoming\//$dir_data{unknown}\/$device\/Unknown\//;
+	$logfile =~ s/^.+\/Incoming\//$dir_data{"Unknown"}\/$device\/Unknown\//;
 #	$logfile =~ s/\/Incoming\//\/Unknown\//g;
   
 	if ($#{@{$logs}} >= 0)

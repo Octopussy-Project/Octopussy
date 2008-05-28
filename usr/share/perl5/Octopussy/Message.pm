@@ -22,7 +22,6 @@ use Octopussy::Contact;
 Get message '$msg_id' from service '$service' configuration
 
 =cut 
-
 sub Configuration($$)
 {
 	my ($service, $msg_id) = @_;
@@ -39,7 +38,6 @@ sub Configuration($$)
 Returns Message Fields from Message '$msg_id' in Service '$service'
 
 =cut
-
 sub Fields($$)
 {
 	my ($service, $msg_id) = @_;
@@ -60,7 +58,6 @@ sub Fields($$)
 Get table associated with message '$msg_id' in service '$service'
 
 =cut 
-
 sub Table($$)
 {
 	my ($service, $msg_id) = @_;
@@ -78,7 +75,6 @@ sub Table($$)
 Convert message pattern from message '$msg' into SQL with fields '@fields'
 
 =cut 
-
 sub Pattern_To_SQL
 {
 	my ($msg, $id, @fields) = @_;
@@ -122,7 +118,6 @@ sub Pattern_To_SQL
 Escape (adding '\') characters from regexp '$regexp'
 
 =cut
-
 sub Escape_Characters($)
 {
 	my $regexp = shift;
@@ -145,7 +140,6 @@ sub Escape_Characters($)
 Colors pattern '$pattern'
 
 =cut
-
 sub Color($)
 {
 	my $pattern = shift;
@@ -162,7 +156,6 @@ sub Color($)
 =head2 Color_Without_Field($pattern)
 
 =cut
-
 sub Color_Without_Field($)
 {
 	my $pattern = shift;
@@ -176,10 +169,9 @@ sub Color_Without_Field($)
 
 =head2 Pattern_To_Regexp($msg)
 
-Convert message pattern from message '$msg' into Regexp
+Converts message pattern from message '$msg' into Regexp
 
 =cut 
-
 sub Pattern_To_Regexp($)
 {
 	my $msg = shift;
@@ -202,7 +194,6 @@ sub Pattern_To_Regexp($)
 =head2 Short_Pattern_To_Regexp($msg)
 
 =cut
-
 sub Short_Pattern_To_Regexp($)
 {
 	my $msg = shift;
@@ -216,7 +207,6 @@ sub Short_Pattern_To_Regexp($)
 =head2 Pattern_Field_Substitution
 
 =cut
-
 sub Pattern_Field_Substitution($$$$$$)
 {
 	my ($regexp, $f, $type, $field_regexp, $field_list, $re_types) = @_;
@@ -254,7 +244,6 @@ sub Pattern_Field_Substitution($$$$$$)
 =head2 Pattern_Field_Unmatched_Substitution($regexp, $type, $field_regexp, $re_types)
 
 =cut
-
 sub Pattern_Field_Unmatched_Substitution($$$$)
 {
 	my ($regexp, $type, $field_regexp, $re_types) = @_;
@@ -285,7 +274,6 @@ sub Pattern_Field_Unmatched_Substitution($$$$)
 =head2 Pattern_To_Regexp_Fields($msg, $field_regexp, $ref_fields, $field_list)
 
 =cut
-
 sub Pattern_To_Regexp_Fields($$$$)
 {
   my ($msg, $field_regexp, $ref_fields, $field_list) = @_;
@@ -327,7 +315,6 @@ sub Pattern_To_Regexp_Fields($$$$)
 =head2 Pattern_To_Regexp_Field_Values($msg, @fields)
 
 =cut
-
 sub Pattern_To_Regexp_Field_Values($$)
 {
   my ($msg, @fields) = @_;
@@ -361,7 +348,6 @@ sub Pattern_To_Regexp_Field_Values($$)
 =head2 Fields_Values($msg, $line)
 
 =cut
-
 sub Fields_Values($$)
 {
 	my ($msg, $line) = @_;
@@ -384,7 +370,6 @@ sub Fields_Values($$)
 =head2 Regexped_Fields($query)
 
 =cut
-
 sub Regexped_Fields($)
 {
 	my $query = shift;
@@ -419,7 +404,6 @@ sub Regexped_Fields($)
 =head2 Parse_List($services, $taxonomy, $table, $fields_regexp)
 
 =cut
-
 sub Parse_List($$$$$$)
 {
 	my ($services, $taxonomy, $table, $fields, $fields_regexp, $fields_list) = @_;
@@ -453,7 +437,6 @@ sub Parse_List($$$$$$)
 =head2 Alerts($device, $service, $message)
 
 =cut
-
 sub Alerts($$$)
 {
   my ($device, $service, $message) = @_;
@@ -517,7 +500,6 @@ sub Alerts($$$)
 =head2 Wizard_Msg_Modified($line, $types)
 
 =cut
-
 sub Wizard_Msg_Modified($$)
 {
 	my ($line, $types) = @_;
@@ -545,7 +527,6 @@ sub Wizard_Msg_Modified($$)
 =head2 Wizard_Msg_Regexp($re, $types)
 
 =cut
-
 sub Wizard_Msg_Regexp($$)
 {
 	my ($re, $types) = @_;
@@ -561,7 +542,6 @@ sub Wizard_Msg_Regexp($$)
 =head2 Wizard_Add_Message($timestamp, $line, $types)
 
 =cut
-
 sub Wizard_Add_Message($$$)
 {
 	my ($timestamp, $line, $types) = @_;
@@ -582,7 +562,6 @@ sub Wizard_Add_Message($$$)
 =head2 Wizard($device)
 
 =cut
-
 sub Wizard($)
 {
 	my $device = shift;
@@ -595,35 +574,42 @@ sub Wizard($)
     chomp($f);
 		my $timestamp = "$1$2$3$4$5"
 			if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/);
-    open(FILE, "zcat $f |");
-    while (<FILE>)
+    if (defined open(FILE, "zcat $f |"))
+		{
+    	while (<FILE>)
+    	{
+      	my $line = $_;
+      	chomp($line);
+      	my $match = 0;
+      	foreach my $m (@messages)
+      	{
+        	if ($line =~ $m->{re})
+        	{
+          	$m->{nb} = $m->{nb} + 1;
+          	$match = 1;
+						if ($m->{nb} > 100)
+						{
+							$m->{nb} = "100+";
+							close(FILE);
+							return (@messages);
+						}
+          	last;
+        	}
+      	}
+				push(@messages, Wizard_Add_Message($timestamp, $line, \@types))
+      		if (! $match);
+				last  if ($#messages+1 >= $nb_max);
+    	}
+    	close(FILE);
+   		last  if ($#messages+1 >= $nb_max);
+		}
+		else
     {
-      my $line = $_;
-      chomp($line);
-      my $match = 0;
-      foreach my $m (@messages)
-      {
-        if ($line =~ $m->{re})
-        {
-          $m->{nb} = $m->{nb} + 1;
-          $match = 1;
-					if ($m->{nb} > 100)
-					{
-						$m->{nb} = "100+";
-						close(FILE);
-						return (@messages);
-					}
-          last;
-        }
-      }
-			push(@messages, Wizard_Add_Message($timestamp, $line, \@types))
-      	if (! $match);
-			last  if ($#messages+1 >= $nb_max);
+      my ($pack, $pack_file, $line, $sub) = caller(0);
+      AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
     }
-    close(FILE);
-   	last  if ($#messages+1 >= $nb_max);
   }
-	
+
 	return (@messages);
 }
 

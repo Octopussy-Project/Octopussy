@@ -15,8 +15,8 @@ use Octopussy::Report::HTML;
 use Octopussy::Report::PDF;
 use Octopussy::Report::XML;
 
-use constant REPORT_DIR	=> "reports";
-use constant REPORTER_BIN => "octo_reporter";
+my $REPORT_DIR = "reports";
+my $REPORTER_BIN = "octo_reporter";
 
 my $reports_dir = undef;
 my %filenames;
@@ -33,7 +33,7 @@ sub New($)
 {
 	my $conf = shift;
 
-	$reports_dir ||= Octopussy::Directory(REPORT_DIR);
+	$reports_dir ||= Octopussy::Directory($REPORT_DIR);
 	$conf->{version} = Octopussy::Timestamp_Version(undef);
 	AAT::XML::Write("$reports_dir/$conf->{name}.xml", $conf, "octopussy_report");
 }
@@ -76,7 +76,7 @@ sub List($$)
 {
 	my ($category, $report_restriction_list) = @_;
 	my @res_list = AAT::ARRAY($report_restriction_list);
-	$reports_dir ||= Octopussy::Directory(REPORT_DIR);
+	$reports_dir ||= Octopussy::Directory($REPORT_DIR);
 	my @files = AAT::FS::Directory_Files($reports_dir, qr/.+\.xml$/);
 	my @reports = ();
 	foreach my $f (@files)
@@ -105,7 +105,7 @@ sub Filename($)
   my $report_name = shift;
 
 	return ($filenames{$report_name})  if (defined $filenames{$report_name});
-  $reports_dir ||= Octopussy::Directory(REPORT_DIR);
+  $reports_dir ||= Octopussy::Directory($REPORT_DIR);
 	$filenames{$report_name} = AAT::XML::Filename($reports_dir, $report_name);
 
 	return ($filenames{$report_name});
@@ -348,7 +348,7 @@ sub CmdLine($$$$$$$$$$$)
 
 	Octopussy::Create_Directory($dir);
 
-	my $cmd = $base . REPORTER_BIN . " --report \"$report->{name}\""
+	my $cmd = "$base$REPORTER_BIN --report \"$report->{name}\""
 		. " --device $device_list --service \"$service\""
 		. " --taxonomy $taxonomy --pid_param \"$pid_param\""
 		. " --begin $start --end $finish --lang \"$lang\" " 
@@ -424,7 +424,7 @@ sub Updates_Installation(@)
 {
   my @reports = @_;
   my $web = Octopussy::WebSite();
-  $reports_dir ||= Octopussy::Directory(REPORT_DIR);
+  $reports_dir ||= Octopussy::Directory($REPORT_DIR);
 
   foreach my $r (@reports)
   {

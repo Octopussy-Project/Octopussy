@@ -34,20 +34,27 @@ else
   	{ %><WebUI:PageTopRestricted title="Report Show" /><% }
   else
   	{ %><WebUI:PageTop title="Report Show" /><% }
-	if ($filename =~ /\.html$/)
+	if (-f "$dir_reports/$report_type/$filename")
 	{
-		if (defined open(FILE, "< $dir_reports/$report_type/$filename"))
+		if ($filename =~ /\.html$/)
 		{
-			while (<FILE>)
-				{ print $_; }
-			close(FILE);
+			if (defined open(FILE, "< $dir_reports/$report_type/$filename"))
+			{
+				while (<FILE>)
+					{ print $_; }
+				close(FILE);
+			}
+		}
+		else
+		{
+		%><div align="center">
+		<img src="./img_report.asp?file=<%= "$dir_reports/$report_type/$filename" %>">
+		</div><%
 		}
 	}
 	else
 	{
-	%><div align="center">
-	<img src="./img_report.asp?file=<%= "$dir_reports/$report_type/$filename" %>">
-	</div><%
+	%><AAT:Message level="1" msg="_REPORT_FILE_DOESNT_EXIST" /><%
 	}
 %><WebUI:PageBottom /><%
 }%>

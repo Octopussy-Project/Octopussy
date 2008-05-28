@@ -8,8 +8,7 @@ package Octopussy::Stats;
 use strict;
 use Sys::CPU;
 
-use constant EVENTS_FILE	=> "octo_dispatcher.stats";
-
+my $EVENTS_FILE	= "octo_dispatcher.stats";
 my $pid_dir = undef;
 
 =head1 FUNCTIONS
@@ -149,16 +148,24 @@ sub Events()
 	my %device;
 
 	$pid_dir ||= Octopussy::Directory("running");
-	open(FILE, "< $pid_dir/" . EVENTS_FILE);
-	my $time;
-	while (<FILE>)
+	my $file = "$pid_dir/$EVENTS_FILE";
+	if (defined open(FILE, "< $file"))
 	{
-		$time = $1	if ($_ =~ /\[(\d+)\]/);
-		$device{$1} = $2	if ($_ =~ /^(.+): (\d+)$/);
+		my $time;
+		while (<FILE>)
+		{
+			$time = $1	if ($_ =~ /\[(\d+)\]/);
+			$device{$1} = $2	if ($_ =~ /^(.+): (\d+)$/);
+		}
+		close(FILE);
+		return ($time, \%device);
 	}
-	close(FILE);
-
-	return ($time, \%device);
+	else
+  {
+    my ($pack, $pack_file, $line, $sub) = caller(0);
+    AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
+  }	
+	return (undef, undef);
 }
 
 1;

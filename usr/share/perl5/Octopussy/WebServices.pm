@@ -37,7 +37,6 @@ my %function = ();
 =head2 API_Init()
 
 =cut
-
 sub API_Init()
 {
 	foreach my $f (AAT::ARRAY($api{function}))
@@ -47,7 +46,6 @@ sub API_Init()
 =head2 Request($cmd, $arg1, $arg2)
 
 =cut
-
 sub Request($$$)
 {
 	my ($cmd, $arg1, $arg2) = @_;
@@ -67,23 +65,26 @@ sub Request($$$)
 =head2 PrintFile($file)
 
 =cut 
-
 sub PrintFile($)
 {
 	my $file = shift;
 
-	open(FILE, "< $file");
-  while (<FILE>)
+	if (defined open(FILE, "< $file"))
+	{
+  	while (<FILE>)
+  		{ print $_; }
+  	close(FILE);
+	}
+	else
   {
-    print $_;
+    my ($pack, $pack_file, $line, $sub) = caller(0);
+    AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
   }
-  close(FILE);
 }
 
 =head2 AlertConfiguration($alert)
 
 =cut
-
 sub AlertConfiguration($)
 {
 	my $alert = shift;
@@ -95,7 +96,6 @@ sub AlertConfiguration($)
 =head2 AlertTracker($alert, $device, $status, $sort)
 
 =cut
-
 sub AlertViewer($$$$)
 {
 	my ($alert, $device, $status, $sort) = @_;

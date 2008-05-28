@@ -20,11 +20,11 @@ my %filenames;
 
 =head2 New(\%conf)
 
-Create a new Service
+Create a new Service with configuration '$conf'
 
 Parameters:
 
-\%conf - hashref of the new service configuration
+\%conf - hashref of the new Service configuration
 
 =cut
 sub New($)
@@ -404,13 +404,21 @@ sub Messages_Statistics_Save
 	my $del_serv = $service;
  	$del_serv =~ s/ /\\ /g;
  	`rm -rf $dir_pid/serv_$del_serv*.stats`;
- 	open(STATS, "> $dir_pid/serv_$service$y$mon$d$h$m.stats");
- 	foreach my $k (keys %stat)
+	my $file = "$dir_pid/serv_$service$y$mon$d$h$m.stats";
+ 	if (defined open(STATS, "> $file"))
+	{
+ 		foreach my $k (keys %stat)
+  	{
+  		$stat{$k} = int($stat{$k}/$total*100);
+   		print STATS "$k -> " .  $stat{$k} ."\n";
+ 		}
+ 		close(STATS);
+	}
+	else
   {
-  	$stat{$k} = int($stat{$k}/$total*100);
-   	print STATS "$k -> " .  $stat{$k} ."\n";
- 	}
- 	close(STATS);
+    my ($pack, $pack_file, $line, $sub) = caller(0);
+    AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
+  }	
 }
 
 =head2 Messages_Statistics($service, $minutes)
@@ -423,8 +431,9 @@ sub Messages_Statistics($$)
 	my ($service, $minutes) = @_;
 	my $dir_pid = Octopussy::Directory("running");
 	my ($y, $mon, $d, $h, $m) = AAT::Datetime::Now();
+	my $file = "$dir_pid/serv_$service$y$mon$d$h$m.stats";
 
-	if (! -f "$dir_pid/serv_$service$y$mon$d$h$m.stats")
+	if (! -f $file)
 	{
 		my %stat = ();
 		my @messages = Messages($service);
@@ -438,30 +447,45 @@ sub Messages_Statistics($$)
 		}
 		foreach my $f (AAT::ARRAY($files))
   	{
-			open(FILE, "zcat \"$f\" |");
-			while (<FILE>)
+			if (defined open(FILE, "zcat \"$f\" |"))
 			{
-				my $line = $_;
-				foreach my $msg (@msg_to_parse)
-      	{
-					if ($line =~ $msg->{re})
-       		{
-        		$stat{$msg->{msg_id}} = (defined $stat{$msg->{msg_id}} ?
-          		$stat{$msg->{msg_id}} + 1 : 1);
-						last;
-       		}
+				while (<FILE>)
+				{
+					my $line = $_;
+					foreach my $msg (@msg_to_parse)
+      		{
+						if ($line =~ $msg->{re})
+       			{
+        			$stat{$msg->{msg_id}} = (defined $stat{$msg->{msg_id}} ?
+          			$stat{$msg->{msg_id}} + 1 : 1);
+							last;
+       			}
+					}
+					$total++;
 				}
-				$total++;
+				close(FILE);
 			}
-			close(FILE);
+			else
+  		{
+    		my ($pack, $pack_file, $line, $sub) = caller(0);
+    		AAT::Syslog("Octopussy::Service", "Unable to open file '$f' in $sub");
+  		}
 		}
 		Messages_Statistics_Save($dir_pid, $service, $y, $mon, $d, $h, $m, $total, %stat);
 	}
 	my %percent = ();	
-	open(FILE, "< $dir_pid/serv_$service$y$mon$d$h$m.stats");
-	while (<FILE>)
-		{ $percent{$1} = $2	if ($_ =~ /^(.+) -> (\d+)$/); }
-	close(FILE);
+	
+	if (defined open(FILE, "< $file"))
+	{	
+		while (<FILE>)
+			{ $percent{$1} = $2	if ($_ =~ /^(.+) -> (\d+)$/); }
+		close(FILE);
+	}
+	else
+  {
+  	my ($pack, $pack_file, $line, $sub) = caller(0);
+   	AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
+  }
 
 	return (%percent);
 }
@@ -556,14 +580,21 @@ sub Updates()
 	my %update;
 	my $web = Octopussy::WebSite();
 	my $run_dir = Octopussy::Directory("running");	
+	my $file = "$run_dir/_services.idx";
 
-	AAT::Download("Octopussy", "$web/Download/Services/_services.idx", 
-		"$run_dir/_services.idx");
-	open(UPDATE, "< $run_dir/_services.idx");
-	while (<UPDATE>)
-		{ $update{$1} = $2	if ($_ =~ /^(.+):(\d+)$/); }
-	close(UPDATE);
-	unlink("$run_dir/_services.idx");	
+	AAT::Download("Octopussy", "$web/Download/Services/_services.idx", $file);
+	if (defined open(UPDATE, "< $file"))
+	{
+		while (<UPDATE>)
+			{ $update{$1} = $2	if ($_ =~ /^(.+):(\d+)$/); }
+		close(UPDATE);
+	}
+	else
+  {
+    my ($pack, $pack_file, $line, $sub) = caller(0);
+    AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
+  }
+	unlink($file);	
 
 	return (\%update);
 }

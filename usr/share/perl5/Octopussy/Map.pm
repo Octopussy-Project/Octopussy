@@ -3,54 +3,53 @@
 Octopussy::Map - Octopussy Map module
 
 =cut
+
 package Octopussy::Map;
 
 use strict;
-
 use Octopussy;
 
-use constant MAP_DIR	=> "maps";
-
+my $MAP_DIR	= "maps";
 my $maps_dir = undef;
 
 =head1 FUNCTIONS
 
 =head2 List()
 
-Get list of maps
+Get list of Maps
 
 =cut 
 sub List()
 {
-	$maps_dir ||= Octopussy::Directory(MAP_DIR);
+	$maps_dir ||= Octopussy::Directory($MAP_DIR);
 
 	return (AAT::XML::Name_List($maps_dir));
 }
 
-=head2 Filename($map_name)
+=head2 Filename($map)
 
-Get the XML filename for the map '$map_name'
+Get the XML filename for the Map '$map'
 
 =cut 
 sub Filename($)
 {
-	my $map_name = shift;
+	my $map = shift;
 
-	$maps_dir ||= Octopussy::Directory(MAP_DIR);
+	$maps_dir ||= Octopussy::Directory($MAP_DIR);
 
-	return (AAT::XML::Filename($maps_dir, $map_name));
+	return (AAT::XML::Filename($maps_dir, $map));
 }
 
-=head2 Configuration($map_name)
+=head2 Configuration($map)
 
-Get the configuration for the map '$map_name'
+Get the configuration for the Map '$map'
 
 =cut 
 sub Configuration($)
 {
-	my $map_name = shift;
+	my $map = shift;
 
-	my $conf = AAT::XML::Read(Filename($map_name));
+	my $conf = AAT::XML::Read(Filename($map));
 
 	return ($conf);
 }

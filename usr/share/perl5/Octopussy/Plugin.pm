@@ -10,8 +10,7 @@ use strict;
 no strict 'refs';
 use Octopussy;
 
-use constant PLUGINS_DIR    => "plugins";
-
+my $PLUGIN_DIR = "plugins";
 my $PLUGINS_MODULES_DIR = "/usr/share/perl5/Octopussy/Plugin/";
 my $plugins_dir = undef;
 
@@ -80,7 +79,7 @@ Returns List of Plugins
 
 sub List()
 {	
-	$plugins_dir ||= Octopussy::Directory(PLUGINS_DIR);
+	$plugins_dir ||= Octopussy::Directory($PLUGIN_DIR);
 
 	return (AAT::XML::Name_List($plugins_dir));
 }
@@ -95,7 +94,7 @@ sub Functions()
 {
 	my @functions = ();
 
-	$plugins_dir ||= Octopussy::Directory(PLUGINS_DIR);
+	$plugins_dir ||= Octopussy::Directory($PLUGIN_DIR);
 	my @files = AAT::FS::Directory_Files($plugins_dir, qr/.+\.xml$/);
   foreach my $f (@files)
   {
@@ -119,7 +118,7 @@ sub Function_Source($)
 
 	if (!defined $function_source{$fct})
 	{
-		$plugins_dir ||= Octopussy::Directory(PLUGINS_DIR);
+		$plugins_dir ||= Octopussy::Directory($PLUGIN_DIR);
 		my $conf = AAT::XML::Read("$plugins_dir/$mod.xml");
 		foreach my $pf (AAT::ARRAY($conf->{function})) 
 		{ 

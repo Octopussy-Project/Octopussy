@@ -289,23 +289,30 @@ sub Get($$$$$$$)
 	foreach my $f (sort (AAT::ARRAY($files)))
 	{
 		($year, $month) = ($1, $2)  if ($f =~ /(\d{4})\/(\d{2})\/\d{2}\/msg_/);
-  	open(FILE, "zcat '$f' |");
-  	while (<FILE>) 
-    {
-			my $line = $_;
-			my $match = 1;
-			foreach my $inc (@includes)
-				{ $match = 0	if ($line !~ $inc); }
-			foreach my $excl (@excludes)
-				{ $match = 0	if ($line =~ $excl); }
-			if ($match)
-			{
-				$counter++; 
-				push(@{$logs{"$year$month"}}, $_);
+  	if (defined open(FILE, "zcat '$f' |"))
+		{
+  		while (<FILE>) 
+    	{
+				my $line = $_;
+				my $match = 1;
+				foreach my $inc (@includes)
+					{ $match = 0	if ($line !~ $inc); }
+				foreach my $excl (@excludes)
+					{ $match = 0	if ($line =~ $excl); }
+				if ($match)
+				{
+					$counter++; 
+					push(@{$logs{"$year$month"}}, $_);
+				}
+				last  if ($counter >= $limit); 
 			}
-			last  if ($counter >= $limit); 
+			close(FILE);
 		}
-		close(FILE);
+		else
+  	{
+    	my ($pack, $pack_file, $line, $sub) = caller(0);
+    	AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
+  	}	
 		last	if ($counter >= $limit);
 	}
 	foreach my $k (sort keys %logs)
@@ -391,20 +398,34 @@ sub Remove($$)
   {
     chomp($f);
 		my @logs = ();
-    open(FILE, "zcat '$f' |");
-    while (<FILE>)
-    { 
-			if ($_ =~ $re)
-				{ $match = 1; }
-			else
-				{ push(@logs, $_); }
+    if (defined open(FILE, "zcat '$f' |"))
+		{
+    	while (<FILE>)
+    	{ 
+				if ($_ =~ $re)
+					{ $match = 1; }
+				else
+					{ push(@logs, $_); }
+			}
+    	close(FILE);
 		}
-    close(FILE);
+		else
+    {
+      my ($pack, $pack_file, $line, $sub) = caller(0);
+      AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
+    }
 		unlink($f);
-		open(NEW, "|gzip > $f");
-		foreach my $l (@logs)
-			{ print NEW $l; }	
-		close(NEW);
+		if (defined open(NEW, "|gzip > $f"))
+		{
+			foreach my $l (@logs)
+				{ print NEW $l; }	
+			close(NEW);
+		}
+		else
+    {
+      my ($pack, $pack_file, $line, $sub) = caller(0);
+      AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
+    }
 		#last	if ($match);
 	}
 }

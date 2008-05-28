@@ -8,7 +8,6 @@ package Octopussy::Table;
 
 use strict;
 no strict 'refs';
-
 use Octopussy;
 use Octopussy::Type;
 
@@ -19,9 +18,13 @@ my %filenames;
 
 =head1 FUNCTIONS
 
-=head2 New($conf)
+=head2 New(\%conf)
 
 Creates a new Table with configuration '$conf'
+
+Parameters:
+
+\%conf - hashref of the new Table configuration
 
 =cut
 sub New($)
@@ -36,6 +39,10 @@ sub New($)
 =head2 Remove($table)
 
 Removes the Table '$table'
+
+Parameters:
+
+$service - Name of the Table to remove
 
 =cut
 sub Remove($)
@@ -59,32 +66,32 @@ sub List()
 	return (AAT::XML::Name_List($tables_dir));
 }
 
-=head2 Filename($table_name)
+=head2 Filename($table)
 
-Get the XML filename for the Table '$table_name'
+Get the XML filename for the Table '$table'
 
 =cut
 sub Filename($)
 {
-	my $table_name = shift;
+	my $table = shift;
 
-	return ($filenames{$table_name})	if (defined $filenames{$table_name});
+	return ($filenames{$table})	if (defined $filenames{$table});
 	$tables_dir ||= Octopussy::Directory($TABLE_DIR);
-	$filenames{$table_name} = AAT::XML::Filename($tables_dir, $table_name);
+	$filenames{$table} = AAT::XML::Filename($tables_dir, $table);
 
-	return ($filenames{$table_name});
+	return ($filenames{$table});
 }
 
-=head2 Configuration($table_name)
+=head2 Configuration($table)
 
-Get the configuration for the Table '$table_name'
+Get the configuration for the Table '$table'
 
 =cut
 sub Configuration($)
 {
-	my $table_name = shift;
+	my $table = shift;
 
-	my $conf = AAT::XML::Read(Filename($table_name));
+	my $conf = AAT::XML::Read(Filename($table));
 
 	return ($conf);
 }
@@ -224,7 +231,6 @@ sub SQL($$$)
 	$sql .= $index;
 	$sql =~ s/, $/\)/g;
 
-	print "SQL: $sql\n";
 	return ($sql);
 }
 
@@ -275,10 +281,7 @@ sub Devices_and_Services_With($)
 	foreach my $dc (@dconfs)
 	{
 		foreach my $s (AAT::ARRAY($dc->{service}))
-		{ 
-			print "$dc->{name} $s->{sid} ?\n";
-			$device{$dc->{name}} = 1	if (AAT::NOT_NULL($service{$s->{sid}})); 
-		}
+		{ $device{$dc->{name}} = 1	if (AAT::NOT_NULL($service{$s->{sid}})); }
 	}
 	foreach my $d (sort keys %device)
     { push(@devices, $d); }

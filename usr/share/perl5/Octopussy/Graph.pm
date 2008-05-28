@@ -62,11 +62,17 @@ sub Generate($$)
 	) or die $graph->error;
 	#$graph->set_legend($g->{data});
 	my $gd = $graph->plot($g->{data}) or die $graph->error;
-	open(IMG, "> $output") or die $!;
-	binmode IMG;
-	print IMG $gd->png;
-	close(IMG);
-
+	if (defined open(IMG, "> $output"))
+	{
+		binmode IMG;
+		print IMG $gd->png;
+		close(IMG);
+	}
+	else
+  {
+    my ($pack, $pack_file, $line, $sub) = caller(0);
+    AAT::Syslog("Octopussy::Graph", "Unable to open file '$output' in $sub");
+  }
 	#my $map = new GD::Graph::Map($graph, newWindow => 1);
 	#$map->set(info => "%x du total");
 	#my $html = $map->imagemap("graph.png", $g->{data});

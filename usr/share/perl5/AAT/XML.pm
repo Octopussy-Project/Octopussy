@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 AAT::XML - AAT XML module
@@ -13,7 +10,6 @@ use strict;
 use open ':utf8';
 #use bytes;
 use utf8;
-
 use XML::Simple;
 # qw(:strict);
 
@@ -28,7 +24,6 @@ Returns Filename of the XML File from Directory '$dir'
 which XML Data field 'name' is '$name'
 
 =cut
-
 sub Filename($$)
 {
 	my ($dir, $name) = @_;
@@ -50,7 +45,6 @@ sub Filename($$)
 Returns List of Names from XML Data from Directory '$dir'
 
 =cut
-
 sub Name_List($)
 {
 	my $dir = shift;
@@ -70,7 +64,6 @@ sub Name_List($)
 Returns List of Values of each Field '$field' from File '$file', Array '$array' 
 
 =cut
-
 sub File_Array_Values($$$)
 {
 	my ($file, $array, $field) = @_;
@@ -85,10 +78,9 @@ sub File_Array_Values($$$)
 
 =head2 Read($file, $no_option)
 
-Read XML content from file '$file' OR from XML_CACHE
+Reads XML content from file '$file' OR from XML_CACHE
 
 =cut
-
 sub Read
 {
 	my ($file, $no_option) = @_;
@@ -119,10 +111,9 @@ sub Read
 
 =head2 Write($file, $data, $root_name)
 
-Write XML content '$data' to file '$file'
+Writes XML content '$data' to file '$file'
 
 =cut
-
 sub Write
 {
   my ($file, $data, $root_name) = @_;

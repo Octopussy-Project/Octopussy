@@ -46,7 +46,7 @@ if (AAT::NOT_NULL($f->{template}))
   	$re_exclude =~ s/\\/\\\\/g;
   	$re_exclude2 =~ s/\\/\\\\/g;
   	$re_exclude3 =~ s/\\/\\\\/g;
-  	Octopussy::Search_Template::New($login, { name => $Session->{template},
+  	Octopussy::Search_Template::New($login, { name => $f->{template},
   		device => \@devices, service => \@services,
   		re_include => $re_include, re_include2 => $re_include2,
   		re_include3 => $re_include3, re_exclude => $re_exclude,
@@ -57,8 +57,8 @@ if (AAT::NOT_NULL($f->{template}))
 }
 
 if ((AAT::NULL($Session->{extractor})) && 
-		((AAT::NOT_NULL($Session->{logs})) || (AAT::NOT_NULL($Session->{file})) 
-			|| (AAT::NOT_NULL($Session->{csv})) || (AAT::NOT_NULL($Session->{zip})))
+		((AAT::NOT_NULL($f->{logs})) || (AAT::NOT_NULL($f->{file})) 
+			|| (AAT::NOT_NULL($f->{csv})) || (AAT::NOT_NULL($f->{zip})))
 	&& (($#devices >= 0) && ($#services >= 0) 
 	&& ($devices[0] ne "") && ($services[0] ne "")))
 {

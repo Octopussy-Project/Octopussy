@@ -38,7 +38,7 @@ function Update_Progress()
     {
       var xml =  http_request.responseXML;
 			var root = xml.documentElement;
-			if ((root.getElementsByTagName('desc')[0].firstChild.data == "FINISHED") 
+			if ((root.getElementsByTagName('desc')[0].firstChild.data == "...") 
 				&& (started))
 			{
 				finished = 1;
