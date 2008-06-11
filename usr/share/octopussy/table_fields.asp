@@ -1,31 +1,26 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Table Fields" />
 <%
 my $f = $Request->Form();
-my $table = $f->{table} || $Request->QueryString("table");
-my $fieldname = $f->{fieldname} || $Request->QueryString("fieldname");
-my $action = $Request->QueryString("action");
-my $sort = $Request->QueryString("table_fields_table_sort");
+my $q = $Request->QueryString();
+my $table = $f->{table} || $q->{table};
+$Response->Redirect("./tables.asp")	if (AAT::NULL($table));
+my $field = $f->{fieldname} || $q->{fieldname};
+my $sort = $q->{table_fields_table_sort};
 
-if ((defined $fieldname) && ($fieldname !~ /^\s*$/) 
-		&& ($Session->{AAT_ROLE} !~ /ro/i))
+if ((defined $field) && ($field !~ /^\s*$/) && ($Session->{AAT_ROLE} !~ /ro/i))
 {
-	$fieldname =~ s/ /_/g;
-  if ($action eq "remove")
+	$field =~ s/ /_/g;
+  if ($q->{action} eq "remove")
 	{ 
-		Octopussy::Table::Remove_Field($table, $fieldname); 
+		Octopussy::Table::Remove_Field($table, $field); 
 		AAT::Syslog("octo_WebUI", "GENERIC_REMOVED_FROM", 
-			"Table Field", $fieldname, "Table", $table);
+			"Table Field", $field, "Table", $table);
 	}
 	else
 	{ 
-		Octopussy::Table::Add_Field($table, $fieldname, $f->{type}); 
+		Octopussy::Table::Add_Field($table, $field, $f->{type}); 
 		AAT::Syslog("octo_WebUI", "GENERIC_ADDED_TO",
-			"Table Field", $fieldname, "Table", $table);
+			"Table Field", $field, "Table", $table);
 	}
 }
 %>

@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 
@@ -10,7 +5,7 @@ my $url = $arg{url};
 my $tablename = $arg{table};
 $url .= "?table=$tablename";
 my $url_sort = $url . "&table_fields_table_sort=";
-my $sort = defined $arg{sort} ? lc($arg{sort}) : "title";
+my $sort = (AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "title");
 my $role = $Session->{AAT_ROLE};
 my $action_str = (($role !~ /ro/i) ? "Action" : "");
 %>

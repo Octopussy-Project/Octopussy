@@ -46,7 +46,6 @@ my $APPLICATION_NAME = "Octopussy";
 Returns Octopussy Support Email
 
 =cut
-
 sub Email
 {
 	my $info = AAT::Application::Info($APPLICATION_NAME);
@@ -59,7 +58,6 @@ sub Email
 Returns Octopussy System User
 
 =cut
-
 sub User
 {
 	my $info = AAT::Application::Info($APPLICATION_NAME);
@@ -72,7 +70,6 @@ sub User
 Returns Octopussy main module Version
 
 =cut
-
 sub Version()
 {
 	my $info = AAT::Application::Info($APPLICATION_NAME);
@@ -85,7 +82,6 @@ sub Version()
 Returns Octopussy WebSite
 
 =cut
-
 sub WebSite()
 {
 	my $info = AAT::Application::Info($APPLICATION_NAME);
@@ -98,7 +94,6 @@ sub WebSite()
 Returns Octopussy Directory '$dir' Value
 
 =cut
-
 sub Directory($)
 {
   my $dir = shift;
@@ -111,7 +106,6 @@ sub Directory($)
 Returns Octopussy File '$file' Value
 
 =cut
-
 sub File($)
 {
   my $file = shift;
@@ -210,7 +204,6 @@ sub Web_Updates
 Changes Owner (user & group) for the files '@files'
 
 =cut
-
 sub Chown
 {
 	my @files = @_;
@@ -226,10 +219,9 @@ sub Chown
 
 =head2 Create_Directory($dir)
 
-Creates Directory
+Creates Directory '$dir'
 
 =cut
-
 sub Create_Directory
 {
 	my $dir = shift;
@@ -246,7 +238,6 @@ sub Create_Directory
 Returns File Extension
 
 =cut
-
 sub File_Ext
 {
 	my ($file, $extension) = @_;
@@ -261,7 +252,6 @@ sub File_Ext
 Returns PID File
 
 =cut
-
 sub PID_File
 {
 	my $name = shift;
@@ -295,7 +285,6 @@ sub PID_File
 Returns Device Stats File
 
 =cut
-
 sub Device_Stats_File
 {
 	my $device = shift;
@@ -310,7 +299,6 @@ sub Device_Stats_File
 Returns Dialog properties for the Dialog '$id'
 
 =cut
-
 sub Dialog
 {
 	my $id = shift;
@@ -329,7 +317,6 @@ sub Dialog
 Reloads Dispatcher
 
 =cut
-
 sub Dispatcher_Reload
 {
 	my $pid_dir = Octopussy::Directory("running");
@@ -350,7 +337,6 @@ sub Dispatcher_Reload
 Restarts Octopussy
 
 =cut
-
 sub Restart
 {
 	`/etc/init.d/octopussy restart`;	
@@ -361,7 +347,6 @@ sub Restart
 Returns Status of Processes syslog-ng, dispatcher & scheduler
 
 =cut
-
 sub Process_Status
 {
 	my %result = ();
@@ -381,7 +366,6 @@ sub Process_Status
 Returns timestamp => yyyymmddxxxx
 
 =cut
-
 sub Timestamp_Version
 {
   my $conf = shift;
@@ -401,7 +385,6 @@ sub Timestamp_Version
 Installs Updates
 
 =cut
-
 sub Updates_Installation
 {
   my @updates = @_;

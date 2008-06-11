@@ -33,7 +33,7 @@ sub Filename($$)
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir/$f");
-		$filenames{$dir}{$name} = "$dir/$f";
+		$filenames{$dir}{$conf->{name}} = "$dir/$f";
     return ("$dir/$f")	if ($conf->{name} eq $name);
   }
 

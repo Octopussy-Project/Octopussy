@@ -31,9 +31,14 @@ sub New($)
 {
 	my $conf = shift;
 
-	$tables_dir ||= Octopussy::Directory($TABLE_DIR);
-	$conf->{version} = Octopussy::Timestamp_Version(undef);
-	AAT::XML::Write("$tables_dir/$conf->{name}.xml", $conf, "octopussy_table");
+	if (AAT::NOT_NULL($conf->{name}))
+	{
+		$tables_dir ||= Octopussy::Directory($TABLE_DIR);
+		$conf->{version} = Octopussy::Timestamp_Version(undef);
+		AAT::XML::Write("$tables_dir/$conf->{name}.xml", $conf, "octopussy_table");
+		Add_Field($conf->{name}, "datetime", "DATETIME");
+		Add_Field($conf->{name}, "device", "WORD");
+	}
 }
 
 =head2 Remove($table)
@@ -91,9 +96,7 @@ sub Configuration($)
 {
 	my $table = shift;
 
-	my $conf = AAT::XML::Read(Filename($table));
-
-	return ($conf);
+	return (AAT::XML::Read(Filename($table)));
 }
 
 =head2 Configurations($sort)
@@ -132,8 +135,12 @@ sub Add_Field($$$)
 	my ($table, $fieldname, $fieldtype) = @_;
 
 	my $conf = AAT::XML::Read(Filename($table));	
+	foreach my $f (AAT::ARRAY($conf->{field}))
+ 		{ return (undef)  if ($fieldname =~ /^$f->{title}$/); }	
 	push(@{$conf->{field}}, { title => $fieldname, type => $fieldtype });
 	AAT::XML::Write(Filename($table), $conf, "octopussy_table");
+
+	return ($fieldname);
 }
 
 =head2 Remove_Field($table, $fieldname)

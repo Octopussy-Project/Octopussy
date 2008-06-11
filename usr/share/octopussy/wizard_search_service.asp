@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Wizard Search Service" />
 <%
 my $device = $Request->QueryString("device");

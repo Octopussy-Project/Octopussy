@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Tables" help="tables" />
 <%
 my $f = $Request->Form();
@@ -21,8 +16,6 @@ else
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Table::New({ name => $table, description => $f->{description} });
-		Octopussy::Table::Add_Field($table, "datetime", "DATETIME");
-		Octopussy::Table::Add_Field($table, "device", "WORD");
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Table", $table);
 		$Response->Redirect("./table_fields.asp?table=$table");
 	}

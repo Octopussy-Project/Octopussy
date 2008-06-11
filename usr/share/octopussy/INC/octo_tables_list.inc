@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 my $url = $arg{url};
-my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
+my $sort = (AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "name");
 my $role = $Session->{AAT_ROLE};
 %>
 <AAT:Box align="C" title="_TABLES" icon="buttons/bt_table">
@@ -18,7 +18,8 @@ if ($role !~ /ro/i)
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 my $i = 0;
-foreach my $t (Octopussy::Table::Configurations($sort))
+my @tcs = Octopussy::Table::Configurations($sort);
+foreach my $t (@tcs)
 {
   my ($name, $desc) = ($t->{name}, $t->{description});
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
