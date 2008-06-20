@@ -35,7 +35,6 @@ BEGIN
 =head2 Init_All(\%conf)
 
 =cut
-
 sub Init_All
 {
 	my $conf = shift;

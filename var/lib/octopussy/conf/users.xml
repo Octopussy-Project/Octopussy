@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <Octopussy_users>
-  <user language="EN"
+  <user language="FR"
         login="admin"
         menu_mode="ICONS_AND_TEXT"
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
@@ -8,26 +8,4 @@
         role="admin"
         theme="DEFAULT"
         type="local" />
-  <user certificate=""
-        language="EN"
-        login="res"
-        menu_mode="TEXT_AND_ICONS"
-        password="$1$OP$k9xUWummMPX6VvI3fCvYF0"
-        role="restricted"
-        theme="DEFAULT"
-        type="local" />
-  <user certificate=""
-        language="FR"
-        login="fred"
-        menu_mode="TEXT_AND_ICONS"
-        password="$1$OP$G5oHbI4Iv55G6XSlRR0hU1"
-        role="restricted"
-        theme="DEFAULT">
-    <restrictions>
-      <alert>-NONE-</alert>
-      <device>10.112.244.184</device>
-      <report>-NONE-</report>
-      <service>Logger_Fred</service>
-    </restrictions>
-  </user>
 </Octopussy_users>

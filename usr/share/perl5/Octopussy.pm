@@ -233,6 +233,29 @@ sub Create_Directory
 	}
 }
 
+=head2 Create_Directory_Inotify($dir)
+
+Creates Directory '$dir' 'directory by directory' 
+in order to be watched by inotify
+
+=cut
+sub Create_Directory_Inotify
+{
+  my $dir = shift;
+	my $tmp = "";
+
+	my @dirs = split(/\//, $dir);
+	foreach my $d (@dirs)
+	{
+		$tmp .= "/$d";
+		if (! -d $tmp)
+		{
+			mkdir $tmp;
+			sleep(1);
+		}
+	}
+}
+
 =head2 File_Ext($file, $extension)
 
 Returns File Extension

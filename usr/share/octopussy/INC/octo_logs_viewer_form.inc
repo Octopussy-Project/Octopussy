@@ -1,5 +1,6 @@
 <%
 my %arg = @_;
+my $taxo = $Session->{taxonomy};
 my $dt = $Session->{dt};
 my ($d1, $m1, $y1, $hour1, $min1) =
   ($Session->{dt1_day}, $Session->{dt1_month}, $Session->{dt1_year},
@@ -34,16 +35,22 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
     <AAT:Button name="device" /><br>
     <AAT:Label value="_DEVICES" align="R" style="B" /></AAT:BoxCol>
     <AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
-      unknown=$unknown multiple="1" size="6" selected=\@devices 
+      unknown=$unknown multiple="1" size="5" selected=\@devices 
 			restricted_devices=\@restricted_devices /></AAT:BoxCol>
     <AAT:BoxCol align="C">
     <AAT:Button name="service" /><br>
     <AAT:Label value="_SERVICES" align="R" style="B" /></AAT:BoxCol>
     <AAT:BoxCol><AAT:Inc file="octo_selector_service_dynamic"
-      unknown=$unknown multiple="1" size="6" device=\@restricted_devices 
+      unknown=$unknown multiple="1" size="5" device=\@restricted_devices 
 			selected=\@services restricted_services=\@restricted_services />
 		</AAT:BoxCol>
   </AAT:BoxRow>
+	<AAT:BoxRow>
+		<AAT:BoxCol cspan="3" align="R">
+		<AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
+		<AAT:BoxCol>
+		<AAT:Inc file="octo_selector_taxonomy" selected="$taxo" any="1" /></AAT:BoxCol>
+	</AAT:BoxRow>
   </AAT:Box>
   </AAT:BoxCol>
   <AAT:BoxCol>

@@ -167,9 +167,7 @@ sub Print_Logs($$$$$$$)
 	my ($files, $total) 
 		= Get_TimePeriod_Files($devices, $services, $begin, $end);
 	my $nb_match = 0;
-
 	open(OUT, "> $output")	if (AAT::NOT_NULL($output));
-
 	if ((@{$services}[0] =~ /-ANY-/i) && ($taxo =~ /-ANY-/i))
 	{
 		my $i = 1;
@@ -228,25 +226,36 @@ sub Print_Logs($$$$$$$)
 				Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
 				if (defined open(FILE, "zcat \"$f\" |"))
 				{
-					while (<FILE>)
+					if ($f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/)
 					{
-						my $line = $_;
-						foreach my $msg (@msg_to_parse)
+						while (<FILE>)
 						{
-							if ($line =~ $msg->{re})
+							my $line = $_;
+							foreach my $msg (@msg_to_parse)
 							{
-								my $match = 1;
-		        		foreach my $inc (@includes)
-    		      		{ $match = 0  if ($line !~ $inc); }
-        				foreach my $excl (@excludes)
-          				{ $match = 0  if ($line =~ $excl); }
-								if ($match)
-        				{
-									push(@logs, $line);
-          				$nb_match++;
-        				}
-								last;
+								if ($line =~ $msg->{re})
+								{
+									my $match = 1;
+		        			foreach my $inc (@includes)
+    		      			{ $match = 0  if ($line !~ $inc); }
+        					foreach my $excl (@excludes)
+          					{ $match = 0  if ($line =~ $excl); }
+									if ($match)
+        					{
+										push(@logs, $line);
+          					$nb_match++;
+        					}
+									last;
+								}
 							}
+						}
+					}
+					else
+					{
+						while (<FILE>)
+          	{
+							push(@logs, $_);
+              $nb_match++;		
 						}
 					}
 					close(FILE);

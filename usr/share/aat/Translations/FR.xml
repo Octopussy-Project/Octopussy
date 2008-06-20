@@ -430,7 +430,7 @@
 	<msg mid="_MSG_REACH_MAX_LINES"
     value="Maximum de %d lignes atteint!" />
 	<msg mid="_MSG_REPORT_DATA_SOURCE"
-    value="Données provenant de %d fichiers / %d lignes traitées en %d minutes et %d secondes." />
+    value="Données provenant de %d fichier(s) / %d ligne(s) traitée(s) en %d minute(s) et %d seconde(s)." />
   <msg mid="_MSG_REPORT_GENERATED_BY"
     value="Généré par Octopussy" />
 	<msg mid="_MSG_REPORT_PROGRESS_BUILDING_REPORT"
@@ -470,7 +470,7 @@
 	<msg mid="_MSG_TOTAL_EVENTS_LAST_MINUTE"
     value="Total des Evénements sur la Dernière Minute" />
 	<msg mid="_MSG_TOTAL_REPORTS"
-    value="Total: %d Rapports" />
+    value="Total: %d Rapport(s)" />
 	<msg mid="_MSG_UPDATE_CONFIG"
     value="Mise à Jour de la Configuration" />
 	<msg mid="_MSG_UPDATE_PREFS"

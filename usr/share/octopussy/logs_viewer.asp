@@ -67,6 +67,7 @@ if ((AAT::NULL($Session->{extractor})) &&
 	$output =~ s/[\/\&\$\.\?]//g;
 	my $cmd = Octopussy::Logs::Extract_Cmd_Line( { 
 		devices => \@devices, services =>\@services, 
+		taxonomy => $Session->{taxonomy},
 		begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
 		includes => [$re_include, $re_include2, $re_include3],
 		excludes => [$re_exclude, $re_exclude2, $re_exclude3],
