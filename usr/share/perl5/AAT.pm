@@ -1077,6 +1077,7 @@ sub Selector_Language($$)
   my @list = ( { label => "_ENGLISH", value => "EN" },
     { label => "_FRENCH", value => "FR" },
     { label => "_GERMAN", value => "DE" },
+		{ label => "_ITALIAN", value => "IT" },
 		{ label => "_PORTUGUESE", value => "PT" },
 		{ label => "_RUSSIAN", value => "RU" },
     { label => "_SPANISH", value => "ES" } );
