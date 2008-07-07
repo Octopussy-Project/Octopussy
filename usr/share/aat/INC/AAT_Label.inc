@@ -19,8 +19,8 @@ my $s_color = (defined $color ? "<font color='$arg{color}'>" : "");
 my $s_color_end = (defined $color ? "</font>" : "");
 my $s_size = (defined $size ? "<font size='$arg{size}'>" : "");
 my $s_size_end = (defined $size ? "</font>" : "");
-my $str_label = (defined $arg{no_trans} ? $arg{value} 
-	: AAT::Translation($arg{value}));
+my $str_label = ((defined $arg{no_trans} || $arg{value} !~ /^_/)
+	? $arg{value} : AAT::Translation($arg{value}));
 
 my $str_link = (defined $lnk ? "<a href=\"$lnk\">" :
 	(defined $lnk_new ? "<a href=\"$lnk_new\" target=\"_blank\">" :

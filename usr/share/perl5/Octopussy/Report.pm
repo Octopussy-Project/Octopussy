@@ -28,7 +28,6 @@ my %filenames;
 Create a new report
 
 =cut
-
 sub New($)
 {
 	my $conf = shift;
@@ -40,23 +39,22 @@ sub New($)
 
 =head2 Remove($report)
 
-Remove a report
+Removes a Report '$report'
 
 =cut
-
 sub Remove($)
 {
   my $report = shift;
 
 	unlink(Filename($report));
+	Octopussy::Data_Report::Remove_All($report);
 }
 
 =head2 Modify($old_report, $new_conf)
 
-Modify the configuration for the report '$old_report'
+Modifies the configuration for the report '$old_report'
 
 =cut
-
 sub Modify($$)
 {
 	my ($old_report, $new_conf) = @_;
@@ -67,11 +65,10 @@ sub Modify($$)
 
 =head2 List($category, $restriction_list)
 
-Get list of Reports with category '$category' (if specified) 
+Returns list of Reports with category '$category' (if specified) 
  and restricted to list '$restriction_list' (if specified)
 
 =cut 
-
 sub List($$)
 {
 	my ($category, $report_restriction_list) = @_;
@@ -99,7 +96,6 @@ sub List($$)
 Get the XML filename for the report '$report_name'
 
 =cut 
-
 sub Filename($)
 {
   my $report_name = shift;
@@ -116,7 +112,6 @@ sub Filename($)
 Get the configuration for the report '$report'
 
 =cut 
-
 sub Configuration($)
 {
 	my $report = shift;
@@ -131,7 +126,6 @@ sub Configuration($)
 Get the configuration for all reports
 
 =cut
-
 sub Configurations($$)
 {
   my ($sort, $category) = @_;
@@ -159,8 +153,9 @@ sub Configurations($$)
 
 =head2 Categories(@report_restriction_list)
 
-=cut
+Returns Reports Categories
 
+=cut
 sub Categories(@)
 {
 	my @report_restriction_list = @_;	
@@ -202,8 +197,7 @@ sub Categories(@)
 
 Data Request with query '$query' from table '$table'
 
-=cut 
-
+=cut
 sub Table_Creation($$)
 {
 	my ($table, $query) = @_;
@@ -247,13 +241,13 @@ sub Table_Creation($$)
 	return (@fields);
 }
 
-=head2 Generate($rc, $begin, $end, $outputfile, $devices, $data, $mail_conf, $ftp_conf, $scp_conf, $stats, $lang)
+=head2 Generate($rc, $begin, $end, $outputfile, $devices, $services, 
+	$data, $mail_conf, $ftp_conf, $scp_conf, $stats, $lang)
 
 =cut
-
-sub Generate($$$$$$$$$$$)
+sub Generate($$$$$$$$$$$$)
 {
-	my ($rc, $begin, $end, $outputfile, $devices, $data, 
+	my ($rc, $begin, $end, $outputfile, $devices, $services, $data, 
 		$mail_conf, $ftp_conf, $scp_conf, $stats, $lang) = @_;
 	
 	if ($rc->{graph_type} eq "array")
@@ -263,8 +257,8 @@ sub Generate($$$$$$$$$$$)
 		Octopussy::Create_Directory($dir);
 		Octopussy::Plugin::Init({ lang => $lang }, split(/,/, $rc->{columns}));
 		Octopussy::Report::HTML::Generate($outputfile, $rc->{name}, 
-			$begin, $end, $devices, $data, $rc->{columns}, $rc->{columns_name}, 
-			$stats, $lang);
+			$begin, $end, $devices, $services, $data, 
+			$rc->{columns}, $rc->{columns_name}, $stats, $lang);
 		my $xml_file = Octopussy::File_Ext($outputfile, "xml");
 		Octopussy::Report::XML::Generate($xml_file, $rc->{name},
       $begin, $end, $devices, $data, $rc->{columns}, $rc->{columns_name},
@@ -295,7 +289,7 @@ sub Generate($$$$$$$$$$$)
 	}
 	Octopussy::Chown($outputfile);
 	my $file_info = Octopussy::File_Ext($outputfile, "info");
-	File_Info($file_info, $begin, $end, $devices, $stats);
+	File_Info($file_info, $begin, $end, $devices, $services, $stats);
 	Octopussy::Chown($file_info);
 	Export($outputfile, $mail_conf, $ftp_conf, $scp_conf);		
 }
@@ -342,14 +336,19 @@ sub CmdLine($$$$$$$$$$$)
 	my $output = "$dir$report->{name}-$date." 
 		. ($report->{graph_type} eq "array" ? "html" : "png");
 
-	my @devices = (($device !~ /group (.+)/) ? ($device)
-    : Octopussy::DeviceGroup::Devices($1));
-	my $device_list = join(" --device ", @devices);
+	my @devices = ();
+	foreach my $d (AAT::ARRAY($device))
+	{
+		push(@devices, (($d !~ /group (.+)/) ? ($d) : 
+			Octopussy::DeviceGroup::Devices($1)));
+	}
+	my $device_list = join("\" --device \"", @devices);
+	my $service_list = join("\" --service \"", AAT::ARRAY($service));
 
 	Octopussy::Create_Directory($dir);
 
 	my $cmd = "$base$REPORTER_BIN --report \"$report->{name}\""
-		. " --device $device_list --service \"$service\""
+		. " --device \"$device_list\" --service \"$service_list\"" 
 		. " --taxonomy $taxonomy --pid_param \"$pid_param\""
 		. " --begin $start --end $finish --lang \"$lang\" " 
 		. CmdLine_Export_Options($mail_conf, $ftp_conf, $scp_conf)
@@ -374,18 +373,19 @@ sub Export($$$$)
 	Octopussy::Export::Using_Scp($scp_conf, $file);
 }
 
-=head2 File_Info($file, $begin, $end, $devices, $stats)
+=head2 File_Info($file, $begin, $end, $devices, $services, $stats)
 
 Generates Report's File Information
 
 =cut
-sub File_Info($$$$$)
+sub File_Info($$$$$$)
 {
-	my ($file, $begin, $end, $devices, $stats) = @_;
+	my ($file, $begin, $end, $devices, $services, $stats) = @_;
 
 	my %data = ( start => $begin, finish => $end,
-		devices => join(", ", @{$devices}), nb_files => $stats->{nb_files},
-		nb_lines => $stats->{nb_lines}, seconds => $stats->{seconds},
+		devices => join(", ", @{$devices}), services => join(", ", @{$services}), 
+		nb_files => $stats->{nb_files}, nb_lines => $stats->{nb_lines}, 
+		seconds => $stats->{seconds}, 
 		nb_result_lines => $stats->{nb_result_lines} );
 	AAT::XML::Write($file, \%data, "octopussy_report_info");
 }
@@ -406,6 +406,7 @@ sub File_Info_Tooltip($$)
 	{
 		my $c = AAT::XML::Read($file);
 		$ttip = AAT::Translation::Get($lang, "_DEVICES") . ": $c->{devices}<br>";	
+		$ttip .= AAT::Translation::Get($lang, "_SERVICES") . ": $c->{services}<br>";
 		$ttip .= AAT::Translation::Get($lang, "_PERIOD") 
 			. ": $c->{start} -> $c->{finish}<br><hr>"
 			. sprintf(AAT::Translation::Get($lang, "_MSG_REPORT_DATA_SOURCE"),

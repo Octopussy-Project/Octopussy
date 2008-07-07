@@ -4,7 +4,12 @@ my $report = $arg{report};
 my $device = $arg{device};
 my $service = $arg{service};
 my $r = Octopussy::Report::Configuration($report);
-my ($devices, $services) = Octopussy::Table::Devices_and_Services_With($r->{table});
+my ($devicegroups, $devices, $services) = 
+	Octopussy::Table::Devices_and_Services_With($r->{table});
+my @res_devs = ();
+foreach my $dg (AAT::ARRAY($devicegroups))
+	{ push(@res_devs, "group $dg"); }
+push(@res_devs, @{$devices});
 my $desc = $r->{description};
 my $query = $r->{query};
 $query =~ s/(SELECT |FROM |WHERE |GROUP BY |ORDER BY |LIMIT )/<b>$1<\/b>/g;
@@ -17,7 +22,7 @@ my $url_dt = "./reports.asp?report=$report&query=$query";
 <AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:IMG name="generic_report" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2" width="100%">
+	<AAT:BoxCol cspan="2">
 	<AAT:Box width="100%">
 	<AAT:BoxRow>
 		<AAT:BoxCol><AAT:Label value="_REPORT" style="B" /></AAT:BoxCol>
@@ -37,36 +42,36 @@ my $url_dt = "./reports.asp?report=$report&query=$query";
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol>
-  <AAT:Box>
+	<AAT:Box align="R">
   <AAT:BoxRow>
-  	<AAT:BoxCol><AAT:Button name="device" /></AAT:BoxCol>
-		<AAT:BoxCol><AAT:Label value="_DEVICE" style="B" /></AAT:BoxCol>
-  	<AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
-    	url="./reports.asp?report=$report&device=" 
-			restricted_devices=$devices selected="$device" /></AAT:BoxCol>
-	</AAT:BoxRow>
-	<AAT:BoxRow>
-  	<AAT:BoxCol><AAT:Button name="service" /></AAT:BoxCol>
-  	<AAT:BoxCol><AAT:Label value="_SERVICE" style="B" /></AAT:BoxCol>
-  	<AAT:BoxCol>
-  	<AAT:Inc file="octo_selector_service_dynamic"
-    	url="./reports.asp?report=$report&device=$device&service="
-    	selected="$service" restricted_services=$services />
-  	</AAT:BoxCol>
-	</AAT:BoxRow>
-	<AAT:BoxRow>
-  	<AAT:BoxCol></AAT:BoxCol>
-  	<AAT:BoxCol><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
-  	<AAT:BoxCol><%
-		if (($r->{taxonomy} ne "") && ($r->{taxonomy} ne "-ANY-"))
-		{
-  	%><AAT:Form_Hidden name="taxonomy" value="$taxo" />
-  	<AAT:Label value="$taxo" /><%
-		}
-		else
- 			{ %><AAT:Inc file="octo_selector_taxonomy" any="1" /><% } %>
-  	</AAT:BoxCol>
-	</AAT:BoxRow>
+    <AAT:BoxCol align="C">
+    <AAT:Button name="device" /><br>
+    <AAT:Label value="_DEVICE" align="R" style="B" /></AAT:BoxCol>
+    <AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
+			url="./reports.asp?report=$report&device=" multiple="1" size="5" 
+			selected="$device" restricted_devices=\@res_devs /></AAT:BoxCol>
+    <AAT:BoxCol align="C">
+    <AAT:Button name="service" /><br>
+    <AAT:Label value="_SERVICE" align="R" style="B" /></AAT:BoxCol>
+    <AAT:BoxCol><AAT:Inc file="octo_selector_service_dynamic"
+			url="./reports.asp?report=$report&device=$device&service="
+      multiple="1" size="5" device=\@res_devs
+      selected=$service restricted_services=$services />
+    </AAT:BoxCol>
+  </AAT:BoxRow>
+  <AAT:BoxRow>
+    <AAT:BoxCol cspan="3" align="R">
+    <AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
+    <AAT:BoxCol><%
+    if (($r->{taxonomy} ne "") && ($r->{taxonomy} ne "-ANY-"))
+    {
+    %><AAT:Form_Hidden name="taxonomy" value="$taxo" />
+    <AAT:Label value="$taxo" /><%
+    }
+    else
+      { %><AAT:Inc file="octo_selector_taxonomy" any="1" /><% } %>
+    </AAT:BoxCol>
+  </AAT:BoxRow>
   </AAT:Box>
 	</AAT:BoxCol>
 	<AAT:BoxCol>

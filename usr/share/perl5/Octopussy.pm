@@ -143,11 +143,18 @@ sub Status_Progress($$)
   	my $pid = `cat "$pid_file"`;
   	kill USR1 => $pid;
 	}
-	if (-f $status_file)
-	{
-  	open(FILE, "cat \"$status_file\" |");
-  	$status = <FILE>;
-  	close(FILE);
+	my $count = 0;
+	while ($count++ <= 3)
+	{ # tries 3 times before failed
+		if (-f $status_file)
+		{
+  		if (defined open(FILE, "cat \"$status_file\" |"))
+			{
+  			$status = <FILE>;
+  			close(FILE);
+				last;
+			}
+		}
 	}
 
 	return ($status);
@@ -251,7 +258,8 @@ sub Create_Directory_Inotify
 		if (! -d $tmp)
 		{
 			mkdir $tmp;
-			sleep(1);
+			Chown($tmp);
+			sleep(3);
 		}
 	}
 }

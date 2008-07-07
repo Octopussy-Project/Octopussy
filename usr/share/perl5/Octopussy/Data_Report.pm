@@ -63,6 +63,19 @@ sub Remove($$)
 	`rm -f "$reports_dir$report/$filename".*`;
 }
 
+=head2 Remove_All($report)
+
+Removes All Reports '$report' 
+
+=cut
+sub Remove_All($)
+{
+  my $report = shift;
+
+  $reports_dir ||= Octopussy::Directory($REPORT_DATA_DIR);
+  `rm -rf "$reports_dir$report/"`;
+}
+
 =head2 Remove_Month($report, $year, $month)
 
 Removes All Reports '$report' in Month '$year/month'

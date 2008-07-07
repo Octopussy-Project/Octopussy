@@ -260,15 +260,15 @@ sub Field_Type_List($$)
 
 =head2 Devices_and_Services_With($table)
 
-Returns one hashref of devices and one hashref of services 
-wich contains messages with table '$table'
+Returns one arrayref of devicegroups, one of devices and one of services 
+which contains messages with Table '$table'
 
 =cut
 sub Devices_and_Services_With($)
 {
 	my $table = shift;
 	my (%device, %service);
-	my (@devices, @services) = ((), ());
+	my (@devicegroups, @devices, @services) = ((), (), ());
 
 	my @service_list = Octopussy::Service::List();
 	foreach my $serv (@service_list)
@@ -288,14 +288,24 @@ sub Devices_and_Services_With($)
 	foreach my $dc (@dconfs)
 	{
 		foreach my $s (AAT::ARRAY($dc->{service}))
-		{ $device{$dc->{name}} = 1	if (AAT::NOT_NULL($service{$s->{sid}})); }
+			{ $device{$dc->{name}} = 1	if (AAT::NOT_NULL($service{$s->{sid}})); }
 	}
 	foreach my $d (sort keys %device)
-    { push(@devices, $d); }
+  	{ push(@devices, $d); }
 	foreach my $s (sort keys %service)
 		{ push(@services, $s); }	
+	foreach my $dg (Octopussy::DeviceGroup::List())
+	{
+		my $match = 0;
+		foreach my $dgd (Octopussy::DeviceGroup::Devices($dg))
+		{
+			foreach my $d (sort keys %device)
+				{ $match = 1	if ($dgd eq $d); }
+		}
+		push(@devicegroups, $dg)	if ($match);
+	}
 
-	return (\@devices, \@services);
+	return (\@devicegroups, \@devices, \@services);
 }
 
 =head2 Valid_Pattern($table, $pattern)

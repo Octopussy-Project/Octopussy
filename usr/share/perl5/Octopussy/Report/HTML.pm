@@ -1,12 +1,8 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Report::HTML - Octopussy HTML Report module
 
 =cut
-
 package Octopussy::Report::HTML;
 
 use strict;
@@ -19,10 +15,10 @@ use Octopussy;
 =head2 CSS($style)
 
 =cut
-
 sub CSS
 {
 	my $style = shift;
+
 	my $css = "";
 	my $dir = AAT::Directory("themes");
 	open(FILE, " < $dir$style/report_style.css");
@@ -35,8 +31,9 @@ sub CSS
 
 =head2 Encode($data)
 
-=cut
+Encodes HTML characters
 
+=cut
 sub Encode
 {
   my $data = shift;
@@ -48,15 +45,15 @@ sub Encode
   return ($data);
 }
 
-=head2 Header($title, $devices, $begin, $end, $fields, $headers, $lang)
+=head2 Header($title, $devices, $services, $begin, $end, $fields, 
+	$headers, $lang)
 
 Returns Page Header HTML code
 
 =cut
-
 sub Header
 {
-  my ($title, $devices, $begin, $end, $fields, $headers, $lang) = @_;
+  my ($title, $devices, $services, $begin, $end, $fields, $headers, $lang) = @_;
 	my @cols = split(/,/, $fields);
   my ($b_year, $b_month, $b_day, $b_hour, $b_min) = ($1, $2, $3, $4, $5)
     if ($begin =~ /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/);
@@ -72,6 +69,10 @@ sub Header
 	    . " class=\"report\">\n";
 	$html .= "<b>" . AAT::Translation::Get($lang, "_DEVICES")
 	    . ":</b> " . Encode(join(", ", @{$devices})) . "</td></tr>";
+	$html .= "<tr class=\"report\"><td colspan=" . ($#cols+1)
+      . " class=\"report\">\n";
+  $html .= "<b>" . AAT::Translation::Get($lang, "_SERVICES")
+      . ":</b> " . Encode(join(", ", @{$services})) . "</td></tr>";
   $html .= "<tr class=\"report\"><td colspan=" . ($#cols+1)
 		. " class=\"report\">\n";
 	$html .= "<b>" . AAT::Translation::Get($lang, "_PERIOD") 
@@ -94,7 +95,6 @@ sub Header
 Returns Page Footer HTML code
 
 =cut
-
 sub Footer
 {
   my ($stats, $fields, $lang) = @_;
@@ -118,21 +118,21 @@ sub Footer
   return ($html);
 }
 
-=head2 Generate($file, $title, $begin, $end, $devices, $data, 
- $fields, $headers, $stats, $lang)
+=head2 Generate($file, $title, $begin, $end, $devices, $services, 
+	$data, $fields, $headers, $stats, $lang)
 
 =cut
-
 sub Generate
 {
-  my ($file, $title, $begin, $end, $devices, $data, $fields, $headers, 
-			$stats, $lang) = @_;
+  my ($file, $title, $begin, $end, $devices, $services, $data, $fields, 
+		$headers, $stats, $lang) = @_;
 	my @field_list = split(/,/, $fields);
   my $html = "<html>\n<head>";
 	$html .= "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
 	$html .= "<title>" . Encode($title) . "</title></head>\n";
 	$html .= "<body>\n" . CSS("DEFAULT");
-	$html .= Header($title, $devices, $begin, $end, $fields, $headers, $lang);
+	$html .= Header($title, $devices, $services, $begin, $end, 
+		$fields, $headers, $lang);
 
   foreach my $line (@{$data})
   {

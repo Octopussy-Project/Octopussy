@@ -63,7 +63,7 @@ my $help_str = <<EOF;
 
 $PROG_NAME (version $PROG_VERSION)
 
- Usage: $PROG_NAME --report <report>";
+ Usage: $PROG_NAME --report <report>
           --device <device> --service <service> --taxonomy <taxonomy>
           --begin YYYYMMDDHHMM --end YYYYMMDDHHMM
           [ --pid_param <string> ] --output <output_file>
@@ -78,19 +78,32 @@ $PROG_NAME (version $PROG_VERSION)
 EOF
 
 	print $help_str;
-	my @reps = Octopussy::Report::List(undef, undef);
-	my ($devs, $servs) = (undef, undef);
-	($devs, $servs) = Octopussy::Table::Devices_and_Services_With($rc->{table})
-		if (defined $rc);
-	my @taxo_list = Octopussy::Taxonomy::List_And_Any();
+
 	if (!defined $report)
-		{ print " Report list: " . join(", ", @reps) . "\n"; }
-	elsif (! @devices)
-		{ print " Device list: " . join(", ", @{$devs}) . "\n"; }
-	elsif (! @services)
-	{ print " Service list: " . join (", ", sort @{$servs}) . "\n"; }
-	elsif (!defined $taxonomy)
-		{ print " Taxonomy list: " . join (", ", sort @taxo_list) . "\n"; }
+  { 
+		my @reps = Octopussy::Report::List(undef, undef);
+		print " Report list: " . join(", ", @reps) . "\n"; 
+	}
+	else
+	{	
+		$rc = Octopussy::Report::Configuration($report);
+		if (!defined $rc)
+		{
+			print "Error: Unable to get configuration for Report [$report]\n";
+			exit();
+		}
+		my ($dev_groups, $devs, $servs) = 
+			Octopussy::Table::Devices_and_Services_With($rc->{table});
+		if ((! @devices) && (defined $devs))
+    	{ print " Device list: " . join(", ", @{$devs}) . "\n"; }
+  	elsif ((! @services) && (defined $servs))
+    	{ print " Service list: " . join (", ", sort @{$servs}) . "\n"; }
+  	elsif (!defined $taxonomy)
+  	{
+    	my @taxo_list = Octopussy::Taxonomy::List_And_Any();
+    	print " Taxonomy list: " . join (", ", sort @taxo_list) . "\n";
+  	}
+	}	
 	print "\n";
 
 	exit();
@@ -346,8 +359,8 @@ my %scp_conf = ( host => $scp_host, dir => $scp_dir,
 my %report_stats = ( nb_files => $nb_files, nb_lines => $nb_lines, 
 	nb_result_lines => $#data+1, seconds =>  (time() - $time));
 
-Octopussy::Report::Generate($rc, $begin, $end, $output, \@devices, \@data, 
-	\%mail_conf, \%ftp_conf, \%scp_conf, \%report_stats, $lang);
+Octopussy::Report::Generate($rc, $begin, $end, $output, \@devices, \@services, 
+	\@data, \%mail_conf, \%ftp_conf, \%scp_conf, \%report_stats, $lang);
 Progress("_MSG_REPORT_PROGRESS_BUILDING_REPORT", "1/1");
 AAT::Syslog($PROG_NAME, "Report Generation Completed !");
 unlink($pid_file);

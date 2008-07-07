@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Report::XML - Octopussy XML Report module
@@ -14,13 +11,14 @@ use AAT;
 
 =head1 FUNCTIONS
 
-=head2 Generate($file, $report, $begin, $end, $devices, $data, $fields, $headers, $stats)
+=head2 Generate($file, $report, $begin, $end, $devices, $services, $data, 
+	$fields, $headers, $stats)
 
 =cut
 sub Generate
 {
-  my ($file, $report, $begin, $end, $devices, $data, $fields, $headers, $stats)
-		= @_;
+  my ($file, $report, $begin, $end, $devices, $services, $data, 
+		$fields, $headers, $stats) = @_;
 	my @field_list = split(/,/, $fields);
 	my @header_list = split(/,/, $headers);
 	my @headers = ();
@@ -30,7 +28,8 @@ sub Generate
 		data_nb_files => $stats->{nb_files}, data_nb_lines => $stats->{nb_lines},
     data_generation_time => $stats->{seconds},
 		generated_by_version => Octopussy::Version(),
-		device => \@{$devices}, presentation => { header => \@headers } );
+		device => \@{$devices}, service => \@{$services}, 
+		presentation => { header => \@headers } );
 	foreach my $line (@{$data})
   {
 		my %tmp = ();

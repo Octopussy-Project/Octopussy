@@ -3,7 +3,6 @@
 Octopussy::DeviceGroup - Octopussy DeviceGroup Module
 
 =cut
-
 package Octopussy::DeviceGroup;
 
 use strict;
@@ -16,7 +15,6 @@ use Octopussy;
 Add a new device group
 
 =cut
- 
 sub Add($)
 {
 	my $dg_conf = shift;
@@ -40,7 +38,6 @@ sub Add($)
 Removes devicegroup '$devicegroup'
 
 =cut
-
 sub Remove($)
 {
   my $devicegroup = shift;
@@ -61,7 +58,6 @@ sub Remove($)
 Get List of Device Group
 
 =cut
-
 sub List()
 {
 	my @dgs = AAT::XML::File_Array_Values(Octopussy::File("devicegroups"), 
@@ -75,7 +71,6 @@ sub List()
 Get the configuration for the devicegroup '$devicegroup'
 
 =cut
-
 sub Configuration($)
 {
   my $devicegroup = shift;
@@ -92,7 +87,6 @@ sub Configuration($)
 Get the configuration for all devicegroups
 
 =cut
-
 sub Configurations
 {
 	my $sort = shift || "dg_id";
@@ -132,7 +126,6 @@ sub Configurations
 Get Devices for the devicegroup '$devicegroup'
 
 =cut
-
 sub Devices($)
 {
 	my $devicegroup = shift;
@@ -169,7 +162,6 @@ sub Devices($)
 Removes Device '$device' from all DeviceGroups
 
 =cut
-
 sub Remove_Device($)
 {
 	my $device = shift;
@@ -193,7 +185,6 @@ sub Remove_Device($)
 Get Services for the DeviceGroup '$devicegroup_name'
 
 =cut
-
 sub Services($)
 {
 	my $devicegroup_name = shift;

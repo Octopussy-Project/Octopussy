@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Devices" help="devicegroups" />
 <%
 my $f = $Request->Form();

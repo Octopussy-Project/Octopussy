@@ -80,12 +80,10 @@ sub Inotify_Watch($)
 {
 	my $path = shift;
 
-	if ($path =~ /\/Incoming\/\d{4}\/\d{2}\/\d{2}/)
-  	{ $inotify->watch($path, IN_CLOSE_WRITE); 
-		AAT::DEBUG("Inotify watch $path IN_CLOSE_WRITE"); }
+	if ($path =~ /\/Incoming\/+\d{4}\/+\d{2}\/+\d{2}/)
+  	{ $inotify->watch($path, IN_CLOSE_WRITE); }
  	else
- 		{ $inotify->watch($path, IN_CREATE); 
-		AAT::DEBUG("Inotify watch $path IN_CREATE"); } 
+ 		{ $inotify->watch($path, IN_CREATE); } 
 }
 
 =head2 Init()
@@ -104,7 +102,6 @@ sub Init()
 	$dir_data{"Unknown"} = Octopussy::Storage::Directory_Unknown($device); 
 	foreach my $serv (@services)
  	{
-		AAT::DEBUG("INIT Service $serv");
 		$dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
 		Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Init($device, $serv);
   	my @msg_to_parse = ();
@@ -124,7 +121,6 @@ sub Init()
 					$alert{$a->{name}}->{action_jabber} = 1 if ($act =~ /Jabber/i);
 					$alert{$a->{name}}->{action_nsca} = 1 	if ($act =~ /NSCA/i);
 				}
-				AAT::DEBUG("ALERT $serv $a->{name}");
 				push(@msg_alerts, $a->{name});
 			}
 			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
@@ -250,7 +246,6 @@ sub Alert_Handler($$)
 
 	if ($line =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) \S+/)
 	{
-		AAT::DEBUG("ALERT HANDLER $line");
   	my $date = $1;
 		my $parse_date = Date::Manip::ParseDate($date);
    	my $date_tp = Date::Manip::UnixDate($parse_date, "%A %H:%M");

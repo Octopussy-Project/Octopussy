@@ -12,7 +12,7 @@ if (!defined $table)
 }
 else
 {
-	if ((!-f Octopussy::Table::Filename($table)) 
+	if ((AAT::NOT_NULL($table)) && (!-f Octopussy::Table::Filename($table))
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Table::New({ name => $table, description => $f->{description} });

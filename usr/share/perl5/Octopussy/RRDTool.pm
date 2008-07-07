@@ -3,7 +3,6 @@
 Octopussy::RRDTool - Octopussy RRDTool module
 
 =cut
-
 package Octopussy::RRDTool;
 
 use strict;
@@ -75,6 +74,8 @@ sub Graph_Legend($)
 
 =head2 Graph_Line($cdef, $type, $color, $title)
 
+Set RRD Graph Line
+
 =cut
 sub Graph_Line($$$$)
 {
@@ -82,6 +83,7 @@ sub Graph_Line($$$$)
 
 	$title =~ s/://;
 	$title .= " "x(24 - length($title));
+
 	return ("$type:$cdef$color:\"$title\""); 
 }
 
@@ -361,7 +363,6 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 		$first = 0;
 	}
 	$cmd .= " $def $cdef $legend";
-	AAT::DEBUG("CMD: $cmd LEN: " . length($cmd));
 	`$cmd`	if (($cdef ne "") && ($def ne ""));
 }
 
@@ -450,6 +451,14 @@ sub Report_Graph($$$$$$$)
 	my $title = $rconf->{graph_title} || "";
 	my $width = $rconf->{graph_width} || $GRAPH_WIDTH;	
 	my $height = $rconf->{graph_height} || $GRAPH_HEIGHT;
+  my $rrd_file = $output;
+  $rrd_file =~ s/\.png/\.rrd/;
+  my $start = `date +%s -d '$1 $2:$3'`  if ($begin =~ /(\d{8})(\d\d)(\d\d)/);
+  my $finish = `date +%s -d '$1 $2:$3'` if ($end =~ /(\d{8})(\d\d)(\d\d)/);
+  chomp($start);
+  chomp($finish);
+ 	my $diff = ($finish-$start) / $MINUTE;
+	my $rrd_step_mins = $MINUTE * $rconf->{rrd_step};
 
 	my %ds = ();
 	my %dataline = ();
@@ -460,48 +469,41 @@ sub Report_Graph($$$$$$$)
 			. (AAT::NOT_NULL($l->{$ds3}) ? " / $l->{$ds3}" : "");
 		if (AAT::NOT_NULL($key))
 		{
-			$ds{$key} = 1	;
-			$dataline{$l->{$tl}}{$key} = $l->{$dsv};
+			$ds{$key} = 1;
+			my $block = int(($l->{$tl} - $start)/$rrd_step_mins);
+			$block = AAT::Padding($block, 10);
+			$dataline{$block}{$key} = (defined $dataline{$block}{$key} 
+				? $dataline{$block}{$key} + $l->{$dsv} : $l->{$dsv});
 		}
 	}
-
-	my $diff = $end-$begin;
-	my $rrd_file = $output;
-	$rrd_file =~ s/\.png/\.rrd/;
-	my $start = `date +%s -d '$1 $2:$3'`	if ($begin =~ /(\d{8})(\d\d)(\d\d)/);
-	my $finish = `date +%s -d '$1 $2:$3'`	if ($end =~ /(\d{8})(\d\d)(\d\d)/);
-	chomp($start);
-	chomp($finish);
-	$start -= 60;
 	
-	my $cmd = "$RRD_CREATE \"$rrd_file\" --start $start --step " 
-		. ($MINUTE*$rconf->{rrd_step}) . " ";
+	my $cmd = "$RRD_CREATE \"$rrd_file\" --start $start --step $rrd_step_mins ";
 	my $i = 1;
 	foreach my $k (sort keys %ds)
 	{
-		$cmd .= "DS:ds$i:GAUGE:120:0:U ";
+		$cmd .= "DS:ds$i:GAUGE:" . (2 * $rrd_step_mins) . ":0:U ";
 		$ds{$k} = $i;
 		$i++;
 	}
-	$cmd .= "RRA:AVERAGE:0.5:1:$diff";
-	`$cmd`;
+	`$cmd RRA:AVERAGE:0.5:1:$diff`;
 
 	foreach my $ts (sort keys %dataline)
 	{
-		my $update = "$ts:";
+		my $update = ($start + ($ts * $rrd_step_mins) + 1) . ":";
 		foreach my $d (sort keys %ds)
 			{ $update .= ($dataline{$ts}{$d} || "0") . ":"; }
 		$update =~ s/:$//;
 		`$RRD_UPDATE "$rrd_file" $update`;
 	}
 
-	$cmd = Graph_Parameters($output, $start, $finish, $title, $width, $height, $rconf->{graph_ylabel});
+	$cmd = Graph_Parameters($output, $start, $finish, $title, 
+		$width, $height, $rconf->{graph_ylabel});
 
 	my $watermark = AAT::Translation::Get($lang, "_MSG_REPORT_GENERATED_BY") 
 		. " v" . Octopussy::Version() . " - "; 
   $watermark .= sprintf(AAT::Translation::Get($lang, "_MSG_REPORT_DATA_SOURCE"),
     $stats->{nb_files}, $stats->{nb_lines}, 
-		int($stats->{seconds} / 60), $stats->{seconds} % 60);
+		int($stats->{seconds} / $MINUTE), $stats->{seconds} % $MINUTE);
 	$cmd .= "--watermark \"$watermark\" ";
  	$i = 1;	
 	foreach my $k (sort keys %ds)
