@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="OPenVZ"
+                 name="OpenVZ"
+                 version="200806190001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="id"
+         type="WORD" />
+  <field title="action"
+         type="WORD" />
+</octopussy_table>

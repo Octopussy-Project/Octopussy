@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Generic Mail Traffic Table"
+                 name="Mail_Traffic"
+                 version="200801280001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="sender"
+         type="STRING" />
+  <field title="recipient"
+         type="STRING" />
+  <field title="subject"
+         type="STRING" />
+  <field title="size"
+         type="NUMBER" />
+  <field title="status"
+         type="STRING" />
+  <field title="relay"
+         type="STRING" />
+  <field title="client"
+         type="STRING" />
+  <field title="mail_id"
+         type="WORD" />
+  <field title="msg_id"
+         type="WORD" />
+  <field title="delay"
+         type="FLOAT_NUMBER" />
+  <field title="nrcpt"
+         type="NUMBER" />
+</octopussy_table>

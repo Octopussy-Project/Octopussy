@@ -2,8 +2,9 @@
 <octopussy_service description="Linux PAM Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_PAM"
-									 website="http://www.kernel.org/pub/linux/libs/pam/"
-                   version="200802010002">
+                   nb_messages="009"
+                   version="200806020001"
+                   website="http://www.kernel.org/pub/linux/libs/pam/">
   <message loglevel="Warning"
            msg_id="Linux_PAM:user_access_denied"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; pam_access[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;access denied for user .+&quot;):msg@&gt;"
@@ -58,4 +59,10 @@
            rank="009"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Critical"
+           msg_id="Linux_PAM:setrlimit_failed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; pam_limits[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;setrlimit limit .+ to .+ failed: .*&quot;):msg@&gt;"
+           rank="010"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

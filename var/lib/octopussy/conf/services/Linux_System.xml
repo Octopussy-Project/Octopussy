@@ -2,8 +2,8 @@
 <octopussy_service description="Linux System Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_System"
-                   nb_messages="068"
-                   version="200804030008">
+                   nb_messages="071"
+                   version="200806300007">
   <message loglevel="Information"
            msg_id="Linux_System:removing_device_node"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udev&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;removing device node .+&quot;):msg@&gt;"
@@ -424,4 +424,16 @@
            rank="070"
            table="Message"
            taxonomy="Auth.Failure" />
+  <message loglevel="Information"
+           msg_id="Linux_System:atd_user_session_closed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; atd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*session closed for user .+&quot;):msg@&gt;"
+           rank="071"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_System:init_system_stop"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;init: no more processes left in this runlevel&quot;):msg@&gt;"
+           rank="072"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

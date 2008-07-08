@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="OpenVZ"
+                   name="OpenVZ"
+                   version="200806190002"
+                   website="www.openvz.org">
+  <message loglevel="Information"
+           msg_id="OpenVZ:VE_Actoin"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: VE: &lt;@WORD:id@&gt;: &lt;@WORD:action@&gt;"
+           rank="001"
+           table="OpenVZ"
+           taxonomy="Application.Stop" />
+</octopussy_service>

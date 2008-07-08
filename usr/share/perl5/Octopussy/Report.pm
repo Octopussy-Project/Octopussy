@@ -435,6 +435,22 @@ sub Updates_Installation(@)
   }
 }
 
+=head2 Running_List()
+
+=cut
+sub Running_List()
+{
+	my $run_dir = Octopussy::Directory("running");
+	my @status_files = `find $run_dir -name octo_extractor*.status`;
+
+	foreach my $f (@status_files)
+	{
+		chomp($f);
+		my $status = `cat $f`;
+		print "$f: $status";	
+	}
+}
+
 1;
 
 =head1 AUTHOR

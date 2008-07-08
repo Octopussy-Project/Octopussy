@@ -19,10 +19,12 @@ while ($i <= 59)
 <tr><td>
 <% $Response->Include('AAT/INC/AAT_Selector.inc',
 	name => $arg{name} . "_hour", list => \@hours, 
-	selected => $hour, onchange => $arg{onchange}); %>
+	selected => ($hour < 10 ? "0" . $hour : $hour), 
+	onchange => $arg{onchange}); %>
 </td><td>
 <% $Response->Include('AAT/INC/AAT_Selector.inc',
   name => $arg{name} . "_min", list => \@mins, 
-	selected => $min, onchange => $arg{onchange}); %>
+	selected => ($min < 10 ? "0" . $min : $min), 
+	onchange => $arg{onchange}); %>
 </td></tr>
 </table>

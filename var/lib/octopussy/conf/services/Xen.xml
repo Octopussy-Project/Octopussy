@@ -2,8 +2,8 @@
 <octopussy_service description="Xen Service"
                    icon="software/logo_xen"
                    name="Xen"
-                   nb_messages="084"
-                   version="200805050003"
+                   nb_messages="078"
+                   version="200805260005"
                    website="http://www.xensource.com/">
   <message loglevel="Notice"
            msg_id="Xen:xend_started"
@@ -433,7 +433,7 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Xen:writing_to_xenstore"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/\S+: Writing .+ to xenstore.&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/.+: Writing .+ to xenstore.&quot;):msg@&gt; "
            rank="072"
            table="Message"
            taxonomy="System" />
@@ -509,4 +509,16 @@
            rank="084"
            table="Message"
            taxonomy="System.Boot" />
+  <message loglevel="Information"
+           msg_id="Xen:xenstored_checking_store"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;xenstored: Checking store.*&quot;):msg@&gt;"
+           rank="085"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Xen:vif_bridge_failed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logger: /etc/xen/scripts/vif-bridge: .+ failed&quot;):msg@&gt;"
+           rank="086"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

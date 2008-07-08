@@ -2,8 +2,8 @@
 <octopussy_service description="Slony-I replication system Service"
                    icon="software/logo_slony-i"
                    name="Slony-I"
-                   nb_messages="008"
-                   version="200803050001"
+                   nb_messages="009"
+                   version="200805190001"
                    website="http://slony.info/">
   <message loglevel="Notice"
            msg_id="Slony-I:logswitch_initiated"
@@ -59,4 +59,10 @@
            rank="009"
            table="Database_Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Information"
+           msg_id="Slony-I:cleanup_stale_entry"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;NOTICE:  Slony-I: cleanup stale .+&quot;):msg@&gt;"
+           rank="010"
+           table="Database_Message"
+           taxonomy="Application" />
 </octopussy_service>

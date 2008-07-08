@@ -51,13 +51,13 @@ my @list = ("_CUSTOMIZED", "_CURRENT_HOUR", "_CURRENT_DAY",
 </AAT:Box>
 
 <script type="text/javascript">
-var len=document.forms[0].<%= $name %>.options.length;
-var dts1=new Array(len);
-var dts2=new Array(len);
+var len = document.forms[0].<%= $name %>.options.length;
+var dts1 = new Array(len);
+var dts2 = new Array(len);
 for (i=0; i<len; i++)
 {
-  dts1[i]=new Array(5);
-  dts2[i]=new Array(5);
+  dts1[i] = new Array(5);
+  dts2[i] = new Array(5);
 }
 
 dts1[0]=['<%= $c_h1->{year}-$s_year %>','<%= $c_h1->{month}-1 %>','<%= $c_h1->{day}-1 %>','<%= $c_h1->{hour} %>','<%= $c_h1->{min} %>'];

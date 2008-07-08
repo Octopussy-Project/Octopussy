@@ -3,7 +3,7 @@
                    icon="software/logo_postfix"
                    name="Postfix"
                    nb_messages="063"
-                   version="200805050002"
+                   version="200805190001"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -377,16 +377,22 @@
            rank="062"
            table="Message"
            taxonomy="Network.Errors" />
-  <message loglevel="Warning"
+  <message loglevel="Notice"
            msg_id="Postfix:recipient_address_rejected"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtpd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;NOQUEUE: reject: RCPT from .+: Recipient address rejected:.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtpd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;NOQUEUE: reject: RCPT from .+: Recipient address rejected:.+&quot;):msg@&gt;"
            rank="063"
            table="Message"
-           taxonomy="Application.Errors" />
+           taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Postfix:connection_refused"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtp[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;connect to .+: Connection refused.*&quot;):msg@&gt;"
            rank="064"
            table="Message"
            taxonomy="Network.Errors" />
+  <message loglevel="Critical"
+           msg_id="Postfix:open_permission_denied"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/sendmail[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;fatal: open .+: Permission denied&quot;):msg@&gt;"
+           rank="065"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

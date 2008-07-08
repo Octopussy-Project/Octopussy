@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Windows Message Table"
+                 name="Windows_Message"
+                 version="200804170001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="event_id"
+         type="NUMBER" />
+  <field title="event_type"
+         type="STRING" />
+  <field title="sid_type"
+         type="WORD" />
+  <field title="category"
+         type="STRING" />
+  <field title="msg"
+         type="STRING" />
+  <field title="computer"
+         type="WORD" />
+  <field title="source"
+         type="WORD" />
+  <field title="criticity"
+         type="NUMBER" />
+  <field title="user"
+         type="STRING" />
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+</octopussy_table>

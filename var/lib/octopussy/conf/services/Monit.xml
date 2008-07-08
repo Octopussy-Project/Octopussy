@@ -2,8 +2,8 @@
 <octopussy_service description="Monit Service"
                    icon="software/logo_monit"
                    name="Monit"
-                   nb_messages="007"
-                   version="200804110003"
+                   nb_messages="012"
+                   version="200806120001"
                    website="http://www.tildeslash.com/monit/">
   <message loglevel="Notice"
            msg_id="Monit:process_pid_changed_to"
@@ -71,10 +71,16 @@
            rank="011"
            table="Message"
            taxonomy="Application" />
-  <message loglevel="Information"
-           msg_id="Monit:start_script"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' start: .+&quot;):msg@&gt;"
+  <message loglevel="Notice"
+           msg_id="Monit:start"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'\S+' start: .+&quot;):msg@&gt;"
            rank="012"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Critical"
+           msg_id="Monit:service_not_checked_anymore"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.+ service timed out and will not be checked anymore&quot;):msg@&gt;"
+           rank="013"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>
