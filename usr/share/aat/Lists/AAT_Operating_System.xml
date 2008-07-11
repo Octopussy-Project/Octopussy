@@ -55,6 +55,8 @@
 
 	<item label="Nintendo Wii" value="game_nintendo_wii"
 				regexp="Nintendo Wii" logo="operating_systems/os_wii" />
+	<item label="Sony Playstation 3" value="game_sony_playstation3"
+        regexp="PLAYSTATION 3" />
 	<item label="Sony PSP" value="game_sony_psp"
 				regexp="PlayStation Portable" />
 

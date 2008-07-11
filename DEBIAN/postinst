@@ -10,7 +10,8 @@ fi
 AAT="aat"
 OCTO="octopussy"
 CHMOD="/bin/chmod 644"
-CHOWN="/bin/chown -R $OCTO:$OCTO"
+CHOWN="/bin/chown $OCTO:$OCTO"
+CHOWNR="/bin/chown -R $OCTO:$OCTO"
 CP="/bin/cp -f"
 ECHO="/bin/echo"
 FIND="/usr/bin/find"
@@ -26,8 +27,9 @@ UPDATERC="/usr/sbin/update-rc.d"
 $MKDIR /var/lib/$OCTO/
 $MKDIR /var/run/$AAT/
 $MKDIR /var/run/$OCTO/
-$CHOWN /etc/$AAT/ /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ /usr/sbin/octo* || true
-$CHOWN /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ || true
+$CHOWNR /etc/$AAT/ /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ /usr/sbin/octo* || true
+$CHOWN /var/lib/$OCTO/logs/
+$CHOWNR /var/lib/$OCTO/{conf,reports,rrd} /var/run/$AAT/ /var/run/$OCTO/ || true
 $FIND /usr/share/perl5/AAT* -name "*.pm" |xargs $CHMOD
 $FIND /usr/share/perl5/Octopussy* -name "*.pm" |xargs $CHMOD
 
@@ -74,7 +76,7 @@ $A2ENSITE $OCTO >> /dev/null
 $A2ENMOD dir >> /dev/null
 $A2ENMOD ssl >> /dev/null
 $MKDIR /var/cache/$OCTO/asp/
-$CHOWN /var/cache/$OCTO/asp/
+$CHOWNR /var/cache/$OCTO/asp/
 if ! grep "Listen 443" /etc/apache2/ports.conf >> /dev/null; then
 	$ECHO "Listen 443" >> /etc/apache2/ports.conf
 fi

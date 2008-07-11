@@ -15,6 +15,7 @@ if ((defined $f->{login}) && (defined $f->{password}))
 		$Session->{AAT_LANGUAGE} = $auth->{language};
 		$Session->{AAT_THEME} = $auth->{theme};
 		$Session->{AAT_MENU_MODE} = $auth->{menu_mode};
+		AAT::Translation::Init($Session->{AAT_LANGUAGE});
 		AAT::Syslog("octo_WebUI", "USER_LOGGED_IN");
  	}
  	else

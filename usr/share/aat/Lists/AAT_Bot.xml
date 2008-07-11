@@ -1,5 +1,9 @@
 <list name="AAT_Bot">
 
+	<item label="Exabot" value="bot_exabot"
+				regexp="http://www.exabot.com/go/robot"
+				logo="browsers/browser_bot" />
+	
 	<item label="Google Bot" value="bot_google"
         regexp="http://www.google.com/bot.html" 
 				logo="browsers/browser_bot" />
@@ -7,6 +11,22 @@
 	<item label="MSN Bot" value="bot_msn"
         regexp="http://search.msn.com/msnbot.htm" 
 				logo="browsers/browser_bot" />
+
+	<item label="Speedy Spider" value="bot_speedy_spider"
+				regexp="Speedy Spider"
+				logo="browsers/browser_bot" />
+
+	<item label="TurnitinBot" value="bot_turnitinbot"
+        regexp="TurnitinBot"
+        logo="browsers/browser_bot" />
+
+	<item label="VoilaBot" value="bot_voilabot"
+        regexp="VoilaBot"
+        logo="browsers/browser_bot" />
+
+	<item label="WebAlta Crawler" value="bot_webalta_crawler"
+        regexp="WebAlta Crawler"
+        logo="browsers/browser_bot" />
 
 	<item label="Yahoo Slurp" value="bot_yahoo"
 				regexp="http://help.yahoo.com/help/us/ysearch/slurp" 

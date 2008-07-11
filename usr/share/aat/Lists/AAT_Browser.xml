@@ -1,6 +1,8 @@
 <list name="AAT_Browser"
 			selected_by_default="Firefox">
 
+	<item label="Avant Browser" value="avant"
+				regexp="Avant Browser" logo="browsers/browser_avant" />
 	<item label="Camino" value="camino"
         regexp="Camino" logo="browsers/browser_camino" />
 	<item label="Epiphany" value="epiphany"

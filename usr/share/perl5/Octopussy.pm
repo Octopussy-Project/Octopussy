@@ -140,19 +140,24 @@ sub Status_Progress($$)
 
 	if (-f $pid_file)
 	{
-  	my $pid = `cat "$pid_file"`;
-  	kill USR1 => $pid;
+		if (defined open(PIDFILE, "< $pid_file"))
+		{
+			my $pid = <PIDFILE>;
+			chomp($pid);
+  		kill USR1 => $pid;
+			close(PIDFILE);
+		}
 	}
 	my $count = 0;
-	while ($count++ <= 3)
-	{ # tries 3 times before failed
+	while ($count++ <= 9)
+	{ # tries 9 times before failed
 		if (-f $status_file)
 		{
-  		if (defined open(FILE, "cat \"$status_file\" |"))
+  		if (defined open(FILE, "< $status_file"))
 			{
   			$status = <FILE>;
   			close(FILE);
-				last;
+				last	if (AAT::NOT_NULL($status));
 			}
 		}
 	}
