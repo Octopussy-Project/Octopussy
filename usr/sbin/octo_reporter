@@ -28,6 +28,7 @@ octo_reporter is the program used by the Octopussy Project to generate Reports
 
 use strict;
 no strict 'refs';
+use Cache::SharedMemoryCache;
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
@@ -38,7 +39,7 @@ my $PROG_VERSION = Octopussy::Version();
 my $FILE_DB = "/var/run/octopussy/file.db";
 
 my $dir_pid = Octopussy::Directory("running");
-my ($pid_file, $status_file) = (undef, undef); 
+my $pid_file = undef; 
 
 my $help;
 my (@devices, @services) = ((), ());
@@ -48,7 +49,7 @@ my ($ftp_host, $ftp_dir, $ftp_user, $ftp_pwd);
 my ($scp_host, $scp_dir, $scp_user, $scp_pwd);
 my ($type, $title) = ("bars", "test");
 my $output = undef;
-my ($progress_msg, $progress_num) = (0, 0);
+my $shared_memory_cache = undef;
 
 =head1 FUNCTIONS
 
@@ -118,14 +119,7 @@ sub Progress
 {
   my ($msg, $num) = @_;
 
-  if (defined $num)
- 		{ ($progress_msg, $progress_num) = ($msg, $num); }
-  else
-  { # kill -USR1 --> write current progress in status file 
-    open(STATUS_FILE, "> $status_file");
-    print STATUS_FILE AAT::Translation($progress_msg) . " [$progress_num]\n";
-    close(STATUS_FILE);
-  }
+	$shared_memory_cache->set("status_$$", AAT::Translation($msg) . " [$num]");
 }
 
 =head2 SQL($ref_pos, @args)
@@ -271,7 +265,9 @@ sub End
 	AAT::Syslog($PROG_NAME, "Report Generation Aborted !");	
 	AAT::DB::Table_Destruction("Octopussy", $rc->{table} . "_$$");
 	unlink($pid_file);
-	unlink($status_file);		
+	unlink("$FILE_DB.$$");
+	$shared_memory_cache->remove("info_$$");
+	$shared_memory_cache->remove("status_$$");
 	exit();
 }
 
@@ -280,8 +276,6 @@ sub End
 #
 # MAIN
 #
-
-$SIG{USR1} = \&Progress;
 $SIG{USR2} = \&End;
 
 my $status = GetOptions(
@@ -301,6 +295,12 @@ Help()	if ((! $status) || ($help)
 	|| (!defined $report) || (! @devices) || (! @services) 
 	|| (!defined $begin) || (!defined $end) || (!defined $output));
 
+my $pid = $$;
+$shared_memory_cache = 
+	new Cache::SharedMemoryCache( { namespace => "octo_reporter", 
+		default_expires_in => "1 hour" } ) or
+	croak( "Couldn't instantiate SharedMemoryCache" );
+
 Progress("_MSG_REPORT_PROGRESS_REPORT_CONFIG", "1/1");
 $rc = (defined $report ? Octopussy::Report::Configuration($report) : undef);
 print "Error: Unable to get configuration for Report [$report]\n"
@@ -310,11 +310,12 @@ $lang ||= "EN";
 
 print "Report: $rc->{name}\n";
 print "Description: $rc->{description}\n";
-my $pid = $$;
 my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
 $pid_file = Octopussy::PID_File($pid_name);
-$status_file = "${dir_pid}${PROG_NAME}"
-  . (defined $pid_param ?"_$pid_param" : "") . ".status";
+
+my %info = ( report => $rc->{name}, 
+	devices => \@devices, services => \@services ); 
+$shared_memory_cache->set("info_$pid", \%info);
 
 my $time = time();
 
@@ -364,7 +365,8 @@ Octopussy::Report::Generate($rc, $begin, $end, $output, \@devices, \@services,
 Progress("_MSG_REPORT_PROGRESS_BUILDING_REPORT", "1/1");
 AAT::Syslog($PROG_NAME, "Report Generation Completed !");
 unlink($pid_file);
-unlink($status_file);
+$shared_memory_cache->remove("info_$$");
+$shared_memory_cache->remove("status_$$");
 
 =head1 AUTHOR
 

@@ -8,7 +8,7 @@ my $sort = $Request->QueryString("services_table_sort");
 my $msg_sort = $Request->QueryString("service_messages_table_sort");
 $service =~ s/ /_/g;
 
-if (!defined $service)
+if (AAT::NULL($service))
 {
 	%><AAT:Inc file="octo_services_list" url="./services.asp" sort="$sort" /><%
 }

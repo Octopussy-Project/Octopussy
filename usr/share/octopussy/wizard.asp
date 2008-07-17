@@ -8,7 +8,7 @@ my $timestamp = $Request->QueryString("timestamp");
 
 if ($Session->{AAT_ROLE} !~ /ro/)
 {
-	if (!defined $device)
+	if (AAT::NULL($device))
 	{
 		%><AAT:Inc file="octo_wizard" url="./wizard.asp" sort="$sort" /><%
 	}

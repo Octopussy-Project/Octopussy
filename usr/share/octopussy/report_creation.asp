@@ -6,19 +6,19 @@ my $x = $Session->{x};
 my $y = $Session->{y};
 my $url = "./report_creation.asp";
 
-if (!defined $Session->{title})
+if (AAT::NULL($Session->{title}))
 {
 	%><AAT:Inc file="octo_report_data_configurator" category="$category" 
 		url="$url" /><%
 }
-elsif ((!defined $Session->{selected}) && (!defined $f->{datasource1}))
+elsif ((AAT::NULL($Session->{selected})) && (AAT::NULL($f->{datasource1})))
 {
 	if ($Session->{graph_type} !~ /^rrd_/)
 		{ %><AAT:Inc file="octo_report_query_configurator" url="$url"/><% }
 	else
 		{ %><AAT:Inc file="octo_report_rrdgraph_configurator" url="$url" /><% }
 }
-elsif (($Session->{graph_type} !~ /^rrd_/) && (!defined $x))
+elsif (($Session->{graph_type} !~ /^rrd_/) && (AAT::NULL($x)))
 {
 	my ($query, $columns) = 
 		Octopussy::DB::SQL_Select_Function(AAT::ARRAY($Session->{select}));

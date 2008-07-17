@@ -1,11 +1,34 @@
 <list name="AAT_Bot">
 
+	<item label="Ask Jeeves" value="bot_ask_jeeves"
+        regexp="Ask Jeeves"
+        logo="browsers/browser_bot" />
+
+	<item label="Baidu Spider" value="bot_baidu_spider"
+        regexp="www.baidu.com/search/spider.htm"
+        logo="browsers/browser_bot" />
+
+	<item label="Bibliotheque Nationale de France" value="bot_bnf"
+				regexp="bibnum.bnf.fr"
+				logo="browsers/browser_bot" />
+
 	<item label="Exabot" value="bot_exabot"
 				regexp="http://www.exabot.com/go/robot"
 				logo="browsers/browser_bot" />
+
+	<item label="Gigabot" value="bot_gigabot"
+        regexp="Gigabot"
+        logo="browsers/browser_bot" />
 	
 	<item label="Google Bot" value="bot_google"
         regexp="http://www.google.com/bot.html" 
+				logo="browsers/browser_bot" />
+	<item label="Google Feedfetcher" value="bot_google_feedfetcher"
+        regexp="Feedfetcher-Google"
+        logo="browsers/browser_bot" />
+
+	<item label="LeechGet" value="bot_leechget"
+				regexp="www.leechget.net"
 				logo="browsers/browser_bot" />
 	
 	<item label="MSN Bot" value="bot_msn"
@@ -20,6 +43,10 @@
         regexp="TurnitinBot"
         logo="browsers/browser_bot" />
 
+	<item label="Twiceler" value="bot_twiceler"
+        regexp="Twiceler"
+        logo="browsers/browser_bot" />
+
 	<item label="VoilaBot" value="bot_voilabot"
         regexp="VoilaBot"
         logo="browsers/browser_bot" />
@@ -29,7 +56,7 @@
         logo="browsers/browser_bot" />
 
 	<item label="Yahoo Slurp" value="bot_yahoo"
-				regexp="http://help.yahoo.com/help/us/ysearch/slurp" 
+				regexp="Yahoo! Slurp" 
 				logo="browsers/browser_bot" />
 
 </list>

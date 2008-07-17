@@ -20,16 +20,16 @@ my $m2 = $Session->{"dt2_month"};
 my $y2 = $Session->{"dt2_year"};
 my ($h2, $min2) = ($Session->{"dt2_hour"}, $Session->{"dt2_min"});
 
-if ((defined $action) && ($action eq "remove") 
+if ((AAT::NOT_NULL($action)) && ($action eq "remove") 
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	Octopussy::Report::Remove($report);
 	AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Report", $report);
  	$Response->Redirect("./reports.asp");	
 }
-elsif (!defined $report)
+elsif (AAT::NULL($report))
 {
-	if (!defined $category)
+	if (AAT::NULL($category))
 	{
 	%><AAT:Inc file="octo_report_categories_list" url="$url" sort="$sort" /><%
 	}
@@ -39,7 +39,7 @@ elsif (!defined $report)
 			category="$category" sort="$sort" /><%
 	}
 }
-elsif (!defined $f->{submit})
+elsif (AAT::NULL($f->{submit}))
 {
 %><AAT:Inc file="octo_report_configuration" report="$report"
 	url="./reports.asp?device=$device&service=$service" 

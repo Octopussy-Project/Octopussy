@@ -5,12 +5,12 @@ my $dg = $f->{devicegroup} || $Request->QueryString("devicegroup");
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("devicegroups_table_sort");
 
-if (!defined $dg)
+if (AAT::NULL($dg))
 {
 	%><AAT:Inc file="octo_devicegroups_list" 
 		url="./devicegroups.asp" sort="$sort" /><%
 }
-elsif ((defined $dg) && ($Session->{AAT_ROLE} !~ /ro/i))
+elsif ($Session->{AAT_ROLE} !~ /ro/i)
 {
 	if ($action eq "remove")
 	{

@@ -5,7 +5,7 @@ my $alert = $f->{alert} || $Request->QueryString("alert");
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("alerts_table_sort") || "name";
 
-if (!defined $alert)
+if (AAT::NULL($alert))
 {
 	%><AAT:Inc file="octo_alerts_list" url="./alerts.asp" sort="$sort" /><%
 }

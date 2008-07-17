@@ -3,7 +3,7 @@
                    icon="operating_systems/os_windows"
                    name="Windows_Snare"
                    nb_messages="018"
-                   version="200807010001"
+                   version="200807150002"
                    website="http://www.intersectalliance.com/projects/SnareWindows/index.html">
   <message loglevel="Notice"
            msg_id="Windows_Snare:service_was_stopped"
@@ -129,6 +129,18 @@
            msg_id="Windows_Snare:logon_to_account_failed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;Security;&lt;@NUMBER:NULL@&gt;;&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@REGEXP(&quot;Security&quot;):source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Failure Audit&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;Account Logon&quot;):category@&gt;;;&lt;@REGEXP(&quot;The logon to account: .+ failed..*&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
            rank="021"
+           table="Windows_Message"
+           taxonomy="Auth.Failure" />
+  <message loglevel="Warning"
+           msg_id="Windows_Snare:error_reading_event_record"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;Application;&lt;@NUMBER:NULL@&gt;;&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@REGEXP(&quot;EvntAgnt&quot;):source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Warning&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;None&quot;):category@&gt;;;&lt;@REGEXP(&quot;Error reading log event record.+&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
+           rank="022"
+           table="Windows_Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Windows_Snare:unknown_user_bad_password"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;Security;&lt;@NUMBER:NULL@&gt;;&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@REGEXP(&quot;Security&quot;):source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Failure Audit&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;Logon/Logoff&quot;):category@&gt;;;&lt;@REGEXP(&quot;Logon Failure:.+Unknown user name or bad password.+&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
+           rank="023"
            table="Windows_Message"
            taxonomy="Auth.Failure" />
 </octopussy_service>

@@ -12,7 +12,7 @@ $Session->{AAT_PAGE_CURRENT} =
 %>
 <WebUI:PageTop title="Devices" help="devices" />
 <%
-if (!defined $device)
+if (AAT::NULL($device))
 {
 	if ($action eq "parse_reload_all")
   {
@@ -49,7 +49,7 @@ else
 		$Response->Redirect("./device_services.asp?device=$device");
 	}
 	$Response->Redirect("./device_services.asp?device=$device")
-		if (!defined $action);
+		if (AAT::NULL($action));
 	if ($Session->{AAT_ROLE} !~ /ro/i)
 	{
 		if ($action eq "remove")

@@ -8,6 +8,7 @@ package Octopussy;
 
 use strict;
 use AAT;
+use Cache::SharedMemoryCache;
 use File::Path;
 use Octopussy::Alert;
 #use Octopussy::Contact;
@@ -134,32 +135,17 @@ sub Status_Progress($$)
 {
 	my ($bin, $param) = @_;
 	my $pid_dir = Octopussy::Directory("running");
-	my $pid_file = $pid_dir . "${bin}_${param}.pid";
-	my $status_file = $pid_dir . "${bin}_${param}.status";
+	my $pid_file = "${pid_dir}${bin}_${param}.pid";
 	my $status = "";
 
-	if (-f $pid_file)
+	if (defined open(PIDFILE, "< $pid_file"))
 	{
-		if (defined open(PIDFILE, "< $pid_file"))
-		{
-			my $pid = <PIDFILE>;
-			chomp($pid);
-  		kill USR1 => $pid;
-			close(PIDFILE);
-		}
-	}
-	my $count = 0;
-	while ($count++ <= 9)
-	{ # tries 9 times before failed
-		if (-f $status_file)
-		{
-  		if (defined open(FILE, "< $status_file"))
-			{
-  			$status = <FILE>;
-  			close(FILE);
-				last	if (AAT::NOT_NULL($status));
-			}
-		}
+		my $pid = <PIDFILE>;
+		chomp($pid);
+		my $shared_memory_cache =
+  		new Cache::SharedMemoryCache( { namespace => $bin } );
+		$status = $shared_memory_cache->get("status_${pid}");
+		close(PIDFILE);
 	}
 
 	return ($status);

@@ -1,14 +1,9 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Report Creation" />
 <%
 my $f = $Request->Form();
 my @select = $f->{select};
 
-if (!defined $f->{title})
+if (AAT::NULL($f->{title}))
 {
 	%><AAT:Inc file="octo_report_data_configurator" url="./report_creation.asp" /><%
 }

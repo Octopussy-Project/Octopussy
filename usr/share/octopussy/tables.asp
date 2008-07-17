@@ -6,13 +6,13 @@ my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("tables_table_sort");
 $table =~ s/ /_/g;
 
-if (!defined $table)
+if (AAT::NULL($table))
 {
 	%><AAT:Inc file="octo_tables_list" url="./tables.asp" sort="$sort" /><%
 }
 else
 {
-	if ((AAT::NOT_NULL($table)) && (!-f Octopussy::Table::Filename($table))
+	if ((!-f Octopussy::Table::Filename($table))
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Table::New({ name => $table, description => $f->{description} });
