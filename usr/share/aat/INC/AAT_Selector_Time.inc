@@ -7,11 +7,11 @@ my @hours = ();
 my @mins = ();
 my $step = $arg{step} || 1;
 foreach my $i (0..23)
-	{ push(@hours, ($i < 10 ? "0" . $i : $i)); }
+	{ push(@hours, ($i < 10 ? "0$i" : $i)); }
 my $i = 0;
 while ($i <= 59)
 {
-	push(@mins, ($i < 10 ? "0" . $i : $i));
+	push(@mins, ($i < 10 ? "0$i" : $i));
 	$i += $step;
 }
 %>
@@ -19,12 +19,12 @@ while ($i <= 59)
 <tr><td>
 <% $Response->Include('AAT/INC/AAT_Selector.inc',
 	name => $arg{name} . "_hour", list => \@hours, 
-	selected => ($hour < 10 ? "0" . $hour : $hour), 
+	selected => ($hour =~ /^\d$/ ? "0$hour" : $hour), 
 	onchange => $arg{onchange}); %>
 </td><td>
 <% $Response->Include('AAT/INC/AAT_Selector.inc',
   name => $arg{name} . "_min", list => \@mins, 
-	selected => ($min < 10 ? "0" . $min : $min), 
+	selected => ($min =~ /^\d$/ ? "0$min" : $min), 
 	onchange => $arg{onchange}); %>
 </td></tr>
 </table>

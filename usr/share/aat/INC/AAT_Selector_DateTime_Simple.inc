@@ -54,7 +54,7 @@ my @list = ("_CUSTOMIZED", "_CURRENT_HOUR", "_CURRENT_DAY",
 var len = document.forms[0].<%= $name %>.options.length;
 var dts1 = new Array(len);
 var dts2 = new Array(len);
-for (i=0; i<len; i++)
+for (i = 0; i < len; i++)
 {
   dts1[i] = new Array(5);
   dts2[i] = new Array(5);
@@ -83,24 +83,24 @@ dts2[9]=['<%= $l_y2->{year}-$s_year %>','<%= $l_y2->{month}-1 %>','<%= $l_y2->{d
 
 function update_dt_selector(x)
 {
-  x=x-1;
-  if (x>-1)
+  x = x-1;
+  if (x > -1)
   {
-  document.forms[0].dt1_year.options[dts1[x][0]].selected=true;
-  document.forms[0].dt1_month.options[dts1[x][1]].selected=true;
-  document.forms[0].dt1_day.options[dts1[x][2]].selected=true;
-  document.forms[0].dt1_hour.options[dts1[x][3]].selected=true;
-  document.forms[0].dt1_min.options[dts1[x][4]].selected=true;
-  document.forms[0].dt2_year.options[dts2[x][0]].selected=true;
-  document.forms[0].dt2_month.options[dts2[x][1]].selected=true;
-  document.forms[0].dt2_day.options[dts2[x][2]].selected=true;
-  document.forms[0].dt2_hour.options[dts2[x][3]].selected=true;
-  document.forms[0].dt2_min.options[dts2[x][4]].selected=true;
+  document.forms[0].dt1_year.options[dts1[x][0]].selected = true;
+  document.forms[0].dt1_month.options[dts1[x][1]].selected = true;
+  document.forms[0].dt1_day.options[dts1[x][2]].selected = true;
+  document.forms[0].dt1_hour.options[dts1[x][3]].selected = true;
+  document.forms[0].dt1_min.options[dts1[x][4]].selected = true;
+  document.forms[0].dt2_year.options[dts2[x][0]].selected = true;
+  document.forms[0].dt2_month.options[dts2[x][1]].selected = true;
+  document.forms[0].dt2_day.options[dts2[x][2]].selected = true;
+  document.forms[0].dt2_hour.options[dts2[x][3]].selected = true;
+  document.forms[0].dt2_min.options[dts2[x][4]].selected = true;
   }
 }
 
 function custom_dt()
 {
-	document.forms[0].<%= $name %>.options[0].selected=true;	
+	document.forms[0].<%= $name %>.options[0].selected = true;	
 }
 </script>
