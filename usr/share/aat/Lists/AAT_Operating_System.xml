@@ -56,10 +56,12 @@
 	<item label="Nintendo Wii" value="game_nintendo_wii"
 				regexp="Nintendo Wii" logo="operating_systems/os_wii" />
 	<item label="Sony Playstation 3" value="game_sony_playstation3"
-        regexp="PLAYSTATION 3" />
+        regexp="PLAYSTATION 3" logo="operating_systems/os_ps3" />
 	<item label="Sony PSP" value="game_sony_psp"
 				regexp="PlayStation Portable" />
 
+	<item label="SGI IRIX" value="sgi_irix"
+        regexp="IRIX" logo="operating_systems/os_sgi" />
 	<item label="Sun Solaris" value="sun_solaris"
         regexp="SunOS" logo="operating_systems/os_sun" />
 

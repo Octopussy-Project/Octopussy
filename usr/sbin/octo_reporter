@@ -60,7 +60,7 @@ Prints Help
 =cut
 sub Help()
 {
-my $help_str = <<EOF;
+	my $help_str = <<EOF;
 
 $PROG_NAME (version $PROG_VERSION)
 

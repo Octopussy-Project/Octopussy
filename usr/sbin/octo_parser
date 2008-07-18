@@ -18,6 +18,7 @@ to parse Logs for each Device
 use strict;
 use bytes; # Fix the 'Malformed UTF-8 character' warning
 use utf8;
+use Cache::SharedMemoryCache;
 use File::Copy;
 use File::Path;
 use Linux::Inotify2;
@@ -31,6 +32,10 @@ my $dir_program = Octopussy::Directory("programs");
 my $dir_pid = Octopussy::Directory("running");
 my $device = $ARGV[0];
 my ($reload_request, $exit_request) = (0, 0);
+my $shared_memory_cache = 
+  new Cache::SharedMemoryCache( { namespace => "octo_parser",
+    default_expires_in => "1 day" } ) or
+  croak( "Couldn't instantiate SharedMemoryCache" );
 
 my @services;
 my %alert;
@@ -38,7 +43,7 @@ my %service;
 my %taxo;
 my $minutes_without_logs;
 my %dir_data = ();
-my %a_thresold = ();
+#my %a_thresold = ();
 my (@files, @taxo_list, %known_msgs, @unknown_msgs) = ((), (), (), ());
 my ($file, $last_file) = (undef, undef);
 my $pid_file = Octopussy::PID_File($PROG_NAME . "_$device");
@@ -257,21 +262,19 @@ sub Alert_Handler($$)
 				&& ((AAT::NULL($a->{regexp_incl}) || ($line =~ /$a->{regexp_incl}/)))
         && ((AAT::NULL($a->{regexp_excl}) || ($line !~ /$a->{regexp_excl}/))))
 			{
+				my $alert_logs = $shared_memory_cache->get($a->{name});
 				if (defined $a->{thresold_time})
-				{
-					push(@{$a_thresold{$a->{name}}{values}}, 
-						{ timestamp => $secs, log => $line });
-				}
+					{ push(@{$alert_logs}, { timestamp => $secs, log => $line }); }
 				if ((!defined $a->{thresold_time}) 
-					|| (($#{$a_thresold{$a->{name}}{values}}+1) >= $a->{thresold_time}))
+					|| (($#{$alert_logs}+1) >= $a->{thresold_time}))
 				{
 					my $match = 1;
 					if (defined $a->{thresold_time})
 					{
-						while (($secs - ${$a_thresold{$a->{name}}{values}}[0]->{timestamp})
+						while (($secs - ${$alert_logs}[0]->{timestamp})
 										> $a->{thresold_duration})
 						{
-							shift @{$a_thresold{$a->{name}}{values}};
+							shift @{$alert_logs};
 							$match = 0;
 						}
 					}
@@ -280,12 +283,12 @@ sub Alert_Handler($$)
 						my $data = "";
 						if (defined $a->{thresold_time})
 						{
-							foreach my $d (@{$a_thresold{$a->{name}}{values}})
+							foreach my $d (@{$alert_logs})
 								{ $data .= "$d->{log}\n"; } 
 						}
 						else
 							{ $data = $line; }
-						$a_thresold{$a->{name}}{values} = ();
+						$alert_logs = ();
 						Octopussy::Alert::Insert_In_DB($device, $a, $data, $date);
 						my ($subject, $body) = 
 							Octopussy::Alert::Message_Building($a, $device, $data, $msg);
@@ -300,6 +303,7 @@ sub Alert_Handler($$)
 						AAT::NSCA::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),								"$subject") if (defined $a->{action_nsca}); 
 					}
 				}
+				$shared_memory_cache->set($a->{name}, $alert_logs);
 			}
 		}
   }

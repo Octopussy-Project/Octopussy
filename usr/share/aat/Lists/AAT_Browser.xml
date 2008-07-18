@@ -57,7 +57,7 @@
 	<item label="Sony Playstation 3" value="sony_playstation3"
 				regexp="PLAYSTATION 3" />
 
-	<item label="wget" value="wget"
+	<item label="Wget" value="wget"
         regexp="^.?Wget" />
 
 </list>

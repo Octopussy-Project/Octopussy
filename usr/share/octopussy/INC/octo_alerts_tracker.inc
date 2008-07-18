@@ -74,6 +74,7 @@ foreach my $a (@alerts)
 			= ($a->{alert_id}, $a->{device}, $a->{date_time}, 
 					$Server->HTMLEncode($a->{log}), $Server->HTMLEncode($a->{comment}), 
 					$a->{status}, $a->{log_id});
+		$log =~ s/\n/<br>/g;
 		my $color = ($a->{level} =~ /Critical/i ? "red" : "orange"); %>
 	<AAT:BoxRow>
 		<AAT:BoxCol><AAT:Label value="$alert_id" color="$color"/></AAT:BoxCol>

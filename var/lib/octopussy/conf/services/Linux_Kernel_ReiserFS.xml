@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Linux Kernel ReiserFS Service"
+									 icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel_ReiserFS"
                    nb_messages="000"
                    version="200805220006"

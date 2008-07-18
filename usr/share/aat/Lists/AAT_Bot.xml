@@ -1,62 +1,85 @@
 <list name="AAT_Bot">
 
+	<item label="Alexa Bot" value="bot_alexa"
+        regexp="ia_archiver"
+        logo="browsers/browser_bot" />
+	<item label="AOL Bot" value="bot_aol"
+        regexp="http://www.aol.com"
+        logo="browsers/browser_bot" />
 	<item label="Ask Jeeves" value="bot_ask_jeeves"
         regexp="Ask Jeeves"
         logo="browsers/browser_bot" />
-
 	<item label="Baidu Spider" value="bot_baidu_spider"
         regexp="www.baidu.com/search/spider.htm"
         logo="browsers/browser_bot" />
-
 	<item label="Bibliotheque Nationale de France" value="bot_bnf"
 				regexp="bibnum.bnf.fr"
 				logo="browsers/browser_bot" />
-
 	<item label="Exabot" value="bot_exabot"
 				regexp="http://www.exabot.com/go/robot"
 				logo="browsers/browser_bot" />
-
+	<item label="Exooba" value="bot_exooba"
+        regexp="exooba.com"
+        logo="browsers/browser_bot" />
+	<item label="Firebat" value="bot_firebat"
+        regexp="Firebat"
+        logo="browsers/browser_bot" />
 	<item label="Gigabot" value="bot_gigabot"
         regexp="Gigabot"
         logo="browsers/browser_bot" />
-	
 	<item label="Google Bot" value="bot_google"
-        regexp="http://www.google.com/bot.html" 
+        regexp="(Googlebot-Image|http://www.google.com/bot.html)" 
 				logo="browsers/browser_bot" />
 	<item label="Google Feedfetcher" value="bot_google_feedfetcher"
-        regexp="Feedfetcher-Google"
+        regexp="Feed[Ff]etcher-Google"
         logo="browsers/browser_bot" />
-
+	<item label="Kalooga Bot" value="bot_kalooga"
+        regexp="www.kalooga.com"
+        logo="browsers/browser_bot" />
 	<item label="LeechGet" value="bot_leechget"
 				regexp="www.leechget.net"
 				logo="browsers/browser_bot" />
-	
+	<item label="MetadataLabs Bot" value="bot_metadatalabs"
+        regexp="www.metadatalabs.com/mlbot"
+        logo="browsers/browser_bot" />	
 	<item label="MSN Bot" value="bot_msn"
         regexp="http://search.msn.com/msnbot.htm" 
 				logo="browsers/browser_bot" />
-
+	<item label="NaverBot" value="bot_naverbot"
+        regexp="NaverBot"
+        logo="browsers/browser_bot" />
+	<item label="Seekbot" value="bot_seekbot"
+        regexp="www.seekbot.net"
+        logo="browsers/browser_bot" />
+	<item label="Snapbot" value="bot_snapbot"
+        regexp="Snapbot"
+        logo="browsers/browser_bot" />
 	<item label="Speedy Spider" value="bot_speedy_spider"
 				regexp="Speedy Spider"
 				logo="browsers/browser_bot" />
-
+	<item label="TinEye" value="bot_tineye"
+        regexp="TinEye"
+        logo="browsers/browser_bot" />
 	<item label="TurnitinBot" value="bot_turnitinbot"
         regexp="TurnitinBot"
         logo="browsers/browser_bot" />
-
 	<item label="Twiceler" value="bot_twiceler"
         regexp="Twiceler"
         logo="browsers/browser_bot" />
-
+	<item label="Visbot" value="bot_visbot"
+        regexp="VisBot"
+        logo="browsers/browser_bot" />
 	<item label="VoilaBot" value="bot_voilabot"
         regexp="VoilaBot"
         logo="browsers/browser_bot" />
-
 	<item label="WebAlta Crawler" value="bot_webalta_crawler"
         regexp="WebAlta Crawler"
         logo="browsers/browser_bot" />
-
 	<item label="Yahoo Slurp" value="bot_yahoo"
 				regexp="Yahoo! Slurp" 
 				logo="browsers/browser_bot" />
+	<item label="Yeti Bot" value="bot_yeti"
+        regexp="Yeti"
+        logo="browsers/browser_bot" />
 
 </list>

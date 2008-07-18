@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Alerts Viewer" help="Alerts Viewer" />
 <%
 my $f = $Request->Form();
