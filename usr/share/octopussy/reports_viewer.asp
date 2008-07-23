@@ -24,4 +24,5 @@ else
 	url="${url}?report=$report" /><%
 }
 %>
+<AAT:Inc file="octo_viewer_report_running" />
 <WebUI:PageBottom />

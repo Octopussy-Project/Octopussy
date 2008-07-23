@@ -58,6 +58,10 @@
         regexp="Alcatel-TH4" 
 				constructor="Alcatel" model="TH4" logo="browsers/browser_mobile" />
 
+	<item label="Amoi A500" value="mobile_amoi_a500"
+        regexp="Amoi A500"
+        constructor="Amoi" model="A500" logo="browsers/browser_mobile" />
+
 	<item label="Apple iPhone" value="mobile_apple_iphone"
 				regexp="iPhone; U;.+AppleWebKit"
 				constructor="Apple" model="iPhone" logo="browsers/browser_iphone" />
@@ -304,6 +308,9 @@
 	<item label="LG KU311" value="mobile_lg_ku311"
         regexp="LG.KU311"
         constructor="LG" model="KU311" logo="browsers/browser_mobile" />
+	<item label="LG KU380" value="mobile_lg_ku380"
+        regexp="LG.KU380"
+        constructor="LG" model="KU380" logo="browsers/browser_mobile" />
 	<item label="LG KU580" value="mobile_lg_ku580"
         regexp="LG.KU580"
         constructor="LG" model="KU580" logo="browsers/browser_mobile" />
@@ -724,6 +731,10 @@
         regexp="SPV M700"
         constructor="Orange" model="SPV M700" logo="browsers/browser_mobile" />
 
+	<item label="Palm Zire 72" value="mobile_palm_zire72"
+        regexp="Palm-Zi72"
+        constructor="Palm" model="Zire 72" logo="companies/logo_palm" />
+
 	<item label="Panasonic A210" value="mobile_panasonic_a210"
         regexp="Panasonic-A210"
         constructor="Panasonic" model="A210" logo="browsers/browser_mobile" />
@@ -923,6 +934,9 @@
         regexp="SAGEM-VF527"
         constructor="Sagem" model="VF527" logo="browsers/browser_mobile" />
 
+	<item label="Samsung S342i" value="mobile_samsung_s342i"
+        regexp="portalmmm.2.0 S342i"
+        constructor="Samsung" model="S342i" logo="browsers/browser_mobile" />
 	<item label="Samsung S720" value="mobile_samsung_s720"
         regexp="portalmmm.2.0 S720"
         constructor="Samsung" model="S720" logo="browsers/browser_mobile" />
@@ -1010,6 +1024,9 @@
 	<item label="Samsung SGH E860V" value="mobile_samsung_sghe860v"
         regexp="SGHE860V" 
 				constructor="Samsung" model="SGH E860V" logo="browsers/browser_mobile" />
+	<item label="Samsung SGH E880" value="mobile_samsung_sghe880"
+        regexp="SEC-SGHE880"
+        constructor="Samsung" model="SGH E880" logo="browsers/browser_mobile" />
 	<item label="Samsung SGH E900" value="mobile_samsung_sghe900"
 				regexp="SEC-SGHE900" 
 				constructor="Samsung" model="SGH E900" logo="browsers/browser_mobile" />
@@ -1073,6 +1090,9 @@
 	<item label="Samsung SGH M110" value="mobile_samsung_sghm110"
         regexp="SAMSUNG-SGH-M110"
         constructor="Samsung" model="SGH M110" logo="browsers/browser_mobile" />
+	<item label="Samsung SGH P180" value="mobile_samsung_sghp180"
+        regexp="SAMSUNG-SGH-P180"
+        constructor="Samsung" model="SGH P180" logo="browsers/browser_mobile" />
 	<item label="Samsung SGH P200" value="mobile_samsung_sghp200"
         regexp="SAMSUNG-SGH-P200"
         constructor="Samsung" model="SGH P200" logo="browsers/browser_mobile" />

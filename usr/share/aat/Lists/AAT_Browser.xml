@@ -3,60 +3,56 @@
 
 	<item label="Avant Browser" value="avant"
 				regexp="(Advanced|Avant) Browser" logo="browsers/browser_avant_browser" />
+	<item label="Axis Framework" value="axis"
+        regexp="^.?Axis" />
 	<item label="Camino" value="camino"
         regexp="Camino" logo="browsers/browser_camino" />
-
 	<item label="CFNetwork Framework" value="cfnetwork"
         regexp="CFNetwork" />
 	<item label="Curl" value="curl"
         regexp="libcurl" />
-
 	<item label="Epiphany" value="epiphany"
         regexp="Epiphany" logo="browsers/browser_epiphany" />
 	<item label="Firefox" value="firefox" 
 				regexp="Firefox" logo="browsers/browser_firefox" />
 	<item label="Galeon" value="galeon"
         regexp="Gecko Galeon" logo="browsers/browser_galeon" />
+	<item label="Gnash" value="gnash"
+        regexp="^.?Gnash" />
 	<item label="iCab" value="icab"
         regexp="iCab" logo="browsers/browser_icab" />
 	<item label="Iceweasel" value="iceweasel"
 				regexp="Iceweasel" logo="browsers/browser_iceweasel" />
 	<item label="Internet Explorer" value="ie" 
 				regexp="(MSIE|Internet Explorer)" logo="browsers/browser_ie" />
-
 	<item label="Java" value="java"
         regexp="^.?Java" logo="browsers/browser_java" />
-
 	<item label="Konqueror" value="konqueror" 
 				regexp="Konqueror" logo="browsers/browser_konqueror" />
 	<item label="Lotus Notes" value="lotus_notes"
         regexp="Lotus-Notes" />
+	<item label="Lynx" value="lynx"
+        regexp="Lynx" />
 	<item label="Mozilla" value="mozilla" 
 				regexp="[Mm]ozilla/\d.\d+( .+ Gecko/\d+| \(compatible;?\))" logo="browsers/browser_mozilla" />
-
 	<item label="Nagios Plugins" value="nagios"
         regexp="nagios-plugins" />
-
 	<item label="Netscape" value="netscape" 
 				regexp="Netscape" logo="browsers/browser_netscape" />
 	<item label="Opera" value="opera" 
 				regexp="Opera" logo="browsers/browser_opera" />
 	<item label="Orca Browser" value="orca"
         regexp="Orca Browser" logo="browsers/browser_orca_browser" />
-
 	<item label="QuickTime" value="quicktime"
         regexp="QuickTime" logo="browsers/browser_quicktime" />
-
 	<item label="Safari" value="safari" 
 				regexp="(Safari|AppleWebKit)" logo="browsers/browser_safari" />
 	<item label="SeaMonkey" value="seamonkey"
         regexp="SeaMonkey" logo="browsers/browser_seamonkey" />
 	<item label="SlimBrowser" value="slimbrowser"
         regexp="SlimBrowser" />
-
 	<item label="Sony Playstation 3" value="sony_playstation3"
 				regexp="PLAYSTATION 3" />
-
 	<item label="Wget" value="wget"
         regexp="^.?Wget" />
 

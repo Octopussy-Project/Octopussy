@@ -282,6 +282,7 @@
 	<msg mid="_RIGHTS" value="Droits" />
 	<msg mid="_ROLE" value="Role" />
 	<msg mid="_ROOM" value="Salle" />
+	<msg mid="_RUNNING_REPORTS" value="Rapports en cours" />
 	<msg mid="_SAVE_AS_SEARCH_TEMPLATE" value="Sauver comme Modèle de Recherche" />
 	<msg mid="_SCHEDULE" value="Planifier" />
 	<msg mid="_SCHEDULE_REPORT" value="Planifier un Rapport" />

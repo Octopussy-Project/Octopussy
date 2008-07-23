@@ -327,7 +327,9 @@ Translates $str with language $main::Session->{AAT_LANGUAGE}
 sub Translation($)
 {
   my $str = shift;
-	my $lang = $main::Session->{AAT_LANGUAGE} || "EN";
+	my $sess_lang = $main::Session->{AAT_LANGUAGE};
+	my $lang = (AAT::NOT_NULL($sess_lang) ? $sess_lang : "EN");
+
 	return (AAT::Translation::Get($lang, $str));
 }
 
