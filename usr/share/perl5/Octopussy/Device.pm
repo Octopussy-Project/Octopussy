@@ -540,7 +540,7 @@ sub Parse_Pause($)
   	my $pid = `cat $pid_file`;
   	chomp($pid);
   	kill USR1 => $pid;
-		unlink("$pid_file");
+#		unlink("$pid_file");
 	}
 
 	$pid_file = "$pid_dir/${UPARSER_BIN}_${device}.pid";
@@ -549,7 +549,6 @@ sub Parse_Pause($)
   	my $pid = `cat $pid_file`;
   	chomp($pid);
   	kill USR1 => $pid;
-		unlink("$pid_file");
 	}
 
 	$devices_dir ||= Octopussy::Directory($DEVICE_DIR);

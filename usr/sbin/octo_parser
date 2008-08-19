@@ -43,7 +43,6 @@ my %service;
 my %taxo;
 my $minutes_without_logs;
 my %dir_data = ();
-#my %a_thresold = ();
 my (@files, @taxo_list, %known_msgs, @unknown_msgs) = ((), (), (), ());
 my ($file, $last_file) = (undef, undef);
 my $pid_file = Octopussy::PID_File($PROG_NAME . "_$device");
@@ -113,9 +112,10 @@ sub Init()
    	my @messages = Octopussy::Service::Messages($serv);
 		AAT::Syslog($PROG_NAME, "Init Service: $serv - " 
 			. ($#messages + 1) . " messages");
+		my @dev_alerts = Octopussy::Alert::For_Device($device);
    	foreach my $m (@messages)
     { 
-			my @alerts = Octopussy::Message::Alerts($device, $serv, $m);
+			my @alerts = Octopussy::Message::Alerts($device, $serv, $m, \@dev_alerts);
 			my @msg_alerts = ();
 			foreach my $a (@alerts)
 			{
@@ -455,7 +455,7 @@ while (!$exit_request)
       { Incoming_To_Unknown($file); }
     else
       { File_Handler($file); }
-    last  if ($reload_request);
+    last  if ($reload_request || $exit_request);
   }
   if ($reload_request)
   {
@@ -466,6 +466,7 @@ while (!$exit_request)
 	if (!$exit_request)
 		{ sleep(2); }
 }
+unlink($pid_file);
 
 =head1 AUTHOR
 

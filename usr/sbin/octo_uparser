@@ -221,7 +221,6 @@ sub File_Handler($)
 # MAIN
 #
 
-$SIG{HUP} = \&Init;
 $SIG{USR1} = \&Exit;
 
 AAT::Syslog($PROG_NAME, "Device: $device Started !");
@@ -232,8 +231,10 @@ foreach my $file (@files)
 {
 	chomp($file);	
  	File_Handler($file); 
-	exit	if ($exit_request);
+	last	if ($exit_request);
 }
+unlink("$pid_file");
+AAT::DEBUG("unlink [$pid_file]");
 AAT::Syslog($PROG_NAME, "Device: $device Stopped !");
 
 =head1 AUTHOR

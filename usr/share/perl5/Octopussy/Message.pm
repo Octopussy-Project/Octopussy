@@ -434,16 +434,15 @@ sub Parse_List($$$$$$)
 	return (@msg_to_parse);	
 }
 
-=head2 Alerts($device, $service, $message)
+=head2 Alerts($device, $service, $message, \@dev_alerts)
 
 =cut
-sub Alerts($$$)
+sub Alerts($$$$)
 {
-  my ($device, $service, $message) = @_;
-	my @alert_confs = Octopussy::Alert::For_Device($device);
+  my ($device, $service, $message, $dev_alerts) = @_;
   my @alerts = ();
 
-  foreach my $ac (@alert_confs)
+  foreach my $ac (AAT::ARRAY($dev_alerts))
   {
 		my @mails = ();
 		my @ims = ();
