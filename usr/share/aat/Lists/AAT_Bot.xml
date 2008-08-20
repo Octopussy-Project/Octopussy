@@ -30,6 +30,9 @@
 	<item label="Firebat" value="bot_firebat"
         regexp="Firebat"
         logo="browsers/browser_bot" />
+	<item label="Galbot" value="bot_galbot"
+        regexp="www.galbot.com"
+        logo="browsers/browser_bot" />
 	<item label="Gigabot" value="bot_gigabot"
         regexp="Gigabot"
         logo="browsers/browser_bot" />
@@ -38,6 +41,9 @@
 				logo="browsers/browser_bot" />
 	<item label="Google Feedfetcher" value="bot_google_feedfetcher"
         regexp="Feed[Ff]etcher-Google"
+        logo="browsers/browser_bot" />
+	<item label="JungleKey Bot" value="bot_junglekey"
+        regexp="JungleKeyBot"
         logo="browsers/browser_bot" />
 	<item label="Kalooga Bot" value="bot_kalooga"
         regexp="www.kalooga.com"

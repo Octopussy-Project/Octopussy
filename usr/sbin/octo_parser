@@ -187,6 +187,7 @@ sub Write_Unknown_Logfile($$)
 {
   my ($logfile, $logs) = @_;
 	$logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
+	$logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
 	
 	if ($#{@{$logs}} >= 0)
   {
@@ -300,7 +301,8 @@ sub Alert_Handler($$)
 						}
 						AAT::SMTP::Send_Message("Octopussy", $subject, $body, 
 							@{$a->{maildest}}) if (defined $a->{action_mail});
-						AAT::NSCA::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),								"$subject") if (defined $a->{action_nsca}); 
+						AAT::NSCA::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),	
+							"$subject") if (defined $a->{action_nsca}); 
 					}
 				}
 				$shared_memory_cache->set($a->{name}, $alert_logs);
@@ -368,10 +370,11 @@ sub File_Handler($)
 	my $file = shift;
 
 	my $time = time();
-	if ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)\.log)/)	
+	if ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)_\d+\.log)/)	
 	{
 		my ($y, $m, $d, $file_new, $hour, $min) = ($1, $2, $3, $4, $5, $6);
     (%taxo, %known_msgs, @unknown_msgs) = ((), (), ());
+		$file_new =~ s/(msg_\d\dh\d\d)_\d+/$1/;
 		my $total = 0;	
 		if (defined open(FILE, ($file =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$file\" |"))
 		{

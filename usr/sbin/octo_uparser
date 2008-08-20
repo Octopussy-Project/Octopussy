@@ -225,8 +225,7 @@ $SIG{USR1} = \&Exit;
 
 AAT::Syslog($PROG_NAME, "Device: $device Started !");
 my @files = Octopussy::Logs::Unknown_Files($device);
-exit()	if ($#files < 0);
-Init();
+Init()	if ($#files >= 0);
 foreach my $file (@files)
 {
 	chomp($file);	

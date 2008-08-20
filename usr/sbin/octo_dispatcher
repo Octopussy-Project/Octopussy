@@ -9,12 +9,11 @@ octo_dispatcher - Octopussy Dispatcher program
 octo_dispatcher is the program that receives syslog lines 
 and dispatches into device directories
 
-(syslog --> device/year/month/day/Unknown)
+(syslog --> <device>/YYYY/MM/DD/Incoming)
 
 =cut
 
 use strict;
-
 use File::Copy;
 use Octopussy;
 
@@ -66,8 +65,6 @@ sub Handle_Dir($$$$)
     	$device_dir{$device} = Octopussy::Storage::Directory_Incoming($device);
   	}
 	}
-	my $type = (AAT::NOT_NULL($device_type{$device})
-    ? $device_type{$device} : "Unknown");
   my $dir_incoming = "$device_dir{$device}/$device/Incoming/$year/$month/$day";
 	Octopussy::Create_Directory($dir_incoming);
 
@@ -97,21 +94,20 @@ while (<>)
 	$line =~ s/^<\d+>//;
 	if ($line =~ /^\w{3} \s?\d{1,2} \d\d:\d\d:\d\d (\S+)/)
 	{
-#		AAT::DEBUG("log line: $line");
 		$device = $1;
 		($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
 		if (($n_min != $min) || ($n_hour != $hour) || ($n_mday != $mday) 
-			|| ($n_month != $month) || ($n_sec != $sec) || (($n_sec/10) != ($sec/10)))
+			|| ($n_month != $month) || (int($n_sec/10) != int($sec/10)))
 		{
 			my $mod = (int($n_sec/10)*10);
-#			AAT::DEBUG("log msg_$hour" . "h${min}_$mod.log");
+			AAT::DEBUG("log msg_$hour" . "h${n_min}_$mod.log");
 			#open(STATS, "> $dir_pid/$PROG_NAME.stats.tmp");
 			#print STATS "[$year$month$mday$hour$min]\n";
 			my $total = 0;
 			foreach my $device (keys %logs)
       {
 				my $dir = Handle_Dir($device, $mday, $month, $year);
-				my $file = "$dir/msg_$hour" . "h${min}_$mod.log";
+				my $file = "$dir/msg_$hour" . "h${n_min}_$mod.log";
 				my $i = 0;
 				if (defined open(FILE, ">> $file"))
 				{
@@ -130,9 +126,9 @@ while (<>)
 					$dtype_stats{$device_type{$device}} += $i;
 					#print STATS "$device: $i\n";
 					Octopussy::Chown($file);
-					delete $logs{$device};
 					$total += $i;
 				}
+				delete $logs{$device};
 			}
 			#close(STATS);
 			if ($mod == 0)
