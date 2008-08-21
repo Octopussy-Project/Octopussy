@@ -441,6 +441,9 @@
 	<item label="NEC N342i" value="mobile_nec_n342i"
         regexp="portalmmm.+ N342i"
         constructor="NEC" model="N342i" logo="companies/logo_nec" />
+	<item label="NEC N343i" value="mobile_nec_n343i"
+        regexp="portalmmm.+ N343i"
+        constructor="NEC" model="N343i" logo="companies/logo_nec" />
 	<item label="NEC N400i" value="mobile_nec_n400i"
         regexp="portalmmm.+ N400i"
         constructor="NEC" model="N400i" logo="companies/logo_nec" />
@@ -1062,6 +1065,9 @@ Sagem-my401C
 	<item label="Samsung SGH E390" value="mobile_samsung_sghe390"
         regexp="SAMSUNG-SGH-E390" 
 				constructor="Samsung" model="SGH E390" logo="companies/logo_samsung" />
+	<item label="Samsung SGH E530" value="mobile_samsung_sghe530"
+        regexp="SEC-SGHE530"
+        constructor="Samsung" model="SGH E530" logo="companies/logo_samsung" />
 	<item label="Samsung SGH E570" value="mobile_samsung_sghe570"
         regexp="(Samsung|SEC-)SGHE570"
         constructor="Samsung" model="SGH E570" logo="companies/logo_samsung" />
@@ -1687,9 +1693,9 @@ Sagem-my401C
 
 	<item label="VK 520" value="mobile_vk_520"
         regexp="VK520"
-        constructor="VK" model="520" logo="browsers/browser_mobile" />
+        constructor="VK" model="520" logo="companies/logo_vk" />
 	<item label="VK 700" value="mobile_vk_700"
         regexp="VK-VK700"
-        constructor="VK" model="700" logo="browsers/browser_mobile" />
+        constructor="VK" model="700" logo="companies/logo_vk" />
 
 </list>

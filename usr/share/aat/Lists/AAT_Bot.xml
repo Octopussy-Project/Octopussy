@@ -37,7 +37,7 @@
         regexp="Gigabot"
         logo="browsers/browser_bot" />
 	<item label="Google Bot" value="bot_google"
-        regexp="(Googlebot-Image|http://www.google.com/bot.html)" 
+        regexp="(Googlebot-Image|http://www.google.com/bot.html|http://www.googlebot.com/bot.html)" 
 				logo="browsers/browser_bot" />
 	<item label="Google Feedfetcher" value="bot_google_feedfetcher"
         regexp="Feed[Ff]etcher-Google"

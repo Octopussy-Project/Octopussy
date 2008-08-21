@@ -2,8 +2,8 @@
 <octopussy_service description="Windows Snare Agent Service"
                    icon="operating_systems/os_windows"
                    name="Windows_Snare"
-                   nb_messages="028"
-                   version="200807220002"
+                   nb_messages="030"
+                   version="200808210005"
                    website="http://www.intersectalliance.com/projects/SnareWindows/index.html">
   <message loglevel="Notice"
            msg_id="Windows_Snare:service_was_stopped"
@@ -179,4 +179,16 @@
            rank="029"
            table="Windows_Message"
            taxonomy="System" />
+  <message loglevel="Critical"
+           msg_id="Windows_Snare:overlapped_io_operation"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;Application;&lt;@NUMBER:NULL@&gt;;&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@REGEXP(&quot;Logging Messages&quot;):source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Error&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;Disk&quot;):category@&gt;;;&lt;@REGEXP(&quot;Internal error: .+ Description: Overlapped I/O operation is in progress.*&quot;):smg@&gt;;&lt;@NUMBER:NULL@&gt;"
+           rank="030"
+           table="Windows_Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Windows_Snare:reported_change_of_status"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;System;&lt;@NUMBER:NULL@&gt;;&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@STRING:source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Information&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;None&quot;):category@&gt;;;&lt;@REGEXP(&quot;The .+ service reported a change of status to .+&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
+           rank="031"
+           table="Windows_Message"
+           taxonomy="Config.Changes" />
 </octopussy_service>

@@ -9,6 +9,8 @@
         regexp="Camino" logo="browsers/browser_camino" />
 	<item label="CFNetwork Framework" value="cfnetwork"
         regexp="CFNetwork" />
+	<item label="Clam AntiVirus" value="clamav"
+        regexp="(ClamAV|squidclam)" logo="software/logo_clamav" />
 	<item label="Curl" value="curl"
         regexp="libcurl" />
 	<item label="Epiphany" value="epiphany"

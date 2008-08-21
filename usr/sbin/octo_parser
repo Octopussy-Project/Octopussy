@@ -234,11 +234,32 @@ sub Incoming_To_Unknown($)
 	my $incoming = shift;
 	my $unknown = $incoming;
   $unknown =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
+	$unknown =~ s/(msg_\d\dh\d\d)_\d+(\.log)/$1$2/;
 	my $dir = $unknown;
 	$dir =~ s/^(.+)\/.+?\.log/$1\//g;
 	Octopussy::Create_Directory($dir);
-	`gzip -f "$incoming"`;
-	`mv "$incoming.gz" "$unknown.gz"`;
+#	`gzip -f "$incoming"`;
+#	`mv "$incoming.gz" "$unknown.gz"`;
+
+	if (defined open(FILE, "|gzip >> $unknown"))
+  {
+		if (defined open(INCOMING, "zcat \"$incoming\" |"))
+		{
+			while (<INCOMING>)
+      	{ print FILE $_; }
+      close(INCOMING);
+		}
+		else
+  	{
+    	print "Unable to open file '$incoming'\n";
+    	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", $incoming);
+  	}
+  }
+ 	else
+ 	{
+  	print "Unable to open file '$unknown'\n";
+   	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", $unknown);
+ 	}
 }
 
 =head2 Alert_Handler($msg, $line)

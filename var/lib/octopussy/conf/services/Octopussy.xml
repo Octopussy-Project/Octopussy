@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="050"
-                   version="200805130002"
+                   version="200808210001"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -305,4 +305,10 @@
            rank="050"
            table="Message"
            taxonomy="Application.Stop" />
+  <message loglevel="Warning"
+           msg_id="Octopussy:unable_to_open_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Unable to open file .+ in .+&quot;):msg@&gt;"
+           rank="051"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

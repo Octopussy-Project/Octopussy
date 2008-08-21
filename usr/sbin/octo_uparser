@@ -57,7 +57,6 @@ sub Init()
 	my $dconf = Octopussy::Device::Configuration($device);
 	my $storage = Octopussy::Storage::Default();
 	@services = Octopussy::Device::Services($device);	
-
 	$dir_data{"Unknown"} = Octopussy::Storage::Directory_Unknown($device);
 	foreach my $serv (@services)
  	{
@@ -114,8 +113,6 @@ Writes Unknown Logs '$logs' into Logfile '$file'
 sub Write_Unknown_Logfile($$)
 {
   my ($logfile, $logs) = @_;
-	$logfile =~ s/^.+\/Incoming\//$dir_data{"Unknown"}\/$device\/Unknown\//;
-#	$logfile =~ s/\/Incoming\//\/Unknown\//g;
   
 	if ($#{@{$logs}} >= 0)
   {
@@ -233,7 +230,6 @@ foreach my $file (@files)
 	last	if ($exit_request);
 }
 unlink("$pid_file");
-AAT::DEBUG("unlink [$pid_file]");
 AAT::Syslog($PROG_NAME, "Device: $device Stopped !");
 
 =head1 AUTHOR
