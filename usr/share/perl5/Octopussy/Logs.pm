@@ -462,9 +462,15 @@ sub Extract_Cmd_Line($)
   my $serv_str = "--service \"" . join("\" --service \"", @services) . "\"";
 	my ($incl_str, $excl_str) = ("", "");
 	foreach my $inc (AAT::ARRAY($conf->{includes}))
-		{ $incl_str .= "--include \"$inc\" "	if (AAT::NOT_NULL($inc)); } 
+	{ 
+		$inc =~ s/"/\\"/g;
+		$incl_str .= "--include \"$inc\" "	if (AAT::NOT_NULL($inc)); 
+	} 
 	foreach my $exc (AAT::ARRAY($conf->{excludes}))
-    { $excl_str .= "--exclude \"$exc\" "  if (AAT::NOT_NULL($exc)); }
+  {
+		$exc =~ s/"/\\"/g; 
+		$excl_str .= "--exclude \"$exc\" "  if (AAT::NOT_NULL($exc)); 
+	}
   my $cmd = "/usr/sbin/octo_extractor $dev_str $serv_str" 
 		. " --taxonomy \"$conf->{taxonomy}\""
     . " --begin $conf->{begin} --end $conf->{end} $incl_str $excl_str"

@@ -36,6 +36,7 @@ if (AAT::NOT_NULL($Session->{cancel}))
     (undef, undef, undef, undef, undef, undef);	
 }
 
+
 if (AAT::NOT_NULL($f->{template}))
 {
 	if (AAT::NOT_NULL($f->{template_save}))
@@ -100,6 +101,9 @@ if ($Session->{extractor} eq "done")
 		my $filename = $Session->{extracted};
 		$text = "<table id=\"resultsTable\">";
 		my $page = $Session->{page} || 1;
+		my $hre_inc = $Server->HTMLEncode($re_include);
+    my $hre_inc2 = $Server->HTMLEncode($re_include2);
+    my $hre_inc3 = $Server->HTMLEncode($re_include3);
 		open(FILE, "< $run_dir/logs_${login}_$filename");
     while (<FILE>)
     {
@@ -107,12 +111,12 @@ if ($Session->{extractor} eq "done")
 					&& ($nb_lines <= ($page*$LINES_BY_PAGE)))
 			{
 				my $line = $Server->HTMLEncode($_);
-				$line =~ s/($re_include)/<font color="red"><b>$1<\/b><\/font>/g	
-					if (AAT::NOT_NULL($re_include));
-				$line =~ s/($re_include2)/<font color="green"><b>$1<\/b><\/font>/g
-					if (AAT::NOT_NULL($re_include2));
-				$line =~ s/($re_include3)/<font color="blue"><b>$1<\/b><\/font>/g
-          if (AAT::NOT_NULL($re_include3));
+				$line =~ s/($hre_inc)/<font color="red"><b>$1<\/b><\/font>/g
+          if (AAT::NOT_NULL($hre_inc));
+        $line =~ s/($hre_inc2)/<font color="green"><b>$1<\/b><\/font>/g
+          if (AAT::NOT_NULL($hre_inc2));
+        $line =~ s/($hre_inc3)/<font color="blue"><b>$1<\/b><\/font>/g
+          if (AAT::NOT_NULL($hre_inc3));
 				$line =~ s/(\S{120})(\S+?)/$1\n$2/g;
 				$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
 			}
