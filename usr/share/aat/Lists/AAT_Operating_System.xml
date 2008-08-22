@@ -40,7 +40,7 @@
 				regexp="(Win98|Windows 98)" logo="operating_systems/os_windows" />
 	<item label="Microsoft Windows Me" value="windows_me"
         regexp="(Win\w* 9x 4.90|Windows ME)" logo="operating_systems/os_windows" />
-	<item label="Windows CE" value="windows_ce"
+	<item label="Microsoft Windows CE" value="windows_ce"
 				regexp="Windows CE" logo="operating_systems/os_windows" />
 	<item label="Microsoft Windows NT" value="windows_nt" 
 				regexp="(WinNT|Windows NT;|Windows NT\)|Windows NT 4)" 

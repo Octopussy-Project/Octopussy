@@ -176,7 +176,7 @@ sub File_Handler($)
 {
 	my $file = shift;
 
-	if ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)\.log)/)	
+	if ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)\.log.*)$/)	
 	{
 		my ($y, $m, $d, $file_new, $hour, $min) = ($1, $2, $3, $4, $5, $6);
     (%known_msgs, @unknown_msgs) = ((), ());

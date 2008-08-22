@@ -18,6 +18,9 @@
 	<item label="Bibliotheque Nationale de France" value="bot_bnf"
 				regexp="bibnum.bnf.fr"
 				logo="browsers/browser_bot" />
+	<item label="DotBot" value="bot_dotbot"
+        regexp="DotBot"
+        logo="browsers/browser_bot" />
 	<item label="Exabot" value="bot_exabot"
 				regexp="http://www.exabot.com/go/robot"
 				logo="browsers/browser_bot" />
@@ -83,6 +86,9 @@
         logo="browsers/browser_bot" />
 	<item label="VoilaBot" value="bot_voilabot"
         regexp="VoilaBot"
+        logo="browsers/browser_bot" />
+	<item label="Web Secretary" value="bot_websec"
+        regexp="WebSec"
         logo="browsers/browser_bot" />
 	<item label="WebAlta Crawler" value="bot_webalta_crawler"
         regexp="WebAlta Crawler"

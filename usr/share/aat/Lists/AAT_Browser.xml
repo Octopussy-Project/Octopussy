@@ -27,10 +27,14 @@
 				regexp="Iceweasel" logo="browsers/browser_iceweasel" />
 	<item label="Internet Explorer" value="ie" 
 				regexp="(MSIE|Internet Explorer)" logo="browsers/browser_ie" />
+	<item label="Jakarta Commons HttpClient Framework" value="jakarta_httpclient"
+        regexp="Jakarta Commons-HttpClient" />
 	<item label="Java" value="java"
         regexp="^.?Java" logo="browsers/browser_java" />
 	<item label="Konqueror" value="konqueror" 
 				regexp="Konqueror" logo="browsers/browser_konqueror" />
+	<item label="libwww-perl Framework" value="libwww-perl"
+        regexp="libwww-perl" />
 	<item label="Lotus Notes" value="lotus_notes"
         regexp="Lotus-Notes" />
 	<item label="Lynx" value="lynx"
@@ -54,7 +58,7 @@
 	<item label="SlimBrowser" value="slimbrowser"
         regexp="SlimBrowser" />
 	<item label="Sony Playstation 3" value="sony_playstation3"
-				regexp="PLAYSTATION 3" />
+        regexp="PLAYSTATION 3" logo="operating_systems/os_ps3" />
 	<item label="Wget" value="wget"
         regexp="^.?Wget" />
 

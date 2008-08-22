@@ -303,6 +303,9 @@
 	<item label="LG KG130" value="mobile_lg_kg130"
         regexp="LG-KG130"
         constructor="LG" model="KG130" logo="companies/logo_lg" />
+	<item label="LG KG220" value="mobile_lg_kg220"
+        regexp="LG-KG220"
+        constructor="LG" model="KG220" logo="companies/logo_lg" />
 	<item label="LG KG240" value="mobile_lg_kg240"
         regexp="LG-KG240"
         constructor="LG" model="KG240" logo="companies/logo_lg" />
@@ -419,6 +422,9 @@
 	<item label="Motorola V980" value="mobile_motorola_v980"
         regexp="MOT-V980"
         constructor="Motorola" model="V980" logo="companies/logo_motorola" />
+	<item label="Motorola W230" value="mobile_motorola_w230"
+        regexp="MOT-W230"
+        constructor="Motorola" model="W230" logo="companies/logo_motorola" />
 	<item label="Motorola W375" value="mobile_motorola_w375"
         regexp="MOT-W375"
         constructor="Motorola" model="W375" logo="companies/logo_motorola" />
