@@ -69,6 +69,9 @@
 	<item label="Snapbot" value="bot_snapbot"
         regexp="Snapbot"
         logo="browsers/browser_bot" />
+	<item label="Sogou Spider" value="bot_sogou_spider"
+        regexp="Sogou \w+ [Ss]pider"
+        logo="browsers/browser_bot" />
 	<item label="Speedy Spider" value="bot_speedy_spider"
 				regexp="Speedy Spider"
 				logo="browsers/browser_bot" />

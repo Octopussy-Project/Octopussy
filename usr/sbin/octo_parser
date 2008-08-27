@@ -80,14 +80,26 @@ sub Reload
 Watches '$path' with inotify
 
 =cut
-sub Inotify_Watch($)
+sub Inotify_Watch
 {
-	my $path = shift;
+	my $filename = shift;
 
-	if ($path =~ /\/Incoming\/+\d{4}\/+\d{2}\/+\d{2}/)
-  	{ $inotify->watch($path, IN_CLOSE_WRITE); }
- 	else
- 		{ $inotify->watch($path, IN_CREATE); } 
+ 	if (-d $filename)
+  { 
+		if ($filename =~ /\/Incoming\/+\d{4}\/+\d{2}\/+\d{2}/)
+    	{ $inotify->watch($filename, IN_CLOSE_WRITE); }
+  	else
+    	{ $inotify->watch($filename, IN_CREATE); }
+		opendir(DIR, $filename);
+		my @content = grep !/^\./, readdir(DIR);
+		foreach my $c (@content)
+			{ Inotify_Watch("$filename/$c/"); }
+	}
+  elsif (-f $filename)
+  { 
+		$filename =~ s/\/+/\//g;
+		push(@files, $filename); 
+	}
 }
 
 =head2 Init()
@@ -141,12 +153,12 @@ sub Init()
 
 	my $dir =  Octopussy::Storage::Directory_Incoming($device);
 	Inotify_Watch("$dir/$device/Incoming/");
-	my @dirs = `find "$dir/$device/Incoming/" -type d`;
-	foreach my $d (@dirs)
-	{ 
-		chomp($d);
-		Inotify_Watch($d); 
-	}
+#	my @dirs = `find "$dir/$device/Incoming/" -type d`;
+#	foreach my $d (@dirs)
+#	{ 
+#		chomp($d);
+#		Inotify_Watch($d); 
+#	}
 }
 
 =head2 Write_Logfile($file, $logs)
@@ -450,12 +462,7 @@ while (!$exit_request)
 {
 	my @events = $inotify->read;
   foreach my $e (@events)
-  {
-    if (-d $e->fullname)
-      { Inotify_Watch($e->fullname); }
-    else
-      { push(@files, $e->fullname); }
-  }
+  	{ Inotify_Watch($e->fullname); }
 	if ($#files >= 0)
  	{ 
 		AAT::Syslog($PROG_NAME, ($#files + 1) .

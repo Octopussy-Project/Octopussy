@@ -100,7 +100,6 @@ while (<>)
 			|| ($n_month != $month) || (int($n_sec/10) != int($sec/10)))
 		{
 			my $mod = (int($n_sec/10)*10);
-			AAT::DEBUG("log msg_$hour" . "h${n_min}_$mod.log");
 			#open(STATS, "> $dir_pid/$PROG_NAME.stats.tmp");
 			#print STATS "[$year$month$mday$hour$min]\n";
 			my $total = 0;
