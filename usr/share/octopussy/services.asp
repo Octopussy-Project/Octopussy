@@ -40,7 +40,8 @@ else
 			$Response->Redirect("./services.asp");
 		}
 	}
-	elsif ((($action eq "up") || ($action eq "down"))
+	elsif ((($action eq "up") || ($action eq "down")
+		|| ($action eq "top") || ($action eq "bottom"))
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Service::Move_Message($service, $msgid, $action);			

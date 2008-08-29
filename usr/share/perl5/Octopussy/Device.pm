@@ -301,15 +301,14 @@ sub Remove_Service($$)
 =head2 Move_Service($device, $service, $direction)
 
 Moves Service '$service' into Device '$device' Services List 
-in Direction Up or Down ('$direction')
+in Direction Top, Bottom, Up or Down ('$direction')
 
 =cut
 sub Move_Service($$$)
 {
 	my ($device, $service, $direction) = @_;
 	my $old_status = Parse_Status($device);
-  my $rank = undef;
-
+  my ($rank, $old_rank) = (undef, undef);
 	my $conf = AAT::XML::Read(Filename($device));
   my @services = ();
 	my $max = (defined $conf->{service} ? $#{$conf->{service}}+1 : 0);
@@ -320,7 +319,10 @@ sub Move_Service($$$)
     {
 			return () if (($s->{rank} eq "01") && ($direction eq "up"));
       return () if (($s->{rank} eq "$max") && ($direction eq "down"));
-      $s->{rank} = ($direction eq "up" ? $s->{rank} - 1 : $s->{rank} + 1);
+			$old_rank = $s->{rank};
+      $s->{rank} = ($direction eq "top" ? 1 
+				: ($direction eq "up" ? $s->{rank} - 1 
+				: ($direction eq "down" ? $s->{rank} + 1 : $max)));
 			$s->{rank} = AAT::Padding($s->{rank}, 2);
       $rank = $s->{rank};
     }
@@ -330,11 +332,21 @@ sub Move_Service($$$)
   my @services2 = ();
   foreach my $s (AAT::ARRAY($conf->{service}))
   {
-    if (($s->{rank} eq $rank) && ($s->{sid} ne $service))
-    {
-      $s->{rank} = ($direction eq "up" ? $s->{rank} + 1 : $s->{rank} - 1);
-			$s->{rank} = AAT::Padding($s->{rank}, 2);
-    }
+		if ($s->{sid} ne $service)
+		{
+			if ($direction =~ /^(top|bottom)$/)
+			{
+				if (($direction =~ /^top$/) && ($s->{rank} < $old_rank))
+					{ $s->{rank} += 1; }
+				elsif (($direction =~ /^bottom$/) && ($s->{rank} > $old_rank))
+					{ $s->{rank} -= 1; }
+			}
+    	elsif ($s->{rank} eq $rank)
+    	{
+      	$s->{rank} = ($direction =~ /^up$/ ? $s->{rank} + 1 : $s->{rank} - 1);
+    	}
+		}
+		$s->{rank} = AAT::Padding($s->{rank}, 2);
     push(@services2, $s);
   }
   $conf->{service} = \@services2;

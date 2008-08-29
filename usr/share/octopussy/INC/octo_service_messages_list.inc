@@ -41,14 +41,14 @@ if (AAT::NOT_NULL($site))
 	<AAT:Button name="web" link_new="$site" /></AAT:BoxCol><%
 }
 else
-{%><AAT:BoxCol cspan="3"></AAT:BoxCol><%}%>
+{%><AAT:BoxCol cspan="4"></AAT:BoxCol><%}%>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol cspan="3" align="C">
 	<AAT:Label value="Service Global Regexp: $gre" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="3"></AAT:BoxCol>
+	<AAT:BoxCol cspan="4"></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol>
 	<AAT:Label value="_RANK" link="${url_sort}rank" /></AAT:BoxCol>
@@ -61,14 +61,14 @@ else
   <AAT:Label value="_TAXONOMY" link="${url_sort}taxonomy" /></AAT:BoxCol>
 	<AAT:BoxCol>
   <AAT:Label value="_TABLE" link="${url_sort}table" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2" align="C">
+	<AAT:BoxCol cspan="3" align="C">
 	<%	
 	if ($role !~ /ro/i) 
 	{ %><AAT:Label value="_ACTION" /><% }
 	%>
 	</AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 foreach my $m (@messages)
 {
@@ -91,15 +91,22 @@ foreach my $m (@messages)
 	{
 	%><AAT:BoxCol align="R">
 	<AAT:Button name="edit" tooltip="_EDIT" link="$edit_link" /></AAT:BoxCol><%
-		if ($m->{rank} > 1)
+		if ($m->{rank} > 2)
     {
+    %><AAT:BoxCol>
+    <AAT:Button name="2uparrow" link ="$url&msgid=$id&action=top" />
+    </AAT:BoxCol><%
+    }
+    else
+      { %><AAT:BoxCol></AAT:BoxCol><% }
+		if ($m->{rank} < $#messages+1)     
+		{     
 		%><AAT:BoxCol>
-		<AAT:Button name="1uparrow" link ="$url&msgid=$id&action=up" /></AAT:BoxCol><%
+		<AAT:Button name="1downarrow" link ="$url&msgid=$id&action=down" />
+		</AAT:BoxCol><%     
 		}
 		else
-		{
-		%><AAT:BoxCol></AAT:BoxCol><%
-		}
+			{ %><AAT:BoxCol></AAT:BoxCol><% }
 	}
 %>
 </AAT:BoxRow>
@@ -111,19 +118,26 @@ foreach my $m (@messages)
   {
 	%><AAT:BoxCol align="R">
   <AAT:Button name="remove" tooltip="_REMOVE" popup_link="$remove_link" /></AAT:BoxCol><%	
-		if ($m->{rank} < $#messages+1)
+		if ($m->{rank} > 1)
     {
-		%><AAT:BoxCol>
-    <AAT:Button name="1downarrow" link ="$url&msgid=$id&action=down" /></AAT:BoxCol><%
-		}
-		else
-    {
-    %><AAT:BoxCol></AAT:BoxCol><%
+    %><AAT:BoxCol>
+    <AAT:Button name="1uparrow" link ="$url&msgid=$id&action=up" />
+    </AAT:BoxCol><%
     }
+    else
+      { %><AAT:BoxCol></AAT:BoxCol><% }
+		if ($m->{rank} < $#messages)
+    {
+    %><AAT:BoxCol>
+    <AAT:Button name="2downarrow" link ="$url&msgid=$id&action=bottom" />
+    </AAT:BoxCol><%
+    }
+    else
+      { %><AAT:BoxCol></AAT:BoxCol><% }
 	}
 %>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 }
 %>

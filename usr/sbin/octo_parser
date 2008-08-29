@@ -93,7 +93,7 @@ sub Inotify_Watch
 		opendir(DIR, $filename);
 		my @content = grep !/^\./, readdir(DIR);
 		foreach my $c (@content)
-			{ Inotify_Watch("$filename/$c/"); }
+			{ Inotify_Watch("$filename/$c"); }
 	}
   elsif (-f $filename)
   { 
@@ -454,7 +454,7 @@ $SIG{USR1} = \&Exit;
 
 AAT::Syslog($PROG_NAME, "Device: $device Started !");
 Init();
-push(@files, Octopussy::Logs::Incoming_Files($device));
+#push(@files, Octopussy::Logs::Incoming_Files($device));
 AAT::Syslog($PROG_NAME, ($#files + 1) .
     " files to parse for Device $device");
 my $last_logs_time = time();
@@ -464,11 +464,7 @@ while (!$exit_request)
   foreach my $e (@events)
   	{ Inotify_Watch($e->fullname); }
 	if ($#files >= 0)
- 	{ 
-		AAT::Syslog($PROG_NAME, ($#files + 1) .
-    	" files to parse for Device $device");
-		$last_logs_time = time(); 
-	}
+ 		{ $last_logs_time = time(); }
   else
   {
     my $diff = time() - $last_logs_time;
@@ -498,6 +494,7 @@ while (!$exit_request)
 		{ sleep(2); }
 }
 unlink($pid_file);
+AAT::Syslog($PROG_NAME, "Device: $device Stopped !");
 
 =head1 AUTHOR
 

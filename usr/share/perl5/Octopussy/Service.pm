@@ -284,8 +284,7 @@ Moves Message '$msgid' up/down ('$direction') inside Service '$service'
 sub Move_Message($$$)
 {
 	my ($service, $msgid, $direction) = @_;
-	my $rank = undef;
-
+	my ($rank, $old_rank) = (undef, undef);
 	my $conf = AAT::XML::Read(Filename($service));
 	$conf->{version} = Octopussy::Timestamp_Version($conf);
   my @messages = ();
@@ -297,7 +296,10 @@ sub Move_Message($$$)
 		{
 			return ()	if (($m->{rank} eq "001") && ($direction eq "up"));
 			return ()	if (($m->{rank} eq "$max") && ($direction eq "down"));
-			$m->{rank} = ($direction eq "up" ? $m->{rank} - 1 : $m->{rank} + 1);
+			$old_rank = $m->{rank};
+			$m->{rank} = ($direction eq "top" ? 1
+        : ($direction eq "up" ? $m->{rank} - 1
+        : ($direction eq "down" ? $m->{rank} + 1 : $max)));
 			$m->{rank} = AAT::Padding($m->{rank}, 3);
 			$rank = $m->{rank};
 		}
@@ -307,11 +309,21 @@ sub Move_Message($$$)
 	my @messages2 = ();
 	foreach my $m (AAT::ARRAY($conf->{message}))
   {
-    if (($m->{rank} eq $rank) && ($m->{msg_id} ne $msgid))
-    {
-      $m->{rank} = ($direction eq "up" ? $m->{rank} + 1 : $m->{rank} - 1);
-			$m->{rank} = AAT::Padding($m->{rank}, 3);
+		if ($m->{msg_id} ne $msgid)
+		{
+			if ($direction =~ /^(top|bottom)$/)
+      {
+        if (($direction =~ /^top$/) && ($m->{rank} < $old_rank))
+          { $m->{rank} += 1; }
+        elsif (($direction =~ /^bottom$/) && ($m->{rank} > $old_rank))
+          { $m->{rank} -= 1; }
+      }
+      elsif ($m->{rank} eq $rank)
+      {
+        $m->{rank} = ($direction =~ /^up$/ ? $m->{rank} + 1 : $m->{rank} - 1);
+      }
     }
+		$m->{rank} = AAT::Padding($m->{rank}, 3);
     push(@messages2, $m);
   }
 	$conf->{message} = \@messages2;

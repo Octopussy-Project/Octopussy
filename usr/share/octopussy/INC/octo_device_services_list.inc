@@ -26,12 +26,12 @@ if (AAT::NOT_NULL($dconf->{reload_required}))
 	<AAT:BoxCol><AAT:Label value="_RANK" link="$url_sort=rank" /></AAT:BoxCol>
 	<AAT:BoxCol align="C">
 	<AAT:Label value="_SERVICE" link="$url_sort=sid" /></AAT:BoxCol>
-	<AAT:BoxCol align="C" cspan="3"><%
+	<AAT:BoxCol align="C" cspan="5"><%
 	if ($role !~ /ro/i)
 		{ %><AAT:Label value="_ACTION" style="B" /> <% } %>
 	</AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="5"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 my $nb_services = 0;
 my $total_messages = 0;
@@ -52,6 +52,11 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
 	if ($role !~ /ro/i)
   {
 		%><AAT:BoxCol align="R"><%
+		if ($conf->{rank} > 2)
+    {
+	%><AAT:Button name="2uparrow" link="$url&service=$id&action=top" /><%
+		}
+		%></AAT:BoxCol><AAT:BoxCol align="R"><%
 		if ($conf->{rank} > 1)
     { 
 	%><AAT:Button name="1uparrow" link="$url&service=$id&action=up" /><% 
@@ -61,13 +66,18 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
     { 
 	%><AAT:Button name="1downarrow" link="$url&service=$id&action=down" /><% 
 		}
-		%></AAT:BoxCol>
+		%></AAT:BoxCol><AAT:BoxCol align="C"><%
+		if ($conf->{rank} < ($#services))
+    {
+  %><AAT:Button name="2downarrow" link="$url&service=$id&action=bottom" /><%
+    }
+    %></AAT:BoxCol>
 		<AAT:BoxCol>
 		<AAT:Button name="remove" tooltip="_REMOVE" popup_link="$dialog" />
 		</AAT:BoxCol><%
 	} 
 	else
-		{ %><AAT:BoxCol cspan="3"></AAT:BoxCol><% } %>
+		{ %><AAT:BoxCol cspan="5"></AAT:BoxCol><% } %>
 </AAT:BoxRow><%
 	$nb_services++;
   $total_messages += $nb_messages;
@@ -78,9 +88,9 @@ my $msg_str = "$nb_services " . AAT::Translation("_SERVICES")
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Label value="$msg_str" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="3"></AAT:BoxCol>
+	<AAT:BoxCol cspan="5"></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="5"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 if ($role !~ /ro/i)
 {%>
@@ -91,7 +101,8 @@ if ($role !~ /ro/i)
 	<AAT:BoxCol>
 	<AAT:Inc file="octo_selector_service_and_servicegroup" exclude=\@services />
 	</AAT:BoxCol>
-	<AAT:BoxCol cspan="3"><AAT:Form_Submit value="_ADD_SERVICE_TO_DEVICE" />
+	<AAT:BoxCol cspan="5" align="C">
+	<AAT:Form_Submit value="_ADD_SERVICE_TO_DEVICE" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Form><%

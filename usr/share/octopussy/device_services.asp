@@ -12,7 +12,8 @@ if (defined $service)
 		{ Octopussy::Device::Remove_Service($device, $service);  }
 	elsif ($action eq "show")
 		{ $Response->Redirect("./services.asp?service=$service"); }
-	elsif ((($action eq "up") || ($action eq "down")) 
+	elsif ((($action eq "up") || ($action eq "down") 
+					|| ($action eq "top") || ($action eq "bottom")) 
 					&& ($Session->{AAT_ROLE} !~ /ro/i))
   	{ Octopussy::Device::Move_Service($device, $service, $action); }
 	elsif ($Session->{AAT_ROLE} !~ /ro/i)

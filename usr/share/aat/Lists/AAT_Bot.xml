@@ -33,6 +33,9 @@
 	<item label="Firebat" value="bot_firebat"
         regexp="Firebat"
         logo="browsers/browser_bot" />
+	<item label="Gaisbot" value="bot_gaisbot"
+        regexp="Gaisbot"
+        logo="browsers/browser_bot" />
 	<item label="Galbot" value="bot_galbot"
         regexp="www.galbot.com"
         logo="browsers/browser_bot" />
@@ -54,6 +57,9 @@
 	<item label="LeechGet" value="bot_leechget"
 				regexp="www.leechget.net"
 				logo="browsers/browser_bot" />
+	<item label="Majestic12 Bot" value="bot_majestic12"
+        regexp="www.majestic12.co.uk"
+        logo="browsers/browser_bot" />
 	<item label="MetadataLabs Bot" value="bot_metadatalabs"
         regexp="www.metadatalabs.com/mlbot"
         logo="browsers/browser_bot" />	
@@ -71,6 +77,9 @@
         logo="browsers/browser_bot" />
 	<item label="Sogou Spider" value="bot_sogou_spider"
         regexp="Sogou \w+ [Ss]pider"
+        logo="browsers/browser_bot" />
+	<item label="Soso Spider" value="bot_soso_spider"
+        regexp="Sosospider"
         logo="browsers/browser_bot" />
 	<item label="Speedy Spider" value="bot_speedy_spider"
 				regexp="Speedy Spider"
