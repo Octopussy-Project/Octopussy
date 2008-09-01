@@ -12,7 +12,8 @@ use utf8;
 use Encode;
 use Octopussy;
 
-my $SERVICE_DIR = "services";
+use constant SERVICE_DIR => "services";
+
 my $services_dir = undef;
 my %filenames;
 
@@ -31,7 +32,7 @@ sub New($)
 {
 	my $conf = shift;
 
-	$services_dir ||= Octopussy::Directory($SERVICE_DIR);
+	$services_dir ||= Octopussy::Directory(SERVICE_DIR);
 	$conf->{version} = Octopussy::Timestamp_Version(undef);
 	AAT::XML::Write("$services_dir/$conf->{name}.xml", $conf, 
 		"octopussy_service");
@@ -61,7 +62,7 @@ Returns List of Services
 =cut
 sub List()
 {
-	$services_dir ||= Octopussy::Directory($SERVICE_DIR);
+	$services_dir ||= Octopussy::Directory(SERVICE_DIR);
 
 	return (AAT::XML::Name_List($services_dir));
 }
@@ -94,7 +95,7 @@ sub Filename($)
 	my $service = shift;
 
 	return ($filenames{$service})   if (defined $filenames{$service});
-	$services_dir ||= Octopussy::Directory($SERVICE_DIR);
+	$services_dir ||= Octopussy::Directory(SERVICE_DIR);
 	$filenames{$service} = "$services_dir/$service.xml";
 
 	return ($filenames{$service});
@@ -620,7 +621,7 @@ sub Updates_Installation
 {
   my @services = @_;
   my $web = Octopussy::WebSite();
-  $services_dir ||= Octopussy::Directory($SERVICE_DIR);
+  $services_dir ||= Octopussy::Directory(SERVICE_DIR);
 
   foreach my $s (@services)
   {

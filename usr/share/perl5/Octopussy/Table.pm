@@ -11,7 +11,7 @@ no strict 'refs';
 use Octopussy;
 use Octopussy::Type;
 
-my $TABLE_DIR = "tables";
+use constant TABLE_DIR => "tables";
 
 my $tables_dir = undef;
 my %filenames;
@@ -33,7 +33,7 @@ sub New($)
 
 	if (AAT::NOT_NULL($conf->{name}))
 	{
-		$tables_dir ||= Octopussy::Directory($TABLE_DIR);
+		$tables_dir ||= Octopussy::Directory(TABLE_DIR);
 		$conf->{version} = Octopussy::Timestamp_Version(undef);
 		AAT::XML::Write("$tables_dir/$conf->{name}.xml", $conf, "octopussy_table");
 		Add_Field($conf->{name}, "datetime", "DATETIME");
@@ -66,7 +66,7 @@ Get List of Tables
 =cut
 sub List()
 {
-	$tables_dir ||= Octopussy::Directory($TABLE_DIR);
+	$tables_dir ||= Octopussy::Directory(TABLE_DIR);
 
 	return (AAT::XML::Name_List($tables_dir));
 }
@@ -81,7 +81,7 @@ sub Filename($)
 	my $table = shift;
 
 	return ($filenames{$table})	if (defined $filenames{$table});
-	$tables_dir ||= Octopussy::Directory($TABLE_DIR);
+	$tables_dir ||= Octopussy::Directory(TABLE_DIR);
 	$filenames{$table} = AAT::XML::Filename($tables_dir, $table);
 
 	return ($filenames{$table});
@@ -343,7 +343,7 @@ sub Updates_Installation
 {
   my @tables = @_;
   my $web = Octopussy::WebSite();
-  $tables_dir ||= Octopussy::Directory($TABLE_DIR);
+  $tables_dir ||= Octopussy::Directory(TABLE_DIR);
 
   foreach my $t (@tables)
   {

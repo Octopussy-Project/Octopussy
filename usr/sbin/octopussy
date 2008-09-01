@@ -93,12 +93,12 @@ sub Parser_Start
 	{
 		if (Octopussy::Device::Parse_Status($device) >= 1) 
 		{ # Device Status "Started/Paused"
-			system("sudo -u $USER $base$PARSER $device &");
-    	print "$PROG_NAME Parsing $device started.\n";
+			system("sudo -u $USER $base$PARSER '$device' &");
+    	print "$PROG_NAME Parsing '$device' started.\n";
 		}
 		else
 		{
-			print "$PROG_NAME Parsing status of $device is 'Stopped', set status to 'Paused' or 'Started' first !\n";
+			print "$PROG_NAME Parsing status of '$device' is 'Stopped', set status to 'Paused' or 'Started' first !\n";
 		}
 	}
 	else
@@ -108,12 +108,12 @@ sub Parser_Start
   	{
 			if (Octopussy::Device::Parse_Status($d) >= 1)     
 			{ # Device Status "Started/Paused"
-				system("sudo -u $USER $base$PARSER $d &");
-    		print "$PROG_NAME Parsing $d started.\n";
+				system("sudo -u $USER $base$PARSER '$d' &");
+    		print "$PROG_NAME Parsing '$d' started.\n";
 			}
 			else
 			{
-				print "$PROG_NAME Parsing status of $d is 'Stopped', set status to 'Paused' or 'Started' first !\n";	
+				print "$PROG_NAME Parsing status of '$d' is 'Stopped', set status to 'Paused' or 'Started' first !\n";	
 			}
   	}
 	}
@@ -133,12 +133,12 @@ sub Parser_Stop
 		if (Octopussy::Device::Parse_Status($device) >= 1)
 		{
 			Octopussy::Device::Parse_Pause($device);
-			print "$PROG_NAME Parsing $device Paused.\n";
+			print "$PROG_NAME Parsing '$device' Paused.\n";
 		}
 		else
 		{
 			Octopussy::Device::Parse_Stop($device);
-			 print "$PROG_NAME Parsing $device Stopped.\n";
+			 print "$PROG_NAME Parsing '$device' Stopped.\n";
 		}
 	}
 	else
@@ -149,12 +149,12 @@ sub Parser_Stop
 			if (Octopussy::Device::Parse_Status($d) >= 1)
     	{
 				Octopussy::Device::Parse_Pause($d);
-				print "$PROG_NAME Parsing $d Paused.\n";
+				print "$PROG_NAME Parsing '$d' Paused.\n";
 			}
 			else
     	{
       	Octopussy::Device::Parse_Stop($d);
-       	print "$PROG_NAME Parsing $d Stopped.\n";
+       	print "$PROG_NAME Parsing '$d' Stopped.\n";
     	}
 		}
 	}

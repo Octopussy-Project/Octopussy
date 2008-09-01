@@ -8,18 +8,21 @@ package Octopussy::RRDTool;
 use strict;
 no strict 'refs';
 
-my $MINUTE = 60;
-my $HOURLY = 3600;
-my $DAILY = 86400;
-my $WEEKLY = 604800;
-my $MONTHLY = 2592000;
-my $YEARLY = 31536000;
+use constant MINUTE => 60;
+use constant HOURLY => 3600;
+use constant DAILY => 86400;
+use constant WEEKLY => 604800;
+use constant MONTHLY => 2592000;
+use constant YEARLY => 31536000;
 
-my $RRDTOOL = "/usr/bin/rrdtool";
-my $RRD_CREATE = "$RRDTOOL create";
-my $RRD_GRAPH = "$RRDTOOL graph";
-my $RRD_INFO = "$RRDTOOL info";
-my $RRD_UPDATE = "$RRDTOOL update";
+use constant GRAPH_WIDTH => 400;
+use constant GRAPH_HEIGHT => 180;
+
+use constant RRD_CREATE => "/usr/bin/rrdtool create";
+use constant RRD_GRAPH => "/usr/bin/rrdtool graph";
+use constant RRD_INFO => "/usr/bin/rrdtool info";
+
+my $RRD_UPDATE = "/usr/bin/rrdtool update";
 my $NICE_RRDGRAPH = "nice -n 15";
 
 my $RRD_DIR = "/var/lib/octopussy/rrd";
@@ -29,9 +32,6 @@ my $RRD_SYSLOG_DTYPE = "$RRD_DIR/syslog_dtype.rrd";
 
 my $RRA = "RRA:AVERAGE:0.5:1:60 RRA:AVERAGE:0.5:5:288 RRA:AVERAGE:0.5:30:336"
 	. " RRA:AVERAGE:0.5:60:720 RRA:AVERAGE:0.5:240:2190";
-
-my $GRAPH_WIDTH = 400;
-my $GRAPH_HEIGHT = 180;
 
 my @colors = ( 
 	"#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF",
@@ -51,7 +51,8 @@ sub DS_Count($)
 {
 	my $file = shift;
 
-	my @lines = `$RRD_INFO "$file" | grep ds | grep ".type = "`;
+	my $cmd = RRD_INFO . " \"$file\" | grep ds | grep \".type = \"";
+	my @lines = `$cmd`;
 	
 	return ($#lines+1);
 }
@@ -96,7 +97,7 @@ sub Graph_Parameters($$$$$$$)
 {
 	my ($file, $start, $end, $title, $w, $h, $vlabel) = @_;
 
-	my $cmd = "$RRD_GRAPH \"$file\" --start=$start --end=$end ";
+	my $cmd = RRD_GRAPH . " \"$file\" --start=$start --end=$end ";
 	$cmd .= "--title=\"$title\" --width=$w --height=$h --alt-autoscale-max ";
 	$cmd .= "--vertical-label=\"$vlabel\" ";
 
@@ -117,7 +118,7 @@ sub Syslog_By_DeviceType_Init()
 	if ((! -f "$RRD_SYSLOG_DTYPE") || ($ds_count != ($#dtypes+1)))
   {
 		Octopussy::Create_Directory($RRD_DIR);
-		my $cmd = "$RRD_CREATE \"$RRD_SYSLOG_DTYPE\" --step $MINUTE ";
+		my $cmd = RRD_CREATE . " \"$RRD_SYSLOG_DTYPE\" --step " . MINUTE . " ";
 		foreach my $dt (@dtypes)
 		{ 
 			$dt =~ s/[-\s+]/_/g;
@@ -155,7 +156,7 @@ sub Syslog_By_DeviceType_Graph($$$)
 	{
 		my %type = Octopussy::Device::Type_Configurations();
 		my $cmd = "$NICE_RRDGRAPH " . Graph_Parameters("$RRD_PNG_DIR/${file}.png",
-			"-$length", "-120", $title, $GRAPH_WIDTH, $GRAPH_HEIGHT, 
+			"-$length", "-120", $title, GRAPH_WIDTH, GRAPH_HEIGHT, 
 			"Logs by Device Type");
 
 		my $first = 1;
@@ -181,7 +182,7 @@ Graphs RRD Data for 'Syslog by Device Type' hourly stats
 =cut
 sub Syslog_By_DeviceType_Hourly_Graph()
 {
-	Syslog_By_DeviceType_Graph("syslog_dtype_hourly", "Hourly Stats", $HOURLY);	
+	Syslog_By_DeviceType_Graph("syslog_dtype_hourly", "Hourly Stats", HOURLY);	
 }
 
 =head2 Syslog_By_DeviceType_Daily_Graph()
@@ -191,7 +192,7 @@ Graphs RRD Data for 'Syslog by Device Type' daily stats
 =cut
 sub Syslog_By_DeviceType_Daily_Graph()
 {
-  Syslog_By_DeviceType_Graph("syslog_dtype_daily", "Daily Stats", $DAILY);
+  Syslog_By_DeviceType_Graph("syslog_dtype_daily", "Daily Stats", DAILY);
 }
 
 =head2 Syslog_By_DeviceType_Weekly_Graph()
@@ -201,7 +202,7 @@ Graphs RRD Data for 'Syslog by Device Type' weekly stats
 =cut
 sub Syslog_By_DeviceType_Weekly_Graph()
 {
-  Syslog_By_DeviceType_Graph("syslog_dtype_weekly", "Weekly Stats", $WEEKLY);
+  Syslog_By_DeviceType_Graph("syslog_dtype_weekly", "Weekly Stats", WEEKLY);
 }
 
 =head2 Syslog_By_DeviceType_Monthly_Graph()
@@ -211,7 +212,7 @@ Graphs RRD Data for 'Syslog by Device Type' monthly stats
 =cut
 sub Syslog_By_DeviceType_Monthly_Graph()
 {
-	Syslog_By_DeviceType_Graph("syslog_dtype_monthly", "Monthly Stats", $MONTHLY);
+	Syslog_By_DeviceType_Graph("syslog_dtype_monthly", "Monthly Stats", MONTHLY);
 }
 
 =head2 Syslog_By_DeviceType_Yearly_Graph()
@@ -221,7 +222,7 @@ Graphs RRD Data for 'Syslog by Device Type' yearly stats
 =cut
 sub Syslog_By_DeviceType_Yearly_Graph()
 {
-  Syslog_By_DeviceType_Graph("syslog_dtype_yearly", "Yearly Stats", $YEARLY);
+  Syslog_By_DeviceType_Graph("syslog_dtype_yearly", "Yearly Stats", YEARLY);
 }
 
 
@@ -239,7 +240,7 @@ sub Syslog_By_Device_Service_Taxonomy_Init($$)
   if (! -f $file)
   {
 		Octopussy::Create_Directory("$RRD_DIR/$device");
-    my $cmd = "$RRD_CREATE \"$file\" --step $MINUTE ";
+    my $cmd = RRD_CREATE . " \"$file\" --step " . MINUTE . " ";
 		my @list = Octopussy::Taxonomy::List();
     foreach my $taxo (sort @list)
 		{
@@ -276,7 +277,7 @@ sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
 {
   my ($device, $service, $file, $title, $length) = @_;
   my $cmd = "$NICE_RRDGRAPH " . Graph_Parameters("$RRD_PNG_DIR/${file}.png",
-		"-$length", "-120", $title, $GRAPH_WIDTH, $GRAPH_HEIGHT,
+		"-$length", "-120", $title, GRAPH_WIDTH, GRAPH_HEIGHT,
 		"Logs Taxonomy for $service");
 
 	my %taxo_color = Octopussy::Taxonomy::Colors();	
@@ -307,7 +308,7 @@ sub Syslog_By_Device_Service_Taxonomy_Hourly_Graph($$)
 	my ($device, $service) = @_;
 	
 	Syslog_By_Device_Service_Taxonomy_Graph($device, $service, 
-		"taxonomy_${device}-${service}_hourly", "Hourly Stats", $HOURLY);
+		"taxonomy_${device}-${service}_hourly", "Hourly Stats", HOURLY);
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Daily_Graph($device, $service)
@@ -320,7 +321,7 @@ sub Syslog_By_Device_Service_Taxonomy_Daily_Graph($$)
   my ($device, $service) = @_;
 
   Syslog_By_Device_Service_Taxonomy_Graph($device, $service,
-    "taxonomy_${device}-${service}_daily", "Daily Stats", $DAILY);
+    "taxonomy_${device}-${service}_daily", "Daily Stats", DAILY);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Graph($device)
@@ -333,7 +334,7 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 	my ($device, $file, $title, $length) = @_;
 
 	my $cmd = Graph_Parameters("$RRD_PNG_DIR/${file}.png", "-$length", "-120",
-		$title, $GRAPH_WIDTH, $GRAPH_HEIGHT, "Taxonomy for $device");
+		$title, GRAPH_WIDTH, GRAPH_HEIGHT, "Taxonomy for $device");
 	my @services = Octopussy::Device::Services($device);
 	my %taxo_color = Octopussy::Taxonomy::Colors();
   my @list = Octopussy::Taxonomy::List();
@@ -376,7 +377,7 @@ sub Syslog_By_Device_Taxonomy_Hourly_Graph($)
 	my $device = shift;
 	
 	Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
- 		"taxonomy_${device}_hourly", "Hourly Stats", $HOURLY);
+ 		"taxonomy_${device}_hourly", "Hourly Stats", HOURLY);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Daily_Graph($device)
@@ -389,7 +390,7 @@ sub Syslog_By_Device_Taxonomy_Daily_Graph($)
   my $device = shift;
 
   Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
-  	"taxonomy_${device}_daily", "Daily Stats", $DAILY);
+  	"taxonomy_${device}_daily", "Daily Stats", DAILY);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Weekly_Graph($device)
@@ -402,7 +403,7 @@ sub Syslog_By_Device_Taxonomy_Weekly_Graph($)
   my $device = shift;
 
   Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
-  	"taxonomy_${device}_weekly", "Weekly Stats", $WEEKLY);
+  	"taxonomy_${device}_weekly", "Weekly Stats", WEEKLY);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Monthly_Graph($device)
@@ -415,7 +416,7 @@ sub Syslog_By_Device_Taxonomy_Monthly_Graph($)
   my $device = shift;
 
   Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
-  	"taxonomy_${device}_monthly", "Monthly Stats", $MONTHLY);
+  	"taxonomy_${device}_monthly", "Monthly Stats", MONTHLY);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Yearly_Graph($device)
@@ -428,7 +429,7 @@ sub Syslog_By_Device_Taxonomy_Yearly_Graph($)
   my $device = shift;
 
   Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
-    "taxonomy_${device}_yearly", "Yearly Stats", $YEARLY);
+    "taxonomy_${device}_yearly", "Yearly Stats", YEARLY);
 }
 
 
@@ -449,16 +450,16 @@ sub Report_Graph($$$$$$$)
 
 	my $tl = $rconf->{timeline};
 	my $title = $rconf->{graph_title} || "";
-	my $width = $rconf->{graph_width} || $GRAPH_WIDTH;	
-	my $height = $rconf->{graph_height} || $GRAPH_HEIGHT;
+	my $width = $rconf->{graph_width} || GRAPH_WIDTH;	
+	my $height = $rconf->{graph_height} || GRAPH_HEIGHT;
   my $rrd_file = $output;
   $rrd_file =~ s/\.png/\.rrd/;
   my $start = `date +%s -d '$1 $2:$3'`  if ($begin =~ /(\d{8})(\d\d)(\d\d)/);
   my $finish = `date +%s -d '$1 $2:$3'` if ($end =~ /(\d{8})(\d\d)(\d\d)/);
   chomp($start);
   chomp($finish);
- 	my $diff = ($finish-$start) / $MINUTE;
-	my $rrd_step_mins = $MINUTE * $rconf->{rrd_step};
+ 	my $diff = ($finish-$start) / MINUTE;
+	my $rrd_step_mins = MINUTE * $rconf->{rrd_step};
 
 	my %ds = ();
 	my %dataline = ();
@@ -477,7 +478,7 @@ sub Report_Graph($$$$$$$)
 		}
 	}
 	
-	my $cmd = "$RRD_CREATE \"$rrd_file\" --start $start --step $rrd_step_mins ";
+	my $cmd = RRD_CREATE . " \"$rrd_file\" --start $start --step $rrd_step_mins ";
 	my $i = 1;
 	foreach my $k (sort keys %ds)
 	{
@@ -503,7 +504,7 @@ sub Report_Graph($$$$$$$)
 		. " v" . Octopussy::Version() . " - "; 
   $watermark .= sprintf(AAT::Translation::Get($lang, "_MSG_REPORT_DATA_SOURCE"),
     $stats->{nb_files}, $stats->{nb_lines}, 
-		int($stats->{seconds} / $MINUTE), $stats->{seconds} % $MINUTE);
+		int($stats->{seconds} / MINUTE), $stats->{seconds} % MINUTE);
 	$cmd .= "--watermark \"$watermark\" ";
  	$i = 1;	
 	foreach my $k (sort keys %ds)

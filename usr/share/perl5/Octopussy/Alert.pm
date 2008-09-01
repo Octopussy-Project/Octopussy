@@ -10,11 +10,11 @@ use strict;
 use utf8;
 use Octopussy;
 
+use constant ALERT_DIR => "alerts";
+
 my @COMPARATORS = ("<", ">", "=", "<=", ">=", "LIKE");
 
 my @LEVELS = ("Warning", "Critical");
-
-my $ALERT_DIR = "alerts";
 
 my $alerts_dir = undef;
 my %filenames;
@@ -31,7 +31,7 @@ sub New($)
 {
 	my $conf = shift;
 	my %devices = ();
-	$alerts_dir ||= Octopussy::Directory($ALERT_DIR);
+	$alerts_dir ||= Octopussy::Directory(ALERT_DIR);
 	AAT::XML::Write("$alerts_dir/$conf->{name}.xml", $conf, "octopussy_alert");
 
 	if (${$conf->{device}}[0] =~ /-ANY-/i)
@@ -94,7 +94,7 @@ Get List of Alerts
  
 sub List()
 {
-	$alerts_dir ||= Octopussy::Directory($ALERT_DIR);
+	$alerts_dir ||= Octopussy::Directory(ALERT_DIR);
 	
 	return (AAT::XML::Name_List($alerts_dir));
 }
@@ -130,7 +130,7 @@ sub Filename($)
 	my $alert_name = shift;
 
 	return ($filenames{$alert_name})  if (defined $filenames{$alert_name});
-	$alerts_dir ||= Octopussy::Directory($ALERT_DIR);
+	$alerts_dir ||= Octopussy::Directory(ALERT_DIR);
 	$filenames{$alert_name} =	"$alerts_dir/$alert_name.xml"; 
 
 	return ($filenames{$alert_name});

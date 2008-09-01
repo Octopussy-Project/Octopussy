@@ -1023,6 +1023,9 @@ Sagem-my401C
 	<item label="Samsung S720" value="mobile_samsung_s720"
         regexp="portalmmm.2.0 S720"
         constructor="Samsung" model="S720" logo="companies/logo_samsung" />
+	<item label="Samsung SCH A900" value="mobile_samsung_scha900"
+        regexp="Samsung-SCHA900"
+        constructor="Samsung" model="SCH A900" logo="companies/logo_samsung" />
 	<item label="Samsung SGH A800" value="mobile_samsung_sgha800"
         regexp="SAMSUNG-SGH-A800"
 				constructor="Samsung" model="SGH A800" logo="companies/logo_samsung" />
@@ -1338,6 +1341,9 @@ Sagem-my401C
 	<item label="Samsung SGH ZV60" value="mobile_samsung_sghzv60"
         regexp="SAMSUNG-SGH-ZV60"
         constructor="Samsung" model="SGH ZV60" logo="companies/logo_samsung" />
+	<item label="Samsung SPH A790" value="mobile_samsung_spha790"
+        regexp="Samsung-SPHA790"
+        constructor="Samsung" model="SPH A790" logo="companies/logo_samsung" />
 
 	<item label="Sanyo C304" value="mobile_sanyo_c304"
         regexp="Sanyo-C304"

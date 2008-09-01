@@ -9,7 +9,8 @@ package Octopussy::Map;
 use strict;
 use Octopussy;
 
-my $MAP_DIR	= "maps";
+use constant MAP_DIR => "maps";
+
 my $maps_dir = undef;
 
 =head1 FUNCTIONS
@@ -21,7 +22,7 @@ Get list of Maps
 =cut 
 sub List()
 {
-	$maps_dir ||= Octopussy::Directory($MAP_DIR);
+	$maps_dir ||= Octopussy::Directory(MAP_DIR);
 
 	return (AAT::XML::Name_List($maps_dir));
 }
@@ -35,7 +36,7 @@ sub Filename($)
 {
 	my $map = shift;
 
-	$maps_dir ||= Octopussy::Directory($MAP_DIR);
+	$maps_dir ||= Octopussy::Directory(MAP_DIR);
 
 	return (AAT::XML::Filename($maps_dir, $map));
 }

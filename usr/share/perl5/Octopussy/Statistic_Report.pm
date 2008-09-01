@@ -9,7 +9,7 @@ package Octopussy::Statistic_Report;
 use strict;
 use Octopussy;
 
-my $STAT_REPORT_DIR = "statistic_reports";
+use constant STAT_REPORT_DIR => "statistic_reports";
 
 my $stat_reports_dir = undef;
 my %filenames;
@@ -26,7 +26,7 @@ sub New($)
 {
 	my $conf = shift;
 
-	$stat_reports_dir ||= Octopussy::Directory($STAT_REPORT_DIR);
+	$stat_reports_dir ||= Octopussy::Directory(STAT_REPORT_DIR);
 	AAT::XML::Write("$stat_reports_dir/$conf->{name}.xml",
 		$conf, "octopussy_statistic_report");
 }
@@ -67,7 +67,7 @@ Get List of Statistic Report
 
 sub List()
 {
-  $stat_reports_dir ||= Octopussy::Directory($STAT_REPORT_DIR);
+  $stat_reports_dir ||= Octopussy::Directory(STAT_REPORT_DIR);
 
 	return (AAT::XML::Name_List($stat_reports_dir));
 }
@@ -84,7 +84,7 @@ sub Filename($)
 
 	return ($filenames{$statistic_report_name})   
 		if (defined $filenames{$statistic_report_name});
-	$stat_reports_dir ||= Octopussy::Directory($STAT_REPORT_DIR);
+	$stat_reports_dir ||= Octopussy::Directory(STAT_REPORT_DIR);
 	$filenames{$statistic_report_name} = 
 		AAT::FS::Directory_Files($stat_reports_dir, $statistic_report_name);
 

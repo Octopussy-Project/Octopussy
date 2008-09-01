@@ -9,7 +9,8 @@ package Octopussy::Data_Report;
 use strict;
 use Octopussy;
 
-my $REPORT_DATA_DIR	= "data_reports";
+use constant REPORT_DATA_DIR => "data_reports";
+
 my $reports_dir = undef;
 
 =head1 FUNCTIONS
@@ -19,7 +20,7 @@ my $reports_dir = undef;
 =cut
 sub Type_List()
 {
-	$reports_dir ||= Octopussy::Directory($REPORT_DATA_DIR);
+	$reports_dir ||= Octopussy::Directory(REPORT_DATA_DIR);
 	
 	opendir(DIR, $reports_dir);
   my @dirs = grep !/^\./, readdir(DIR);
@@ -37,7 +38,7 @@ sub List($)
 {
 	my $report = shift;
  
-	$reports_dir ||= Octopussy::Directory($REPORT_DATA_DIR);
+	$reports_dir ||= Octopussy::Directory(REPORT_DATA_DIR);
 	my $dir = $reports_dir . $report;
 	opendir(DIR, $dir);
 	my @dirs = grep !/^\./, readdir(DIR);
@@ -59,7 +60,7 @@ sub Remove($$)
 {
 	my ($report, $filename) = @_;
 
-	$reports_dir ||= Octopussy::Directory($REPORT_DATA_DIR);
+	$reports_dir ||= Octopussy::Directory(REPORT_DATA_DIR);
 	`rm -f "$reports_dir$report/$filename".*`;
 }
 
@@ -72,7 +73,7 @@ sub Remove_All($)
 {
   my $report = shift;
 
-  $reports_dir ||= Octopussy::Directory($REPORT_DATA_DIR);
+  $reports_dir ||= Octopussy::Directory(REPORT_DATA_DIR);
   `rm -rf "$reports_dir$report/"`;
 }
 
@@ -85,7 +86,7 @@ sub Remove_Month($$$)
 {
 	my ($report, $year, $month) = @_;
 	
-	$reports_dir ||= Octopussy::Directory($REPORT_DATA_DIR);
+	$reports_dir ||= Octopussy::Directory(REPORT_DATA_DIR);
 	`rm -f "$reports_dir$report/$report-$year$month"*`;
 }
 
