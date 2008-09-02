@@ -22,11 +22,12 @@ use Octopussy;
 
 my $PROG_NAME = "octopussy";
 my $USER = "octopussy";
-my $DISPATCHER = "octo_dispatcher"; 
 my $PARSER = "octo_parser";
 my $PUSHER = "octo_pusher";
+my $RRD = "octo_rrd";
 my $SCHEDULER = "octo_scheduler";
 my $NICE_PUSHER = "nice -n 10";
+my $NICE_RRD = "nice -n 15";
 my $NICE_SCHEDULER = "nice -n 10";
 my $LOGFILE = "/var/log/messages";
 my $INITD_MYSQL = "/etc/init.d/mysql";
@@ -182,6 +183,28 @@ sub Pusher_Stop
 	print "$PROG_NAME Pusher Stopped.\n";
 }
 
+=head2 RRD_Start
+
+Starts octo_rrd
+
+=cut
+sub RRD_Start
+{
+	system("sudo -u $USER $NICE_RRD $base$RRD &");
+  print "$PROG_NAME RRD Started.\n";
+}
+
+=head2 RRD_Stop
+
+Stops octo_rrd
+
+=cut
+sub RRD_Stop
+{
+	`/usr/bin/killall $RRD`;
+  print "$PROG_NAME RRD Stopped.\n";
+}
+
 =head2 Scheduler_Start
 
 Starts octo_scheduler
@@ -214,6 +237,7 @@ sub Start
 	Dispatcher_Start();
 	`$INITD_MYSQL restart`;	
 	Parser_Start();
+	RRD_Start();
 	Scheduler_Start();
 	Pusher_Start();
 }
@@ -226,6 +250,7 @@ Stops all Octopussy programs (parsers, scheduler, pusher & dispatcher)
 sub Stop
 {
 	Parser_Stop();
+	RRD_Stop();
 	Scheduler_Stop();
 	Pusher_Stop();
 	Dispatcher_Stop();
@@ -293,6 +318,6 @@ Sebastien Thebert <octo.devel@gmail.com>
 
 =head1 SEE ALSO
 
-octo_dispatcher, octo_extractor, octo_parser, octo_uparser, octo_reporter, octo_scheduler
+octo_dispatcher, octo_extractor, octo_parser, octo_uparser, octo_reporter, octo_rrd, octo_scheduler
 
 =cut

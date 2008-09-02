@@ -16,11 +16,11 @@ my %MONTH = (
 	May => "05", Jun => "06", Jul => "07", Aug => "08", 
 	Sep => "09", Oct => "10", Nov => "11", Dec => "12" );
 
-my $REGEXP_COLOR = "red";
-my $NUMBER_COLOR = "blue";
-my $STRING_COLOR = "darkgray";
-my $LONG_STRING_COLOR = "darkgray";
-my $WORD_COLOR = "green";
+use constant REGEXP_COLOR => "red";
+use constant NUMBER_COLOR => "blue";
+use constant STRING_COLOR => "darkgray";
+use constant LONG_STRING_COLOR => "darkgray";
+use constant WORD_COLOR => "green";
 
 =head2 Configurations()
 
@@ -51,14 +51,14 @@ sub Colors()
   my %color = ();
   foreach my $t (@types)
   	{ $color{"$t->{type_id}"} = $t->{color}; }
-  $color{"NUMBER"} = $NUMBER_COLOR;
-	$color{"BYTES"} = $NUMBER_COLOR;
-	$color{"SECONDS"} = $NUMBER_COLOR;
-  $color{"WORD"} = $WORD_COLOR;
-	$color{"USER_AGENT"} = $WORD_COLOR;
-  $color{"STRING"} = $STRING_COLOR;
-	$color{"LONG_STRING"} = $LONG_STRING_COLOR;
-	$color{"REGEXP"} = $REGEXP_COLOR;
+  $color{"NUMBER"} = NUMBER_COLOR;
+	$color{"BYTES"} = NUMBER_COLOR;
+	$color{"SECONDS"} = NUMBER_COLOR;
+  $color{"WORD"} = WORD_COLOR;
+	$color{"USER_AGENT"} = WORD_COLOR;
+  $color{"STRING"} = STRING_COLOR;
+	$color{"LONG_STRING"} = LONG_STRING_COLOR;
+	$color{"REGEXP"} = REGEXP_COLOR;
 
 	return (%color);
 }

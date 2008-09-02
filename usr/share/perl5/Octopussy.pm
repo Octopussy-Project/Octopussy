@@ -38,7 +38,7 @@ use Octopussy::Taxonomy;
 use Octopussy::TimePeriod;
 use Octopussy::Type;
 
-my $APPLICATION_NAME = "Octopussy";
+use constant APPLICATION_NAME => "Octopussy";
 
 =head1 FUNCTIONS
 
@@ -49,7 +49,7 @@ Returns Octopussy Support Email
 =cut
 sub Email
 {
-	my $info = AAT::Application::Info($APPLICATION_NAME);
+	my $info = AAT::Application::Info(APPLICATION_NAME);
 
   return ($info->{email});
 }
@@ -61,7 +61,7 @@ Returns Octopussy System User
 =cut
 sub User
 {
-	my $info = AAT::Application::Info($APPLICATION_NAME);
+	my $info = AAT::Application::Info(APPLICATION_NAME);
 
   return ($info->{user});
 }
@@ -73,7 +73,7 @@ Returns Octopussy main module Version
 =cut
 sub Version()
 {
-	my $info = AAT::Application::Info($APPLICATION_NAME);
+	my $info = AAT::Application::Info(APPLICATION_NAME);
 
 	return ($info->{version});
 }
@@ -85,7 +85,7 @@ Returns Octopussy WebSite
 =cut
 sub WebSite()
 {
-	my $info = AAT::Application::Info($APPLICATION_NAME);
+	my $info = AAT::Application::Info(APPLICATION_NAME);
 
   return ($info->{website});
 }
@@ -99,7 +99,7 @@ sub Directory($)
 {
   my $dir = shift;
 
-  return (AAT::Application::Directory($APPLICATION_NAME, $dir));
+  return (AAT::Application::Directory(APPLICATION_NAME, $dir));
 }
 
 =head2 File($file)
@@ -111,7 +111,7 @@ sub File($)
 {
   my $file = shift;
 
-  return (AAT::Application::File($APPLICATION_NAME, $file));
+  return (AAT::Application::File(APPLICATION_NAME, $file));
 }
 
 =head2 Parameter($param)
@@ -123,7 +123,7 @@ sub Parameter($)
 {
 	my $param = shift;
 
-  return (AAT::Application::Parameter($APPLICATION_NAME, $param));
+  return (AAT::Application::Parameter(APPLICATION_NAME, $param));
 }
 
 =head2 Status_Progress($bin, $param)

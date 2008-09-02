@@ -8,8 +8,9 @@ AAT::XMPP - AAT XMPP module
 package AAT::XMPP;
 
 use strict;
-
 use Net::XMPP;
+
+use constant PORT => 5222;
 
 my %conf_file = ();
 
@@ -20,7 +21,6 @@ my %conf_file = ();
 Returns the XMPP configuration
 
 =cut
-
 sub Configuration($)
 {
 	my $appli = shift;
@@ -36,7 +36,6 @@ sub Configuration($)
 Checks the XMPP Connection
 
 =cut
-
 sub Connection_Test($)
 {
 	my $appli = shift;
@@ -45,7 +44,7 @@ sub Connection_Test($)
 	my $xmpp_conf = Configuration($appli);
   my $client = new Net::XMPP::Client();
   my @res = $client->Connect(hostname => $xmpp_conf->{server}, 
-		port => 5222, tls => $xmpp_conf->{tls}, timeout => 3);
+		port => PORT, tls => $xmpp_conf->{tls}, timeout => 3);
 	if (@res)
 	{
 		my @res = $client->AuthSend(username => $xmpp_conf->{user}, 
@@ -62,7 +61,6 @@ sub Connection_Test($)
 Sends message '$msg' to '@dests' through XMPP
 
 =cut
-
 sub Send_Message($$@)
 {
   my ($appli, $msg, @dests) = @_;
@@ -70,7 +68,7 @@ sub Send_Message($$@)
 	my $xmpp_conf = Configuration($appli);
 	my $client = new Net::XMPP::Client();
 	my @res = $client->Connect(hostname => $xmpp_conf->{server}, 
-		port => 5222, tls => $xmpp_conf->{tls});
+		port => PORT, tls => $xmpp_conf->{tls});
 	if (@res)
 	{
 		$client->AuthSend('hostname' => $xmpp_conf->{server},

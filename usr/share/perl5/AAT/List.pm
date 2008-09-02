@@ -15,7 +15,6 @@ use AAT::XML;
 Returns List configuration
 
 =cut
-
 sub Configuration($)
 {
 	my $list = shift;
@@ -31,7 +30,6 @@ sub Configuration($)
 Returns List items
 
 =cut
-
 sub Items($)
 {
 	my $list = shift;

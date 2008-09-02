@@ -7,8 +7,11 @@ package Octopussy::Stats;
 
 use strict;
 use Sys::CPU;
+use Cache::SharedMemoryCache;
 
-my $EVENTS_FILE	= "octo_dispatcher.stats";
+my $smc = new Cache::SharedMemoryCache( { namespace => "octo_dispatcher",
+    default_expires_in => "1 day" } )
+    or croak( "Couldn't instantiate SharedMemoryCache");
 my $pid_dir = undef;
 
 =head1 FUNCTIONS
@@ -147,25 +150,12 @@ sub Events()
 {
 	my %device;
 
-	$pid_dir ||= Octopussy::Directory("running");
-	my $file = "$pid_dir/$EVENTS_FILE";
-	if (defined open(FILE, "< $file"))
-	{
-		my $time;
-		while (<FILE>)
-		{
-			$time = $1	if ($_ =~ /\[(\d+)\]/);
-			$device{$1} = $2	if ($_ =~ /^(.+): (\d+)$/);
-		}
-		close(FILE);
-		return ($time, \%device);
-	}
-	else
-  {
-    my ($pack, $pack_file, $line, $sub) = caller(0);
-    AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
-  }	
-	return (undef, undef);
+	my $time = $smc->get("dispatcher_stats_datetime");
+	my $stats = $smc->get("dispatcher_stats_devices");
+	foreach my $k (keys %{$stats})
+		{ $device{$k} = $stats->{$k};	}
+
+	return ($time, \%device);
 }
 
 1;

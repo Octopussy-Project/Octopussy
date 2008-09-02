@@ -6,15 +6,14 @@ AAT::User - AAT User module
 package AAT::User;
 
 use strict;
-
 use Crypt::PasswdMD5;
 
-my $SALT = "OP";
+use constant SALT => "OP";
+use constant DEFAULT_LANGUAGE => "EN";
+use constant DEFAULT_ROLE => "rw";
+use constant DEFAULT_THEME => "DEFAULT";
+use constant DEFAULT_MENU_MODE => "TEXT_AND_ICONS";
 
-my $DEFAULT_LANGUAGE = "EN";
-my $DEFAULT_ROLE = "rw";
-my $DEFAULT_THEME = "DEFAULT";
-my $DEFAULT_MENU_MODE = "TEXT_AND_ICONS";
 my $ROLES_FILE = undef;
 my $USERS_FILE = undef;
 
@@ -27,14 +26,13 @@ my %roles = ();
 Check Authentication from Users file and LDAP Users
 
 =cut
-
 sub Authentication($$$)
 {
   my ($appli, $login, $pwd) = @_;
 
 	$USERS_FILE ||= AAT::Application::File($appli, "users");
 	my $conf = AAT::XML::Read($USERS_FILE);
-  my $md5 = unix_md5_crypt($pwd, $SALT);
+  my $md5 = unix_md5_crypt($pwd, SALT);
   foreach my $u (AAT::ARRAY($conf->{user}))
   {
     return ($u) if (($u->{login} eq $login) && ($u->{password} eq $md5));
@@ -42,9 +40,9 @@ sub Authentication($$$)
 
   if (AAT::LDAP::Check_Password($appli, $login, $pwd))
   {
-    return ({ login => $login, password => $pwd, role => $DEFAULT_ROLE,
-      language => $DEFAULT_LANGUAGE, theme => $DEFAULT_THEME, 
-			menu_mode => $DEFAULT_MENU_MODE });
+    return ({ login => $login, password => $pwd, role => DEFAULT_ROLE,
+      language => DEFAULT_LANGUAGE, theme => DEFAULT_THEME, 
+			menu_mode => DEFAULT_MENU_MODE });
   }
 
   return (undef);
@@ -65,9 +63,9 @@ sub Add($$$$$$)
   foreach my $u (AAT::ARRAY($conf->{user}))
     { return ("_MSG_USER_ALREADY_EXISTS") if ($u->{login} eq $login); }
   push(@{$conf->{user}}, { login => $login,
-    password => unix_md5_crypt($pwd, $SALT), certificate => $certificate, 
-		role => $role, language => $lang || $DEFAULT_LANGUAGE, 
-		theme => $DEFAULT_THEME, menu_mode => $DEFAULT_MENU_MODE });
+    password => unix_md5_crypt($pwd, SALT), certificate => $certificate, 
+		role => $role, language => $lang || DEFAULT_LANGUAGE, 
+		theme => DEFAULT_THEME, menu_mode => DEFAULT_MENU_MODE });
   AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 
   return (undef);	
@@ -116,7 +114,7 @@ sub Update($$$)
     else
     {
       my $pwd = (AAT::NOT_NULL($update->{password}) 
-				? unix_md5_crypt($update->{password}, $SALT) : $u->{password});
+				? unix_md5_crypt($update->{password}, SALT) : $u->{password});
       push(@users, { login => $update->{login} || $login, 
 				password => $pwd, role => $update->{role} || $u->{role}, 
 				language => $update->{language} || $u->{language},
@@ -184,7 +182,6 @@ sub Update_Restrictions($$$)
 Lists all Users (from file & LDAP)
 
 =cut
-
 sub List($)
 {
 	my $appli = shift;
@@ -209,7 +206,6 @@ sub List($)
 Returns configurations for all Users
 
 =cut
-
 sub Configurations
 {
   my ($appli, $sort) = @_;
@@ -236,7 +232,6 @@ sub Configurations
 Inits Users Roles
 
 =cut
-
 sub Roles_Init($)
 {
 	my $appli = shift;
@@ -252,7 +247,6 @@ sub Roles_Init($)
 Returns Users Roles Configurations
 
 =cut
-
 sub Roles_Configurations($)
 {
 	my $appli = shift;
@@ -268,7 +262,6 @@ sub Roles_Configurations($)
 Returns name of a role
 
 =cut
-
 sub Role_Name($$)
 {
 	my ($appli, $role) = @_;

@@ -15,7 +15,6 @@ use AAT::XML;
 Returns Object configuration
 
 =cut
-
 sub Configuration($)
 {
 	my $object = shift;
@@ -31,7 +30,6 @@ sub Configuration($)
 Returns Object data
 
 =cut
-
 sub Data($$)
 {
 	my ($appli, $object) = @_;

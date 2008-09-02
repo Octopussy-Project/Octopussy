@@ -1,0 +1,59 @@
+#!/usr/bin/perl -w
+
+=head1 NAME
+
+octo_rrd - Octopussy RRD Graphing program
+
+=head1 SYNOPSIS
+
+octo_rrd
+
+=head1 DESCRIPTION
+
+octo_rrd is the program used by the Octopussy Project
+to generate RRD Graphs from dispatcher stats
+
+=cut
+
+use strict;
+use Cache::SharedMemoryCache;
+
+use AAT;
+use Octopussy;
+
+my @dtypes = Octopussy::Device::Types(); # need reload if list changes
+
+my $smc = new Cache::SharedMemoryCache( { namespace => "octo_dispatcher",
+    default_expires_in => "1 day" } )
+  or croak( "Couldn't instantiate SharedMemoryCache" );
+
+my $old_time = "";
+while (1)
+{
+	my $time = $smc->get("dispatcher_stats_datetime");
+	if ($time ne $old_time)
+	{
+		my $dtype_stats = $smc->get("dispatcher_stats_devicetypes");
+		my @dt_stats = ();
+    foreach my $dt (@dtypes)
+    {
+    	$dt =~ s/ /_/;
+			my $nb = (AAT::NOT_NULL($dtype_stats->{$dt}) ? $dtype_stats->{$dt} : 0);
+     	push(@dt_stats, $nb);
+    }
+		Octopussy::RRDTool::Syslog_By_DeviceType_Update(\@dt_stats);
+		$old_time = $time; 
+	}
+	sleep(5);
+}
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=head1 SEE ALSO
+
+octo_dispatcher, octo_extractor, octo_parser, octo_uparser, octo_reporter, 
+octo_scheduler
+
+=cut

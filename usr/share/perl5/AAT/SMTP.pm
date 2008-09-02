@@ -18,7 +18,6 @@ my %conf_file = ();
 Returns SMTP configuration
 
 =cut
-
 sub Configuration($)
 {
 	my $appli = shift;
@@ -34,7 +33,6 @@ sub Configuration($)
 Checks the SMTP connection
 
 =cut
-
 sub Connection_Test($)
 {
 	my $appli = shift;
@@ -60,7 +58,6 @@ sub Connection_Test($)
 Send message to @dests
 
 =cut
-
 sub Send_Message($$$@)
 {
   my ($appli, $subject, $body, @dests) = @_;
@@ -90,7 +87,6 @@ sub Send_Message($$$@)
 Send message with file to @dests
 
 =cut
-
 sub Send_Message_With_File($$$$@)
 {
   my ($appli, $subject, $body, $file, @dests) = @_;

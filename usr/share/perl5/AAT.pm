@@ -59,14 +59,11 @@ use AAT::WebService;
 use AAT::XML;
 use AAT::XMPP;
 
-my $AAT_CONF_FILE = "/etc/aat/aat.xml";
-
 =head1 FUNCTIONS
 
 =head2 DEBUG($text)
 
 =cut
-
 sub DEBUG($)
 {
   my $text = shift;
@@ -83,7 +80,6 @@ sub DEBUG($)
 Checks that value '$value' is not null (undef or '')
 
 =cut
-
 sub NOT_NULL
 {
 	my $value = shift;
@@ -102,7 +98,6 @@ sub NOT_NULL
 Checks that value '$value' is null (undef or '')
 
 =cut
-
 sub NULL($)
 {
 	my $value = shift;
@@ -121,7 +116,6 @@ sub NULL($)
 Converts $value to an array ( @{$value) )
 
 =cut
-
 sub ARRAY($)
 {
 	my $value = shift;
@@ -136,7 +130,6 @@ sub ARRAY($)
 Converts $value to an array reference ( \@{$value} )
 
 =cut
-
 sub ARRAY_REF($)
 {
 	my $value = shift;
@@ -151,7 +144,6 @@ sub ARRAY_REF($)
 Converts $value to an hash ( %{$value} )
 
 =cut
-
 sub HASH($)
 {
   my $value = shift;
@@ -164,7 +156,6 @@ sub HASH($)
 Returns keys for the converted hash $value ( keys %{$value} )
 
 =cut
-
 sub HASH_KEYS($)
 {
   my $value = shift;
@@ -178,7 +169,6 @@ Fills the string $str with '0' to have $padding characters
 ( ex: Padding("7", 3) returns "007" )
 
 =cut
-
 sub Padding
 {
   my ($str, $padding) = @_;
@@ -192,7 +182,6 @@ sub Padding
 Returns Configuration Directory for directory '$dir'
 
 =cut
-
 sub Directory($)
 {
 	my $dir = shift;
@@ -205,7 +194,6 @@ sub Directory($)
 Returns Configuration filename for file '$file'
 
 =cut
-
 sub File($)
 {
 	my $file = shift;
@@ -218,7 +206,6 @@ sub File($)
 Downloads $download to local $dest
 
 =cut
-
 sub Download($$$)
 {
   my ($appli, $download, $dest) = @_;
@@ -237,7 +224,6 @@ sub Download($$$)
 =head2 Update_Configuration($appli, $file, $conf, $rootname)
 
 =cut
-
 sub Update_Configuration($$$$)
 {
   my ($appli, $file, $conf, $rootname) = @_;
@@ -252,7 +238,6 @@ sub Update_Configuration($$$$)
 Returns AAT Version
 
 =cut
-
 sub Version()
 {
  	my $info = AAT::Application::Info("AAT");
@@ -265,7 +250,6 @@ sub Version()
 Returns AAT WebSite
 
 =cut
-
 sub WebSite()
 {
 	my $info = AAT::Application::Info("AAT");
@@ -278,7 +262,6 @@ sub WebSite()
 Get/Set AAT Language
 
 =cut
-
 sub Language
 {
   my $lang = shift;
@@ -293,7 +276,6 @@ sub Language
 Get/Set AAT Menu Mode (Icons&Text, IconsOnly, TextOnly)
 
 =cut
-
 sub Menu_Mode
 {
   my $mode = shift;
@@ -308,7 +290,6 @@ sub Menu_Mode
 Get/Set AAT Theme
 
 =cut
-
 sub Theme
 {
 	my $theme = shift;
@@ -323,7 +304,6 @@ sub Theme
 Translates $str with language $main::Session->{AAT_LANGUAGE}
 
 =cut
-
 sub Translation($)
 {
   my $str = shift;
@@ -337,7 +317,6 @@ sub Translation($)
 
 
 =cut
-
 sub Syslog
 {
 	my ($module, $msg, @args) = @_;

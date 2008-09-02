@@ -7,6 +7,8 @@ package AAT::Proxy;
 
 use strict;
 
+use constant TEST_FILE => "/tmp/test.html";
+
 my %conf_file = ();
 
 =head1 FUNCTIONS
@@ -16,7 +18,6 @@ my %conf_file = ();
 Returns Proxy Configuration
 
 =cut
-
 sub Configuration($)
 {
 	my $appli = shift;
@@ -32,14 +33,13 @@ sub Configuration($)
 Check the Proxy Connection
 
 =cut
-
 sub Connection_Test($)
 {
 	my $appli = shift;
 
-	AAT::Download($appli, "http://www.google.com", "/tmp/test.html");
-	my $status = ((-s "/tmp/test.html" > 0) ? 1 : 0);
-	unlink("/tmp/test.html")	if (-f "/tmp/test.html");
+	AAT::Download($appli, "http://www.google.com", TEST_FILE);
+	my $status = ((-s TEST_FILE > 0) ? 1 : 0);
+	unlink(TEST_FILE)	if (-f TEST_FILE);
 
 	return ($status);
 }

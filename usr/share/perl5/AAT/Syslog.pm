@@ -18,7 +18,6 @@ my %AAT_Syslog = ();
 =head2 Message($module, $msg, @args)
 
 =cut
-
 sub Message($$@)
 {
 	my ($module, $msg, @args) = @_;

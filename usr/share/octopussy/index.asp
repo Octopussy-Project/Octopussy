@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Octopussy" help="index" refresh="10" />
 <%
 Purge_Session();

@@ -8,7 +8,7 @@ package AAT::Application;
 
 use strict;
 
-my $AAT_CONF_FILE = "/etc/aat/aat.xml";
+use constant AAT_CONF_FILE => "/etc/aat/aat.xml";
 
 =head1 FUNCTIONS
 
@@ -17,12 +17,11 @@ my $AAT_CONF_FILE = "/etc/aat/aat.xml";
 Returns Application Information
 
 =cut
-
 sub Info($)
 {
 	my $appli = shift;
 
-	my $conf = AAT::XML::Read($AAT_CONF_FILE);
+	my $conf = AAT::XML::Read(AAT_CONF_FILE);
 	foreach my $a (AAT::ARRAY($conf->{application}))
 	{
 		return ($a)	if ($a->{name} eq $appli);
@@ -36,11 +35,10 @@ sub Info($)
 Returns Directory for Application '$appli' Name '$name'
 
 =cut
-
 sub Directory($$)
 {
   my ($appli, $name) = @_;
-  my $conf = AAT::XML::Read($AAT_CONF_FILE);
+  my $conf = AAT::XML::Read(AAT_CONF_FILE);
   foreach my $a (AAT::ARRAY($conf->{application}))
   {
     if ($a->{name} eq $appli)
@@ -60,11 +58,10 @@ sub Directory($$)
 Returns File for Application '$appli' Name '$name'
 
 =cut
-
 sub File($$)
 {
   my ($appli, $name) = @_;
-  my $conf = AAT::XML::Read($AAT_CONF_FILE);
+  my $conf = AAT::XML::Read(AAT_CONF_FILE);
   foreach my $a (AAT::ARRAY($conf->{application}))
   {
     if ($a->{name} eq $appli)
@@ -84,11 +81,10 @@ sub File($$)
 Returns Parameter Default Value for Application '$appli' Parameter '$param'
 
 =cut
-
 sub Parameter($$)
 {
   my ($appli, $param) = @_;
-  my $conf = AAT::XML::Read($AAT_CONF_FILE);
+  my $conf = AAT::XML::Read(AAT_CONF_FILE);
 	foreach my $a (AAT::ARRAY($conf->{application}))
   {
 		if ($a->{name} eq $appli)

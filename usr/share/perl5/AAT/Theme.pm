@@ -8,7 +8,7 @@ package AAT::Theme;
 
 use strict;
 
-my $DIR = "AAT/THEMES";
+use constant THEME_DIR => "AAT/THEMES/";
 
 =head1 FUNCTIONS
 
@@ -17,10 +17,9 @@ my $DIR = "AAT/THEMES";
 Returns list of available Themes
 
 =cut
-
 sub List()
 {
-	opendir(DIR, "$DIR/");
+	opendir(DIR, THEME_DIR);
   my @themes = grep !/^\.+/, readdir(DIR);
   closedir(DIR);
 
@@ -32,13 +31,13 @@ sub List()
 Returns CSS File Path for Theme '$theme'
 
 =cut
-
 sub CSS_File($)
 {
 	my $theme = shift;
 	
 	$theme = "DEFAULT"  if (AAT::NULL($theme));
-	return ("$DIR/$theme/style.css")	if (-f "$DIR/$theme/style.css");
+	my $file = THEME_DIR . "$theme/style.css";
+	return ("$file")	if (-f "$file");
 	return (undef);
 }
 

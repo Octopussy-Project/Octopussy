@@ -17,7 +17,6 @@ my %AAT_Translation = ();
 Inits Translation Data from directories '@dirs' for language '$lang'
 
 =cut
-
 sub Init($@)
 {
 	my ($lang, @dirs) = @_;
@@ -45,7 +44,6 @@ sub Init($@)
 Gets Translation for string '$str' in language '$lang'
 
 =cut
-
 sub Get($$)
 {
 	my ($lang, $str) = @_;

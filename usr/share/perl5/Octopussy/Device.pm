@@ -13,9 +13,9 @@ use constant STOPPED => 0;
 use constant PAUSED => 1;
 use constant STARTED => 2;
 use constant DEVICE_DIR => "devices";
+use constant PARSER_BIN => "octo_parser";
+use constant UPARSER_BIN => "octo_uparser";
 
-my $PARSER_BIN = "octo_parser";
-my $UPARSER_BIN = "octo_uparser";
 my $devices_dir = undef;
 my $pid_dir = undef;
 my %filenames;
@@ -545,7 +545,7 @@ sub Parse_Pause($)
 	my $device = shift;
 
 	$pid_dir ||= Octopussy::Directory("running");
-	my $pid_file = "$pid_dir/${PARSER_BIN}_${device}.pid";
+	my $pid_file = "$pid_dir/" . PARSER_BIN . "_${device}.pid";
 	if (-f $pid_file)
 	{
   	my $pid = `cat "$pid_file"`;
@@ -554,7 +554,7 @@ sub Parse_Pause($)
 #		unlink("$pid_file");
 	}
 
-	$pid_file = "$pid_dir/${UPARSER_BIN}_${device}.pid";
+	$pid_file = "$pid_dir/" . UPARSER_BIN . "_${device}.pid";
 	if (-f $pid_file)
   {
   	my $pid = `cat "$pid_file"`;
@@ -585,7 +585,8 @@ sub Parse_Start($)
 
 	if (defined $conf)
 	{
-		system("$base$PARSER_BIN $device &");
+		my $cmd = "$base" . PARSER_BIN . " $device &";
+		system("$cmd");
 		$devices_dir ||= Octopussy::Directory(DEVICE_DIR);	
 		Octopussy::Dispatcher_Reload()	if ($conf->{status} eq "Stopped");
 		$conf->{status} = "Started";
