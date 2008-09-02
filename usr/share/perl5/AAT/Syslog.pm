@@ -39,6 +39,21 @@ sub Message($$@)
   closelog();
 }
 
+=head2 Messages($module, \@messages)
+
+Syslog many messages in one shot
+
+=cut
+sub Messages
+{
+	my ($module, $msgs) = @_;
+
+	openlog($module, LOG_INFO, LOG_LOCAL5);
+	foreach my $msg (AAT::ARRAY($msgs))
+		{ syslog(LOG_INFO, $msg); }
+  closelog();	
+}
+
 1;
 
 =head1 SEE ALSO

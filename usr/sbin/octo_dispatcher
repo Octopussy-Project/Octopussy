@@ -16,6 +16,7 @@ to receive syslog lines and dispatche into device directories
 use strict;
 use Cache::SharedMemoryCache;
 use File::Copy;
+use AAT;
 use Octopussy;
 
 use constant PROG_NAME => "octo_dispatcher";
@@ -123,20 +124,20 @@ while (<>)
         	print "Unable to open file '$file'\n";
         	AAT::Syslog("octo_dispatcher", "UNABLE_OPEN_FILE", $file);
       	}
-=head2 comment
-				if ($mod == 0)
-				{ # only by minute
-					AAT::Syslog(PROG_NAME, "Device: $device - Events: $i");
-				}
-=cut
 				delete $logs{$device};
 			}
 			if (($n_min != $min) || ($n_hour != $hour) || ($n_mday != $mday)
       	|| ($n_month != $month)) # not the same minute than last minute
 			{
+				my @syslogs = ();
+				foreach my $k (sort keys %nb_events)
+    			{ push(@syslogs, "Device: $k - Events: $nb_events{$k}"); }
+				AAT::Syslog::Messages(PROG_NAME, \@syslogs);
+				#my %stat_devices = %nb_events;
+				#my %stat_devicetypes = %dtype_stats;
 				$smc->set("dispatcher_stats_datetime", "$year$month$mday$hour$min");
-        $smc->set("dispatcher_stats_devices", \%nb_events);
-				$smc->set("dispatcher_stats_devicetypes", \%dtype_stats);
+        $smc->set("dispatcher_stats_devices", \%nb_events); #\%stat_devices);
+				$smc->set("dispatcher_stats_devicetypes", \%dtype_stats); #\%stats_devicetypes);
 				%dtype_stats = ();
 				%nb_events = ();
 				($year, $month, $mday, $hour, $min, $sec) =
