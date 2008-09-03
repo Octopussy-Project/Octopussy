@@ -23,6 +23,8 @@
         regexp="^.?Gnash" />
 	<item label="Google Desktop" value="google_desktop"
         regexp="Google Desktop" logo="software/logo_google_desktop" />
+	<item label="Google Earth" value="google_desktop"
+        regexp="GoogleEarth" logo="software/logo_google_desktop" />
 	<item label="iCab" value="icab"
         regexp="iCab" logo="browsers/browser_icab" />
 	<item label="Iceweasel" value="iceweasel"

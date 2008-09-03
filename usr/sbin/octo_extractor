@@ -19,7 +19,7 @@ octo_extractor is the program used by the Octopussy Project to extract Logs
 
 use strict;
 no strict 'refs';
-use Cache::SharedMemoryCache;
+use Cache::FileCache;
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
@@ -34,7 +34,7 @@ my ($opt_taxonomy, $opt_begin, $opt_end, $pid_param, $output);
 my (@opt_include, @opt_exclude);
 my $pid_file = undef;
 my $dir_pid = Octopussy::Directory("running");
-my $shared_memory_cache = undef;
+my $cache = undef;
 
 =head1 FUNCTIONS
 
@@ -97,8 +97,7 @@ sub Progress
 {
   my ($msg, $num, $nb_match) = @_;
 
-	$shared_memory_cache->set("status_$$", 
-		AAT::Translation($msg) . " [$num] [$nb_match]");
+	$cache->set("status_$$", AAT::Translation($msg) . " [$num] [$nb_match]");
 }
 
 =head2 Get_Messages_To_Parse($services, $taxonomy)
@@ -287,7 +286,7 @@ sub End
 {
   AAT::Syslog($PROG_NAME, "Logs Extraction Aborted !");
   unlink($pid_file);
-	$shared_memory_cache->remove("status_$$");
+	$cache->remove("status_$$");
   exit();
 }
 
@@ -308,10 +307,10 @@ Help()	if ((! $status) || ($help)
 	|| (! @opt_devices) || (! @opt_services) 
 	|| (!defined $opt_begin) || (!defined $opt_end));
 
-$shared_memory_cache =
-  new Cache::SharedMemoryCache( { namespace => "octo_extractor",
-    default_expires_in => "1 hour" } ) or
-  croak( "Couldn't instantiate SharedMemoryCache" );
+$cache = new Cache::FileCache( { namespace => "octo_extractor",
+    default_expires_in => "1 hour", cache_root => $dir_pid,
+		directory_umask => "007" } ) 
+	or croak( "Couldn't instantiate FileCache" );
 
 my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
 $pid_file = Octopussy::PID_File($pid_name);
@@ -320,7 +319,7 @@ Print_Logs(\@opt_devices, \@opt_services, $opt_taxonomy,
 	$opt_begin, $opt_end, \@opt_include, \@opt_exclude);
 
 unlink($pid_file);
-$shared_memory_cache->remove("status_$$");
+$cache->remove("status_$$");
 
 =head1 AUTHOR
 

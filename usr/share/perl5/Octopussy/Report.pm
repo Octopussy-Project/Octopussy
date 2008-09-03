@@ -5,9 +5,8 @@ Octopussy::Report - Octopussy Report module
 =cut
 package Octopussy::Report;
 
-use strict;
+use strict; 
 no strict 'refs';
-use Cache::SharedMemoryCache;
 use Proc::ProcessTable;
 
 use Octopussy;
@@ -444,14 +443,16 @@ Returns list of Reports in progress
 =cut
 sub Running_List()
 {
-	my $shared_memory_cache =
-  	new Cache::SharedMemoryCache( { namespace => REPORTER_BIN } );
+	my $pid_dir = Octopussy::Directory("running");
+	my $cache = new Cache::FileCache( { namespace => REPORTER_BIN,
+  	default_expires_in => "1 day", cache_root => $pid_dir,
+   	directory_umask => "007"  } );
 	my $pt = new Proc::ProcessTable;
 	my @list = ();
-	my @keys = $shared_memory_cache->get_keys();
+	my @keys = $cache->get_keys();
 	foreach my $k (@keys)
 	{
-  	my $v = $shared_memory_cache->get($k);
+  	my $v = $cache->get($k);
   	if ($k =~ /^info_(\d+)/)
   	{
     	my $pid = $1;
@@ -460,7 +461,7 @@ sub Running_List()
 				{ $match = 1	if ($pid == $p->{pid}); }
 			if ($match)
 			{
-				my $status = $shared_memory_cache->get("status_$pid");
+				my $status = $cache->get("status_$pid");
 				push(@list, { report => $v->{report}, started => $v->{started},
 					devices => join(",", @{$v->{devices}}), 
 					services => join(",", @{$v->{services}}),
@@ -468,8 +469,8 @@ sub Running_List()
 			}
 			else
 			{
-				$shared_memory_cache->remove("info_$pid");
-				$shared_memory_cache->remove("status_$pid");
+				$cache->remove("info_$pid");
+				$cache->remove("status_$pid");
 			}
   	}
 	}

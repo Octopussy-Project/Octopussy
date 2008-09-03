@@ -5,14 +5,12 @@ Octopussy::Stats - Octopussy System Stats module
 =cut
 package Octopussy::Stats;
 
-use strict;
-use Sys::CPU;
-use Cache::SharedMemoryCache;
+use strict; 
 
-my $smc = new Cache::SharedMemoryCache( { namespace => "octo_dispatcher",
-    default_expires_in => "1 day" } )
-    or croak( "Couldn't instantiate SharedMemoryCache");
-my $pid_dir = undef;
+use Sys::CPU;
+use Octopussy;
+
+my $cache = undef;
 
 =head1 FUNCTIONS
 
@@ -150,8 +148,16 @@ sub Events()
 {
 	my %device;
 
-	my $time = $smc->get("dispatcher_stats_datetime");
-	my $stats = $smc->get("dispatcher_stats_devices");
+	if (!defined $cache)
+	{
+		my $dir_pid = Octopussy::Directory("running");
+		$cache = new Cache::FileCache( { namespace => "octo_dispatcher",
+    		default_expires_in => "1 day", cache_root => $dir_pid,
+    		directory_umask => "007" } )
+  		or croak( "Couldn't instantiate FileCache");
+	}
+	my $time = $cache->get("dispatcher_stats_datetime");
+	my $stats = $cache->get("dispatcher_stats_devices");
 	foreach my $k (keys %{$stats})
 		{ $device{$k} = $stats->{$k};	}
 

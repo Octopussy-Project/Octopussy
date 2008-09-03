@@ -14,26 +14,25 @@ octo_rrd is the program used by the Octopussy Project
 to generate RRD Graphs from dispatcher stats
 
 =cut
-
-use strict;
-use Cache::SharedMemoryCache;
+use strict; 
 
 use AAT;
 use Octopussy;
 
-my @dtypes = Octopussy::Device::Types(); # need reload if list changes
-
-my $smc = new Cache::SharedMemoryCache( { namespace => "octo_dispatcher",
-    default_expires_in => "1 day" } )
-  or croak( "Couldn't instantiate SharedMemoryCache" );
+my @dtypes = Octopussy::Device::Types();
+my $dir_pid = Octopussy::Directory("running");
+my $cache = new Cache::FileCache( { namespace => "octo_dispatcher",
+    default_expires_in => "1 day", cache_root => $dir_pid,
+    directory_umask => "007" } )
+  or croak( "Couldn't instantiate FileCache" );
 
 my $old_time = "";
 while (1)
 {
-	my $time = $smc->get("dispatcher_stats_datetime");
+	my $time = $cache->get("dispatcher_stats_datetime");
 	if ($time ne $old_time)
 	{
-		my $dtype_stats = $smc->get("dispatcher_stats_devicetypes");
+		my $dtype_stats = $cache->get("dispatcher_stats_devicetypes");
 		my @dt_stats = ();
     foreach my $dt (@dtypes)
     {

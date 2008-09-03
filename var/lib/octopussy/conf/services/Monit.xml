@@ -2,8 +2,8 @@
 <octopussy_service description="Monit Service"
                    icon="software/logo_monit"
                    name="Monit"
-                   nb_messages="012"
-                   version="200806120001"
+                   nb_messages="014"
+                   version="200807170001"
                    website="http://www.tildeslash.com/monit/">
   <message loglevel="Notice"
            msg_id="Monit:process_pid_changed_to"
@@ -83,4 +83,16 @@
            rank="013"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Monit:doesnt_contain_valid_pidnumber"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;monit: pidfile .+ does not contain a valid pidnumber&quot;):msg@&gt;"
+           rank="014"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Information"
+           msg_id="Monit:application_started"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.* started&quot;):msg@&gt;"
+           rank="015"
+           table="Message"
+           taxonomy="Application.Start" />
 </octopussy_service>

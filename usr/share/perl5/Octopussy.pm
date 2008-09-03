@@ -3,12 +3,12 @@
 Octopussy - Octopussy main module
 
 =cut
-
 package Octopussy;
 
 use strict;
+
 use AAT;
-use Cache::SharedMemoryCache;
+use Cache::FileCache;
 use File::Path;
 use Octopussy::Alert;
 #use Octopussy::Contact;
@@ -39,6 +39,8 @@ use Octopussy::TimePeriod;
 use Octopussy::Type;
 
 use constant APPLICATION_NAME => "Octopussy";
+use constant 
+	SF_SITE => "http://sourceforge.net/project/showfiles.php?group_id=154314";
 
 =head1 FUNCTIONS
 
@@ -142,9 +144,10 @@ sub Status_Progress($$)
 	{
 		my $pid = <PIDFILE>;
 		chomp($pid);
-		my $shared_memory_cache =
-  		new Cache::SharedMemoryCache( { namespace => $bin } );
-		$status = $shared_memory_cache->get("status_${pid}");
+		my $cache = new Cache::FileCache( { namespace => $bin, 
+			default_expires_in => "1 day", cache_root => $pid_dir,
+    	directory_umask => "007" } );
+		$status = $cache->get("status_${pid}");
 		close(PIDFILE);
 	}
 
@@ -158,11 +161,10 @@ Get version of the last release on Sourceforge
 =cut
 sub Sourceforge_Version
 {
-	my $SF_SITE = "http://sourceforge.net/project/showfiles.php?group_id=154314";
-
 	my $running_dir = Octopussy::Directory("running");
 	my $version = undef;
-	AAT::Download("Octopussy", $SF_SITE, "${running_dir}/octopussy.sf_version");
+	AAT::Download(APPLICATION_NAME, SF_SITE, 
+		"${running_dir}/octopussy.sf_version");
 	open(UPDATE, "< ${running_dir}/octopussy.sf_version");
 	while (<UPDATE>)
 	{

@@ -3,7 +3,7 @@
                    icon="software/logo_mysql"
                    name="MySQL"
                    nb_messages="056"
-                   version="200805220003"
+                   version="200807150001"
                    website="http://www.mysql.com">
   <message loglevel="Critical"
            msg_id="MySQL:cant_connect_through_socket"
@@ -377,4 +377,10 @@
            rank="062"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Critical"
+           msg_id="MySQL:partition_is_too_full"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*mysql.*&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;ERROR: The partition with .+ is too full!&quot;):msg@&gt;"
+           rank="063"
+           table="Message"
+           taxonomy="System.Errors" />
 </octopussy_service>

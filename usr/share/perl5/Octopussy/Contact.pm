@@ -3,7 +3,6 @@
 Octopussy::Contact - Octopussy Contact module
 
 =cut
-
 package Octopussy::Contact;
 
 use strict;
@@ -26,7 +25,6 @@ Parameters:
 \%conf - hashref of the new contact configuration
 
 =cut
-
 sub New($)
 {
 	my $conf = shift;
@@ -62,7 +60,6 @@ Parameters:
 $contact - Name of the contact to remove
 
 =cut
- 
 sub Remove($)
 {
 	my $contact = shift;
@@ -80,7 +77,6 @@ Returns:
 @contacts - Array of contact names
 
 =cut
- 
 sub List()
 {
 	$contacts_dir ||= Octopussy::Directory("contacts");
@@ -110,7 +106,6 @@ Returns:
 $filename - Filename of the XML file for contact '$contact'
 
 =cut
- 
 sub Filename($)
 {
 	my $contact = shift;
@@ -145,7 +140,6 @@ Returns:
 \%conf - Hashref of the contact configuration
 
 =cut
- 
 sub Configuration($)
 {
 	my $contact = shift;
@@ -169,7 +163,6 @@ Returns:
 @configurations - Array of Hashref contact configurations  
 
 =cut
- 
 sub Configurations($)
 {
   my $sort = shift;

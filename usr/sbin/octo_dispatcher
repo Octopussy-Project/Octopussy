@@ -12,9 +12,8 @@ to receive syslog lines and dispatche into device directories
 (syslog --> <device>/YYYY/MM/DD/Incoming)
 
 =cut
+use strict; 
 
-use strict;
-use Cache::SharedMemoryCache;
 use File::Copy;
 use AAT;
 use Octopussy;
@@ -22,9 +21,10 @@ use Octopussy;
 use constant PROG_NAME => "octo_dispatcher";
 
 my $dir_pid = Octopussy::Directory("running");
-my $smc = new Cache::SharedMemoryCache( { namespace => "octo_dispatcher",
-    default_expires_in => "1 day" } ) 
-	or croak( "Couldn't instantiate SharedMemoryCache" );
+my $cache = new Cache::FileCache( { namespace => "octo_dispatcher",
+    default_expires_in => "1 day", cache_root => $dir_pid,
+		directory_umask => "007" } ) 
+	or croak( "Couldn't instantiate FileCache" );
 
 my %device_dir;
 my %device_type;
@@ -133,11 +133,9 @@ while (<>)
 				foreach my $k (sort keys %nb_events)
     			{ push(@syslogs, "Device: $k - Events: $nb_events{$k}"); }
 				AAT::Syslog::Messages(PROG_NAME, \@syslogs);
-				#my %stat_devices = %nb_events;
-				#my %stat_devicetypes = %dtype_stats;
-				$smc->set("dispatcher_stats_datetime", "$year$month$mday$hour$min");
-        $smc->set("dispatcher_stats_devices", \%nb_events); #\%stat_devices);
-				$smc->set("dispatcher_stats_devicetypes", \%dtype_stats); #\%stats_devicetypes);
+				$cache->set("dispatcher_stats_datetime", "$year$month$mday$hour$min");
+        $cache->set("dispatcher_stats_devices", \%nb_events);
+				$cache->set("dispatcher_stats_devicetypes", \%dtype_stats);
 				%dtype_stats = ();
 				%nb_events = ();
 				($year, $month, $mday, $hour, $min, $sec) =

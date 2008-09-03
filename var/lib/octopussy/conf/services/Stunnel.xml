@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Stunnel Service"
                    name="Stunnel"
-                   nb_messages="010"
-                   version="200806300002"
+                   nb_messages="012"
+                   version="200808250002"
                    website="http://www.stunnel.org/">
   <message loglevel="Information"
            msg_id="Stunnel:nb_clients_allowed"
@@ -68,6 +68,18 @@
            msg_id="Stunnel:no_route_to_host"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: LOG3[&lt;@NUMBER:pid@&gt;:&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;connect_wait: getsockopt: No route to host.*&quot;):msg@&gt;"
            rank="011"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Stunnel:SSL_socket_closed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: LOG3[&lt;@NUMBER:pid@&gt;:&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;SSL socket closed with \d+ byte(s) in buffer&quot;):msg@&gt;"
+           rank="012"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Stunnel:Connection_closed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: LOG5[&lt;@NUMBER:pid@&gt;:&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;Connection closed: .+ bytes sent to SSL, .+ bytes sent to socket&quot;):msg@&gt;"
+           rank="013"
            table="Message"
            taxonomy="Network.Errors" />
 </octopussy_service>

@@ -300,6 +300,9 @@
 	<item label="LG KF700" value="mobile_lg_kf700"
         regexp="LG-KF700"
         constructor="LG" model="KF700" logo="companies/logo_lg" />
+	<item label="LG KF75" value="mobile_lg_kf75"
+        regexp="LG-KF75"
+        constructor="LG" model="KF75" logo="companies/logo_lg" />
 	<item label="LG KF750" value="mobile_lg_kf750"
         regexp="LG-KF750"
         constructor="LG" model="KF750" logo="companies/logo_lg" />
@@ -327,6 +330,9 @@
 	<item label="LG KM500" value="mobile_lg_km500"
         regexp="LG-KM500"
         constructor="LG" model="KM500" logo="companies/logo_lg" />
+	<item label="LG KP130" value="mobile_lg_kp130"
+        regexp="LG-KP130"
+        constructor="LG" model="KP130" logo="companies/logo_lg" />
 	<item label="LG KP202" value="mobile_lg_kp202"
         regexp="(portalmmm.+ |LG-)KP202" 
 				constructor="LG" model="KP202" logo="companies/logo_lg" />
@@ -565,6 +571,9 @@
 	<item label="Nokia 5210" value="mobile_nokia_5210"
         regexp="Nokia5210"
         constructor="Nokia" model="5210" logo="companies/logo_nokia" />
+	<item label="Nokia 5220" value="mobile_nokia_5220"
+        regexp="Nokia5220"
+        constructor="Nokia" model="5220" logo="companies/logo_nokia" />
 	<item label="Nokia 5300" value="mobile_nokia_5300"
         regexp="Nokia5300"
         constructor="Nokia" model="5300" logo="companies/logo_nokia" />
@@ -848,6 +857,9 @@
 	<item label="Pantech G500" value="mobile_pantech_g500"
         regexp="PANTECH G500"
         constructor="Pantech" model="G500" logo="companies/logo_pantech" />
+	<item label="Pantech U4000" value="mobile_pantech_u4000"
+        regexp="PANTECH-EUROPA-U4000"
+        constructor="Pantech" model="U4000" logo="companies/logo_pantech" />
 
 	<item label="Philips 330" value="mobile_philips_330"
         regexp="PHILIPS 330"
@@ -886,7 +898,6 @@
 	<item label="Sagem my400V" value="mobile_sagem_my400v"
         regexp="SAGEM-my400V"
         constructor="Sagem" model="my400V" logo="companies/logo_sagem" />
-Sagem-my401C
 	<item label="Sagem my401C" value="mobile_sagem_my401c"
         regexp="(portalmmm.+ |Sagem-)my401C" 
 				constructor="Sagem" model="my401C" logo="companies/logo_sagem" />
@@ -908,6 +919,9 @@ Sagem-my401C
 	<item label="Sagem my411Xi" value="mobile_sagem_my411xi"
         regexp="portalmmm.2.0 my411Xi"
         constructor="Sagem" model="my411Xi" logo="companies/logo_sagem" />
+	<item label="Sagem my418X" value="mobile_sagem_my418x"
+        regexp="SAGEM-my418x"
+        constructor="Sagem" model="my418X" logo="companies/logo_sagem" />
 	<item label="Sagem my419X" value="mobile_sagem_my419x"
         regexp="SAGEM-my419x"
         constructor="Sagem" model="my419X" logo="companies/logo_sagem" />
@@ -1559,6 +1573,9 @@ Sagem-my401C
 	<item label="Sony Ericsson M600" value="mobile_sony_ericsson_M600"
         regexp="SonyEricssonM600"
         constructor="Sony Ericsson" model="M600" logo="companies/logo_sonyericsson" />
+	<item label="Sony Ericsson P1i" value="mobile_sony_ericsson_p1i"
+        regexp="SonyEricssonP1i"
+        constructor="Sony Ericsson" model="P1i" logo="companies/logo_sonyericsson" />
 	<item label="Sony Ericsson P700" value="mobile_sony_ericsson_p700"
         regexp="SonyEricssonP700"
         constructor="Sony Ericsson" model="P700" logo="companies/logo_sonyericsson" />
@@ -1682,6 +1699,9 @@ Sagem-my401C
 	<item label="Sony Ericsson W950" value="mobile_sony_ericsson_w950"
         regexp="SonyEricssonW950"
         constructor="Sony Ericsson" model="W950" logo="companies/logo_sonyericsson" />
+	<item label="Sony Ericsson W980" value="mobile_sony_ericsson_w980"
+        regexp="SonyEricssonW980"
+        constructor="Sony Ericsson" model="W980" logo="companies/logo_sonyericsson" />
 	<item label="Sony Ericsson Z300" value="mobile_sony_ericsson_z300"
         regexp="SonyEricssonZ300"
         constructor="Sony Ericsson" model="Z300" logo="companies/logo_sonyericsson" />	

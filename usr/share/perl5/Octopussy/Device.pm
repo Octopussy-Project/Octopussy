@@ -3,7 +3,6 @@
 Octopussy::Device - Octopussy Device module
 
 =cut
-
 package Octopussy::Device;
 
 use strict;
