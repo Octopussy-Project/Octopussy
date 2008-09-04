@@ -26,7 +26,6 @@ octo_reporter is the program used by the Octopussy Project to generate Reports
 =cut
 use strict;
 no strict 'refs';
-use Cache::FileCache;
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
@@ -297,7 +296,7 @@ Help()	if ((! $status) || ($help)
 
 my $pid = $$;
 $cache = new Cache::FileCache( { namespace => "octo_reporter", 
-		default_expires_in => "1 hour", cache_root => $pid_dir,
+		default_expires_in => "1 hour", cache_root => $dir_pid,
     directory_umask => "007"  } ) 
 	or croak( "Couldn't instantiate FileCache" );
 

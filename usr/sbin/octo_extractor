@@ -1,5 +1,4 @@
 #!/usr/bin/perl -w
-
 =head1 NAME
 
 octo_extractor - Octopussy Logs Extractor program
@@ -16,10 +15,9 @@ octo_extractor --device <device> --service <service> --taxonomy <taxonomy>
 octo_extractor is the program used by the Octopussy Project to extract Logs
 
 =cut
-
 use strict;
 no strict 'refs';
-use Cache::FileCache;
+
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
