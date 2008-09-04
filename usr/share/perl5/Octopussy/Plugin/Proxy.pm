@@ -1,12 +1,8 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Plugin::Proxy - Octopussy Plugin Proxy
 
 =cut
-
 package Octopussy::Plugin::Proxy;
 
 use strict;
@@ -19,12 +15,11 @@ my @mimes = ();
 =head2 Init()
 
 =cut
-
 sub Init
 {
-	my $mime_conf = AAT::List::Configuration("AAT_Mime");
+	my $conf_mime = AAT::List::Configuration("AAT_Mime");
 	
-  foreach my $i (AAT::ARRAY($mime_conf->{item}))
+  foreach my $i (AAT::ARRAY($conf_mime->{item}))
   {
     push(@mimes, { label => $i->{label},
       logo => $i->{logo}, regexp => qr/$i->{regexp}/i })

@@ -3,7 +3,6 @@
 AAT::Certificate - AAT Certificate module
 
 =cut
-
 package AAT::Certificate;
 
 use strict;
@@ -33,8 +32,8 @@ sub Authority_Configuration($)
 	my $appli = shift;
 	my %conf = ();
 
-	my $ca_dir = AAT::Application::Directory($appli, "certificate_authority");
-	my @lines = `$SSL_X509 -text -noout -in $ca_dir/cacert.pem`;
+	my $dir_ca = AAT::Application::Directory($appli, "certificate_authority");
+	my @lines = `$SSL_X509 -text -noout -in $dir_ca/cacert.pem`;
 	foreach my $line (@lines)
 	{
 		if ($line =~ /Subject: C=(\w+), ST=(.+?), L=(.+?), O=(.+?), OU=(.+?), CN=(.+?)\/emailAddress=(\S+)$/)
@@ -56,11 +55,11 @@ sub Authority_Create($$)
 {
 	my ($appli, $conf) = @_;
 
-	my $ca_dir = AAT::Application::Directory($appli, "certificate_authority");
-	`rm -rf $ca_dir`;
-	`mkdir -p $ca_dir/{certs,crl,newcerts,private}`;
-  `touch $ca_dir/index.txt`;
-  `echo "01" > $ca_dir/serial`;
+	my $dir_ca = AAT::Application::Directory($appli, "certificate_authority");
+	`rm -rf $dir_ca`;
+	`mkdir -p $dir_ca/{certs,crl,newcerts,private}`;
+  `touch $dir_ca/index.txt`;
+  `echo "01" > $dir_ca/serial`;
 
 	`cp $CONF $CONF_CA.tmp`;
 	open(FILE, "< $CONF_CA.tmp");
@@ -77,8 +76,8 @@ sub Authority_Create($$)
 	}
 	close(FILE); 
 	close(OUT);
-	`$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $ca_dir/private/cakey.pem -out $ca_dir/cacert.pem`;
-	`chmod -R 600 $ca_dir/private`;
+	`$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $dir_ca/private/cakey.pem -out $dir_ca/cacert.pem`;
+	`chmod -R 600 $dir_ca/private`;
 }
 
 =head2 Client_Create($appli, $file, $password, \%conf)
@@ -90,7 +89,7 @@ sub Client_Create($$$$)
 {
 	my ($appli, $file, $password, $conf) = @_;
 
-	my $ca_dir = AAT::Application::Directory($appli, "certificate_authority");
+	my $dir_ca = AAT::Application::Directory($appli, "certificate_authority");
 	my $info = AAT::Application::Info($appli);
 	`cp $CONF $CONF_CLIENT.tmp`;
   open(FILE, "< $CONF_CLIENT.tmp");
@@ -103,7 +102,7 @@ sub Client_Create($$$$)
       my $sub = "<" . uc($k) . ">";
       $line =~ s/$sub/$conf->{$k}/g;
     }
-    $line =~ s/<DIR>/$ca_dir/g;
+    $line =~ s/<DIR>/$dir_ca/g;
     print OUT $line;
   }
   close(FILE);
@@ -123,7 +122,7 @@ sub Server_Create
 {
 	my ($appli, $dest, $conf) = @_;
 
-	my $ca_dir = AAT::Application::Directory($appli, "certificate_authority");	
+	my $dir_ca = AAT::Application::Directory($appli, "certificate_authority");	
 	my $info = AAT::Application::Info($appli);
 	`cp $CONF $CONF_SERVER.tmp`;
   open(FILE, "< $CONF_SERVER.tmp");
@@ -136,7 +135,7 @@ sub Server_Create
       my $sub = "<" . uc($k) . ">";
       $line =~ s/$sub/$conf->{$k}/g;
     }
-		$line =~ s/<DIR>/$ca_dir/g;
+		$line =~ s/<DIR>/$dir_ca/g;
     print OUT $line;
   }
   close(FILE);

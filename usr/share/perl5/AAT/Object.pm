@@ -33,14 +33,14 @@ Returns Object data
 sub Data($$)
 {
 	my ($appli, $object) = @_;
-	my ($list_conf, $list)  = (undef, undef);
+	my ($conf_list, $list)  = (undef, undef);
 
 	my $conf = Configuration($object);
 	if ($conf->{backend} =~ /^XML$/i)
 	{
-  	$list_conf = AAT::XML::Read($conf->{source});
+  	$conf_list = AAT::XML::Read($conf->{source});
   	$object = lc($object);
-  	$list = $list_conf->{$object};
+  	$list = $conf_list->{$object};
 	}
 	elsif ($conf->{backend} =~ /^DB$/i)
 	{

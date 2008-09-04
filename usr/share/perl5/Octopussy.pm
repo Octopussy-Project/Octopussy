@@ -136,19 +136,19 @@ Returns Status Progress line for ProgressBar of program $bin
 sub Status_Progress($$)
 {
 	my ($bin, $param) = @_;
-	my $pid_dir = Octopussy::Directory("running");
-	my $pid_file = "${pid_dir}${bin}_${param}.pid";
+	my $dir_pid = Octopussy::Directory("running");
+	my $file_pid = "${dir_pid}${bin}_${param}.pid";
 	my $status = "";
 
-	if (defined open(PIDFILE, "< $pid_file"))
+	if (defined open(FILEPID, "< $file_pid"))
 	{
-		my $pid = <PIDFILE>;
+		my $pid = <FILEPID>;
 		chomp($pid);
 		my $cache = new Cache::FileCache( { namespace => $bin, 
-			default_expires_in => "1 day", cache_root => $pid_dir,
+			default_expires_in => "1 day", cache_root => $dir_pid,
     	directory_umask => "007" } );
 		$status = $cache->get("status_${pid}");
-		close(PIDFILE);
+		close(FILEPID);
 	}
 
 	return ($status);
@@ -161,18 +161,19 @@ Get version of the last release on Sourceforge
 =cut
 sub Sourceforge_Version
 {
-	my $running_dir = Octopussy::Directory("running");
+	my $dir_running = Octopussy::Directory("running");
 	my $version = undef;
 	AAT::Download(APPLICATION_NAME, SF_SITE, 
-		"${running_dir}/octopussy.sf_version");
-	open(UPDATE, "< ${running_dir}/octopussy.sf_version");
+		"${dir_running}/octopussy.sf_version");
+	open(UPDATE, "< ${dir_running}/octopussy.sf_version");
 	while (<UPDATE>)
 	{
 		$version = $1
   		if ($_ =~ /showfiles.php\?group_id=154314&amp;package_id=\d+&amp;release_id=\d+">Octopussy (\S+)<\/a>/);
 	}
 	close(UPDATE);
-	unlink("${running_dir}octopussy.sf_version");
+	unlink("${dir_running}octopussy.sf_version");
+
 	return ($version);
 }
 
@@ -187,14 +188,14 @@ sub Web_Updates
 	my $file = "_" . lc($type) . ".idx";
 	my %update;
 	my $website = WebSite();
-	my $running_dir = Octopussy::Directory("running");
+	my $dir_running = Octopussy::Directory("running");
 	AAT::Download("Octopussy", "$website/Download/$type/$file", 
-		"$running_dir$file");
-	open(UPDATE, "< $running_dir$file");
+		"$dir_running$file");
+	open(UPDATE, "< $dir_running$file");
 	while (<UPDATE>)
 		{ $update{$1} = $2  if ($_ =~ /^(.+):(\d+)$/); }
 	close(UPDATE);
-	unlink("$running_dir$file");
+	unlink("$dir_running$file");
 
 	return (\%update);
 }
@@ -281,27 +282,27 @@ sub PID_File
 	my $name = shift;
 
 	my $dir_pid = Octopussy::Directory("running");
-	my $pid_file = $dir_pid . $name . ".pid";
+	my $file_pid = $dir_pid . $name . ".pid";
 	my $user = User();
 
 	my $line = `id $user`;
 	my ($uid, $gid) = ($1, $2)
   	if ($line =~ /uid=(\d+)\($user\) gid=(\d+)\($user\)/);
-	my @attr = stat($pid_file);
+	my @attr = stat($file_pid);
 
-	if ((-f $pid_file) && (($uid != $attr[4]) || ($gid != $attr[5])))
+	if ((-f $file_pid) && (($uid != $attr[4]) || ($gid != $attr[5])))
 	{
 		AAT::Syslog("octopussy", 
-			"ERROR: pid file '$pid_file' doesn't match octopussy uid/gid !");
+			"ERROR: pid file '$file_pid' doesn't match octopussy uid/gid !");
 	}
 	else
 	{
-		open(FILE, "> $pid_file");
+		open(FILE, "> $file_pid");
 		print FILE $$;
 		close(FILE);
 	}
 
-	return ($pid_file);
+	return ($file_pid);
 }
 
 =head2 Device_Stats_File($device)
@@ -343,14 +344,14 @@ Reloads Dispatcher
 =cut
 sub Dispatcher_Reload
 {
-	my $pid_dir = Octopussy::Directory("running");
-  opendir(DIR, $pid_dir);
+	my $dir_pid = Octopussy::Directory("running");
+  opendir(DIR, $dir_pid);
 	my @files = grep /octo_dispatcher\.pid$/, readdir DIR;
   closedir(DIR);
 
   foreach my $file (@files)
   {
-    my $pid = `cat $pid_dir$file`;
+    my $pid = `cat $dir_pid$file`;
     chomp($pid);
 		`/bin/kill -HUP $pid`;
   }
@@ -413,12 +414,12 @@ sub Updates_Installation
 {
   my @updates = @_;
   my $web = Octopussy::WebSite();
-  my $main_dir = Octopussy::Directory("main");
+  my $dir_main = Octopussy::Directory("main");
 
   foreach my $u (@updates)
   { 
 		AAT::Download("Octopussy", "$web/Download/System/$u.xml", 
-			"$main_dir/$u.xml"); 
+			"$dir_main/$u.xml"); 
 	}
 }
 

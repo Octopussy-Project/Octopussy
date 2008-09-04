@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Report::PDF - Octopussy PDF Report module
@@ -26,10 +23,10 @@ sub Generate_From_HTML($)
   my $file = shift;
 
 	$ENV{HTMLDOC_NOCGI} = 1;
-	my $pdf_file = Octopussy::File_Ext($file, "pdf");
+	my $file_pdf = Octopussy::File_Ext($file, "pdf");
 	`$SED "s/AAT_THEMES/\\\/usr\\\/share\\\/octopussy\\\/AAT_THEMES/g" "$file" > "$file.tmp"`;
-	`$HTMLDOC -f "$pdf_file" "$file.tmp"`;
-	Octopussy::Chown($pdf_file);
+	`$HTMLDOC -f "$file_pdf" "$file.tmp"`;
+	Octopussy::Chown($file_pdf);
 	unlink("$file.tmp");
 }
 

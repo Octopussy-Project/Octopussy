@@ -35,13 +35,13 @@ sub Send($$$)
 {
   my ($appli, $level, $msg) = @_;
 	
-	my $nsca_conf = Configuration($appli);
-  if ((defined $nsca_conf)
-    && (defined $nsca_conf->{bin}) && (defined $nsca_conf->{conf})
-    && (-e $nsca_conf->{bin}) && (-e $nsca_conf->{conf}))
+	my $conf_nsca = Configuration($appli);
+  if ((defined $conf_nsca)
+    && (defined $conf_nsca->{bin}) && (defined $conf_nsca->{conf})
+    && (-e $conf_nsca->{bin}) && (-e $conf_nsca->{conf}))
   {
-    open(NSCA, "| $nsca_conf->{bin} -H $nsca_conf->{nagios_server} -c $nsca_conf->{conf}");
-    print NSCA "$nsca_conf->{nagios_host}\t$nsca_conf->{nagios_service}\t$level\t$msg\n";
+    open(NSCA, "| $conf_nsca->{bin} -H $conf_nsca->{nagios_server} -c $conf_nsca->{conf}");
+    print NSCA "$conf_nsca->{nagios_host}\t$conf_nsca->{nagios_service}\t$level\t$msg\n";
     close(NSCA);
   }
 }

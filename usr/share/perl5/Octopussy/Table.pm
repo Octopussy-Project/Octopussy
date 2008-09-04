@@ -3,7 +3,6 @@
 Octopussy::Table - Octopussy Table module
 
 =cut
-
 package Octopussy::Table;
 
 use strict;
@@ -11,10 +10,10 @@ no strict 'refs';
 use Octopussy;
 use Octopussy::Type;
 
-use constant TABLE_DIR => "tables";
+use constant DIR_TABLE => "tables";
 
-my $tables_dir = undef;
-my %filenames;
+my $dir_tables = undef;
+my %filename;
 
 =head1 FUNCTIONS
 
@@ -33,9 +32,9 @@ sub New($)
 
 	if (AAT::NOT_NULL($conf->{name}))
 	{
-		$tables_dir ||= Octopussy::Directory(TABLE_DIR);
+		$dir_tables ||= Octopussy::Directory(DIR_TABLE);
 		$conf->{version} = Octopussy::Timestamp_Version(undef);
-		AAT::XML::Write("$tables_dir/$conf->{name}.xml", $conf, "octopussy_table");
+		AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, "octopussy_table");
 		Add_Field($conf->{name}, "datetime", "DATETIME");
 		Add_Field($conf->{name}, "device", "WORD");
 	}
@@ -54,7 +53,7 @@ sub Remove($)
 {
 	my $table = shift;
 
-	$filenames{$table} = undef;
+	$filename{$table} = undef;
 	unlink(Filename($table));
 }
 
@@ -66,9 +65,9 @@ Get List of Tables
 =cut
 sub List()
 {
-	$tables_dir ||= Octopussy::Directory(TABLE_DIR);
+	$dir_tables ||= Octopussy::Directory(DIR_TABLE);
 
-	return (AAT::XML::Name_List($tables_dir));
+	return (AAT::XML::Name_List($dir_tables));
 }
 
 =head2 Filename($table)
@@ -80,11 +79,11 @@ sub Filename($)
 {
 	my $table = shift;
 
-	return ($filenames{$table})	if (defined $filenames{$table});
-	$tables_dir ||= Octopussy::Directory(TABLE_DIR);
-	$filenames{$table} = AAT::XML::Filename($tables_dir, $table);
+	return ($filename{$table})	if (defined $filename{$table});
+	$dir_tables ||= Octopussy::Directory(DIR_TABLE);
+	$filename{$table} = AAT::XML::Filename($dir_tables, $table);
 
-	return ($filenames{$table});
+	return ($filename{$table});
 }
 
 =head2 Configuration($table)
@@ -343,12 +342,12 @@ sub Updates_Installation
 {
   my @tables = @_;
   my $web = Octopussy::WebSite();
-  $tables_dir ||= Octopussy::Directory(TABLE_DIR);
+  $dir_tables ||= Octopussy::Directory(DIR_TABLE);
 
   foreach my $t (@tables)
   {
 		AAT::Download("Octopussy", "$web/Download/Tables/$t.xml", 
-			"$tables_dir/$t.xml");
+			"$dir_tables/$t.xml");
   }
 }
 
@@ -362,9 +361,9 @@ sub Update_Get_Fields($)
 
 	AAT::Download("Octopussy", "$web/Download/Tables/$table.xml", 
 		"/tmp/$table.xml");
-	my $new_conf =  AAT::XML::Read("/tmp/$table.xml");
+	my $conf_new =  AAT::XML::Read("/tmp/$table.xml");
 
-	return (AAT::ARRAY($new_conf->{field}));
+	return (AAT::ARRAY($conf_new->{field}));
 }
 
 =head2 Updates_Diff($table)

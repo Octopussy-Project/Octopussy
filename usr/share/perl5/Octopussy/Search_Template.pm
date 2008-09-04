@@ -10,10 +10,10 @@ use strict;
 use utf8;
 use Octopussy;
 
-use constant SEARCH_TPL_DIR => "search_templates";
+use constant dir_search_tpl => "search_templates";
 
-my $search_tpl_dir = undef;
-my %filenames;
+my $dir_search_tpl = undef;
+my %filename;
 
 =head1 FUNCTIONS
 
@@ -32,9 +32,9 @@ sub New($$)
 {
 	my ($user, $conf) = @_;
 
-	$search_tpl_dir ||= Octopussy::Directory(SEARCH_TPL_DIR);
-	Octopussy::Create_Directory("$search_tpl_dir/$user");	
-	AAT::XML::Write("$search_tpl_dir/$user/$conf->{name}.xml", 
+	$dir_search_tpl ||= Octopussy::Directory(dir_search_tpl);
+	Octopussy::Create_Directory("$dir_search_tpl/$user");	
+	AAT::XML::Write("$dir_search_tpl/$user/$conf->{name}.xml", 
 				$conf, "octopussy_search_template");
 }
 
@@ -53,7 +53,7 @@ sub Remove($$)
 {
 	my ($user, $search_tpl) = @_;
 
-	$filenames{$user}{$search_tpl} = undef;
+	$filename{$user}{$search_tpl} = undef;
 	unlink(Filename($user, $search_tpl));
 }
 
@@ -75,12 +75,12 @@ sub List($)
 {
 	my $user = shift;
 
-	$search_tpl_dir ||= Octopussy::Directory(SEARCH_TPL_DIR);
-	my @files = AAT::FS::Directory_Files("$search_tpl_dir/$user/", qr/.+\.xml$/);
+	$dir_search_tpl ||= Octopussy::Directory(dir_search_tpl);
+	my @files = AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
 	my @tpls = ();
 	foreach my $f (@files)
 	{
-		my $conf = AAT::XML::Read("$search_tpl_dir/$user/$f");
+		my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
 		push(@tpls, $conf->{name})	if (defined $conf->{name});
 	}
 	
@@ -108,14 +108,14 @@ sub List_Any_User($)
 	my (@list, @sorted_list) = ();
 	my %field;
 
-	$search_tpl_dir ||= Octopussy::Directory(SEARCH_TPL_DIR);
-	my @dirs = AAT::FS::Directory_Files("$search_tpl_dir/", qr/\w+$/);
+	$dir_search_tpl ||= Octopussy::Directory(dir_search_tpl);
+	my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
 	foreach my $d (@dirs)
 	{
-		my @files = AAT::FS::Directory_Files("$search_tpl_dir/$d/", qr/.+\.xml$/);
+		my @files = AAT::FS::Directory_Files("$dir_search_tpl/$d/", qr/.+\.xml$/);
 		foreach my $f (@files)
   	{
-    	my $conf = AAT::XML::Read("$search_tpl_dir/$d/$f");
+    	my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
 			my $key = (defined $conf->{$sort} ? $conf->{$sort} : $d);
 			$field{$key} = 1;
 			push(@list, { name => $conf->{name}, user => $d })
@@ -150,18 +150,18 @@ sub Filename($$)
 {
 	my ($user, $search_tpl) = @_;
 
-	return ($filenames{$user}{$search_tpl})   
-		if (defined $filenames{$user}{$search_tpl});
+	return ($filename{$user}{$search_tpl})   
+		if (defined $filename{$user}{$search_tpl});
 	if (AAT::NOT_NULL($search_tpl))
 	{
-		$search_tpl_dir ||= Octopussy::Directory(SEARCH_TPL_DIR);
+		$dir_search_tpl ||= Octopussy::Directory(dir_search_tpl);
 		my @files = 
-			AAT::FS::Directory_Files("$search_tpl_dir/$user/", qr/.+\.xml$/);
+			AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
 		foreach my $f (@files)
   	{
-  		my $conf = AAT::XML::Read("$search_tpl_dir/$user/$f");
-			$filenames{$user}{$search_tpl} = "$search_tpl_dir/$user/$f";
-   		return ("$search_tpl_dir/$user/$f")     
+  		my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
+			$filename{$user}{$search_tpl} = "$dir_search_tpl/$user/$f";
+   		return ("$dir_search_tpl/$user/$f")     
 				if ((defined $conf) && ($conf->{name} =~ /^$search_tpl$/));
 		}
 	}

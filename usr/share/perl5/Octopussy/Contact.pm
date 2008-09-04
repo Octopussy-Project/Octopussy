@@ -9,10 +9,10 @@ use strict;
 use utf8;
 use Octopussy;
 
-# String: $contacts_dir
+# String: $dir_contacts
 # Directory for the Contacts configuration files
-my $contacts_dir = undef;
-my %filenames;
+my $dir_contacts = undef;
+my %filename;
 
 =head1 FUNCTIONS
 
@@ -29,7 +29,7 @@ sub New($)
 {
 	my $conf = shift;
 
-	$contacts_dir ||= Octopussy::Directory("contacts");
+	$dir_contacts ||= Octopussy::Directory("contacts");
 	if (AAT::NOT_NULL($conf->{cid}) && 
 		(AAT::NOT_NULL($conf->{email}) || AAT::NOT_NULL($conf->{im})))
 	{
@@ -39,7 +39,7 @@ sub New($)
 			{ $exist = 1	if ($c =~ /^$conf->{cid}$/); }
 		if (!$exist)
 		{
-			AAT::XML::Write("$contacts_dir/$conf->{cid}.xml", 
+			AAT::XML::Write("$dir_contacts/$conf->{cid}.xml", 
 				$conf, "octopussy_contact");
 		}
 		else
@@ -64,7 +64,7 @@ sub Remove($)
 {
 	my $contact = shift;
 
-	$filenames{$contact} = undef;
+	$filename{$contact} = undef;
 	unlink(Filename($contact));
 }
 
@@ -79,12 +79,12 @@ Returns:
 =cut
 sub List()
 {
-	$contacts_dir ||= Octopussy::Directory("contacts");
-	my @files = AAT::FS::Directory_Files($contacts_dir, qr/.+\.xml$/);
+	$dir_contacts ||= Octopussy::Directory("contacts");
+	my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
 	my @contacts = ();
 	foreach my $f (@files)
 	{
-		my $conf = AAT::XML::Read("$contacts_dir/$f");
+		my $conf = AAT::XML::Read("$dir_contacts/$f");
 		push(@contacts, $conf->{cid})	if (defined $conf->{cid});
 	}
 	foreach my $c (AAT::LDAP::Contacts("Octopussy"))
@@ -110,16 +110,16 @@ sub Filename($)
 {
 	my $contact = shift;
 
-	return ($filenames{$contact})   if (defined $filenames{$contact});
+	return ($filename{$contact})   if (defined $filename{$contact});
 	if (AAT::NOT_NULL($contact))
 	{
-		$contacts_dir ||= Octopussy::Directory("contacts");
-		my @files = AAT::FS::Directory_Files($contacts_dir, qr/.+\.xml$/);
+		$dir_contacts ||= Octopussy::Directory("contacts");
+		my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
 		foreach my $f (@files)
   	{
-  		my $conf = AAT::XML::Read("$contacts_dir/$f");
-			$filenames{$contact} = "$contacts_dir/$f";
-   		return ("$contacts_dir/$f")     
+  		my $conf = AAT::XML::Read("$dir_contacts/$f");
+			$filename{$contact} = "$dir_contacts/$f";
+   		return ("$dir_contacts/$f")     
 				if ((defined $conf) && ($conf->{cid} =~ /^$contact$/));
 		}
 	}

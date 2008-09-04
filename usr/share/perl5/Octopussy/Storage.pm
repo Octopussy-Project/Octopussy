@@ -3,7 +3,6 @@
 Octopussy::Storage - Octopussy Storage module
 
 =cut
-
 package Octopussy::Storage;
 
 use strict;
@@ -11,14 +10,14 @@ use Octopussy;
 
 =head1 FUNCTIONS
 
-=head2 Add($storage_conf)
+=head2 Add($conf_storage)
 
 Add a new Storage
 
 =cut
 sub Add($)
 {
-	my $storage_conf = shift;
+	my $conf_storage = shift;
   my @storages = ();
 
   my $file = Octopussy::File("storages");
@@ -26,9 +25,9 @@ sub Add($)
   foreach my $s (AAT::ARRAY($conf->{storage}))
   {
     return ("_MSG_STORAGE_ALREADY_EXISTS")
-      if ($s->{s_id} eq $storage_conf->{s_id});
+      if ($s->{s_id} eq $conf_storage->{s_id});
   }
-  push(@{$conf->{storage}}, $storage_conf);
+  push(@{$conf->{storage}}, $conf_storage);
   AAT::XML::Write($file, $conf, "octopussy_storages");
 
   return (undef);
@@ -66,18 +65,18 @@ sub Default()
 		unknown => $conf->{default_unknown}, known => $conf->{default_known} } );
 }
 
-=head2 Default_Set($new_conf)
+=head2 Default_Set($conf_new)
 
 =cut
 sub Default_Set($)
 {
-	my $new_conf = shift;
+	my $conf_new = shift;
 
 	my $file = Octopussy::File("storages");
   my $conf = AAT::XML::Read($file);
-	$conf->{default_incoming} = $new_conf->{incoming};
-	$conf->{default_unknown} = $new_conf->{unknown};
-	$conf->{default_known} = $new_conf->{known};
+	$conf->{default_incoming} = $conf_new->{incoming};
+	$conf->{default_unknown} = $conf_new->{unknown};
+	$conf->{default_known} = $conf_new->{known};
 
 	AAT::XML::Write($file, $conf, "octopussy_storages");	
 }
@@ -144,10 +143,10 @@ sub Configurations($)
 	my (@configurations, @sorted_configurations) = ((), ());
 	my @storages = List();
 	my %field;
-	my $default_dir = Octopussy::Directory("data_logs");
+	my $dir_default = Octopussy::Directory("data_logs");
 
 	push(@sorted_configurations, 
-		{ s_id => "DEFAULT", directory => $default_dir } );
+		{ s_id => "DEFAULT", directory => $dir_default } );
 	foreach my $s (@storages)
 	{
 		my $conf = Configuration($s);

@@ -448,9 +448,9 @@ sub Alerts($$$$)
 		my @ims = ();
 		foreach my $c (AAT::ARRAY($ac->{contact}))
 		{
-			my $c_conf = Octopussy::Contact::Configuration($c);
-			push(@mails, $c_conf->{email})	if (defined $c_conf->{email});
-			push(@ims, $c_conf->{im})	if (defined $c_conf->{im});
+			my $conf_contact = Octopussy::Contact::Configuration($c);
+			push(@mails, $conf_contact->{email})	if (defined $conf_contact->{email});
+			push(@ims, $conf_contact->{im})	if (defined $conf_contact->{im});
 		}
     if ($ac->{type} =~ /Dynamic/i)
     {
@@ -604,7 +604,7 @@ sub Wizard($)
 		}
 		else
     {
-      my ($pack, $pack_file, $line, $sub) = caller(0);
+      my ($pack, $file_pack, $line, $sub) = caller(0);
       AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
     }
   }

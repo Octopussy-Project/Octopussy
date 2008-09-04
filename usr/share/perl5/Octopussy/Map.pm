@@ -3,15 +3,14 @@
 Octopussy::Map - Octopussy Map module
 
 =cut
-
 package Octopussy::Map;
 
 use strict;
 use Octopussy;
 
-use constant MAP_DIR => "maps";
+use constant DIR_MAP => "maps";
 
-my $maps_dir = undef;
+my $dir_maps = undef;
 
 =head1 FUNCTIONS
 
@@ -22,9 +21,9 @@ Get list of Maps
 =cut 
 sub List()
 {
-	$maps_dir ||= Octopussy::Directory(MAP_DIR);
+	$dir_maps ||= Octopussy::Directory(DIR_MAP);
 
-	return (AAT::XML::Name_List($maps_dir));
+	return (AAT::XML::Name_List($dir_maps));
 }
 
 =head2 Filename($map)
@@ -36,9 +35,9 @@ sub Filename($)
 {
 	my $map = shift;
 
-	$maps_dir ||= Octopussy::Directory(MAP_DIR);
+	$dir_maps ||= Octopussy::Directory(DIR_MAP);
 
-	return (AAT::XML::Filename($maps_dir, $map));
+	return (AAT::XML::Filename($dir_maps, $map));
 }
 
 =head2 Configuration($map)

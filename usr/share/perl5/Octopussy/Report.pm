@@ -16,11 +16,11 @@ use Octopussy::Report::HTML;
 use Octopussy::Report::PDF;
 use Octopussy::Report::XML;
 
-use constant REPORT_DIR =>"reports";
+use constant DIR_REPORT =>"reports";
 use constant REPORTER_BIN => "octo_reporter";
 
-my $reports_dir = undef;
-my %filenames;
+my $dir_reports = undef;
+my %filename;
 
 =head1 FUNCTIONS
 
@@ -33,9 +33,9 @@ sub New($)
 {
 	my $conf = shift;
 
-	$reports_dir ||= Octopussy::Directory(REPORT_DIR);
+	$dir_reports ||= Octopussy::Directory(DIR_REPORT);
 	$conf->{version} = Octopussy::Timestamp_Version(undef);
-	AAT::XML::Write("$reports_dir/$conf->{name}.xml", $conf, "octopussy_report");
+	AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, "octopussy_report");
 }
 
 =head2 Remove($report)
@@ -51,17 +51,17 @@ sub Remove($)
 	Octopussy::Data_Report::Remove_All($report);
 }
 
-=head2 Modify($old_report, $new_conf)
+=head2 Modify($old_report, $conf_new)
 
 Modifies the configuration for the report '$old_report'
 
 =cut
 sub Modify($$)
 {
-	my ($old_report, $new_conf) = @_;
+	my ($old_report, $conf_new) = @_;
 
 	Remove($old_report);
-	New($new_conf);
+	New($conf_new);
 }
 
 =head2 List($category, $restriction_list)
@@ -74,13 +74,13 @@ sub List($$)
 {
 	my ($category, $report_restriction_list) = @_;
 	my @res_list = AAT::ARRAY($report_restriction_list);
-	$reports_dir ||= Octopussy::Directory(REPORT_DIR);
-	my @files = AAT::FS::Directory_Files($reports_dir, qr/.+\.xml$/);
+	$dir_reports ||= Octopussy::Directory(DIR_REPORT);
+	my @files = AAT::FS::Directory_Files($dir_reports, qr/.+\.xml$/);
 	my @reports = ();
 	foreach my $f (@files)
 	{
 		my $in_restriction = ($#res_list >= 0 ? 0 : 1);
-		my $conf = AAT::XML::Read("$reports_dir/$f");
+		my $conf = AAT::XML::Read("$dir_reports/$f");
 		foreach my $res (@res_list)
     	{ $in_restriction = 1	if ($conf->{name} eq $res); }
 		push(@reports, $conf->{name})
@@ -101,11 +101,11 @@ sub Filename($)
 {
   my $report_name = shift;
 
-	return ($filenames{$report_name})  if (defined $filenames{$report_name});
-  $reports_dir ||= Octopussy::Directory(REPORT_DIR);
-	$filenames{$report_name} = AAT::XML::Filename($reports_dir, $report_name);
+	return ($filename{$report_name})  if (defined $filename{$report_name});
+  $dir_reports ||= Octopussy::Directory(DIR_REPORT);
+	$filename{$report_name} = AAT::XML::Filename($dir_reports, $report_name);
 
-	return ($filenames{$report_name});
+	return ($filename{$report_name});
 }
 
 =head2 Configuration($report)
@@ -243,13 +243,13 @@ sub Table_Creation($$)
 }
 
 =head2 Generate($rc, $begin, $end, $outputfile, $devices, $services, 
-	$data, $mail_conf, $ftp_conf, $scp_conf, $stats, $lang)
+	$data, $conf_mail, $conf_ftp, $conf_scp, $stats, $lang)
 
 =cut
 sub Generate($$$$$$$$$$$$)
 {
 	my ($rc, $begin, $end, $outputfile, $devices, $services, $data, 
-		$mail_conf, $ftp_conf, $scp_conf, $stats, $lang) = @_;
+		$conf_mail, $conf_ftp, $conf_scp, $stats, $lang) = @_;
 	
 	if ($rc->{graph_type} eq "array")
 	{
@@ -260,15 +260,15 @@ sub Generate($$$$$$$$$$$$)
 		Octopussy::Report::HTML::Generate($outputfile, $rc->{name}, 
 			$begin, $end, $devices, $services, $data, 
 			$rc->{columns}, $rc->{columns_name}, $stats, $lang);
-		my $xml_file = Octopussy::File_Ext($outputfile, "xml");
-		Octopussy::Report::XML::Generate($xml_file, $rc->{name},
+		my $file_xml = Octopussy::File_Ext($outputfile, "xml");
+		Octopussy::Report::XML::Generate($file_xml, $rc->{name},
       $begin, $end, $devices, $data, $rc->{columns}, $rc->{columns_name},
       $stats, $lang);
-		Octopussy::Chown($xml_file);
-		my $csv_file = Octopussy::File_Ext($outputfile, "csv");
-		Octopussy::Report::CSV::Generate($csv_file, $data, 
+		Octopussy::Chown($file_xml);
+		my $file_csv = Octopussy::File_Ext($outputfile, "csv");
+		Octopussy::Report::CSV::Generate($file_csv, $data, 
 			$rc->{columns}, $rc->{columns_name}, $stats, $lang);
-		Octopussy::Chown($csv_file);
+		Octopussy::Chown($file_csv);
 		Octopussy::Report::PDF::Generate_From_HTML($outputfile);
 	}
 	elsif ($rc->{graph_type} =~ /^rrd_/)
@@ -292,42 +292,43 @@ sub Generate($$$$$$$$$$$$)
 	my $file_info = Octopussy::File_Ext($outputfile, "info");
 	File_Info($file_info, $begin, $end, $devices, $services, $stats);
 	Octopussy::Chown($file_info);
-	Export($outputfile, $mail_conf, $ftp_conf, $scp_conf);		
+	Export($outputfile, $conf_mail, $conf_ftp, $conf_scp);		
 }
 
-=head2 CmdLine_Export_Options($mail_conf, $ftp_conf, $scp_conf)
+=head2 CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
 
 Generates Command Line Export Options (mail/ftp/scp) 
 
 =cut
 sub CmdLine_Export_Options($$$)
 {
-	my ($mail_conf, $ftp_conf, $scp_conf) = @_;
+	my ($conf_mail, $conf_ftp, $conf_scp) = @_;
 
 	my $options =
-		(AAT::NOT_NULL($mail_conf->{recipients}) ?
-      " --mail_recipients \"$mail_conf->{recipients}\"" : "" )
-    . (AAT::NOT_NULL($mail_conf->{subject}) ?
-      " --mail_subject \"$mail_conf->{subject}\"" : "" )
-    . (AAT::NOT_NULL($ftp_conf->{host}) ?
-      " --ftp_host \"$ftp_conf->{host}\" --ftp_dir \"$ftp_conf->{dir}\""
-    . " --ftp_user \"$ftp_conf->{user}\" --ftp_pwd \"$ftp_conf->{pwd}\"" : "")
-    . (AAT::NOT_NULL($scp_conf->{host}) ?
-      " --scp_host \"$scp_conf->{host}\" --scp_dir \"$scp_conf->{dir}\""
-    . " --scp_user \"$scp_conf->{user}\"" : "");
+		(AAT::NOT_NULL($conf_mail->{recipients}) ?
+      " --mail_recipients \"$conf_mail->{recipients}\"" : "" )
+    . (AAT::NOT_NULL($conf_mail->{subject}) ?
+      " --mail_subject \"$conf_mail->{subject}\"" : "" )
+    . (AAT::NOT_NULL($conf_ftp->{host}) ?
+      " --ftp_host \"$conf_ftp->{host}\" --ftp_dir \"$conf_ftp->{dir}\""
+    . " --ftp_user \"$conf_ftp->{user}\" --ftp_pwd \"$conf_ftp->{pwd}\"" : "")
+    . (AAT::NOT_NULL($conf_scp->{host}) ?
+      " --scp_host \"$conf_scp->{host}\" --scp_dir \"$conf_scp->{dir}\""
+    . " --scp_user \"$conf_scp->{user}\"" : "");
 
 	return ($options);
 }
 
-=head2 CmdLine($device, $service, $taxonomy, $report, $start, $finish, $pid_param)
+=head2 CmdLine($device, $service, $taxonomy, $report, $start, $finish, $pid_param,
+	$conf_mail, $conf_ftp, $conf_scp, $lang)
 
 Generates Command Line and launch octo_reporter
 
 =cut
 sub CmdLine($$$$$$$$$$$)
 {
-	my ($device, $service, $taxonomy, $report, 
-		$start, $finish, $pid_param, $mail_conf, $ftp_conf, $scp_conf, $lang) = @_;
+	my ($device, $service, $taxonomy, $report, $start, $finish, 
+		$pid_param, $conf_mail, $conf_ftp, $conf_scp, $lang) = @_;
 
 	my $base = Octopussy::Directory("programs");
 	my $dir_pid = Octopussy::Directory("running");
@@ -352,7 +353,7 @@ sub CmdLine($$$$$$$$$$$)
 		. " --device \"$device_list\" --service \"$service_list\"" 
 		. " --taxonomy $taxonomy --pid_param \"$pid_param\""
 		. " --begin $start --end $finish --lang \"$lang\" " 
-		. CmdLine_Export_Options($mail_conf, $ftp_conf, $scp_conf)
+		. CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
 		. " --output \"$output\"";
 		#. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
 	system("$cmd &");
@@ -360,18 +361,18 @@ sub CmdLine($$$$$$$$$$$)
 	return ($cmd);
 }
 
-=head2 Export($file, $mail_conf, $ftp_conf, $scp_conf)
+=head2 Export($file, $conf_mail, $conf_ftp, $conf_scp)
 
 Exports generated report via Mail, FTP, SCP if defined
 
 =cut
 sub Export($$$$)
 {
-	my ($file, $mail_conf, $ftp_conf, $scp_conf) = @_;
+	my ($file, $conf_mail, $conf_ftp, $conf_scp) = @_;
 
-	Octopussy::Export::Using_Mail($mail_conf, $file);
-	Octopussy::Export::Using_Ftp($ftp_conf, $file);
-	Octopussy::Export::Using_Scp($scp_conf, $file);
+	Octopussy::Export::Using_Mail($conf_mail, $file);
+	Octopussy::Export::Using_Ftp($conf_ftp, $file);
+	Octopussy::Export::Using_Scp($conf_scp, $file);
 }
 
 =head2 File_Info($file, $begin, $end, $devices, $services, $stats)
@@ -426,13 +427,13 @@ sub Updates_Installation(@)
 {
   my @reports = @_;
   my $web = Octopussy::WebSite();
-  $reports_dir ||= Octopussy::Directory(REPORT_DIR);
+  $dir_reports ||= Octopussy::Directory(DIR_REPORT);
 
   foreach my $r (@reports)
   {
 		my $url = "$web/Download/Reports/$r.xml";
 		$url =~ s/ /\%20/g;
-    AAT::Download("Octopussy", $url, "$reports_dir/$r.xml");
+    AAT::Download("Octopussy", $url, "$dir_reports/$r.xml");
   }
 }
 
@@ -443,9 +444,9 @@ Returns list of Reports in progress
 =cut
 sub Running_List()
 {
-	my $pid_dir = Octopussy::Directory("running");
+	my $dir_pid = Octopussy::Directory("running");
 	my $cache = new Cache::FileCache( { namespace => REPORTER_BIN,
-  	default_expires_in => "1 day", cache_root => $pid_dir,
+  	default_expires_in => "1 day", cache_root => $dir_pid,
    	directory_umask => "007"  } );
 	my $pt = new Proc::ProcessTable;
 	my @list = ();

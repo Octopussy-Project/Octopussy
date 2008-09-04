@@ -3,7 +3,6 @@
 Octopussy::ServiceGroup - Octopussy ServiceGroup Module
 
 =cut
-
 package Octopussy::ServiceGroup;
 
 use strict;
@@ -13,14 +12,14 @@ use Octopussy;
 
 =head1 FUNCTIONS
 
-=head2 Add($sg_conf)
+=head2 Add($conf_sg)
 
 Adds a new ServiceGroup
 
 =cut 
 sub Add($)
 {
-	my $sg_conf = shift;
+	my $conf_sg = shift;
 	my @sgs = ();
 
 	my $file = Octopussy::File("servicegroups");	
@@ -28,9 +27,9 @@ sub Add($)
 	foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
   {
     return ("_MSG_SERVICEGROUP_ALREADY_EXISTS")
-      if ($sg->{sg_id} eq $sg_conf->{sg_id});
+      if ($sg->{sg_id} eq $conf_sg->{sg_id});
   }
-	push(@{$conf->{servicegroup}}, $sg_conf); 		
+	push(@{$conf->{servicegroup}}, $conf_sg); 		
 	AAT::XML::Write($file, $conf, "octopussy_servicegroups");
 }
 

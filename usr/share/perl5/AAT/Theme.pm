@@ -3,12 +3,11 @@
 AAT::Theme - AAT Theme module
 
 =cut
-
 package AAT::Theme;
 
 use strict;
 
-use constant THEME_DIR => "AAT/THEMES/";
+use constant DIR_THEME => "AAT/THEMES/";
 
 =head1 FUNCTIONS
 
@@ -19,7 +18,7 @@ Returns list of available Themes
 =cut
 sub List()
 {
-	opendir(DIR, THEME_DIR);
+	opendir(DIR, DIR_THEME);
   my @themes = grep !/^\.+/, readdir(DIR);
   closedir(DIR);
 
@@ -36,7 +35,7 @@ sub CSS_File($)
 	my $theme = shift;
 	
 	$theme = "DEFAULT"  if (AAT::NULL($theme));
-	my $file = THEME_DIR . "$theme/style.css";
+	my $file = DIR_THEME . "$theme/style.css";
 	return ("$file")	if (-f "$file");
 	return (undef);
 }

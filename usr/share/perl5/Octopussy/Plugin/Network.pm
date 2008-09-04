@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Plugin::Network - Octopussy Plugin Network
@@ -18,15 +15,12 @@ my %services = ();
 =head2 Init()
 
 =cut
-
 sub Init()
 {
-	my $port_conf = AAT::List::Configuration("AAT_Port");
+	my $conf_port = AAT::List::Configuration("AAT_Port");
 
-  foreach my $i (AAT::ARRAY($port_conf->{item}))
-  {
-		$services{$i->{value}} =  $i->{label};
-  }
+  foreach my $i (AAT::ARRAY($conf_port->{item}))
+  	{ $services{$i->{value}} =  $i->{label}; }
 }
 
 =head2 Mask_8($addr)
@@ -34,7 +28,6 @@ sub Init()
 Only shows the first 8 bits of an IP address (--> 10.XXX.XXX.XXX)
 
 =cut
-
 sub Mask_8
 {
 	my $addr = shift;
@@ -49,7 +42,6 @@ sub Mask_8
 Only shows the first 16 bits of an IP address (--> 10.1.XXX.XXX)
 
 =cut
-
 sub Mask_16
 {
   my $addr = shift;
@@ -64,7 +56,6 @@ sub Mask_16
 Only shows the first 24 bits of an IP address (--> 10.1.2.XXX)
 
 =cut
-
 sub Mask_24
 {
 	my $addr = shift;
@@ -79,7 +70,6 @@ sub Mask_24
 Returns link to get information from Ripe
 
 =cut
-
 sub Ripe_Info
 {
 	my $addr = shift;
@@ -94,7 +84,6 @@ sub Ripe_Info
 =head2 Service($port)
 
 =cut
-
 sub Service
 {
 	my $port = shift;

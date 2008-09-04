@@ -37,11 +37,11 @@ sub Connection_Test($)
 {
 	my $appli = shift;
 	my $status = 0;
-	my $smtp_conf = Configuration($appli);
-	if (AAT::NOT_NULL($smtp_conf->{server})
-    && AAT::NOT_NULL($smtp_conf->{sender}))
+	my $conf_smtp = Configuration($appli);
+	if (AAT::NOT_NULL($conf_smtp->{server})
+    && AAT::NOT_NULL($conf_smtp->{sender}))
   {
-		my $con = new Net::Telnet(Host => $smtp_conf->{server}, 
+		my $con = new Net::Telnet(Host => $conf_smtp->{server}, 
 			Port => 25, Errmode => "return", Timeout => 3);
 		if (defined $con)
 		{

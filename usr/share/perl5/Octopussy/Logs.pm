@@ -3,7 +3,6 @@
 Octopussy::Logs - Octopussy Logs module
 
 =cut
-
 package Octopussy::Logs;
 
 use strict;
@@ -310,7 +309,7 @@ sub Get($$$$$$$)
 		}
 		else
   	{
-    	my ($pack, $pack_file, $line, $sub) = caller(0);
+    	my ($pack, $file_pack, $line, $sub) = caller(0);
     	AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
   	}	
 		last	if ($counter >= $limit);
@@ -411,7 +410,7 @@ sub Remove($$)
 		}
 		else
     {
-      my ($pack, $pack_file, $line, $sub) = caller(0);
+      my ($pack, $file_pack, $line, $sub) = caller(0);
       AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
     }
 		unlink($f);
@@ -423,7 +422,7 @@ sub Remove($$)
 		}
 		else
     {
-      my ($pack, $pack_file, $line, $sub) = caller(0);
+      my ($pack, $file_pack, $line, $sub) = caller(0);
       AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
     }
 		#last	if ($match);
@@ -455,7 +454,6 @@ Generate Command Line for octo_extractor
 sub Extract_Cmd_Line($)
 {
 	my $conf = shift;
-	my $run_dir = Octopussy::Directory("running");	
 	my @devices = AAT::ARRAY($conf->{devices});
 	my @services = AAT::ARRAY($conf->{services});
 	my $dev_str = "--device \"" . join("\" --device \"", @devices) . "\"";

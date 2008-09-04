@@ -3,18 +3,16 @@
 AAT::XML - AAT XML module
 
 =cut
-
 package AAT::XML;
 
 use strict;
 use open ':utf8';
 #use bytes;
 use utf8;
-use XML::Simple;
-# qw(:strict);
+use XML::Simple; # qw(:strict);
 
 my %XML_CACHE = ();
-my %filenames = ();
+my %filename = ();
 
 =head1 FUNCTIONS
 
@@ -28,12 +26,12 @@ sub Filename($$)
 {
 	my ($dir, $name) = @_;
 
-	return ($filenames{$dir}{$name})	if (defined $filenames{$dir}{$name});
+	return ($filename{$dir}{$name})	if (defined $filename{$dir}{$name});
 	my @files = AAT::FS::Directory_Files($dir, qr/.+\.xml$/);
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir/$f");
-		$filenames{$dir}{$conf->{name}} = "$dir/$f";
+		$filename{$dir}{$conf->{name}} = "$dir/$f";
     return ("$dir/$f")	if ($conf->{name} eq $name);
   }
 

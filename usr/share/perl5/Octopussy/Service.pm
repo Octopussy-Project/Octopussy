@@ -3,7 +3,6 @@
 Octopussy::Service - Octopussy Service module
 
 =cut
-
 package Octopussy::Service;
 
 use strict;
@@ -12,10 +11,10 @@ use utf8;
 use Encode;
 use Octopussy;
 
-use constant SERVICE_DIR => "services";
+use constant DIR_SERVICE => "services";
 
-my $services_dir = undef;
-my %filenames;
+my $dir_services = undef;
+my %filename;
 
 =head1 FUNCTIONS
 
@@ -32,9 +31,9 @@ sub New($)
 {
 	my $conf = shift;
 
-	$services_dir ||= Octopussy::Directory(SERVICE_DIR);
+	$dir_services ||= Octopussy::Directory(DIR_SERVICE);
 	$conf->{version} = Octopussy::Timestamp_Version(undef);
-	AAT::XML::Write("$services_dir/$conf->{name}.xml", $conf, 
+	AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, 
 		"octopussy_service");
 }
 
@@ -51,7 +50,7 @@ sub Remove($)
 {
 	my $service = shift;
 
-	$filenames{$service} = undef;
+	$filename{$service} = undef;
 	unlink(Filename($service));
 }
 
@@ -62,9 +61,9 @@ Returns List of Services
 =cut
 sub List()
 {
-	$services_dir ||= Octopussy::Directory(SERVICE_DIR);
+	$dir_services ||= Octopussy::Directory(DIR_SERVICE);
 
-	return (AAT::XML::Name_List($services_dir));
+	return (AAT::XML::Name_List($dir_services));
 }
 
 =head2 List_Used()
@@ -94,11 +93,11 @@ sub Filename($)
 {
 	my $service = shift;
 
-	return ($filenames{$service})   if (defined $filenames{$service});
-	$services_dir ||= Octopussy::Directory(SERVICE_DIR);
-	$filenames{$service} = "$services_dir/$service.xml";
+	return ($filename{$service})   if (defined $filename{$service});
+	$dir_services ||= Octopussy::Directory(DIR_SERVICE);
+	$filename{$service} = "$dir_services/$service.xml";
 
-	return ($filenames{$service});
+	return ($filename{$service});
 }
 
 =head2 Configuration($service)
@@ -246,30 +245,30 @@ sub Remove_Message($$)
 	Parse_Restart($service);
 }
 
-=head2 Modify_Message($service, $msgid, $modified_conf)
+=head2 Modify_Message($service, $msgid, $conf_modified)
 
 Modifies Message with id '$msgid' from Service '$service'
 
 =cut
 sub Modify_Message($$$)
 {
-	my ($service, $msgid, $modified_conf) = @_;
+	my ($service, $msgid, $conf_modified) = @_;
 
 	my $conf = AAT::XML::Read(Filename($service));
 	$conf->{version} = Octopussy::Timestamp_Version($conf);
 	my @messages = ();
-	$modified_conf->{pattern} = Encode::decode_utf8($modified_conf->{pattern});
+	$conf_modified->{pattern} = Encode::decode_utf8($conf_modified->{pattern});
 	foreach my $m (AAT::ARRAY($conf->{message}))
 	{
 		if ($m->{msg_id} ne $msgid)
 			{ push(@messages, $m); }
 		else
-			{ push(@messages, $modified_conf); }
+			{ push(@messages, $conf_modified); }
 	}
 	$conf->{message} = \@messages;
 
   return ("FIELD_DONT_EXIST")
-    if (! Octopussy::Table::Valid_Pattern($modified_conf->{table}, $modified_conf->{pattern}));
+    if (! Octopussy::Table::Valid_Pattern($conf_modified->{table}, $conf_modified->{pattern}));
 
 	AAT::XML::Write(Filename($service), $conf, "octopussy_service");
 	Parse_Restart($service);
@@ -429,7 +428,7 @@ sub Messages_Statistics_Save
 	}
 	else
   {
-    my ($pack, $pack_file, $line, $sub) = caller(0);
+    my ($pack, $file_pack, $line, $sub) = caller(0);
     AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
   }	
 }
@@ -480,7 +479,7 @@ sub Messages_Statistics($$)
 			}
 			else
   		{
-    		my ($pack, $pack_file, $line, $sub) = caller(0);
+    		my ($pack, $file_pack, $line, $sub) = caller(0);
     		AAT::Syslog("Octopussy::Service", "Unable to open file '$f' in $sub");
   		}
 		}
@@ -496,7 +495,7 @@ sub Messages_Statistics($$)
 	}
 	else
   {
-  	my ($pack, $pack_file, $line, $sub) = caller(0);
+  	my ($pack, $file_pack, $line, $sub) = caller(0);
    	AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
   }
 
@@ -592,8 +591,8 @@ sub Updates()
 {
 	my %update;
 	my $web = Octopussy::WebSite();
-	my $run_dir = Octopussy::Directory("running");	
-	my $file = "$run_dir/_services.idx";
+	my $dir_running = Octopussy::Directory("running");	
+	my $file = "$dir_running/_services.idx";
 
 	AAT::Download("Octopussy", "$web/Download/Services/_services.idx", $file);
 	if (defined open(UPDATE, "< $file"))
@@ -604,7 +603,7 @@ sub Updates()
 	}
 	else
   {
-    my ($pack, $pack_file, $line, $sub) = caller(0);
+    my ($pack, $file_pack, $line, $sub) = caller(0);
     AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
   }
 	unlink($file);	
@@ -621,12 +620,12 @@ sub Updates_Installation
 {
   my @services = @_;
   my $web = Octopussy::WebSite();
-  $services_dir ||= Octopussy::Directory(SERVICE_DIR);
+  $dir_services ||= Octopussy::Directory(DIR_SERVICE);
 
   foreach my $s (@services)
   {
     AAT::Download("Octopussy", "$web/Download/Services/$s.xml", 
-			"$services_dir/$s.xml");
+			"$dir_services/$s.xml");
     Parse_Restart($s);
   }
 }
@@ -640,11 +639,11 @@ sub Update_Get_Messages($)
 {
 	my $service = shift;
 	my $web = Octopussy::WebSite();
-	my $run_dir = Octopussy::Directory("running");
+	my $dir_running = Octopussy::Directory("running");
 
 	AAT::Download("Octopussy", "$web/Download/Services/$service.xml", 
-		"$run_dir$service.xml");
-	my $new_conf =  AAT::XML::Read("$run_dir$service.xml");
+		"$dir_running$service.xml");
+	my $new_conf =  AAT::XML::Read("$dir_running$service.xml");
 	
 	return (AAT::ARRAY($new_conf->{message}));
 }

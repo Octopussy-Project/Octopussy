@@ -72,7 +72,7 @@ sub Generate($$)
 	}
 	else
   {
-    my ($pack, $pack_file, $line, $sub) = caller(0);
+    my ($pack, $file_pack, $line, $sub) = caller(0);
     AAT::Syslog("Octopussy::Graph", "Unable to open file '$output' in $sub");
   }
 	#my $map = new GD::Graph::Map($graph, newWindow => 1);

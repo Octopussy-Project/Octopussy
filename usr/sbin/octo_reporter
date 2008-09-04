@@ -38,14 +38,14 @@ my $PROG_VERSION = Octopussy::Version();
 my $FILE_DB = "/var/run/octopussy/file.db";
 
 my $dir_pid = Octopussy::Directory("running");
-my $pid_file = undef; 
+my $file_pid = undef; 
 
 my $help;
 my (@devices, @services) = ((), ());
 my ($report, $rc, $taxonomy, $begin, $end, $pid_param, $x, $y, $lang);
 my ($mail_subject, $mail_recipients);
-my ($ftp_host, $ftp_dir, $ftp_user, $ftp_pwd);
-my ($scp_host, $scp_dir, $scp_user, $scp_pwd);
+my ($host_ftp, $dir_ftp, $user_ftp, $pwd_ftp);
+my ($host_scp, $dir_scp, $user_scp);
 my ($type, $title) = ("bars", "test");
 my $output = undef;
 my $cache = undef;
@@ -263,7 +263,7 @@ sub End
 {
 	AAT::Syslog($PROG_NAME, "Report Generation Aborted !");	
 	AAT::DB::Table_Destruction(APPLI, $rc->{table} . "_$$");
-	unlink($pid_file);
+	unlink($file_pid);
 	unlink("$FILE_DB.$$");
 	$cache->remove("info_$$");
 	$cache->remove("status_$$");
@@ -285,10 +285,10 @@ my $status = GetOptions(
 	"begin=s" => \$begin, "end=s" => \$end, "lang=s" => \$lang, 
 	"pid_param=s" => \$pid_param, "output=s" => \$output,
 	"mail_subject=s" => \$mail_subject, "mail_recipients=s" => \$mail_recipients,
-	"ftp_host=s" => \$ftp_host, "ftp_dir=s" => \$ftp_dir,
-	"ftp_user=s" => \$ftp_user, "ftp_pwd=s" => \$ftp_pwd,
-	"scp_host=s" => \$scp_host, "scp_dir=s" => \$scp_dir,
-	"scp_user=s" => \$scp_user);
+	"ftp_host=s" => \$host_ftp, "ftp_dir=s" => \$dir_ftp,
+	"ftp_user=s" => \$user_ftp, "ftp_pwd=s" => \$pwd_ftp,
+	"scp_host=s" => \$host_scp, "scp_dir=s" => \$dir_scp,
+	"scp_user=s" => \$user_scp);
 
 Help()	if ((! $status) || ($help) 
 	|| (!defined $report) || (! @devices) || (! @services) 
@@ -311,7 +311,7 @@ my $time = time();
 print "Report: $rc->{name}\n";
 print "Description: $rc->{description}\n";
 my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
-$pid_file = Octopussy::PID_File($pid_name);
+$file_pid = Octopussy::PID_File($pid_name);
 my $started = Date::Manip::ParseDateString("epoch $time");
 my %info = ( report => $rc->{name}, 
 	started => Date::Manip::UnixDate($started, "%Y/%m/%d %H:%M"), 
@@ -351,19 +351,20 @@ Progress("_MSG_REPORT_PROGRESS_QUERYING_DB", "1/1");
 AAT::DB::Table_Destruction(APPLI, $rc->{table} . "_$pid");
 
 Progress("_MSG_REPORT_PROGRESS_BUILDING_REPORT", "0/1");
-my %mail_conf = ( recipients => $mail_recipients, subject => $mail_subject );
-my %ftp_conf = ( host => $ftp_host, dir => $ftp_dir,
-	user => $ftp_user, pwd => $ftp_pwd );
-my %scp_conf = ( host => $scp_host, dir => $scp_dir,
-	user => $scp_user);
+my %conf_mail = 
+	( recipients => $mail_recipients, subject => $mail_subject );
+my %conf_ftp = 
+	( host => $host_ftp, dir => $dir_ftp, user => $user_ftp, pwd => $pwd_ftp );
+my %conf_scp = 
+	( host => $host_scp, dir => $dir_scp, user => $user_scp);
 my %report_stats = ( nb_files => $nb_files, nb_lines => $nb_lines, 
 	nb_result_lines => $#data+1, seconds =>  (time() - $time));
 
 Octopussy::Report::Generate($rc, $begin, $end, $output, \@devices, \@services, 
-	\@data, \%mail_conf, \%ftp_conf, \%scp_conf, \%report_stats, $lang);
+	\@data, \%conf_mail, \%conf_ftp, \%conf_scp, \%report_stats, $lang);
 Progress("_MSG_REPORT_PROGRESS_BUILDING_REPORT", "1/1");
 AAT::Syslog($PROG_NAME, "Report Generation Completed !");
-unlink($pid_file);
+unlink($file_pid);
 $cache->remove("info_$$");
 $cache->remove("status_$$");
 

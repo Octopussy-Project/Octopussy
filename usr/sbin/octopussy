@@ -34,7 +34,7 @@ my $INITD_MYSQL = "/etc/init.d/mysql";
 my $INITD_SYSLOG_NG = "/etc/init.d/syslog-ng";
 
 my $base = Octopussy::Directory("programs");
-my $pid_dir = Octopussy::Directory("running");
+my $dir_pid = Octopussy::Directory("running");
 
 =head1 FUNCTIONS
 
@@ -254,7 +254,7 @@ sub Stop
 	Scheduler_Stop();
 	Pusher_Stop();
 	Dispatcher_Stop();
-	`rm -f $pid_dir/*.{err,pid}`;
+	`rm -f $dir_pid/*.{err,pid}`;
 }
 
 my $arg = $ARGV[0] || "";

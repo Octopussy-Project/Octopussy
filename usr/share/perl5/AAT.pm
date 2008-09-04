@@ -228,9 +228,9 @@ sub Update_Configuration($$$$)
 {
   my ($appli, $file, $conf, $rootname) = @_;
 
-	my $xml_file = AAT::Application::File($appli, $file);
+	my $file_xml = AAT::Application::File($appli, $file);
   AAT::XML::Write(AAT::Application::File($appli, $file), $conf, $rootname)
-		if (NOT_NULL($xml_file));
+		if (NOT_NULL($file_xml));
 }
 
 =head2 Version()

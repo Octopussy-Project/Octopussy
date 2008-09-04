@@ -10,14 +10,14 @@ use Octopussy;
 
 =head1 FUNCTIONS
 
-=head2 Add($dg_conf)
+=head2 Add($conf_dg)
 
-Add a new device group
+Add a new Device Group
 
 =cut
 sub Add($)
 {
-	my $dg_conf = shift;
+	my $conf_dg = shift;
 	my @dgs = ();
 
 	my $file = Octopussy::File("devicegroups");	
@@ -25,9 +25,9 @@ sub Add($)
 	foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
   { 
 		return ("_MSG_DEVICEGROUP_ALREADY_EXISTS") 
-			if ($dg->{dg_id} eq $dg_conf->{dg_id}); 
+			if ($dg->{dg_id} eq $conf_dg->{dg_id}); 
 	}
-	push(@{$conf->{devicegroup}}, $dg_conf); 		
+	push(@{$conf->{devicegroup}}, $conf_dg); 		
 	AAT::XML::Write($file, $conf, "octopussy_devicegroups");
 
 	return (undef);

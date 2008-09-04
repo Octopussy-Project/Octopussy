@@ -3,16 +3,15 @@
 Octopussy::Statistic_Report - Octopussy Statistic Report module
 
 =cut
-
 package Octopussy::Statistic_Report;
 
 use strict;
 use Octopussy;
 
-use constant STAT_REPORT_DIR => "statistic_reports";
+use constant DIR_STAT_REPORT => "statistic_reports";
 
-my $stat_reports_dir = undef;
-my %filenames;
+my $dir_stat_reports = undef;
+my %filename;
 
 =head1 FUNCTIONS
 
@@ -21,13 +20,12 @@ my %filenames;
 Create a new statistic report
 
 =cut
-
 sub New($)
 {
 	my $conf = shift;
 
-	$stat_reports_dir ||= Octopussy::Directory(STAT_REPORT_DIR);
-	AAT::XML::Write("$stat_reports_dir/$conf->{name}.xml",
+	$dir_stat_reports ||= Octopussy::Directory(DIR_STAT_REPORT);
+	AAT::XML::Write("$dir_stat_reports/$conf->{name}.xml",
 		$conf, "octopussy_statistic_report");
 }
 
@@ -36,27 +34,25 @@ sub New($)
 Remove a statistic report
 
 =cut
-
 sub Remove($)
 {
   my $statistic_report = shift;
 
-	$filenames{$statistic_report} = undef;
+	$filename{$statistic_report} = undef;
 	unlink(Filename($statistic_report));
 }
 
-=head2 Modify($old_report, $new_conf)
+=head2 Modify($old_report, $conf_new)
 
 Modify the configuration for the statistic_report '$old_report'
 
 =cut
-
 sub Modify($$)
 {
-	my ($old_report, $new_conf) = @_;
+	my ($old_report, $conf_new) = @_;
 
 	Remove($old_report);
-	New($new_conf);
+	New($conf_new);
 }
 
 =head2 List()
@@ -64,12 +60,11 @@ sub Modify($$)
 Get List of Statistic Report
 
 =cut
-
 sub List()
 {
-  $stat_reports_dir ||= Octopussy::Directory(STAT_REPORT_DIR);
+  $dir_stat_reports ||= Octopussy::Directory(DIR_STAT_REPORT);
 
-	return (AAT::XML::Name_List($stat_reports_dir));
+	return (AAT::XML::Name_List($dir_stat_reports));
 }
 
 =head2 Filename($statistic_report_name)
@@ -77,18 +72,17 @@ sub List()
 Get the XML filename for the statistic report '$statistic_report_name'
 
 =cut
-
 sub Filename($)
 {
 	my $statistic_report_name = shift;
 
-	return ($filenames{$statistic_report_name})   
-		if (defined $filenames{$statistic_report_name});
-	$stat_reports_dir ||= Octopussy::Directory(STAT_REPORT_DIR);
-	$filenames{$statistic_report_name} = 
-		AAT::FS::Directory_Files($stat_reports_dir, $statistic_report_name);
+	return ($filename{$statistic_report_name})   
+		if (defined $filename{$statistic_report_name});
+	$dir_stat_reports ||= Octopussy::Directory(DIR_STAT_REPORT);
+	$filename{$statistic_report_name} = 
+		AAT::FS::Directory_Files($dir_stat_reports, $statistic_report_name);
 
-	return ($filenames{$statistic_report_name});
+	return ($filename{$statistic_report_name});
 }
 
 =head2 Configuration($statistic_report)
@@ -96,7 +90,6 @@ sub Filename($)
 Get the configuration for the accounting '$statistic_report'
 
 =cut
- 
 sub Configuration($)
 {
 	my $statistic_report = shift;
@@ -109,7 +102,6 @@ sub Configuration($)
 =head2 Configurations($sort)
 
 =cut
-
 sub Configurations
 {
   my $sort = shift || "name";
@@ -135,7 +127,6 @@ sub Configurations
 =head2 Messages($statistic_report, $services)
 
 =cut
-
 sub Messages($$)
 {
 	my ($statistic_report, $services) = @_;

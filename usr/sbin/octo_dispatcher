@@ -1,5 +1,4 @@
 #!/usr/bin/perl -w
-
 =head1 NAME
 
 octo_dispatcher - Octopussy Dispatcher program
@@ -26,7 +25,7 @@ my $cache = new Cache::FileCache( { namespace => "octo_dispatcher",
 		directory_umask => "007" } ) 
 	or croak( "Couldn't instantiate FileCache" );
 
-my %device_dir;
+my %dir_device;
 my %device_type;
 
 =head1 FUNCTIONS
@@ -38,7 +37,7 @@ Inits Dispatcher
 =cut
 sub Init()
 {
-	%device_dir = ();
+	%dir_device = ();
 	%device_type = ();
 	AAT::Syslog(PROG_NAME, "Load Devices Configuration");
 	foreach my $d (Octopussy::Device::Configurations("name"))
@@ -47,7 +46,7 @@ sub Init()
   	$type =~ s/ /_/g;
 		my $status = (defined $d->{status} ? $d->{status} : "Paused");
 		$device_type{$d->{name}} = ($status ne "Stopped" ? $type : "");
-		$device_dir{$d->{name}} = 
+		$dir_device{$d->{name}} = 
 			Octopussy::Storage::Directory_Incoming($d->{name});
 	}		
 	Octopussy::RRDTool::Syslog_By_DeviceType_Init();
@@ -62,16 +61,16 @@ sub Handle_Dir($$$$)
 {
 	my ($device, $day, $month, $year) = @_;
 
-	if (!defined $device_dir{$device})
+	if (!defined $dir_device{$device})
 	{
   	if (!-f Octopussy::Device::Filename($device))
   	{
     	Octopussy::Device::New({ name => $device, address => $device,
       	description => "New Device !" });
-    	$device_dir{$device} = Octopussy::Storage::Directory_Incoming($device);
+    	$dir_device{$device} = Octopussy::Storage::Directory_Incoming($device);
   	}
 	}
-  my $dir_incoming = "$device_dir{$device}/$device/Incoming/$year/$month/$day";
+  my $dir_incoming = "$dir_device{$device}/$device/Incoming/$year/$month/$day";
 	Octopussy::Create_Directory($dir_incoming);
 
 	return ($dir_incoming);

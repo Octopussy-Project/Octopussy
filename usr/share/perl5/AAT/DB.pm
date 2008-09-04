@@ -3,7 +3,6 @@
 AAT::DB - AAT Database module
 
 =cut
-
 package AAT::DB;
 
 use strict;
@@ -38,10 +37,10 @@ sub Connect($)
 {
 	my $appli = shift;
 
-	my $db_conf = Configuration($appli);
-	my $type = $db_conf->{db_type} || "mysql";
-	$dbh{$appli} = DBI->connect("DBI:$type:database=$db_conf->{db};host=$db_conf->{host}",
-		$db_conf->{user}, $db_conf->{password});
+	my $conf_db = Configuration($appli);
+	my $type = $conf_db->{db_type} || "mysql";
+	$dbh{$appli} = DBI->connect("DBI:$type:database=$conf_db->{db};host=$conf_db->{host}",
+		$conf_db->{user}, $conf_db->{password});
 
 	return ("$DBI::err: $DBI::errstr")  if (!defined $dbh{$appli});
 	return (undef);

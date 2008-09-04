@@ -10,16 +10,16 @@ use strict;
 no strict 'refs';
 use Octopussy;
 
-use constant PLUGIN_DIR => "plugins";
-use constant PLUGINS_MODULES_DIR => "/usr/share/perl5/Octopussy/Plugin/";
+use constant DIR_PLUGIN => "plugins";
+use constant DIR_PLUGIN_MODULES => "/usr/share/perl5/Octopussy/Plugin/";
 
-my $plugins_dir = undef;
+my $dir_plugins = undef;
 my %function_source = ();
 
 
 BEGIN
 {
-	opendir(DIR, PLUGINS_MODULES_DIR);
+	opendir(DIR, DIR_PLUGIN_MODULES);
  	my @plugins = grep /.+\.pm$/, readdir(DIR);
  	foreach my $p (@plugins)
   { 
@@ -39,7 +39,7 @@ sub Init_All
 {
 	my $conf = shift;
 
-	my @plugins = AAT::FS::Directory_Files(PLUGINS_MODULES_DIR, qr/.+\.pm$/);
+	my @plugins = AAT::FS::Directory_Files(DIR_PLUGIN_MODULES, qr/.+\.pm$/);
   foreach my $p (@plugins)
   { 
 		$p =~ s/\.pm$//;
@@ -78,9 +78,9 @@ Returns List of Plugins
 
 sub List()
 {	
-	$plugins_dir ||= Octopussy::Directory(PLUGIN_DIR);
+	$dir_plugins ||= Octopussy::Directory(DIR_PLUGIN);
 
-	return (AAT::XML::Name_List($plugins_dir));
+	return (AAT::XML::Name_List($dir_plugins));
 }
 
 =head2 Functions()
@@ -93,11 +93,11 @@ sub Functions()
 {
 	my @functions = ();
 
-	$plugins_dir ||= Octopussy::Directory(PLUGIN_DIR);
-	my @files = AAT::FS::Directory_Files($plugins_dir, qr/.+\.xml$/);
+	$dir_plugins ||= Octopussy::Directory(DIR_PLUGIN);
+	my @files = AAT::FS::Directory_Files($dir_plugins, qr/.+\.xml$/);
   foreach my $f (@files)
   {
-    my $conf = AAT::XML::Read("$plugins_dir/$f");
+    my $conf = AAT::XML::Read("$dir_plugins/$f");
     push(@functions, { plugin => $conf->{name}, functions => $conf->{function} })  
 			if (defined $conf->{function});
   }	
@@ -117,8 +117,8 @@ sub Function_Source($)
 
 	if (!defined $function_source{$fct})
 	{
-		$plugins_dir ||= Octopussy::Directory(PLUGIN_DIR);
-		my $conf = AAT::XML::Read("$plugins_dir/$mod.xml");
+		$dir_plugins ||= Octopussy::Directory(DIR_PLUGIN);
+		my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
 		foreach my $pf (AAT::ARRAY($conf->{function})) 
 		{ 
 			$function_source{$fct} = $pf->{source}	if ($pf->{perl} eq $fct);

@@ -25,10 +25,10 @@ use constant RRD_INFO => "/usr/bin/rrdtool info";
 my $RRD_UPDATE = "/usr/bin/rrdtool update";
 my $NICE_RRDGRAPH = "nice -n 15";
 
-my $RRD_DIR = "/var/lib/octopussy/rrd";
-my $RRD_PNG_DIR = "/usr/share/octopussy/rrd";
-my $RRD_SYSLOG = "$RRD_DIR/syslog.rrd";
-my $RRD_SYSLOG_DTYPE = "$RRD_DIR/syslog_dtype.rrd";
+my $DIR_RRD = "/var/lib/octopussy/rrd";
+my $DIR_RRD_PNG = "/usr/share/octopussy/rrd";
+my $RRD_SYSLOG = "$DIR_RRD/syslog.rrd";
+my $RRD_SYSLOG_DTYPE = "$DIR_RRD/syslog_dtype.rrd";
 
 my $RRA = "RRA:AVERAGE:0.5:1:60 RRA:AVERAGE:0.5:5:288 RRA:AVERAGE:0.5:30:336"
 	. " RRA:AVERAGE:0.5:60:720 RRA:AVERAGE:0.5:240:2190";
@@ -117,7 +117,7 @@ sub Syslog_By_DeviceType_Init()
 
 	if ((! -f "$RRD_SYSLOG_DTYPE") || ($ds_count != ($#dtypes+1)))
   {
-		Octopussy::Create_Directory($RRD_DIR);
+		Octopussy::Create_Directory($DIR_RRD);
 		my $cmd = RRD_CREATE . " \"$RRD_SYSLOG_DTYPE\" --step " . MINUTE . " ";
 		foreach my $dt (@dtypes)
 		{ 
@@ -155,7 +155,7 @@ sub Syslog_By_DeviceType_Graph($$$)
 	if (-f "$RRD_SYSLOG_DTYPE")
 	{
 		my %type = Octopussy::Device::Type_Configurations();
-		my $cmd = "$NICE_RRDGRAPH " . Graph_Parameters("$RRD_PNG_DIR/${file}.png",
+		my $cmd = "$NICE_RRDGRAPH " . Graph_Parameters("$DIR_RRD_PNG/${file}.png",
 			"-$length", "-120", $title, GRAPH_WIDTH, GRAPH_HEIGHT, 
 			"Logs by Device Type");
 
@@ -236,10 +236,10 @@ sub Syslog_By_Device_Service_Taxonomy_Init($$)
 {
 	my ($device, $service) = @_;
 
-	my $file = "$RRD_DIR/$device/taxonomy_$service.rrd";
+	my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
   if (! -f $file)
   {
-		Octopussy::Create_Directory("$RRD_DIR/$device");
+		Octopussy::Create_Directory("$DIR_RRD/$device");
     my $cmd = RRD_CREATE . " \"$file\" --step " . MINUTE . " ";
 		my @list = Octopussy::Taxonomy::List();
     foreach my $taxo (sort @list)
@@ -261,7 +261,7 @@ Updates RRD Data for 'Syslog by Device/Service Taxonomy' stats
 sub Syslog_By_Device_Service_Taxonomy_Update($$$$)
 {
   my ($seconds, $device, $service, $values) = @_;
-	my $file = "$RRD_DIR/$device/taxonomy_$service.rrd";
+	my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
 	my $value_str = join(":", AAT::ARRAY($values));
 
 	`$RRD_UPDATE "$file" $seconds:$value_str 2> /dev/null`;
@@ -276,7 +276,7 @@ Graphs RRD Data for 'Syslog by Device/Service Taxonomy' stats
 sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
 {
   my ($device, $service, $file, $title, $length) = @_;
-  my $cmd = "$NICE_RRDGRAPH " . Graph_Parameters("$RRD_PNG_DIR/${file}.png",
+  my $cmd = "$NICE_RRDGRAPH " . Graph_Parameters("$DIR_RRD_PNG/${file}.png",
 		"-$length", "-120", $title, GRAPH_WIDTH, GRAPH_HEIGHT,
 		"Logs Taxonomy for $service");
 
@@ -289,7 +289,7 @@ sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
     my $type_name = $t;
 		$t =~ s/\./_/g;
     my $type = ($first ? "AREA" : "STACK");
-    $cmd .= "DEF:$t=\"$RRD_DIR/$device/taxonomy_$service.rrd\":$t:AVERAGE"
+    $cmd .= "DEF:$t=\"$DIR_RRD/$device/taxonomy_$service.rrd\":$t:AVERAGE"
 			. " CDEF:cdef$t=$t ";
     $cmd .= Graph_Line($t, $type, $color, "Logs $type_name")
       . " " . Graph_Legend($t) . " ";
@@ -333,7 +333,7 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 {
 	my ($device, $file, $title, $length) = @_;
 
-	my $cmd = Graph_Parameters("$RRD_PNG_DIR/${file}.png", "-$length", "-120",
+	my $cmd = Graph_Parameters("$DIR_RRD_PNG/${file}.png", "-$length", "-120",
 		$title, GRAPH_WIDTH, GRAPH_HEIGHT, "Taxonomy for $device");
 	my @services = Octopussy::Device::Services($device);
 	my %taxo_color = Octopussy::Taxonomy::Colors();
@@ -349,10 +349,10 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
     my $type = ($first ? "AREA" : "STACK");
 		foreach my $s (@services)
 		{
-			if (-f "$RRD_DIR/$device/taxonomy_$s.rrd")
+			if (-f "$DIR_RRD/$device/taxonomy_$s.rrd")
 			{
     		$def .= "DEF:$t" . chr(65+$i) 
-					. "=\"$RRD_DIR/$device/taxonomy_$s.rrd\":$t:AVERAGE ";
+					. "=\"$DIR_RRD/$device/taxonomy_$s.rrd\":$t:AVERAGE ";
 				$cdef .= ($i == 0 ? " CDEF:$t=" : "") . "$t" . chr(65+$i) 
 					. ",UN,0,$t" . chr(65+$i) . ",IF," . ($i > 0 ? "+," : "");
 				$i++;
@@ -452,8 +452,8 @@ sub Report_Graph($$$$$$$)
 	my $title = $rconf->{graph_title} || "";
 	my $width = $rconf->{graph_width} || GRAPH_WIDTH;	
 	my $height = $rconf->{graph_height} || GRAPH_HEIGHT;
-  my $rrd_file = $output;
-  $rrd_file =~ s/\.png/\.rrd/;
+  my $file_rrd = $output;
+  $file_rrd =~ s/\.png/\.rrd/;
   my $start = `date +%s -d '$1 $2:$3'`  if ($begin =~ /(\d{8})(\d\d)(\d\d)/);
   my $finish = `date +%s -d '$1 $2:$3'` if ($end =~ /(\d{8})(\d\d)(\d\d)/);
   chomp($start);
@@ -465,20 +465,23 @@ sub Report_Graph($$$$$$$)
 	my %dataline = ();
 	foreach my $l (AAT::ARRAY($data))
 	{
-		my $key = $l->{$ds1}  
-			. (AAT::NOT_NULL($l->{$ds2}) ? " / $l->{$ds2}" : "")
-			. (AAT::NOT_NULL($l->{$ds3}) ? " / $l->{$ds3}" : "");
-		if (AAT::NOT_NULL($key))
-		{
-			$ds{$key} = 1;
-			my $block = int(($l->{$tl} - $start)/$rrd_step_mins);
-			$block = AAT::Padding($block, 10);
-			$dataline{$block}{$key} = (defined $dataline{$block}{$key} 
-				? $dataline{$block}{$key} + $l->{$dsv} : $l->{$dsv});
+		if ($l->{$tl} >= $start)
+    {
+			my $key = $l->{$ds1}  
+				. (AAT::NOT_NULL($l->{$ds2}) ? " / $l->{$ds2}" : "")
+				. (AAT::NOT_NULL($l->{$ds3}) ? " / $l->{$ds3}" : "");
+			if (AAT::NOT_NULL($key))
+			{
+				$ds{$key} = 1;
+				my $block = int(($l->{$tl} - $start)/$rrd_step_mins);
+				$block = AAT::Padding($block, 10);
+				$dataline{$block}{$key} = (defined $dataline{$block}{$key} 
+					? $dataline{$block}{$key} + $l->{$dsv} : $l->{$dsv});
+			}
 		}
 	}
 	
-	my $cmd = RRD_CREATE . " \"$rrd_file\" --start $start --step $rrd_step_mins ";
+	my $cmd = RRD_CREATE . " \"$file_rrd\" --start $start --step $rrd_step_mins ";
 	my $i = 1;
 	foreach my $k (sort keys %ds)
 	{
@@ -494,7 +497,7 @@ sub Report_Graph($$$$$$$)
 		foreach my $d (sort keys %ds)
 			{ $update .= ($dataline{$ts}{$d} || "0") . ":"; }
 		$update =~ s/:$//;
-		`$RRD_UPDATE "$rrd_file" $update`;
+		`$RRD_UPDATE "$file_rrd" $update`;
 	}
 
 	$cmd = Graph_Parameters($output, $start, $finish, $title, 
@@ -512,7 +515,7 @@ sub Report_Graph($$$$$$$)
   	my $color = (($i < 30) ? $colors[$i-1] : "#909090");
   	my $rtype = (($rconf->{graph_type} =~ /rrd_line/) ? "LINE" 
 			: (($i == 1) ? "AREA" : "STACK"));
-    $cmd .= "DEF:def$i=\"$rrd_file\":ds$i:AVERAGE CDEF:cdef$i=def$i ";
+    $cmd .= "DEF:def$i=\"$file_rrd\":ds$i:AVERAGE CDEF:cdef$i=def$i ";
    	$cmd .= Graph_Line("cdef$i", $rtype, $color, $k)
     	. " " . Graph_Legend("cdef$i") . " ";
     $i++;
