@@ -8,6 +8,8 @@ package Octopussy::Storage;
 use strict;
 use Octopussy;
 
+use constant XML_ROOT => "octopussy_storages";
+
 =head1 FUNCTIONS
 
 =head2 Add($conf_storage)
@@ -28,7 +30,7 @@ sub Add($)
       if ($s->{s_id} eq $conf_storage->{s_id});
   }
   push(@{$conf->{storage}}, $conf_storage);
-  AAT::XML::Write($file, $conf, "octopussy_storages");
+  AAT::XML::Write($file, $conf, XML_ROOT);
 
   return (undef);
 }
@@ -48,7 +50,7 @@ sub Remove($)
   foreach my $s (AAT::ARRAY($conf->{storage}))
     { push(@storages, $s) if ($s->{s_id} ne $storage); }
   $conf->{storage} = \@storages;
-  AAT::XML::Write($file, $conf, "octopussy_storages");
+  AAT::XML::Write($file, $conf, XML_ROOT);
 
   return (undef);
 }
@@ -78,7 +80,7 @@ sub Default_Set($)
 	$conf->{default_unknown} = $conf_new->{unknown};
 	$conf->{default_known} = $conf_new->{known};
 
-	AAT::XML::Write($file, $conf, "octopussy_storages");	
+	AAT::XML::Write($file, $conf, XML_ROOT);	
 }
 
 =head2 List()

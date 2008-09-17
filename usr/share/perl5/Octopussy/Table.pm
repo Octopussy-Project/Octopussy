@@ -11,6 +11,7 @@ use Octopussy;
 use Octopussy::Type;
 
 use constant DIR_TABLE => "tables";
+use constant XML_ROOT => "octopussy_table";
 
 my $dir_tables = undef;
 my %filename;
@@ -34,7 +35,7 @@ sub New($)
 	{
 		$dir_tables ||= Octopussy::Directory(DIR_TABLE);
 		$conf->{version} = Octopussy::Timestamp_Version(undef);
-		AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, "octopussy_table");
+		AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, XML_ROOT);
 		Add_Field($conf->{name}, "datetime", "DATETIME");
 		Add_Field($conf->{name}, "device", "WORD");
 	}
@@ -137,7 +138,7 @@ sub Add_Field($$$)
 	foreach my $f (AAT::ARRAY($conf->{field}))
  		{ return (undef)  if ($fieldname =~ /^$f->{title}$/); }	
 	push(@{$conf->{field}}, { title => $fieldname, type => $fieldtype });
-	AAT::XML::Write(Filename($table), $conf, "octopussy_table");
+	AAT::XML::Write(Filename($table), $conf, XML_ROOT);
 
 	return ($fieldname);
 }
@@ -158,7 +159,7 @@ sub Remove_Field($$)
 		push(@fields, $f)	if ($f->{title} ne $fieldname);
 	}	
 	$conf->{field} = \@fields;
-	AAT::XML::Write(Filename($table), $conf, "octopussy_table");
+	AAT::XML::Write(Filename($table), $conf, XML_ROOT);
 }
 
 =head2 Fields($table)

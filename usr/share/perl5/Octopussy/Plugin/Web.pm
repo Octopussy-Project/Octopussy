@@ -16,12 +16,12 @@ my @operating_systems = ();
 =head2 Init()
 
 =cut
-sub Init
+sub Init()
 {
-	my $conf_bot = AAT::List::Configuration("AAT_Bot");
-	my $conf_browser = AAT::List::Configuration("AAT_Browser");
-	my $conf_mobile = AAT::List::Configuration("AAT_MobilePhone");
-	my $conf_os = AAT::List::Configuration("AAT_Operating_System");
+	my $conf_bot      = AAT::List::Configuration("AAT_Bot");
+	my $conf_browser  = AAT::List::Configuration("AAT_Browser");
+	my $conf_mobile   = AAT::List::Configuration("AAT_MobilePhone");
+	my $conf_os       = AAT::List::Configuration("AAT_Operating_System");
 	
 	my @list =
     (AAT::ARRAY($conf_browser->{item}), AAT::ARRAY($conf_mobile->{item}),

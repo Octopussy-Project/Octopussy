@@ -23,3 +23,13 @@ else
 <td valign="top"><% $Response->Include('INC/octo_main_menu.inc') %></td>
 <td valign="top" align="center" width="*">
 <AAT:Msg_Error/>
+
+<!--
+<AAT:Form>
+<table bgcolor="darkgray" align="center">
+<tr><td><AAT:Button name="info" /></td>
+<td>Voulez vous vraiment supprimer l'utilisateur 'toto' ?</td>
+<td><AAT:Form_Submit value="Oui" /></td><td><AAT:Form_Submit value="Non" /></td></tr>
+</table>
+</AAT:Form>
+--!>

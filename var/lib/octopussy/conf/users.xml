@@ -7,4 +7,11 @@
         restrictions=""
         role="admin"
         theme="DEFAULT" />
+  <user certificate=""
+        language="EN"
+        login="thibaut"
+        menu_mode="TEXT_AND_ICONS"
+        password="$1$OP$2MAJt0LPwWNSHN/1rzoMm1"
+        role="admin"
+        theme="DEFAULT" />
 </Octopussy_users>

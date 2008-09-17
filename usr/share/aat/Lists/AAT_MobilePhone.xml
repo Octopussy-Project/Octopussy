@@ -27,6 +27,9 @@
 	<item label="Alcatel CTH3" value="mobile_alcatel_cth3"
         regexp="Alcatel-CTH3"
         constructor="Alcatel" model="CTH3" logo="companies/logo_alcatel" />
+	<item label="Alcatel Mandarina Duck" value="mobile_alcatel_mandarina_duck"
+        regexp="Alcatel-Mandarina-Duck"
+        constructor="Alcatel" model="Mandarina Duck" logo="companies/logo_alcatel" />
 	<item label="Alcatel OH1C" value="mobile_alcatel_oh1c"
         regexp="Alcatel-OH1C"
         constructor="Alcatel" model="OH1C" logo="companies/logo_alcatel" />
@@ -63,7 +66,7 @@
         constructor="Amoi" model="A500" logo="browsers/browser_mobile" />
 
 	<item label="Apple iPhone" value="mobile_apple_iphone"
-				regexp="iPhone; U;.+AppleWebKit"
+				regexp="iPhone.+AppleWebKit"
 				constructor="Apple" model="iPhone" logo="browsers/browser_iphone" />
 
 	<item label="BenQ EF51" value="mobile_benq_ef51"
@@ -223,6 +226,9 @@
 	<item label="BlackBerry 8900" value="mobile_blackberry_8900"
         regexp="BlackBerry8900"
         constructor="BlackBerry" model="8900" logo="companies/logo_blackberry" />
+	<item label="BlackBerry 9000" value="mobile_blackberry_9000"
+        regexp="BlackBerry9000"
+        constructor="BlackBerry" model="9000" logo="companies/logo_blackberry" />
 
 	<item label="Grundig G500i" value="mobile_grundig_g500i"
         regexp="portalmmm.+ G500i"
@@ -240,9 +246,15 @@
 	<item label="HTC P3300" value="mobile_htc_p3300"
         regexp="HTC_?P3300"
         constructor="HTC" model="P3300" logo="companies/logo_htc" />
+  <item label="HTC P3600" value="mobile_htc_p3600"
+        regexp="HTC_P3600"
+        constructor="HTC" model="P3600" logo="companies/logo_htc" />
 	<item label="HTC P3700" value="mobile_htc_p3700"
         regexp="HTC-P3700"
         constructor="HTC" model="P3700" logo="companies/logo_htc" />
+	<item label="HTC P5500" value="mobile_htc_p5500"
+        regexp="HTC-P5500"
+        constructor="HTC" model="P5500" logo="companies/logo_htc" />
 	<item label="HTC Touch Cruise" value="mobile_htc_touch_cruise"
         regexp="HTC_cruise"
         constructor="HTC" model="Touch Cruise" logo="companies/logo_htc" />
@@ -264,6 +276,9 @@
 	<item label="LG C1100" value="mobile_lg_c1100"
         regexp="LG-C1100"
         constructor="LG" model="C1100" logo="companies/logo_lg" />
+	<item label="LG C3310" value="mobile_lg_c3310"
+        regexp="LG-C3310"
+        constructor="LG" model="C3310" logo="companies/logo_lg" />
 	<item label="LG F2300" value="mobile_lg_f2300"
         regexp="LG-F2300"
         constructor="LG" model="F2300" logo="companies/logo_lg" />
@@ -273,6 +288,9 @@
 	<item label="LG G7200" value="mobile_lg_g7200"
         regexp="LG-G7200"
         constructor="LG" model="G7200" logo="companies/logo_lg" />
+	<item label="LG HB620T" value="mobile_lg_hb620t"
+        regexp="LG-HB620T"
+        constructor="LG" model="HB620T" logo="companies/logo_lg" />
 	<item label="LG KC550" value="mobile_lg_kc550"
         regexp="LG-KC550"
         constructor="LG" model="KC550" logo="companies/logo_lg" />
@@ -324,6 +342,9 @@
 	<item label="LG KG800" value="mobile_lg_kg800"
         regexp="LG-KG800" 
 				constructor="LG" model="KG800" logo="companies/logo_lg" />
+	<item label="LG KG810" value="mobile_lg_kg810"
+        regexp="LG-KG810"
+        constructor="LG" model="KG810" logo="companies/logo_lg" />
 	<item label="LG KM380" value="mobile_lg_km380"
         regexp="LG-KM380"
         constructor="LG" model="KM380" logo="companies/logo_lg" />
@@ -336,12 +357,18 @@
 	<item label="LG KP202" value="mobile_lg_kp202"
         regexp="(portalmmm.+ |LG-)KP202" 
 				constructor="LG" model="KP202" logo="companies/logo_lg" />
+	<item label="LG KP230" value="mobile_lg_kp230"
+        regexp="LG-KP230"
+        constructor="LG" model="KP230" logo="companies/logo_lg" />
 	<item label="LG KP235" value="mobile_lg_kp235"
         regexp="LG-KP235"
         constructor="LG" model="KP235" logo="companies/logo_lg" />
 	<item label="LG KS20" value="mobile_lg_ks20"
         regexp="LG-KS20"
         constructor="LG" model="KS20" logo="companies/logo_lg" />
+	<item label="LG KS360" value="mobile_lg_ks360"
+        regexp="LG-KS360"
+        constructor="LG" model="KS360" logo="companies/logo_lg" />
 	<item label="LG KT520" value="mobile_lg_kt520"
         regexp="LG.KT520"
         constructor="LG" model="KT520" logo="companies/logo_lg" />
@@ -363,6 +390,9 @@
 	<item label="LG KU990" value="mobile_lg_ku990"
         regexp="LG.KU990"
         constructor="LG" model="KU990" logo="companies/logo_lg" />
+	<item label="LG L1100" value="mobile_lg_l1100"
+        regexp="LG-L1100"
+        constructor="LG" model="L1100" logo="companies/logo_lg" />
 	<item label="LG L342i" value="mobile_lg_l342i"
         regexp="portalmmm.+ L342i" 
 				constructor="LG" model="L342i" logo="companies/logo_lg" />
@@ -446,6 +476,10 @@
 	<item label="Motorola Z3" value="mobile_motorola_z3"
         regexp="MOT-Z3"
         constructor="Motorola" model="Z3" logo="companies/logo_motorola" />
+
+	<item label="MTV 3.0" value="mobile_mtv_3.0"
+        regexp="MTV?1.0?MTV3-3"
+        constructor="MTV" model="3.0" logo="" />
 
 	<item label="NEC N22i" value="mobile_nec_n22i"
         regexp="portalmmm.+ n22i"
@@ -595,6 +629,9 @@
 	<item label="Nokia 6021" value="mobile_nokia_6021"
         regexp="Nokia6021"
         constructor="Nokia" model="6021" logo="companies/logo_nokia" />
+	<item label="Nokia 6030" value="mobile_nokia_6030"
+        regexp="Nokia6030"
+        constructor="Nokia" model="6030" logo="companies/logo_nokia" />
 	<item label="Nokia 6060" value="mobile_nokia_6060"
         regexp="Nokia6060"
         constructor="Nokia" model="6060" logo="companies/logo_nokia" />
@@ -658,6 +695,9 @@
 	<item label="Nokia 6680" value="mobile_nokia_6680"
         regexp="Nokia6680" 
 				constructor="Nokia" model="6680" logo="companies/logo_nokia" />
+	<item label="Nokia 6682" value="mobile_nokia_6682"
+        regexp="Nokia6682"
+        constructor="Nokia" model="6682" logo="companies/logo_nokia" />
 	<item label="Nokia 6800" value="mobile_nokia_6800"
         regexp="Nokia6800"
         constructor="Nokia" model="6800" logo="companies/logo_nokia" />
@@ -895,6 +935,9 @@
 	<item label="Sagem my302X" value="mobile_sagem_my302x"
         regexp="SAGEM-my302X"
         constructor="Sagem" model="my302X" logo="companies/logo_sagem" />
+	<item label="Sagem my312X" value="mobile_sagem_my312x"
+        regexp="SAGEM-my312X"
+        constructor="Sagem" model="my312X" logo="companies/logo_sagem" />
 	<item label="Sagem my400V" value="mobile_sagem_my400v"
         regexp="SAGEM-my400V"
         constructor="Sagem" model="my400V" logo="companies/logo_sagem" />
@@ -920,7 +963,7 @@
         regexp="portalmmm.2.0 my411Xi"
         constructor="Sagem" model="my411Xi" logo="companies/logo_sagem" />
 	<item label="Sagem my418X" value="mobile_sagem_my418x"
-        regexp="SAGEM-my418x"
+        regexp="SAGEM-my418[xX]"
         constructor="Sagem" model="my418X" logo="companies/logo_sagem" />
 	<item label="Sagem my419X" value="mobile_sagem_my419x"
         regexp="SAGEM-my419x"
@@ -998,7 +1041,7 @@
         regexp="SAGEM-myX-?2"
         constructor="Sagem" model="myX2" logo="companies/logo_sagem" />
 	<item label="Sagem myX3" value="mobile_sagem_myx3"
-        regexp="SAGEM-myX3"
+        regexp="SAGEM-myX-?3"
         constructor="Sagem" model="myX3" logo="companies/logo_sagem" />
 	<item label="Sagem myX4" value="mobile_sagem_myx4"
         regexp="SAGEM-myX-?4"
@@ -1009,12 +1052,18 @@
 	<item label="Sagem myX6" value="mobile_sagem_myx6"
         regexp="SAGEM-myX-?6" 
 				constructor="Sagem" model="myX6" logo="companies/logo_sagem" />
+	<item label="Sagem myX7" value="mobile_sagem_myx7"
+        regexp="SAGEM-myX-?7"
+        constructor="Sagem" model="myX7" logo="companies/logo_sagem" />
 	<item label="Sagem myZ5" value="mobile_sagem_myZ5"
         regexp="SAGEM-myZ-5" 
 				constructor="Sagem" model="myZ5" logo="companies/logo_sagem" />
 	<item label="Sagem SG341i" value="mobile_sagem_sg341i"
         regexp="portalmmm.+ SG341i"
         constructor="Sagem" model="SG341i" logo="companies/logo_sagem" />
+	<item label="Sagem SG342i" value="mobile_sagem_sg342i"
+        regexp="portalmmm.+ SG342i"
+        constructor="Sagem" model="SG342i" logo="companies/logo_sagem" />
 	<item label="Sagem SG343i" value="mobile_sagem_sg343i"
         regexp="portalmmm.+ SG343i"
         constructor="Sagem" model="SG343i" logo="companies/logo_sagem" />
@@ -1064,6 +1113,9 @@
 	<item label="Samsung SGH D600" value="mobile_samsung_sghd600"
         regexp="SAMSUNG-SGH-D600" 
 				constructor="Samsung" model="SGH D600" logo="companies/logo_samsung" />
+	<item label="Samsung SGH D720" value="mobile_samsung_sghd720"
+        regexp="SEC-SGHD720"
+        constructor="Samsung" model="SGH D720" logo="companies/logo_samsung" />
 	<item label="Samsung SGH D820" value="mobile_samsung_sghd820"
         regexp="SAMSUNG-SGH-D820"
         constructor="Samsung" model="SGH D820" logo="companies/logo_samsung" />
@@ -1136,6 +1188,9 @@
 	<item label="Samsung SGH E770" value="mobile_samsung_sghe770"
         regexp="SEC-SGHE770"
         constructor="Samsung" model="SGH E770" logo="companies/logo_samsung" />
+	<item label="Samsung SGH E790" value="mobile_samsung_sghe790"
+        regexp="SEC-SGHE790"
+        constructor="Samsung" model="SGH E790" logo="companies/logo_samsung" />
 	<item label="Samsung SGH E800" value="mobile_samsung_sghe800"
         regexp="SAMSUNG-SGH-E800"
         constructor="Samsung" model="SGH E800" logo="companies/logo_samsung" />
@@ -1190,6 +1245,9 @@
 	<item label="Samsung SGH G800" value="mobile_samsung_sghg800"
         regexp="SAMSUNG-SGH-G800"
         constructor="Samsung" model="SGH G800" logo="companies/logo_samsung" />
+	<item label="Samsung SGH I320" value="mobile_samsung_sghi320"
+        regexp="SEC-SGHI320"
+        constructor="Samsung" model="SGH I320" logo="companies/logo_samsung" />
 	<item label="Samsung SGH J600" value="mobile_samsung_sghj600"
         regexp="SEC-SGHJ600"
         constructor="Samsung" model="SGH J600" logo="companies/logo_samsung" />
@@ -1259,6 +1317,9 @@
 	<item label="Samsung SGH S730i" value="mobile_samsung_sghs730i"
         regexp="portalmmm.+ S730i" 
 				constructor="Samsung" model="SGH S730i" logo="companies/logo_samsung" />
+	<item label="Samsung SGH U100" value="mobile_samsung_sghu100"
+        regexp="SEC-SGHU100"
+        constructor="Samsung" model="SGH U100" logo="companies/logo_samsung" />
 	<item label="Samsung SGH U600" value="mobile_samsung_sghu600"
         regexp="SEC-SGHU600" 
 				constructor="Samsung" model="SGH U600" logo="companies/logo_samsung" />
@@ -1296,7 +1357,7 @@
         regexp="SEC-SGHX680"
         constructor="Samsung" model="SGH X680" logo="companies/logo_samsung" />
 	<item label="Samsung SGH X820" value="mobile_samsung_sghx820"
-        regexp="SEC-SGHX820"
+        regexp="(SEC-SGH|SAMSUNG-SGH-)X820"
         constructor="Samsung" model="SGH X820" logo="companies/logo_samsung" />
 	<item label="Samsung SGH Z107" value="mobile_samsung_sghz107"
         regexp="SGH-Z107" 
@@ -1473,9 +1534,15 @@
 	<item label="Siemens CF75" value="mobile_siemens_cf75"
         regexp="SIE-CF75"
         constructor="Siemens" model="CF75" logo="companies/logo_siemens" />
+	<item label="Siemens CL75" value="mobile_siemens_cl75"
+        regexp="SIE-CL75"
+        constructor="Siemens" model="CL75" logo="companies/logo_siemens" />
 	<item label="Siemens CX7v" value="mobile_siemens_cx7v"
         regexp="SIE-CX7V"
         constructor="Siemens" model="CX7v" logo="companies/logo_siemens" />
+	<item label="Siemens ELF1" value="mobile_siemens_elf1"
+        regexp="SIE-ELF1"
+        constructor="Siemens" model="ELF1" logo="companies/logo_siemens" />
 	<item label="Siemens S35" value="mobile_siemens_s35"
         regexp="SIE-S35"
         constructor="Siemens" model="S35" logo="companies/logo_siemens" />
@@ -1717,6 +1784,9 @@
 	<item label="Sony Ericsson Z550" value="mobile_sony_ericsson_z550"
         regexp="SonyEricssonZ550"
         constructor="Sony Ericsson" model="Z550" logo="companies/logo_sonyericsson" />
+  <item label="Sony Ericsson Z555" value="mobile_sony_ericsson_z555"
+        regexp="SonyEricssonZ555"
+        constructor="Sony Ericsson" model="Z555" logo="companies/logo_sonyericsson" />
 	<item label="Sony Ericsson Z610" value="mobile_sony_ericsson_z610"
         regexp="SonyEricssonZ610" 
 				constructor="Sony Ericsson" model="Z610" logo="companies/logo_sonyericsson" />

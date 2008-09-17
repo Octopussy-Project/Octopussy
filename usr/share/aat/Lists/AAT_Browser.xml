@@ -21,10 +21,14 @@
         regexp="Gecko Galeon" logo="browsers/browser_galeon" />
 	<item label="Gnash" value="gnash"
         regexp="^.?Gnash" />
+	<item label="Google Chrome" value="google_chrome"
+        regexp="AppleWebKit.+ Chrome" logo="browsers/browser_google_chrome" />
 	<item label="Google Desktop" value="google_desktop"
         regexp="Google Desktop" logo="software/logo_google_desktop" />
 	<item label="Google Earth" value="google_desktop"
         regexp="GoogleEarth" logo="software/logo_google_desktop" />
+	<item label="Green Browser" value="green_browser"
+        regexp="GreenBrowser" logo="browsers/browser_greenbrowser" />
 	<item label="iCab" value="icab"
         regexp="iCab" logo="browsers/browser_icab" />
 	<item label="Iceweasel" value="iceweasel"
@@ -56,7 +60,7 @@
 	<item label="QuickTime" value="quicktime"
         regexp="QuickTime" logo="browsers/browser_quicktime" />
 	<item label="Safari" value="safari" 
-				regexp="(Safari|AppleWebKit)" logo="browsers/browser_safari" />
+				regexp="(AppleWebKit.+(?!Chrome).+Safari|Mac OS.+AppleWebKit)" logo="browsers/browser_safari" />
 	<item label="SeaMonkey" value="seamonkey"
         regexp="SeaMonkey" logo="browsers/browser_seamonkey" />
 	<item label="SlimBrowser" value="slimbrowser"

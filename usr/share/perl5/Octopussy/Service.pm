@@ -12,6 +12,7 @@ use Encode;
 use Octopussy;
 
 use constant DIR_SERVICE => "services";
+use constant XML_ROOT => "octopussy_service";
 
 my $dir_services = undef;
 my %filename;
@@ -33,8 +34,7 @@ sub New($)
 
 	$dir_services ||= Octopussy::Directory(DIR_SERVICE);
 	$conf->{version} = Octopussy::Timestamp_Version(undef);
-	AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, 
-		"octopussy_service");
+	AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, XML_ROOT);
 }
 
 =head2 Remove($service)
@@ -205,7 +205,7 @@ sub Add_Message($$)
 		if (! Octopussy::Table::Valid_Pattern($mconf->{table}, $mconf->{pattern}));
 	$mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
 	push(@{$conf->{message}}, $mconf);	
-	AAT::XML::Write(Filename($service), $conf, "octopussy_service");
+	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
 	Parse_Restart($service);
 
 	return (undef);
@@ -241,7 +241,7 @@ sub Remove_Message($$)
 	}
 
 	$conf->{message} = \@messages;
-	AAT::XML::Write(Filename($service), $conf, "octopussy_service");
+	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
 	Parse_Restart($service);
 }
 
@@ -270,7 +270,7 @@ sub Modify_Message($$$)
   return ("FIELD_DONT_EXIST")
     if (! Octopussy::Table::Valid_Pattern($conf_modified->{table}, $conf_modified->{pattern}));
 
-	AAT::XML::Write(Filename($service), $conf, "octopussy_service");
+	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
 	Parse_Restart($service);
 
 	return (undef);
@@ -327,7 +327,7 @@ sub Move_Message($$$)
     push(@messages2, $m);
   }
 	$conf->{message} = \@messages2;
-	AAT::XML::Write(Filename($service), $conf, "octopussy_service");
+	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
 	Parse_Restart_Required($service);
 }
 
@@ -643,9 +643,9 @@ sub Update_Get_Messages($)
 
 	AAT::Download("Octopussy", "$web/Download/Services/$service.xml", 
 		"$dir_running$service.xml");
-	my $new_conf =  AAT::XML::Read("$dir_running$service.xml");
+	my $conf_new =  AAT::XML::Read("$dir_running$service.xml");
 	
-	return (AAT::ARRAY($new_conf->{message}));
+	return (AAT::ARRAY($conf_new->{message}));
 }
 
 =head2 Updates_Diff($service)

@@ -1,9 +1,8 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
-#
-# Package: Octopussy::Plugin::DenyAll_Rule
-#
+=head1 NAME
+
+Octopussy::Plugin::DenyAll_Rule - Octopussy Plugin DenyAll_Rule
+
+=cut
 package Octopussy::Plugin::DenyAll_Rule;
 
 use strict;
@@ -18,10 +17,12 @@ my $URI = "EAccessUriRule deny=";
 
 my %rule = ();
 
-#
-# Function: Init()
-#
-sub Init
+=head1 FUNCTIONS
+
+=head2 Init()
+
+=cut
+sub Init()
 {
 	%rule = ();
 	my $last_comment = "";
@@ -51,20 +52,20 @@ sub Init
   close(FILE);
 }
 
-#
-# Function: Info($id)
-#
-sub Info
+=head2 Info($id)
+
+=cut
+sub Info($)
 {
 	my $id = shift;
 
 	return ($rule{$id}{comment} || "N/A");
 }
 
-#
-# Function: Nessus_Id($id)
-#
-sub Nessus_Id
+=head2 Nessus_Id($id)
+
+=cut
+sub Nessus_Id($)
 {
   my $id = shift;
 	my $url = "<a href=\"http://cgi.nessus.org/plugins/dump.php3?id="
@@ -73,10 +74,10 @@ sub Nessus_Id
   return (defined $rule{$id}{nessus_id} ? $url : "N/A");
 }
 
-#
-# Function: Regexp($id)
-#
-sub Regexp
+=head2 Regexp($id)
+
+=cut
+sub Regexp($)
 {
 	my $id = shift;
 
@@ -84,3 +85,9 @@ sub Regexp
 }
 
 1;
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=cut

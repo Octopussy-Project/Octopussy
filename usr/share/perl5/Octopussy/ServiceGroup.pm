@@ -10,6 +10,8 @@ no strict 'refs';
 
 use Octopussy;
 
+use constant XML_ROOT => "octopussy_servicegroups";
+
 =head1 FUNCTIONS
 
 =head2 Add($conf_sg)
@@ -30,7 +32,7 @@ sub Add($)
       if ($sg->{sg_id} eq $conf_sg->{sg_id});
   }
 	push(@{$conf->{servicegroup}}, $conf_sg); 		
-	AAT::XML::Write($file, $conf, "octopussy_servicegroups");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head1 Remove($servicegroup)
@@ -48,7 +50,7 @@ sub Remove($)
 	foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
   	{ push(@sgs, $sg)	if ($sg->{sg_id} ne $servicegroup); }
 	$conf->{servicegroup} = \@sgs;
-	AAT::XML::Write($file, $conf, "octopussy_servicegroups");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 List()
@@ -158,7 +160,7 @@ sub Add_Service($$)
 	}
 	$conf->{servicegroup} = \@sgs;
 
-  AAT::XML::Write($file, $conf, "octopussy_servicegroups");
+  AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 Remove_Service($servicegroup, $service)
@@ -199,7 +201,7 @@ sub Remove_Service($$)
     push(@sgs, $sg);
   }
   $conf->{servicegroup} = \@sgs;
-  AAT::XML::Write($file, $conf, "octopussy_servicegroups");
+  AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 Move_Service($servicegroup, $service, $direction)
@@ -252,7 +254,7 @@ sub Move_Service($$$)
 	}
 	$conf->{servicegroup} = \@sgs;
 	
-  AAT::XML::Write($file, $conf, "octopussy_servicegroups");
+  AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 1;

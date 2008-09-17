@@ -3,13 +3,14 @@
 Octopussy::TimePeriod - Octopussy TimePeriod module
 
 =cut
-
 package Octopussy::TimePeriod;
 
 use strict;
 no strict 'refs';
 
 use Octopussy;
+
+use constant XML_ROOT => "octopussy_timeperiods";
 
 =head1 FUNCTIONS
 
@@ -18,7 +19,6 @@ use Octopussy;
 Create a new Timeperiod
 
 =cut
-
 sub New($)
 {
 	my $new = shift;
@@ -29,7 +29,7 @@ sub New($)
 		{ push(@{$conf->{timeperiod}}, $new); }
 	else
 		{ push(@{$conf->{timeperiod}}, $new); }
-  AAT::XML::Write($file, $conf, "octopussy_timeperiods");
+  AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 Remove($timeperiod)
@@ -37,7 +37,6 @@ sub New($)
 Remove a Timeperiod
 
 =cut
-
 sub Remove($)
 {
 	my $timeperiod = shift;
@@ -48,7 +47,7 @@ sub Remove($)
   foreach my $t (AAT::ARRAY($conf->{timeperiod}))
   	{ push(@tps, $t)	if ($t->{label} ne $timeperiod); }
 	$conf->{timeperiod} = \@tps;
-	AAT::XML::Write($file, $conf, "octopussy_timeperiods");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 List()
@@ -98,7 +97,6 @@ sub Configuration($)
 =head2 Configurations($sort)
 
 =cut
-
 sub Configurations
 {
 	my $sort = shift || "label";

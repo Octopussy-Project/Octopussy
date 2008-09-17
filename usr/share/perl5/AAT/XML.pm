@@ -112,7 +112,7 @@ sub Read
 Writes XML content '$data' to file '$file'
 
 =cut
-sub Write
+sub Write($$$)
 {
   my ($file, $data, $root_name) = @_;
 
@@ -121,19 +121,23 @@ sub Write
       XMLDecl => "<?xml version='1.0' encoding='UTF-8'?>",
       RootName => $root_name || "aat_config" );
   my $xml = XMLout($data, %XML_OUTPUT_OPTIONS);
-	AAT::Syslog("AAT::XML", "XML_WRITE_ERROR", $@)	if ($@);
-	my $flag = utf8::is_utf8($xml);
+  if ($@)
+  {
+	  AAT::Syslog("AAT::XML", "XML_WRITE_ERROR", $@);
+    return (undef);
+  }
+  if (defined open(FILE, (utf8::is_utf8($xml) ? ">:utf8" : ">:bytes"), $file))
+  {
+    print FILE $xml;
+    close(FILE);
+  }
+  else
+  {
+    AAT::Syslog("AAT::XML", "XML_WRITE_ERROR", $@)  if ($@);
+    return (undef);
+  }
 
-	if ($flag == 1)
-	{
-		open(FILE, ">:utf8", $file);
-	}
-	else
-	{
-		open(FILE, ">:bytes", $file);
-	}
-  print FILE $xml;
-  close(FILE);
+  return ($file);
 }
 
 1;

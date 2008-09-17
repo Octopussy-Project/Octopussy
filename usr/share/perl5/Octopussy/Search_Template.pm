@@ -3,14 +3,14 @@
 Octopussy::Search_Template - Octopussy Search Template module
 
 =cut
-
 package Octopussy::Search_Template;
 
 use strict;
 use utf8;
 use Octopussy;
 
-use constant dir_search_tpl => "search_templates";
+use constant DIR_SEARCH_TPL => "search_templates";
+use constant XML_ROOT => "octopussy_search_template";
 
 my $dir_search_tpl = undef;
 my %filename;
@@ -27,15 +27,13 @@ $user - user who create this template
 \%conf - hashref of the new Search Template configuration
 
 =cut
-
 sub New($$)
 {
 	my ($user, $conf) = @_;
 
-	$dir_search_tpl ||= Octopussy::Directory(dir_search_tpl);
+	$dir_search_tpl ||= Octopussy::Directory(DIR_SEARCH_TPL);
 	Octopussy::Create_Directory("$dir_search_tpl/$user");	
-	AAT::XML::Write("$dir_search_tpl/$user/$conf->{name}.xml", 
-				$conf, "octopussy_search_template");
+	AAT::XML::Write("$dir_search_tpl/$user/$conf->{name}.xml", $conf, XML_ROOT);
 }
 
 =head2 Remove($user, $search_tpl)
@@ -75,7 +73,7 @@ sub List($)
 {
 	my $user = shift;
 
-	$dir_search_tpl ||= Octopussy::Directory(dir_search_tpl);
+	$dir_search_tpl ||= Octopussy::Directory(DIR_SEARCH_TPL);
 	my @files = AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
 	my @tpls = ();
 	foreach my $f (@files)
@@ -108,7 +106,7 @@ sub List_Any_User($)
 	my (@list, @sorted_list) = ();
 	my %field;
 
-	$dir_search_tpl ||= Octopussy::Directory(dir_search_tpl);
+	$dir_search_tpl ||= Octopussy::Directory(DIR_SEARCH_TPL);
 	my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
 	foreach my $d (@dirs)
 	{
@@ -154,7 +152,7 @@ sub Filename($$)
 		if (defined $filename{$user}{$search_tpl});
 	if (AAT::NOT_NULL($search_tpl))
 	{
-		$dir_search_tpl ||= Octopussy::Directory(dir_search_tpl);
+		$dir_search_tpl ||= Octopussy::Directory(DIR_SEARCH_TPL);
 		my @files = 
 			AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
 		foreach my $f (@files)

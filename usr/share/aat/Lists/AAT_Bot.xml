@@ -7,7 +7,7 @@
         regexp="ia_archiver"
         logo="browsers/browser_bot" />
 	<item label="AOL Bot" value="bot_aol"
-        regexp="http://www.aol.com"
+        regexp="(ee://aol/http|http://www.aol.com)"
         logo="browsers/browser_bot" />
 	<item label="Ask Jeeves" value="bot_ask_jeeves"
         regexp="Ask Jeeves"
@@ -18,6 +18,9 @@
 	<item label="Bibliotheque Nationale de France" value="bot_bnf"
 				regexp="bibnum.bnf.fr"
 				logo="browsers/browser_bot" />
+	<item label="CyberPatrol Bot" value="bot_cyberpatrol"
+        regexp="CyberPatrol SiteCat Webbot"
+        logo="browsers/browser_bot" />
 	<item label="DotBot" value="bot_dotbot"
         regexp="DotBot"
         logo="browsers/browser_bot" />
@@ -110,6 +113,9 @@
 				logo="browsers/browser_bot" />
 	<item label="Yandex Bot" value="bot_yandex"
         regexp="Yandex"
+        logo="browsers/browser_bot" />
+	<item label="Yanga Bot" value="bot_yanga"
+        regexp="Yanga WorldSearch Bot"
         logo="browsers/browser_bot" />
 	<item label="Yeti Bot" value="bot_yeti"
         regexp="Yeti"

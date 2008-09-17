@@ -2,8 +2,8 @@
 <octopussy_service description="Windows Snare Agent Service"
                    icon="operating_systems/os_windows"
                    name="Windows_Snare"
-                   nb_messages="030"
-                   version="200808210005"
+                   nb_messages="031"
+                   version="200809170001"
                    website="http://www.intersectalliance.com/projects/SnareWindows/index.html">
   <message loglevel="Notice"
            msg_id="Windows_Snare:service_was_stopped"
@@ -191,4 +191,10 @@
            rank="031"
            table="Windows_Message"
            taxonomy="Config.Changes" />
+  <message loglevel="Warning"
+           msg_id="Windows_Snare:authentication_ticket_request_failed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;Security;&lt;@NUMBER:NULL@&gt;;&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@WORD:source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Failure Audit&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;Account Logon&quot;):category@&gt;;;&lt;@REGEXP(&quot;Authentication Ticket Request Failed:.+&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
+           rank="032"
+           table="Windows_Message"
+           taxonomy="Auth.Failure" />
 </octopussy_service>

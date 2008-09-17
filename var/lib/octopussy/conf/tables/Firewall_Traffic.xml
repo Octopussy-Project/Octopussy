@@ -56,4 +56,10 @@
          type="STRING" />
   <field title="status"
          type="STRING" />
+  <field title="user"
+         type="WORD" />
+  <field title="group"
+         type="WORD" />
+  <field title="application"
+         type="WORD" />
 </octopussy_table>

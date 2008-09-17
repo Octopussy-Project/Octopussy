@@ -8,6 +8,8 @@ package Octopussy::Location;
 use strict;
 use Octopussy;
 
+use constant XML_ROOT => "octopussy_locations";
+
 =head1 FUNCTIONS
 
 =head2 Cities()
@@ -44,7 +46,7 @@ sub City_Add($)
 	if (!$exists)
 	{
 		push(@{$conf->{city}}, { c_name => $city });
-		AAT::XML::Write($file, $conf, "octopussy_locations");
+		AAT::XML::Write($file, $conf, XML_ROOT);
 		return ($city);
 	}
 	return (undef);
@@ -65,7 +67,7 @@ sub City_Remove($)
 	foreach my $c (AAT::ARRAY($conf->{city}))
   	{ push(@cities, $c)	if ($c->{c_name} ne $city); }
 	$conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, "octopussy_locations");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 Buildings($city)
@@ -125,7 +127,7 @@ sub Building_Add($$)
 	}
 	
 	$conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, "octopussy_locations");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 	return ($result);
 }
 
@@ -153,7 +155,7 @@ sub Building_Remove($$)
 		push(@cities, $c)
   }
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, "octopussy_locations");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 Rooms($city, $building)
@@ -231,7 +233,7 @@ sub Room_Add($$$)
   }
 
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, "octopussy_locations");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 	return ($result);
 }
 
@@ -268,7 +270,7 @@ sub Room_Remove($$$)
     push(@cities, $c);
   }
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, "octopussy_locations");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 Racks($city, $building, $room)
@@ -359,7 +361,7 @@ sub Rack_Add($$$$)
     push(@cities, $c);
   }
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, "octopussy_locations");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 	return ($result);
 }
 
@@ -405,7 +407,7 @@ sub Rack_Remove($$$$)
     push(@cities, $c);
   }
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, "octopussy_locations");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 1;

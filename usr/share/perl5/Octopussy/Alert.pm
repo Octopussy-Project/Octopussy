@@ -10,6 +10,7 @@ use utf8;
 use Octopussy;
 
 use constant DIR_ALERT => "alerts";
+use constant XML_ROOT => "octopussy_alert";
 
 my @COMPARATORS = ("<", ">", "=", "<=", ">=", "LIKE");
 
@@ -22,39 +23,45 @@ my %filename;
 
 =head2 New($conf)
 
-Create a new alert and then restart parser for devices concerned
+Create a new Alert and then restart parser for Devices concerned
 
 =cut
 sub New($)
 {
 	my $conf = shift;
-	my %devices = ();
 	$dir_alerts ||= Octopussy::Directory(DIR_ALERT);
-	AAT::XML::Write("$dir_alerts/$conf->{name}.xml", $conf, "octopussy_alert");
+  my $file_xml = "$dir_alerts/$conf->{name}.xml"; 
+  
+  if (defined AAT::XML::Write($file_xml, $conf, XML_ROOT))
+  {
+    my %devices = ();
+	  if (${$conf->{device}}[0] =~ /-ANY-/i)
+	  {
+		  foreach my $d (Octopussy::Device::List())
+			  { $devices{$d} = 1; }	
+	  }	
+	  else
+	  {
+  	  foreach my $d (AAT::ARRAY($conf->{device}))
+		  {
+			  if ($d =~ /group (.+)/)
+			  {
+      	  foreach my $dev (Octopussy::DeviceGroup::Devices($1))
+        	  { $devices{$dev} = 1; }
+    	  }
+			  else
+				  { $devices{$d} = 1; }
+  	  }	
+	  }
+	  foreach my $d (sort keys %devices)
+	  {
+		  Octopussy::Device::Parse_Pause($d);
+		  Octopussy::Device::Parse_Start($d);
+	  }
+    return ($file_xml);
+  }
 
-	if (${$conf->{device}}[0] =~ /-ANY-/i)
-	{
-		foreach my $d (Octopussy::Device::List())
-			{ $devices{$d} = 1; }	
-	}	
-	else
-	{
-  	foreach my $d (AAT::ARRAY($conf->{device}))
-		{
-			if ($d =~ /group (.+)/)
-			{
-      	foreach my $dev (Octopussy::DeviceGroup::Devices($1))
-        	{ $devices{$dev} = 1; }
-    	}
-			else
-				{ $devices{$d} = 1; }
-  	}	
-	}
-	foreach my $d (sort keys %devices)
-	{
-		Octopussy::Device::Parse_Pause($d);
-		Octopussy::Device::Parse_Start($d);
-	}
+  return (undef);
 }
 
 =head2 Modify($old_alert, $conf_new)
@@ -286,7 +293,7 @@ sub Add_Message($$$$)
 	my $conf = AAT::XML::Read(Filename($alert_name));
 	push(@{$conf->{message}}, 
 	{ msg_id => $msg_id, repeat => $repeat, interval => $interval });
-	AAT::XML::Write(Filename($alert_name), $conf, "octopussy_alert");
+	AAT::XML::Write(Filename($alert_name), $conf, XML_ROOT);
 }
 
 #
@@ -310,7 +317,7 @@ sub Remove_Message($$)
   	push(@messages, $m)       if ($m->{msg_id} ne $msg_id);
  	}
 	$conf->{message} = \@messages;
-	AAT::XML::Write(Filename($alert_name), $conf, "octopussy_alert");
+	AAT::XML::Write(Filename($alert_name), $conf, XML_ROOT);
 }
 
 #
@@ -340,7 +347,7 @@ sub Add_Message_Field($$$$$)
 			last;
 		}
  	}
-	AAT::XML::Write(Filename($alert_name), $conf, "octopussy_alert");
+	AAT::XML::Write(Filename($alert_name), $conf, XML_ROOT);
 }
 
 #
@@ -375,7 +382,7 @@ sub Remove_Message_Field($$$$$)
 			last;
 		}
 	}
-	AAT::XML::Write(Filename($alert_name), $conf, "octopussy_alert");
+	AAT::XML::Write(Filename($alert_name), $conf, XML_ROOT);
 }
 
 #
@@ -397,7 +404,7 @@ sub Add_Action($$$$)
 	my $conf = AAT::XML::Read(Filename($alert_name));
 	push(@{$conf->{action}},
   	{ type => $type, contact => $contact, data => $data });
-	AAT::XML::Write(Filename($alert_name), $conf, "octopussy_alert");
+	AAT::XML::Write(Filename($alert_name), $conf, XML_ROOT);
 }
 
 =head2 From_Device($device)

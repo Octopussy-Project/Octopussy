@@ -198,8 +198,10 @@ sub Files($$$$)
 	return (\@list);
 }
 
+=head2 Minutes_Hash($ref_devices, $ref_services, $start, $finish)
 
-sub Minutes_Hash
+=cut
+sub Minutes_Hash($$$$)
 {
 	my ($ref_devices, $ref_services, $start, $finish) = @_;
   my $start_year = $start->{year}*100000000;
@@ -425,7 +427,6 @@ sub Remove($$)
       my ($pack, $file_pack, $line, $sub) = caller(0);
       AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
     }
-		#last	if ($match);
 	}
 }
 

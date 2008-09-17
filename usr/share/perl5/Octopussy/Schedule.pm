@@ -3,21 +3,21 @@
 Octopussy::Schedule - Octopussy Schedule module
 
 =cut
-
 package Octopussy::Schedule;
 
 use strict;
 
 use Octopussy;
 
+use constant XML_ROOT => "octopussy_schedule";
+ 
 =head1 FUNCTIONS
 
 =head2 Add($add)
 
-Create a new schedule
+Create a new Schedule
 
 =cut 
-
 sub Add($)
 {
 	my $add = shift;
@@ -29,7 +29,7 @@ sub Add($)
 	if (! $exists)
 	{
  		push(@{$conf->{schedule}}, $add);
-  	AAT::XML::Write($file, $conf, "octopussy_schedule");
+  	AAT::XML::Write($file, $conf, XML_ROOT);
 	}
 	else
 		{ return ("_MSG_SCHEDULE_ALREADY_EXISTS"); }
@@ -39,10 +39,9 @@ sub Add($)
 
 =head2 Remove($schedule_title)
 
-Removes schedule '$schedule_title'
+Removes Schedule '$schedule_title'
 
 =cut 
-
 sub Remove($)
 {
 	my $schedule_title = shift;
@@ -55,7 +54,7 @@ sub Remove($)
     push(@schedules, $s)       if ($s->{title} ne $schedule_title);
   }
   $conf->{schedule} = \@schedules;
-	AAT::XML::Write($file, $conf, "octopussy_schedule");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 List()
@@ -63,7 +62,6 @@ sub Remove($)
 Returns Schedules List
 
 =cut
-
 sub List()
 {
 	my @schedules = AAT::XML::File_Array_Values(Octopussy::File("schedule"),
@@ -77,7 +75,6 @@ sub List()
 Returns Schedules Configuration
 
 =cut
-
 sub Configuration($)
 {
 	my $schedule = shift;
@@ -91,10 +88,9 @@ sub Configuration($)
 
 =head2 Configurations($sort)
 
-Get the configuration for all schedules
+Get the configuration for all Schedules
 
 =cut
-
 sub Configurations($)
 {
 	my $sort = shift;

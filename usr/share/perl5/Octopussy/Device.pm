@@ -14,6 +14,7 @@ use constant STARTED => 2;
 use constant DIR_DEVICE => "devices";
 use constant PARSER_BIN => "octo_parser";
 use constant UPARSER_BIN => "octo_uparser";
+use constant XML_ROOT => "octopussy_device";
 
 my ($dir_devices, $dir_pid) = (undef, undef);
 my %filename;
@@ -22,7 +23,7 @@ my %filename;
 
 =head2 New($conf)
 
-Creates a new device
+Creates a new Device
 
 =cut
 sub New($)
@@ -37,7 +38,7 @@ sub New($)
 		$conf->{model} = $conf->{model} || Octopussy::Parameter("devicemodel");
 		$conf->{status} = "Paused";
 		$conf->{logrotate} = Octopussy::Parameter("logrotate");
-		AAT::XML::Write("$dir_devices/$name.xml", $conf, "octopussy_device");
+		AAT::XML::Write("$dir_devices/$name.xml", $conf, XML_ROOT);
 		Octopussy::Chown("$dir_devices/$name.xml");
 		Octopussy::Logs::Init_Directories($name);
 	}
@@ -58,7 +59,7 @@ sub Modify($)
 	$dir_devices ||= Octopussy::Directory(DIR_DEVICE);
 	$conf->{logtype} = $conf_new->{logtype} || "syslog";
 	$conf->{type} = $conf_new->{type} || Octopussy::Parameter("devicetype");
-	$conf->{async} = $conf_new->{async} || undef;
+	$conf->{async} = $conf_new->{async} || "";
   $conf->{model} = $conf_new->{model} || Octopussy::Parameter("devicemodel");
 	$conf->{description} = $conf_new->{description} || "";
 	$conf->{status} = $conf_new->{status} || $old_status || "Paused";
@@ -68,7 +69,7 @@ sub Modify($)
 	$conf->{rack} = $conf_new->{rack} || "";
 	$conf->{logrotate} = $conf_new->{logrotate} || "";
 	$conf->{minutes_without_logs} = $conf_new->{minutes_without_logs} || "";
-	AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, "octopussy_device");
+	AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, XML_ROOT);
 	Parse_Start($conf_new->{name})	if ($status == STARTED);
 }
 
@@ -83,7 +84,7 @@ sub Reload_Required($)
 
 	my $conf = AAT::XML::Read(Filename($device));	
 	$conf->{reload_required} = 1;
-	AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, "octopussy_device");
+	AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, XML_ROOT);
 }
 
 =head2 Remove($device)
@@ -254,7 +255,7 @@ sub Add_Service($$)
 	}
 	else
 		{ push(@{$conf->{service}}, { sid => $service, rank => $rank }); }
-	AAT::XML::Write(Filename($device), $conf, "octopussy_device");
+	AAT::XML::Write(Filename($device), $conf, XML_ROOT);
 	Parse_Start($device)  if ($old_status == STARTED);
 }
 
@@ -291,7 +292,7 @@ sub Remove_Service($$)
   my $dir_rrd = Octopussy::Directory("data_rrd");
   `rm -f $dir_rrd/$device_name/taxonomy_$service_name.rrd`;
  	$conf->{service} = \@services;
-	AAT::XML::Write(Filename($device_name), $conf, "octopussy_device");
+	AAT::XML::Write(Filename($device_name), $conf, XML_ROOT);
 	Parse_Start($device_name)  if ($old_status == STARTED);
 }
 
@@ -348,7 +349,7 @@ sub Move_Service($$$)
   }
   $conf->{service} = \@services2;
 	$conf->{reload_required} = 1;
-	AAT::XML::Write(Filename($device), $conf, "octopussy_device");
+	AAT::XML::Write(Filename($device), $conf, XML_ROOT);
 }
 
 =head2 Services(@devices)
@@ -356,7 +357,7 @@ sub Move_Service($$$)
 Gets Service list from Device list '@devices'
 
 =cut
-sub Services
+sub Services(@)
 {
 	my @devices = @_;
 	my @services = ();
@@ -566,7 +567,7 @@ sub Parse_Pause($)
 	{
 		$conf->{status} = "Paused";
 		AAT::XML::Write("$dir_devices/$conf->{name}.xml", 
-			$conf, "octopussy_device");
+			$conf, XML_ROOT);
 	}
 }
 
@@ -590,7 +591,7 @@ sub Parse_Start($)
 		$conf->{status} = "Started";
 		$conf->{reload_required} = undef;
 		AAT::XML::Write("$dir_devices/$conf->{name}.xml",       
-			$conf, "octopussy_device");
+			$conf, XML_ROOT);
 	}
 }
 
@@ -610,7 +611,7 @@ sub Parse_Stop($)
 		$conf->{status} = "Stopped";
 		$dir_devices ||= Octopussy::Directory(DIR_DEVICE);
 		AAT::XML::Write("$dir_devices/$conf->{name}.xml",       
-			$conf, "octopussy_device");
+			$conf, XML_ROOT);
 		Octopussy::Dispatcher_Reload();
 	}
 }

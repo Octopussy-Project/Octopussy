@@ -49,7 +49,7 @@ use constant
 Returns Octopussy Support Email
 
 =cut
-sub Email
+sub Email()
 {
 	my $info = AAT::Application::Info(APPLICATION_NAME);
 
@@ -61,7 +61,7 @@ sub Email
 Returns Octopussy System User
 
 =cut
-sub User
+sub User()
 {
 	my $info = AAT::Application::Info(APPLICATION_NAME);
 
@@ -104,6 +104,21 @@ sub Directory($)
   return (AAT::Application::Directory(APPLICATION_NAME, $dir));
 }
 
+=head2 Directories(@dirs)
+
+Returns Octopussy Directories from '@dirs' List
+
+=cut
+sub Directories(@)
+{
+  my @dirs = @_;
+	my @list = ();
+	foreach my $d (@dirs)
+		{ push(@list, AAT::Application::Directory(APPLICATION_NAME, $d)); }
+
+  return (@list);
+}
+
 =head2 File($file)
 
 Returns Octopussy File '$file' Value
@@ -114,6 +129,21 @@ sub File($)
   my $file = shift;
 
   return (AAT::Application::File(APPLICATION_NAME, $file));
+}
+
+=head2 Files(@files)
+
+Returns Octopussy Files from '@files' List
+
+=cut
+sub Files(@)
+{
+  my @files = @_;
+	my @list = ();
+	foreach my $f (@files)
+    { push(@list, AAT::Application::File(APPLICATION_NAME, $f)); }
+
+  return (@list);
 }
 
 =head2 Parameter($param)
@@ -154,12 +184,12 @@ sub Status_Progress($$)
 	return ($status);
 }
 
-=head2 Sourceforge_Version
+=head2 Sourceforge_Version()
 
 Get version of the last release on Sourceforge
 
 =cut
-sub Sourceforge_Version
+sub Sourceforge_Version()
 {
 	my $dir_running = Octopussy::Directory("running");
 	my $version = undef;
@@ -182,7 +212,7 @@ sub Sourceforge_Version
 Downloads Updates from the Web
 
 =cut
-sub Web_Updates
+sub Web_Updates($)
 {
 	my $type = shift;
 	my $file = "_" . lc($type) . ".idx";
@@ -205,7 +235,7 @@ sub Web_Updates
 Changes Owner (user & group) for the files '@files'
 
 =cut
-sub Chown
+sub Chown(@)
 {
 	my @files = @_;
 
@@ -223,7 +253,7 @@ sub Chown
 Creates Directory '$dir'
 
 =cut
-sub Create_Directory
+sub Create_Directory($)
 {
 	my $dir = shift;
 
@@ -240,7 +270,7 @@ Creates Directory '$dir' 'directory by directory'
 in order to be watched by inotify
 
 =cut
-sub Create_Directory_Inotify
+sub Create_Directory_Inotify($)
 {
   my $dir = shift;
 	my $tmp = "";
@@ -263,7 +293,7 @@ sub Create_Directory_Inotify
 Returns File Extension
 
 =cut
-sub File_Ext
+sub File_Ext($$)
 {
 	my ($file, $extension) = @_;
 
@@ -277,7 +307,7 @@ sub File_Ext
 Returns PID File
 
 =cut
-sub PID_File
+sub PID_File($)
 {
 	my $name = shift;
 
@@ -310,7 +340,7 @@ sub PID_File
 Returns Device Stats File
 
 =cut
-sub Device_Stats_File
+sub Device_Stats_File($)
 {
 	my $device = shift;
 
@@ -324,7 +354,7 @@ sub Device_Stats_File
 Returns Dialog properties for the Dialog '$id'
 
 =cut
-sub Dialog
+sub Dialog($)
 {
 	my $id = shift;
 	
@@ -342,7 +372,7 @@ sub Dialog
 Reloads Dispatcher
 
 =cut
-sub Dispatcher_Reload
+sub Dispatcher_Reload()
 {
 	my $dir_pid = Octopussy::Directory("running");
   opendir(DIR, $dir_pid);
@@ -357,12 +387,12 @@ sub Dispatcher_Reload
   }
 }
 
-=head2 Restart
+=head2 Restart()
 
 Restarts Octopussy
 
 =cut
-sub Restart
+sub Restart()
 {
 	`/etc/init.d/octopussy restart`;	
 }
@@ -372,7 +402,7 @@ sub Restart
 Returns Status of Processes syslog-ng, dispatcher & scheduler
 
 =cut
-sub Process_Status
+sub Process_Status()
 {
 	my %result = ();
 	
@@ -386,12 +416,12 @@ sub Process_Status
 	return (%result);
 }
 
-=head2 Timestamp_Version()
+=head2 Timestamp_Version($conf)
 
 Returns timestamp => yyyymmddxxxx
 
 =cut
-sub Timestamp_Version
+sub Timestamp_Version($)
 {
   my $conf = shift;
   my ($year, $mon, $mday) = AAT::Datetime::Now();
@@ -410,7 +440,7 @@ sub Timestamp_Version
 Installs Updates
 
 =cut
-sub Updates_Installation
+sub Updates_Installation(@)
 {
   my @updates = @_;
   my $web = Octopussy::WebSite();

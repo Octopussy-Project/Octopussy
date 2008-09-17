@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Plugin::SMTP - Octopussy Plugin SMTP
@@ -11,13 +8,16 @@ package Octopussy::Plugin::SMTP;
 use strict;
 use Octopussy;
 
-my @bounce_types = (
+my @bounce_types = 
+(
 	{ re => "Bad destination host.*",
 		type => "Bad Destination Host" },
 	{ re => "Unknown address error.*",
-	 	type => "Unknown Address Error" } );
+	 	type => "Unknown Address Error" } 
+);
 		
-my @response_types = (
+my @response_types = 
+(
 	{ re => ".*accepted for delivery.*", 
 		type => "Accepeted for delivery" },
 	{ re => ".*Message.* accepted.*",
@@ -33,7 +33,8 @@ my @response_types = (
 	{ re => ".*Queued mail.*",
 	 	type => "Queued" },
 	{ re => ".*Requested mail action okay.*",
-		type => "Requested mail action okay" } );
+		type => "Requested mail action okay" } 
+);
 		
 =head1 FUNCTIONS
 
@@ -49,7 +50,7 @@ sub Init()
 Returns Bounce Type
 
 =cut
-sub Bounce_Type
+sub Bounce_Type($)
 {
 	my $bounce = shift;
 	
@@ -67,7 +68,7 @@ sub Bounce_Type
 Returns Response Type
 
 =cut
-sub Response_Type
+sub Response_Type($)
 {
 	my $response = shift;
 	
@@ -85,7 +86,7 @@ sub Response_Type
 Reurns number of recipients
 
 =cut
-sub Recipients_Count
+sub Recipients_Count($)
 {
 	my $recipients_list = shift;
 

@@ -3,7 +3,6 @@
 Octopussy::Plugin - Octopussy Plugin module
 
 =cut
-
 package Octopussy::Plugin;
 
 use strict;
@@ -15,7 +14,6 @@ use constant DIR_PLUGIN_MODULES => "/usr/share/perl5/Octopussy/Plugin/";
 
 my $dir_plugins = undef;
 my %function_source = ();
-
 
 BEGIN
 {
@@ -35,7 +33,7 @@ BEGIN
 =head2 Init_All(\%conf)
 
 =cut
-sub Init_All
+sub Init_All($)
 {
 	my $conf = shift;
 
@@ -52,8 +50,7 @@ sub Init_All
 =head2 Init(\%conf, @plugins)
 
 =cut
-
-sub Init
+sub Init($@)
 {
 	my ($conf, @plugins) = @_;
 	my %done = ();
@@ -75,7 +72,6 @@ sub Init
 Returns List of Plugins
 
 =cut
-
 sub List()
 {	
 	$dir_plugins ||= Octopussy::Directory(DIR_PLUGIN);
@@ -88,7 +84,6 @@ sub List()
 Returns List of Plugins Functions
 
 =cut
-
 sub Functions()
 {
 	my @functions = ();
@@ -108,7 +103,6 @@ sub Functions()
 =head2 Function_Source($fct)
 
 =cut
-
 sub Function_Source($)
 {
 	my $fct = shift;	

@@ -15,7 +15,7 @@ use Octopussy;
 =head2 CSS($style)
 
 =cut
-sub CSS
+sub CSS($)
 {
 	my $style = shift;
 
@@ -34,7 +34,7 @@ sub CSS
 Encodes HTML characters
 
 =cut
-sub Encode
+sub Encode($)
 {
   my $data = shift;
 
@@ -95,7 +95,7 @@ sub Header
 Returns Page Footer HTML code
 
 =cut
-sub Footer
+sub Footer($$$)
 {
   my ($stats, $fields, $lang) = @_;
 	my $minutes = int($stats->{seconds} / 60);

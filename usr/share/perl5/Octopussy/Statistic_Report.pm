@@ -9,6 +9,7 @@ use strict;
 use Octopussy;
 
 use constant DIR_STAT_REPORT => "statistic_reports";
+use constant XML_ROOT => "octopussy_statistic_report";
 
 my $dir_stat_reports = undef;
 my %filename;
@@ -25,8 +26,7 @@ sub New($)
 	my $conf = shift;
 
 	$dir_stat_reports ||= Octopussy::Directory(DIR_STAT_REPORT);
-	AAT::XML::Write("$dir_stat_reports/$conf->{name}.xml",
-		$conf, "octopussy_statistic_report");
+	AAT::XML::Write("$dir_stat_reports/$conf->{name}.xml", $conf, XML_ROOT);
 }
 
 =head2 Remove($statistic_report)

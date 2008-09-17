@@ -1,6 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Report::CSV - Octopussy CSV Report module
@@ -13,18 +10,18 @@ no strict 'refs';
 
 =head1 FUNCTIONS
 
-=head2 Generate($file, $data, $fields, $headers, $stats)
+=head2 Generate($file, $array_data, $array_fields, $array_headers)
 
 =cut
-sub Generate
+sub Generate($$$$)
 {
-  my ($file, $data, $fields, $headers, $stats) = @_;
-	my @field_list = split(/,/, $fields);
-  my $csv = join(";", split(/,/, $headers)) . "\n";
+  my ($file, $array_data, $array_fields, $array_headers) = @_;
+	my @fields = split(/,/, $array_fields);
+  my $csv = join(";", split(/,/, $array_headers)) . "\n";
 
-  foreach my $line (@{$data})
+  foreach my $line (@{$array_data})
   {
-    foreach my $f (@field_list)
+    foreach my $f (@fields)
     {
       if ($f =~ /^(\S+::\S+)\((\S+)\)$/)
       {

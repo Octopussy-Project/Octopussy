@@ -1,12 +1,8 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
 =head1 NAME
 
 Octopussy::Plugin::Unit - Octopussy Plugin Unit
 
 =cut
-
 package Octopussy::Plugin::Unit;
 
 use strict;
@@ -27,7 +23,6 @@ my ($str_bytes, $str_minutes, $str_hours) = (undef, undef, undef);
 =head2 Init(\%conf)
 
 =cut
-
 sub Init
 {
 	my $conf = shift;
@@ -42,7 +37,6 @@ sub Init
 Converts Bytes to KiloBytes
 
 =cut
-
 sub KiloBytes($)
 {
 	my $bytes = shift;
@@ -55,7 +49,6 @@ sub KiloBytes($)
 Converts Bytes to MegaBytes
 
 =cut
-
 sub MegaBytes($)
 {
   my $bytes = shift;
@@ -68,7 +61,6 @@ sub MegaBytes($)
 Converts Bytes to GigaBytes
 
 =cut
-
 sub GigaBytes($)
 {
   my $bytes = shift;
@@ -81,7 +73,6 @@ sub GigaBytes($)
 Converts Bytes to TeraBytes
 
 =cut
-
 sub TeraBytes($)
 {
   my $bytes = shift;
@@ -94,7 +85,6 @@ sub TeraBytes($)
 Converts Seconds to Minutes
 
 =cut
-
 sub Minutes($)
 {
   my $seconds = shift;
@@ -107,7 +97,6 @@ sub Minutes($)
 Converts Seconds to Hours
 
 =cut
-
 sub Hours($)
 {
   my $seconds = shift;

@@ -75,7 +75,7 @@ sub Table($$)
 Convert message pattern from message '$msg' into SQL with fields '@fields'
 
 =cut 
-sub Pattern_To_SQL
+sub Pattern_To_SQL($$@)
 {
 	my ($msg, $id, @fields) = @_;
 

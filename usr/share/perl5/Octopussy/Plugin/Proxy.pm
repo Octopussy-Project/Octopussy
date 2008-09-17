@@ -15,7 +15,7 @@ my @mimes = ();
 =head2 Init()
 
 =cut
-sub Init
+sub Init()
 {
 	my $conf_mime = AAT::List::Configuration("AAT_Mime");
 	
@@ -30,8 +30,7 @@ sub Init
 =head2 Cache_Status($str)
 
 =cut
-
-sub Cache_Status
+sub Cache_Status($)
 {
 	my $str = shift;
 
@@ -42,7 +41,6 @@ sub Cache_Status
 =head2 Logo($logo, $alt)
 
 =cut
-
 sub Logo($$)
 {
   my ($logo, $alt) = @_;
@@ -54,7 +52,6 @@ sub Logo($$)
 =head2 Mime($str) 
 
 =cut
-
 sub Mime($)
 {
 	my $str = shift;
@@ -71,8 +68,7 @@ sub Mime($)
 =head2 TLD($url)
 
 =cut
-
-sub TLD
+sub TLD($)
 {
 	my $url = shift;
 
@@ -89,8 +85,7 @@ sub TLD
 =head2 WebSite($url)
 
 =cut
-
-sub WebSite
+sub WebSite($)
 {
 	my $url = shift;
 

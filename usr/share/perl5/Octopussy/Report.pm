@@ -18,6 +18,7 @@ use Octopussy::Report::XML;
 
 use constant DIR_REPORT =>"reports";
 use constant REPORTER_BIN => "octo_reporter";
+use constant XML_ROOT => "octopussy_report";
 
 my $dir_reports = undef;
 my %filename;
@@ -26,7 +27,7 @@ my %filename;
 
 =head2 New($conf)
 
-Create a new report
+Create a new Report
 
 =cut
 sub New($)
@@ -35,7 +36,7 @@ sub New($)
 
 	$dir_reports ||= Octopussy::Directory(DIR_REPORT);
 	$conf->{version} = Octopussy::Timestamp_Version(undef);
-	AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, "octopussy_report");
+	AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, XML_ROOT);
 }
 
 =head2 Remove($report)
@@ -53,7 +54,7 @@ sub Remove($)
 
 =head2 Modify($old_report, $conf_new)
 
-Modifies the configuration for the report '$old_report'
+Modifies the configuration for the Report '$old_report'
 
 =cut
 sub Modify($$)
@@ -267,7 +268,7 @@ sub Generate($$$$$$$$$$$$)
 		Octopussy::Chown($file_xml);
 		my $file_csv = Octopussy::File_Ext($outputfile, "csv");
 		Octopussy::Report::CSV::Generate($file_csv, $data, 
-			$rc->{columns}, $rc->{columns_name}, $stats, $lang);
+			$rc->{columns}, $rc->{columns_name});
 		Octopussy::Chown($file_csv);
 		Octopussy::Report::PDF::Generate_From_HTML($outputfile);
 	}

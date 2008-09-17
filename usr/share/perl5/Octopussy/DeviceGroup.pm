@@ -8,6 +8,8 @@ package Octopussy::DeviceGroup;
 use strict;
 use Octopussy;
 
+use constant XML_ROOT => "octopussy_devicegroups";
+
 =head1 FUNCTIONS
 
 =head2 Add($conf_dg)
@@ -28,7 +30,7 @@ sub Add($)
 			if ($dg->{dg_id} eq $conf_dg->{dg_id}); 
 	}
 	push(@{$conf->{devicegroup}}, $conf_dg); 		
-	AAT::XML::Write($file, $conf, "octopussy_devicegroups");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 
 	return (undef);
 }
@@ -48,7 +50,7 @@ sub Remove($)
 	foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
   	{ push(@dgs, $dg)	if ($dg->{dg_id} ne $devicegroup); }
 	$conf->{devicegroup} = \@dgs;
-	AAT::XML::Write($file, $conf, "octopussy_devicegroups");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 
 	return (undef);
 }
@@ -177,7 +179,7 @@ sub Remove_Device($)
 		push(@dgs, $dg);
 	}
 	$conf->{devicegroup} = \@dgs;
-	AAT::XML::Write($file, $conf, "octopussy_devicegroups");
+	AAT::XML::Write($file, $conf, XML_ROOT);
 }
 
 =head2 Services($devicegroup_name)
