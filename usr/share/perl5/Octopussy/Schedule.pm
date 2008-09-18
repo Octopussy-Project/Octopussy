@@ -9,6 +9,7 @@ use strict;
 
 use Octopussy;
 
+use constant FILE_SCHEDULES => "schedule";
 use constant XML_ROOT => "octopussy_schedule";
  
 =head1 FUNCTIONS
@@ -22,7 +23,7 @@ sub Add($)
 {
 	my $add = shift;
 	my $exists = 0;
-	my $file = Octopussy::File("schedule");
+	my $file = Octopussy::File(FILE_SCHEDULES);
  	my $conf = AAT::XML::Read($file);
 	foreach my $sched (AAT::ARRAY($conf->{schedule}))
 		{ $exists = 1	if ($sched->{title} eq $add->{title}); }
@@ -46,7 +47,7 @@ sub Remove($)
 {
 	my $schedule_title = shift;
 
-	my $file = Octopussy::File("schedule");
+	my $file = Octopussy::File(FILE_SCHEDULES);
   my $conf = AAT::XML::Read($file);
  	my @schedules = ();
  	foreach my $s (AAT::ARRAY($conf->{schedule}))
@@ -64,8 +65,8 @@ Returns Schedules List
 =cut
 sub List()
 {
-	my @schedules = AAT::XML::File_Array_Values(Octopussy::File("schedule"),
-		"schedule", "title");
+	my @schedules = AAT::XML::File_Array_Values(Octopussy::File(FILE_SCHEDULES),
+		FILE_SCHEDULES, "title");
 	
 	return (@schedules);
 }
@@ -78,7 +79,7 @@ Returns Schedules Configuration
 sub Configuration($)
 {
 	my $schedule = shift;
-	my $conf = AAT::XML::Read(Octopussy::File("schedule"));
+	my $conf = AAT::XML::Read(Octopussy::File(FILE_SCHEDULES));
 
 	foreach my $s (AAT::ARRAY($conf->{schedule}))
 		{ return ($s)	if ($s->{title} eq $schedule); }

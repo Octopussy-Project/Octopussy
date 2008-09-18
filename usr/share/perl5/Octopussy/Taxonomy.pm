@@ -10,6 +10,8 @@ no strict 'refs';
 
 use Octopussy;
 
+use constant FILE_TAXONOMY => "taxonomy";
+
 =head1 FUNCTIONS
 
 =head2 List()
@@ -17,11 +19,10 @@ use Octopussy;
 Get list of taxonomy entries
 
 =cut
-
 sub List()
 {
-	my @list = AAT::XML::File_Array_Values(Octopussy::File("taxonomy"), 
-		"taxonomy", "taxo_id");
+	my @list = AAT::XML::File_Array_Values(Octopussy::File(FILE_TAXONOMY), 
+		FILE_TAXONOMY, "taxo_id");
 
 	return (undef) if ($#list == -1);
 	return (@list);
@@ -32,7 +33,6 @@ sub List()
 Get list of taxonomy entries and '-ANY-'
 
 =cut
-
 sub List_And_Any()
 {
   my @list = ("-ANY-");
@@ -45,10 +45,9 @@ sub List_And_Any()
 =head2 Colors()
 
 =cut
-
 sub Colors()
 {
-  my $conf = AAT::XML::Read(Octopussy::File("taxonomy"));
+  my $conf = AAT::XML::Read(Octopussy::File(FILE_TAXONOMY));
   my %color = ();
   foreach my $t (AAT::ARRAY($conf->{taxonomy}))
   	{ $color{"$t->{taxo_id}"} = $t->{color}; }

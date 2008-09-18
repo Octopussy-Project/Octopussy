@@ -9,8 +9,6 @@ use XML::Simple;
 
 use Octopussy;
 
-my $CONF_FILE = "/etc/octopussy/main.xml";
-
 my %XML_OUTPUT_OPTIONS =
 	( AttrIndent => 1,
 		XMLDecl => "<?xml version='1.0' encoding='iso-8859-1'?>",
@@ -109,7 +107,6 @@ sub AlertViewer($$$$)
 =head2 ContactConfiguration($contact)
 
 =cut
-
 sub ContactConfiguration($)
 {
 	my $contact = shift;
@@ -121,7 +118,6 @@ sub ContactConfiguration($)
 =head2 DeviceConfiguration($device)
 
 =cut
-
 sub DeviceConfiguration($)
 {
 	my $device = shift;
@@ -133,7 +129,6 @@ sub DeviceConfiguration($)
 =head2 ServiceConfiguration($service)
 
 =cut
-
 sub ServiceConfiguration($)
 {
 	my $service = shift;
@@ -142,19 +137,9 @@ sub ServiceConfiguration($)
   PrintFile($file)	if (AAT::NOT_NULL($file));
 }
 
-=head2 SystemConfiguration()
-
-=cut
-
-sub SystemConfiguration()
-{
-  PrintFile($CONF_FILE);
-}
-
 =head2 TableConfiguration($table)
 
 =cut
-
 sub TableConfiguration($)
 {
   my $table = shift;

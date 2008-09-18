@@ -16,6 +16,7 @@ my %MONTH = (
 	May => "05", Jun => "06", Jul => "07", Aug => "08", 
 	Sep => "09", Oct => "10", Nov => "11", Dec => "12" );
 
+use constant FILE_TYPES => "types";
 use constant REGEXP_COLOR => "red";
 use constant NUMBER_COLOR => "blue";
 use constant STRING_COLOR => "darkgray";
@@ -27,10 +28,9 @@ use constant WORD_COLOR => "green";
 Get list of type configurations
 
 =cut
-
 sub Configurations()
 {
-	my $conf = AAT::XML::Read(Octopussy::File("types"));
+	my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
 	my @list = ();
 
 	foreach my $t (AAT::ARRAY($conf->{type}))
@@ -44,7 +44,6 @@ sub Configurations()
 Get an hash of Colors for each Type
 
 =cut
-
 sub Colors()
 {
 	my @types = Octopussy::Type::Configurations();
@@ -71,7 +70,7 @@ Get list of types
 
 sub List()
 {
- 	my $conf = AAT::XML::Read(Octopussy::File("types"));
+ 	my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
  	my @list = ();
 	my %type;
 	
@@ -98,7 +97,7 @@ Get list of simple types (*_DATETIME -> DATETIME, *_STRING -> STRING...)
 
 sub Simple_List()
 {
-  my $conf = AAT::XML::Read(Octopussy::File("types"));
+  my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
   my @list = ();
   my %type;
 
@@ -125,7 +124,7 @@ Get list of SQL types
 
 sub SQL_List()
 {
-	my $conf = AAT::XML::Read(Octopussy::File("types"));
+	my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
 	my @list = ();
 	my %type;
 	

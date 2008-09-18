@@ -14,6 +14,7 @@ use constant STARTED => 2;
 use constant DIR_DEVICE => "devices";
 use constant PARSER_BIN => "octo_parser";
 use constant UPARSER_BIN => "octo_uparser";
+use constant FILE_DEVICEMODELS => "device_models";
 use constant XML_ROOT => "octopussy_device";
 
 my ($dir_devices, $dir_pid) = (undef, undef);
@@ -465,7 +466,7 @@ Returns Device Types List
 =cut
 sub Types()
 {
-	my $conf = AAT::XML::Read(Octopussy::File("device_models"));
+	my $conf = AAT::XML::Read(Octopussy::File(FILE_DEVICEMODELS));
  	my @list = ();
  	foreach my $t (AAT::ARRAY($conf->{device_type}))
  		{ push(@list, $t->{dt_id}); }
@@ -478,7 +479,7 @@ sub Types()
 =cut
 sub Type_Configurations()
 {
-  my $conf = AAT::XML::Read(Octopussy::File("device_models"));
+  my $conf = AAT::XML::Read(Octopussy::File(FILE_DEVICEMODELS));
   my %type = ();
   foreach my $t (AAT::ARRAY($conf->{device_type}))
   	{ $type{$t->{dt_id}} = $t; }
@@ -494,7 +495,7 @@ Returns Device Models List
 sub Models($)
 {
 	my $type = shift;
- 	my $conf = AAT::XML::Read(Octopussy::File("device_models"));
+ 	my $conf = AAT::XML::Read(Octopussy::File(FILE_DEVICEMODELS));
  	my @list = ();
 
 	foreach my $t (AAT::ARRAY($conf->{device_type}))
