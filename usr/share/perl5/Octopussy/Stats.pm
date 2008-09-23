@@ -53,6 +53,25 @@ sub Load()
 		if ($line =~ /load average: (\d+\.\d+),/);
 }
 
+=head2 Mem_Total()
+
+Returns the Total of Memory in MegaBytes
+
+=cut
+sub Mem_Total()
+{
+  my $line = `free | grep Mem:`;
+
+  if ($line =~ /Mem:\s+(\d+)\s+\d+\s+\d+/)
+  {
+    my $total = int($1/1024);
+    return ("No Memory Detected") if ($total == 0);
+    return ($total);
+  }
+
+  return ();
+}
+
 =head2 Mem_Usage()
 
 Returns the Memory usage in this format: "$used M / $total M ($percent%)"

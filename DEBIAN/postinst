@@ -10,6 +10,7 @@ fi
 AAT="aat"
 OCTO="octopussy"
 CHMOD="/bin/chmod 644"
+CHMOD_X="/bin/chmod 755"
 CHOWN="/bin/chown $OCTO:$OCTO"
 CHOWNR="/bin/chown -R $OCTO:$OCTO"
 CP="/bin/cp -f"
@@ -54,6 +55,7 @@ $ECHO "#!/bin/sh" > $CRON_FILE
 $ECHO "" >> $CRON_FILE
 $ECHO "test -x /usr/sbin/octo_logrotate || exit 0" >> $CRON_FILE
 $ECHO "/usr/sbin/octo_logrotate" >> $CRON_FILE
+$CHMOD_X $CRON_FILE
 
 # Create init files
 $LN /usr/sbin/$OCTO /etc/init.d/$OCTO || true

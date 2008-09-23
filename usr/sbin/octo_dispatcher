@@ -129,13 +129,22 @@ while (<>)
       	|| ($n_month != $month)) # not the same minute than last minute
 			{
 				my @syslogs = ();
+        my $total = 0;
 				foreach my $k (sort keys %nb_events)
-    			{ push(@syslogs, "Device: $k - Events: $nb_events{$k}"); }
+    		{ 
+          push(@syslogs, "Device: $k - Events: $nb_events{$k}"); 
+          $total += $nb_events{$k};
+        }
 				AAT::Syslog::Messages(PROG_NAME, \@syslogs);
 				$cache->set("dispatcher_stats_datetime", "$year$month$mday$hour$min");
         $cache->set("dispatcher_stats_devices", \%nb_events);
 				$cache->set("dispatcher_stats_devicetypes", \%dtype_stats);
-				%dtype_stats = ();
+        
+        my $nb = $cache->get("dispatcher_stats_hourly_$year$month$mday$hour");
+        $nb = (AAT::NOT_NULL($nb) ? $nb + $total : $total); 
+        $cache->set("dispatcher_stats_hourly_$year$month$mday$hour", $nb);
+				
+        %dtype_stats = ();
 				%nb_events = ();
 				($year, $month, $mday, $hour, $min, $sec) =
         	($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec);
