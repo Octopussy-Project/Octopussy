@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="050"
-                   version="200808210001"
+                   version="200809250002"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -311,4 +311,16 @@
            rank="051"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Octopussy:world_statistics_status_changed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Octopussy World Statistics have been \S+ed by \S+.&quot;):msg@&gt;"
+           rank="052"
+           table="Message"
+           taxonomy="Config.Changes" />
+  <message loglevel="Information"
+           msg_id="Octopussy:world_statistics_sent"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@REGEXP(&quot;world_stats&quot;):module@&gt;: &lt;@REGEXP(&quot;Octopussy World Statistics have been sent.&quot;):msg@&gt;"
+           rank="053"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

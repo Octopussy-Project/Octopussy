@@ -43,6 +43,11 @@
 	<log mid="PARSING_DEVICE"
 		message="Parsing %%ARG1%% for device '%%ARG2%%' by %%LOGIN%%." />
 
+  <log mid="WORLD_STATS_SENT"
+    message="Octopussy World Statistics have been sent." />
+  <log mid="WORLD_STATS_STATUS_CHANGED"
+    message="Octopussy World Statistics have been %%ARG1%% by %%LOGIN%%." />
+
 	<log mid="XML_READ_ERROR"
 		message="XML File Read Error: %%ARG1%%" />
 	<log mid="XML_WRITE_ERROR"

@@ -22,4 +22,4 @@ else
 <tr>
 <td valign="top"><% $Response->Include('INC/octo_main_menu.inc') %></td>
 <td valign="top" align="center" width="*">
-<AAT:Msg_Error/>
+<AAT:Msg_Error />

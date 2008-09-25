@@ -324,6 +324,7 @@
   <msg mid="_USERS_BASE" value="Users Base" />
   <msg mid="_USERS_FILTER" value="Users Filter" />
   <msg mid="_USERS_SERVER" value="Users Server" />
+  <msg mid="_WORLD_STATISTICS" value="World Statistics" />
 
 	<msg mid="_DLG_DELETE_ALERT"
 		value="Do you really want to delete Alert '%%arg1%%' ?" />
@@ -430,6 +431,8 @@
     value="No Message defined for Service %s (version %s)" />		
 	<msg mid="_MSG_NO_UPDATES_AVAILABLE"
     value="No Updates Available" />
+  <msg mid="_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
+    value="I'm OK to send anonymous data to 8pussy.org" />
   <msg mid="_MSG_REACH_MAX_LINES"
     value="Maximum of %d lines reached!" />
   <msg mid="_MSG_REPORT_DATA_SOURCE"

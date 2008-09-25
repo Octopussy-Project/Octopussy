@@ -21,7 +21,7 @@ use constant PROG_NAME => "octo_dispatcher";
 
 my $dir_pid = Octopussy::Directory("running");
 my $cache = new Cache::FileCache( { namespace => "octo_dispatcher",
-    default_expires_in => "1 day", cache_root => $dir_pid,
+    default_expires_in => "2 days", cache_root => $dir_pid,
 		directory_umask => "007" } ) 
 	or croak( "Couldn't instantiate FileCache" );
 

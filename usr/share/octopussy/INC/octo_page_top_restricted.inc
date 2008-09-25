@@ -14,4 +14,4 @@ my $title = "Octopussy " . ($arg{title} || "");
 <tr><td valign="top">
 <% $Response->Include('INC/octo_main_menu_restricted.inc') %></td>
 <td valign="top" align="center">
-<AAT:Msg_Error/>
+<AAT:Msg_Error />

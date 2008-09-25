@@ -54,6 +54,9 @@
 	<item label="Alcatel OT C825" value="mobile_alcatel_otc825"
         regexp="Alcatel-OT-C825"
         constructor="Alcatel" model="OT C825" logo="companies/logo_alcatel" />
+  <item label="Alcatel OT S920" value="mobile_alcatel_ots920"
+        regexp="Alcatel-OT-S920"
+        constructor="Alcatel" model="OT S920" logo="companies/logo_alcatel" />
 	<item label="Alcatel TH3" value="mobile_alcatel_th3"
         regexp="Alcatel-TH3"
         constructor="Alcatel" model="TH3" logo="companies/logo_alcatel" />
@@ -105,6 +108,10 @@
 	<item label="BenQ S82" value="mobile_benq_s82"
         regexp="BenQ-S82"
         constructor="BenQ" model="S82" logo="companies/logo_benq" />
+
+  <item label="Bird D615" value="mobile_bird_d615"
+        regexp="BIRD_D615"
+        constructor="Bird" model="D615" logo="" />
 
 	<item label="BlackBerry 5810" value="mobile_blackberry_5810"
         regexp="BlackBerry5810"
@@ -250,7 +257,7 @@
         regexp="HTC_P3600"
         constructor="HTC" model="P3600" logo="companies/logo_htc" />
 	<item label="HTC P3700" value="mobile_htc_p3700"
-        regexp="HTC-P3700"
+        regexp="HTC[-_]P3700"
         constructor="HTC" model="P3700" logo="companies/logo_htc" />
 	<item label="HTC P5500" value="mobile_htc_p5500"
         regexp="HTC-P5500"
@@ -590,6 +597,9 @@
 	<item label="Nokia 3510" value="mobile_nokia_3510"
         regexp="Nokia3510"
         constructor="Nokia" model="3510" logo="companies/logo_nokia" />
+  <item label="Nokia 3600" value="mobile_nokia_3600"
+        regexp="Nokia3600"
+        constructor="Nokia" model="3600" logo="companies/logo_nokia" />
 	<item label="Nokia 3650" value="mobile_nokia_3650"
         regexp="Nokia3650"
         constructor="Nokia" model="3650" logo="companies/logo_nokia" />
@@ -816,7 +826,7 @@
         regexp="NokiaN93"
         constructor="Nokia" model="N93" logo="companies/logo_nokia" />
 	<item label="Nokia N95" value="mobile_nokia_n95"
-        regexp="NokiaN95"
+        regexp="Nokia ?N95"
         constructor="Nokia" model="N95" logo="companies/logo_nokia" />
 
 	<item label="Orange SPV C100" value="mobile_orange_spvc100"
@@ -1010,6 +1020,9 @@
 	<item label="Sagem my850V" value="mobile_sagem_my850v"
         regexp="SAGEM-my850V"
         constructor="Sagem" model="my850V" logo="companies/logo_sagem" />
+  <item label="Sagem my901C" value="mobile_sagem_my901c"
+        regexp="SAGEM-my901C"
+        constructor="Sagem" model="my901C" logo="companies/logo_sagem" />
 	<item label="Sagem myC2" value="mobile_sagem_myc2"
         regexp="SAGEM-myC2"
         constructor="Sagem" model="myC2" logo="companies/logo_sagem" />

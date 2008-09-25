@@ -50,7 +50,10 @@ push(@main_menu,
 		label => "_LOGS_WIZARD", link => "./wizard.asp" },
   { separator => 1 },
   { icon => "buttons/bt_bug", 
-		label => "_SUPPORT_REQUEST", link => "./bugreport.asp" });
+		label => "_SUPPORT_REQUEST", link => "./bugreport.asp" },
+  { icon => "buttons/bt_web",
+    label => "_WORLD_STATISTICS", link => "./world_statistics.asp" }  
+);
 
 $Response->Include('AAT/INC/AAT_Menu.inc', items => \@main_menu);
 %>

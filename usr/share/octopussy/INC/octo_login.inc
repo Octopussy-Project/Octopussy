@@ -38,11 +38,4 @@ my $website = Octopussy::WebSite();
 </AAT:BoxRow>
 </AAT:Box>
 </AAT:Form>
-<%
-if (AAT::NOT_NULL(AAT::Msg_Error()))
-{
-	my $msg = AAT::Msg_Error();
-	%><div align="center"><AAT:Label value="$msg" color="red" /></div><%
-	AAT::Msg_Error("");
-}
-%>
+<AAT:Msg_Error />

@@ -324,6 +324,7 @@
   <msg mid="_USERS_BASE" value="База пользователей" />
   <msg mid="_USERS_FILTER" value="Фильтр пользователей" />
   <msg mid="_USERS_SERVER" value="Сервер пользователей" />
+  <msg mid="_WORLD_STATISTICS" value="_WORLD_STATISTICS" />
 
 	<msg mid="_DLG_DELETE_ALERT"
     value="_Do you really want to delete Alert '%%arg1%%' ?" />
@@ -430,6 +431,8 @@
     value="Нет заданных сообщений для сервиса %s (версия %s)" />		
 	<msg mid="_MSG_NO_UPDATES_AVAILABLE"
     value="Обновлений нет" />
+  <msg mid="_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
+    value="__I'm OK to send anonymous data to 8pussy.org__" />
   <msg mid="_MSG_REACH_MAX_LINES"
     value="Максимум %d строк достигнут!" />
   <msg mid="_MSG_REPORT_DATA_SOURCE"

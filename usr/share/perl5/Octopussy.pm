@@ -37,6 +37,7 @@ use Octopussy::Table;
 use Octopussy::Taxonomy;
 use Octopussy::TimePeriod;
 use Octopussy::Type;
+use Octopussy::World_Stats;
 
 use constant APPLICATION_NAME => "Octopussy";
 use constant 
