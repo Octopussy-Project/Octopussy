@@ -39,6 +39,7 @@ package AAT;
 use strict;
 no strict 'refs';
 
+use File::Path;
 use AAT::Application;
 use AAT::Certificate;
 use AAT::Datetime;

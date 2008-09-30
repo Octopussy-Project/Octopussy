@@ -73,7 +73,7 @@ sub Remove_All($)
   my $report = shift;
 
   $dir_reports ||= Octopussy::Directory(DIR_REPORT_DATA);
-  `rm -rf "$dir_reports$report/"`;
+  rmtree("$dir_reports$report/");
 }
 
 =head2 Remove_Month($report, $year, $month)

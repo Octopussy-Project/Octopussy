@@ -56,7 +56,7 @@ sub Authority_Create($$)
 	my ($appli, $conf) = @_;
 
 	my $dir_ca = AAT::Application::Directory($appli, "certificate_authority");
-	`rm -rf $dir_ca`;
+	rmtree($dir_ca);
 	`mkdir -p $dir_ca/{certs,crl,newcerts,private}`;
   `touch $dir_ca/index.txt`;
   `echo "01" > $dir_ca/serial`;

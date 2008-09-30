@@ -263,7 +263,7 @@
         regexp="HTC-P5500"
         constructor="HTC" model="P5500" logo="companies/logo_htc" />
 	<item label="HTC Touch Cruise" value="mobile_htc_touch_cruise"
-        regexp="HTC_cruise"
+        regexp="(HTC_cruise|HTC/TouchCruise)"
         constructor="HTC" model="Touch Cruise" logo="companies/logo_htc" />
 
 	<item label="Huawei U526" value="mobile_huawei_u526"
@@ -276,6 +276,10 @@
 	<item label="Lenovo i921" value="mobile_lenovo_i921"
         regexp="LENOVO-i921"
         constructor="Lenovo" model="i921" logo="companies/logo_lenovo" />
+
+  <item label="Levi's The Original 3G" value="mobile_levis_theoriginal3G"
+        regexp="Levis_Original_3G"
+        constructor="Levi's" model="The Original 3G" logo="" />
 
 	<item label="LG B2100" value="mobile_lg_b2100"
         regexp="LG-B2100"
@@ -1285,6 +1289,9 @@
 	<item label="Samsung SGH M110" value="mobile_samsung_sghm110"
         regexp="SAMSUNG-SGH-M110"
         constructor="Samsung" model="SGH M110" logo="companies/logo_samsung" />
+  <item label="Samsung SGH M300V" value="mobile_samsung_sghm300v"
+        regexp="SamsungSGHM300V"
+        constructor="Samsung" model="SGH M300V" logo="companies/logo_samsung" />
 	<item label="Samsung SGH P180" value="mobile_samsung_sghp180"
         regexp="SAMSUNG-SGH-P180"
         constructor="Samsung" model="SGH P180" logo="companies/logo_samsung" />
@@ -1547,6 +1554,9 @@
 	<item label="Siemens CF75" value="mobile_siemens_cf75"
         regexp="SIE-CF75"
         constructor="Siemens" model="CF75" logo="companies/logo_siemens" />
+  <item label="Siemens CFX65" value="mobile_siemens_cfx65"
+        regexp="SIE-CFX65"
+        constructor="Siemens" model="CFX65" logo="companies/logo_siemens" />
 	<item label="Siemens CL75" value="mobile_siemens_cl75"
         regexp="SIE-CL75"
         constructor="Siemens" model="CL75" logo="companies/logo_siemens" />

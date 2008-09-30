@@ -415,7 +415,7 @@ sub Messages_Statistics_Save
 
 	my $del_serv = $service;
  	$del_serv =~ s/ /\\ /g;
- 	`rm -rf $dir_pid/serv_$del_serv*.stats`;
+ 	`rm -f $dir_pid/serv_$del_serv*.stats`;
 	my $file = "$dir_pid/serv_$service$y$mon$d$h$m.stats";
  	if (defined open(STATS, "> $file"))
 	{

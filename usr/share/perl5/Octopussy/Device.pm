@@ -101,9 +101,9 @@ sub Remove($)
 	Octopussy::DeviceGroup::Remove_Device($device);
 	Octopussy::Logs::Remove_Directories($device);
 	my $dir_web = Octopussy::Directory("web");
-	`rm -rf $dir_web/rrd/taxonomy_${device}_*ly.png`;
+	`rm -f $dir_web/rrd/taxonomy_${device}_*ly.png`;
 	my $dir_rrd = Octopussy::Directory("data_rrd");
-	`rm -rf $dir_rrd/$device/`;
+	rmtree("$dir_rrd/$device/");
 	unlink(Filename($device));
   $filename{$device} = undef;
 }
