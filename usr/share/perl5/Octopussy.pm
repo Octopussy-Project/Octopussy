@@ -10,6 +10,8 @@ use strict;
 use AAT;
 use Cache::FileCache;
 use File::Path;
+use Proc::PID::File;
+
 use Octopussy::Alert;
 #use Octopussy::Contact;
 use Octopussy::Configuration;
@@ -328,9 +330,8 @@ sub PID_File($)
 	}
 	else
 	{
-		open(FILE, "> $file_pid");
-		print FILE $$;
-		close(FILE);
+    return (undef)
+      if (Proc::PID::File->running(dir => $dir_pid, name => $name))
 	}
 
 	return ($file_pid);
