@@ -283,7 +283,6 @@ Ends Extraction
 sub End
 {
   AAT::Syslog($PROG_NAME, "Logs Extraction Aborted !");
-  unlink($file_pid);
 	$cache->remove("status_$$");
   exit();
 }
@@ -316,7 +315,6 @@ $file_pid = Octopussy::PID_File($pid_name);
 Print_Logs(\@opt_devices, \@opt_services, $opt_taxonomy, 
 	$opt_begin, $opt_end, \@opt_include, \@opt_exclude);
 
-unlink($file_pid);
 $cache->remove("status_$$");
 
 =head1 AUTHOR

@@ -243,8 +243,6 @@ sub Incoming_To_Unknown($)
 	my $dir = $unknown;
 	$dir =~ s/^(.+)\/.+?\.log/$1\//g;
 	Octopussy::Create_Directory($dir);
-#	`gzip -f "$incoming"`;
-#	`mv "$incoming.gz" "$unknown.gz"`;
 
 	if (defined open(FILE, "|gzip >> $unknown"))
   {
@@ -486,7 +484,6 @@ while (!$exit_request)
 	if (!$exit_request)
 		{ sleep(2); }
 }
-unlink($file_pid);
 AAT::Syslog($PROG_NAME, "Device: $device Stopped !");
 
 =head1 AUTHOR
