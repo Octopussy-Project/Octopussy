@@ -6,6 +6,7 @@ AAT::Certificate - AAT Certificate module
 package AAT::Certificate;
 
 use strict;
+use AAT;
 
 my $CA_DAYS = 3650;
 my $CIPHER = "rsa:1024";
@@ -56,7 +57,7 @@ sub Authority_Create($$)
 	my ($appli, $conf) = @_;
 
 	my $dir_ca = AAT::Application::Directory($appli, "certificate_authority");
-	rmtree($dir_ca);
+	File::Path::rmtree($dir_ca);
 	`mkdir -p $dir_ca/{certs,crl,newcerts,private}`;
   `touch $dir_ca/index.txt`;
   `echo "01" > $dir_ca/serial`;

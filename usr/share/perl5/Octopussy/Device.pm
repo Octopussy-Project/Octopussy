@@ -103,7 +103,7 @@ sub Remove($)
 	my $dir_web = Octopussy::Directory("web");
 	`rm -f $dir_web/rrd/taxonomy_${device}_*ly.png`;
 	my $dir_rrd = Octopussy::Directory("data_rrd");
-	rmtree("$dir_rrd/$device/");
+	File::Path::rmtree("$dir_rrd/$device/");
 	unlink(Filename($device));
   $filename{$device} = undef;
 }

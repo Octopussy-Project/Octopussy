@@ -120,15 +120,15 @@ sub Remove_Directories($)
   my $incoming = Octopussy::Storage::Directory($storage->{incoming});
   my $unknown = Octopussy::Storage::Directory($storage->{unknown});
 	my $known = Octopussy::Storage::Directory($storage->{known});
-	rmtree("$incoming/$device/");
-	rmtree("$unknown/$device/");
-	rmtree("$known/$device/");
+	File::Path::rmtree("$incoming/$device/");
+	File::Path::rmtree("$unknown/$device/");
+	File::Path::rmtree("$known/$device/");
 	foreach my $k (keys %{$conf})
 	{
 		if ($k =~ /^storage_.+$/)
 		{
 			my $dir = Octopussy::Storage::Directory($conf->{$k});
-			rmtree("$dir/$device/");
+			File::Path::rmtree("$dir/$device/");
 		}
 	}
 }
