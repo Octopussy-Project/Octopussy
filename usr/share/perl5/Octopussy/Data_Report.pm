@@ -60,7 +60,7 @@ sub Remove($$)
 	my ($report, $filename) = @_;
 
 	$dir_reports ||= Octopussy::Directory(DIR_REPORT_DATA);
-	`rm -f "$dir_reports$report/$filename".*`;
+	system("rm -f \"$dir_reports$report/$filename\".*");
 }
 
 =head2 Remove_All($report)
@@ -86,7 +86,7 @@ sub Remove_Month($$$)
 	my ($report, $year, $month) = @_;
 	
 	$dir_reports ||= Octopussy::Directory(DIR_REPORT_DATA);
-	`rm -f "$dir_reports$report/$report-$year$month"*`;
+	system("rm -f \"$dir_reports$report/$report-$year$month\"*");
 }
 
 1;

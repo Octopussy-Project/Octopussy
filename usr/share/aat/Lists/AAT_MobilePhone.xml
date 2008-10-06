@@ -427,6 +427,9 @@
         regexp="portalmmm.+ M430i"
         constructor="Mitsubishi" model="M430i" logo="companies/logo_mitsubishi" />
 
+  <item label="Motorola C261" value="mobile_motorola_c261"
+        regexp="MOT-C261"
+        constructor="Motorola" model="C261" logo="companies/logo_motorola" />
 	<item label="Motorola C350" value="mobile_motorola_c350"
         regexp="MOT-c350"
         constructor="Motorola" model="C350" logo="companies/logo_motorola" />
@@ -1747,6 +1750,9 @@
 	<item label="Sony Ericsson W580" value="mobile_sony_ericsson_w580"
         regexp="(SonyEricsson|portalmmm.2.0 )W580"
         constructor="Sony Ericsson" model="W580" logo="companies/logo_sonyericsson" />
+   <item label="Sony Ericsson W595" value="mobile_sony_ericsson_w595"
+        regexp="SonyEricssonW595"
+        constructor="Sony Ericsson" model="W595" logo="companies/logo_sonyericsson" />
 	<item label="Sony Ericsson W600" value="mobile_sony_ericsson_w600"
         regexp="SonyEricssonW600"
         constructor="Sony Ericsson" model="W600" logo="companies/logo_sonyericsson" />
@@ -1792,6 +1798,9 @@
 	<item label="Sony Ericsson W980" value="mobile_sony_ericsson_w980"
         regexp="SonyEricssonW980"
         constructor="Sony Ericsson" model="W980" logo="companies/logo_sonyericsson" />
+  <item label="Sony Ericsson Z250i" value="mobile_sony_ericsson_z250i"
+        regexp="SonyEricssonZ250i"
+        constructor="Sony Ericsson" model="Z250i" logo="companies/logo_sonyericsson" />
 	<item label="Sony Ericsson Z300" value="mobile_sony_ericsson_z300"
         regexp="SonyEricssonZ300"
         constructor="Sony Ericsson" model="Z300" logo="companies/logo_sonyericsson" />	

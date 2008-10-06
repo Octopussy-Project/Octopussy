@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my $service = $Request->QueryString("service");
 my $msgid = $Request->QueryString("msgid");

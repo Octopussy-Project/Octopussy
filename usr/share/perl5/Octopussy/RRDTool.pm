@@ -125,7 +125,7 @@ sub Syslog_By_DeviceType_Init()
 			$cmd .= "DS:$dt:GAUGE:120:0:U ";	
 		}
 		$cmd .= $RRA;
-		`$cmd`;
+		system($cmd);
   }	
 }
 
@@ -139,7 +139,7 @@ sub Syslog_By_DeviceType_Update($)
 	my $values = shift;
 	my $value_str = join(":", AAT::ARRAY($values));
 
-  `$RRD_UPDATE "$RRD_SYSLOG_DTYPE" N:$value_str`
+  system("$RRD_UPDATE \"$RRD_SYSLOG_DTYPE\" N:$value_str")
 		if (-f "$RRD_SYSLOG_DTYPE");
 }
 
@@ -171,7 +171,7 @@ sub Syslog_By_DeviceType_Graph($$$)
 				. " " . Graph_Legend($dt) . " ";
 			$first = 0;
 		}
-		`$cmd`;
+		system($cmd);
 	}
 }
 
@@ -248,7 +248,7 @@ sub Syslog_By_Device_Service_Taxonomy_Init($$)
 			$cmd .= "DS:$taxo:GAUGE:120:0:U "; 
 		}
     $cmd .= $RRA;
-    `$cmd`;
+    system($cmd);
   }
 }
 
@@ -264,7 +264,7 @@ sub Syslog_By_Device_Service_Taxonomy_Update($$$$)
 	my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
 	my $value_str = join(":", AAT::ARRAY($values));
 
-	`$RRD_UPDATE "$file" $seconds:$value_str 2> /dev/null`;
+	system("$RRD_UPDATE \"$file\" $seconds:$value_str");
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Graph($device, $service, $file, 
@@ -295,7 +295,7 @@ sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
       . " " . Graph_Legend($t) . " ";
     $first = 0;
   }
-  `$cmd`;
+  system($cmd);
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Hourly_Graph($device, $service)
@@ -364,7 +364,7 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 		$first = 0;
 	}
 	$cmd .= " $def $cdef $legend";
-	`$cmd`	if (($cdef ne "") && ($def ne ""));
+	system($cmd)	if (($cdef ne "") && ($def ne ""));
 }
 
 =head2 Syslog_By_Device_Taxonomy_Hourly_Graph($device)
@@ -441,14 +441,17 @@ Graphs RRD Report
 sub Report_Graph($$$$$$$)
 {
 	my ($rconf, $begin, $end, $output, $data, $stats, $lang) = @_;
-	my ($dsv, $ds1, $ds2, $ds3) = ($rconf->{datasources_value},
-		$rconf->{datasource1}, $rconf->{datasource2}, $rconf->{datasource3});
+	my ($dsv, $ds1, $ds2, $ds3) = 
+    (Octopussy::DB::SQL_As_Substitution($rconf->{datasources_value}),
+		  Octopussy::DB::SQL_As_Substitution($rconf->{datasource1}), 
+      Octopussy::DB::SQL_As_Substitution($rconf->{datasource2}), 
+      Octopussy::DB::SQL_As_Substitution($rconf->{datasource3}));
 	$dsv = $2 if ($dsv =~ /^(\S+::\S+)\((\S+)\)/);
 	$ds1 = $2	if ($ds1 =~ /^(\S+::\S+)\((\S+)\)/);
 	$ds2 = $2 if ($ds2 =~ /^(\S+::\S+)\((\S+)\)/);
 	$ds3 = $2 if ($ds3 =~ /^(\S+::\S+)\((\S+)\)/);
 
-	my $tl = $rconf->{timeline};
+	my $tl = Octopussy::DB::SQL_As_Substitution($rconf->{timeline});
 	my $title = $rconf->{graph_title} || "";
 	my $width = $rconf->{graph_width} || GRAPH_WIDTH;	
 	my $height = $rconf->{graph_height} || GRAPH_HEIGHT;
@@ -489,7 +492,7 @@ sub Report_Graph($$$$$$$)
 		$ds{$k} = $i;
 		$i++;
 	}
-	`$cmd RRA:AVERAGE:0.5:1:$diff`;
+	system("$cmd RRA:AVERAGE:0.5:1:$diff");
 
 	foreach my $ts (sort keys %dataline)
 	{
@@ -520,7 +523,7 @@ sub Report_Graph($$$$$$$)
     	. " " . Graph_Legend("cdef$i") . " ";
     $i++;
   }
-	`$cmd`;
+	system($cmd);
 }
 
 1;

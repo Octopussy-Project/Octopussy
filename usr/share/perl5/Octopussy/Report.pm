@@ -282,10 +282,12 @@ sub Generate($$$$$$$$$$$$)
 		my %conf;
 		$conf{title} = $rc->{name};
 		$conf{type} = $rc->{graph_type};
+    my $x = Octopussy::DB::SQL_As_Substitution($rc->{x});
+    my $y = Octopussy::DB::SQL_As_Substitution($rc->{y});
 		foreach my $line (AAT::ARRAY($data))
 		{
-  		push(@{$conf{data}[0]}, $line->{$rc->{x}});
-  		push(@{$conf{data}[1]}, $line->{$rc->{y}});
+  		push(@{$conf{data}[0]}, $line->{$x});
+  		push(@{$conf{data}[1]}, $line->{$y});
 		}
 		Octopussy::Graph::Generate(\%conf, $outputfile);
 	}

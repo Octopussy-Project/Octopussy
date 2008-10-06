@@ -101,7 +101,7 @@ sub Remove($)
 	Octopussy::DeviceGroup::Remove_Device($device);
 	Octopussy::Logs::Remove_Directories($device);
 	my $dir_web = Octopussy::Directory("web");
-	`rm -f $dir_web/rrd/taxonomy_${device}_*ly.png`;
+	system("rm -f $dir_web/rrd/taxonomy_${device}_*ly.png");
 	my $dir_rrd = Octopussy::Directory("data_rrd");
 	File::Path::rmtree("$dir_rrd/$device/");
 	unlink(Filename($device));
@@ -291,7 +291,7 @@ sub Remove_Service($$)
 	}
 	$service_name =~ s/ /_/g;
   my $dir_rrd = Octopussy::Directory("data_rrd");
-  `rm -f $dir_rrd/$device_name/taxonomy_$service_name.rrd`;
+  system("rm -f $dir_rrd/$device_name/taxonomy_$service_name.rrd");
  	$conf->{service} = \@services;
 	AAT::XML::Write(Filename($device_name), $conf, XML_ROOT);
 	Parse_Start($device_name)  if ($old_status == STARTED);

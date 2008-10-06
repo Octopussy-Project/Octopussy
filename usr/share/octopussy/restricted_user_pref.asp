@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTopRestricted title="User Preferences" help="user_prefs" />
 <%
 my $f = $Request->Form();

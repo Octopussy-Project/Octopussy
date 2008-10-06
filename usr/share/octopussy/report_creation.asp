@@ -40,17 +40,16 @@ else
 		my @datasources = ();
 		for my $i (1..3)
 		{
-  		push(@datasources, 
-				Octopussy::DB::SQL_As_Substitution($f->{"datasource$i"}))	
+  		push(@datasources, $f->{"datasource$i"})
 				if ($f->{"datasource$i"} ne "");
 		}
 		my ($query, $columns) =
   		Octopussy::DB::SQL_Select_Function($f->{rrd_timeline}, @datasources, 
 				$f->{datasources_value});
-		my $dhm = Octopussy::DB::SQL_As_Substitution($f->{rrd_timeline});
+		my $dhm = $f->{rrd_timeline};
 		$query .= "FROM $Session->{table} GROUP BY $dhm," . join(",", @datasources);
 
-		my $dsv = Octopussy::DB::SQL_As_Substitution($f->{datasources_value});
+		my $dsv = $f->{datasources_value};
 		if (($f->{datasource1} ne "") && ($Session->{AAT_ROLE} !~ /ro/i))
 		{
   		Octopussy::Report::New(
@@ -70,9 +69,6 @@ else
 	}
 	else
 	{
-		$x = Octopussy::DB::SQL_As_Substitution($x);
-		$y = Octopussy::DB::SQL_As_Substitution($y);
-	
 		my @columns_name = ();
 		my ($query, $columns) = 
 			Octopussy::DB::SQL_Select_Function(AAT::ARRAY($Session->{select}));

@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <% my %arg = @_; %>
 <select <%= (defined $arg{multiple} ? "multiple " : "") %> <%= (defined $arg{size} ? "size=$arg{size} " : "") %> name="<%= (defined $arg{name} ? $arg{name} : "device" ) %>"
   onchange="location = '<%= $arg{url} %>' + this.options[this.selectedIndex].value;">

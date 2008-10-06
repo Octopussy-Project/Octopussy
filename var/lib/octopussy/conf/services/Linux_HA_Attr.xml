@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service version="200808260001">
+  <message loglevel="Information"
+           msg_id="Linux_HA_Attr:starting_mainloop"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;attrd: [\d+]: info: main: Starting mainloop...&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="System" />
+</octopussy_service>

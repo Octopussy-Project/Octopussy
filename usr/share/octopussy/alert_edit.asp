@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Alert Edit" help="alerts" />
 <%
 my $alert = $Request->QueryString("alert");
@@ -14,7 +9,7 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 	my @services = AAT::ARRAY($f->{service});
 	my @actions = AAT::ARRAY($f->{action});
 	my @contacts = AAT::ARRAY($f->{contact});
-
+  my $body = $f->{body};
 	Octopussy::Alert::Modify($f->{old_alert},
 		{ name => $f->{name}, description => $f->{description},
       level => $f->{level}, type => "Dynamic", taxonomy => $f->{taxonomy},
@@ -24,8 +19,7 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 			thresold_time => $f->{thresold_time},
 			thresold_duration => $f->{thresold_duration},
       device => \@devices, service => \@services, action => \@actions,
-      contact => \@contacts, msgsubject => $f->{subject}, msgbody => $f->{body}
-			});			
+      contact => \@contacts, msgsubject => $f->{subject}, msgbody => $body });			
 	AAT::Syslog("octo_WebUI", "GENERIC_MODIFIED", "Alert", $f->{old_alert});
 	$Response->Redirect("./alerts.asp");
 }

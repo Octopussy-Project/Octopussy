@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Linux High Availability Stonith"
+									 icon="software/logo_linux_ha"
+                   name="Linux_HA_Stonith"
+                   version="200808260007"
+                   website="">
+  <message loglevel="Warning"
+           msg_id="Linux_HA_Stonith:consider_setting_maximum_supportability"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;stonithd: [\d+]: WARN: Consider setting .+ for maximum supportability&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Config" />
+  <message loglevel="Information"
+           msg_id="Linux_HA_Stonith:added_signal_handler"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;stonithd: [\d+]: info: G_main_add_SignalHandler: Added signal handler for signal .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_HA_Stonith:signing_in_with_heartbeat"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;stonithd: [\d+]: info: Signing in with heartbeat.&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_HA_Stonith:start_up_successfully"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;stonithd: [\d+]: notice: .+ start up successfully.&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_HA_Stonith:dumps_could_be_lost"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;stonithd: [\d+]: WARN: Core dumps could be lost if multiple dumps occur.&quot;):msg@&gt;"
+           rank="005"
+           table="Message"
+           taxonomy="System" />
+</octopussy_service>

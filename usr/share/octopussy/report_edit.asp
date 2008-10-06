@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="Report Edit" />
 <%
 my $f = $Request->Form();
@@ -21,8 +16,8 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 	}
 	else
 	{
-		my $dhm = Octopussy::DB::SQL_As_Substitution($f->{rrd_timeline});
-		my $dsv = Octopussy::DB::SQL_As_Substitution($f->{datasources_value});
+		my $dhm = $f->{rrd_timeline};
+		my $dsv = $f->{datasources_value};
 		Octopussy::Report::Modify($f->{old_report},
 		{ name => $f->{name}, description => $f->{description},
 			category => $f->{category}, taxonomy => $f->{taxonomy},

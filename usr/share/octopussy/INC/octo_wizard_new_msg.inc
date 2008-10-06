@@ -1,5 +1,10 @@
 <%
 my %arg = @_;
+
+my $DEFAULT_LOGLEVEL = "Information";
+my $DEFAULT_TABLE = "Message";
+my $DEFAULT_TAXONOMY = "Application";
+
 my $number = $arg{number};
 my $device = $arg{device};
 my $name = $arg{name};
@@ -33,9 +38,10 @@ my $modified_color = Octopussy::Message::Color_Without_Field($modified);
 	<AAT:Inc file="octo_selector_service" device="$device" /></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="_LOG_LEVEL" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol>
-  <AAT:Inc file="octo_selector_loglevel" selected="Information" /></AAT:BoxCol>
+  <AAT:Inc file="octo_selector_loglevel" selected="$DEFAULT_LOGLEVEL" /></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="_TABLE" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Inc file="octo_selector_table" /></AAT:BoxCol>
+	<AAT:BoxCol>
+  <AAT:Inc file="octo_selector_table" selected="$DEFAULT_TABLE" /></AAT:BoxCol>
 	<AAT:BoxCol width="100%"></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
@@ -48,7 +54,7 @@ my $modified_color = Octopussy::Message::Color_Without_Field($modified);
 		link="./device_services.asp?device=$device" /></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol>
-	<AAT:Inc file="octo_selector_taxonomy" selected="System" /></AAT:BoxCol>
+	<AAT:Inc file="octo_selector_taxonomy" selected="$DEFAULT_TAXONOMY" /></AAT:BoxCol>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol align="C">
 	<AAT:Form_Submit value="_SELECT_THIS_MSG" /></AAT:BoxCol>

@@ -31,6 +31,7 @@ sub New($)
 	my $conf = shift;
 	$dir_alerts ||= Octopussy::Directory(DIR_ALERT);
   my $file_xml = "$dir_alerts/$conf->{name}.xml"; 
+  $conf->{msgbody} =~ s/\r\n/ \@\@\@ /g;  
   
   if (defined AAT::XML::Write($file_xml, $conf, XML_ROOT))
   {
@@ -147,6 +148,7 @@ sub Configuration($)
 	my $alert_name = shift;
 
  	my $conf = AAT::XML::Read(Filename($alert_name));
+  $conf->{msgbody} =~ s/ \@\@\@ /\n/g;
 
   return ($conf);
 }

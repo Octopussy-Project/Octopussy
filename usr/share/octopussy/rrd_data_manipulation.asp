@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <WebUI:PageTop title="RRD Data Manipulation" />
 <%
 my $report_type = $Request->QueryString("report_type");

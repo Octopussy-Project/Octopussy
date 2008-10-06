@@ -1,10 +1,5 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <% 
-use constant BUFFER_SIZE     => 65_536;
+use constant BUFFER_SIZE => 65_536;
 
 my $buffer = "";
 my $map = $Request->QueryString("map");
