@@ -259,6 +259,9 @@
 	<item label="HTC P3700" value="mobile_htc_p3700"
         regexp="HTC[-_]P3700"
         constructor="HTC" model="P3700" logo="companies/logo_htc" />
+  <item label="HTC P4550" value="mobile_htc_p4550"
+        regexp="HTC-P4550"
+        constructor="HTC" model="P4550" logo="companies/logo_htc" />
 	<item label="HTC P5500" value="mobile_htc_p5500"
         regexp="HTC-P5500"
         constructor="HTC" model="P5500" logo="companies/logo_htc" />

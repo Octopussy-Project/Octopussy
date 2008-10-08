@@ -207,7 +207,6 @@ sub Insert_Data($$$$$$$$)
   my $files = Get_TimePeriod_Files($devices, $services, $begin, $end);
   my $total = $#{@{$files}} + 1;
   my @known_msgs = ();
-
   AAT::Syslog("octo_core", "$total file(s) to parse with "
     . ($#msg_to_parse + 1) . " message(s).");
   my $i = 1;
@@ -340,11 +339,13 @@ Progress("_MSG_REPORT_PROGRESS_INIT_DB", "1/1");
 
 my ($nb_files, $nb_lines) = Insert_Data(\@devices, \@services, 
 	$taxonomy, $begin, $end, $rc->{table}, $rc->{query}, \@field_list);
-	
+
 Progress("_MSG_REPORT_PROGRESS_QUERYING_DB", "0/1");
 my $query = $rc->{query};
-$query =~ s/FROM(\.*[, ])($rc->{table})([, ]\.*)/FROM$1$2_$pid$3/i;
-$query =~ s/ (\w+) JOIN(\.*[, ])($rc->{table})([, ]\.*)/ $1 JOIN$2$3_$pid$4/gi;
+$query =~ #s/FROM(\.*[, ])($rc->{table})([, ]\.*)/FROM$1$2_$pid$3/i;
+  s/FROM ($rc->{table})(.*)?/FROM $1_$pid$2/i;
+#$query =~ s/ (\w+) JOIN(\.*[, ])($rc->{table})([, ]\.*)/ $1 JOIN$2$3_$pid$4/gi;
+
 my @data = AAT::DB::Query(APPLI, $query);
 Progress("_MSG_REPORT_PROGRESS_QUERYING_DB", "1/1");
 

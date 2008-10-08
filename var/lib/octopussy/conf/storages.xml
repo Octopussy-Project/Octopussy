@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_storages default_incoming="DEFAULT"
+<octopussy_storages default_incoming="tmp"
                     default_known="DEFAULT"
                     default_unknown="DEFAULT">
   <storage directory="/tmp/"

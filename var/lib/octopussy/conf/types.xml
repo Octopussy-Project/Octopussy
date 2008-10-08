@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_types>
 	<type type_id="DOUBLE_QUOTED_STRING" 
-		re="\\&quot;.*?\\&quot;" 
+		re="&quot;.*?&quot;" 
 		simple_type="STRING"
 		sql_type="VARCHAR(250)"
 		color="purple" />

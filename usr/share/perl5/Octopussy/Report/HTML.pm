@@ -142,8 +142,10 @@ sub Generate
 			my $value = "";
       if ($f =~ /^(\S+::\S+)\((\S+)\)$/)
       {
-        my $result = (Octopussy::Plugin::Function_Source($1) eq "OUTPUT" 
-					? &{$1}($line->{$2}) : $line->{$2});
+        my ($plugin, $field) = ($1, $2);
+        my $plugin_sql = Octopussy::Plugin::SQL_Convert($f);
+        my $result = (Octopussy::Plugin::Function_Source($plugin) eq "OUTPUT" 
+					? &{$1}($line->{$plugin_sql}) : $line->{$plugin_sql});
         if (ref $result eq "ARRAY")
         {
           foreach my $res (@{$result})

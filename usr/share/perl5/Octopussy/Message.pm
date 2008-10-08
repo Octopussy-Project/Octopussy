@@ -211,12 +211,18 @@ sub Pattern_Field_Substitution($$$$$$)
 {
 	my ($regexp, $f, $type, $field_regexp, $field_list, $re_types) = @_;
 
+  my $long_f = $f;
+  $f =~ s/Plugin_\S+__//;
 	my $function = undef;
 	foreach my $fl (AAT::ARRAY($field_list))
 	{
-		$function = $1  
-			if (($fl =~ /^(\S+::\S+)\($f\)$/) 
-				&& (Octopussy::Plugin::Function_Source($1) eq "INPUT")); 
+    if (($fl =~ /^(\S+::\S+)\($f\)$/) 
+      && (Octopussy::Plugin::Function_Source($1) eq "INPUT"))
+    {
+      my $perl_fct = $1;
+      my $sql_field = Octopussy::Plugin::SQL_Convert($fl);
+      $function = $perl_fct if ($long_f =~ /^$sql_field$/);
+    }
 	}
 	if ($type =~ /^REGEXP/)
   	{ $regexp =~ s/<\@REGEXP\\\(\"(.+?)\"\\\):\S+?\@>/\($1\)/i; }
@@ -282,7 +288,9 @@ sub Pattern_To_Regexp_Fields($$$$)
   my $regexp = Escape_Characters($msg->{pattern});
 	my $function = undef;
   my $pos = 0;
-	
+
+  my %plugin_field_pos = ();
+
   while ($regexp =~ /<\@(.+?):(\S+?)\@>/i)
   {
     my ($type, $pattern_field) = ($1, $2);
@@ -290,13 +298,15 @@ sub Pattern_To_Regexp_Fields($$$$)
     my $i = 0;
     foreach my $f (AAT::ARRAY($ref_fields))
     {
-      if ($pattern_field =~ /^$f$/)
+      if (($pattern_field =~ /^$f$/) || ($f =~ /^Plugin_\S+__$pattern_field$/))
       {
 				($regexp, $function) = 
 					Pattern_Field_Substitution($regexp, $f, $type, 
 						$field_regexp, $field_list, \%re_types);
         $matched = 1;
-        $fields_position[$i] = { pos => $pos, function => $function };
+        $fields_position[$i] = { pos => (defined $plugin_field_pos{$pattern_field} ? $plugin_field_pos{$pattern_field} : $pos), function => $function };
+        $plugin_field_pos{$pattern_field} = $pos;
+        print "$f fields_position[$i] pos => $pos, function => $function\n";
         $pos++;
       }
       $i++;
@@ -401,7 +411,7 @@ sub Regexped_Fields($)
 	return (\%field_regexp);
 }
 
-=head2 Parse_List($services, $taxonomy, $table, $fields_regexp)
+=head2 Parse_List($services, $taxonomy, $table, $fields, $fields_regexp, $fields_list)
 
 =cut
 sub Parse_List($$$$$$)
@@ -413,6 +423,7 @@ sub Parse_List($$$$$$)
 	my $taxo = (defined $taxonomy ?
     (($taxonomy ne "") && ($taxonomy !~ /-ANY-/i) ? $taxonomy : ".+") : ".+");
   my @msg_to_parse = ();
+ 
 	foreach my $s (@servs)
   {
 		my @messages = Octopussy::Service::Messages($s);

@@ -223,9 +223,11 @@ sub SQL($$$)
 		#	{ $index .= "INDEX ($ind), "  if ($ind eq $sf); }
 		foreach my $f (AAT::ARRAY($conf->{field}))
   	{
-			$sql .= "`$f->{title}` " .
-        uc(Octopussy::Type::SQL_Type($f->{type})) . ", "
-        if ($sf =~ /^$f->{title}$/i);
+      if (($sf =~ /^$f->{title}$/i) || ($sf =~ /^Plugin_\S+__$f->{title}$/i))
+      {
+			  $sql .= "`$sf` " 
+          . uc(Octopussy::Type::SQL_Type($f->{type})) . ", ";
+      }
 		}
 	}
 	#foreach my $f (AAT::ARRAY($conf->{field}))

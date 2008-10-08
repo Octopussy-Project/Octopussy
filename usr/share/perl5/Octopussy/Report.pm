@@ -222,6 +222,7 @@ sub Table_Creation($$)
 		{
 			$f =~ s/^\s*\(?UNIX_TIMESTAMP\(//gi;
 			$f =~ s/^\s*DATE_FORMAT\((\S+),'(.+)?'\)/$1/gi;
+      $f =~ s/\S+ AS (Plugin_\S+__\S+)$/$1/i; # for fields modified by plugins
 			$f =~ s/ AS .+$//i;
 			$f =~ s/^\s*\(?COUNT\(//gi;
 			$f =~ s/^\s*\(?DISTINCT\(//gi;

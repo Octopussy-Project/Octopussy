@@ -123,6 +123,29 @@ sub Function_Source($)
 	return ($function_source{$fct});
 }
 
+=head2 SQL_Convert($str)
+
+Returns Plugin Function to SQL
+Octopussy::Plugin::Function(field) -> Plugin_Function__field
+
+=cut
+sub SQL_Convert($)
+{
+  my $str = shift;
+
+  if ($str =~ /^(\S+::\S+)\((\S+)\)$/)
+  {
+    my ($fct, $field) = ($1, $2);
+    $fct =~ s/^Octopussy:://;
+    $fct =~ s/::/_/g;
+    return ("${fct}__${field}");
+  }
+  else
+  {
+    return ($str);
+  }
+}
+
 1;
 
 =head1 AUTHOR

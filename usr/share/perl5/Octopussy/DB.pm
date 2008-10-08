@@ -67,6 +67,7 @@ sub Table_Creation($$$)
 	my ($tablename, $fields, $indexes) = @_;
 
 	my $sql = Octopussy::Table::SQL($tablename, $fields, $indexes);
+  print "DB::Table_Creation: $sql\n";
 	AAT::DB::Do("Octopussy", $sql);
 }
 
