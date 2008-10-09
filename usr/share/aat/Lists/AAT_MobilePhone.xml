@@ -688,6 +688,9 @@
 	<item label="Nokia 6234" value="mobile_nokia_6234"
         regexp="Nokia6234"
         constructor="Nokia" model="6234" logo="companies/logo_nokia" />
+  <item label="Nokia 6270" value="mobile_nokia_6270"
+        regexp="Nokia6270" 
+        constructor="Nokia" model="6270" logo="companies/logo_nokia" />
 	<item label="Nokia 6280" value="mobile_nokia_6280"
 				regexp="Nokia6280" 
 				constructor="Nokia" model="6280" logo="companies/logo_nokia" />

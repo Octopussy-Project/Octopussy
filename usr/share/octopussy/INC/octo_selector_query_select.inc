@@ -6,81 +6,77 @@ my @fields = Octopussy::Table::Fields_Configurations($arg{table}, "title");
 my @list = ();
 
 foreach my $f (@fields)
-{ 
-	push(@list, $f->{title}); 
-	if (($f->{type} =~ /NUMBER$/) || ($f->{type} =~ /^BYTES$/))
+{
+  my ($title, $type) = ($f->{title}, $f->{type}); 
+	push(@list, $title); 
+	if (($type =~ /NUMBER$/) || ($type =~ /^BYTES$/))
 	{
-		push(@list, "AVG($f->{title})");
-		push(@list, "MIN($f->{title})");
-		push(@list, "MAX($f->{title})");
+		push(@list, "AVG($title)", "MIN($title)", "MAX($title)");
 	}
-	push(@list, "COUNT($f->{title})")	if ($f->{type} !~ /^BYTES$/);
-	push(@list, "COUNT(DISTINCT($f->{title}))") if ($f->{type} !~ /^BYTES$/);
-	if (($f->{type} =~ /^DATE/) || ($f->{type} =~ /^TIME/))
+	push(@list, "COUNT($title)")	if ($type !~ /^BYTES$/);
+	push(@list, "COUNT(DISTINCT($title))") if ($type !~ /^BYTES$/);
+	if (($type =~ /^DATE/) || ($type =~ /^TIME/))
 	{
-		push(@list, "DAY($f->{title})");
-		push(@list, "DAY_HOUR($f->{title})");
-		push(@list, "DAY_HOUR_MIN($f->{title})");
+		push(@list, "DAY($title)", "DAY_HOUR($title)", "DAY_HOUR_MIN($title)");
 	}
-	if (($f->{type} =~ /NUMBER$/) || ($f->{type} =~ /^BYTES$/))
+	if (($type =~ /NUMBER$/) || ($type =~ /^BYTES$/))
 	{
-		push(@list, "SUM($f->{title})");
+		push(@list, "SUM($title)");
 	}
 	
 	foreach my $p_fc (@plugin_funcs)
 	{
 		foreach my $fc (AAT::ARRAY($p_fc->{functions}))
 		{
+      my $fct = $fc->{perl};
 			my $label = $p_fc->{plugin} . "::$fc->{label}";
 			foreach my $fc_field (AAT::ARRAY($fc->{field}))
 			{
 				if ("$arg{table}:$f->{title}" eq $fc_field)
 				{
-					push(@list, { label => "$label($f->{title})",
-												value => "$fc->{perl}($f->{title})" } );
-					if (($f->{type} =~ /NUMBER$/) || ($f->{type} =~ /^BYTES$/))
+					push(@list, { label => "$label($title)", value => "$fct($title)" } );
+					if (($type =~ /NUMBER$/) || ($type =~ /^BYTES$/))
     			{ 
-						push(@list, { label => "$label(AVG($f->{title}))", 
-													value => "$fc->{perl}(AVG($f->{title}))" }); 
-						push(@list, { label => "$label(MIN($f->{title}))",
-                          value => "$fc->{perl}(MIN($f->{title}))" });
-						push(@list, { label => "$label(MAX($f->{title}))",
-                          value => "$fc->{perl}(MAX($f->{title}))" });
+						push(@list, { label => "$label(AVG($title))", 
+                          value => "$fct(AVG($title))" }); 
+						push(@list, { label => "$label(MIN($title))",
+                          value => "$fct(MIN($title))" });
+						push(@list, { label => "$label(MAX($title))",
+                          value => "$fct(MAX($title))" });
 					}
-					push(@list, { label => "$label(COUNT($f->{title}))", 
-												value => "$fc->{perl}(COUNT($f->{title}))" });
-					push(@list, { label => "$label(COUNT(DISTINCT($f->{title})))", 
-												value => "$fc->{perl}(COUNT(DISTINCT($f->{title})))" });
-					if (($f->{type} =~ /NUMBER$/) || ($f->{type} =~ /^BYTES$/))
+					push(@list, { label => "$label(COUNT($title))", 
+					              value => "$fct(COUNT($title))" });
+					push(@list, { label => "$label(COUNT(DISTINCT($title)))", 
+					              value => "$fct(COUNT(DISTINCT($title)))" });
+					if (($type =~ /NUMBER$/) || ($type =~ /^BYTES$/))
           {
-            push(@list, { label => "$label(SUM($f->{title}))", 
-													value => "$fc->{perl}(SUM($f->{title}))" });
+            push(@list, { label => "$label(SUM($title))", 
+					                value => "$fct(SUM($title))" });
           }
 				}
 			}
 			foreach my $fc_ftype (AAT::ARRAY($fc->{field_type}))
       {
-				if ($fc_ftype =~ /$f->{type}/)
+				if ($fc_ftype =~ /$type/)
 				{
-					push(@list, { label => "$label($f->{title})",
-          	value => "$fc->{perl}($f->{title})" } );
-					if (($f->{type} =~ /NUMBER$/) || ($f->{type} =~ /^BYTES$/))
+					push(@list, { label => "$label($title)", value => "$fct($title)" } );
+					if (($type =~ /NUMBER$/) || ($type =~ /^BYTES$/))
           {
-            push(@list, { label => "$label(AVG($f->{title}))",
-                          value => "$fc->{perl}(AVG($f->{title}))" });
-            push(@list, { label => "$label(MIN($f->{title}))",
-                          value => "$fc->{perl}(MIN($f->{title}))" });
-            push(@list, { label => "$label(MAX($f->{title}))",
-                          value => "$fc->{perl}(MAX($f->{title}))" });
+            push(@list, { label => "$label(AVG($title))",
+                          value => "$fct(AVG($title))" });
+            push(@list, { label => "$label(MIN($title))",
+                          value => "$fct(MIN($title))" });
+            push(@list, { label => "$label(MAX($title))",
+                          value => "$fct(MAX($title))" });
           }
-          #push(@list, { label => "$label(COUNT($f->{title}))",
-          #              value => "$fc->{perl}(COUNT($f->{title}))" });
-          #push(@list, { label => "$label(COUNT(DISTINCT($f->{title})))",
-          #              value => "$fc->{perl}(COUNT(DISTINCT($f->{title})))" });
-          if (($f->{type} =~ /NUMBER$/) || ($f->{type} =~ /^BYTES$/))
+          #push(@list, { label => "$label(COUNT($title))",
+          #  value => "$fct(COUNT($title))" });
+          #push(@list, { label => "$label(COUNT(DISTINCT($title)))",
+          #  value => "$fct(COUNT(DISTINCT($title)))" });
+          if (($type =~ /NUMBER$/) || ($type =~ /^BYTES$/))
           {
-            push(@list, { label => "$label(SUM($f->{title}))",
-                          value => "$fc->{perl}(SUM($f->{title}))" });
+            push(@list, { label => "$label(SUM($title))",
+                          value => "$fct(SUM($title))" });
           }
 				}
 			}

@@ -23,19 +23,16 @@ sub Generate($$$$)
   {
     foreach my $f (@fields)
     {
-      if ($f =~ /^(\S+::\S+)\((\S+)\)$/)
+      my $result = Octopussy::Plugin::Field_Data($line, $f);
+      if (defined $result)
       {
-        my $result = (Octopussy::Plugin::Function_Source($1) eq "OUTPUT"
-					? &{$1}($line->{$2}) : $line->{$2});
         if (ref $result eq "ARRAY")
         {
           foreach my $res (@{$result})
             { $csv .= "$res "; }
         }
-        elsif (defined $result)
-        {
-          $csv .= $result;
-        }
+        else
+          { $csv .= $result; }
       }
       else
         { $csv .= $line->{$f} || "N/A"; }

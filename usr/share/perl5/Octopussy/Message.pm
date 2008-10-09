@@ -306,7 +306,6 @@ sub Pattern_To_Regexp_Fields($$$$)
         $matched = 1;
         $fields_position[$i] = { pos => (defined $plugin_field_pos{$pattern_field} ? $plugin_field_pos{$pattern_field} : $pos), function => $function };
         $plugin_field_pos{$pattern_field} = $pos;
-        print "$f fields_position[$i] pos => $pos, function => $function\n";
         $pos++;
       }
       $i++;

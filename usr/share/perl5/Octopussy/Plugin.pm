@@ -133,7 +133,7 @@ sub SQL_Convert($)
 {
   my $str = shift;
 
-  if ($str =~ /^(\S+::\S+)\((\S+)\)$/)
+  if ($str =~ /^(\S+::\S+?)\((\S+)\)$/)
   {
     my ($fct, $field) = ($1, $2);
     $fct =~ s/^Octopussy:://;
@@ -144,6 +144,31 @@ sub SQL_Convert($)
   {
     return ($str);
   }
+}
+
+=head2 Field_Data
+
+=cut
+sub Field_Data
+{
+  my ($line, $long_field) = @_;
+  my $result = undef;
+
+  if ($long_field =~ /^(\S+::\S+?)\((\S+)\)$/)
+  {
+    my ($plugin, $field) = ($1, $2);
+    if (Function_Source($plugin) eq "OUTPUT")
+    {
+      $result = &{$plugin}($line->{$field});
+    }
+    else
+    {
+      my $plugin_sql = Octopussy::Plugin::SQL_Convert($long_field);
+      $result = $line->{$plugin_sql};
+    } 
+  }
+
+  return ($result);
 }
 
 1;

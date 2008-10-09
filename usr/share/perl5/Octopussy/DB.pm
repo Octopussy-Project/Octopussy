@@ -67,7 +67,6 @@ sub Table_Creation($$$)
 	my ($tablename, $fields, $indexes) = @_;
 
 	my $sql = Octopussy::Table::SQL($tablename, $fields, $indexes);
-  print "DB::Table_Creation: $sql\n";
 	AAT::DB::Do("Octopussy", $sql);
 }
 
@@ -100,10 +99,21 @@ sub SQL_Select_Function(@)
 	my $query = "SELECT ";
   foreach my $field (@fields)
   {
-		my $func = undef;
+		my ($func, $func_field) = (undef, undef);
 		if ($field =~ /^(\S+::\S+?)\((\S+)\)/)
 		{
-			($func, $field) = ($1, $2);
+      ($func, $func_field) = ($1, $2);
+      if (Octopussy::Plugin::Function_Source($func) eq "INPUT")
+      {
+        my $func_bis = $func;
+        $func_bis =~ s/^Octopussy:://;
+        $func_bis =~ s/::/_/g;
+        $field = $func_bis . "__$func_field";
+      }
+      else
+      {
+        $field = $2;
+      }
 		}
 		my $match = 0;
 		foreach my $s (@sql_substitutions)
@@ -123,7 +133,7 @@ sub SQL_Select_Function(@)
 				last;
 			}
 		}
-		my $complete_field = (defined $func ? "$func($field)" : $field);
+		my $complete_field = (defined $func ? "$func($func_field)" : $field);
 		push(@new_fields, $complete_field)	if (!$match);		
     $query .= "$field, ";
   }

@@ -140,29 +140,27 @@ sub Generate
     foreach my $f (@field_list)
     {
 			my $value = "";
-      if ($f =~ /^(\S+::\S+)\((\S+)\)$/)
+      my $result = Octopussy::Plugin::Field_Data($line, $f);
+      if (defined $result)
       {
-        my ($plugin, $field) = ($1, $2);
-        my $plugin_sql = Octopussy::Plugin::SQL_Convert($f);
-        my $result = (Octopussy::Plugin::Function_Source($plugin) eq "OUTPUT" 
-					? &{$1}($line->{$plugin_sql}) : $line->{$plugin_sql});
         if (ref $result eq "ARRAY")
         {
           foreach my $res (@{$result})
           {
-            $res = "<a href=\"$1\">$1<\/a>"   if ($res =~ /^(https*:\/\/.+)/);
+            $res = "<a href=\"$1\">$1<\/a>"   if ($res =~ /^(https?:\/\/.+)/);
             $value .= "$res<br>";
           }
         }
-        elsif (defined $result)
+        else
         {
-          $result = "<a href=\"$1\">$1<\/a>" if ($result =~ /^(https*:\/\/.+)/);          $value .= $result;
+          $result = "<a href=\"$1\">$1<\/a>" if ($result =~ /^(https?:\/\/.+)/);
+          $value .= $result;
         }
       }
       else
       	{ $value .= Encode($line->{$f} || "N/A"); }
       $html .= "<td class=\"report\" align=\"" 
-				. ($value =~ /^\d+(\.\d+)?( [GKM])?$/ ? "right" : "left") . "\">$value</td>";
+				. ($value =~ /^\d+(\.\d+)?( \S+)?$/ ? "right" : "left") . "\">$value</td>";
     }
     $html .= "</tr>\n";
   }

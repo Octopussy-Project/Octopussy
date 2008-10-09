@@ -35,12 +35,10 @@ sub Generate
 		my %tmp = ();
 		foreach my $f (@field_list)
     {
-      my ($field, $value) = ($f, "");
-      if ($f =~ /^(\S+::\S+)\((\S+)\)$/)
+      my $value = "";
+      my $result = Octopussy::Plugin::Field_Data($line, $f);
+      if (defined $result)
       {
-				$field = $2;
-        my $result = (Octopussy::Plugin::Function_Source($1) eq "OUTPUT"
-          ? &{$1}($line->{$2}) : $line->{$2});
         if (ref $result eq "ARRAY")
         {
           foreach my $res (@{$result})
@@ -51,7 +49,7 @@ sub Generate
       }
       else
         { $value .= $line->{$f} || "N/A"; }
-			push(@{$tmp{col}}, { name => $field, value => $value });
+			push(@{$tmp{col}}, { name => $f, value => $value });
     }	
 		push(@{$conf{data}{row}}, \%tmp), 
 	}
