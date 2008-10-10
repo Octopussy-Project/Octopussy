@@ -9,7 +9,7 @@
   <field title="daemon"
          type="WORD" />
   <field title="pid"
-         type="NUMBER" />
+         type="PID" />
   <field title="msg_id"
          type="STRING" />
   <field title="msg"

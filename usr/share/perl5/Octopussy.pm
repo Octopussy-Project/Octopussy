@@ -178,7 +178,7 @@ sub Status_Progress($$)
 		my $pid = <FILEPID>;
 		chomp($pid);
 		my $cache = new Cache::FileCache( { namespace => $bin, 
-			default_expires_in => "1 day", cache_root => $dir_pid,
+			default_expires_in => "1 day", cache_root => "$dir_pid/cache",
     	directory_umask => "007" } );
 		$status = $cache->get("status_${pid}");
 		close(FILEPID);

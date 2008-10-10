@@ -264,8 +264,8 @@ sub Generate($$$$$$$$$$$$)
 			$rc->{columns}, $rc->{columns_name}, $stats, $lang);
 		my $file_xml = Octopussy::File_Ext($outputfile, "xml");
 		Octopussy::Report::XML::Generate($file_xml, $rc->{name},
-      $begin, $end, $devices, $data, $rc->{columns}, $rc->{columns_name},
-      $stats, $lang);
+      $begin, $end, $devices, $services, $data, 
+      $rc->{columns}, $rc->{columns_name}, $stats, $lang);
 		Octopussy::Chown($file_xml);
 		my $file_csv = Octopussy::File_Ext($outputfile, "csv");
 		Octopussy::Report::CSV::Generate($file_csv, $data, 
@@ -450,7 +450,7 @@ sub Running_List()
 {
 	my $dir_pid = Octopussy::Directory("running");
 	my $cache = new Cache::FileCache( { namespace => REPORTER_BIN,
-  	default_expires_in => "1 day", cache_root => $dir_pid,
+  	default_expires_in => "1 day", cache_root => "$dir_pid/cache",
    	directory_umask => "007"  } );
 	my $pt = new Proc::ProcessTable;
 	my @list = ();

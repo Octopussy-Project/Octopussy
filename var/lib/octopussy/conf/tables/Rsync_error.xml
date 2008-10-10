@@ -11,5 +11,5 @@
   <field title="status"
          type="STRING" />
   <field title="pid"
-         type="NUMBER" />
+         type="PID" />
 </octopussy_table>

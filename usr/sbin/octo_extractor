@@ -305,7 +305,7 @@ Help()	if ((! $status) || ($help)
 	|| (!defined $opt_begin) || (!defined $opt_end));
 
 $cache = new Cache::FileCache( { namespace => "octo_extractor",
-    default_expires_in => "1 hour", cache_root => $dir_pid,
+    default_expires_in => "1 hour", cache_root => "$dir_pid/cache",
 		directory_umask => "007" } ) 
 	or croak( "Couldn't instantiate FileCache" );
 

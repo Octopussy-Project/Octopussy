@@ -171,7 +171,7 @@ sub Syslog_By_DeviceType_Graph($$$)
 				. " " . Graph_Legend($dt) . " ";
 			$first = 0;
 		}
-		system($cmd);
+		system("$cmd 2>&1 1>/dev/null");
 	}
 }
 
@@ -295,7 +295,7 @@ sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
       . " " . Graph_Legend($t) . " ";
     $first = 0;
   }
-  system($cmd);
+  system("$cmd 2>&1 1>/dev/null");
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Hourly_Graph($device, $service)
@@ -364,7 +364,7 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 		$first = 0;
 	}
 	$cmd .= " $def $cdef $legend";
-	system($cmd)	if (($cdef ne "") && ($def ne ""));
+	system("$cmd 2>&1 1>/dev/null")	if (($cdef ne "") && ($def ne ""));
 }
 
 =head2 Syslog_By_Device_Taxonomy_Hourly_Graph($device)

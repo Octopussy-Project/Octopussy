@@ -53,6 +53,7 @@ sub Colors()
   $color{"NUMBER"} = NUMBER_COLOR;
 	$color{"BYTES"} = NUMBER_COLOR;
 	$color{"SECONDS"} = NUMBER_COLOR;
+  $color{"PID"} = NUMBER_COLOR;
   $color{"WORD"} = WORD_COLOR;
 	$color{"USER_AGENT"} = WORD_COLOR;
   $color{"STRING"} = STRING_COLOR;
@@ -79,6 +80,7 @@ sub List()
 	push(@list, "NUMBER");
 	push(@list, "BYTES");
 	push(@list, "SECONDS");
+  push(@list, "PID");
 	push(@list, "STRING");
 	push(@list, "LONG_STRING");
 	push(@list, "WORD");
@@ -104,6 +106,7 @@ sub Simple_List()
 	$type{"NUMBER"} = 1;
 	$type{"BYTES"} = 1;
 	$type{"SECONDS"} = 1;
+  $type{"PID"} = 1;
 	$type{"STRING"} = 1;
 	$type{"LONG_STRING"} = 1;
 	$type{"WORD"} = 1;
@@ -171,6 +174,7 @@ sub Regexps()
 	$re_types{"NUMBER"} = "[-+]?\\d+";
 	$re_types{"BYTES"} = "[-+]?\\d+";
 	$re_types{"SECONDS"} = "[-+]?\\d+";
+  $re_types{"PID"} = "\\d+";
 	$re_types{"WORD"} = "\\S+";
 	$re_types{"USER_AGENT"} = ".+";
 	$re_types{"STRING"} = ".+";
@@ -211,7 +215,8 @@ sub SQL_Type($)
 	my @list = Configurations();
 	foreach my $t (@list)
 		{ return ($t->{sql_type}) if ($t->{simple_type} =~ /^$type/); }
-	if ($type eq "NUMBER" || $type eq "BYTES" || $type eq "SECONDS") 
+	if ($type eq "NUMBER" || $type eq "BYTES" 
+    || $type eq "SECONDS"|| $type eq "PID")
 		{ return ("BIGINT"); }
 	elsif (($type eq "STRING") || ($type eq "WORD") || ($type eq "USER_AGENT"))
 		{ return ("VARCHAR(250)"); }

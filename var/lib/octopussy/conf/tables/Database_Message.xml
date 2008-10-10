@@ -7,7 +7,7 @@
   <field title="device"
          type="WORD" />
 	<field title="pid"
-         type="NUMBER" />
+         type="PID" />
   <field title="client"
          type="STRING" />
   <field title="user"

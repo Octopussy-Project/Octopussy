@@ -171,7 +171,7 @@ sub Events()
 	{
 		my $dir_pid = Octopussy::Directory("running");
 		$cache = new Cache::FileCache( { namespace => "octo_dispatcher",
-    		default_expires_in => "1 day", cache_root => $dir_pid,
+    		default_expires_in => "1 day", cache_root => "$dir_pid/cache",
     		directory_umask => "007" } )
   		or croak( "Couldn't instantiate FileCache");
 	}

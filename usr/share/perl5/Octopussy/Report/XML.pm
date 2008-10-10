@@ -12,13 +12,13 @@ use AAT;
 =head1 FUNCTIONS
 
 =head2 Generate($file, $report, $begin, $end, $devices, $services, $data, 
-	$fields, $headers, $stats)
+	$fields, $headers, $stats, $lang)
 
 =cut
 sub Generate
 {
   my ($file, $report, $begin, $end, $devices, $services, $data, 
-		$fields, $headers, $stats) = @_;
+		$fields, $headers, $stats, $lang) = @_;
 	my @field_list = split(/,/, $fields);
 	my @header_list = split(/,/, $headers);
 	my @headers = ();
@@ -29,7 +29,8 @@ sub Generate
     data_generation_time => $stats->{seconds},
 		generated_by_version => Octopussy::Version(),
 		device => \@{$devices}, service => \@{$services}, 
-		presentation => { header => \@headers } );
+		presentation => { header => \@headers } 
+    );
 	foreach my $line (@{$data})
   {
 		my %tmp = ();

@@ -5,13 +5,13 @@
                    version="200610050001">
   <message loglevel="Notice"
            msg_id="Samba:reconnecting_ldap_server"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnecting to LDAP server.+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnecting to LDAP server.+&quot;):msg@&gt; "
            rank="01"
            table="Message"
            taxonomy="Network" />
   <message loglevel="Information"
            msg_id="Samba:reconnected_ldap_server"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt(s)&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt(s)&quot;):msg@&gt;"
            rank="02"
            table="Message"
            taxonomy="Network" />
@@ -23,7 +23,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Samba:couldnt_hard_reconnect_ldap"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: could not hard reconnect to LDAP server.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: could not hard reconnect to LDAP server.+&quot;):msg@&gt;"
            rank="04"
            table="Message"
            taxonomy="Network.Errors" />

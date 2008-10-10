@@ -5,7 +5,7 @@
                    version="200703020002">
   <message loglevel="Critical"
            msg_id="Nfs:could_not_bind"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; nfsd[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Could not bind .+&quot;):msg@&gt;  "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; nfsd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Could not bind .+&quot;):msg@&gt;  "
            rank="001"
            table="Message"
            taxonomy="Config.Errors" />

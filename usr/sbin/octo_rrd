@@ -22,7 +22,7 @@ use Octopussy;
 my @dtypes = Octopussy::Device::Types();
 my $dir_pid = Octopussy::Directory("running");
 my $cache = new Cache::FileCache( { namespace => "octo_dispatcher",
-    default_expires_in => "1 day", cache_root => $dir_pid,
+    default_expires_in => "1 day", cache_root => "$dir_pid/cache",
     directory_umask => "007" } )
   or croak( "Couldn't instantiate FileCache" );
 
@@ -40,7 +40,7 @@ while (1)
 			my $nb = (AAT::NOT_NULL($dtype_stats->{$dt}) ? $dtype_stats->{$dt} : 0);
      	push(@dt_stats, $nb);
     }
-		Octopussy::RRDTool::Syslog_By_DeviceType_Update(\@dt_stats);
+#		Octopussy::RRDTool::Syslog_By_DeviceType_Update(\@dt_stats);
 		$old_time = $time; 
 	}
 	sleep(5);
