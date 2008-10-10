@@ -1,0 +1,72 @@
+<Tooltips language="Italian" timestamp="200707032200">
+
+	<msg mid="_TOOLTIP_ALERT_MSG"
+    value="
+L\'oggetto e il contenuto possono usare questi valori predefiniti:&lt;br&gt;
+&lt;b&gt;__device__&lt;/b&gt;: il dispositivo che manda il log che produce questa linea.&lt;br&gt;
+&lt;b&gt;__alert__&lt;/b&gt;: nome Allarme.&lt;br&gt;
+&lt;b&gt;__level__&lt;/b&gt;: livello Allarme.&lt;br&gt;
+&lt;b&gt;__log__&lt;/b&gt;: linea log completa.&lt;br&gt;" />
+
+	<msg mid="_TOOLTIP_DEVICE_STATUS"
+		value="
+Lo stato del dispositivo puó essere:&lt;br&gt;
+&lt;b&gt;Stopped&lt;/b&gt;: i log vengono eliminati direttamente&lt;br&gt;
+&lt;b&gt;Paused&lt;/b&gt;: i log vengono scritti ma non interpretati&lt;br&gt;
+&lt;b&gt;Started&lt;/b&gt;: i log vengono gestiti interamente&lt;br&gt;" />
+
+	<msg mid="_TOOLTIP_SYSTEM_DB"
+		value="
+Il database viene usato solo per salvare gli allarmi e per eseguire query SQL per i Reports.&lt;br&gt;
+&lt;b&gt;Server:&lt;/b&gt; (&lt;i&gt;default: localhost&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Utente:&lt;/b&gt; (&lt;i&gt;default: octopussy&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Password:&lt;/b&gt; (&lt;i&gt;default: octopussy&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Base:&lt;/b&gt; (&lt;i&gt;default: octopussy&lt;/i&gt;)&lt;br&gt;" />
+
+  <msg mid="_TOOLTIP_SYSTEM_JABBER"
+    value="
+Il sistema Jabber si usa solo per mandare Allarmi ai contatti con IM.&lt;br&gt;
+&lt;b&gt;Server:&lt;/b&gt; (&lt;i&gt;yourjabber.yourdomain.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Utente:&lt;/b&gt; (&lt;i&gt;yourjabberuser&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Password:&lt;/b&gt; (&lt;i&gt;yourjabberpassword&lt;/i&gt;)&lt;br&gt;
+&lt;hr&gt;
+Informazioni su Jabber: http://www.jabber.org/" />
+
+  <msg mid="_TOOLTIP_SYSTEM_LDAP"
+    value="
+LDAP viene usato per i Contatti e per gli Utenti.&lt;br&gt;
+&lt;b&gt;Server contatti:&lt;/b&gt; (&lt;i&gt;yourldapserver.yourdomain.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Base contatti:&lt;/b&gt; (&lt;i&gt;ou=Contacts,dc=yourdomain,dc=com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Filtri contatti:&lt;/b&gt; &lt;br&gt;
+&lt;b&gt;Server Utenti:&lt;/b&gt; (&lt;i&gt;yourldapserver.yourdomain.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Base Utenti:&lt;/b&gt; (&lt;i&gt;ou=Users,dc=yourdomain,dc=com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Filtro Utenti:&lt;/b&gt; &lt;br&gt;
+&lt;hr&gt;
+Informazioni su OpenLDAP: http://www.openldap.org/" />
+
+  <msg mid="_TOOLTIP_SYSTEM_NSCA"
+    value="
+NSCA viene usato per mandare Allarmi alla console di supervisione Nagios.&lt;br&gt;
+&lt;b&gt;Binario:&lt;/b&gt; Nome programma send_nsca&lt;br&gt;
+&lt;b&gt;File di configurazione:&lt;/b&gt; Nome file di configurazione di send_nsca&lt;br&gt;
+&lt;b&gt;Nagios Server:&lt;/b&gt; Indirizzo console supervisione Nagios&lt;br&gt;
+&lt;b&gt;Host definito in Nagios:&lt;/b&gt; Nome Host definito in Nagios per ricevere Allarmi da Octopussy&lt;br&gt;
+&lt;b&gt;Servizio definito in Nagios:&lt;/b&gt; Nome del servizio definito in Nagios per ricevere Allarmi da Octopussy&lt;br&gt;
+&lt;hr&gt;
+informazioni su Nagios e NSCA: http://www.nagios.org/" />
+
+  <msg mid="_TOOLTIP_SYSTEM_PROXY"
+    value="
+Il proxy viene utilizzato per gli aggiornamenti.&lt;br&gt;
+&lt;b&gt;Server:&lt;/b&gt; (&lt;i&gt;yourproxy.yourdomain.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Porta:&lt;/b&gt; (&lt;i&gt;proxy_port&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Utente:&lt;/b&gt; (&lt;i&gt;proxy_user&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Password:&lt;/b&gt; (&lt;i&gt;proxy_password&lt;/i&gt;)&lt;br&gt;" />
+
+  <msg mid="_TOOLTIP_SYSTEM_SMTP"
+    value="
+SMTP viene usato per mandare allarmi e report ai contatti o per contattare il supporto Octopyssy.&lt;br&gt;
+&lt;b&gt;Server:&lt;/b&gt; (&lt;i&gt;yoursmtp.yourdomain.com&lt;/i&gt;)&lt;br&gt;
+&lt;b&gt;Mittente:&lt;/b&gt; (&lt;i&gt;you@yourdomain.com&lt;/i&gt;)&lt;br&gt;" />
+
+</Tooltips>

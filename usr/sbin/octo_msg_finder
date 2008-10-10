@@ -1,0 +1,84 @@
+#!/usr/bin/perl -w
+=head1 NAME
+
+octo_msg_finder - Octopussy message finder program
+
+=head1 SYNOPSIS
+
+octo_msg_finder "<line>" | <filename>
+
+=head1 DESCRIPTION
+
+octo_msg_finder is the program used by the Octopussy Project
+to help users to determine to wich Message/Service a log belongs to
+
+=cut
+use strict;
+use Octopussy;
+
+my @services = Octopussy::Service::List();
+
+=head1 FUNCTIONS
+
+=head2 Search_Line($line, $n)
+
+Prints Service, MsgID, Taxonomy & Table of line $line
+
+=cut
+sub Search_Line(@)
+{
+  my ($line, $n) = @_;
+  $n ||= 1;
+  my $match = 0;
+  foreach my $serv (@services)
+  {
+    my @msg_to_parse = ();
+    my @messages = Octopussy::Service::Messages($serv);
+    foreach my $m (@messages)
+    {
+      my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
+      if ($line =~ /^$regexp\s*[^\t\n\r\f -~]?$/i)
+      {
+        $match = 1;
+        print "\nLine $n: $line\n";
+        print "  --> Service:  $serv\n";
+        print "  --> MsgID:    $m->{msg_id}\n";
+        print "  --> Taxonomy: $m->{taxonomy}\n";
+        print "  --> Table:    $m->{table}\n";
+      }
+    }
+  }
+  if (!$match)
+  {
+    print "\nLine: $line\n";
+    print "  --> MESSAGE UNKNOWN\n";
+  }
+}
+
+my $arg = $ARGV[0];
+
+if (-f $arg)
+{
+  my $i = 1;
+  open(FILE, ($arg =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$arg\" |");
+  while(<FILE>)
+  {
+    Search_Line($_, $i);
+    $i++;
+  }
+}
+else
+{
+  Search_Line($arg);
+}
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=head1 SEE ALSO
+
+octo_dispatcher, octo_extractor, octo_parser, octo_uparser, octo_reporter, 
+octo_scheduler
+
+=cut
