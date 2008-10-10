@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_report name="Bind Top 50 Clients"
+                  category="DNS"
+                  columns="client,COUNT_query"
+                  columns_name="Client,Nb Queries"
+                  description="The 50 most active DNS clients"
+                  graph_type="array"
+                  query="SELECT client, COUNT(query) as COUNT_query FROM Bind_query GROUP BY client ORDER BY COUNT_query desc LIMIT 50"
+                  table="Bind_query"
+                  taxonomy="-ANY-"
+                  version="200710030001"
+                  x="client"
+                  y="" />
