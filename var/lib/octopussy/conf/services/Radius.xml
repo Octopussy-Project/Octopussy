@@ -6,7 +6,7 @@
   <message loglevel="Information"
            msg_id="Radius:starting"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;radiusd: .+ : Info: Starting - reading configuration files ...&quot;):msg@&gt;"
-           rank="01"
+           rank="001"
            table="Message"
            taxonomy="Application.Start" />
 </octopussy_service>

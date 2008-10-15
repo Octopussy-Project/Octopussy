@@ -35,10 +35,9 @@ else
 <%
 if (AAT::NOT_NULL($site))
 {
-%><AAT:BoxCol align="R">
+%><AAT:BoxCol cspan="3" align="R">
 	<AAT:Label value="_OFFICIAL_WEBSITE" link_new="$site" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2">
-	<AAT:Button name="web" link_new="$site" /></AAT:BoxCol><%
+	<AAT:BoxCol><AAT:Button name="web" link_new="$site" /></AAT:BoxCol><%
 }
 else
 {%><AAT:BoxCol cspan="4"></AAT:BoxCol><%}%>

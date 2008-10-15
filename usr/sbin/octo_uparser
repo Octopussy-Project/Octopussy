@@ -25,7 +25,13 @@ use constant PROG_NAME => "octo_uparser";
 my $dir_pid = Octopussy::Directory("running");
 my $device = $ARGV[0];
 
-my @services;
+my $cache = new Cache::FileCache( { namespace => "octo_parser",
+    default_expires_in => "1 day", cache_root => "$dir_pid/cache",
+    directory_umask => "007"  } )
+  or croak( "Couldn't instantiate FileCache" );
+$cache->set("uparser_$device", "running");
+
+my (@files, @services);
 my %service;
 my %dir_data = ();
 my (%known_msgs, @unknown_msgs) = ((), (), ());
@@ -54,26 +60,30 @@ Inits UParser
 =cut
 sub Init()
 {
-	my $dconf = Octopussy::Device::Configuration($device);
-	my $storage = Octopussy::Storage::Default();
-	@services = Octopussy::Device::Services($device);	
-	$dir_data{"Unknown"} = Octopussy::Storage::Directory_Unknown($device);
-	foreach my $serv (@services)
- 	{
-		$dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
-  	my @msg_to_parse = ();
-   	my @messages = Octopussy::Service::Messages($serv);
-		AAT::Syslog(PROG_NAME, "Init Service: $serv - " 
-			. ($#messages + 1) . " messages");
-   	foreach my $m (@messages)
-    { 
-			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-      push(@{$service{$serv}{msgs}}, 
-				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i } );
-		}
-	}
-	($file, $last_file) = (undef, undef);
-	(%known_msgs, @unknown_msgs) = ((), ());
+  push(@files, Octopussy::Logs::Unknown_Files($device));
+  if ($#files >= 0)
+  {
+	  my $dconf = Octopussy::Device::Configuration($device);
+	  my $storage = Octopussy::Storage::Default();
+	  @services = Octopussy::Device::Services($device);	
+	  $dir_data{"Unknown"} = Octopussy::Storage::Directory_Unknown($device);
+	  foreach my $serv (@services)
+ 	  {
+		  $dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
+  	  my @msg_to_parse = ();
+   	  my @messages = Octopussy::Service::Messages($serv);
+		  AAT::Syslog(PROG_NAME, "Init Service: $serv - " 
+			  . ($#messages + 1) . " messages");
+   	  foreach my $m (@messages)
+      { 
+			  my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
+        push(@{$service{$serv}{msgs}}, 
+			  	{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i } );
+		  }
+	  }
+	  ($file, $last_file) = (undef, undef);
+	  (%known_msgs, @unknown_msgs) = ((), ());
+  }
 }
 
 =head2 Write_Logfile($file, $logs)
@@ -176,7 +186,8 @@ sub File_Handler($)
 {
 	my $file = shift;
 
-	if ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)\.log.*)$/)	
+	if ((-f $file) &&
+      ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)\.log.*)$/))
 	{
 		my ($y, $m, $d, $file_new, $hour, $min) = ($1, $2, $3, $4, $5, $6);
     (%known_msgs, @unknown_msgs) = ((), ());
@@ -221,15 +232,16 @@ sub File_Handler($)
 $SIG{USR1} = \&Exit;
 
 AAT::Syslog(PROG_NAME, "Device: $device Started !");
-my @files = Octopussy::Logs::Unknown_Files($device);
-Init()	if ($#files >= 0);
+Init();
 foreach my $file (@files)
 {
 	chomp($file);	
  	File_Handler($file); 
+  Init()  if ($cache->get("uparser_$device") eq "reload");
 	last	if ($exit_request);
 }
 AAT::Syslog(PROG_NAME, "Device: $device Stopped !");
+$cache->remove("uparser_$device");
 
 =head1 AUTHOR
 

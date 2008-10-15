@@ -43,6 +43,10 @@ my $minutes_without_logs;
 my %dir_data = ();
 my (@files, @taxo_list, %known_msgs, @unknown_msgs) = ((), (), (), ());
 my ($file, $file_last) = (undef, undef);
+
+my ($y, $m, $d, $hour, $min) = (0, 0, 0, 0, 0);
+my $seconds = 0;
+
 my $file_pid = Octopussy::PID_File($PROG_NAME . "_$device")
   or die "$PROG_NAME: Parsing $device - Process already running !";
 
@@ -146,7 +150,10 @@ sub Init()
 					taxo => $m->{taxonomy}, alerts => \@msg_alerts } ); 
 		}
 	}
-	system("$NICE_UPARSER ${dir_program}octo_uparser $device &");
+  if (AAT::NOT_NULL($cache->get("uparser_$device")))
+    { $cache->set("uparser_$device", "reload"); }
+  else
+    { system("$NICE_UPARSER ${dir_program}octo_uparser $device &"); }
 	($file, $file_last) = (undef, undef);
 	(@files, %known_msgs, @unknown_msgs) = ((), (), ());
 
@@ -380,8 +387,8 @@ sub Service_Handler($$$$$$$$)
  	foreach my $t (@taxo_list)
  		{ push(@taxo_stats, $taxo{$serv}{$t} || 0); }
 	my $seconds = AAT::Datetime::Seconds_Since_1970($y, $m, $d, $hour, $min);
-# 	Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Update($seconds, 
-#		$device, $serv, \@taxo_stats);
+#  Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Update($seconds, 
+ #   $device, $serv, \@taxo_stats);
 }
 
 =head2 File_Handler($file)
@@ -396,7 +403,8 @@ sub File_Handler($)
 	my $time = time();
 	if ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)_\d+\.log)/)	
 	{
-		my ($y, $m, $d, $file_new, $hour, $min) = ($1, $2, $3, $4, $5, $6);
+		my ($n_y, $n_m, $n_d, $file_new, $n_hour, $n_min) = 
+      ($1, $2, $3, $4, $5, $6);
     (%taxo, %known_msgs, @unknown_msgs) = ((), (), ());
 		$file_new =~ s/(msg_\d\dh\d\d)_\d+/$1/;
 		my $total = 0;	
@@ -428,11 +436,24 @@ sub File_Handler($)
      	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", $file);
     }
 		foreach my $serv (keys %known_msgs)
-			{	Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new); }
+	  {	
+      Service_Handler($serv, $total, $n_y, $n_m, $n_d, 
+        $n_hour, $n_min, $file_new); 
+    }
 		Write_Unknown_Logfile($file, \@unknown_msgs);
-		Write_Stats($y, $m, $d, $hour, $min);
-		AAT::Syslog($PROG_NAME, "Device: $device Date: $d/$m/$y $hour:$min"
-			. " Time: " . (time() - $time) . " seconds");
+		Write_Stats($n_y, $n_m, $n_d, $n_hour, $n_min);
+
+    if (($n_min != $min) || ($n_hour != $hour) || ($n_d != $d)
+        || ($n_m != $m)) # not the same minute than last minute
+    {
+      $seconds += (time() - $time);
+		  AAT::Syslog($PROG_NAME, "Device: $device Date: $d/$m/$y $hour:$min"
+			  . " Time: " . (time() - $time) . " seconds");
+      $seconds = 0;
+      ($y, $m, $d, $hour, $min) = ($n_y, $n_m, $n_d, $n_hour, $n_min);
+    }
+    else
+      { $seconds += (time() - $time); }
 	}
 }
 

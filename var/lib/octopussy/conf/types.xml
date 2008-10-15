@@ -51,9 +51,9 @@
     sql_type="DATETIME"
     color="orange" />
 	<type type_id="MAC_ADDR" 
-		re="[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}"
+		re="[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}"
 		simple_type="MAC_ADDR"
-		sql_type="VARCHAR(42)"
+		sql_type="VARCHAR(18)"
    	color="blue" />
 	<type type_id="IP_ADDR" 
 		re="\d+\.\d+\.\d+\.\d+"

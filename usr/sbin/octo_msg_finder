@@ -57,21 +57,23 @@ sub Search_Line(@)
 
 my $arg = $ARGV[0];
 
-if (-f $arg)
+if (AAT::NOT_NULL($arg))
 {
-  my $i = 1;
-  open(FILE, ($arg =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$arg\" |");
-  while(<FILE>)
+  if (-f $arg)
   {
-    Search_Line($_, $i);
-    $i++;
+    my $i = 1;
+    open(FILE, ($arg =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$arg\" |");
+    while(<FILE>)
+    {
+      Search_Line($_, $i);
+      $i++;
+    }
+  }
+  else
+  {
+    Search_Line($arg);
   }
 }
-else
-{
-  Search_Line($arg);
-}
-
 =head1 AUTHOR
 
 Sebastien Thebert <octo.devel@gmail.com>

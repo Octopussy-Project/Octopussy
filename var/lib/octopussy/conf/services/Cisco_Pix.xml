@@ -5,31 +5,31 @@
   <message loglevel="Notice"
            msg_id="Cisco Pix:url_access"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@DATE_TIME_SYSLOG_LONG:NULL@&gt;: &lt;@REGEXP(&quot;\%PIX-.+&quot;):msg_id@&gt;: &lt;@WORD:pix_addr@&gt; &lt;@REGEXP(&quot;Accessed&quot;):status@&gt; URL &lt;@WORD:url@&gt;  "
-           rank="01"
+           rank="001"
            table="Cisco_Pix_url_access"
            taxonomy="Traffic" />
   <message loglevel="Warning"
            msg_id="Cisco Pix:deny_by_accessgroup"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@DATE_TIME_SYSLOG_LONG:NULL@&gt;: &lt;@REGEXP(&quot;\%PIX-.+&quot;):msg_id@&gt;: Deny &lt;@WORD:type@&gt; src &lt;@WORD:src@&gt; dst &lt;@STRING:dst@&gt; by access-group &quot;&lt;@WORD:acl@&gt;&quot;"
-           rank="02"
+           rank="002"
            table="Cisco_Pix_traffic"
            taxonomy="Traffic.Denied" />
   <message loglevel="Notice"
            msg_id="Cisco Pix:url_access2"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\%PIX-.+&quot;):msg_id@&gt;: &lt;@WORD:pix_addr@&gt; &lt;@REGEXP(&quot;Accessed&quot;):status@&gt; URL &lt;@WORD:url@&gt;"
-           rank="03"
+           rank="003"
            table="Cisco_Pix_url_access"
            taxonomy="Traffic" />
   <message loglevel="Warning"
            msg_id="Cisco Pix:deny_by_accessgroup2"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\%PIX-.+&quot;):msg_id@&gt;: Deny &lt;@WORD:type@&gt; src &lt;@WORD:src@&gt; dst &lt;@STRING:dst@&gt; by access-group &quot;&lt;@WORD:acl@&gt;&quot;"
-           rank="04"
+           rank="004"
            table="Cisco_Pix_traffic"
            taxonomy="Traffic.Denied" />
   <message loglevel="Information"
            msg_id="Cisco_Pix:denied_icmp"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\%PIX-.+&quot;):msg_id@&gt;: Denied &lt;@REGEXP(&quot;ICMP type=\d+&quot;):type@&gt;, &lt;@STRING:NULL@&gt; from &lt;@WORD:src@&gt; on interface &lt;@NUMBER:NULL@&gt;"
-           rank="05"
+           rank="005"
            table="Cisco_Pix_traffic"
            taxonomy="Traffic.Denied" />
 </octopussy_service>

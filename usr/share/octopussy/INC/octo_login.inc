@@ -9,16 +9,16 @@ my $website = Octopussy::WebSite();
 	<AAT:Picture file="IMG/octo_login1.png" alt="Octopussy Logo" /></AAT:BoxCol>
 	<AAT:BoxCol valign="top">
 	<AAT:Picture file="IMG/octo_login2.png" alt="Octopussy Logo" /></AAT:BoxCol>
-	<AAT:BoxCol valign="top" align="R">
+	<AAT:BoxCol valign="middle" align="R">
 	<AAT:Help page="HELP/en/login.html" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
- 	<AAT:BoxCol align="R"><AAT:Label value="_LOGIN" style="B" /></AAT:BoxCol>
+ 	<AAT:BoxCol align="C"><AAT:Label value="_LOGIN" style="B" /> </AAT:BoxCol>
  	<AAT:BoxCol><AAT:Entry name="login" value="" size="12" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol align="R"><AAT:Label value="_PASSWORD" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol align="C"><AAT:Label value="_PASSWORD" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Password name="password" value="" size="12" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

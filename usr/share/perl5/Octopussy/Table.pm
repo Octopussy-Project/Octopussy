@@ -255,7 +255,10 @@ sub Field_Type_List($$)
 	my $simple_type = Octopussy::Type::Simple_Type($type);
 	my @list = ();
 	foreach my $f (AAT::ARRAY($conf->{field}))
- 		{ push(@list, $f->{title})	if ($simple_type =~ /^$f->{type}/i); }
+ 	{
+    my $f_stype = Octopussy::Type::Simple_Type($f->{type}); 
+    push(@list, $f->{title})	if ($simple_type =~ /^$f_stype$/i); 
+  }
 
 	return (@list);
 }

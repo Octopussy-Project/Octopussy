@@ -11,17 +11,22 @@ no strict 'refs';
 use AAT;
 use Octopussy;
 
-my %MONTH = ( 
-	Jan => "01", Feb => "02", Mar => "03", Apr => "04", 
-	May => "05", Jun => "06", Jul => "07", Aug => "08", 
-	Sep => "09", Oct => "10", Nov => "11", Dec => "12" );
-
 use constant FILE_TYPES => "types";
 use constant REGEXP_COLOR => "red";
 use constant NUMBER_COLOR => "blue";
 use constant STRING_COLOR => "darkgray";
 use constant LONG_STRING_COLOR => "darkgray";
 use constant WORD_COLOR => "green";
+
+my %MONTH = (
+  Jan => "01", Feb => "02", Mar => "03", Apr => "04",
+  May => "05", Jun => "06", Jul => "07", Aug => "08",
+  Sep => "09", Oct => "10", Nov => "11", Dec => "12" );
+
+my $QR_DT1 = qr/^(\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2})/;
+my $QR_DT2 = qr/^\w{3} (\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2}) (\d{4})/;
+my $QR_DT3 = qr/^(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2})/;
+my $QR_DT4 = qr/^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2}) .\d{4}/;
 
 =head2 Configurations()
 
@@ -68,7 +73,6 @@ sub Colors()
 Get list of types
 
 =cut 
-
 sub List()
 {
  	my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
@@ -96,7 +100,6 @@ sub List()
 Get list of simple types (*_DATETIME -> DATETIME, *_STRING -> STRING...)
 
 =cut
-
 sub Simple_List()
 {
   my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
@@ -124,7 +127,6 @@ sub Simple_List()
 Get list of SQL types
 
 =cut
-
 sub SQL_List()
 {
 	my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
@@ -146,7 +148,6 @@ sub SQL_List()
 Get regexp from type '$type'
 
 =cut 
-
 sub Regexp($)
 {
 	my $type = shift;
@@ -165,7 +166,6 @@ sub Regexp($)
 Get regexps from all types
 
 =cut
-
 sub Regexps()
 {
 	my %re_types = ();
@@ -190,14 +190,15 @@ sub Regexps()
 Get Simple type from type '$type'
 
 =cut 
-
-sub Simple_Type($)
+sub Simple_Type($) 
 {
 	my $type = shift;
 
   my @list = Configurations();
   foreach my $t (@list)
     { return ($t->{simple_type}) if ($t->{type_id} =~ /^$type/); }
+  return ("NUMBER") if ($type =~ /^(BYTES|SECONDS|PID)$/);
+  return ("STRING") if ($type =~ /^USER_AGENT$/);
 
   return ($type);
 }
@@ -207,7 +208,6 @@ sub Simple_Type($)
 Get SQL type from type '$type'
 
 =cut
-
 sub SQL_Type($)
 {
 	my $type = shift;
@@ -231,22 +231,21 @@ sub SQL_Type($)
 Convert '$dt' to SQL datetime
 
 =cut
-
 sub SQL_Datetime($)
 {
 	my $dt = shift;
 
-	if ($dt =~ /(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2}) .\d{4}/)
-		{ return ("$3-$MONTH{$2}-$1 $4:$5:$6"); }
-	elsif ($dt =~ /\w{3} (\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2}) (\d{4})/)
+	if ($dt =~ $QR_DT1)
+  { 
+    my ($year, $mon, $mday) = AAT::Datetime::Now();
+    return ("$year-$MONTH{$1}-$2 $3:$4:$5");
+  }
+	elsif ($dt =~ $QR_DT2)
 		{ return ("$6-$MONTH{$1}-$2 $3:$4:$5"); }
-	elsif ($dt =~ /(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2})/)
+	elsif ($dt =~ $QR_DT3)
 		{ return ("$1-$2-$3 $4:$5:$6"); }	
-	elsif ($dt =~ /(\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2})/)
-	{
-		my ($year, $mon, $mday) = AAT::Datetime::Now();	
-		return ("$year-$MONTH{$1}-$2 $3:$4:$5");
-	}
+	elsif ($dt =~ $QR_DT4)
+    { return ("$3-$MONTH{$2}-$1 $4:$5:$6"); }
 
 	return ($dt);
 }

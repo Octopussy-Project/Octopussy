@@ -8,31 +8,31 @@
   <message loglevel="Warning"
            msg_id="Exim:cannot_open_main_logfile"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; exim[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+ Cannot open main log file .+: Permission denied: .+&quot;):msg@&gt;"
-           rank="01"
+           rank="001"
            table="Message"
            taxonomy="Config.Errors" />
   <message loglevel="Information"
            msg_id="Exim:message_id"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; exim[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+ U=\S+ P=\S+ S=\d+ id=\S+&quot;):msg@&gt;"
-           rank="02"
+           rank="002"
            table="Message"
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Exim:message_id2"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; exim[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+ U=\S+ P=\S+ S=\d+&quot;):msg@&gt;"
-           rank="03"
+           rank="003"
            table="Message"
            taxonomy="Application" />
   <message loglevel="Critical"
            msg_id="Exim:write_failed_panic_log"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; exim[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;write failed on panic log: .+&quot;):msg@&gt; "
-           rank="04"
+           rank="004"
            table="Message"
            taxonomy="Application.Errors" />
   <message loglevel="Critical"
            msg_id="Exim:failed_write_main_log"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; exim[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+ failed to write to main log: .+&quot;):msg@&gt;"
-           rank="05"
+           rank="005"
            table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>

@@ -241,6 +241,9 @@
         regexp="portalmmm.+ G500i"
         constructor="Grundig" model="G500i" logo="companies/logo_grundig" />
 
+  <item label="HTC Diamond" value="mobile_htc_diamond"
+        regexp="HTC_DIAMOND"
+        constructor="HTC" model="Diamond" logo="companies/logo_htc" />
 	<item label="HTC Gemini" value="mobile_htc_gemini"
         regexp="HTCGemini"
         constructor="HTC" model="Gemini" logo="companies/logo_htc" />
@@ -451,6 +454,9 @@
 	<item label="Motorola L7" value="mobile_motorola_l7"
         regexp="MOT-L7"
         constructor="Motorola" model="L7" logo="companies/logo_motorola" />
+  <item label="Motorola L9" value="mobile_motorola_l9"
+        regexp="MOT-L9"
+        constructor="Motorola" model="L9" logo="companies/logo_motorola" />
 	<item label="Motorola RAZR V3" value="mobile_motorola_razrv3"
 				regexp="MOT-RAZRV3" 
 				constructor="Motorola" model="RAZR V3" logo="companies/logo_motorola" />
@@ -592,6 +598,9 @@
 	<item label="Nokia 3220" value="mobile_nokia_3220"
         regexp="Nokia3220"
         constructor="Nokia" model="3220" logo="companies/logo_nokia" />
+  <item label="Nokia 3230" value="mobile_nokia_3230"
+        regexp="Nokia3230"
+        constructor="Nokia" model="3230" logo="companies/logo_nokia" />
 	<item label="Nokia 3250" value="mobile_nokia_3250"
         regexp="Nokia3250"
         constructor="Nokia" model="3250" logo="companies/logo_nokia" />
@@ -1196,6 +1205,9 @@
 	<item label="Samsung SGH E600" value="mobile_samsung_sghe600"
         regexp="SEC-SGHE600"
         constructor="Samsung" model="SGH E600" logo="companies/logo_samsung" />
+  <item label="Samsung SGH E620" value="mobile_samsung_sghe620"
+        regexp="SEC-SGHE620"
+        constructor="Samsung" model="SGH E620" logo="companies/logo_samsung" />
 	<item label="Samsung SGH E700" value="mobile_samsung_sghe700"
         regexp="SAMSUNG-SGH-E700"
         constructor="Samsung" model="SGH E700" logo="companies/logo_samsung" />
