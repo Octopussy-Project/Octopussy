@@ -264,8 +264,7 @@ sub Syslog_By_Device_Service_Taxonomy_Update($$$$)
 	my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
 	my $value_str = join(":", AAT::ARRAY($values));
 
-  print "  -> $RRD_UPDATE \"$file\" $seconds:$value_str\n";
-
+  #print "  -> $RRD_UPDATE \"$file\" $seconds:$value_str\n";
 	system("$RRD_UPDATE \"$file\" $seconds:$value_str 2>&1 1>/dev/null");
 }
 

@@ -1093,6 +1093,9 @@
 	<item label="Sagem myZ5" value="mobile_sagem_myZ5"
         regexp="SAGEM-myZ-5" 
 				constructor="Sagem" model="myZ5" logo="companies/logo_sagem" />
+  <item label="Sagem Porsche Design P9522" value="mobile_sagem_porschedesignp9522"
+        regexp="PORSCHE-DESIGN-P-9522"
+        constructor="Sagem" model="Porsche Design P9522" logo="companies/logo_sagem" />
 	<item label="Sagem SG341i" value="mobile_sagem_sg341i"
         regexp="portalmmm.+ SG341i"
         constructor="Sagem" model="SG341i" logo="companies/logo_sagem" />

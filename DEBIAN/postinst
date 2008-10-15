@@ -55,7 +55,7 @@ $ECHO "#!/bin/sh" > $CRON_FILE
 $ECHO "" >> $CRON_FILE
 $ECHO "test -x /usr/sbin/octo_logrotate || exit 0" >> $CRON_FILE
 $ECHO "/usr/sbin/octo_logrotate" >> $CRON_FILE
-$CHMOD_X $CRON_FILE
+$CHMOD_X $CRON_FILE 2> /dev/null || true
 
 # Create init files
 $LN /usr/sbin/$OCTO /etc/init.d/$OCTO || true
@@ -73,13 +73,13 @@ $CP $APACHE2_FILE $APACHE2_FILE.old
 $SED "s?^User.*?User $OCTO?g" $APACHE2_FILE
 $SED "s?^Group.*?Group $OCTO?g" $APACHE2_FILE
 $LN /etc/$OCTO/apache2.conf /etc/apache2/sites-available/$OCTO
-$A2DISSITE default >> /dev/null
-$A2ENSITE $OCTO >> /dev/null
-$A2ENMOD dir >> /dev/null
-$A2ENMOD ssl >> /dev/null
+$A2DISSITE default 2> /dev/null || true
+$A2ENSITE $OCTO 2> /dev/null || true
+$A2ENMOD dir 2> /dev/null || true
+$A2ENMOD ssl 2> /dev/null || true
 $MKDIR /var/cache/$OCTO/asp/
-$CHOWNR /var/cache/$OCTO/asp/
-if ! grep "Listen 443" /etc/apache2/ports.conf >> /dev/null; then
+$CHOWNR /var/cache/$OCTO/asp/ 2> /dev/null || true
+if ! grep "Listen 443" /etc/apache2/ports.conf 2> /dev/null; then
 	$ECHO "Listen 443" >> /etc/apache2/ports.conf
 fi
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
@@ -94,8 +94,8 @@ $SED "s?^#KERNEL_RINGBUF_SIZE.*?KERNEL_RINGBUF_SIZE=16392?g" /etc/default/syslog
 $CP $SYSLOG_NG_FILE /etc/syslog-ng/syslog-ng.conf.old
 $CP /etc/$OCTO/syslog-ng.conf $SYSLOG_NG_FILE
 
-$INVOKERC apache2 restart >> /dev/null
-$INVOKERC octopussy start
+$INVOKERC apache2 restart 2> /dev/null || true
+$INVOKERC octopussy start 2> /dev/null || true
 
 db_stop
 
