@@ -36,9 +36,8 @@ my $cache = new Cache::FileCache( { namespace => "octo_parser",
 	or croak( "Couldn't instantiate FileCache" );
 
 my @services;
-my %alert;
-my %service;
-my %taxo;
+my (%alert, %service);
+my (%taxo_stats, %msgid_stats);
 my $minutes_without_logs;
 my %dir_data = ();
 my (@files, @taxo_list, %known_msgs, @unknown_msgs) = ((), (), (), ());
@@ -146,8 +145,8 @@ sub Init()
 			}
 			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
       push(@{$service{$serv}{msgs}}, 
-				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i, 
-					pattern => (($#msg_alerts >= 0) ? $m->{pattern} : undef),
+				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i, id => $m->{msg_id},
+          pattern => (($#msg_alerts >= 0) ? $m->{pattern} : undef),
 					taxo => $m->{taxonomy}, alerts => \@msg_alerts } ); 
 		}
 	}
@@ -356,8 +355,14 @@ sub Line_Handler($$$$$)
   {
   	Alert_Handler($msg, $line)  if ($#{$msg->{alerts}} >= 0);
     push(@{$known_msgs->{$serv}}, $line);
-		$taxo{$serv}{$msg->{taxo}} = (defined $taxo{$serv}{$msg->{taxo}} ? 
-			$taxo{$serv}{$msg->{taxo}} + 1 : 1);
+		$taxo_stats{$serv}{$msg->{taxo}} = 
+      (defined $taxo_stats{$serv}{$msg->{taxo}} 
+      ? $taxo_stats{$serv}{$msg->{taxo}} + 1 : 1);
+
+    $msgid_stats{$serv}{$msg->{id}} = 
+      (defined $msgid_stats{$serv}{$msg->{id}} 
+      ? $msgid_stats{$serv}{$msg->{id}} + 1 : 1);
+
 		$$match = 1;
   }
 	elsif ($line =~ /last message repeated \d+ time/)
@@ -408,19 +413,37 @@ sub File_Handler($)
           AAT::Syslog($PROG_NAME, "Device: $device - Service: $s "
             . "Date: $day/$month/$year $hour:$min - "
             . "Events: $parser_stats{$s} / $nb_lines_minute");
-          my @taxo_stats = ();
+          my @taxo_rrd = ();
           foreach my $t (@taxo_list)
           { 
-            push(@taxo_stats, $taxo{$s}{$t} || 0); 
-            $taxo{$s}{$t} = 0;
+            push(@taxo_rrd, $taxo_stats{$s}{$t} || 0); 
+            $taxo_stats{$s}{$t} = 0;
           }
           my $seconds_to_parse 
             = AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);
           $cache->set("parser_taxo_stats_${device}_${s}", 
-            { datetime => $seconds_to_parse, stats => \@taxo_stats });
+            { datetime => $seconds_to_parse, stats => \@taxo_rrd });
           $parser_stats{$s} = 0;
         }
       }
+      
+      my @parser_msgid_stats = ();
+      foreach my $k1 (keys %msgid_stats)
+      {
+        foreach my $k2 (keys %{$msgid_stats{$k1}})
+        {
+          my $id = $1  if ($k2 =~ /^.+?:(.+)$/);
+          my $count = $msgid_stats{$k1}{$k2};
+          #AAT::DEBUG("$year$month$day$hour$min $device $k1 $id: $count");
+          push(@parser_msgid_stats, 
+            { service => $k1, id => $id, count => $count } )
+            if ($count > 0);
+          $msgid_stats{$k1}{$k2} = 0;
+        }
+      }
+      $cache->set("parser_msgid_stats_$year$month$day$hour${min}_$device", 
+        \@parser_msgid_stats);
+
       AAT::Syslog($PROG_NAME, 
         "Device: $device Date: $day/$month/$year $hour:$min"
         . " Time: " . $seconds_to_parse . " seconds");
@@ -433,7 +456,8 @@ sub File_Handler($)
 
     (%known_msgs, @unknown_msgs) = ((), ());
 		$file_new =~ s/(msg_\d\dh\d\d)_\d+/$1/;
-		if (defined open(FILE, ($file =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$file\" |"))
+    my $cat = ($file =~ /.+\.gz$/ ? "zcat" : "cat");
+		if ((-f "$file") && (defined open(FILE, "$cat \"$file\" |")))
 		{
 			while (<FILE>)
  			{
@@ -479,7 +503,6 @@ $SIG{USR1} = \&Exit;
 
 AAT::Syslog($PROG_NAME, "Device: $device Started !");
 Init();
-#push(@files, Octopussy::Logs::Incoming_Files($device));
 AAT::Syslog($PROG_NAME, ($#files + 1) .
     " files to parse for Device $device");
 my $last_logs_time = time();

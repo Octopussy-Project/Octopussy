@@ -387,52 +387,6 @@ sub Messages_Configurations($$)
 	return (@sorted_configurations);
 }
 
-=head2 Messages_Statistics_Files($service, $y, $mon, $d, $h, $m, $minutes)
-
-=cut
-sub Messages_Statistics_Files($$$$$$$)
-{
-	my ($service, $y, $mon, $d, $h, $m, $minutes) = @_;
-	
-	my @devices = Octopussy::Device::With_Service($service);
- 	my %start = ( year => $y, month => $mon,
- 		day => $d, hour => ($m < $minutes ? $h-1 : $h),
-   	min => ($m < $minutes ? (60-$minutes)+$m : $m-$minutes) );
- 	my %finish = ( year => $y, month => $mon,
-   	day => $d, hour => $h, min => $m );
- 	my $files = Octopussy::Logs::Files(\@devices, [ "$service" ],
-  	\%start, \%finish);
-
-	return ($files);
-}
-
-=head2 Messages_Statistics_Save($dir_pid, $service, $y, $mon, $d, $h, $m, $total, %stat)
-
-=cut
-sub Messages_Statistics_Save
-{
-	my ($dir_pid, $service, $y, $mon, $d, $h, $m, $total, %stat) = @_;
-
-	my $del_serv = $service;
- 	$del_serv =~ s/ /\\ /g;
- 	`rm -f $dir_pid/serv_$del_serv*.stats`;
-	my $file = "$dir_pid/serv_$service$y$mon$d$h$m.stats";
- 	if (defined open(STATS, "> $file"))
-	{
- 		foreach my $k (keys %stat)
-  	{
-  		$stat{$k} = int($stat{$k}/$total*100);
-   		print STATS "$k -> " .  $stat{$k} ."\n";
- 		}
- 		close(STATS);
-	}
-	else
-  {
-    my ($pack, $file_pack, $line, $sub) = caller(0);
-    AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
-  }	
-}
-
 =head2 Messages_Statistics($service, $minutes)
 
 Returns Messages statistics for Service $service for the last $minutes
@@ -442,64 +396,36 @@ sub Messages_Statistics($$)
 {
 	my ($service, $minutes) = @_;
 	my $dir_pid = Octopussy::Directory("running");
-	my ($y, $mon, $d, $h, $m) = AAT::Datetime::Now();
-	my $file = "$dir_pid/serv_$service$y$mon$d$h$m.stats";
-
-	if (! -f $file)
-	{
-		my %stat = ();
-		my @messages = Messages($service);
-		my $files = Messages_Statistics_Files($service, $y, $mon, $d, $h, $m, $minutes);
-		my @msg_to_parse = ();
-		my $total = 0;
-		foreach my $msg (@messages)
-		{
-			my $regexp = Octopussy::Message::Pattern_To_Regexp($msg);
- 			push(@msg_to_parse, { msg_id => $msg->{msg_id}, re => qr/$regexp/ });
-		}
-		foreach my $f (AAT::ARRAY($files))
-  	{
-			if (defined open(FILE, "zcat \"$f\" |"))
-			{
-				while (<FILE>)
-				{
-					my $line = $_;
-					foreach my $msg (@msg_to_parse)
-      		{
-						if ($line =~ $msg->{re})
-       			{
-        			$stat{$msg->{msg_id}} = (defined $stat{$msg->{msg_id}} ?
-          			$stat{$msg->{msg_id}} + 1 : 1);
-							last;
-       			}
-					}
-					$total++;
-				}
-				close(FILE);
-			}
-			else
-  		{
-    		my ($pack, $file_pack, $line, $sub) = caller(0);
-    		AAT::Syslog("Octopussy::Service", "Unable to open file '$f' in $sub");
-  		}
-		}
-		Messages_Statistics_Save($dir_pid, $service, $y, $mon, $d, $h, $m, $total, %stat);
-	}
-	my %percent = ();	
-	
-	if (defined open(FILE, "< $file"))
-	{	
-		while (<FILE>)
-			{ $percent{$1} = $2	if ($_ =~ /^(.+) -> (\d+)$/); }
-		close(FILE);
-	}
-	else
+  my $cache_parser = new Cache::FileCache( { namespace => "octo_parser",
+    default_expires_in => "1 day", cache_root => "$dir_pid/cache",
+    directory_umask => "007" } )
+    or croak( "Couldn't instantiate FileCache" );
+ 
+  my (%percent, %stat) = ((), ());
+  my ($y, $mon, $d, $h, $m) = AAT::Datetime::Now();
+  my $limit = int("$y$mon$d$h$m") - $minutes;
+  my $total = 0;
+  foreach my $k (sort $cache_parser->get_keys())
   {
-  	my ($pack, $file_pack, $line, $sub) = caller(0);
-   	AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
+    if (($k =~ /^parser_msgid_stats_(\d{12})_(\S+)$/) && ($1 >= $limit))
+    {
+      my $stats = $cache_parser->get($k);
+      foreach my $s (@{$stats})
+      {
+        if ($s->{service} =~ /^$service$/)
+        {
+          $stat{$s->{id}} = (defined $stat{$s->{id}} ?
+            $stat{$s->{id}} + $s->{count} : $s->{count}); 
+          $total += $s->{count};
+          $stat{$k} = int($stat{$k}/$total*100);
+        }
+      }
+    }
   }
+  foreach my $k (keys %stat)
+    { $percent{"$service:$k"} = int($stat{$k}/$total*100); }
 
-	return (%percent);
+  return (%percent);
 }
 
 =head2 Tables($service)

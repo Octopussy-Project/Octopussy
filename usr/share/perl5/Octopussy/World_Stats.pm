@@ -16,17 +16,25 @@ use constant XML_ROOT => "octopussy_world_stats";
 
 =head2 ID()
 
-Generates World Statistics ID
+Get/Generates World Statistics ID
 
 =cut
 sub ID
 {
-   my $str = time() * rand(999);
-  $str = `echo "$str" | md5sum`;
-  chomp($str);
-  $str =~ s/^(\S+).+$/$1/;
+  my $conf = Configuration();
 
-  return ($str);
+  if (AAT::NOT_NULL($conf) && AAT::NOT_NULL($conf->{id}))
+  {
+    return ($conf->{id});
+  }
+  else
+  {
+    my $str = time() * rand(999);
+    $str = `echo "$str" | md5sum`;
+    chomp($str);
+    $str =~ s/^(\S+).+$/$1/;
+    return ($str);
+  }
 }
 
 =head2 Modify(\%conf)

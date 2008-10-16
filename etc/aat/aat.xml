@@ -64,9 +64,9 @@
     <parameter name="logrotate" value="90" />
     <parameter name="max_alerts" value="100" />
     <parameter name="url_world_stats_show" 
-      value="http://www.8pussy.org/stats/show_world_stats.asp" />
+      value="http://www.8pussy.org/stats/show.asp" />
     <parameter name="url_world_stats_update"
-      value="https://10.56.183.44/world_stats.asp" />
+      value="http://www.8pussy.org/stats/update.asp" />
     <parameter name="wizard_max_msgs" value="50" />
 
 	</application>

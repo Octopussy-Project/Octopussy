@@ -1,5 +1,6 @@
 <WebUI:PageTop title="World Statistics" />
 <%
+my $url = Octopussy::Parameter("url_world_stats_show");
 my $f = $Request->Form();
 if (defined $f->{submit})
 {
@@ -49,4 +50,14 @@ It's only anonymous data:
 </AAT:BoxRow>
 </AAT:Box>
 </AAT:Form>
+
+<AAT:Box align="C">
+<AAT:BoxRow>
+  <AAT:BoxCol><AAT:IMG name="buttons/bt_web" /></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Label value="Go to 8pussy.org World Statistics" link="$url" />
+  </AAT:BoxCol>
+  <AAT:BoxCol><AAT:IMG name="buttons/bt_web" /></AAT:BoxCol>
+</AAT:BoxRow>
+</AAT:Box>
 <WebUI:PageBottom />
