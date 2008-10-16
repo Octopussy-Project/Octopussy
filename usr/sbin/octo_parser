@@ -416,9 +416,8 @@ sub File_Handler($)
           }
           my $seconds_to_parse 
             = AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);
-          Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Update(
-            $seconds_to_parse, $device, $s, \@taxo_stats);
-          
+          $cache->set("parser_taxo_stats_${device}_${s}", 
+            { datetime => $seconds_to_parse, stats => \@taxo_stats });
           $parser_stats{$s} = 0;
         }
       }

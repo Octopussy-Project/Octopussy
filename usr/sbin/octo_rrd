@@ -20,18 +20,22 @@ use Octopussy;
 
 my @dtypes = Octopussy::Device::Types();
 my $dir_pid = Octopussy::Directory("running");
-my $cache = new Cache::FileCache( { namespace => "octo_dispatcher",
+my $cache_dispatcher = new Cache::FileCache( { namespace => "octo_dispatcher",
     default_expires_in => "2 days", cache_root => "$dir_pid/cache",
+    directory_umask => "007" } )
+  or croak( "Couldn't instantiate FileCache" );
+my $cache_parser = new Cache::FileCache( { namespace => "octo_parser",
+    default_expires_in => "1 day", cache_root => "$dir_pid/cache",
     directory_umask => "007" } )
   or croak( "Couldn't instantiate FileCache" );
 
 my $old_time = "";
 while (1)
 {
-	my $time = $cache->get("dispatcher_stats_datetime");
+	my $time = $cache_dispatcher->get("dispatcher_stats_datetime");
 	if ($time ne $old_time)
-	{
-		my $dtype_stats = $cache->get("dispatcher_stats_devicetypes");
+	{ # Update RRDGraph for Octopussy Main page
+		my $dtype_stats = $cache_dispatcher->get("dispatcher_stats_devicetypes");
 		my @dt_stats = ();
     foreach my $dt (@dtypes)
     {
@@ -42,6 +46,17 @@ while (1)
     Octopussy::RRDTool::Syslog_By_DeviceType_Update(\@dt_stats);
 		$old_time = $time; 
 	}
+  foreach my $k ($cache_parser->get_keys())
+  { # Update RRDGraph for Octopussy Device Dashboard pages
+    if ($k =~ /^parser_taxo_stats_(\S+?)_(.+)$/)
+    {
+      my $taxo = $cache_parser->get($k);
+      Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Update(
+        $taxo->{datetime}, $1, $2, $taxo->{stats});
+      $cache_parser->remove($k);
+    }
+  }
+
 	sleep(5);
 }
 
