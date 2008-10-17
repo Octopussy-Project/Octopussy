@@ -10,7 +10,7 @@ my $role = $Session->{AAT_ROLE};
 my $serv_conf = Octopussy::Service::Configuration($service);
 my $icon = $serv_conf->{icon};
 my $site = $serv_conf->{website};
-my %stat = Octopussy::Service::Messages_Statistics($service, 5);
+my %stat = Octopussy::Service::Messages_Statistics($service);
 my @messages = Octopussy::Service::Messages_Configurations($service, $sort);
 my $gre = Octopussy::Service::Global_Regexp($service);
 

@@ -74,6 +74,8 @@
 	<msg mid="_BYTES" value="Bytes" />
 	<msg mid="_CANCEL" value="Cancel" />
 	<msg mid="_CERTIFICATE" value="Certificate" />
+  <msg mid="_COLUMNS" value="Columns" />
+  <msg mid="_COLUMNS_NAMES" value="Columns Names" />
 	<msg mid="_COMMON_NAME" value="Common Name" />
 	<msg mid="_CONFIG_FILE" value="Configuration File" />
 	<msg mid="_DASHBOARD" value="Dashboard" />

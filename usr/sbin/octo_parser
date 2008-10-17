@@ -122,8 +122,7 @@ sub Init()
 		Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Init($device, $serv);
   	my @msg_to_parse = ();
    	my @messages = Octopussy::Service::Messages($serv);
-		AAT::Syslog($PROG_NAME, "Init Service: $serv - " 
-			. ($#messages + 1) . " messages");
+		AAT::Syslog($PROG_NAME, "PARSER_INIT_SERVICE", $serv, $#messages + 1);
 		my @dev_alerts = Octopussy::Alert::For_Device($device);
    	foreach my $m (@messages)
     { 
@@ -215,22 +214,6 @@ sub Write_Unknown_Logfile($$)
       AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", "$logfile.gz");
     }
   }
-}
-
-=head2 Write_Stats($y, $m, $d, $hour, $min)
-
-Writes Services Statistics
-
-=cut
-sub Write_Stats($$$$$)
-{
-	my ($y, $m, $d, $hour, $min) = @_;
-
-	open(STATS, "> $dir_pid/${PROG_NAME}_$device.stats");
-	print STATS "[$y$m$d$hour$min]\n";
-	foreach my $serv (keys %known_msgs)
- 		{ print STATS "$serv: " . ($#{$known_msgs{$serv}} + 1) . "\n"; }
-	close(STATS);
 }
 
 =head2 Incoming_To_Unknown($incoming)
@@ -385,6 +368,41 @@ sub Service_Handler($$$$$$$)
   $parser_stats{$serv} += ($#{$known_msgs{$serv}} + 1);
 }
 
+sub Cache_MsgID_Stats
+{
+  my @parser_msgid_stats = ();
+  foreach my $k1 (keys %msgid_stats)
+  {
+    foreach my $k2 (keys %{$msgid_stats{$k1}})
+    {
+      my $id = $1  if ($k2 =~ /^.+?:(.+)$/);
+      my $count = $msgid_stats{$k1}{$k2};
+      push(@parser_msgid_stats, 
+        { service => $k1, id => $id, count => $count } )
+        if ($count > 0);
+      $msgid_stats{$k1}{$k2} = 0;
+    }
+  }
+  $cache->set("parser_msgid_stats_$year$month$day$hour${min}_$device",
+    \@parser_msgid_stats);
+}
+
+sub Cache_Taxonomy_Stats
+{
+  my $service = shift;
+
+  my @taxo_rrd = ();
+  foreach my $t (@taxo_list)
+  {
+    push(@taxo_rrd, $taxo_stats{$service}{$t} || 0);
+    $taxo_stats{$service}{$t} = 0;
+  }
+  my $seconds_to_parse
+    = AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);
+  $cache->set("parser_taxo_stats_${device}_${service}",
+    { datetime => $seconds_to_parse, stats => \@taxo_rrd });
+}
+
 =head2 File_Handler($file)
 
 Handles file $file
@@ -407,45 +425,16 @@ sub File_Handler($)
       {
         if ((AAT::NOT_NULL($parser_stats{$s})) && ($parser_stats{$s} != 0))
         { 
-          AAT::Syslog($PROG_NAME, "Device: $device - Service: $s "
-            . "Date: $day/$month/$year $hour:$min - "
-            . "Events: $parser_stats{$s} / $nb_lines_minute");
-          my @taxo_rrd = ();
-          foreach my $t (@taxo_list)
-          { 
-            push(@taxo_rrd, $taxo_stats{$s}{$t} || 0); 
-            $taxo_stats{$s}{$t} = 0;
-          }
-          my $seconds_to_parse 
-            = AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);
-          $cache->set("parser_taxo_stats_${device}_${s}", 
-            { datetime => $seconds_to_parse, stats => \@taxo_rrd });
+          AAT::Syslog($PROG_NAME, "PARSER_DEVICE_SERVICE_EVENTS", $device, $s, 
+            "$day/$month/$year $hour:$min", 
+            $parser_stats{$s}, $nb_lines_minute);
+          Cache_Taxonomy_Stats($s);
           $parser_stats{$s} = 0;
         }
       }
-      
-      my @parser_msgid_stats = ();
-      foreach my $k1 (keys %msgid_stats)
-      {
-        foreach my $k2 (keys %{$msgid_stats{$k1}})
-        {
-          my $id = $1  if ($k2 =~ /^.+?:(.+)$/);
-          my $count = $msgid_stats{$k1}{$k2};
-          #AAT::DEBUG("$year$month$day$hour$min $device $k1 $id: $count");
-          push(@parser_msgid_stats, 
-            { service => $k1, id => $id, count => $count } )
-            if ($count > 0);
-          $msgid_stats{$k1}{$k2} = 0;
-        }
-      }
-      $cache->set("parser_msgid_stats_$year$month$day$hour${min}_$device", 
-        \@parser_msgid_stats);
-
-      AAT::Syslog($PROG_NAME, 
-        "Device: $device Date: $day/$month/$year $hour:$min"
-        . " Time: " . $seconds_to_parse . " seconds");
-      Write_Stats($year, $month, $day, $hour, $min);
-
+      Cache_MsgID_Stats();   
+      AAT::Syslog($PROG_NAME, "PARSER_DEVICE_PARSING_DURATION",
+        $device, "$day/$month/$year $hour:$min", $seconds_to_parse);
       ($nb_lines_minute, $seconds_to_parse) = (0, 0);
       ($year, $month, $day, $hour, $min) 
         = ($n_year, $n_month, $n_day, $n_hour, $n_min);
@@ -478,7 +467,7 @@ sub File_Handler($)
 		}
 		else
     {
-    	print "Unable to open file '$file'\n";
+    	print "Unable to open file3 '$file'\n";
      	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", $file);
     }
 		foreach my $serv (keys %known_msgs)
@@ -498,10 +487,9 @@ sub File_Handler($)
 $SIG{HUP} = \&Reload;
 $SIG{USR1} = \&Exit;
 
-AAT::Syslog($PROG_NAME, "Device: $device Started !");
+AAT::Syslog($PROG_NAME, "PARSER_START", $device);
 Init();
-AAT::Syslog($PROG_NAME, ($#files + 1) .
-    " files to parse for Device $device");
+AAT::Syslog($PROG_NAME, "PARSER_FILES_TO_PARSE", $device, $#files + 1);
 my $last_logs_time = time();
 while (!$exit_request)
 {
@@ -538,7 +526,7 @@ while (!$exit_request)
 	if (!$exit_request)
 		{ sleep(2); }
 }
-AAT::Syslog($PROG_NAME, "Device: $device Stopped !");
+AAT::Syslog($PROG_NAME, "PARSER_STOP");
 
 =head1 AUTHOR
 

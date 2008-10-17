@@ -42,7 +42,7 @@ Inits Pusher
 sub Init()
 {
 	%dir_device = ();
-	AAT::Syslog(PROG_NAME, "Load Devices Configuration");
+	AAT::Syslog(PROG_NAME, "LOAD_DEVICES_CONFIG");
 	my $storage = Octopussy::Storage::Default();
 	foreach my $d (Octopussy::Device::Configurations("name"))
 	{
@@ -163,7 +163,7 @@ my ($n_year, $n_month, $n_mday, $n_hour, $n_min) = AAT::Datetime::Now();
 
 $SIG{HUP} = \&Init;
 Octopussy::PID_File(PROG_NAME);
-AAT::Syslog(PROG_NAME, "Started !");
+AAT::Syslog(PROG_NAME, "PROGRAM_START");
 
 while (1)
 {

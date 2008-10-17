@@ -68,8 +68,7 @@ sub Init()
 		  $dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
   	  my @msg_to_parse = ();
    	  my @messages = Octopussy::Service::Messages($serv);
-		  AAT::Syslog(PROG_NAME, "Init Service: $serv - " 
-			  . ($#messages + 1) . " messages");
+		  AAT::Syslog(PROG_NAME, "PARSER_INIT_SERVICE", $serv, $#messages + 1);
    	  foreach my $m (@messages)
       { 
 			  my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
@@ -167,9 +166,8 @@ sub Service_Handler($$$$$$$$)
  	my $dir_service = $serv;
  	$dir_service =~ s/ /_/g;
  	my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
- 	AAT::Syslog(PROG_NAME, "Device: $device - Service: $serv "
-  	. "Date: $d/$m/$y $hour:$min - Events: "
-    . ($#{$known_msgs{$serv}} + 1) . " / $total");
+ 	AAT::Syslog(PROG_NAME, "PARSER_DEVICE_SERVICE_EVENTS", $device, $serv, 
+    "$d/$m/$y $hour:$min", $#{$known_msgs{$serv}} + 1, $total);
 	Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}});	
 }
 
@@ -213,7 +211,7 @@ sub File_Handler($)
 		else
    	{
    		print "Unable to open file '$file'\n";
-    	AAT::Syslog("octo_uparser", "UNABLE_OPEN_FILE", $file);
+    	AAT::Syslog(PROG_NAME, "UNABLE_OPEN_FILE", $file);
    	}
 		foreach my $serv (keys %known_msgs)
 			{	Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new); }
@@ -227,7 +225,7 @@ sub File_Handler($)
 
 $SIG{USR1} = \&Exit;
 
-AAT::Syslog(PROG_NAME, "Device: $device Started !");
+AAT::Syslog(PROG_NAME, "PARSER_START", $device);
 Init();
 foreach my $file (@files)
 {
@@ -236,7 +234,7 @@ foreach my $file (@files)
   Init()  if ($cache->get("uparser_$device") eq "reload");
 	last	if ($exit_request);
 }
-AAT::Syslog(PROG_NAME, "Device: $device Stopped !");
+AAT::Syslog(PROG_NAME, "PARSER_STOP", $device);
 $cache->remove("uparser_$device");
 
 =head1 AUTHOR

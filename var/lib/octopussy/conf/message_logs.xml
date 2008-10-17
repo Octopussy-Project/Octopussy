@@ -13,8 +13,25 @@
 	<log mid="GENERIC_REMOVED_FROM"
     message="%%ARG1%% '%%ARG2%%' has been removed from %%ARG3%% '%%ARG4%%' by %%LOGIN%%" />
 
+  <log mid="LOAD_DEVICES_CONFIG" message="Load Devices Configuration" />
+
 	<log mid="LOG_SEARCH"
 		message="Logs Search on Device[%%ARG1%%] Service[%%ARG2%%] Period[%%ARG3%%] by %%LOGIN%% takes %%ARG4%% seconds." />
+
+  <log mid="PARSER_DEVICE_PARSING_DURATION"
+    message="Device: %%ARG1%% Date: %%ARG2%% Time: %%ARG3%% seconds" />
+  <log mid="PARSER_DEVICE_SERVICE_EVENTS"
+    message="Device: %%ARG1%% - Service: %%ARG2%% Date: %%ARG3%% - Events: %%ARG4%% / %%ARG5%%" />
+  <log mid="PARSER_FILES_TO_PARSE"
+    message="%%ARG2%% files to parse for Device %%ARG1%%" />
+  <log mid="PARSER_INIT_SERVICE"
+    message="Init Service: %%ARG1%% - %%ARG2%% messages" />
+  <log mid="PARSER_START" message="Device: %%ARG1%% Started !" />
+  <log mid="PARSER_STOP" message="Device: %%ARG1%% Stopped !" />
+
+  <log mid="REPORTER_GENERATION_STATUS" message="Report Generation %%ARG1%% !" />
+
+  <log mid="PROGRAM_START" message="Started !" />
 
 	<log mid="SMTP_INVALID_CONFIG"
 		message="Invalid SMTP Configuration. Can't send any mail !" />
@@ -28,12 +45,9 @@
 	<log mid="UNABLE_OPEN_FILE"
 		message="Unable to open file '%%ARG1%%'" />
 
-	<log mid="USER_FAILED_LOGIN"
-    message="User %%LOGIN%% failed to login." />
-	<log mid="USER_LOGGED_IN"
-		message="User %%LOGIN%% succesfully logged in." />
-	<log mid="USER_LOGGED_OUT"
-		message="User %%LOGIN%% logged out." />
+	<log mid="USER_FAILED_LOGIN" message="User %%LOGIN%% failed to login." />
+	<log mid="USER_LOGGED_IN" message="User %%LOGIN%% succesfully logged in." />
+	<log mid="USER_LOGGED_OUT" message="User %%LOGIN%% logged out." />
 
 	<log mid="USER_PREF_MODIFIED"
 		message="User Preferences has been modified by %%LOGIN%%." />
@@ -48,10 +62,8 @@
   <log mid="WORLD_STATS_STATUS_CHANGED"
     message="Octopussy World Statistics have been %%ARG1%% by %%LOGIN%%." />
 
-	<log mid="XML_READ_ERROR"
-		message="XML File Read Error: %%ARG1%%" />
-	<log mid="XML_WRITE_ERROR"
-    message="XML File Write Error: %%ARG1%%" />
+	<log mid="XML_READ_ERROR" message="XML File Read Error: %%ARG1%%" />
+	<log mid="XML_WRITE_ERROR" message="XML File Write Error: %%ARG1%%" />
 
 	<log mid="XMPP_INVALID_CONFIG"
     message="Invalid XMPP Configuration. Can't send any message !" />

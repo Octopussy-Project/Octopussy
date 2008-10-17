@@ -387,19 +387,19 @@ sub Messages_Configurations($$)
 	return (@sorted_configurations);
 }
 
-=head2 Messages_Statistics($service, $minutes)
+=head2 Messages_Statistics($service)
 
-Returns Messages statistics for Service $service for the last $minutes
+Returns Messages statistics for Service $service
 
 =cut
-sub Messages_Statistics($$)
+sub Messages_Statistics($)
 {
-	my ($service, $minutes) = @_;
+	my $service = shift;
   my $cache_parser = Octopussy::Cache::Init("octo_parser");
  
   my (%percent, %stat) = ((), ());
   my ($y, $mon, $d, $h, $m) = AAT::Datetime::Now();
-  my $limit = int("$y$mon$d$h$m") - $minutes;
+  my $limit = int("$y$mon$d$h$m") - Octopussy::Parameter("msgid_history");
   my $total = 0;
   foreach my $k (sort $cache_parser->get_keys())
   {

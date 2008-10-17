@@ -415,28 +415,28 @@ sub Services_Statistics($)
 	my $device = shift;
 	my %stats;
 
-	my $file = Octopussy::Device_Stats_File($device);  
-	my $total = 0;
-	if (defined open(STATS, "< $file"))
-	{
-  	while (<STATS>)
-  	{
-			$stats{$1} = $2	if ($_ =~ /^(.+): (\d+)$/); 
-			$total += $2;
-  	}
-  	close(STATS);
-	}
-	else
-	{
-		my ($pack, $file_pack, $line, $sub) = caller(0);
-    AAT::Syslog("Octopussy::Device", "Unable to open file '$file' in $sub");
-	}
-	foreach my $k (keys %stats)
-	{
-		$stats{$k} = ($total == 0 ? "0%" : (int($stats{$k} * 100 / $total) . "%"));
-	}
-
-	return (%stats);
+  my ($y, $mon, $d, $h, $m) = AAT::Datetime::Now();
+  my $limit = int("$y$mon$d$h$m") - Octopussy::Parameter("msgid_history");
+  my $cache_parser = Octopussy::Cache::Init("octo_parser");
+  my $total = 0;
+  foreach my $k (sort $cache_parser->get_keys())
+  {
+    if (($k =~ /^parser_msgid_stats_(\d{12})_(\S+)$/) 
+        && ($1 >= $limit) && ($2 eq $device))
+    {
+      my $data = $cache_parser->get($k);
+      foreach my $s (@{$data})
+      {
+        $stats{$s->{service}} = (defined $stats{$s->{service}} ?
+          $stats{$s->{service}} + $s->{count} : $s->{count});
+        $total += $s->{count};
+      }
+    }
+  }
+  foreach my $k (keys %stats)
+    { $stats{$k} = ($total == 0 ? 0 : (int($stats{$k}*100/ $total)) . "%"); }
+	
+  return (%stats);
 }
 
 =head2 With_Service($service)

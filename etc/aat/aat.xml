@@ -14,7 +14,7 @@
 
   </application>
 
-	<application name="Octopussy" version="0.9.8.2"
+	<application name="Octopussy" version="0.9.8.4"
 							 email="octo.devel@gmail.com"
 							 user="octopussy"
 							 website="http://www.8pussy.org">
@@ -63,6 +63,7 @@
     <parameter name="devicemodel" value="Unknown" />
     <parameter name="logrotate" value="90" />
     <parameter name="max_alerts" value="100" />
+    <parameter name="msgid_history" value="10" />
     <parameter name="url_world_stats_show" 
       value="http://www.8pussy.org/stats/show.asp" />
     <parameter name="url_world_stats_update"

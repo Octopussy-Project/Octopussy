@@ -335,20 +335,6 @@ sub PID_File($)
 	return ($file_pid);
 }
 
-=head2 Device_Stats_File($device)
-
-Returns Device Stats File
-
-=cut
-sub Device_Stats_File($)
-{
-	my $device = shift;
-
-	my $dir_pid = Octopussy::Directory("running");
-	
-	return ("$dir_pid/octo_parser" . "_$device.stats");	 
-}
-
 =head2 Dialog($id)
 
 Returns Dialog properties for the Dialog '$id'

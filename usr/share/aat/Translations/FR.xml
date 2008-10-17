@@ -74,6 +74,8 @@
 	<msg mid="_BYTES" value="Octets" />
 	<msg mid="_CANCEL" value="Annuler" />
 	<msg mid="_CERTIFICATE" value="Certificat" />
+  <msg mid="_COLUMNS" value="Colonnes" />
+  <msg mid="_COLUMNS_NAMES" value="Noms des Colonnes" />
 	<msg mid="_COMMON_NAME" value="Nom Commun" />
 	<msg mid="_CONFIG_FILE" value="Fichier de Configuration" />
 	<msg mid="_DASHBOARD" value="Tableau de Bord" />
