@@ -448,10 +448,7 @@ Returns list of Reports in progress
 =cut
 sub Running_List()
 {
-	my $dir_pid = Octopussy::Directory("running");
-	my $cache = new Cache::FileCache( { namespace => REPORTER_BIN,
-  	default_expires_in => "1 day", cache_root => "$dir_pid/cache",
-   	directory_umask => "007"  } );
+	my $cache = Octopussy::Cache::Init(REPORTER_BIN);
 	my $pt = new Proc::ProcessTable;
 	my @list = ();
 	my @keys = $cache->get_keys();

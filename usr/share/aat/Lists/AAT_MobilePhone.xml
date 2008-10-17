@@ -1325,6 +1325,9 @@
 	<item label="Samsung SGH P220" value="mobile_samsung_sghp220"
         regexp="SAMSUNG-SGH-P220"
         constructor="Samsung" model="SGH P220" logo="companies/logo_samsung" />
+  <item label="Samsung SGH P250" value="mobile_samsung_sghp250"
+        regexp="SAMSUNG-SGH-P250"
+        constructor="Samsung" model="SGH P250" logo="companies/logo_samsung" />
 	<item label="Samsung SGH P260" value="mobile_samsung_sghp260"
         regexp="SAMSUNG-SGH-P260"
         constructor="Samsung" model="SGH P260" logo="companies/logo_samsung" />

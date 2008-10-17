@@ -22,13 +22,9 @@ use Octopussy;
 
 use constant PROG_NAME => "octo_uparser";
 
-my $dir_pid = Octopussy::Directory("running");
 my $device = $ARGV[0];
 
-my $cache = new Cache::FileCache( { namespace => "octo_parser",
-    default_expires_in => "1 day", cache_root => "$dir_pid/cache",
-    directory_umask => "007"  } )
-  or croak( "Couldn't instantiate FileCache" );
+my $cache = Octopussy::Cache::Init("octo_parser");
 $cache->set("uparser_$device", "running");
 
 my (@files, @services);

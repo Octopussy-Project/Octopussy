@@ -8,11 +8,11 @@ package Octopussy;
 use strict;
 
 use AAT;
-use Cache::FileCache;
 use File::Path;
 use Proc::PID::File;
 
 use Octopussy::Alert;
+use Octopussy::Cache;
 #use Octopussy::Contact;
 use Octopussy::Configuration;
 use Octopussy::DB;
@@ -177,9 +177,7 @@ sub Status_Progress($$)
 	{
 		my $pid = <FILEPID>;
 		chomp($pid);
-		my $cache = new Cache::FileCache( { namespace => $bin, 
-			default_expires_in => "1 day", cache_root => "$dir_pid/cache",
-    	directory_umask => "007" } );
+    my $cache = Octopussy::Cache::Init($bin);
 		$status = $cache->get("status_${pid}");
 		close(FILEPID);
 	}

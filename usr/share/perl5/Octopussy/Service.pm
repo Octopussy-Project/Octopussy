@@ -395,11 +395,7 @@ Returns Messages statistics for Service $service for the last $minutes
 sub Messages_Statistics($$)
 {
 	my ($service, $minutes) = @_;
-	my $dir_pid = Octopussy::Directory("running");
-  my $cache_parser = new Cache::FileCache( { namespace => "octo_parser",
-    default_expires_in => "1 day", cache_root => "$dir_pid/cache",
-    directory_umask => "007" } )
-    or croak( "Couldn't instantiate FileCache" );
+  my $cache_parser = Octopussy::Cache::Init("octo_parser");
  
   my (%percent, %stat) = ((), ());
   my ($y, $mon, $d, $h, $m) = AAT::Datetime::Now();

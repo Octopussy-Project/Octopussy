@@ -31,7 +31,6 @@ my (@opt_devices, @opt_services) = ((), ());
 my ($opt_taxonomy, $opt_begin, $opt_end, $pid_param, $output);
 my (@opt_include, @opt_exclude);
 my $file_pid = undef;
-my $dir_pid = Octopussy::Directory("running");
 my $cache = undef;
 
 =head1 FUNCTIONS
@@ -304,10 +303,7 @@ Help()	if ((! $status) || ($help)
 	|| (! @opt_devices) || (! @opt_services) 
 	|| (!defined $opt_begin) || (!defined $opt_end));
 
-$cache = new Cache::FileCache( { namespace => "octo_extractor",
-    default_expires_in => "1 hour", cache_root => "$dir_pid/cache",
-		directory_umask => "007" } ) 
-	or croak( "Couldn't instantiate FileCache" );
+$cache = Octopussy::Cache::Init("octo_extractor");
 
 my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
 $file_pid = Octopussy::PID_File($pid_name);

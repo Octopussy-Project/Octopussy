@@ -37,7 +37,6 @@ my $PROG_NAME = "octo_reporter";
 my $PROG_VERSION = Octopussy::Version();
 my $FILE_DB = "/var/run/octopussy/file.db";
 
-my $dir_pid = Octopussy::Directory("running");
 my $file_pid = undef; 
 
 my $help;
@@ -294,10 +293,7 @@ Help()	if ((! $status) || ($help)
 	|| (!defined $begin) || (!defined $end) || (!defined $output));
 
 my $pid = $$;
-$cache = new Cache::FileCache( { namespace => "octo_reporter", 
-		default_expires_in => "1 hour", cache_root => "$dir_pid/cache",
-    directory_umask => "007"  } ) 
-	or croak( "Couldn't instantiate FileCache" );
+$cache = Octopussy::Cache::Init("octo_reporter");
 
 Progress("_MSG_REPORT_PROGRESS_REPORT_CONFIG", "1/1");
 $rc = (defined $report ? Octopussy::Report::Configuration($report) : undef);

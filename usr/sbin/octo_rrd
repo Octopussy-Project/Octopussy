@@ -20,14 +20,8 @@ use Octopussy;
 
 my @dtypes = Octopussy::Device::Types();
 my $dir_pid = Octopussy::Directory("running");
-my $cache_dispatcher = new Cache::FileCache( { namespace => "octo_dispatcher",
-    default_expires_in => "2 days", cache_root => "$dir_pid/cache",
-    directory_umask => "007" } )
-  or croak( "Couldn't instantiate FileCache" );
-my $cache_parser = new Cache::FileCache( { namespace => "octo_parser",
-    default_expires_in => "1 day", cache_root => "$dir_pid/cache",
-    directory_umask => "007" } )
-  or croak( "Couldn't instantiate FileCache" );
+my $cache_dispatcher = Octopussy::Cache::Init("octo_dispatcher");
+my $cache_parser = Octopussy::Cache::Init("octo_parser");
 
 my $old_time = "";
 while (1)

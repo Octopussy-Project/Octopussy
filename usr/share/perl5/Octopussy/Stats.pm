@@ -10,8 +10,6 @@ use strict;
 use Sys::CPU;
 use Octopussy;
 
-my $cache = undef;
-
 =head1 FUNCTIONS
 
 =head2 CPU_Info()
@@ -167,14 +165,7 @@ sub Events()
 {
 	my %device;
 
-	if (!defined $cache)
-	{
-		my $dir_pid = Octopussy::Directory("running");
-		$cache = new Cache::FileCache( { namespace => "octo_dispatcher",
-    		default_expires_in => "1 day", cache_root => "$dir_pid/cache",
-    		directory_umask => "007" } )
-  		or croak( "Couldn't instantiate FileCache");
-	}
+	my $cache = Octopussy::Cache::Init("octo_dispatcher");
 	my $time = $cache->get("dispatcher_stats_datetime");
 	my $stats = $cache->get("dispatcher_stats_devices");
 	foreach my $k (keys %{$stats})
