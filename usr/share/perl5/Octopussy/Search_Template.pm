@@ -6,6 +6,7 @@ Octopussy::Search_Template - Octopussy Search Template module
 package Octopussy::Search_Template;
 
 use strict;
+use bytes;
 use utf8;
 use Octopussy;
 
@@ -46,13 +47,12 @@ $user - user who created this template
 $search_tpl - Name of the Search Template to remove
 
 =cut
- 
 sub Remove($$)
 {
 	my ($user, $search_tpl) = @_;
 
-	$filename{$user}{$search_tpl} = undef;
 	unlink(Filename($user, $search_tpl));
+	$filename{$user}{$search_tpl} = undef;
 }
 
 =head2 List($user)

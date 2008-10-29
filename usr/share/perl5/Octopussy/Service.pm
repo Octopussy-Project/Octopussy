@@ -50,8 +50,8 @@ sub Remove($)
 {
 	my $service = shift;
 
-	$filename{$service} = undef;
 	unlink(Filename($service));
+	$filename{$service} = undef;
 }
 
 =head2 List()

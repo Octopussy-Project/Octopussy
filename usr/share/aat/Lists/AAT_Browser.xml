@@ -1,6 +1,8 @@
 <list name="AAT_Browser"
 			selected_by_default="Firefox">
 
+  <item label=".NET Framework" value=".net"
+        regexp="\.NET Framework" />
 	<item label="Avant Browser" value="avant"
 				regexp="(Advanced|Avant) Browser" logo="browsers/browser_avant_browser" />
 	<item label="Axis Framework" value="axis"

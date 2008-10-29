@@ -44,20 +44,20 @@ if (defined $icon)
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="_DEVICE_MODEL" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="2">
+  <AAT:BoxCol>
   <AAT:Inc file="octo_selector_device_model" device_type="$type" 
 		selected="$model" />
   </AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="_DESCRIPTION" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="2">
-	<AAT:Entry name="description" size="50" value="$desc" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="description" size="50" value="$desc" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_LOG_TYPE" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2">
+	<AAT:BoxCol>
 	<AAT:Selector name="logtype" list=\@logtype_list selected="$logtype" />
 	</AAT:BoxCol>
 </AAT:BoxRow><%
@@ -69,46 +69,52 @@ if ($conf->{logtype} eq "asynchronous")
 		{
 			my ($regexp, $output) = ($a->{regexp}, $a->{output});
 	%><AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_LOG_REGEXP" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2"><AAT:Entry name="regexp" size="60" value="$regexp" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:Entry name="regexp" size="60" value="$regexp" /></AAT:BoxCol>
 	</AAT:BoxRow>
 	<AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_SYSLOG_OUPUT" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2"><AAT:Entry name="output" size="60" value="$output" />
+	<AAT:BoxCol><AAT:Entry name="output" size="60" value="$output" />
 	</AAT:BoxCol>
 	</AAT:BoxRow><%
 		}
 	}
 	%><AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_LOG_REGEXP" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="2"><AAT:Entry name="regexp" size="60" value="" />
+  <AAT:BoxCol><AAT:Entry name="regexp" size="60" value="" />
 	</AAT:BoxCol>
 	</AAT:BoxRow>
   <AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_SYSLOG_OUPUT" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="2"><AAT:Entry name="output" size="60" value="" />
+  <AAT:BoxCol><AAT:Entry name="output" size="60" value="" />
 	</AAT:BoxCol>
   </AAT:BoxRow><%
 } %>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_LOCATION" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2">
+	<AAT:BoxCol>
 	<AAT:Inc file="octo_selector_location" selected="$location" />	
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol width="150"><AAT:Label value="_LOGROTATE" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="2">
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_LOGROTATE" /></AAT:BoxCol>
+  <AAT:BoxCol>
   <AAT:Inc file="octo_selector_nbdays" name="logrotate" 
 		min="10" max="600" step="10" selected="$logrotate" />
   </AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol width="150"><AAT:Label value="_MAX_TIME_WITHOUT_LOG" /></AAT:BoxCol>
-  <AAT:BoxCol cspan="2">
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_MAX_TIME_WITHOUT_LOG" /></AAT:BoxCol>
+  <AAT:BoxCol>
   <AAT:Inc file="octo_selector_max_mins_without_log"
 		selected="$minutes_without_logs" />
   </AAT:BoxCol>

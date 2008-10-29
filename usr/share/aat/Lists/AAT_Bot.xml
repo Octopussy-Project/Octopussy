@@ -72,6 +72,12 @@
 	<item label="NaverBot" value="bot_naverbot"
         regexp="NaverBot"
         logo="browsers/browser_bot" />
+  <item label="PHP version tracker" value="bot_php_version_tracker"
+        regexp="PHP version tracker"
+        logo="browsers/browser_bot" />
+  <item label="ScootJet Web Crawler" value="bot_scootjet"
+        regexp="www.scoutjet.com"
+        logo="browsers/browser_bot" />
 	<item label="Seekbot" value="bot_seekbot"
         regexp="www.seekbot.net"
         logo="browsers/browser_bot" />
@@ -108,7 +114,10 @@
 	<item label="WebAlta Crawler" value="bot_webalta_crawler"
         regexp="WebAlta Crawler"
         logo="browsers/browser_bot" />
-	<item label="Yahoo Slurp" value="bot_yahoo"
+  <item label="Yahoo Add Crawler" value="bot_yahoo_add_crawler"
+        regexp="yahoo_adcrawler" 
+        logo="browsers/browser_bot" />
+	<item label="Yahoo Slurp" value="bot_yahoo_slurp"
 				regexp="Yahoo! Slurp" 
 				logo="browsers/browser_bot" />
 	<item label="Yandex Bot" value="bot_yandex"

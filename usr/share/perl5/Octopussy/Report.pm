@@ -49,6 +49,7 @@ sub Remove($)
   my $report = shift;
 
 	unlink(Filename($report));
+	$filename{$report} = undef;
 	Octopussy::Data_Report::Remove_All($report);
 }
 

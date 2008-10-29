@@ -100,6 +100,8 @@ sub Inotify_Watch
 		$filename =~ s/\/+/\//g;
 		push(@files, $filename); 
 	}
+
+	@files = keys %{{ map { $_ => 1 } @files }};
 }
 
 =head2 Init()
@@ -418,6 +420,11 @@ sub File_Handler($)
 		my ($n_year, $n_month, $n_day, $file_new, $n_hour, $n_min) = 
       ($1, $2, $3, $4, $5, $6);
 
+		if ($year == 0)
+		{
+			($year, $month, $day, $hour, $min)
+        = ($n_year, $n_month, $n_day, $n_hour, $n_min);
+		}
     if (($n_min != $min) || ($n_hour != $hour) || ($n_day != $day)
         || ($n_month != $month)) 
     { # not the same minute than previous file -> write stats to syslog
@@ -467,7 +474,7 @@ sub File_Handler($)
 		}
 		else
     {
-    	print "Unable to open file3 '$file'\n";
+    	print "Unable to open file '$file'\n";
      	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", $file);
     }
 		foreach my $serv (keys %known_msgs)

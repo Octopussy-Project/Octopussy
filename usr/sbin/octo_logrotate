@@ -33,22 +33,24 @@ sub Get_Directories($)
 	return (@dirs);
 }
 
-=head2 Files_Deletion($conf_device)
+=head2 Files_Deletion($conf)
 
-Deletes Log Files for specified Device in '$conf_device'
+Deletes Log Files for specified Device in '$conf'
 
 =cut
 sub Files_Deletion($)
 {
-	my $conf_device = shift;
-	my $limit = DateCalc("today", "-$conf_device->{logrotate} days");
+	my $conf = shift;
+	my $limit = DateCalc("today", "-$conf->{logrotate} days");
 	$limit =~ s/^(\d{8}).+$/$1/;
-	my $device = $conf_device->{name};
+	my $device = $conf->{name};
 	my $storage = Octopussy::Storage::Default();
 
+	AAT::Syslog($PROG_NAME, "DELETE_LOGS_OLDER_THAN", 
+		$device, $conf->{logrotate});
 	foreach my $t ("incoming", "unknown", "known")
 	{
-		my $dir = Octopussy::Storage::Directory($conf_device->{"storage_$t"} 
+		my $dir = Octopussy::Storage::Directory($conf->{"storage_$t"} 
 			|| $storage->{$t});
 		foreach my $s (Get_Directories("$dir/$device/"))
 		{
@@ -65,7 +67,7 @@ sub Files_Deletion($)
 					}
 					`rmdir "$dir/$device/$s/$y/$m" 2> /dev/null`; 
 				}
-				`rmdir "$dir/$device/$s/$y" 2>  /dev/null`; 
+				`rmdir "$dir/$device/$s/$y" 2> /dev/null`; 
 			}
 		}
 	}

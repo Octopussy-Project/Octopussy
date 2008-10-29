@@ -54,8 +54,8 @@ sub Remove($)
 {
 	my $table = shift;
 
-	$filename{$table} = undef;
 	unlink(Filename($table));
+	$filename{$table} = undef;
 }
 
 

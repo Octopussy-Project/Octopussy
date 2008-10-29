@@ -1,4 +1,7 @@
 <logs>
+	<log mid="DELETE_LOGS_OLDER_THAN"
+    message="Delete logs from device %%ARG1%% older than %%ARG2%% days" />
+
 	<log mid="DEVICE_HASNT_SENT_ANY_LOGS"
     message="Device %%ARG1%% hasn't sent any logs for %%ARG2%% minutes !" />
 	

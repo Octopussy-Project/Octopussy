@@ -38,8 +38,8 @@ sub Remove($)
 {
   my $statistic_report = shift;
 
-	$filename{$statistic_report} = undef;
 	unlink(Filename($statistic_report));
+	$filename{$statistic_report} = undef;
 }
 
 =head2 Modify($old_report, $conf_new)

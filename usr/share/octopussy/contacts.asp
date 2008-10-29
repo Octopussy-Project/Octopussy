@@ -17,7 +17,7 @@ elsif ((AAT::NOT_NULL($action)) && ($action eq "new")
 {
  	$Session->{AAT_MSG_ERROR} = Octopussy::Contact::New( { 
 		cid => $f->{cid}, lastname => $f->{lastname}, firstname => $f->{firstname},
-  	description => $f->{description}, email => $f->{email}, im => $f->{im} } );
+  	description => $f->{description}, email => $Server->HTMLEncode($f->{email}), im => $f->{im} } );
 	AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Contact", $cid)
 		if (AAT::NOT_NULL($Session->{AAT_MSG_ERROR}));
 	$Response->Redirect("./contacts.asp");

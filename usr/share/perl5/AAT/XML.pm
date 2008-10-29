@@ -7,7 +7,7 @@ package AAT::XML;
 
 use strict;
 use open ':utf8';
-#use bytes;
+use bytes;
 use utf8;
 use XML::Simple; # qw(:strict);
 
@@ -121,11 +121,7 @@ sub Write($$$)
       XMLDecl => "<?xml version='1.0' encoding='UTF-8'?>",
       RootName => $root_name || "aat_config" );
   my $xml = XMLout($data, %XML_OUTPUT_OPTIONS);
-  if ($@)
-  {
-	  AAT::Syslog("AAT::XML", "XML_WRITE_ERROR", $@);
-    return (undef);
-  }
+
   if (defined open(FILE, (utf8::is_utf8($xml) ? ">:utf8" : ">:bytes"), $file))
   {
     print FILE $xml;

@@ -49,6 +49,10 @@ while (1)
         $taxo->{datetime}, $1, $2, $taxo->{stats});
       $cache_parser->remove($k);
     }
+		if ($k =~ /^parser_msgid_stats_(\d+?)_.+$/)
+		{ # Clean older msgid stats older than 120 minutes
+			$cache_parser->remove($k)	if (($time-120) > $1);
+		}
   }
 
 	sleep(5);

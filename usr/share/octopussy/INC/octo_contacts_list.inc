@@ -21,7 +21,7 @@ my $lnk = "${url}?contacts_table_sort";
   <AAT:Label value="IM" link="$lnk=im" /></AAT:BoxCol>
 	<AAT:BoxCol>
   <AAT:Label value="_TYPE" link="$lnk=type" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
+	<AAT:BoxCol align="C"><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
@@ -31,6 +31,7 @@ foreach my $c (Octopussy::Contact::Configurations($sort))
 	my ($id, $lastname, $firstname, $desc, $email, $im, $type) =
 		($c->{cid}, $c->{lastname}, $c->{firstname}, $c->{description}, 
 		$c->{email}, $c->{im}, $c->{type});
+	my $id_url = $Server->URLEncode($id);
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
   $i++;
 %><AAT:BoxRow class="$class">
@@ -45,7 +46,7 @@ foreach my $c (Octopussy::Contact::Configurations($sort))
 	if ($type eq "local")
 	{ 
 		%><AAT:Button name="remove" tooltip="_REMOVE"
-    popup_link="./dialog.asp?id=delete_contact&arg1=$id&action=remove" /><%
+    popup_link="./dialog.asp?id=delete_contact&arg1=$id_url&action=remove" /><%
 	}%>
 	</AAT:BoxCol>
 </AAT:BoxRow><%

@@ -6,6 +6,7 @@ Octopussy::Alert - Octopussy Alert module
 package Octopussy::Alert;
 
 use strict;
+use bytes;
 use utf8;
 use Octopussy;
 
@@ -32,7 +33,7 @@ sub New($)
 	$dir_alerts ||= Octopussy::Directory(DIR_ALERT);
   my $file_xml = "$dir_alerts/$conf->{name}.xml"; 
   $conf->{msgbody} =~ s/\r\n/ \@\@\@ /g;  
-  
+
   if (defined AAT::XML::Write($file_xml, $conf, XML_ROOT))
   {
     my %devices = ();

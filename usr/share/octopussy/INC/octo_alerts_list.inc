@@ -26,6 +26,7 @@ foreach my $a (Octopussy::Alert::Configurations($sort))
 {
 	my ($name, $desc, $level, $type, $status) = 
 		($a->{name}, $a->{description}, $a->{level}, $a->{type}, $a->{status});
+	my $name_url = $Server->URLEncode($name);
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
   $i++;
 %><AAT:BoxRow class="$class">
@@ -35,9 +36,9 @@ foreach my $a (Octopussy::Alert::Configurations($sort))
 	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$status" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Button name="edit" tooltip="_EDIT"
-    link="./alert_edit.asp?alert=$name" /></AAT:BoxCol>
+    link="./alert_edit.asp?alert=$name_url" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Button name="remove" tooltip="_REMOVE"
-  	popup_link="./dialog.asp?id=delete_alert&arg1=$name&action=remove" />
+  	popup_link="./dialog.asp?id=delete_alert&arg1=$name_url&action=remove" />
 	</AAT:BoxCol>
 </AAT:BoxRow><%
 }

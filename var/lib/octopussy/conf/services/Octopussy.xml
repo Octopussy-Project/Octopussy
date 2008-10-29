@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="050"
-                   version="200809250002"
+                   version="200810280001"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -321,6 +321,13 @@
            msg_id="Octopussy:world_statistics_sent"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@REGEXP(&quot;world_stats&quot;):module@&gt;: &lt;@REGEXP(&quot;Octopussy World Statistics have been sent.&quot;):msg@&gt;"
            rank="053"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Octopussy:delete_logs_older_than"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@REGEXP(&quot;logrotate&quot;):module@&gt;: &lt;@REGEXP(&quot;Delete logs from device \S+ older than \d+ days&quot;):msg@&gt;
+"
+           rank="054"
            table="Message"
            taxonomy="Application" />
 </octopussy_service>

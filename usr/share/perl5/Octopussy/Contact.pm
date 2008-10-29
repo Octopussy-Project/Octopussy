@@ -6,6 +6,7 @@ Octopussy::Contact - Octopussy Contact module
 package Octopussy::Contact;
 
 use strict;
+use bytes;
 use utf8;
 use Octopussy;
 
@@ -66,8 +67,8 @@ sub Remove($)
 {
 	my $contact = shift;
 
-	$filename{$contact} = undef;
 	unlink(Filename($contact));
+	$filename{$contact} = undef;
 }
 
 =head2 List()

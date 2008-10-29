@@ -32,15 +32,14 @@ else
 			action => \@actions, contact => \@contacts, 
 			msgsubject => $f->{subject}, msgbody => $f->{body} });
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Alert", $alert);
-		$Response->Redirect("./alerts.asp");
   }
 
   if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))
   {
     Octopussy::Alert::Remove($alert);
 		AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Alert", $alert);
-   	$Response->Redirect("./alerts.asp");
   }
+	$Response->Redirect("./alerts.asp");
 }
 %>
 <WebUI:PageBottom />
