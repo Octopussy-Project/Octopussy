@@ -7,9 +7,9 @@
   <field title="device"
          type="WORD" />
   <field title="sender"
-         type="STRING" />
+         type="EMAIL" />
   <field title="recipient"
-         type="STRING" />
+         type="EMAIL" />
   <field title="subject"
          type="STRING" />
   <field title="size"
