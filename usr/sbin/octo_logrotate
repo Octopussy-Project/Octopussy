@@ -82,6 +82,7 @@ foreach my $d (Octopussy::Device::Configurations("name"))
 	print "Removing '$d->{name}' [$d->{logrotate}] logs files...\n";
 	Files_Deletion($d)	if (defined $d->{logrotate});
 }	
+system("/usr/sbin/octo_world_stats");
 
 =head1 AUTHOR
 

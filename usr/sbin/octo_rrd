@@ -22,8 +22,9 @@ my @dtypes = Octopussy::Device::Types();
 my $dir_pid = Octopussy::Directory("running");
 my $cache_dispatcher = Octopussy::Cache::Init("octo_dispatcher");
 my $cache_parser = Octopussy::Cache::Init("octo_parser");
-
+my $msgid_history_max = Octopussy::Parameter("msgid_history_max");
 my $old_time = "";
+
 while (1)
 {
 	my $time = $cache_dispatcher->get("dispatcher_stats_datetime");
@@ -40,7 +41,7 @@ while (1)
     Octopussy::RRDTool::Syslog_By_DeviceType_Update(\@dt_stats);
 		$old_time = $time; 
 	}
-  foreach my $k ($cache_parser->get_keys())
+  foreach my $k (sort $cache_parser->get_keys())
   { # Update RRDGraph for Octopussy Device Dashboard pages
     if ($k =~ /^parser_taxo_stats_(\S+?)_(.+)$/)
     {
@@ -51,7 +52,14 @@ while (1)
     }
 		if ($k =~ /^parser_msgid_stats_(\d+?)_.+$/)
 		{ # Clean older msgid stats older than 120 minutes
-			$cache_parser->remove($k)	if (($time-120) > $1);
+			my $minutes = $1;
+			my $time_minutes = ($1*10_000) + ($2*60) + $3
+      	if ($time =~ /^(\d{8})(\d\d)(\d\d)$/);
+			$minutes = ($1*10_000) + ($2*60) + $3
+				if ($minutes =~ /^(\d{8})(\d\d)(\d\d)$/);
+
+			$cache_parser->remove($k)
+				if (($time_minutes-$msgid_history_max) > $minutes);
 		}
   }
 

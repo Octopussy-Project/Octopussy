@@ -17,6 +17,8 @@ my %AAT_Syslog = ();
 
 =head2 Message($module, $msg, @args)
 
+Syslog Message $msg from $module
+
 =cut
 sub Message($$@)
 {
@@ -41,7 +43,7 @@ sub Message($$@)
 
 =head2 Messages($module, \@messages)
 
-Syslog many messages in one shot
+Syslog many messages from $module in one shot
 
 =cut
 sub Messages($$)

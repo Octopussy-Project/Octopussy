@@ -13,6 +13,7 @@ use Date::Manip;
 use URI::Escape;
 use Octopussy;
 
+use constant APPLI => "Octopussy";
 use constant PROG_NAME => "octo_world_stats";
 my $update_url = Octopussy::Parameter("url_world_stats_update");
 
@@ -35,12 +36,20 @@ if ($conf->{status} eq "enabled")
 
   my @keys = $cache->get_keys();
 
+	my $pc = AAT::Proxy::Configuration(APPLI);
+  my $proxy = (AAT::NOT_NULL($pc->{server}) ? "http://$pc->{server}" : "")
+    . (AAT::NOT_NULL($pc->{port}) ? ":$pc->{port}" : "");
+  $ENV{http_proxy} = ($proxy ne "" ? "export http_proxy=\"$proxy\"" : "");
+
   foreach my $k (sort @keys)
   {
     if ($k =~ /^dispatcher_stats_hourly_(\d{10})$/)
     {
-      my $url = "$update_url?id=$id&country=$country&version=$version&cpu=$cpu&memory=$mem&hour=$1&nb_devices=$nb_devices&nb_services=$nb_services&nb_logs=" . $cache->get($k);
-      `curl -k "$url"`;
+      my $url = "$update_url?id=$id&country=$country&version=$version"
+				. "&cpu=$cpu&memory=$mem&hour=$1&nb_devices=$nb_devices"
+				. "&nb_services=$nb_services&nb_logs=" . $cache->get($k);
+      system(($ENV{http_proxy} ne "" ? "$ENV{http_proxy}; " : "") 
+				. "curl -k \"$url\"");
     }
   }
   AAT::Syslog("octo_world_stats", "WORLD_STATS_SENT");
