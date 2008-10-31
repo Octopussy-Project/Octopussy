@@ -41,12 +41,14 @@ if ($conf->{status} eq "enabled")
     . (AAT::NOT_NULL($pc->{port}) ? ":$pc->{port}" : "");
   $ENV{http_proxy} = ($proxy ne "" ? "export http_proxy=\"$proxy\"" : "");
 
+	my ($y, $m, $d, $h) = AAT::Datetime::Now();
   foreach my $k (sort @keys)
   {
-    if ($k =~ /^dispatcher_stats_hourly_(\d{10})$/)
+    if (($k =~ /^dispatcher_stats_hourly_(\d{10})$/) && ($1 !~ /^$y$m$d$h$/))
     {
+			my $hour = $1;
       my $url = "$update_url?id=$id&country=$country&version=$version"
-				. "&cpu=$cpu&memory=$mem&hour=$1&nb_devices=$nb_devices"
+				. "&cpu=$cpu&memory=$mem&hour=$hour&nb_devices=$nb_devices"
 				. "&nb_services=$nb_services&nb_logs=" . $cache->get($k);
       system(($ENV{http_proxy} ne "" ? "$ENV{http_proxy}; " : "") 
 				. "curl -k \"$url\"");

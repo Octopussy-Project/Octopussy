@@ -15,9 +15,10 @@ foreach my $e (AAT::ARRAY($arg{list}))
 	if (!defined $exclude{$value})
 	{
 		my $label = (ref $e eq "HASH" ? $e->{label} : $e);
+		my $color = (ref $e eq "HASH" ? $e->{color} : "black");
 		$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => $value,
-    	selected => (defined $selecteds{$value} ? " selected" : ""), 
-			label => AAT::Translation($label) );
+    	style => "color:$color", label => AAT::Translation($label),
+			selected => (defined $selecteds{$value} ? " selected" : "") );
 	}
 } 
 %>

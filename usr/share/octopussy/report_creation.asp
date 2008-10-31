@@ -6,6 +6,38 @@ my $x = $Session->{x};
 my $y = $Session->{y};
 my $url = "./report_creation.asp";
 
+my $group_by_add = $Request->QueryString("group_by_add");
+my $group_by_remove = $Request->QueryString("group_by_remove");
+my $order_by_add = $Request->QueryString("order_by_add");
+my $order_by_remove = $Request->QueryString("order_by_remove");
+
+if (AAT::NOT_NULL($group_by_add))
+{
+	my @group_by_list = @{$Session->{group_by}};
+	push(@group_by_list, $group_by_add);
+	$Session->{group_by} = \@group_by_list;
+}
+if (AAT::NOT_NULL($group_by_remove))
+{
+	my @group_by_list = ();
+  foreach my $gb (@{$Session->{group_by}})
+		{ push(@group_by_list, $gb)	if ($gb ne $group_by_remove); }
+  $Session->{group_by} = \@group_by_list;
+}
+if (AAT::NOT_NULL($order_by_add))
+{
+  my @order_by_list = @{$Session->{order_by}};
+  push(@order_by_list, $order_by_add);
+  $Session->{order_by} = \@order_by_list;
+}
+if (AAT::NOT_NULL($order_by_remove))
+{
+  my @order_by_list = ();
+  foreach my $ob (@{$Session->{order_by}})
+    { push(@order_by_list, $ob) if ($ob ne $order_by_remove); }
+  $Session->{order_by} = \@order_by_list;
+}
+
 if (AAT::NULL($Session->{title}))
 {
 	%><AAT:Inc file="octo_report_data_configurator" category="$category" 
@@ -14,21 +46,30 @@ if (AAT::NULL($Session->{title}))
 elsif ((AAT::NULL($Session->{selected})) && (AAT::NULL($f->{datasource1})))
 {
 	if ($Session->{graph_type} !~ /^rrd_/)
-		{ %><AAT:Inc file="octo_report_query_configurator" url="$url"/><% }
+		{ %><AAT:Inc file="octo_report_query_select_configurator" url="$url"/><% }
 	else
 		{ %><AAT:Inc file="octo_report_rrdgraph_configurator" url="$url" /><% }
+}
+elsif (($Session->{graph_type} !~ /^rrd_/) && (AAT::NULL($Session->{sort_direction})))
+{
+	%><AAT:Inc file="octo_report_query_where_configurator" url="$url"/><%
 }
 elsif (($Session->{graph_type} !~ /^rrd_/) && (AAT::NULL($x)))
 {
 	my ($query, $columns) = 
 		Octopussy::DB::SQL_Select_Function(AAT::ARRAY($Session->{select}));
-	my $order_by = $Session->{order_by};
-	my $sort_dir = $Session->{sort_direction};
+	my $sql_group_by = (AAT::NOT_NULL($Session->{group_by}) 
+		? " GROUP BY " . join(", ", @{$Session->{group_by}}) : "");
+	$sql_group_by =~ 
+		s/Octopussy::Plugin::(\S+?)::(\S+?)\((\S+?)\)/Plugin_$1_$2__$3/g;
+	my $sql_order_by = (AAT::NOT_NULL($Session->{order_by})
+    ? " ORDER BY " . join(", ", @{$Session->{order_by}}) : "") 
+		. ($Session->{sort_direction} eq "ASCENDING" ? " asc" : " desc");
+	$sql_order_by =~ 
+		s/Octopussy::Plugin::(\S+?)::(\S+?)\((\S+?)\)/Plugin_$1_$2__$3/g;
   $query .= "FROM $Session->{table}" 
 		. ($Session->{where} ne "" ? " WHERE $Session->{where}" : "")
-    . ($Session->{group_by} ne "" ? " GROUP BY $Session->{group_by}" : "")
-    . ($order_by ne "" ? 
-			" ORDER BY $order_by " . ($sort_dir eq "ASCENDING" ? "asc" : "desc") : "")
+    . $sql_group_by . $sql_order_by
 		. ($Session->{limit} ne "" ? " LIMIT $Session->{limit}" : "");
 	$Session->{query} = $query;
 	%><AAT:Inc file="octo_report_display_configurator" url="$url" /><%

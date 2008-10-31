@@ -15,7 +15,9 @@ use constant XML_ROOT => "octopussy_alert";
 
 my @COMPARATORS = ("<", ">", "=", "<=", ">=", "LIKE");
 
-my @LEVELS = ("Warning", "Critical");
+my @LEVELS = ( 
+	{ label => "Warning", value => "Warning", color => "orange" }, 
+	{ label => "Critical", value => "Critical", color => "red" } );
 
 my $dir_alerts = undef;
 my %filename;

@@ -21,7 +21,8 @@
 	<item label="Linux Debian" value="linux_debian" 
 				regexp="Debian" logo="operating_systems/os_linux_debian" />
 	<item label="Linux Mandriva" value="linux_mandriva" 
-				regexp="Mandriva" logo="operating_systems/os_linux_mandriva" />
+				regexp="(Mandriva|Linux \S+\d+mdk i\d86)" 
+				logo="operating_systems/os_linux_mandriva" />
 	<item label="Linux RedHat Fedora" value="linux_redhat_fedora" 
 				regexp="Fedora" logo="operating_systems/os_linux_redhat" />
 	<item label="Linux Slackware" value="linux_slackware" 
@@ -51,7 +52,8 @@
 				regexp="(Windows NT 5|Windows XP 5.1)" logo="operating_systems/os_windows" />
 
 	<item label="Mobile OS (various)" value="mobile_various"
-				regexp="( [pP]rofile\/MIDP-|portalmmm\/2)" />
+				regexp="( [pP]rofile\/MIDP-|portalmmm\/2)" 
+				logo="browsers/browser_mobile" />
 
 	<item label="Nintendo Wii" value="game_nintendo_wii"
 				regexp="Nintendo Wii" logo="operating_systems/os_wii" />
