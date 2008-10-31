@@ -3,7 +3,7 @@
                    icon="software/logo_syslog-ng"
                    name="Syslog-ng"
                    nb_messages="024"
-                   version="200804140001"
+                   version="200810310001"
                    website="http://www.balabit.com/network-security/syslog-ng/">
   <message loglevel="Warning"
            msg_id="Syslog-ng:stats_dropped"
@@ -137,7 +137,7 @@
            rank="022"
            table="Message"
            taxonomy="System" />
-<message loglevel="Warning"
+  <message loglevel="Warning"
            msg_id="Syslog-ng:cannot_connect_to_stunnel"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;EOF occurred while idle; fd=.*&quot;):msg@&gt;"
            rank="023"
@@ -149,4 +149,11 @@
            rank="024"
            table="Message"
            taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Syslog-ng:configuration_reload_request_received"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Configuration reload request received, reloading configuration;&quot;):msg@&gt; 
+"
+           rank="025"
+           table="Message"
+           taxonomy="Config.Changes" />
 </octopussy_service>

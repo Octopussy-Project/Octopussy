@@ -3,7 +3,7 @@
                    icon="operating_systems/os_linux_generic"
                    name="Linux_PAM"
                    nb_messages="009"
-                   version="200810210003"
+                   version="200810310001"
                    website="http://www.kernel.org/pub/linux/libs/pam/">
   <message loglevel="Warning"
            msg_id="Linux_PAM:user_access_denied"
@@ -65,4 +65,11 @@
            rank="010"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Information"
+           msg_id="Linux_PAM:session_closed_for_user"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;pam_unix(su:session): session closed for user .+&quot;):msg@&gt;
+"
+           rank="011"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>
