@@ -5,7 +5,7 @@ my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
 my $role = $Session->{AAT_ROLE};
 my $lnk = "${url}?devicegroups_table_sort";
 %>
-<AAT:Box align="C" title="_DEVICEGROUPS" icon="buttons/bt_device">
+<AAT:Box align="C" title="_DEVICEGROUPS" icon="buttons/bt_devicegroup">
 <AAT:BoxRow>
   <AAT:BoxCol>
   <AAT:Label value="_GROUP_NAME" link="$lnk=dg_id" /></AAT:BoxCol>
