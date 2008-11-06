@@ -204,6 +204,7 @@ sub Add_Message($$)
 	return ("_MSG_FIELD_DONT_EXIST")
 		if (! Octopussy::Table::Valid_Pattern($mconf->{table}, $mconf->{pattern}));
 	$mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
+	$mconf->{pattern} =~ s/\s+$//g;	
 	push(@{$conf->{message}}, $mconf);	
 	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
 	Parse_Restart($service);
@@ -258,6 +259,7 @@ sub Modify_Message($$$)
 	$conf->{version} = Octopussy::Timestamp_Version($conf);
 	my @messages = ();
 	$conf_modified->{pattern} = Encode::decode_utf8($conf_modified->{pattern});
+	$conf_modified->{pattern} =~ s/\s+$//g;
 	foreach my $m (AAT::ARRAY($conf->{message}))
 	{
 		if ($m->{msg_id} ne $msgid)

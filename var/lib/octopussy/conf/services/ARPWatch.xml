@@ -1,30 +1,30 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="ARPWatch Service"
                    name="ARPWatch"
-                   version="200811060005"
+                   nb_messages="004"
+                   version="200811060009"
                    website="">
   <message loglevel="Notice"
            msg_id="ARPWatch:new_station"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;new station&quot;):msg@&gt; &lt;@IP_ADDR:ip_addr@&gt; &lt;@MAC_ADDR:mac_addr@&gt; &lt;@NET_INTERFACE:interface@&gt;  "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;new station&quot;):msg@&gt; &lt;@IP_ADDR:ip_addr@&gt; &lt;@MAC_ADDR:mac_addr@&gt; &lt;@NET_INTERFACE:interface@&gt;"
            rank="001"
            table="ARPWatch"
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="ARPWatch:running_as"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;Running as uid=\d+ gid=\d+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;Running as uid=\d+ gid=\d+&quot;):msg@&gt;"
            rank="002"
            table="ARPWatch"
            taxonomy="Application.Start" />
   <message loglevel="Information"
            msg_id="ARPWatch:listening_on"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;listening on&quot;):msg@&gt; &lt;@NET_INTERFACE:interface@&gt;  "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;listening on&quot;):msg@&gt; &lt;@NET_INTERFACE:interface@&gt;"
            rank="003"
            table="ARPWatch"
            taxonomy="Application.Start" />
   <message loglevel="Notice"
            msg_id="ARPWatch:exiting"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;exiting&quot;):msg@&gt;
-"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;exiting&quot;):msg@&gt;"
            rank="004"
            table="ARPWatch"
            taxonomy="Application.Stop" />

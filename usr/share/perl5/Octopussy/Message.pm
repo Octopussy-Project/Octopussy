@@ -200,6 +200,7 @@ sub Short_Pattern_To_Regexp($)
 	my %re_types = Octopussy::Type::Regexps();
   my $regexp = Escape_Characters($msg->{pattern});
   $regexp =~ s/<\@([^\@]+?)\@>/\($re_types{$1}\)/gi;
+	$regexp =~ s/\s+$//g;
 
   return ($regexp);
 }
@@ -317,6 +318,7 @@ sub Pattern_To_Regexp_Fields($$$$)
 					$field_regexp, \%re_types);
     }
 	}
+	$regexp =~ s/\s+$//g;
 
   return ($regexp, \@fields_position);
 }
@@ -350,6 +352,7 @@ sub Pattern_To_Regexp_Field_Values($$)
         { $regexp =~ s/<\@([^\@]+?):\S+?\@>/$re_types{$1}/i; }
     }
   }
+	$regexp =~ s/\s+$//g;
 
   return ($regexp);
 }
