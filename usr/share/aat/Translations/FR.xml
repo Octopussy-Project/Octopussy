@@ -128,6 +128,7 @@
 	<msg mid="_EXPORT_MAIL" value="Export Mail" />
   <msg mid="_EXPORT_SCP" value="Export SCP" />
 	<msg mid="_FIELD" value="Champ" />
+	<msg mid="_FIELDS_OF_TABLE" value="Champs de la Table" />
 	<msg mid="_FILE" value="Fichier" />
 	<msg mid="_FILTER" value="Filtre" />
   <msg mid="_FIRSTNAME" value="Prenom" />

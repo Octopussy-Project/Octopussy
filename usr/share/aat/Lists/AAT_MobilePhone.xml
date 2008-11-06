@@ -1,5 +1,9 @@
 <list name="AAT_MobilePhone">
 
+	<item label="Airness XS99" value="mobile_airness_xs99"
+        regexp="AIRNESS XS99"
+        constructor="Airness" model="XS99" logo="companies/logo_airness" />
+
 	<item label="Alcatel BE3" value="mobile_alcatel_be3"
         regexp="Alcatel-BE3"
         constructor="Alcatel" model="BE3" logo="companies/logo_alcatel" />
@@ -442,6 +446,9 @@
 	<item label="Motorola C350" value="mobile_motorola_c350"
         regexp="MOT-c350"
         constructor="Motorola" model="C350" logo="companies/logo_motorola" />
+	<item label="Motorola E1000" value="mobile_motorola_e1000"
+        regexp="MOT-E1000"
+        constructor="Motorola" model="E1000" logo="companies/logo_motorola" />
 	<item label="Motorola E398" value="mobile_motorola_e398"
         regexp="MOT-E398"
         constructor="Motorola" model="E398" logo="companies/logo_motorola" />
@@ -1154,6 +1161,9 @@
 	<item label="Samsung SGH A800" value="mobile_samsung_sgha800"
         regexp="SAMSUNG-SGH-A800"
 				constructor="Samsung" model="SGH A800" logo="companies/logo_samsung" />
+	<item label="Samsung SGH B300" value="mobile_samsung_sghb300"
+        regexp="SEC-SGHB300"
+        constructor="Samsung" model="SGH B300" logo="companies/logo_samsung" />
 	<item label="Samsung SGH C100" value="mobile_samsung_sghc100"
         regexp="SEC-SGHC100"
         constructor="Samsung" model="SGH C100" logo="companies/logo_samsung" />
@@ -1406,6 +1416,9 @@
 	<item label="Samsung SGH U900" value="mobile_samsung_sghu900"
         regexp="SAMSUNG-SGH-U900"
         constructor="Samsung" model="SGH U900" logo="companies/logo_samsung" />
+	<item label="Samsung SGH V200" value="mobile_samsung_sghv200"
+        regexp="SEC-SGHV200"
+        constructor="Samsung" model="SGH V200" logo="companies/logo_samsung" />
 	<item label="Samsung SGH X100" value="mobile_samsung_sghx100"
         regexp="SAMSUNG-SGH-X100"
         constructor="Samsung" model="SGH X100" logo="companies/logo_samsung" />
@@ -1596,6 +1609,9 @@
 	<item label="Siemens C110" value="mobile_siemens_c110"
         regexp="SIE-C110"
         constructor="Siemens" model="C110" logo="companies/logo_siemens" />
+	<item label="Siemens C65" value="mobile_siemens_c65"
+        regexp="SIE-C65"
+        constructor="Siemens" model="C65" logo="companies/logo_siemens" />
 	<item label="Siemens C6V" value="mobile_siemens_c6v"
         regexp="SIE-C6V"
         constructor="Siemens" model="C6V" logo="companies/logo_siemens" />

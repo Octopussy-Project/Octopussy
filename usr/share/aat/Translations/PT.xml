@@ -128,6 +128,7 @@
 	<msg mid="_EXPORT_MAIL" value="Exportar via E-Mail" />
 	<msg mid="_EXPORT_SCP" value="Exportar via SCP" />
 	<msg mid="_FIELD" value="Campo" />
+	<msg mid="_FIELDS_OF_TABLE" value="_FIELDS_OF_TABLE" />
 	<msg mid="_FILE" value="Arquivo" />
 	<msg mid="_FILTER" value="Filtro" />
 	<msg mid="_FIRSTNAME" value="Primeiro Nome" />

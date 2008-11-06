@@ -22,8 +22,8 @@
 	<msg mid="_WEEK" value="Semana" />
 	<msg mid="_MONTH" value="Mes" />
 	<msg mid="_YEAR" value="Ano" />
-	<msg mid="_EVERY_DAY" value ="Todos los dias" />
-	<msg mid="_EVERY_MONTH" value ="Todos los meses" />
+	<msg mid="_EVERY_DAY" value="Todos los dias" />
+	<msg mid="_EVERY_MONTH" value="Todos los meses" />
 	<msg mid="_TODAY" value="Hoy" />
   <msg mid="_YESTERDAY" value="Ayer" />
 	<msg mid="_CURRENT_HOUR" value="_CURRENT_HOUR" />
@@ -128,6 +128,7 @@
 	<msg mid="_EXPORT_MAIL" value="_EXPORT_MAIL" />
   <msg mid="_EXPORT_SCP" value="_EXPORT_SCP" />
 	<msg mid="_FIELD" value="Campo" />
+	<msg mid="_FIELDS_OF_TABLE" value="_FIELDS_OF_TABLE" />
 	<msg mid="_FILE" value="Fichero" />
 	<msg mid="_FILTER" value="Filtrar" />
 	<msg mid="_FIRSTNAME" value="Nombre" />

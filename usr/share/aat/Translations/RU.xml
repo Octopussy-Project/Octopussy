@@ -128,6 +128,7 @@
 	<msg mid="_EXPORT_MAIL" value="Экспорт по почте" />
 	<msg mid="_EXPORT_SCP" value="Экспорт по SCP" />
 	<msg mid="_FIELD" value="Поле" />
+	<msg mid="_FIELDS_OF_TABLE" value="_FIELDS_OF_TABLE" />
 	<msg mid="_FILE" value="Файл" />
 	<msg mid="_FILTER" value="Фильтр" />
 	<msg mid="_FIRSTNAME" value="Имя" />

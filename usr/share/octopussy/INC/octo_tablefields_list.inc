@@ -8,8 +8,9 @@ my $url_sort = $url . "&table_fields_table_sort=";
 my $sort = (AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "title");
 my $role = $Session->{AAT_ROLE};
 my $action_str = (($role !~ /ro/i) ? "Action" : "");
+my $title = AAT::Translation("_FIELDS_OF_TABLE") . " $tablename";
 %>
-<AAT:Box align="C" title="Fields of table $tablename" icon="buttons/bt_table">
+<AAT:Box align="C" title="$title" icon="buttons/bt_table">
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="_FIELD" link="${url_sort}title" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_TYPE" link="${url_sort}type"/></AAT:BoxCol>
