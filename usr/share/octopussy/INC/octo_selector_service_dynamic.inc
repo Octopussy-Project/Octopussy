@@ -13,7 +13,8 @@ foreach my $s (AAT::ARRAY($arg{selected}))
 my @services = (AAT::NOT_NULL($arg{restricted_services}) 
 	? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
 %>
-<select<%= $select_options %> name="service">
+<select<%= $select_options %> name="service" 
+	onchange="refresh_selector_taxonomy();">
 <% 
 $Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "-ANY-",
   selected => ($selected{"-ANY-"} ? "selected" : ""), label => $str_any);
@@ -49,6 +50,7 @@ if (AAT::NOT_NULL($arg{device}))
 else
   { @d_list = Octopussy::Device::List(); }
 %>
+<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 <script type="text/javascript">
 var selector_device = document.forms[<%= $form_number %>].device;
 var selector_service = document.forms[<%= $form_number %>].service;
@@ -131,18 +133,18 @@ service[<%=$i%>][<%=$i2++%>] = new Option("<%= $s %>","<%= $s %>"); <%
 
 function update_service(x)
 {
-	var selected = 0;
-	for (i = 0; i < selector_device.options.length; i++)
-	{
-		if (selector_device.options[i].selected == 1)
-			selected++;
-	}
-	if (selected > 1)
-		x = 0; // full service list if more than one device selected
-	for (m = selector_service.options.length-1; m > 0; m--)
-		selector_service.options[m] = null;
-	for (i = 0; i < service[x].length; i++)
-		selector_service.options[i] = new Option(service[x][i].text, service[x][i].value);
+		var selected = 0;
+		for (var i = 0; i < selector_device.options.length; i++)
+		{
+			if (selector_device.options[i].selected == 1)
+				selected++;
+		}
+		if (selected > 1)
+			x = 0; // full service list if more than one device selected
+		for (var m = selector_service.options.length-1; m > 0; m--)
+			selector_service.options[m] = null;
+		for (var i = 0; i < service[x].length; i++)
+			selector_service.options[i] = new Option(service[x][i].text, service[x][i].value);
 }
 
 update_service(selector_device.options.selectedIndex);
@@ -165,4 +167,51 @@ for (i = 0; i < service[selector_device.options.selectedIndex].length; i++)
 			selector_service.options[i].selected = true;
 	}
 }
+
+var http_request_service = false;
+
+function refresh_selector_service()
+{
+  var selector_device = document.forms[<%= $form_number %>].device;
+  var devices_str = '';
+
+  for (i = 0; i < selector_device.options.length; i++)
+  {
+    if (selector_device.options[i].selected == 1)
+      devices_str = devices_str + selector_device.options[i].value + ',';
+  }
+  http_request_service = HttpRequest();
+  if (!http_request_service)
+    { return false; }
+  http_request_service.onreadystatechange = print_selector_service;
+  http_request_service.open('GET', "ajax_list_service.asp?"
+    + "devices=" + devices_str, true);
+  http_request_service.send(null); 
+	
+  return true;
+}
+
+function print_selector_service()
+{
+  if (http_request_service.readyState == 4)
+  {
+    if (http_request_service.status == 200)
+    {
+      var xml =  http_request_service.responseXML;
+      var root = xml.documentElement;
+      var items = root.getElementsByTagName('item');
+      var selector_service = document.forms[<%= $form_number %>].service;
+
+      for (i = selector_service.options.length-1; i > 0; i--)
+        selector_service.options[i] = null;
+      for (i = 0; i < items.length; i++) 
+      {
+        var item = items[i].firstChild.data;
+        selector_service.options[i+1] = new Option(item, item);
+      }
+    }
+  } 
+}
+
+refresh_selector_service();
 </script>

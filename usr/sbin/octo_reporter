@@ -99,7 +99,7 @@ EOF
     	{ print " Service list: " . join (", ", sort @{$servs}) . "\n"; }
   	elsif (!defined $taxonomy)
   	{
-    	my @taxo_list = Octopussy::Taxonomy::List_And_Any();
+    	my @taxo_list = Octopussy::Taxonomy::List_And_Any($devs, $servs);
     	print " Taxonomy list: " . join (", ", sort @taxo_list) . "\n";
   	}
 	}	

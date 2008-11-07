@@ -333,25 +333,30 @@ sub Move_Message($$$)
 	Parse_Restart_Required($service);
 }
 
-=head2 Messages($service)
+=head2 Messages(@services)
 
-Get messages from service '$service'
+Get messages from Service list '@services'
 
 =cut
-sub Messages($)
+sub Messages(@)
 {
-	my $service = shift;
-
-	my $conf = AAT::XML::Read(Filename($service));
+	my @services = @_;
 	my @messages = ();
+  my @conf_messages = ();
 	my %field;
 	
-	foreach my $m (AAT::ARRAY($conf->{message}))
-		{ $field{$m->{rank}} = 1; }
-
+	foreach my $s (@services)	
+		{ @services = Octopussy::Service::List()	if ($s eq "-ANY-"); }
+	foreach my $s (@services)
+	{
+		my $conf = AAT::XML::Read(Filename($s));
+		push(@conf_messages, AAT::ARRAY($conf->{message}));
+		foreach my $m (AAT::ARRAY($conf->{message}))
+			{ $field{$m->{rank}} = 1; }
+	}
 	foreach my $f (sort keys %field)
 	{
-		foreach my $m (AAT::ARRAY($conf->{message}))
+		foreach my $m (@conf_messages)
 			{ push(@messages, $m)	if ($m->{rank} eq $f); }
 	}
 	

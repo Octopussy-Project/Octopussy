@@ -28,7 +28,7 @@ function tooltip(text, width, color)
 			tipobj.style.backgroundColor = color;
 		tipobj.innerHTML = text;
 		enabletip = true;
-		return false;
+		//return false;
 	}
 }
 

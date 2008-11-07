@@ -18,7 +18,7 @@ foreach my $e (Octopussy::Search_Template::List($login))
 <script type="text/javascript">
 var nb_tpl = document.forms[<%= $form_number %>].search_template.options.length;
 var tpl = new Array(nb_tpl);
-for (i = 0; i < nb_tpl; i++)
+for (var i = 0; i < nb_tpl; i++)
   tpl[i] = new Array();
 <%
 my $i = 1;

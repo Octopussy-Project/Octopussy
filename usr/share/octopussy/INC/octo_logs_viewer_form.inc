@@ -49,7 +49,7 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
 		<AAT:BoxCol cspan="3" align="R">
 		<AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol>
-		<AAT:Inc file="octo_selector_taxonomy" selected="$taxo" any="1" /></AAT:BoxCol>
+		<AAT:Inc file="octo_selector_taxonomy_dynamic" selected="$taxo" any="1" /></AAT:BoxCol>
 	</AAT:BoxRow>
   </AAT:Box>
   </AAT:BoxCol>

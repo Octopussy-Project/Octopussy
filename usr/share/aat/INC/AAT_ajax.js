@@ -1,6 +1,7 @@
 function HttpRequest()
 {
-	http_request = false;
+	var http_request = false;
+
 	if (window.XMLHttpRequest)
 	{ // Mozilla, Safari,...
 		http_request = new XMLHttpRequest();
