@@ -1,6 +1,8 @@
 <%
 my $devs = $Request->QueryString("devices");
+my $selected = $Request->QueryString("selected");
 my @devices = (AAT::NOT_NULL($devs) ? split(/,/, $devs) : undef);
+my @selecteds = (AAT::NOT_NULL($selected) ? split(/,/, $selected) : undef);
 my @device_list = ();
 foreach my $d (@devices)
 {
@@ -17,9 +19,12 @@ push(@list, ((AAT::NOT_NULL(@device_list))
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
 <%
-foreach my $i (@list)
+foreach my $item (@list)
 {
-%><item><%= $i %></item><%
+	my $match = 0;
+	foreach my $s (@selecteds)
+		{ $match = 1	if ($s =~ /^$item$/); }
+%><item label="<%= $item %>" selected="<%= $match %>" /><%
 }
 %>
 </root>

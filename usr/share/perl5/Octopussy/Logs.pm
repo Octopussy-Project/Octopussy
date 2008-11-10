@@ -471,7 +471,7 @@ sub Extract_Cmd_Line($)
 		$excl_str .= "--exclude \"$exc\" "  if (AAT::NOT_NULL($exc)); 
 	}
   my $cmd = "/usr/sbin/octo_extractor $dev_str $serv_str" 
-		. " --taxonomy \"$conf->{taxonomy}\""
+		. " --loglevel \"$conf->{loglevel}\" --taxonomy \"$conf->{taxonomy}\""
     . " --begin $conf->{begin} --end $conf->{end} $incl_str $excl_str"
     . " --pid_param \"$conf->{pid_param}\" --output \"$conf->{output}\"";
 	

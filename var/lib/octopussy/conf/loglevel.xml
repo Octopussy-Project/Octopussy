@@ -1,0 +1,11 @@
+<octopussy_loglevel>
+
+	<loglevel label="Emergency" 	value="7" color="red" />
+	<loglevel label="Alert" 			value="6" color="darkred" />
+	<loglevel label="Critical" 		value="5" color="maroon" />
+	<loglevel label="Warning" 		value="4" color="orange" />
+	<loglevel label="Notice" 			value="3" color="green" />
+	<loglevel label="Information"	value="2" color="blue" />
+	<loglevel label="Debug" 			value="1" color="gray" />
+
+</octopussy_loglevel>

@@ -69,6 +69,8 @@ else
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
+my %level_color = Octopussy::Loglevel::Colors();
+my %taxo_color = Octopussy::Taxonomy::Colors();
 foreach my $m (@messages)
 {
 	my $percent = defined $stat{$m->{msg_id}} ? "$stat{$m->{msg_id}}%" : "0%";
@@ -82,8 +84,12 @@ foreach my $m (@messages)
 	<AAT:BoxCol align="C"><AAT:Label value="$rank" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Label value="$percent" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$id" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="$loglevel" style="B" /></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Label value="$taxo" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol>
+	<AAT:Label value="$loglevel" color="$level_color{$loglevel}" style="B" />
+	</AAT:BoxCol>
+  <AAT:BoxCol>
+	<AAT:Label value="$taxo" color="$taxo_color{$taxo}" style="B" />
+	</AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$table" style="B" /></AAT:BoxCol>
 <%
 	if ($role !~ /ro/i)

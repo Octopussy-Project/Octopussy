@@ -14,7 +14,7 @@ my @services = (AAT::NOT_NULL($arg{restricted_services})
 	? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
 %>
 <select<%= $select_options %> name="service" 
-	onchange="refresh_selector_taxonomy();">
+	onchange="refresh_selector_loglevel();refresh_selector_taxonomy();">
 <% 
 $Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "-ANY-",
   selected => ($selected{"-ANY-"} ? "selected" : ""), label => $str_any);
@@ -174,6 +174,7 @@ function refresh_selector_service()
 {
   var selector_device = document.forms[<%= $form_number %>].device;
   var devices_str = '';
+	var selected_str = '<% print join(",", @{$arg{selected}}); %>';
 
   for (i = 0; i < selector_device.options.length; i++)
   {
@@ -185,7 +186,7 @@ function refresh_selector_service()
     { return false; }
   http_request_service.onreadystatechange = print_selector_service;
   http_request_service.open('GET', "ajax_list_service.asp?"
-    + "devices=" + devices_str, true);
+    + "devices=" + devices_str + "&selected=" + selected_str, true);
   http_request_service.send(null); 
 	
   return true;
@@ -206,8 +207,11 @@ function print_selector_service()
         selector_service.options[i] = null;
       for (i = 0; i < items.length; i++) 
       {
-        var item = items[i].firstChild.data;
-        selector_service.options[i+1] = new Option(item, item);
+        var label = items[i].getAttribute('label');
+				var selected = items[i].getAttribute('selected');
+        selector_service.options[i+1] = new Option(label, label);
+				if (selected == 1)
+          selector_service.options[i+1].selected = 1;
       }
     }
   } 

@@ -22,6 +22,7 @@ use Octopussy::DeviceGroup;
 use Octopussy::Export;
 use Octopussy::Graph;
 use Octopussy::Location;
+use Octopussy::Loglevel;
 use Octopussy::Logs;
 use Octopussy::Map;
 use Octopussy::Message;

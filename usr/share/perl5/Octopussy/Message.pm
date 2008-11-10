@@ -413,17 +413,20 @@ sub Regexped_Fields($)
 	return (\%field_regexp);
 }
 
-=head2 Parse_List($services, $taxonomy, $table, $fields, $fields_regexp, $fields_list)
+=head2 Parse_List($services, $loglevel, $taxonomy, $table, $fields, $fields_regexp, $fields_list)
 
 =cut
-sub Parse_List($$$$$$)
+sub Parse_List($$$$$$$)
 {
-	my ($services, $taxonomy, $table, $fields, $fields_regexp, $fields_list) = @_;
+	my ($services, $loglevel, $taxonomy, $table, 
+		$fields, $fields_regexp, $fields_list) = @_;
 
-	my @servs = ((defined $services) && (@{$services}[0] !~ /-ANY-/i) ? @{$services}
-		: Octopussy::Service::List());
-	my $taxo = (defined $taxonomy ?
-    (($taxonomy ne "") && ($taxonomy !~ /-ANY-/i) ? $taxonomy : ".+") : ".+");
+	my @servs = ((defined $services) && (@{$services}[0] !~ /-ANY-/i) 
+		? @{$services} : Octopussy::Service::List());
+	my $qr_level = ((AAT::NOT_NULL($loglevel) && ($loglevel !~ /^-ANY-$/i)) 
+		? qr/^$loglevel$/ : qr/.+/);
+	my $qr_taxo = ((AAT::NOT_NULL($taxonomy) && ($taxonomy !~ /^-ANY-$/i)) 
+		? qr/^$taxonomy(\..+)?/ : qr/.+/);
   my @msg_to_parse = ();
  
 	foreach my $s (@servs)
@@ -432,7 +435,7 @@ sub Parse_List($$$$$$)
    	foreach my $m (@messages)
     {
 			if (((!defined $table) || ($m->{table} eq $table)) 
-				&& ($m->{taxonomy} =~ /^$taxo(\..+)?/))
+				&& ($m->{loglevel} =~ $qr_level) && ($m->{taxonomy} =~ $qr_taxo))
       {
         my ($regexp, $fields_position) =
           Pattern_To_Regexp_Fields($m, $fields_regexp, $fields, $fields_list);

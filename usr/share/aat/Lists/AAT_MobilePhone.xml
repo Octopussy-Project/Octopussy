@@ -303,6 +303,9 @@
 	<item label="LG C3310" value="mobile_lg_c3310"
         regexp="LG-C3310"
         constructor="LG" model="C3310" logo="companies/logo_lg" />
+	<item label="LG F2100" value="mobile_lg_f2100"
+        regexp="LG-F2100"
+        constructor="LG" model="F2100" logo="companies/logo_lg" />
 	<item label="LG F2300" value="mobile_lg_f2300"
         regexp="LG-F2300"
         constructor="LG" model="F2300" logo="companies/logo_lg" />
@@ -318,6 +321,9 @@
 	<item label="LG KC550" value="mobile_lg_kc550"
         regexp="LG-KC550"
         constructor="LG" model="KC550" logo="companies/logo_lg" />
+	<item label="LG KC910" value="mobile_lg_kc910"
+        regexp="LG-KC910"
+        constructor="LG" model="KC910" logo="companies/logo_lg" />
 	<item label="LG KE520" value="mobile_lg_ke520"
         regexp="LG-KE520"
         constructor="LG" model="KE520" logo="companies/logo_lg" />

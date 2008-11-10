@@ -533,7 +533,7 @@ while (!$exit_request)
 	if (!$exit_request)
 		{ sleep(2); }
 }
-AAT::Syslog($PROG_NAME, "PARSER_STOP");
+AAT::Syslog($PROG_NAME, "PARSER_STOP", $device);
 
 =head1 AUTHOR
 

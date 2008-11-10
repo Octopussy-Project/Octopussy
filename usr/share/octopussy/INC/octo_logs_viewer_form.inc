@@ -1,5 +1,6 @@
 <%
 my %arg = @_;
+my $loglevel = $Session->{loglevel};
 my $taxo = $Session->{taxonomy};
 my $dt = $Session->{dt};
 my ($d1, $m1, $y1, $hour1, $min1) =
@@ -46,7 +47,11 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
 		</AAT:BoxCol>
   </AAT:BoxRow>
 	<AAT:BoxRow>
-		<AAT:BoxCol cspan="3" align="R">
+		<AAT:BoxCol align="R">
+		<AAT:Label value="_LOG_LEVEL" style="B" /></AAT:BoxCol>
+		<AAT:BoxCol>
+    <AAT:Inc file="octo_selector_loglevel" selected="$loglevel" any="1" /></AAT:BoxCol>
+		<AAT:BoxCol align="R">
 		<AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol>
 		<AAT:Inc file="octo_selector_taxonomy_dynamic" selected="$taxo" any="1" /></AAT:BoxCol>
