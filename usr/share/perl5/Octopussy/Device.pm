@@ -361,8 +361,7 @@ Gets Service list from Device list '@devices'
 sub Services(@)
 {
 	my @devices = @_;
-	my @services = ();
-	my %tmp = ();
+	my %service = ();
 	
 	foreach my $d (@devices)
 	{
@@ -375,12 +374,12 @@ sub Services(@)
 		{
   		foreach my $s (AAT::ARRAY($conf->{service}))
 			{
-				push(@services, $s->{sid}) if ($s->{rank} eq $f);
+				$service{$s->{sid}} = 1	if ($s->{rank} eq $f);
 			}
 		}
 	}
 		
-  return (@services);	
+  return (sort keys %service);	
 }
 
 =head2 Services_Configurations($device_name, $sort)
