@@ -7,6 +7,7 @@ my $report = $f->{report} || $Request->QueryString("report");
 my $category = $f->{category} || $Request->QueryString("category");
 my $device = $Request->QueryString("device") || $f->{device};
 my $service = $Request->QueryString("service") || $f->{service};
+my $loglevel = $Request->QueryString("loglevel") || $f->{loglevel};
 my $taxonomy = $Request->QueryString("taxonomy") || $f->{taxonomy};
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("reports_table_sort") || "name";
@@ -73,9 +74,9 @@ else
 	$Session->{progress_current} = 0;
   $Session->{progress_total} = 0;
 
-	my $cmd = Octopussy::Report::CmdLine($device, $service, $taxonomy, $r, 
-		$start, $finish, $pid_param, \%mail_conf, \%ftp_conf, \%scp_conf, 
-		$Session->{AAT_LANGUAGE});
+	my $cmd = Octopussy::Report::CmdLine($device, $service, $loglevel, 
+		$taxonomy, $r, $start, $finish, $pid_param, 
+		\%mail_conf, \%ftp_conf, \%scp_conf, $Session->{AAT_LANGUAGE});
 	sleep(2);
  	$Response->Redirect("./report_in_progress.asp?cmd=" 
 		. $Server->URLEncode($cmd));

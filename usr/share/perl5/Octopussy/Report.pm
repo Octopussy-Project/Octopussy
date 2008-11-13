@@ -324,15 +324,15 @@ sub CmdLine_Export_Options($$$)
 	return ($options);
 }
 
-=head2 CmdLine($device, $service, $taxonomy, $report, $start, $finish, $pid_param,
-	$conf_mail, $conf_ftp, $conf_scp, $lang)
+=head2 CmdLine($device, $service, $loglevel, $taxonomy, $report, 
+	$start, $finish, $pid_param, $conf_mail, $conf_ftp, $conf_scp, $lang)
 
 Generates Command Line and launch octo_reporter
 
 =cut
-sub CmdLine($$$$$$$$$$$)
+sub CmdLine($$$$$$$$$$$$)
 {
-	my ($device, $service, $taxonomy, $report, $start, $finish, 
+	my ($device, $service, $loglevel, $taxonomy, $report, $start, $finish, 
 		$pid_param, $conf_mail, $conf_ftp, $conf_scp, $lang) = @_;
 
 	my $base = Octopussy::Directory("programs");
@@ -356,7 +356,7 @@ sub CmdLine($$$$$$$$$$$)
 
 	my $cmd = $base . REPORTER_BIN . " --report \"$report->{name}\""
 		. " --device \"$device_list\" --service \"$service_list\"" 
-		. " --taxonomy $taxonomy --pid_param \"$pid_param\""
+		. " --loglevel $loglevel --taxonomy $taxonomy --pid_param \"$pid_param\""
 		. " --begin $start --end $finish --lang \"$lang\" " 
 		. CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
 		. " --output \"$output\"";

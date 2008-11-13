@@ -27,6 +27,7 @@ sub List(@)
 	if ((AAT::NOT_NULL($dev_list)) || (AAT::NOT_NULL($serv_list)))
 	{
 		my %taxo = ();
+		my %color = Colors();
 		my @services = ((AAT::NOT_NULL($serv_list)) ? AAT::ARRAY($serv_list)
 			: Octopussy::Device::Services(AAT::ARRAY($dev_list)));
 		foreach my $s (@services)
@@ -37,12 +38,19 @@ sub List(@)
     foreach my $m (Octopussy::Service::Messages(@services))
     	{ $taxo{$m->{taxonomy}} = 1; }
 		foreach my $k (keys %taxo)
-			{ push(@list, $k); }
+			{ push(@list, { value => $k, color => $color{$k} }); }
 	}
 	else
 	{
-		@list = AAT::XML::File_Array_Values(Octopussy::File(FILE_TAXONOMY),
-    	FILE_TAXONOMY, "taxo_id");
+		my %field;
+    my $conf = AAT::XML::Read(Octopussy::File(FILE_TAXONOMY));
+    foreach my $t (AAT::ARRAY($conf->{taxonomy}))
+      { $field{$t->{value}} = 1; }
+    foreach my $f (sort keys %field)
+    {
+      foreach my $t (AAT::ARRAY($conf->{taxonomy}))
+        { push(@list, $t) if ($t->{value} eq $f); }
+    }
 	}
 
 	return (undef) if ($#list == -1);
@@ -73,7 +81,7 @@ sub Colors()
   my $conf = AAT::XML::Read(Octopussy::File(FILE_TAXONOMY));
   my %color = ();
   foreach my $t (AAT::ARRAY($conf->{taxonomy}))
-  	{ $color{"$t->{taxo_id}"} = $t->{color}; }
+  	{ $color{"$t->{value}"} = $t->{color}; }
 
   return (%color);
 }

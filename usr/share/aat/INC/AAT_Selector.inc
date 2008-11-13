@@ -14,7 +14,7 @@ foreach my $e (AAT::ARRAY($arg{list}))
 	my $value = (ref $e eq "HASH" ? $e->{value} : $e);
 	if (!defined $exclude{$value})
 	{
-		my $label = (ref $e eq "HASH" ? $e->{label} : $e);
+		my $label = (ref $e eq "HASH" ? ($e->{label} || $e->{value}): $e);
 		my $color = (ref $e eq "HASH" ? $e->{color} : "black");
 		$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => $value,
     	style => "color:$color", label => AAT::Translation($label),

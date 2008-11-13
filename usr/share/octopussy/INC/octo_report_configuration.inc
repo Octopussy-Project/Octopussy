@@ -14,6 +14,7 @@ my $desc = $r->{description};
 my $query = $r->{query};
 $query =~ s/(SELECT |FROM |WHERE |GROUP BY |ORDER BY |LIMIT )/<b>$1<\/b>/g;
 $query =~ s/FROM/\<br\>FROM/g;
+my $loglevel = $r->{loglevel};
 my $taxo = $r->{taxonomy};
 my $url_dt = "./reports.asp?report=$report&query=$query";
 %>
@@ -60,16 +61,27 @@ my $url_dt = "./reports.asp?report=$report&query=$query";
     </AAT:BoxCol>
   </AAT:BoxRow>
   <AAT:BoxRow>
-    <AAT:BoxCol cspan="3" align="R">
+		<AAT:BoxCol align="R">
+		<AAT:Label value="_LOG_LEVEL" style="B" /></AAT:BoxCol>
+		<AAT:BoxCol><%
+		if (($loglevel ne "") && ($loglevel ne "-ANY-"))
+    {
+    %><AAT:Form_Hidden name="loglevel" value="$loglevel" />
+    <AAT:Label value="$loglevel" /><%
+    }
+    else
+      { %><AAT:Inc file="octo_selector_loglevel_dynamic" any="1" /><% } %>
+		</AAT:BoxCol>
+    <AAT:BoxCol align="R">
     <AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
     <AAT:BoxCol><%
-    if (($r->{taxonomy} ne "") && ($r->{taxonomy} ne "-ANY-"))
+    if (($taxo ne "") && ($taxo ne "-ANY-"))
     {
     %><AAT:Form_Hidden name="taxonomy" value="$taxo" />
     <AAT:Label value="$taxo" /><%
     }
     else
-      { %><AAT:Inc file="octo_selector_taxonomy" any="1" /><% } %>
+      { %><AAT:Inc file="octo_selector_taxonomy_dynamic" any="1" /><% } %>
     </AAT:BoxCol>
   </AAT:BoxRow>
   </AAT:Box>

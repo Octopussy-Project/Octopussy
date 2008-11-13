@@ -26,6 +26,8 @@ sub List(@)
 	if ((AAT::NOT_NULL($dev_list)) || (AAT::NOT_NULL($serv_list)))
 	{
 		my %level = ();
+		my %color = Colors();
+		my %levels = Levels();
 		my @services = ((AAT::NOT_NULL($serv_list)) ? AAT::ARRAY($serv_list)
 			: Octopussy::Device::Services(AAT::ARRAY($dev_list)));
 		foreach my $s (@services)
@@ -36,18 +38,21 @@ sub List(@)
     foreach my $m (Octopussy::Service::Messages(@services))
     	{ $level{$m->{loglevel}} = 1; }
 		foreach my $k (keys %level)
-			{ push(@list, $k); }
+		{ 
+			push(@list, 
+			{ value => $k, color => $color{$k}, level => $levels{$k} }); 
+		}
 	}
 	else
 	{
 		my %field;
 		my $conf = AAT::XML::Read(Octopussy::File(FILE_LOGLEVEL));
 		foreach my $l (AAT::ARRAY($conf->{loglevel}))
-      { $field{$l->{value}} = 1; }
+      { $field{$l->{level}} = 1; }
 		foreach my $f (reverse sort keys %field)
   	{
     	foreach my $l (AAT::ARRAY($conf->{loglevel}))
-      	{ push(@list, $l) if ($l->{value} eq $f); }
+      	{ push(@list, $l) if ($l->{level} eq $f); }
   	}
 	}
 
@@ -71,15 +76,32 @@ sub List_And_Any(@)
   return (@list);
 }
 
+=head2 Colors()
+
+=cut
 sub Colors
 {
 	my %color = ();
 
 	my $conf = AAT::XML::Read(Octopussy::File(FILE_LOGLEVEL));
  	foreach my $l (AAT::ARRAY($conf->{loglevel}))
-  	{ $color{$l->{label}} = $l->{color}; }
+  	{ $color{$l->{value}} = $l->{color}; }
 
 	return (%color);
+}
+
+=head2 Levels()
+
+=cut
+sub Levels
+{
+	my %level = ();
+
+	my $conf = AAT::XML::Read(Octopussy::File(FILE_LOGLEVEL));
+  foreach my $l (AAT::ARRAY($conf->{loglevel}))
+    { $level{$l->{value}} = $l->{level}; }
+
+  return (%level);
 }
 
 1;

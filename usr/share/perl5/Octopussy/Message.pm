@@ -423,8 +423,9 @@ sub Parse_List($$$$$$$)
 
 	my @servs = ((defined $services) && (@{$services}[0] !~ /-ANY-/i) 
 		? @{$services} : Octopussy::Service::List());
-	my $qr_level = ((AAT::NOT_NULL($loglevel) && ($loglevel !~ /^-ANY-$/i)) 
-		? qr/^$loglevel$/ : qr/.+/);
+	my %log_level = Octopussy::Loglevel::Levels();
+	my $level = ((AAT::NOT_NULL($loglevel) && ($loglevel !~ /^-ANY-$/i)) 
+		? $log_level{$loglevel} : 0);
 	my $qr_taxo = ((AAT::NOT_NULL($taxonomy) && ($taxonomy !~ /^-ANY-$/i)) 
 		? qr/^$taxonomy(\..+)?/ : qr/.+/);
   my @msg_to_parse = ();
@@ -435,7 +436,7 @@ sub Parse_List($$$$$$$)
    	foreach my $m (@messages)
     {
 			if (((!defined $table) || ($m->{table} eq $table)) 
-				&& ($m->{loglevel} =~ $qr_level) && ($m->{taxonomy} =~ $qr_taxo))
+				&& ($log_level{$m->{loglevel}} >= $level) && ($m->{taxonomy} =~ $qr_taxo))
       {
         my ($regexp, $fields_position) =
           Pattern_To_Regexp_Fields($m, $fields_regexp, $fields, $fields_list);

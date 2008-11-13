@@ -100,7 +100,8 @@ else
 					datasource3 => $f->{datasource3}, datasources_value => $dsv, 
 					timeline => $dhm, graph_type => $Session->{graph_type}, 
 					rrd_step => $Session->{rrd_step}, table => $Session->{table}, 
-					taxonomy => $Session->{taxonomy}, query => $query,
+					loglevel => $Session->{loglevel},  taxonomy => $Session->{taxonomy}, 
+					query => $query,
       		graph_title => $f->{graph_title}, graph_ylabel => $f->{graph_ylabel},
       		graph_width => $f->{graph_width}, graph_height => $f->{graph_height} }
 				);
@@ -122,7 +123,8 @@ else
 				{ name => $Session->{title}, description => $Session->{description},
 					category => ($Session->{new_category} || $Session->{category}), 
 					graph_type => $Session->{graph_type}, table => $Session->{table}, 
-					taxonomy => $Session->{taxonomy}, query => $Session->{query}, 
+					loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy}, 
+					query => $Session->{query}, 
 					columns => join(",", AAT::ARRAY($columns)), 
 					columns_name => join(",", @columns_name),
 					x => $x, y => $y });

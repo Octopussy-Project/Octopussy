@@ -30,12 +30,20 @@ push(@categories, "base")	if ($#categories < 0);
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_TABLE" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2"><AAT:Inc file="octo_selector_table" /></AAT:BoxCol>
+	<AAT:BoxCol cspan="2">
+	<AAT:Inc file="octo_selector_table" 
+		onchange="refresh_selector_loglevel();refresh_selector_taxonomy();" />
+	</AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol><AAT:Label value="_LOG_LEVEL" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol cspan="2">
+  <AAT:Inc file="octo_selector_loglevel_dynamic" any="1" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="2">
-	<AAT:Inc file="octo_selector_taxonomy" any="1" /></AAT:BoxCol>
+	<AAT:Inc file="octo_selector_taxonomy_dynamic" any="1" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

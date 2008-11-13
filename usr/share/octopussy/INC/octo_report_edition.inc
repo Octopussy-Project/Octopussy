@@ -39,13 +39,20 @@ my $r_query = $conf->{query};
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="_TABLE" style="B"/></AAT:BoxCol>
   <AAT:BoxCol>
-	<AAT:Inc file="octo_selector_table" name="table" selected="$r_table" />
+	<AAT:Inc file="octo_selector_table" name="table" selected="$r_table" 
+		onchange="refresh_selector_loglevel();refresh_selector_taxonomy();" />
 	</AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol><AAT:Label value="_LOG_LEVEL" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Inc file="octo_selector_loglevel_dynamic" name="loglevel" 
+    selected="$r_taxo" any="1" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="_TAXONOMY" style="B"/></AAT:BoxCol>
   <AAT:BoxCol>
-	<AAT:Inc file="octo_selector_taxonomy" name="taxonomy" 
+	<AAT:Inc file="octo_selector_taxonomy_dynamic" name="taxonomy" 
 		selected="$r_taxo" any="1" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

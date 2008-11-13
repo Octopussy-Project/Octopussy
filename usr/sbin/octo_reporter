@@ -41,7 +41,8 @@ my $file_pid = undef;
 
 my $help;
 my (@devices, @services) = ((), ());
-my ($report, $rc, $taxonomy, $begin, $end, $pid_param, $x, $y, $lang);
+my ($report, $rc, $loglevel, $taxonomy);
+my ($begin, $end, $pid_param, $x, $y, $lang);
 my ($mail_subject, $mail_recipients);
 my ($host_ftp, $dir_ftp, $user_ftp, $pwd_ftp);
 my ($host_scp, $dir_scp, $user_scp);
@@ -50,6 +51,30 @@ my $output = undef;
 my $cache = undef;
 
 =head1 FUNCTIONS
+
+=head2 String_List($type, $any, $fct, @args)
+
+Returns List of elements separated by ", " from one function and args
+
+=cut
+sub String_List($$$@)
+{
+  my ($type, $any, $fct, @args) = @_;
+  my @list = (defined $any ? ("-ANY-") : ());
+
+  my @data = &{$fct}(@args);
+  foreach my $d (@data)
+  {
+    if (defined $d->{label})
+      { push(@list, $d->{label}); }
+    if (defined $d->{value})
+      { push(@list, $d->{value}); }
+    else
+      { push(@list, $d); }
+  }
+
+  print " $type list: " . (join(", ", sort @list)) . "\n";
+}
 
 =head2 Help()
 
@@ -62,8 +87,8 @@ sub Help()
 
 $PROG_NAME (version $PROG_VERSION)
 
- Usage: $PROG_NAME --report <report>
-          --device <device> --service <service> --taxonomy <taxonomy>
+ Usage: $PROG_NAME --report <report> --device <device> --service <service> 
+          --loglevel <loglevel> --taxonomy <taxonomy>
           --begin YYYYMMDDHHMM --end YYYYMMDDHHMM
           [ --pid_param <string> ] --output <output_file>
  Mail options:
@@ -97,10 +122,15 @@ EOF
     	{ print " Device list: " . join(", ", @{$devs}) . "\n"; }
   	elsif ((! @services) && (defined $servs))
     	{ print " Service list: " . join (", ", sort @{$servs}) . "\n"; }
+		elsif (!defined $loglevel)
+  	{
+    	String_List("Loglevel", "Octopussy::Loglevel::List_And_Any", 
+				$devs, $servs);
+  	}		
   	elsif (!defined $taxonomy)
   	{
-    	my @taxo_list = Octopussy::Taxonomy::List_And_Any($devs, $servs);
-    	print " Taxonomy list: " . join (", ", sort @taxo_list) . "\n";
+			String_List("Taxonomy", "Octopussy::Taxonomy::List_And_Any", 
+				$devs, $servs);
   	}
 	}	
 	print "\n";
@@ -162,8 +192,8 @@ sub Get_Messages_To_Parse($$$$$)
   my ($services, $taxo, $table, $query, $fields_list) = @_;
   my @fields = Octopussy::Report::Table_Creation($table, $query);
   my $fields_regexp = Octopussy::Message::Regexped_Fields($query);
-  my @msg_to_parse = Octopussy::Message::Parse_List($services, $taxo,
-    $table, \@fields, $fields_regexp, $fields_list);
+  my @msg_to_parse = Octopussy::Message::Parse_List($services, $loglevel, 
+		$taxo, $table, \@fields, $fields_regexp, $fields_list);
 
   return (@msg_to_parse);
 }
@@ -279,7 +309,7 @@ my $status = GetOptions(
 	"h" => \$help, "help" => \$help,
 	"report=s" => \$report,
   "devices=s" => \@devices, "services=s" => \@services,
-	"taxonomy=s" => \$taxonomy,
+	"loglevel=s" => \$loglevel, "taxonomy=s" => \$taxonomy,
 	"begin=s" => \$begin, "end=s" => \$end, "lang=s" => \$lang, 
 	"pid_param=s" => \$pid_param, "output=s" => \$output,
 	"mail_subject=s" => \$mail_subject, "mail_recipients=s" => \$mail_recipients,

@@ -50,7 +50,7 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
 		<AAT:BoxCol align="R">
 		<AAT:Label value="_LOG_LEVEL" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol>
-    <AAT:Inc file="octo_selector_loglevel" selected="$loglevel" any="1" /></AAT:BoxCol>
+    <AAT:Inc file="octo_selector_loglevel_dynamic" selected="$loglevel" any="1" /></AAT:BoxCol>
 		<AAT:BoxCol align="R">
 		<AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol>

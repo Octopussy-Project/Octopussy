@@ -2,14 +2,14 @@
 <octopussy_service description="ARPWatch Service"
                    name="ARPWatch"
                    nb_messages="004"
-                   version="200811060009"
+                   version="200811120009"
                    website="">
   <message loglevel="Notice"
            msg_id="ARPWatch:new_station"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;new station&quot;):msg@&gt; &lt;@IP_ADDR:ip_addr@&gt; &lt;@MAC_ADDR:mac_addr@&gt; &lt;@NET_INTERFACE:interface@&gt;"
            rank="001"
            table="ARPWatch"
-           taxonomy="Application" />
+           taxonomy="Config.Changes" />
   <message loglevel="Information"
            msg_id="ARPWatch:running_as"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;Running as uid=\d+ gid=\d+&quot;):msg@&gt;"
@@ -28,4 +28,10 @@
            rank="004"
            table="ARPWatch"
            taxonomy="Application.Stop" />
+  <message loglevel="Notice"
+           msg_id="ARPWatch:changed_ethernet_address"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; arpwatch: &lt;@REGEXP(&quot;changed ethernet address&quot;):msg@&gt; &lt;@IP_ADDR:ip_addr@&gt; &lt;@MAC_ADDR:mac_addr@&gt; (&lt;@MAC_ADDR:NULL@&gt;) &lt;@NET_INTERFACE:interface@&gt;"
+           rank="005"
+           table="ARPWatch"
+           taxonomy="Config.Changes" />
 </octopussy_service>
