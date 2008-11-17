@@ -3,7 +3,7 @@
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel"
                    nb_messages="238"
-                   version="200809030002"
+                   version="200811170001"
                    website="http://www.kernel.org/">
   <message loglevel="Debug"
            msg_id="Linux_Kernel:linux_version"
@@ -67,7 +67,7 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:total_processors_activated"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Total of \d+ processors activated (.+ BogoMIPS).&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Total of \d+ processors activated \(.+ BogoMIPS\).&quot;):msg@&gt;"
            rank="011"
            table="Message"
            taxonomy="System" />
@@ -79,7 +79,7 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:lapic"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;LAPIC (.+)&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;LAPIC \(.+\)&quot;):msg@&gt;"
            rank="013"
            table="Message"
            taxonomy="System" />
@@ -115,7 +115,7 @@
            taxonomy="System.Boot" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:ioapic_not_connected"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IO-APIC (apicid-pin) .+ not connected.&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IO-APIC \(apicid-pin\) .+ not connected.&quot;):msg@&gt; "
            rank="019"
            table="Message"
            taxonomy="System.Boot" />
@@ -205,7 +205,7 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:protections"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;protections[]: .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;protections\[\]: .+&quot;):msg@&gt;"
            rank="034"
            table="Message"
            taxonomy="System.Boot" />
@@ -235,7 +235,7 @@
            taxonomy="System.Boot" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:39"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;__va_range(.+): idx=\d+ mapped at \S+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;__va_range\(.+\): idx=\d+ mapped at \S+&quot;):msg@&gt;"
            rank="039"
            table="Message"
            taxonomy="System" />
@@ -667,7 +667,7 @@
            taxonomy="System.Boot" />
   <message loglevel="Warning"
            msg_id="Linux_Kernel:logging_stopped"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Kernel logging (proc) stopped.&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Kernel logging \(proc\) stopped.&quot;):msg@&gt; "
            rank="111"
            table="Message"
            taxonomy="Config.Changes" />
@@ -727,7 +727,7 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:UNKNOWN"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:NULL@&gt; kernel: &lt;@REGEXP(&quot;[&lt;\S+&gt;]&quot;):NULL@&gt; &lt;@STRING:NULL@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:NULL@&gt; kernel: &lt;@REGEXP(&quot;\[&lt;\S+&gt;\]&quot;):NULL@&gt; &lt;@STRING:NULL@&gt;"
            rank="121"
            table="Message"
            taxonomy="System" />
@@ -751,7 +751,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:zone_pages"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;zone(\d+): \d+ pages.&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;zone\(\d+\): \d+ pages.&quot;):msg@&gt; "
            rank="125"
            table="Message"
            taxonomy="System.Boot" />
@@ -805,7 +805,7 @@
            taxonomy="System.Boot" />
   <message loglevel="Debug"
            msg_id="Linux_Kernel:cpu_sibling_map"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;cpu_sibling_map[\d+].+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;cpu_sibling_map\[\d+\].+&quot;):msg@&gt; "
            rank="134"
            table="Message"
            taxonomy="System.Boot" />
@@ -835,7 +835,7 @@
            taxonomy="System.Boot" />
   <message loglevel="Information"
            msg_id="Linux_Kernel:ioapic_info"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IOAPIC[\d+]: .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IOAPIC\[\d+\]: .+&quot;):msg@&gt;"
            rank="139"
            table="Message"
            taxonomy="System.Boot" />

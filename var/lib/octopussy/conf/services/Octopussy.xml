@@ -31,19 +31,19 @@
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Octopussy:report_device_service_taxonomy"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Report Generation: D=[.+] S=[.+] T=[\S+]&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Report Generation: D=\[.+\] S=\[.+\] T=\[\S+\]&quot;):msg@&gt;"
            rank="007"
            table="Message"
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Octopussy:report_generation_datetime"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Report Generation: B=[\d+] E=[\d+]&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Report Generation: B=\[\d+\] E=\[\d+\]&quot;):msg@&gt;"
            rank="008"
            table="Message"
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Octopussy:report_generation_type"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Report Generation: type=[.+] title=[.+]&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Report Generation: type=\[.+\] title=\[.+\]&quot;):msg@&gt;"
            rank="009"
            table="Message"
            taxonomy="Application" />
@@ -61,7 +61,7 @@
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Octopussy:files_to_parse"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;\d+ file(s) to parse with \d+ message(s).&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;\d+ file\(s\) to parse with \d+ message\(s\).&quot;):msg@&gt;"
            rank="011"
            table="Message"
            taxonomy="Application" />
@@ -295,7 +295,7 @@
            taxonomy="Application.Errors" />
   <message loglevel="Notice"
            msg_id="Octopussy:logs_search"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Logs Search on Device[.*] Service[.*] Period[.+] by \S+ takes \d+ seconds.&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Logs Search on Device\[.*\] Service\[.*\] Period\[.+\] by \S+ takes \d+ seconds.&quot;):msg@&gt;"
            rank="049"
            table="Message"
            taxonomy="Application" />

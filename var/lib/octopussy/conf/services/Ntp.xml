@@ -119,7 +119,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Ntp:sendto_invalid_argument"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;sendto(.+): Invalid argument&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;sendto\(.+\): Invalid argument&quot;):msg@&gt; "
            rank="020"
            table="Message"
            taxonomy="System.Errors" />

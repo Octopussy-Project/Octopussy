@@ -13,13 +13,13 @@
            taxonomy="System.Boot" />
   <message loglevel="Information"
            msg_id="Linux_Kernel_Network_Bonding:link_is_not_ready"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;ADDRCONF(NETDEV_UP): .+: link is not ready&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;ADDRCONF\(NETDEV_UP\): .+: link is not ready&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="Network" />
   <message loglevel="Information"
            msg_id="Linux_Kernel_Network_Bonding:link_becomes_ready"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;ADDRCONF(NETDEV_CHANGE): .+: link becomes ready&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;ADDRCONF\(NETDEV_CHANGE\): .+: link becomes ready&quot;):msg@&gt;"
            rank="003"
            table="Message"
            taxonomy="Network" />

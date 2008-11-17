@@ -2,7 +2,7 @@
                    description="Samba Service"
                    icon="software/logo_samba"
 									 website="http://samba.org"
-                   version="200610050001">
+                   version="200811170001">
   <message loglevel="Notice"
            msg_id="Samba:reconnecting_ldap_server"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnecting to LDAP server.+&quot;):msg@&gt; "
@@ -11,7 +11,7 @@
            taxonomy="Network" />
   <message loglevel="Information"
            msg_id="Samba:reconnected_ldap_server"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt(s)&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt\(s\)&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="Network" />

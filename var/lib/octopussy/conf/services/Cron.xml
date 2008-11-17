@@ -60,13 +60,13 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Cron:reboot_jobs"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; /usr/sbin/cron[&lt;@NUMBER:NULL@&gt;]: (&lt;@WORD:user@&gt;) &lt;@REGEXP(&quot;INFO (.+ing @reboot jobs.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; /usr/sbin/cron[&lt;@NUMBER:NULL@&gt;]: (&lt;@WORD:user@&gt;) &lt;@REGEXP(&quot;INFO \(.+ing @reboot jobs.+&quot;):msg@&gt;"
            rank="012"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Cron:pidfile_fd"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; /usr/sbin/cron[&lt;@NUMBER:NULL@&gt;]: (&lt;@WORD:user@&gt;) &lt;@REGEXP(&quot;INFO (pidfile fd = \d+)&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; /usr/sbin/cron[&lt;@NUMBER:NULL@&gt;]: (&lt;@WORD:user@&gt;) &lt;@REGEXP(&quot;INFO \(pidfile fd = \d+\)&quot;):msg@&gt; "
            rank="013"
            table="Message"
            taxonomy="System" />
@@ -78,7 +78,7 @@
            taxonomy="Config.Changes" />
   <message loglevel="Notice"
            msg_id="Cron:reconnected_ldap_after"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; CRON[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt(s)&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; CRON[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt\(s\)&quot;):msg@&gt; "
            rank="010"
            table="Message"
            taxonomy="System" />
@@ -144,7 +144,7 @@
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Cron:cannot_open_shared_object"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; CRON[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;PAM [dlerror: .+: cannot open shared object file: No such file or directory]&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; CRON[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;PAM \[dlerror: .+: cannot open shared object file: No such file or directory\]&quot;):msg@&gt; "
            rank="024"
            table="Message"
            taxonomy="System.Errors" />

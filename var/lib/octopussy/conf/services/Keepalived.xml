@@ -289,13 +289,13 @@
            taxonomy="Network.Errors" />
   <message loglevel="Critical"
            msg_id="Keepalived:vrrp_entering_fault_state"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Keepalived_vrrp: &lt;@REGEXP(&quot;VRRP_Instance(.+) Entering FAULT STATE&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Keepalived_vrrp: &lt;@REGEXP(&quot;VRRP_Instance\(.+\) Entering FAULT STATE&quot;):msg@&gt;"
            rank="048"
            table="Message"
            taxonomy="System.Errors" />
   <message loglevel="Critical"
            msg_id="Keepalived:vrrp_in_fault_state"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Keepalived_vrrp: &lt;@REGEXP(&quot;VRRP_Instance(.+) Now in FAULT state&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Keepalived_vrrp: &lt;@REGEXP(&quot;VRRP_Instance\(.+\) Now in FAULT state&quot;):msg@&gt;"
            rank="049"
            table="Message"
            taxonomy="System.Errors" />

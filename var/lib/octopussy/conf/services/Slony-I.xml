@@ -3,7 +3,7 @@
                    icon="software/logo_slony-i"
                    name="Slony-I"
                    nb_messages="009"
-                   version="200805190001"
+                   version="200811170001"
                    website="http://slony.info/">
   <message loglevel="Notice"
            msg_id="Slony-I:logswitch_initiated"
@@ -19,7 +19,7 @@
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Slony-I:context_logswitch_start"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;CONTEXT:  SQL statement \&quot;SELECT  \&quot;.+\&quot;.logswitch_start()\&quot;&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;CONTEXT:  SQL statement \&quot;SELECT  \&quot;.+\&quot;.logswitch_start\(\)\&quot;&quot;):msg@&gt; "
            rank="004"
            table="Database_Message"
            taxonomy="Application" />
@@ -37,7 +37,7 @@
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Slony-I:context_add_partial_index"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;CONTEXT:  SQL statement \&quot;SELECT  \&quot;.*\&quot;.addPartialLogIndices()\&quot;&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;CONTEXT:  SQL statement \&quot;SELECT  \&quot;.*\&quot;.addPartialLogIndices\(\)\&quot;&quot;):msg@&gt; "
            rank="006"
            table="Database_Message"
            taxonomy="Application" />

@@ -11,7 +11,7 @@
            taxonomy="Network" />
   <message loglevel="Information"
            msg_id="Dovecot:reconnected_ldap_server"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dovecot-auth: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt(s)&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dovecot-auth: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt\(s\)&quot;):msg@&gt;"
            rank="003"
            table="Message"
            taxonomy="Network" />
@@ -47,7 +47,7 @@
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Dovecot:fdsend_broken_pipe"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\S+-login: fd_send(-1) failed: Broken pipe&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\S+-login: fd_send\(-1\) failed: Broken pipe&quot;):msg@&gt; "
            rank="008"
            table="Message"
            taxonomy="System.Errors" />
@@ -89,7 +89,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Dovecot:cant_create_imap_folder"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pop3(\S+): mbox: Can't create root IMAP folder .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pop3\(\S+\): mbox: Can't create root IMAP folder .+&quot;):msg@&gt;"
            rank="015"
            table="Message"
            taxonomy="System.Errors" />
@@ -113,7 +113,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Dovecot:mail_environment_missing"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pop3(\S+): MAIL environment missing and autodetection failed.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pop3\(\S+\): MAIL environment missing and autodetection failed.+&quot;):msg@&gt;"
            rank="019"
            table="Message"
            taxonomy="System.Errors" />
@@ -125,13 +125,13 @@
            taxonomy="System.Errors" />
   <message loglevel="Debug"
            msg_id="Dovecot:debug_code_error"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;imap(\S+): file .+: line \d+ .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;imap\(\S+\): file .+: line \d+ .+&quot;):msg@&gt;"
            rank="021"
            table="Message"
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Dovecot:chdir_failed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dovecot: &lt;@REGEXP(&quot;chdir(.+) failed .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dovecot: &lt;@REGEXP(&quot;chdir\(.+\) failed .+&quot;):msg@&gt;"
            rank="022"
            table="Message"
            taxonomy="System.Errors" />
@@ -179,7 +179,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Dovecot:pam_ldap_invalid_credentials"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dovecot-auth[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;pam_ldap: error trying to bind as user .+ (Invalid credentials)&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dovecot-auth[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;pam_ldap: error trying to bind as user .+ \(Invalid credentials\)&quot;):msg@&gt; "
            rank="030"
            table="Message"
            taxonomy="System.Errors" />
@@ -191,7 +191,7 @@
            taxonomy="System" />
   <message loglevel="Notice"
            msg_id="Dovecot:imap_corrupted_data_file"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;imap(\S+): Corrupted index data file .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;imap\(\S+\): Corrupted index data file .+&quot;):msg@&gt;"
            rank="032"
            table="Message"
            taxonomy="System.Errors" />

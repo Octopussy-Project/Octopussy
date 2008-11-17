@@ -2,7 +2,7 @@
                    description="Neoteris Service"
                    icon="companies/logo_juniper"
 									 website="http://www.juniper.net/products_and_services/ssl_vpn_secure_access/index.html"
-                   version="200704300018">
+                   version="200811170001">
   <message loglevel="Information"
            msg_id="Neoteris:statistics_archive"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Juniper: &lt;@REGEXP(&quot;.+ - Statistics Archive - \S+ - \S+ - .+&quot;):msg@&gt;"
@@ -137,7 +137,7 @@
            taxonomy="System" />
   <message loglevel="Critical"
            msg_id="Neoteris:segmentation_fault"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Juniper: &lt;@REGEXP(&quot;.+ - Caught signal 11 (Segmentation fault)&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; Juniper: &lt;@REGEXP(&quot;.+ - Caught signal 11 \(Segmentation fault\)&quot;):msg@&gt;"
            rank="023"
            table="Message"
            taxonomy="System.Errors" />

@@ -2,7 +2,7 @@
                    description="Nagios Service"
 									 icon="software/logo_nagios"
 									 website="http://www.nagios.org"
-                   version="200704270002">
+                   version="200811170001">
   <message loglevel="Notice"
            msg_id="Nagios:service_alert"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; nagios: SERVICE ALERT: &lt;@WORD:host@&gt;;&lt;@WORD:service@&gt;;&lt;@WORD:status@&gt;;&lt;@WORD:criticity@&gt;;&lt;@NUMBER:nb_check@&gt;;&lt;@STRING:msg@&gt;"
@@ -77,7 +77,7 @@
            taxonomy="System" />
   <message loglevel="Notice"
            msg_id="Nagios:nagios_starting"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; nagios: &lt;@REGEXP(&quot;Nagios \S+ starting... (PID=\d+)&quot;):msg@&gt;  "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; nagios: &lt;@REGEXP(&quot;Nagios \S+ starting... \(PID=\d+\)&quot;):msg@&gt;  "
            rank="014"
            table="Message"
            taxonomy="System" />

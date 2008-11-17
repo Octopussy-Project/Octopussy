@@ -3,7 +3,7 @@
                    icon="operating_systems/os_mac"
                    name="Mac_OS_X_Kernel"
 									 website="http://www.apple.com/macosx/"
-                   version="200711260002">
+                   version="200811170001">
   <message loglevel="Information"
            msg_id="Mac_OS_X_Kernel:appleacpicpu_enabled"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;AppleACPICPU: ProcessorApicId=\d+ LocalApicId=\d+ Enabled&quot;):msg@&gt;"
@@ -168,7 +168,7 @@
            taxonomy="System.Boot" />
   <message loglevel="Information"
            msg_id="Mac_OS_X_Kernel:image_info"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;image \d+, uncompressed \d+ (\d+), compressed \d+ (\d+%), sum1 \S+, sum2 \S+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;image \d+, uncompressed \d+ \(\d+\), compressed \d+ \(\d+%\), sum1 \S+, sum2 \S+&quot;):msg@&gt;"
            rank="028"
            table="Message"
            taxonomy="System" />

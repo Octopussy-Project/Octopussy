@@ -3,7 +3,7 @@
                    description="Ldap Service"
 									 icon="software/logo_openldap"
 									 website="http://www.openldap.org"
-                   version="200708200001">
+                   version="200811170001">
   <message loglevel="Information"
            msg_id="Ldap:daemon_activity_on_descriptors"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: activity on \d+ descriptors&quot;):msg@&gt;  "
@@ -60,7 +60,7 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Ldap:10"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read(\d+): checking for input on id=\d+&quot;):msg@&gt;  "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read\(\d+\): checking for input on id=\d+&quot;):msg@&gt;  "
            rank="010"
            table="Message"
            taxonomy="System" />
@@ -78,13 +78,13 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Ldap:connection_get"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_get(\d+): got connid=\d+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_get\(\d+\): got connid=\d+&quot;):msg@&gt; "
            rank="013"
            table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
            msg_id="Ldap:connection_read"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read(\d+): input error=.+ id=\d+, closing.&quot;):msg@&gt;  "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read\(\d+\): input error=.+ id=\d+, closing.&quot;):msg@&gt;  "
            rank="014"
            table="Message"
            taxonomy="System.Errors" />
@@ -138,13 +138,13 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Ldap:24"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;====&gt; cache_find_entry_dn2id(.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;====&gt; cache_find_entry_dn2id\(.+&quot;):msg@&gt;"
            rank="023"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Ldap:25"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S{2} id2entry_r(.+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S{2} id2entry_r\(.+&quot;):msg@&gt; "
            rank="024"
            table="Message"
            taxonomy="System" />
@@ -156,7 +156,7 @@
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Ldap:27"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;====&gt; cache_find_entry_id(.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;====&gt; cache_find_entry_id\(.+&quot;):msg@&gt;"
            rank="026"
            table="Message"
            taxonomy="System" />
@@ -306,7 +306,7 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Ldap:52"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read(\d+): no connection!&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read\(\d+\): no connection!&quot;):msg@&gt;"
            rank="051"
            table="Message"
            taxonomy="System.Errors" />
@@ -378,7 +378,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Ldap:too_many_open_files2"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: accept.+ failed errno=\d+ (Too many open files)&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: accept.+ failed errno=\d+ \(Too many open files\)&quot;):msg@&gt;"
            rank="063"
            table="Message"
            taxonomy="System.Errors" />
@@ -396,7 +396,7 @@
            taxonomy="Config.Errors" />
   <message loglevel="Notice"
            msg_id="Ldap:bind_failed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: bind(\d+) failed.*&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: bind\(\d+\) failed.*&quot;):msg@&gt;"
            rank="066"
            table="Message"
            taxonomy="System.Errors" />

@@ -66,7 +66,7 @@
            taxonomy="System" />
   <message loglevel="Notice"
            msg_id="Bind:zone_sending_notifies"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: zone &lt;@STRING:zone@&gt;: &lt;@REGEXP(&quot;sending notifies (serial \d+)&quot;):status@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: zone &lt;@STRING:zone@&gt;: &lt;@REGEXP(&quot;sending notifies \(serial \d+\)&quot;):status@&gt; "
            rank="011"
            table="Bind_zone"
            taxonomy="System" />
@@ -414,7 +414,7 @@
            taxonomy="Config.Errors" />
   <message loglevel="Information"
            msg_id="Bind:zone_loaded"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;\w+ zone .+ loaded (serial \d+)&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; named[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;\w+ zone .+ loaded \(serial \d+\)&quot;):msg@&gt;"
            rank="069"
            table="Message"
            taxonomy="System" />

@@ -177,17 +177,28 @@ sub Pattern_To_Regexp($)
 	my $msg = shift;
 
 	my %re_types = Octopussy::Type::Regexps();
-	my $regexp = Escape_Characters($msg->{pattern});
-
-	while ($regexp =~ /^(.*)<\@REGEXP\\\(\"(.+?)\"\\\):(\S+?)\@>(.*)$/)
+	my $regexp = "";
+	my $tmp = $msg->{pattern};
+	while ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i)
 	{
-		my ($start, $const, $field, $finish) = ($1, $2, $3, $4);
-		$regexp = $start . (($field =~ /NULL/i) ? $const : "\($const\)") . $finish;
+		my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
+		my $subs = ($field =~ /NULL/i) ? $re_value : "\(" . $re_value . "\)";
+		$regexp .= (Escape_Characters($before) . $subs);
+		$tmp = $after;
 	}
-  $regexp =~ s/<\@([^\@]+?):null\@>/$re_types{$1}/gi;
-  $regexp =~ s/<\@([^\@]+?):\S+?\@>/\($re_types{$1}\)/gi;
+	$tmp = $regexp . Escape_Characters($tmp);
+	$regexp = "";
+	while ($tmp =~ /^(.*?)<\@([^\@]+?):(\S+?)\@>(.*)$/i)
+	{
+		my ($before, $type, $field, $after) = ($1, $2, $3, $4);
+		my $subs = ($field =~ /NULL/i) 
+			? $re_types{$type} : "\(" . $re_types{$type} . "\)";
+		$regexp .= $before . $subs;
+		$tmp = $after;
+	}
+	$regexp .= $tmp;
 	$regexp =~ s/\s+$//g;
-
+	
 	return ($regexp);
 }
 
@@ -197,6 +208,7 @@ sub Pattern_To_Regexp($)
 sub Short_Pattern_To_Regexp($)
 {
 	my $msg = shift;
+
 	my %re_types = Octopussy::Type::Regexps();
   my $regexp = Escape_Characters($msg->{pattern});
   $regexp =~ s/<\@([^\@]+?)\@>/\($re_types{$1}\)/gi;

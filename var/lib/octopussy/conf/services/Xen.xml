@@ -55,7 +55,7 @@
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Xen:xend_domaininfo_create"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;.+ XendDomainInfo.create(.+)&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;.+ XendDomainInfo.create\(.+\)&quot;):msg@&gt; "
            rank="006"
            table="Message"
            taxonomy="Config.Changes" />
@@ -67,7 +67,7 @@
            taxonomy="Config.Changes" />
   <message loglevel="Warning"
            msg_id="Xen:xend_domaininfo_recreate"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;.+ XendDomainInfo.recreate(.+)&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;.+ XendDomainInfo.recreate\(.+\)&quot;):msg@&gt; "
            rank="008"
            table="Message"
            taxonomy="Config.Changes" />
@@ -103,7 +103,7 @@
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Xen:no_such_file_directory"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: &lt;@REGEXP(&quot;IOError: [Errno \d+] No such file or directory: .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: &lt;@REGEXP(&quot;IOError: \[Errno \d+\] No such file or directory: .+&quot;):msg@&gt;"
            rank="015"
            table="Message"
            taxonomy="System.Errors" />
@@ -181,7 +181,7 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Xen:xend_debug_init"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@REGEXP(&quot;DEBUG&quot;):log_level@&gt; &lt;@REGEXP(&quot;(__init__:\d+) \S+\s+=.*&quot;):msg@&gt;  "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@REGEXP(&quot;DEBUG&quot;):log_level@&gt; &lt;@REGEXP(&quot;\(__init__:\d+\) \S+\s+=.*&quot;):msg@&gt;  "
            rank="028"
            table="Message"
            taxonomy="System" />
@@ -205,13 +205,13 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Xen:xend_debug_init_hotplugstatuscallback"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;(__init__:\d+) hotplugStatusCallback.*&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;\(__init__:\d+\) hotplugStatusCallback.*&quot;):msg@&gt;"
            rank="032"
            table="Message"
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Xen:xend_debug_init_waitingfor"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;(__init__:\d+) Waiting for .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;\(__init__:\d+\) Waiting for .+&quot;):msg@&gt;"
            rank="033"
            table="Message"
            taxonomy="System" />
@@ -229,13 +229,13 @@
            taxonomy="Config.Changes" />
   <message loglevel="Debug"
            msg_id="Xen:xend_debug_init_balloon"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;(__init__:\d+) Balloon: .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;\(__init__:\d+\) Balloon: .+&quot;):msg@&gt;"
            rank="036"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
            msg_id="Xen:xend_info_init_builddomain"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;(__init__:\d+) buildDomain os=.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;\(__init__:\d+\) buildDomain os=.+&quot;):msg@&gt;"
            rank="037"
            table="Message"
            taxonomy="System" />
@@ -253,7 +253,7 @@
            taxonomy="Config.Changes" />
   <message loglevel="Critical"
            msg_id="Xen:xend_config_unconverted_key"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;(__init__:\d+) Unconverted key: .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;\(__init__:\d+\) Unconverted key: .+&quot;):msg@&gt;"
            rank="040"
            table="Message"
            taxonomy="Config.Errors" />
@@ -289,7 +289,7 @@
            taxonomy="Config.Errors" />
   <message loglevel="Debug"
            msg_id="Xen:init_cleanup"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;(__init__:\d+) .+.cleanup()&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: [&lt;@STRING:NULL@&gt;] &lt;@WORD:log_level@&gt; &lt;@REGEXP(&quot;\(__init__:\d+\) .+.cleanup\(\)&quot;):msg@&gt; "
            rank="048"
            table="Message"
            taxonomy="System" />
@@ -391,7 +391,7 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Xen:return_func"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: &lt;@REGEXP(&quot;\s+return func(.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xen: &lt;@REGEXP(&quot;\s+return func\(.+&quot;):msg@&gt;"
            rank="066"
            table="Message"
            taxonomy="System" />

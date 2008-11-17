@@ -244,8 +244,9 @@ sub Syslog_By_Device_Service_Taxonomy_Init($$)
 		my @list = Octopussy::Taxonomy::List();
     foreach my $taxo (sort @list)
 		{
-			$taxo =~ s/\./_/g;
-			$cmd .= "DS:$taxo:GAUGE:120:0:U "; 
+			my $t = $taxo->{value};
+			$t =~ s/\./_/g;
+			$cmd .= "DS:$t:GAUGE:120:0:U "; 
 		}
     $cmd .= $RRA;
     system($cmd);
@@ -264,7 +265,6 @@ sub Syslog_By_Device_Service_Taxonomy_Update($$$$)
 	my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
 	my $value_str = join(":", AAT::ARRAY($values));
 
-  #print "  -> $RRD_UPDATE \"$file\" $seconds:$value_str\n";
 	system("$RRD_UPDATE \"$file\" $seconds:$value_str 2>&1 1>/dev/null");
 }
 
@@ -284,8 +284,9 @@ sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
 	my %taxo_color = Octopussy::Taxonomy::Colors();	
   my $first = 1;
 	my @list = Octopussy::Taxonomy::List();
-  foreach my $t (sort @list)
+  foreach my $taxo (sort @list)
   {
+		my $t = $taxo->{value};
 		my $color = $taxo_color{$t} || "#909090";
     my $type_name = $t;
 		$t =~ s/\./_/g;
@@ -341,8 +342,9 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
   my @list = Octopussy::Taxonomy::List();
 	my ($def, $cdef, $legend) = ("", "", "");
 	my $first = 1;
-  foreach my $t (sort @list)
+  foreach my $taxo (sort @list)
   {
+		my $t = $taxo->{value};
 		my $i = 0;
 		my $type_name = $t;
     my $color = $taxo_color{$t} || "#909090";

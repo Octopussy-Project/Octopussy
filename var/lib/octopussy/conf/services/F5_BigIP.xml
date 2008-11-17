@@ -2,7 +2,7 @@
                    description="F5 BigIP Service"
 									 icon="companies/logo_f5"
 									 website="http://www.f5.com/products/big-ip/"
-                   version="200705020003">
+                   version="200811170001">
   <message loglevel="Warning"
            msg_id="F5 BigIP:monitor_address_port"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mcpd[&lt;@NUMBER:NULL@&gt;]: &lt;@NUMBER:NULL@&gt;:&lt;@NUMBER:NULL@&gt;: &lt;@STRING:object@&gt; &lt;@IP_ADDR:address@&gt;:&lt;@NUMBER:port@&gt; monitor status &lt;@WORD:status@&gt;. "
@@ -185,7 +185,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="F5 BigIP:3"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; httpd(pam_unix)[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;bad username []&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; httpd(pam_unix)[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;bad username \[\]&quot;):msg@&gt; "
            rank="031"
            table="Message"
            taxonomy="Auth.Failure" />
@@ -347,7 +347,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Notice"
            msg_id="F5 BigIP:halmsg_terminal_impl"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; fpdd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: HalmsgTerminalImpl_::sendMessage() Unable to send to any .+ address&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; fpdd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: HalmsgTerminalImpl_::sendMessage\(\) Unable to send to any .+ address&quot;):msg@&gt;"
            rank="058"
            table="Message"
            taxonomy="System.Errors" />

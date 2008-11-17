@@ -3,7 +3,7 @@
                    description="F5 BigIP ASM Service"
                    icon="companies/logo_f5"
                    website="http://www.f5.com/products/big-ip/"
-                   version="200705110004">
+                   version="200811170001">
   <message loglevel="Warning"
            msg_id="F5_BigIP_ASM:asm_config_saved"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ts_configsync.pl[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;ASM config saved to .+&quot;):msg@&gt;"
@@ -18,13 +18,13 @@
            taxonomy="Config.Backup" />
   <message loglevel="Warning"
            msg_id="F5_BigIP_ASM:cleared_illegal_requests"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; log_manager[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: [USER_ACTIVITY] User \S+ cleared all illegal requests that were associated with .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; log_manager[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: \[USER_ACTIVITY\] User \S+ cleared all illegal requests that were associated with .+&quot;):msg@&gt;"
            rank="003"
            table="Message"
            taxonomy="Config.Changes" />
   <message loglevel="Warning"
            msg_id="F5_BigIP_ASM:performed_apply_policy_operation"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; log_manager[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: [USER_ACTIVITY] User \S+ performed Apply Policy operation on .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; log_manager[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: \[USER_ACTIVITY\] User \S+ performed Apply Policy operation on .+&quot;):msg@&gt;"
            rank="004"
            table="Message"
            taxonomy="Config.Changes" />
@@ -36,7 +36,7 @@
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="F5_BigIP_ASM:created_history_version"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; log_manager[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: [USER_ACTIVITY] User \S+ created history version for .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; log_manager[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: \[USER_ACTIVITY\] User \S+ created history version for .+&quot;):msg@&gt;"
            rank="006"
            table="Message"
            taxonomy="Config.Changes" />

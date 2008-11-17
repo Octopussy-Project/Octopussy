@@ -2,7 +2,7 @@
 <octopussy_service description="SSH Daemon Service"
                    name="Sshd"
                    nb_messages="073"
-                   version="200806300001">
+                   version="200811170001">
   <message loglevel="Information"
            msg_id="sshd:session_for_user"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*session .+ for user .+&quot;):msg@&gt;"
@@ -203,7 +203,7 @@
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Sshd:cannot_release_pam"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Cannot release PAM authentication[\d+]: System error&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Cannot release PAM authentication\[\d+\]: System error&quot;):msg@&gt; "
            rank="034"
            table="Message"
            taxonomy="System.Errors" />
