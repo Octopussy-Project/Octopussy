@@ -335,7 +335,7 @@ sub Line_Handler($$$$$)
  
 	if ($line =~ $msg->{re})
   {
-  	Alert_Handler($msg, $line)  if (scalar(@{$msg->{alerts}) > 0);
+  	Alert_Handler($msg, $line)  if (scalar(@{$msg->{alerts}}) > 0);
     push(@{$known_msgs->{$serv}}, $line);
 		$taxo_stats{$serv}{$msg->{taxo}} = 
       (defined $taxo_stats{$serv}{$msg->{taxo}} 
