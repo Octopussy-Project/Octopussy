@@ -55,13 +55,13 @@ my $url_sort = $arg{url} . "?sort";
 <%
 my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 my @res_alerts = AAT::ARRAY($restricts->{alert});
-my $limit = (($#res_alerts >= 0) ? undef : $nb_alerts_max);
+my $limit = ((scalar(@res_alerts) > 0) ? undef : $nb_alerts_max);
 my @alerts = Octopussy::Alert::Tracker($al, $dev, $stat, $sort, $limit);
 my $nb = 0;
 foreach my $a (@alerts)
 {
 	my $match = 0;
-	if ($#res_alerts >= 0)
+	if (scalar(@res_alerts) > 0)
 	{
 		foreach my $res (@res_alerts)
   		{	$match = 1	if ($res eq $a->{alert_id}); }

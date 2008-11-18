@@ -32,7 +32,7 @@ sub Message($$@)
       { $AAT_Syslog{$m->{mid}} = $m->{message}; }
   }
   my $message = $AAT_Syslog{$msg} || $msg;
-  $message =~ s/\%\%ARG(\d+)\%\%/$args[$1-1]/g	if ($#args >= 0);
+  $message =~ s/\%\%ARG(\d+)\%\%/$args[$1-1]/g	if (scalar(@args) > 0);
   $message =~ s/\%\%LOGIN\%\%/$main::Session->{AAT_LOGIN}/g
 		if (defined $main::Session->{AAT_LOGIN});
 

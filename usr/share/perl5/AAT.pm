@@ -87,8 +87,8 @@ sub NOT_NULL
 
 	if (ref $value eq "ARRAY")
 	{
-		return ($#{$value} > 0 ? 1 
-			: ((($#{$value} == 0) && (AAT::NOT_NULL(${$value}[0]))) ? 1 : 0));
+		return (scalar(@{$value}) > 1 ? 1 
+			: (((scalar(@{$value}) == 1) && (AAT::NOT_NULL(${$value}[0]))) ? 1 : 0));
 	}
 
 	return (((defined $value) && ($value ne "")) ? 1 : 0);
@@ -105,8 +105,8 @@ sub NULL($)
 
 	if (ref $value eq "ARRAY")
   { 
-		return ($#{$value} > 0 ? 0 
-			: ((($#{$value} == 0) && (AAT::NOT_NULL(${$value}[0]))) ? 0 : 1)); 
+		return (scalar(@{$value}) > 1 ? 0 
+			: (((scalar(@{$value}) == 1) && (AAT::NOT_NULL(${$value}[0]))) ? 0 : 1)); 
 	}
 
   return (((defined $value) && ($value ne "")) ? 0 : 1);

@@ -13,18 +13,19 @@ foreach my $field (@{$arg{fields}})
 		link => $url_sort . $field->{name} });	
 }
 push(@header, { label => "Action", style => "bold", 
-	align => "center", colspan => $#{$arg{actions}} + 1 })
+	align => "center", colspan => scalar(@{$arg{actions}}) })
 	if (defined $arg{actions});
 
 push(@table, [ { type => "AAT_Picture", align => "right",
       args => { file => "buttons/bt_" . lc($arg{header}) . ".png" } },
 	{ label => ucfirst($arg{header}), align => "left", size => "+1", 
-		style => "bold", colspan => $#{$arg{fields}} + $#{$arg{actions}} + 2 } ]);
+		style => "bold", 
+		colspan => scalar(@{$arg{fields}}) + scalar(@{$arg{actions}}) } ]);
 push(@table, [ { label => "<hr>", 
-	colspan => $#{$arg{fields}} + $#{$arg{actions}} + 2 } ] );
+	colspan => scalar(@{$arg{fields}}) + scalar(@{$arg{actions}}) } ] );
 push(@table, \@header);
 push(@table, [ { label => "<hr>", 
-	colspan => $#{$arg{fields}} + $#{$arg{actions}} + 2 } ] );
+	colspan => scalar(@{$arg{fields}}) + scalar(@{$arg{actions}}) } ] );
 
 foreach my $line (&{$arg{function}}(@{$arg{function_args}}))
 {

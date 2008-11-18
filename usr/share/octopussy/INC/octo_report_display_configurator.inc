@@ -48,7 +48,7 @@ else
     }
     else
 			{ %><AAT:BoxCol></AAT:BoxCol><% }
-    if ($i < $#selected)
+    if ($i < (scalar(@selected) - 1))
     { %>
 	<AAT:BoxCol>
   <AAT:Button name="1downarrow" link="$url?field=$i&action=down" />

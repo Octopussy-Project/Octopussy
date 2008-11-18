@@ -8,7 +8,7 @@ if ($role =~ /restricted/i)
 {
 	my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
 	my @res_reports = AAT::ARRAY($restricts->{report});
-	my $in_restriction = ($#res_reports >= 0 ? 0 : 1);
+	my $in_restriction = (scalar(@res_reports) > 0 ? 0 : 1);
 	foreach my $res (@res_reports)
   	{ $in_restriction = 1 if ($report_type eq $res); }
 	$Response->Redirect("./restricted_reports_viewer.asp")	

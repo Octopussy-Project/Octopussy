@@ -81,7 +81,7 @@ sub List($$)
 	my @reports = ();
 	foreach my $f (@files)
 	{
-		my $in_restriction = ($#res_list >= 0 ? 0 : 1);
+		my $in_restriction = (scalar(@res_list) > 0 ? 0 : 1);
 		my $conf = AAT::XML::Read("$dir_reports/$f");
 		foreach my $res (@res_list)
     	{ $in_restriction = 1	if ($conf->{name} eq $res); }

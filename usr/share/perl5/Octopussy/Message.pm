@@ -87,7 +87,7 @@ sub Pattern_To_SQL($$@)
 		my $pattern_field = $1;
 		if ($pattern_field !~ /NULL/i)
 		{
-			if ($#fields == -1)
+			if (scalar(@fields) == 0)
 			{
 				$sql .= "$1, "; 
 				$i++;
@@ -385,7 +385,8 @@ sub Fields_Values($$)
 		$pattern =~ s/.*?(<\@([^\@]+?)\@>)//;
 	}
 	my @data = $line =~ /$msg->{re}/;	
-	foreach my $i (0..$#data)
+	my $last_data = scalar(@data) - 1;
+	foreach my $i (0..$last_data)
 		{ $field{$fields[$i]} = $data[$i]; }
 
 	return (%field);
@@ -626,10 +627,10 @@ sub Wizard($)
       	}
 				push(@messages, Wizard_Add_Message($timestamp, $line, \@types))
       		if (! $match);
-				last  if ($#messages+1 >= $nb_max);
+				last  if (scalar(@messages) >= $nb_max);
     	}
     	close(FILE);
-   		last  if ($#messages+1 >= $nb_max);
+   		last  if (scalar(@messages) >= $nb_max);
 		}
 		else
     {

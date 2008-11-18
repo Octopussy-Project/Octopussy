@@ -22,7 +22,8 @@ sub Generate
 	my @field_list = split(/,/, $fields);
 	my @header_list = split(/,/, $headers);
 	my @headers = ();
-	foreach my $i (0..$#header_list)
+	my $last_header_list = scalar(@header_list) - 1;
+	foreach my $i (0..$last_header_list)
 		{	push(@headers, { name => $field_list[$i], value => $header_list[$i] }); }
 	my %conf = ( name => $report, begin => $begin, end => $end, 
 		data_nb_files => $stats->{nb_files}, data_nb_lines => $stats->{nb_lines},

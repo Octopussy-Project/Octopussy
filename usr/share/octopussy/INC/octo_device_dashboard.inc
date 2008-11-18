@@ -7,7 +7,7 @@ my $status = Octopussy::Device::Parse_Status($device);
 my ($time, $device_events) = Octopussy::Stats::Events();
 my $events = $device_events->{$device} || "0";
 my @alerts = Octopussy::Alert::Opened_List($device);
-my $nb_alerts = $#alerts+1;
+my $nb_alerts = scalar(@alerts);
 my ($name, $address, $type, $model, $desc) = ($conf->{name}, $conf->{address}, 
 	$conf->{type}, $conf->{model}, $conf->{description});
 my @models = Octopussy::Device::Models($conf->{type});

@@ -7,7 +7,7 @@ my $device = $arg{device};
 my $service = $arg{service};
 my @report_list = Octopussy::Statistic_Report::List();
 
-if ($#report_list >= 0)
+if (scalar(@report_list) > 0)
 {
 	my @table = (
   [ { type => "form", 

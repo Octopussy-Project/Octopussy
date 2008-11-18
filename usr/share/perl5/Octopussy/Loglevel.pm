@@ -56,7 +56,7 @@ sub List(@)
   	}
 	}
 
-	return (undef) if ($#list == -1);
+	return (undef) if (scalar(@list) == 0);
 	return (@list);
 }
 
@@ -72,7 +72,7 @@ sub List_And_Any(@)
   my @list = ("-ANY-");
   push(@list, List($dev_list, $serv_list));
 
-	return (undef) if ($#list == -1);
+	return (undef) if (scalar(@list) == 0);
   return (@list);
 }
 

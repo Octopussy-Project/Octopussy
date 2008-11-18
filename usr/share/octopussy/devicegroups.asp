@@ -33,7 +33,7 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 			$Session->{AAT_MSG_ERROR} = 
 				Octopussy::DeviceGroup::Add({ dg_id => $dg, description => $dg_desc,
         	type => "dynamic", criteria => \@criterias })
-				if ($#criterias >= 0);
+				if (scalar(@criterias) > 0);
 		}
 		else
 		{

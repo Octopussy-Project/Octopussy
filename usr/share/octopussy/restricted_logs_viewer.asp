@@ -63,7 +63,7 @@ if (AAT::NOT_NULL($f->{template}))
 if ((AAT::NULL($Session->{extractor})) && 
 		((AAT::NOT_NULL($Session->{logs})) || (AAT::NOT_NULL($Session->{file})) 
 			|| (AAT::NOT_NULL($Session->{csv})) || (AAT::NOT_NULL($Session->{zip})))
-	&& (($#devices >= 0) && ($#services >= 0) 
+	&& ((scalar(@devices) > 0) && (scalar(@services) > 0) 
 	&& ($devices[0] ne "") && ($services[0] ne "")))
 {
 	use Crypt::PasswdMD5;

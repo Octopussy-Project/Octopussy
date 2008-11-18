@@ -14,7 +14,7 @@
 
   </application>
 
-	<application name="Octopussy" version="0.9.8.6"
+	<application name="Octopussy" version="0.9.8.7"
 							 email="octo.devel@gmail.com"
 							 user="octopussy"
 							 website="http://www.8pussy.org">
@@ -32,6 +32,7 @@
 		<directory name="statistic_reports" value="/var/lib/octopussy/conf/statistic_reports/" />
 		<directory name="tables" value="/var/lib/octopussy/conf/tables/" />
 		<directory name="data_logs" value="/var/lib/octopussy/logs/" />
+		<directory name="data_logs_pusher" value="/var/lib/octopussy/logs/_FTP_/" />
 		<directory name="data_reports" value="/var/lib/octopussy/reports/" />
 		<directory name="data_rrd" value="/var/lib/octopussy/rrd/" />
 		<directory name="programs" value="/usr/sbin/" />

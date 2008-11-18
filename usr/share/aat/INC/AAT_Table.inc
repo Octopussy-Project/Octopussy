@@ -4,7 +4,7 @@ my %arg = @_;
 
 my $obj_conf = AAT::Object::Configuration($arg{object});
 my $actions = (defined $arg{edit} ? 1 : 0) + (defined $arg{remove} ? 1 : 0);
-my $cols = $#{$obj_conf->{field}}+1 + $actions;
+my $cols = scalar(@{$obj_conf->{field}}) + $actions;
 %>
 <AAT:BoxRow>
 	<AAT:BoxCol align="C" cspan="$cols">

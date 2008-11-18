@@ -10,7 +10,8 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 	my @async = ();
 	push(@async, { regexp => $f->{regexp}, output => $f->{output} } )
 		if (ref $f->{regexp} ne "ARRAY");
-	for my $i (0..$#{$f->{regexp}})
+	my $last_regexp = scalar(@{$f->{regexp}}) - 1;
+	for my $i (0..$last_regexp)
 	{ 
 		push(@async, { regexp => $f->{regexp}[$i], output => $f->{output}[$i] } );
 	}

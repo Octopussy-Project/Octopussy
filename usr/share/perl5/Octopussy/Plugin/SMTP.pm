@@ -92,7 +92,7 @@ sub Recipients_Count($)
 
 	my @recipients = split(/,/, $recipients_list);
 
-	return ($#recipients+1);
+	return (scalar(@recipients));
 }
 
 1;

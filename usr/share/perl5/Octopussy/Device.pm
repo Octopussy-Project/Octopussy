@@ -239,7 +239,7 @@ sub Add_Service($$)
 
 	my $old_status = Parse_Status($device);
   Parse_Pause($device)  if ($old_status == STARTED);
-  my $rank = AAT::Padding(($#{$conf->{service}} + 2), 2);
+  my $rank = AAT::Padding((scalar(@{$conf->{service}}) + 1), 2);
 	if ($service =~ /^group (.+)$/)
 	{
 		foreach my $s (Octopussy::ServiceGroup::Services($1))
@@ -310,7 +310,7 @@ sub Move_Service($$$)
   my ($rank, $old_rank) = (undef, undef);
 	my $conf = AAT::XML::Read(Filename($device));
   my @services = ();
-	my $max = (defined $conf->{service} ? $#{$conf->{service}}+1 : 0);
+	my $max = (defined $conf->{service} ? scalar(@{$conf->{service}}) : 0);
   $max = AAT::Padding($max, 2);
   foreach my $s (AAT::ARRAY($conf->{service}))
   {
@@ -527,7 +527,7 @@ sub Parse_Status($)
 		$dir_pid ||= Octopussy::Directory("running");
 		my @files = AAT::FS::Directory_Files($dir_pid, qr/^octo_parser_$device\.pid$/);
 
-		return ($#files >= 0 ? 2 : 
+		return (scalar(@files) > 0 ? 2 : 
 			(((defined $conf->{status}) && ($conf->{status} eq "Stopped")) ? 0 : 1));
 	}
 
@@ -550,7 +550,6 @@ sub Parse_Pause($)
   	my $pid = `cat "$file_pid"`;
   	chomp($pid);
   	kill USR1 => $pid;
-#		unlink("$file_pid");
 	}
 
 	$file_pid = "$dir_pid/" . UPARSER_BIN . "_${device}.pid";

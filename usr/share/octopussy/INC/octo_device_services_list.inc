@@ -39,7 +39,7 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
 {
 	my $id = $conf->{sid};
   my $serv_conf = Octopussy::Service::Configuration($id);
-  my $nb_messages = $#{$serv_conf->{message}} + 1; 
+  my $nb_messages = scalar(@{$serv_conf->{message}}); 
 	my $rank = $conf->{rank};
 	my $serv_str = "$id " . (defined $stats{$id} ? "($stats{$id})" : "(0%)");
 	my $dialog = "./dialog.asp?id=delete_device_service&arg1=$id&arg2=$device"; 
@@ -62,12 +62,12 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
 	%><AAT:Button name="1uparrow" link="$url&service=$id&action=up" /><% 
 		}
 		%></AAT:BoxCol><AAT:BoxCol align="C"><%
-		if ($conf->{rank} < ($#services+1))
+		if ($conf->{rank} < scalar(@services))
     { 
 	%><AAT:Button name="1downarrow" link="$url&service=$id&action=down" /><% 
 		}
 		%></AAT:BoxCol><AAT:BoxCol align="C"><%
-		if ($conf->{rank} < ($#services))
+		if ($conf->{rank} < (scalar(@services)-1))
     {
   %><AAT:Button name="2downarrow" link="$url&service=$id&action=bottom" /><%
     }

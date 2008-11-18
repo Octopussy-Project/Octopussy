@@ -42,7 +42,7 @@ foreach my $s (@services)
   %><AAT:Button name="1uparrow" link="$url&service=$id&action=up" /><%
     }
     %></AAT:BoxCol><AAT:BoxCol align="C"><%
-    if ($rank < ($#services+1))
+    if ($rank < scalar(@services))
     {
   %><AAT:Button name="1downarrow" link="$url&service=$id&action=down" /><%
     }

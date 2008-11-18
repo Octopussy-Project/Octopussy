@@ -35,8 +35,8 @@ sub Text($$)
 	my ($filename, $conf) = @_;
 
 	my $doc = ooDocument(file => $filename, create => 'text');
-	$doc->appendTable("Report Table", $#{$conf->{data}} + 2, 
-		$#{$conf->{headers}} + 1);
+	$doc->appendTable("Report Table", scalar(@{$conf->{data}}) + 1, 
+		scalar(@{$conf->{headers}}));
 
 	my ($x, $y) = (0,0);
 	foreach my $f (AAT::ARRAY($conf->{fields}))

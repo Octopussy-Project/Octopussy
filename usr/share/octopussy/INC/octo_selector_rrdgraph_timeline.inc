@@ -10,5 +10,5 @@ foreach my $f (@fields)
 		if (($f->{type} =~ /^DATE/) || ($f->{type} =~ /^TIME/));
 }
 $Response->Include('AAT/INC/AAT_Selector.inc', name => $name, 
-	size => ($#list > 2 ? 3 : $#list), list => \@list);
+	size => (scalar(@list) > 3 ? 3 : scalar(@list)), list => \@list);
 %>

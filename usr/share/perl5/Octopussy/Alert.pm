@@ -250,7 +250,7 @@ sub Check_All_Closed()
 	my @result = AAT::DB::Query("Octopussy", "SELECT * FROM _alerts_ "
 		. "WHERE status NOT LIKE 'Closed'");
 	
-	return ($#result < 0 ? 1 : 0);
+	return (scalar(@result) == 0 ? 1 : 0);
 }
 
 =head2 Opened_List($device)

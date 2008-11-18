@@ -3,7 +3,7 @@ my $cpu = Octopussy::Stats::CPU_Usage();
 my $cpu_str = "User: $cpu->{user}% System: $cpu->{system}% "
 	. "Idle: $cpu->{idle}% Wait: $cpu->{wait}%";
 my @storages = Octopussy::Stats::Partition_Logs();
-my $nb_storages = $#storages+2;
+my $nb_storages = scalar(@storages) + 1;
 %>
 <AAT:Box align="C">
   <AAT:BoxRow>

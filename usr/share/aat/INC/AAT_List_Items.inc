@@ -46,7 +46,7 @@ foreach my $i (@items)
 	<AAT:BoxCol><AAT:Button name="remove" tooltip="_REMOVE" /></AAT:BoxCol>
 	</AAT:BoxRow><%
 }
-my $nb_items = sprintf(AAT::Translation("_NB_ITEMS"), $#items+1); 
+my $nb_items = sprintf(AAT::Translation("_NB_ITEMS"), scalar(@items)); 
 %>
 <AAT:BoxRow><AAT:BoxCol cspan="$nb_cols"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

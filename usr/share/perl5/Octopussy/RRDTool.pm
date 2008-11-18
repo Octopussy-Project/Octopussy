@@ -54,7 +54,7 @@ sub DS_Count($)
 	my $cmd = RRD_INFO . " \"$file\" | grep ds | grep \".type = \"";
 	my @lines = `$cmd`;
 	
-	return ($#lines+1);
+	return (scalar(@lines));
 }
 
 =head2 Graph_Legend($cdef)
@@ -115,7 +115,7 @@ sub Syslog_By_DeviceType_Init()
 	my $ds_count = undef;
 	$ds_count = DS_Count($RRD_SYSLOG_DTYPE)	if (-f "$RRD_SYSLOG_DTYPE");
 
-	if ((! -f "$RRD_SYSLOG_DTYPE") || ($ds_count != ($#dtypes+1)))
+	if ((! -f "$RRD_SYSLOG_DTYPE") || ($ds_count != (scalar(@dtypes))))
   {
 		Octopussy::Create_Directory($DIR_RRD);
 		my $cmd = RRD_CREATE . " \"$RRD_SYSLOG_DTYPE\" --step " . MINUTE . " ";

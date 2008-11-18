@@ -12,18 +12,19 @@ foreach my $field (AAT::ARRAY($arg{fields}))
 		link => $url_sort . $field->{name} });	
 }
 push(@header, { label => "_ACTION", style => "bold", 
-	align => "center", colspan => $#{$arg{actions}} + 1 })
+	align => "center", colspan => scalar(@{$arg{actions}}) })
 	if (defined $arg{actions});
 
 push(@table, [ { type => "AAT_IMG", align => "right",
       args => { name => $arg{header_icon} } },
 	{ label => $arg{header_title}, align => "left", size => "+1", 
-		style => "bold", colspan => $#{$arg{fields}} + $#{$arg{actions}} + 2 } ]);
+		style => "bold", 
+		colspan => scalar(@{$arg{fields}}) + scalar(@{$arg{actions}}) } ]);
 push(@table, [ { label => "<hr>", 
-	colspan => $#{$arg{fields}} + $#{$arg{actions}} + 2 } ] );
+	colspan => scalar(@{$arg{fields}}) + scalar(@{$arg{actions}}) } ] );
 push(@table, \@header);
 push(@table, [ { label => "<hr>", 
-	colspan => $#{$arg{fields}} + $#{$arg{actions}} + 2 } ] );
+	colspan => scalar(@{$arg{fields}}) + scalar(@{$arg{actions}}) } ] );
 
 foreach my $line (&{$arg{function}}(AAT::ARRAY($arg{function_args})))
 {

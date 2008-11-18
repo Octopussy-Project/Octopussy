@@ -31,8 +31,8 @@ if ($conf->{status} eq "enabled")
   my $mem = Octopussy::Stats::Mem_Total();
   my @devices = Octopussy::Device::List();
   my @services = Octopussy::Device::Services(@devices);
-  my $nb_devices = $#devices+1;
-  my $nb_services = $#services+1;
+  my $nb_devices = scalar(@devices);
+  my $nb_services = scalar(@services);
 
   my @keys = $cache->get_keys();
 

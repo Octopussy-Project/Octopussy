@@ -1,8 +1,8 @@
 <%
 my @alerts = Octopussy::Alert::Tracker("", "", "Opened", "", 
 	Octopussy::Parameter("max_alerts"));
-my $nb_alerts = (AAT::NOT_NULL(\@alerts) ? $#alerts+1 : 0);
-my $alerts_color = (($#alerts >= 0) ? "red" : "green");
+my $nb_alerts = (AAT::NOT_NULL(\@alerts) ? scalar(@alerts) : 0);
+my $alerts_color = (($nb_alerts > 0) ? "red" : "green");
 
 my $nb_unknown = 0;
 my $max_nb_unknown = Octopussy::Parameter("wizard_max_msgs");
@@ -13,7 +13,7 @@ foreach my $conf (Octopussy::Device::Configurations())
 }
 my $unknown_color = (($nb_unknown > 0) ? "red" : "green");
 
-if (($#alerts >= 0) || ($nb_unknown >0))
+if (($nb_alerts > 0) || ($nb_unknown > 0))
 {
 %>
 <AAT:Box align="C">

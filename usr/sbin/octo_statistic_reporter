@@ -38,7 +38,7 @@ while (!$exit_request)
 	while ($file = shift(@files))
   {
     chomp($file);
-    if ($#services < 0)
+    if (scalar(@services) == 0)
       { Incoming_To_Unknown($file); }
     else
       { File_Handler($file); }

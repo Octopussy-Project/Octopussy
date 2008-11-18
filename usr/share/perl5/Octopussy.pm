@@ -394,11 +394,11 @@ sub Process_Status()
 	my %result = ();
 	
 	my @lines = `ps -edf | grep "syslog-ng" | grep -v grep`;
-	$result{"Syslog-ng"} = $#lines+1;
+	$result{"Syslog-ng"} = scalar(@lines);
 	@lines = `ps -edf | grep "/usr/sbin/octo_dispatcher" | grep -v grep`;
-	$result{"Dispatcher"} = $#lines+1;
+	$result{"Dispatcher"} = scalar(@lines);
 	@lines = `ps -edf | grep "/usr/sbin/octo_scheduler" | grep -v grep`;
-	$result{"Scheduler"} = $#lines+1;
+	$result{"Scheduler"} = scalar(@lines);
 
 	return (%result);
 }

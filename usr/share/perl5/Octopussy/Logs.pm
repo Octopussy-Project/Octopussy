@@ -82,6 +82,8 @@ Gets Logs Directories
 sub Get_Directories($)
 {
   my $dir = shift;
+	
+	return ()	if (!-d $dir);
 
 	opendir(DIR, $dir);
 	my @dirs = grep !/^\./, readdir(DIR);

@@ -8,7 +8,7 @@ my $service = $arg{service};
 my @report_list = Octopussy::Report::List(undef, undef);
 my @used_services = Octopussy::Service::List_Used();
 
-if ($#report_list >= 0)
+if (scalar(@report_list) > 0)
 {
 %>
 <AAT:Form action="./report_scheduler.asp">

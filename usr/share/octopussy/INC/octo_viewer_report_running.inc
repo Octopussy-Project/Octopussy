@@ -2,7 +2,7 @@
 use Date::Manip;
 
 my @list = Octopussy::Report::Running_List();
-if ($#list >= 0)
+if (scalar(@list) > 0)
 {
 %><AAT:Box align="C" icon="buttons/bt_report" title="_RUNNING_REPORTS">
 <AAT:BoxRow>

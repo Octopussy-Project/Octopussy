@@ -234,10 +234,10 @@ sub Insert_Data($$$$$$$$)
   Progress("_MSG_REPORT_PROGRESS_LISTING_FILES", "1/1");
   my @msg_to_parse = Get_Messages_To_Parse($services, $taxo, $table, $query, $field_list);
   my $files = Get_TimePeriod_Files($devices, $services, $begin, $end);
-  my $total = $#{@{$files}} + 1;
+  my $total = scalar(@{$files});
   my @known_msgs = ();
   AAT::Syslog("octo_core", "$total file(s) to parse with "
-    . ($#msg_to_parse + 1) . " message(s).");
+    . scalar(@msg_to_parse) . " message(s).");
   my $i = 1;
   my $nb_lines = 0;
 	`touch "$FILE_DB.$$"`;
@@ -385,7 +385,7 @@ my %conf_ftp =
 my %conf_scp = 
 	( host => $host_scp, dir => $dir_scp, user => $user_scp);
 my %report_stats = ( nb_files => $nb_files, nb_lines => $nb_lines, 
-	nb_result_lines => $#data+1, seconds =>  (time() - $time));
+	nb_result_lines => scalar(@data), seconds =>  (time() - $time));
 
 Octopussy::Report::Generate($rc, $begin, $end, $output, \@devices, \@services, 
 	\@data, \%conf_mail, \%conf_ftp, \%conf_scp, \%report_stats, $lang);

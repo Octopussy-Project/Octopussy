@@ -4,7 +4,7 @@ my %arg = @_;
 my @categories = ();
 foreach my $c (Octopussy::Report::Categories())
 	{ push(@categories, $c->{category}); }
-push(@categories, "base")	if ($#categories < 0);			
+push(@categories, "base")	if (scalar(@categories) == 0);			
 %>
 <AAT:Form action="$arg{url}">
 <AAT:Box align="C" 

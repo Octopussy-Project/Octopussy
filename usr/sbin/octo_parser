@@ -124,7 +124,7 @@ sub Init()
 		Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Init($device, $serv);
   	my @msg_to_parse = ();
    	my @messages = Octopussy::Service::Messages($serv);
-		AAT::Syslog($PROG_NAME, "PARSER_INIT_SERVICE", $serv, $#messages + 1);
+		AAT::Syslog($PROG_NAME, "PARSER_INIT_SERVICE", $serv, scalar(@messages));
 		my @dev_alerts = Octopussy::Alert::For_Device($device);
    	foreach my $m (@messages)
     { 
@@ -144,7 +144,7 @@ sub Init()
 			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
       push(@{$service{$serv}{msgs}}, 
 				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i, id => $m->{msg_id},
-          pattern => (($#msg_alerts >= 0) ? $m->{pattern} : undef),
+          pattern => ((scalar(@msg_alerts) > 0) ? $m->{pattern} : undef),
 					taxo => $m->{taxonomy}, alerts => \@msg_alerts } ); 
 		}
 	}
@@ -168,7 +168,7 @@ sub Write_Logfile($$)
 {
 	my ($logfile, $logs) = @_;
 
-	if ($#{@{$logs}} >= 0)
+	if (scalar(@{$logs}) > 0)
 	{
 		my $dir = $logfile;
 		$dir =~ s/^(.+)\/.+?\.log/$1\//g;
@@ -199,7 +199,7 @@ sub Write_Unknown_Logfile($$)
 	$logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
 	$logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
 	
-	if ($#{@{$logs}} >= 0)
+	if (scalar(@{$logs}) > 0)
   {
     my $dir = $logfile;
     $dir =~ s/^(.+)\/.+?\.log/$1\//g;
@@ -280,7 +280,7 @@ sub Alert_Handler($$)
 				if (defined $a->{thresold_time})
 					{ push(@{$alert_logs}, { timestamp => $secs, log => $line }); }
 				if ((!defined $a->{thresold_time}) 
-					|| (($#{$alert_logs}+1) >= $a->{thresold_time}))
+					|| (scalar(@{$alert_logs}) >= $a->{thresold_time}))
 				{
 					my $match = 1;
 					if (defined $a->{thresold_time})
@@ -335,7 +335,7 @@ sub Line_Handler($$$$$)
  
 	if ($line =~ $msg->{re})
   {
-  	Alert_Handler($msg, $line)  if ($#{$msg->{alerts}} >= 0);
+  	Alert_Handler($msg, $line)  if (scalar(@{$msg->{alerts}) > 0);
     push(@{$known_msgs->{$serv}}, $line);
 		$taxo_stats{$serv}{$msg->{taxo}} = 
       (defined $taxo_stats{$serv}{$msg->{taxo}} 
@@ -367,7 +367,7 @@ sub Service_Handler($$$$$$$)
  	$dir_service =~ s/ /_/g;
  	my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
   Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}});
-  $parser_stats{$serv} += ($#{$known_msgs{$serv}} + 1);
+  $parser_stats{$serv} += scalar(@{$known_msgs{$serv}});
 }
 
 sub Cache_MsgID_Stats
@@ -496,14 +496,14 @@ $SIG{USR1} = \&Exit;
 
 AAT::Syslog($PROG_NAME, "PARSER_START", $device);
 Init();
-AAT::Syslog($PROG_NAME, "PARSER_FILES_TO_PARSE", $device, $#files + 1);
+AAT::Syslog($PROG_NAME, "PARSER_FILES_TO_PARSE", $device, scalar(@files));
 my $last_logs_time = time();
 while (!$exit_request)
 {
 	my @events = $inotify->read;
   foreach my $e (@events)
   	{ Inotify_Watch($e->fullname); }
-	if ($#files >= 0)
+	if (scalar(@files) > 0)
  		{ $last_logs_time = time(); }
   else
   {
@@ -518,7 +518,7 @@ while (!$exit_request)
 	while ($file = shift(@files))
   {
     chomp($file);
-    if ($#services < 0)
+    if (scalar(@services) == 0)
       { Incoming_To_Unknown($file); }
     else
       { File_Handler($file); }

@@ -114,7 +114,8 @@ else
 		my @columns_name = ();
 		my ($query, $columns) = 
 			Octopussy::DB::SQL_Select_Function(AAT::ARRAY($Session->{select}));
-		foreach my $i (0..$#{$Session->{select}})
+		my $last_select = scalar(@{$Session->{select}}) - 1;
+		foreach my $i (0..$last_select)
 			{ push(@columns_name, $Session->{"column_name_$i"}); }
 	
 		if ($Session->{AAT_ROLE} !~ /ro/i)

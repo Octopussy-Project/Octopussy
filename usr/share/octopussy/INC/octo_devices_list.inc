@@ -11,7 +11,7 @@ my $reload = 0;
 foreach my $d (@dconfs)
 	{ $reload = 1	if (AAT::NOT_NULL($d->{reload_required})); }
 my $title = AAT::Translation("_DEVICES");
-$title .= " (" . ($#dconfs+1) . "/" . ($#list+1) . ")";
+$title .= " (" . scalar(@dconfs) . "/" . scalar(@list) . ")";
 %>
 <AAT:Box align="C" title="$title" icon="buttons/bt_device">
 <AAT:BoxRow>

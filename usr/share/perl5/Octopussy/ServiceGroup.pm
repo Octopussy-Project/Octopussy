@@ -150,7 +150,7 @@ sub Add_Service($$)
 		my @services = AAT::ARRAY($sg->{service});
     if ($sg->{sg_id} eq $servicegroup)
     {
-			my $rank = $#services + 2;
+			my $rank = scalar(@services) + 1;
 			$rank = AAT::Padding($rank, 2);
 			foreach my $sg_serv (@services)
     		{ return()  if ($sg_serv->{sid} =~ /^$service$/); }
@@ -224,7 +224,7 @@ sub Move_Service($$$)
 		if ($sg->{sg_id} eq $servicegroup)
 		{
 			my @services = ();
-  		my $max = (defined $sg->{service} ? $#{$sg->{service}}+1 : 0);
+  		my $max = (defined $sg->{service} ? scalar(@{$sg->{service}}) : 0);
   		$max = ("0"x(2-length($max))) . $max;
   		foreach my $s (AAT::ARRAY($sg->{service}))
   		{

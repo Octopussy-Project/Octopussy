@@ -14,7 +14,7 @@ my %stat = Octopussy::Service::Messages_Statistics($service);
 my @messages = Octopussy::Service::Messages_Configurations($service, $sort);
 my $gre = Octopussy::Service::Global_Regexp($service);
 
-if ($#messages < 0)
+if (scalar(@messages) == 0)
 {
 	my $str = sprintf(AAT::Translation("_MSG_NO_MSG_FOR_SERVICE"), 
 		$service, $serv_conf->{version});
@@ -104,7 +104,7 @@ foreach my $m (@messages)
     }
     else
       { %><AAT:BoxCol></AAT:BoxCol><% }
-		if ($m->{rank} < $#messages+1)     
+		if ($m->{rank} < scalar(@messages))     
 		{     
 		%><AAT:BoxCol>
 		<AAT:Button name="1downarrow" link ="$url&msgid=$id&action=down" />
@@ -131,7 +131,7 @@ foreach my $m (@messages)
     }
     else
       { %><AAT:BoxCol></AAT:BoxCol><% }
-		if ($m->{rank} < $#messages)
+		if ($m->{rank} < (scalar(@messages)-1))
     {
     %><AAT:BoxCol>
     <AAT:Button name="2downarrow" link ="$url&msgid=$id&action=bottom" />

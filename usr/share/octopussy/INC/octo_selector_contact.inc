@@ -2,7 +2,7 @@
 my %arg = @_;
 
 my @list = Octopussy::Contact::List();
-if ($#list >= 0)
+if (scalar(@list) > 0)
 {
 	$Response->Include('AAT/INC/AAT_Selector.inc', 
 		name => ($arg{name} || "contact"), 

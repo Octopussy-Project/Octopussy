@@ -30,7 +30,7 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 		my $i = 1;
 		my $new_timestamp = "";
 		my $nb_max = Octopussy::Parameter("wizard_max_msgs");
-		if ($#messages+1 >= $nb_max)
+		if (scalar(@messages) >= $nb_max)
 		{
 			my $str = sprintf(AAT::Translation("_MSG_WIZARD_MSGS_LIST_LIMITED_TO"), 
 				$nb_max);
