@@ -218,7 +218,7 @@ sub Download($$$)
   my $cmd = "wget -q --timeout=3 --tries=1 "
     . (NOT_NULL($pc->{user}) ? "--proxy-user=\"$pc->{user}\" " : "")
     . (NOT_NULL($pc->{password}) ? "--proxy-passwd=\"$pc->{password}\" " : "")
-    . $download . (defined $dest ? " -O \"$dest\"" : "");
+    . "\"$download\"" . (defined $dest ? " -O \"$dest\"" : "");
   system(($ENV{http_proxy} ne "" ? "$ENV{http_proxy}; " : "") . $cmd);
 }
 
