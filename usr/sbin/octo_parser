@@ -396,8 +396,8 @@ sub Cache_Taxonomy_Stats
   my @taxo_rrd = ();
   foreach my $t (@taxo_list)
   {
-    push(@taxo_rrd, $taxo_stats{$service}{$t} || 0);
-    $taxo_stats{$service}{$t} = 0;
+    push(@taxo_rrd, $taxo_stats{$service}{$t->{value}} || 0);
+    $taxo_stats{$service}{$t->{value}} = 0;
   }
   my $seconds_to_parse
     = AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);

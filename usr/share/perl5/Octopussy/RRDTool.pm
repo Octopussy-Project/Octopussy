@@ -241,8 +241,7 @@ sub Syslog_By_Device_Service_Taxonomy_Init($$)
   {
 		Octopussy::Create_Directory("$DIR_RRD/$device");
     my $cmd = RRD_CREATE . " \"$file\" --step " . MINUTE . " ";
-		my @list = Octopussy::Taxonomy::List();
-    foreach my $taxo (sort @list)
+    foreach my $taxo (Octopussy::Taxonomy::List())
 		{
 			my $t = $taxo->{value};
 			$t =~ s/\./_/g;
@@ -281,13 +280,11 @@ sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
 		"-$length", "-120", $title, GRAPH_WIDTH, GRAPH_HEIGHT,
 		"Logs Taxonomy for $service");
 
-	my %taxo_color = Octopussy::Taxonomy::Colors();	
   my $first = 1;
-	my @list = Octopussy::Taxonomy::List();
-  foreach my $taxo (sort @list)
+  foreach my $taxo (Octopussy::Taxonomy::List())
   {
 		my $t = $taxo->{value};
-		my $color = $taxo_color{$t} || "#909090";
+		my $color = $taxo->{color} || "#909090";
     my $type_name = $t;
 		$t =~ s/\./_/g;
     my $type = ($first ? "AREA" : "STACK");
@@ -338,16 +335,14 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
 	my $cmd = Graph_Parameters("$DIR_RRD_PNG/${file}.png", "-$length", "-120",
 		$title, GRAPH_WIDTH, GRAPH_HEIGHT, "Taxonomy for $device");
 	my @services = Octopussy::Device::Services($device);
-	my %taxo_color = Octopussy::Taxonomy::Colors();
-  my @list = Octopussy::Taxonomy::List();
 	my ($def, $cdef, $legend) = ("", "", "");
 	my $first = 1;
-  foreach my $taxo (sort @list)
+  foreach my $taxo (Octopussy::Taxonomy::List())
   {
 		my $t = $taxo->{value};
 		my $i = 0;
 		my $type_name = $t;
-    my $color = $taxo_color{$t} || "#909090";
+    my $color = $taxo->{color} || "#909090";
 		$t =~ s/\./_/g;
     my $type = ($first ? "AREA" : "STACK");
 		foreach my $s (@services)
