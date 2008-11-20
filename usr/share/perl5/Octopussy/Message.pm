@@ -135,6 +135,27 @@ sub Escape_Characters($)
 	return ($regexp);
 }
 
+=head2 Escape_Message($msg)
+
+Escape (adding '\') characters from message '$msg' without escaping <@REGEXP@>
+
+=cut
+sub Escape_Message($)
+{
+	my $msg = shift;
+	my $escaped = "";
+
+	while ($msg =~ /^(.*?)(<\@REGEXP\(\".+?\"\):\S+?\@>)(.*)$/i)
+  {
+    my ($before, $re, $after) = ($1, $2, $3);
+    $escaped .= (Escape_Characters($before) . $re);
+    $msg = $after;
+  }
+  $escaped .= Escape_Characters($msg);
+
+	return ($escaped);
+}
+
 =head2 Color($pattern)
 
 Colors pattern '$pattern'
@@ -238,7 +259,7 @@ sub Pattern_Field_Substitution($$$$$$)
     }
 	}
 	if ($type =~ /^REGEXP/)
-  	{ $regexp =~ s/<\@REGEXP\\\(\"(.+?)\"\\\):\S+?\@>/\($1\)/i; }
+  	{ $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/\($1\)/i; }
  	elsif ($type =~ /^NUMBER$/)
  	{
   	my $substitution = (defined $field_regexp ? $field_regexp->{$f} || "[-+]?\\d+" : "[-+]?\\d+");
@@ -268,7 +289,7 @@ sub Pattern_Field_Unmatched_Substitution($$$$)
 	my ($regexp, $type, $field_regexp, $re_types) = @_;
 
 	if ($type =~ /^REGEXP/)
-  	{ $regexp =~ s/<\@REGEXP\\\(\"(.+?)\"\\\):\S+?\@>/$1/i; }
+  	{ $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i; }
  	elsif ($type =~ /^NUMBER$/)
  	{
   	if ($regexp =~ /^(.*?)<\@NUMBER:(\S+?)\@>(.*)$/)
@@ -295,13 +316,12 @@ sub Pattern_Field_Unmatched_Substitution($$$$)
 =cut
 sub Pattern_To_Regexp_Fields($$$$)
 {
-  my ($msg, $field_regexp, $ref_fields, $field_list) = @_;
+	my ($msg, $field_regexp, $ref_fields, $field_list) = @_;
   my (@fields_position, @fields_function) = ((), ());
   my %re_types = Octopussy::Type::Regexps();
-  my $regexp = Escape_Characters($msg->{pattern});
-	my $function = undef;
+	my $regexp = Escape_Message($msg->{pattern});
+  my $function = undef;
   my $pos = 0;
-
   my %plugin_field_pos = ();
 
   while ($regexp =~ /<\@(.+?):(\S+?)\@>/i)
@@ -313,9 +333,9 @@ sub Pattern_To_Regexp_Fields($$$$)
     {
       if (($pattern_field =~ /^$f$/) || ($f =~ /^Plugin_\S+__$pattern_field$/))
       {
-				($regexp, $function) = 
-					Pattern_Field_Substitution($regexp, $f, $type, 
-						$field_regexp, $field_list, \%re_types);
+        ($regexp, $function) =
+          Pattern_Field_Substitution($regexp, $f, $type,
+            $field_regexp, $field_list, \%re_types);
         $matched = 1;
         $fields_position[$i] = { pos => (defined $plugin_field_pos{$pattern_field} ? $plugin_field_pos{$pattern_field} : $pos), function => $function };
         $plugin_field_pos{$pattern_field} = $pos;
@@ -325,48 +345,14 @@ sub Pattern_To_Regexp_Fields($$$$)
     }
     if (! $matched)
     {
-			$regexp = 
-				Pattern_Field_Unmatched_Substitution($regexp, $type, 
-					$field_regexp, \%re_types);
-    }
-	}
-	$regexp =~ s/\s+$//g;
-
-  return ($regexp, \@fields_position);
-}
-
-=head2 Pattern_To_Regexp_Field_Values($msg, @fields)
-
-=cut
-sub Pattern_To_Regexp_Field_Values($$)
-{
-  my ($msg, @fields) = @_;
-  my %re_types = Octopussy::Type::Regexps();
-	my $regexp = Escape_Characters($msg->{pattern});
-
-  while ($regexp =~ /<\@(.+?):(\S+?)\@>/i)
-  {
-    my ($type, $pattern_field) = ($1, $2);
-    my $matched = 0;
-    foreach my $f (@fields)
-    {
-      if ($pattern_field =~ /^$f->{name}$/)
-      {
-				$regexp =~ s/<\@.+?:\S+\@>/$f->{value}/i;
-        $matched = 1;
-      }
-    }
-    if (! $matched)
-    {
-			if ($type =~ /^REGEXP$/)
-				{ $regexp =~ s/<\@REGEXP\\\(\\\"(.+?)\\\"\\\):\S+?\@>/$1/i; }		
-      else
-        { $regexp =~ s/<\@([^\@]+?):\S+?\@>/$re_types{$1}/i; }
+      $regexp =
+        Pattern_Field_Unmatched_Substitution($regexp, $type,
+          $field_regexp, \%re_types);
     }
   }
-	$regexp =~ s/\s+$//g;
+  $regexp =~ s/\s+$//g;
 
-  return ($regexp);
+  return ($regexp, \@fields_position);	
 }
 
 =head2 Fields_Values($msg, $line)
@@ -451,8 +437,10 @@ sub Parse_List($$$$$$$)
 			if (((!defined $table) || ($m->{table} eq $table)) 
 				&& ($log_level{$m->{loglevel}} >= $level) && ($m->{taxonomy} =~ $qr_taxo))
       {
+				print "before\n";
         my ($regexp, $fields_position) =
           Pattern_To_Regexp_Fields($m, $fields_regexp, $fields, $fields_list);
+				print "RE: $regexp\n";
         if (defined $regexp)
         {
           push(@msg_to_parse, { re => qr/$regexp/, positions => $fields_position });

@@ -193,7 +193,7 @@
   <msg mid="_DIR_UNKNOWN_LOGS" value="_DIR_UNKNOWN_LOGS" />
 	<msg mid="_DOWNLOAD_CSV_FILE" value="Descargar Archivo CSV" />
   <msg mid="_DOWNLOAD_FILE" value="Descargar Archivo" />
-	<msg mid="_DOWNLOAD_ZIP_FILE" value="Descargar Archivo ZIP" /
+	<msg mid="_DOWNLOAD_ZIP_FILE" value="Descargar Archivo ZIP" />
 	<msg mid="_DURATION_D" value="_DURATION_D" />
 	<msg mid="_FINISH_PERIOD" value="_FINISH_PERIOD" />
 	<msg mid="_GET_LOGS" value="_GET_LOGS" />

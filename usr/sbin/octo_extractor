@@ -121,7 +121,7 @@ Returns list of Messages to parse
 sub Get_Messages_To_Parse($$$)
 {
 	my ($services, $loglevel, $taxonomy) = @_;
-	
+
 	my @msg_to_parse = Octopussy::Message::Parse_List($services, $loglevel, 
 		$taxonomy, undef, undef, undef, undef);
 
@@ -175,7 +175,8 @@ sub Print_Logs($$$$$$$$)
 		= Get_TimePeriod_Files($devices, $services, $begin, $end);
 	my $nb_match = 0;
 	open(OUT, "> $output")	if (AAT::NOT_NULL($output));
-	if ((@{$services}[0] =~ /-ANY-/i) && ($taxo =~ /-ANY-/i))
+	if ((@{$services}[0] =~ /-ANY-/i) 
+		&& ($taxo =~ /-ANY-/i) && ($loglevel =~ /-ANY-/i))
 	{
 		my $i = 1;
 		foreach my $min (sort keys %{$files})

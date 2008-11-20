@@ -322,7 +322,7 @@
         regexp="LG-KC550"
         constructor="LG" model="KC550" logo="companies/logo_lg" />
 	<item label="LG KC910" value="mobile_lg_kc910"
-        regexp="LG-KC910"
+        regexp="LG.KC910"
         constructor="LG" model="KC910" logo="companies/logo_lg" />
 	<item label="LG KE520" value="mobile_lg_ke520"
         regexp="LG-KE520"
@@ -1664,6 +1664,9 @@
 	<item label="Sony Ericsson C902" value="mobile_sony_ericsson_c902"
         regexp="SonyEricssonC902"
         constructor="Sony Ericsson" model="C902" logo="companies/logo_sonyericsson" />
+	<item label="Sony Ericsson C905" value="mobile_sony_ericsson_c905"
+        regexp="SonyEricssonC905"
+        constructor="Sony Ericsson" model="C905" logo="companies/logo_sonyericsson" />
 	<item label="Sony Ericsson F500i" value="mobile_sony_ericsson_f500i"
         regexp="SonyEricssonF500i"
         constructor="Sony Ericsson" model="F500i" logo="companies/logo_sonyericsson" />
