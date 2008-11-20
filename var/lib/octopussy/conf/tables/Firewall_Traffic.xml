@@ -44,8 +44,6 @@
          type="NUMBER" />
   <field title="ttl"
          type="NUMBER" />
-  <field title="mac_addr"
-         type="MAC_ADDR" />
   <field title="length"
          type="NUMBER" />
   <field title="id"
@@ -61,5 +59,7 @@
   <field title="group"
          type="WORD" />
   <field title="application"
+         type="WORD" />
+  <field title="mac_addr"
          type="WORD" />
 </octopussy_table>
