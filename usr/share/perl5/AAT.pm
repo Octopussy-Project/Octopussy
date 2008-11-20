@@ -40,6 +40,7 @@ use strict;
 no strict 'refs';
 
 use File::Path;
+use LWP;
 use AAT::Application;
 use AAT::Certificate;
 use AAT::Datetime;
@@ -211,15 +212,24 @@ sub Download($$$)
 {
   my ($appli, $download, $dest) = @_;
   my $pc = AAT::Proxy::Configuration($appli);
-
   my $proxy = (NOT_NULL($pc->{server}) ? "http://$pc->{server}" : "")
     . (NOT_NULL($pc->{port}) ? ":$pc->{port}" : "");
-  $ENV{http_proxy} = ($proxy ne "" ? "export http_proxy=\"$proxy\"" : "");
-  my $cmd = "wget -q --timeout=3 --tries=1 "
-    . (NOT_NULL($pc->{user}) ? "--proxy-user=\"$pc->{user}\" " : "")
-    . (NOT_NULL($pc->{password}) ? "--proxy-passwd=\"$pc->{password}\" " : "")
-    . "\"$download\"" . (defined $dest ? " -O \"$dest\"" : "");
-  system(($ENV{http_proxy} ne "" ? "$ENV{http_proxy}; " : "") . $cmd);
+	
+	my $ua = LWP::UserAgent->new;
+	$ua->agent($appli);
+	$ua->proxy('http', $proxy);
+	my $req = HTTP::Request->new(GET => "$download");
+	my $res = $ua->request($req);
+	if ($res->is_success)
+	{
+  	open(FILE, "> \"$dest\"");
+  	print FILE $res->content;
+  	close(FILE);
+	}
+	else
+	{
+ 		AAT::Syslog("Error: Unable to download '$download'");
+	}
 }
 
 =head2 Update_Configuration($appli, $file, $conf, $rootname)

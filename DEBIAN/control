@@ -3,7 +3,7 @@ Version: 0.9.8.6
 Section: net
 Priority: optional
 Architecture: all
-Depends: adduser, debconf, apache2, syslog-ng, nscd, perl, sudo, mysql-server, libapache2-mod-perl2, libapache-asp-perl, libunix-syslog-perl, libxml-simple-perl, libcrypt-passwdmd5-perl, libdbi-perl, libdbd-mysql-perl, libsys-cpu-perl, libdate-manip-perl, libgd-graph-perl, libnet-scp-perl, libnet-telnet-perl, libnet-xmpp-perl, libmail-sender-perl, libnet-ldap-perl, librrd2, rrdtool, htmldoc, liblinux-inotify2-perl, libcache-cache-perl, libproc-process-perl, liburi-perl, libproc-pid-file-perl
+Depends: adduser, debconf, apache2, syslog-ng, nscd, perl, sudo, mysql-server, libapache2-mod-perl2, libapache-asp-perl, libunix-syslog-perl, libxml-simple-perl, libcrypt-passwdmd5-perl, libdbi-perl, libdbd-mysql-perl, libsys-cpu-perl, libdate-manip-perl, libgd-graph-perl, libnet-scp-perl, libnet-telnet-perl, libnet-xmpp-perl, libmail-sender-perl, libnet-ldap-perl, librrd2, rrdtool, htmldoc, liblinux-inotify2-perl, libcache-cache-perl, libproc-process-perl, liburi-perl, libproc-pid-file-perl, libwww-perl
 Maintainer: Sebastien Thebert <octo.devel@gmail.com>
 Description: logs analyzer, alerter & reporter
  Octopussy is a logs analyzer, alerter & reporter with Web interface.
