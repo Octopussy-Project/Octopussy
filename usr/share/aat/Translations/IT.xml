@@ -74,8 +74,8 @@
 	<msg mid="_BYTES" value="Bytes" />
 	<msg mid="_CANCEL" value="Annulla" />
 	<msg mid="_CERTIFICATE" value="Certificato" />
-  <msg mid="_COLUMNS" value="_COLUMNS" />
-  <msg mid="_COLUMNS_NAMES" value="_COLUMNS_NAMES" />
+  <msg mid="_COLUMNS" value="Colonne" />
+  <msg mid="_COLUMNS_NAMES" value="Nome Colonne" />
 	<msg mid="_COMMON_NAME" value="Common Name" />
 	<msg mid="_CONFIG_FILE" value="File di config" />
 	<msg mid="_DASHBOARD" value="Dashboard" />
@@ -128,7 +128,7 @@
 	<msg mid="_EXPORT_MAIL" value="Mail Export" />
 	<msg mid="_EXPORT_SCP" value="SCP Export" />
 	<msg mid="_FIELD" value="Campo" />
-	<msg mid="_FIELDS_OF_TABLE" value="_FIELDS_OF_TABLE" />
+	<msg mid="_FIELDS_OF_TABLE" value="Campi della tabella" />
 	<msg mid="_FILE" value="File" />
 	<msg mid="_FILTER" value="Filtro" />
 	<msg mid="_FIRSTNAME" value="Nome" />
@@ -285,7 +285,7 @@
   <msg mid="_RIGHTS" value="Diritti" />
   <msg mid="_ROLE" value="Ruoli" />
   <msg mid="_ROOM" value="Stanza" />
-  <msg mid="_RUNNING_REPORTS" value="_RUNNING_REPORTS" />
+  <msg mid="_RUNNING_REPORTS" value="Report attivi" />
 	<msg mid="_SAVE_AS_SEARCH_TEMPLATE" value="Salva come modello di ricerca" />
   <msg mid="_SCHEDULE" value="Pianificazione" />
   <msg mid="_SCHEDULE_REPORT" value="Report pianificazione" />
@@ -327,7 +327,7 @@
   <msg mid="_USERS_BASE" value="Base utenti" />
   <msg mid="_USERS_FILTER" value="Filtro utenti" />
   <msg mid="_USERS_SERVER" value="Server utenti" />
-  <msg mid="_WORLD_STATISTICS" value="_WORLD_STATISTICS" />
+  <msg mid="_WORLD_STATISTICS" value="Statistiche totali" />
 
 	<msg mid="_DLG_DELETE_ALERT"
 		value="Vuoi rimuovere realmente l'allarme '%%arg1%%' ?" />
@@ -435,7 +435,7 @@
 	<msg mid="_MSG_NO_UPDATES_AVAILABLE"
     value="Nessun aggiornamento disponibile" />
   <msg mid="_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
-    value="__I'm OK to send anonymous data to 8pussy.org__" />
+    value="Confermo la spedizione dei dati in forma anonima a 8pussy.org" />
   <msg mid="_MSG_REACH_MAX_LINES"
     value="Raggiunto il numero massimo di righe (%d) !" />
   <msg mid="_MSG_REPORT_DATA_SOURCE"
