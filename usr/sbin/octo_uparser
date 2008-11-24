@@ -16,6 +16,7 @@ to parse Unknown Logs for each Device
 use strict;
 use bytes; # Fix the 'Malformed UTF-8 character' warning
 use utf8;
+use File::Basename;
 use File::Copy;
 use File::Path;
 use Octopussy;
@@ -56,34 +57,37 @@ Inits UParser
 =cut
 sub Init()
 {
-  push(@files, Octopussy::Logs::Unknown_Files($device));
-  if (scalar(@files) > 0)
-  {
-	  my $dconf = Octopussy::Device::Configuration($device);
-	  my $storage = Octopussy::Storage::Default();
-	  @services = Octopussy::Device::Services($device);	
-	  $dir_data{"Unknown"} = Octopussy::Storage::Directory_Unknown($device);
-	  foreach my $serv (@services)
- 	  {
-		  $dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
-  	  my @msg_to_parse = ();
-   	  my @messages = Octopussy::Service::Messages($serv);
-		  AAT::Syslog(PROG_NAME, "PARSER_INIT_SERVICE", $serv, scalar(@messages));
-   	  foreach my $m (@messages)
-      { 
-			  my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-        push(@{$service{$serv}{msgs}}, 
-			  	{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i } );
-		  }
-	  }
-	  ($file, $last_file) = (undef, undef);
-	  (%known_msgs, @unknown_msgs) = ((), ());
-  }
+	@services = Octopussy::Device::Services($device);
+	@files = ();	
+	if (scalar(@services) > 0)
+	{
+  	push(@files, Octopussy::Logs::Unknown_Files($device));
+  	if (scalar(@files) > 0)
+  	{
+	  	my $storage = Octopussy::Storage::Default();
+	  	$dir_data{"Unknown"} = Octopussy::Storage::Directory_Unknown($device);
+	  	foreach my $serv (@services)
+ 	  	{
+		  	$dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
+  	  	my @msg_to_parse = ();
+   	  	my @messages = Octopussy::Service::Messages($serv);
+		  	AAT::Syslog(PROG_NAME, "PARSER_INIT_SERVICE", $serv, scalar(@messages));
+   	  	foreach my $m (@messages)
+      	{	 
+			  	my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
+        	push(@{$service{$serv}{msgs}}, 
+			  		{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i } );
+		  	}
+	  	}
+	  	($file, $last_file) = (undef, undef);
+	  	(%known_msgs, @unknown_msgs) = ((), ());
+  	}
+	}
 }
 
-=head2 Write_Logfile($file, $logs)
+=head2 Write_Logfile($logfile, $logs)
 
-Writes Known Logs '$logs' into Logfile '$file'
+Writes Logs '$logs' into Logfile '$logfile'
 
 =cut
 sub Write_Logfile($$)
@@ -92,9 +96,8 @@ sub Write_Logfile($$)
 
 	if (scalar(@{$logs}) > 0)
 	{
-		my $dir = $logfile;
-		$dir =~ s/^(.+)\/.+?\.log/$1\//g;
-		Octopussy::Create_Directory($dir);
+		$logfile .= ".gz" if ($logfile !~ /^.+\.gz$/);
+		Octopussy::Create_Directory(dirname($logfile));
 		if (defined open(FILE, "|gzip >> $logfile"))
 		{
     	foreach my $log (@{$logs})
@@ -107,35 +110,6 @@ sub Write_Logfile($$)
     	AAT::Syslog("octo_uparser", "UNABLE_OPEN_FILE", $logfile);
   	}
 	}
-}
-
-
-=head2 Write_Unknown_Logfile($file, $logs)
-
-Writes Unknown Logs '$logs' into Logfile '$file'
-
-=cut
-sub Write_Unknown_Logfile($$)
-{
-  my ($logfile, $logs) = @_;
-  
-	if (scalar(@{$logs}) > 0)
-  {
-    my $dir = $logfile;
-    $dir =~ s/^(.+)\/.+?\.log/$1\//g;
-    Octopussy::Create_Directory($dir);
-		if (defined open(FILE, "|gzip >> $logfile"))
-		{
-    	foreach my $log (@{$logs})
-      	{ print FILE "$log\n"; }
-    	close(FILE);
-		}
-		else
-    {
-      print "Unable to open file '$logfile'\n";
-      AAT::Syslog("octo_uparser", "UNABLE_OPEN_FILE", $logfile);
-    }
-  }
 }
 
 =head2 Line_Handler($line, $serv, $msg, $known_msgs, $match)
@@ -215,7 +189,7 @@ sub File_Handler($)
    	}
 		foreach my $serv (keys %known_msgs)
 			{	Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new); }
-		Write_Unknown_Logfile($file, \@unknown_msgs);
+		Write_Logfile($file, \@unknown_msgs);
 	}
 }
 

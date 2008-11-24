@@ -17,6 +17,7 @@ use strict;
 use bytes; # Fix the 'Malformed UTF-8 character' warning
 use utf8;
 
+use File::Basename;
 use File::Copy;
 use File::Path;
 use Linux::Inotify2;
@@ -170,10 +171,10 @@ sub Write_Logfile($$)
 
 	if (scalar(@{$logs}) > 0)
 	{
-		my $dir = $logfile;
-		$dir =~ s/^(.+)\/.+?\.log/$1\//g;
-		Octopussy::Create_Directory($dir);
-   	if (defined open(FILE, "|gzip >> $logfile.gz"))
+		$logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
+  	$logfile .= ".gz" if ($logfile !~ /^.+\.gz$/);
+		Octopussy::Create_Directory(dirname($logfile));
+   	if (defined open(FILE, "|gzip >> $logfile"))
 		{
 			foreach my $log (@{$logs})
    			{ print FILE "$log\n"; }
@@ -181,8 +182,8 @@ sub Write_Logfile($$)
 		}
 		else
     {
-    	print "Unable to open file '$logfile.gz'\n";
-     	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", "$logfile.gz");
+    	print "Unable to open file '$logfile'\n";
+     	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", $logfile);
    	}
 	}
 }
@@ -197,25 +198,8 @@ sub Write_Unknown_Logfile($$)
 {
   my ($logfile, $logs) = @_;
 	$logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
-	$logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
-	
-	if (scalar(@{$logs}) > 0)
-  {
-    my $dir = $logfile;
-    $dir =~ s/^(.+)\/.+?\.log/$1\//g;
-    Octopussy::Create_Directory($dir);
-   	if (defined open(FILE, "|gzip >> $logfile.gz"))
-		{
-    	foreach my $log (@{$logs})
-      	{ print FILE "$log\n"; }
-    	close(FILE);
-		}
-		else
-    {
-      print "Unable to open file '$logfile.gz'\n";
-      AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", "$logfile.gz");
-    }
-  }
+
+	Write_Logfile($logfile, $logs);
 }
 
 =head2 Incoming_To_Unknown($incoming)
@@ -228,18 +212,19 @@ sub Incoming_To_Unknown($)
 	my $incoming = shift;
 	my $unknown = $incoming;
   $unknown =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
-	$unknown =~ s/(msg_\d\dh\d\d)_\d+(\.log)/$1$2/;
-	my $dir = $unknown;
-	$dir =~ s/^(.+)\/.+?\.log/$1\//g;
-	Octopussy::Create_Directory($dir);
+	$unknown =~ s/(msg_\d\dh\d\d)_\d+/$1/;
+	$unknown .= ".gz"	if ($unknown !~ /^.+\.gz$/);
+	Octopussy::Create_Directory(dirname($unknown));
 
 	if (defined open(FILE, "|gzip >> $unknown"))
   {
-		if (defined open(INCOMING, "zcat \"$incoming\" |"))
+		my $cat = ($incoming =~ /.+\.gz$/ ? "zcat" : "cat");
+		if (defined open(INCOMING, "$cat \"$incoming\" |"))
 		{
 			while (<INCOMING>)
       	{ print FILE $_; }
       close(INCOMING);
+			unlink $incoming;
 		}
 		else
   	{
@@ -370,7 +355,12 @@ sub Service_Handler($$$$$$$)
   $parser_stats{$serv} += scalar(@{$known_msgs{$serv}});
 }
 
-sub Cache_MsgID_Stats
+=head2 Cache_MsgID_Stats()
+
+Puts MsgID Statistics in cache
+
+=cut
+sub Cache_MsgID_Stats()
 {
   my @parser_msgid_stats = ();
   foreach my $k1 (keys %msgid_stats)
@@ -389,7 +379,12 @@ sub Cache_MsgID_Stats
     \@parser_msgid_stats);
 }
 
-sub Cache_Taxonomy_Stats
+=head2 Cache_Taxonomy_Stats($service)
+
+Puts Taxonomy Statistics in cache
+
+=cut
+sub Cache_Taxonomy_Stats($)
 {
   my $service = shift;
 
@@ -448,7 +443,6 @@ sub File_Handler($)
     }
 
     (%known_msgs, @unknown_msgs) = ((), ());
-		$file_new =~ s/(msg_\d\dh\d\d)_\d+/$1/;
     my $cat = ($file =~ /.+\.gz$/ ? "zcat" : "cat");
 		if ((-f "$file") && (defined open(FILE, "$cat \"$file\" |")))
 		{
