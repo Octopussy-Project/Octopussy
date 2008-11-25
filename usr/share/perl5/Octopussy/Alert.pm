@@ -450,7 +450,8 @@ sub Message_Building($$$$)
  	$body =~ s/__level__/$alert->{level}/gi;
  	$body =~ s/__log__/$line/gi;
 	$body =~ s/__field_(\w+)__/$field{$1}/gi;
- 	$body =~ s/\\n/\n/gi;
+	$body =~ s/\s*\@\@\@\s*/\n/g;
+# 	$body =~ s/\\n/\n/gi;
 
 	return ($subject, $body);
 }
