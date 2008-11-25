@@ -324,6 +324,9 @@
 	<item label="LG KC910" value="mobile_lg_kc910"
         regexp="LG.KC910"
         constructor="LG" model="KC910" logo="companies/logo_lg" />
+	<item label="LG KE260" value="mobile_lg_ke260"
+        regexp="LG-KE260"
+        constructor="LG" model="KE260" logo="companies/logo_lg" />
 	<item label="LG KE520" value="mobile_lg_ke520"
         regexp="LG-KE520"
         constructor="LG" model="KE520" logo="companies/logo_lg" />
@@ -393,6 +396,9 @@
 	<item label="LG KP235" value="mobile_lg_kp235"
         regexp="LG-KP235"
         constructor="LG" model="KP235" logo="companies/logo_lg" />
+	<item label="LG KP500" value="mobile_lg_kp500"
+        regexp="LG-KP500"
+        constructor="LG" model="KP500" logo="companies/logo_lg" />
 	<item label="LG KS20" value="mobile_lg_ks20"
         regexp="LG-KS20"
         constructor="LG" model="KS20" logo="companies/logo_lg" />
@@ -1155,6 +1161,9 @@
         regexp="SAGEM-VF527"
         constructor="Sagem" model="VF527" logo="companies/logo_sagem" />
 
+	<item label="Samsung GT M8800" value="mobile_samsung_gt_m8800"
+        regexp="SAMSUNG-GT-M8800"
+        constructor="Samsung" model="GT M8800" logo="companies/logo_samsung" />
 	<item label="Samsung S342i" value="mobile_samsung_s342i"
         regexp="portalmmm.2.0 S342i"
         constructor="Samsung" model="S342i" logo="companies/logo_samsung" />
@@ -1563,6 +1572,9 @@
   <item label="Sharp 770" value="mobile_sharp_770"
         regexp="770SH.SHG"
         constructor="Sharp" model="770" logo="companies/logo_sharp" />
+	<item label="Sharp 880" value="mobile_sharp_880"
+        regexp="880SH"
+        constructor="Sharp" model="880" logo="companies/logo_sharp" />
 	<item label="Sharp 902" value="mobile_sharp_902"
         regexp="Sharp902"
         constructor="Sharp" model="902" logo="companies/logo_sharp" />
@@ -1913,6 +1925,9 @@
 	<item label="Sony Ericsson Z750" value="mobile_sony_ericsson_z750"
         regexp="SonyEricssonZ750"
         constructor="Sony Ericsson" model="Z750" logo="companies/logo_sonyericsson" />
+	<item label="Sony Ericsson Z770" value="mobile_sony_ericsson_z770"
+        regexp="SonyEricssonZ770"
+        constructor="Sony Ericsson" model="Z770" logo="companies/logo_sonyericsson" />
 	<item label="Sony Ericsson Z800" value="mobile_sony_ericsson_z800"
         regexp="SonyEricssonZ800"
         constructor="Sony Ericsson" model="Z800" logo="companies/logo_sonyericsson" />

@@ -42,15 +42,18 @@ sub Connection_Test($)
   my $status = 0;
 
 	my $conf_xmpp = Configuration($appli);
-  my $client = new Net::XMPP::Client();
-  my @res = $client->Connect(hostname => $conf_xmpp->{server}, 
-		port => PORT, tls => $conf_xmpp->{tls}, timeout => 3);
-	if (@res)
+	if (AAT::NOT_NULL($conf_xmpp->{server}))
 	{
-		my @res = $client->AuthSend(username => $conf_xmpp->{user}, 
-			password => $conf_xmpp->{password}, resource => "resource" );
-		$status = 1	
-			if ((\@res == 0) || ((@res == 1 && $res[0]) || $res[0] eq 'ok'));
+  	my $client = new Net::XMPP::Client();
+  	my @res = $client->Connect(hostname => $conf_xmpp->{server}, 
+			port => 5223, tls => $conf_xmpp->{tls}, timeout => 3);
+		if (@res)
+		{
+			my @res = $client->AuthSend(username => $conf_xmpp->{user}, 
+				password => $conf_xmpp->{password}, resource => "resource" );
+			$status = 1	
+				if ((\@res == 0) || ((@res == 1 && $res[0]) || $res[0] eq 'ok'));
+		}
 	}
 
 	return ($status);
@@ -68,7 +71,7 @@ sub Send_Message($$@)
 	my $conf_xmpp = Configuration($appli);
 	my $client = new Net::XMPP::Client();
 	my @res = $client->Connect(hostname => $conf_xmpp->{server}, 
-		port => PORT, tls => $conf_xmpp->{tls});
+		port => 5223, tls => $conf_xmpp->{tls});
 	if (@res)
 	{
 		$client->AuthSend('hostname' => $conf_xmpp->{server},

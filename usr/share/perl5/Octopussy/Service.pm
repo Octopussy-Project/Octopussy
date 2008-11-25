@@ -128,7 +128,8 @@ sub Configurations
   foreach my $s (@services)
   {
     my $conf = Configuration($s);
-		my $nb = scalar(@{$conf->{message}});
+		my $nb = (AAT::NOT_NULL($conf->{message}) 
+			? scalar(@{$conf->{message}}) : 0);
 		$conf->{nb_messages} = ($nb < 10 ? "00$nb" : ($nb < 100 ? "0$nb" : $nb));
     $field{$conf->{$sort}} = 1;
     push(@configurations, $conf);
@@ -196,7 +197,8 @@ sub Add_Message($$)
 	my ($service, $mconf) = @_;
 	my $conf = AAT::XML::Read(Filename($service));
 	$conf->{version} = Octopussy::Timestamp_Version($conf);
-	my $rank = scalar(@{$conf->{message}}) + 1;
+	my $rank = (AAT::NOT_NULL($conf->{message}) 
+		? scalar(@{$conf->{message}}) + 1 : 1);
 	$mconf->{rank} = AAT::Padding($rank, 3);
 
 	return ("_MSG_MSGID_ALREADY_EXIST")

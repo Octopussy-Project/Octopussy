@@ -239,7 +239,8 @@ sub Add_Service($$)
 
 	my $old_status = Parse_Status($device);
   Parse_Pause($device)  if ($old_status == STARTED);
-  my $rank = AAT::Padding((scalar(@{$conf->{service}}) + 1), 2);
+  my $rank = AAT::Padding((AAT::NOT_NULL($conf->{service}) 
+		? (scalar(@{$conf->{service}}) + 1) : 1), 2);
 	if ($service =~ /^group (.+)$/)
 	{
 		foreach my $s (Octopussy::ServiceGroup::Services($1))

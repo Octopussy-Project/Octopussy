@@ -214,7 +214,7 @@ sub Download($$$)
   my $pc = AAT::Proxy::Configuration($appli);
   my $proxy = (NOT_NULL($pc->{server}) ? "http://$pc->{server}" : "")
     . (NOT_NULL($pc->{port}) ? ":$pc->{port}" : "");
-	
+
 	my $ua = LWP::UserAgent->new;
 	$ua->agent($appli);
 	$ua->proxy('http', $proxy);
@@ -222,9 +222,11 @@ sub Download($$$)
 	my $res = $ua->request($req);
 	if ($res->is_success)
 	{
-  	open(FILE, "> \"$dest\"");
+  	if (defined open(FILE, "> $dest"))
+		{
   	print FILE $res->content;
   	close(FILE);
+		}
 	}
 	else
 	{
