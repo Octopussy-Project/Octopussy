@@ -157,6 +157,8 @@ sub Init()
 	(@files, %known_msgs, @unknown_msgs) = ((), (), ());
 
 	my $dir =  Octopussy::Storage::Directory_Incoming($device);
+	Octopussy::Create_Directory("$dir/$device/Incoming/")	
+		if (! -d "$dir/$device/Incoming/");
 	Inotify_Watch("$dir/$device/Incoming/");
 }
 
