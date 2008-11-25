@@ -3,20 +3,20 @@
 	<msg mid="_ENGLISH" value="English" />
 	<msg mid="_FRENCH" value="French" />
 	<msg mid="_GERMAN" value="German" />
-	<msg mid="_ITALIAN" value="_ITALIAN" />
+	<msg mid="_ITALIAN" value="Italiano" />
 	<msg mid="_PORTUGUESE" value="Português" />
-	<msg mid="_RUSSIAN" value="_RUSSIAN" />
+	<msg mid="_RUSSIAN" value="Russo" />
 	<msg mid="_SPANISH" value="Spanish" />
 
-	<msg mid="_DISABLED" value="_DISABLED" />
-  <msg mid="_ENABLED" value="_ENABLED" />	
+	<msg mid="_DISABLED" value="Desabilitado" />
+  <msg mid="_ENABLED" value="Habilitado" />	
 	<msg mid="_YES" value="Sim" />
 	<msg mid="_NO" value="Não" />
 
-	<msg mid="_MINUTE" value="_MINUTE" />
-  <msg mid="_MINUTES" value="_MINUTES" />
+	<msg mid="_MINUTE" value="Minuto" />
+  <msg mid="_MINUTES" value="Minutos" />
 	<msg mid="_HOUR" value="Hora" />	
-	<msg mid="_HOURS" value="_HOURS" />
+	<msg mid="_HOURS" value="Horas" />
 	<msg mid="_DAY" value="Dia" />
 	<msg mid="_DAYS" value="Dias" />
 	<msg mid="_WEEK" value="Semana" />
@@ -26,17 +26,17 @@
 	<msg mid="_EVERY_MONTH" value="Toda Semana" />
 	<msg mid="_TODAY" value="Hoje" />
 	<msg mid="_YESTERDAY" value="Ontem" />
-	<msg mid="_CURRENT_HOUR" value="_CURRENT_HOUR" />
-  <msg mid="_CURRENT_DAY" value="_CURRENT_DAY" />
-  <msg mid="_CURRENT_WEEK" value="_CURRENT_WEEK" />
-  <msg mid="_CURRENT_MONTH" value="_CURRENT_MONTH" />
-  <msg mid="_CURRENT_YEAR" value="_CURRENT_YEAR" />
-	<msg mid="_CUSTOMIZED" value="_CUSTOMIZED" />
-  <msg mid="_LAST_HOUR" value="_LAST_HOUR" />
-  <msg mid="_LAST_DAY" value="_LAST_DAY" />
+	<msg mid="_CURRENT_HOUR" value="Hora Atual" />
+  <msg mid="_CURRENT_DAY" value="Dia Atual" />
+  <msg mid="_CURRENT_WEEK" value="Semana Atual" />
+  <msg mid="_CURRENT_MONTH" value="Mes Atual" />
+  <msg mid="_CURRENT_YEAR" value="Ano Atual" />
+	<msg mid="_CUSTOMIZED" value="Personalizado" />
+  <msg mid="_LAST_HOUR" value="Na Última Hora" />
+  <msg mid="_LAST_DAY" value="No Último Dia" />
 	<msg mid="_LAST_WEEK" value="Na Última Semana" />
 	<msg mid="_LAST_MONTH" value="No Último Mês" />
-	<msg mid="_LAST_YEAR" value="_LAST_YEAR" />
+	<msg mid="_LAST_YEAR" value="No Último Ano" />
  
 	<msg mid="_MONDAY" value="Segunda-Feira" />
   <msg mid="_TUESDAY" value="Terça-Feira" />
@@ -59,24 +59,24 @@
 	<msg mid="_NOVEMBER" value="Novembro" />
 	<msg mid="_DECEMBER" value="Dezembro" />
 
-	<msg mid="_HOURLY_STATS" value="Status da Hora" />
- 	<msg mid="_DAILY_STATS" value="Status do Dia" />
-	<msg mid="_WEEKLY_STATS" value="Status da Semana" />
-	<msg mid="_MONTHLY_STATS" value="Status do Mês" />
-	<msg mid="_YEARLY_STATS" value="_YEARLY_STATS" />
+	<msg mid="_HOURLY_STATS" value="Estatisticas da Hora" />
+ 	<msg mid="_DAILY_STATS" value="Estatisticas do Dia" />
+	<msg mid="_WEEKLY_STATS" value="Estatisticas da Semana" />
+	<msg mid="_MONTHLY_STATS" value="Estatisticas do Mês" />
+	<msg mid="_YEARLY_STATS" value="Estatisticas Anuais" />
 
 	<msg mid="_ACTION" value="Ação" />
-	<msg mid="_BACKUP" value="_BACKUP" />
+	<msg mid="_BACKUP" value="Backup" />
 	<msg mid="_BEGIN" value="Começo" />
 	<msg mid="_BINARY" value="Binário" />
   <msg mid="_BODY" value="Corpo" />
   <msg mid="_BUG_REPORT" value="Relatório de Bugs" />
-	<msg mid="_BYTES" value="_BYTES" />
+	<msg mid="_BYTES" value="Bytes" />
 	<msg mid="_CANCEL" value="Cancela" />
-  <msg mid="_CERTIFICATE" value="_CERTIFICATE" />
-  <msg mid="_COLUMNS" value="_COLUMNS" />
-  <msg mid="_COLUMNS_NAMES" value="_COLUMNS_NAMES" />
-	<msg mid="_COMMON_NAME" value="_COMMON_NAME" />
+  <msg mid="_CERTIFICATE" value="Certificado" />
+  <msg mid="_COLUMNS" value="Colunas" />
+  <msg mid="_COLUMNS_NAMES" value="Nomes das Colunas" />
+	<msg mid="_COMMON_NAME" value="Nome Comum (CN)" />
 	<msg mid="_CONFIG_FILE" value="Arquivo de Configuração" />
 	<msg mid="_DASHBOARD" value="Painel de Controle" />
 	<msg mid="_DELETE" value="Deleta" />
@@ -87,19 +87,19 @@
 	<msg mid="_FINISH" value="Finaliza" />
 	<msg mid="_HELP" value="Ajuda" />
 	<msg mid="_HOST" value="Host" />
-	<msg mid="_ICONS_AND_TEXT" value="_ICONS_AND_TEXT" />
-  <msg mid="_ICONS_ONLY" value="_ICONS_ONLY" />
+	<msg mid="_ICONS_AND_TEXT" value="Icones e texto" />
+  <msg mid="_ICONS_ONLY" value="Icones Somente" />
 	<msg mid="_KEY" value="Chave" />
 	<msg mid="_LOGOUT" value="Logout" />
-	<msg mid="_MENU_DISPLAY" value="_MENU_DISPLAY" />
+	<msg mid="_MENU_DISPLAY" value="Exibicao do Menu" />
 	<msg mid="_MODIFY" value="Modifica" />
 	<msg mid="_NEXT" value="Próximo" />
 	<msg mid="_OK" value="Ok" />
 	<msg mid="_PAUSE" value="Parar" />
 	<msg mid="_PAUSED" value="Parado" />
 	<msg mid="_REMOVE" value="Remover" />
-	<msg mid="_RESTORE" value="_RESTORE" />
-  <msg mid="_RESTORE_FROM_FILE" value="_RESTORE_FROM_FILE" />
+	<msg mid="_RESTORE" value="Restore" />
+  <msg mid="_RESTORE_FROM_FILE" value="Recuperar do Arquivo" />
   <msg mid="_SAVE" value="Gravar" />
 	<msg mid="_SERVER" value="Servidor" />
 	<msg mid="_START" value="Iniciar" />
@@ -107,7 +107,7 @@
   <msg mid="_STATUS" value="Status" />
 	<msg mid="_STOP" value="Parar" />
 	<msg mid="_STOPPED" value="Parado" />
-	<msg mid="_TEXT_ONLY" value="_TEXT_ONLY" />
+	<msg mid="_TEXT_ONLY" value="Texto Somente" />
 	<msg mid="_UPDATE" value="Atualiza" />
 	<msg mid="_USER" value="Usuário" />
 	<msg mid="_USERS" value="Usuários" />
@@ -118,7 +118,7 @@
 	<msg mid="_COMMENT" value="Comentário" />
 	<msg mid="_DATE_BEGIN" value="Data de Início" />
 	<msg mid="_DATE_END" value="Date de Fim" />
-	<msg mid="_DATETIME" value="_DATETIME" />
+	<msg mid="_DATETIME" value="Hora e Data" />
 	<msg mid="_DAY_OF_MONTH" value="Dia do Mês" />
 	<msg mid="_DAY_OF_WEEK" value="Dia da Semana" />
 	<msg mid="_DEFAULT_STORAGES" value="Repositório Padrão" />
@@ -128,7 +128,7 @@
 	<msg mid="_EXPORT_MAIL" value="Exportar via E-Mail" />
 	<msg mid="_EXPORT_SCP" value="Exportar via SCP" />
 	<msg mid="_FIELD" value="Campo" />
-	<msg mid="_FIELDS_OF_TABLE" value="_FIELDS_OF_TABLE" />
+	<msg mid="_FIELDS_OF_TABLE" value="Campos da Tabela" />
 	<msg mid="_FILE" value="Arquivo" />
 	<msg mid="_FILTER" value="Filtro" />
 	<msg mid="_FIRSTNAME" value="Primeiro Nome" />
@@ -137,8 +137,8 @@
 	<msg mid="_LOGIN" value="Login" />
 	<msg mid="_MAIL_SERVER" value="Servidor de E-Mail" />
 	<msg mid="_NAME" value="Nome" />
-	<msg mid="_NB" value="_NB" />
-	<msg mid="_NEW_PASSWORD" value="_NEW_PASSWORD" />
+	<msg mid="_NB" value="Numero" />
+	<msg mid="_NEW_PASSWORD" value="Nova Senha" />
 	<msg mid="_PASSWORD" value="Senha" />
 	<msg mid="_PORT" value="Porta" />
 	<msg mid="_QUERY" value="Consulta" />
@@ -150,16 +150,16 @@
 	<msg mid="_TITLE" value="Título" />
 	<msg mid="_TYPE" value="Tipo" />
 	<msg mid="_UNKNOWN" value="Desconhecido" />
-	<msg mid="_USED_SPACE" value="_USED_SPACE" />
+	<msg mid="_USED_SPACE" value="Espaco Usado" />
 	<msg mid="_USER_PREFS" value="Preferências do Usuário" />
-	<msg mid="_USER_RESTRICTIONS" value="_USER_RESTRICTIONS" />
+	<msg mid="_USER_RESTRICTIONS" value="Restricoes do Usuario" />
 	<msg mid="_VALUE" value="Valor" />
 	<msg mid="_VERSION" value="Versão" />
 	<msg mid="_WEBSITE" value="Website" />
 
 	<msg mid="_ADD_NEW_SERVICE" value="Adicionar Novo Serviço" />
 	<msg mid="_ADD_SERVICE_TO_DEVICE" value="Adicionar Serviço ao Dispositivo" />
-	<msg mid="_ADD_SERVICE_TO_SERVICEGROUP" value="_ADD_SERVICE_TO_SERVICEGROUP" />
+	<msg mid="_ADD_SERVICE_TO_SERVICEGROUP" value="Adicionar Servico ao Grupo de Servicos" />
 	<msg mid="_ADD_STORAGE" value="Adicionar Repositório" />
 	<msg mid="_ALERT" value="Alerta" />
   <msg mid="_ALERT_DESCRIPTION" value="Descrição do Alerta" />
@@ -174,12 +174,12 @@
 	<msg mid="_CONTACTS_BASE" value="Base de Contatos" />
 	<msg mid="_CONTACTS_FILTER" value="Filtro de Contatos" />
 	<msg mid="_CONTACTS_SERVER" value="Servidor de Contatos" />
-	<msg mid="_COUNTRY" value="_COUNTRY" />
+	<msg mid="_COUNTRY" value="Pais" />
 	<msg mid="_CPU_USAGE" value="Uso de Processador" />
-	<msg mid="_CREATE_REPORT" value="_CREATE_REPORT" />
-	<msg mid="_DEFAULT_DIR_INCOMING_LOGS" value="_DEFAULT_DIR_INCOMING_LOGS" />
-  <msg mid="_DEFAULT_DIR_KNOWN_LOGS" value="_DEFAULT_DIR_KNOWN_LOGS" />
-  <msg mid="_DEFAULT_DIR_UNKNOWN_LOGS" value="_DEFAULT_DIR_UNKNOWN_LOGS" />
+	<msg mid="_CREATE_REPORT" value="Criar Relatorio" />
+	<msg mid="_DEFAULT_DIR_INCOMING_LOGS" value="Diretorio Padrao de Logs Chegando" />
+  <msg mid="_DEFAULT_DIR_KNOWN_LOGS" value="Diretorio Padrao de Logs Conhecidos" />
+  <msg mid="_DEFAULT_DIR_UNKNOWN_LOGS" value="Diretorio Padrao de Logs Desconhecidos" />
 	<msg mid="_DEVICE" value="Dispositivo" />
 	<msg mid="_DEVICE_ADDRESS" value="Endereço do Dispositivo" />
 	<msg mid="_DEVICE_DESCRIPTION" value="Descrição do Dispositivo" />
@@ -187,15 +187,15 @@
 	<msg mid="_DEVICE_NAME" value="Nome do Dispositivo" />
 	<msg mid="_DEVICE_TYPE" value="Tipo do Dispositivo" />
 	<msg mid="_DEVICES" value="Dispositivos" />
-	<msg mid="_DEVICEGROUPS" value="GrupoDeDispositivos" />
-	<msg mid="_DIR_INCOMING_LOGS" value="_DIR_INCOMING_LOGS" />
-  <msg mid="_DIR_KNOWN_LOGS" value="_DIR_KNOWN_LOGS" />
-  <msg mid="_DIR_UNKNOWN_LOGS" value="_DIR_UNKNOWN_LOGS" />
+	<msg mid="_DEVICEGROUPS" value="Grupo de Dispositivos" />
+	<msg mid="_DIR_INCOMING_LOGS" value="Diretorio de Logs Chegando" />
+  <msg mid="_DIR_KNOWN_LOGS" value="Diretorio de Logs Conhecidos" />
+  <msg mid="_DIR_UNKNOWN_LOGS" value="Diretorio de Logs Desconhecidos" />
 	<msg mid="_DOWNLOAD_CSV_FILE" value="Download do Arquivo CSV" />
 	<msg mid="_DOWNLOAD_FILE" value="Download do Arquivo" />
 	<msg mid="_DOWNLOAD_ZIP_FILE" value="Download do Arquivo ZIP" />
-	<msg mid="_DURATION_D" value="_DURATION_D" />
-	<msg mid="_FINISH_PERIOD" value="_FINISH_PERIOD" />
+	<msg mid="_DURATION_D" value="Duracao (d)" />
+	<msg mid="_FINISH_PERIOD" value="Periodo de Termino" />
 	<msg mid="_GET_LOGS" value="Coletar Logs" />
 	<msg mid="_GRAPH_HEIGHT" value="Altura do Gráfico" />
 	<msg mid="_GRAPH_TITLE" value="Título do Gráfico" />
@@ -217,11 +217,11 @@
 	<msg mid="_LOGS_VIEWER" value="Visualizador de Logs" />
 	<msg mid="_LOGS_WIZARD" value="Logs Wizard" />
 	<msg mid="_MAPS" value="Mapas" />
-	<msg mid="_MATCH" value="_MATCH" />
-	<msg mid="_MAX_TIME_WITHOUT_LOG" value="_MAX_TIME_WITHOUT_LOG" />
+	<msg mid="_MATCH" value="Iguala se" />
+	<msg mid="_MAX_TIME_WITHOUT_LOG" value="Tempo Maximo Sem Logs" />
 	<msg mid="_MEM_USAGE" value="Uso de Memória" />
 	<msg mid="_MESSAGES" value="Mensagens" />
-	<msg mid="_MSG_ID" value="_MSG_ID" />
+	<msg mid="_MSG_ID" value="ID da Mensagem" />
 	<msg mid="_NAGIOS_HOST_DEFINED" value="Host definido no Nagios" />
 	<msg mid="_NAGIOS_SERVER" value="Servidor do Nagios" />
 	<msg mid="_NAGIOS_SERVICE_DEFINED" value="Serviço definido no Nagios" />
@@ -236,63 +236,63 @@
 	<msg mid="_NEW_DYNAMIC_ALERT" value="Novo Alerta Dinâmico" />
 	<msg mid="_NEW_DYNAMIC_DEVICEGROUP" value="Novo Grupo de Dispositivos Dinâmico" />
 	<msg mid="_NEW_FIELD" value="Novo Campo" />
-	<msg mid="_NEW_OCTOPUSSY_VERSION_AVAILABLE" value="_NEW_OCTOPUSSY_VERSION_AVAILABLE" />
+	<msg mid="_NEW_OCTOPUSSY_VERSION_AVAILABLE" value="NovaVersao do Octopussy Disponivel" />
 	<msg mid="_NEW_RACK" value="Novo Rack" />
 	<msg mid="_NEW_REPORT" value="Novo Relatório" />
 	<msg mid="_NEW_ROOM" value="Nova Sala" />
   <msg mid="_NEW_SERVICE" value="Novo Serviço" />
-	<msg mid="_NEW_SERVICEGROUP" value="_NEW_SERVICEGROUP" />
+	<msg mid="_NEW_SERVICEGROUP" value="Novo Grupo de Servicos" />
 	<msg mid="_NEW_STATIC_DEVICEGROUP" value="Novo Grupo de Dispositivos Estático" />
   <msg mid="_NEW_TABLE" value="Nova Tabela" />
 	<msg mid="_NEW_TIMEPERIOD" value="Novo Períódo de Tempo" />
 	<msg mid="_NEW_USER" value="Novo Usuário" />
-	<msg mid="_OFFICIAL_WEBSITE" value="_OFFICIAL_WEBSITE" />
-  <msg mid="_ORGANIZATION" value="_ORGANIZATION" />
-  <msg mid="_ORGANIZATIONAL_UNIT" value="_ORGANIZATIONAL_UNIT" />
-	<msg mid="_PAGE" value="_PAGE" />
-  <msg mid="_PAGE_FIRST" value="_PAGE_FIRST" />
-  <msg mid="_PAGE_LAST" value="_PAGE_LAST" />
-  <msg mid="_PAGE_NEXT" value="_PAGE_NEXT" />
-  <msg mid="_PAGE_PREVIOUS" value="_PAGE_PREVIOUS" />
+	<msg mid="_OFFICIAL_WEBSITE" value="Site Oficial" />
+  <msg mid="_ORGANIZATION" value="Organizacao" />
+  <msg mid="_ORGANIZATIONAL_UNIT" value="Onidade Organizacionai (OU)" />
+	<msg mid="_PAGE" value="Pagina" />
+  <msg mid="_PAGE_FIRST" value="Primeira Pagina" />
+  <msg mid="_PAGE_LAST" value="Ultima Pagina" />
+  <msg mid="_PAGE_NEXT" value="Proxima Pagina" />
+  <msg mid="_PAGE_PREVIOUS" value="Pagina Anterior" />
 	<msg mid="_PARTITION_LOGS" value="Partição de  Logs" />
 	<msg mid="_PERIOD" value="Período" />
   <msg mid="_PERIODS" value="Períodos" />
 	<msg mid="_PROCESSOR" value="Processador" />
-	<msg mid="_QUICK_SEARCH_ON_THIS_PAGE" value="_QUICK_SEARCH_ON_THIS_PAGE" />
+	<msg mid="_QUICK_SEARCH_ON_THIS_PAGE" value="Busca Rapida Nesta Pagina" />
 	<msg mid="_RACK" value="Rack" />
 	<msg mid="_RANK" value="Rank" />
 	<msg mid="_REGEXP_EXC" value="Regexp (Excl.)" />
   <msg mid="_REGEXP_INC" value="Regexp (Incl.)" />
-	<msg mid="_RELOAD" value="_RELOAD" />
-	<msg mid="_RELOAD_ALL" value="_RELOAD_ALL" />
-  <msg mid="_RELOAD_REQUIRED" value="_RELOAD_REQUIRED" />
+	<msg mid="_RELOAD" value="Carregar Novamente" />
+	<msg mid="_RELOAD_ALL" value="Carregar Tudo Novamente" />
+  <msg mid="_RELOAD_REQUIRED" value="Necessario Carregar Novamente" />
 	<msg mid="_REMOVE_LOG_MINUTE" value="Remover Log por Minuto" />
-	<msg mid="_REPETITION_N" value="_REPETITION_N" />
+	<msg mid="_REPETITION_N" value="Repeticao (n)" />
 	<msg mid="_REPORT" value="Report" />
 	<msg mid="_REPORT_CATEGORIES" value="Categorias de Relatório" />
 	<msg mid="_REPORT_CREATION" value="Criação de Relatório" />
 	<msg mid="_REPORT_CSV" value="Formato de Relatório CSV" />
 	<msg mid="_REPORT_EDITION" value="Edição de Relatório" />
-	<msg mid="_REPORT_FIELDS_ORDER" value="_REPORT_FIELDS_ORDER" />
+	<msg mid="_REPORT_FIELDS_ORDER" value="Pedido de Campos Para o Relatorio" />
 	<msg mid="_REPORT_HTML" value="Formato do Relatório HTML" />
 	<msg mid="_REPORT_NAME" value="Nome do Relatório" />
-	<msg mid="_REPORT_PDF" value="_REPORT_PDF" />
+	<msg mid="_REPORT_PDF" value="Relatorio em PDF" />
 	<msg mid="_REPORT_SCHEDULER" value="Agendador de Relatórios" />
-	<msg mid="_REPORT_XML" value="_REPORT_XML" />
+	<msg mid="_REPORT_XML" value="Relatorio em XML" />
 	<msg mid="_REPORTS" value="Relatórios" />
 	<msg mid="_REPORTS_UPDATES" value="Atualização de Relatórios" />
 	<msg mid="_REPORTS_VIEWER" value="Visualizador de Relatórios" />
 	<msg mid="_RIGHTS" value="Direitos" />
-	<msg mid="_ROLE" value="_ROLE" />
+	<msg mid="_ROLE" value="Papel" />
 	<msg mid="_ROOM" value="Sala" />
-  <msg mid="_RUNNING_REPORTS" value="_RUNNING_REPORTS" />
-	<msg mid="_SAVE_AS_SEARCH_TEMPLATE" value="_SAVE_AS_SEARCH_TEMPLATE" />
+  <msg mid="_RUNNING_REPORTS" value="Relatorios em Execucao" />
+	<msg mid="_SAVE_AS_SEARCH_TEMPLATE" value="Salvar Como um Modelo para Busca" />
 	<msg mid="_SCHEDULE" value="Agendar" />
 	<msg mid="_SCHEDULE_REPORT" value="Relatório de Agenda" />
 	<msg mid="_SCHEDULER" value="Agenda" />	
-	<msg mid="_SEARCH_TEMPLATES" value="_SEARCH_TEMPLATES" />
+	<msg mid="_SEARCH_TEMPLATES" value="Buscar por Modelos" />
 	<msg mid="_SELECT_THIS_MSG" value="Selecionar esta Mensagem" />
-	<msg mid="_SELECTION" value="_SELECTION" />
+	<msg mid="_SELECTION" value="Selecao" />
 	<msg mid="_SENDER" value="Sender" />
 	<msg mid="_SERVER" value="Servidor" />
 	<msg mid="_SERVICE" value="Serviço" />
@@ -303,11 +303,11 @@
 	<msg mid="_START" value="Iniciar" />
   <msg mid="_START_PERIOD" value="Período para Início" />
   <msg mid="_START_TIME" value="Hora de Início" />
-	<msg mid="_STATE" value="_STATE" />
+	<msg mid="_STATE" value="Estado" />
 	<msg mid="_STATIC" value="Estático" />
 	<msg mid="_STATISTIC_REPORTS" value="Relatório de Estatísticas" />
 	<msg mid="_STORAGES" value="Repositórios" />
-	<msg mid="_STREET" value="_STREET" />
+	<msg mid="_STREET" value="Rua" />
 	<msg mid="_SUPPORT_REQUEST" value="Solicitar Suporte" />
 	<msg mid="_SWAP_USAGE" value="Uso de Swap" />
 	<msg mid="_SYSTEM_CONFIG" value="Configuração do Sistema" />
@@ -327,76 +327,76 @@
 	<msg mid="_USERS_BASE" value="Base de Usuários" />
   <msg mid="_USERS_FILTER" value="Filtro de Usuários" />
   <msg mid="_USERS_SERVER" value="Servidor de Usuários" />
-  <msg mid="_WORLD_STATISTICS" value="_WORLD_STATISTICS" />
+  <msg mid="_WORLD_STATISTICS" value="Estatisticas do Ano" />
 
 	<msg mid="_DLG_DELETE_ALERT"
-    value="_Do you really want to delete Alert '%%arg1%%' ?" />
+    value="Voce quer apagar o Alerta '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_CONTACT"
-    value="_Do you really want to delete Contact '%%arg1%%' ?" />
+    value="Voce quer apagar o Contato'%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_DEVICE"
-    value="_Do you really want to delete Device '%%arg1%%' ?" />
+    value="Voce quer apagar o Ativo'%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_DEVICEGROUP"
-    value="_Do you really want to delete Device Group '%%arg1%%' ?" />
+    value="Voce quer apagar o Grupo de Ativos'%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_DEVICE_SERVICE"
-    value="_Do you really want to delete Service '%%arg1%%' from Device '%%arg2%%' ?" />
+    value="Voce quer apagar o Servico'%%arg1%%' from Ativo '%%arg2%%' ?" />
   <msg mid="_DLG_DELETE_LOCATION_BUILDING"
-    value="_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' ?" />
+    value="Voce quer mesmo apagar a Cidade de Localizacao'%%arg1%%' Predio '%%arg2%%' ?" />
   <msg mid="_DLG_DELETE_LOCATION_CITY"
-    value="_Do you really want to delete Location City '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar a Cidade de Localizacao '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_LOCATION_RACK"
-    value="_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' Rack '%%arg4%%' ?" />
+    value="Voce quer mesmo apagar a Cidade de Localizacao '%%arg1%%' Predio '%%arg2%%' Sala '%%arg3%%' Rack '%%arg4%%' ?" />
   <msg mid="_DLG_DELETE_LOCATION_ROOM"
-    value="_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' ?" />
+    value="Voce quer mesmo apagar a Cidade de Localizacao '%%arg1%%' Predio '%%arg2%%' Sala '%%arg3%%' ?" />
   <msg mid="_DLG_DELETE_LOG"
-    value="_Do you really want to delete this Log line #%%log%% ?" />
+    value="Voce quer  mesmo apagar a Linha de Log #%%log%% ?" />
   <msg mid="_DLG_DELETE_LOG_MINUTE"
-    value="_Do you really want to delete this Log File %%datetime%% ?" />
+    value="Voce quer mesmo apagar o Arquivo de Logs %%datetime%% ?" />
   <msg mid="_DLG_DELETE_MESSAGE"
-    value="_Do you really want to delete Message '%%msg%%' from Service '%%service%%' ?" />
+    value="Voce quer mesmo apagar a Mensagem '%%msg%%' from Servico '%%service%%' ?" />
   <msg mid="_DLG_DELETE_REPORT"
-    value="_Do you really want to delete Report '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Relatorio '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_REPORT_DATA"
-    value="_Do you really want to delete Report '%%arg1%%' '%%arg2%%' ?" />
+    value="Voce quer mesmo apagar o Relatorio '%%arg1%%' '%%arg2%%' ?" />
   <msg mid="_DLG_DELETE_REPORT_MONTH"
-    value="_Do you really want to delete Report Month '%%arg1%%' '%%arg2%% %%arg3%%' ?" />
+    value="Voce quer mesmo apagar o Mes de Relatorios '%%arg1%%' '%%arg2%% %%arg3%%' ?" />
   <msg mid="_DLG_DELETE_REPORT_SCHEDULE"
-    value="_Do you really want to delete Report Schedule '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Agendamento de Relatorio '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_SEARCH_TEMPLATE"
-    value="_Do you really want to delete Search Template '%%arg1%%' ?" />
-  <msg mid="_DLG_DELETE_SERVICE"     value="_Do you really want to delete Service '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Modelo de Busca '%%arg1%%' ?" />
+  <msg mid="_DLG_DELETE_SERVICE"
+		value="Voce quer mesmo apagar o Servico '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_SERVICEGROUP"
-    value="_Do you really want to delete Service Group '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Grupo de  Servicos '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_SERVICEGROUP_SERVICE"
-    value="_Do you really want to delete Service '%%arg2%%' from Service Group '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Servico '%%arg2%%' do Grupo de Servicos '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_STATISTIC_REPORT"
-    value="_Do you really want to delete Statistic Report '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Relatorio de Estatisticas '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_STATISTIC_REPORT_SCHEDULE"
-    value="_Do you really want to delete Statistic Report Schedule '%%arg1%%' ?" />
+    value="Voce quer mesmo apgar o agendamento do relatorio de '%%arg1%%' ?" />
 	<msg mid="_DLG_DELETE_STORAGE"
-    value="_Do you really want to delete Storage '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Armazenamento '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_TABLE"
-    value="_Do you really want to delete Table '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar a Tabela'%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_TIMEPERIOD"
-    value="_Do you really want to delete TimePeriod '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Periodo de Tempo '%%arg1%%' ?" />
   <msg mid="_DLG_DELETE_USER"
-    value="_Do you really want to delete User '%%arg1%%' ?" />
+    value="Voce quer mesmo apagar o Usuario '%%arg1%%' ?" />
   <msg mid="_DLG_LOGOUT"
-    value="_Do you really want to logout ?" />
+    value="Voce quer realmente deslogar-se ?" />
   <msg mid="_DLG_PARSE_PAUSE"
-    value="_Do you really want to pause parsing Device '%%arg1%%' ?" />
+    value="Voce quer  mesmo pausar o parsing de Ativos '%%arg1%%' ?" />
   <msg mid="_DLG_PARSE_START"
-    value="_Do you really want to start parsing Device '%%arg1%%' ?" />
+    value="Voce quer mesmo iniciar o parsing de Ativos '%%arg1%%' ?" />
   <msg mid="_DLG_PARSE_STOP"
-    value="_Do you really want to stop parsing Device '%%arg1%%' ?" />
+    value="Voce quer mesmo parar o parsing de Ativos '%%arg1%%' ?" />
   <msg mid="_DLG_RESTORE_CONFIG"
-    value="_Do you really want to restore configuration from file '%%arg1%%' ?" />
-
+    value="Voce que rmesmo recuperar as configuracoes do arquivo '%%arg1%%' ?" />
 	<msg mid="_MSG_ALERT_RAISED_ONLY"
 		value="O alerta vai ser disparado somente se acontecer n vezes em menos de d secundos em um dispositivo" />
 	<msg mid="_MSG_CHECK_UPDATES"
 		value="Checar por Atualizações" />
 	<msg mid="_MSG_CONFIG_RESTORED"
-		value="_MSG_CONFIG_RESTORED %s" />
+		value="Configuracao de Mensagens Recuperada %s" />
 	<msg mid="_MSG_CONTACT_ALREADY_EXIST"
     value="Este contato já existe !" />
 	<msg mid="_MSG_CONTACT_INFO_INVALID"
@@ -410,7 +410,7 @@
 	<msg mid="_MSG_INVALID_LOGIN_PASSWORD" 
 		value="Você digitou um usuário/senha inválido !" />
 	<msg mid="_MSG_INVALID_SCHEDULE_PERIOD"
-    value="_MSG_INVALID_SCHEDULE_PERIOD" />
+    value="Data Invalida de Agendamento" />
 	<msg mid="_MSG_MAIL_SENT_TO_SUPPORT"
 		value="E-Mail enviado para o suporte Octopussy." />
 	<msg mid="_MSG_MAP_CREATION_INFO"
@@ -430,13 +430,13 @@
 	<msg mid="_MSG_NO_GRAPH_AVAILABLE"
     value="Nenhum gráfico disponível !" />
 	<msg mid="_MSG_NO_MSG_FOR_SERVICE"
-    value="_MSG_NO_MSG_FOR_SERVICE %s (%d)" />
+    value="Sem mensagens para o Servico %s (%d)" />
 	<msg mid="_MSG_NO_UPDATES_AVAILABLE"
 		value="Nenhuma atualização disponível" />
   <msg mid="_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
-    value="__I'm OK to send anonymous data to 8pussy.org__" />
+    value="Eu concordo em enviar dados anonimos para 8pussy.org" />
 	<msg mid="_MSG_REACH_MAX_LINES"
-    value="_MSG_REACH_MAX_LINES: " />
+    value="Numero maximo de linhas alcancado: " />
 	<msg mid="_MSG_REPORT_DATA_SOURCE"
     value="Dados dos %d arquivos / %d linhas pegos em %d minutos e %d segundos." />
   <msg mid="_MSG_REPORT_GENERATED_BY"
@@ -456,7 +456,7 @@
 	<msg mid="_MSG_RESTART_OCTOPUSSY"
     value="Restart do Octopussy" />
 	<msg mid="_MSG_SCHEDULE_ALREADY_EXISTS"
-    value="_MSG_SCHEDULE_ALREADY_EXISTS" />
+    value="Agendamento ja existe" />
 	<msg mid="_MSG_SEND_MY_NEW"
     value="Enviar meus novos/atualizados Serviços/Tabelas" />
 	<msg mid="_MSG_SERVICES_FOR_DEVICE" 
@@ -468,7 +468,7 @@
 	<msg mid="_MSG_STATIC_ALERT_CREATION"
     value="Criação de Alerta Estático" />
 	<msg mid="_MSG_STORAGES_DEFAULT_DIRECTORIES"
-    value="_These Default Storage Directories are only used for New Devices ! If you want to change Logs Directory for a specific Device/Service, do it in the Devices/Storages Page." />
+    value="Estes Armazenamentos Padrao sao usados somente para novos ativos ! Se voce quer mudar o Diretorio de Logs para um Ativo/Servico, faca isso na pagina de Ativos/Armazenamentos." />
 	<msg mid="_MSG_STORAGES_FOR_DEVICE" 
 		value="Armazenamento para o Dispositivo %s" />
 	<msg mid="_MSG_SUBMIT_TO_IMPROVE"
