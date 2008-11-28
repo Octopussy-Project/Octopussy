@@ -43,7 +43,8 @@ if ($role !~ /ro/i)
 	<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 	<AAT:BoxRow>
 	<AAT:BoxCol><AAT:Entry name="fieldname" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Selector name="type" list=\@types/></AAT:BoxCol>
+	<AAT:BoxCol>
+	<AAT:Selector name="type" list=\@types selected="WORD" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Form_Submit value="_NEW_FIELD" /></AAT:BoxCol>
 	</AAT:BoxRow>
 	</AAT:Form><%

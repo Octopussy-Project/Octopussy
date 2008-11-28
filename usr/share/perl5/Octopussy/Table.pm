@@ -260,7 +260,7 @@ sub Field_Type_List($$)
     push(@list, $f->{title})	if ($simple_type =~ /^$f_stype$/i); 
   }
 
-	return (@list);
+	return (sort @list);
 }
 
 =head2 Devices_and_Services_With($table)
