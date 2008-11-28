@@ -2,6 +2,7 @@
 <AAT:PageTheme />
 <%
 my $f = $Request->Form();
+my $page = $Request->QueryString("redirect");
 
 if ((defined $f->{login}) && (defined $f->{password}))
 {
@@ -24,11 +25,12 @@ if ((defined $f->{login}) && (defined $f->{password}))
 		AAT::Syslog("octo_WebUI", "USER_FAILED_LOGIN");
   	$Response->Redirect("./login.asp");
  	}
-	my $redirect = ($auth->{role} =~  /restricted/i 
-		? "./restricted_logs_viewer.asp" : "./index.asp");
-	$Response->Redirect($redirect);
+	my $redirect = (($auth->{role} =~  /restricted/i) 
+		? "./restricted_logs_viewer.asp" 
+		: (AAT::NOT_NULL($page) ? ".$page" : "./index.asp"));
+#	$Response->Redirect($redirect);
 }
 %>
-<AAT:Inc file="octo_login" />
+<AAT:Inc file="octo_login" redirect="$page" />
 <AAT:Msg_Error />
 <AAT:PageBottom credits="1" />

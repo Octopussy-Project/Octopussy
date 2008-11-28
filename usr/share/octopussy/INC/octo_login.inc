@@ -1,8 +1,10 @@
 <% 
+my %arg = @_;
 my $version = "Octopussy " . Octopussy::Version();
 my $website = Octopussy::WebSite(); 
+my $redirect = $arg{redirect};
 %>
-<AAT:Form method="POST" action="./login.asp">
+<AAT:Form method="POST" action="./login.asp?redirect=$redirect">
 <AAT:Box align="C" cellpadding="0">
 <AAT:BoxRow valign="top">
 	<AAT:BoxCol valign="top" rspan="4">

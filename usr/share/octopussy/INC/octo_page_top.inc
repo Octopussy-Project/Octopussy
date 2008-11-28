@@ -2,10 +2,13 @@
 my %arg = @_; 
 use AAT;
 
-$Response->Redirect("./login.asp")    
-	if ((AAT::NULL($Session->{AAT_LOGIN})) 
-		|| ($Session->{AAT_ROLE} eq "restricted"));
-
+if ((AAT::NULL($Session->{AAT_LOGIN})) 
+	|| ($Session->{AAT_ROLE} eq "restricted"))
+{	
+	my $page = "./login.asp?redirect=" 
+		. $Request->ServerVariables("REQUEST_URI");
+	$Response->Redirect($page);
+}
 my $title = "Octopussy " . ($arg{title} || "");
 if (defined $arg{refresh})
 {

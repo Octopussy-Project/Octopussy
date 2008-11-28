@@ -2,8 +2,12 @@
 my %arg = @_; 
 use AAT;
 
-$Response->Redirect("./login.asp") if (AAT::NULL($Session->{AAT_LOGIN}));
-
+if (AAT::NULL($Session->{AAT_LOGIN}))
+{
+  my $page = "./login.asp?redirect="
+    . $Request->ServerVariables("REQUEST_URI");
+  $Response->Redirect($page);
+}
 my $title = "Octopussy " . ($arg{title} || "");
 %>
 <AAT:PageTop title="$title" icon="IMG/octopussy.gif" onLoad="$arg{onLoad}"
