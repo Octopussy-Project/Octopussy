@@ -96,14 +96,14 @@ while (<>)
 	{
 		$device = $1;
 		($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
-		if (($n_min != $min) || ($n_hour != $hour) || ($n_mday != $mday) 
-			|| ($n_month != $month) || (int($n_sec/10) != int($sec/10)))
+		if ((int($n_sec/10) != int($sec/10)) || ($n_min != $min) 
+			|| ($n_hour != $hour) || ($n_mday != $mday) || ($n_month != $month))
 		{
 			my $mod = (int($n_sec/10)*10);
 			foreach my $device (keys %logs)
       {
 				my $dir = Handle_Dir($device, $mday, $month, $year);
-				my $file = "$dir/msg_$hour" . "h${n_min}_$mod.log";
+				my $file = "$dir/msg_${hour}h${n_min}_$mod.log";
 				my $i = 0;
 				if (defined open(FILE, ">> $file"))
 				{
@@ -142,9 +142,10 @@ while (<>)
 				
         %dtype_stats = ();
 				%nb_events = ();
-				($year, $month, $mday, $hour, $min, $sec) =
-        	($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec);
+				($year, $month, $mday, $hour, $min) =
+        	($n_year, $n_month, $n_mday, $n_hour, $n_min);
 			}
+			$sec = $n_sec;
 		}
 		push(@{$logs{$device}}, $line)	
 			if ((!defined $device_type{$device}) || ($device_type{$device} ne ""));
