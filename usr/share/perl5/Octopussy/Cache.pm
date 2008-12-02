@@ -11,14 +11,15 @@ use Cache::FileCache;
 
 use AAT;
 
+use constant EXPIRES_COMMANDER => "1 hour";
 use constant EXPIRES_DISPATCHER => "2 days";
 use constant EXPIRES_EXTRACTOR => "1 hour";
 use constant EXPIRES_PARSER => "1 day";
 use constant EXPIRES_REPORTER => "1 day";
 use constant DIRECTORY_UMASK => "007";
 
-my ($cache_dispatcher, $cache_extractor, $cache_parser, $cache_reporter) 
-  = (undef, undef, undef);
+my ($cache_commander, $cache_dispatcher, $cache_extractor, 
+	$cache_parser, $cache_reporter) = (undef, undef, undef, undef, undef);
 
 =head1 FUNCTIONS
 
@@ -28,8 +29,14 @@ my ($cache_dispatcher, $cache_extractor, $cache_parser, $cache_reporter)
 sub Init($)
 {
   my $namespace = shift;
-  
-  if ($namespace eq "octo_dispatcher")
+ 
+	if ($namespace eq "octo_commander")
+  {
+    if (AAT::NULL($cache_commander))
+      { $cache_commander = Set($namespace, EXPIRES_COMMANDER); }
+    return ($cache_commander);
+  } 
+  elsif ($namespace eq "octo_dispatcher")
   {
     if (AAT::NULL($cache_dispatcher))
       { $cache_dispatcher = Set($namespace, EXPIRES_DISPATCHER); }
@@ -63,10 +70,11 @@ sub Init($)
 sub Set($$)
 {
   my ($namespace, $expires) = @_;
-
+	my $dir = Octopussy::Directory("cache");
+	Octopussy::Create_Directory($dir);
   my $cache = new Cache::FileCache( { namespace => $namespace,
-    cache_root => Octopussy::Directory("running") . "/cache",
-    default_expires_in => $expires, directory_umask => DIRECTORY_UMASK } )
+    cache_root => $dir, default_expires_in => $expires, 
+		directory_umask => DIRECTORY_UMASK } )
     or croak( "Couldn't instantiate FileCache" );
 
   return ($cache);

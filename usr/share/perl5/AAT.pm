@@ -230,7 +230,8 @@ sub Download($$$)
 	}
 	else
 	{
- 		AAT::Syslog("Error: Unable to download '$download'");
+		$download =~ s/\%\d\d/ /g; # '%' is not good for sprintf used by syslog
+ 		AAT::Syslog($appli, "DOWNLOAD_FAILED", $download);
 	}
 }
 

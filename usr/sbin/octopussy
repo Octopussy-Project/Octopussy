@@ -22,6 +22,7 @@ use Octopussy;
 
 my $PROG_NAME = "octopussy";
 my $USER = "octopussy";
+my $COMMANDER = "octo_commander";
 my $PARSER = "octo_parser";
 my $PUSHER = "octo_pusher";
 my $RRD = "octo_rrd";
@@ -46,6 +47,28 @@ Prints usage for Octopussy program
 sub Usage
 {
 	print "Usage: /etc/init.d/$PROG_NAME {start|stop|restart|dispatcher-start|dispatcher-stop|dispatcher-restart|dispatcher-reload|parser-start|parser-stop|parser-restart|scheduler-stop|scheduler-start|scheduler-restart} <device>\n";
+}
+
+=head2 Commander_Start
+
+Starts octo_commander
+
+=cut
+sub Commander_Start
+{
+  system("sudo -u $USER $base$COMMANDER &");
+  print "$PROG_NAME Commander Started.\n";
+}
+
+=head2 Commander_Stop
+
+Stops octo_commander
+
+=cut
+sub Commander_Stop
+{
+  `/usr/bin/killall $COMMANDER`;
+  print "$PROG_NAME Commander Stopped.\n";
 }
 
 =head2 Dispatcher_Start()
@@ -240,6 +263,7 @@ sub Start
 	RRD_Start();
 	Scheduler_Start();
 	Pusher_Start();
+	Commander_Start();
 }
 
 =head2 Stop()
@@ -249,6 +273,7 @@ Stops all Octopussy programs (parsers, scheduler, pusher & dispatcher)
 =cut
 sub Stop
 {
+	Commander_Stop();
 	Parser_Stop();
 	RRD_Stop();
 	Scheduler_Stop();

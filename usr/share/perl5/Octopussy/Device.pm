@@ -585,7 +585,8 @@ sub Parse_Start($)
 	if (defined $conf)
 	{
 		my $cmd = "$base" . PARSER_BIN . " $device &";
-		system("$cmd");
+		Octopussy::Commander($cmd);
+		#system("$cmd");
 		$dir_devices ||= Octopussy::Directory(DIR_DEVICE);	
 		Octopussy::Dispatcher_Reload()	if ($conf->{status} eq "Stopped");
 		$conf->{status} = "Started";

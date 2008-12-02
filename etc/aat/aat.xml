@@ -14,12 +14,13 @@
 
   </application>
 
-	<application name="Octopussy" version="0.9.8.7"
+	<application name="Octopussy" version="0.9.8.8"
 							 email="octo.devel@gmail.com"
 							 user="octopussy"
 							 website="http://www.8pussy.org">
 
 		<directory name="alerts" value="/var/lib/octopussy/conf/alerts/" />
+		<directory name="cache" value="/var/run/octopussy/cache/" />
 		<directory name="certificate_authority" value="/etc/octopussy/CA/" />
 		<directory name="contacts" value="/var/lib/octopussy/conf/contacts/" />
 		<directory name="devices" value="/var/lib/octopussy/conf/devices/" />

@@ -96,6 +96,19 @@ sub WebSite()
   return ($info->{website});
 }
 
+=head2 Commander($cmd)
+
+=cut
+sub Commander
+{
+	my $cmd = shift;
+
+	my $cache = Octopussy::Cache::Init("octo_commander");
+	my $commands = $cache->get("commands");
+	push(@{$commands}, $cmd);
+ 	$cache->set("commands", $commands);
+}
+
 =head2 Directory($dir)
 
 Returns Octopussy Directory '$dir' Value
