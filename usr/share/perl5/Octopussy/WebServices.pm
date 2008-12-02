@@ -76,7 +76,7 @@ sub PrintFile($)
 	else
   {
     my ($pack, $file_pack, $line, $sub) = caller(0);
-    AAT::Syslog("Octopussy::Service", "Unable to open file '$file' in $sub");
+		AAT::Syslog("Octopussy::WebServices", "UNABLE_OPEN_FILE_IN", $f, $sub);
   }
 }
 

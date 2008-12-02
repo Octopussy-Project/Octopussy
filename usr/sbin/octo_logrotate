@@ -60,10 +60,18 @@ sub Files_Deletion($)
       	{
 					foreach my $d (Get_Directories("$dir/$device/$s/$y/$m"))
         	{
-						`rmdir "$dir/$device/$s/$y/$m/$d/" 2> /dev/null`
-							if (($t eq "incoming") || ($t eq "unknown"));
-						`rm -rf "$dir/$device/$s/$y/$m/$d/"`
-							if (($y*10000+$m*100+$d) < $limit);		
+						if (($t eq "incoming") || ($t eq "unknown"))
+						{
+							`rmdir "$dir/$device/$s/$y/$m/$d/" 2> /dev/null`;
+							AAT::Syslog($PROG_NAME, "DELETE_LOGS_DIR", 
+								"$dir/$device/$s/$y/$m/$d/");
+						}
+						if (($y*10000+$m*100+$d) < $limit)
+						{
+							`rm -rf "$dir/$device/$s/$y/$m/$d/"`;
+							AAT::Syslog($PROG_NAME, "DELETE_LOGS_DIR", 
+                "$dir/$device/$s/$y/$m/$d/");
+						}
 					}
 					`rmdir "$dir/$device/$s/$y/$m" 2> /dev/null`; 
 				}

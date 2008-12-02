@@ -76,7 +76,7 @@ if ((AAT::NULL($Session->{extractor})) &&
 	$Session->{export} = 
 		"logs_" . join("-", @devices) . "_" . join("-", @services)
     	. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";
-	system("$cmd &");
+	Octopussy::Commander("$cmd &");
 	$Session->{progress_current} = 0;
   $Session->{progress_total} = 0;
   $Session->{progress_match} = 0;	

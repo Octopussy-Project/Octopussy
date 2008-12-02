@@ -218,6 +218,7 @@
   <msg mid="_LOGS_WIZARD" value="Мастер логов" />
   <msg mid="_MAPS" value="Карты" />
   <msg mid="_MATCH" value="Сопоставить" />
+	<msg mid="_MAX_MINUTES_SEARCH" value="_MAX. number of minutes to search" />
 	<msg mid="_MAX_TIME_WITHOUT_LOG" value="Макс. время без логов" />
   <msg mid="_MEM_USAGE" value="Использование памяти" />
   <msg mid="_MESSAGES" value="Сообщения" />
@@ -492,6 +493,8 @@
     value="Обноыить выбранные таблицы" />
   <msg mid="_MSG_USER_ALREADY_EXISTS"
     value="Пользователь уже существует!" />
+	<msg mid="_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"
+    value="_YOUR user can only view %d minutes of logs" />
   <msg mid="_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
     value="Список сообщенией мастера ограничен %d по умолчанию." />
 </Translation>

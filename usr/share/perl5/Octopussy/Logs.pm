@@ -314,7 +314,7 @@ sub Get($$$$$$$)
 		else
   	{
     	my ($pack, $file_pack, $line, $sub) = caller(0);
-    	AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
+    	AAT::Syslog("Octopussy::Logs", "UNABLE_OPEN_FILE_IN", $f, $sub);
   	}	
 		last	if ($counter >= $limit);
 	}
@@ -415,7 +415,7 @@ sub Remove($$)
 		else
     {
       my ($pack, $file_pack, $line, $sub) = caller(0);
-      AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
+			AAT::Syslog("Octopussy::Logs", "UNABLE_OPEN_FILE_IN", $f, $sub);
     }
 		unlink($f);
 		if (defined open(NEW, "|gzip > $f"))
@@ -427,7 +427,7 @@ sub Remove($$)
 		else
     {
       my ($pack, $file_pack, $line, $sub) = caller(0);
-      AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
+			AAT::Syslog("Octopussy::Logs", "UNABLE_OPEN_FILE_IN", $f, $sub);
     }
 	}
 }

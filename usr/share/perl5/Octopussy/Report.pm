@@ -361,7 +361,7 @@ sub CmdLine($$$$$$$$$$$$)
 		. CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
 		. " --output \"$output\"";
 		#. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
-	system("$cmd &");
+	Octopussy::Commander("$cmd &");
 
 	return ($cmd);
 }

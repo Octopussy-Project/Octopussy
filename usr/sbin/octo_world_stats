@@ -33,14 +33,7 @@ if ($conf->{status} eq "enabled")
   my @services = Octopussy::Device::Services(@devices);
   my $nb_devices = scalar(@devices);
   my $nb_services = scalar(@services);
-
   my @keys = $cache->get_keys();
-
-	my $pc = AAT::Proxy::Configuration(APPLI);
-  my $proxy = (AAT::NOT_NULL($pc->{server}) ? "http://$pc->{server}" : "")
-    . (AAT::NOT_NULL($pc->{port}) ? ":$pc->{port}" : "");
-  $ENV{http_proxy} = ($proxy ne "" ? "export http_proxy=\"$proxy\"" : "");
-
 	my ($y, $m, $d, $h) = AAT::Datetime::Now();
   foreach my $k (sort @keys)
   {
@@ -49,9 +42,8 @@ if ($conf->{status} eq "enabled")
 			my $hour = $1;
       my $url = "$update_url?id=$id&country=$country&version=$version"
 				. "&cpu=$cpu&memory=$mem&hour=$hour&nb_devices=$nb_devices"
-				. "&nb_services=$nb_services&nb_logs=" . $cache->get($k);
-      system(($ENV{http_proxy} ne "" ? "$ENV{http_proxy}; " : "") 
-				. "curl -k \"$url\"");
+				. "&nb_services=$nb_services&nb_logs=" . ($cache->get($k) || "0");
+			AAT::Download(APPLI, $url, "/dev/null");
     }
   }
   AAT::Syslog("octo_world_stats", "WORLD_STATS_SENT");

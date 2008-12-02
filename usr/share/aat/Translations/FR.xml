@@ -218,6 +218,7 @@
 	<msg mid="_LOGS_WIZARD" value="Assistant Gestion des Logs" />
 	<msg mid="_MAPS" value="Cartes" />
   <msg mid="_MATCH" value="Occurence" />
+	<msg mid="_MAX_MINUTES_SEARCH" value="Nombre maximum de minutes pour la recherche" />
 	<msg mid="_MAX_TIME_WITHOUT_LOG" value="Temps Maximum Sans Log" />
 	<msg mid="_MEM_USAGE" value="Utilisation Mémoire" />
 	<msg mid="_MESSAGES" value="Messages" />
@@ -491,6 +492,8 @@
     value="Mise à Jour des Tables Sélectionnées" />
 	<msg mid="_MSG_USER_ALREADY_EXISTS"
     value="Utilisateur déjà existant !" />
+	<msg mid="_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"
+    value="Votre utilisateur ne peut voir que %s minutes de logs" />
 	<msg mid="_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
     value="Liste des messages de l'assistant limitée à %d par defaut." />
   

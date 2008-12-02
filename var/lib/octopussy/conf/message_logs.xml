@@ -1,9 +1,14 @@
 <logs>
+	<log mid="DELETE_LOGS_DIR"
+    message="Delete logs directory %%ARG1%%" />
 	<log mid="DELETE_LOGS_OLDER_THAN"
     message="Delete logs from device %%ARG1%% older than %%ARG2%% days" />
 
 	<log mid="DEVICE_HASNT_SENT_ANY_LOGS"
     message="Device %%ARG1%% hasn't sent any logs for %%ARG2%% minutes !" />
+
+	<log mid="DOWNLOAD_FAILED"
+    message="Failed to download '%%ARG1%%'" />
 	
 	<log mid="GENERIC_ADDED_TO"
     message="%%ARG1%% '%%ARG2%%' has been added to %%ARG3%% '%%ARG4%%' by %%LOGIN%%" />
@@ -47,6 +52,8 @@
 
 	<log mid="UNABLE_OPEN_FILE"
 		message="Unable to open file '%%ARG1%%'" />
+	<log mid="UNABLE_OPEN_FILE_IN"
+    message="Unable to open file '%%ARG1%%' in '%%ARG2%%'" />
 
 	<log mid="USER_FAILED_LOGIN" message="User %%LOGIN%% failed to login." />
 	<log mid="USER_LOGGED_IN" message="User %%LOGIN%% succesfully logged in." />

@@ -218,6 +218,7 @@
 	<msg mid="_LOGS_WIZARD" value="Log Wizard" />
 	<msg mid="_MAPS" value="Darstellungen" />
 	<msg mid="_MATCH" value="_MATCH" />
+	<msg mid="_MAX_MINUTES_SEARCH" value="_MAX. number of minutes to search" />
 	<msg mid="_MAX_TIME_WITHOUT_LOG" value="_MAX_TIME_WITHOUT_LOG" />
 	<msg mid="_MEM_USAGE" value="Speicherauslastung" />
 	<msg mid="_MESSAGES" value="Meldungen" />
@@ -492,6 +493,8 @@
     value="Update Selected Tables" />
 	<msg mid="_MSG_USER_ALREADY_EXISTS"
     value="Benutzer ist bereits vorhanden !" />
+	<msg mid="_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"
+    value="_YOUR user can only view %d minutes of logs" />
 	<msg mid="_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
     value="_MSG_WIZARD_MSGS_LIST_LIMITED_TO %d" />
 

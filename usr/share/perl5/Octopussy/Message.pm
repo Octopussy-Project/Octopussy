@@ -623,7 +623,7 @@ sub Wizard($)
 		else
     {
       my ($pack, $file_pack, $line, $sub) = caller(0);
-      AAT::Syslog("Octopussy::Logs", "Unable to open file '$f' in $sub");
+			AAT::Syslog("Octopussy::Message", "UNABLE_OPEN_FILE_IN", $f, $sub);
     }
   }
 

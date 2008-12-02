@@ -3,6 +3,7 @@
 <%
 my $f = $Request->Form();
 my $page = $Request->QueryString("redirect");
+$page =~ s/^\///;
 
 if ((defined $f->{login}) && (defined $f->{password}))
 {
@@ -27,8 +28,8 @@ if ((defined $f->{login}) && (defined $f->{password}))
  	}
 	my $redirect = (($auth->{role} =~  /restricted/i) 
 		? "./restricted_logs_viewer.asp" 
-		: (AAT::NOT_NULL($page) ? ".$page" : "./index.asp"));
-#	$Response->Redirect($redirect);
+		: (AAT::NOT_NULL($page) ? "./$page" : "./index.asp"));
+	$Response->Redirect($redirect);
 }
 %>
 <AAT:Inc file="octo_login" redirect="$page" />

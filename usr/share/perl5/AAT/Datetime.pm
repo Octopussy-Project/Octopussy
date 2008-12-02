@@ -90,6 +90,23 @@ sub Now_String()
 	return ("$year/$month/$mday $hour:$min");
 }
 
+=head2 Delta
+
+Returns Delta in minutes between 2 dates
+
+=cut
+sub Delta
+{
+	my ($date1, $date2) = @_;
+
+	my $diff = DateCalc(ParseDate($date1), ParseDate($date2));
+	my $result = Delta_Format($diff, 0, "%mt"); # delta in minutes
+
+	return ($1)	if ($result =~ /^[-+]?(\d+)\.\d*$/);
+
+	return (undef);
+}
+
 =head2 Seconds_Since_1970($year, $month, $day, $hour, $min)
 
 Returns number of seconds since 1970

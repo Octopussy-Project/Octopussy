@@ -6,6 +6,7 @@ my $msg_nb_lines = AAT::Translation("_MSG_NB_LINES");
 my $LINES_BY_PAGE = 1000;
 my $nb_lines = 0;
 my $last_page = 1;
+my $user_limit_reached = 0;
 my $text = "";
 my $url = "./restricted_logs_viewer.asp";
 
@@ -78,24 +79,31 @@ if ((AAT::NULL($Session->{extractor})) &&
 	foreach my $s (@services)
     { $any = 1 if ($s =~ /-ANY-/); }	
 	my @services_cmd = ($any ? @restricted_services : @services);
-
-	my $cmd = Octopussy::Logs::Extract_Cmd_Line( { 
-		devices => \@devices_cmd, services =>\@services_cmd, 
-		loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
-		begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
-		includes => [$re_include, $re_include2, $re_include3],
-    excludes => [$re_exclude, $re_exclude2, $re_exclude3],
-		pid_param => $output, output => "$run_dir/logs_${login}_$output" } );
-	$Session->{export} = 
-		"logs_" . join("-", @devices) . "_" . join("-", @services)
-    	. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";
-	system("$cmd &");
-	$Session->{progress_current} = 0;
-  $Session->{progress_total} = 0;
-  $Session->{progress_match} = 0;
-	$Session->{page} = 1;
-	$Session->{extracted} = $output;
-	$Response->Redirect("$url?extractor=$output");
+	if (AAT::Datetime::Delta("$y1/$m1/$d1 $hour1:$min1:00", "$y2/$m2/$d2 $hour2:$min2:00")
+				> $restrictions->{max_minutes_search})
+	{
+		$user_limit_reached = 1;
+	}
+	else
+	{
+		my $cmd = Octopussy::Logs::Extract_Cmd_Line( { 
+			devices => \@devices_cmd, services =>\@services_cmd, 
+			loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
+			begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
+			includes => [$re_include, $re_include2, $re_include3],
+    	excludes => [$re_exclude, $re_exclude2, $re_exclude3],
+			pid_param => $output, output => "$run_dir/logs_${login}_$output" } );
+		$Session->{export} = 
+			"logs_" . join("-", @devices) . "_" . join("-", @services)
+    		. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";
+		Octopussy::Commander("$cmd &");
+		$Session->{progress_current} = 0;
+  	$Session->{progress_total} = 0;
+  	$Session->{progress_match} = 0;
+		$Session->{page} = 1;
+		$Session->{extracted} = $output;
+		$Response->Redirect("$url?extractor=$output");
+	}
 }
 
 if ($Session->{extractor} eq "done")
@@ -195,6 +203,14 @@ $Response->Include("INC/octo_logs_viewer_form.inc", url => $url,
 	devices => \@devices, services => \@services,
 	restricted_devices => \@restricted_devices,
 	restricted_services => \@restricted_services);
+if ($user_limit_reached)
+{
+  my $msg = sprintf(AAT::Translation("_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"), 
+		$restrictions->{max_minutes_search});
+%><AAT:Message level="2" msg="$msg" /><%
+}
+else
+{
 %>
 <AAT:Box align="C">
 <AAT:BoxRow>
@@ -233,4 +249,7 @@ $Response->Include("INC/octo_page_navigator.inc",
   </AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>
+<%
+}
+%>
 <WebUI:PageBottom />

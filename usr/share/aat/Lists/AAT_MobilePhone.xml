@@ -1332,6 +1332,9 @@
 	<item label="Samsung SGH F700" value="mobile_samsung_sghf700"
         regexp="SAMSUNG-SGH-F700"
         constructor="Samsung" model="SGH F700" logo="companies/logo_samsung" />
+	<item label="Samsung SGH G400" value="mobile_samsung_sghg400"
+        regexp="SAMSUNG-SGH-G400"
+        constructor="Samsung" model="SGH G400" logo="companies/logo_samsung" />
 	<item label="Samsung SGH G600" value="mobile_samsung_sghg600"
         regexp="SAMSUNG-SGH-G600"
         constructor="Samsung" model="SGH G600" logo="companies/logo_samsung" />
