@@ -8,8 +8,22 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 	if ($f->{action} eq "update")
 	{
 		my $conf = Octopussy::Device::Configuration($device);
+		my @services = ();
+		foreach my $s (AAT::ARRAY($conf->{service}))
+		{
+			my $serv = $s->{sid};
+			if (defined $f->{"logrotate_$serv"})
+			{
+				push(@services, { sid => $serv, rank => $s->{rank}, 
+					logrotate => $f->{"logrotate_$serv"} });
+			}
+			else
+				{ push(@services, { sid => $serv, rank => $s->{rank} }); }
+		}
 		foreach my $k (keys %{$f})
-			{ $conf->{$k} = $f->{$k}	if ($k =~ /storage_.+$/); }
+			{ $conf->{$k} = $f->{$k}	if ($k =~ /^storage_.+$/); }
+
+		$conf->{service} = \@services;	
 		Octopussy::Device::Modify($conf);
 	}
 }

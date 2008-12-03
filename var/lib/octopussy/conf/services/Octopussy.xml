@@ -2,8 +2,8 @@
 <octopussy_service description="Octopussy Service"
                    icon="software/logo_octopussy"
                    name="Octopussy"
-                   nb_messages="050"
-                   version="200810280001"
+                   nb_messages="056"
+                   version="200812030004"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -325,9 +325,20 @@
            taxonomy="Application" />
   <message loglevel="Notice"
            msg_id="Octopussy:delete_logs_older_than"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@REGEXP(&quot;logrotate&quot;):module@&gt;: &lt;@REGEXP(&quot;Delete logs from device \S+ older than \d+ days&quot;):msg@&gt;
-"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@REGEXP(&quot;logrotate&quot;):module@&gt;: &lt;@REGEXP(&quot;Delete logs from device \S+ service .+ older than \d+ days&quot;):msg@&gt;"
            rank="054"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Octopussy:delete_logs_directory"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Delete logs directory .+&quot;):msg@&gt;"
+           rank="055"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Octopussy:failed_to_download"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Failed to download '.+'&quot;):msg@&gt;"
+           rank="056"
+           table="Message"
+           taxonomy="Network.Errors" />
 </octopussy_service>

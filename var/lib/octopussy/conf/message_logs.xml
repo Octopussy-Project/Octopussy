@@ -2,7 +2,7 @@
 	<log mid="DELETE_LOGS_DIR"
     message="Delete logs directory %%ARG1%%" />
 	<log mid="DELETE_LOGS_OLDER_THAN"
-    message="Delete logs from device %%ARG1%% older than %%ARG2%% days" />
+    message="Delete logs from device %%ARG1%% service %%ARG2%% older than %%ARG3%% days" />
 
 	<log mid="DEVICE_HASNT_SENT_ANY_LOGS"
     message="Device %%ARG1%% hasn't sent any logs for %%ARG2%% minutes !" />
