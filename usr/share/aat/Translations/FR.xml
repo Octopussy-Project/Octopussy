@@ -214,6 +214,7 @@
 	<msg mid="_LOG_LEVEL" value="Niveau de Log" />
 	<msg mid="_LOG_TYPE" value="Type de Log" />
 	<msg mid="_LOGROTATE" value="Rotation des Logs" />
+	<msg mid="_LOGS_AVAILABILITY" value="Disponibilité des Logs" />
 	<msg mid="_LOGS_VIEWER" value="Visionneur de Logs" />
 	<msg mid="_LOGS_WIZARD" value="Assistant Gestion des Logs" />
 	<msg mid="_MAPS" value="Cartes" />
@@ -412,6 +413,8 @@
 		value="Vous venez d'entrer un identifiant/mot de passe invalide !" />	
 	<msg mid="_MSG_INVALID_SCHEDULE_PERIOD"
     value="Vous venez d'entrer une Periode de Planification invalide !" />
+	<msg mid="_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
+    value="Disponibilité des Logs pour l'equipement %s (%s)" />
 	<msg mid="_MSG_MAIL_SENT_TO_SUPPORT"
     value="Mail envoyé au support Octopussy." />
 	<msg mid="_MSG_MAP_CREATION_INFO"

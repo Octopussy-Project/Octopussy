@@ -214,6 +214,7 @@
 	<msg mid="_LOG_LEVEL" value="Nível de Log" />
 	<msg mid="_LOG_TYPE" value="Tipo de Log" />
 	<msg mid="_LOGROTATE" value="Logrotate" />
+	<msg mid="_LOGS_AVAILABILITY" value="_Logs Availability" />
 	<msg mid="_LOGS_VIEWER" value="Visualizador de Logs" />
 	<msg mid="_LOGS_WIZARD" value="Logs Wizard" />
 	<msg mid="_MAPS" value="Mapas" />
@@ -412,6 +413,8 @@
 		value="Você digitou um usuário/senha inválido !" />
 	<msg mid="_MSG_INVALID_SCHEDULE_PERIOD"
     value="Data Invalida de Agendamento" />
+	<msg mid="_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
+    value="__LOGS availability for device %s (%s)" />
 	<msg mid="_MSG_MAIL_SENT_TO_SUPPORT"
 		value="E-Mail enviado para o suporte Octopussy." />
 	<msg mid="_MSG_MAP_CREATION_INFO"

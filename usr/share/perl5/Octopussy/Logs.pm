@@ -200,6 +200,31 @@ sub Files($$$$)
 	return (\@list);
 }
 
+=head2 Availability($device, $start, $finish)
+
+=cut
+sub Availability($$$)
+{
+	my ($device, $start, $finish) = @_;
+
+	my @services = Octopussy::Device::Services($device);
+	my %availability = ();
+	foreach my $s (@services)
+	{
+  	my $files = Octopussy::Logs::Files($device, $s, $start, $finish);
+  	foreach my $f (@{$files})
+  	{
+			if ($f =~ /\/(\d{2})\/+msg_(\d{2})h(\d{2})/)
+			{
+    		$availability{"_DEVICE_"}{$1}{$2}{$3} = 1;
+    		$availability{$s}{$1}{$2}{$3} = 1;
+			}
+  	}
+	}
+
+	return (\%availability);
+}
+
 =head2 Minutes_Hash($ref_devices, $ref_services, $start, $finish)
 
 =cut
