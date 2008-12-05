@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Report Edit" />
+<WebUI:PageTop title="_REPORT_EDITION" />
 <%
 my $f = $Request->Form();
 my $report = $Request->QueryString("report");

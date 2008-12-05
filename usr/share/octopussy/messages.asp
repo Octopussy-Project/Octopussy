@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Messages" help="#messages_page" />
+<WebUI:PageTop title="_MESSAGES" help="#messages_page" />
 <%
 my $service = $Session->{service};
 my $loglevel = $Session->{loglevel};

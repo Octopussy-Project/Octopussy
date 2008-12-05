@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Tables" help="tables" />
+<WebUI:PageTop title="_TABLES" help="tables" />
 <%
 my $f = $Request->Form();
 my $table = $f->{table} || $Request->QueryString("table");

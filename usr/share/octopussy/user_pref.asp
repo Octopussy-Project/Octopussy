@@ -1,4 +1,4 @@
-<WebUI:PageTop title="User Preferences" help="user_prefs"/>
+<WebUI:PageTop title="_USER_PREFS" help="user_prefs"/>
 <%
 my $f = $Request->Form();
 my $login = $Session->{AAT_LOGIN};

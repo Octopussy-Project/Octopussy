@@ -128,7 +128,7 @@ if ($Session->{extractor} eq "done")
 
 if ((AAT::NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
 {
-%><WebUI:PageTop title="Logs" onLoad="extract_progress()" />
+%><WebUI:PageTop title="_LOGS_VIEWER" onLoad="extract_progress()" />
 	<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 	<AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
 	<script type="text/javascript" src="INC/octo_logs_viewer_progressbar.js"> 
@@ -136,7 +136,7 @@ if ((AAT::NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
 }
 else
 {
-%><WebUI:PageTop title="Logs" />
+%><WebUI:PageTop title="_LOGS_VIEWER" />
 	<script type="text/javascript" src="INC/octo_logs_viewer_quick_search.js">
 	</script><%
 }

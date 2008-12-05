@@ -9,7 +9,7 @@ if ((AAT::NULL($Session->{AAT_LOGIN}))
 		. $Request->ServerVariables("REQUEST_URI");
 	$Response->Redirect($page);
 }
-my $title = "Octopussy " . ($arg{title} || "");
+my $title = "Octopussy " . (AAT::Translation($arg{title}) || "");
 if (defined $arg{refresh})
 {
   %><AAT:PageTop title="$title" icon="IMG/octopussy.gif" onLoad="$arg{onLoad}"

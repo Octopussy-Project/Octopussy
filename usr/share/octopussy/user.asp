@@ -36,6 +36,6 @@ elsif ((AAT::NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
 	$Response->Redirect("./user.asp");
 }
 %>
-<WebUI:PageTop title="User" help="users" />
+<WebUI:PageTop title="_USERS" help="users" />
 <AAT:Inc file="octo_users_list" url="./user.asp" sort="$sort" />
 <WebUI:PageBottom />

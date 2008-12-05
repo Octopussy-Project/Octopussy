@@ -1,4 +1,4 @@
-<WebUI:PageTop title="World Statistics" />
+<WebUI:PageTop title="_WORLD_STATISTICS" />
 <%
 my $url = Octopussy::Parameter("url_world_stats_show");
 my $f = $Request->Form();

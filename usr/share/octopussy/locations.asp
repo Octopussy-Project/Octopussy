@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Locations" help="locations" />
+<WebUI:PageTop title="_LOCATIONS" help="locations" />
 <%
 my $f = $Request->Form();
 my $city = $f->{city} || $Request->QueryString("city");

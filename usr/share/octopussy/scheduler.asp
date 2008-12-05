@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Scheduler" help="#scheduler_page" />
+<WebUI:PageTop title="_SCHEDULER" help="#scheduler_page" />
 <AAT:Inc file="octo_report_schedules_list" 
 	url="./scheduler.asp" sort="$sort" />
 <%

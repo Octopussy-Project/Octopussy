@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Report" help="#reports_page" />
+<WebUI:PageTop title="_REPORTS" help="#reports_page" />
 <%
 my $url = "./reports.asp";
 

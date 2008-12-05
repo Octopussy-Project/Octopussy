@@ -1,3 +1,4 @@
+<WebUI:PageTop title="_DEVICES" help="devices" />
 <%
 my $f = $Request->Form();
 my $device = $f->{device} || $Request->QueryString("device");
@@ -9,9 +10,6 @@ my $sort = $Request->QueryString("devices_table_sort");
 $Session->{AAT_PAGE_CURRENT} = 
 	"./devices.asp" . (AAT::NOT_NULL($sort) ? "?devices_table_sort=$sort" : "");
 
-%>
-<WebUI:PageTop title="Devices" help="devices" />
-<%
 if (AAT::NULL($device))
 {
 	if ($action eq "parse_reload_all")

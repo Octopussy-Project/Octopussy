@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Report Creation" />
+<WebUI:PageTop title="_REPORT_CREATION" />
 <%
 my $f = $Request->Form();
 my @select = $f->{select};

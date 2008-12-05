@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Devices" help="devicegroups" />
+<WebUI:PageTop title="_DEVICEGROUPS" help="devicegroups" />
 <%
 my $f = $Request->Form();
 my $dg = $f->{devicegroup} || $Request->QueryString("devicegroup");

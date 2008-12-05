@@ -26,7 +26,7 @@ elsif ((AAT::NOT_NULL($file)) && ($action eq "restore_confirmed"))
 	$restored = 1;
 }
 %>
-<WebUI:PageTop title="System" help="system_config"/>
+<WebUI:PageTop title="_SYSTEM_CONFIG" help="system_config"/>
 <%
 if ($restored)
 { 

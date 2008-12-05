@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Storage" help="storages" />
+<WebUI:PageTop title="_STORAGES" help="storages" />
 <%
 my $f = $Request->Form();
 my $action = $f->{action} || $Request->QueryString("action");

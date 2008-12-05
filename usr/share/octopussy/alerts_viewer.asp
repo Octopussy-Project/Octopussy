@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Alerts Viewer" help="Alerts Viewer" />
+<WebUI:PageTop title="_ALERTS_VIEWER" help="Alerts Viewer" />
 <%
 my $f = $Request->Form();
 my $alert = $f->{alert} || $Request->QueryString("alert");

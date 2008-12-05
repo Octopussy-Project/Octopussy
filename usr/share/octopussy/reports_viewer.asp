@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Reports Viewer" />
+<WebUI:PageTop title="_REPORTS_VIEWER" />
 <%
 my $role = $Session->{AAT_ROLE};
 my $q = $Request->QueryString();

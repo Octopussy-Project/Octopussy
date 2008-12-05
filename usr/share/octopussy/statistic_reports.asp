@@ -9,7 +9,7 @@ if ((defined $action) && ($action eq "remove")
   $Response->Redirect("./statistic_reports.asp");
 }
 %>
-<WebUI:PageTop title="Statistic Reports" />
+<WebUI:PageTop title="_STATISTIC_REPORTS" />
 <AAT:Inc file="statistic_reports_list" url="./statistic_reports.asp" />
 <%
 my @table = ( [ 

@@ -1,4 +1,4 @@
-<WebUI:PageTop title="User Restrictions" />
+<WebUI:PageTop title="_USER_RESTRICTIONS" />
 <%
 my $url = "./user_restrictions.asp";
 my $f = $Request->Form();

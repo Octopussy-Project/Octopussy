@@ -1,4 +1,4 @@
-<WebUI:PageTop title="TimePeriods" help="#timeperiods_page" />
+<WebUI:PageTop title="_TIMEPERIODS" help="#timeperiods_page" />
 <%
 my $timeperiod = $Request->QueryString("timeperiod");
 my $action = $Request->QueryString("action");

@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Wizard" />
+<WebUI:PageTop title="_LOGS_WIZARD" />
 <%
 my $device = $Request->QueryString("device");
 my $sort = $Request->QueryString("wizard_table_sort");

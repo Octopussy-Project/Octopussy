@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Contacts" help="contacts" />
+<WebUI:PageTop title="_CONTACTS" help="contacts" />
 <%
 my $f = $Request->Form();
 my $cid = $f->{cid} || $Request->QueryString("cid");

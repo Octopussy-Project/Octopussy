@@ -1,4 +1,4 @@
-<WebUI:PageTop title="Services" help="services" />
+<WebUI:PageTop title="_SERVICES" help="services" />
 <%
 my $f = $Request->Form();
 my $service = $f->{service} || $Request->QueryString("service");
