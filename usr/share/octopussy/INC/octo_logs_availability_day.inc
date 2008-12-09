@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
-my ($device, $year, $month, $day) 
-	= ($arg{device},  $arg{year}, $arg{month}, AAT::Padding($arg{day}, 2));
+my ($device, $year, $month, $day) = ($arg{device},  $arg{year}, 
+	AAT::Padding($arg{month}, 2), AAT::Padding($arg{day}, 2));
 
 my %start = ( year => $year, month => $month, day => $day, 
 	hour => 0, min => 0 );
@@ -14,7 +14,7 @@ my $step = 5; # 5 minutes step
 my $title = sprintf(AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"),
 	$device, "$day/$month/$year");
 %>
-<AAT:Box align="C" title="$title">
+<AAT:Box align="C" icon="buttons/bt_player_playlist" title="$title">
 <AAT:BoxRow>
 	<AAT:BoxCol>
 	<table cellpadding="0" cellspacing="1">
@@ -44,7 +44,7 @@ my $title = sprintf(AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"),
      	foreach my $i2 (0..$step-1)
      	{
       	my $min = AAT::Padding(($i1*$step + $i2), 2);
-       	$have_logs = 1  if (defined $avail->{_DEVICE_}{$day}{$hour}{$min});
+       	$have_logs = 1  if (defined $avail->{_DEVICE_}{$month}{$day}{$hour}{$min});
      	}
       my $color = ($have_logs ? "green" : "red");
      	%><td bgcolor="<%= $color %>" height="32" width="2"></td><%
@@ -68,7 +68,7 @@ my $title = sprintf(AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"),
 				foreach my $i2 (0..$step-1)
 				{
 					my $min = AAT::Padding(($i1*$step + $i2), 2);
-					$have_logs = 1	if (defined $avail->{$service}{$day}{$hour}{$min});
+					$have_logs = 1	if (defined $avail->{$service}{$month}{$day}{$hour}{$min});
 				}
 				my $color = ($have_logs ? "green" : "red");
 				%><td bgcolor="<%= $color %>" height="32" width="2"></td><%

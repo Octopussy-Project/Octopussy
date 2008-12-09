@@ -214,10 +214,10 @@ sub Availability($$$)
   	my $files = Octopussy::Logs::Files($device, $s, $start, $finish);
   	foreach my $f (@{$files})
   	{
-			if ($f =~ /\/(\d{2})\/+msg_(\d{2})h(\d{2})/)
+			if ($f =~ /\/(\d{2})\/(\d{2})\/+msg_(\d{2})h(\d{2})/)
 			{
-    		$availability{"_DEVICE_"}{$1}{$2}{$3} = 1;
-    		$availability{$s}{$1}{$2}{$3} = 1;
+    		$availability{"_DEVICE_"}{$1}{$2}{$3}{$4} = 1;
+    		$availability{$s}{$1}{$2}{$3}{$4} = 1;
 			}
   	}
 	}

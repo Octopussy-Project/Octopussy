@@ -240,6 +240,9 @@
 	<item label="BlackBerry 9000" value="mobile_blackberry_9000"
         regexp="BlackBerry9000"
         constructor="BlackBerry" model="9000" logo="companies/logo_blackberry" />
+	<item label="BlackBerry 9500" value="mobile_blackberry_9500"
+        regexp="BlackBerry9500"
+        constructor="BlackBerry" model="9500" logo="companies/logo_blackberry" />
 
 	<item label="Grundig G500i" value="mobile_grundig_g500i"
         regexp="portalmmm.+ G500i"
@@ -506,6 +509,9 @@
 	<item label="Motorola V980" value="mobile_motorola_v980"
         regexp="MOT-V980"
         constructor="Motorola" model="V980" logo="companies/logo_motorola" />
+	<item label="Motorola VE240" value="mobile_motorola_ve240"
+        regexp="MOT-VE240"
+        constructor="Motorola" model="VE240" logo="companies/logo_motorola" />
 	<item label="Motorola W230" value="mobile_motorola_w230"
         regexp="MOT-W230"
         constructor="Motorola" model="W230" logo="companies/logo_motorola" />
@@ -584,6 +590,9 @@
         regexp="NEC-N900"
         constructor="NEC" model="N900" logo="companies/logo_nec" />
 
+	<item label="Nokia 1680" value="mobile_nokia_1680"
+        regexp="Nokia1680"
+        constructor="Nokia" model="1680" logo="companies/logo_nokia" />
 	<item label="Nokia 2600" value="mobile_nokia_2600"
         regexp="Nokia2600"
         constructor="Nokia" model="2600" logo="companies/logo_nokia" />
