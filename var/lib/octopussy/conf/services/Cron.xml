@@ -3,7 +3,7 @@
                    icon="operating_systems/os_linux_generic"
                    name="Cron"
                    nb_messages="031"
-                   version="200801280001">
+                   version="200812120002">
   <message loglevel="Information"
            msg_id="Cron:cmd"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*CRON.*&quot;):NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: (&lt;@STRING:user@&gt;) CMD (&lt;@STRING:msg@&gt;)  "
@@ -174,7 +174,7 @@
            taxonomy="Config.Errors" />
   <message loglevel="Critical"
            msg_id="Cron:death"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cron[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;(CRON) DEATH .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cron[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;\(CRON\) DEATH .+&quot;):msg@&gt;"
            rank="027"
            table="Message"
            taxonomy="System.Errors" />
@@ -190,4 +190,10 @@
            rank="031"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Cron:cannot_retrieve_authentication_info"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; CRON[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Authentication service cannot retrieve authentication info&quot;):msg@&gt;"
+           rank="032"
+           table="Message"
+           taxonomy="Auth.Failure" />
 </octopussy_service>

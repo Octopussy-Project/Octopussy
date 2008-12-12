@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="IP Virtual Server Service"
+                   icon="software/logo_lvs"
                    name="IPVS"
-									 icon="software/logo_lvs"
-                   nb_messages="000"
-                   version="200803060005"
+                   nb_messages="003"
+                   version="200812120003"
                    website="http://www.linuxvirtualserver.org/software/ipvs.html">
   <message loglevel="Warning"
            msg_id="IPVS:sync_thread_stopped"
@@ -23,4 +23,22 @@
            rank="003"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="IPVS:registered_protocols"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IPVS: Registered protocols .+&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Application.Start" />
+  <message loglevel="Information"
+           msg_id="IPVS:connection_hash_table_configured"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IPVS: Connection hash table configured.*&quot;):msg@&gt;"
+           rank="005"
+           table="Message"
+           taxonomy="Application.Start" />
+  <message loglevel="Information"
+           msg_id="IPVS:ipvs_loaded"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;IPVS: ipvs loaded.&quot;):msg@&gt;"
+           rank="006"
+           table="Message"
+           taxonomy="Application.Start" />
 </octopussy_service>
