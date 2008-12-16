@@ -191,18 +191,9 @@ Get Services for the DeviceGroup '$devicegroup_name'
 sub Services($)
 {
 	my $devicegroup_name = shift;
-	my @devices = Devices($devicegroup_name);
-	my @services = ();
-	my %service;
-
-	foreach my $d (@devices)
-	{
-		foreach my $s (Octopussy::Device::Services($d))
-			{ $service{$s} = 1; }
-	}
-	foreach my $k (sort keys %service)
-		{ push(@services, $k); }
-
+	my @services = Octopussy::Device::Services(Devices($devicegroup_name));
+	@services = sort keys %{{ map { $_ => 1 } @services }}; # sort unique @services
+	
 	return (@services);
 }
 

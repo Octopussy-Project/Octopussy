@@ -36,30 +36,6 @@ my $cache = undef;
 
 =head1 FUNCTIONS
 
-=head2 String_List($type, $any, $fct, @args)
-
-Returns List of elements separated by ", " from one function and args
-
-=cut
-sub String_List($$@)
-{
-	my ($type, $any, $fct, @args) = @_;
-	my @list = (defined $any ? ("-ANY-") : ());
-
-	my @data = &{$fct}(@args);
-	foreach my $d (@data)
-	{ 
-		if (defined $d->{label})
-			{ push(@list, $d->{label}); }
-		if (defined $d->{value})
-      { push(@list, $d->{value}); }
-		else
-			{ push(@list, $d); }
-	}
-
-	print " $type list: " . (join(", ", sort @list)) . "\n";
-}
-
 =head2 Help()
 
 Prints Help
@@ -73,30 +49,27 @@ $PROG_NAME (version $PROG_VERSION)
 
  Usage: $PROG_NAME --device <device> --service <service> 
         [ --loglevel <loglevel> ] [ --taxonomy <taxonomy> ]
-        --begin YYYYMMDDHHMM --end YYYYMMDDHHMM";
+        --begin YYYYMMDDHHMM --end YYYYMMDDHHMM
         [ --include '<regexp to include>' ] [ --exclude '<regexp to exclude>' ] 
         [ --pid_param <string> ] [ --output <outputfile> ]
 
 EOF
 
 	print $help_str;
+	my $list = " ";
 	if (! @opt_devices)
-		{ String_List("Device", "any", "Octopussy::Device::List"); }
+		{ $list .= Octopussy::Device::String_List("any"); }
 	elsif (! @opt_services)
-	{	
-		String_List("Service", "any", "Octopussy::Device::Services", @opt_devices);
-	}
+		{ $list .= Octopussy::Device::String_Services(@opt_devices); }
 	elsif (!defined $opt_loglevel)
   {
-  	String_List("Loglevel", undef, "Octopussy::Loglevel::List_And_Any", 
-			\@opt_devices, \@opt_services);
+		$list .= Octopussy::Loglevel::String_List(\@opt_devices, \@opt_services);
   }
 	elsif (!defined $opt_taxonomy)
 	{ 
-		String_List("Taxonomy", undef, "Octopussy::Taxonomy::List_And_Any", 
-			\@opt_devices, \@opt_services); 
+		$list .= Octopussy::Taxonomy::String_List(\@opt_devices, \@opt_services);
 	}
-	print "\n";
+	print "$list\n\n";
 
 	exit();
 }

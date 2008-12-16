@@ -52,30 +52,6 @@ my $cache = undef;
 
 =head1 FUNCTIONS
 
-=head2 String_List($type, $any, $fct, @args)
-
-Returns List of elements separated by ", " from one function and args
-
-=cut
-sub String_List($$$@)
-{
-  my ($type, $any, $fct, @args) = @_;
-  my @list = (defined $any ? ("-ANY-") : ());
-
-  my @data = &{$fct}(@args);
-  foreach my $d (@data)
-  {
-    if (defined $d->{label})
-      { push(@list, $d->{label}); }
-    if (defined $d->{value})
-      { push(@list, $d->{value}); }
-    else
-      { push(@list, $d); }
-  }
-
-  print " $type list: " . (join(", ", sort @list)) . "\n";
-}
-
 =head2 Help()
 
 Prints Help
@@ -124,13 +100,11 @@ EOF
     	{ print " Service list: " . join (", ", sort @{$servs}) . "\n"; }
 		elsif (!defined $loglevel)
   	{
-    	String_List("Loglevel", "Octopussy::Loglevel::List_And_Any", 
-				$devs, $servs);
+    	print " " . Octopussy::Loglevel::String_List($devs, $servs) . "\n";
   	}		
   	elsif (!defined $taxonomy)
-  	{
-			String_List("Taxonomy", "Octopussy::Taxonomy::List_And_Any", 
-				$devs, $servs);
+  	{	
+			print " " . Octopussy::Taxonomy::String_List($devs, $servs) . "\n";
   	}
 	}	
 	print "\n";

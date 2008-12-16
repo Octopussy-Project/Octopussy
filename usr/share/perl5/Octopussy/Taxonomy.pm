@@ -30,11 +30,13 @@ sub List(@)
 		my %color = Colors();
 		my @services = ((AAT::NOT_NULL($serv_list)) ? AAT::ARRAY($serv_list)
 			: Octopussy::Device::Services(AAT::ARRAY($dev_list)));
+		@services = sort keys %{{ map { $_ => 1 } @services }}; # sort unique @services
 		foreach my $s (@services)
     { 
 			@services = Octopussy::Device::Services(AAT::ARRAY($dev_list))  
 				if ($s eq "-ANY-"); 
 		}
+		@services = sort keys %{{ map { $_ => 1 } @services }}; # sort unique @services
     foreach my $m (Octopussy::Service::Messages(@services))
     	{ $taxo{$m->{taxonomy}} = 1; }
 		foreach my $k (keys %taxo)
@@ -71,6 +73,22 @@ sub List_And_Any(@)
 
 	return (undef) if (scalar(@list) == 0);
   return (@list);
+}
+
+=head2 String_List($devices, $services)
+
+=cut
+sub String_List(@)
+{
+  my ($devices, $services) = @_;
+  my @data = Octopussy::Taxonomy::List($devices, $services);
+  my @list = ("-ANY-");
+  foreach my $d (@data)
+  { 
+    push(@list, $d->{value}); 
+  }   
+  
+  return ("Taxonomy list: " . join(", ", sort @list));
 }
 
 =head2 Colors()

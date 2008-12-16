@@ -18,6 +18,7 @@ my @list = ();
 push(@list, ((AAT::NOT_NULL(@device_list))
 	? sort(Octopussy::Device::Services(@device_list)) 
 	: Octopussy::Service::List()));
+@list = sort keys %{{ map { $_ => 1 } @list }}; # sort unique @list
 %>
 <?xml version='1.0' encoding='UTF-8'?>
 <root>

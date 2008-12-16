@@ -120,6 +120,18 @@ sub List()
 	return (AAT::XML::Name_List($dir_devices));
 }
 
+=head2 String_List
+
+=cut
+sub String_List
+{
+	my $any = shift;
+	my @list = List();
+	my $str_any = (AAT::NOT_NULL($any) ? "-ANY-, " : "");
+
+	return ("Device list: $str_any" . (join(", ", sort @list))); 
+}
+
 =head2 Filename($device_name)
 
 Gets the XML filename for the device '$device_name'
@@ -361,26 +373,35 @@ Gets Service list from Device list '@devices'
 =cut
 sub Services(@)
 {
+  my @devices = @_;
+  my @services = ();
+
+  foreach my $d (@devices)
+  {
+    return (Octopussy::Service::List()) if ($d =~ /^-ANY-$/i);
+    my $conf = AAT::XML::Read(Filename($d));
+    my %field;
+    foreach my $s (AAT::ARRAY($conf->{service}))
+      { $field{$s->{rank}} = 1; }
+    foreach my $f (sort keys %field)
+    {
+      foreach my $s (AAT::ARRAY($conf->{service}))
+      {
+        push(@services, $s->{sid}) if ($s->{rank} eq $f);
+      }
+    }
+  }
+
+  return (@services);
+}
+
+sub String_Services
+{
 	my @devices = @_;
-	my %service = ();
+	my @services = Services(@devices);
+	@services = sort keys %{{ map { $_ => 1 } @services }}; # sort unique @services
 	
-	foreach my $d (@devices)
-	{
-		return (Octopussy::Service::List())	if ($d =~ /^-ANY-$/i);
-		my $conf = AAT::XML::Read(Filename($d));
-		my %field;
-		foreach my $s (AAT::ARRAY($conf->{service}))
-			{ $field{$s->{rank}} = 1; }
-		foreach my $f (sort keys %field)
-		{
-  		foreach my $s (AAT::ARRAY($conf->{service}))
-			{
-				$service{$s->{sid}} = 1	if ($s->{rank} eq $f);
-			}
-		}
-	}
-		
-  return (sort keys %service);	
+	return ("Service list: -ANY-, " . join(", ", @services));
 }
 
 =head2 Services_Configurations($device_name, $sort)

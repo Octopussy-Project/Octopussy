@@ -102,7 +102,7 @@ sub Inotify_Watch
 		push(@files, $filename); 
 	}
 
-	@files = keys %{{ map { $_ => 1 } @files }};
+	@files = sort keys %{{ map { $_ => 1 } @files }}; # sort unique @files
 }
 
 =head2 Init()

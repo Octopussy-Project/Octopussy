@@ -73,15 +73,10 @@ Returns List of Services used
 =cut
 sub List_Used()
 {
-	my %service = ();
-
-	foreach my $d (Octopussy::Device::List())
-	{
-		foreach my $s (Octopussy::Device::Services($d))
-			{ $service{$s} = 1; }
-	}
-
-	return (sort keys %service);
+	my @services = Octopussy::Device::Services(Octopussy::Device::List());
+	@services = sort keys %{{ map { $_ => 1 } @services }}; # sort unique @services
+	
+	return (@services);
 }
 
 =head2 Filename($service)
