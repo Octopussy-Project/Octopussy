@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="SASL Authentication Server Service"
+                   name="Saslauthd"
+                   nb_messages="000"
+                   version="200812240008"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Saslauthd:listening_on_socket"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;saslauthd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;ipc_init.*: listening on socket: .+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Application.Start" />
+  <message loglevel="Information"
+           msg_id="Saslauthd:detach_tty"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;saslauthd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;detach_tty.*: master pid is: \d+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Saslauthd:server_exit"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;saslauthd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;server_exit.*: master exited: \d+&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Application.Stop" />
+  <message loglevel="Warning"
+           msg_id="Saslauthd:pam_unable_to_dlopen"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;saslauthd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;PAM unable to dlopen.+&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Saslauthd:pam_adding_faulty_module"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;saslauthd&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;PAM adding faulty module:.+&quot;):msg@&gt;"
+           rank="005"
+           table="Message"
+           taxonomy="Application.Errors" />
+</octopussy_service>

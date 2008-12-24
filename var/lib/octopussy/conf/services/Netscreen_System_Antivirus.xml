@@ -3,19 +3,19 @@
                    description="Netscreen System Antivirus Service"
                    icon="companies/logo_juniper"
                    website="http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/"
-                   version="200706070004">
+                   version="200812190001">
 	<message loglevel="Warning"
            msg_id="Netscreen_System_Antivirus:scanmgr_internal_error_occured"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;SCAN-MGR: Internal error occurred .+&quot;):msg@&gt;"
            rank="001"
            table="Message"
-           taxonomy="System.Error" />
+           taxonomy="System.Errors" />
 	<message loglevel="Warning"
            msg_id="Netscreen_System_Antivirus:content_was_not_scanned"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;AV: Content from .+ was not scanned .+&quot;):msg@&gt;"
            rank="002"
            table="Message"
-           taxonomy="System.Error" />
+           taxonomy="System.Errors" />
 	<message loglevel="Warning"
            msg_id="Netscreen_System_Antivirus:scanmgr_pattern_file_updated"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;SCAN-MGR: New AV pattern file has been updated.+&quot;):msg@&gt;"
