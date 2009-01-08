@@ -33,6 +33,9 @@
 	<taxonomy value="Network" 					color="#303090"	desc="Network message" />
 	<taxonomy value="Network.Errors"  	color="#303090"	desc="Network Errors message" />
 
+	<taxonomy value="Printer"           color="#202090" desc="Printer message" />
+  <taxonomy value="Printer.Errors"    color="#202090" desc="Printer Errors message" />
+
 	<taxonomy value="System" 						color="#0000FF"	desc="System message" />
 	<taxonomy value="System.Boot"      	color="#0000F9"	desc="System Boot message" />
 	<taxonomy value="System.Errors"   	color="#0000F0"	desc="System Errors message" />

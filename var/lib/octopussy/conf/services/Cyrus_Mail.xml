@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Cyrus Mail Service"
                    name="Cyrus_Mail"
-                   version="200812240007"
+                   nb_messages="006"
+                   version="200812310003"
                    website="http://cyrusimap.web.cmu.edu/">
   <message loglevel="Information"
            msg_id="Cyrus_Mail:archiving_log_file"
@@ -39,4 +40,22 @@
            rank="006"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Cyrus_Mail:duplicate_prune_action"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;cyrus&quot;):daemon@&gt;/&lt;@WORD:module@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;duplicate_prune: .+&quot;):msg@&gt;"
+           rank="007"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Cyrus_Mail:tls_prune_action"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;cyrus&quot;):daemon@&gt;/&lt;@WORD:module@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;tls_prune: .+&quot;):msg@&gt;"
+           rank="008"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Cyrus_Mail:cannot_find_executable_service"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;cyrus&quot;):daemon@&gt;/&lt;@WORD:module@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;WARNING: cannot find executable for service '.+' -- ignored&quot;):msg@&gt;"
+           rank="009"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

@@ -3,7 +3,7 @@
                    icon="software/logo_postfix"
                    name="Postfix"
                    nb_messages="074"
-                   version="200812240007"
+                   version="200812310004"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -455,4 +455,28 @@
            rank="075"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Postfix:sasl_authentication_failed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:module@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;warning: .+: SASL \w+ authentication failed: .+&quot;):msg@&gt;"
+           rank="076"
+           table="Message"
+           taxonomy="Auth.Failure" />
+  <message loglevel="Warning"
+           msg_id="Postfix:sasl_authentication_failure"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:module@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;warning: SASL authentication failure: .+&quot;):msg@&gt;"
+           rank="077"
+           table="Message"
+           taxonomy="Auth.Failure" />
+  <message loglevel="Notice"
+           msg_id="Postfix:refreshing_postfix_mail_system"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;refreshing the Postfix mail system&quot;):msg@&gt;"
+           rank="078"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Critical"
+           msg_id="Postfix:no_applicable_sasl_mechanisms"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:module@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;warning: \w+: no applicable SASL mechanisms&quot;):msg@&gt;"
+           rank="079"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>
