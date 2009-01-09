@@ -9,10 +9,33 @@ my %finish = ( year => $year, month => 12, day => 31,
 my @services = Octopussy::Device::Services($device);
 
 my $avail = Octopussy::Logs::Availability($device, \%start, \%finish);
-my $title = sprintf(AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"),
-  $device, "$year");
+my $title = sprintf(
+	AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"), $device);
+my $link_prev = "./logs_availability.asp?device=$device&year=" . ($year - 1);
+my $link_next = "./logs_availability.asp?device=$device&year=" . ($year + 1);
 %>
+<script type="text/javascript">
+function logs_viewer_month(service,month,nb_days)
+{
+  window.location = "logs_viewer.asp?device=<%= $device %>&service=" + service 
+  + "&dt1_year=<%= $year %>&dt1_month=" + month 
+	+ "&dt1_day=01&dt1_hour=00&dt1_min=00" 
+  + "&dt2_year=<%= $year %>&dt2_month=" + month 
+	+ "&dt2_day=" + nb_days + "&dt2_hour=23&dt2_min=59";
+}
+</script>
 <AAT:Box align="C" icon="buttons/bt_player_playlist" title="$title">
+<AAT:BoxRow>
+  <AAT:BoxCol align="C">
+	<table>
+	<tr>
+	<td><AAT:Button name="1leftarrow" link="$link_prev" /></td>
+	<td><AAT:Label value="$year" style="B" size="+1" /></td>
+	<td><AAT:Button name="1rightarrow" link="$link_next" /></td>
+	</tr>
+	</table>
+	</AAT:BoxCol>
+</AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol>
 	<table cellpadding="0" cellspacing="1">
@@ -22,10 +45,11 @@ my $title = sprintf(AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"),
 	<%
 	foreach my $m (1..12)
 	{ 
+		my $month_name =  AAT::Datetime::Month_Name($m);
 		my $month = AAT::Padding($m, 2);
 		my $link = "./logs_availability.asp?device=$device"
 			. "&year=$year&month=$month";
-		%><td><AAT:Label value="$month" link="$link" size="-1" /></td><%
+		%><td><AAT:Label value="$month_name" link="$link" size="-2" /></td><%
 	}
 	%>
 	</tr>
@@ -43,7 +67,7 @@ my $title = sprintf(AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"),
      	my $day = AAT::Padding($i1, 2);
       $have_logs = 1  if (defined $avail->{_DEVICE_}{$month}{$day});
       my $color = ($have_logs ? "green" : "red");
-     	%><td bgcolor="<%= $color %>" height="32" width="2"></td><%
+     	%><td bgcolor="<%= $color %>" height="32" width="2" onclick="logs_viewer_month('-ANY-',<%= $month %>,<%= $nb_days %>)"></td><%
    	}
     %></tr></table></td><%
   }
@@ -51,7 +75,7 @@ my $title = sprintf(AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"),
   %></tr>
 	<tr><td colspan="<%= $cspan %>"><hr></td></tr>
 	<%
-	foreach my $service (@services)
+	foreach my $service (sort @services)
 	{
 		%><tr><td><AAT:Button name="service" /></td>
 		<td><AAT:Label value="$service" style="B" size="-1" /></td><%
@@ -66,7 +90,7 @@ my $title = sprintf(AAT::Translation("_MSG_LOGS_AVAILABILITY_FOR_DEVICE"),
 				my $day = AAT::Padding($i1, 2);
 				$have_logs = 1	if (defined $avail->{$service}{$month}{$day});
 				my $color = ($have_logs ? "green" : "red");
-				%><td bgcolor="<%= $color %>" height="32" width="2"></td><%
+				%><td bgcolor="<%= $color %>" height="32" width="2" onclick="logs_viewer_month('<%= $service %>',<%= $month %>,<%= $nb_days %>)"></td><%
 			}
 			%></tr></table></td><%	
 		}

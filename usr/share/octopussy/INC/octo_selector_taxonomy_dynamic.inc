@@ -7,7 +7,7 @@ push(@list, Octopussy::Taxonomy::List());
 
 $Response->Include('AAT/INC/AAT_Selector.inc', 
 	name => ($arg{name} || "taxonomy"), list => \@list, 
-	selected => $arg{selected});
+	selected => $arg{selected}, onchange => "refresh_selector_msgid();");
 %>
 <AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 <script type="text/javascript">

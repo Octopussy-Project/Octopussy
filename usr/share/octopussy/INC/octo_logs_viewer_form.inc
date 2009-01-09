@@ -2,6 +2,7 @@
 my %arg = @_;
 my $loglevel = $Session->{loglevel};
 my $taxo = $Session->{taxonomy};
+my $msgid = $Session->{msgid};
 my $dt = $Session->{dt};
 my ($d1, $m1, $y1, $hour1, $min1) =
   ($Session->{dt1_day}, $Session->{dt1_month}, $Session->{dt1_year},
@@ -55,6 +56,12 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
 		<AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol>
 		<AAT:Inc file="octo_selector_taxonomy_dynamic" selected="$taxo" any="1" /></AAT:BoxCol>
+	</AAT:BoxRow>
+	<AAT:BoxRow>
+		<AAT:BoxCol align="R">
+		<AAT:Label value="_MSGID" style="B" /></AAT:BoxCol>
+		<AAT:BoxCol cspan="3">
+    <AAT:Inc file="octo_selector_msgid_dynamic" selected="$msgid" any="1" /></AAT:BoxCol>
 	</AAT:BoxRow>
   </AAT:Box>
   </AAT:BoxCol>

@@ -14,7 +14,7 @@ my @devices = Octopussy::Device::List();
 <AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol align="C">
-	<AAT:Selector name="device" list=\@devices />
+	<AAT:Selector name="device" list=\@devices selected="$device" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol><hr></AAT:BoxCol></AAT:BoxRow>

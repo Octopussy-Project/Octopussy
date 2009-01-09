@@ -14,7 +14,7 @@ my @services = (AAT::NOT_NULL($arg{restricted_services})
 	? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
 %>
 <select<%= $select_options %> name="service" 
-	onchange="refresh_selector_loglevel();refresh_selector_taxonomy();">
+	onchange="refresh_selector_loglevel();refresh_selector_taxonomy();refresh_selector_msgid();">
 </select>
 <AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 <script type="text/javascript">

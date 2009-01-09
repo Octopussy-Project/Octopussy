@@ -41,12 +41,6 @@ if (AAT::NOT_NULL($f->{template}))
 {
 	if (AAT::NOT_NULL($f->{template_save}))
 	{
-		$re_include =~ s/\\/\\\\/g;
-  	$re_include2 =~ s/\\/\\\\/g;
-  	$re_include3 =~ s/\\/\\\\/g;
-  	$re_exclude =~ s/\\/\\\\/g;
-  	$re_exclude2 =~ s/\\/\\\\/g;
-  	$re_exclude3 =~ s/\\/\\\\/g;
   	Octopussy::Search_Template::New($login, { name => $f->{template},
   		device => \@devices, service => \@services,
   		re_include => $re_include, re_include2 => $re_include2,
@@ -69,6 +63,7 @@ if ((AAT::NULL($Session->{extractor})) &&
 	my $cmd = Octopussy::Logs::Extract_Cmd_Line( { 
 		devices => \@devices, services =>\@services, 
 		loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
+		msgid => $Session->{msgid},
 		begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
 		includes => [$re_include, $re_include2, $re_include3],
 		excludes => [$re_exclude, $re_exclude2, $re_exclude3],

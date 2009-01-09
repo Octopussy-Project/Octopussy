@@ -5,7 +5,7 @@ my $form_number = $arg{form_number} || 0;
 my @types = (defined $arg{any} ? Octopussy::Loglevel::List_And_Any(undef, undef)
 	: Octopussy::Loglevel::List(undef, undef));
 $Response->Include('AAT/INC/AAT_Selector.inc', name => ($arg{name} || "loglevel"), 
-	list => \@types, selected => $arg{selected});
+	list => \@types, selected => $arg{selected}, onchange => "refresh_selector_msgid();");
 %>
 <AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 <script type="text/javascript">
@@ -85,6 +85,8 @@ function print_selector_loglevel()
 				var value = levels[e];
         selector_loglevel.options[count] = new Option(labels[value]);
 				selector_loglevel.options[count].style.color = colors[value];
+				if (selecteds[value] == 1)
+					selector_loglevel.options[count].selected = 1;
         count++;
 			}
     }
