@@ -2,8 +2,8 @@
 <octopussy_service description="Linux Kernel Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel"
-                   nb_messages="238"
-                   version="200811170001"
+                   nb_messages="240"
+                   version="200901080001"
                    website="http://www.kernel.org/">
   <message loglevel="Debug"
            msg_id="Linux_Kernel:linux_version"
@@ -1445,4 +1445,10 @@
            rank="240"
            table="Message"
            taxonomy="System.Boot" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel:clock_inserting_leap_second"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Clock: inserting leap second .+&quot;):msg@&gt;"
+           rank="241"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

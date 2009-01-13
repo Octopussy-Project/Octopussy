@@ -2,8 +2,8 @@
 <octopussy_service description="Monit Service"
                    icon="software/logo_monit"
                    name="Monit"
-                   nb_messages="014"
-                   version="200807170001"
+                   nb_messages="015"
+                   version="200901080002"
                    website="http://www.tildeslash.com/monit/">
   <message loglevel="Notice"
            msg_id="Monit:process_pid_changed_to"
@@ -95,4 +95,22 @@
            rank="015"
            table="Message"
            taxonomy="Application.Start" />
+  <message loglevel="Warning"
+           msg_id="Monit:executable_doesnt_exist"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit: &lt;@REGEXP(&quot;.+Error: the executable does not exist .+&quot;):msg@&gt;"
+           rank="016"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Notice"
+           msg_id="Monit:process_ppid_changed_to"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' process PPID changed to .+&quot;):msg@&gt;"
+           rank="017"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Monit:ppid_has_not_changed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' PPID has not changed&quot;):msg@&gt;"
+           rank="018"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

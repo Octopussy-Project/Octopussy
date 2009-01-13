@@ -2,7 +2,7 @@
 <octopussy_service description="Stunnel Service"
                    name="Stunnel"
                    nb_messages="012"
-                   version="200812120004"
+                   version="200901130003"
                    website="http://www.stunnel.org/">
   <message loglevel="Information"
            msg_id="Stunnel:nb_clients_allowed"
@@ -24,13 +24,13 @@
            taxonomy="System" />
   <message loglevel="Notice"
            msg_id="Stunnel:connection_reset"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG5\[\S+\]: Connection reset: \d+ bytes sent to SSL, \d+ bytes sent to socket&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG5\[\S+\]: Connection reset: -?\d+ bytes sent to SSL, \d+ bytes sent to socket&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="Network" />
   <message loglevel="Notice"
            msg_id="Stunnel:connection_closed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG5\[\S+\]: Connection closed: \d+ bytes sent to SSL, \d+ bytes sent to socket&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG5\[\S+\]: Connection closed: -?\d+ bytes sent to SSL, \d+ bytes sent to socket&quot;):msg@&gt;"
            rank="003"
            table="Message"
            taxonomy="Network" />
@@ -100,4 +100,10 @@
            rank="016"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Stunnel:cant_het_client_address"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;warning: can't get client address:.+&quot;):msg@&gt;"
+           rank="017"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

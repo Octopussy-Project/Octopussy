@@ -2,8 +2,8 @@
 <octopussy_service description="Drbd Service"
                    icon="software/logo_drbd"
                    name="Drbd"
-                   nb_messages="060"
-                   version="200808260004"
+                   nb_messages="065"
+                   version="200901080002"
                    website="http://www.drbd.org/">
   <message loglevel="Information"
            msg_id="Drbd:resync_done"
@@ -389,4 +389,16 @@
            rank="064"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="Drbd:orphan_inodes_deleted"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;\S+: drbd\d+: \d+ orphan inodes deleted&quot;):msg@&gt;"
+           rank="065"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Alert"
+           msg_id="Drbd:split_brain"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;DRBD: \[split-brain\] Split Brain&quot;):msg@&gt;"
+           rank="066"
+           table="Message"
+           taxonomy="System.Errors" />
 </octopussy_service>

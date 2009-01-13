@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Subversion Service"
+                   name="Subversion"
+                   nb_messages="000"
+                   version="200901080002"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Subversion:no_worthy_mechs_found"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;svn&quot;):daemon@&gt;: &lt;@REGEXP(&quot;No worthy mechs found&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Application" />
+</octopussy_service>
