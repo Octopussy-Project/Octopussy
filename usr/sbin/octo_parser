@@ -486,6 +486,11 @@ sub File_Handler($)
 #
 # MAIN
 #
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
 
 $SIG{HUP} = \&Reload;
 $SIG{USR1} = \&Exit;

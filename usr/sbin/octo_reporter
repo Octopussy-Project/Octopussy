@@ -277,6 +277,13 @@ sub End
 #
 # MAIN
 #
+
+if (!Octopussy::Valid_User())
+{
+	print "You need to be Octopussy user to use $PROG_NAME !\n";
+	exit;
+}
+
 $SIG{USR2} = \&End;
 
 my $status = GetOptions(
@@ -324,7 +331,7 @@ AAT::Syslog($PROG_NAME, "Report Generation: B=[$begin] E=[$end]");
 AAT::Syslog($PROG_NAME, "Report Generation: type=[$rc->{graph_type}] title=[$rc->{name}]");
 
 my @field_list = ();
-push(@field_list, split(/,/, $rc->{columns}))	
+push(@field_list, split(/\s*,\s*/, $rc->{columns}))	
 	if (AAT::NOT_NULL($rc->{columns}));
 foreach my $ds ("datasource1", "datasource2", "datasource3")
 	{	push(@field_list, $rc->{$ds})	if (AAT::NOT_NULL($rc->{$ds})); }

@@ -72,6 +72,20 @@ sub User()
   return ($info->{user});
 }
 
+=head2 User()
+
+Checks that current user is Octopussy user
+
+=cut
+sub Valid_User()
+{
+	my @info = getpwuid($<);
+	my $octo_user = User();
+
+	return (1)	if ($info[0] =~ /^$octo_user$/);
+	return (0);
+}
+
 =head2 Version()
 
 Returns Octopussy main module Version
@@ -260,6 +274,7 @@ sub Chown(@)
 	{
 		$list .= "\"$f\" ";
 	}
+	AAT::DEBUG("chown -R $user:$user $list");
 	`chown -R $user:$user $list`;
 }
 

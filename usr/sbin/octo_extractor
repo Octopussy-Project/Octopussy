@@ -6,7 +6,7 @@ octo_extractor - Octopussy Logs Extractor program
 =head1 SYNOPSIS
 
 octo_extractor --device <device> --service <service> 
-	--loglevel <loglevel> --taxonomy <taxonomy> 
+	--loglevel <loglevel> --taxonomy <taxonomy> --msgid <msgid>
 	--begin YYYYMMDDHHMM --end YYYYMMDDHHMM 
 	[ --include '<regexp to include>' ] [ --exclude '<regexp to exclude>' ] 
 	[ --pid_param <string> ] [ --output <outputfile> ]
@@ -29,7 +29,8 @@ my $PROG_VERSION = Octopussy::Version();
 
 my $help;
 my (@opt_devices, @opt_services) = ((), ());
-my ($opt_loglevel, $opt_taxonomy, $opt_begin, $opt_end, $pid_param, $output);
+my ($opt_loglevel, $opt_taxonomy, $opt_msgid);
+my ($opt_begin, $opt_end, $pid_param, $output);
 my (@opt_include, @opt_exclude);
 my $file_pid = undef;
 my $cache = undef;
@@ -48,7 +49,7 @@ my $help_str = <<"EOF";
 $PROG_NAME (version $PROG_VERSION)
 
  Usage: $PROG_NAME --device <device> --service <service> 
-        [ --loglevel <loglevel> ] [ --taxonomy <taxonomy> ]
+        [ --loglevel <loglevel> ] [ --taxonomy <taxonomy> ] [ --msgid <msgid> ]
         --begin YYYYMMDDHHMM --end YYYYMMDDHHMM
         [ --include '<regexp to include>' ] [ --exclude '<regexp to exclude>' ] 
         [ --pid_param <string> ] [ --output <outputfile> ]
@@ -86,17 +87,27 @@ sub Progress
 	$cache->set("status_$$", AAT::Translation($msg) . " [$num] [$nb_match]");
 }
 
-=head2 Get_Messages_To_Parse($services, $loglevel, $taxonomy)
+=head2 Get_Messages_To_Parse($services, $loglevel, $taxonomy, $msgid)
 
 Returns list of Messages to parse
 
 =cut
-sub Get_Messages_To_Parse($$$)
+sub Get_Messages_To_Parse($$$$)
 {
-	my ($services, $loglevel, $taxonomy) = @_;
+	my ($services, $loglevel, $taxonomy, $msgid) = @_;
+	my @msg_to_parse = ();
 
-	my @msg_to_parse = Octopussy::Message::Parse_List($services, $loglevel, 
-		$taxonomy, undef, undef, undef, undef);
+	if (AAT::NOT_NULL($msgid))
+	{
+		my $msg = Octopussy::Message::Configuration($services, $msgid);
+		my $re = Octopussy::Message::Pattern_To_Regexp($msg);
+		push(@msg_to_parse, { re => $re });
+	}
+	else
+	{
+		@msg_to_parse = Octopussy::Message::Parse_List($services, $loglevel, 
+			$taxonomy, undef, undef, undef, undef);
+	}
 
 	return (@msg_to_parse);
 }
@@ -124,15 +135,15 @@ sub Get_TimePeriod_Files($$$$)
 	return ($files, $nb_files);
 }
 
-=head2 Print_Logs($devices, $services, $loglevel, $taxo, 
+=head2 Print_Logs($devices, $services, $loglevel, $taxo, $msgid,
 	$begin, $end, $re_incl, $re_excl)
 
 Prints Logs
 
 =cut
-sub Print_Logs($$$$$$$$)
+sub Print_Logs($$$$$$$$$)
 {
-  my ($devices, $services, $loglevel, $taxo, 
+  my ($devices, $services, $loglevel, $taxo, $msgid,
 		$begin, $end, $re_incl, $re_excl) = @_;
 	my $time = time();
 	my @lines = ();
@@ -198,7 +209,7 @@ sub Print_Logs($$$$$$$$)
 	else
 	{
 		my $i = 1;
-		my @msg_to_parse = Get_Messages_To_Parse($services, $loglevel, $taxo);
+		my @msg_to_parse = Get_Messages_To_Parse($services, $loglevel, $taxo, $msgid);
 		foreach my $min (sort keys %{$files})
     {
 			my @logs = ();
@@ -281,13 +292,20 @@ sub End
 #
 # MAIN
 #
+
+if (!Octopussy::Valid_User())
+{
+	print "You need to be Octopussy user to use $PROG_NAME !\n";
+	exit;
+}
+
 $SIG{USR2} = \&End;
 
 my $status = GetOptions(
 	"h" => \$help, "help" => \$help,
 	"device=s" => \@opt_devices, "service=s" => \@opt_services, 
 	"loglevel=s" => \$opt_loglevel, "taxonomy=s" => \$opt_taxonomy, 
-	"begin=s" => \$opt_begin, "end=s" => \$opt_end, 
+	"msgid=s" => \$opt_msgid, "begin=s" => \$opt_begin, "end=s" => \$opt_end, 
 	"include=s" => \@opt_include, "exclude=s" => \@opt_exclude, 
 	"pid_param=s" => \$pid_param, "output=s" => \$output );
 
@@ -301,7 +319,7 @@ my $pid_name = $PROG_NAME . (defined $pid_param ?"_$pid_param" : "");
 $file_pid = Octopussy::PID_File($pid_name);
 
 Print_Logs(\@opt_devices, \@opt_services, $opt_loglevel, $opt_taxonomy, 
-	$opt_begin, $opt_end, \@opt_include, \@opt_exclude);
+	$opt_msgid, $opt_begin, $opt_end, \@opt_include, \@opt_exclude);
 
 $cache->remove("status_$$");
 

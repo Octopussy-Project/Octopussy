@@ -153,6 +153,11 @@ sub Write_To_Incoming
 #
 # MAIN
 #
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
 
 my $device = undef;
 

@@ -28,6 +28,11 @@ my $report = $ARGV[0];
 #
 # MAIN
 #
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
 
 AAT::Syslog($PROG_NAME, "Report: $report Started !");
 while (!$exit_request)

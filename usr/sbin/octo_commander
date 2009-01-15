@@ -18,6 +18,12 @@ use Octopussy;
 
 my $PROG_NAME = "octo_commander";
 
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
+
 my $cache = Octopussy::Cache::Init($PROG_NAME);
 while (1)
 {

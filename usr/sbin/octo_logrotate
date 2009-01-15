@@ -116,6 +116,11 @@ sub Rotate_Logs($)
 #
 # MAIN
 #
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
 
 foreach my $d (Octopussy::Device::List())
 {

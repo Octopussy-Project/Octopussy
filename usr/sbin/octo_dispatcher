@@ -19,6 +19,12 @@ use Octopussy;
 
 use constant PROG_NAME => "octo_dispatcher";
 
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
+
 my $cache = Octopussy::Cache::Init("octo_dispatcher");
 
 my %dir_device;

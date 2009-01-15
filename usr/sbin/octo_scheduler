@@ -22,6 +22,8 @@ use AAT;
 use Octopussy;
 use Date::Manip;
 
+my $PROG_NAME = "octo_scheduler";
+
 my %day = ("Monday" => 1, "Tuesday" => 2, "Wednesday" => 3, "Thursday" => 4, 
 	"Friday" => 5, "Saturday" => 6, "Sunday" => 7, "Every Day" => 0);
 
@@ -69,6 +71,12 @@ sub Launch_Report($$$$$$)
 # MAIN
 #
 my $counter = 0;
+
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
 
 while (1)
 {

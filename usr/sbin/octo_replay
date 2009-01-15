@@ -81,6 +81,15 @@ sub Get_TimePeriod_Files($$$$)
   return ($files, $nb_files);
 }
 
+#
+# MAIN
+#
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
+
 my $status = GetOptions(
   "h" => \$help, "help" => \$help,
   "device=s" => \$opt_device, "service=s" => \$opt_service,

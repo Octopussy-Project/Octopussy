@@ -18,6 +18,14 @@ use strict;
 use AAT;
 use Octopussy;
 
+my $PROG_NAME = "octo_rrd";
+
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
+
 my @dtypes = Octopussy::Device::Types();
 my $dir_pid = Octopussy::Directory("running");
 my $cache_dispatcher = Octopussy::Cache::Init("octo_dispatcher");

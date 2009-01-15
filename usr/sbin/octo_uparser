@@ -23,6 +23,12 @@ use Octopussy;
 
 use constant PROG_NAME => "octo_uparser";
 
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
+
 my $device = $ARGV[0];
 
 my $cache = Octopussy::Cache::Init("octo_parser");

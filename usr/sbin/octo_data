@@ -46,6 +46,12 @@ EOF
 	exit();
 }
 
+if (!Octopussy::Valid_User())
+{
+  print "You need to be Octopussy user to use $PROG_NAME !\n";
+  exit;
+}
+
 my $status = GetOptions("h" => \$help, "help" => \$help,
   "cache=s" => \$opt_cache, "type=s" => \$opt_type, "key=s" => \$opt_key );
 Help()  if ((! $status) || ($help)
