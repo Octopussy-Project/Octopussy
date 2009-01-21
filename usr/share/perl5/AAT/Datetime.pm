@@ -115,8 +115,9 @@ Returns number of seconds since 1970
 sub Seconds_Since_1970($$$$$)
 {
 	my ($year, $month, $day, $hour, $min) = @_;
-
-  return (Date::Manip::Date_SecsSince1970($month,$day,$year,$hour,$min, 0))
+ 	
+	return (Date::Manip::Date_SecsSince1970GMT($month,$day,$year,$hour,$min, 0));
+  #return (Date::Manip::Date_SecsSince1970($month,$day,$year,$hour,$min, 0)) # GMT+3 fix
 }
 
 =head2 WeekDay($year, $month, $day)
