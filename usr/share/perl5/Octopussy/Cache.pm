@@ -25,6 +25,8 @@ my ($cache_commander, $cache_dispatcher, $cache_extractor,
 
 =head2 Init($namespace)
 
+Initializes Cache Directory depending on '$namespace'
+
 =cut
 sub Init($)
 {
@@ -65,6 +67,8 @@ sub Init($)
 }
 
 =head2 Set($namespace, $expires)
+
+Sets Cache Directory
 
 =cut
 sub Set($$)

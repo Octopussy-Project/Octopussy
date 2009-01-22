@@ -38,10 +38,9 @@ sub Connect($)
 	my $appli = shift;
 
 	my $conf_db = Configuration($appli);
-	my $type = $conf_db->{db_type} || "mysql";
+	my $type = $conf_db->{type} || "mysql";
 	$dbh{$appli} = DBI->connect("DBI:$type:database=$conf_db->{db};host=$conf_db->{host}",
 		$conf_db->{user}, $conf_db->{password});
-
 	return ("$DBI::err: $DBI::errstr")  if (!defined $dbh{$appli});
 	return (undef);
 }
@@ -173,14 +172,18 @@ into table '$table' in application '$appli'
 sub Load_Infile($$$$)
 {
   my ($appli, $table, $file, $lines) = @_;
+	my $conf = Configuration($appli);
 
   if (defined open(DBFILE, "> $file"))
 	{
   	foreach my $l (AAT::ARRAY($lines))
     	{ print DBFILE "$l\n" if ($l =~ /\S+/); }
   	close(DBFILE);
-		Do($appli, "LOAD DATA INFILE '$file' INTO TABLE $table" . "_$$");
-	}
+		if ($conf->{type} eq "mysql")
+			{ Do($appli, "LOAD DATA INFILE '$file' INTO TABLE $table" . "_$$"); }
+		elsif ($conf->{type} eq "Pg")
+			{ Do($appli, "COPY ${table}_${$} FROM '$file'"); }
+		}
 	else
 	{ 
 		my ($pack, $file, $line, $sub) = caller(0);

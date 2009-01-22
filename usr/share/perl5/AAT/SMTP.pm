@@ -37,13 +37,21 @@ sub Connection_Test($)
 {
 	my $appli = shift;
 	my $status = 0;
-	my $conf_smtp = Configuration($appli);
-	if (AAT::NOT_NULL($conf_smtp->{server})
-    && AAT::NOT_NULL($conf_smtp->{sender}))
+	my $conf = Configuration($appli);
+	if (AAT::NOT_NULL($conf->{server})
+    && AAT::NOT_NULL($conf->{sender}))
   {
-		my $con = new Net::Telnet(Host => $conf_smtp->{server}, 
+		my $con = new Net::Telnet(Host => $conf->{server}, 
 			Port => 25, Errmode => "return", Timeout => 3);
-		if (defined $con)
+		my $sender = (AAT::NOT_NULL($conf->{auth_type})
+			? new Mail::Sender 
+				{ smtp => $conf->{server}, from => $conf->{sender}, 
+					auth => $conf->{auth_type}, authid => $conf->{auth_login},
+					authpwd => $conf->{auth_password} }
+			: new Mail::Sender
+        { smtp => $conf->{server}, from => $conf->{sender} });
+		
+		if ((defined $con) && (defined $sender) && (ref $sender))
 		{
     	$status = 1;
 			$con->close();
@@ -65,8 +73,13 @@ sub Send_Message($$$@)
   my $conf = Configuration($appli);
 	if (AAT::NOT_NULL($conf->{server}) && AAT::NOT_NULL($conf->{sender}))
 	{
-  	my $sender = new Mail::Sender 
-			{ smtp => $conf->{server}, from => $conf->{sender} };
+		my $sender = (AAT::NOT_NULL($conf->{auth_type})
+      ? new Mail::Sender
+        { smtp => $conf->{server}, from => $conf->{sender},
+          auth => $conf->{auth_type}, authid => $conf->{auth_login},
+          authpwd => $conf->{auth_password} }
+      : new Mail::Sender
+        { smtp => $conf->{server}, from => $conf->{sender} });
   	if ((defined $sender) && (ref $sender))
   	{
     	foreach my $dest (@dests)
@@ -94,8 +107,13 @@ sub Send_Message_With_File($$$$@)
   my $conf = Configuration($appli);
 	if (AAT::NOT_NULL($conf->{server}) && AAT::NOT_NULL($conf->{sender}))
 	{
-  	my $sender = new Mail::Sender 
-			{ smtp => $conf->{server}, from => $conf->{sender} };
+		my $sender = (AAT::NOT_NULL($conf->{auth_type})
+      ? new Mail::Sender
+        { smtp => $conf->{server}, from => $conf->{sender},
+          auth => $conf->{auth_type}, authid => $conf->{auth_login},
+          authpwd => $conf->{auth_password} }
+      : new Mail::Sender
+        { smtp => $conf->{server}, from => $conf->{sender} });
   	if ((defined $sender) && (ref $sender))
   	{
     	foreach my $dest (@dests)

@@ -499,6 +499,7 @@ sub Extract_Cmd_Line($)
 	}
   my $cmd = "/usr/sbin/octo_extractor $dev_str $serv_str" 
 		. " --loglevel \"$conf->{loglevel}\" --taxonomy \"$conf->{taxonomy}\""
+		. " --msgid \"$conf->{msgid}\""
     . " --begin $conf->{begin} --end $conf->{end} $incl_str $excl_str"
     . " --pid_param \"$conf->{pid_param}\" --output \"$conf->{output}\"";
 	

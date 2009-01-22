@@ -233,9 +233,7 @@ sub SQL($$$)
 	#foreach my $f (AAT::ARRAY($conf->{field}))
 	#{
 	#	if (Octopussy::Type::SQL_Type($f->{type}) =~ /TEXT/)
-	#	{
-	#		$sql .= "PRIMARY KEY ($f->{title}(250)), ";
-	#	}
+	#		{ $sql .= "PRIMARY KEY ($f->{title}(250)), "; }
 	#}
 	$sql .= $index;
 	$sql =~ s/, $/\)/g;

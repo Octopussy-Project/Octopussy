@@ -26,11 +26,37 @@ sub Configuration($$)
 {
 	my ($service, $msg_id) = @_;
 
-	my $conf = Octopussy::Service::Configuration($service);
-	foreach my $m (AAT::ARRAY($conf->{message}))
-  	{ return ($m) if ($m->{msg_id} eq $msg_id); }
+	foreach my $s (AAT::ARRAY($service))
+	{
+		my $conf = Octopussy::Service::Configuration($s);
+		foreach my $m (AAT::ARRAY($conf->{message}))
+  		{ return ($m) if ($m->{msg_id} eq $msg_id); }
+	}	
 
   return (undef);
+}
+
+sub List($$$)
+{
+	my ($ref_serv, $loglevel, $taxonomy) = @_;
+	my %log_level = Octopussy::Loglevel::Levels();
+	my $level = ((AAT::NOT_NULL($loglevel) && ($loglevel !~ /^-ANY-$/i)) 
+		? $log_level{$loglevel} : 0);
+	my $qr_taxo = ((AAT::NOT_NULL($taxonomy) && ($taxonomy !~ /^-ANY-$/i)) 
+		? qr/^$taxonomy(\..+)?/ : qr/.+/);
+	my @list = ();
+				
+	foreach my $serv (AAT::ARRAY($ref_serv))
+	{
+		my $conf = Octopussy::Service::Configuration($serv);
+		foreach my $m (AAT::ARRAY($conf->{message}))
+		{ 
+			if (($log_level{$m->{loglevel}} >= $level) && ($m->{taxonomy} =~ $qr_taxo))
+				{ push(@list, $m->{msg_id}); } 
+		} 	
+	}
+	
+	return (@list);
 }
 
 =head2 Fields($service, $msg_id)
@@ -200,14 +226,15 @@ sub Pattern_To_Regexp($)
 	my %re_types = Octopussy::Type::Regexps();
 	my $regexp = "";
 	my $tmp = $msg->{pattern};
-	while ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i)
+	while ((AAT::NOT_NULL($tmp)) 
+		&& ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i))
 	{
 		my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
 		my $subs = ($field =~ /NULL/i) ? $re_value : "\(" . $re_value . "\)";
 		$regexp .= (Escape_Characters($before) . $subs);
 		$tmp = $after;
 	}
-	$tmp = $regexp . Escape_Characters($tmp);
+	$tmp = $regexp . (AAT::NOT_NULL($tmp) ? Escape_Characters($tmp) : "");
 	$regexp = "";
 	while ($tmp =~ /^(.*?)<\@([^\@]+?):(\S+?)\@>(.*)$/i)
 	{
@@ -324,7 +351,7 @@ sub Pattern_To_Regexp_Fields($$$$)
   my $pos = 0;
   my %plugin_field_pos = ();
 
-  while ($regexp =~ /<\@(.+?):(\S+?)\@>/i)
+	while ($regexp =~ /<\@(.+?):([^:\s]+?)\@>/i)
   {
     my ($type, $pattern_field) = ($1, $2);
     my $matched = 0;
@@ -437,10 +464,8 @@ sub Parse_List($$$$$$$)
 			if (((!defined $table) || ($m->{table} eq $table)) 
 				&& ($log_level{$m->{loglevel}} >= $level) && ($m->{taxonomy} =~ $qr_taxo))
       {
-				print "before\n";
         my ($regexp, $fields_position) =
           Pattern_To_Regexp_Fields($m, $fields_regexp, $fields, $fields_list);
-				print "RE: $regexp\n";
         if (defined $regexp)
         {
           push(@msg_to_parse, { re => qr/$regexp/, positions => $fields_position });

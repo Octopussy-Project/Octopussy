@@ -143,6 +143,7 @@ sub SQL
 				my $f = $p->{function};
 				return (undef)	if ((defined $f) && (!defined &{$f}($args[$p->{pos}])));
 				my $value = (defined $f ? &{$f}($args[$p->{pos}]) : $args[$p->{pos}]); 
+				$value =~ s/\t+/ /g;
       	$line .= Octopussy::Type::SQL_Datetime($value);
 			}
 			else

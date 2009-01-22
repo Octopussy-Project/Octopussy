@@ -274,7 +274,6 @@ sub Chown(@)
 	{
 		$list .= "\"$f\" ";
 	}
-	AAT::DEBUG("chown -R $user:$user $list");
 	`chown -R $user:$user $list`;
 }
 

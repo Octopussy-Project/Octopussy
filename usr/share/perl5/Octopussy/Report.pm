@@ -259,7 +259,7 @@ sub Generate($$$$$$$$$$$$)
 		my $dir = $outputfile;
 		$dir =~ s/(.+)\/.+/$1/;
 		Octopussy::Create_Directory($dir);
-		Octopussy::Plugin::Init({ lang => $lang }, split(/,/, $rc->{columns}));
+		Octopussy::Plugin::Init({ lang => $lang }, split(/\s*,\s*/, $rc->{columns}));
 		Octopussy::Report::HTML::Generate($outputfile, $rc->{name}, 
 			$begin, $end, $devices, $services, $data, 
 			$rc->{columns}, $rc->{columns_name}, $stats, $lang);
