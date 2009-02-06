@@ -2,8 +2,8 @@
 <octopussy_service description="PostgreSQL Service"
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
-                   nb_messages="048"
-                   version="200901080002"
+                   nb_messages="050"
+                   version="200901280002"
                    website="http://www.postgresql.org">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
@@ -79,7 +79,7 @@
            taxonomy="Application.Errors" />
   <message loglevel="Warning"
            msg_id="PostgreSQL:checkpoints_occuring_too_frequently"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  checkpoints are occurring too frequently .+&quot;):smg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.* LOG:  checkpoints are occurring too frequently .+&quot;):msg@&gt;"
            rank="013"
            table="Message"
            taxonomy="Application" />
@@ -301,8 +301,14 @@
            taxonomy="Application" />
   <message loglevel="Warning"
            msg_id="PostgreSQL:broken_pipe"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@NUMBER:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;LOG:  could not send data to client: Broken pipe&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;LOG:  could not send data to client: Broken pipe&quot;):msg@&gt;"
            rank="050"
+           table="Database_Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="PostgreSQL:schema_does_not_exist"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;ERROR:  schema .+ does not exist&quot;):msg@&gt;"
+           rank="051"
            table="Database_Message"
            taxonomy="Application.Errors" />
 </octopussy_service>

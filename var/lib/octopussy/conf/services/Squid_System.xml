@@ -390,7 +390,7 @@
            table="Message"
            taxonomy="Config.Errors" />
   <message loglevel="Information"
-           msg_id="Squid_System:resolv.conf_no_file"
+           msg_id="Squid_System:no_resolv_conf"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; squid[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.*resolv.conf.*No such file or directory.*&quot;):msg@&gt;"
            rank="066"
            table="Message"

@@ -2,8 +2,8 @@
 <octopussy_service description="Syslog-ng Service"
                    icon="software/logo_syslog-ng"
                    name="Syslog-ng"
-                   nb_messages="024"
-                   version="200810310001"
+                   nb_messages="025"
+                   version="200901130001"
                    website="http://www.balabit.com/network-security/syslog-ng/">
   <message loglevel="Warning"
            msg_id="Syslog-ng:stats_dropped"
@@ -102,7 +102,7 @@
            table="Message"
            taxonomy="System.Errors" />
   <message loglevel="Warning"
-           msg_id="Syslog-ng:Cannot open file"
+           msg_id="Syslog-ng:cannot_open_file"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Cannot open file .+&quot;):msg@&gt;"
            rank="017"
            table="Message"
@@ -151,9 +151,14 @@
            taxonomy="Network.Errors" />
   <message loglevel="Warning"
            msg_id="Syslog-ng:configuration_reload_request_received"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;Configuration reload request received, reloading configuration;&quot;):msg@&gt; 
-"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Configuration reload request received, reloading configuration;&quot;):msg@&gt;  "
            rank="025"
            table="Message"
            taxonomy="Config.Changes" />
+  <message loglevel="Notice"
+           msg_id="Syslog-ng:termination_request_via_signal"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Termination requested via signal, terminating;&quot;):msg@&gt;"
+           rank="026"
+           table="Message"
+           taxonomy="Application.Stop" />
 </octopussy_service>

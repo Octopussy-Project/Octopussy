@@ -103,13 +103,13 @@
            taxonomy="Config.Errors" />
   <message loglevel="Notice"
            msg_id="Monit:process_ppid_changed_to"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' process PPID changed to .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;'.+' process PPID changed to .+&quot;):msg@&gt;"
            rank="017"
            table="Message"
            taxonomy="Application" />
   <message loglevel="Notice"
            msg_id="Monit:ppid_has_not_changed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;'.+' PPID has not changed&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;'.+' PPID has not changed&quot;):msg@&gt;"
            rank="018"
            table="Message"
            taxonomy="Application" />

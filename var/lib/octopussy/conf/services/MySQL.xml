@@ -131,12 +131,6 @@
            rank="021"
            table="Message"
            taxonomy="System.Errors" />
-  <message loglevel="Warning"
-           msg_id="MySQL:unable_create_temporary_file"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+ InnoDB: Error: unable to create temporary file;.+&quot;):msg@&gt;"
-           rank="008"
-           table="Message"
-           taxonomy="System.Errors" />
   <message loglevel="Critical"
            msg_id="MySQL:aborting"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mysqld[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+ Aborting&quot;):msg@&gt;"
@@ -380,7 +374,7 @@
   <message loglevel="Critical"
            msg_id="MySQL:partition_is_too_full"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*mysql.*&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ERROR: The partition with .+ is too full!&quot;):msg@&gt;"
-           rank="063"
+           rank="022"
            table="Message"
            taxonomy="System.Errors" />
 </octopussy_service>

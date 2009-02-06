@@ -2,8 +2,8 @@
 <octopussy_service description="Linux System Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_System"
-                   nb_messages="071"
-                   version="200806300007">
+                   nb_messages="074"
+                   version="200902050002">
   <message loglevel="Information"
            msg_id="Linux_System:removing_device_node"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udev&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;removing device node .+&quot;):msg@&gt;"
@@ -107,7 +107,7 @@
            table="Message"
            taxonomy="Config.Changes" />
   <message loglevel="Information"
-           msg_id="Linux_System:28"
+           msg_id="Linux_System:su_something"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\+ \?\?\? \S+:\S+&quot;):msg@&gt;"
            rank="029"
            table="Message"
@@ -125,14 +125,14 @@
            table="Message"
            taxonomy="Auth.Failure" />
   <message loglevel="Notice"
-           msg_id="Linux_System:31"
+           msg_id="Linux_System:su_something2"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S pts\S+ \S+:\S+&quot;):msg@&gt;"
            rank="032"
            table="Message"
            taxonomy="Auth.Success" />
   <message loglevel="Warning"
            msg_id="Linux_System:pam_authentication_failure"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;(pam_unix) authentication failure; logname=.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\(pam_unix\) authentication failure; logname=.+&quot;):msg@&gt;"
            rank="033"
            table="Message"
            taxonomy="Auth.Failure" />
@@ -144,7 +144,7 @@
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Linux_System:su_session_closed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;(pam_unix) session closed for user \S+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\(pam_unix\) session closed for user \S+&quot;):msg@&gt;"
            rank="026"
            table="Message"
            taxonomy="System" />
@@ -204,7 +204,7 @@
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Linux_System:login_session_closed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;login&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;(pam_unix) session closed for user \S+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;login&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\(pam_unix\) session closed for user \S+&quot;):msg@&gt;"
            rank="030"
            table="Message"
            taxonomy="Access.Failure" />
@@ -391,7 +391,7 @@
   <message loglevel="Warning"
            msg_id="Linux_System:set_members_to"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;gpasswd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;set members of \w+ to .+&quot;):msg@&gt;"
-           rank="065"
+           rank="020"
            table="Message"
            taxonomy="Config.Changes" />
   <message loglevel="Warning"
@@ -436,4 +436,16 @@
            rank="072"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_System:tty"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;[-+] tty\d+ \S+&quot;):msg@&gt;"
+           rank="073"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_System:usermod_change_user_password"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;usermod&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;change user .+ password&quot;):msg@&gt;"
+           rank="074"
+           table="Message"
+           taxonomy="Config.Changes" />
 </octopussy_service>

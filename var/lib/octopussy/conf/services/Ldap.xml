@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_service name="Ldap"
-                   description="Ldap Service"
-									 icon="software/logo_openldap"
-									 website="http://www.openldap.org"
-                   version="200811170001">
+<octopussy_service description="Ldap Service"
+                   icon="software/logo_openldap"
+                   name="Ldap"
+                   version="200902050019"
+                   website="http://www.openldap.org">
   <message loglevel="Information"
            msg_id="Ldap:daemon_activity_on_descriptors"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: activity on \d+ descriptors&quot;):msg@&gt;  "
@@ -23,8 +23,8 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Debug"
-           msg_id="Ldap:4"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]:  &lt;@REGEXP(&quot;\d+r&quot;):msg@&gt; "
+           msg_id="Ldap:debug"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]:  &lt;@REGEXP(&quot;\d+r&quot;):msg@&gt;"
            rank="004"
            table="Message"
            taxonomy="System" />
@@ -47,7 +47,7 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
-           msg_id="Ldap:8"
+           msg_id="Ldap:waiting_threads_to_terminate"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;slapd shutdown: waiting for \d+ threads to terminate&quot;):msg@&gt;"
            rank="008"
            table="Message"
@@ -59,20 +59,20 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Debug"
-           msg_id="Ldap:10"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read\(\d+\): checking for input on id=\d+&quot;):msg@&gt;  "
+           msg_id="Ldap:connection_read_checking_input"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read\(\d+\): checking for input on id=\d+&quot;):msg@&gt;"
            rank="010"
            table="Message"
            taxonomy="System" />
   <message loglevel="Debug"
-           msg_id="Ldap:11"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ber_get_next on fd \d+ failed errno=\d+ .+&quot;):msg@&gt;  "
+           msg_id="Ldap:ber_get_next_failed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ber_get_next on fd \d+ failed errno=\d+ .+&quot;):msg@&gt;"
            rank="011"
            table="Message"
            taxonomy="System.Errors" />
   <message loglevel="Information"
-           msg_id="Ldap:12"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;send_ldap_response: msgid=\d+ tag=\d+ err=\d+&quot;):msg@&gt;  "
+           msg_id="Ldap:send_ldap_response"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;send_ldap_response: msgid=\d+ tag=\d+ err=\d+&quot;):msg@&gt;"
            rank="012"
            table="Message"
            taxonomy="System" />
@@ -101,31 +101,31 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
-           msg_id="Ldap:18"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S{2} ldbm_cache_open.+&quot;):msg@&gt;  "
+           msg_id="Ldap:ldbm_cache_open"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S{2} ldbm_cache_open.+&quot;):msg@&gt;"
            rank="017"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
-           msg_id="Ldap:19"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S{2} equality_candidates.*&quot;):msg@&gt;  "
+           msg_id="Ldap:equality_candidates"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S{2} equality_candidates.*&quot;):msg@&gt;"
            rank="018"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
-           msg_id="Ldap:20"
+           msg_id="Ldap:send_ldap_result"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;send_ldap_result:.+&quot;):msg@&gt;"
            rank="019"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
-           msg_id="Ldap:21"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S{2} list_candidates.*&quot;):msg@&gt;  "
+           msg_id="Ldap:list_candidates"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S{2} list_candidates.*&quot;):msg@&gt;"
            rank="020"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
-           msg_id="Ldap:22"
+           msg_id="Ldap:ldbm_search"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ldbm_search: .+&quot;):msg@&gt;"
            rank="021"
            table="Message"
@@ -173,8 +173,8 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
-           msg_id="Ldap:30"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_close: conn=\d+ sd=\d+&quot;):msg@&gt;  "
+           msg_id="Ldap:connection_close"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_close: conn=\d+ sd=\d+&quot;):msg@&gt;"
            rank="029"
            table="Message"
            taxonomy="System" />
@@ -209,38 +209,38 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
-           msg_id="Ldap:36"
+           msg_id="Ldap:ldbm_backend_syncing"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ldbm backend syncing  &quot;):msg@&gt;"
            rank="035"
            table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
-           msg_id="Ldap:37"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ldbm flushing db .+&quot;):msg@&gt;  "
+           msg_id="Ldap:ldbm_flushing_db"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ldbm flushing db .+&quot;):msg@&gt;"
            rank="036"
            table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
-           msg_id="Ldap:38"
+           msg_id="Ldap:ldbm_closing_db"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ldbm closing db .+&quot;):msg@&gt;"
            rank="037"
            table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
-           msg_id="Ldap:39"
+           msg_id="Ldap:ldbm_backend_done_syncing"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ldbm backend done syncing&quot;):msg@&gt;"
            rank="038"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
-           msg_id="Ldap:40"
+           msg_id="Ldap:cache_release_all"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;====&gt; cache_release_all&quot;):msg@&gt;"
            rank="039"
            table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
-           msg_id="Ldap:41"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: conn=\d+ fd=\d+ connection from IP=.+ accepted.&quot;):msg@&gt;  "
+           msg_id="Ldap:connection_from_ip_accepted"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: conn=\d+ fd=\d+ connection from IP=.+ accepted.&quot;):msg@&gt;"
            rank="040"
            table="Message"
            taxonomy="Access.Success" />
@@ -293,8 +293,8 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Warning"
-           msg_id="Ldap:50"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;slap_sig_shutdown: signal \d+&quot;):msg@&gt;  "
+           msg_id="Ldap:slap_sig_shutdown"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;slap_sig_shutdown: signal \d+&quot;):msg@&gt;"
            rank="049"
            table="Message"
            taxonomy="System" />
@@ -305,7 +305,7 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Debug"
-           msg_id="Ldap:52"
+           msg_id="Ldap:connection_read_no_connection"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; slapd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection_read\(\d+\): no connection!&quot;):msg@&gt;"
            rank="051"
            table="Message"

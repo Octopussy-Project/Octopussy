@@ -18,7 +18,7 @@
            taxonomy="Auth.Failure" />
   <message loglevel="Notice"
            msg_id="Xscreensaver:conversation_failed2"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;xscreensaver&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*conversation failed&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;xscreensaver&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*conversation failed&quot;):msg@&gt; "
            rank="003"
            table="Message"
            taxonomy="Application.Errors" />
@@ -30,13 +30,13 @@
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Xscreensaver:authentication_failure2"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;xscreensaver&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;.*authentication failure; logname=.+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;xscreensaver&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*authentication failure; logname=.+&quot;):msg@&gt; "
            rank="005"
            table="Message"
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Xscreensaver:failed_login_on_display"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;xscreensaver&quot;):daemon@&gt;[&lt;@NUMBER:pid@&gt;]: &lt;@REGEXP(&quot;FAILED LOGIN .+ ON DISPLAY .+&quot;):msg@&gt;
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;xscreensaver&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;FAILED LOGIN .+ ON DISPLAY .+&quot;):msg@&gt;
 "
            rank="006"
            table="Message"

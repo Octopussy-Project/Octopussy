@@ -109,7 +109,7 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@STRING:NULL@&gt;: &lt;@REGEXP(&quot;\%ENVM-6-PSLEV&quot;):msg_id@&gt;: &lt;@REGEXP(&quot;Power \wupply .+ state changed.+&quot;):msg@&gt;"
            rank="018"
            table="Message"
-           taxonomy="Hardware.Power" />
+           taxonomy="Hardware.PowerSupply" />
   <message loglevel="Warning"
            msg_id="Cisco_Router:no_radius_servers_found"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@STRING:NULL@&gt;: &lt;@REGEXP(&quot;\%RADIUS-3-ALLDEADSERVER&quot;):msg_id@&gt;: &lt;@REGEXP(&quot;.*No active radius servers found.+&quot;):msg@&gt;"

@@ -3,7 +3,7 @@
                    description="Netscreen System Antivirus Service"
                    icon="companies/logo_juniper"
                    website="http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/"
-                   version="200812190001">
+                   version="200706070004">
 	<message loglevel="Warning"
            msg_id="Netscreen_System_Antivirus:scanmgr_internal_error_occured"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;SCAN-MGR: Internal error occurred .+&quot;):msg@&gt;"

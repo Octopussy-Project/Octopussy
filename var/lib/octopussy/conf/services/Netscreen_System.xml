@@ -7,7 +7,7 @@
   <message loglevel="Information"
            msg_id="Netscreen_System:clock_updated_from_ntp"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;The system clock was updated from .+ NTP server type .+ with .+ adjustment of .+ ms. Authentication was .+. Update mode was .+&quot;):msg@&gt;"
-           rank="046"
+           rank="171"
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
@@ -161,7 +161,7 @@
            table="Message"
            taxonomy="Config.Changes" />
   <message loglevel="Warning"
-           msg_id="Netscreen_System:en-disabled_on_interface"
+           msg_id="Netscreen_System:en_disabled_on_interface"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;.+ \w+abled on interface .+&quot;):msg@&gt;"
            rank="028"
            table="Message"
@@ -305,7 +305,7 @@
            table="Message"
            taxonomy="Attack" />
   <message loglevel="Notice"
-           msg_id="Netscreen_System:syslog_been_dis-enabled"
+           msg_id="Netscreen_System:syslog_been_dis_enabled"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:NULL@&gt;: NetScreen device_id=&lt;@WORD:NULL@&gt;  &lt;@BRACKETED_STRING:NULL@&gt;&lt;@WORD:msg_id@&gt;: &lt;@REGEXP(&quot;Syslog has been \w+abled.+&quot;):msg@&gt;"
            rank="050"
            table="Message"
