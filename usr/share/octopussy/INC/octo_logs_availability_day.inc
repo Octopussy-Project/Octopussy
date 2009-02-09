@@ -1,4 +1,7 @@
 <%
+my $COLOR_AVAILABLE = "green";
+my $COLOR_NOT_AVAILABLE = "gray";
+
 my %arg = @_;
 my ($device, $year, $month, $day) = ($arg{device},  $arg{year}, 
 	AAT::Padding($arg{month}, 2), AAT::Padding($arg{day}, 2));
@@ -81,7 +84,7 @@ function logs_viewer_hour(service,hour)
       	my $min = AAT::Padding(($i1*$step + $i2), 2);
        	$have_logs = 1  if (defined $avail->{_DEVICE_}{$month}{$day}{$hour}{$min});
      	}
-      my $color = ($have_logs ? "green" : "red");
+      my $color = ($have_logs ? $COLOR_AVAILABLE : $COLOR_NOT_AVAILABLE);
      	%><td bgcolor="<%= $color %>" height="32" width="2" onclick="logs_viewer_hour('-ANY-',<%= $hour %>)"></td><%
    	}
     %></tr></table></td><%
@@ -105,7 +108,7 @@ function logs_viewer_hour(service,hour)
 					my $min = AAT::Padding(($i1*$step + $i2), 2);
 					$have_logs = 1	if (defined $avail->{$service}{$month}{$day}{$hour}{$min});
 				}
-				my $color = ($have_logs ? "green" : "red");
+				my $color = ($have_logs ? $COLOR_AVAILABLE : $COLOR_NOT_AVAILABLE);
 				%><td bgcolor="<%= $color %>" height="32" width="2" onclick="logs_viewer_hour('<%= $service %>',<%= $hour %>)"></td><%
 			}
 			%></tr></table></td><%	

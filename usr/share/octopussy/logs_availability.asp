@@ -1,25 +1,42 @@
 <WebUI:PageTop title="_LOGS_AVAILABILITY" help="" />
 <%
 my $q = $Request->Params();
-my ($device, $year, $month, $day, $hour) = 
-	($q->{device}, $q->{year}, $q->{month}, $q->{day}, $q->{hour});
+my ($device, $year, $month, $day, $hour, $period) = 
+	($q->{device}, $q->{year}, $q->{month}, $q->{day}, $q->{hour}, $q->{period});
 
-my ($y, $m) = AAT::Datetime::Now();
-$year ||= $y;
-#$month ||= $m;
+if (AAT::NOT_NULL($period))
+{
+	my ($y, $m, $d, $h) = AAT::Datetime::Now();
+	if ($period =~ /^hour$/)
+		{ ($year, $month, $day, $hour) = ($y, $m, $d, $h); }
+	elsif ($period =~ /^day$/)
+		{ ($year, $month, $day) = ($y, $m, $d); }
+	elsif ($period =~ /^month$/)
+		{ ($year, $month) = ($y, $m); }
+	else
+		{ $year = $y; }
+}
 
 my @devices = Octopussy::Device::List();
+my @list = ( 
+	{ label => "_HOUR", value => "hour" }, 
+	{ label => "_DAY", value => "day" },
+	{ label => "_MONTH", value => "month" },
+	{ label => "_YEAR", value => "year" } );
 %>
 <AAT:Form action="logs_availability.asp">
 <AAT:Box align="C">
 <AAT:BoxRow>
-	<AAT:BoxCol align="C">
-	<AAT:Selector name="device" list=\@devices selected="$device" />
-	</AAT:BoxCol>
+	<AAT:BoxCol><AAT:IMG name="buttons/bt_device" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Selector name="device" list=\@devices selected="$device" /></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol align="C">
+  <AAT:BoxCol><AAT:IMG name="buttons/bt_scheduler" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Selector name="period" list=\@list selected="$period" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol cspan="2" align="C">
 	<AAT:Form_Submit value="Check Availability for this device" />
 	</AAT:BoxCol>
 </AAT:BoxRow>

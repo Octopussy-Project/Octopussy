@@ -74,7 +74,7 @@ function logs_viewer_min(service,min)
   {
     my $min = AAT::Padding($m, 2);
     my $color = (!defined $avail->{_DEVICE_}{$month}{$day}{$hour}{$min} 
-			? "red" : "green");
+			? "gray" : "green");
   	%><td bgcolor="<%= $color %>" height="32" width="10" onclick="logs_viewer_min('-ANY-',<%= $min %>)"></td><%
   }
   %></tr>
@@ -88,7 +88,7 @@ function logs_viewer_min(service,min)
   	{
     	my $min = AAT::Padding($m, 2);
 			my $color = (!defined $avail->{$service}{$month}{$day}{$hour}{$min} 
-      	? "red" : "green");
+      	? "gray" : "green");
 			%><td bgcolor="<%= $color %>" height="32" width="10" onclick="logs_viewer_min('<%= $service %>',<%= $min %>)"></td><%
 		}
 		%></tr><%
