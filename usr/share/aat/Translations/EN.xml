@@ -415,7 +415,7 @@
 	<msg mid="_MSG_INVALID_SCHEDULE_PERIOD"
     value="You entered an invalid Period for this Schedule !" />
 	<msg mid="_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
-		value="Logs availability for device %s (%s)" />
+		value="Logs availability for device %s" />
   <msg mid="_MSG_MAIL_SENT_TO_SUPPORT"
     value="Mail sent to Octopussy support." />
   <msg mid="_MSG_MAP_CREATION_INFO"

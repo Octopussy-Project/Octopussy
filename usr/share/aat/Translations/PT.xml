@@ -414,7 +414,7 @@
 	<msg mid="_MSG_INVALID_SCHEDULE_PERIOD"
     value="Data Invalida de Agendamento" />
 	<msg mid="_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
-    value="__LOGS availability for device %s (%s)" />
+    value="__LOGS availability for device %s" />
 	<msg mid="_MSG_MAIL_SENT_TO_SUPPORT"
 		value="E-Mail enviado para o suporte Octopussy." />
 	<msg mid="_MSG_MAP_CREATION_INFO"
