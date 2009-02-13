@@ -2,8 +2,8 @@
 <octopussy_service description="Monit Service"
                    icon="software/logo_monit"
                    name="Monit"
-                   nb_messages="015"
-                   version="200901080002"
+                   nb_messages="018"
+                   version="200902130001"
                    website="http://www.tildeslash.com/monit/">
   <message loglevel="Notice"
            msg_id="Monit:process_pid_changed_to"
@@ -113,4 +113,10 @@
            rank="018"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Monit:pidfile_not_regular_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; monit[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;monit: pidfile .+ is not a regular file&quot;):msg@&gt;"
+           rank="019"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

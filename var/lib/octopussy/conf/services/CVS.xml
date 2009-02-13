@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="CVS Service"
                    name="CVS"
-                   nb_messages="016"
-                   version="200811170001">
+                   nb_messages="017"
+                   version="200902130002">
   <message loglevel="Warning"
            msg_id="CVS:caught_signal"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvsd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;caught signal .+&quot;):msg@&gt;"
@@ -97,6 +97,24 @@
            msg_id="CVS:cant_open_entries_log"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvs: &lt;@REGEXP(&quot;cvs update: cannot open CVS/Entries.Log.*&quot;):msg@&gt;"
            rank="016"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Notice"
+           msg_id="CVS:cvs_status_aborted"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cvs: &lt;@REGEXP(&quot;cvs \[status aborted\]:.*&quot;):msg@&gt;"
+           rank="017"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="CVS:rtag_tagging"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;cvs&quot;):daemon@&gt;: &lt;@REGEXP(&quot;cvs rtag: Tagging .+&quot;):msg@&gt;"
+           rank="018"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="CVS:rtag_aborted"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;cvs&quot;):daemon@&gt;: &lt;@REGEXP(&quot;cvs \[rtag aborted\]: .+&quot;):msg@&gt;"
+           rank="019"
            table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="SSH Daemon Service"
                    name="Sshd"
-                   nb_messages="075"
-                   version="200901290002">
+                   nb_messages="076"
+                   version="200902130002">
   <message loglevel="Information"
            msg_id="Sshd:session_for_user"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*session .+ for user .+&quot;):msg@&gt;"
@@ -407,13 +407,13 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Sshd:public_key_blacklisted"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Public key \S+ blacklisted.*&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Public key .+ blacklisted.*&quot;):msg@&gt;"
            rank="068"
            table="Message"
            taxonomy="Config.Errors" />
   <message loglevel="Warning"
            msg_id="Sshd:host_key_blacklisted"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;error: Host key \S+ blacklisted.*&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;error: Host key .+ blacklisted.*&quot;):msg@&gt;"
            rank="069"
            table="Message"
            taxonomy="Config.Errors" />

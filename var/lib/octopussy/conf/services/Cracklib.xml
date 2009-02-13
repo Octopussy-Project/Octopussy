@@ -2,11 +2,17 @@
 <octopussy_service description="Pro-active password checker library"
                    name="Cracklib"
                    nb_messages="001"
-                   version="200802210001">
+                   version="200812170003">
   <message loglevel="Information"
-           msg_id="Cracklib:update"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; cracklib:&lt;@REGEXP(&quot;.+updated dictionary.+&quot;):msg@&gt;"
+           msg_id="Cracklib:updated_dictionary"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;cracklib:.+updated dictionary.+&quot;):msg@&gt;"
            rank="001"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Cracklib:no_dictionary_update_necessary"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;cracklib: no dictionary update necessary.&quot;):msg@&gt;"
+           rank="002"
            table="Message"
            taxonomy="Application" />
 </octopussy_service>
