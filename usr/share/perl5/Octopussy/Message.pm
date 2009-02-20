@@ -73,7 +73,8 @@ sub Fields($$)
  	foreach my $m (AAT::ARRAY($conf->{message}))
  		{ $msg = $m	if ($m->{msg_id} eq "$msg_id"); }	
 	my $pattern = $msg->{pattern};
-	while ($pattern =~ s/<\@(.+?):(\S+)\@>//)
+	while (($pattern =~ s/<\@(REGEXP\(".+?"\)):(\S+?)\@>//) 
+		|| ($pattern =~ s/<\@(.+?):(\S+?)\@>//))
  		{ push(@fields, { name => $2, type => $1 })	if ($2 !~ /NULL/i); }	
 	
 	return (@fields);

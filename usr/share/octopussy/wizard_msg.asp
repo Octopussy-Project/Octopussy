@@ -11,6 +11,7 @@ my $orig = $msg_orig;
 
 if (defined $table_field)
 {
+	my %tf = %{{ map { $_->{title} => $_->{type} } Octopussy::Table::Fields($table) }};
 	my $i = 1;
 	while ($msg_pattern =~ /<\@([^:]+?)\@>/)
 	{
@@ -22,7 +23,11 @@ if (defined $table_field)
 		}
 		else
 		{
-  		$msg_pattern =~ s/(.*?)<\@([^:]+?)\@>/$1<\@$2:$field\@>/;
+			my $type = $tf{$field};
+			if ($type !~ /DATETIME/)
+				{ $msg_pattern =~ s/(.*?)<\@([^:]+?)\@>/$1<\@$type:$field\@>/; }
+			else
+				{ $msg_pattern =~ s/(.*?)<\@([^:]+?)\@>/$1<\@$2:$field\@>/; }
 		}
   	$i++;
 	}

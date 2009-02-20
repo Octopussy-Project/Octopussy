@@ -82,8 +82,12 @@ if (defined $f->{config})
 	}
 	elsif ($f->{config} eq "smtp")
 	{
+		my $auth_type = $f->{"smtp_authtype"};
 		my %smtp_conf = ( smtp => { server => $f->{"smtp_server"}, 
-			sender => $f->{"smtp_sender"} } );
+			sender => $f->{"smtp_sender"}, 
+			auth_type => ($auth_type eq "-NONE-" ? undef : $auth_type), 
+			auth_login => $f->{"smtp_authlogin"}, 
+			auth_password => $f->{"smtp_authpassword"} } );
 		AAT::Update_Configuration("Octopussy", "smtp", \%smtp_conf, "aat_smtp");
 	}
 	elsif ($f->{config} eq "xmpp")

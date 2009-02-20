@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $tt = $arg{tooltip};
@@ -23,7 +18,9 @@ my ($level, $msg) = ($status ? (0, "Database Connection is OK !")
   <AAT:BoxCol>
   <AAT:Label value="_TYPE" style="B" tooltip="$tt" /></AAT:BoxCol>
   <AAT:BoxCol cspan="2">
-  <AAT:Selector_Database name="db_type" selected="$type" /></AAT:BoxCol>
+  <!--<AAT:Selector_Database name="db_type" selected="$type" />-->
+  <AAT:Label value="MySQL" style="B" />
+  </AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol rspan="4">

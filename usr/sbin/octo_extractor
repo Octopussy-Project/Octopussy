@@ -135,6 +135,22 @@ sub Get_TimePeriod_Files($$$$)
 	return ($files, $nb_files);
 }
 
+=head2 Line_Match_Regexps
+
+=cut
+sub Line_Match_Regexps
+{
+	my ($line, $includes, $excludes) = @_;
+	my $match = 1;
+
+	foreach my $inc (AAT::ARRAY($includes))
+  	{ $match = 0  if ($line !~ $inc); }
+  foreach my $excl (AAT::ARRAY($excludes))
+  	{ $match = 0  if ($line =~ $excl); }
+	
+	return ($match);
+}
+
 =head2 Print_Logs($devices, $services, $loglevel, $taxo, $msgid,
 	$begin, $end, $re_incl, $re_excl)
 
@@ -160,7 +176,8 @@ sub Print_Logs($$$$$$$$$)
 	my $nb_match = 0;
 	open(OUT, "> $output")	if (AAT::NOT_NULL($output));
 	if ((@{$services}[0] =~ /-ANY-/i) 
-		&& ($taxo =~ /-ANY-/i) && ($loglevel =~ /-ANY-/i))
+		&& (AAT::NULL($taxo) || ($taxo =~ /-ANY-/i)) 
+		&& (AAT::NULL($loglevel) || ($loglevel =~ /-ANY-/i)))
 	{
 		my $i = 1;
 		foreach my $min (sort keys %{$files})
@@ -174,12 +191,7 @@ sub Print_Logs($$$$$$$$$)
 					while (<FILE>)
 					{
 						my $line = $_;
-						my $match = 1;
-      			foreach my $inc (@includes)
-        			{ $match = 0  if ($line !~ $inc); }
-      			foreach my $excl (@excludes)
-        			{ $match = 0  if ($line =~ $excl); }
-      			if ($match) 
+      			if (Line_Match_Regexps($line, \@includes, \@excludes)) 
 						{
 							push(@logs, $line);
 							$nb_match++;
@@ -227,12 +239,7 @@ sub Print_Logs($$$$$$$$$)
 							{
 								if ($line =~ $msg->{re})
 								{
-									my $match = 1;
-		        			foreach my $inc (@includes)
-    		      			{ $match = 0  if ($line !~ $inc); }
-        					foreach my $excl (@excludes)
-          					{ $match = 0  if ($line =~ $excl); }
-									if ($match)
+									if (Line_Match_Regexps($line, \@includes, \@excludes))
         					{
 										push(@logs, $line);
           					$nb_match++;

@@ -21,7 +21,7 @@ use File::Copy;
 use File::Path;
 use Octopussy;
 
-use constant PROG_NAME => "octo_uparser";
+my $PROG_NAME = "octo_uparser";
 
 if (!Octopussy::Valid_User())
 {
@@ -39,7 +39,7 @@ my %service;
 my %dir_data = ();
 my (%known_msgs, @unknown_msgs) = ((), (), ());
 my ($file, $last_file) = (undef, undef);
-my $file_pid = Octopussy::PID_File(PROG_NAME . "_$device")
+my $file_pid = Octopussy::PID_File($PROG_NAME . "_$device")
   or die "octo_uparser: Parsing $device - Process already running !";
 my $exit_request = 0;
 
@@ -77,7 +77,7 @@ sub Init()
 		  	$dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
   	  	my @msg_to_parse = ();
    	  	my @messages = Octopussy::Service::Messages($serv);
-		  	AAT::Syslog(PROG_NAME, "PARSER_INIT_SERVICE", $serv, scalar(@messages));
+		  	AAT::Syslog($PROG_NAME, "PARSER_INIT_SERVICE", $serv, scalar(@messages));
    	  	foreach my $m (@messages)
       	{	 
 			  	my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
@@ -146,7 +146,7 @@ sub Service_Handler($$$$$$$$)
  	my $dir_service = $serv;
  	$dir_service =~ s/ /_/g;
  	my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
- 	AAT::Syslog(PROG_NAME, "PARSER_DEVICE_SERVICE_EVENTS", $device, $serv, 
+ 	AAT::Syslog($PROG_NAME, "PARSER_DEVICE_SERVICE_EVENTS", $device, $serv, 
     "$d/$m/$y $hour:$min", scalar(@{$known_msgs{$serv}}), $total);
 	Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}});	
 }
@@ -191,7 +191,7 @@ sub File_Handler($)
 		else
    	{
    		print "Unable to open file '$file'\n";
-    	AAT::Syslog(PROG_NAME, "UNABLE_OPEN_FILE", $file);
+    	AAT::Syslog($PROG_NAME, "UNABLE_OPEN_FILE", $file);
    	}
 		foreach my $serv (keys %known_msgs)
 			{	Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new); }
@@ -205,7 +205,7 @@ sub File_Handler($)
 
 $SIG{USR1} = \&Exit;
 
-AAT::Syslog(PROG_NAME, "PARSER_START", $device);
+AAT::Syslog($PROG_NAME, "PARSER_START", $device);
 Init();
 foreach my $file (@files)
 {
@@ -214,7 +214,7 @@ foreach my $file (@files)
   Init()  if ($cache->get("uparser_$device") eq "reload");
 	last	if ($exit_request);
 }
-AAT::Syslog(PROG_NAME, "PARSER_STOP", $device);
+AAT::Syslog($PROG_NAME, "PARSER_STOP", $device);
 $cache->remove("uparser_$device");
 
 =head1 AUTHOR

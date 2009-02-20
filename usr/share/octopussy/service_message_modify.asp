@@ -1,4 +1,5 @@
 <%
+my @errors = ();
 my $f = $Request->Form();
 
 my %mconf = ( msg_id => "$f->{msgid_begin}:$f->{msgid_end}", 
@@ -6,11 +7,19 @@ my %mconf = ( msg_id => "$f->{msgid_begin}:$f->{msgid_end}",
 	taxonomy => $f->{taxonomy}, table => $f->{table}, 
 	pattern => $f->{msg_pattern} );
 
-my $return = Octopussy::Service::Modify_Message($f->{service}, $f->{old_msgid},
-	\%mconf)	if ($Session->{AAT_ROLE} !~ /ro/i); 
-if (defined $return)
+push(@errors, Octopussy::Service::Modify_Message($f->{service}, $f->{old_msgid},
+	\%mconf))	if ($Session->{AAT_ROLE} !~ /ro/i); 
+
+if (scalar(@errors))
 {
-%><%= $return %><%
+  %><AAT:Box align="C"><%
+  foreach my $e (@errors)
+  {
+    %><AAT:BoxRow><AAT:BoxCol>
+    <AAT:Message level="2" msg="$e" />
+    </AAT:BoxCol></AAT:BoxRow><%
+  }
+  %></AAT:Box><%
 }
 else
 {

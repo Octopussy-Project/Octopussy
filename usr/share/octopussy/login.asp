@@ -34,4 +34,4 @@ if ((defined $f->{login}) && (defined $f->{password}))
 %>
 <AAT:Inc file="octo_login" redirect="$page" />
 <AAT:Msg_Error />
-<AAT:PageBottom credits="1" />
+<AAT:PageBottom />

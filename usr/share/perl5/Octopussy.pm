@@ -150,6 +150,19 @@ sub Directories(@)
   return (@list);
 }
 
+=head2 Error
+
+Syslogs error and prints it
+
+=cut
+sub Error($$@)
+{
+	my ($module, $msg, @args) = @_;
+
+	my $message = AAT::Syslog($module, $msg, @args);
+	print "$module: $message\n";
+}
+
 =head2 File($file)
 
 Returns Octopussy File '$file' Value
@@ -290,30 +303,6 @@ sub Create_Directory($)
 	{
 		mkpath($dir);
 		Chown($dir);
-	}
-}
-
-=head2 Create_Directory_Inotify($dir)
-
-Creates Directory '$dir' 'directory by directory' 
-in order to be watched by inotify
-
-=cut
-sub Create_Directory_Inotify($)
-{
-  my $dir = shift;
-	my $tmp = "";
-
-	my @dirs = split(/\//, $dir);
-	foreach my $d (@dirs)
-	{
-		$tmp .= "/$d";
-		if (! -d $tmp)
-		{
-			mkdir $tmp;
-			Chown($tmp);
-			sleep(3);
-		}
 	}
 }
 

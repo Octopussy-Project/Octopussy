@@ -36,41 +36,42 @@ my $old_time = "";
 while (1)
 {
 	my $time = $cache_dispatcher->get("dispatcher_stats_datetime");
-	if ($time ne $old_time)
-	{ # Update RRDGraph for Octopussy Main page
-		my $dtype_stats = $cache_dispatcher->get("dispatcher_stats_devicetypes");
-		my @dt_stats = ();
-    foreach my $dt (@dtypes)
-    {
-    	$dt =~ s/ /_/;
-			my $nb = (AAT::NOT_NULL($dtype_stats->{$dt}) ? $dtype_stats->{$dt} : 0);
-     	push(@dt_stats, $nb);
-    }
-    Octopussy::RRDTool::Syslog_By_DeviceType_Update(\@dt_stats);
-		$old_time = $time; 
-	}
-  foreach my $k (sort $cache_parser->get_keys())
-  { # Update RRDGraph for Octopussy Device Dashboard pages
-    if ($k =~ /^parser_taxo_stats_(\S+?)_(.+)$/)
-    {
-      my $taxo = $cache_parser->get($k);
-      Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Update(
-        $taxo->{datetime}, $1, $2, $taxo->{stats});
-      $cache_parser->remove($k);
-    }
-		if ($k =~ /^parser_msgid_stats_(\d+?)_.+$/)
-		{ # Clean older msgid stats older than 120 minutes
-			my $minutes = $1;
-			my $time_minutes = ($1*10_000) + ($2*60) + $3
-      	if ($time =~ /^(\d{8})(\d\d)(\d\d)$/);
-			$minutes = ($1*10_000) + ($2*60) + $3
-				if ($minutes =~ /^(\d{8})(\d\d)(\d\d)$/);
-
-			$cache_parser->remove($k)
-				if (($time_minutes-$msgid_history_max) > $minutes);
+	if (AAT::NOT_NULL($time))
+	{
+		if ($time ne $old_time)
+		{ # Update RRDGraph for Octopussy Main page
+			my $dtype_stats = $cache_dispatcher->get("dispatcher_stats_devicetypes");
+			my @dt_stats = ();
+    	foreach my $dt (@dtypes)
+    	{
+    		$dt =~ s/ /_/;
+				my $nb = (AAT::NOT_NULL($dtype_stats->{$dt}) ? $dtype_stats->{$dt} : 0);
+     		push(@dt_stats, $nb);
+    	}
+    	Octopussy::RRDTool::Syslog_By_DeviceType_Update(\@dt_stats);
+			$old_time = $time; 
 		}
-  }
-
+  	foreach my $k (sort $cache_parser->get_keys())
+  	{ # Update RRDGraph for Octopussy Device Dashboard pages
+    	if ($k =~ /^parser_taxo_stats_(\S+?)_(.+)$/)
+    	{
+    	  my $taxo = $cache_parser->get($k);
+      	Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Update(
+        	$taxo->{datetime}, $1, $2, $taxo->{stats});
+      	$cache_parser->remove($k);
+    	}
+			if ($k =~ /^parser_msgid_stats_(\d+?)_.+$/)
+			{ # Clean older msgid stats older than 120 minutes
+				my $minutes = $1;
+				my $time_minutes = ($1*10_000) + ($2*60) + $3
+      		if ($time =~ /^(\d{8})(\d\d)(\d\d)$/);
+				$minutes = ($1*10_000) + ($2*60) + $3
+					if ($minutes =~ /^(\d{8})(\d\d)(\d\d)$/);
+				$cache_parser->remove($k)
+					if (($time_minutes-$msgid_history_max) > $minutes);
+			}
+  	}
+	}
 	sleep(5);
 }
 

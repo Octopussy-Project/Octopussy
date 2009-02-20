@@ -39,6 +39,8 @@ sub Message($$@)
 	openlog($module, LOG_INFO, LOG_LOCAL5);
   syslog(LOG_INFO, $message);
   closelog();
+
+	return ($message);
 }
 
 =head2 Messages($module, \@messages)

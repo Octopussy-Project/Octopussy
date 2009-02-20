@@ -5,10 +5,10 @@ octo_dispatcher - Octopussy Dispatcher program
 
 =head1 DESCRIPTION
 
-octo_dispatcher is the program used by the Octopussy Projec
+octo_dispatcher is the program used by the Octopussy Project
 to receive syslog lines and dispatche into device directories
 
-(syslog --> <device>/YYYY/MM/DD/Incoming)
+(syslog --> <device>/Incoming/YYYY/MM/DD/msg_HHhMM_SS.log)
 
 =cut
 use strict; 
@@ -17,7 +17,8 @@ use File::Copy;
 use AAT;
 use Octopussy;
 
-use constant PROG_NAME => "octo_dispatcher";
+my $PROG_NAME = "octo_dispatcher";
+my $exit_request = 0;
 
 if (!Octopussy::Valid_User())
 {
@@ -29,6 +30,9 @@ my $cache = Octopussy::Cache::Init("octo_dispatcher");
 
 my %dir_device;
 my %device_type;
+my %logs;
+my %dtype_stats = ();
+my %nb_events = ();
 
 =head1 FUNCTIONS
 
@@ -41,7 +45,7 @@ sub Init()
 {
 	%dir_device = ();
 	%device_type = ();
-	AAT::Syslog(PROG_NAME, "LOAD_DEVICES_CONFIG");
+	AAT::Syslog($PROG_NAME, "LOAD_DEVICES_CONFIG");
 	foreach my $d (Octopussy::Device::Configurations("name"))
 	{
   	my $type = $d->{type};
@@ -52,6 +56,12 @@ sub Init()
 			Octopussy::Storage::Directory_Incoming($d->{name});
 	}		
 	Octopussy::RRDTool::Syslog_By_DeviceType_Init();
+}
+
+sub Stop()
+{
+	AAT::DEBUG("DISPATCHER STOP");
+	$exit_request = 1;
 }
 
 =head2 Handle_Dir($device, $day, $month, $year)
@@ -78,22 +88,76 @@ sub Handle_Dir($$$$)
 	return ($dir_incoming);
 }
 
+=head2
+
+=cut
+sub Write_Logs_10secs
+{
+	my ($y, $m, $d, $hour, $min, $mod) = @_;
+
+	foreach my $device (keys %logs)
+	{
+ 		my $dir = Handle_Dir($device, $d, $m, $y);
+  	my $file = "$dir/msg_${hour}h${min}_$mod.log";
+   	my $i = 0;
+		if (defined open(FILE, ">> $file"))
+   	{
+    	foreach my $l (@{$logs{$device}})
+     		{ print FILE "$l\n"; $i++; }
+     	close(FILE);
+     	$nb_events{$device} += $i;
+     	$dtype_stats{$device_type{$device}} += $i;
+     	Octopussy::Chown($file);
+   	}
+  	else
+    	{ AAT::Syslog("octo_dispatcher", "UNABLE_OPEN_FILE", $file); }
+  	delete $logs{$device};
+ 	}	
+}
+
+=head2
+
+=cut
+sub Write_Stats
+{
+	my ($y, $m, $d, $hour, $min) = @_;
+	my @syslogs = ();
+	my $total = 0;
+  
+	foreach my $k (sort keys %nb_events)
+  {
+  	push(@syslogs, "Device: $k - Events: $nb_events{$k}");
+    $total += $nb_events{$k};
+ 	}
+	AAT::Syslog::Messages($PROG_NAME, \@syslogs);
+  $cache->set("dispatcher_stats_datetime", "$y$m$d$hour$min");
+	$cache->set("dispatcher_stats_devices", \%nb_events);
+	$cache->set("dispatcher_stats_devicetypes", \%dtype_stats);
+
+	my $nb = $cache->get("dispatcher_stats_hourly_$y$m$d$hour");
+ 	$nb = (AAT::NOT_NULL($nb) ? $nb + $total : $total);
+ 	$cache->set("dispatcher_stats_hourly_$y$m$d$hour", $nb);
+
+	%dtype_stats = ();
+	%nb_events = ();
+}
+
 #
 # MAIN
 #
 
-my %logs;
-my %dtype_stats = ();
-my %nb_events = ();
 my ($device, $line) = (undef, undef);
 my ($year, $month, $mday, $hour, $min, $sec) = AAT::Datetime::Now();
 my ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
 
 $SIG{HUP} = \&Init;
-Octopussy::PID_File(PROG_NAME);
-AAT::Syslog(PROG_NAME, "PROGRAM_START");
+$SIG{USR1} = \&Stop;
+
+Octopussy::PID_File($PROG_NAME);
+AAT::Syslog($PROG_NAME, "PROGRAM_START");
 Init();
-while (<>)
+
+while ((!$exit_request) && (<>))
 {
 	$line = $_;
 	chomp($line);
@@ -103,51 +167,16 @@ while (<>)
 		$device = $1;
 		($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
 		if ((int($n_sec/10) != int($sec/10)) || ($n_min != $min) 
-			|| ($n_hour != $hour) || ($n_mday != $mday) || ($n_month != $month))
-		{
+				|| ($n_hour != $hour) || ($n_mday != $mday) || ($n_month != $month))
+		{ 
 			my $mod = (int($n_sec/10)*10);
-			foreach my $device (keys %logs)
-      {
-				my $dir = Handle_Dir($device, $mday, $month, $year);
-				my $file = "$dir/msg_${hour}h${n_min}_$mod.log";
-				my $i = 0;
-				if (defined open(FILE, ">> $file"))
-				{
-					foreach my $l (@{$logs{$device}})
-						{ print FILE "$l\n"; $i++; }
-					close(FILE);
-					$nb_events{$device} += $i;
-					$dtype_stats{$device_type{$device}} += $i;
-					Octopussy::Chown($file);
-				}
-				else
-      	{
-        	print "Unable to open file '$file'\n";
-        	AAT::Syslog("octo_dispatcher", "UNABLE_OPEN_FILE", $file);
-      	}
-				delete $logs{$device};
-			}
+			# every 10 secs, we write log files like msg_HHhMM_XX.log
+			Write_Logs_10secs($year, $month, $mday, $hour, $n_min, $mod);
+			
 			if (($n_min != $min) || ($n_hour != $hour) || ($n_mday != $mday)
       	|| ($n_month != $month)) # not the same minute than last minute
 			{
-				my @syslogs = ();
-        my $total = 0;
-				foreach my $k (sort keys %nb_events)
-    		{ 
-          push(@syslogs, "Device: $k - Events: $nb_events{$k}"); 
-          $total += $nb_events{$k};
-        }
-				AAT::Syslog::Messages(PROG_NAME, \@syslogs);
-				$cache->set("dispatcher_stats_datetime", "$year$month$mday$hour$min");
-        $cache->set("dispatcher_stats_devices", \%nb_events);
-				$cache->set("dispatcher_stats_devicetypes", \%dtype_stats);
-        
-        my $nb = $cache->get("dispatcher_stats_hourly_$year$month$mday$hour");
-        $nb = (AAT::NOT_NULL($nb) ? $nb + $total : $total); 
-        $cache->set("dispatcher_stats_hourly_$year$month$mday$hour", $nb);
-				
-        %dtype_stats = ();
-				%nb_events = ();
+				Write_Stats($year, $month, $mday, $hour, $min);
 				($year, $month, $mday, $hour, $min) =
         	($n_year, $n_month, $n_mday, $n_hour, $n_min);
 			}
@@ -157,6 +186,8 @@ while (<>)
 			if ((!defined $device_type{$device}) || ($device_type{$device} ne ""));
 	}
 }
+($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
+Write_Logs_10secs($n_year, $n_month, $n_mday, $n_hour, $n_min, int($n_sec/10)*10);
 
 =head1 AUTHOR
 

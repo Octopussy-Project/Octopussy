@@ -195,18 +195,22 @@ sub Add_Message($$)
 	my $rank = (AAT::NOT_NULL($conf->{message}) 
 		? scalar(@{$conf->{message}}) + 1 : 1);
 	$mconf->{rank} = AAT::Padding($rank, 3);
+	my @errors = ();
 
-	return ("_MSG_MSGID_ALREADY_EXIST")
-		if (! Msg_ID_unique($service, $mconf->{msg_id}));
-	return ("_MSG_FIELD_DONT_EXIST")
-		if (! Octopussy::Table::Valid_Pattern($mconf->{table}, $mconf->{pattern}));
-	$mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
-	$mconf->{pattern} =~ s/\s+$//g;	
-	push(@{$conf->{message}}, $mconf);	
-	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
-	Parse_Restart($service);
+	if (! Msg_ID_unique($service, $mconf->{msg_id}))
+		{ push(@errors, "_MSG_MSGID_ALREADY_EXIST"); }
+	push(@errors, Octopussy::Table::Valid_Pattern($mconf->{table}, $mconf->{pattern}));
 
-	return (undef);
+	if (! scalar(@errors))
+	{
+		$mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
+		$mconf->{pattern} =~ s/\s+$//g;	
+		push(@{$conf->{message}}, $mconf);	
+		AAT::XML::Write(Filename($service), $conf, XML_ROOT);
+		Parse_Restart($service);
+	}
+
+	return (@errors);
 }
 
 =head2 Remove_Message($service, $msgid)
@@ -251,28 +255,31 @@ Modifies Message with id '$msgid' from Service '$service'
 sub Modify_Message($$$)
 {
 	my ($service, $msgid, $conf_modified) = @_;
-
-	my $conf = AAT::XML::Read(Filename($service));
-	$conf->{version} = Octopussy::Timestamp_Version($conf);
-	my @messages = ();
 	$conf_modified->{pattern} = Encode::decode_utf8($conf_modified->{pattern});
 	$conf_modified->{pattern} =~ s/\s+$//g;
+
+	my @errors = ();
+	if (($conf_modified->{msg_id} ne $msgid) 
+		&& (! Msg_ID_unique($service, $conf_modified->{msg_id})))
+    { push(@errors, "_MSG_MSGID_ALREADY_EXIST"); }
+	push(@errors, Octopussy::Table::Valid_Pattern($conf_modified->{table}, $conf_modified->{pattern}));
+	return (@errors)	if (scalar(@errors));
+
+	my $conf = AAT::XML::Read(Filename($service));
+  $conf->{version} = Octopussy::Timestamp_Version($conf);
+	my @messages = ();
 	foreach my $m (AAT::ARRAY($conf->{message}))
-	{
-		if ($m->{msg_id} ne $msgid)
-			{ push(@messages, $m); }
-		else
-			{ push(@messages, $conf_modified); }
-	}
-	$conf->{message} = \@messages;
-
-  return ("FIELD_DONT_EXIST")
-    if (! Octopussy::Table::Valid_Pattern($conf_modified->{table}, $conf_modified->{pattern}));
-
+  {
+    if ($m->{msg_id} ne $msgid)
+      { push(@messages, $m); }
+    else
+      { push(@messages, $conf_modified); }
+  }
+  $conf->{message} = \@messages;
 	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
 	Parse_Restart($service);
 
-	return (undef);
+	return (@errors);
 }
 
 =head2 Move_Message($service, $msgid, $direction)

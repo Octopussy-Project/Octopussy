@@ -397,7 +397,7 @@
   <message loglevel="Information"
            msg_id="Linux_System:init_rereading_inittab"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;init&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Re-reading inittab&quot;):msg@&gt;"
-           rank="066"
+           rank="019"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

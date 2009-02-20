@@ -93,6 +93,13 @@ Stops syslog-ng that stops octo_dispatcher
 =cut
 sub Dispatcher_Stop
 {
+	my $file_pid = "$dir_pid/octo_dispatcher.pid";
+  if (-f $file_pid)
+  {
+    my $pid = `cat "$file_pid"`;
+    chomp($pid);
+    kill USR1 => $pid;
+  }
 	`$INITD_SYSLOG_NG stop`;
 	printf($MSG_STATUS, "Dispatcher", "Stopped");
 }

@@ -318,25 +318,30 @@ sub Valid_Pattern($$)
 {
 	my ($table, $pattern) = @_;
 	my @fields = Fields($table); 
+	my %f_pattern = ();
+	my @errors = ();
 
 	while (($pattern =~ s/<\@REGEXP\("\S+?"\):(\S+?)\@>//) 
 					|| ($pattern =~ s/<\@\S+?:(\S+?)\@>//))
   {
 		my $fieldname = $1;
 		my $match = 0;
+		$f_pattern{$fieldname} = (AAT::NOT_NULL($f_pattern{$fieldname}) 
+			? $f_pattern{$fieldname} + 1 : 1);
 		foreach my $f (@fields)
 		{
 			$match = 1	
 				if (($f->{title} =~ /^$fieldname$/) || ($fieldname =~ /NULL/i));
 		}
-		if (!$match)
-		{
-			print "$fieldname DONT MATCH ! \n";
-			return (0);
-		}
+		push(@errors, "$fieldname DONT MATCH ! \n")	if (!$match);
 	}	
+#	foreach my $k (keys %f_pattern)
+# 	{
+#  	push(@errors, "$fieldname MATCH MORE THAN ONCE ! \n")
+#    	if ($f_pattern{$k} > 1);
+# 	}
 
-	return (1);
+	return (@errors);
 }
 
 =head2 Updates_Installation(@tables)
