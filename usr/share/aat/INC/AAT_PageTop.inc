@@ -14,6 +14,19 @@ if ((defined $arg{popup}) && ($arg{popup} =~ /y/i))
 	{ %><AAT:JS_Inc file="AAT/INC/AAT_popup.js" /><% }
 if ((defined $arg{closepopup}) && ($arg{closepopup} =~ /y/i))
 	{ %><AAT:JS_Inc file="AAT/INC/AAT_closepopup.js" /><% } 
+if (defined $arg{ofc})
+{
+  %>
+  <script type="text/javascript" src="JS/swfobject.js"></script>
+  <script type="text/javascript">
+  swfobject.embedSWF(
+    "open-flash-chart.swf", "open_flash_chart", "800", "400",
+    "9.0.0", "expressInstall.swf",
+    {"data-file":"<%= $arg{ofc} %>"}
+    );
+  </script>
+  <%
+}
 %>
 <title><%= $arg{title} %></title>
 </head>

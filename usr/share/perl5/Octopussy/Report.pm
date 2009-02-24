@@ -279,6 +279,28 @@ sub Generate($$$$$$$$$$$$)
 		Octopussy::RRDTool::Report_Graph($rc, $begin, $end, 
 			$outputfile, $data, $stats, $lang);
 	}
+  elsif ($rc->{graph_type} =~ /pie/)
+  {
+    my $file_json = Octopussy::File_Ext($outputfile, "json");
+    my @values = ();
+    my $x = Octopussy::DB::SQL_As_Substitution($rc->{x});
+    my $y = Octopussy::DB::SQL_As_Substitution($rc->{y});
+    foreach my $line (AAT::ARRAY($data))
+    { 
+      my $value = $line->{$y} + 0; # ensuring it will be dumped as a number
+      push(@values, { value => $value, text => $line->{$x} }); 
+    }
+    my %conf = (
+      title => { text => $rc->{name}, 
+                 style => "{font-size: 20px; color:#0000ff; font-family: Verdana; text-align: center;}" },
+      elements => [
+        { type => "pie",
+          values => \@values },
+        ],
+      );
+    Octopussy::OFC::Generate(\%conf, $file_json);
+    Octopussy::Chown($file_json);
+  }
 	else
 	{
 		my %conf;
@@ -341,7 +363,8 @@ sub CmdLine($$$$$$$$$$$$)
 	my $date = "$year$month$mday-$hour$min";
 	my $dir = Octopussy::Directory("data_reports") . $report->{name} . "/";
 	my $output = "$dir$report->{name}-$date." 
-		. ($report->{graph_type} eq "array" ? "html" : "png");
+		. ($report->{graph_type} eq "array" ? "html" : 
+      ($report->{graph_type} eq "pie" ? "json" : "png"));
 
 	my @devices = ();
 	foreach my $d (AAT::ARRAY($device))

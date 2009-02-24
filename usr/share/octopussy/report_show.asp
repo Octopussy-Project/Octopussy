@@ -15,7 +15,15 @@ if ($role =~ /restricted/i)
 		if (! $in_restriction);
 }
 
-if (($filename !~ /\.html$/) && ($filename !~ /\.png$/))
+if ($filename =~ /\.json$/)
+{
+  $Session->{ofc_file} = "$dir_reports/$report_type/$filename";
+  %><WebUI:PageTop title="Report Show" ofc="report_ofc.asp" />
+  <div id="open_flash_chart"></div> 
+  <WebUI:PageBottom /> 
+<% 
+}
+elsif (($filename !~ /\.html$/) && ($filename !~ /\.png$/))
 {
 	my $ext = $1	if ($filename =~ /\.(\w+)$/);	
 	$Response->{ContentType} = "text/$ext";

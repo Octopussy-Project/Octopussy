@@ -26,6 +26,7 @@ use Octopussy::Loglevel;
 use Octopussy::Logs;
 use Octopussy::Map;
 use Octopussy::Message;
+use Octopussy::OFC;
 use Octopussy::Plugin;
 use Octopussy::Report;
 use Octopussy::RRDTool;

@@ -15,6 +15,11 @@ if (defined $arg{refresh})
   %><AAT:PageTop title="$title" icon="IMG/octopussy.gif" onLoad="$arg{onLoad}"
   refresh="$arg{refresh}" close_popup="y" popup="y" tooltip="y" /><%
 }
+elsif (defined $arg{ofc})
+{
+   %><AAT:PageTop title="$title" icon="IMG/octopussy.gif" ofc="$arg{ofc}"
+  close_popup="y" popup="y" tooltip="y" onLoad="$arg{onLoad}" /><%
+}
 else
 {
   %><AAT:PageTop title="$title" icon="IMG/octopussy.gif"
