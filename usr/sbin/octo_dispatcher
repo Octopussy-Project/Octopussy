@@ -157,7 +157,7 @@ Octopussy::PID_File($PROG_NAME);
 AAT::Syslog($PROG_NAME, "PROGRAM_START");
 Init();
 
-while ((!$exit_request) && (<>))
+while (<>)
 {
 	$line = $_;
 	chomp($line);
@@ -185,6 +185,7 @@ while ((!$exit_request) && (<>))
 		push(@{$logs{$device}}, $line)	
 			if ((!defined $device_type{$device}) || ($device_type{$device} ne ""));
 	}
+  last if ($exit_request);
 }
 ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
 Write_Logs_10secs($n_year, $n_month, $n_mday, $n_hour, $n_min, int($n_sec/10)*10);
