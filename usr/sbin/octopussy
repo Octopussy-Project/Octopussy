@@ -247,6 +247,9 @@ Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
 =cut
 sub Start
 {
+  # recreate /var/run/octopussy/ for systems that mount it on tmpfs 
+  Octopussy::Create_Directory($dir_pid);  
+
 	Dispatcher_Start();
 	`$INITD_MYSQL restart`;	
 	Parser_Start();
