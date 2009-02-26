@@ -60,7 +60,6 @@ sub Init()
 
 sub Stop()
 {
-	AAT::DEBUG("DISPATCHER STOP");
 	$exit_request = 1;
 }
 
