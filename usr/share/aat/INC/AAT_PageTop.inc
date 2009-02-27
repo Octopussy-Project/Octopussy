@@ -17,14 +17,38 @@ if ((defined $arg{closepopup}) && ($arg{closepopup} =~ /y/i))
 if (defined $arg{ofc})
 {
   %>
-  <script type="text/javascript" src="JS/swfobject.js"></script>
-  <script type="text/javascript">
-  swfobject.embedSWF(
-    "open-flash-chart.swf", "open_flash_chart", "800", "400",
-    "9.0.0", "expressInstall.swf",
-    {"data-file":"<%= $arg{ofc} %>"}
-    );
-  </script>
+<script type="text/javascript" src="JS/prototype.js"></script>
+<script type="text/javascript" src="JS/swfobject.js"></script>
+<script type="text/javascript">
+swfobject.embedSWF(
+  "open-flash-chart.swf", "open_flash_chart", "800", "600",
+  "9.0.0", "expressInstall.swf",
+  {"data-file":"<%= $arg{ofc} %>"}
+  );
+</script>
+<script type="text/javascript">
+OFC = {};
+
+OFC.prototype = {
+  name: "Prototype",
+  version: function(src) { return $(src).get_version() },
+  rasterize: function (src, dst) 
+    { $(dst).replace(new Element("img", {src: Control.OFC.image(src)})) },
+  image: function(src) 
+    { return "data:image/png;base64," + $(src).get_img_binary() },
+  popup: function(src) 
+  {
+    var img_win = window.open('', 'Charts: Export as Image')
+    with(img_win.document) {
+      write("<html><head><title>Charts: Export as Image<\/title><\/head><body><img src='" + Control.OFC.image(src) + "' /><\/body><\/html>") }
+  }
+}
+
+if (typeof(Control == "undefined")) {var Control = {OFC: OFC.prototype}}
+ 
+function save_image() { Control.OFC.popup('open_flash_chart') }
+
+</script>
   <%
 }
 %>

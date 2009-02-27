@@ -19,7 +19,13 @@ if ($filename =~ /\.json$/)
 {
   $Session->{ofc_file} = "$dir_reports/$report_type/$filename";
   %><WebUI:PageTop title="Report Show" ofc="report_ofc.asp" />
-  <div id="open_flash_chart"></div> 
+
+  <AAT:Box>
+  <AAT:BoxRow><AAT:BoxCol>
+  <div id="open_flash_chart"></div>
+  </AAT:BoxCol></AAT:BoxRow>
+  </AAT:Box>
+
   <WebUI:PageBottom /> 
 <% 
 }

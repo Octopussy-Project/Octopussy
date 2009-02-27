@@ -253,8 +253,9 @@ sub Generate($$$$$$$$$$$$)
 {
 	my ($rc, $begin, $end, $outputfile, $devices, $services, $data, 
 		$conf_mail, $conf_ftp, $conf_scp, $stats, $lang) = @_;
+  my $type = $rc->{graph_type};
 	
-	if ($rc->{graph_type} eq "array")
+	if ($type eq "array")
 	{
 		my $dir = $outputfile;
 		$dir =~ s/(.+)\/.+/$1/;
@@ -274,47 +275,30 @@ sub Generate($$$$$$$$$$$$)
 		Octopussy::Chown($file_csv);
 		Octopussy::Report::PDF::Generate_From_HTML($outputfile);
 	}
-	elsif ($rc->{graph_type} =~ /^rrd_/)
+	elsif ($type =~ /^rrd_/)
 	{
 		Octopussy::RRDTool::Report_Graph($rc, $begin, $end, 
 			$outputfile, $data, $stats, $lang);
 	}
-  elsif ($rc->{graph_type} =~ /pie/)
+  elsif ($type =~ /^ofc_.+/)
   {
     my $file_json = Octopussy::File_Ext($outputfile, "json");
-    my @values = ();
-    my $x = Octopussy::DB::SQL_As_Substitution($rc->{x});
-    my $y = Octopussy::DB::SQL_As_Substitution($rc->{y});
-    foreach my $line (AAT::ARRAY($data))
-    { 
-      my $value = $line->{$y} + 0; # ensuring it will be dumped as a number
-      push(@values, { value => $value, text => $line->{$x} }); 
-    }
-    my %conf = (
-      title => { text => $rc->{name}, 
-                 style => "{font-size: 20px; color:#0000ff; font-family: Verdana; text-align: center;}" },
-      elements => [
-        { type => "pie",
-          values => \@values },
-        ],
-      );
-    Octopussy::OFC::Generate(\%conf, $file_json);
-    Octopussy::Chown($file_json);
+    
+    if ($type =~ /^ofc_area_hollow$/)
+      { Octopussy::OFC::Area_Hollow($rc, $data, $file_json); }
+    elsif ($type =~ /^ofc_bar_3d$/)
+      { Octopussy::OFC::Bar_3D($rc, $data, $file_json); }
+    elsif ($type =~ /^ofc_bar_cylinder$/)
+      { Octopussy::OFC::Bar_Cylinder($rc, $data, $file_json); }
+    elsif ($type =~ /^ofc_bar_glass$/)
+      { Octopussy::OFC::Bar_Glass($rc, $data, $file_json); }
+    elsif ($type =~ /^ofc_bar_sketch$/)
+      { Octopussy::OFC::Bar_Sketch($rc, $data, $file_json); }
+    elsif ($rc->{graph_type} =~ /^ofc_hbar$/)
+      { Octopussy::OFC::Horizontal_Bar($rc, $data, $file_json); }
+    elsif ($rc->{graph_type} =~ /^ofc_pie$/)
+      { Octopussy::OFC::Pie($rc, $data, $file_json); }
   }
-	else
-	{
-		my %conf;
-		$conf{title} = $rc->{name};
-		$conf{type} = $rc->{graph_type};
-    my $x = Octopussy::DB::SQL_As_Substitution($rc->{x});
-    my $y = Octopussy::DB::SQL_As_Substitution($rc->{y});
-		foreach my $line (AAT::ARRAY($data))
-		{
-  		push(@{$conf{data}[0]}, $line->{$x});
-  		push(@{$conf{data}[1]}, $line->{$y});
-		}
-		Octopussy::Graph::Generate(\%conf, $outputfile);
-	}
 	Octopussy::Chown($outputfile);
 	my $file_info = Octopussy::File_Ext($outputfile, "info");
 	File_Info($file_info, $begin, $end, $devices, $services, $stats);
@@ -364,7 +348,7 @@ sub CmdLine($$$$$$$$$$$$)
 	my $dir = Octopussy::Directory("data_reports") . $report->{name} . "/";
 	my $output = "$dir$report->{name}-$date." 
 		. ($report->{graph_type} eq "array" ? "html" : 
-      ($report->{graph_type} eq "pie" ? "json" : "png"));
+      ($report->{graph_type} =~ /^ofc_.+/ ? "json" : "png"));
 
 	my @devices = ();
 	foreach my $d (AAT::ARRAY($device))

@@ -20,7 +20,6 @@ use Octopussy::Data_Report;
 use Octopussy::Device;
 use Octopussy::DeviceGroup;
 use Octopussy::Export;
-use Octopussy::Graph;
 use Octopussy::Location;
 use Octopussy::Loglevel;
 use Octopussy::Logs;
