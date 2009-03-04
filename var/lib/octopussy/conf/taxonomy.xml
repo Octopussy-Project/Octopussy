@@ -28,7 +28,7 @@
   <taxonomy value="Hardware.Disk"    	color="#AAAAAC" desc="Hardware Disk Errors message" />
 	<taxonomy value="Hardware.Memory"   color="#AAAAA9" desc="Hardware Memory Errors message" />
   <taxonomy value="Hardware.Network" 	color="#AAAAA5" desc="Hardware Network Errors message" />
-	<taxonomy value="Hardware.PowerSupply"  	color="#AAAAA0" desc="Hardware Power Supply Errors message" />
+	<taxonomy value="Hardware.Power"  	color="#AAAAA0" desc="Hardware Power Supply Errors message" />
 
 	<taxonomy value="Network" 					color="#303090"	desc="Network message" />
 	<taxonomy value="Network.Errors"  	color="#303090"	desc="Network Errors message" />
