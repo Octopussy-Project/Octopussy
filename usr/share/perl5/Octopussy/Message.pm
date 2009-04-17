@@ -510,6 +510,8 @@ sub Alerts($$$$)
 						regexp_excl => $ac->{regexp_exclude}, 
             timeperiod => $ac->{timeperiod}, action => $ac->{action},
             msgsubject => $ac->{msgsubject},  msgbody => $ac->{msgbody},
+            nagios_host => $ac->{nagios_host}, # only for NSCA
+            nagios_service => $ac->{nagios_service}, # only for NSCA
             imdest => \@ims, maildest => \@mails } );
         }
       }
@@ -531,6 +533,8 @@ sub Alerts($$$$)
 	            regexp_exclude => $ac->{regexp_exclude},
               timeperiod => $ac->{timeperiod}, action => $ac->{action},
               msgsubject => $ac->{msgsubject}, msgbody => $ac->{msgbody},
+              nagios_host => $ac->{nagios_host}, # only for NSCA
+              nagios_service => $ac->{nagios_service}, # only for NSCA
               imdest => \@ims, maildest => \@mails } );
         }
       }

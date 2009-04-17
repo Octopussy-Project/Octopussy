@@ -300,7 +300,8 @@ sub Alert_Handler($$)
 						AAT::SMTP::Send_Message("Octopussy", $subject, $body, 
 							@{$a->{maildest}}) if (defined $a->{action_mail});
 						AAT::NSCA::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),	
-							"$subject") if (defined $a->{action_nsca}); 
+							$subject, $a->{nagios_host}, $a->{nagios_service}) 
+              if (defined $a->{action_nsca}); 
 					}
 				}
 				$cache->set($a->{name}, $alert_logs);
