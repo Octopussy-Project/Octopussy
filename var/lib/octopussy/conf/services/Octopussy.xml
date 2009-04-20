@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="056"
-                   version="200901130001"
+                   version="200904200003"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -341,4 +341,16 @@
            rank="056"
            table="Message"
            taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Octopussy:removing_unknown_logs_minute"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Removing Unknown Logs at '.+' for device '.+' by \S+.&quot;):msg@&gt;"
+           rank="057"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Octopussy:removing_unknown_logs_pattern"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Removing Unknown Logs with pattern '.+' for device '.+' by \S+.&quot;):msg@&gt;"
+           rank="058"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

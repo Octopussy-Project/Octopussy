@@ -18,6 +18,8 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 		if ($action eq "remove")
 		{
 			Octopussy::Logs::Remove($device, $messages[$msg-1]->{re});
+      AAT::Syslog("octo_WebUI", "WIZARD_REMOVE_PATTERN", $device, 
+        $messages[$msg-1]->{re});
 			$Response->Redirect("./wizard.asp?device=$device");
 		}
 		elsif ($action eq "remove_minute")
@@ -25,6 +27,8 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 			my ($year, $month, $day, $hour, $min) = ($1, $2, $3, $4, $5)
   			if ($timestamp =~ /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/);
 			Octopussy::Logs::Remove_Minute($device, $year, $month, $day, $hour, $min);
+      AAT::Syslog("octo_WebUI", "WIZARD_REMOVE_MINUTE", $device, 
+        "$year/$month/$day $hour:$min");
 			$Response->Redirect("./wizard.asp?device=$device");
 		}
 		my $i = 1;

@@ -67,6 +67,11 @@
 	<log mid="PARSING_DEVICE"
 		message="Parsing %%ARG1%% for device '%%ARG2%%' by %%LOGIN%%." />
 
+  <log mid="WIZARD_REMOVE_MINUTE"
+    message="Removing Unknown Logs at '%%ARG2%%' for device '%%ARG1%%' by %%LOGIN%%." />
+  <log mid="WIZARD_REMOVE_PATTERN"
+    message="Removing Unknown Logs with pattern '%%ARG2%%' for device '%%ARG1%%' by %%LOGIN%%." />
+
   <log mid="WORLD_STATS_SENT"
     message="Octopussy World Statistics have been sent." />
   <log mid="WORLD_STATS_STATUS_CHANGED"
