@@ -26,20 +26,22 @@ if (scalar(@report_list) > 0)
 	<AAT:BoxCol align="R"><AAT:Button name="device" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_DEVICE" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
-		url="$url?device=" selected="$device" /></AAT:BoxCol>
+		multiple="1" size="5" url="$url?device=" selected="$device" /></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Button name="service" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_SERVICE" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Inc file="octo_selector_service_dynamic" 
-		url="$url?device=$device&service=" selected="$service" 
-		restricted_services=\@used_services />
+		multiple="1" size="5" url="$url?device=$device&service=" 
+    selected="$service" restricted_services=\@used_services />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol align="R"><AAT:Label value="_LOGLEVEL" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Inc file="octo_selector_loglevel" any="1" /></AAT:BoxCol>
+  <AAT:BoxCol></AAT:BoxCol>
+	<AAT:BoxCol align="R"><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Inc file="octo_selector_taxonomy" any="1" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="3"></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

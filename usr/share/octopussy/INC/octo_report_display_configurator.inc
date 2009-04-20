@@ -27,6 +27,8 @@ if ($Session->{graph_type} ne "array")
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="X" /></AAT:BoxCol>
 	<AAT:BoxCol cspan="3"><AAT:Selector name="x" list=\@selected /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol><AAT:Label value="Y" /></AAT:BoxCol>
   <AAT:BoxCol cspan="3"><AAT:Selector name="y" list=\@selected /></AAT:BoxCol>
 </AAT:BoxRow><%

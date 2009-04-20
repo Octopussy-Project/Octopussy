@@ -18,6 +18,7 @@ $Response->Redirect("./restricted_reports_viewer.asp")	if (! $in_restriction);
 my %type = (
 	csv => { mime => "csv", tooltip => "_REPORT_CSV" },
 	html => { mime => "html", tooltip => "_REPORT_HTML" },
+  json => {  mime => "log", tooltip => "_REPORT_OFC" },
 	pdf => { mime => "pdf", tooltip => "_REPORT_PDF" },
 	png => { mime => "log", tooltip => "_REPORT_RRDGraph" },
 	xml => { mime => "xml", tooltip => "_REPORT_XML" } );
