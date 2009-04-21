@@ -41,8 +41,8 @@ sub List(@)
     	{ $level{$m->{loglevel}} = 1; }
 		foreach my $k (keys %level)
 		{ 
-			push(@list, 
-			{ value => $k, color => $color{$k}, level => $levels{$k} }); 
+			push(@list, { value => $k, label => $k, 
+        color => $color{$k}, level => $levels{$k} }); 
 		}
 	}
 	else
@@ -54,7 +54,10 @@ sub List(@)
 		foreach my $f (reverse sort keys %field)
   	{
     	foreach my $l (AAT::ARRAY($conf->{loglevel}))
-      	{ push(@list, $l) if ($l->{level} eq $f); }
+      { 
+        $l->{label} = $l->{value};
+        push(@list, $l) if ($l->{level} eq $f); 
+      }
   	}
 	}
 

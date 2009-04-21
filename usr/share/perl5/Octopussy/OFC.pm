@@ -29,7 +29,10 @@ sub Generate($$)
   Octopussy::Chown($output_file);
 }
 
-sub Step
+=head2 Step($max)
+
+=cut
+sub Step($)
 {
   my $max = shift;
   my $step = 1;
@@ -77,6 +80,9 @@ sub Area_Hollow($$$)
   Octopussy::OFC::Generate(\%conf, $output_file); 
 }
 
+=head2 Bar_3D($rc, $data, $output_file)
+
+=cut
 sub Bar_3D
 {
   my ($rc, $data, $output_file) = @_;
@@ -102,6 +108,9 @@ sub Bar_3D
   Octopussy::OFC::Generate(\%conf, $output_file);
 }
 
+=head2 Bar_Cylinder($rc, $data, $output_file)
+
+=cut
 sub Bar_Cylinder
 {
   my ($rc, $data, $output_file) = @_;
@@ -128,6 +137,9 @@ sub Bar_Cylinder
   Octopussy::OFC::Generate(\%conf, $output_file);
 }
 
+=head2 Bar_Glass($rc, $data, $output_file)
+
+=cut
 sub Bar_Glass
 {
   my ($rc, $data, $output_file) = @_;
@@ -153,6 +165,9 @@ sub Bar_Glass
   Octopussy::OFC::Generate(\%conf, $output_file);
 }
 
+=head2 Bar_Sketch($rc, $data, $output_file)
+
+=cut
 sub Bar_Sketch
 {
   my ($rc, $data, $output_file) = @_;

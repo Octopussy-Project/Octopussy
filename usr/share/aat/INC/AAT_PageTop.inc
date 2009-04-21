@@ -16,12 +16,15 @@ if ((defined $arg{closepopup}) && ($arg{closepopup} =~ /y/i))
 	{ %><AAT:JS_Inc file="AAT/INC/AAT_closepopup.js" /><% } 
 if (defined $arg{ofc})
 {
+  my ($ofc_w, $ofc_h) = 
+    (Octopussy::Parameter("ofc_width"), Octopussy::Parameter("ofc_height"));
   %>
 <script type="text/javascript" src="JS/prototype.js"></script>
 <script type="text/javascript" src="JS/swfobject.js"></script>
 <script type="text/javascript">
 swfobject.embedSWF(
-  "open-flash-chart.swf", "open_flash_chart", "800", "600",
+  "open-flash-chart.swf", "open_flash_chart", 
+  "<%= $ofc_w || 800 %>", "<%= $ofc_h || 600 %>",
   "9.0.0", "expressInstall.swf",
   {"data-file":"<%= $arg{ofc} %>"}
   );

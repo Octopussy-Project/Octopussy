@@ -2,15 +2,15 @@
 <%
 my $url = "./reports.asp";
 
-my $f = $Request->Form();
-my $report = $f->{report} || $Request->QueryString("report");
-my $category = $f->{category} || $Request->QueryString("category");
-my $device = $Request->QueryString("device") || $f->{device};
-my $service = $Request->QueryString("service") || $f->{service};
-my $loglevel = $Request->QueryString("loglevel") || $f->{loglevel};
-my $taxonomy = $Request->QueryString("taxonomy") || $f->{taxonomy};
-my $action = $Request->QueryString("action");
-my $sort = $Request->QueryString("reports_table_sort") || "name";
+my ($f, $qs) = ($Request->Form(), $Request->QueryString());
+my $report = $f->{report} || $qs->{report};
+my $category = $f->{category} || $qs->{category};
+my $device = $qs->{device} || $f->{device};
+my $service = $qs->{service} || $f->{service};
+my $loglevel = $qs->{loglevel} || $f->{loglevel};
+my $taxonomy = $qs->{taxonomy} || $f->{taxonomy};
+my $action = $qs->{action};
+my $sort = $qs->{reports_table_sort} || "name";
 
 my $d1 = $Session->{"dt1_day"}; 
 my $m1 = $Session->{"dt1_month"};

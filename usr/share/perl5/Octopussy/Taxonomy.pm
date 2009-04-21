@@ -40,7 +40,7 @@ sub List(@)
     foreach my $m (Octopussy::Service::Messages(@services))
     	{ $taxo{$m->{taxonomy}} = 1; }
 		foreach my $k (keys %taxo)
-			{ push(@list, { value => $k, color => $color{$k} }); }
+			{ push(@list, { value => $k, label => $k, color => $color{$k} }); }
 	}
 	else
 	{
@@ -51,7 +51,10 @@ sub List(@)
     foreach my $f (sort keys %field)
     {
       foreach my $t (AAT::ARRAY($conf->{taxonomy}))
-        { push(@list, $t) if ($t->{value} eq $f); }
+      {
+        $t->{label} = $t->{value}; 
+        push(@list, $t) if ($t->{value} eq $f); 
+      }
     }
 	}
 
