@@ -3,12 +3,13 @@
 OCTO="octopussy"
 INVOKERCD="/usr/sbin/invoke-rc.d"
 USERDEL="/usr/sbin/userdel"
+GROUPDEL="/usr/sbin/groupdel"
 
 if [ -x "/etc/init.d/$OCTO" ]; then
  	$INVOKERCD $OCTO stop || exit 0
 fi
 
 #
-# Remove Octopussy User
+# Remove Octopussy User & Group
 #
 $USERDEL $OCTO || true

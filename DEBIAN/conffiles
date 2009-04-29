@@ -1,7 +1,11 @@
 /etc/aat/aat.xml
 /etc/aat/openssl.cnf
-/etc/octopussy/apache.conf
-/etc/octopussy/apache2.conf
+/etc/apache2/sites-available/octopussy
 /etc/octopussy/server.crt
 /etc/octopussy/server.key
-/etc/octopussy/syslog-ng.conf
+/etc/rsyslog.d/octopussy.conf
+/var/lib/octopussy/conf/ldap.xml
+/var/lib/octopussy/conf/proxy.xml
+/var/lib/octopussy/conf/smtp.xml
+/var/lib/octopussy/conf/storages.xml
+/var/lib/octopussy/conf/users.xml

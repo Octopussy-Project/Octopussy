@@ -8,8 +8,10 @@ package Octopussy;
 use strict;
 
 use AAT;
+use File::Basename;
 use File::Path;
 use Proc::PID::File;
+use POSIX qw(mkfifo);
 
 use Octopussy::Alert;
 use Octopussy::Cache;
@@ -45,6 +47,8 @@ use Octopussy::World_Stats;
 use constant APPLICATION_NAME => "Octopussy";
 use constant 
 	SF_SITE => "http://sourceforge.net/project/showfiles.php?group_id=154314";
+
+$Octopussy::VERSION = '0.9.9.3';
 
 =head1 FUNCTIONS
 
@@ -93,9 +97,7 @@ Returns Octopussy main module Version
 =cut
 sub Version()
 {
-	my $info = AAT::Application::Info(APPLICATION_NAME);
-
-	return ($info->{version});
+	return ($Octopussy::VERSION);
 }
 
 =head2 WebSite()
@@ -306,6 +308,24 @@ sub Create_Directory($)
 	}
 }
 
+=head2 Create_Fifo($fifo)
+
+Creates Fifo '$fifo'
+
+=cut
+sub Create_Fifo
+{
+  my $fifo = shift;
+ 
+  if (! -p $fifo)
+  { 
+    my ($file, $dir, $suffix) = fileparse($fifo);
+    Create_Directory($dir);
+    mkfifo($fifo, 0700); 
+    Chown($fifo);
+  }
+}
+
 =head2 File_Ext($file, $extension)
 
 Returns File Extension
@@ -409,8 +429,10 @@ sub Process_Status()
 {
 	my %result = ();
 	
-	my @lines = `ps -edf | grep "syslog-ng" | grep -v grep`;
-	$result{"Syslog-ng"} = scalar(@lines);
+	#my @lines = `ps -edf | grep "syslog-ng" | grep -v grep`;
+  my @lines = `ps -edf | grep "rsyslog" | grep -v grep`;
+	#$result{"Syslog-ng"} = scalar(@lines);
+  $result{"Rsyslog"} = scalar(@lines);
 	@lines = `ps -edf | grep "/usr/sbin/octo_dispatcher" | grep -v grep`;
 	$result{"Dispatcher"} = scalar(@lines);
 	@lines = `ps -edf | grep "/usr/sbin/octo_scheduler" | grep -v grep`;

@@ -1,4 +1,12 @@
 #!/usr/bin/perl -w
+### BEGIN INIT INFO
+# Provides:          octopussy
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/Stop Octopussy programs
+### END INIT INFO
 
 =head1 NAME
 
@@ -6,7 +14,7 @@ octopussy - Octopussy Main program
 
 =head1 SYNOPSIS
 
-octopussy {start|stop|restart}
+octopussy {start|stop|restart|force-reload|status}
 octopussy dispatcher{-start|-stop|-restart|-reload}
 octopussy parser{-start|-stop|-restart} <device>
 octopussy scheduler{-start|-stop|-restart} 
@@ -23,6 +31,7 @@ use Octopussy;
 my $PROG_NAME = "octopussy";
 my $USER = "octopussy";
 my $COMMANDER = "octo_commander";
+my $DISPATCHER = "octo_dispatcher";
 my $PARSER = "octo_parser";
 my $PUSHER = "octo_pusher";
 my $RRD = "octo_rrd";
@@ -82,7 +91,8 @@ Starts syslog-ng that launchs octo_dispatcher
 =cut
 sub Dispatcher_Start
 {
-	`$INITD_SYSLOG_NG start`;
+	#`$INITD_SYSLOG_NG start`;
+  system("sudo -u $USER $base$DISPATCHER &");
 	printf($MSG_STATUS, "Dispatcher", "Started");
 }
 
@@ -100,7 +110,7 @@ sub Dispatcher_Stop
     chomp($pid);
     kill USR1 => $pid;
   }
-	`$INITD_SYSLOG_NG stop`;
+	#`$INITD_SYSLOG_NG stop`;
 	printf($MSG_STATUS, "Dispatcher", "Stopped");
 }
 
@@ -111,7 +121,7 @@ Restarts syslog-ng and octo_dispatcher
 =cut
 sub Dispatcher_Reload
 {
-	`$INITD_SYSLOG_NG restart`;
+	#`$INITD_SYSLOG_NG restart`;
 	printf($MSG_STATUS, "Dispatcher", "Reloaded");
 }
 
@@ -275,6 +285,21 @@ sub Stop
 	`rm -f $dir_pid/*.{err,pid}`;
 }
 
+=head2 Status()
+
+Returns Octopussy programs (dispatcher, rsyslog, scheduler) status
+
+=cut
+sub Status
+{
+  my %proc = Octopussy::Process_Status();
+  foreach my $k (sort keys %proc)
+  {
+    my $status = ($proc{$k} != 0 ? "Started" : "Stopped");
+    print "  $k: $status\n";
+  }
+}
+
 my $arg = $ARGV[0] || "";
 my $device = $ARGV[1] || undef;
 
@@ -282,10 +307,14 @@ if ($arg eq "start")
 	{ Start(); }
 elsif ($arg eq "stop")
 	{ Stop(); }
-elsif ($arg eq "restart")
+elsif (($arg eq "restart") || ($arg eq "force-reload"))
 {
 	Stop();
 	Start();
+}
+elsif ($arg eq "status")
+{
+  Status();
 }
 elsif ($arg eq "dispatcher-start")
 	{ Dispatcher_Start(); }

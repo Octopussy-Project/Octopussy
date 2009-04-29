@@ -18,9 +18,12 @@ ECHO="/bin/echo"
 FIND="/usr/bin/find"
 LN="/bin/ln -f -s"
 MKDIR="/bin/mkdir -p"
+MKFIFO="/usr/bin/mkfifo"
 SED="/bin/sed -i"
 INVOKERC="/usr/sbin/invoke-rc.d"
 UPDATERC="/usr/sbin/update-rc.d"
+DIR_FIFO="/var/spool/octopussy/"
+FILE_FIFO="/var/spool/octopussy/octo_fifo"
 
 #
 # Create Directories & Change Octopussy permission files
@@ -57,7 +60,9 @@ $ECHO "test -x /usr/sbin/octo_logrotate || exit 0" >> $CRON_FILE
 $ECHO "/usr/sbin/octo_logrotate" >> $CRON_FILE
 $CHMOD_X $CRON_FILE 2> /dev/null || true
 
+#
 # Create init files
+#
 $LN /usr/sbin/$OCTO /etc/init.d/$OCTO || true
 $UPDATERC $OCTO defaults 99 || true
 
@@ -72,28 +77,28 @@ APACHE2_FILE="/etc/apache2/apache2.conf"
 $CP $APACHE2_FILE $APACHE2_FILE.old
 $SED "s?^User.*?User $OCTO?g" $APACHE2_FILE
 $SED "s?^Group.*?Group $OCTO?g" $APACHE2_FILE
-$LN /etc/$OCTO/apache2.conf /etc/apache2/sites-available/$OCTO
 $A2DISSITE default 2> /dev/null || true
 $A2ENSITE $OCTO 2> /dev/null || true
 $A2ENMOD dir 2> /dev/null || true
 $A2ENMOD ssl 2> /dev/null || true
 $MKDIR /var/cache/$OCTO/asp/
 $CHOWNR /var/cache/$OCTO/asp/ 2> /dev/null || true
-if ! grep "Listen 443" /etc/apache2/ports.conf 2> /dev/null; then
-	$ECHO "Listen 443" >> /etc/apache2/ports.conf
+if ! grep -q "Listen.*[: ]443$" /etc/apache2/ports.conf 2> /dev/null;
+then
+$ECHO "Listen 443" >> /etc/apache2/ports.conf
 fi
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
 
 #
-# Syslog-ng Configuration
+# Octopussy FIFO creation
 #
-SYSLOG_NG_FILE="/etc/syslog-ng/syslog-ng.conf"
+$MKDIR $DIR_FIFO
+$MKFIFO $FILE_FIFO 2> /dev/null || true
+$CHOWNR $DIR_FIFO
 
-$SED "s?^#CONSOLE_LOG_LEVEL.*?CONSOLE_LOG_LEVEL=0?g" /etc/default/syslog-ng 
-$SED "s?^#KERNEL_RINGBUF_SIZE.*?KERNEL_RINGBUF_SIZE=16392?g" /etc/default/syslog-ng
-$CP $SYSLOG_NG_FILE /etc/syslog-ng/syslog-ng.conf.old
-$CP /etc/$OCTO/syslog-ng.conf $SYSLOG_NG_FILE
-
+#
+# Restart Apache & Octopussy
+#
 $INVOKERC apache2 restart 2> /dev/null || true
 $INVOKERC octopussy start 2> /dev/null || true
 

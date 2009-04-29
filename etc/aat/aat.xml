@@ -14,7 +14,7 @@
 
   </application>
 
-	<application name="Octopussy" version="0.9.9.2"
+	<application name="Octopussy"
 							 email="octo.devel@gmail.com"
 							 user="octopussy"
 							 website="http://www.8pussy.org">
@@ -44,6 +44,7 @@
 		<file name="device_models" value="/var/lib/octopussy/conf/device_models.xml" />
 		<file name="devicegroups" value="/var/lib/octopussy/conf/devicegroups.xml" />
 		<file name="dialogs" value="/var/lib/octopussy/conf/dialogs.xml" />
+    <file name="fifo" value="/var/spool/octopussy/octo_fifo" />
 		<file name="ldap" value="/var/lib/octopussy/conf/ldap.xml" />
 		<file name="locations" value="/var/lib/octopussy/conf/locations.xml" />
 		<file name="loglevel" value="/var/lib/octopussy/conf/loglevel.xml" />
