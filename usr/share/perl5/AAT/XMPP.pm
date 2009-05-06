@@ -4,13 +4,19 @@ AAT::XMPP - AAT XMPP module
 
 (Extensible Messaging and Presence Protocol (Jabber))
 
+Net::XMPP is buggy with OpenFire & TLS
+-> comment 3 lines in Net::XMPP::Protocol (~line 1800) & disable TLS:
+
+#if($self->{STREAM}->GetStreamFeature($self->GetStreamID(),"xmpp-sasl"))
+#{
+#    return $self->AuthSASL(%args);
+#}
+
 =cut
 package AAT::XMPP;
 
 use strict;
 use Net::XMPP;
-
-use constant PORT => 5222;
 
 my %conf_file = ();
 
@@ -46,7 +52,7 @@ sub Connection_Test($)
 	{
   	my $client = new Net::XMPP::Client();
   	my @res = $client->Connect(hostname => $conf_xmpp->{server}, 
-			port => 5223, tls => $conf_xmpp->{tls}, timeout => 3);
+			port => $conf_xmpp->{port}, tls => $conf_xmpp->{tls}, timeout => 3);
 		if (@res)
 		{
 			my @res = $client->AuthSend(username => $conf_xmpp->{user}, 
@@ -71,7 +77,7 @@ sub Send_Message($$@)
 	my $conf_xmpp = Configuration($appli);
 	my $client = new Net::XMPP::Client();
 	my @res = $client->Connect(hostname => $conf_xmpp->{server}, 
-		port => 5223, tls => $conf_xmpp->{tls});
+		port => $conf_xmpp->{port}, tls => $conf_xmpp->{tls});
 	if (@res)
 	{
 		$client->AuthSend('hostname' => $conf_xmpp->{server},

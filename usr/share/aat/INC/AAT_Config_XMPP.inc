@@ -2,8 +2,9 @@
 my %arg = @_;
 my $tt = $arg{tooltip};
 my $xmpp = AAT::XMPP::Configuration($arg{appli});
-my ($server, $tls, $user, $pwd) = 
-	($xmpp->{server}, $xmpp->{tls}, $xmpp->{user}, $xmpp->{password});
+my ($server, $port, $tls, $user, $pwd) = 
+	($xmpp->{server}, $xmpp->{port}, $xmpp->{tls}, 
+    $xmpp->{user}, $xmpp->{password});
 %>
 <AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
@@ -17,8 +18,14 @@ my ($server, $tls, $user, $pwd) =
   <AAT:Entry name="xmpp_server" value="$server" size="50" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol rspan="3">
-	<AAT:IMG name="generic_jabber" tooltip="$tt" /></AAT:BoxCol>
+  <AAT:BoxCol rspan="4">
+  <AAT:IMG name="generic_jabber" tooltip="$tt" /></AAT:BoxCol>
+  <AAT:BoxCol valign="top">
+  <AAT:Label value="port" style="B" tooltip="$tt" /></AAT:BoxCol>
+  <AAT:BoxCol cspan="2" valign="top">
+  <AAT:Entry name="xmpp_port" value="$port" size="50" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
   <AAT:BoxCol valign="top">
 	<AAT:Label value="TLS" style="B" tooltip="$tt" /></AAT:BoxCol>
   <AAT:BoxCol cspan="2" valign="top">
