@@ -478,12 +478,12 @@ sub Parse_List($$$$$$$)
 	return (@msg_to_parse);	
 }
 
-=head2 Alerts($device, $service, $message, \@dev_alerts)
+=head2 Alerts($device, $service, $message, \@dev_alerts, \%contact)
 
 =cut
-sub Alerts($$$$)
+sub Alerts($$$$$)
 {
-  my ($device, $service, $message, $dev_alerts) = @_;
+  my ($device, $service, $message, $dev_alerts, $contact) = @_;
   my @alerts = ();
 
   foreach my $ac (AAT::ARRAY($dev_alerts))
@@ -492,9 +492,8 @@ sub Alerts($$$$)
 		my @ims = ();
 		foreach my $c (AAT::ARRAY($ac->{contact}))
 		{
-			my $conf_contact = Octopussy::Contact::Configuration($c);
-			push(@mails, $conf_contact->{email})	if (defined $conf_contact->{email});
-			push(@ims, $conf_contact->{im})	if (defined $conf_contact->{im});
+			push(@mails, $contact->{$c}->{email}) if (defined $contact->{$c}->{email});
+			push(@ims, $contact->{$c}->{im})	    if (defined $contact->{$c}->{im});
 		}
     if ($ac->{type} =~ /Dynamic/i)
     {

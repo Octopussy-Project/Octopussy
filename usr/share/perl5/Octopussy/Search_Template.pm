@@ -143,7 +143,6 @@ Returns:
 $filename - Filename of the XML file for Search Template '$search_tpl'
 
 =cut
- 
 sub Filename($$)
 {
 	my ($user, $search_tpl) = @_;
@@ -158,9 +157,11 @@ sub Filename($$)
 		foreach my $f (@files)
   	{
   		my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
-			$filename{$user}{$search_tpl} = "$dir_search_tpl/$user/$f";
-   		return ("$dir_search_tpl/$user/$f")     
-				if ((defined $conf) && ($conf->{name} =~ /^$search_tpl$/));
+      if ((defined $conf) && ($conf->{name} =~ /^$search_tpl$/))
+      {
+			  $filename{$user}{$search_tpl} = "$dir_search_tpl/$user/$f";
+   		  return ("$dir_search_tpl/$user/$f");
+      }
 		}
 	}
 

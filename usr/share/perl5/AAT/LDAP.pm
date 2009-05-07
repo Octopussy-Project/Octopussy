@@ -120,7 +120,10 @@ sub Contacts($)
   	{
     	my $uid = $entry->get_value("cn");
     	my $mail = $entry->get_value("mail");
-    	push(@contacts, { cid => $mail, name => $uid,
+      my $firstname = $entry->get_value("givenName");
+      my $lastname = $entry->get_value("sn");
+    	push(@contacts, { cid => $mail, 
+        firstname => $firstname, lastname => $lastname,
       	email => $mail, type => "LDAP" } )
       	if ((defined $uid) && (defined $mail));
   	}

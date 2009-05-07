@@ -121,9 +121,11 @@ sub Filename($)
 		foreach my $f (@files)
   	{
   		my $conf = AAT::XML::Read("$dir_contacts/$f");
-			$filename{$contact} = "$dir_contacts/$f";
-   		return ("$dir_contacts/$f")     
-				if ((defined $conf) && ($conf->{cid} =~ /^$contact$/));
+      if ((defined $conf) && ($conf->{cid} =~ /^$contact$/))
+      {
+			  $filename{$contact} = "$dir_contacts/$f";
+        return ("$dir_contacts/$f");
+      }
 		}
 	}
 
@@ -148,7 +150,22 @@ sub Configuration($)
 	my $contact = shift;
 
 	my $conf = AAT::XML::Read(Filename($contact));
-	$conf->{type} = "local";
+  if (defined $conf)
+  {
+	  $conf->{type} = "local";
+  }
+  else
+  {
+    foreach my $c (AAT::LDAP::Contacts("Octopussy"))
+    { 
+      if (defined $c->{cid})
+      {
+        $conf = $c;
+        $conf->{type} = "LDAP";
+        last;
+      }
+    }
+  }
 
 	return ($conf);
 }

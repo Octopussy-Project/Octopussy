@@ -125,9 +125,13 @@ sub Init()
    	my @messages = Octopussy::Service::Messages($serv);
 		AAT::Syslog($PROG_NAME, "PARSER_INIT_SERVICE", $serv, scalar(@messages));
 		my @dev_alerts = Octopussy::Alert::For_Device($device);
+   
+    my %contact = ();
+    foreach my $c (Octopussy::Contact::Configurations("cid"))
+      { $contact{$c->{cid}} = $c; }
    	foreach my $m (@messages)
     { 
-			my @alerts = Octopussy::Message::Alerts($device, $serv, $m, \@dev_alerts);
+			my @alerts = Octopussy::Message::Alerts($device, $serv, $m, \@dev_alerts, \%contact);
 			my @msg_alerts = ();
 			foreach my $a (@alerts)
 			{
