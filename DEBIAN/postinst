@@ -57,7 +57,7 @@ CRON_FILE="/etc/cron.daily/octo_logrotate"
 $ECHO "#!/bin/sh" > $CRON_FILE
 $ECHO "" >> $CRON_FILE
 $ECHO "test -x /usr/sbin/octo_logrotate || exit 0" >> $CRON_FILE
-$ECHO "/usr/sbin/octo_logrotate" >> $CRON_FILE
+$ECHO "sudo -u octopussy /usr/sbin/octo_logrotate" >> $CRON_FILE
 $CHMOD_X $CRON_FILE 2> /dev/null || true
 
 #
