@@ -97,10 +97,11 @@ $MKFIFO $FILE_FIFO 2> /dev/null || true
 $CHOWNR $DIR_FIFO
 
 #
-# Restart Apache & Octopussy
+# Restart Apache, Octopussy & Rsyslog
 #
 $INVOKERC apache2 restart 2> /dev/null || true
 $INVOKERC octopussy start 2> /dev/null || true
+$INVOKERC rsyslog restart 2> /dev/null || true
 
 db_stop
 
