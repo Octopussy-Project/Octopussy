@@ -69,37 +69,20 @@ $UPDATERC $OCTO defaults 99 || true
 #
 # Apache2 Configuration
 #
-A2DISSITE="/usr/sbin/a2dissite"
-A2ENSITE="/usr/sbin/a2ensite"
-A2ENMOD="/usr/sbin/a2enmod"
-APACHE2_FILE="/etc/apache2/apache2.conf"
-
-$CP $APACHE2_FILE $APACHE2_FILE.old
-$SED "s?^User.*?User $OCTO?g" $APACHE2_FILE
-$SED "s?^Group.*?Group $OCTO?g" $APACHE2_FILE
-$A2DISSITE default 2> /dev/null || true
-$A2ENSITE $OCTO 2> /dev/null || true
-$A2ENMOD dir 2> /dev/null || true
-$A2ENMOD ssl 2> /dev/null || true
 $MKDIR /var/cache/$OCTO/asp/
 $CHOWNR /var/cache/$OCTO/asp/ 2> /dev/null || true
-if ! grep -q "Listen.*[: ]443$" /etc/apache2/ports.conf 2> /dev/null;
-then
-$ECHO "Listen 443" >> /etc/apache2/ports.conf
-fi
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
 
 #
-# Octopussy FIFO creation
+# Octopussy FIFO creation (for Rsyslog)
 #
 $MKDIR $DIR_FIFO
 $MKFIFO $FILE_FIFO 2> /dev/null || true
 $CHOWNR $DIR_FIFO
 
 #
-# Restart Apache, Octopussy & Rsyslog
+# Restart Octopussy & Rsyslog
 #
-$INVOKERC apache2 restart 2> /dev/null || true
 $INVOKERC octopussy start 2> /dev/null || true
 $INVOKERC rsyslog restart 2> /dev/null || true
 

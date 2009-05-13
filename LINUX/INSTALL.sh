@@ -2,12 +2,8 @@
 
 AAT="aat"
 OCTO="octopussy"
-APACHE2_FILE="/etc/apache2/apache2.conf"
 CRON_FILE="/etc/cron.daily/octo_logrotate"
 
-A2DISSITE="/usr/sbin/a2dissite"
-A2ENSITE="/usr/sbin/a2ensite"
-A2ENMOD="/usr/sbin/a2enmod"
 ADDGROUP="/usr/sbin/addgroup --system"
 ADDUSER="/usr/sbin/adduser --system --disabled-password --no-create-home"
 CAT="/bin/cat"
@@ -94,33 +90,20 @@ fi
 #
 # Apache2 Configuration
 #
-$CP $APACHE2_FILE $APACHE2_FILE.old
-$SED "s?^User.*?User $OCTO?g" $APACHE2_FILE
-$SED "s?^Group.*?Group $OCTO?g" $APACHE2_FILE
-$LN /etc/$OCTO/apache2.conf /etc/apache2/sites-available/$OCTO
-$A2DISSITE default
-$A2ENSITE $OCTO
-$A2ENMOD dir
-$A2ENMOD ssl
 $MKDIR /var/cache/$OCTO/asp/
 $CHOWN /var/cache/$OCTO/asp/
-if ! grep "Listen.*[: ]443$" /etc/apache2/ports.conf 2> /dev/null;
-then 
-$ECHO "Listen 443" >> /etc/apache2/ports.conf
-fi
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
 
 #
-# Octopussy FIFO creation
+# Octopussy FIFO creation (for Rsyslog)
 #
 $MKDIR $DIR_FIFO
 $MKFIFO $FILE_FIFO
 $CHOWNR $DIR_FIFO
 
 #
-# Restart Apache, Octopussy & Rsyslog
+# Restart Octopussy & Rsyslog
 #
-/etc/init.d/apache2 restart
 /etc/init.d/octopussy restart
 /etc/init.d/rsyslog restart
 

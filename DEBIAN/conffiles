@@ -1,6 +1,6 @@
 /etc/aat/aat.xml
 /etc/aat/openssl.cnf
-/etc/apache2/sites-available/octopussy
+/etc/octopussy/apache2.conf
 /etc/octopussy/server.crt
 /etc/octopussy/server.key
 /etc/rsyslog.d/octopussy.conf

@@ -18,6 +18,7 @@ octopussy {start|stop|restart|force-reload|status}
 octopussy dispatcher{-start|-stop|-restart|-reload}
 octopussy parser{-start|-stop|-restart} <device>
 octopussy scheduler{-start|-stop|-restart} 
+octopussy web{-start|-stop|-restart}
 
 =head1 DESCRIPTION
 
@@ -30,6 +31,8 @@ use Octopussy;
 
 my $PROG_NAME = "octopussy";
 my $USER = "octopussy";
+my $APACHE2_BIN = "/usr/sbin/apache2";
+my $APACHE2_CONF = "/etc/octopussy/apache2.conf";
 my $COMMANDER = "octo_commander";
 my $DISPATCHER = "octo_dispatcher";
 my $PARSER = "octo_parser";
@@ -250,6 +253,26 @@ sub Scheduler_Stop
 	printf($MSG_STATUS, "Scheduler", "Stopped");
 }
 
+=head2 Web_Start
+
+Starts Web Octopussy
+
+=cut
+sub Web_Start
+{
+  system("$APACHE2_BIN -f $APACHE2_CONF -k start");
+}
+
+=head2 Web_Stop
+
+Stops Web Octopussy
+
+=cut
+sub Web_Stop
+{
+  system("$APACHE2_BIN -f $APACHE2_CONF -k stop");
+}
+
 =head2 Start()
 
 Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
@@ -267,6 +290,7 @@ sub Start
 	Scheduler_Start();
 	Pusher_Start();
 	Commander_Start();
+  Web_Start();
 }
 
 =head2 Stop()
@@ -276,6 +300,7 @@ Stops all Octopussy programs (parsers, scheduler, pusher & dispatcher)
 =cut
 sub Stop
 {
+  Web_Stop();
 	Commander_Stop();
 	Parser_Stop();
 	RRD_Stop();
@@ -353,6 +378,15 @@ elsif ($arg eq "scheduler-restart")
 {
 	Scheduler_Stop();
 	Scheduler_Start();
+}
+elsif ($arg eq "web-start")
+  { Web_Start(); }
+elsif ($arg eq "web-stop")
+  { Web_Stop(); }
+elsif ($arg eq "web-restart")
+{
+  Web_Stop();
+  Web_Start();
 }
 else
 	{ Usage(); }
