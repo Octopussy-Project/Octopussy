@@ -261,6 +261,7 @@ Starts Web Octopussy
 sub Web_Start
 {
   system("$APACHE2_BIN -f $APACHE2_CONF -k start");
+  printf($MSG_STATUS, "Web", "Started");
 }
 
 =head2 Web_Stop
@@ -271,6 +272,7 @@ Stops Web Octopussy
 sub Web_Stop
 {
   system("$APACHE2_BIN -f $APACHE2_CONF -k stop");
+  printf($MSG_STATUS, "Web", "Stopped");
 }
 
 =head2 Start()

@@ -6,9 +6,8 @@ AAT::XML - AAT XML module
 package AAT::XML;
 
 use strict;
-use open ':utf8';
+#use open ':utf8';
 use bytes;
-use utf8;
 use XML::Simple; # qw(:strict);
 
 my %XML_CACHE = ();
@@ -122,7 +121,9 @@ sub Write($$$)
       RootName => $root_name || "aat_config" );
   my $xml = XMLout($data, %XML_OUTPUT_OPTIONS);
 
-  if (defined open(FILE, (utf8::is_utf8($xml) ? ">:utf8" : ">:bytes"), $file))
+#  if (defined open(FILE, ">$file"))
+  if (defined open(FILE, ">:utf8", $file))
+#  if (defined open(FILE, (utf8::is_utf8($xml) ? ">:utf8" : ">:bytes"), $file))
   {
     print FILE $xml;
     close(FILE);

@@ -64,7 +64,8 @@ else
 			AAT::Syslog("octo_WebUI", "GENERIC_CREATED", 
 				"Location Rack", "$city - $building - $room - $rack");
 		}
-		$Response->Redirect("./locations.asp");
+    print "city: $city" if (defined $city);
+		#$Response->Redirect("./locations.asp");
 	}
 }
 %>

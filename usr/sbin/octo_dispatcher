@@ -53,7 +53,7 @@ sub Init()
 		my $status = (defined $d->{status} ? $d->{status} : "Paused");
 		$device_type{$d->{name}} = ($status ne "Stopped" ? $type : "");
 		$dir_device{$d->{name}} = 
-			Octopussy::Storage::Directory_Incoming($d->{name});
+      Octopussy::Storage::Directory_Incoming($d->{name});
 	}		
 	Octopussy::RRDTool::Syslog_By_DeviceType_Init();
 }
@@ -63,21 +63,22 @@ sub Stop()
 	$exit_request = 1;
 }
 
-=head2 Handle_Dir($device, $day, $month, $year)
+=head2 Handle_Dir($device, $year, $month, $day, $hour, $min)
 
 Handles directory
 
 =cut
-sub Handle_Dir($$$$)
+sub Handle_Dir($$$$$$)
 {
-	my ($device, $day, $month, $year) = @_;
+	my ($device, $year, $month, $day, $hour, $min) = @_;
 
 	if (!defined $dir_device{$device})
 	{
   	if (!-f Octopussy::Device::Filename($device))
   	{
     	Octopussy::Device::New({ name => $device, address => $device,
-      	description => "New Device !" });
+      	description => "New Device ($year/$month/$day $hour:$min) !" });
+      $device_type{$device} = Octopussy::Parameter("devicetype");
     	$dir_device{$device} = Octopussy::Storage::Directory_Incoming($device);
   	}
 	}
@@ -98,7 +99,7 @@ sub Write_Logs_10secs
 
 	foreach my $device (keys %logs)
 	{
- 		my $dir = Handle_Dir($device, $d, $m, $y);
+ 		my $dir = Handle_Dir($device, $y, $m, $d, $hour, $min);
   	my $file = "$dir/msg_${hour}h${min}_$mod.log";
    	my $i = 0;
 		if (defined open(FILE, ">> $file"))
@@ -160,42 +161,45 @@ Octopussy::PID_File($PROG_NAME);
 AAT::Syslog($PROG_NAME, "PROGRAM_START");
 Init();
 
-my $fifo = Octopussy::File("fifo");
-Octopussy::Create_Fifo($fifo);
-open(FIFO, "< $fifo") or die "Can't open named pipe $fifo: $!";
-while (<FIFO>)
+while (!$exit_request)
 {
-	$line = $_;
-	chomp($line);
-	$line =~ s/^<\d+>//;
-	if ($line =~ /^\w{3} \s?\d{1,2} \d\d:\d\d:\d\d (\S+)/)
-	{
-    $device = $1;
-    ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
-		if ((int($n_sec/10) != int($sec/10)) || ($n_min != $min) 
+  my $fifo = Octopussy::File("fifo");
+  Octopussy::Create_Fifo($fifo);
+  open(FIFO, "< $fifo") or die "Can't open named pipe $fifo: $!";
+  while (<FIFO>)
+  {
+	  $line = $_;
+	  chomp($line);
+	  $line =~ s/^<\d+>//;
+	  if (($line =~ /^\w{3} \s?\d{1,2} \d\d:\d\d:\d\d (\S+)/)
+      || ($line =~ /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}\S+ (\S+)/))
+	  {
+      $device = $1;
+      ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
+		  if ((int($n_sec/10) != int($sec/10)) || ($n_min != $min) 
 				|| ($n_hour != $hour) || ($n_mday != $mday) || ($n_month != $month))
-		{ 
-      my $mod = (int($sec/10)*10);
-			# every 10 secs, we write log files like msg_HHhMM_XX.log
-      Write_Logs_10secs($year, $month, $mday, $hour, $min, $mod);
+		  { 
+        my $mod = (int($sec/10)*10);
+			  # every 10 secs, we write log files like msg_HHhMM_XX.log
+        Write_Logs_10secs($year, $month, $mday, $hour, $min, $mod);
 			
-			if (($n_min != $min) || ($n_hour != $hour) || ($n_mday != $mday)
-      	|| ($n_month != $month)) # not the same minute than last minute
-			{
-				Write_Stats($year, $month, $mday, $hour, $min);
-				($year, $month, $mday, $hour, $min) =
-        	($n_year, $n_month, $n_mday, $n_hour, $n_min);
-			}
-			$sec = $n_sec;
-		}
-		push(@{$logs{$device}}, $line)	
-			if ((!defined $device_type{$device}) || ($device_type{$device} ne ""));
-	}
-  last if ($exit_request);
+			  if (($n_min != $min) || ($n_hour != $hour) || ($n_mday != $mday)
+      	  || ($n_month != $month)) # not the same minute than last minute
+			  {
+				  Write_Stats($year, $month, $mday, $hour, $min);
+				  ($year, $month, $mday, $hour, $min) =
+        	  ($n_year, $n_month, $n_mday, $n_hour, $n_min);
+			  }
+			  $sec = $n_sec;
+		  }
+		  push(@{$logs{$device}}, $line)	
+			  if ((!defined $device_type{$device}) || ($device_type{$device} ne ""));
+	  }
+    last if ($exit_request);
+  }
+  close(FIFO);
+  Write_Logs_10secs($year, $month, $mday, $hour, $min, int($sec/10)*10);
 }
-close(FIFO);
-
-Write_Logs_10secs($year, $month, $mday, $hour, $min, int($sec/10)*10);
 
 =head1 AUTHOR
 

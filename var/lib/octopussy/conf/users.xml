@@ -6,6 +6,5 @@
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restrictions=""
         role="admin"
-        theme="DEFAULT"
-        type="local" />
+        theme="DEFAULT" />
 </Octopussy_users>

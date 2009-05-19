@@ -97,7 +97,7 @@ sub Remove($)
 {
 	my $device = shift;
 
-	Octopussy::Device::Parse_Stop($device);
+  Octopussy::Device::Parse_Pause($device);
 	Octopussy::DeviceGroup::Remove_Device($device);
 	Octopussy::Logs::Remove_Directories($device);
 	my $dir_web = Octopussy::Directory("web");
@@ -106,6 +106,7 @@ sub Remove($)
 	File::Path::rmtree("$dir_rrd/$device/");
 	unlink(Filename($device));
   $filename{$device} = undef;
+  Octopussy::Dispatcher_Reload();
 }
 
 =head2 List()
@@ -607,7 +608,6 @@ sub Parse_Start($)
 	{
 		my $cmd = "$base" . PARSER_BIN . " $device &";
 		Octopussy::Commander($cmd);
-		#system("$cmd");
 		$dir_devices ||= Octopussy::Directory(DIR_DEVICE);	
 		Octopussy::Dispatcher_Reload()	if ($conf->{status} eq "Stopped");
 		$conf->{status} = "Started";

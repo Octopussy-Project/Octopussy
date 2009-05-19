@@ -63,8 +63,9 @@ elsif (($Session->{graph_type} !~ /^rrd_/) && (AAT::NULL($x)))
 	$sql_group_by =~ 
 		s/Octopussy::Plugin::(\S+?)::(\S+?)\((\S+?)\)/Plugin_$1_$2__$3/g;
 	my $sql_order_by = (AAT::NOT_NULL($Session->{order_by})
-    ? " ORDER BY " . join(", ", @{$Session->{order_by}}) : "") 
-		. ($Session->{sort_direction} eq "ASCENDING" ? " asc" : " desc");
+    ? " ORDER BY " . join(", ", @{$Session->{order_by}}) 
+      . ($Session->{sort_direction} eq "ASCENDING" ? " asc" : " desc")
+    : "");
 	$sql_order_by =~ 
 		s/Octopussy::Plugin::(\S+?)::(\S+?)\((\S+?)\)/Plugin_$1_$2__$3/g;
   $query .= "FROM $Session->{table}" 
