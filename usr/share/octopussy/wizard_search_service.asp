@@ -7,9 +7,9 @@ my $match = 0;
 %>
 <AAT:Box align="C">
 <AAT:BoxRow>
-	<AAT:BoxCol cspan="2"><AAT:Label value="$msg" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol cspan="3"><AAT:Label value="$msg" style="B" /></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 foreach my $serv (Octopussy::Service::List())
 {
@@ -20,18 +20,25 @@ foreach my $serv (Octopussy::Service::List())
       my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
 			if ($msg =~ /^$regexp\s*[^\t\n\r\f -~]?$/i)
 			{
+        my $msg_color = Octopussy::Message::Color($m->{pattern});
 				$match = 1;
-				%><AAT:BoxRow><AAT:BoxCol>
-				<AAT:Label value="Matches Service " /><b><%= $serv %></b></AAT:BoxCol>
-				<AAT:BoxCol align="R">
-				<AAT:Button name="add" link="${url}&service=$serv" /></AAT:BoxCol>
+				%><AAT:BoxRow>
+        <AAT:BoxCol><AAT:Label value="_SERVICE" />:
+        <b><%= $serv %></b></AAT:BoxCol>
+        <AAT:BoxCol><AAT:Label value="_MSG_ID" />:
+        <b><%= $m->{msg_id} %></b></AAT:BoxCol>
+        <AAT:BoxCol align="R" rspan="2">
+        <AAT:Button name="add" link="${url}&service=$serv" tooltip="_ADD_SERVICE_TO_DEVICE" /></AAT:BoxCol>
+        </AAT:BoxRow>
+        <AAT:BoxRow>
+        <AAT:BoxCol cspan="2"><AAT:Label value="$msg_color" size="-2" /></AAT:BoxCol>
 				</AAT:BoxRow><%
 			}
     }
 }
 if (!$match)
 {
-	%><AAT:BoxRow><AAT:BoxCol cspan="2" align="C">
+	%><AAT:BoxRow><AAT:BoxCol cspan="3" align="C">
 	<AAT:Label value="No Matching Service !" link="./wizard.asp?device=$device" />
 	</AAT:BoxCol></AAT:BoxRow><%
 }

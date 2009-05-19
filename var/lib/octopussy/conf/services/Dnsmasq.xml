@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Lightweight DHCP and caching DNS server Service"
+                   name="Dnsmasq"
+                   version="200901280007"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Dnsmasq:started"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dnsmasq&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;started, version .+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Application.Start" />
+  <message loglevel="Information"
+           msg_id="Dnsmasq:compile_time_options"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dnsmasq&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;compile time options: .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Application.Start" />
+  <message loglevel="Information"
+           msg_id="Dnsmasq:no_servers_found"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dnsmasq&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;no servers found in .+&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Application" />
+</octopussy_service>

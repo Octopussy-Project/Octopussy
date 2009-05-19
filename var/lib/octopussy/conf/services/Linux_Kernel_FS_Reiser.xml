@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Linux Kernel ReiserFS Service"
+									 icon="operating_systems/os_linux_generic"
+                   name="Linux_Kernel_FS_Reiser"
+                   version="200805220006"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_FS_Reiser:found_reiserfs_format"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*ReiserFS: \S+: found reiserfs format .+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_FS_Reiser:using_ordered_data_mode"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*ReiserFS: \S+: using ordered data mode&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_FS_Reiser:journal_params"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*ReiserFS: \S+: journal params: device \S+, size \d+, .+&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_FS_Reiser:checking_transaction_log"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*ReiserFS: \S+: checking transaction log.*&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_FS_Reiser:using_hash_sort_names"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*ReiserFS: \S+: Using \S+ hash to sort names&quot;):msg@&gt;"
+           rank="005"
+           table="Message"
+           taxonomy="System" />
+</octopussy_service>

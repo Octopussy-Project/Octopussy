@@ -48,7 +48,7 @@ use constant APPLICATION_NAME => "Octopussy";
 use constant 
 	SF_SITE => "http://sourceforge.net/project/showfiles.php?group_id=154314";
 
-$Octopussy::VERSION = '0.9.9.4';
+$Octopussy::VERSION = '0.9.9.5';
 
 =head1 FUNCTIONS
 

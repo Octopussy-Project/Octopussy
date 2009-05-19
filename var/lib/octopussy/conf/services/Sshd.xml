@@ -2,7 +2,7 @@
 <octopussy_service description="SSH Daemon Service"
                    name="Sshd"
                    nb_messages="076"
-                   version="200902130002">
+                   version="200905190001">
   <message loglevel="Information"
            msg_id="Sshd:session_for_user"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*session .+ for user .+&quot;):msg@&gt;"
@@ -457,6 +457,12 @@
            msg_id="Sshd:conversation_failed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*: conversation failed&quot;):msg@&gt;"
            rank="076"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Critical"
+           msg_id="Sshd:fork_cannot_allocate_memory"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;sshd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;error: fork: Cannot allocate memory&quot;):msg@&gt;"
+           rank="077"
            table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>
