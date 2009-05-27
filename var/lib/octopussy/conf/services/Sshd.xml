@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="SSH Daemon Service"
                    name="Sshd"
-                   nb_messages="076"
-                   version="200905190001">
+                   nb_messages="080"
+                   version="200905250002">
   <message loglevel="Information"
            msg_id="Sshd:session_for_user"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*session .+ for user .+&quot;):msg@&gt;"
@@ -459,10 +459,28 @@
            rank="076"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Notice"
+           msg_id="Sshd:postponed_publickey"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Postponed publickey for .+&quot;):msg@&gt;"
+           rank="077"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Sshd:excess_permission_bad_ownership"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sshd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Excess permission or bad ownership on file .+&quot;):msg@&gt;"
+           rank="078"
+           table="Message"
+           taxonomy="Access.Failure" />
+  <message loglevel="Warning"
+           msg_id="Sshd:too_many_authentication_failures"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;sshd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Disconnecting: Too many authentication failures for .+&quot;):msg@&gt;"
+           rank="079"
+           table="Message"
+           taxonomy="Auth.Failure" />
   <message loglevel="Critical"
            msg_id="Sshd:fork_cannot_allocate_memory"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;sshd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;error: fork: Cannot allocate memory&quot;):msg@&gt;"
-           rank="077"
+           rank="080"
            table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>

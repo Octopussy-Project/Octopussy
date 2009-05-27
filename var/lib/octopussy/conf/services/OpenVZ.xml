@@ -2,8 +2,8 @@
 <octopussy_service description="OpenVZ"
                    icon="software/logo_openvz"
                    name="OpenVZ"
-                   nb_messages="002"
-                   version="200901130005"
+                   nb_messages="006"
+                   version="200905250002"
                    website="http://www.openvz.org">
   <message loglevel="Information"
            msg_id="OpenVZ:VE_Action"
@@ -25,7 +25,7 @@
            taxonomy="Config.Errors" />
   <message loglevel="Alert"
            msg_id="OpenVZ:fatal_resource_shortage"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;Fatal resource shortage: privvmpages, UB .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*Fatal resource shortage: .+, UB .+&quot;):msg@&gt;"
            rank="004"
            table="Message"
            taxonomy="System.Errors" />
@@ -41,4 +41,28 @@
            rank="006"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="OpenVZ:ct_stopped"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel:&lt;@STRING:NULL@&gt;CT: &lt;@WORD:id@&gt;: &lt;@REGEXP(&quot;stopped&quot;):action@&gt;"
+           rank="007"
+           table="OpenVZ"
+           taxonomy="Application.Stop" />
+  <message loglevel="Information"
+           msg_id="OpenVZ:ct_started"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel:&lt;@STRING:NULL@&gt;CT: &lt;@WORD:id@&gt;: &lt;@REGEXP(&quot;started&quot;):action@&gt;"
+           rank="008"
+           table="OpenVZ"
+           taxonomy="Application.Start" />
+  <message loglevel="Warning"
+           msg_id="OpenVZ:dropped_packet_source_wrong"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*Dropped packet, source wrong veid=\S+ src-IP=\S+ dst-IP=\S+&quot;):msg@&gt;"
+           rank="009"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="OpenVZ:vzctl_uses_deprecated_capabilities"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*warning: `vzctl' uses deprecated v2 capabilities .+&quot;):msg@&gt;"
+           rank="010"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

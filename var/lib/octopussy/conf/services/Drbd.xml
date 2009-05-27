@@ -3,7 +3,7 @@
                    icon="software/logo_drbd"
                    name="Drbd"
                    nb_messages="072"
-                   version="200901280001"
+                   version="200905270003"
                    website="http://www.drbd.org/">
   <message loglevel="Information"
            msg_id="Drbd:resync_done"
@@ -437,4 +437,10 @@
            rank="072"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Debug"
+           msg_id="Drbd:drbd_peer_outdater_debug"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;drbd-peer-outdater&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;debug: .+&quot;):msg@&gt;"
+           rank="073"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

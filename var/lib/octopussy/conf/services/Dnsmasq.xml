@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Lightweight DHCP and caching DNS server Service"
                    name="Dnsmasq"
-                   version="200901280007"
+                   nb_messages="003"
+                   version="200902130003"
                    website="">
   <message loglevel="Information"
            msg_id="Dnsmasq:started"
@@ -21,4 +22,16 @@
            rank="003"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Dnsmasq:read_etc_host_addresses"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dnsmasq&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;read /etc/hosts - \d+ addresses&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Dnsmasq:exiting_on_receipt_signal"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dnsmasq&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;exiting on receipt of \w+&quot;):msg@&gt;"
+           rank="005"
+           table="Message"
+           taxonomy="Application.Stop" />
 </octopussy_service>

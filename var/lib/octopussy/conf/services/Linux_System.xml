@@ -2,8 +2,8 @@
 <octopussy_service description="Linux System Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_System"
-                   nb_messages="074"
-                   version="200902130029">
+                   nb_messages="066"
+                   version="200905050001">
   <message loglevel="Information"
            msg_id="Linux_System:removing_device_node"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udev&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;removing device node .+&quot;):msg@&gt;"
@@ -397,7 +397,25 @@
   <message loglevel="Information"
            msg_id="Linux_System:init_rereading_inittab"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;init&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Re-reading inittab&quot;):msg@&gt;"
-           rank="019"
+           rank="066"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_System:session_closed_for_user2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ session closed for user \S+&quot;):msg@&gt;"
+           rank="067"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Linux_System:session_opened_for_user2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.*session opened for user .+&quot;):msg@&gt;"
+           rank="068"
+           table="Message"
+           taxonomy="Access.Success" />
+  <message loglevel="Warning"
+           msg_id="Linux_System:udevd_unknown_key"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udevd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;add_to_rules: unknown key '.+' in .+&quot;):msg@&gt;"
+           rank="069"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

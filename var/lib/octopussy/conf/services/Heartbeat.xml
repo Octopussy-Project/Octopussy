@@ -2,7 +2,7 @@
 <octopussy_service description="Heartbeat Service"
                    name="Heartbeat"
                    nb_messages="053"
-                   version="200806300022"
+                   version="200904140001"
                    website="http://www.linux-ha.org/Heartbeat">
   <message loglevel="Information"
            msg_id="Heartbeat:debug_msg"
@@ -320,6 +320,12 @@
            msg_id="Heartbeat:mgmtd_several_messages"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; mgmtd: [&lt;@PID:pid@&gt;]: &lt;@STRING:msg@&gt;"
            rank="053"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Debug"
+           msg_id="Heartbeat:dopd_debug"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*dopd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;debug: .+&quot;):msg@&gt;"
+           rank="054"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

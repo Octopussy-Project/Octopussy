@@ -1,8 +1,10 @@
-<octopussy_service name="Sendmail"
-                   description="Sendmail Service"
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Sendmail Service"
                    icon="software/logo_sendmail"
-									 website="http://www.sendmail.org/"
-                   version="200811170001">
+                   name="Sendmail"
+                   nb_messages="013"
+                   version="200903250002"
+                   website="http://www.sendmail.org/">
   <message loglevel="Information"
            msg_id="Sendmail:from"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;@EMAIL:sender@&gt;, size=&lt;@NUMBER:size@&gt;, class=&lt;@NUMBER:NULL@&gt;, nrcpts=&lt;@NUMBER:NULL@&gt;, msgid=&lt;@WORD:msg_id@&gt;, relay=&lt;@STRING:relay@&gt; "
@@ -81,4 +83,16 @@
            rank="013"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Information"
+           msg_id="Sendmail:from_user"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;@WORD:sender@&gt;, size=&lt;@NUMBER:size@&gt;, class=&lt;@NUMBER:NULL@&gt;, nrcpts=&lt;@NUMBER:NULL@&gt;, msgid=&lt;@WORD:msg_id@&gt;, relay=&lt;@STRING:relay@&gt;"
+           rank="014"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="Sendmail:to_user"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:recipient@&gt; ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt; xdelay=&lt;@WORD:NULL@&gt; mailer=&lt;@WORD:NULL@&gt; pri=&lt;@WORD:NULL@&gt;, relay=&lt;@STRING:relay@&gt;, dsn=&lt;@WORD:NULL@&gt; stat=&lt;@STRING:status@&gt;"
+           rank="015"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
 </octopussy_service>

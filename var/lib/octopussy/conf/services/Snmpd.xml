@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_service name="Snmpd"
-                   description="Snmpd Service"
-                   nb_messages="016"
-									 website="http://net-snmp.sourceforge.net/"
-                   version="200709190001">
+<octopussy_service description="Snmpd Service"
+                   name="Snmpd"
+                   nb_messages="018"
+                   version="200905270001"
+                   website="http://net-snmp.sourceforge.net/">
   <message loglevel="Warning"
            msg_id="Snmpd:shutdown_failed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\S*snmp\w*&quot;):NULL@&gt;: &lt;@REGEXP(&quot;snmpd shutdown failed&quot;):msg@&gt; "
@@ -36,7 +36,7 @@
            taxonomy="Network.Errors" />
   <message loglevel="Information"
            msg_id="Snmpd:received_snmp_packets_from"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\S*snmp\w*&quot;):NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;Received SNMP packet(s) from .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\S*snmp\w*&quot;):NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;Received SNMP packet\(s\) from .+&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="System" />
@@ -108,8 +108,20 @@
            taxonomy="Config.Changes" />
   <message loglevel="Critical"
            msg_id="Snmpd:config_unknown_token"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; snmpd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: line \d+: Warning: Unknown token: .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\S*snmp\w*&quot;):NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.+: line \d+: Warning: Unknown token: .+&quot;):msg@&gt;"
            rank="018"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Snmpd:error_getting_netmask_interface"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;\S*snmp\w*&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;error getting netmask for interface .+&quot;):msg@&gt;"
+           rank="019"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Snmpd:cannot_open"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; snmpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;cannot open .+&quot;):msg@&gt;"
+           rank="020"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

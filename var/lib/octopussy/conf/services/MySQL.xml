@@ -2,8 +2,8 @@
 <octopussy_service description="MySQL Service"
                    icon="software/logo_mysql"
                    name="MySQL"
-                   nb_messages="056"
-                   version="200807150001"
+                   nb_messages="062"
+                   version="200905250002"
                    website="http://www.mysql.com">
   <message loglevel="Critical"
            msg_id="MySQL:cant_connect_through_socket"
@@ -377,4 +377,16 @@
            rank="022"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Debug"
+           msg_id="MySQL:lock"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;mysqld&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;lock: 0x.+&quot;):msg@&gt;"
+           rank="063"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="MySQL:incorrect_information_in_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;mysqld&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.* \[ERROR\] .+: Incorrect information in file:.+&quot;):msg@&gt;"
+           rank="064"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

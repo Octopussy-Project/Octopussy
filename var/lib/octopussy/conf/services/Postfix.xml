@@ -3,7 +3,7 @@
                    icon="software/logo_postfix"
                    name="Postfix"
                    nb_messages="084"
-                   version="200902130006"
+                   version="200905270001"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -121,7 +121,7 @@
            taxonomy="Network" />
   <message loglevel="Critical"
            msg_id="Postfix:fatal_parameter_error"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;fatal: parameter \S+: .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;postfix.*&quot;):daemon@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;fatal: parameter \S+: .+&quot;):msg@&gt;"
            rank="019"
            table="Message"
            taxonomy="Config.Errors" />
@@ -367,7 +367,7 @@
            taxonomy="Network.Errors" />
   <message loglevel="Notice"
            msg_id="Postfix:recipient_address_rejected"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;NOQUEUE: reject: RCPT from .+: Recipient address rejected:.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/smtpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S+: reject: RCPT from .+: Recipient address rejected:.+&quot;):msg@&gt;"
            rank="061"
            table="Message"
            taxonomy="System.Errors" />
@@ -503,4 +503,22 @@
            rank="083"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
+  <message loglevel="Warning"
+           msg_id="Postfix:fatal_scan_dir_push"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;postfix/qmgr&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;fatal: scan_dir_push: .+&quot;):msg@&gt;"
+           rank="084"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Postfix:timeout_initial_server_greeting"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;postfix\/smtp&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S+: conversation with .+ timed out while receiving the initial server greeting&quot;):msg@&gt;"
+           rank="085"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Notice"
+           msg_id="Postfix:non_smtp_command_from"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;postfix\/smtpd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;warning: non-SMTP command from .+&quot;):msg@&gt;"
+           rank="086"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

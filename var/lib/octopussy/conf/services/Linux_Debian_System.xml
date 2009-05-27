@@ -2,7 +2,8 @@
 <octopussy_service description="Linux Debian System Service"
                    icon="operating_systems/os_linux_debian"
                    name="Linux_Debian_System"
-                   version="200810130003"
+                   nb_messages="015"
+                   version="200904140001"
                    website="http://www.debian.org">
   <message loglevel="Warning"
            msg_id="Linux_Debian_System:mysql_closed_table_properly"
@@ -90,9 +91,14 @@
            taxonomy="Application.Start" />
   <message loglevel="Information"
            msg_id="Linux_Debian_System:mysql_checking_insecure_accounts"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;/etc/mysql/debian-start&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Checking for insecure root accounts.&quot;):msg@&gt; 
-"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;/etc/mysql/debian-start&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Checking for insecure root accounts.&quot;):msg@&gt;  "
            rank="015"
            table="Message"
            taxonomy="Application.Start" />
+  <message loglevel="Warning"
+           msg_id="Linux_Debian_System:mysql_server_gone_away"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;/etc/mysql/debian-start&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ERROR 2006 .+: MySQL server has gone away&quot;):msg@&gt;"
+           rank="016"
+           table="Message"
+           taxonomy="System.Errors" />
 </octopussy_service>

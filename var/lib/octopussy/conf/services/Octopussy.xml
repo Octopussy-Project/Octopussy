@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="056"
-                   version="200904200003"
+                   version="200905260001"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -353,4 +353,10 @@
            rank="058"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Critical"
+           msg_id="Octopussy:invalid_regexp_for_message"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Invalid Regexp for Message \S+ ! \(Error: .+\)&quot;):msg@&gt;"
+           rank="059"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

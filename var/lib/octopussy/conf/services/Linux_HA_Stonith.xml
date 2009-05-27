@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Linux High Availability Stonith"
-									 icon="software/logo_linux_ha"
+                   icon="software/logo_linux_ha"
                    name="Linux_HA_Stonith"
-                   version="200808260007"
+                   version="200904140001"
                    website="">
   <message loglevel="Warning"
            msg_id="Linux_HA_Stonith:consider_setting_maximum_supportability"
@@ -32,6 +32,12 @@
            msg_id="Linux_HA_Stonith:dumps_could_be_lost"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;stonithd: \[\d+\]: WARN: Core dumps could be lost if multiple dumps occur.&quot;):msg@&gt;"
            rank="005"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_HA_Stonith:normally_quit"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;stonithd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;notice: .+stonithd normally quit.&quot;):msg@&gt;"
+           rank="006"
            table="Message"
            taxonomy="System" />
 </octopussy_service>
