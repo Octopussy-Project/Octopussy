@@ -144,11 +144,25 @@ sub Init()
 				}
 				push(@msg_alerts, $a->{name});
 			}
-			my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-      push(@{$service{$serv}{msgs}}, 
-				{ re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i, id => $m->{msg_id},
-          pattern => ((scalar(@msg_alerts) > 0) ? $m->{pattern} : undef),
-					taxo => $m->{taxonomy}, alerts => \@msg_alerts } ); 
+
+      my $valid_regexp = eval {
+        use warnings FATAL => qw( regexp );
+        my $re = Octopussy::Message::Pattern_To_Regexp($m);
+        qr/$re/;
+        };
+      if ($valid_regexp) 
+      {
+			  my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
+        push(@{$service{$serv}{msgs}}, 
+				  { re => qr/^$regexp\s*[^\t\n\r\f -~]?$/i, id => $m->{msg_id},
+            pattern => ((scalar(@msg_alerts) > 0) ? $m->{pattern} : undef),
+					  taxo => $m->{taxonomy}, alerts => \@msg_alerts } ); 
+      }
+      else
+      {
+        AAT::Syslog($PROG_NAME, "SERVICE_MSG_INVALID_REGEXP", $m->{msg_id}, $@);
+        print "Msg $m->{msg_id} dropped because Runtime regexp compilation produced:\n$@\n";
+      }
 		}
 	}
   if (AAT::NOT_NULL($cache->get("uparser_$device")))
@@ -235,6 +249,7 @@ sub Incoming_To_Unknown($)
     	print "Unable to open file '$incoming'\n";
     	AAT::Syslog("octo_parser", "UNABLE_OPEN_FILE", $incoming);
   	}
+    close(FILE);
   }
  	else
  	{
