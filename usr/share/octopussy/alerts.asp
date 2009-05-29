@@ -1,7 +1,7 @@
 <WebUI:PageTop title="_ALERTS" help="alerts" />
 <%
 my $f = $Request->Form();
-my $alert = $f->{alert} || $Request->QueryString("alert");
+my $alert = Encode::decode_utf8($f->{alert} || $Request->QueryString("alert"));
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("alerts_table_sort") || "name";
 
@@ -20,7 +20,7 @@ else
   	my @contacts = AAT::ARRAY($f->{contact});
 
     Octopussy::Alert::New({ name => $alert, 
-			description => $f->{description}, 
+			description => Encode::decode_utf8($f->{description}), 
 			level => $f->{level}, type => "Dynamic", taxonomy => $f->{taxonomy},
 			status => ($f->{status} || "Enabled"),
 			timeperiod => $f->{timeperiod}, 
@@ -30,7 +30,8 @@ else
 			thresold_time => $f->{thresold_time},
 			thresold_duration => $f->{thresold_duration},
 			action => \@actions, contact => \@contacts, 
-			msgsubject => $f->{subject}, msgbody => $f->{body} });
+			msgsubject => Encode::decode_utf8($f->{subject}), 
+      msgbody => Encode::decode_utf8($f->{body}) });
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Alert", $alert);
   }
 

@@ -41,8 +41,9 @@ else
 			&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Device::New({ name => $device, address => $f->{address}, 
+      description => Encode::decode_utf8($f->{description}),
 			logtype => $f->{logtype}, type => $f->{device_type}, 
-			model => $f->{device_model}, description => $f->{description} });
+			model => $f->{device_model} });
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Device", $device);
 		$Response->Redirect("./device_services.asp?device=$device");
 	}

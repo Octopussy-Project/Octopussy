@@ -6,7 +6,6 @@ Octopussy::Location - Octopussy Location module
 package Octopussy::Location;
 
 use strict;
-#use bytes;
 use Octopussy;
 
 use constant FILE_LOCATIONS => "locations";
@@ -44,13 +43,9 @@ sub City_Add($)
   my $conf = AAT::XML::Read($file);
 	my $exists = 0;
 	foreach my $c (Cities())
-	{ 
-    $exists = 1	if ($c eq $city); 
-    AAT::DEBUG("$c" . (utf8::is_utf8($city) ? " UTF8" : " NO UTF8"));
-  }
+	  { $exists = 1	if ($c eq $city); }
 	if (!$exists)
 	{
-    AAT::DEBUG("push $city" . (utf8::is_utf8($city) ? " UTF8" : " NO UTF8"));
 		push(@{$conf->{city}}, { c_name => $city });
 		AAT::XML::Write($file, $conf, XML_ROOT);
 		return ($city);

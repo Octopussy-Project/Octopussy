@@ -6,8 +6,6 @@ Octopussy::Contact - Octopussy Contact module
 package Octopussy::Contact;
 
 use strict;
-use bytes;
-use utf8;
 use Octopussy;
 
 use constant XML_ROOT => "octopussy_contact";

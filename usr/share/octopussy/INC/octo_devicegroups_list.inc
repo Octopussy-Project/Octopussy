@@ -25,7 +25,7 @@ my $i = 0;
 foreach my $dg (Octopussy::DeviceGroup::Configurations($sort))
 {
   my ($id, $desc, $type, $devices) = ($dg->{dg_id}, $dg->{description}, 
-		$dg->{type}, join(", ", @{$dg->{device}}));
+		$dg->{type}, join(", ", @{$dg->{device}}) || $dg->{device});
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
   $i++;
 %><AAT:BoxRow class="$class">

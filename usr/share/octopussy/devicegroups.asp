@@ -19,14 +19,14 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 	}
 	else
 	{
-		my $dg_desc = $f->{dg_description};
+		my $dg_desc = Encode::decode_utf8($f->{dg_description});
 		my @criterias = ();
 		if ($f->{type} eq "dynamic")
 		{
 			foreach my $i (1..3)
 			{
 				my $field = $f->{"criteria_field$i"};
-				my $value = $f->{"criteria_value$i"};
+				my $value = Encode::decode_utf8($f->{"criteria_value$i"});
 				push(@criterias, { field => $field, pattern => $value })
 					if (AAT::NOT_NULL($value));
 			}	

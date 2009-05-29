@@ -1,10 +1,10 @@
 <WebUI:PageTop title="_LOCATIONS" help="locations" />
 <%
 my $f = $Request->Form();
-my $city = $f->{city} || $Request->QueryString("city");
-my $building = $f->{building} || $Request->QueryString("building");
-my $room = $f->{room} || $Request->QueryString("room");
-my $rack = $f->{rack} || $Request->QueryString("rack");
+my $city = Encode::decode_utf8($f->{city} || $Request->QueryString("city"));
+my $building = Encode::decode_utf8($f->{building} || $Request->QueryString("building"));
+my $room = Encode::decode_utf8($f->{room} || $Request->QueryString("room"));
+my $rack = Encode::decode_utf8($f->{rack} || $Request->QueryString("rack"));
 my $action = $Request->QueryString("action");
 
 if ((AAT::NOT_NULL($action)) && ($action eq "remove"))
@@ -64,8 +64,7 @@ else
 			AAT::Syslog("octo_WebUI", "GENERIC_CREATED", 
 				"Location Rack", "$city - $building - $room - $rack");
 		}
-    print "city: $city" if (defined $city);
-		#$Response->Redirect("./locations.asp");
+		$Response->Redirect("./locations.asp");
 	}
 }
 %>
