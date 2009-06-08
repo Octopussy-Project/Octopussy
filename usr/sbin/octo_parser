@@ -49,7 +49,7 @@ my $file_pid = Octopussy::PID_File($PROG_NAME . "_$device")
   or die "$PROG_NAME: Parsing $device - Process already running !";
 
 my $inotify = new Linux::Inotify2
-	or die "$PROG_NAME: Unable to create new inotify object: $!";
+	or die "$PROG_NAME: Unable to create new inotify object for Device $device: $!";
 $inotify->blocking(0);
 
 =head1 FUNCTIONS
@@ -141,6 +141,7 @@ sub Init()
 					$alert{$a->{name}}->{action_mail} = 1		if ($act =~ /Mail/i); 
 					$alert{$a->{name}}->{action_jabber} = 1 if ($act =~ /Jabber/i);
 					$alert{$a->{name}}->{action_nsca} = 1 	if ($act =~ /NSCA/i);
+          $alert{$a->{name}}->{action_zabbix} = 1   if ($act =~ /Zabbix/i);
 				}
 				push(@msg_alerts, $a->{name});
 			}
@@ -321,6 +322,9 @@ sub Alert_Handler($$)
 						AAT::NSCA::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),	
 							$subject, $a->{nagios_host}, $a->{nagios_service}) 
               if (defined $a->{action_nsca}); 
+            AAT::Zabbix::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),
+              $subject, $a->{zabbix_host}, $a->{zabbix_item})
+              if (defined $a->{action_zabbix});
 					}
 				}
 				$cache->set($a->{name}, $alert_logs);

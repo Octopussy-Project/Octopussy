@@ -62,6 +62,7 @@
 		<file name="webservices" value="/var/lib/octopussy/conf/webservices.xml" />
     <file name="world_stats" value="/var/lib/octopussy/conf/world_stats.xml" />
 		<file name="xmpp" value="/var/lib/octopussy/conf/xmpp.xml" />
+    <file name="zabbix" value="/var/lib/octopussy/conf/zabbix.xml" />
 
 		<parameter name="devicetype" value="Unknown" />
     <parameter name="devicemodel" value="Unknown" />

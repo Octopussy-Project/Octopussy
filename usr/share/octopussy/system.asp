@@ -97,6 +97,13 @@ if (defined $f->{config})
       user => $f->{"xmpp_user"}, password => $f->{"xmpp_password"} } );
 		AAT::Update_Configuration("Octopussy", "xmpp", \%xmpp_conf, "aat_xmpp");
 	}
+  elsif ($f->{config} eq "zabbix")
+  {
+    my %zabbix_conf = ( zabbix => { bin => $f->{"zabbix_bin"},
+      conf => $f->{"zabbix_conf"}, zabbix_server => $f->{"zabbix_server"},
+      zabbix_host => $f->{"zabbix_host"}, zabbix_item => $f->{"zabbix_item"} } );
+    AAT::Update_Configuration("Octopussy", "zabbix", \%zabbix_conf, "aat_zabbix");
+  }
 	AAT::Syslog("octo_WebUI", "SYSTEM_CONFIG_MODIFIED");
 }
 %>

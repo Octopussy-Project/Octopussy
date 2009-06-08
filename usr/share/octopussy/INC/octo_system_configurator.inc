@@ -58,4 +58,8 @@ my $action = $arg{action};
 	<AAT:BoxCol><AAT:Config_NSCA appli="Octopussy" action="$action" 
 		tooltip="_TOOLTIP_SYSTEM_NSCA" /></AAT:BoxCol>
 </AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol><AAT:Config_Zabbix appli="Octopussy" action="$action" 
+    tooltip="_TOOLTIP_SYSTEM_ZABBIX" /></AAT:BoxCol>
+</AAT:BoxRow>
 </AAT:Box>

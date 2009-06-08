@@ -60,6 +60,7 @@ use AAT::User;
 use AAT::WebService;
 use AAT::XML;
 use AAT::XMPP;
+use AAT::Zabbix;
 
 =head1 FUNCTIONS
 
@@ -697,6 +698,19 @@ sub Config_XMPP($$)
 	my ($args, $body) = @_;
 
 	$main::Response->Include('AAT/INC/AAT_Config_XMPP.inc', %{$args});
+}
+
+=head2 Config_Zabbix($args, $body)
+
+Usage: <AAT:Config_Zabbix tooltip="_TOOLTIP_SYSTEM_ZABBIX" />
+
+=cut
+
+sub Config_Zabbix($$)
+{
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_Config_Zabbix.inc', %{$args});
 }
 
 =head2 Entry($args, $body)
