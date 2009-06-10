@@ -26,14 +26,14 @@ sub Configuration($)
 	return ($conf->{zabbix});
 }
 
-=head2 Send($appli, $level, $msg, $zabbix_host, $zabbix_item)
+=head2 Send($appli, $msg, $zabbix_host, $zabbix_item)
 
 Sends Zabbix message '$msg'
 
 =cut
-sub Send($$$$$)
+sub Send($$$$)
 {
-  my ($appli, $level, $msg, $zabbix_host, $zabbix_item) = @_;
+  my ($appli, $msg, $zabbix_host, $zabbix_item) = @_;
 	
 	my $conf_zabbix = Configuration($appli);
   if ((defined $conf_zabbix)
@@ -43,6 +43,7 @@ sub Send($$$$$)
     my $item = $zabbix_item || $conf_zabbix->{zabbix_item};
     my $cmd = "$conf_zabbix->{bin} -z $conf_zabbix->{zabbix_server} -s $conf_zabbix->{zabbix_host} -k $conf_zabbix->{zabbix_item} -o \"$msg\"";
     print "CMD: $cmd\n";
+    AAT::Syslog("Zabbix Send", $cmd);
     `$cmd`;
 
 #    open(ZABBIX, "| $conf_nsca->{bin} -H $conf_nsca->{nagios_server} -c $conf_nsca->{conf}");

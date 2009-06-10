@@ -86,7 +86,7 @@ my @used_services = Octopussy::Service::List_Used();
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
 	<AAT:BoxCol>
-	<AAT:Inc file="octo_selector_action" multiple="1" size="3" /></AAT:BoxCol>
+	<AAT:Inc file="octo_selector_action_mailing" multiple="1" size="2" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Button name="contact" /></AAT:BoxCol>
@@ -105,6 +105,33 @@ my @used_services = Octopussy::Service::List_Used();
 	<AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Label value="_BODY" tooltip="_TOOLTIP_ALERT_MSG" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol><AAT:TextArea name="body" cols="60" rows="5" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Inc file="octo_selector_action_program" multiple="1" size="2" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Label value="_HOST" tooltip="_TOOLTIP_ALERT_MSG" style="B"/>
+  </AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="action_host" size="30" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Label value="_SERVICE" tooltip="_TOOLTIP_ALERT_MSG" style="B"/>
+  </AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="action_service" size="30" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Label value="_BODY" tooltip="_TOOLTIP_ALERT_MSG" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:TextArea name="body" cols="60" rows="5" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>

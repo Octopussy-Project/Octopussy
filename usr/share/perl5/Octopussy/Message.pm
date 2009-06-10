@@ -511,6 +511,8 @@ sub Alerts($$$$$)
             msgsubject => $ac->{msgsubject},  msgbody => $ac->{msgbody},
             nagios_host => $ac->{nagios_host}, # only for NSCA
             nagios_service => $ac->{nagios_service}, # only for NSCA
+            action_host => $ac->{action_host}, # for Nagios & Zabbix
+            action_service => $ac->{action_service}, # for Nagios & Zabbix
             imdest => \@ims, maildest => \@mails } );
         }
       }
@@ -534,6 +536,8 @@ sub Alerts($$$$$)
               msgsubject => $ac->{msgsubject}, msgbody => $ac->{msgbody},
               nagios_host => $ac->{nagios_host}, # only for NSCA
               nagios_service => $ac->{nagios_service}, # only for NSCA
+              action_host => $ac->{action_host}, # for Nagios & Zabbix
+              action_service => $ac->{action_service}, # for Nagios & Zabbix
               imdest => \@ims, maildest => \@mails } );
         }
       }

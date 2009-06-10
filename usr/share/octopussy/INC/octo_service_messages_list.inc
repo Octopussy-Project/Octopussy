@@ -79,11 +79,31 @@ foreach my $m (@messages)
  	my $edit_link = "./service_message_edit.asp?service=$service&msgid=$id";
 	my $remove_link = "./dialog.asp?id=delete_message&msg=$id&service=$service";
 	my $msg_color = Octopussy::Message::Color($m->{pattern});
+
+  my $valid_regexp = eval {
+      use warnings FATAL => qw( regexp );
+      my $re = Octopussy::Message::Pattern_To_Regexp($m);
+      qr/$re/;
+    };
+  my $idtooltip = ($valid_regexp ? "" : $@);
+  $idtooltip =~ s/ at .+ line .+$//;
+  chomp($idtooltip);
 %>
 <AAT:BoxRow>
 	<AAT:BoxCol align="C"><AAT:Label value="$rank" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Label value="$percent" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="$id" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol>
+  <%
+  if ($valid_regexp)
+  {
+  %><AAT:Label value="$id" style="B" /><%
+  }
+  else
+  {
+  %><AAT:Label value="$id" style="B" color="red" tooltip="$idtooltip" /><%
+  }
+  %>
+  </AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Label value="$loglevel" color="$level_color{$loglevel}" style="B" />
 	</AAT:BoxCol>
@@ -116,9 +136,19 @@ foreach my $m (@messages)
 %>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol cspan="6">
-	<AAT:Label value="$msg_color" size="-2" /></AAT:BoxCol>	
-<%
+  <%
+  if ($valid_regexp)
+  {
+	  %><AAT:BoxCol cspan="6">
+	  <AAT:Label value="$msg_color" size="-2" /></AAT:BoxCol><%
+  }
+  else
+  {
+    %><AAT:BoxCol>
+    <AAT:Button name="alert" tooltip="$idtooltip" /></AAT:BoxCol>
+    <AAT:BoxCol cspan="5">
+    <AAT:Label value="$msg_color" size="-2" /></AAT:BoxCol><%
+  }
   if ($role !~ /ro/i)
   {
 	%><AAT:BoxCol align="R">

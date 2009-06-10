@@ -16,7 +16,8 @@ else
   {
 		my @devices = AAT::ARRAY($f->{device});
   	my @services = AAT::ARRAY($f->{service});
-  	my @actions = AAT::ARRAY($f->{action});
+  	my @actions = (AAT::ARRAY($f->{action_mailing}), 
+      AAT::ARRAY($f->{action_program}));
   	my @contacts = AAT::ARRAY($f->{contact});
 
     Octopussy::Alert::New({ name => $alert, 
@@ -31,7 +32,10 @@ else
 			thresold_duration => $f->{thresold_duration},
 			action => \@actions, contact => \@contacts, 
 			msgsubject => Encode::decode_utf8($f->{subject}), 
-      msgbody => Encode::decode_utf8($f->{body}) });
+      msgbody => Encode::decode_utf8($f->{body}),
+      action_host => Encode::decode_utf8($f->{action_host}),
+      action_service => Encode::decode_utf8($f->{action_service})
+      });
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Alert", $alert);
   }
 

@@ -438,8 +438,11 @@ sub Message_Building($$$$)
 	my ($alert, $device, $line, $msg) = @_;
 	my %field = Octopussy::Message::Fields_Values($msg, $line);
 	
-	my $subject = $alert->{msgsubject};
- 	my $body = $alert->{msgbody};
+	my $subject = $alert->{msgsubject} || "";
+ 	my $body = $alert->{msgbody} || "";
+  my $host = $alert->{action_host} || ""; # For Nagios/Zabbix
+  my $service = $alert->{action_service} || ""; # For Nagios/Zabbix
+
  	$subject =~ s/__device__/$device/gi;
  	$subject =~ s/__alert__/$alert->{name}/gi;
  	$subject =~ s/__level__/$alert->{level}/gi;
@@ -451,9 +454,18 @@ sub Message_Building($$$$)
  	$body =~ s/__log__/$line/gi;
 	$body =~ s/__field_(\w+)__/$field{$1}/gi;
 	$body =~ s/\s*\@\@\@\s*/\n/g;
-# 	$body =~ s/\\n/\n/gi;
-
-	return ($subject, $body);
+  $host =~ s/__device__/$device/gi;
+  $host =~ s/__alert__/$alert->{name}/gi;
+  $host =~ s/__level__/$alert->{level}/gi;
+  $host =~ s/__log__/$line/gi;
+  $host =~ s/__field_(\w+)__/$field{$1}/gi;
+  $service =~ s/__device__/$device/gi;
+  $service =~ s/__alert__/$alert->{name}/gi;
+  $service =~ s/__level__/$alert->{level}/gi;
+  $service =~ s/__log__/$line/gi;
+  $service =~ s/__field_(\w+)__/$field{$1}/gi;
+ 
+	return ($subject, $body, $host, $service);
 }
 
 =head2 Tracker($al, $dev, $stat, $sort, $limit)

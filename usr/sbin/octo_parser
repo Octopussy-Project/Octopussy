@@ -309,7 +309,7 @@ sub Alert_Handler($$)
 							{ $data = $line; }
 						$alert_logs = ();
 						Octopussy::Alert::Insert_In_DB($device, $a, $data, $date);
-						my ($subject, $body) = 
+						my ($subject, $body, $action_host, $action_service) = 
 							Octopussy::Alert::Message_Building($a, $device, $data, $msg);
 						if (defined $a->{action_jabber})
 						{
@@ -322,8 +322,8 @@ sub Alert_Handler($$)
 						AAT::NSCA::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),	
 							$subject, $a->{nagios_host}, $a->{nagios_service}) 
               if (defined $a->{action_nsca}); 
-            AAT::Zabbix::Send("Octopussy", (($a->{level} =~ /Warning/i) ? 1 : 2),
-              $subject, $a->{zabbix_host}, $a->{zabbix_item})
+            AAT::Zabbix::Send("Octopussy", $subject, 
+              $action_host, $action_service)
               if (defined $a->{action_zabbix});
 					}
 				}
