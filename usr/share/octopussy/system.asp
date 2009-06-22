@@ -45,22 +45,31 @@ if (defined $f->{config})
 	elsif ($f->{config} eq "ldap_contacts")
 	{
 		my $c = AAT::LDAP::Configuration("Octopussy");
-		my ($server, $base, $filter) =
-  		($c->{users_server}, $c->{users_base}, $c->{users_filter});
+		my ($u_server, $u_auth_dn, $u_auth_pwd, $u_base, $u_filter) =
+  		($c->{users_server}, $c->{users_auth_dn}, $c->{users_auth_password},
+      $c->{users_base}, $c->{users_filter});
 		my %ldap_conf = ( ldap => { contacts_base => $f->{"ldap_contacts_base"},
+      contacts_auth_dn => $f->{"ldap_contacts_auth_dn"},
+      contacts_auth_password => $f->{"ldap_contacts_auth_password"},
       contacts_filter => $f->{"ldap_contacts_filter"}, 
 			contacts_server => $f->{"ldap_contacts_server"},
-      users_base => $base, users_filter => $filter, users_server => $server } );
+      users_base => $u_base, users_auth_dn => $u_auth_dn, 
+      users_auth_password => $u_auth_pwd,
+      users_filter => $u_filter, users_server => $u_server } );
 		AAT::Update_Configuration("Octopussy", "ldap", \%ldap_conf, "aat_ldap");
 	}
 	elsif ($f->{config} eq "ldap_users")
   {
 		my $c = AAT::LDAP::Configuration("Octopussy");
-    my ($server, $base, $filter) =
-      ($c->{contacts_server}, $c->{contacts_base}, $c->{contacts_filter});
-		my %ldap_conf = ( ldap => { contacts_base => $base,
-      contacts_filter => $filter, contacts_server => $server,
+    my ($c_server, $c_auth_dn, $c_auth_pwd, $c_base, $c_filter) =
+      ($c->{contacts_server}, $c->{contacts_auth_dn}, 
+      $c->{contacts_auth_password}, $c->{contacts_base}, $c->{contacts_filter});
+		my %ldap_conf = ( ldap => { contacts_base => $c_base,
+      contacts_auth_dn => $c_auth_dn, contacts_auth_password => $c_auth_pwd,
+      contacts_filter => $c_filter, contacts_server => $c_server,
       users_base => $f->{"ldap_users_base"},
+      users_auth_dn => $f->{"ldap_users_auth_dn"},
+      users_auth_password => $f->{"ldap_users_auth_password"},
       users_filter => $f->{"ldap_users_filter"},
       users_server => $f->{"ldap_users_server"} } );
     AAT::Update_Configuration("Octopussy", "ldap", \%ldap_conf, "aat_ldap");

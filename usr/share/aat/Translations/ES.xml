@@ -171,6 +171,8 @@
 	<msg mid="_BUILDING" value="Edificio" />
 	<msg mid="_CITY" value="Ciudad" />
 	<msg mid="_CONTACTS" value="Contactos" />
+  <msg mid="_CONTACTS_AUTH_DN" value="_CONTACTS_AUTH_DN" />
+  <msg mid="_CONTACTS_AUTH_PASSWORD" value="_CONTACTS_AUTH_PASSWORD" />
 	<msg mid="_CONTACTS_BASE" value="Base de Contactos" />
 	<msg mid="_CONTACTS_FILTER" value="Filtro de Contactos" />
 	<msg mid="_CONTACTS_SERVER" value="Servidor de Contactos" />
@@ -326,6 +328,8 @@
 	<msg mid="_TIMEPERIOD_NAME" value="Nombre del Periodo" />
 	<msg mid="_TIMEPERIODS" value="Periodos" />
 	<msg mid="_UNKNOWN_MSGS" value="Mensajes Desconocidos" />
+  <msg mid="_USERS_AUTH_DN" value="_USERS_AUTH_DN" />
+  <msg mid="_USERS_AUTH_PASSWORD" value="_USERS_AUTH_PASSWORD" />
 	<msg mid="_USERS_BASE" value="Base de Usuarios" />
   <msg mid="_USERS_FILTER" value="Filtro de Usuarios" />
   <msg mid="_USERS_SERVER" value="Servidor de Usuarios" />

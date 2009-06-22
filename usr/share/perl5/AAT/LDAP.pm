@@ -41,7 +41,11 @@ sub Contacts_Connection_Test($)
 	my $ldap = Configuration($appli);
 	my $l = Net::LDAP->new($ldap->{contacts_server});
  	return (0) if (!defined $l);
-  my $msg = $l->bind();
+  my $msg = (AAT::NOT_NULL($ldap->{contacts_auth_dn}) 
+    ? $l->bind($ldap->{contacts_auth_dn}, 
+        password => $ldap->{contacts_auth_password})
+    : $l->bind());
+  return (0)  if ($msg->code);
 	$msg = $l->search(base => $ldap->{contacts_base},
       filter => $ldap->{contacts_filter});
 	return (0)	if ($msg->code);
@@ -61,7 +65,11 @@ sub Users_Connection_Test($)
 	my $ldap = Configuration($appli);
   my $l = Net::LDAP->new($ldap->{users_server});
   return (0) if (!defined $l);
-  my $msg = $l->bind();
+  my $msg = (AAT::NOT_NULL($ldap->{users_auth_dn})
+    ? $l->bind($ldap->{users_auth_dn},
+        password => $ldap->{users_auth_password})
+    : $l->bind());
+  return (0)  if ($msg->code);
 	$msg = $l->search(base => $ldap->{users_base},
       filter => $ldap->{users_filter});
   return (0)  if ($msg->code);
@@ -112,7 +120,11 @@ sub Contacts($)
 	{
   	my $l = Net::LDAP->new($ldap->{contacts_server});
   	return () if (!defined $l);
-  	my $msg = $l->bind();
+    my $msg = (AAT::NOT_NULL($ldap->{contacts_auth_dn})
+      ? $l->bind($ldap->{contacts_auth_dn},
+          password => $ldap->{contacts_auth_password})
+      : $l->bind());
+    return ()  if ($msg->code);
   	$msg = $l->search(base => $ldap->{contacts_base},
     	filter => $ldap->{contacts_filter});
 
@@ -148,7 +160,11 @@ sub Users($)
 	{
   	my $l = Net::LDAP->new($ldap->{users_server});
   	return () if (!defined $l);
-  	my $msg = $l->bind();
+    my $msg = (AAT::NOT_NULL($ldap->{users_auth_dn})
+      ? $l->bind($ldap->{users_auth_dn},
+          password => $ldap->{users_auth_password})
+      : $l->bind());
+    return ()  if ($msg->code);
   	$msg = $l->search(base => $ldap->{users_base},
     	filter => $ldap->{users_filter});
 

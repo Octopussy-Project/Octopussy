@@ -171,6 +171,8 @@
   <msg mid="_BUILDING" value="Building" />
   <msg mid="_CITY" value="City" />
   <msg mid="_CONTACTS" value="Contacts" />
+  <msg mid="_CONTACTS_AUTH_DN" value="Contacts Auth. DN" />
+  <msg mid="_CONTACTS_AUTH_PASSWORD" value="Contacts Auth. Password" />
   <msg mid="_CONTACTS_BASE" value="Contacts Base" />
   <msg mid="_CONTACTS_FILTER" value="Contacts Filter" />
   <msg mid="_CONTACTS_SERVER" value="Contacts Server" />
@@ -326,6 +328,8 @@
   <msg mid="_TIMEPERIOD_NAME" value="TimePeriod Name" />
   <msg mid="_TIMEPERIODS" value="TimePeriods" />
   <msg mid="_UNKNOWN_MSGS" value="Unknown Messages" />
+  <msg mid="_USERS_AUTH_DN" value="Users Auth. DN" />
+  <msg mid="_USERS_AUTH_PASSWORD" value="Users Auth. Password" />
   <msg mid="_USERS_BASE" value="Users Base" />
   <msg mid="_USERS_FILTER" value="Users Filter" />
   <msg mid="_USERS_SERVER" value="Users Server" />

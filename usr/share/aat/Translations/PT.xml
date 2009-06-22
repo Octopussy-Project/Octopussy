@@ -171,6 +171,8 @@
 	<msg mid="_BUILDING" value="Prédio" />
 	<msg mid="_CITY" value="Cidade" />
 	<msg mid="_CONTACTS" value="Contatos" />
+  <msg mid="_CONTACTS_AUTH_DN" value="_CONTACTS_AUTH_DN" />
+  <msg mid="_CONTACTS_AUTH_PASSWORD" value="_CONTACTS_AUTH_PASSWORD" />
 	<msg mid="_CONTACTS_BASE" value="Base de Contatos" />
 	<msg mid="_CONTACTS_FILTER" value="Filtro de Contatos" />
 	<msg mid="_CONTACTS_SERVER" value="Servidor de Contatos" />
@@ -326,6 +328,8 @@
 	<msg mid="_TIMEPERIOD_NAME" value="Nome do Período de Tempo" />
 	<msg mid="_TIMEPERIODS" value="Períodos de Tempo" />
 	<msg mid="_UNKNOWN_MSGS" value="Mensagens Desconhecidas" />
+  <msg mid="_USERS_AUTH_DN" value="_USERS_AUTH_DN" />
+  <msg mid="_USERS_AUTH_PASSWORD" value="_USERS_AUTH_PASSWORD" />
 	<msg mid="_USERS_BASE" value="Base de Usuários" />
   <msg mid="_USERS_FILTER" value="Filtro de Usuários" />
   <msg mid="_USERS_SERVER" value="Servidor de Usuários" />

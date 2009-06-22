@@ -171,6 +171,8 @@
   <msg mid="_BUILDING" value="Здание" />
   <msg mid="_CITY" value="Город" />
   <msg mid="_CONTACTS" value="Контакты" />
+  <msg mid="_CONTACTS_AUTH_DN" value="_CONTACTS_AUTH_DN" />
+  <msg mid="_CONTACTS_AUTH_PASSWORD" value="_CONTACTS_AUTH_PASSWORD" />
   <msg mid="_CONTACTS_BASE" value="База контактов" />
   <msg mid="_CONTACTS_FILTER" value="Фильтр контактов" />
   <msg mid="_CONTACTS_SERVER" value="Сервер контактов" />
@@ -326,6 +328,8 @@
   <msg mid="_TIMEPERIOD_NAME" value="Название периода времени" />
   <msg mid="_TIMEPERIODS" value="Периоды времени" />
   <msg mid="_UNKNOWN_MSGS" value="Неизвестные сообщения" />
+  <msg mid="_USERS_AUTH_DN" value="_USERS_AUTH_DN" />
+  <msg mid="_USERS_AUTH_PASSWORD" value="_USERS_AUTH_PASSWORD" />
   <msg mid="_USERS_BASE" value="База пользователей" />
   <msg mid="_USERS_FILTER" value="Фильтр пользователей" />
   <msg mid="_USERS_SERVER" value="Сервер пользователей" />
