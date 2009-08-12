@@ -2,7 +2,7 @@
 <octopussy_service description="Linux High Availability Attr"
                    icon="software/logo_linux_ha"
                    name="Linux_HA_Attr"
-                   version="200905050001"
+                   version="200906020002"
                    website="">
   <message loglevel="Information"
            msg_id="Linux_HA_Attr:starting_mainloop"
@@ -46,4 +46,16 @@
            rank="007"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Warning"
+           msg_id="Linux_HA_Attr:error"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;attrd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ERROR: .+&quot;):msg@&gt;"
+           rank="008"
+           table="Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Linux_HA_Attr:critical_lost_connection"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;attrd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;CRIT: .+: Lost connection to .+&quot;):msg@&gt;"
+           rank="009"
+           table="Message"
+           taxonomy="Network.Errors" />
 </octopussy_service>

@@ -3,7 +3,7 @@
                    icon="software/logo_linux_ha"
                    name="Linux_HA_Log"
                    nb_messages="008"
-                   version="200904140005"
+                   version="200906230001"
                    website="">
   <message loglevel="Warning"
            msg_id="Linux_HA_Log:consider_setting_maximum_supportability"
@@ -71,4 +71,10 @@
            rank="011"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_HA_Log:working_on_ipc_channel"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;logd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;WARN: \S+: working on IPC channel took \d+ ms.*&quot;):msg@&gt;"
+           rank="012"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

@@ -2,8 +2,8 @@
 <octopussy_service description="Linux System Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_System"
-                   nb_messages="066"
-                   version="200905050001">
+                   nb_messages="069"
+                   version="200907100001">
   <message loglevel="Information"
            msg_id="Linux_System:removing_device_node"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udev&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;removing device node .+&quot;):msg@&gt;"
@@ -391,7 +391,7 @@
   <message loglevel="Information"
            msg_id="Linux_System:usermod_change_user_password"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;usermod&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;change user .+ password&quot;):msg@&gt;"
-           rank="066"
+           rank="019"
            table="Message"
            taxonomy="Config.Changes" />
   <message loglevel="Information"
@@ -418,4 +418,16 @@
            rank="069"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Linux_System:usermod_add_to_group"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;usermod&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;add .+ to group .+&quot;):msg@&gt;"
+           rank="070"
+           table="Message"
+           taxonomy="Config.Changes" />
+  <message loglevel="Warning"
+           msg_id="Linux_System:password_changed2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;passwd&quot;):daemon@&gt;:&lt;@REGEXP(&quot;.* password changed for \S+&quot;):msg@&gt;"
+           rank="071"
+           table="Message"
+           taxonomy="Config.Changes" />
 </octopussy_service>

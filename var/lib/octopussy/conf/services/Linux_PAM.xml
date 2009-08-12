@@ -3,7 +3,7 @@
                    icon="operating_systems/os_linux_generic"
                    name="Linux_PAM"
                    nb_messages="016"
-                   version="200901280001"
+                   version="200906020001"
                    website="http://www.kernel.org/pub/linux/libs/pam/">
   <message loglevel="Warning"
            msg_id="Linux_PAM:user_access_denied"
@@ -55,7 +55,7 @@
            taxonomy="System" />
   <message loglevel="Warning"
            msg_id="Linux_PAM:password_expired"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\(pam_unix\) expired password for user .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*pam_unix.* expired password for user .+&quot;):msg@&gt;"
            rank="010"
            table="Message"
            taxonomy="System" />
@@ -99,6 +99,12 @@
            msg_id="Linux_PAM:couldnt_recover_authentication_token"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\(pam_unix\) could not recover authentication token&quot;):msg@&gt;"
            rank="016"
+           table="Message"
+           taxonomy="Auth.Failure" />
+  <message loglevel="Warning"
+           msg_id="Linux_PAM:authentication_failure3"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;: &lt;@REGEXP(&quot;pam_unix\(\S+\): authentication failure; .+&quot;):msg@&gt;"
+           rank="017"
            table="Message"
            taxonomy="Auth.Failure" />
 </octopussy_service>

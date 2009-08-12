@@ -3,17 +3,17 @@
                    icon="software/logo_samba"
                    name="Samba"
                    nb_messages="008"
-                   version="200905250006"
+                   version="200906020006"
                    website="http://samba.org">
   <message loglevel="Notice"
            msg_id="Samba:reconnecting_ldap_server"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnecting to LDAP server.+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smbd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnecting to LDAP server.+&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Network" />
   <message loglevel="Information"
            msg_id="Samba:reconnected_ldap_server"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt\(s\)&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smbd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: reconnected to LDAP server after \d+ attempt\(s\)&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="Network" />
@@ -25,7 +25,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Samba:couldnt_hard_reconnect_ldap"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: could not hard reconnect to LDAP server.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smbd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;nss_ldap: could not hard reconnect to LDAP server.+&quot;):msg@&gt;"
            rank="004"
            table="Message"
            taxonomy="Network.Errors" />
@@ -49,7 +49,7 @@
            taxonomy="Application" />
   <message loglevel="Warning"
            msg_id="Samba:unable_connect_cups_server"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; smbd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\s*Unable to connect to CUPS server .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt;  &lt;@REGEXP(&quot;smbd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\s*Unable to connect to CUPS server .+&quot;):msg@&gt;"
            rank="008"
            table="Message"
            taxonomy="Application.Errors" />
@@ -65,4 +65,16 @@
            rank="010"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Debug"
+           msg_id="Samba:nmbd_debug_c_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;nmbd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*nmbd\/nmbd_\S+.c:\S+&quot;):msg@&gt;"
+           rank="011"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Samba:failed_to_register_name"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;nmbd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.* [Ff]ailed to register\S* name .+ on subnet .+&quot;):msg@&gt;"
+           rank="012"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

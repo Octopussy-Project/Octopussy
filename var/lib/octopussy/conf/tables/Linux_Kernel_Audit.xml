@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Linux Kernel Auditing Table"
+                 name="Linux_Kernel_Audit"
+                 version="200908120001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="pid"
+         type="PID" />
+  <field title="ppid"
+         type="PID" />
+  <field title="type"
+         type="NUMBER" />
+  <field title="item"
+         type="NUMBER" />
+  <field title="inode"
+         type="NUMBER" />
+  <field title="name"
+         type="STRING" />
+  <field title="uid"
+         type="NUMBER" />
+  <field title="gid"
+         type="NUMBER" />
+  <field title="tty"
+         type="WORD" />
+  <field title="session"
+         type="NUMBER" />
+  <field title="command"
+         type="STRING" />
+  <field title="exec"
+         type="STRING" />
+  <field title="key"
+         type="STRING" />
+</octopussy_table>

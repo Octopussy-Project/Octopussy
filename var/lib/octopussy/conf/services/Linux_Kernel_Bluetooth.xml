@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Linux Kernel Bluetooth Service"
+                   name="Linux_Kernel_Bluetooth"
+                   version="200908120004"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_Bluetooth:layer_initialized"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*Bluetooth: .+ layer initialized&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_Bluetooth:core_version"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*Bluetooth: Core ver .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_Bluetooth:l2cap_version"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*Bluetooth: L2CAP ver .+&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_Bluetooth:rfcomm_version"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*Bluetooth: RFCOMM ver .+&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_Bluetooth:hci_device_initialized"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*Bluetooth: HCI device and connection manager initialized&quot;):msg@&gt;"
+           rank="005"
+           table="Message"
+           taxonomy="System.Boot" />
+</octopussy_service>

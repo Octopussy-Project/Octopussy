@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Linux Kernel Audit Service"
+                   name="Audit"
+                   version="200908120001"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Audit:started_dispatcher"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;auditd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Started dispatcher: .+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Application.Start" />
+</octopussy_service>

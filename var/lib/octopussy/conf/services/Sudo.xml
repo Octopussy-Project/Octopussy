@@ -2,7 +2,7 @@
 <octopussy_service description="Sudo Service"
                    name="Sudo"
                    nb_messages="017"
-                   version="200904200002">
+                   version="200907020001">
   <message loglevel="Warning"
            msg_id="Sudo:check_pass_user_unknown"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;sudo.*&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*check pass; user unknown&quot;):msg@&gt;"
@@ -123,4 +123,10 @@
            rank="020"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Critical"
+           msg_id="Sudo:too_many_open_files"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;sudo&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.*Too many open files in system.*&quot;):msg@&gt;"
+           rank="021"
+           table="Message"
+           taxonomy="System.Errors" />
 </octopussy_service>

@@ -2,8 +2,8 @@
 <octopussy_service description="Syslog-ng Service"
                    icon="software/logo_syslog-ng"
                    name="Syslog-ng"
-                   nb_messages="025"
-                   version="200902270001"
+                   nb_messages="027"
+                   version="200907020002"
                    website="http://www.balabit.com/network-security/syslog-ng/">
   <message loglevel="Warning"
            msg_id="Syslog-ng:stats_dropped"
@@ -163,8 +163,20 @@
            taxonomy="Application.Stop" />
   <message loglevel="Warning"
            msg_id="Syslog-ng:error_accepting_new_connection"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;syslog-ng&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Error accepting new connection;.*&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Error accepting new connection.*&quot;):msg@&gt;"
            rank="027"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Syslog-ng:initiating_connection_failed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Initiating connection failed, reconnecting.*&quot;):msg@&gt;"
+           rank="028"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Syslog-ng:error_creating_socket"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Error creating socket.*&quot;):msg@&gt;"
+           rank="029"
            table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>

@@ -2,7 +2,8 @@
 <octopussy_service description="Anacron Service"
                    icon="operating_systems/os_linux_generic"
                    name="Anacron"
-                   version="200803130002">
+                   nb_messages="007"
+                   version="200905180003">
   <message loglevel="Information"
            msg_id="Anacron:job_started"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;anacron&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Job .+ started&quot;):msg@&gt;"

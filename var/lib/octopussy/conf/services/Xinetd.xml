@@ -2,7 +2,7 @@
 <octopussy_service description="Xinetd Service"
                    name="Xinetd"
                    nb_messages="008"
-                   version="200805130001">
+                   version="200906190001">
   <message loglevel="Information"
            msg_id="Xinetd:start_service"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xinetd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;START: \S+ pid=\d+ from=\S+&quot;):msg@&gt;"
@@ -49,6 +49,12 @@
            msg_id="Xinetd:exiting"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xinetd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Exiting...&quot;):msg@&gt; "
            rank="006"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="Xinetd:exit_service"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; xinetd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;EXIT: \S+ status=\d+ pid=\d+ .+&quot;):msg@&gt;"
+           rank="009"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

@@ -41,6 +41,8 @@
 
   <log mid="PROGRAM_START" message="Started !" />
 
+  <log mid="SERVICE_MSG_INVALID_REGEXP" message="Invalid Regexp for Message %%ARG1%% ! (Error: %%ARG2%%)" />
+
 	<log mid="SMTP_INVALID_CONFIG"
 		message="Invalid SMTP Configuration. Can't send any mail !" />
 	

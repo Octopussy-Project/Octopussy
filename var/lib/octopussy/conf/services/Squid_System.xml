@@ -3,7 +3,7 @@
                    icon="software/logo_squid"
                    name="Squid_System"
                    nb_messages="082"
-                   version="200905250003"
+                   version="200906020002"
                    website="http://www.squid-cache.org/">
   <message loglevel="Information"
            msg_id="Squid_System:logfile_rotate"
@@ -501,6 +501,18 @@
            msg_id="Squid_System:urlparse_illegal_character"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;urlParse: Illegal character .+&quot;):msg@&gt;"
            rank="083"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Squid_System:acl_name_not_defined"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;ACL name '.+' not defined!&quot;):msg@&gt;"
+           rank="084"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Squid_System:bungled_squid_conf"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Bungled squid.conf line \d+: .+&quot;):msg@&gt;"
+           rank="085"
            table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>
