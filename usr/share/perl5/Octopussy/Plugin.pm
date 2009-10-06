@@ -7,17 +7,19 @@ package Octopussy::Plugin;
 
 use strict;
 no strict 'refs';
+use Readonly;
 use Octopussy;
 
-use constant DIR_PLUGIN => "plugins";
-use constant DIR_PLUGIN_MODULES => "/usr/share/perl5/Octopussy/Plugin/";
+Readonly my $DIR_PLUGIN => "plugins";
+Readonly my $DIR_PLUGIN_MODULES => "/usr/share/perl5/Octopussy/Plugin/";
 
 my $dir_plugins = undef;
 my %function_source = ();
 
 BEGIN
 {
-	opendir(DIR, DIR_PLUGIN_MODULES);
+  Readonly my $DIR_PLUGIN_MODULES => "/usr/share/perl5/Octopussy/Plugin/";
+  opendir(DIR, $DIR_PLUGIN_MODULES);
  	my @plugins = grep /.+\.pm$/, readdir(DIR);
  	foreach my $p (@plugins)
   { 
@@ -37,7 +39,7 @@ sub Init_All($)
 {
 	my $conf = shift;
 
-	my @plugins = AAT::FS::Directory_Files(DIR_PLUGIN_MODULES, qr/.+\.pm$/);
+	my @plugins = AAT::FS::Directory_Files($DIR_PLUGIN_MODULES, qr/.+\.pm$/);
   foreach my $p (@plugins)
   { 
 		$p =~ s/\.pm$//;
@@ -74,7 +76,7 @@ Returns List of Plugins
 =cut
 sub List()
 {	
-	$dir_plugins ||= Octopussy::Directory(DIR_PLUGIN);
+	$dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
 
 	return (AAT::XML::Name_List($dir_plugins));
 }
@@ -88,7 +90,7 @@ sub Functions()
 {
 	my @functions = ();
 
-	$dir_plugins ||= Octopussy::Directory(DIR_PLUGIN);
+	$dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
 	my @files = AAT::FS::Directory_Files($dir_plugins, qr/.+\.xml$/);
   foreach my $f (@files)
   {
@@ -111,7 +113,7 @@ sub Function_Source($)
 
 	if (!defined $function_source{$fct})
 	{
-		$dir_plugins ||= Octopussy::Directory(DIR_PLUGIN);
+		$dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
 		my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
 		foreach my $pf (AAT::ARRAY($conf->{function})) 
 		{ 

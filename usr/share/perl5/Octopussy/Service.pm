@@ -7,12 +7,13 @@ package Octopussy::Service;
 
 use strict;
 no strict 'refs';
+use Readonly;
 use utf8;
 use Encode;
 use Octopussy;
 
-use constant DIR_SERVICE => "services";
-use constant XML_ROOT => "octopussy_service";
+Readonly my $DIR_SERVICE => "services";
+Readonly my $XML_ROOT => "octopussy_service";
 
 my $dir_services = undef;
 my %filename;
@@ -32,9 +33,9 @@ sub New($)
 {
 	my $conf = shift;
 
-	$dir_services ||= Octopussy::Directory(DIR_SERVICE);
+	$dir_services ||= Octopussy::Directory($DIR_SERVICE);
 	$conf->{version} = Octopussy::Timestamp_Version(undef);
-	AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, XML_ROOT);
+	AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, $XML_ROOT);
 }
 
 =head2 Remove($service)
@@ -61,7 +62,7 @@ Returns List of Services
 =cut
 sub List()
 {
-	$dir_services ||= Octopussy::Directory(DIR_SERVICE);
+	$dir_services ||= Octopussy::Directory($DIR_SERVICE);
 
 	return (AAT::XML::Name_List($dir_services));
 }
@@ -89,7 +90,7 @@ sub Filename($)
 	my $service = shift;
 
 	return ($filename{$service})   if (defined $filename{$service});
-	$dir_services ||= Octopussy::Directory(DIR_SERVICE);
+	$dir_services ||= Octopussy::Directory($DIR_SERVICE);
 	$filename{$service} = "$dir_services/$service.xml";
 
 	return ($filename{$service});
@@ -206,7 +207,7 @@ sub Add_Message($$)
 		$mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
 		$mconf->{pattern} =~ s/\s+$//g;	
 		push(@{$conf->{message}}, $mconf);	
-		AAT::XML::Write(Filename($service), $conf, XML_ROOT);
+		AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
 		Parse_Restart($service);
 	}
 
@@ -243,7 +244,7 @@ sub Remove_Message($$)
 	}
 
 	$conf->{message} = \@messages;
-	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
+	AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
 	Parse_Restart($service);
 }
 
@@ -276,7 +277,7 @@ sub Modify_Message($$$)
       { push(@messages, $conf_modified); }
   }
   $conf->{message} = \@messages;
-	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
+	AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
 	Parse_Restart($service);
 
 	return (@errors);
@@ -333,7 +334,7 @@ sub Move_Message($$$)
     push(@messages2, $m);
   }
 	$conf->{message} = \@messages2;
-	AAT::XML::Write(Filename($service), $conf, XML_ROOT);
+	AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
 	Parse_Restart_Required($service);
 }
 
@@ -421,18 +422,49 @@ sub Messages_Statistics($)
       {
         if ($s->{service} =~ /^$service$/)
         {
-          $stat{$s->{id}} = (defined $stat{$s->{id}} ?
-            $stat{$s->{id}} + $s->{count} : $s->{count}); 
-          $total += $s->{count};
-          $stat{$k} = int($stat{$k}/$total*100);
+          my $scount = $s->{count} || 0;
+          my $sid = $s->{service} . ":" . $s->{id};
+          $stat{$sid} = (defined $stat{$sid} ?
+            $stat{$sid} + $scount : $scount);
+          $total += $scount;
         }
       }
     }
   }
   foreach my $k (keys %stat)
-    { $percent{"$service:$k"} = int($stat{$k}/$total*100); }
+    { $percent{$k} = sprintf("%.1f", $stat{$k}/$total*100) + 0; }
 
   return (%percent);
+}
+
+=head2
+
+=cut
+sub Sort_Messages_By_Statistics
+{
+  my $service = shift;
+
+  my %percent = Messages_Statistics($service);
+  my $conf = AAT::XML::Read(Filename($service));
+  my @conf_messages = AAT::ARRAY($conf->{message});
+  my @messages = ();
+  my %values = map(($_, 1), values %percent);
+  foreach my $p (keys %values)
+  {
+    print "Percent $p\n";
+    foreach my $m (AAT::ARRAY($conf->{message}))
+    {
+      my $mid = $m->{msg_id};
+#      print "$mid: " . $percent{$mid} . "\n";
+      push(@messages, $m) 
+        if (defined $percent{$mid} && ($percent{$mid} == $p)); 
+    }
+  }
+ 
+  foreach my $m (@messages)
+  {
+    print " -> " . $m->{msg_id} . "\n";
+  } 
 }
 
 =head2 Tables($service)
@@ -553,7 +585,7 @@ sub Updates_Installation
 {
   my @services = @_;
   my $web = Octopussy::WebSite();
-  $dir_services ||= Octopussy::Directory(DIR_SERVICE);
+  $dir_services ||= Octopussy::Directory($DIR_SERVICE);
 
   foreach my $s (@services)
   {

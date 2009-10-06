@@ -7,18 +7,19 @@ package Octopussy::Type;
 
 use strict;
 no strict 'refs';
+use Readonly;
 
 use AAT;
 use Octopussy;
 
-use constant FILE_TYPES => "types";
-use constant REGEXP_COLOR => "red";
-use constant NUMBER_COLOR => "blue";
-use constant STRING_COLOR => "darkgray";
-use constant LONG_STRING_COLOR => "darkgray";
-use constant WORD_COLOR => "green";
+Readonly my $FILE_TYPES => "types";
+Readonly my $REGEXP_COLOR => "red";
+Readonly my $NUMBER_COLOR => "blue";
+Readonly my $STRING_COLOR => "darkgray";
+Readonly my $LONG_STRING_COLOR => "darkgray";
+Readonly my $WORD_COLOR => "green";
 
-my %MONTH = (
+Readonly my %MONTH => (
   Jan => "01", Feb => "02", Mar => "03", Apr => "04",
   May => "05", Jun => "06", Jul => "07", Aug => "08",
   Sep => "09", Oct => "10", Nov => "11", Dec => "12" );
@@ -35,7 +36,7 @@ Get list of type configurations
 =cut
 sub Configurations()
 {
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
 	my @list = ();
 
 	foreach my $t (AAT::ARRAY($conf->{type}))
@@ -55,16 +56,16 @@ sub Colors()
   my %color = ();
   foreach my $t (@types)
   	{ $color{"$t->{type_id}"} = $t->{color}; }
-  $color{"NUMBER"} = NUMBER_COLOR;
-	$color{"BYTES"} = NUMBER_COLOR;
-	$color{"SECONDS"} = NUMBER_COLOR;
-  $color{"PID"} = NUMBER_COLOR;
-  $color{"WORD"} = WORD_COLOR;
-	$color{"EMAIL"} = WORD_COLOR;
-	$color{"USER_AGENT"} = WORD_COLOR;
-  $color{"STRING"} = STRING_COLOR;
-	$color{"LONG_STRING"} = LONG_STRING_COLOR;
-	$color{"REGEXP"} = REGEXP_COLOR;
+  $color{"NUMBER"} = $NUMBER_COLOR;
+	$color{"BYTES"} = $NUMBER_COLOR;
+	$color{"SECONDS"} = $NUMBER_COLOR;
+  $color{"PID"} = $NUMBER_COLOR;
+  $color{"WORD"} = $WORD_COLOR;
+	$color{"EMAIL"} = $WORD_COLOR;
+	$color{"USER_AGENT"} = $WORD_COLOR;
+  $color{"STRING"} = $STRING_COLOR;
+	$color{"LONG_STRING"} = $LONG_STRING_COLOR;
+	$color{"REGEXP"} = $REGEXP_COLOR;
 
 	return (%color);
 }
@@ -76,7 +77,7 @@ Get list of types
 =cut 
 sub List()
 {
- 	my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
+ 	my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
  	my @list = ();
 	my %type;
 	
@@ -104,7 +105,7 @@ Get list of simple types (*_DATETIME -> DATETIME, *_STRING -> STRING...)
 =cut
 sub Simple_List()
 {
-  my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
+  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
   my @list = ();
   my %type;
 
@@ -132,7 +133,7 @@ Get list of SQL types
 =cut
 sub SQL_List()
 {
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_TYPES));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
 	my @list = ();
 	my %type;
 	

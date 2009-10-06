@@ -105,6 +105,40 @@ sub Read
   return (undef);
 }
 
+sub Read2
+{
+  my ($file, $no_option) = @_;
+  my %XML_INPUT_OPTIONS = 
+    ( KeyAttr => [], ForceArray => 1, Cache => "storable" );
+
+  if ((defined $file) && (-f $file))
+  {
+    my $xml = eval { XMLin($file,
+      (defined $no_option ? () : %XML_INPUT_OPTIONS)) };
+    AAT::Syslog("AAT::XML", "XML_READ_ERROR", $@) if ($@);
+    return ($xml);
+  }
+
+  return (undef);
+}
+
+sub Read3
+{
+  my ($file, $no_option) = @_;
+  my %XML_INPUT_OPTIONS =
+    ( KeyAttr => [], ForceArray => 1 );
+
+  if ((defined $file) && (-f $file))
+  {
+    my $xml = eval { XMLin($file,
+      (defined $no_option ? () : %XML_INPUT_OPTIONS)) };
+    AAT::Syslog("AAT::XML", "XML_READ_ERROR", $@) if ($@);
+    return ($xml);
+  }
+
+  return (undef);
+}
+
 =head2 Write($file, $data, $root_name)
 
 Writes XML content '$data' to file '$file'

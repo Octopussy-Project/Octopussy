@@ -6,11 +6,12 @@ Octopussy::World_Stats - Octopussy World Statistics module
 package Octopussy::World_Stats;
 
 use strict;
+use Readonly;
 
 use Octopussy;
 
-use constant FILE_WORLD_STATS => "world_stats";
-use constant XML_ROOT => "octopussy_world_stats";
+Readonly my $FILE_WORLD_STATS => "world_stats";
+Readonly my $XML_ROOT => "octopussy_world_stats";
  
 =head1 FUNCTIONS
 
@@ -46,7 +47,7 @@ sub Modify($)
 {
 	my $conf = shift;
 
-  AAT::XML::Write(Octopussy::File(FILE_WORLD_STATS), $conf, XML_ROOT);
+  AAT::XML::Write(Octopussy::File($FILE_WORLD_STATS), $conf, $XML_ROOT);
 }
 
 =head2 Configuration()
@@ -56,7 +57,7 @@ Returns World Statistics Configuration
 =cut
 sub Configuration()
 {
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_WORLD_STATS));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_WORLD_STATS));
 
 	return ($conf);
 }

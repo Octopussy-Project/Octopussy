@@ -6,11 +6,11 @@ Octopussy::Schedule - Octopussy Schedule module
 package Octopussy::Schedule;
 
 use strict;
-
+use Readonly;
 use Octopussy;
 
-use constant FILE_SCHEDULES => "schedule";
-use constant XML_ROOT => "octopussy_schedule";
+Readonly my $FILE_SCHEDULES => "schedule";
+Readonly my $XML_ROOT => "octopussy_schedule";
  
 =head1 FUNCTIONS
 
@@ -23,14 +23,14 @@ sub Add($)
 {
 	my $add = shift;
 	my $exists = 0;
-	my $file = Octopussy::File(FILE_SCHEDULES);
+	my $file = Octopussy::File($FILE_SCHEDULES);
  	my $conf = AAT::XML::Read($file);
 	foreach my $sched (AAT::ARRAY($conf->{schedule}))
 		{ $exists = 1	if ($sched->{title} eq $add->{title}); }
 	if (! $exists)
 	{
  		push(@{$conf->{schedule}}, $add);
-  	AAT::XML::Write($file, $conf, XML_ROOT);
+  	AAT::XML::Write($file, $conf, $XML_ROOT);
 	}
 	else
 		{ return ("_MSG_SCHEDULE_ALREADY_EXISTS"); }
@@ -47,7 +47,7 @@ sub Remove($)
 {
 	my $schedule_title = shift;
 
-	my $file = Octopussy::File(FILE_SCHEDULES);
+	my $file = Octopussy::File($FILE_SCHEDULES);
   my $conf = AAT::XML::Read($file);
  	my @schedules = ();
  	foreach my $s (AAT::ARRAY($conf->{schedule}))
@@ -55,7 +55,7 @@ sub Remove($)
     push(@schedules, $s)       if ($s->{title} ne $schedule_title);
   }
   $conf->{schedule} = \@schedules;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
 =head2 List()
@@ -65,8 +65,8 @@ Returns Schedules List
 =cut
 sub List()
 {
-	my @schedules = AAT::XML::File_Array_Values(Octopussy::File(FILE_SCHEDULES),
-		FILE_SCHEDULES, "title");
+	my @schedules = AAT::XML::File_Array_Values(Octopussy::File($FILE_SCHEDULES),
+		$FILE_SCHEDULES, "title");
 	
 	return (@schedules);
 }
@@ -79,7 +79,7 @@ Returns Schedules Configuration
 sub Configuration($)
 {
 	my $schedule = shift;
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_SCHEDULES));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_SCHEDULES));
 
 	foreach my $s (AAT::ARRAY($conf->{schedule}))
 		{ return ($s)	if ($s->{title} eq $schedule); }

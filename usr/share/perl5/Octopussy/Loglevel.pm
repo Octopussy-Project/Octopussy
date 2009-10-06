@@ -6,10 +6,10 @@ Octopussy::Loglevel - Octopussy Loglevel module
 package Octopussy::Loglevel;
 
 use strict;
-
+use Readonly;
 use Octopussy;
 
-use constant FILE_LOGLEVEL => "loglevel";
+Readonly my $FILE_LOGLEVEL => "loglevel";
 
 =head1 FUNCTIONS
 
@@ -48,7 +48,7 @@ sub List(@)
 	else
 	{
 		my %field;
-		my $conf = AAT::XML::Read(Octopussy::File(FILE_LOGLEVEL));
+		my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
 		foreach my $l (AAT::ARRAY($conf->{loglevel}))
       { $field{$l->{level}} = 1; }
 		foreach my $f (reverse sort keys %field)
@@ -104,7 +104,7 @@ sub Colors
 {
 	my %color = ();
 
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_LOGLEVEL));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
  	foreach my $l (AAT::ARRAY($conf->{loglevel}))
   	{ $color{$l->{value}} = $l->{color}; }
 
@@ -118,7 +118,7 @@ sub Levels
 {
 	my %level = ();
 
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_LOGLEVEL));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
   foreach my $l (AAT::ARRAY($conf->{loglevel}))
     { $level{$l->{value}} = $l->{level}; }
 

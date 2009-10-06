@@ -6,9 +6,11 @@ Octopussy::Contact - Octopussy Contact module
 package Octopussy::Contact;
 
 use strict;
+use Readonly;
+
 use Octopussy;
 
-use constant XML_ROOT => "octopussy_contact";
+Readonly my $XML_ROOT => "octopussy_contact";
 
 # String: $dir_contacts
 # Directory for the Contacts configuration files
@@ -41,7 +43,7 @@ sub New($)
 		if (!$exist)
 		{
 			AAT::XML::Write("$dir_contacts/$conf->{cid}.xml", 
-				$conf, XML_ROOT);
+				$conf, $XML_ROOT);
 		}
 		else
 			{ return ("_MSG_CONTACT_ALREADY_EXISTS"); }

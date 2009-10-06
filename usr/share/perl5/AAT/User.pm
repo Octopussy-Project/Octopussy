@@ -6,13 +6,14 @@ AAT::User - AAT User module
 package AAT::User;
 
 use strict;
+use Readonly;
 use Crypt::PasswdMD5;
 
-use constant SALT => "OP";
-use constant DEFAULT_LANGUAGE => "EN";
-use constant DEFAULT_ROLE => "rw";
-use constant DEFAULT_THEME => "DEFAULT";
-use constant DEFAULT_MENU_MODE => "TEXT_AND_ICONS";
+Readonly my $SALT => "OP";
+Readonly my $DEFAULT_LANGUAGE => "EN";
+Readonly my $DEFAULT_ROLE => "rw";
+Readonly my $DEFAULT_THEME => "DEFAULT";
+Readonly my $DEFAULT_MENU_MODE => "TEXT_AND_ICONS";
 
 my $ROLES_FILE = undef;
 my $USERS_FILE = undef;
@@ -32,7 +33,7 @@ sub Authentication($$$)
 
 	$USERS_FILE ||= AAT::Application::File($appli, "users");
 	my $conf = AAT::XML::Read($USERS_FILE);
-  my $md5 = unix_md5_crypt($pwd, SALT);
+  my $md5 = unix_md5_crypt($pwd, $SALT);
   foreach my $u (AAT::ARRAY($conf->{user}))
   {
     return ($u) if (($u->{login} eq $login) && ($u->{password} eq $md5));
@@ -40,9 +41,9 @@ sub Authentication($$$)
 
   if (AAT::LDAP::Check_Password($appli, $login, $pwd))
   {
-    return ({ login => $login, password => $pwd, role => DEFAULT_ROLE,
-      language => DEFAULT_LANGUAGE, theme => DEFAULT_THEME, 
-			menu_mode => DEFAULT_MENU_MODE });
+    return ({ login => $login, password => $pwd, role => $DEFAULT_ROLE,
+      language => $DEFAULT_LANGUAGE, theme => $DEFAULT_THEME, 
+			menu_mode => $DEFAULT_MENU_MODE });
   }
 
   return (undef);
@@ -63,9 +64,9 @@ sub Add($$$$$$)
   foreach my $u (AAT::ARRAY($conf->{user}))
     { return ("_MSG_USER_ALREADY_EXISTS") if ($u->{login} eq $login); }
   push(@{$conf->{user}}, { login => $login,
-    password => unix_md5_crypt($pwd, SALT), certificate => $certificate, 
-		role => $role, language => $lang || DEFAULT_LANGUAGE, 
-		theme => DEFAULT_THEME, menu_mode => DEFAULT_MENU_MODE });
+    password => unix_md5_crypt($pwd, $SALT), certificate => $certificate, 
+		role => $role, language => $lang || $DEFAULT_LANGUAGE, 
+		theme => $DEFAULT_THEME, menu_mode => $DEFAULT_MENU_MODE });
   AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 
   return (undef);	
@@ -114,7 +115,7 @@ sub Update($$$)
     else
     {
       my $pwd = (AAT::NOT_NULL($update->{password}) 
-				? unix_md5_crypt($update->{password}, SALT) : $u->{password});
+				? unix_md5_crypt($update->{password}, $SALT) : $u->{password});
       push(@users, { login => $update->{login} || $login, 
 				password => $pwd, role => $update->{role} || $u->{role}, 
 				language => $update->{language} || $u->{language},

@@ -6,10 +6,11 @@ Octopussy::Statistic_Report - Octopussy Statistic Report module
 package Octopussy::Statistic_Report;
 
 use strict;
+use Readonly;
 use Octopussy;
 
-use constant DIR_STAT_REPORT => "statistic_reports";
-use constant XML_ROOT => "octopussy_statistic_report";
+Readonly my $DIR_STAT_REPORT => "statistic_reports";
+Readonly my $XML_ROOT => "octopussy_statistic_report";
 
 my $dir_stat_reports = undef;
 my %filename;
@@ -25,8 +26,8 @@ sub New($)
 {
 	my $conf = shift;
 
-	$dir_stat_reports ||= Octopussy::Directory(DIR_STAT_REPORT);
-	AAT::XML::Write("$dir_stat_reports/$conf->{name}.xml", $conf, XML_ROOT);
+	$dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
+	AAT::XML::Write("$dir_stat_reports/$conf->{name}.xml", $conf, $XML_ROOT);
 }
 
 =head2 Remove($statistic_report)
@@ -62,7 +63,7 @@ Get List of Statistic Report
 =cut
 sub List()
 {
-  $dir_stat_reports ||= Octopussy::Directory(DIR_STAT_REPORT);
+  $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
 
 	return (AAT::XML::Name_List($dir_stat_reports));
 }
@@ -78,7 +79,7 @@ sub Filename($)
 
 	return ($filename{$statistic_report_name})   
 		if (defined $filename{$statistic_report_name});
-	$dir_stat_reports ||= Octopussy::Directory(DIR_STAT_REPORT);
+	$dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
 	$filename{$statistic_report_name} = 
 		AAT::FS::Directory_Files($dir_stat_reports, $statistic_report_name);
 

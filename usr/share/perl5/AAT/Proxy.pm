@@ -6,8 +6,9 @@ AAT::Proxy - AAT Proxy module
 package AAT::Proxy;
 
 use strict;
+use Readonly;
 
-use constant TEST_FILE => "/tmp/test.html";
+Readonly my $TEST_FILE => "/tmp/test.html";
 
 my %conf_file = ();
 
@@ -37,9 +38,9 @@ sub Connection_Test($)
 {
 	my $appli = shift;
 
-	AAT::Download($appli, "http://www.google.com", TEST_FILE);
-	my $status = ((-s TEST_FILE > 0) ? 1 : 0);
-	unlink(TEST_FILE)	if (-f TEST_FILE);
+	AAT::Download($appli, "http://www.google.com", $TEST_FILE);
+	my $status = ((-s $TEST_FILE > 0) ? 1 : 0);
+	unlink($TEST_FILE)	if (-f $TEST_FILE);
 
 	return ($status);
 }

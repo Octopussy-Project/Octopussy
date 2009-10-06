@@ -6,10 +6,11 @@ Octopussy::Storage - Octopussy Storage module
 package Octopussy::Storage;
 
 use strict;
+use Readonly;
 use Octopussy;
 
-use constant FILE_STORAGES => "storages";
-use constant XML_ROOT => "octopussy_storages";
+Readonly my $FILE_STORAGES => "storages";
+Readonly my $XML_ROOT => "octopussy_storages";
 
 =head1 FUNCTIONS
 
@@ -23,7 +24,7 @@ sub Add($)
 	my $conf_storage = shift;
   my @storages = ();
 
-  my $file = Octopussy::File(FILE_STORAGES);
+  my $file = Octopussy::File($FILE_STORAGES);
   my $conf = AAT::XML::Read($file);
   foreach my $s (AAT::ARRAY($conf->{storage}))
   {
@@ -31,7 +32,7 @@ sub Add($)
       if ($s->{s_id} eq $conf_storage->{s_id});
   }
   push(@{$conf->{storage}}, $conf_storage);
-  AAT::XML::Write($file, $conf, XML_ROOT);
+  AAT::XML::Write($file, $conf, $XML_ROOT);
 
   return (undef);
 }
@@ -46,12 +47,12 @@ sub Remove($)
   my $storage = shift;
   my @storages = ();
 
-  my $file = Octopussy::File(FILE_STORAGES);
+  my $file = Octopussy::File($FILE_STORAGES);
   my $conf = AAT::XML::Read($file);
   foreach my $s (AAT::ARRAY($conf->{storage}))
     { push(@storages, $s) if ($s->{s_id} ne $storage); }
   $conf->{storage} = \@storages;
-  AAT::XML::Write($file, $conf, XML_ROOT);
+  AAT::XML::Write($file, $conf, $XML_ROOT);
 
   return (undef);
 }
@@ -61,7 +62,7 @@ sub Remove($)
 =cut
 sub Default()
 {
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_STORAGES));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_STORAGES));
 
 	return (undef)	if (!defined $conf);
 	return ( { incoming => $conf->{default_incoming}, 
@@ -75,13 +76,13 @@ sub Default_Set($)
 {
 	my $conf_new = shift;
 
-	my $file = Octopussy::File(FILE_STORAGES);
+	my $file = Octopussy::File($FILE_STORAGES);
   my $conf = AAT::XML::Read($file);
 	$conf->{default_incoming} = $conf_new->{incoming};
 	$conf->{default_unknown} = $conf_new->{unknown};
 	$conf->{default_known} = $conf_new->{known};
 
-	AAT::XML::Write($file, $conf, XML_ROOT);	
+	AAT::XML::Write($file, $conf, $XML_ROOT);	
 }
 
 =head2 List()
@@ -95,7 +96,7 @@ Returns:
 =cut
 sub List()
 {
-	my @storages = AAT::XML::File_Array_Values(Octopussy::File(FILE_STORAGES),
+	my @storages = AAT::XML::File_Array_Values(Octopussy::File($FILE_STORAGES),
 		"storage", "s_id");
 
   return (@storages);
@@ -118,7 +119,7 @@ sub Configuration($)
 {
 	my $storage = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::File(FILE_STORAGES));
+  my $conf = AAT::XML::Read(Octopussy::File($FILE_STORAGES));
 	return ({ name=> "DEFAULT", directory => Octopussy::Directory("data_logs") })
 		if ($storage eq "DEFAULT");
   foreach my $s (AAT::ARRAY($conf->{storage}))
@@ -178,7 +179,7 @@ sub Directory($)
   my $storage = shift;
 
 	return (undef)	if (!defined $storage);
-  my $conf = AAT::XML::Read(Octopussy::File(FILE_STORAGES));
+  my $conf = AAT::XML::Read(Octopussy::File($FILE_STORAGES));
   return (Octopussy::Directory("data_logs"))	if ($storage eq "DEFAULT");
   foreach my $s (AAT::ARRAY($conf->{storage}))
     { return ($s->{directory})  if ($s->{s_id} eq $storage); }

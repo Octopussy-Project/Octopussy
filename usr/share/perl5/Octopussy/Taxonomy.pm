@@ -7,10 +7,11 @@ package Octopussy::Taxonomy;
 
 use strict;
 no strict 'refs';
+use Readonly;
 
 use Octopussy;
 
-use constant FILE_TAXONOMY => "taxonomy";
+Readonly my $FILE_TAXONOMY => "taxonomy";
 
 =head1 FUNCTIONS
 
@@ -45,7 +46,7 @@ sub List(@)
 	else
 	{
 		my %field;
-    my $conf = AAT::XML::Read(Octopussy::File(FILE_TAXONOMY));
+    my $conf = AAT::XML::Read(Octopussy::File($FILE_TAXONOMY));
     foreach my $t (AAT::ARRAY($conf->{taxonomy}))
       { $field{$t->{value}} = 1; }
     foreach my $f (sort keys %field)
@@ -99,7 +100,7 @@ sub String_List(@)
 =cut
 sub Colors()
 {
-  my $conf = AAT::XML::Read(Octopussy::File(FILE_TAXONOMY));
+  my $conf = AAT::XML::Read(Octopussy::File($FILE_TAXONOMY));
   my %color = ();
   foreach my $t (AAT::ARRAY($conf->{taxonomy}))
   	{ $color{"$t->{value}"} = $t->{color}; }

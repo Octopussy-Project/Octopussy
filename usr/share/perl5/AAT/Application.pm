@@ -7,8 +7,9 @@ AAT::Application - AAT Application module
 package AAT::Application;
 
 use strict;
+use Readonly;
 
-use constant AAT_CONF_FILE => "/etc/aat/aat.xml";
+Readonly my $AAT_CONF_FILE => "/etc/aat/aat.xml";
 
 =head1 FUNCTIONS
 
@@ -21,7 +22,7 @@ sub Info($)
 {
 	my $appli = shift;
 
-	my $conf = AAT::XML::Read(AAT_CONF_FILE);
+	my $conf = AAT::XML::Read($AAT_CONF_FILE);
 	foreach my $a (AAT::ARRAY($conf->{application}))
 	{
 		return ($a)	if ($a->{name} eq $appli);
@@ -38,7 +39,7 @@ Returns Directory for Application '$appli' Name '$name'
 sub Directory($$)
 {
   my ($appli, $name) = @_;
-  my $conf = AAT::XML::Read(AAT_CONF_FILE);
+  my $conf = AAT::XML::Read($AAT_CONF_FILE);
   foreach my $a (AAT::ARRAY($conf->{application}))
   {
     if ($a->{name} eq $appli)
@@ -61,7 +62,7 @@ Returns File for Application '$appli' Name '$name'
 sub File($$)
 {
   my ($appli, $name) = @_;
-  my $conf = AAT::XML::Read(AAT_CONF_FILE);
+  my $conf = AAT::XML::Read($AAT_CONF_FILE);
   foreach my $a (AAT::ARRAY($conf->{application}))
   {
     if ($a->{name} eq $appli)
@@ -84,7 +85,7 @@ Returns Parameter Default Value for Application '$appli' Parameter '$param'
 sub Parameter($$)
 {
   my ($appli, $param) = @_;
-  my $conf = AAT::XML::Read(AAT_CONF_FILE);
+  my $conf = AAT::XML::Read($AAT_CONF_FILE);
 	foreach my $a (AAT::ARRAY($conf->{application}))
   {
 		if ($a->{name} eq $appli)

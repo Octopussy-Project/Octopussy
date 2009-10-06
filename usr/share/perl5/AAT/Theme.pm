@@ -6,8 +6,9 @@ AAT::Theme - AAT Theme module
 package AAT::Theme;
 
 use strict;
+use Readonly;
 
-use constant DIR_THEME => "AAT/THEMES/";
+Readonly my $DIR_THEME => "AAT/THEMES/";
 
 =head1 FUNCTIONS
 
@@ -18,7 +19,7 @@ Returns list of available Themes
 =cut
 sub List()
 {
-	opendir(DIR, DIR_THEME);
+	opendir(DIR, $DIR_THEME);
   my @themes = grep !/^\.+/, readdir(DIR);
   closedir(DIR);
 
@@ -35,7 +36,7 @@ sub CSS_File($)
 	my $theme = shift;
 	
 	$theme = "DEFAULT"  if (AAT::NULL($theme));
-	my $file = DIR_THEME . "$theme/style.css";
+	my $file = "$DIR_THEME$theme/style.css";
 	return ("$file")	if (-f "$file");
 	return (undef);
 }

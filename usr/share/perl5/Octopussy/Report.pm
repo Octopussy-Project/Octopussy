@@ -8,6 +8,7 @@ package Octopussy::Report;
 use strict; 
 no strict 'refs';
 use Proc::ProcessTable;
+use Readonly;
 
 use Octopussy;
 use Octopussy::Report::CSV;
@@ -16,9 +17,9 @@ use Octopussy::Report::HTML;
 use Octopussy::Report::PDF;
 use Octopussy::Report::XML;
 
-use constant DIR_REPORT =>"reports";
-use constant REPORTER_BIN => "octo_reporter";
-use constant XML_ROOT => "octopussy_report";
+Readonly my $DIR_REPORT => "reports";
+Readonly my $REPORTER_BIN => "octo_reporter";
+Readonly my $XML_ROOT => "octopussy_report";
 
 my $dir_reports = undef;
 my %filename;
@@ -34,9 +35,9 @@ sub New($)
 {
 	my $conf = shift;
 
-	$dir_reports ||= Octopussy::Directory(DIR_REPORT);
+	$dir_reports ||= Octopussy::Directory($DIR_REPORT);
 	$conf->{version} = Octopussy::Timestamp_Version(undef);
-	AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, XML_ROOT);
+	AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, $XML_ROOT);
 }
 
 =head2 Remove($report)
@@ -63,6 +64,9 @@ sub Modify($$)
 	my ($old_report, $conf_new) = @_;
 
 	Remove($old_report);
+  #unlink(Filename($report));
+  #$filename{$report} = undef;
+
 	New($conf_new);
 }
 
@@ -76,7 +80,7 @@ sub List($$)
 {
 	my ($category, $report_restriction_list) = @_;
 	my @res_list = AAT::ARRAY($report_restriction_list);
-	$dir_reports ||= Octopussy::Directory(DIR_REPORT);
+	$dir_reports ||= Octopussy::Directory($DIR_REPORT);
 	my @files = AAT::FS::Directory_Files($dir_reports, qr/.+\.xml$/);
 	my @reports = ();
 	foreach my $f (@files)
@@ -104,7 +108,7 @@ sub Filename($)
   my $report_name = shift;
 
 	return ($filename{$report_name})  if (defined $filename{$report_name});
-  $dir_reports ||= Octopussy::Directory(DIR_REPORT);
+  $dir_reports ||= Octopussy::Directory($DIR_REPORT);
 	$filename{$report_name} = AAT::XML::Filename($dir_reports, $report_name);
 
 	return ($filename{$report_name});
@@ -361,7 +365,7 @@ sub CmdLine($$$$$$$$$$$$)
 
 	Octopussy::Create_Directory($dir);
 
-	my $cmd = $base . REPORTER_BIN . " --report \"$report->{name}\""
+	my $cmd = "$base$REPORTER_BIN --report \"$report->{name}\""
 		. " --device \"$device_list\" --service \"$service_list\"" 
 		. " --loglevel $loglevel --taxonomy $taxonomy --pid_param \"$pid_param\""
 		. " --begin $start --end $finish --lang \"$lang\" " 
@@ -439,7 +443,7 @@ sub Updates_Installation(@)
 {
   my @reports = @_;
   my $web = Octopussy::WebSite();
-  $dir_reports ||= Octopussy::Directory(DIR_REPORT);
+  $dir_reports ||= Octopussy::Directory($DIR_REPORT);
 
   foreach my $r (@reports)
   {
@@ -456,7 +460,7 @@ Returns list of Reports in progress
 =cut
 sub Running_List()
 {
-	my $cache = Octopussy::Cache::Init(REPORTER_BIN);
+	my $cache = Octopussy::Cache::Init($REPORTER_BIN);
 	my $pt = new Proc::ProcessTable;
 	my @list = ();
 	my @keys = $cache->get_keys();

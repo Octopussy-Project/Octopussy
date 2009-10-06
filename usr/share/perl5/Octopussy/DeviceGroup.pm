@@ -6,10 +6,12 @@ Octopussy::DeviceGroup - Octopussy DeviceGroup Module
 package Octopussy::DeviceGroup;
 
 use strict;
+use Readonly;
+
 use Octopussy;
 
-use constant FILE_DEVICEGROUPS => "devicegroups";
-use constant XML_ROOT => "octopussy_devicegroups";
+Readonly my $FILE_DEVICEGROUPS => "devicegroups";
+Readonly my $XML_ROOT => "octopussy_devicegroups";
 
 =head1 FUNCTIONS
 
@@ -23,7 +25,7 @@ sub Add($)
 	my $conf_dg = shift;
 	my @dgs = ();
 
-	my $file = Octopussy::File(FILE_DEVICEGROUPS);	
+	my $file = Octopussy::File($FILE_DEVICEGROUPS);	
 	my $conf = AAT::XML::Read($file);
 	foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
   { 
@@ -31,7 +33,7 @@ sub Add($)
 			if ($dg->{dg_id} eq $conf_dg->{dg_id}); 
 	}
 	push(@{$conf->{devicegroup}}, $conf_dg); 		
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 
 	return (undef);
 }
@@ -46,12 +48,12 @@ sub Remove($)
   my $devicegroup = shift;
 	my @dgs = ();
 
-	my $file = Octopussy::File(FILE_DEVICEGROUPS);
+	my $file = Octopussy::File($FILE_DEVICEGROUPS);
 	my $conf = AAT::XML::Read($file);
 	foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
   	{ push(@dgs, $dg)	if ($dg->{dg_id} ne $devicegroup); }
 	$conf->{devicegroup} = \@dgs;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 
 	return (undef);
 }
@@ -63,7 +65,7 @@ Get List of Device Group
 =cut
 sub List()
 {
-	my @dgs = AAT::XML::File_Array_Values(Octopussy::File(FILE_DEVICEGROUPS), 
+	my @dgs = AAT::XML::File_Array_Values(Octopussy::File($FILE_DEVICEGROUPS), 
 		"devicegroup", "dg_id");
 
 	return (@dgs);
@@ -78,7 +80,7 @@ sub Configuration($)
 {
   my $devicegroup = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::File(FILE_DEVICEGROUPS));
+  my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEGROUPS));
 	foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
   	{ return ($dg)	if ($dg->{dg_id} eq $devicegroup); }
 	
@@ -133,7 +135,7 @@ sub Devices($)
 {
 	my $devicegroup = shift;
 
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_DEVICEGROUPS));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEGROUPS));
 	my @devices = ();
 
 	foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
@@ -168,7 +170,7 @@ Removes Device '$device' from all DeviceGroups
 sub Remove_Device($)
 {
 	my $device = shift;
-	my $file = Octopussy::File(FILE_DEVICEGROUPS);
+	my $file = Octopussy::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);	
 	my @dgs = ();
 	foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
@@ -180,7 +182,7 @@ sub Remove_Device($)
 		push(@dgs, $dg);
 	}
 	$conf->{devicegroup} = \@dgs;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
 =head2 Services($devicegroup_name)

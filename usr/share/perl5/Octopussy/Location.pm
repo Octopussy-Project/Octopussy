@@ -6,10 +6,11 @@ Octopussy::Location - Octopussy Location module
 package Octopussy::Location;
 
 use strict;
+use Readonly;
 use Octopussy;
 
-use constant FILE_LOCATIONS => "locations";
-use constant XML_ROOT => "octopussy_locations";
+Readonly my $FILE_LOCATIONS => "locations";
+Readonly my $XML_ROOT => "octopussy_locations";
 
 =head1 FUNCTIONS
 
@@ -20,7 +21,7 @@ Returns Location Cities List
 =cut	
 sub Cities()
 {
-	my $conf = AAT::XML::Read(Octopussy::File(FILE_LOCATIONS));
+	my $conf = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
  	my @list = ();
 
  	foreach my $c (AAT::ARRAY($conf->{city}))
@@ -39,7 +40,7 @@ sub City_Add($)
 	my $city = shift;
 
 	return ()	if ((!defined $city) || ($city eq ""));
-	my $file = Octopussy::File(FILE_LOCATIONS);
+	my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
 	my $exists = 0;
 	foreach my $c (Cities())
@@ -47,7 +48,7 @@ sub City_Add($)
 	if (!$exists)
 	{
 		push(@{$conf->{city}}, { c_name => $city });
-		AAT::XML::Write($file, $conf, XML_ROOT);
+		AAT::XML::Write($file, $conf, $XML_ROOT);
 		return ($city);
 	}
 	return (undef);
@@ -61,14 +62,14 @@ Removes City '$city' from Locations
 sub City_Remove($)
 {
 	my $city = shift;
-	my $file = Octopussy::File(FILE_LOCATIONS);
+	my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
 	my @cities = ();
 
 	foreach my $c (AAT::ARRAY($conf->{city}))
   	{ push(@cities, $c)	if ($c->{c_name} ne $city); }
 	$conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
 =head2 Buildings($city)
@@ -79,7 +80,7 @@ Returns Buildings List
 sub Buildings($)
 {
 	my $city = shift;
- 	my $conf = AAT::XML::Read(Octopussy::File(FILE_LOCATIONS));
+ 	my $conf = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
  	my @list = ();
 	my @cities = Cities();
 	$city ||= $cities[0];
@@ -106,7 +107,7 @@ sub Building_Add($$)
 	my ($city, $building) = @_;
 
 	return () if ((!defined $building) || ($building eq ""));
-	my $file = Octopussy::File(FILE_LOCATIONS);
+	my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
 	my @cities = ();
 	my $result = undef;
@@ -128,7 +129,7 @@ sub Building_Add($$)
 	}
 	
 	$conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 	return ($result);
 }
 
@@ -140,7 +141,7 @@ Removes Building '$building' from City '$city' Location
 sub Building_Remove($$)
 {
   my ($city, $building) = @_;
-  my $file = Octopussy::File(FILE_LOCATIONS);
+  my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
   my @cities = ();
 	my @buildings = ();
@@ -156,7 +157,7 @@ sub Building_Remove($$)
 		push(@cities, $c)
   }
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
 =head2 Rooms($city, $building)
@@ -167,7 +168,7 @@ Returns Rooms List
 sub Rooms($$)
 {
 	my ($city, $building) = @_;
-  my $conf = AAT::XML::Read(Octopussy::File(FILE_LOCATIONS));
+  my $conf = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
   my @list = ();
 	my @cities = Cities();
   $city ||= $cities[0];
@@ -202,7 +203,7 @@ sub Room_Add($$$)
   my ($city, $building, $room) = @_;
 
 	return () if ((!defined $room) || ($room eq ""));
-  my $file = Octopussy::File(FILE_LOCATIONS);
+  my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
   my @cities = ();
 	my @buildings = ();
@@ -234,7 +235,7 @@ sub Room_Add($$$)
   }
 
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 	return ($result);
 }
 
@@ -246,7 +247,7 @@ Removes Room '$room' from City '$city' Building '$building' Location
 sub Room_Remove($$$)
 {
   my ($city, $building, $room) = @_;
-  my $file = Octopussy::File(FILE_LOCATIONS);
+  my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
   my @cities = ();
   my @buildings = ();
@@ -271,7 +272,7 @@ sub Room_Remove($$$)
     push(@cities, $c);
   }
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
 =head2 Racks($city, $building, $room)
@@ -282,7 +283,7 @@ Returns Racks List
 sub Racks($$$)
 {
 	my ($city, $building, $room) = @_;
-  my $conf = AAT::XML::Read(Octopussy::File(FILE_LOCATIONS));
+  my $conf = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
   my @list = ();
 	my @cities = Cities();
   $city ||= $cities[0];
@@ -325,7 +326,7 @@ sub Rack_Add($$$$)
   my ($city, $building, $room, $rack) = @_;
 
 	return () if ((!defined $rack) || ($rack eq ""));
-  my $file = Octopussy::File(FILE_LOCATIONS);
+  my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
   my (@cities, @buildings, @rooms) = ((), (), ());
 	my $result = undef;
@@ -362,7 +363,7 @@ sub Rack_Add($$$$)
     push(@cities, $c);
   }
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 	return ($result);
 }
 
@@ -374,7 +375,7 @@ Removes Rack '$rack' from City '$city' Building '$building' Room '$room' Locatio
 sub Rack_Remove($$$$)
 {
   my ($city, $building, $room, $rack) = @_;
-  my $file = Octopussy::File(FILE_LOCATIONS);
+  my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
   my @cities = ();
 
@@ -408,7 +409,7 @@ sub Rack_Remove($$$$)
     push(@cities, $c);
   }
   $conf->{city} = \@cities;
-	AAT::XML::Write($file, $conf, XML_ROOT);
+	AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
 1;

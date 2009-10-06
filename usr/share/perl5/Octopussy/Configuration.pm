@@ -6,10 +6,11 @@ Octopussy::Configuration - Octopussy Configuration module
 package Octopussy::Configuration;
 
 use strict;
+use Readonly;
 
 use Octopussy;
 
-use constant DIR_BACKUP => "/etc/octopussy/";
+Readonly my $DIR_BACKUP => "/etc/octopussy/";
 
 =head1 FUNCTIONS
 
@@ -20,7 +21,7 @@ sub Backup()
 {
 	my ($year, $mon, $mday, $h, $m) = AAT::Datetime::Now();
 	my $timestamp = "$year$mon$mday$h$m";
-	my $file_backup = DIR_BACKUP . "backup_$timestamp.tgz";
+	my $file_backup = "${DIR_BACKUP}backup_$timestamp.tgz";
 	my $dir_main = Octopussy::Directory("main");
 	my $conf_sys = "${dir_main}{db,ldap,nsca,proxy,smtp,xmpp}.xml";
 	my ($dir_alerts, $dir_contacts, $dir_devices, $dir_maps, $dir_plugins) = 
@@ -46,7 +47,7 @@ sub Backup_List()
 {
 	my @backups = ();
 	
-	my @list = AAT::FS::Directory_Files(DIR_BACKUP, qr/^backup_.+$/);
+	my @list = AAT::FS::Directory_Files($DIR_BACKUP, qr/^backup_.+$/);
 	foreach my $e (reverse sort @list)
 	{ 
 		push(@backups, { label => "Backup $2/$3/$4 $5:$6", value => $1 })	
@@ -64,7 +65,7 @@ Restores configuration from Backup File '$file'
 sub Restore($)
 {
 	my $file = shift;
-	my $file_backup = DIR_BACKUP . "${file}.tgz";
+	my $file_backup = "${DIR_BACKUP}${file}.tgz";
 	`tar Pxvfz $file_backup`;	
 }
 

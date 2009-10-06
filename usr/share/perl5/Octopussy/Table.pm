@@ -7,11 +7,13 @@ package Octopussy::Table;
 
 use strict;
 no strict 'refs';
+use Readonly;
+
 use Octopussy;
 use Octopussy::Type;
 
-use constant DIR_TABLE => "tables";
-use constant XML_ROOT => "octopussy_table";
+Readonly my $DIR_TABLE => "tables";
+Readonly my $XML_ROOT => "octopussy_table";
 
 my $dir_tables = undef;
 my %filename;
@@ -33,9 +35,9 @@ sub New($)
 
 	if (AAT::NOT_NULL($conf->{name}))
 	{
-		$dir_tables ||= Octopussy::Directory(DIR_TABLE);
+		$dir_tables ||= Octopussy::Directory($DIR_TABLE);
 		$conf->{version} = Octopussy::Timestamp_Version(undef);
-		AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, XML_ROOT);
+		AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, $XML_ROOT);
 		Add_Field($conf->{name}, "datetime", "DATETIME");
 		Add_Field($conf->{name}, "device", "WORD");
 	}
@@ -66,7 +68,7 @@ Get List of Tables
 =cut
 sub List()
 {
-	$dir_tables ||= Octopussy::Directory(DIR_TABLE);
+	$dir_tables ||= Octopussy::Directory($DIR_TABLE);
 
 	return (AAT::XML::Name_List($dir_tables));
 }
@@ -81,7 +83,7 @@ sub Filename($)
 	my $table = shift;
 
 	return ($filename{$table})	if (defined $filename{$table});
-	$dir_tables ||= Octopussy::Directory(DIR_TABLE);
+	$dir_tables ||= Octopussy::Directory($DIR_TABLE);
 	$filename{$table} = AAT::XML::Filename($dir_tables, $table);
 
 	return ($filename{$table});
@@ -138,7 +140,7 @@ sub Add_Field($$$)
 	foreach my $f (AAT::ARRAY($conf->{field}))
  		{ return (undef)  if ($fieldname =~ /^$f->{title}$/); }	
 	push(@{$conf->{field}}, { title => $fieldname, type => $fieldtype });
-	AAT::XML::Write(Filename($table), $conf, XML_ROOT);
+	AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
 
 	return ($fieldname);
 }
@@ -159,7 +161,7 @@ sub Remove_Field($$)
 		push(@fields, $f)	if ($f->{title} ne $fieldname);
 	}	
 	$conf->{field} = \@fields;
-	AAT::XML::Write(Filename($table), $conf, XML_ROOT);
+	AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
 }
 
 =head2 Fields($table)
@@ -351,7 +353,7 @@ sub Updates_Installation
 {
   my @tables = @_;
   my $web = Octopussy::WebSite();
-  $dir_tables ||= Octopussy::Directory(DIR_TABLE);
+  $dir_tables ||= Octopussy::Directory($DIR_TABLE);
 
   foreach my $t (@tables)
   {

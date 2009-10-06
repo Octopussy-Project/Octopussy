@@ -474,7 +474,7 @@ sub Parse_List($$$$$$$)
       }
 		}
 	}
-
+   
 	return (@msg_to_parse);	
 }
 
@@ -555,6 +555,9 @@ sub Wizard_Msg_Modified($$)
 	my ($line, $types) = @_;
 
 	use bytes;
+
+  $line =~ s/</&lt;/g;
+  $line =~ s/>/&gt;/g;
 
 	$line =~ s/^\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2} \S+ /<\@DATE_TIME_SYSLOG\@> <\@WORD\@> /mgi;
 	foreach my $t (AAT::ARRAY($types))

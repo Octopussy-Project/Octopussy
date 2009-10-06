@@ -12,6 +12,7 @@ use File::Basename;
 use File::Path;
 use Proc::PID::File;
 use POSIX qw(mkfifo);
+use Readonly;
 
 use Octopussy::Alert;
 use Octopussy::Cache;
@@ -44,9 +45,8 @@ use Octopussy::TimePeriod;
 use Octopussy::Type;
 use Octopussy::World_Stats;
 
-use constant APPLICATION_NAME => "Octopussy";
-use constant 
-	SF_SITE => "http://sourceforge.net/project/showfiles.php?group_id=154314";
+Readonly my $APPLICATION_NAME => "Octopussy";
+Readonly my $SF_SITE => "http://sourceforge.net/project/showfiles.php?group_id=154314";
 
 $Octopussy::VERSION = '0.9.9.5';
 
@@ -59,7 +59,7 @@ Returns Octopussy Support Email
 =cut
 sub Email()
 {
-	my $info = AAT::Application::Info(APPLICATION_NAME);
+	my $info = AAT::Application::Info($APPLICATION_NAME);
 
   return ($info->{email});
 }
@@ -71,12 +71,12 @@ Returns Octopussy System User
 =cut
 sub User()
 {
-	my $info = AAT::Application::Info(APPLICATION_NAME);
+	my $info = AAT::Application::Info($APPLICATION_NAME);
 
   return ($info->{user});
 }
 
-=head2 User()
+=head2 Valid_User()
 
 Checks that current user is Octopussy user
 
@@ -107,12 +107,14 @@ Returns Octopussy WebSite
 =cut
 sub WebSite()
 {
-	my $info = AAT::Application::Info(APPLICATION_NAME);
+	my $info = AAT::Application::Info($APPLICATION_NAME);
 
   return ($info->{website});
 }
 
 =head2 Commander($cmd)
+
+Add command $cmd to octo_commander commands list
 
 =cut
 sub Commander
@@ -121,8 +123,14 @@ sub Commander
 
 	my $cache = Octopussy::Cache::Init("octo_commander");
 	my $commands = $cache->get("commands");
-	push(@{$commands}, $cmd);
- 	$cache->set("commands", $commands);
+  if (defined $commands)
+  {
+	  push(@{$commands}, $cmd);
+ 	  $cache->set("commands", $commands);  
+    return ($cmd);
+  }
+
+  return (undef);
 }
 
 =head2 Directory($dir)
@@ -134,7 +142,7 @@ sub Directory($)
 {
   my $dir = shift;
 
-  return (AAT::Application::Directory(APPLICATION_NAME, $dir));
+  return (AAT::Application::Directory($APPLICATION_NAME, $dir));
 }
 
 =head2 Directories(@dirs)
@@ -147,7 +155,7 @@ sub Directories(@)
   my @dirs = @_;
 	my @list = ();
 	foreach my $d (@dirs)
-		{ push(@list, AAT::Application::Directory(APPLICATION_NAME, $d)); }
+		{ push(@list, AAT::Application::Directory($APPLICATION_NAME, $d)); }
 
   return (@list);
 }
@@ -163,6 +171,8 @@ sub Error($$@)
 
 	my $message = AAT::Syslog($module, $msg, @args);
 	print "$module: $message\n";
+
+  return ("$module: $message\n");
 }
 
 =head2 File($file)
@@ -174,7 +184,7 @@ sub File($)
 {
   my $file = shift;
 
-  return (AAT::Application::File(APPLICATION_NAME, $file));
+  return (AAT::Application::File($APPLICATION_NAME, $file));
 }
 
 =head2 Files(@files)
@@ -187,7 +197,7 @@ sub Files(@)
   my @files = @_;
 	my @list = ();
 	foreach my $f (@files)
-    { push(@list, AAT::Application::File(APPLICATION_NAME, $f)); }
+    { push(@list, AAT::Application::File($APPLICATION_NAME, $f)); }
 
   return (@list);
 }
@@ -201,7 +211,7 @@ sub Parameter($)
 {
 	my $param = shift;
 
-  return (AAT::Application::Parameter(APPLICATION_NAME, $param));
+  return (AAT::Application::Parameter($APPLICATION_NAME, $param));
 }
 
 =head2 Status_Progress($bin, $param)
@@ -216,13 +226,13 @@ sub Status_Progress($$)
 	my $file_pid = "${dir_pid}${bin}_${param}.pid";
 	my $status = "";
 
-	if (defined open(FILEPID, "< $file_pid"))
+	if (defined open(my $FILEPID, "<", $file_pid))
 	{
-		my $pid = <FILEPID>;
+		my $pid = <$FILEPID>;
 		chomp($pid);
     my $cache = Octopussy::Cache::Init($bin);
 		$status = $cache->get("status_${pid}");
-		close(FILEPID);
+		close($FILEPID);
 	}
 
 	return ($status);
@@ -237,16 +247,18 @@ sub Sourceforge_Version()
 {
 	my $dir_running = Octopussy::Directory("running");
 	my $version = undef;
-	AAT::Download(APPLICATION_NAME, SF_SITE, 
+	AAT::Download($APPLICATION_NAME, $SF_SITE, 
 		"${dir_running}/octopussy.sf_version");
-	open(UPDATE, "< ${dir_running}/octopussy.sf_version");
-	while (<UPDATE>)
-	{
-		$version = $1
-  		if ($_ =~ /showfiles.php\?group_id=154314&amp;package_id=\d+&amp;release_id=\d+">Octopussy (\S+)<\/a>/);
-	}
-	close(UPDATE);
-	unlink("${dir_running}octopussy.sf_version");
+	if (defined open(my $UPDATE, "<",  "${dir_running}/octopussy.sf_version"))
+  {
+	  while (<$UPDATE>)
+	  {
+		  $version = $1
+  		  if ($_ =~ /showfiles.php\?group_id=154314&amp;package_id=\d+&amp;release_id=\d+">Octopussy (\S+)<\/a>/);
+	  }
+	  close($UPDATE);
+	  unlink("${dir_running}octopussy.sf_version");
+  }
 
 	return ($version);
 }
@@ -265,11 +277,13 @@ sub Web_Updates($)
 	my $dir_running = Octopussy::Directory("running");
 	AAT::Download("Octopussy", "$website/Download/$type/$file", 
 		"$dir_running$file");
-	open(UPDATE, "< $dir_running$file");
-	while (<UPDATE>)
-		{ $update{$1} = $2  if ($_ =~ /^(.+):(\d+)$/); }
-	close(UPDATE);
-	unlink("$dir_running$file");
+	if (defined open(my $UPDATE, "<",  "$dir_running$file"))
+  {
+	  while (<$UPDATE>)
+		  { $update{$1} = $2  if ($_ =~ /^(.+):(\d+)$/); }
+	  close($UPDATE);
+	  unlink("$dir_running$file");
+  }
 
 	return (\%update);
 }
@@ -290,6 +304,8 @@ sub Chown(@)
 		$list .= "\"$f\" ";
 	}
 	`chown -R $user:$user $list`;
+
+  return (1);
 }
 
 =head2 Create_Directory($dir)
@@ -306,6 +322,8 @@ sub Create_Directory($)
 		mkpath($dir);
 		Chown($dir);
 	}
+
+  return ($dir);
 }
 
 =head2 Create_Fifo($fifo)
@@ -321,9 +339,11 @@ sub Create_Fifo
   { 
     my ($file, $dir, $suffix) = fileparse($fifo);
     Create_Directory($dir);
-    mkfifo($fifo, 0700); 
+    mkfifo($fifo, '0700'); 
     Chown($fifo);
   }
+
+  return ($fifo);
 }
 
 =head2 File_Ext($file, $extension)
@@ -408,6 +428,8 @@ sub Dispatcher_Reload()
     chomp($pid);
 		`/bin/kill -HUP $pid`;
   }
+
+  return (1);
 }
 
 =head2 Restart()
@@ -418,6 +440,8 @@ Restarts Octopussy
 sub Restart()
 {
 	`/etc/init.d/octopussy restart`;	
+
+  return (1);
 }
 
 =head2 Process_Status()
@@ -476,6 +500,8 @@ sub Updates_Installation(@)
 		AAT::Download("Octopussy", "$web/Download/System/$u.xml", 
 			"$dir_main/$u.xml"); 
 	}
+
+  return (1);
 }
 
 1;
