@@ -7,9 +7,13 @@ AAT::LDAP - AAT LDAP module
 package AAT::LDAP;
 
 use strict;
+use warnings;
+use Readonly;
+
 use Net::LDAP;
 
-my $DEFAULT_ROLE = "rw";
+Readonly my $DEFAULT_ROLE => "rw";
+
 my %conf_file = ();
 
 =head1 FUNCTIONS

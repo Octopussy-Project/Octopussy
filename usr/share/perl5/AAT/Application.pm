@@ -7,6 +7,7 @@ AAT::Application - AAT Application module
 package AAT::Application;
 
 use strict;
+use warnings;
 use Readonly;
 
 Readonly my $AAT_CONF_FILE => "/etc/aat/aat.xml";

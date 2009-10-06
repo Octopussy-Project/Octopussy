@@ -6,6 +6,8 @@ AAT::Syslog - AAT Syslog module
 package AAT::Syslog;
 
 use strict;
+use warnings;
+
 use Unix::Syslog qw(:macros);
 use Unix::Syslog qw(:subs);
 

@@ -4,6 +4,8 @@ AAT::XMPP - AAT XMPP module
 
 (Extensible Messaging and Presence Protocol (Jabber))
 
+=head1 BUGS
+
 Net::XMPP is buggy with OpenFire & TLS
 -> comment 3 lines in Net::XMPP::Protocol (~line 1800) & disable TLS:
 
@@ -16,6 +18,7 @@ Net::XMPP is buggy with OpenFire & TLS
 package AAT::XMPP;
 
 use strict;
+use warnings;
 use Net::XMPP;
 
 my %conf_file = ();

@@ -6,6 +6,7 @@ Octopussy::Alert - Octopussy Alert module
 package Octopussy::Alert;
 
 use strict;
+use warnings;
 use Readonly;
 use bytes;
 use utf8;
@@ -13,9 +14,7 @@ use Octopussy;
 
 Readonly my $DIR_ALERT => "alerts";
 Readonly my $XML_ROOT => "octopussy_alert";
-
 Readonly my @COMPARATORS => ("<", ">", "=", "<=", ">=", "LIKE");
-
 Readonly my @LEVELS => ( 
 	{ label => "Warning", value => "Warning", color => "orange" }, 
 	{ label => "Critical", value => "Critical", color => "red" } );

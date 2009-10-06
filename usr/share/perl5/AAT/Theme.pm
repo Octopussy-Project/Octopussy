@@ -6,6 +6,7 @@ AAT::Theme - AAT Theme module
 package AAT::Theme;
 
 use strict;
+use warnings;
 use Readonly;
 
 Readonly my $DIR_THEME => "AAT/THEMES/";

@@ -6,20 +6,23 @@ AAT::Certificate - AAT Certificate module
 package AAT::Certificate;
 
 use strict;
+use warnings;
+use Readonly;
+
 use AAT;
 
-my $CA_DAYS = 3650;
-my $CIPHER = "rsa:1024";
+Readonly my $CA_DAYS => 3650;
+Readonly my $CIPHER => "rsa:1024";
 
-my $CONF = "/etc/aat/openssl.cnf";
-my $CONF_CA = "/var/run/aat/openssl_ca.cnf";
-my $CONF_CLIENT = "/var/run/aat/openssl_client.cnf";
-my $CONF_SERVER = "/var/run/aat/openssl_server.cnf";
+Readonly my $CONF => "/etc/aat/openssl.cnf";
+Readonly my $CONF_CA => "/var/run/aat/openssl_ca.cnf";
+Readonly my $CONF_CLIENT => "/var/run/aat/openssl_client.cnf";
+Readonly my $CONF_SERVER => "/var/run/aat/openssl_server.cnf";
 
-my $OPENSSL = "/usr/bin/openssl";
-my $SSL_CA = "$OPENSSL ca -batch";
-my $SSL_REQ = "$OPENSSL req -batch"; 
-my $SSL_X509 = "$OPENSSL x509";
+Readonly my $OPENSSL => "/usr/bin/openssl";
+Readonly my $SSL_CA => "$OPENSSL ca -batch";
+Readonly my $SSL_REQ => "$OPENSSL req -batch"; 
+Readonly my $SSL_X509 => "$OPENSSL x509";
 
 =head1 FUNCTIONS
 
@@ -63,9 +66,9 @@ sub Authority_Create($$)
   `echo "01" > $dir_ca/serial`;
 
 	`cp $CONF $CONF_CA.tmp`;
-	open(FILE, "< $CONF_CA.tmp");
-	open(OUT, "> $CONF_CA");
-	while (<FILE>)
+	open(my $FILE, "<", "$CONF_CA.tmp");
+	open(my $OUT, ">", $CONF_CA);
+	while (<$FILE>)
 	{
 		my $line = $_;
 		foreach my $k (keys %{$conf})
@@ -73,10 +76,10 @@ sub Authority_Create($$)
 			my $sub = "<" . uc($k) . ">";
 			$line =~ s/$sub/$conf->{$k}/g;
 		}
-		print OUT $line;
+		print $OUT $line;
 	}
-	close(FILE); 
-	close(OUT);
+	close($FILE); 
+	close($OUT);
 	`$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $dir_ca/private/cakey.pem -out $dir_ca/cacert.pem`;
 	`chmod -R 600 $dir_ca/private`;
 }
@@ -93,9 +96,9 @@ sub Client_Create($$$$)
 	my $dir_ca = AAT::Application::Directory($appli, "certificate_authority");
 	my $info = AAT::Application::Info($appli);
 	`cp $CONF $CONF_CLIENT.tmp`;
-  open(FILE, "< $CONF_CLIENT.tmp");
-  open(OUT, "> $CONF_CLIENT");
-  while (<FILE>)
+  open(my $FILE, "<", "$CONF_CLIENT.tmp");
+  open(my $OUT, ">", $CONF_CLIENT);
+  while (<$FILE>)
   {
     my $line = $_;
     foreach my $k (keys %{$conf})
@@ -104,10 +107,10 @@ sub Client_Create($$$$)
       $line =~ s/$sub/$conf->{$k}/g;
     }
     $line =~ s/<DIR>/$dir_ca/g;
-    print OUT $line;
+    print $OUT $line;
   }
-  close(FILE);
-  close(OUT);
+  close($FILE);
+  close($OUT);
 	`$SSL_REQ -config $CONF_CLIENT -passout pass:octo -newkey $CIPHER -keyout ${file}.key -out ${file}.req`;
 	`$SSL_CA -config $CONF_CLIENT -passin pass:octo -in ${file}.req -out ${file}.pem`;
   `$OPENSSL pkcs12 -export -passin pass:octo -passout pass:$password -in ${file}.pem -inkey ${file}.key -out ${file}.p12 -name "$conf->{common_name}"`;
@@ -126,9 +129,9 @@ sub Server_Create
 	my $dir_ca = AAT::Application::Directory($appli, "certificate_authority");	
 	my $info = AAT::Application::Info($appli);
 	`cp $CONF $CONF_SERVER.tmp`;
-  open(FILE, "< $CONF_SERVER.tmp");
-  open(OUT, "> $CONF_SERVER");
-  while (<FILE>)
+  open(my $FILE, "<", "$CONF_SERVER.tmp");
+  open(my $OUT, ">", $CONF_SERVER);
+  while (<$FILE>)
   {
     my $line = $_;
     foreach my $k (keys %{$conf})
@@ -137,10 +140,10 @@ sub Server_Create
       $line =~ s/$sub/$conf->{$k}/g;
     }
 		$line =~ s/<DIR>/$dir_ca/g;
-    print OUT $line;
+    print $OUT $line;
   }
-  close(FILE);
-  close(OUT);
+  close($FILE);
+  close($OUT);
 	`$SSL_REQ -config $CONF_SERVER -newkey $CIPHER -keyout $dest/server.key -out $dest/server.req`;
 	`$SSL_CA -config $CONF_SERVER -in $dest/server.req -out $dest/server.crt`;
 	`$OPENSSL rsa -passout pass:octo -in $dest/server.key -out $dest/server.key`;

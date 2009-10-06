@@ -7,6 +7,7 @@ package Octopussy::Report;
 
 use strict; 
 no strict 'refs';
+use warnings;
 use Proc::ProcessTable;
 use Readonly;
 

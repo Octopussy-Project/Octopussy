@@ -6,6 +6,8 @@ AAT::DB - AAT Database module
 package AAT::DB;
 
 use strict;
+use warnings;
+
 use DBI;
 
 my %conf_file = ();
@@ -174,11 +176,11 @@ sub Load_Infile($$$$)
   my ($appli, $table, $file, $lines) = @_;
 	my $conf = Configuration($appli);
 
-  if (defined open(DBFILE, "> $file"))
+  if (defined open(my $DBFILE, ">", $file))
 	{
   	foreach my $l (AAT::ARRAY($lines))
-    	{ print DBFILE "$l\n" if ($l =~ /\S+/); }
-  	close(DBFILE);
+    	{ print $DBFILE "$l\n" if ($l =~ /\S+/); }
+  	close($DBFILE);
 		if ($conf->{type} eq "mysql")
 			{ Do($appli, "LOAD DATA INFILE '$file' INTO TABLE $table" . "_$$"); }
 		elsif ($conf->{type} eq "Pg")

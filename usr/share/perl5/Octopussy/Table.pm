@@ -7,6 +7,7 @@ package Octopussy::Table;
 
 use strict;
 no strict 'refs';
+use warnings;
 use Readonly;
 
 use Octopussy;

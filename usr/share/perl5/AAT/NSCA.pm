@@ -6,6 +6,7 @@ AAT::NSCA - AAT NSCA module
 package AAT::NSCA;
 
 use strict;
+use warnings;
 
 my %conf_file = ();
 

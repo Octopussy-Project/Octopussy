@@ -7,6 +7,7 @@ AAT::Translation - AAT Translation module
 package AAT::Translation;
 
 use strict;
+use warnings;
 
 my %AAT_Translation = ();
 

@@ -7,6 +7,7 @@ AAT::FS - AAT FileSystem module
 package AAT::FS;
 
 use strict;
+use warnings;
 
 =head1 FUNCTIONS
 

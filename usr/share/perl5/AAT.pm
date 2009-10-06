@@ -38,6 +38,8 @@ package AAT;
 
 use strict;
 no strict 'refs';
+use warnings;
+use Readonly;
 
 use File::Path;
 use LWP;
@@ -62,9 +64,13 @@ use AAT::XML;
 use AAT::XMPP;
 use AAT::Zabbix;
 
+Readonly my $FILE_DEBUG => "/var/run/aat/AAT.debug";
+
 =head1 FUNCTIONS
 
 =head2 DEBUG($text)
+
+Prints Debug Message $text in AAT Debug file
 
 =cut
 sub DEBUG($)
@@ -75,7 +81,9 @@ sub DEBUG($)
   my ($sec, $min, $hour) = localtime();
  
 	$ENV{'PATH'} = '/bin:/usr/bin/:/usr/sbin'; 
-	`/bin/echo "$hour:$min:$sec > $text" >> /var/run/aat/AAT.debug`;
+	`/bin/echo "$hour:$min:$sec > $text" >> $FILE_DEBUG`;
+
+  return ("$hour:$min:$sec > $text");
 }
 
 =head2 NOT_NULL($value)
@@ -223,10 +231,11 @@ sub Download($$$)
 	my $res = $ua->request($req);
 	if ($res->is_success)
 	{
-  	if (defined open(FILE, "> $dest"))
+  	if (defined open(my $FILE, ">", $dest))
 		{
-  	print FILE $res->content;
-  	close(FILE);
+  	  print $FILE $res->content;
+  	  close($FILE);
+      return ($dest);
 		}
 	}
 	else
@@ -234,6 +243,8 @@ sub Download($$$)
 		$download =~ s/\%\d\d/ /g; # '%' is not good for sprintf used by syslog
  		AAT::Syslog($appli, "DOWNLOAD_FAILED", $download);
 	}
+
+  return (undef);
 }
 
 =head2 Update_Configuration($appli, $file, $conf, $rootname)
@@ -428,10 +439,10 @@ sub File_Save($)
 		"filename=\"$conf->{output_file}\"");
 	if (AAT::NOT_NULL($conf->{input_file}))
 	{
-  	open(FILE, "< $conf->{input_file}");
-  	while(<FILE>)
+  	open(my $FILE, "<", $conf->{input_file});
+  	while (<$FILE>)
   		{ $main::Response->BinaryWrite($_); }
-  	close(FILE);
+  	close($FILE);
 	}
 	elsif (AAT::NOT_NULL($conf->{input_data}))
 	{

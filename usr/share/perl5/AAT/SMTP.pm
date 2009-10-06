@@ -6,6 +6,8 @@ AAT::SMTP - AAT SMTP module
 package AAT::SMTP;
 
 use strict;
+use warnings;
+
 use Mail::Sender;
 use Net::Telnet;
 

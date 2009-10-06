@@ -6,6 +6,8 @@ AAT::Object - AAT Object module
 package AAT::Object;
 
 use strict;
+use warnings;
+
 use AAT::XML;
 
 =head1 FUNCTIONS

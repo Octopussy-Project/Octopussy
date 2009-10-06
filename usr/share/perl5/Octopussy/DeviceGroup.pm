@@ -6,6 +6,7 @@ Octopussy::DeviceGroup - Octopussy DeviceGroup Module
 package Octopussy::DeviceGroup;
 
 use strict;
+use warnings;
 use Readonly;
 
 use Octopussy;

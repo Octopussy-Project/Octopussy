@@ -7,13 +7,16 @@ AAT::Datetime - AAT Datetime module
 package AAT::Datetime;
 
 use strict;
+use warnings;
+use Readonly;
+
 use Date::Manip;
 
-my @MONTH_NAME =
+Readonly my @MONTH_NAME =>
   ( "", "_JANUARY", "_FEBRUARY", "_MARCH", "_APRIL", "_MAY", "_JUNE",
     "_JULY", "_AUGUST", "_SEPTEMBER", "_OCTOBER", "_NOVEMBER", "_DECEMBER" );
 
-my @WEEKDAY_NAME =
+Readonly my @WEEKDAY_NAME =>
   ( "", "_MONDAY", "_TUESDAY", "_WEDNESDAY", "_THURSDAY",
     "_FRIDAY", "_SATURDAY", "_SUNDAY" );
 

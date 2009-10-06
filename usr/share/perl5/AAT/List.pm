@@ -6,6 +6,8 @@ AAT::List - AAT List module
 package AAT::List;
 
 use strict;
+use warnings;
+
 use AAT::XML;
 
 =head1 FUNCTIONS

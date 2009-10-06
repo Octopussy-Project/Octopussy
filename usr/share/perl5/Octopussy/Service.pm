@@ -7,6 +7,7 @@ package Octopussy::Service;
 
 use strict;
 no strict 'refs';
+use warnings;
 use Readonly;
 use utf8;
 use Encode;
@@ -560,11 +561,11 @@ sub Updates()
 	my $file = "$dir_running/_services.idx";
 
 	AAT::Download("Octopussy", "$web/Download/Services/_services.idx", $file);
-	if (defined open(UPDATE, "< $file"))
+	if (defined open(my $UPDATE, "<", $file))
 	{
-		while (<UPDATE>)
+		while (<$UPDATE>)
 			{ $update{$1} = $2	if ($_ =~ /^(.+):(\d+)$/); }
-		close(UPDATE);
+		close($UPDATE);
 	}
 	else
   {

@@ -6,6 +6,7 @@ Octopussy::Device - Octopussy Device module
 package Octopussy::Device;
 
 use strict;
+use warnings;
 use Readonly;
 
 use Octopussy;

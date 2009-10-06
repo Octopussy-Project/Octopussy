@@ -6,6 +6,7 @@ AAT::File - AAT File module
 package AAT::File;
 
 use strict;
+use warnings;
 use Readonly;
 
 Readonly my $DIR_MIME_SMALL => "THEMES/DEFAULT/mime/22x22";
