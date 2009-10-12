@@ -135,7 +135,8 @@ sub Prepare($$)
   my ($appli, $sql) = @_;
 
   Connect($appli);
-  my $prepared = $dbh{$appli}->prepare($sql)  if (defined $dbh{$appli});
+  my $prepared = ((defined $dbh{$appli}) 
+    ? $dbh{$appli}->prepare($sql) : undef);
   Disconnect($appli);
 
   return ($prepared);

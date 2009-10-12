@@ -7,6 +7,7 @@ package Octopussy::Taxonomy;
 
 use strict;
 no strict 'refs';
+use warnings;
 use Readonly;
 
 use Octopussy;

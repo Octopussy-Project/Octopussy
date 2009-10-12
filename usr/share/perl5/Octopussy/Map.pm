@@ -6,6 +6,7 @@ Octopussy::Map - Octopussy Map module
 package Octopussy::Map;
 
 use strict;
+use warnings;
 use Readonly;
 use Octopussy;
 

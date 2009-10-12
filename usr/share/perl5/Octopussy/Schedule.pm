@@ -6,6 +6,7 @@ Octopussy::Schedule - Octopussy Schedule module
 package Octopussy::Schedule;
 
 use strict;
+use warnings;
 use Readonly;
 use Octopussy;
 

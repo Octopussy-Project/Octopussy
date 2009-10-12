@@ -6,6 +6,7 @@ Octopussy::Location - Octopussy Location module
 package Octopussy::Location;
 
 use strict;
+use warnings;
 use Readonly;
 use Octopussy;
 

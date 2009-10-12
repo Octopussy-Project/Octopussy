@@ -6,6 +6,7 @@ Octopussy::Stats - Octopussy System Stats module
 package Octopussy::Stats;
 
 use strict; 
+use warnings;
 
 use Sys::CPU;
 use Octopussy;

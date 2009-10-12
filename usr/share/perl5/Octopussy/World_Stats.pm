@@ -6,6 +6,7 @@ Octopussy::World_Stats - Octopussy World Statistics module
 package Octopussy::World_Stats;
 
 use strict;
+use warnings;
 use Readonly;
 
 use Octopussy;
@@ -48,6 +49,8 @@ sub Modify($)
 	my $conf = shift;
 
   AAT::XML::Write(Octopussy::File($FILE_WORLD_STATS), $conf, $XML_ROOT);
+
+  return (undef);
 }
 
 =head2 Configuration()

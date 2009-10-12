@@ -21,7 +21,7 @@ sub Directory_Files($$)
 	my ($dir, $pattern) = @_;
 	
 	opendir(DIR, $dir);
-  my @files = grep /$pattern/, readdir(DIR);
+  my @files = grep { /$pattern/ } readdir(DIR);
   closedir(DIR);
 
 	return (sort @files);

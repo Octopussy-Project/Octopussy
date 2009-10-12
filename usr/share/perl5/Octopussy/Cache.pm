@@ -6,6 +6,7 @@ Octopussy::Cache - Octopussy Cache module
 package Octopussy::Cache;
 
 use strict;
+use warnings;
 use Readonly;
 
 use Cache::FileCache;

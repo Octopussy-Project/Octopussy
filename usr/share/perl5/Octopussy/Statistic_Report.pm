@@ -6,6 +6,7 @@ Octopussy::Statistic_Report - Octopussy Statistic Report module
 package Octopussy::Statistic_Report;
 
 use strict;
+use warnings;
 use Readonly;
 use Octopussy;
 

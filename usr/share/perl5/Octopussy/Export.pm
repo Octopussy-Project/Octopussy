@@ -7,6 +7,7 @@ package Octopussy::Export;
 
 use strict;
 no strict 'refs';
+use warnings;
 
 use Net::FTP;
 use Net::SCP;

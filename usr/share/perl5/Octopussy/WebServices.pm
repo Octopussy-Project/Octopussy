@@ -5,6 +5,9 @@ Octopussy::WebServices - Octopussy WebServices module
 =cut
 package Octopussy::WebServices;
 
+use strict;
+use warnings;
+
 use XML::Simple;
 
 use Octopussy;
@@ -67,11 +70,11 @@ sub PrintFile($)
 {
 	my $file = shift;
 
-	if (defined open(FILE, "< $file"))
+	if (defined open(my $FILE, "<",  $file))
 	{
-  	while (<FILE>)
+  	while (<$FILE>)
   		{ print $_; }
-  	close(FILE);
+  	close($FILE);
 	}
 	else
   {

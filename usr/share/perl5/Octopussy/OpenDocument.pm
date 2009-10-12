@@ -6,6 +6,7 @@ Octopussy::OpenDocument - Octopussy OpenDocument module
 package Octopussy::OpenDocument;
 
 use strict;
+use warnings;
 
 #use OpenOffice::OODoc;
 

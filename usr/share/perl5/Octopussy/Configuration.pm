@@ -6,6 +6,7 @@ Octopussy::Configuration - Octopussy Configuration module
 package Octopussy::Configuration;
 
 use strict;
+use warnings;
 use Readonly;
 
 use Octopussy;

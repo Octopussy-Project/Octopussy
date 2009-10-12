@@ -6,6 +6,7 @@ Octopussy::Contact - Octopussy Contact module
 package Octopussy::Contact;
 
 use strict;
+use warnings;
 use Readonly;
 
 use Octopussy;

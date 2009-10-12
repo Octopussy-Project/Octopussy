@@ -5,13 +5,16 @@ Octopussy::OFC - Octopussy Open Flash Chart (OFC) module
 package Octopussy::OFC;
 
 use strict;
+use warnings;
+use Readonly;
 
 use JSON;
 
 use Octopussy;
 
-my $STEP_HBAR = 10;
-my $STYLE_TITLE = "{font-size: 20px; color:#0000ff; font-family: Verdana; text-align: center;}";
+Readonly my $STEP_HBAR => 10;
+Readonly my $STYLE_TITLE => 
+  "{font-size: 20px; color:#0000ff; font-family: Verdana; text-align: center;}";
 
 =head1 FUNCTIONS
 
@@ -22,11 +25,17 @@ sub Generate($$)
 {
   my ($conf, $output_file) = @_;
 
-  my $json = to_json($conf, {utf8 => 1, pretty => 1});
-  open(FILE, "> $output_file");
-  print FILE $json;
-  close(FILE);
-  Octopussy::Chown($output_file);
+  my $json = to_json($conf, { utf8 => 1, pretty => 1 });
+  if (defined open(my $FILE, ">", $output_file))
+  {
+    print $FILE $json;
+    close($FILE);
+    Octopussy::Chown($output_file);
+  
+    return ($output_file);
+  }
+
+  return (undef);
 }
 
 =head2 Step($max)
@@ -78,6 +87,8 @@ sub Area_Hollow($$$)
     y_axis => { steps => Step($max), min => 0, max => $max },
     elements => [ { type => "area_hollow", values => \@values } ] );
   Octopussy::OFC::Generate(\%conf, $output_file); 
+
+  return ($output_file);
 }
 
 =head2 Bar_3D($rc, $data, $output_file)
@@ -106,6 +117,8 @@ sub Bar_3D
     y_axis => { steps => Step($max), min => 0, max => $max },
     elements => [ { type => "bar_3d", values => \@values } ] );
   Octopussy::OFC::Generate(\%conf, $output_file);
+
+  return ($output_file);
 }
 
 =head2 Bar_Cylinder($rc, $data, $output_file)
@@ -135,6 +148,8 @@ sub Bar_Cylinder
     y_axis => { steps => Step($max), min => 0, max => $max },
     elements => [ { type => "bar_cylinder", values => \@values } ] );
   Octopussy::OFC::Generate(\%conf, $output_file);
+
+  return ($output_file);
 }
 
 =head2 Bar_Glass($rc, $data, $output_file)
@@ -163,6 +178,8 @@ sub Bar_Glass
     y_axis => { steps => Step($max), min => 0, max => $max },
     elements => [ { type => "bar_glass", values => \@values } ] );
   Octopussy::OFC::Generate(\%conf, $output_file);
+
+  return ($output_file);
 }
 
 =head2 Bar_Sketch($rc, $data, $output_file)
@@ -191,6 +208,8 @@ sub Bar_Sketch
     y_axis => { steps => Step($max), min => 0, max => $max },
     elements => [ { type => "bar_sketch", values => \@values } ] );
   Octopussy::OFC::Generate(\%conf, $output_file);
+
+  return ($output_file);
 }
 
 =head2 Horizontal_Bar($rc, $data, $output_file)
@@ -218,6 +237,8 @@ sub Horizontal_Bar
     y_axis => { offset => 1, labels => \@labels },
     elements => [ { type => "hbar", values => \@values } ] ); 
   Octopussy::OFC::Generate(\%conf, $output_file);
+
+  return ($output_file);
 }
 
 =head2 Pie($rc, $data, $output_file)
@@ -240,6 +261,8 @@ sub Pie
     title => { text => $rc->{name}, style => $STYLE_TITLE },
     elements => [ { type => "pie", values => \@values } ] );
   Octopussy::OFC::Generate(\%conf, $output_file);
+
+  return ($output_file);
 }
 
 1;

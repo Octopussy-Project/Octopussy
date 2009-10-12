@@ -7,7 +7,9 @@ package Octopussy::Plugin;
 
 use strict;
 no strict 'refs';
+use warnings;
 use Readonly;
+
 use Octopussy;
 
 Readonly my $DIR_PLUGIN => "plugins";
@@ -20,12 +22,13 @@ BEGIN
 {
   Readonly my $DIR_PLUGIN_MODULES => "/usr/share/perl5/Octopussy/Plugin/";
   opendir(DIR, $DIR_PLUGIN_MODULES);
- 	my @plugins = grep /.+\.pm$/, readdir(DIR);
+ 	my @plugins = grep { /.+\.pm$/ } readdir(DIR);
  	foreach my $p (@plugins)
-  { 
-		my $plugin_filename = "$1$2"	
-			if ("Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/);
-		require "$plugin_filename";
+  {
+    if ("Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/)
+    { 
+		  require "$1$2";
+    }
 	}
 	closedir(DIR);
 }
@@ -108,20 +111,22 @@ sub Functions()
 sub Function_Source($)
 {
 	my $fct = shift;	
-	my $source = undef;
-	my $mod = $1	if ($fct =~ /Octopussy::Plugin::(.+)::.+$/);
-
-	if (!defined $function_source{$fct})
-	{
-		$dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
-		my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
-		foreach my $pf (AAT::ARRAY($conf->{function})) 
-		{ 
-			$function_source{$fct} = $pf->{source}	if ($pf->{perl} eq $fct);
-		}
-		$function_source{$fct} = "OUTPUT"	if (!defined $function_source{$fct});
-	}
 	
+	if ($fct =~ /Octopussy::Plugin::(.+)::.+$/)
+  {
+    my $mod = $1;
+	  if (!defined $function_source{$fct})
+	  {
+		  $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
+		  my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
+		  foreach my $pf (AAT::ARRAY($conf->{function})) 
+		  { 
+			  $function_source{$fct} = $pf->{source}	if ($pf->{perl} eq $fct);
+		  }
+		  $function_source{$fct} = "OUTPUT"	if (!defined $function_source{$fct});
+	  }
+	}
+
 	return ($function_source{$fct});
 }
 

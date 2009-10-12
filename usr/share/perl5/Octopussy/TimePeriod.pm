@@ -7,6 +7,7 @@ package Octopussy::TimePeriod;
 
 use strict;
 no strict 'refs';
+use warnings;
 use Readonly;
 
 use Octopussy;
@@ -29,6 +30,8 @@ sub New($)
   my $conf = AAT::XML::Read($file);
 	push(@{$conf->{timeperiod}}, $new);
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return ($file);
 }
 
 =head2 Remove($timeperiod)
@@ -47,6 +50,8 @@ sub Remove($)
   	{ push(@tps, $t)	if ($t->{label} ne $timeperiod); }
 	$conf->{timeperiod} = \@tps;
 	AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return ($file);
 }
 
 =head2 List()
@@ -80,8 +85,10 @@ sub Configuration($)
 			{ 
 				foreach my $k (AAT::HASH_KEYS($dt))
 				{
-					my $day = $1	if ($k =~ /^(\S{3})\S+/);
-					$str .= "$day: $dt->{$k}, "; 
+          if ($k =~ /^(\S{3})\S+/)
+          {
+					  $str .= "$1: $dt->{$k}, "; 
+          }
 				}
 			}
 			$str =~ s/, $//;
@@ -125,33 +132,36 @@ sub Match($$)
 	my ($timeperiod, $datetime) = @_;
 
 	return (1)	if ((!defined $timeperiod) || ($timeperiod =~ /-ANY-/));
-	my ($day, $hour, $min) = ($1, $2, $3)
-		if ($datetime =~ /^(\S+) (\d+):(\d+)$/);
-	my $nb = $hour*100 + $min;
-	my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
-  foreach my $tp (AAT::ARRAY($conf->{timeperiod}))
+  if ($datetime =~ /^(\S+) (\d+):(\d+)$/)
   {
-    if ($tp->{label} eq $timeperiod)
+	  my ($day, $hour, $min) = ($1, $2, $3);
+	  my $nb = $hour*100 + $min;
+	  my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
+    foreach my $tp (AAT::ARRAY($conf->{timeperiod}))
     {
-      foreach my $dt (AAT::ARRAY($tp->{dt}))
+      if ($tp->{label} eq $timeperiod)
       {
-        foreach my $k (AAT::HASH_KEYS($dt))
+        foreach my $dt (AAT::ARRAY($tp->{dt}))
         {
-					if ($k eq $day)
-					{
-						if ($dt->{$k} =~ /^\!(\d+):(\d+)-(\d+):(\d+)$/)
-						{
-							return (1)	if (($nb < ($1*100+$2)) || ($nb > ($3*100+$4)));
-						}
-						elsif ($dt->{$k} =~ /^(\d+):(\d+)-(\d+):(\d+)$/)
-						{
-							return (1)  if (($nb > ($1*100+$2)) && ($nb < ($3*100+$4)));
-						}
-					}
+          foreach my $k (AAT::HASH_KEYS($dt))
+          {
+					  if ($k eq $day)
+					  {
+						  if ($dt->{$k} =~ /^\!(\d+):(\d+)-(\d+):(\d+)$/)
+						  {
+							  return (1)	if (($nb < ($1*100+$2)) || ($nb > ($3*100+$4)));
+						  }
+						  elsif ($dt->{$k} =~ /^(\d+):(\d+)-(\d+):(\d+)$/)
+						  {
+							  return (1)  if (($nb > ($1*100+$2)) && ($nb < ($3*100+$4)));
+						  }
+					  }
+          }
         }
       }
     }
-  }	
+  }
+ 	
 	return (0);
 }
 

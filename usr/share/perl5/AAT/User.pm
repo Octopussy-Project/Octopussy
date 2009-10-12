@@ -6,6 +6,7 @@ AAT::User - AAT User module
 package AAT::User;
 
 use strict;
+use warnings;
 use Readonly;
 use Crypt::PasswdMD5;
 

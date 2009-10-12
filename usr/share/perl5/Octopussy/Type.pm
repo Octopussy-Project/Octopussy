@@ -7,6 +7,7 @@ package Octopussy::Type;
 
 use strict;
 no strict 'refs';
+use warnings;
 use Readonly;
 
 use AAT;

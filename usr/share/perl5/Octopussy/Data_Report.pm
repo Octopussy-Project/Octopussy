@@ -6,7 +6,9 @@ Octopussy::Data_Report - Octopussy Data_Report module
 package Octopussy::Data_Report;
 
 use strict;
+use warnings;
 use Readonly;
+
 use Octopussy;
 
 Readonly my $DIR_REPORT_DATA => "data_reports";
@@ -23,7 +25,7 @@ sub Type_List()
 	$dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
 	
 	opendir(DIR, $dir_reports);
-  my @dirs = grep !/^\./, readdir(DIR);
+  my @dirs = grep { !/^\./ } readdir(DIR);
   closedir(DIR);
 
 	return (@dirs);
@@ -41,7 +43,7 @@ sub List($)
 	$dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
 	my $dir = $dir_reports . $report;
 	opendir(DIR, $dir);
-	my @dirs = grep !/^\./, readdir(DIR);
+	my @dirs = grep { !/^\./ } readdir(DIR);
 	closedir(DIR);
 
 	my %reports = ();

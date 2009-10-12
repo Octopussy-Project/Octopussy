@@ -6,7 +6,9 @@ Octopussy::Storage - Octopussy Storage module
 package Octopussy::Storage;
 
 use strict;
+use warnings;
 use Readonly;
+
 use Octopussy;
 
 Readonly my $FILE_STORAGES => "storages";
@@ -83,6 +85,8 @@ sub Default_Set($)
 	$conf->{default_known} = $conf_new->{known};
 
 	AAT::XML::Write($file, $conf, $XML_ROOT);	
+
+  return ($file);
 }
 
 =head2 List()

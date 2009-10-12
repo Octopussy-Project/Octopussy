@@ -6,6 +6,7 @@ Octopussy::Graph - Octopussy Graph module
 package Octopussy::Graph;
 
 use strict;
+use warnings;
 use Readonly;
 
 use Octopussy;
@@ -65,11 +66,11 @@ sub Generate($$)
 	) or die $graph->error;
 	#$graph->set_legend($g->{data});
 	my $gd = $graph->plot($g->{data}) or die $graph->error;
-	if (defined open(IMG, "> $output"))
+	if (defined open(my $IMG, ">",  $output))
 	{
-		binmode IMG;
-		print IMG $gd->png;
-		close(IMG);
+		binmode $IMG;
+		print $IMG $gd->png;
+		close($IMG);
 	}
 	else
   {

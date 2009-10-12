@@ -7,9 +7,8 @@ package Octopussy::Message;
 
 use strict;
 no strict 'refs';
-
+use warnings;
 use bytes;
-
 use utf8;
 
 use Octopussy;
@@ -625,41 +624,43 @@ sub Wizard($)
 	foreach my $f (sort @files)
   {
     chomp($f);
-		my $timestamp = "$1$2$3$4$5"
-			if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/);
-    if (defined open(FILE, "zcat $f |"))
-		{
-    	while (<FILE>)
-    	{
-      	my $line = $_;
-      	chomp($line);
-      	my $match = 0;
-      	foreach my $m (@messages)
-      	{
-        	if ($line =~ $m->{re})
-        	{
-          	$m->{nb} = $m->{nb} + 1;
-          	$match = 1;
-						if ($m->{nb} > 100)
-						{
-							$m->{nb} = "100+";
-							close(FILE);
-							return (@messages);
-						}
-          	last;
-        	}
-      	}
-				push(@messages, Wizard_Add_Message($timestamp, $line, \@types))
-      		if (! $match);
-				last  if (scalar(@messages) >= $nb_max);
-    	}
-    	close(FILE);
-   		last  if (scalar(@messages) >= $nb_max);
-		}
-		else
+    if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
     {
-      my ($pack, $file_pack, $line, $sub) = caller(0);
-			AAT::Syslog("Octopussy::Message", "UNABLE_OPEN_FILE_IN", $f, $sub);
+		  my $timestamp = "$1$2$3$4$5";
+      if (defined open(my $FILE, "-|", "zcat $f"))
+		  {
+    	  while (<$FILE>)
+    	  {
+      	  my $line = $_;
+      	  chomp($line);
+      	  my $match = 0;
+      	  foreach my $m (@messages)
+      	  {
+        	  if ($line =~ $m->{re})
+        	  {
+          	  $m->{nb} = $m->{nb} + 1;
+          	  $match = 1;
+						  if ($m->{nb} > 100)
+						  {
+							  $m->{nb} = "100+";
+							  close($FILE);
+							  return (@messages);
+						  }
+          	  last;
+        	  }
+      	  }
+				  push(@messages, Wizard_Add_Message($timestamp, $line, \@types))
+      		  if (! $match);
+				  last  if (scalar(@messages) >= $nb_max);
+    	  }
+    	  close($FILE);
+   		  last  if (scalar(@messages) >= $nb_max);
+		  }
+		  else
+      {
+        my ($pack, $file_pack, $line, $sub) = caller(0);
+			  AAT::Syslog("Octopussy::Message", "UNABLE_OPEN_FILE_IN", $f, $sub);
+      }
     }
   }
 

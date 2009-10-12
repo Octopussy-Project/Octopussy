@@ -6,6 +6,7 @@ Octopussy::Loglevel - Octopussy Loglevel module
 package Octopussy::Loglevel;
 
 use strict;
+use warnings;
 use Readonly;
 use Octopussy;
 

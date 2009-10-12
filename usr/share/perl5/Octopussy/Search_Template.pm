@@ -6,6 +6,7 @@ Octopussy::Search_Template - Octopussy Search Template module
 package Octopussy::Search_Template;
 
 use strict;
+use warnings;
 use Readonly;
 use bytes;
 use utf8;

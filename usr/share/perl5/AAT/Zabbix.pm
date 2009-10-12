@@ -6,6 +6,7 @@ AAT::Zabbix - AAT Zabbix module
 package AAT::Zabbix;
 
 use strict;
+use warnings;
 
 my %conf_file = ();
 

@@ -6,6 +6,7 @@ Octopussy - Octopussy main module
 package Octopussy;
 
 use strict;
+use warnings;
 
 use AAT;
 use File::Basename;
@@ -374,20 +375,22 @@ sub PID_File($)
 	my $user = User();
 
 	my $line = `id $user`;
-	my ($uid, $gid) = ($1, $2)
-  	if ($line =~ /uid=(\d+)\($user\) gid=(\d+)\($user\)/);
-	my @attr = stat($file_pid);
+  if ($line =~ /uid=(\d+)\($user\) gid=(\d+)\($user\)/)
+  {
+	  my ($uid, $gid) = ($1, $2);
+	  my @attr = stat($file_pid);
 
-	if ((-f $file_pid) && (($uid != $attr[4]) || ($gid != $attr[5])))
-	{
-		AAT::Syslog("octopussy", 
-			"ERROR: pid file '$file_pid' doesn't match octopussy uid/gid !");
-	}
-	else
-	{
-    return (undef)
-      if (Proc::PID::File->running(dir => $dir_pid, name => $name))
-	}
+	  if ((-f $file_pid) && (($uid != $attr[4]) || ($gid != $attr[5])))
+	  {
+		  AAT::Syslog("octopussy", 
+			  "ERROR: pid file '$file_pid' doesn't match octopussy uid/gid !");
+	  }
+	  else
+	  {
+      return (undef)
+        if (Proc::PID::File->running(dir => $dir_pid, name => $name))
+	  }
+  }
 
 	return ($file_pid);
 }
@@ -419,7 +422,7 @@ sub Dispatcher_Reload()
 {
 	my $dir_pid = Octopussy::Directory("running");
   opendir(DIR, $dir_pid);
-	my @files = grep /octo_dispatcher\.pid$/, readdir DIR;
+	my @files = grep { /octo_dispatcher\.pid$/ } readdir DIR;
   closedir(DIR);
 
   foreach my $file (@files)

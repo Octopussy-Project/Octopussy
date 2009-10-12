@@ -7,6 +7,8 @@ package Octopussy::DB;
 
 use strict;
 no strict 'refs';
+use warnings;
+
 use DBI;
 use Octopussy;
 
@@ -55,6 +57,8 @@ sub Connect()
 	my $error = AAT::DB::Connect("Octopussy");
 
 	AAT::Syslog("octo_DBI", "$error")	if (defined $error);
+
+  return ($error);
 }
 
 =head2 Table_Creation($tablename, \@fields, \@indexes)
@@ -68,6 +72,8 @@ sub Table_Creation($$$)
 
 	my $sql = Octopussy::Table::SQL($tablename, $fields, $indexes);
 	AAT::DB::Do("Octopussy", $sql);
+
+  return ($sql);
 }
 
 =head2 SQL_As_Substitution($field)

@@ -7,6 +7,7 @@ package AAT::WebService;
 
 use strict;
 no strict 'refs';
+use warnings;
 
 my %ws = ();
 
