@@ -6,6 +6,8 @@ Octopussy::Logs - Octopussy Logs module
 package Octopussy::Logs;
 
 use strict;
+use warnings;
+
 use Octopussy;
 
 =head2 Device_List($devices)
@@ -86,7 +88,7 @@ sub Get_Directories($)
 	return ()	if (!-d $dir);
 
 	opendir(DIR, $dir);
-	my @dirs = grep !/^\./, readdir(DIR);
+	my @dirs = grep { !/^\./ } readdir(DIR);
 	closedir(DIR);
 
 	return (sort @dirs);
@@ -106,6 +108,8 @@ sub Init_Directories($)
 	my $unknown = Octopussy::Storage::Directory($storage->{unknown});
 	Octopussy::Create_Directory("$incoming/$device/Incoming/");
 	Octopussy::Create_Directory("$unknown/$device/Unknown/");
+
+  return ("$incoming/$device/Incoming/", "$unknown/$device/Unknown/");
 }
 
 =head2 Remove_Directories($device)
@@ -133,6 +137,8 @@ sub Remove_Directories($)
 			File::Path::rmtree("$dir/$device/");
 		}
 	}
+
+  return (undef);
 }
 
 =head2 Files($devices, $services, $start, $finish)
@@ -182,10 +188,12 @@ sub Files($$$$)
 											AAT::FS::Directory_Files("$dir/$dev/$s/$y/$m/$d", qr/^msg_/);
 										foreach my $f (@files)
 										{		
-											my $num = ($num_day + $1*100 + $2)	
-												if ($f =~ /^msg_(\d{2})h(\d{2})/);
-											push(@list, "$dir/$dev/$s/$y/$m/$d/$f")
-												if (($start_num <= $num) && ($num <= $finish_num));
+											if ($f =~ /^msg_(\d{2})h(\d{2})/)
+                      {
+                        my $num = ($num_day + $1*100 + $2);
+											  push(@list, "$dir/$dev/$s/$y/$m/$d/$f")
+												  if (($start_num <= $num) && ($num <= $finish_num));
+                      }
 										}
 									}
 								}
@@ -269,15 +277,17 @@ sub Minutes_Hash($$$$)
                       AAT::FS::Directory_Files("$dir/$dev/$s/$y/$m/$d", qr/^msg_/);
                     foreach my $f (@files)
                     {
-                      my $num = ($num_day + $1*100 + $2)
-                        if ($f =~ /^msg_(\d{2})h(\d{2})/);
-											if (($start_num <= $num) && ($num <= $finish_num))
-											{
-												push(@{$minute_files{$num}}, "$dir/$dev/$s/$y/$m/$d/$f");
-												$nb_files++;
-											}
+                      if ($f =~ /^msg_(\d{2})h(\d{2})/)
+                      {
+                        my $num = ($num_day + $1*100 + $2);
+											  if (($start_num <= $num) && ($num <= $finish_num))
+											  {
+												  push(@{$minute_files{$num}}, "$dir/$dev/$s/$y/$m/$d/$f");
+												  $nb_files++;
+											  }
 #                      push(@list, "$dir/$dev/$s/$y/$m/$d/$f")
                       #  if (($start_num <= $num) && ($num <= $finish_num));
+                      }
                     }
                   }
                 }
@@ -317,9 +327,9 @@ sub Get($$$$$$$)
 	foreach my $f (sort (AAT::ARRAY($files)))
 	{
 		($year, $month) = ($1, $2)  if ($f =~ /(\d{4})\/(\d{2})\/\d{2}\/msg_/);
-  	if (defined open(FILE, "zcat '$f' |"))
+    if (defined open(my $FILE, "-|", "zcat '$f'"))
 		{
-  		while (<FILE>) 
+  		while (<$FILE>) 
     	{
 				my $line = $_;
 				my $match = 1;
@@ -334,7 +344,7 @@ sub Get($$$$$$$)
 				}
 				last  if ($counter >= $limit); 
 			}
-			close(FILE);
+			close($FILE);
 		}
 		else
   	{
@@ -397,16 +407,27 @@ sub Unknown_Number($)
 	my $device = shift;
 
 	my $max_nb = Octopussy::Parameter("wizard_max_msgs");
-	my @files = Unknown_Files($device);
 	my ($total, $nb) = (0, 0);
-	foreach my $f (sort @files)
-	{
-		chomp($f);
-		$nb = `zcat "$f" | wc -l`; 
-		chomp($nb);
-		$total += $nb	if ($nb >= 0);
-		last	if ($total > $max_nb);
-	}
+  my $dir = Octopussy::Storage::Directory_Unknown($device);
+  Octopussy::Create_Directory("$dir/$device/Unknown/");
+
+  foreach my $fy (glob("$dir/$device/Unknown/*"))
+  {
+    foreach my $fm (glob("$fy/*"))
+    {
+      foreach my $fd (glob("$fm/*"))
+      {
+        foreach my $f (glob("$fd/*"))
+        {
+          chomp($f);
+          $nb = `zcat "$f" | wc -l`;
+          chomp($nb);
+          $total += $nb   if ($nb >= 0);
+          last  if ($total > $max_nb);
+        }
+      }
+    }
+  }
 	
 	return ($total);
 }
@@ -419,6 +440,7 @@ Removes Log '$log' from Unknown Logs for Device '$device'
 sub Remove($$)
 {
 	my ($device, $log) = @_;
+
 	my $re = qr/^$log\s*$/;
 	my $match = 0;
 	my @files = Unknown_Files($device);
@@ -426,16 +448,16 @@ sub Remove($$)
   {
     chomp($f);
 		my @logs = ();
-    if (defined open(FILE, "zcat '$f' |"))
+    if (defined open(my $FILE, "-|", "zcat '$f'"))
 		{
-    	while (<FILE>)
+    	while (<$FILE>)
     	{ 
-				if ($_ =~ $re)
-					{ $match = 1; }
+				if ($_ !~ $re)
+					{ $match++; }
 				else
 					{ push(@logs, $_); }
 			}
-    	close(FILE);
+    	close($FILE);
 		}
 		else
     {
@@ -443,11 +465,11 @@ sub Remove($$)
 			AAT::Syslog("Octopussy::Logs", "UNABLE_OPEN_FILE_IN", $f, $sub);
     }
 		unlink($f);
-		if (defined open(NEW, "|gzip > $f"))
+		if (defined open(my $NEW, "|-", "gzip > '$f'"))
 		{
 			foreach my $l (@logs)
-				{ print NEW $l; }	
-			close(NEW);
+				{ print $NEW $l; }	
+			close($NEW);
 		}
 		else
     {
@@ -455,6 +477,8 @@ sub Remove($$)
 			AAT::Syslog("Octopussy::Logs", "UNABLE_OPEN_FILE_IN", $f, $sub);
     }
 	}
+
+  return ($match);
 }
 
 =head2 Remove_Minute($device, $year, $month, $day, $hour, $min)
@@ -472,6 +496,8 @@ sub Remove_Minute($$$$$$)
 		chomp($f);
 		unlink($f)	if ($f =~ $re);
 	}
+
+  return (undef);
 }
 
 =head2 Extract_Cmd_Line($conf)
