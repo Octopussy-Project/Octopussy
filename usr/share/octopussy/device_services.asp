@@ -9,13 +9,21 @@ my $sort = $Request->QueryString("device_services_table_sort") || "rank";
 if (defined $service)
 {
 	if (($action eq "remove") && ($Session->{AAT_ROLE} !~ /ro/i))
-		{ Octopussy::Device::Remove_Service($device, $service);  }
+	{ 
+    Octopussy::Device::Remove_Service($device, $service);  
+  }
 	elsif ($action eq "show")
 		{ $Response->Redirect("./services.asp?service=$service"); }
 	elsif ((($action eq "up") || ($action eq "down") 
 					|| ($action eq "top") || ($action eq "bottom")) 
 					&& ($Session->{AAT_ROLE} !~ /ro/i))
-  	{ Octopussy::Device::Move_Service($device, $service, $action); }
+  { 
+    Octopussy::Device::Move_Service($device, $service, $action); 
+  }
+  elsif (($action =~ /^(en|dis)able$/) && ($Session->{AAT_ROLE} !~ /ro/i))
+  {
+    Octopussy::Device::Set_Service_Statistics($device, $service, $action);
+  }
 	elsif ($Session->{AAT_ROLE} !~ /ro/i)
 		{ Octopussy::Device::Add_Service($device, $service); }
 }

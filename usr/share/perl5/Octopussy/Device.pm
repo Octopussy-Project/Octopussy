@@ -324,7 +324,6 @@ in Direction Top, Bottom, Up or Down ('$direction')
 sub Move_Service($$$)
 {
 	my ($device, $service, $direction) = @_;
-	my $old_status = Parse_Status($device);
   my ($rank, $old_rank) = (undef, undef);
 	my $conf = AAT::XML::Read(Filename($device));
   my @services = ();
@@ -643,6 +642,29 @@ sub Parse_Stop($)
 			$conf, $XML_ROOT);
 		Octopussy::Dispatcher_Reload();
 	}
+}
+
+=head2 Set_Service_Statistics($device, $service, $action)
+
+=cut
+sub Set_Service_Statistics($$$)
+{
+  my ($device, $service, $action) = @_;
+
+  my $status = ($action eq "enable" ? 1 : 0); 
+  my $conf = Configuration($device);
+  my @services = ();
+  foreach my $s (AAT::ARRAY($conf->{service}))
+  {
+    $s->{statistics} = $status  if ($s->{sid} eq $service);
+    push(@services, $s);
+  }
+  $conf->{service} = \@services;
+  $conf->{reload_required} = 1;
+  $dir_devices ||= Octopussy::Directory($DIR_DEVICE);
+  AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+  
+  return ($status);
 }
 
 1;
