@@ -167,9 +167,8 @@ sub Print_Logs($$$$$$$$$)
 				Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
 				if (defined open(my $FILE, "-|", "zcat \"$f\""))
 				{
-					while (<$FILE>)
+					while (my $line = <$FILE>)
 					{
-						my $line = $_;
       			if (Line_Match_Regexps($line, \@includes, \@excludes)) 
 						{
 							push(@logs, $line);
@@ -212,9 +211,8 @@ sub Print_Logs($$$$$$$$$)
 				{
 					if ($f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/)
 					{
-						while (<$FILE>)
+						while (my $line = <$FILE>)
 						{
-							my $line = $_;
 							foreach my $msg (@msg_to_parse)
 							{
 								if ($line =~ $msg->{re})
@@ -279,12 +277,7 @@ sub End
 #
 # MAIN
 #
-
-if (!Octopussy::Valid_User())
-{
-	print "You need to be Octopussy user to use $PROG_NAME !\n";
-	exit;
-}
+exit  if (!Octopussy::Valid_User($PROG_NAME));
 
 $SIG{USR2} = \&End;
 

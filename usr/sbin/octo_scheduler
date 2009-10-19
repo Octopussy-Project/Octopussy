@@ -76,11 +76,7 @@ sub Launch_Report($$$$$$)
 #
 my $counter = 0;
 
-if (!Octopussy::Valid_User())
-{
-  print "You need to be Octopussy user to use $PROG_NAME !\n";
-  exit;
-}
+exit  if (!Octopussy::Valid_User($PROG_NAME));
 
 while (1)
 {

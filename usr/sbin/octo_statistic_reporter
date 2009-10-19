@@ -15,12 +15,13 @@ to generate Statistics Reports
 =cut
 use strict;
 use warnings;
+use Readonly;
 
 use Linux::Inotify2;
 use AAT;
 use Octopussy;
 
-my $PROG_NAME = "octo_statistics_reporter";
+Readonly my $PROG_NAME => "octo_statistics_reporter";
 
 my $dir_program = Octopussy::Directory("programs");
 my $dir_pid = Octopussy::Directory("running");
@@ -29,11 +30,7 @@ my $report = $ARGV[0];
 #
 # MAIN
 #
-if (!Octopussy::Valid_User())
-{
-  print "You need to be Octopussy user to use $PROG_NAME !\n";
-  exit;
-}
+exit  if (!Octopussy::Valid_User($PROG_NAME));
 
 AAT::Syslog($PROG_NAME, "Report: $report Started !");
 while (!$exit_request)

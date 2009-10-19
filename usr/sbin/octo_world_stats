@@ -20,11 +20,7 @@ Readonly my $APPLI => "Octopussy";
 Readonly my $PROG_NAME => "octo_world_stats";
 Readonly my $UPDATE_URL => Octopussy::Parameter("url_world_stats_update");
 
-if (!Octopussy::Valid_User())
-{
-  print "You need to be Octopussy user to use $PROG_NAME !\n";
-  exit;
-}
+exit  if (!Octopussy::Valid_User($PROG_NAME));
 
 my $conf = Octopussy::World_Stats::Configuration();
 if ($conf->{status} eq "enabled")
