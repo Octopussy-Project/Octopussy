@@ -13,10 +13,12 @@ octo_commander is the program used by the Octopussy Project to launch command fr
 
 =cut
 use strict;
+use warnings;
+use Readonly;
 
 use Octopussy;
 
-my $PROG_NAME = "octo_commander";
+Readonly my $PROG_NAME => "octo_commander";
 
 if (!Octopussy::Valid_User())
 {

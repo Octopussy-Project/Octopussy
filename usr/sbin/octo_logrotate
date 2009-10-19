@@ -11,10 +11,13 @@ octo_logrotate deletes log files older than the number of days defined in Device
 =cut
 
 use strict;
+use warnings;
+use Readonly;
+
 use Date::Manip;
 use Octopussy;
 
-my $PROG_NAME = "octo_logrotate";
+Readonly my $PROG_NAME => "octo_logrotate";
 
 =head1 FUNCTIONS
 
@@ -27,7 +30,7 @@ sub Get_Directories($)
 {
 	my $dir = shift;
 	opendir(DIR, $dir);
-	my @dirs = grep !/^\./, readdir(DIR);
+	my @dirs = grep { !/^\./ } readdir(DIR);
  	closedir(DIR);
 
 	return (@dirs);

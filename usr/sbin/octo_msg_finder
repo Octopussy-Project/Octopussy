@@ -14,6 +14,8 @@ to help users to determine to wich Message/Service a log belongs to
 
 =cut
 use strict;
+use warnings;
+
 use Octopussy;
 
 my @services = Octopussy::Service::List();
@@ -62,12 +64,13 @@ if (AAT::NOT_NULL($arg))
   if (-f $arg)
   {
     my $i = 1;
-    open(FILE, ($arg =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$arg\" |");
-    while(<FILE>)
+    open(my $FILE, "-|", ($arg =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$arg\"");
+    while(<$FILE>)
     {
       Search_Line($_, $i);
       $i++;
     }
+    close($FILE);
   }
   else
   {

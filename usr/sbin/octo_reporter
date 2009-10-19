@@ -26,16 +26,18 @@ octo_reporter is the program used by the Octopussy Project to generate Reports
 =cut
 use strict;
 no strict 'refs';
+use warnings;
+use Readonly;
+
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
 use Octopussy;
 
-use constant APPLI => "Octopussy";
-
-my $PROG_NAME = "octo_reporter";
-my $PROG_VERSION = Octopussy::Version();
-my $FILE_DB = "/var/run/octopussy/file.db";
+Readonly my $APPLI => "Octopussy";
+Readonly my $PROG_NAME => "octo_reporter";
+Readonly my $PROG_VERSION => Octopussy::Version();
+Readonly my $FILE_DB => "/var/run/octopussy/file.db";
 
 my $file_pid = undef; 
 
@@ -220,9 +222,9 @@ sub Insert_Data($$$$$$$$)
   foreach my $f (@{$files})
   {
     Progress("_MSG_REPORT_PROGRESS_INSERTING_DATA", $i . "/$total");
-    if (defined open(FILE, "zcat \"$f\" |"))
+    if (defined open(my $FILE, "-|", "zcat \"$f\""))
 		{
-    	while (<FILE>)
+    	while (<$FILE>)
     	{
       	$nb_lines++;
       	my $line = $_;
@@ -237,21 +239,21 @@ sub Insert_Data($$$$$$$$)
         	}
       	}
     	}
-    	close(FILE);
+    	close($FILE);
 		}
 		else
     {
     	print "Unable to open file '$f'\n";
-     	AAT::Syslog("octo_extractor", "UNABLE_OPEN_FILE", $f);
+     	AAT::Syslog($APPLI, "UNABLE_OPEN_FILE", $f);
     }
-    if ($i%10 == 0)
-    {
-      AAT::DB::Load_Infile(APPLI, $table, "$FILE_DB.$$", \@known_msgs);
+    if (scalar(@known_msgs) > 10_000)
+    { # Insert in DB only every 10 000+ lines
+      AAT::DB::Load_Infile($APPLI, $table, "$FILE_DB.$$", \@known_msgs);
       @known_msgs = ();
     }
     $i++;
   }
-  AAT::DB::Load_Infile(APPLI, $table, "$FILE_DB.$$", \@known_msgs);
+  AAT::DB::Load_Infile($APPLI, $table, "$FILE_DB.$$", \@known_msgs);
   unlink("$FILE_DB.$$");
 
   return ($total, $nb_lines);
@@ -265,7 +267,7 @@ Ends Reporter
 sub End
 {
 	AAT::Syslog($PROG_NAME, "REPORTER_GENERATION_STATUS", "Aborted");	
-	AAT::DB::Table_Destruction(APPLI, $rc->{table} . "_$$");
+	AAT::DB::Table_Destruction($APPLI, $rc->{table} . "_$$");
 	unlink($file_pid);
 	unlink("$FILE_DB.$$");
 	$cache->remove("info_$$");
@@ -354,10 +356,10 @@ $query =~ #s/FROM(\.*[, ])($rc->{table})([, ]\.*)/FROM$1$2_$pid$3/i;
   s/FROM ($rc->{table})(.*)?/FROM $1_$pid$2/i;
 #$query =~ s/ (\w+) JOIN(\.*[, ])($rc->{table})([, ]\.*)/ $1 JOIN$2$3_$pid$4/gi;
 
-my @data = AAT::DB::Query(APPLI, $query);
+my @data = AAT::DB::Query($APPLI, $query);
 Progress("_MSG_REPORT_PROGRESS_QUERYING_DB", "1/1");
 
-AAT::DB::Table_Destruction(APPLI, $rc->{table} . "_$pid");
+AAT::DB::Table_Destruction($APPLI, $rc->{table} . "_$pid");
 
 Progress("_MSG_REPORT_PROGRESS_BUILDING_REPORT", "0/1");
 my %conf_mail = 

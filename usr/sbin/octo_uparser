@@ -14,6 +14,8 @@ to parse Unknown Logs for each Device
 
 =cut
 use strict;
+use warnings;
+use Readonly;
 use bytes; # Fix the 'Malformed UTF-8 character' warning
 use utf8;
 use File::Basename;
@@ -21,7 +23,7 @@ use File::Copy;
 use File::Path;
 use Octopussy;
 
-my $PROG_NAME = "octo_uparser";
+Readonly my $PROG_NAME => "octo_uparser";
 
 if (!Octopussy::Valid_User())
 {
@@ -104,11 +106,11 @@ sub Write_Logfile($$)
 	{
 		$logfile .= ".gz" if ($logfile !~ /^.+\.gz$/);
 		Octopussy::Create_Directory(dirname($logfile));
-		if (defined open(FILE, "|gzip >> $logfile"))
+		if (defined open(my $FILE, "|-", "gzip >> $logfile"))
 		{
     	foreach my $log (@{$logs})
-    		{ print FILE "$log\n"; }
-    	close(FILE);
+    		{ print $FILE "$log\n"; }
+    	close($FILE);
 		}
 		else
     {
@@ -166,9 +168,9 @@ sub File_Handler($)
 		my ($y, $m, $d, $file_new, $hour, $min) = ($1, $2, $3, $4, $5, $6);
     (%known_msgs, @unknown_msgs) = ((), ());
 		my $total = 0;	
-		if (defined open(FILE, ($file =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$file\" |"))
+		if (defined open(my $FILE, "-|", ($file =~ /.+\.gz$/ ? "zcat" : "cat") ." \"$file\""))
 		{
-			while (<FILE>)
+			while (<$FILE>)
  			{
   			my $line = $_;
    			chomp($line);
@@ -185,7 +187,7 @@ sub File_Handler($)
 				push(@unknown_msgs, $line)	if (! $match);
 				$total++;
 			}
-			close(FILE);
+			close($FILE);
 			unlink $file;	
 		}
 		else

@@ -18,14 +18,16 @@ octo_extractor is the program used by the Octopussy Project to extract Logs
 =cut
 use strict;
 no strict 'refs';
+use warnings;
+use Readonly;
 
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
 use Octopussy;
 
-my $PROG_NAME = "octo_extractor";
-my $PROG_VERSION = Octopussy::Version();
+Readonly my $PROG_NAME => "octo_extractor";
+Readonly my $PROG_VERSION => Octopussy::Version();
 
 my $help;
 my (@opt_devices, @opt_services) = ((), ());
@@ -97,7 +99,7 @@ sub Get_Messages_To_Parse($$$$)
 	my ($services, $loglevel, $taxonomy, $msgid) = @_;
 	my @msg_to_parse = ();
 
-	if (AAT::NOT_NULL($msgid))
+	if ((AAT::NOT_NULL($msgid)) && ($msgid ne "-ANY-"))
 	{
 		my $msg = Octopussy::Message::Configuration($services, $msgid);
 		my $re = Octopussy::Message::Pattern_To_Regexp($msg);
@@ -110,29 +112,6 @@ sub Get_Messages_To_Parse($$$$)
 	}
 
 	return (@msg_to_parse);
-}
-
-=head2 Get_TimePeriod_Files($devices, $services, $begin, $end)
-
-Returns list of Files for Devices $devices, Services $services 
-and Period $begin-$end
-
-=cut
-sub Get_TimePeriod_Files($$$$)
-{
-	my ($devices, $services, $begin, $end) = @_;
-
-	my ($y1, $m1, $d1, $hour1, $min1) = ($1, $2, $3, $4, $5)
-		if ($begin =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/);
-	my ($y2, $m2, $d2, $hour2, $min2) = ($1, $2, $3, $4, $5)
-	    if ($end =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/);
-	my %start = ( year => $y1, month => $m1, day => $d1,
-		hour => $hour1, min => $min1 );
-	my %finish = ( year => $y2, month => $m2, day => $d2,
-		hour => $hour2, min => $min2 );
-	my ($files, $nb_files) = Octopussy::Logs::Minutes_Hash($devices, $services, \%start, \%finish);
-
-	return ($files, $nb_files);
 }
 
 =head2 Line_Match_Regexps
@@ -172,9 +151,9 @@ sub Print_Logs($$$$$$$$$)
 	
 	Progress("_MSG_EXTRACT_PROGRESS_LISTING_FILES", "1/1", 0);
 	my ($files, $total) 
-		= Get_TimePeriod_Files($devices, $services, $begin, $end);
+		= Octopussy::Logs::Get_TimePeriod_Files($devices, $services, $begin, $end);
 	my $nb_match = 0;
-	open(OUT, "> $output")	if (AAT::NOT_NULL($output));
+	open(my $OUT, ">", $output)	if (AAT::NOT_NULL($output));
 	if ((@{$services}[0] =~ /-ANY-/i) 
 		&& (AAT::NULL($taxo) || ($taxo =~ /-ANY-/i)) 
 		&& (AAT::NULL($loglevel) || ($loglevel =~ /-ANY-/i)))
@@ -186,9 +165,9 @@ sub Print_Logs($$$$$$$$$)
 			foreach my $f (@{$files->{$min}})
 			{
 				Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
-				if (defined open(FILE, "zcat \"$f\" |"))
+				if (defined open(my $FILE, "-|", "zcat \"$f\""))
 				{
-					while (<FILE>)
+					while (<$FILE>)
 					{
 						my $line = $_;
       			if (Line_Match_Regexps($line, \@includes, \@excludes)) 
@@ -197,7 +176,7 @@ sub Print_Logs($$$$$$$$$)
 							$nb_match++;
 						}
 					}
-					close(FILE);
+					close($FILE);
 				}
 				else
 				{	 
@@ -209,7 +188,7 @@ sub Print_Logs($$$$$$$$$)
 			if (AAT::NOT_NULL($output))
   		{
     		foreach my $l (sort @logs)
-        	{ print OUT $l; }
+        	{ print $OUT $l; }
     	}
   		else
   		{
@@ -222,17 +201,18 @@ sub Print_Logs($$$$$$$$$)
 	{
 		my $i = 1;
 		my @msg_to_parse = Get_Messages_To_Parse($services, $loglevel, $taxo, $msgid);
+
 		foreach my $min (sort keys %{$files})
     {
 			my @logs = ();
       foreach my $f (@{$files->{$min}})
       {
 				Progress("_MSG_EXTRACT_PROGRESS_DATA", $i . "/$total", $nb_match);
-				if (defined open(FILE, "zcat \"$f\" |"))
+				if (defined open(my $FILE, "-|", "zcat \"$f\""))
 				{
 					if ($f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/)
 					{
-						while (<FILE>)
+						while (<$FILE>)
 						{
 							my $line = $_;
 							foreach my $msg (@msg_to_parse)
@@ -251,13 +231,13 @@ sub Print_Logs($$$$$$$$$)
 					}
 					else
 					{
-						while (<FILE>)
+						while (<$FILE>)
           	{
 							push(@logs, $_);
               $nb_match++;		
 						}
 					}
-					close(FILE);
+					close($FILE);
 					$i++;
 				}
 				else
@@ -269,7 +249,7 @@ sub Print_Logs($$$$$$$$$)
 			if (AAT::NOT_NULL($output))
       {
         foreach my $l (sort @logs)
-          { print OUT $l; }
+          { print $OUT $l; }
       }
       else
       {
@@ -278,7 +258,7 @@ sub Print_Logs($$$$$$$$$)
       }	
 		}
 	}
-	close(OUT)	if (AAT::NOT_NULL($output));
+	close($OUT)	if (AAT::NOT_NULL($output));
 	
 	AAT::Syslog("octo_extractor", "LOG_SEARCH", join(",", @opt_devices),
   	join(",", @opt_services), "${opt_begin}-${opt_end}", time() - $time);

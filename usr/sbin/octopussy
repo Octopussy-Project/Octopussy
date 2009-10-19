@@ -27,28 +27,32 @@ to launch all other Octopussy programs
 
 =cut
 
+use strict;
+use warnings;
+use Readonly;
+
 use Octopussy;
 
-my $PROG_NAME = "octopussy";
-my $USER = "octopussy";
-my $APACHE2_BIN = "/usr/sbin/apache2";
-my $APACHE2_CONF = "/etc/octopussy/apache2.conf";
-my $COMMANDER = "octo_commander";
-my $DISPATCHER = "octo_dispatcher";
-my $PARSER = "octo_parser";
-my $PUSHER = "octo_pusher";
-my $RRD = "octo_rrd";
-my $SCHEDULER = "octo_scheduler";
-my $NICE_PUSHER = "nice -n 10";
-my $NICE_RRD = "nice -n 15";
-my $NICE_SCHEDULER = "nice -n 10";
-my $LOGFILE = "/var/log/messages";
-my $KILLALL = "/usr/bin/killall";
-my $INITD_MYSQL = "/etc/init.d/mysql";
-my $INITD_SYSLOG_NG = "/etc/init.d/syslog-ng";
+Readonly my $PROG_NAME => "octopussy";
+Readonly my $USER => "octopussy";
+Readonly my $APACHE2_BIN => "/usr/sbin/apache2";
+Readonly my $APACHE2_CONF => "/etc/octopussy/apache2.conf";
+Readonly my $COMMANDER => "octo_commander";
+Readonly my $DISPATCHER => "octo_dispatcher";
+Readonly my $PARSER => "octo_parser";
+Readonly my $PUSHER => "octo_pusher";
+Readonly my $RRD => "octo_rrd";
+Readonly my $SCHEDULER => "octo_scheduler";
+Readonly my $NICE_PUSHER => "nice -n 10";
+Readonly my $NICE_RRD => "nice -n 15";
+Readonly my $NICE_SCHEDULER => "nice -n 10";
+Readonly my $LOGFILE => "/var/log/messages";
+Readonly my $KILLALL => "/usr/bin/killall";
+Readonly my $INITD_MYSQL => "/etc/init.d/mysql";
+Readonly my $INITD_SYSLOG_NG => "/etc/init.d/syslog-ng";
 
-my $base = Octopussy::Directory("programs");
-my $dir_pid = Octopussy::Directory("running");
+Readonly my $base => Octopussy::Directory("programs");
+Readonly my $dir_pid => Octopussy::Directory("running");
 
 my $MSG_STATUS = "$PROG_NAME %s %s.\n";
 my $MSG_PARSING_STATUS = "$PROG_NAME Parsing '%s' %s.\n";
@@ -145,16 +149,24 @@ sub Parser_Start
 	
  	foreach my $d (@devices)
   {
-		if (Octopussy::Device::Parse_Status($d) >= 1)     
-		{ # Device Status "Started/Paused"
-			system("sudo -u $USER $base$PARSER '$d' &");
-			printf($MSG_PARSING_STATUS, $d, "Started");
-		}
-		else
-		{
-			print "$PROG_NAME Parsing status of '$d' is 'Stopped', set status to 'Paused' or 'Started' first !\n";	
-		}
-	}
+    my $parse_status = Octopussy::Device::Parse_Status($d);
+    if (defined $parse_status)
+    {
+		  if (Octopussy::Device::Parse_Status($d) >= 1)     
+		  { # Device Status "Started/Paused"
+			  system("sudo -u $USER $base$PARSER '$d' &");
+			  printf($MSG_PARSING_STATUS, $d, "Started");
+		  }
+		  else
+		  {
+			  print "$PROG_NAME Parsing status of '$d' is 'Stopped', set status to 'Paused' or 'Started' first !\n";	
+		  }
+	  }
+    else
+    {
+      print "Device $d Unknown !\n";
+    }
+  }
 }
 
 =head2 Parser_Stop($device)

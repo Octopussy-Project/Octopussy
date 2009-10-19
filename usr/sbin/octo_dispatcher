@@ -12,12 +12,15 @@ to receive syslog lines and dispatche into device directories
 
 =cut
 use strict; 
+use warnings;
+use Readonly;
 
 use File::Copy;
 use AAT;
 use Octopussy;
 
-my $PROG_NAME = "octo_dispatcher";
+Readonly my $PROG_NAME => "octo_dispatcher";
+
 my $exit_request = 0;
 
 if (!Octopussy::Valid_User())
@@ -102,11 +105,11 @@ sub Write_Logs_10secs
  		my $dir = Handle_Dir($device, $y, $m, $d, $hour, $min);
   	my $file = "$dir/msg_${hour}h${min}_$mod.log";
    	my $i = 0;
-		if (defined open(FILE, ">> $file"))
+		if (defined open(my $FILE, ">>", $file))
    	{
     	foreach my $l (@{$logs{$device}})
-     		{ print FILE "$l\n"; $i++; }
-     	close(FILE);
+     		{ print $FILE "$l\n"; $i++; }
+     	close($FILE);
      	$nb_events{$device} += $i;
      	$dtype_stats{$device_type{$device}} += $i;
      	Octopussy::Chown($file) if (-f $file);
@@ -165,8 +168,8 @@ while (!$exit_request)
 {
   my $fifo = Octopussy::File("fifo");
   Octopussy::Create_Fifo($fifo);
-  open(FIFO, "< $fifo") or die "Can't open named pipe $fifo: $!";
-  while (<FIFO>)
+  open(my $FIFO, "<", $fifo) or die "Can't open named pipe $fifo: $!";
+  while (<$FIFO>)
   {
 	  $line = $_;
 	  chomp($line);
@@ -197,7 +200,7 @@ while (!$exit_request)
 	  }
     last if ($exit_request);
   }
-  close(FIFO);
+  close($FIFO);
   Write_Logs_10secs($year, $month, $mday, $hour, $min, int($sec/10)*10);
 }
 

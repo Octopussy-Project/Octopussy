@@ -13,20 +13,24 @@ octo_pusher is the program used by the Octopussy Project to parse 'no-syslog' Lo
 
 =cut
 use strict;
+use warnings;
+use Readonly;
+
 use File::Copy;
 use File::Path;
 use AAT;
 use Octopussy;
 
-my $PROG_NAME = "octo_pusher";
+Readonly my $PROG_NAME => "octo_pusher";
+
 my %conf;
 my %dir_device;
 
-my %month = ( Jan => "01", Feb => "02", Mar => "03", Apr => "04", 
+Readonly my %month => ( Jan => "01", Feb => "02", Mar => "03", Apr => "04", 
 	May => "05", Jun => "06", Jul => "07", Aug => "08", 
 	Sep => "09", Oct => "10", Nov => "11", Dec => "12"  );
 
-my @months = (undef, "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+Readonly my @months => (undef, "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
 	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
 
 =head1 FUNCTIONS
@@ -134,11 +138,11 @@ sub Write_To_Incoming
 	{
 		my $dir = Handle_Dir($dev, $mday, $month, $year);
  		my $file = "$dir/msg_$hour" . "h$min.log";
- 		if (defined open(INCOMING, ">> $file"))
+ 		if (defined open(my $INCOMING, ">>", $file))
 		{
  			foreach my $l (@lines)
-  			{ print INCOMING "$l\n"; }
- 			close(INCOMING);
+  			{ print $INCOMING "$l\n"; }
+ 			close($INCOMING);
  			Octopussy::Chown($file);
 		}
 		else
@@ -174,20 +178,20 @@ while (1)
 	if (-d $DIR_PUSHER)
 	{
 		opendir(DIR, $DIR_PUSHER);
-		my @dirs = grep !/^\./, readdir(DIR);
+		my @dirs = grep { !/^\./ } readdir(DIR);
 		closedir(DIR);
 		foreach my $d (@dirs)
 		{
 			if ((-d "$DIR_PUSHER/$d/") && (defined $conf{$d}))
  			{
    			opendir(DIR2, "$DIR_PUSHER/$d/");
-    		my @files = grep !/^\./, readdir(DIR2);	
+    		my @files = grep { !/^\./ } readdir(DIR2);	
 				foreach my $f (@files)
     		{
-     			if (defined open(FILE, "$DIR_PUSHER/$d/$f"))
+     			if (defined open(my $FILE, "<", "$DIR_PUSHER/$d/$f"))
 					{
 						my @lines = ();
-						while (<FILE>)
+						while (<$FILE>)
 						{
 							my $syslog = Convert_To_Syslog($_, $d);
 							if ($syslog =~ /^(\w{3}) \s?(\d{1,2}) (\d\d):(\d\d):\d\d (\S+)/)
@@ -206,7 +210,7 @@ while (1)
 								push(@lines, $syslog);  
 							}
 						}
-						close(FILE);
+						close($FILE);
 						unlink("$DIR_PUSHER/$d/$f")	
 							if ((scalar(@lines) > 0) || (-z "$DIR_PUSHER/$d/$f"));
 						Write_To_Incoming($device, $year, $month, $mday, $hour, $min, @lines)	
