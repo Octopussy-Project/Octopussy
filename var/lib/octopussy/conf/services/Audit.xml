@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Linux Kernel Audit Service"
                    name="Audit"
-                   version="200908120001"
+                   version="200909150001"
                    website="">
   <message loglevel="Information"
            msg_id="Audit:started_dispatcher"
@@ -9,4 +9,10 @@
            rank="001"
            table="Message"
            taxonomy="Application.Start" />
+  <message loglevel="Information"
+           msg_id="Audit:cannot_daemonize"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;auditd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Cannot daemonize .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

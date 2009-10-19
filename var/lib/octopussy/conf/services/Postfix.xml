@@ -3,7 +3,7 @@
                    icon="software/logo_postfix"
                    name="Postfix"
                    nb_messages="084"
-                   version="200907100001"
+                   version="200909150004"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -575,4 +575,28 @@
            rank="095"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Information"
+           msg_id="Postfix:from_sender_empty"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/qmgr[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;@REGEXP(&quot;&lt;&gt;&quot;):sender@&gt;, size=&lt;@NUMBER:size@&gt;, nrcpt=&lt;@NUMBER:nrcpt@&gt; &lt;@STRING:NULL@&gt;"
+           rank="096"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="Postfix:sender_nondelivery_notification"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/bounce[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: &lt;@REGEXP(&quot;sender non-delivery notification: .+&quot;):status@&gt;"
+           rank="097"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="Postfix:expired_returned_to_sender"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;&lt;@EMAIL:sender@&gt;&gt;, status=&lt;@REGEXP(&quot;expired, returned to sender&quot;):status@&gt;"
+           rank="098"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="Postfix:expired_returned_to_sender2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/&lt;@WORD:NULL@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@WORD:mail_id@&gt;: from=&lt;@REGEXP(&quot;&lt;&gt;&quot;):sender@&gt;, status=&lt;@REGEXP(&quot;expired, returned to sender&quot;):status@&gt;"
+           rank="099"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
 </octopussy_service>

@@ -2,7 +2,7 @@
 <octopussy_service description="Clam AntiVirus Service"
                    name="ClamAV"
                    nb_messages="007"
-                   version="200908120005"
+                   version="200909150005"
                    website="http://www.clamav.net/">
   <message loglevel="Information"
            msg_id="ClamAV:clamav_update_process_started"
@@ -76,4 +76,28 @@
            rank="012"
            table="Message"
            taxonomy="Application.Start" />
+  <message loglevel="Warning"
+           msg_id="ClamAV:cant_read_clamav_net"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freshclam&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Can't read .+ from db.local.clamav.net.*&quot;):msg@&gt;"
+           rank="013"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Information"
+           msg_id="ClamAV:daily_updated"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freshclam&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daily.c[lv]d updated.*&quot;):msg@&gt;"
+           rank="014"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="ClamAV:downloading"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freshclam&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Downloading .+&quot;):msg@&gt;"
+           rank="015"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="ClamAV:trying_again_5_secs"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freshclam&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Trying again in 5 secs.*&quot;):msg@&gt;"
+           rank="016"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>
