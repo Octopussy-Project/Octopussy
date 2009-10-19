@@ -61,12 +61,14 @@ while (1)
 			if ($k =~ /^parser_msgid_stats_(\d+?)_.+$/)
 			{ # Clean older msgid stats older than 120 minutes
 				my $minutes = $1;
-				my $time_minutes = ($1*10_000) + ($2*60) + $3
-      		if ($time =~ /^(\d{8})(\d\d)(\d\d)$/);
-				$minutes = ($1*10_000) + ($2*60) + $3
-					if ($minutes =~ /^(\d{8})(\d\d)(\d\d)$/);
-				$cache_parser->remove($k)
-					if (($time_minutes-$msgid_history_max) > $minutes);
+        if ($time =~ /^(\d{8})(\d\d)(\d\d)$/)
+        {
+				  my $time_minutes = ($1*10_000) + ($2*60) + $3;
+				  $minutes = ($1*10_000) + ($2*60) + $3
+					  if ($minutes =~ /^(\d{8})(\d\d)(\d\d)$/);
+				  $cache_parser->remove($k)
+					  if (($time_minutes-$msgid_history_max) > $minutes);
+         }
 			}
   	}
 	}

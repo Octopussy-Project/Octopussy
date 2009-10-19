@@ -17,7 +17,6 @@ and generate Syslog Activity RRD Graphs
 =cut
 
 use strict;
-no strict "refs";
 use warnings;
 use Readonly;
 
@@ -96,14 +95,14 @@ while (1)
 			foreach my $dw (@dow)
 				{ $match = 1  if ($day{$dw} == $wday); }
 			foreach my $dw (@dow)
-				{ $everyday = 1	if ($day{$dw} == 0); }
+        { $everyday = 1 if ($day{$dw} == 0); }
 		
 			if ($match || $everyday)
 			{ # day matches
 				$match = 0;
 				my @dom = defined $sched->{dayofmonth} ? @{$sched->{dayofmonth}} : ();
 				foreach my $dm (@dom)
-					{ $match = 1	if ($dm == $mday); }
+          { $match = 1  if ($dm == $mday); }
 				$match = 1  if ($everyday);
 				if ($match)
 				{ # dayofmonth matches
@@ -112,13 +111,12 @@ while (1)
 					foreach my $m (@months)
 						{ $match = 1  if ($month{$m} == ($mon + 1)); }
 					foreach my $m (@months)
-						{ $match = 1	if ($month{$m} == 0); }
+						{ $match = 1  if ($month{$m} == 0); }
 					Launch_Report($sched, $year, $mon, $mday, $hour, $min)  if ($match);
 				}
 			}
 		}
 	}
-	my @dconfs = Octopussy::Device::Configurations();
 	Octopussy::RRDTool::Syslog_By_DeviceType_Hourly_Graph();
 	if ($counter%10 == 0)
 		{ Octopussy::RRDTool::Syslog_By_DeviceType_Daily_Graph(); }

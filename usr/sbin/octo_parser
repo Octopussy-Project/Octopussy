@@ -409,12 +409,15 @@ sub Cache_MsgID_Stats()
   {
     foreach my $k2 (keys %{$msgid_stats{$k1}})
     {
-      my $id = $1  if ($k2 =~ /^.+?:(.+)$/);
-      my $count = $msgid_stats{$k1}{$k2};
-      push(@parser_msgid_stats, 
-        { service => $k1, id => $id, count => $count } )
-        if ($count > 0);
-      $msgid_stats{$k1}{$k2} = 0;
+      if ($k2 =~ /^.+?:(.+)$/)
+      {
+        my $id = $1;
+        my $count = $msgid_stats{$k1}{$k2};
+        push(@parser_msgid_stats, 
+          { service => $k1, id => $id, count => $count } )
+          if ($count > 0);
+        $msgid_stats{$k1}{$k2} = 0;
+      }
     }
   }
   $cache->set("parser_msgid_stats_$year$month$day$hour${min}_$device",

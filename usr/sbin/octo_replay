@@ -15,7 +15,6 @@ to replay Logs for some Device / Service
 
 =cut
 use strict;
-no strict 'refs';
 use warnings;
 use Readonly;
 
@@ -92,16 +91,18 @@ foreach my $min (sort keys %{$files})
 			unlink($f);
 		}
 	}
-	
-	my $incoming = $dir_incoming . "$1/$2/$3/msg_${4}h${5}_00.log"
-		if ($min =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/);
-	if (defined open(my $INCOMING, ">",  $incoming))
-	{
-		foreach my $l (sort @logs)
-			{ print $INCOMING $l; }
-		close($INCOMING);
-		Octopussy::Chown($incoming);
-	}
+
+  if ($min =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/)
+  {	
+	  my $incoming = $dir_incoming . "$1/$2/$3/msg_${4}h${5}_00.log";
+	  if (defined open(my $INCOMING, ">",  $incoming))
+	  {
+		  foreach my $l (sort @logs)
+			  { print $INCOMING $l; }
+		  close($INCOMING);
+		  Octopussy::Chown($incoming);
+	  }
+  }
 }
 
 =head1 AUTHOR
