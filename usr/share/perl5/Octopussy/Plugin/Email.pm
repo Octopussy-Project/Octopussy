@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::Plugin::Email - Octopussy Plugin Email
 
 =cut
+
 package Octopussy::Plugin::Email;
 
 use strict;
@@ -15,6 +17,7 @@ my $RE_EMAIL = qr/^(.+)\@(.+)$/;
 =head2 Init(\%conf)
 
 =cut
+
 sub Init
 {
 }
@@ -24,11 +27,12 @@ sub Init
 Returns Email Address Domain (ex: someone@somewhere.org -> somewhere.org)
 
 =cut
+
 sub Domain($)
 {
-	my $email = shift;
+  my $email = shift;
 
-	return ($2)	if ($email =~ $RE_EMAIL);
+  return ($2) if ($email =~ $RE_EMAIL);
 }
 
 =head2 User($email)
@@ -36,10 +40,11 @@ sub Domain($)
 Returns Email Address User (ex: someone@somewhere.org -> someone)
 
 =cut
+
 sub User($)
 {
-	my $email = shift;
-  
+  my $email = shift;
+
   return ($1) if ($email =~ $RE_EMAIL);
 }
 

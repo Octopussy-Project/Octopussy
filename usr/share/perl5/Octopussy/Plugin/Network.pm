@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::Plugin::Network - Octopussy Plugin Network
 
 =cut
+
 package Octopussy::Plugin::Network;
 
 use strict;
@@ -15,12 +17,15 @@ my %services = ();
 =head2 Init()
 
 =cut
+
 sub Init()
 {
-	my $conf_port = AAT::List::Configuration("AAT_Port");
+  my $conf_port = AAT::List::Configuration("AAT_Port");
 
   foreach my $i (AAT::ARRAY($conf_port->{item}))
-  	{ $services{$i->{value}} =  $i->{label}; }
+  {
+    $services{$i->{value}} = $i->{label};
+  }
 }
 
 =head2 Mask_8($addr)
@@ -28,11 +33,12 @@ sub Init()
 Only shows the first 8 bits of an IP address (--> 10.XXX.XXX.XXX)
 
 =cut
+
 sub Mask_8($)
 {
-	my $addr = shift;
-	
-	$addr =~ s/(\d+)\.\d+\.\d+\.\d+/$1.XXX.XXX.XXX/;
+  my $addr = shift;
+
+  $addr =~ s/(\d+)\.\d+\.\d+\.\d+/$1.XXX.XXX.XXX/;
 
   return ($addr);
 }
@@ -42,6 +48,7 @@ sub Mask_8($)
 Only shows the first 16 bits of an IP address (--> 10.1.XXX.XXX)
 
 =cut
+
 sub Mask_16($)
 {
   my $addr = shift;
@@ -56,9 +63,10 @@ sub Mask_16($)
 Only shows the first 24 bits of an IP address (--> 10.1.2.XXX)
 
 =cut
+
 sub Mask_24($)
 {
-	my $addr = shift;
+  my $addr = shift;
 
   $addr =~ s/(\d+\.\d+\.\d+)\.\d+/$1.XXX/;
 
@@ -70,25 +78,30 @@ sub Mask_24($)
 Returns link to get information from Ripe
 
 =cut
+
 sub Ripe_Info($)
 {
-	my $addr = shift;
+  my $addr = shift;
 
-	my $url = "<a href=\"http://ripe.net/fcgi-bin/whois?form_type=simple&"
-		. "full_query_string=&searchtext=+" . $addr . "&do_search=Search\">"
-		. $addr . "</a>";
+  my $url =
+      "<a href=\"http://ripe.net/fcgi-bin/whois?form_type=simple&"
+    . "full_query_string=&searchtext=+"
+    . $addr
+    . "&do_search=Search\">"
+    . $addr . "</a>";
 
-	return ($url);
+  return ($url);
 }
 
 =head2 Service($port)
 
 =cut
+
 sub Service($)
 {
-	my $port = shift;
+  my $port = shift;
 
-	return ($services{$port} || $port);
+  return ($services{$port} || $port);
 }
 
 1;

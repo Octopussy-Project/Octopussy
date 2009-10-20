@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::World_Stats - Octopussy World Statistics module
 
 =cut
+
 package Octopussy::World_Stats;
 
 use strict;
@@ -11,9 +13,9 @@ use Readonly;
 
 use Octopussy;
 
-Readonly my $FILE_WORLD_STATS => "world_stats";
-Readonly my $XML_ROOT => "octopussy_world_stats";
- 
+Readonly my $FILE_WORLD_STATS => 'world_stats';
+Readonly my $XML_ROOT         => 'octopussy_world_stats';
+
 =head1 FUNCTIONS
 
 =head2 ID()
@@ -21,6 +23,7 @@ Readonly my $XML_ROOT => "octopussy_world_stats";
 Get/Generates World Statistics ID
 
 =cut
+
 sub ID
 {
   my $conf = Configuration();
@@ -44,9 +47,10 @@ sub ID
 Modifies World Statistics configuration
 
 =cut 
+
 sub Modify($)
 {
-	my $conf = shift;
+  my $conf = shift;
 
   AAT::XML::Write(Octopussy::File($FILE_WORLD_STATS), $conf, $XML_ROOT);
 
@@ -58,11 +62,12 @@ sub Modify($)
 Returns World Statistics Configuration
 
 =cut
+
 sub Configuration()
 {
-	my $conf = AAT::XML::Read(Octopussy::File($FILE_WORLD_STATS));
+  my $conf = AAT::XML::Read(Octopussy::File($FILE_WORLD_STATS));
 
-	return ($conf);
+  return ($conf);
 }
 
 1;

@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::Map - Octopussy Map module
 
 =cut
+
 package Octopussy::Map;
 
 use strict;
@@ -10,7 +12,7 @@ use warnings;
 use Readonly;
 use Octopussy;
 
-Readonly my $DIR_MAP => "maps";
+Readonly my $DIR_MAP => 'maps';
 
 my $dir_maps = undef;
 
@@ -21,11 +23,12 @@ my $dir_maps = undef;
 Get list of Maps
 
 =cut 
+
 sub List()
 {
-	$dir_maps ||= Octopussy::Directory($DIR_MAP);
+  $dir_maps ||= Octopussy::Directory($DIR_MAP);
 
-	return (AAT::XML::Name_List($dir_maps));
+  return (AAT::XML::Name_List($dir_maps));
 }
 
 =head2 Filename($map)
@@ -33,13 +36,14 @@ sub List()
 Get the XML filename for the Map '$map'
 
 =cut 
+
 sub Filename($)
 {
-	my $map = shift;
+  my $map = shift;
 
-	$dir_maps ||= Octopussy::Directory($DIR_MAP);
+  $dir_maps ||= Octopussy::Directory($DIR_MAP);
 
-	return (AAT::XML::Filename($dir_maps, $map));
+  return (AAT::XML::Filename($dir_maps, $map));
 }
 
 =head2 Configuration($map)
@@ -47,13 +51,14 @@ sub Filename($)
 Get the configuration for the Map '$map'
 
 =cut 
+
 sub Configuration($)
 {
-	my $map = shift;
+  my $map = shift;
 
-	my $conf = AAT::XML::Read(Filename($map));
+  my $conf = AAT::XML::Read(Filename($map));
 
-	return ($conf);
+  return ($conf);
 }
 
 1;

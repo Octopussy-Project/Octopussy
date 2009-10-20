@@ -1,16 +1,18 @@
+
 =head1 NAME
 
 AAT::Proxy - AAT Proxy module
 
 =cut
+
 package AAT::Proxy;
 
 use strict;
 use warnings;
 use Readonly;
 
-Readonly my $FILE_TEST => "/tmp/test.html";
-Readonly my $URL_TEST => "http://www.google.com";
+Readonly my $FILE_TEST => '/tmp/test.html';
+Readonly my $URL_TEST  => 'http://www.google.com';
 
 my %conf_file = ();
 
@@ -21,14 +23,15 @@ my %conf_file = ();
 Returns Proxy Configuration
 
 =cut
+
 sub Configuration($)
 {
-	my $appli = shift;
+  my $appli = shift;
 
-	$conf_file{$appli} ||= AAT::Application::File($appli, "proxy");
-	my $conf = AAT::XML::Read($conf_file{$appli}, 1);
+  $conf_file{$appli} ||= AAT::Application::File($appli, 'proxy');
+  my $conf = AAT::XML::Read($conf_file{$appli}, 1);
 
-	return ($conf->{proxy});
+  return ($conf->{proxy});
 }
 
 =head2 Connection_Test($appli)
@@ -36,15 +39,16 @@ sub Configuration($)
 Check the Proxy Connection
 
 =cut
+
 sub Connection_Test($)
 {
-	my $appli = shift;
+  my $appli = shift;
 
-	AAT::Download($appli, $URL_TEST, $FILE_TEST);
-	my $status = ((-s $FILE_TEST > 0) ? 1 : 0);
-	unlink($FILE_TEST)	if (-f $FILE_TEST);
+  AAT::Download($appli, $URL_TEST, $FILE_TEST);
+  my $status = ((-s $FILE_TEST > 0) ? 1 : 0);
+  unlink($FILE_TEST) if (-f $FILE_TEST);
 
-	return ($status);
+  return ($status);
 }
 
 1;

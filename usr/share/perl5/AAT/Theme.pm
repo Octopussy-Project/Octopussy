@@ -1,15 +1,17 @@
+
 =head1 NAME
 
 AAT::Theme - AAT Theme module
 
 =cut
+
 package AAT::Theme;
 
 use strict;
 use warnings;
 use Readonly;
 
-Readonly my $DIR_THEME => "AAT/THEMES/";
+Readonly my $DIR_THEME => 'AAT/THEMES/';
 
 =head1 FUNCTIONS
 
@@ -18,13 +20,14 @@ Readonly my $DIR_THEME => "AAT/THEMES/";
 Returns list of available Themes
 
 =cut
+
 sub List()
 {
-	opendir(DIR, $DIR_THEME);
+  opendir(DIR, $DIR_THEME);
   my @themes = grep !/^\.+/, readdir(DIR);
   closedir(DIR);
 
-	return (sort (@themes));
+  return (sort (@themes));
 }
 
 =head2 CSS_File($theme)
@@ -32,14 +35,15 @@ sub List()
 Returns CSS File Path for Theme '$theme'
 
 =cut
+
 sub CSS_File($)
 {
-	my $theme = shift;
-	
-	$theme = "DEFAULT"  if (AAT::NULL($theme));
-	my $file = "$DIR_THEME$theme/style.css";
-	return ("$file")	if (-f "$file");
-	return (undef);
+  my $theme = shift;
+
+  $theme = 'DEFAULT' if (AAT::NULL($theme));
+  my $file = "$DIR_THEME$theme/style.css";
+  return ("$file") if (-f "$file");
+  return (undef);
 }
 
 1;

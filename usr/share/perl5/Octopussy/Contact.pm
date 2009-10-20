@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::Contact - Octopussy Contact module
 
 =cut
+
 package Octopussy::Contact;
 
 use strict;
@@ -11,7 +13,7 @@ use Readonly;
 
 use Octopussy;
 
-Readonly my $XML_ROOT => "octopussy_contact";
+Readonly my $XML_ROOT => 'octopussy_contact';
 
 # String: $dir_contacts
 # Directory for the Contacts configuration files
@@ -29,30 +31,27 @@ Parameters:
 \%conf - hashref of the new contact configuration
 
 =cut
+
 sub New($)
 {
-	my $conf = shift;
+  my $conf = shift;
 
-	$dir_contacts ||= Octopussy::Directory("contacts");
-	if (AAT::NOT_NULL($conf->{cid}) && 
-		(AAT::NOT_NULL($conf->{email}) || AAT::NOT_NULL($conf->{im})))
-	{
-		my @list = List();
-		my $exist = 0;
-		foreach my $c (@list)
-			{ $exist = 1	if ($c =~ /^$conf->{cid}$/); }
-		if (!$exist)
-		{
-			AAT::XML::Write("$dir_contacts/$conf->{cid}.xml", 
-				$conf, $XML_ROOT);
-		}
-		else
-			{ return ("_MSG_CONTACT_ALREADY_EXISTS"); }
-	}
-	else
-		{ return ("_MSG_CONTACT_INFO_INVALID"); }
+  $dir_contacts ||= Octopussy::Directory('contacts');
+  if (AAT::NOT_NULL($conf->{cid})
+    && (AAT::NOT_NULL($conf->{email}) || AAT::NOT_NULL($conf->{im})))
+  {
+    my @list  = List();
+    my $exist = 0;
+    foreach my $c (@list) { $exist = 1 if ($c =~ /^$conf->{cid}$/); }
+    if (!$exist)
+    {
+      AAT::XML::Write("$dir_contacts/$conf->{cid}.xml", $conf, $XML_ROOT);
+    }
+    else { return ('_MSG_CONTACT_ALREADY_EXISTS'); }
+  }
+  else { return ('_MSG_CONTACT_INFO_INVALID'); }
 
-	return (undef);
+  return (undef);
 }
 
 =head2 Remove($contact)
@@ -64,12 +63,13 @@ Parameters:
 $contact - Name of the contact to remove
 
 =cut
+
 sub Remove($)
 {
-	my $contact = shift;
+  my $contact = shift;
 
-	unlink(Filename($contact));
-	$filename{$contact} = undef;
+  unlink(Filename($contact));
+  $filename{$contact} = undef;
 }
 
 =head2 List()
@@ -81,20 +81,23 @@ Returns:
 @contacts - Array of contact names
 
 =cut
+
 sub List()
 {
-	$dir_contacts ||= Octopussy::Directory("contacts");
-	my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
-	my @contacts = ();
-	foreach my $f (@files)
-	{
-		my $conf = AAT::XML::Read("$dir_contacts/$f");
-		push(@contacts, $conf->{cid})	if (defined $conf->{cid});
-	}
-	foreach my $c (AAT::LDAP::Contacts("Octopussy"))
-  	{ push(@contacts, $c->{cid})		if (defined $c->{cid}); }
-	
-	return (@contacts);
+  $dir_contacts ||= Octopussy::Directory('contacts');
+  my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
+  my @contacts = ();
+  foreach my $f (@files)
+  {
+    my $conf = AAT::XML::Read("$dir_contacts/$f");
+    push(@contacts, $conf->{cid}) if (defined $conf->{cid});
+  }
+  foreach my $c (AAT::LDAP::Contacts('Octopussy'))
+  {
+    push(@contacts, $c->{cid}) if (defined $c->{cid});
+  }
+
+  return (@contacts);
 }
 
 =head2 Filename($contact)
@@ -110,27 +113,28 @@ Returns:
 $filename - Filename of the XML file for contact '$contact'
 
 =cut
+
 sub Filename($)
 {
-	my $contact = shift;
+  my $contact = shift;
 
-	return ($filename{$contact})   if (defined $filename{$contact});
-	if (AAT::NOT_NULL($contact))
-	{
-		$dir_contacts ||= Octopussy::Directory("contacts");
-		my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
-		foreach my $f (@files)
-  	{
-  		my $conf = AAT::XML::Read("$dir_contacts/$f");
+  return ($filename{$contact}) if (defined $filename{$contact});
+  if (AAT::NOT_NULL($contact))
+  {
+    $dir_contacts ||= Octopussy::Directory('contacts');
+    my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
+    foreach my $f (@files)
+    {
+      my $conf = AAT::XML::Read("$dir_contacts/$f");
       if ((defined $conf) && ($conf->{cid} =~ /^$contact$/))
       {
-			  $filename{$contact} = "$dir_contacts/$f";
+        $filename{$contact} = "$dir_contacts/$f";
         return ("$dir_contacts/$f");
       }
-		}
-	}
+    }
+  }
 
-	return (undef);
+  return (undef);
 }
 
 =head2 Configuration($contact)
@@ -146,29 +150,30 @@ Returns:
 \%conf - Hashref of the contact configuration
 
 =cut
+
 sub Configuration($)
 {
-	my $contact = shift;
+  my $contact = shift;
 
-	my $conf = AAT::XML::Read(Filename($contact));
+  my $conf = AAT::XML::Read(Filename($contact));
   if (defined $conf)
   {
-	  $conf->{type} = "local";
+    $conf->{type} = 'local';
   }
   else
   {
-    foreach my $c (AAT::LDAP::Contacts("Octopussy"))
-    { 
+    foreach my $c (AAT::LDAP::Contacts('Octopussy'))
+    {
       if (defined $c->{cid})
       {
         $conf = $c;
-        $conf->{type} = "LDAP";
+        $conf->{type} = 'LDAP';
         last;
       }
     }
   }
 
-	return ($conf);
+  return ($conf);
 }
 
 =head2 Configurations($sort)
@@ -184,36 +189,39 @@ Returns:
 @configurations - Array of Hashref contact configurations  
 
 =cut
+
 sub Configurations($)
 {
   my $sort = shift;
-	my (@configurations, @sorted_configurations) = ((), ());
-	my @contacts = List();
-	my %field;
+  my (@configurations, @sorted_configurations) = ((), ());
+  my @contacts = List();
+  my %field;
 
-	foreach my $c (@contacts)
-	{
-		my $conf = Configuration($c);
-		if (defined $conf->{cid})
-		{
-			$field{$conf->{$sort}} = 1;
-			push(@configurations, $conf);
-		}
-	}
-	foreach my $c (AAT::LDAP::Contacts("Octopussy"))
-	{
-		$field{$c->{$sort}} = 1;
-		push(@configurations, $c);
-	}
-	foreach my $f (sort keys %field)
-	{
-		foreach my $c (@configurations)
-			{ push(@sorted_configurations, $c)    if ($c->{$sort} eq $f); }
-	}
+  foreach my $c (@contacts)
+  {
+    my $conf = Configuration($c);
+    if (defined $conf->{cid})
+    {
+      $field{$conf->{$sort}} = 1;
+      push(@configurations, $conf);
+    }
+  }
+  foreach my $c (AAT::LDAP::Contacts('Octopussy'))
+  {
+    $field{$c->{$sort}} = 1;
+    push(@configurations, $c);
+  }
+  foreach my $f (sort keys %field)
+  {
+    foreach my $c (@configurations)
+    {
+      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
+    }
+  }
 
-	return (@sorted_configurations);
+  return (@sorted_configurations);
 }
-																						
+
 1;
 
 =head1 AUTHOR

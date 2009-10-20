@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 AAT - Apache::ASP Toolkit module
@@ -34,6 +35,7 @@ Features:
 =item * Themable
 
 =cut
+
 package AAT;
 
 use strict;
@@ -64,7 +66,7 @@ use AAT::XML;
 use AAT::XMPP;
 use AAT::Zabbix;
 
-Readonly my $FILE_DEBUG => "/var/run/aat/AAT.debug";
+Readonly my $FILE_DEBUG => '/var/run/aat/AAT.debug';
 
 =head1 FUNCTIONS
 
@@ -73,15 +75,16 @@ Readonly my $FILE_DEBUG => "/var/run/aat/AAT.debug";
 Prints Debug Message $text in AAT Debug file
 
 =cut
+
 sub DEBUG($)
 {
   my $text = shift;
-	$text =~ s/"//g;
+  $text =~ s/"//g;
 
   my ($sec, $min, $hour) = localtime();
- 
-	$ENV{'PATH'} = '/bin:/usr/bin/:/usr/sbin'; 
-	`/bin/echo "$hour:$min:$sec > $text" >> $FILE_DEBUG`;
+
+  $ENV{'PATH'} = '/bin:/usr/bin/:/usr/sbin';
+  `/bin/echo "$hour:$min:$sec > $text" >> $FILE_DEBUG`;
 
   return ("$hour:$min:$sec > $text");
 }
@@ -91,17 +94,21 @@ sub DEBUG($)
 Checks that value '$value' is not null (undef or '')
 
 =cut
+
 sub NOT_NULL
 {
-	my $value = shift;
+  my $value = shift;
 
-	if (ref $value eq "ARRAY")
-	{
-		return (scalar(@{$value}) > 1 ? 1 
-			: (((scalar(@{$value}) == 1) && (AAT::NOT_NULL(${$value}[0]))) ? 1 : 0));
-	}
+  if (ref $value eq 'ARRAY')
+  {
+    return (
+      scalar(@{$value}) > 1
+      ? 1
+      : (((scalar(@{$value}) == 1) && (AAT::NOT_NULL(${$value}[0]))) ? 1 : 0)
+    );
+  }
 
-	return (((defined $value) && ($value ne "")) ? 1 : 0);
+  return (((defined $value) && ($value ne '')) ? 1 : 0);
 }
 
 =head2 NULL($value)
@@ -109,17 +116,21 @@ sub NOT_NULL
 Checks that value '$value' is null (undef or '')
 
 =cut
+
 sub NULL($)
 {
-	my $value = shift;
+  my $value = shift;
 
-	if (ref $value eq "ARRAY")
-  { 
-		return (scalar(@{$value}) > 1 ? 0 
-			: (((scalar(@{$value}) == 1) && (AAT::NOT_NULL(${$value}[0]))) ? 0 : 1)); 
-	}
+  if (ref $value eq 'ARRAY')
+  {
+    return (
+      scalar(@{$value}) > 1
+      ? 0
+      : (((scalar(@{$value}) == 1) && (AAT::NOT_NULL(${$value}[0]))) ? 0 : 1)
+    );
+  }
 
-  return (((defined $value) && ($value ne "")) ? 0 : 1);
+  return (((defined $value) && ($value ne '')) ? 0 : 1);
 }
 
 =head2 ARRAY($value)
@@ -127,13 +138,18 @@ sub NULL($)
 Converts $value to an array ( @{$value) )
 
 =cut
+
 sub ARRAY($)
 {
-	my $value = shift;
+  my $value = shift;
 
-	return ( (NOT_NULL($value) 
-		? ((ref $value eq "ARRAY") ? @{$value} : ("$value")) 
-		: ()) );
+  return (
+    (
+      NOT_NULL($value)
+      ? ((ref $value eq 'ARRAY') ? @{$value} : ("$value"))
+      : ()
+    )
+  );
 }
 
 =head2 ARRAY_REF($value)
@@ -141,13 +157,18 @@ sub ARRAY($)
 Converts $value to an array reference ( \@{$value} )
 
 =cut
+
 sub ARRAY_REF($)
 {
-	my $value = shift;
+  my $value = shift;
 
-	return ( (NOT_NULL($value) 
-		? ((ref $value eq "ARRAY") ? \@{$value} : ["$value"])
-		: []) );
+  return (
+    (
+      NOT_NULL($value)
+      ? ((ref $value eq 'ARRAY') ? \@{$value} : ["$value"])
+      : []
+    )
+  );
 }
 
 =head2 HASH($value)
@@ -155,6 +176,7 @@ sub ARRAY_REF($)
 Converts $value to an hash ( %{$value} )
 
 =cut
+
 sub HASH($)
 {
   my $value = shift;
@@ -167,6 +189,7 @@ sub HASH($)
 Returns keys for the converted hash $value ( keys %{$value} )
 
 =cut
+
 sub HASH_KEYS($)
 {
   my $value = shift;
@@ -180,12 +203,13 @@ Fills the string $str with '0' to have $padding characters
 ( ex: Padding("7", 3) returns "007" )
 
 =cut
+
 sub Padding($$)
 {
   my ($str, $padding) = @_;
   $padding ||= 3;
 
-  return (("0"x($padding-length($str))) . $str);
+  return (('0' x ($padding - length($str))) . $str);
 }
 
 =head2 Directory($dir)
@@ -193,11 +217,12 @@ sub Padding($$)
 Returns Configuration Directory for directory '$dir'
 
 =cut
+
 sub Directory($)
 {
-	my $dir = shift;
+  my $dir = shift;
 
-	return (AAT::Application::Directory("AAT", $dir));
+  return (AAT::Application::Directory('AAT', $dir));
 }
 
 =head2 File($file)
@@ -205,11 +230,12 @@ sub Directory($)
 Returns Configuration filename for file '$file'
 
 =cut
+
 sub File($)
 {
-	my $file = shift;
+  my $file = shift;
 
-	return (AAT::Application::File("AAT", $file));
+  return (AAT::Application::File('AAT', $file));
 }
 
 =head2 Download($appli, $download, $dest)
@@ -217,32 +243,34 @@ sub File($)
 Downloads $download to local $dest
 
 =cut
+
 sub Download($$$)
 {
   my ($appli, $download, $dest) = @_;
   my $pc = AAT::Proxy::Configuration($appli);
-  my $proxy = (NOT_NULL($pc->{server}) ? "http://$pc->{server}" : "")
-    . (NOT_NULL($pc->{port}) ? ":$pc->{port}" : "");
+  my $proxy =
+      (NOT_NULL($pc->{server}) ? "http://$pc->{server}" : '')
+    . (NOT_NULL($pc->{port})   ? ":$pc->{port}"         : '');
 
-	my $ua = LWP::UserAgent->new;
-	$ua->agent($appli);
-	$ua->proxy('http', $proxy);
-	my $req = HTTP::Request->new(GET => "$download");
-	my $res = $ua->request($req);
-	if ($res->is_success)
-	{
-  	if (defined open(my $FILE, ">", $dest))
-		{
-  	  print $FILE $res->content;
-  	  close($FILE);
+  my $ua = LWP::UserAgent->new;
+  $ua->agent($appli);
+  $ua->proxy('http', $proxy);
+  my $req = HTTP::Request->new(GET => $download);
+  my $res = $ua->request($req);
+  if ($res->is_success)
+  {
+    if (defined open(my $FILE, '>', $dest))
+    {
+      print $FILE $res->content;
+      close($FILE);
       return ($dest);
-		}
-	}
-	else
-	{
-		$download =~ s/\%\d\d/ /g; # '%' is not good for sprintf used by syslog
- 		AAT::Syslog($appli, "DOWNLOAD_FAILED", $download);
-	}
+    }
+  }
+  else
+  {
+    $download =~ s/\%\d\d/ /g;    # '%' is not good for sprintf used by syslog
+    AAT::Syslog($appli, 'DOWNLOAD_FAILED', $download);
+  }
 
   return (undef);
 }
@@ -250,13 +278,14 @@ sub Download($$$)
 =head2 Update_Configuration($appli, $file, $conf, $rootname)
 
 =cut
+
 sub Update_Configuration($$$$)
 {
   my ($appli, $file, $conf, $rootname) = @_;
 
-	my $file_xml = AAT::Application::File($appli, $file);
+  my $file_xml = AAT::Application::File($appli, $file);
   AAT::XML::Write(AAT::Application::File($appli, $file), $conf, $rootname)
-		if (NOT_NULL($file_xml));
+    if (NOT_NULL($file_xml));
 }
 
 =head2 Version()
@@ -264,9 +293,10 @@ sub Update_Configuration($$$$)
 Returns AAT Version
 
 =cut
+
 sub Version()
 {
- 	my $info = AAT::Application::Info("AAT");
+  my $info = AAT::Application::Info('AAT');
 
   return ($info->{version});
 }
@@ -276,9 +306,10 @@ sub Version()
 Returns AAT WebSite
 
 =cut
+
 sub WebSite()
 {
-	my $info = AAT::Application::Info("AAT");
+  my $info = AAT::Application::Info('AAT');
 
   return ($info->{website});
 }
@@ -288,13 +319,14 @@ sub WebSite()
 Get/Set AAT Language
 
 =cut
+
 sub Language
 {
   my $lang = shift;
 
-	$main::Session->{AAT_LANGUAGE} = $lang	if (NOT_NULL($lang));
-	
-	return ($main::Session->{AAT_LANGUAGE} || "EN");
+  $main::Session->{AAT_LANGUAGE} = $lang if (NOT_NULL($lang));
+
+  return ($main::Session->{AAT_LANGUAGE} || 'EN');
 }
 
 =head2 Menu_Mode($mode)
@@ -302,13 +334,14 @@ sub Language
 Get/Set AAT Menu Mode (Icons&Text, IconsOnly, TextOnly)
 
 =cut
+
 sub Menu_Mode
 {
   my $mode = shift;
 
-  $main::Session->{AAT_MENU_MODE} = $mode  if (NOT_NULL($mode));
+  $main::Session->{AAT_MENU_MODE} = $mode if (NOT_NULL($mode));
 
-  return ($main::Session->{AAT_MENU_MODE} || "ICONS_AND_TEXT");
+  return ($main::Session->{AAT_MENU_MODE} || 'ICONS_AND_TEXT');
 }
 
 =head2 Theme($theme)
@@ -316,13 +349,14 @@ sub Menu_Mode
 Get/Set AAT Theme
 
 =cut
+
 sub Theme
 {
-	my $theme = shift;
+  my $theme = shift;
 
-	$main::Session->{AAT_THEME} = $theme	if (NOT_NULL($theme));
+  $main::Session->{AAT_THEME} = $theme if (NOT_NULL($theme));
 
-  return ($main::Session->{AAT_THEME} || "DEFAULT");
+  return ($main::Session->{AAT_THEME} || 'DEFAULT');
 }
 
 =head2 Translation($str)
@@ -330,24 +364,26 @@ sub Theme
 Translates $str with language $main::Session->{AAT_LANGUAGE}
 
 =cut
+
 sub Translation($)
 {
-  my $str = shift;
-	my $sess_lang = $main::Session->{AAT_LANGUAGE};
-	my $lang = (AAT::NOT_NULL($sess_lang) ? $sess_lang : "EN");
+  my $str       = shift;
+  my $sess_lang = $main::Session->{AAT_LANGUAGE};
+  my $lang      = (AAT::NOT_NULL($sess_lang) ? $sess_lang : 'EN');
 
-	return (AAT::Translation::Get($lang, $str));
+  return (AAT::Translation::Get($lang, $str));
 }
 
 =head2 Syslog($module, $msg, @args)
 
 
 =cut
+
 sub Syslog($$@)
 {
-	my ($module, $msg, @args) = @_;
+  my ($module, $msg, @args) = @_;
 
-	AAT::Syslog::Message($module, $msg, @args);
+  AAT::Syslog::Message($module, $msg, @args);
 }
 
 ##################################################
@@ -357,9 +393,10 @@ sub Syslog($$@)
 Usage: <AAT:PageTop title="Octopussy Login" icon="IMG/octopussy.gif" />
 
 =cut
+
 sub PageTop($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_PageTop.inc', %{$args});
 }
@@ -369,6 +406,7 @@ sub PageTop($$)
 Usage: <AAT:PageBottom credits="1" />
 
 =cut
+
 sub PageBottom($$)
 {
   my ($args, $body) = @_;
@@ -381,13 +419,14 @@ sub PageBottom($$)
 Usage: <AAT:PageTheme />
 
 =cut
+
 sub PageTheme($$)
 {
-	my ($args, $body) = @_;
-	my $theme = Theme();
-	my $style = AAT::Theme::CSS_File($theme);
- 	$main::Response->Include('AAT/INC/AAT_CSS_Inc.inc', file => $style)	
-		if (defined $style);	
+  my ($args, $body) = @_;
+  my $theme = Theme();
+  my $style = AAT::Theme::CSS_File($theme);
+  $main::Response->Include('AAT/INC/AAT_CSS_Inc.inc', file => $style)
+    if (defined $style);
 }
 
 =head2 Inc($args, $body)
@@ -396,11 +435,12 @@ Usage: <AAT:Inc file="octo_selector_taxonomy" name="taxonomy"
         selected="$r_taxo" any="1" />
 
 =cut
+
 sub Inc($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
-	$main::Response->Include("INC/$args->{file}.inc", %{$args});	
+  $main::Response->Include("INC/$args->{file}.inc", %{$args});
 }
 
 =head2 CSS_Inc($args, $body)
@@ -408,6 +448,7 @@ sub Inc($$)
 Usage:
 
 =cut
+
 sub CSS_Inc($$)
 {
   my ($args, $body) = @_;
@@ -420,9 +461,10 @@ sub CSS_Inc($$)
 Usage: <AAT:JS_Inc file="INC/AAT_tooltip.js" />
 
 =cut
+
 sub JS_Inc($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_JS_Inc.inc', %{$args});
 }
@@ -430,25 +472,25 @@ sub JS_Inc($$)
 =head2 File_Save($conf)
 
 =cut 
+
 sub File_Save($)
 {
-	my $conf = shift;
+  my $conf = shift;
 
-	$main::Response->{ContentType} = $conf->{contenttype};
-  $main::Response->AddHeader('Content-Disposition', 
-		"filename=\"$conf->{output_file}\"");
-	if (AAT::NOT_NULL($conf->{input_file}))
-	{
-  	open(my $FILE, "<", $conf->{input_file});
-  	while (<$FILE>)
-  		{ $main::Response->BinaryWrite($_); }
-  	close($FILE);
-	}
-	elsif (AAT::NOT_NULL($conf->{input_data}))
-	{
-		$main::Response->BinaryWrite($conf->{input_data});
-	}
-	$main::Response->End();
+  $main::Response->{ContentType} = $conf->{contenttype};
+  $main::Response->AddHeader('Content-Disposition',
+    "filename=\"$conf->{output_file}\"");
+  if (AAT::NOT_NULL($conf->{input_file}))
+  {
+    open(my $FILE, '<', $conf->{input_file});
+    while (<$FILE>) { $main::Response->BinaryWrite($_); }
+    close($FILE);
+  }
+  elsif (AAT::NOT_NULL($conf->{input_data}))
+  {
+    $main::Response->BinaryWrite($conf->{input_data});
+  }
+  $main::Response->End();
 }
 
 =head2 Button($args, $body)
@@ -456,6 +498,7 @@ sub File_Save($)
 Usage: <AAT:Button name="remove" popup_link="$remove_link" />
 
 =cut
+
 sub Button($$)
 {
   my ($args, $body) = @_;
@@ -472,6 +515,7 @@ Usage: <AAT:Box icon="buttons/bt_report" title="_REPORTS_VIEWER">
        </AAT:Box>
 
 =cut
+
 sub Box($$)
 {
   my ($args, $body) = @_;
@@ -487,6 +531,7 @@ Usage: <AAT:BoxRow><AAT:BoxCol>
        </AAT:BoxCol></AAT:BoxRow>
 
 =cut
+
 sub BoxCol($$)
 {
   my ($args, $body) = @_;
@@ -503,6 +548,7 @@ Usage: <AAT:BoxRow><AAT:BoxCol>
        </AAT:BoxCol></AAT:BoxRow>
 
 =cut
+
 sub BoxRow($$)
 {
   my ($args, $body) = @_;
@@ -519,9 +565,10 @@ Usage: <AAT:BoxRowMenu><AAT:BoxCol>
        </AAT:BoxCol></AAT:BoxRowMenu>
 
 =cut
+
 sub BoxRowMenu($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_BoxRowMenu.inc', %{$args});
   print $body;
@@ -533,9 +580,10 @@ sub BoxRowMenu($$)
 Usage:
 
 =cut
+
 sub DD_Box($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_DD_BoxTop.inc', %{$args});
   print $body;
@@ -547,9 +595,10 @@ sub DD_Box($$)
 Usage:
 
 =cut
+
 sub DD_BoxRow($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_DD_BoxRowBegin.inc', %{$args});
   print $body;
@@ -561,6 +610,7 @@ sub DD_BoxRow($$)
 Usage: <AAT:CheckBox name="$value" />
 
 =cut
+
 sub CheckBox($$)
 {
   my ($args, $body) = @_;
@@ -628,7 +678,7 @@ Usage: <AAT:Config_Database tooltip="_TOOLTIP_SYSTEM_DB" />
 
 sub Config_Database($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_Config_Database.inc', %{$args});
 }
@@ -706,9 +756,9 @@ Usage: <AAT:Config_XMPP tooltip="_TOOLTIP_SYSTEM_JABBER" />
 
 sub Config_XMPP($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
-	$main::Response->Include('AAT/INC/AAT_Config_XMPP.inc', %{$args});
+  $main::Response->Include('AAT/INC/AAT_Config_XMPP.inc', %{$args});
 }
 
 =head2 Config_Zabbix($args, $body)
@@ -745,7 +795,7 @@ Usage: <AAT:Export_FTP width="100%" />
 
 sub Export_FTP($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_Export_FTP.inc', %{$args});
 }
@@ -774,8 +824,8 @@ sub Form($$)
   my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_Form_Begin.inc', %{$args});
-	print $body;
-	$main::Response->Include('AAT/INC/AAT_Form_End.inc', %{$args});
+  print $body;
+  $main::Response->Include('AAT/INC/AAT_Form_End.inc', %{$args});
 }
 
 =head2 Form_Button($args, $body)
@@ -796,11 +846,12 @@ sub Form_Button($$)
 Usage: <AAT:Form_Hidden name="msg_pattern" value="$pattern" />
 
 =cut
+
 sub Form_Hidden($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
-	$main::Response->Include('AAT/INC/AAT_Form_Hidden.inc', %{$args});
+  $main::Response->Include('AAT/INC/AAT_Form_Hidden.inc', %{$args});
 }
 
 =head2 Form_Submit($args, $body)
@@ -808,6 +859,7 @@ sub Form_Hidden($$)
 Usage: <AAT:Form_Submit value="_EDIT" />
 
 =cut
+
 sub Form_Submit($$)
 {
   my ($args, $body) = @_;
@@ -820,9 +872,10 @@ sub Form_Submit($$)
 Usage: <AAT:Help page="login" />
 
 =cut
+
 sub Help($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_Help.inc', %{$args});
 }
@@ -833,9 +886,10 @@ Usage: <AAT:IMG name="mime/pdf" tooltip="_REPORT_PDF"
         link="${url_base}&filename=$report.$ext" />
 
 =cut
+
 sub IMG($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_IMG.inc', %{$args});
 }
@@ -845,6 +899,7 @@ sub IMG($$)
 Usage: <AAT:Label value="_MODIFICATION" style="B" />
 
 =cut
+
 sub Label($$)
 {
   my ($args, $body) = @_;
@@ -859,9 +914,10 @@ Usage:
 Print Logo of the item $args{name} from the List $args{list}
 
 =cut
+
 sub Logo($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_Logo.inc', %{$args});
 }
@@ -871,9 +927,10 @@ sub Logo($$)
 Usage: <AAT:Menu align="C" items=\@items />
 
 =cut
+
 sub Menu($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
   $main::Response->Include('AAT/INC/AAT_Menu.inc', %{$args});
 }
@@ -883,11 +940,12 @@ sub Menu($$)
 Usage: <AAT:Message level="$level" msg="$msg" />
 
 =cut
+
 sub Message($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
-	$main::Response->Include('AAT/INC/AAT_Message.inc', %{$args});
+  $main::Response->Include('AAT/INC/AAT_Message.inc', %{$args});
 }
 
 =head2 Msg_Error()
@@ -895,16 +953,20 @@ sub Message($$)
 Usage:
 
 =cut
+
 sub Msg_Error()
 {
-	if (NOT_NULL($main::Session->{AAT_MSG_ERROR}))
-	{
-		print "<div align=\"center\">\n";
-		$main::Response->Include('AAT/INC/AAT_Message.inc', level => 2,
-			msg => $main::Session->{AAT_MSG_ERROR});
-		print "</div>\n";
-	}
-	$main::Session->{AAT_MSG_ERROR} = undef;
+  if (NOT_NULL($main::Session->{AAT_MSG_ERROR}))
+  {
+    print '<div align=\"center\">\n';
+    $main::Response->Include(
+      'AAT/INC/AAT_Message.inc',
+      level => 2,
+      msg   => $main::Session->{AAT_MSG_ERROR}
+    );
+    print '</div>\n';
+  }
+  $main::Session->{AAT_MSG_ERROR} = undef;
 }
 
 =head2 Password($args, $body)
@@ -912,12 +974,18 @@ sub Msg_Error()
 Usage: <AAT:Password name="pword" value="$pwd" size="12" />
 
 =cut
+
 sub Password($$)
 {
   my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Password.inc', name => $args->{name},
-    value => $args->{value}, size => $args->{size}, maxlength => $args->{maxlength});
+  $main::Response->Include(
+    'AAT/INC/AAT_Password.inc',
+    name      => $args->{name},
+    value     => $args->{value},
+    size      => $args->{size},
+    maxlength => $args->{maxlength}
+  );
 }
 
 =head2 Picture($args, $body)
@@ -926,6 +994,7 @@ Usage: <AAT:Picture file="IMG/octopussy.gif" width="200"
         alt="Octopussy Logo" />
 
 =cut
+
 sub Picture($$)
 {
   my ($args, $body) = @_;
@@ -941,11 +1010,12 @@ Usage: <AAT:ProgressBar title="Report Generation $reportname"
         cancel="./report_in_progress.asp?cancel=yes&pid=$pid" />
 
 =cut
+
 sub ProgressBar($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
-	$main::Response->Include('AAT/INC/AAT_ProgressBar.inc', %{$args});
+  $main::Response->Include('AAT/INC/AAT_ProgressBar.inc', %{$args});
 }
 
 =head2 RRD_Graph($args, $body)
@@ -953,6 +1023,7 @@ sub ProgressBar($$)
 Usage: <AAT:RRD_Graph url="./index.asp" name="syslog_dtype" mode="$rrd_mode" />
 
 =cut
+
 sub RRD_Graph($$)
 {
   my ($args, $body) = @_;
@@ -965,6 +1036,7 @@ sub RRD_Graph($$)
 Usage: <AAT:Selector name="report" list=\@report_list />
 
 =cut
+
 sub Selector($$)
 {
   my ($args, $body) = @_;
@@ -977,6 +1049,7 @@ sub Selector($$)
 Usage: <AAT:Selector_Color name="color" selected="red" />
 
 =cut
+
 sub Selector_Color($$)
 {
   my ($args, $body) = @_;
@@ -989,6 +1062,7 @@ sub Selector_Color($$)
 Usage: <AAT:Selector Country_Code name="country" selected="fr" />
 
 =cut
+
 sub Selector_Country_Code($$)
 {
   my ($args, $body) = @_;
@@ -1001,6 +1075,7 @@ sub Selector_Country_Code($$)
 Usage: <AAT:Selector_Database name="db_type" selected="$type" />
 
 =cut
+
 sub Selector_Database($$)
 {
   my ($args, $body) = @_;
@@ -1013,6 +1088,7 @@ sub Selector_Database($$)
 Usage: <AAT:Selector_Date name="$name" start_year="1920" />
 
 =cut
+
 sub Selector_Date($$)
 {
   my ($args, $body) = @_;
@@ -1026,6 +1102,7 @@ Usage: <AAT:Selector_DateTime name="dt" start_year="2000"
         url="$url" selected="$selected" />
 
 =cut
+
 sub Selector_DateTime($$)
 {
   my ($args, $body) = @_;
@@ -1041,11 +1118,13 @@ Usage: <AAT:Selector_DateTime_Simple name="dt"
         selected2="$d2/$m2/$y2/$hour2/$min2" />
 
 =cut
+
 sub Selector_DateTime_Simple($$)
 {
   my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_DateTime_Simple.inc', %{$args});
+  $main::Response->Include('AAT/INC/AAT_Selector_DateTime_Simple.inc',
+    %{$args});
 }
 
 =head2 Selector_EnabledDisabled($args, $body)
@@ -1053,11 +1132,13 @@ sub Selector_DateTime_Simple($$)
 Usage: <AAT:Selector_EnabledDisabled name="status" selected="$status" />
 
 =cut
+
 sub Selector_EnabledDisabled($$)
 {
   my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_EnabledDisabled.inc', %{$args});
+  $main::Response->Include('AAT/INC/AAT_Selector_EnabledDisabled.inc',
+    %{$args});
 }
 
 =head2 Selector_Language($args, $body)
@@ -1065,20 +1146,27 @@ sub Selector_EnabledDisabled($$)
 Usage: <AAT:Selector_Language />
 
 =cut
+
 sub Selector_Language($$)
 {
   my ($args, $body) = @_;
   my $language = Language();
-  my @list = ( { label => "_ENGLISH", value => "EN" },
-    { label => "_FRENCH", value => "FR" },
-    { label => "_GERMAN", value => "DE" },
-		{ label => "_ITALIAN", value => "IT" },
-		{ label => "_PORTUGUESE", value => "PT" },
-		{ label => "_RUSSIAN", value => "RU" },
-    { label => "_SPANISH", value => "ES" } );
+  my @list     = (
+    {label => '_ENGLISH',    value => 'EN'},
+    {label => '_FRENCH',     value => 'FR'},
+    {label => '_GERMAN',     value => 'DE'},
+    {label => '_ITALIAN',    value => 'IT'},
+    {label => '_PORTUGUESE', value => 'PT'},
+    {label => '_RUSSIAN',    value => 'RU'},
+    {label => '_SPANISH',    value => 'ES'},
+  );
 
-  $main::Response->Include('AAT/INC/AAT_Selector.inc', name => "AAT_Language",
-    list =>\@list , selected => $language);
+  $main::Response->Include(
+    'AAT/INC/AAT_Selector.inc',
+    name     => 'AAT_Language',
+    list     => \@list,
+    selected => $language
+  );
 }
 
 =head2 Selector_List($args, $body)
@@ -1086,6 +1174,7 @@ sub Selector_Language($$)
 Usage:
 
 =cut
+
 sub Selector_List($$)
 {
   my ($args, $body) = @_;
@@ -1096,16 +1185,23 @@ sub Selector_List($$)
 =head2 Selector_MenuMode($args, $body)
 
 =cut
+
 sub Selector_MenuMode($$)
 {
   my ($args, $body) = @_;
-	my $mode = Menu_Mode();
-	my @list = ( { label => "_ICONS_AND_TEXT", value => "ICONS_AND_TEXT" },
-  	{ label => "_ICONS_ONLY", value => "ICONS_ONLY" },
-  	{ label => "_TEXT_ONLY", value => "TEXT_ONLY" } );
+  my $mode = Menu_Mode();
+  my @list = (
+    {label => '_ICONS_AND_TEXT', value => 'ICONS_AND_TEXT'},
+    {label => '_ICONS_ONLY',     value => 'ICONS_ONLY'},
+    {label => '_TEXT_ONLY',      value => 'TEXT_ONLY'},
+  );
 
-	$main::Response->Include('AAT/INC/AAT_Selector.inc', name => "AAT_MenuMode",
-    list =>\@list , selected => $mode);
+  $main::Response->Include(
+    'AAT/INC/AAT_Selector.inc',
+    name     => 'AAT_MenuMode',
+    list     => \@list,
+    selected => $mode
+  );
 }
 
 =head2 Selector_Number($args, $body)
@@ -1114,6 +1210,7 @@ Usage: <AAT:Selector_Number name="graph_width"
         min="300" max="3000" step="50" selected="$g_width" />
 
 =cut
+
 sub Selector_Number($$)
 {
   my ($args, $body) = @_;
@@ -1126,14 +1223,19 @@ sub Selector_Number($$)
 Usage: <AAT:Selector_Theme />
 
 =cut
+
 sub Selector_Theme($$)
 {
   my ($args, $body) = @_;
-  my $theme = Theme();
+  my $theme  = Theme();
   my @themes = AAT::Theme::List();
 
-  $main::Response->Include('AAT/INC/AAT_Selector.inc', name => "AAT_Theme",
-    list => \@themes, selected => $theme);
+  $main::Response->Include(
+    'AAT/INC/AAT_Selector.inc',
+    name     => 'AAT_Theme',
+    list     => \@themes,
+    selected => $theme
+  );
 }
 
 =head2 Selector_Time($args, $body)
@@ -1141,6 +1243,7 @@ sub Selector_Theme($$)
 Usage: <AAT:Selector_Time name="time_start" step="5" selected="0/0"/>
 
 =cut
+
 sub Selector_Time($$)
 {
   my ($args, $body) = @_;
@@ -1153,11 +1256,12 @@ sub Selector_Time($$)
 Usage: <AAT:Selector_User_Role />
 
 =cut
+
 sub Selector_User_Role($$)
 {
-	my ($args, $body) = @_;
-	
-	$main::Response->Include('AAT/INC/AAT_Selector_User_Role.inc', %{$args});
+  my ($args, $body) = @_;
+
+  $main::Response->Include('AAT/INC/AAT_Selector_User_Role.inc', %{$args});
 }
 
 =head2 Selector_YesNo($args, $body)
@@ -1165,6 +1269,7 @@ sub Selector_User_Role($$)
 Usage: <AAT:Selector_YesNo name="xmpp_tls" selected="$tls" />
 
 =cut
+
 sub Selector_YesNo($$)
 {
   my ($args, $body) = @_;
@@ -1177,11 +1282,12 @@ sub Selector_YesNo($$)
 Usage: <AAT:TextArea name="comment" cols="80" rows="10" />
 
 =cut
+
 sub TextArea($$)
 {
-	my ($args, $body) = @_;
+  my ($args, $body) = @_;
 
-	$main::Response->Include('AAT/INC/AAT_TextArea.inc', %{$args});
+  $main::Response->Include('AAT/INC/AAT_TextArea.inc', %{$args});
 }
 
 1;

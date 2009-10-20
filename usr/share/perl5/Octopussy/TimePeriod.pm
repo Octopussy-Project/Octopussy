@@ -1,19 +1,20 @@
+
 =head1 NAME
 
 Octopussy::TimePeriod - Octopussy TimePeriod module
 
 =cut
+
 package Octopussy::TimePeriod;
 
 use strict;
-no strict 'refs';
 use warnings;
 use Readonly;
 
 use Octopussy;
 
-Readonly my $FILE_TIMEPERIODS => "timeperiods";
-Readonly my $XML_ROOT => "octopussy_timeperiods";
+Readonly my $FILE_TIMEPERIODS => 'timeperiods';
+Readonly my $XML_ROOT         => 'octopussy_timeperiods';
 
 =head1 FUNCTIONS
 
@@ -22,13 +23,14 @@ Readonly my $XML_ROOT => "octopussy_timeperiods";
 Create a new Timeperiod
 
 =cut
+
 sub New($)
 {
-	my $new = shift;
+  my $new = shift;
 
-	my $file = Octopussy::File($FILE_TIMEPERIODS);
+  my $file = Octopussy::File($FILE_TIMEPERIODS);
   my $conf = AAT::XML::Read($file);
-	push(@{$conf->{timeperiod}}, $new);
+  push(@{$conf->{timeperiod}}, $new);
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
   return ($file);
@@ -39,17 +41,20 @@ sub New($)
 Remove a Timeperiod
 
 =cut
+
 sub Remove($)
 {
-	my $timeperiod = shift;
+  my $timeperiod = shift;
 
- 	my @tps = ();
-	my $file = Octopussy::File($FILE_TIMEPERIODS);
- 	my $conf = AAT::XML::Read($file);
+  my @tps  = ();
+  my $file = Octopussy::File($FILE_TIMEPERIODS);
+  my $conf = AAT::XML::Read($file);
   foreach my $t (AAT::ARRAY($conf->{timeperiod}))
-  	{ push(@tps, $t)	if ($t->{label} ne $timeperiod); }
-	$conf->{timeperiod} = \@tps;
-	AAT::XML::Write($file, $conf, $XML_ROOT);
+  {
+    push(@tps, $t) if ($t->{label} ne $timeperiod);
+  }
+  $conf->{timeperiod} = \@tps;
+  AAT::XML::Write($file, $conf, $XML_ROOT);
 
   return ($file);
 }
@@ -62,39 +67,40 @@ Returns List of Timeperiods
 
 sub List()
 {
-	my @tps = AAT::XML::File_Array_Values(Octopussy::File($FILE_TIMEPERIODS), 
-		"timeperiod", "label");
+  my @tps = AAT::XML::File_Array_Values(Octopussy::File($FILE_TIMEPERIODS),
+    'timeperiod', 'label');
 
-	return (@tps);
+  return (@tps);
 }
 
 =head2 Configuration($tp_name)
 
 =cut
+
 sub Configuration($)
 {
   my $tp_name = shift;
 
   my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
-	foreach my $tp (AAT::ARRAY($conf->{timeperiod}))
+  foreach my $tp (AAT::ARRAY($conf->{timeperiod}))
   {
-		if ($tp->{label} eq $tp_name)
-		{
-			my $str = "";
-			foreach my $dt (AAT::ARRAY($tp->{dt}))
-			{ 
-				foreach my $k (AAT::HASH_KEYS($dt))
-				{
+    if ($tp->{label} eq $tp_name)
+    {
+      my $str = "";
+      foreach my $dt (AAT::ARRAY($tp->{dt}))
+      {
+        foreach my $k (AAT::HASH_KEYS($dt))
+        {
           if ($k =~ /^(\S{3})\S+/)
           {
-					  $str .= "$1: $dt->{$k}, "; 
+            $str .= "$1: $dt->{$k}, ";
           }
-				}
-			}
-			$str =~ s/, $//;
-  		return ({ label => $tp->{label}, periods => $str })    
-		}
- 	}
+        }
+      }
+      $str =~ s/, $//;
+      return ({label => $tp->{label}, periods => $str});
+    }
+  }
 
   return (undef);
 }
@@ -102,41 +108,45 @@ sub Configuration($)
 =head2 Configurations($sort)
 
 =cut
+
 sub Configurations
 {
-	my $sort = shift || "label";
-	my (@configurations, @sorted_configurations) = ((), ());
- 	my @tps = List();
- 	my %field;
+  my $sort = shift || 'label';
+  my (@configurations, @sorted_configurations) = ((), ());
+  my @tps = List();
+  my %field;
 
-	foreach my $tp (@tps)
- 	{
-  	my $conf = Configuration($tp);
-   	$field{$conf->{$sort}} = 1;
- 		push(@configurations, $conf);
- 	}
-	foreach my $f (sort keys %field)
+  foreach my $tp (@tps)
   {
-  	foreach my $c (@configurations)
-    	{ push(@sorted_configurations, $c)	if ($c->{$sort} eq $f); }
+    my $conf = Configuration($tp);
+    $field{$conf->{$sort}} = 1;
+    push(@configurations, $conf);
+  }
+  foreach my $f (sort keys %field)
+  {
+    foreach my $c (@configurations)
+    {
+      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
+    }
   }
 
-	return (@sorted_configurations);
+  return (@sorted_configurations);
 }
 
 =head2 Match($timeperiod, $datetime)
 
 =cut
+
 sub Match($$)
 {
-	my ($timeperiod, $datetime) = @_;
+  my ($timeperiod, $datetime) = @_;
 
-	return (1)	if ((!defined $timeperiod) || ($timeperiod =~ /-ANY-/));
+  return (1) if ((!defined $timeperiod) || ($timeperiod =~ /-ANY-/));
   if ($datetime =~ /^(\S+) (\d+):(\d+)$/)
   {
-	  my ($day, $hour, $min) = ($1, $2, $3);
-	  my $nb = $hour*100 + $min;
-	  my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
+    my ($day, $hour, $min) = ($1, $2, $3);
+    my $nb   = $hour * 100 + $min;
+    my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
     foreach my $tp (AAT::ARRAY($conf->{timeperiod}))
     {
       if ($tp->{label} eq $timeperiod)
@@ -145,24 +155,26 @@ sub Match($$)
         {
           foreach my $k (AAT::HASH_KEYS($dt))
           {
-					  if ($k eq $day)
-					  {
-						  if ($dt->{$k} =~ /^\!(\d+):(\d+)-(\d+):(\d+)$/)
-						  {
-							  return (1)	if (($nb < ($1*100+$2)) || ($nb > ($3*100+$4)));
-						  }
-						  elsif ($dt->{$k} =~ /^(\d+):(\d+)-(\d+):(\d+)$/)
-						  {
-							  return (1)  if (($nb > ($1*100+$2)) && ($nb < ($3*100+$4)));
-						  }
-					  }
+            if ($k eq $day)
+            {
+              if ($dt->{$k} =~ /^\!(\d+):(\d+)-(\d+):(\d+)$/)
+              {
+                return (1)
+                  if (($nb < ($1 * 100 + $2)) || ($nb > ($3 * 100 + $4)));
+              }
+              elsif ($dt->{$k} =~ /^(\d+):(\d+)-(\d+):(\d+)$/)
+              {
+                return (1)
+                  if (($nb > ($1 * 100 + $2)) && ($nb < ($3 * 100 + $4)));
+              }
+            }
           }
         }
       }
     }
   }
- 	
-	return (0);
+
+  return (0);
 }
 
 1;

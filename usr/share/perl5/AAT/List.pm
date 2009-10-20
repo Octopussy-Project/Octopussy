@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 AAT::List - AAT List module
 
 =cut
+
 package AAT::List;
 
 use strict;
@@ -17,14 +19,15 @@ use AAT::XML;
 Returns List configuration
 
 =cut
+
 sub Configuration($)
 {
-	my $list = shift;
+  my $list = shift;
 
-	my $dir = AAT::Directory("lists");
-	my $conf = AAT::XML::Read("$dir${list}.xml");
+  my $dir  = AAT::Directory('lists');
+  my $conf = AAT::XML::Read("$dir${list}.xml");
 
-	return ($conf);	
+  return ($conf);
 }
 
 =head2 Items($list)
@@ -32,13 +35,14 @@ sub Configuration($)
 Returns List items
 
 =cut
+
 sub Items($)
 {
-	my $list = shift;
+  my $list = shift;
 
-	my $conf = Configuration($list);
+  my $conf = Configuration($list);
 
-	return (AAT::ARRAY($conf->{item}));
+  return (AAT::ARRAY($conf->{item}));
 }
 
 1;

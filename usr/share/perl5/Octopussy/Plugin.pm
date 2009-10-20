@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::Plugin - Octopussy Plugin module
 
 =cut
+
 package Octopussy::Plugin;
 
 use strict;
@@ -12,25 +14,25 @@ use Readonly;
 
 use Octopussy;
 
-Readonly my $DIR_PLUGIN => "plugins";
-Readonly my $DIR_PLUGIN_MODULES => "/usr/share/perl5/Octopussy/Plugin/";
+Readonly my $DIR_PLUGIN         => 'plugins';
+Readonly my $DIR_PLUGIN_MODULES => '/usr/share/perl5/Octopussy/Plugin/';
 
-my $dir_plugins = undef;
+my $dir_plugins     = undef;
 my %function_source = ();
 
 BEGIN
 {
-  Readonly my $DIR_PLUGIN_MODULES => "/usr/share/perl5/Octopussy/Plugin/";
+  Readonly my $DIR_PLUGIN_MODULES => '/usr/share/perl5/Octopussy/Plugin/';
   opendir(DIR, $DIR_PLUGIN_MODULES);
- 	my @plugins = grep { /.+\.pm$/ } readdir(DIR);
- 	foreach my $p (@plugins)
+  my @plugins = grep { /.+\.pm$/ } readdir(DIR);
+  foreach my $p (@plugins)
   {
     if ("Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/)
-    { 
-		  require "$1$2";
+    {
+      require "$1$2";
     }
-	}
-	closedir(DIR);
+  }
+  closedir(DIR);
 }
 
 =head1 FUNCTIONS
@@ -38,37 +40,39 @@ BEGIN
 =head2 Init_All(\%conf)
 
 =cut
+
 sub Init_All($)
 {
-	my $conf = shift;
+  my $conf = shift;
 
-	my @plugins = AAT::FS::Directory_Files($DIR_PLUGIN_MODULES, qr/.+\.pm$/);
+  my @plugins = AAT::FS::Directory_Files($DIR_PLUGIN_MODULES, qr/.+\.pm$/);
   foreach my $p (@plugins)
-  { 
-		$p =~ s/\.pm$//;
-		my $func = "Octopussy::Plugin::" . $p . "::Init";
-		print "Init Plugin $p\n";
-		&{$func}($conf); 
-	}
+  {
+    $p =~ s/\.pm$//;
+    my $func = "Octopussy::Plugin::" . $p . "::Init";
+    print "Init Plugin $p\n";
+    &{$func}($conf);
+  }
 }
 
 =head2 Init(\%conf, @plugins)
 
 =cut
+
 sub Init($@)
 {
-	my ($conf, @plugins) = @_;
-	my %done = ();
+  my ($conf, @plugins) = @_;
+  my %done = ();
 
   foreach my $p (@plugins)
   {
-		if (($p =~ /Octopussy::Plugin::(.+?)::/) && (!defined $done{$1}))
-		{
-    	my $func = "Octopussy::Plugin::" . $1 . "::Init";
-    	print "Init Plugin $1\n";
-			$done{$1} = 1;
-    	&{$func}($conf);
-		}
+    if (($p =~ /Octopussy::Plugin::(.+?)::/) && (!defined $done{$1}))
+    {
+      my $func = "Octopussy::Plugin::" . $1 . "::Init";
+      print "Init Plugin $1\n";
+      $done{$1} = 1;
+      &{$func}($conf);
+    }
   }
 }
 
@@ -77,11 +81,12 @@ sub Init($@)
 Returns List of Plugins
 
 =cut
-sub List()
-{	
-	$dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
 
-	return (AAT::XML::Name_List($dir_plugins));
+sub List()
+{
+  $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
+
+  return (AAT::XML::Name_List($dir_plugins));
 }
 
 =head2 Functions()
@@ -89,18 +94,19 @@ sub List()
 Returns List of Plugins Functions
 
 =cut
+
 sub Functions()
 {
-	my @functions = ();
+  my @functions = ();
 
-	$dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
-	my @files = AAT::FS::Directory_Files($dir_plugins, qr/.+\.xml$/);
+  $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
+  my @files = AAT::FS::Directory_Files($dir_plugins, qr/.+\.xml$/);
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir_plugins/$f");
-    push(@functions, { plugin => $conf->{name}, functions => $conf->{function} })  
-			if (defined $conf->{function});
-  }	
+    push(@functions, {plugin => $conf->{name}, functions => $conf->{function}})
+      if (defined $conf->{function});
+  }
 
   return (@functions);
 }
@@ -108,26 +114,27 @@ sub Functions()
 =head2 Function_Source($fct)
 
 =cut
+
 sub Function_Source($)
 {
-	my $fct = shift;	
-	
-	if ($fct =~ /Octopussy::Plugin::(.+)::.+$/)
+  my $fct = shift;
+
+  if ($fct =~ /Octopussy::Plugin::(.+)::.+$/)
   {
     my $mod = $1;
-	  if (!defined $function_source{$fct})
-	  {
-		  $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
-		  my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
-		  foreach my $pf (AAT::ARRAY($conf->{function})) 
-		  { 
-			  $function_source{$fct} = $pf->{source}	if ($pf->{perl} eq $fct);
-		  }
-		  $function_source{$fct} = "OUTPUT"	if (!defined $function_source{$fct});
-	  }
-	}
+    if (!defined $function_source{$fct})
+    {
+      $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
+      my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
+      foreach my $pf (AAT::ARRAY($conf->{function}))
+      {
+        $function_source{$fct} = $pf->{source} if ($pf->{perl} eq $fct);
+      }
+      $function_source{$fct} = 'OUTPUT' if (!defined $function_source{$fct});
+    }
+  }
 
-	return ($function_source{$fct});
+  return ($function_source{$fct});
 }
 
 =head2 SQL_Convert($str)
@@ -136,6 +143,7 @@ Returns Plugin Function to SQL
 Octopussy::Plugin::Function(field) -> Plugin_Function__field
 
 =cut
+
 sub SQL_Convert($)
 {
   my $str = shift;
@@ -156,6 +164,7 @@ sub SQL_Convert($)
 =head2 Field_Data
 
 =cut
+
 sub Field_Data
 {
   my ($line, $long_field) = @_;
@@ -164,7 +173,7 @@ sub Field_Data
   if ($long_field =~ /^(\S+::\S+?)\((\S+)\)$/)
   {
     my ($plugin, $field) = ($1, $2);
-    if (Function_Source($plugin) eq "OUTPUT")
+    if (Function_Source($plugin) eq 'OUTPUT')
     {
       $result = &{$plugin}($line->{$field});
     }
@@ -172,7 +181,7 @@ sub Field_Data
     {
       my $plugin_sql = Octopussy::Plugin::SQL_Convert($long_field);
       $result = $line->{$plugin_sql};
-    } 
+    }
   }
 
   return ($result);

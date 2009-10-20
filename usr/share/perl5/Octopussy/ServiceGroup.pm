@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::ServiceGroup - Octopussy ServiceGroup Module
 
 =cut
+
 package Octopussy::ServiceGroup;
 
 use strict;
@@ -12,8 +14,8 @@ use Readonly;
 
 use Octopussy;
 
-Readonly my $FILE_SERVICEGROUPS => "servicegroups";
-Readonly my $XML_ROOT => "octopussy_servicegroups";
+Readonly my $FILE_SERVICEGROUPS => 'servicegroups';
+Readonly my $XML_ROOT           => 'octopussy_servicegroups';
 
 =head1 FUNCTIONS
 
@@ -22,20 +24,21 @@ Readonly my $XML_ROOT => "octopussy_servicegroups";
 Adds a new ServiceGroup
 
 =cut 
+
 sub Add($)
 {
-	my $conf_sg = shift;
-	my @sgs = ();
+  my $conf_sg = shift;
+  my @sgs     = ();
 
-	my $file = Octopussy::File($FILE_SERVICEGROUPS);	
-	my $conf = AAT::XML::Read($file);
-	foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
+  my $file = Octopussy::File($FILE_SERVICEGROUPS);
+  my $conf = AAT::XML::Read($file);
+  foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
   {
-    return ("_MSG_SERVICEGROUP_ALREADY_EXISTS")
+    return ('_MSG_SERVICEGROUP_ALREADY_EXISTS')
       if ($sg->{sg_id} eq $conf_sg->{sg_id});
   }
-	push(@{$conf->{servicegroup}}, $conf_sg); 		
-	AAT::XML::Write($file, $conf, $XML_ROOT);
+  push(@{$conf->{servicegroup}}, $conf_sg);
+  AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
 =head1 Remove($servicegroup)
@@ -43,17 +46,20 @@ sub Add($)
 Removes ServiceGroup '$servicegroup'
 
 =cut
+
 sub Remove($)
 {
   my $servicegroup = shift;
-	my @sgs = ();
+  my @sgs          = ();
 
-	my $file = Octopussy::File($FILE_SERVICEGROUPS);
-	my $conf = AAT::XML::Read($file);
-	foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
-  	{ push(@sgs, $sg)	if ($sg->{sg_id} ne $servicegroup); }
-	$conf->{servicegroup} = \@sgs;
-	AAT::XML::Write($file, $conf, $XML_ROOT);
+  my $file = Octopussy::File($FILE_SERVICEGROUPS);
+  my $conf = AAT::XML::Read($file);
+  foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
+  {
+    push(@sgs, $sg) if ($sg->{sg_id} ne $servicegroup);
+  }
+  $conf->{servicegroup} = \@sgs;
+  AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
 =head2 List()
@@ -61,12 +67,13 @@ sub Remove($)
 Gets list of ServiceGroup
 
 =cut
+
 sub List()
 {
-	my @sgs = AAT::XML::File_Array_Values(Octopussy::File($FILE_SERVICEGROUPS),
-		"servicegroup", "sg_id");
+  my @sgs = AAT::XML::File_Array_Values(Octopussy::File($FILE_SERVICEGROUPS),
+    'servicegroup', 'sg_id');
 
-	return (@sgs);
+  return (@sgs);
 }
 
 =head2 Configuration($servicegroup)
@@ -74,14 +81,17 @@ sub List()
 Gets the configuration for the ServiceGroup '$servicegroup'
 
 =cut
+
 sub Configuration($)
 {
   my $servicegroup = shift;
 
   my $conf = AAT::XML::Read(Octopussy::File($FILE_SERVICEGROUPS));
-	foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
-  	{ return ($sg)	if ($sg->{sg_id} eq $servicegroup); }
-	
+  foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
+  {
+    return ($sg) if ($sg->{sg_id} eq $servicegroup);
+  }
+
   return (undef);
 }
 
@@ -90,26 +100,29 @@ sub Configuration($)
 Gets the configuration for all ServiceGroups
 
 =cut
+
 sub Configurations($)
 {
-	my $sort = shift || "sg_id";
-	my (@configurations, @sorted_configurations) = ((), ());	
-	my @sgs = List();
-	my %field;
+  my $sort = shift || 'sg_id';
+  my (@configurations, @sorted_configurations) = ((), ());
+  my @sgs = List();
+  my %field;
 
-	foreach my $sg (@sgs)
-	{
-		my $conf = Configuration($sg);
-		$field{$conf->{$sort}} = 1;
-		push(@configurations, $conf);
-	}
-	foreach my $f (sort keys %field)
+  foreach my $sg (@sgs)
+  {
+    my $conf = Configuration($sg);
+    $field{$conf->{$sort}} = 1;
+    push(@configurations, $conf);
+  }
+  foreach my $f (sort keys %field)
   {
     foreach my $c (@configurations)
-      { push(@sorted_configurations, $c)    if ($c->{$sort} eq $f); }
+    {
+      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
+    }
   }
-	
-	return (@sorted_configurations);
+
+  return (@sorted_configurations);
 }
 
 =head2 Services($servicegroup)
@@ -117,23 +130,25 @@ sub Configurations($)
 Returns list of Services in ServiceGroup '$servicegroup'
 
 =cut
+
 sub Services($)
 {
-	my $servicegroup = shift;
+  my $servicegroup = shift;
 
-	my $conf = Configuration($servicegroup);
-	my @services = ();
+  my $conf     = Configuration($servicegroup);
+  my @services = ();
   my %field;
 
-  foreach my $s (AAT::ARRAY($conf->{service}))
-    { $field{$s->{rank}} = 1; }
+  foreach my $s (AAT::ARRAY($conf->{service})) { $field{$s->{rank}} = 1; }
 
   foreach my $f (sort keys %field)
   {
     foreach my $s (AAT::ARRAY($conf->{service}))
-      { push(@services, $s) if ($s->{rank} eq $f); }
+    {
+      push(@services, $s) if ($s->{rank} eq $f);
+    }
   }
-	return (@services);
+  return (@services);
 }
 
 =head2 Add_Service($servicegroup, $service)
@@ -141,27 +156,30 @@ sub Services($)
 Adds Service '$service' to ServiceGroup '$servicegroup'
 
 =cut
+
 sub Add_Service($$)
 {
-	my ($servicegroup, $service) = @_;
-	my $file = Octopussy::File($FILE_SERVICEGROUPS);
+  my ($servicegroup, $service) = @_;
+  my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-	my @sgs = ();
+  my @sgs  = ();
   foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
   {
-		my @services = AAT::ARRAY($sg->{service});
+    my @services = AAT::ARRAY($sg->{service});
     if ($sg->{sg_id} eq $servicegroup)
     {
-			my $rank = scalar(@services) + 1;
-			$rank = AAT::Padding($rank, 2);
-			foreach my $sg_serv (@services)
-    		{ return()  if ($sg_serv->{sid} =~ /^$service$/); }
-			push(@services, { sid => $service, rank => $rank });
-		}
-		$sg->{service} = \@services;
-		push(@sgs, $sg);
-	}
-	$conf->{servicegroup} = \@sgs;
+      my $rank = scalar(@services) + 1;
+      $rank = AAT::Padding($rank, 2);
+      foreach my $sg_serv (@services)
+      {
+        return () if ($sg_serv->{sid} =~ /^$service$/);
+      }
+      push(@services, {sid => $service, rank => $rank});
+    }
+    $sg->{service} = \@services;
+    push(@sgs, $sg);
+  }
+  $conf->{servicegroup} = \@sgs;
 
   AAT::XML::Write($file, $conf, $XML_ROOT);
 }
@@ -171,36 +189,35 @@ sub Add_Service($$)
 Removes Service '$service' from ServiceGroup '$servicegroup'
 
 =cut
+
 sub Remove_Service($$)
 {
-	my ($servicegroup, $service) = @_;
+  my ($servicegroup, $service) = @_;
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-	my @sgs = ();
+  my @sgs  = ();
   foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
   {
     if ($sg->{sg_id} eq $servicegroup)
     {
-			my @services = ();
-			my $rank = undef;
+      my @services = ();
+      my $rank     = undef;
       foreach my $s (AAT::ARRAY($sg->{service}))
       {
-        if ($s->{sid} ne $service)
-        	{ push(@services, $s); }
-				else
-					{ $rank = $s->{rank}; }
-			}
-			return()	if (!defined $rank);
-			foreach my $s (@services)
-  		{
-    		if ($s->{rank} > $rank)
-    		{
-      		$s->{rank} -= 1;
-      		$s->{rank} = AAT::Padding($s->{rank}, 2);
-   	 		}
-  		}
-			$sg->{service} = \@services;
-		}
+        if ($s->{sid} ne $service) { push(@services, $s); }
+        else                       { $rank = $s->{rank}; }
+      }
+      return () if (!defined $rank);
+      foreach my $s (@services)
+      {
+        if ($s->{rank} > $rank)
+        {
+          $s->{rank} -= 1;
+          $s->{rank} = AAT::Padding($s->{rank}, 2);
+        }
+      }
+      $sg->{service} = \@services;
+    }
     push(@sgs, $sg);
   }
   $conf->{servicegroup} = \@sgs;
@@ -213,50 +230,51 @@ Moves Service '$service' in ServiceGroup '$servicegroup' Services List
 in Direction Up or Down ('$direction')
 
 =cut
+
 sub Move_Service($$$)
 {
-	my ($servicegroup, $service, $direction) = @_;
-	my $rank = undef;
+  my ($servicegroup, $service, $direction) = @_;
+  my $rank = undef;
 
-	my @sgs = ();
-	my $file = Octopussy::File($FILE_SERVICEGROUPS);
+  my @sgs  = ();
+  my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
   foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
-	{
-		if ($sg->{sg_id} eq $servicegroup)
-		{
-			my @services = ();
-  		my $max = (defined $sg->{service} ? scalar(@{$sg->{service}}) : 0);
-  		$max = ("0"x(2-length($max))) . $max;
-  		foreach my $s (AAT::ARRAY($sg->{service}))
-  		{
-    		if ($s->{sid} eq $service)
-   	 		{
-      		return () if (($s->{rank} eq "01") && ($direction eq "up"));
-      		return () if (($s->{rank} eq "$max") && ($direction eq "down"));
-      		$s->{rank} = ($direction eq "up" ? $s->{rank} - 1 : $s->{rank} + 1);
-      		$s->{rank} = AAT::Padding($s->{rank}, 2);
-      		$rank = $s->{rank};
-    		}
-    		push(@services, $s);
-  		}
-  		$sg->{service} = \@services;
-  		my @services2 = ();
-  		foreach my $s (AAT::ARRAY($sg->{service}))
-  		{
-    		if (($s->{rank} eq $rank) && ($s->{sid} ne $service))
-    		{
-      		$s->{rank} = ($direction eq "up" ? $s->{rank} + 1 : $s->{rank} - 1);
-      		$s->{rank} = AAT::Padding($s->{rank}, 2);
-    		}
-    		push(@services2, $s);
-  		}
-  		$sg->{service} = \@services2;
-		}
-		push(@sgs, $sg);
-	}
-	$conf->{servicegroup} = \@sgs;
-	
+  {
+    if ($sg->{sg_id} eq $servicegroup)
+    {
+      my @services = ();
+      my $max = (defined $sg->{service} ? scalar(@{$sg->{service}}) : 0);
+      $max = ('0' x (2 - length($max))) . $max;
+      foreach my $s (AAT::ARRAY($sg->{service}))
+      {
+        if ($s->{sid} eq $service)
+        {
+          return () if (($s->{rank} eq '01')   && ($direction eq 'up'));
+          return () if (($s->{rank} eq "$max") && ($direction eq 'down'));
+          $s->{rank} = ($direction eq 'up' ? $s->{rank} - 1 : $s->{rank} + 1);
+          $s->{rank} = AAT::Padding($s->{rank}, 2);
+          $rank = $s->{rank};
+        }
+        push(@services, $s);
+      }
+      $sg->{service} = \@services;
+      my @services2 = ();
+      foreach my $s (AAT::ARRAY($sg->{service}))
+      {
+        if (($s->{rank} eq $rank) && ($s->{sid} ne $service))
+        {
+          $s->{rank} = ($direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1);
+          $s->{rank} = AAT::Padding($s->{rank}, 2);
+        }
+        push(@services2, $s);
+      }
+      $sg->{service} = \@services2;
+    }
+    push(@sgs, $sg);
+  }
+  $conf->{servicegroup} = \@sgs;
+
   AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 

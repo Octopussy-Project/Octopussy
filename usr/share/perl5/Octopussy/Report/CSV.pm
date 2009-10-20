@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::Report::CSV - Octopussy CSV Report module
 
 =cut
+
 package Octopussy::Report::CSV;
 
 use strict;
@@ -13,10 +15,11 @@ no strict 'refs';
 =head2 Generate($file, $array_data, $array_fields, $array_headers)
 
 =cut
+
 sub Generate($$$$)
 {
   my ($file, $array_data, $array_fields, $array_headers) = @_;
-	my @fields = split(/,/, $array_fields);
+  my @fields = split(/,/, $array_fields);
   my $csv = join(";", split(/,/, $array_headers)) . "\n";
 
   foreach my $line (@{$array_data})
@@ -28,21 +31,18 @@ sub Generate($$$$)
       {
         if (ref $result eq "ARRAY")
         {
-          foreach my $res (@{$result})
-            { $csv .= "$res "; }
+          foreach my $res (@{$result}) { $csv .= "$res "; }
         }
-        else
-          { $csv .= $result; }
+        else { $csv .= $result; }
       }
-      else
-        { $csv .= $line->{$f} || "N/A"; }
+      else { $csv .= $line->{$f} || "N/A"; }
       $csv .= ";";
     }
     $csv .= "\n";
   }
   open(OUTPUT, "> $file");
   print OUTPUT $csv;
-  close(OUTPUT)
+  close(OUTPUT);
 }
 
 1;

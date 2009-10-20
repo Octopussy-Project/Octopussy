@@ -1,8 +1,10 @@
+
 =head1 NAME
 
 Octopussy::Plugin::Proxy - Octopussy Plugin Proxy
 
 =cut
+
 package Octopussy::Plugin::Proxy;
 
 use strict;
@@ -15,32 +17,40 @@ my @mimes = ();
 =head2 Init()
 
 =cut
+
 sub Init()
 {
-	my $conf_mime = AAT::List::Configuration("AAT_Mime");
-	
+  my $conf_mime = AAT::List::Configuration("AAT_Mime");
+
   foreach my $i (AAT::ARRAY($conf_mime->{item}))
   {
-    push(@mimes, { label => $i->{label},
-      logo => $i->{logo}, regexp => qr/$i->{regexp}/i })
-			if (AAT::NOT_NULL($i->{regexp}));
+    push(
+      @mimes,
+      {
+        label  => $i->{label},
+        logo   => $i->{logo},
+        regexp => qr/$i->{regexp}/i
+      }
+    ) if (AAT::NOT_NULL($i->{regexp}));
   }
 }
 
 =head2 Cache_Status($str)
 
 =cut
+
 sub Cache_Status($)
 {
-	my $str = shift;
+  my $str = shift;
 
-	return ("Cached")	if ($str =~ /.+_HIT.*/);
-	return ("Not Cached");
+  return ("Cached") if ($str =~ /.+_HIT.*/);
+  return ("Not Cached");
 }
 
 =head2 Logo($logo, $alt)
 
 =cut
+
 sub Logo($$)
 {
   my ($logo, $alt) = @_;
@@ -52,14 +62,15 @@ sub Logo($$)
 =head2 Mime($str) 
 
 =cut
+
 sub Mime($)
 {
-	my $str = shift;
+  my $str = shift;
 
   foreach my $i (@mimes)
   {
-    return (Logo("web_mime/" . ($i->{logo} || ""), $i->{label})) 
-			if ((defined $i->{regexp}) && ($str =~ /$i->{regexp}/));
+    return (Logo("web_mime/" . ($i->{logo} || ""), $i->{label}))
+      if ((defined $i->{regexp}) && ($str =~ /$i->{regexp}/));
   }
 
   return ($str);
@@ -68,32 +79,36 @@ sub Mime($)
 =head2 TLD($url)
 
 =cut
+
 sub TLD($)
 {
-	my $url = shift;
+  my $url = shift;
 
-	if (($url =~ /^(https?:\/\/)?[^\/]*\.([a-z]{2,4})(:\d+)*$/i)       
-		|| ($url =~ /^(https?:\/\/)?[^\/]*\.([a-z]{2,4})(:\d+)*\/.*$/i))
-	{
-		my $tld = $2;
-		return (Logo("flags/$tld", $tld)) if (-f "AAT/IMG/flags/$tld.png");
-		return ($tld);
-	}
-	return ($url);
+  if ( ($url =~ /^(https?:\/\/)?[^\/]*\.([a-z]{2,4})(:\d+)*$/i)
+    || ($url =~ /^(https?:\/\/)?[^\/]*\.([a-z]{2,4})(:\d+)*\/.*$/i))
+  {
+    my $tld = $2;
+    return (Logo("flags/$tld", $tld)) if (-f "AAT/IMG/flags/$tld.png");
+    return ($tld);
+  }
+  return ($url);
 }
 
 =head2 WebSite($url)
 
 =cut
+
 sub WebSite($)
 {
-	my $url = shift;
+  my $url = shift;
 
-	return ($3)	if (($url =~ /^(https?:\/\/)?[^\/]*?(\.)?(\d+\.\d+\.\d+\.\d+)(:\d+)*$/i)
-		|| ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*$/i)
-    || ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*\/.*$/i));
+  return ($3)
+    if (($url =~ /^(https?:\/\/)?[^\/]*?(\.)?(\d+\.\d+\.\d+\.\d+)(:\d+)*$/i)
+    || ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*$/i)
+    || ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*\/.*$/i)
+    );
 
-	return ($url);
+  return ($url);
 }
 
 1;
