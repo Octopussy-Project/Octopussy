@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="056"
-                   version="200905260001"
+                   version="200910200002"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -359,4 +359,16 @@
            rank="059"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Octopussy:msg_critical"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;\[CRITICAL\] .+&quot;):msg@&gt;"
+           rank="060"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Notice"
+           msg_id="Octopussy:to_be_octopussy_user"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;You have to be Octopussy user to use .+&quot;):msg@&gt;"
+           rank="061"
+           table="Message"
+           taxonomy="Access.Failure" />
 </octopussy_service>

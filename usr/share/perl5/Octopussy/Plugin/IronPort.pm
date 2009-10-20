@@ -1,7 +1,3 @@
-#################### Octopussy Project ####################
-# $Id$
-###########################################################
-
 =head1 NAME
 
 Octopussy::Plugin::IronPort - Octopussy Plugin IronPort
@@ -11,6 +7,8 @@ Octopussy::Plugin::IronPort - Octopussy Plugin IronPort
 package Octopussy::Plugin::IronPort;
 
 use strict;
+use warnings;
+
 use Octopussy;
 
 =head1 FUNCTIONS
@@ -58,7 +56,7 @@ sub Virus_Name($)
   my $line = shift;
 
   return ($2)
-    if (($line =~ /^antivirus (\w+) '(.+?)'.*$/) && ($1 ne "unscannable"));
+    if (($line =~ /^antivirus (\w+) '(.+?)'.*$/) && ($1 ne 'unscannable'));
 
   return (undef);
 }

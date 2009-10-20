@@ -148,7 +148,7 @@ Updates RRD Data for 'Syslog by Device Type' stats
 sub Syslog_By_DeviceType_Update($)
 {
   my $values = shift;
-  my $value_str = join(":", AAT::ARRAY($values));
+  my $value_str = join(':', AAT::ARRAY($values));
 
   system("$RRD_UPDATE \"$RRD_SYSLOG_DTYPE\" N:$value_str")
     if (-f "$RRD_SYSLOG_DTYPE");
@@ -280,7 +280,7 @@ sub Syslog_By_Device_Service_Taxonomy_Update($$$$)
 {
   my ($seconds, $device, $service, $values) = @_;
   my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
-  my $value_str = join(":", AAT::ARRAY($values));
+  my $value_str = join(':', AAT::ARRAY($values));
 
   system("$RRD_UPDATE \"$file\" $seconds:$value_str 2>&1 1>/dev/null");
 }
@@ -310,8 +310,8 @@ sub Syslog_By_Device_Service_Taxonomy_Graph($$$$$)
     $cmd .= "DEF:$t=\"$DIR_RRD/$device/taxonomy_$service.rrd\":$t:AVERAGE"
       . " CDEF:cdef$t=$t ";
     $cmd .=
-        Graph_Line($t, $type, $color, "Logs $type_name") . " "
-      . Graph_Legend($t) . " ";
+        Graph_Line($t, $type, $color, "Logs $type_name") . ' '
+      . Graph_Legend($t) . ' ';
     $first = 0;
   }
   system("$cmd 2>&1 1>/dev/null");
@@ -392,7 +392,7 @@ sub Syslog_By_Device_Taxonomy_Graph($$$$)
     }
     $cdef =~ s/,$//;
     $legend .=
-      Graph_Line($t, $type, $color, $type_name) . " " . Graph_Legend($t) . ' ';
+      Graph_Line($t, $type, $color, $type_name) . ' ' . Graph_Legend($t) . ' ';
     $first = 0;
   }
   $cmd .= " $def $cdef $legend";
@@ -572,7 +572,7 @@ sub Report_Graph($$$$$$$)
     );
     $cmd .= "DEF:def$i=\"$file_rrd\":ds$i:AVERAGE CDEF:cdef$i=def$i ";
     $cmd .=
-        Graph_Line("cdef$i", $rtype, $color, $k) . " "
+        Graph_Line("cdef$i", $rtype, $color, $k) . ' '
       . Graph_Legend("cdef$i") . ' ';
     $i++;
   }

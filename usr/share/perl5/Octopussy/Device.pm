@@ -140,7 +140,7 @@ sub String_List
   my @list    = List();
   my $str_any = (AAT::NOT_NULL($any) ? '-ANY-, ' : '');
 
-  return ("Device list: $str_any" . (join(", ", sort @list)));
+  return ("Device list: $str_any" . (join(', ', sort @list)));
 }
 
 =head2 Filename($device_name)
@@ -449,7 +449,7 @@ sub String_Services
   my @services = Services(@devices);
   @services = sort keys %{{map { $_ => 1 } @services}};  # sort unique @services
 
-  return ('Service list: -ANY-, ' . join(", ", @services));
+  return ('Service list: -ANY-, ' . join(', ', @services));
 }
 
 =head2 Services_Configurations($device_name, $sort)

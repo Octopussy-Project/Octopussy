@@ -360,24 +360,24 @@ sub CmdLine_Export_Options($$$)
   my $options = (
     AAT::NOT_NULL($conf_mail->{recipients})
     ? " --mail_recipients \"$conf_mail->{recipients}\""
-    : ""
+    : ''
     )
     . (
     AAT::NOT_NULL($conf_mail->{subject})
     ? " --mail_subject \"$conf_mail->{subject}\""
-    : ""
+    : ''
     )
     . (
     AAT::NOT_NULL($conf_ftp->{host})
     ? " --ftp_host \"$conf_ftp->{host}\" --ftp_dir \"$conf_ftp->{dir}\""
       . " --ftp_user \"$conf_ftp->{user}\" --ftp_pwd \"$conf_ftp->{pwd}\""
-    : ""
+    : ''
     )
     . (
     AAT::NOT_NULL($conf_scp->{host})
     ? " --scp_host \"$conf_scp->{host}\" --scp_dir \"$conf_scp->{dir}\""
       . " --scp_user \"$conf_scp->{user}\""
-    : ""
+    : ''
     );
 
   return ($options);
@@ -401,7 +401,7 @@ sub CmdLine($$$$$$$$$$$$)
   my $dir_pid = Octopussy::Directory('running');
   my ($year, $month, $mday, $hour, $min) = AAT::Datetime::Now();
   my $date   = "$year$month$mday-$hour$min";
-  my $dir    = Octopussy::Directory('data_reports') . $report->{name} . "/";
+  my $dir    = Octopussy::Directory('data_reports') . $report->{name} . '/';
   my $output = "$dir$report->{name}-$date."
     . (
     $report->{graph_type} eq 'array'
@@ -421,8 +421,8 @@ sub CmdLine($$$$$$$$$$$$)
       )
     );
   }
-  my $device_list  = join("\" --device \"",  @devices);
-  my $service_list = join("\" --service \"", AAT::ARRAY($service));
+  my $device_list  = join('" --device "',  @devices);
+  my $service_list = join('" --service "', AAT::ARRAY($service));
 
   Octopussy::Create_Directory($dir);
 
@@ -468,8 +468,8 @@ sub File_Info($$$$$$)
   my %data = (
     start           => $begin,
     finish          => $end,
-    devices         => join(", ", @{$devices}),
-    services        => join(", ", @{$services}),
+    devices         => join(', ', @{$devices}),
+    services        => join(', ', @{$services}),
     nb_files        => $stats->{nb_files},
     nb_lines        => $stats->{nb_lines},
     seconds         => $stats->{seconds},
@@ -558,8 +558,8 @@ sub Running_List()
           {
             report   => $v->{report},
             started  => $v->{started},
-            devices  => join(",", @{$v->{devices}}),
-            services => join(",", @{$v->{services}}),
+            devices  => join(',', @{$v->{devices}}),
+            services => join(',', @{$v->{services}}),
             status   => $status
           }
         );

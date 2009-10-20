@@ -17,7 +17,7 @@ use Readonly;
 use Date::Manip;
 use Octopussy;
 
-Readonly my $PROG_NAME => "octo_logrotate";
+Readonly my $PROG_NAME => 'octo_logrotate';
 
 =head1 FUNCTIONS
 
@@ -26,14 +26,15 @@ Readonly my $PROG_NAME => "octo_logrotate";
 Returns list of Directories from Directory $dir
 
 =cut
+
 sub Get_Directories($)
 {
-	my $dir = shift;
-	opendir(DIR, $dir);
-	my @dirs = grep { !/^\./ } readdir(DIR);
- 	closedir(DIR);
+  my $dir = shift;
+  opendir(DIR, $dir);
+  my @dirs = grep { !/^\./ } readdir(DIR);
+  closedir(DIR);
 
-	return (@dirs);
+  return (@dirs);
 }
 
 =head2 Get_Logrotate_Limit($service, $type, $conf)
@@ -41,25 +42,28 @@ sub Get_Directories($)
 Gets logrotate & limit values for Service $service
 
 =cut
+
 sub Get_Logrotate_Limit($$$)
 {
-	my ($service, $type, $conf) = @_;
+  my ($service, $type, $conf) = @_;
 
-	my $logrotate = $conf->{logrotate};
- 	if (($type ne "incoming") && ($type ne "unknown"))
+  my $logrotate = $conf->{logrotate};
+  if (($type ne 'incoming') && ($type ne 'unknown'))
   {
-  	foreach my $ds (AAT::ARRAY($conf->{service}))
-   	{
-    	my $sid = $ds->{sid};
+    foreach my $ds (AAT::ARRAY($conf->{service}))
+    {
+      my $sid = $ds->{sid};
       $sid =~ s/ /_/g;
       if ((defined $ds->{logrotate}) && ($sid =~ /^$service$/))
-      	{ $logrotate = $ds->{logrotate}; }
+      {
+        $logrotate = $ds->{logrotate};
+      }
     }
- 	}
-  my $limit = Date::Manip::DateCalc("today", "-$logrotate days");
+  }
+  my $limit = Date::Manip::DateCalc('today', "-$logrotate days");
   $limit =~ s/^(\d{8}).+$/$1/;
 
-	return ($logrotate, $limit);
+  return ($logrotate, $limit);
 }
 
 =head2 Rotate_Logs($device)
@@ -67,65 +71,71 @@ sub Get_Logrotate_Limit($$$)
 Deletes Log Files for specified Device $device
 
 =cut
+
 sub Rotate_Logs($)
 {
-	my $device = shift;
-	my $conf = Octopussy::Device::Configuration($device);
+  my $device = shift;
+  my $conf   = Octopussy::Device::Configuration($device);
 
-	return()	if (AAT::NULL($conf->{logrotate}));
+  return () if (AAT::NULL($conf->{logrotate}));
 
-	my $storage = Octopussy::Storage::Default();
-	foreach my $t ("incoming", "unknown", "known")
-	{
-		my $dir = Octopussy::Storage::Directory($conf->{"storage_$t"} 
-			|| $storage->{$t});	
-		my @services = ($t eq "incoming" ? ("Incoming") 
-			: ($t eq "unknown" ? ("Unknown") : Get_Directories("$dir/$device/")));
-		foreach my $s (@services)
+  my $storage = Octopussy::Storage::Default();
+  foreach my $t ('incoming', 'unknown', 'known')
+  {
+    my $dir =
+      Octopussy::Storage::Directory($conf->{"storage_$t"} || $storage->{$t});
+    my @services = (
+      $t eq 'incoming'
+      ? ('Incoming')
+      : ($t eq 'unknown' ? ('Unknown') : Get_Directories("$dir/$device/"))
+    );
+    foreach my $s (@services)
     {
-			my ($logrotate, $limit) = Get_Logrotate_Limit($s, $t, $conf);
-			AAT::Syslog($PROG_NAME, "DELETE_LOGS_OLDER_THAN", 
-				$device, $s, $logrotate);
-			print "Removing $device $s [$logrotate] logs files...\n";
-			foreach my $y (Get_Directories("$dir/$device/$s"))
+      my ($logrotate, $limit) = Get_Logrotate_Limit($s, $t, $conf);
+      AAT::Syslog($PROG_NAME, 'DELETE_LOGS_OLDER_THAN', $device, $s,
+        $logrotate);
+      print "Removing $device $s [$logrotate] logs files...\n";
+      foreach my $y (Get_Directories("$dir/$device/$s"))
       {
         foreach my $m (Get_Directories("$dir/$device/$s/$y"))
         {
           foreach my $d (Get_Directories("$dir/$device/$s/$y/$m"))
           {
-						if (($t eq "incoming") || ($t eq "unknown"))
-            { # Removes only empty directories for Incoming & Unknown
+            if (($t eq 'incoming') || ($t eq 'unknown'))
+            {    # Removes only empty directories for Incoming & Unknown
               `rmdir "$dir/$device/$s/$y/$m/$d/" 2> /dev/null`;
-							AAT::Syslog($PROG_NAME, "DELETE_LOGS_DIR",
-              	"$dir/$device/$s/$y/$m/$d/");
+              AAT::Syslog($PROG_NAME, 'DELETE_LOGS_DIR',
+                "$dir/$device/$s/$y/$m/$d/");
             }
-            elsif (($y*10000+$m*100+$d) < $limit)
+            elsif (($y * 10_000 + $m * 100 + $d) < $limit)
             {
               `rm -rf "$dir/$device/$s/$y/$m/$d/"`;
-							AAT::Syslog($PROG_NAME, "DELETE_LOGS_DIR",
-              	"$dir/$device/$s/$y/$m/$d/");
+              AAT::Syslog($PROG_NAME, 'DELETE_LOGS_DIR',
+                "$dir/$device/$s/$y/$m/$d/");
             }
-					}
-					# Removes month directory if empty
-					`rmdir "$dir/$device/$s/$y/$m" 2> /dev/null`; 
-				}
-				# Removes year directory if empty
-				`rmdir "$dir/$device/$s/$y" 2> /dev/null`;
-			}
-		}
-	}
+          }
+
+          # Removes month directory if empty
+          `rmdir "$dir/$device/$s/$y/$m" 2> /dev/null`;
+        }
+
+        # Removes year directory if empty
+        `rmdir "$dir/$device/$s/$y" 2> /dev/null`;
+      }
+    }
+  }
 }
 
 #
 # MAIN
 #
-exit  if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 foreach my $d (Octopussy::Device::List())
 {
-	Rotate_Logs($d);	
-}	
-system("/usr/sbin/octo_world_stats");
+  Rotate_Logs($d);
+}
+system('/usr/sbin/octo_world_stats');
 
 =head1 AUTHOR
 

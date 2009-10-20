@@ -194,7 +194,7 @@ Escape (adding '\') characters from message '$msg' without escaping <@REGEXP@>
 sub Escape_Message($)
 {
   my $msg     = shift;
-  my $escaped = "";
+  my $escaped = '';
 
   while ($msg =~ /^(.*?)(<\@REGEXP\(\".+?\"\):\S+?\@>)(.*)$/i)
   {
@@ -254,13 +254,13 @@ sub Pattern_To_Regexp($)
   my $msg = shift;
 
   my %re_types = Octopussy::Type::Regexps();
-  my $regexp   = "";
+  my $regexp   = '';
   my $tmp      = $msg->{pattern};
   while ((AAT::NOT_NULL($tmp))
     && ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i))
   {
     my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
-    my $subs = ($field =~ /NULL/i) ? $re_value : "\(" . $re_value . "\)";
+    my $subs = ($field =~ /NULL/i) ? $re_value : '(' . $re_value . ')';
     $regexp .= (Escape_Characters($before) . $subs);
     $tmp = $after;
   }
@@ -270,13 +270,13 @@ sub Pattern_To_Regexp($)
   {
     my ($before, $type, $field, $after) = ($1, $2, $3, $4);
     my $subs =
-      ($field =~ /NULL/i) ? $re_types{$type} : "\(" . $re_types{$type} . "\)";
+      ($field =~ /NULL/i) ? $re_types{$type} : '(' . $re_types{$type} . ')';
     $regexp .= $before . $subs;
     $tmp = $after;
   }
   $regexp .= $tmp;
   $regexp =~ s/\s+$//g;
-
+  
   return ($regexp);
 }
 
@@ -325,21 +325,21 @@ sub Pattern_Field_Substitution($$$$$$)
   {
     my $substitution = (
       defined $field_regexp
-      ? $field_regexp->{$f} || "[-+]?\\d+"
-      : "[-+]?\\d+"
+      ? $field_regexp->{$f} || '[-+]?\\d+'
+      : '[-+]?\\d+'
     );
     $regexp =~ s/<\@NUMBER:\S+?\@>/\($substitution\)/i;
   }
   elsif ($type =~ /^WORD$/)
   {
     my $substitution =
-      (defined $field_regexp ? $field_regexp->{$f} || "\\S+" : "\\S+");
+      (defined $field_regexp ? $field_regexp->{$f} || '\\S+' : '\\S+');
     $regexp =~ s/<\@WORD:\S+?\@>/\($substitution\)/i;
   }
   elsif ($type =~ /^STRING$/)
   {
     my $substitution =
-      (defined $field_regexp ? $field_regexp->{$f} || ".+" : ".+");
+      (defined $field_regexp ? $field_regexp->{$f} || '.+' : '.+');
     $regexp =~ s/<\@STRING:\S+?\@>/\($substitution\)/i;
   }
   else { $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/\($re_types->{$1}\)/i; }
@@ -363,8 +363,8 @@ sub Pattern_Field_Unmatched_Substitution($$$$)
       $regexp = $1
         . (
         defined $field_regexp
-        ? $field_regexp->{$2} || "[-+]?\\d+"
-        : "[-+]?\\d+"
+        ? $field_regexp->{$2} || '[-+]?\\d+'
+        : '[-+]?\\d+'
         ) . $3;
     }
   }
@@ -374,7 +374,7 @@ sub Pattern_Field_Unmatched_Substitution($$$$)
     {
       $regexp =
           $1
-        . (defined $field_regexp ? $field_regexp->{$2} || "\\S+" : "\\S+")
+        . (defined $field_regexp ? $field_regexp->{$2} || '\\S+' : '\\S+')
         . $3;
     }
   }
@@ -383,7 +383,7 @@ sub Pattern_Field_Unmatched_Substitution($$$$)
     if ($regexp =~ /^(.*?)<\@STRING:(\S+?)\@>(.*)$/)
     {
       $regexp =
-        $1 . (defined $field_regexp ? $field_regexp->{$2} || ".+" : ".+") . $3;
+        $1 . (defined $field_regexp ? $field_regexp->{$2} || '.+' : '.+') . $3;
     }
   }
   else { $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/$re_types->{$1}/; }
@@ -740,7 +740,7 @@ sub Wizard($)
     if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
     {
       my $timestamp = "$1$2$3$4$5";
-      if (defined open(my $FILE, "-|", "zcat $f"))
+      if (defined open(my $FILE, '-|', "zcat $f"))
       {
         while (my $line = <$FILE>)
         {
@@ -754,7 +754,7 @@ sub Wizard($)
               $match = 1;
               if ($m->{nb} > 100)
               {
-                $m->{nb} = "100+";
+                $m->{nb} = '100+';
                 close($FILE);
                 return (@messages);
               }

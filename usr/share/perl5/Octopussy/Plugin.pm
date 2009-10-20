@@ -49,7 +49,7 @@ sub Init_All($)
   foreach my $p (@plugins)
   {
     $p =~ s/\.pm$//;
-    my $func = "Octopussy::Plugin::" . $p . "::Init";
+    my $func = 'Octopussy::Plugin::' . $p . '::Init';
     print "Init Plugin $p\n";
     &{$func}($conf);
   }
@@ -68,7 +68,7 @@ sub Init($@)
   {
     if (($p =~ /Octopussy::Plugin::(.+?)::/) && (!defined $done{$1}))
     {
-      my $func = "Octopussy::Plugin::" . $1 . "::Init";
+      my $func = 'Octopussy::Plugin::' . $1 . '::Init';
       print "Init Plugin $1\n";
       $done{$1} = 1;
       &{$func}($conf);

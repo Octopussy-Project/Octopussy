@@ -59,7 +59,7 @@ sub Generate($$)
 
     #x_label => ($g->{x_label} || "X Label"),
     #y_label => ($g->{y_label} || "Y Label"),
-    title         => $g->{title}         || "",
+    title         => $g->{title}         || '',
     logo          => $g->{logo}          || $LOGO,
     logo_position => $g->{logo_position} || $LOGO_POSITION,
 
@@ -77,7 +77,7 @@ sub Generate($$)
 
   #$graph->set_legend($g->{data});
   my $gd = $graph->plot($g->{data}) or die $graph->error;
-  if (defined open(my $IMG, ">", $output))
+  if (defined open(my $IMG, '>', $output))
   {
     binmode $IMG;
     print $IMG $gd->png;

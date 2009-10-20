@@ -15,6 +15,7 @@ my $unknown_color = (($nb_unknown > 0) ? "red" : "green");
 
 if (($nb_alerts > 0) || ($nb_unknown > 0))
 {
+  $nb_unknown .= "+"  if ($nb_unknown >= $max_nb_unknown);
 %>
 <AAT:Box align="C">
   <AAT:BoxRow>

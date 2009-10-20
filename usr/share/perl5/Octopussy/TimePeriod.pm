@@ -86,7 +86,7 @@ sub Configuration($)
   {
     if ($tp->{label} eq $tp_name)
     {
-      my $str = "";
+      my $str = '';
       foreach my $dt (AAT::ARRAY($tp->{dt}))
       {
         foreach my $k (AAT::HASH_KEYS($dt))

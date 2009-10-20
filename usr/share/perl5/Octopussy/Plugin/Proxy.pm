@@ -8,6 +8,8 @@ Octopussy::Plugin::Proxy - Octopussy Plugin Proxy
 package Octopussy::Plugin::Proxy;
 
 use strict;
+use warnings;
+
 use Octopussy;
 
 my @mimes = ();
@@ -20,7 +22,7 @@ my @mimes = ();
 
 sub Init()
 {
-  my $conf_mime = AAT::List::Configuration("AAT_Mime");
+  my $conf_mime = AAT::List::Configuration('AAT_Mime');
 
   foreach my $i (AAT::ARRAY($conf_mime->{item}))
   {
@@ -43,8 +45,8 @@ sub Cache_Status($)
 {
   my $str = shift;
 
-  return ("Cached") if ($str =~ /.+_HIT.*/);
-  return ("Not Cached");
+  return ('Cached') if ($str =~ /.+_HIT.*/);
+  return ('Not Cached');
 }
 
 =head2 Logo($logo, $alt)
@@ -69,7 +71,7 @@ sub Mime($)
 
   foreach my $i (@mimes)
   {
-    return (Logo("web_mime/" . ($i->{logo} || ""), $i->{label}))
+    return (Logo('web_mime/' . ($i->{logo} || ''), $i->{label}))
       if ((defined $i->{regexp}) && ($str =~ /$i->{regexp}/));
   }
 

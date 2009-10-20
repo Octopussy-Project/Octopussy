@@ -8,15 +8,17 @@ Octopussy::Plugin::Unit - Octopussy Plugin Unit
 package Octopussy::Plugin::Unit;
 
 use strict;
+use warnings;
+use Readonly;
+
 use Octopussy;
 
-my $KBYTES = 1024;
-my $MBYTES = 1024 * $KBYTES;
-my $GBYTES = 1024 * $MBYTES;
-my $TBYTES = 1024 * $GBYTES;
-
-my $MINUTES = 60;
-my $HOURS   = 60 * $MINUTES;
+Readonly my $KBYTES => 1024;
+Readonly my $MBYTES => 1024 * $KBYTES;
+Readonly my $GBYTES => 1024 * $MBYTES;
+Readonly my $TBYTES => 1024 * $GBYTES;
+Readonly my $MINUTES => 60;
+Readonly my $HOURS   => 60 * $MINUTES;
 
 my ($str_bytes, $str_minutes, $str_hours) = (undef, undef, undef);
 
@@ -30,9 +32,9 @@ sub Init
 {
   my $conf = shift;
 
-  $str_bytes   = lc(AAT::Translation::Get($conf->{lang} || "EN", "_BYTES"));
-  $str_minutes = lc(AAT::Translation::Get($conf->{lang} || "EN", "_MINUTES"));
-  $str_hours   = lc(AAT::Translation::Get($conf->{lang} || "EN", "_HOURS"));
+  $str_bytes   = lc(AAT::Translation::Get($conf->{lang} || 'EN', '_BYTES'));
+  $str_minutes = lc(AAT::Translation::Get($conf->{lang} || 'EN', '_MINUTES'));
+  $str_hours   = lc(AAT::Translation::Get($conf->{lang} || 'EN', '_HOURS'));
 }
 
 =head2 KiloBytes($bytes)
@@ -45,7 +47,7 @@ sub KiloBytes($)
 {
   my $bytes = shift;
 
-  return (sprintf("%.1f %s", $bytes / $KBYTES, "K${str_bytes}"));
+  return (sprintf('%.1f %s', $bytes / $KBYTES, "K${str_bytes}"));
 }
 
 =head2 MegaBytes($bytes)
@@ -58,7 +60,7 @@ sub MegaBytes($)
 {
   my $bytes = shift;
 
-  return (sprintf("%.1f %s", $bytes / $MBYTES, "M${str_bytes}"));
+  return (sprintf('%.1f %s', $bytes / $MBYTES, "M${str_bytes}"));
 }
 
 =head2 GigaBytes($bytes)
@@ -71,7 +73,7 @@ sub GigaBytes($)
 {
   my $bytes = shift;
 
-  return (sprintf("%.1f %s", $bytes / $GBYTES, "G${str_bytes}"));
+  return (sprintf('%.1f %s', $bytes / $GBYTES, "G${str_bytes}"));
 }
 
 =head2 TeraBytes($bytes)
@@ -84,7 +86,7 @@ sub TeraBytes($)
 {
   my $bytes = shift;
 
-  return (sprintf("%.1f %s", $bytes / $TBYTES, "T${str_bytes}"));
+  return (sprintf('%.1f %s', $bytes / $TBYTES, "T${str_bytes}"));
 }
 
 =head2 Minutes($seconds)
@@ -97,7 +99,7 @@ sub Minutes($)
 {
   my $seconds = shift;
 
-  return (sprintf("%.1f %s", $seconds / $MINUTES, ${str_minutes}));
+  return (sprintf('%.1f %s', $seconds / $MINUTES, ${str_minutes}));
 }
 
 =head2 Hours($seconds)
@@ -110,7 +112,7 @@ sub Hours($)
 {
   my $seconds = shift;
 
-  return (sprintf("%.1f %s", $seconds / $HOURS, ${str_hours}));
+  return (sprintf('%.1f %s', $seconds / $HOURS, ${str_hours}));
 }
 
 1;

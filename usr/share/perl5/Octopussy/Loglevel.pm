@@ -113,7 +113,7 @@ sub String_List(@)
     push(@list, $d->{value});
   }
 
-  return ('Loglevel list: ' . join(", ", sort @list));
+  return ('Loglevel list: ' . join(', ', sort @list));
 }
 
 =head2 Colors()

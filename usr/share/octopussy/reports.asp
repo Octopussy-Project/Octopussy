@@ -4,7 +4,7 @@ my $url = "./reports.asp";
 
 my ($f, $qs) = ($Request->Form(), $Request->QueryString());
 my $report = $f->{report} || $qs->{report};
-my $category = $f->{category} || $qs->{category};
+my $category = Encode::decode_utf8($f->{category} || $qs->{category});
 my $device = $qs->{device} || $f->{device};
 my $service = $qs->{service} || $f->{service};
 my $loglevel = $qs->{loglevel} || $f->{loglevel};

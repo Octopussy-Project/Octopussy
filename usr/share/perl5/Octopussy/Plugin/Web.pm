@@ -21,10 +21,10 @@ my @operating_systems = ();
 
 sub Init()
 {
-  my $conf_bot     = AAT::List::Configuration("AAT_Bot");
-  my $conf_browser = AAT::List::Configuration("AAT_Browser");
-  my $conf_mobile  = AAT::List::Configuration("AAT_MobilePhone");
-  my $conf_os      = AAT::List::Configuration("AAT_Operating_System");
+  my $conf_bot     = AAT::List::Configuration('AAT_Bot');
+  my $conf_browser = AAT::List::Configuration('AAT_Browser');
+  my $conf_mobile  = AAT::List::Configuration('AAT_MobilePhone');
+  my $conf_os      = AAT::List::Configuration('AAT_Operating_System');
 
   my @list = (
     AAT::ARRAY($conf_browser->{item}),
@@ -100,7 +100,7 @@ sub UserAgent_OS($)
 
   foreach my $i (@operating_systems)
   {
-    return (Logo(($i->{logo} || ""), $i->{label}))
+    return (Logo(($i->{logo} || ''), $i->{label}))
       if ((defined $i->{regexp}) && ($ua =~ /$i->{regexp}/));
   }
 

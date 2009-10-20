@@ -152,9 +152,9 @@ sub Bar_Cylinder
   my %conf = (
     title  => {text => $rc->{name}, style => $STYLE_TITLE},
     x_axis => {
-      colour        => "#909090",
-      "3d"          => 5,
-      "tick-height" => 4,
+      colour        => '#909090',
+      '3d'          => 5,
+      'tick-height' => 4,
       labels        => {steps => 10, labels => \@labels}
     },
     y_axis   => {steps => Step($max),     min    => 0, max => $max},

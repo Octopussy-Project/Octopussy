@@ -1,5 +1,6 @@
 <AAT:PageTop title="Octopussy Login" icon="IMG/octopussy.gif" />
 <AAT:PageTheme />
+<link rel="jetpack" href="jetpack.js" name="Octopussy JetPack"/>
 <%
 my $f = $Request->Form();
 my $page = $Request->QueryString("redirect");

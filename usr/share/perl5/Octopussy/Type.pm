@@ -33,7 +33,7 @@ Readonly my %MONTH => (
   Sep => '09',
   Oct => '10',
   Nov => '11',
-  Dec => '12'
+  Dec => '12',
 );
 
 my $QR_DT1 = qr/^(\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2})/;
@@ -186,12 +186,12 @@ sub Regexps()
   my %re_types = ();
 
   my @list = Configurations();
-  $re_types{'NUMBER'}      = '[-+]?\\d+';
-  $re_types{'BYTES'}       = '[-+]?\\d+';
-  $re_types{'SECONDS'}     = '[-+]?\\d+';
-  $re_types{'PID'}         = '\\d+';
-  $re_types{'WORD'}        = '\\S+';
-  $re_types{'EMAIL'}       = '.+\\@.+\\..+';
+  $re_types{'NUMBER'}      = '[-+]?\d+';
+  $re_types{'BYTES'}       = '[-+]?\d+';
+  $re_types{'SECONDS'}     = '[-+]?\d+';
+  $re_types{'PID'}         = '\d+';
+  $re_types{'WORD'}        = '\S+';
+  $re_types{'EMAIL'}       = '.+\@.+\..+';
   $re_types{'USER_AGENT'}  = '.+';
   $re_types{'STRING'}      = '.+';
   $re_types{'LONG_STRING'} = '.+';

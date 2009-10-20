@@ -8,6 +8,8 @@ Octopussy::Plugin::Network - Octopussy Plugin Network
 package Octopussy::Plugin::Network;
 
 use strict;
+use warnings;
+
 use Octopussy;
 
 my %services = ();
@@ -20,7 +22,7 @@ my %services = ();
 
 sub Init()
 {
-  my $conf_port = AAT::List::Configuration("AAT_Port");
+  my $conf_port = AAT::List::Configuration('AAT_Port');
 
   foreach my $i (AAT::ARRAY($conf_port->{item}))
   {
@@ -84,11 +86,9 @@ sub Ripe_Info($)
   my $addr = shift;
 
   my $url =
-      "<a href=\"http://ripe.net/fcgi-bin/whois?form_type=simple&"
-    . "full_query_string=&searchtext=+"
-    . $addr
-    . "&do_search=Search\">"
-    . $addr . "</a>";
+      '<a href="http://ripe.net/fcgi-bin/whois?form_type=simple&'
+    . 'full_query_string=&searchtext=+' . $addr
+    . '&do_search=Search">' . $addr . '</a>';
 
   return ($url);
 }

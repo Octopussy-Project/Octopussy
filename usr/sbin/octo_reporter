@@ -87,7 +87,7 @@ EOF
   if (!defined $report)
   {
     my @reps = Octopussy::Report::List(undef, undef);
-    print ' Report list: ' . join(", ", @reps) . '\n';
+    print ' Report list: ' . join(', ', @reps) . '\n';
   }
   else
   {

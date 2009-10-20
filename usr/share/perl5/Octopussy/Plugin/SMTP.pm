@@ -12,48 +12,48 @@ use Octopussy;
 
 my @bounce_types = (
   {
-    re   => "Bad destination host.*",
-    type => "Bad Destination Host"
+    re   => 'Bad destination host.*',
+    type => 'Bad Destination Host'
   },
   {
-    re   => "Unknown address error.*",
-    type => "Unknown Address Error"
-  }
+    re   => 'Unknown address error.*',
+    type => 'Unknown Address Error'
+  },
 );
 
 my @response_types = (
   {
-    re   => ".*accepted for delivery.*",
-    type => "Accepeted for delivery"
+    re   => '.*accepted for delivery.*',
+    type => 'Accepeted for delivery'
   },
   {
-    re   => ".*Message.* accepted.*",
-    type => "Message accepted"
+    re   => '.*Message.* accepted.*',
+    type => 'Message accepted'
   },
   {
-    re   => ".*message queued.*",
-    type => "Queued"
+    re   => '.*message queued.*',
+    type => 'Queued'
   },
   {
-    re   => "ok.*",
-    type => "Ok"
+    re   => 'ok.*',
+    type => 'Ok'
   },
   {
-    re   => ".*ok\.*",
-    type => "Ok"
+    re   => '.*ok\.*',
+    type => 'Ok'
   },
   {
-    re   => ".* queued as .*",
-    type => "Queued"
+    re   => '.* queued as .*',
+    type => 'Queued'
   },
   {
-    re   => ".*Queued mail.*",
-    type => "Queued"
+    re   => '.*Queued mail.*',
+    type => 'Queued'
   },
   {
-    re   => ".*Requested mail action okay.*",
-    type => "Requested mail action okay"
-  }
+    re   => '.*Requested mail action okay.*',
+    type => 'Requested mail action okay'
+  },
 );
 
 =head1 FUNCTIONS

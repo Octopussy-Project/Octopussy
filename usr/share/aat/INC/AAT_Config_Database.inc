@@ -19,6 +19,7 @@ my ($level, $msg) = ($status ? (0, "Database Connection is OK !")
   <AAT:Label value="_TYPE" style="B" tooltip="$tt" /></AAT:BoxCol>
   <AAT:BoxCol cspan="2">
   <!--<AAT:Selector_Database name="db_type" selected="$type" />-->
+  <AAT:Form_Hidden name="db_type" value="mysql" />        
   <AAT:Label value="MySQL" style="B" />
   </AAT:BoxCol>
 </AAT:BoxRow>

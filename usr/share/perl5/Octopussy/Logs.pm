@@ -389,7 +389,7 @@ sub Get($$$$$$$)
   foreach my $f (sort (AAT::ARRAY($files)))
   {
     ($year, $month) = ($1, $2) if ($f =~ /(\d{4})\/(\d{2})\/\d{2}\/msg_/);
-    if (defined open(my $FILE, "-|", "zcat '$f'"))
+    if (defined open(my $FILE, '-|', "zcat '$f'"))
     {
       while (my $line = <$FILE>)
       {
@@ -509,7 +509,7 @@ sub Remove($$)
   {
     chomp($f);
     my @logs = ();
-    if (defined open(my $FILE, "-|", "zcat '$f'"))
+    if (defined open(my $FILE, '-|', "zcat '$f'"))
     {
       while (my $line = <$FILE>)
       {
@@ -570,9 +570,9 @@ sub Extract_Cmd_Line($)
   my $conf     = shift;
   my @devices  = AAT::ARRAY($conf->{devices});
   my @services = AAT::ARRAY($conf->{services});
-  my $dev_str  = "--device \"" . join("\" --device \"", @devices) . "\"";
-  my $serv_str = "--service \"" . join("\" --service \"", @services) . "\"";
-  my ($incl_str, $excl_str) = ("", "");
+  my $dev_str  = '--device "' . join('" --device "', @devices) . '"';
+  my $serv_str = '--service "' . join('" --service "', @services) . '"';
+  my ($incl_str, $excl_str) = ('', '');
   foreach my $inc (AAT::ARRAY($conf->{includes}))
   {
     $inc =~ s/"/\\"/g;

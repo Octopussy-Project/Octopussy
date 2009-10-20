@@ -42,6 +42,7 @@ $MKDIR /etc/$AAT/
 $MKDIR /etc/$OCTO/
 $MKDIR /usr/share/$AAT/
 $MKDIR /usr/share/$OCTO/
+$MKDIR /usr/share/perl5/AAT/
 $MKDIR /usr/share/perl5/Octopussy/
 $MKDIR /var/lib/$OCTO/
 $MKDIR /var/run/$AAT/
@@ -56,7 +57,7 @@ $CP -r etc/* /etc/
 $CP -r usr/sbin/* /usr/sbin/
 $CP -r usr/share/$AAT/* /usr/share/$AAT/
 $CP -r usr/share/$OCTO/* /usr/share/$OCTO/
-$CP -r usr/share/perl5/Octo* /usr/share/perl5/
+$CP -r usr/share/perl5/AAT* usr/share/perl5/Octo* /usr/share/perl5/
 $CP -r var/lib/$OCTO/* /var/lib/$OCTO/
 
 #

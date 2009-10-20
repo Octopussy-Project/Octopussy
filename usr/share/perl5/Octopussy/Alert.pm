@@ -479,10 +479,10 @@ sub Message_Building($$$$)
   my ($alert, $device, $line, $msg) = @_;
   my %field = Octopussy::Message::Fields_Values($msg, $line);
 
-  my $subject = $alert->{msgsubject}     || "";
-  my $body    = $alert->{msgbody}        || "";
-  my $host    = $alert->{action_host}    || "";    # For Nagios/Zabbix
-  my $service = $alert->{action_service} || "";    # For Nagios/Zabbix
+  my $subject = $alert->{msgsubject}     || '';
+  my $body    = $alert->{msgbody}        || '';
+  my $host    = $alert->{action_host}    || '';    # For Nagios/Zabbix
+  my $service = $alert->{action_service} || '';    # For Nagios/Zabbix
 
   $subject =~ s/__device__/$device/gi;
   $subject =~ s/__alert__/$alert->{name}/gi;
@@ -519,20 +519,20 @@ sub Tracker($$$$$)
   $sort ||= 'date_time';
   my $query = 'SELECT * FROM _alerts_'
     . (
-    (($al ne "") || ($dev ne "") || ($stat ne ""))
+    (($al ne '') || ($dev ne '') || ($stat ne ''))
     ? ' WHERE '
-      . (($al ne "") ? "alert_id='$al'" : "")
-      . (($dev ne "") ? (($al ne "") ? ' AND ' : "") . "device='$dev'" : "")
+      . (($al ne '') ? "alert_id='$al'" : '')
+      . (($dev ne '') ? (($al ne '') ? ' AND ' : '') . "device='$dev'" : '')
       . (
-        ($stat ne "")
-      ? ((($al ne "") || ($dev ne "")) ? ' AND ' : "") . "status='$stat'"
-      : ""
+        ($stat ne '')
+      ? ((($al ne '') || ($dev ne '')) ? ' AND ' : '') . "status='$stat'"
+      : ''
       )
-    : ""
+    : ''
     )
     . " ORDER BY $sort "
     . ($sort ne 'date_time' ? 'ASC' : 'DESC')
-    . (AAT::NOT_NULL($limit) ? " LIMIT $limit" : "");
+    . (AAT::NOT_NULL($limit) ? " LIMIT $limit" : '');
   my @alerts = AAT::DB::Query('Octopussy', $query);
 
   return (@alerts);

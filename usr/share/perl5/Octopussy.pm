@@ -99,7 +99,7 @@ sub Valid_User($)
 
   return (1) if ($info[0] =~ /^$octo_user$/);
 
-  AAT::DEBUG("You have to be Octopussy user to use $prog_name");
+  AAT::Syslog($prog_name, "You have to be Octopussy user to use $prog_name");
   printf("You have to be Octopussy user to use %s !\n", $prog_name);
 
   return (0);
@@ -150,6 +150,20 @@ sub Commander
   }
 
   return (undef);
+}
+
+=head2 Die($prog_name, $msg)
+
+Syslog error $msg before dying
+
+=cut
+
+sub Die
+{
+  my ($prog_name, $msg) = @_;
+
+  AAT::Syslog($prog_name, $msg);
+  die $msg;
 }
 
 =head2 Directory($dir)
