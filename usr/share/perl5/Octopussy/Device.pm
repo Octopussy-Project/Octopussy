@@ -501,18 +501,29 @@ sub Services_Statistics($)
       my $data = $cache_parser->get($k);
       foreach my $s (@{$data})
       {
+        if ($s->{id} == 'TOTAL')
+        {
+          $stats{$s->{service}} = (
+            defined $stats{$s->{service}}
+            ? $stats{$s->{service}} + $s->{count}
+            : $s->{count}
+            );
+          $total += $s->{count};
+        }
+=head2 
         $stats{$s->{service}} = (
           defined $stats{$s->{service}}
           ? $stats{$s->{service}} + $s->{count}
           : $s->{count}
         );
         $total += $s->{count};
+=cut
       }
     }
   }
   foreach my $k (keys %stats)
   {
-    $stats{$k} = ($total == 0 ? 0 : (int($stats{$k} * 100 / $total)) . '%');
+    $stats{$k} = ($total == 0 ? 0 : sprintf('%.1f', $stats{$k} * 100 / $total)) . '%';
   }
 
   return (%stats);

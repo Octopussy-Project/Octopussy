@@ -12,7 +12,6 @@ my $icon = $serv_conf->{icon};
 my $site = $serv_conf->{website};
 my %stat = Octopussy::Service::Messages_Statistics($service);
 my @messages = Octopussy::Service::Messages_Configurations($service, $sort);
-my $gre = Octopussy::Service::Global_Regexp($service);
 
 if (scalar(@messages) == 0)
 {
@@ -28,7 +27,7 @@ else
 %>
 <AAT:Box align="C">
 <AAT:BoxRow>
-  <AAT:BoxCol cspan="2" rspan="2" align="C">
+  <AAT:BoxCol cspan="2" align="C">
 	<AAT:IMG name="$icon" /></AAT:BoxCol>
   <AAT:BoxCol cspan="3" align="C">
 	<AAT:Label value="$str" size="+1" /></AAT:BoxCol>
@@ -41,11 +40,6 @@ if (AAT::NOT_NULL($site))
 }
 else
 {%><AAT:BoxCol cspan="4"></AAT:BoxCol><%}%>
-</AAT:BoxRow>
-<AAT:BoxRow>
-	<AAT:BoxCol cspan="3" align="C">
-	<AAT:Label value="Service Global Regexp: $gre" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="4"></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

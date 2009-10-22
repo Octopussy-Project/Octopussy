@@ -65,22 +65,22 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
 		<AAT:BoxCol align="R"><%
 		if ($conf->{rank} > 2)
     {
-	%><AAT:Button name="2uparrow" link="$url&service=$id&action=top" /><%
+	%><AAT:Button name="2uparrow" link="$url&service=$id&action=top" tooltip="Rank First" /><%
 		}
 		%></AAT:BoxCol><AAT:BoxCol align="R"><%
 		if ($conf->{rank} > 1)
     { 
-	%><AAT:Button name="1uparrow" link="$url&service=$id&action=up" /><% 
+	%><AAT:Button name="1uparrow" link="$url&service=$id&action=up" tooltip="Rank -1" /><% 
 		}
 		%></AAT:BoxCol><AAT:BoxCol align="C"><%
 		if ($conf->{rank} < scalar(@services))
     { 
-	%><AAT:Button name="1downarrow" link="$url&service=$id&action=down" /><% 
+	%><AAT:Button name="1downarrow" link="$url&service=$id&action=down" tooltip="Rank +1" /><% 
 		}
 		%></AAT:BoxCol><AAT:BoxCol align="C"><%
 		if ($conf->{rank} < (scalar(@services)-1))
     {
-  %><AAT:Button name="2downarrow" link="$url&service=$id&action=bottom" /><%
+  %><AAT:Button name="2downarrow" link="$url&service=$id&action=bottom" tooltip="Rank Last"/><%
     }
     %></AAT:BoxCol>
 		<AAT:BoxCol>

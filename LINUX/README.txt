@@ -20,6 +20,7 @@ and these Perl modules (from CPAN):
 - DBD
 - DBD::mysql
 - DBI
+- JSON
 - Linux::Inotify2
 - LWP
 - Mail::Sender

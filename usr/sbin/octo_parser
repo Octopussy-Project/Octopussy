@@ -404,6 +404,10 @@ sub Line_Handler($$$$$)
       defined $msgid_stats{$serv}{$msg->{id}}
       ? $msgid_stats{$serv}{$msg->{id}} + 1
       : 1);
+    $msgid_stats{$serv}{"$serv:TOTAL"} = (
+      defined $msgid_stats{$serv}{"$serv:TOTAL"}
+      ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+      : 1);
 
     $$match = 1;
   }
@@ -547,15 +551,29 @@ sub File_Handler($)
           {
             if ( (defined $service{$serv}{msgs})
               && (scalar(@{$service{$serv}{msgs}})))
-            {
+            { # MsgID Statistics enabled and/or Alerts for this Service
               foreach my $msg (@{$service{$serv}{msgs}})
               {
                 Line_Handler($line, $serv, $msg, \%known_msgs, \$match);
                 last if ($match);
               }
-              push(@{$known_msgs{$serv}}, $line) if (!$match);
+              if (!$match)
+              {
+                $msgid_stats{$serv}{"$serv:TOTAL"} = (
+                  defined $msgid_stats{$serv}{"$serv:TOTAL"}
+                  ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+                  : 1);
+                push(@{$known_msgs{$serv}}, $line);
+              }
             }
-            else { push(@{$known_msgs{$serv}}, $line); }
+            else 
+            {
+              $msgid_stats{$serv}{"$serv:TOTAL"} = (
+                defined $msgid_stats{$serv}{"$serv:TOTAL"}
+                ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+                : 1); 
+              push(@{$known_msgs{$serv}}, $line); 
+            }
             $match = 1;
           }
           last if ($match);

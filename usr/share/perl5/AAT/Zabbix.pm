@@ -49,8 +49,6 @@ sub Send($$$$)
     my $item = $zabbix_item || $conf_zabbix->{zabbix_item};
     my $cmd =
 "$conf_zabbix->{bin} -z $conf_zabbix->{zabbix_server} -s $conf_zabbix->{zabbix_host} -k $conf_zabbix->{zabbix_item} -o \"$msg\"";
-    print "CMD: $cmd\n";
-    AAT::Syslog('Zabbix Send', $cmd);
     `$cmd`;
   }
 }

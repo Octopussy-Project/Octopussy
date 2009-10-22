@@ -161,7 +161,7 @@ sub Msg_ID($)
 {
   my $service = shift;
 
-  my $conf   = AAT::XML::Read(Filename($service));
+  my $conf   = Configuration($service);
   my $msg_id = '';
   my $i      = 1;
   while ($i)
@@ -188,10 +188,11 @@ sub Msg_ID_unique($$)
   my ($service, $msgid) = @_;
 
   return (0) if ($msgid eq "$service:");
-  my $conf = AAT::XML::Read(Filename($service));
+  my $qr_msgid = qr/^$msgid$/;
+  my $conf = Configuration($service);
   foreach my $m (AAT::ARRAY($conf->{message}))
   {
-    return (0) if ($m->{msg_id} =~ /^$msgid$/);
+    return (0) if ($m->{msg_id} =~ $qr_msgid);
   }
 
   return (1);
@@ -206,7 +207,7 @@ Adds Message '$mconf' to Service '$service'
 sub Add_Message($$)
 {
   my ($service, $mconf) = @_;
-  my $conf = AAT::XML::Read(Filename($service));
+  my $conf = Configuration($service);
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   my $rank =
     (AAT::NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) + 1 : 1);
@@ -244,7 +245,7 @@ sub Remove_Message($$)
 
   my @messages = ();
   my $rank     = undef;
-  my $conf     = AAT::XML::Read(Filename($service));
+  my $conf     = Configuration($service);
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   foreach my $m (AAT::ARRAY($conf->{message}))
   {
@@ -292,7 +293,7 @@ sub Modify_Message($$$)
   );
   return (@errors) if (scalar(@errors));
 
-  my $conf = AAT::XML::Read(Filename($service));
+  my $conf = Configuration($service);
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   my @messages = ();
   foreach my $m (AAT::ARRAY($conf->{message}))
@@ -317,7 +318,7 @@ sub Move_Message($$$)
 {
   my ($service, $msgid, $direction) = @_;
   my ($rank, $old_rank) = (undef, undef);
-  my $conf = AAT::XML::Read(Filename($service));
+  my $conf = Configuration($service);
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   my @messages = ();
   my $max = (defined $conf->{message} ? scalar(@{$conf->{message}}) : 0);
@@ -391,7 +392,7 @@ sub Messages(@)
   }
   foreach my $s (@services)
   {
-    my $conf = AAT::XML::Read(Filename($s));
+    my $conf = Configuration($s);
     push(@conf_messages, AAT::ARRAY($conf->{message}));
     foreach my $m (AAT::ARRAY($conf->{message})) { $field{$m->{rank}} = 1; }
   }
@@ -490,7 +491,7 @@ sub Sort_Messages_By_Statistics
   my $service = shift;
 
   my %percent       = Messages_Statistics($service);
-  my $conf          = AAT::XML::Read(Filename($service));
+  my $conf          = Configuration($service);
   my @conf_messages = AAT::ARRAY($conf->{message});
   my @messages      = ();
   my %values        = map(($_, 1), values %percent);
@@ -530,32 +531,6 @@ sub Tables($)
   foreach my $k (sort keys %tmp) { push(@tables, $k); }
 
   return (@tables);
-}
-
-=head2 Global_Regexp($service)
-
-=cut
-
-sub Global_Regexp($)
-{
-  my $service = shift;
-  my $global  = undef;
-
-  my @messages = Messages($service);
-  foreach my $m (@messages)
-  {
-    my $re = Octopussy::Message::Pattern_To_Regexp($m);
-    $global = $re if (!defined $global);
-    while (index($re, $global) == -1)
-    {
-      $global = substr($global, 0, length($global) - 1);
-    }
-  }
-  $global =~ s/^\(//g;
-  $global =~ s/([^\\])\(/$1/g;
-  $global =~ s/([^\\])\)/$1/g;
-
-  return (qr/$global/);
 }
 
 =head2 Parse_Restart($service)

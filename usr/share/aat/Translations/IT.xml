@@ -309,6 +309,7 @@
   <msg mid="_START_TIME" value="Ora di inizio" />
 	<msg mid="_STATE" value="Stato" />
   <msg mid="_STATIC" value="Statico" />
+  <msg mid="_STATISTICS" value="_STATISTICS" />
   <msg mid="_STATISTIC_REPORTS" value="Statistiche" />
   <msg mid="_STORAGES" value="Storages" />
   <msg mid="_STREET" value="Via" />
