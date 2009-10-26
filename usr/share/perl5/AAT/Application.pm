@@ -21,7 +21,7 @@ Returns Application Information
 
 =cut
 
-sub Info($)
+sub Info
 {
   my $appli = shift;
 
@@ -40,7 +40,7 @@ Returns Directory for Application '$appli' Name '$name'
 
 =cut
 
-sub Directory($$)
+sub Directory
 {
   my ($appli, $name) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
@@ -64,7 +64,7 @@ Returns File for Application '$appli' Name '$name'
 
 =cut
 
-sub File($$)
+sub File
 {
   my ($appli, $name) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
@@ -88,7 +88,7 @@ Returns Parameter Default Value for Application '$appli' Parameter '$param'
 
 =cut
 
-sub Parameter($$)
+sub Parameter
 {
   my ($appli, $param) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);

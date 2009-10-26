@@ -20,7 +20,7 @@ Returns Zabbix Configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $appli = shift;
 
@@ -36,7 +36,7 @@ Sends Zabbix message '$msg'
 
 =cut
 
-sub Send($$$$)
+sub Send
 {
   my ($appli, $msg, $zabbix_host, $zabbix_item) = @_;
 

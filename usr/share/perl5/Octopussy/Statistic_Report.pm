@@ -26,7 +26,7 @@ Create a new statistic report
 
 =cut
 
-sub New($)
+sub New
 {
   my $conf = shift;
 
@@ -40,7 +40,7 @@ Remove a statistic report
 
 =cut
 
-sub Remove($)
+sub Remove
 {
   my $statistic_report = shift;
 
@@ -54,7 +54,7 @@ Modify the configuration for the statistic_report '$old_report'
 
 =cut
 
-sub Modify($$)
+sub Modify
 {
   my ($old_report, $conf_new) = @_;
 
@@ -68,7 +68,7 @@ Get List of Statistic Report
 
 =cut
 
-sub List()
+sub List
 {
   $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
 
@@ -81,7 +81,7 @@ Get the XML filename for the statistic report '$statistic_report_name'
 
 =cut
 
-sub Filename($)
+sub Filename
 {
   my $statistic_report_name = shift;
 
@@ -100,7 +100,7 @@ Get the configuration for the accounting '$statistic_report'
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $statistic_report = shift;
 
@@ -128,10 +128,7 @@ sub Configurations
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations); 
   }
 
   return (@sorted_configurations);
@@ -141,7 +138,7 @@ sub Configurations
 
 =cut
 
-sub Messages($$)
+sub Messages
 {
   my ($statistic_report, $services) = @_;
   my %re_types = Octopussy::Type::Regexps();

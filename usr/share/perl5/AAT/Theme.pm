@@ -21,10 +21,10 @@ Returns list of available Themes
 
 =cut
 
-sub List()
+sub List
 {
   opendir(DIR, $DIR_THEME);
-  my @themes = grep !/^\.+/, readdir(DIR);
+  my @themes = grep { !/^\.+/ } readdir(DIR);
   closedir(DIR);
 
   return (sort (@themes));
@@ -36,14 +36,14 @@ Returns CSS File Path for Theme '$theme'
 
 =cut
 
-sub CSS_File($)
+sub CSS_File
 {
   my $theme = shift;
 
   $theme = 'DEFAULT' if (AAT::NULL($theme));
   my $file = "$DIR_THEME$theme/style.css";
-  return ("$file") if (-f "$file");
-  return (undef);
+
+  return ((-f "$file") ? $file : undef);
 }
 
 1;

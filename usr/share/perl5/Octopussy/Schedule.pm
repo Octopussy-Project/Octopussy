@@ -23,7 +23,7 @@ Create a new Schedule
 
 =cut 
 
-sub Add($)
+sub Add
 {
   my $add    = shift;
   my $exists = 0;
@@ -49,17 +49,13 @@ Removes Schedule '$schedule_title'
 
 =cut 
 
-sub Remove($)
+sub Remove
 {
   my $schedule_title = shift;
 
   my $file      = Octopussy::File($FILE_SCHEDULES);
   my $conf      = AAT::XML::Read($file);
-  my @schedules = ();
-  foreach my $s (AAT::ARRAY($conf->{schedule}))
-  {
-    push(@schedules, $s) if ($s->{title} ne $schedule_title);
-  }
+  my @schedules = grep { $_->{title} ne $schedule_title } AAT::ARRAY($conf->{schedule});
   $conf->{schedule} = \@schedules;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 }
@@ -70,7 +66,7 @@ Returns Schedules List
 
 =cut
 
-sub List()
+sub List
 {
   my @schedules = AAT::XML::File_Array_Values(Octopussy::File($FILE_SCHEDULES),
     $FILE_SCHEDULES, 'title');
@@ -84,7 +80,7 @@ Returns Schedules Configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $schedule = shift;
   my $conf     = AAT::XML::Read(Octopussy::File($FILE_SCHEDULES));
@@ -103,7 +99,7 @@ Get the configuration for all Schedules
 
 =cut
 
-sub Configurations($)
+sub Configurations
 {
   my $sort = shift;
   $sort ||= 'title';
@@ -122,10 +118,7 @@ sub Configurations($)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -137,7 +130,7 @@ Checks that Period beginning is before Period end
 
 =cut
 
-sub Period_Check($$$$)
+sub Period_Check
 {
   my ($begin_day, $begin_hour, $end_day, $end_hour) = @_;
 

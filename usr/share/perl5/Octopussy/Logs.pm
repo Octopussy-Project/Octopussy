@@ -18,7 +18,7 @@ Returns Device List
 
 =cut
 
-sub Device_List($)
+sub Device_List
 {
   my $devices = shift;
   my @devs    = ();
@@ -55,7 +55,7 @@ Returns Service List
 
 =cut
 
-sub Service_List($)
+sub Service_List
 {
   my $services = shift;
   my %hash_serv;
@@ -87,7 +87,7 @@ Gets Logs Directories
 
 =cut
 
-sub Get_Directories($)
+sub Get_Directories
 {
   my $dir = shift;
 
@@ -106,7 +106,7 @@ Inits Logs Directories for Device '$device'
 
 =cut
 
-sub Init_Directories($)
+sub Init_Directories
 {
   my $device = shift;
 
@@ -125,7 +125,7 @@ Removes Logs Directories for Device '$device'
 
 =cut
 
-sub Remove_Directories($)
+sub Remove_Directories
 {
   my $device = shift;
 
@@ -157,7 +157,7 @@ between '$start' & '$finish' (don't get Incoming logs files)
 
 =cut
 
-sub Files($$$$)
+sub Files
 {
   my ($ref_devices, $ref_services, $start, $finish) = @_;
   my $start_year   = $start->{year} * 100_000_000;
@@ -223,7 +223,7 @@ sub Files($$$$)
 
 =cut
 
-sub Availability($$$)
+sub Availability
 {
   my ($device, $start, $finish) = @_;
 
@@ -249,7 +249,7 @@ sub Availability($$$)
 
 =cut
 
-sub Minutes_Hash($$$$)
+sub Minutes_Hash
 {
   my ($ref_devices, $ref_services, $start, $finish) = @_;
   my $start_year   = $start->{year} * 100_000_000;
@@ -328,7 +328,7 @@ and Period $begin-$end
 
 =cut
 
-sub Get_TimePeriod_Files($$$$)
+sub Get_TimePeriod_Files
 {
   my ($devices, $services, $begin, $end) = @_;
 
@@ -366,7 +366,7 @@ between '$start' & '$finish'
 
 =cut
 
-sub Get($$$$$$$)
+sub Get
 {
   my ($devices, $services, $start, $finish, $re_incl, $re_excl, $limit) = @_;
 
@@ -423,7 +423,7 @@ Returns list of 'Incoming Files'
 
 =cut
 
-sub Incoming_Files($)
+sub Incoming_Files
 {
   my $device = shift;
 
@@ -462,7 +462,7 @@ Returns number of unknown log messages for device '$device'
 
 =cut
 
-sub Unknown_Number($)
+sub Unknown_Number
 {
   my $device = shift;
 
@@ -498,7 +498,7 @@ Removes Log '$log' from Unknown Logs for Device '$device'
 
 =cut
 
-sub Remove($$)
+sub Remove
 {
   my ($device, $log) = @_;
 
@@ -545,7 +545,7 @@ Removes 1 minute of Log File for Device '$device'
 
 =cut
 
-sub Remove_Minute($$$$$$)
+sub Remove_Minute
 {
   my ($device, $year, $month, $day, $hour, $min) = @_;
   my $re    = qr/.+Unknown\/$year\/$month\/$day\/msg_${hour}h$min/;
@@ -565,7 +565,7 @@ Generate Command Line for octo_extractor
 
 =cut
 
-sub Extract_Cmd_Line($)
+sub Extract_Cmd_Line
 {
   my $conf     = shift;
   my @devices  = AAT::ARRAY($conf->{devices});

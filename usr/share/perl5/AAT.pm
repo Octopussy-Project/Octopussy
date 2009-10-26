@@ -76,15 +76,16 @@ Prints Debug Message $text in AAT Debug file
 
 =cut
 
-sub DEBUG($)
+sub DEBUG
 {
   my $text = shift;
   $text =~ s/"//g;
 
   my ($sec, $min, $hour) = localtime();
 
-  $ENV{'PATH'} = '/bin:/usr/bin/:/usr/sbin';
-  `/bin/echo "$hour:$min:$sec > $text" >> $FILE_DEBUG`;
+  open(my $FILE, '>>', $FILE_DEBUG);
+  print $FILE "$hour:$min:$sec > $text\n";
+  close($FILE);
 
   return ("$hour:$min:$sec > $text");
 }
@@ -117,7 +118,7 @@ Checks that value '$value' is null (undef or '')
 
 =cut
 
-sub NULL($)
+sub NULL
 {
   my $value = shift;
 
@@ -139,7 +140,7 @@ Converts $value to an array ( @{$value) )
 
 =cut
 
-sub ARRAY($)
+sub ARRAY
 {
   my $value = shift;
 
@@ -158,7 +159,7 @@ Converts $value to an array reference ( \@{$value} )
 
 =cut
 
-sub ARRAY_REF($)
+sub ARRAY_REF
 {
   my $value = shift;
 
@@ -177,7 +178,7 @@ Converts $value to an hash ( %{$value} )
 
 =cut
 
-sub HASH($)
+sub HASH
 {
   my $value = shift;
 
@@ -190,7 +191,7 @@ Returns keys for the converted hash $value ( keys %{$value} )
 
 =cut
 
-sub HASH_KEYS($)
+sub HASH_KEYS
 {
   my $value = shift;
 
@@ -204,7 +205,7 @@ Fills the string $str with '0' to have $padding characters
 
 =cut
 
-sub Padding($$)
+sub Padding
 {
   my ($str, $padding) = @_;
   $padding ||= 3;
@@ -218,7 +219,7 @@ Returns Configuration Directory for directory '$dir'
 
 =cut
 
-sub Directory($)
+sub Directory
 {
   my $dir = shift;
 
@@ -231,7 +232,7 @@ Returns Configuration filename for file '$file'
 
 =cut
 
-sub File($)
+sub File
 {
   my $file = shift;
 
@@ -244,7 +245,7 @@ Downloads $download to local $dest
 
 =cut
 
-sub Download($$$)
+sub Download
 {
   my ($appli, $download, $dest) = @_;
   my $pc = AAT::Proxy::Configuration($appli);
@@ -279,13 +280,15 @@ sub Download($$$)
 
 =cut
 
-sub Update_Configuration($$$$)
+sub Update_Configuration
 {
   my ($appli, $file, $conf, $rootname) = @_;
 
   my $file_xml = AAT::Application::File($appli, $file);
-  AAT::XML::Write(AAT::Application::File($appli, $file), $conf, $rootname)
-    if (NOT_NULL($file_xml));
+  if (NOT_NULL($file_xml))
+  {
+    AAT::XML::Write($file_xml, $conf, $rootname);
+  }
 }
 
 =head2 Version()
@@ -294,7 +297,7 @@ Returns AAT Version
 
 =cut
 
-sub Version()
+sub Version
 {
   my $info = AAT::Application::Info('AAT');
 
@@ -307,7 +310,7 @@ Returns AAT WebSite
 
 =cut
 
-sub WebSite()
+sub WebSite
 {
   my $info = AAT::Application::Info('AAT');
 
@@ -324,9 +327,9 @@ sub Language
 {
   my $lang = shift;
 
-  $main::Session->{AAT_LANGUAGE} = $lang if (NOT_NULL($lang));
+  $main::Session->{AAT_LANGUAGE} = (NOT_NULL($lang) ? $lang : 'EN');
 
-  return ($main::Session->{AAT_LANGUAGE} || 'EN');
+  return ($main::Session->{AAT_LANGUAGE});
 }
 
 =head2 Menu_Mode($mode)
@@ -339,9 +342,9 @@ sub Menu_Mode
 {
   my $mode = shift;
 
-  $main::Session->{AAT_MENU_MODE} = $mode if (NOT_NULL($mode));
+  $main::Session->{AAT_MENU_MODE} = (NOT_NULL($mode) ? $mode : 'ICONS_AND_TEXT');
 
-  return ($main::Session->{AAT_MENU_MODE} || 'ICONS_AND_TEXT');
+  return ($main::Session->{AAT_MENU_MODE});
 }
 
 =head2 Theme($theme)
@@ -354,9 +357,9 @@ sub Theme
 {
   my $theme = shift;
 
-  $main::Session->{AAT_THEME} = $theme if (NOT_NULL($theme));
+  $main::Session->{AAT_THEME} = (NOT_NULL($theme) ? $theme : 'DEFAULT');
 
-  return ($main::Session->{AAT_THEME} || 'DEFAULT');
+  return ($main::Session->{AAT_THEME});
 }
 
 =head2 Translation($str)
@@ -365,11 +368,11 @@ Translates $str with language $main::Session->{AAT_LANGUAGE}
 
 =cut
 
-sub Translation($)
+sub Translation
 {
   my $str       = shift;
   my $sess_lang = $main::Session->{AAT_LANGUAGE};
-  my $lang      = (AAT::NOT_NULL($sess_lang) ? $sess_lang : 'EN');
+  my $lang      = (NOT_NULL($sess_lang) ? $sess_lang : 'EN');
 
   return (AAT::Translation::Get($lang, $str));
 }
@@ -379,7 +382,7 @@ sub Translation($)
 
 =cut
 
-sub Syslog($$@)
+sub Syslog
 {
   my ($module, $msg, @args) = @_;
 
@@ -394,7 +397,7 @@ Usage: <AAT:PageTop title="Octopussy Login" icon="IMG/octopussy.gif" />
 
 =cut
 
-sub PageTop($$)
+sub PageTop
 {
   my ($args, $body) = @_;
 
@@ -407,7 +410,7 @@ Usage: <AAT:PageBottom credits="1" />
 
 =cut
 
-sub PageBottom($$)
+sub PageBottom
 {
   my ($args, $body) = @_;
 
@@ -420,13 +423,15 @@ Usage: <AAT:PageTheme />
 
 =cut
 
-sub PageTheme($$)
+sub PageTheme
 {
   my ($args, $body) = @_;
   my $theme = Theme();
   my $style = AAT::Theme::CSS_File($theme);
-  $main::Response->Include('AAT/INC/AAT_CSS_Inc.inc', file => $style)
-    if (defined $style);
+  if (defined $style)
+  {
+    $main::Response->Include('AAT/INC/AAT_CSS_Inc.inc', file => $style);
+  }
 }
 
 =head2 Inc($args, $body)
@@ -436,7 +441,7 @@ Usage: <AAT:Inc file="octo_selector_taxonomy" name="taxonomy"
 
 =cut
 
-sub Inc($$)
+sub Inc
 {
   my ($args, $body) = @_;
 
@@ -449,7 +454,7 @@ Usage:
 
 =cut
 
-sub CSS_Inc($$)
+sub CSS_Inc
 {
   my ($args, $body) = @_;
 
@@ -462,7 +467,7 @@ Usage: <AAT:JS_Inc file="INC/AAT_tooltip.js" />
 
 =cut
 
-sub JS_Inc($$)
+sub JS_Inc
 {
   my ($args, $body) = @_;
 
@@ -473,7 +478,7 @@ sub JS_Inc($$)
 
 =cut 
 
-sub File_Save($)
+sub File_Save
 {
   my $conf = shift;
 
@@ -482,9 +487,11 @@ sub File_Save($)
     "filename=\"$conf->{output_file}\"");
   if (AAT::NOT_NULL($conf->{input_file}))
   {
-    open(my $FILE, '<', $conf->{input_file});
-    while (<$FILE>) { $main::Response->BinaryWrite($_); }
-    close($FILE);
+    if (defined open(my $FILE, '<', $conf->{input_file}))
+    {
+      while (<$FILE>) { $main::Response->BinaryWrite($_); }
+      close($FILE);
+    }
   }
   elsif (AAT::NOT_NULL($conf->{input_data}))
   {
@@ -499,7 +506,7 @@ Usage: <AAT:Button name="remove" popup_link="$remove_link" />
 
 =cut
 
-sub Button($$)
+sub Button
 {
   my ($args, $body) = @_;
 
@@ -516,7 +523,7 @@ Usage: <AAT:Box icon="buttons/bt_report" title="_REPORTS_VIEWER">
 
 =cut
 
-sub Box($$)
+sub Box
 {
   my ($args, $body) = @_;
   $main::Response->Include('AAT/INC/AAT_BoxTop.inc', %{$args});
@@ -532,7 +539,7 @@ Usage: <AAT:BoxRow><AAT:BoxCol>
 
 =cut
 
-sub BoxCol($$)
+sub BoxCol
 {
   my ($args, $body) = @_;
 
@@ -549,7 +556,7 @@ Usage: <AAT:BoxRow><AAT:BoxCol>
 
 =cut
 
-sub BoxRow($$)
+sub BoxRow
 {
   my ($args, $body) = @_;
 
@@ -566,7 +573,7 @@ Usage: <AAT:BoxRowMenu><AAT:BoxCol>
 
 =cut
 
-sub BoxRowMenu($$)
+sub BoxRowMenu
 {
   my ($args, $body) = @_;
 
@@ -581,7 +588,7 @@ Usage:
 
 =cut
 
-sub DD_Box($$)
+sub DD_Box
 {
   my ($args, $body) = @_;
 
@@ -596,7 +603,7 @@ Usage:
 
 =cut
 
-sub DD_BoxRow($$)
+sub DD_BoxRow
 {
   my ($args, $body) = @_;
 
@@ -611,7 +618,7 @@ Usage: <AAT:CheckBox name="$value" />
 
 =cut
 
-sub CheckBox($$)
+sub CheckBox
 {
   my ($args, $body) = @_;
 
@@ -624,7 +631,7 @@ Usage: <AAT:CheckBox_DayOfMonth name="$value" />
 
 =cut
 
-sub CheckBox_DayOfMonth($$)
+sub CheckBox_DayOfMonth
 {
   my ($args, $body) = @_;
 
@@ -637,7 +644,7 @@ Usage: <AAT:CheckBox_DayOfWeek name="$value" />
 
 =cut
 
-sub CheckBox_DayOfWeek($$)
+sub CheckBox_DayOfWeek
 {
   my ($args, $body) = @_;
 
@@ -650,7 +657,7 @@ Usage: <AAT:CheckBox_Month name="$value" />
 
 =cut
 
-sub CheckBox_Month($$)
+sub CheckBox_Month
 {
   my ($args, $body) = @_;
 
@@ -663,7 +670,7 @@ Usage: <AAT:Config_Certificate tooltip="_TOOLTIP_SYSTEM_CERTIFICATE" />
 
 =cut
 
-sub Config_Certificate($$)
+sub Config_Certificate
 {
   my ($args, $body) = @_;
 
@@ -676,7 +683,7 @@ Usage: <AAT:Config_Database tooltip="_TOOLTIP_SYSTEM_DB" />
 
 =cut
 
-sub Config_Database($$)
+sub Config_Database
 {
   my ($args, $body) = @_;
 
@@ -689,7 +696,7 @@ Usage: <AAT:Config_LDAP_Contacts tooltip="_TOOLTIP_SYSTEM_LDAP" />
 
 =cut
 
-sub Config_LDAP_Contacts($$)
+sub Config_LDAP_Contacts
 {
   my ($args, $body) = @_;
 
@@ -702,7 +709,7 @@ Usage: <AAT:Config_LDAP_Users tooltip="_TOOLTIP_SYSTEM_LDAP" />
 
 =cut
 
-sub Config_LDAP_Users($$)
+sub Config_LDAP_Users
 {
   my ($args, $body) = @_;
 
@@ -715,7 +722,7 @@ Usage: <AAT:Config_NSCA tooltip="_TOOLTIP_SYSTEM_NSCA" />
 
 =cut
 
-sub Config_NSCA($$)
+sub Config_NSCA
 {
   my ($args, $body) = @_;
 
@@ -728,7 +735,7 @@ Usage: <AAT:Config_Proxy tooltip="_TOOLTIP_SYSTEM_PROXY" />
 
 =cut
 
-sub Config_Proxy($$)
+sub Config_Proxy
 {
   my ($args, $body) = @_;
 
@@ -741,7 +748,7 @@ Usage: <AAT:Config_SMTP tooltip="_TOOLTIP_SYSTEM_SMTP" />
 
 =cut
 
-sub Config_SMTP($$)
+sub Config_SMTP
 {
   my ($args, $body) = @_;
 
@@ -754,7 +761,7 @@ Usage: <AAT:Config_XMPP tooltip="_TOOLTIP_SYSTEM_JABBER" />
 
 =cut
 
-sub Config_XMPP($$)
+sub Config_XMPP
 {
   my ($args, $body) = @_;
 
@@ -767,7 +774,7 @@ Usage: <AAT:Config_Zabbix tooltip="_TOOLTIP_SYSTEM_ZABBIX" />
 
 =cut
 
-sub Config_Zabbix($$)
+sub Config_Zabbix
 {
   my ($args, $body) = @_;
 
@@ -780,7 +787,7 @@ Usage: <AAT:Entry name="directory" size="40" />
 
 =cut
 
-sub Entry($$)
+sub Entry
 {
   my ($args, $body) = @_;
 
@@ -793,7 +800,7 @@ Usage: <AAT:Export_FTP width="100%" />
 
 =cut
 
-sub Export_FTP($$)
+sub Export_FTP
 {
   my ($args, $body) = @_;
 
@@ -806,7 +813,7 @@ Usage: <AAT:Export_SCP width="100%" />
 
 =cut
 
-sub Export_SCP($$)
+sub Export_SCP
 {
   my ($args, $body) = @_;
 
@@ -819,7 +826,7 @@ Usage: <AAT:Form method="POST" action="$action">
 
 =cut
 
-sub Form($$)
+sub Form
 {
   my ($args, $body) = @_;
 
@@ -834,7 +841,7 @@ Usage: <AAT:Form_Button name="remove" value="remove_template" />
 
 =cut
 
-sub Form_Button($$)
+sub Form_Button
 {
   my ($args, $body) = @_;
 
@@ -847,7 +854,7 @@ Usage: <AAT:Form_Hidden name="msg_pattern" value="$pattern" />
 
 =cut
 
-sub Form_Hidden($$)
+sub Form_Hidden
 {
   my ($args, $body) = @_;
 
@@ -860,7 +867,7 @@ Usage: <AAT:Form_Submit value="_EDIT" />
 
 =cut
 
-sub Form_Submit($$)
+sub Form_Submit
 {
   my ($args, $body) = @_;
 
@@ -873,7 +880,7 @@ Usage: <AAT:Help page="login" />
 
 =cut
 
-sub Help($$)
+sub Help
 {
   my ($args, $body) = @_;
 
@@ -887,7 +894,7 @@ Usage: <AAT:IMG name="mime/pdf" tooltip="_REPORT_PDF"
 
 =cut
 
-sub IMG($$)
+sub IMG
 {
   my ($args, $body) = @_;
 
@@ -900,7 +907,7 @@ Usage: <AAT:Label value="_MODIFICATION" style="B" />
 
 =cut
 
-sub Label($$)
+sub Label
 {
   my ($args, $body) = @_;
 
@@ -915,7 +922,7 @@ Print Logo of the item $args{name} from the List $args{list}
 
 =cut
 
-sub Logo($$)
+sub Logo
 {
   my ($args, $body) = @_;
 
@@ -928,7 +935,7 @@ Usage: <AAT:Menu align="C" items=\@items />
 
 =cut
 
-sub Menu($$)
+sub Menu
 {
   my ($args, $body) = @_;
 
@@ -941,7 +948,7 @@ Usage: <AAT:Message level="$level" msg="$msg" />
 
 =cut
 
-sub Message($$)
+sub Message
 {
   my ($args, $body) = @_;
 
@@ -954,7 +961,7 @@ Usage:
 
 =cut
 
-sub Msg_Error()
+sub Msg_Error
 {
   if (NOT_NULL($main::Session->{AAT_MSG_ERROR}))
   {
@@ -975,7 +982,7 @@ Usage: <AAT:Password name="pword" value="$pwd" size="12" />
 
 =cut
 
-sub Password($$)
+sub Password
 {
   my ($args, $body) = @_;
 
@@ -995,7 +1002,7 @@ Usage: <AAT:Picture file="IMG/octopussy.gif" width="200"
 
 =cut
 
-sub Picture($$)
+sub Picture
 {
   my ($args, $body) = @_;
 
@@ -1011,7 +1018,7 @@ Usage: <AAT:ProgressBar title="Report Generation $reportname"
 
 =cut
 
-sub ProgressBar($$)
+sub ProgressBar
 {
   my ($args, $body) = @_;
 
@@ -1024,7 +1031,7 @@ Usage: <AAT:RRD_Graph url="./index.asp" name="syslog_dtype" mode="$rrd_mode" />
 
 =cut
 
-sub RRD_Graph($$)
+sub RRD_Graph
 {
   my ($args, $body) = @_;
 
@@ -1037,7 +1044,7 @@ Usage: <AAT:Selector name="report" list=\@report_list />
 
 =cut
 
-sub Selector($$)
+sub Selector
 {
   my ($args, $body) = @_;
 
@@ -1050,7 +1057,7 @@ Usage: <AAT:Selector_Color name="color" selected="red" />
 
 =cut
 
-sub Selector_Color($$)
+sub Selector_Color
 {
   my ($args, $body) = @_;
 
@@ -1063,7 +1070,7 @@ Usage: <AAT:Selector Country_Code name="country" selected="fr" />
 
 =cut
 
-sub Selector_Country_Code($$)
+sub Selector_Country_Code
 {
   my ($args, $body) = @_;
 
@@ -1076,7 +1083,7 @@ Usage: <AAT:Selector_Database name="db_type" selected="$type" />
 
 =cut
 
-sub Selector_Database($$)
+sub Selector_Database
 {
   my ($args, $body) = @_;
 
@@ -1089,7 +1096,7 @@ Usage: <AAT:Selector_Date name="$name" start_year="1920" />
 
 =cut
 
-sub Selector_Date($$)
+sub Selector_Date
 {
   my ($args, $body) = @_;
 
@@ -1103,7 +1110,7 @@ Usage: <AAT:Selector_DateTime name="dt" start_year="2000"
 
 =cut
 
-sub Selector_DateTime($$)
+sub Selector_DateTime
 {
   my ($args, $body) = @_;
 
@@ -1119,7 +1126,7 @@ Usage: <AAT:Selector_DateTime_Simple name="dt"
 
 =cut
 
-sub Selector_DateTime_Simple($$)
+sub Selector_DateTime_Simple
 {
   my ($args, $body) = @_;
 
@@ -1133,7 +1140,7 @@ Usage: <AAT:Selector_EnabledDisabled name="status" selected="$status" />
 
 =cut
 
-sub Selector_EnabledDisabled($$)
+sub Selector_EnabledDisabled
 {
   my ($args, $body) = @_;
 
@@ -1147,7 +1154,7 @@ Usage: <AAT:Selector_Language />
 
 =cut
 
-sub Selector_Language($$)
+sub Selector_Language
 {
   my ($args, $body) = @_;
   my $language = Language();
@@ -1175,7 +1182,7 @@ Usage:
 
 =cut
 
-sub Selector_List($$)
+sub Selector_List
 {
   my ($args, $body) = @_;
 
@@ -1186,7 +1193,7 @@ sub Selector_List($$)
 
 =cut
 
-sub Selector_MenuMode($$)
+sub Selector_MenuMode
 {
   my ($args, $body) = @_;
   my $mode = Menu_Mode();
@@ -1211,7 +1218,7 @@ Usage: <AAT:Selector_Number name="graph_width"
 
 =cut
 
-sub Selector_Number($$)
+sub Selector_Number
 {
   my ($args, $body) = @_;
 
@@ -1224,7 +1231,7 @@ Usage: <AAT:Selector_Theme />
 
 =cut
 
-sub Selector_Theme($$)
+sub Selector_Theme
 {
   my ($args, $body) = @_;
   my $theme  = Theme();
@@ -1244,7 +1251,7 @@ Usage: <AAT:Selector_Time name="time_start" step="5" selected="0/0"/>
 
 =cut
 
-sub Selector_Time($$)
+sub Selector_Time
 {
   my ($args, $body) = @_;
 
@@ -1257,7 +1264,7 @@ Usage: <AAT:Selector_User_Role />
 
 =cut
 
-sub Selector_User_Role($$)
+sub Selector_User_Role
 {
   my ($args, $body) = @_;
 
@@ -1270,7 +1277,7 @@ Usage: <AAT:Selector_YesNo name="xmpp_tls" selected="$tls" />
 
 =cut
 
-sub Selector_YesNo($$)
+sub Selector_YesNo
 {
   my ($args, $body) = @_;
 
@@ -1283,7 +1290,7 @@ Usage: <AAT:TextArea name="comment" cols="80" rows="10" />
 
 =cut
 
-sub TextArea($$)
+sub TextArea
 {
   my ($args, $body) = @_;
 

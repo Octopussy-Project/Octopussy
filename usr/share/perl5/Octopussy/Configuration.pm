@@ -21,7 +21,7 @@ Readonly my $DIR_BACKUP => '/etc/octopussy/';
 
 =cut
 
-sub Backup()
+sub Backup
 {
   my ($year, $mon, $mday, $h, $m) = AAT::Datetime::Now();
   my $timestamp   = "$year$mon$mday$h$m";
@@ -48,7 +48,7 @@ Returns List of Backup Files
 
 =cut
 
-sub Backup_List()
+sub Backup_List
 {
   my @backups = ();
 
@@ -68,7 +68,7 @@ Restores configuration from Backup File '$file'
 
 =cut
 
-sub Restore($)
+sub Restore
 {
   my $file        = shift;
   my $file_backup = "${DIR_BACKUP}${file}.tgz";

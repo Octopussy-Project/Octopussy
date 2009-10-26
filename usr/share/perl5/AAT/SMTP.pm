@@ -23,7 +23,7 @@ Returns SMTP configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $appli = shift;
 
@@ -39,7 +39,7 @@ Checks the SMTP connection
 
 =cut
 
-sub Connection_Test($)
+sub Connection_Test
 {
   my $appli  = shift;
   my $status = 0;
@@ -81,7 +81,7 @@ Send message to @dests
 
 =cut
 
-sub Send_Message($$$@)
+sub Send_Message
 {
   my ($appli, $subject, $body, @dests) = @_;
 
@@ -120,7 +120,7 @@ Send message with file to @dests
 
 =cut
 
-sub Send_Message_With_File($$$$@)
+sub Send_Message_With_File
 {
   my ($appli, $subject, $body, $file, @dests) = @_;
 

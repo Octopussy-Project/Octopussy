@@ -24,17 +24,16 @@ Add a new Device Group
 
 =cut
 
-sub Add($)
+sub Add
 {
   my $conf_dg = shift;
   my @dgs     = ();
 
   my $file = Octopussy::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
+  if (grep { $_->{dg_id} eq $conf_dg->{dg_id} } AAT::ARRAY($conf->{devicegroup}))
   {
-    return ('_MSG_DEVICEGROUP_ALREADY_EXISTS')
-      if ($dg->{dg_id} eq $conf_dg->{dg_id});
+    return ('_MSG_DEVICEGROUP_ALREADY_EXISTS');
   }
   push(@{$conf->{devicegroup}}, $conf_dg);
   AAT::XML::Write($file, $conf, $XML_ROOT);
@@ -48,17 +47,13 @@ Removes devicegroup '$devicegroup'
 
 =cut
 
-sub Remove($)
+sub Remove
 {
   my $devicegroup = shift;
-  my @dgs         = ();
 
   my $file = Octopussy::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
-  {
-    push(@dgs, $dg) if ($dg->{dg_id} ne $devicegroup);
-  }
+  my @dgs = grep { $_->{dg_id} ne $devicegroup } AAT::ARRAY($conf->{devicegroup});
   $conf->{devicegroup} = \@dgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
@@ -71,7 +66,7 @@ Get List of Device Group
 
 =cut
 
-sub List()
+sub List
 {
   my @dgs = AAT::XML::File_Array_Values(Octopussy::File($FILE_DEVICEGROUPS),
     'devicegroup', 'dg_id');
@@ -85,7 +80,7 @@ Get the configuration for the devicegroup '$devicegroup'
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $devicegroup = shift;
 
@@ -133,10 +128,7 @@ sub Configurations
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -148,7 +140,7 @@ Get Devices for the devicegroup '$devicegroup'
 
 =cut
 
-sub Devices($)
+sub Devices
 {
   my $devicegroup = shift;
 
@@ -186,7 +178,7 @@ Removes Device '$device' from all DeviceGroups
 
 =cut
 
-sub Remove_Device($)
+sub Remove_Device
 {
   my $device = shift;
   my $file   = Octopussy::File($FILE_DEVICEGROUPS);
@@ -212,7 +204,7 @@ Get Services for the DeviceGroup '$devicegroup_name'
 
 =cut
 
-sub Services($)
+sub Services
 {
   my $devicegroup_name = shift;
   my @services = Octopussy::Device::Services(Devices($devicegroup_name));

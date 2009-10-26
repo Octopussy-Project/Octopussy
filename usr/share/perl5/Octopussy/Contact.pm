@@ -32,7 +32,7 @@ Parameters:
 
 =cut
 
-sub New($)
+sub New
 {
   my $conf = shift;
 
@@ -64,7 +64,7 @@ $contact - Name of the contact to remove
 
 =cut
 
-sub Remove($)
+sub Remove
 {
   my $contact = shift;
 
@@ -82,7 +82,7 @@ Returns:
 
 =cut
 
-sub List()
+sub List
 {
   $dir_contacts ||= Octopussy::Directory('contacts');
   my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
@@ -114,7 +114,7 @@ $filename - Filename of the XML file for contact '$contact'
 
 =cut
 
-sub Filename($)
+sub Filename
 {
   my $contact = shift;
 
@@ -151,7 +151,7 @@ Returns:
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $contact = shift;
 
@@ -190,7 +190,7 @@ Returns:
 
 =cut
 
-sub Configurations($)
+sub Configurations
 {
   my $sort = shift;
   my (@configurations, @sorted_configurations) = ((), ());
@@ -213,10 +213,7 @@ sub Configurations($)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);

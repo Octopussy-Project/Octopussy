@@ -20,7 +20,7 @@ use Octopussy;
 
 =cut
 
-sub Meta($)
+sub Meta
 {
   my $doc = shift;
 
@@ -33,7 +33,7 @@ sub Meta($)
 
 =cut
 
-sub Text($$)
+sub Text
 {
   my ($filename, $conf) = @_;
 

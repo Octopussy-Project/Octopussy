@@ -33,7 +33,7 @@ Parameters:
 
 =cut
 
-sub New($)
+sub New
 {
   my $conf = shift;
 
@@ -52,7 +52,7 @@ $service - Name of the Service to remove
 
 =cut
 
-sub Remove($)
+sub Remove
 {
   my $service = shift;
 
@@ -66,7 +66,7 @@ Returns List of Services
 
 =cut
 
-sub List()
+sub List
 {
   $dir_services ||= Octopussy::Directory($DIR_SERVICE);
 
@@ -79,7 +79,7 @@ Returns List of Services used
 
 =cut
 
-sub List_Used()
+sub List_Used
 {
   my @services = Octopussy::Device::Services(Octopussy::Device::List());
   @services = sort keys %{{map { $_ => 1 } @services}};  # sort unique @services
@@ -93,7 +93,7 @@ Returns the XML filename for the service '$service'
 
 =cut
 
-sub Filename($)
+sub Filename
 {
   my $service = shift;
 
@@ -110,7 +110,7 @@ Returns the configuration for the Service '$service'
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $service = shift;
 
@@ -142,10 +142,7 @@ sub Configurations
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -157,7 +154,7 @@ Returns the next available message id for Service '$service'
 
 =cut
 
-sub Msg_ID($)
+sub Msg_ID
 {
   my $service = shift;
 
@@ -183,16 +180,16 @@ Checks if $msgid is valid & unique for Service $service
 
 =cut
 
-sub Msg_ID_unique($$)
+sub Msg_ID_unique
 {
   my ($service, $msgid) = @_;
 
   return (0) if ($msgid eq "$service:");
   my $qr_msgid = qr/^$msgid$/;
   my $conf = Configuration($service);
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  if (grep { $_->{msg_id} =~ $qr_msgid } AAT::ARRAY($conf->{message}))
   {
-    return (0) if ($m->{msg_id} =~ $qr_msgid);
+    return (0);
   }
 
   return (1);
@@ -204,7 +201,7 @@ Adds Message '$mconf' to Service '$service'
 
 =cut
 
-sub Add_Message($$)
+sub Add_Message
 {
   my ($service, $mconf) = @_;
   my $conf = Configuration($service);
@@ -239,7 +236,7 @@ Removes Message with id '$msgid' from Service '$service'
 
 =cut
 
-sub Remove_Message($$)
+sub Remove_Message
 {
   my ($service, $msgid) = @_;
 
@@ -272,7 +269,7 @@ Modifies Message with id '$msgid' from Service '$service'
 
 =cut
 
-sub Modify_Message($$$)
+sub Modify_Message
 {
   my ($service, $msgid, $conf_modified) = @_;
   $conf_modified->{pattern} = Encode::decode_utf8($conf_modified->{pattern});
@@ -314,7 +311,7 @@ Moves Message '$msgid' up/down ('$direction') inside Service '$service'
 
 =cut
 
-sub Move_Message($$$)
+sub Move_Message
 {
   my ($service, $msgid, $direction) = @_;
   my ($rank, $old_rank) = (undef, undef);
@@ -379,7 +376,7 @@ Get messages from Service list '@services'
 
 =cut
 
-sub Messages(@)
+sub Messages
 {
   my @services      = @_;
   my @messages      = ();
@@ -414,7 +411,7 @@ Get the configuration for all messages from '$service'
 
 =cut
 
-sub Messages_Configurations($$)
+sub Messages_Configurations
 {
   my ($service, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
@@ -433,10 +430,7 @@ sub Messages_Configurations($$)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -448,7 +442,7 @@ Returns Messages statistics for Service $service
 
 =cut
 
-sub Messages_Statistics($)
+sub Messages_Statistics
 {
   my $service      = shift;
   my $cache_parser = Octopussy::Cache::Init('octo_parser');
@@ -520,7 +514,7 @@ Get tables from service '$service'
 
 =cut
 
-sub Tables($)
+sub Tables
 {
   my $service  = shift;
   my @messages = Messages($service);
@@ -539,7 +533,7 @@ Restart Device parsing for device with service '$service'
 
 =cut
 
-sub Parse_Restart($)
+sub Parse_Restart
 {
   my $service = shift;
 
@@ -560,7 +554,7 @@ Set 'reload_required' for device with service '$service'
 
 =cut
 
-sub Parse_Restart_Required($)
+sub Parse_Restart_Required
 {
   my $service = shift;
 
@@ -578,7 +572,7 @@ Gets Services Updates from Internet
 
 =cut
 
-sub Updates()
+sub Updates
 {
   my %update;
   my $web         = Octopussy::WebSite();
@@ -627,7 +621,7 @@ Returns Service Updates Messages
 
 =cut
 
-sub Update_Get_Messages($)
+sub Update_Get_Messages
 {
   my $service     = shift;
   my $web         = Octopussy::WebSite();
@@ -646,7 +640,7 @@ Returns Service Updates differences
 
 =cut
 
-sub Updates_Diff($)
+sub Updates_Diff
 {
   my $service       = shift;
   my $conf          = Configuration($service);

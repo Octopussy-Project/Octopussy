@@ -33,7 +33,7 @@ $user - user who create this template
 
 =cut
 
-sub New($$)
+sub New
 {
   my ($user, $conf) = @_;
 
@@ -53,7 +53,7 @@ $search_tpl - Name of the Search Template to remove
 
 =cut
 
-sub Remove($$)
+sub Remove
 {
   my ($user, $search_tpl) = @_;
 
@@ -75,7 +75,7 @@ Returns:
 
 =cut
 
-sub List($)
+sub List
 {
   my $user = shift;
 
@@ -105,7 +105,7 @@ Returns:
 
 =cut
 
-sub List_Any_User($)
+sub List_Any_User
 {
   my $sort = shift;
 
@@ -128,7 +128,7 @@ sub List_Any_User($)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $e (@list) { push(@sorted_list, $e) if ($e->{$sort} eq $f); }
+    push(@sorted_list, grep { $_->{$sort} eq $f } @list);
   }
 
   return (@sorted_list);
@@ -149,7 +149,7 @@ $filename - Filename of the XML file for Search Template '$search_tpl'
 
 =cut
 
-sub Filename($$)
+sub Filename
 {
   my ($user, $search_tpl) = @_;
 
@@ -189,7 +189,7 @@ Returns:
 
 =cut
 
-sub Configuration($$)
+sub Configuration
 {
   my ($user, $search_tpl) = @_;
 
@@ -211,7 +211,7 @@ Returns:
 
 =cut
 
-sub Configurations($$)
+sub Configurations
 {
   my ($user, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
@@ -229,10 +229,7 @@ sub Configurations($$)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);

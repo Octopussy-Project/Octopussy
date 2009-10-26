@@ -23,7 +23,7 @@ my $dir_reports = undef;
 
 =cut
 
-sub Type_List()
+sub Type_List
 {
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
 
@@ -40,7 +40,7 @@ Returns List of Data Reports
 
 =cut
 
-sub List($)
+sub List
 {
   my $report = shift;
 
@@ -66,7 +66,7 @@ Removes Report '$report' with Filename '$filename'
 
 =cut
 
-sub Remove($$)
+sub Remove
 {
   my ($report, $filename) = @_;
 
@@ -80,7 +80,7 @@ Removes All Reports '$report'
 
 =cut
 
-sub Remove_All($)
+sub Remove_All
 {
   my $report = shift;
 
@@ -94,7 +94,7 @@ Removes All Reports '$report' in Month '$year/month'
 
 =cut
 
-sub Remove_Month($$$)
+sub Remove_Month
 {
   my ($report, $year, $month) = @_;
 

@@ -22,7 +22,7 @@ Get list of loglevel entries
 
 =cut
 
-sub List(@)
+sub List
 {
   my ($dev_list, $serv_list) = @_;
   my @list = ();
@@ -88,7 +88,7 @@ Get list of loglevel entries and '-ANY-'
 
 =cut
 
-sub List_And_Any(@)
+sub List_And_Any
 {
   my ($dev_list, $serv_list) = @_;
 
@@ -103,7 +103,7 @@ sub List_And_Any(@)
 
 =cut
 
-sub String_List(@)
+sub String_List
 {
   my ($devices, $services) = @_;
   my @data = Octopussy::Loglevel::List($devices, $services);

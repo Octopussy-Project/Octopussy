@@ -20,7 +20,7 @@ Readonly my $DIR_MIME_BIG   => 'THEMES/DEFAULT/mime/128x128';
 
 =cut
 
-sub Mime_Icon($$)
+sub Mime_Icon
 {
   my ($file, $type) = @_;
 

@@ -24,7 +24,7 @@ Returns Proxy Configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $appli = shift;
 
@@ -40,7 +40,7 @@ Check the Proxy Connection
 
 =cut
 
-sub Connection_Test($)
+sub Connection_Test
 {
   my $appli = shift;
 

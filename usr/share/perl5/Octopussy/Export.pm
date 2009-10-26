@@ -24,7 +24,7 @@ Export file '$file' using FTP with '$conf_ftp' configuration
 
 =cut
 
-sub Using_Ftp($$)
+sub Using_Ftp
 {
   my ($conf_ftp, $file) = @_;
 
@@ -44,7 +44,7 @@ Export file '$file' using Mail with '$conf_mail' configuration
 
 =cut 
 
-sub Using_Mail($$)
+sub Using_Mail
 {
   my ($conf_mail, $file) = @_;
 
@@ -64,7 +64,7 @@ Export file '$file' using Scp with '$conf_scp' configuration
 
 =cut
 
-sub Using_Scp($$)
+sub Using_Scp
 {
   my ($conf_scp, $file) = @_;
 

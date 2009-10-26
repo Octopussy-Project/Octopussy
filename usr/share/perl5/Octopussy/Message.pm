@@ -24,7 +24,7 @@ Get message '$msg_id' from service '$service' configuration
 
 =cut 
 
-sub Configuration($$)
+sub Configuration
 {
   my ($service, $msg_id) = @_;
 
@@ -40,7 +40,7 @@ sub Configuration($$)
   return (undef);
 }
 
-sub List($$$)
+sub List
 {
   my ($ref_serv, $loglevel, $taxonomy) = @_;
   my %log_level = Octopussy::Loglevel::Levels();
@@ -78,7 +78,7 @@ Returns Message Fields from Message '$msg_id' in Service '$service'
 
 =cut
 
-sub Fields($$)
+sub Fields
 {
   my ($service, $msg_id) = @_;
   my @fields = ();
@@ -104,7 +104,7 @@ Get table associated with message '$msg_id' in service '$service'
 
 =cut 
 
-sub Table($$)
+sub Table
 {
   my ($service, $msg_id) = @_;
 
@@ -124,7 +124,7 @@ Convert message pattern from message '$msg' into SQL with fields '@fields'
 
 =cut 
 
-sub Pattern_To_SQL($$@)
+sub Pattern_To_SQL
 {
   my ($msg, $id, @fields) = @_;
 
@@ -168,7 +168,7 @@ Escape (adding '\') characters from regexp '$regexp'
 
 =cut
 
-sub Escape_Characters($)
+sub Escape_Characters
 {
   my $regexp = shift;
 
@@ -191,7 +191,7 @@ Escape (adding '\') characters from message '$msg' without escaping <@REGEXP@>
 
 =cut
 
-sub Escape_Message($)
+sub Escape_Message
 {
   my $msg     = shift;
   my $escaped = '';
@@ -213,7 +213,7 @@ Colors pattern '$pattern'
 
 =cut
 
-sub Color($)
+sub Color
 {
   my $pattern = shift;
 
@@ -232,7 +232,7 @@ s/(<\@REGEXP\(".+?"\):\S+?\@>)/<b><font color="$color{REGEXP}">$1<\/font><\/b>/g
 
 =cut
 
-sub Color_Without_Field($)
+sub Color_Without_Field
 {
   my $pattern = shift;
 
@@ -249,7 +249,7 @@ Converts message pattern from message '$msg' into Regexp
 
 =cut 
 
-sub Pattern_To_Regexp($)
+sub Pattern_To_Regexp
 {
   my $msg = shift;
 
@@ -284,7 +284,7 @@ sub Pattern_To_Regexp($)
 
 =cut
 
-sub Short_Pattern_To_Regexp($)
+sub Short_Pattern_To_Regexp
 {
   my $msg = shift;
 
@@ -300,7 +300,7 @@ sub Short_Pattern_To_Regexp($)
 
 =cut
 
-sub Pattern_Field_Substitution($$$$$$)
+sub Pattern_Field_Substitution
 {
   my ($regexp, $f, $type, $field_regexp, $field_list, $re_types) = @_;
 
@@ -351,7 +351,7 @@ sub Pattern_Field_Substitution($$$$$$)
 
 =cut
 
-sub Pattern_Field_Unmatched_Substitution($$$$)
+sub Pattern_Field_Unmatched_Substitution
 {
   my ($regexp, $type, $field_regexp, $re_types) = @_;
 
@@ -395,7 +395,7 @@ sub Pattern_Field_Unmatched_Substitution($$$$)
 
 =cut
 
-sub Pattern_To_Regexp_Fields($$$$)
+sub Pattern_To_Regexp_Fields
 {
   my ($msg, $field_regexp, $ref_fields, $field_list) = @_;
   my (@fields_position, @fields_function) = ((), ());
@@ -447,7 +447,7 @@ sub Pattern_To_Regexp_Fields($$$$)
 
 =cut
 
-sub Fields_Values($$)
+sub Fields_Values
 {
   my ($msg, $line) = @_;
   my @fields  = ();
@@ -470,7 +470,7 @@ sub Fields_Values($$)
 
 =cut
 
-sub Regexped_Fields($)
+sub Regexped_Fields
 {
   my $query        = shift;
   my %field_regexp = ();
@@ -505,7 +505,7 @@ sub Regexped_Fields($)
 
 =cut
 
-sub Parse_List($$$$$$$)
+sub Parse_List
 {
   my ($services, $loglevel, $taxonomy, $table, $fields, $fields_regexp,
     $fields_list)
@@ -556,7 +556,7 @@ sub Parse_List($$$$$$$)
 
 =cut
 
-sub Alerts($$$$$)
+sub Alerts
 {
   my ($device, $service, $message, $dev_alerts, $contact) = @_;
   my @alerts = ();
@@ -649,7 +649,7 @@ sub Alerts($$$$$)
 
 =cut
 
-sub Wizard_Msg_Modified($$)
+sub Wizard_Msg_Modified
 {
   my ($line, $types) = @_;
 
@@ -681,7 +681,7 @@ s/^\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2} \S+ /<\@DATE_TIME_SYSLOG\@> <\@WORD\@> /mg
 
 =cut
 
-sub Wizard_Msg_Regexp($$)
+sub Wizard_Msg_Regexp
 {
   my ($re, $types) = @_;
 
@@ -699,7 +699,7 @@ sub Wizard_Msg_Regexp($$)
 
 =cut
 
-sub Wizard_Add_Message($$$)
+sub Wizard_Add_Message
 {
   my ($timestamp, $line, $types) = @_;
   my $sample = $line;
@@ -727,7 +727,7 @@ sub Wizard_Add_Message($$$)
 
 =cut
 
-sub Wizard($)
+sub Wizard
 {
   my $device   = shift;
   my @types    = Octopussy::Type::Configurations();

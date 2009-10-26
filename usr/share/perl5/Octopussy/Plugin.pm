@@ -41,7 +41,7 @@ BEGIN
 
 =cut
 
-sub Init_All($)
+sub Init_All
 {
   my $conf = shift;
 
@@ -59,7 +59,7 @@ sub Init_All($)
 
 =cut
 
-sub Init($@)
+sub Init
 {
   my ($conf, @plugins) = @_;
   my %done = ();
@@ -82,7 +82,7 @@ Returns List of Plugins
 
 =cut
 
-sub List()
+sub List
 {
   $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
 
@@ -95,7 +95,7 @@ Returns List of Plugins Functions
 
 =cut
 
-sub Functions()
+sub Functions
 {
   my @functions = ();
 
@@ -115,7 +115,7 @@ sub Functions()
 
 =cut
 
-sub Function_Source($)
+sub Function_Source
 {
   my $fct = shift;
 
@@ -144,7 +144,7 @@ Octopussy::Plugin::Function(field) -> Plugin_Function__field
 
 =cut
 
-sub SQL_Convert($)
+sub SQL_Convert
 {
   my $str = shift;
 

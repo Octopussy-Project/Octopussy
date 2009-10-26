@@ -19,7 +19,7 @@ my %ws = ();
 
 =cut
 
-sub Init($)
+sub Init
 {
   my $appli = shift;
   my $conf = AAT::XML::Read(AAT::Application::File($appli, 'webservices'));
@@ -34,7 +34,7 @@ sub Init($)
 
 =cut
 
-sub Command($$)
+sub Command
 {
   my ($appli, $cmd, $args) = @_;
 

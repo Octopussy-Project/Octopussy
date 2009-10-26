@@ -23,7 +23,7 @@ Returns Location Cities List
 
 =cut	
 
-sub Cities()
+sub Cities
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
   my @list = ();
@@ -39,7 +39,7 @@ Add City '$city' to Locations
 
 =cut
 
-sub City_Add($)
+sub City_Add
 {
   my $city = shift;
 
@@ -63,7 +63,7 @@ Removes City '$city' from Locations
 
 =cut 
 
-sub City_Remove($)
+sub City_Remove
 {
   my $city   = shift;
   my $file   = Octopussy::File($FILE_LOCATIONS);
@@ -84,7 +84,7 @@ Returns Buildings List
 
 =cut 
 
-sub Buildings($)
+sub Buildings
 {
   my $city   = shift;
   my $conf   = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
@@ -109,7 +109,7 @@ Adds Building '$building' to City '$city' Location
 
 =cut
 
-sub Building_Add($$)
+sub Building_Add
 {
   my ($city, $building) = @_;
 
@@ -145,7 +145,7 @@ Removes Building '$building' from City '$city' Location
 
 =cut
 
-sub Building_Remove($$)
+sub Building_Remove
 {
   my ($city, $building) = @_;
   my $file      = Octopussy::File($FILE_LOCATIONS);
@@ -175,7 +175,7 @@ Returns Rooms List
 
 =cut
 
-sub Rooms($$)
+sub Rooms
 {
   my ($city, $building) = @_;
   my $conf   = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
@@ -208,7 +208,7 @@ Adds Room '$room' to City '$city' Building '$building' Location
 
 =cut
 
-sub Room_Add($$$)
+sub Room_Add
 {
   my ($city, $building, $room) = @_;
 
@@ -257,7 +257,7 @@ Removes Room '$room' from City '$city' Building '$building' Location
 
 =cut 
 
-sub Room_Remove($$$)
+sub Room_Remove
 {
   my ($city, $building, $room) = @_;
   my $file      = Octopussy::File($FILE_LOCATIONS);
@@ -296,7 +296,7 @@ Returns Racks List
 
 =cut
 
-sub Racks($$$)
+sub Racks
 {
   my ($city, $building, $room) = @_;
   my $conf   = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
@@ -340,7 +340,7 @@ Adds Rack '$rack' to City '$city' Building '$building' Room '$room' Location
 
 =cut
 
-sub Rack_Add($$$$)
+sub Rack_Add
 {
   my ($city, $building, $room, $rack) = @_;
 
@@ -394,7 +394,7 @@ Removes Rack '$rack' from City '$city' Building '$building' Room '$room' Locatio
 
 =cut
 
-sub Rack_Remove($$$$)
+sub Rack_Remove
 {
   my ($city, $building, $room, $rack) = @_;
   my $file   = Octopussy::File($FILE_LOCATIONS);

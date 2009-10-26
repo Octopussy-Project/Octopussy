@@ -25,7 +25,7 @@ Syslog Message $msg from $module
 
 =cut
 
-sub Message($$@)
+sub Message
 {
   my ($module, $msg, @args) = @_;
 
@@ -56,7 +56,7 @@ Syslog many messages from $module in one shot
 
 =cut
 
-sub Messages($$)
+sub Messages
 {
   my ($module, $msgs) = @_;
 

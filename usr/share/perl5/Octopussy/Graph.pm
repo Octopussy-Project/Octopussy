@@ -40,7 +40,7 @@ Generate graph
 
 =cut 
 
-sub Generate($$)
+sub Generate
 {
   my ($g, $output) = @_;
 

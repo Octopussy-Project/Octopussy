@@ -32,7 +32,7 @@ Parameters:
 
 =cut
 
-sub New($)
+sub New
 {
   my $conf = shift;
 
@@ -56,7 +56,7 @@ $service - Name of the Table to remove
 
 =cut
 
-sub Remove($)
+sub Remove
 {
   my $table = shift;
 
@@ -70,7 +70,7 @@ Get List of Tables
 
 =cut
 
-sub List()
+sub List
 {
   $dir_tables ||= Octopussy::Directory($DIR_TABLE);
 
@@ -83,7 +83,7 @@ Get the XML filename for the Table '$table'
 
 =cut
 
-sub Filename($)
+sub Filename
 {
   my $table = shift;
 
@@ -100,7 +100,7 @@ Get the configuration for the Table '$table'
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $table = shift;
 
@@ -127,10 +127,7 @@ sub Configurations
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -142,14 +139,15 @@ Adds Field '$fieldname' of type '$fieldtype' to Table '$table'
 
 =cut
 
-sub Add_Field($$$)
+sub Add_Field
 {
   my ($table, $fieldname, $fieldtype) = @_;
 
   my $conf = AAT::XML::Read(Filename($table));
-  foreach my $f (AAT::ARRAY($conf->{field}))
+
+  if (grep { $fieldname =~ /^$_->{title}$/ } AAT::ARRAY($conf->{field}))
   {
-    return (undef) if ($fieldname =~ /^$f->{title}$/);
+    return (undef);
   }
   push(@{$conf->{field}}, {title => $fieldname, type => $fieldtype});
   AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
@@ -163,16 +161,12 @@ Removes Field '$fieldname' from Table '$table'
 
 =cut
 
-sub Remove_Field($$)
+sub Remove_Field
 {
   my ($table, $fieldname) = @_;
 
   my $conf   = AAT::XML::Read(Filename($table));
-  my @fields = ();
-  foreach my $f (AAT::ARRAY($conf->{field}))
-  {
-    push(@fields, $f) if ($f->{title} ne $fieldname);
-  }
+  my @fields = grep { $_->{title} ne $fieldname } AAT::ARRAY($conf->{field});
   $conf->{field} = \@fields;
   AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
 }
@@ -183,7 +177,7 @@ Gets fields from Table '$table'
 
 =cut
 
-sub Fields($)
+sub Fields
 {
   my $table = shift;
 
@@ -198,7 +192,7 @@ Gets the configuration for all Fields
 
 =cut
 
-sub Fields_Configurations($$)
+sub Fields_Configurations
 {
   my ($table, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
@@ -212,10 +206,7 @@ sub Fields_Configurations($$)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -227,7 +218,7 @@ Generates SQL code to create the Table '$table'
 
 =cut
 
-sub SQL($$$)
+sub SQL
 {
   my ($table, $fields, $indexes) = @_;
   my $real_table = $table;
@@ -268,7 +259,7 @@ Gets field list from Table '$table' where Field type is '$type'
 
 =cut
 
-sub Field_Type_List($$)
+sub Field_Type_List
 {
   my ($table, $type) = @_;
   my $conf        = Configuration($table);
@@ -290,7 +281,7 @@ which contains messages with Table '$table'
 
 =cut
 
-sub Devices_and_Services_With($)
+sub Devices_and_Services_With
 {
   my $table = shift;
   my (%device, %service);
@@ -318,8 +309,8 @@ sub Devices_and_Services_With($)
       $device{$dc->{name}} = 1 if (AAT::NOT_NULL($service{$s->{sid}}));
     }
   }
-  foreach my $d (sort keys %device)  { push(@devices,  $d); }
-  foreach my $s (sort keys %service) { push(@services, $s); }
+  @devices = sort keys %device;
+  @services = sort keys %service;
   foreach my $dg (Octopussy::DeviceGroup::List())
   {
     my $match = 0;
@@ -337,7 +328,7 @@ sub Devices_and_Services_With($)
 
 =cut
 
-sub Valid_Pattern($$)
+sub Valid_Pattern
 {
   my ($table, $pattern) = @_;
   my @fields    = Fields($table);
@@ -389,7 +380,7 @@ sub Updates_Installation
 
 =cut
 
-sub Update_Get_Fields($)
+sub Update_Get_Fields
 {
   my $table = shift;
   my $web   = Octopussy::WebSite();
@@ -405,7 +396,7 @@ sub Update_Get_Fields($)
 
 =cut
 
-sub Updates_Diff($)
+sub Updates_Diff
 {
   my $table      = shift;
   my $conf       = Configuration($table);

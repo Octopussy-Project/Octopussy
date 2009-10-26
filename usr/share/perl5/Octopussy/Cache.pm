@@ -35,7 +35,7 @@ Initializes Cache Directory depending on '$namespace'
 
 =cut
 
-sub Init($)
+sub Init
 {
   my $namespace = shift;
 
@@ -89,7 +89,7 @@ Sets Cache Directory
 
 =cut
 
-sub Set($$)
+sub Set
 {
   my ($namespace, $expires) = @_;
 

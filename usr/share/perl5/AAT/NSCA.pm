@@ -20,7 +20,7 @@ Returns NSCA Configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $appli = shift;
 
@@ -36,7 +36,7 @@ Sends NSCA message '$msg' with level '$level'
 
 =cut
 
-sub Send($$$$$)
+sub Send
 {
   my ($appli, $level, $msg, $nagios_host, $nagios_service) = @_;
 

@@ -21,7 +21,7 @@ Returns the CPU Information
 
 =cut 
 
-sub CPU_Info()
+sub CPU_Info
 {
   my $cnt = Sys::CPU::cpu_count();
   my $info = ($cnt > 1 ? "$cnt X " : '') . Sys::CPU::cpu_type();
@@ -35,7 +35,7 @@ Returns the CPU Usage (user/system/idle/wait in percent)
 
 =cut
 
-sub CPU_Usage()
+sub CPU_Usage
 {
   my $line = `vmstat 1 2 | tail -1`;
 
@@ -49,7 +49,7 @@ Returns System Load
 
 =cut
 
-sub Load()
+sub Load
 {
   my $line = `uptime`;
 
@@ -63,7 +63,7 @@ Returns the Total of Memory in MegaBytes
 
 =cut
 
-sub Mem_Total()
+sub Mem_Total
 {
   my $line = `free | grep Mem:`;
 
@@ -83,7 +83,7 @@ Returns the Memory usage in this format: "$used M / $total M ($percent%)"
 
 =cut 
 
-sub Mem_Usage()
+sub Mem_Usage
 {
   my $line = `free | grep Mem:`;
 
@@ -106,7 +106,7 @@ Returns the Swap usage in this format: "$used M / $total M ($percent%)"
 
 =cut 
 
-sub Swap_Usage()
+sub Swap_Usage
 {
   my $line = `free | grep Swap:`;
 
@@ -127,7 +127,7 @@ sub Swap_Usage()
 
 =cut
 
-sub Partition_Logs()
+sub Partition_Logs
 {
   my @storages = Octopussy::Storage::Configurations();
   my @result   = ();
@@ -171,7 +171,7 @@ Returns Stats Events
 
 =cut 
 
-sub Events()
+sub Events
 {
   my %device;
 

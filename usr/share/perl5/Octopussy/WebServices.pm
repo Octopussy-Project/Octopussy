@@ -41,7 +41,7 @@ my %function = ();
 
 =cut
 
-sub API_Init()
+sub API_Init
 {
   foreach my $f (AAT::ARRAY($api{function}))
   {
@@ -53,7 +53,7 @@ sub API_Init()
 
 =cut
 
-sub Request($$$)
+sub Request
 {
   my ($cmd, $arg1, $arg2) = @_;
 
@@ -73,7 +73,7 @@ sub Request($$$)
 
 =cut 
 
-sub PrintFile($)
+sub PrintFile
 {
   my $file = shift;
 
@@ -93,7 +93,7 @@ sub PrintFile($)
 
 =cut
 
-sub AlertConfiguration($)
+sub AlertConfiguration
 {
   my $alert = shift;
 
@@ -105,7 +105,7 @@ sub AlertConfiguration($)
 
 =cut
 
-sub AlertViewer($$$$)
+sub AlertViewer
 {
   my ($alert, $device, $status, $sort) = @_;
 
@@ -119,7 +119,7 @@ sub AlertViewer($$$$)
 
 =cut
 
-sub ContactConfiguration($)
+sub ContactConfiguration
 {
   my $contact = shift;
 
@@ -131,7 +131,7 @@ sub ContactConfiguration($)
 
 =cut
 
-sub DeviceConfiguration($)
+sub DeviceConfiguration
 {
   my $device = shift;
 
@@ -143,7 +143,7 @@ sub DeviceConfiguration($)
 
 =cut
 
-sub ServiceConfiguration($)
+sub ServiceConfiguration
 {
   my $service = shift;
 
@@ -155,7 +155,7 @@ sub ServiceConfiguration($)
 
 =cut
 
-sub TableConfiguration($)
+sub TableConfiguration
 {
   my $table = shift;
 

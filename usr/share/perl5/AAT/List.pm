@@ -20,7 +20,7 @@ Returns List configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $list = shift;
 
@@ -36,7 +36,7 @@ Returns List items
 
 =cut
 
-sub Items($)
+sub Items
 {
   my $list = shift;
 

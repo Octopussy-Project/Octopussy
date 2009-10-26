@@ -47,14 +47,11 @@ Get list of type configurations
 
 =cut
 
-sub Configurations()
+sub Configurations
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
-  my @list = ();
 
-  foreach my $t (AAT::ARRAY($conf->{type})) { push(@list, $t); }
-
-  return (@list);
+  return (AAT::ARRAY($conf->{type}));
 }
 
 =head2 Colors()
@@ -63,7 +60,7 @@ Get an hash of Colors for each Type
 
 =cut
 
-sub Colors()
+sub Colors
 {
   my @types = Octopussy::Type::Configurations();
   my %color = ();
@@ -88,7 +85,7 @@ Get list of types
 
 =cut 
 
-sub List()
+sub List
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
   my @list = ();
@@ -104,7 +101,7 @@ sub List()
   push(@list, 'WORD');
   push(@list, 'EMAIL');
   push(@list, 'USER_AGENT');
-  foreach my $k (keys %type) { push(@list, $k); }
+  push(@list, keys %type);
 
   return (@list);
 }
@@ -115,7 +112,7 @@ Get list of simple types (*_DATETIME -> DATETIME, *_STRING -> STRING...)
 
 =cut
 
-sub Simple_List()
+sub Simple_List
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
   my @list = ();
@@ -131,7 +128,7 @@ sub Simple_List()
   $type{'EMAIL'}       = 1;
   $type{'USER_AGENT'}  = 1;
   foreach my $t (AAT::ARRAY($conf->{type})) { $type{"$t->{simple_type}"} = 1; }
-  foreach my $k (sort keys %type) { push(@list, $k); }
+  @list = sort keys %type;
 
   return (@list);
 }
@@ -142,7 +139,7 @@ Get list of SQL types
 
 =cut
 
-sub SQL_List()
+sub SQL_List
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
   my @list = ();
@@ -162,7 +159,7 @@ Get regexp from type '$type'
 
 =cut 
 
-sub Regexp($)
+sub Regexp
 {
   my $type = shift;
 
@@ -181,7 +178,7 @@ Get regexps from all types
 
 =cut
 
-sub Regexps()
+sub Regexps
 {
   my %re_types = ();
 
@@ -206,7 +203,7 @@ Get Simple type from type '$type'
 
 =cut 
 
-sub Simple_Type($)
+sub Simple_Type
 {
   my $type = shift;
 
@@ -227,7 +224,7 @@ Get SQL type from type '$type'
 
 =cut
 
-sub SQL_Type($)
+sub SQL_Type
 {
   my $type = shift;
 
@@ -261,7 +258,7 @@ Convert '$dt' to SQL datetime
 
 =cut
 
-sub SQL_Datetime($)
+sub SQL_Datetime
 {
   my $dt = shift;
 

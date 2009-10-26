@@ -33,7 +33,7 @@ Returns the XMPP configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $appli = shift;
 
@@ -49,7 +49,7 @@ Checks the XMPP Connection
 
 =cut
 
-sub Connection_Test($)
+sub Connection_Test
 {
   my $appli  = shift;
   my $status = 0;
@@ -85,7 +85,7 @@ Sends message '$msg' to '@dests' through XMPP
 
 =cut
 
-sub Send_Message($$@)
+sub Send_Message
 {
   my ($appli, $msg, @dests) = @_;
 
@@ -106,8 +106,10 @@ sub Send_Message($$@)
     );
     foreach my $dest (@dests)
     {
-      $client->MessageSend('to' => $dest, 'body' => "$msg")
-        if (AAT::NOT_NULL($dest));
+      if (AAT::NOT_NULL($dest))
+      {
+        $client->MessageSend('to' => $dest, 'body' => "$msg");
+      }
     }
     sleep 1;
     $client->Disconnect();

@@ -18,7 +18,7 @@ Returns Files List from Directory '$dir' that match '$pattern'
 
 =cut
 
-sub Directory_Files($$)
+sub Directory_Files
 {
   my ($dir, $pattern) = @_;
 

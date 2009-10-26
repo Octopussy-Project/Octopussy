@@ -22,6 +22,7 @@ and these Perl modules (from CPAN):
 - DBI
 - JSON
 - Linux::Inotify2
+- List::MoreUtils
 - LWP
 - Mail::Sender
 - Net::FTP

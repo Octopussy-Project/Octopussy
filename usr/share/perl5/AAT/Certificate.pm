@@ -34,7 +34,7 @@ Returns the Authority configuration
 
 =cut
 
-sub Authority_Configuration($)
+sub Authority_Configuration
 {
   my $appli = shift;
   my %conf  = ();
@@ -63,7 +63,7 @@ Creates a Certificate Authority
 
 =cut
 
-sub Authority_Create($$)
+sub Authority_Create
 {
   my ($appli, $conf) = @_;
 
@@ -97,7 +97,7 @@ Creates a Client Certificate
 
 =cut
 
-sub Client_Create($$$$)
+sub Client_Create
 {
   my ($appli, $file, $password, $conf) = @_;
 

@@ -11,6 +11,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use List::MoreUtils qw(uniq);
+
 use Octopussy;
 
 Readonly my $FILE_TAXONOMY => 'taxonomy';
@@ -23,7 +25,7 @@ Get list of taxonomy entries
 
 =cut
 
-sub List(@)
+sub List
 {
   my ($dev_list, $serv_list) = @_;
   my @list = ();
@@ -37,15 +39,13 @@ sub List(@)
       ? AAT::ARRAY($serv_list)
       : Octopussy::Device::Services(AAT::ARRAY($dev_list))
     );
-    @services =
-      sort keys %{{map { $_ => 1 } @services}};    # sort unique @services
+    @services = uniq @services;
     foreach my $s (@services)
     {
       @services = Octopussy::Device::Services(AAT::ARRAY($dev_list))
         if ($s eq '-ANY-');
     }
-    @services =
-      sort keys %{{map { $_ => 1 } @services}};    # sort unique @services
+    @services = uniq @services;
     foreach my $m (Octopussy::Service::Messages(@services))
     {
       $taxo{$m->{taxonomy}} = 1;
@@ -80,7 +80,7 @@ Get list of taxonomy entries and '-ANY-'
 
 =cut
 
-sub List_And_Any(@)
+sub List_And_Any
 {
   my ($dev_list, $serv_list) = @_;
 
@@ -95,7 +95,7 @@ sub List_And_Any(@)
 
 =cut
 
-sub String_List(@)
+sub String_List
 {
   my ($devices, $services) = @_;
   my @data = Octopussy::Taxonomy::List($devices, $services);
@@ -112,7 +112,7 @@ sub String_List(@)
 
 =cut
 
-sub Colors()
+sub Colors
 {
   my $conf  = AAT::XML::Read(Octopussy::File($FILE_TAXONOMY));
   my %color = ();

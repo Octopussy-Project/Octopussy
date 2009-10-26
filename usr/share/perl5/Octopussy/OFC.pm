@@ -24,7 +24,7 @@ Readonly my $STYLE_TITLE =>
 
 =cut
 
-sub Generate($$)
+sub Generate
 {
   my ($conf, $output_file) = @_;
 
@@ -45,7 +45,7 @@ sub Generate($$)
 
 =cut
 
-sub Step($)
+sub Step
 {
   my $max  = shift;
   my $step = 1;
@@ -66,7 +66,7 @@ sub Step($)
 
 =cut
 
-sub Area_Hollow($$$)
+sub Area_Hollow
 {
   my ($rc, $data, $output_file) = @_;
 

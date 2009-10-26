@@ -24,7 +24,7 @@ Get list of Maps
 
 =cut 
 
-sub List()
+sub List
 {
   $dir_maps ||= Octopussy::Directory($DIR_MAP);
 
@@ -37,7 +37,7 @@ Get the XML filename for the Map '$map'
 
 =cut 
 
-sub Filename($)
+sub Filename
 {
   my $map = shift;
 
@@ -52,13 +52,11 @@ Get the configuration for the Map '$map'
 
 =cut 
 
-sub Configuration($)
+sub Configuration
 {
   my $map = shift;
 
-  my $conf = AAT::XML::Read(Filename($map));
-
-  return ($conf);
+  return (AAT::XML::Read(Filename($map)));
 }
 
 1;

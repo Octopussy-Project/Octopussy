@@ -39,7 +39,7 @@ Returns:
 
 =cut
 
-sub Month_Name($)
+sub Month_Name
 {
   my $month = shift;
 
@@ -59,7 +59,7 @@ Returns:
 
 =cut
 
-sub Month_Nb_Days($$)
+sub Month_Nb_Days
 {
   my ($year, $month) = @_;
 
@@ -72,7 +72,7 @@ Returns current date (now!) in an Array (YYYY, MM, DD, HH, MM, SS)
 
 =cut
 
-sub Now()
+sub Now
 {
   my ($sec, $min, $hour, $mday, $mon, $year) = localtime(time());
   $year += 1900;
@@ -95,7 +95,7 @@ Returns:
 
 =cut
 
-sub Now_String()
+sub Now_String
 {
   my ($year, $month, $mday, $hour, $min) = Now();
 
@@ -126,7 +126,7 @@ Returns number of seconds since 1970
 
 =cut
 
-sub Seconds_Since_1970($$$$$)
+sub Seconds_Since_1970
 {
   my ($year, $month, $day, $hour, $min) = @_;
 
@@ -150,7 +150,7 @@ Returns:
 
 =cut
 
-sub WeekDay($$$)
+sub WeekDay
 {
   my ($year, $month, $day) = @_;
 
@@ -169,7 +169,7 @@ Returns:
 
 =cut
 
-sub WeekDay_Name($)
+sub WeekDay_Name
 {
   my $wday = shift;
 
@@ -182,7 +182,7 @@ Get the Week of the Year
 
 =cut
 
-sub YearWeek($$$)
+sub YearWeek
 {
   my ($year, $month, $day) = @_;
 
@@ -195,7 +195,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Day
  
 =cut
 
-sub Current_Day()
+sub Current_Day
 {
   my ($year, $month, $day, $hour, $min) = Now();
   $hour =~ s/^0//;
@@ -216,7 +216,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Hour
 
 =cut
 
-sub Current_Hour()
+sub Current_Hour
 {
   my ($year, $month, $day, $hour, $min) = Now();
   $hour =~ s/^0//;
@@ -235,7 +235,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Month
 
 =cut
 
-sub Current_Month()
+sub Current_Month
 {
   my ($year, $month, $day, $hour, $min) = Now();
   $hour =~ s/^0//;
@@ -256,7 +256,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Week
 
 =cut
 
-sub Current_Week()
+sub Current_Week
 {
   my ($year, $month, $day, $hour, $min) = Now();
   my $wday = WeekDay($year, $month, $day);
@@ -281,7 +281,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Year
 
 =cut
 
-sub Current_Year()
+sub Current_Year
 {
   my ($year, $month, $day, $hour, $min) = Now();
   $hour =~ s/^0//;
@@ -302,7 +302,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Day
 
 =cut
 
-sub Last_Day()
+sub Last_Day
 {
   my $date = Date::Manip::ParseDate('yesterday');
   my ($year, $month, $day, $hour, $min) =
@@ -323,7 +323,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Hour
 
 =cut
 
-sub Last_Hour()
+sub Last_Hour
 {
   my $date = Date::Manip::DateCalc('today', '-1hour');
   my ($year, $month, $day, $hour, $min) =
@@ -345,7 +345,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Month
 
 =cut
 
-sub Last_Month()
+sub Last_Month
 {
   my $date = Date::Manip::DateCalc('today', '-1month');
   my ($year, $month, $day, $hour, $min) =
@@ -367,7 +367,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Week
 
 =cut
 
-sub Last_Week()
+sub Last_Week
 {
   my ($year, $month, $day, $hour, $min) = Now();
   my $wday = WeekDay($year, $month, $day);
@@ -393,7 +393,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Year
 
 =cut
 
-sub Last_Year()
+sub Last_Year
 {
   my ($year, $month, $day, $hour, $min) = Now();
 

@@ -75,7 +75,7 @@ Connects to the Octopussy Database
 
 =cut 
 
-sub Connect()
+sub Connect
 {
   my $error = AAT::DB::Connect('Octopussy');
 
@@ -90,7 +90,7 @@ Creates Table '$tablename' with fields '\@fields'
 
 =cut
 
-sub Table_Creation($$$)
+sub Table_Creation
 {
   my ($tablename, $fields, $indexes) = @_;
 
@@ -104,7 +104,7 @@ sub Table_Creation($$$)
 
 =cut
 
-sub SQL_As_Substitution($)
+sub SQL_As_Substitution
 {
   my $field = shift;
 
@@ -121,7 +121,7 @@ sub SQL_As_Substitution($)
 
 =cut
 
-sub SQL_Select_Function(@)
+sub SQL_Select_Function
 {
   my @fields     = @_;
   my @new_fields = ();
@@ -182,7 +182,7 @@ Returns list of Column names from an SQL query
 
 =cut
 
-sub Column_Names($)
+sub Column_Names
 {
   my $query        = shift;
   my %hash_columns = ();

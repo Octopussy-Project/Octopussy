@@ -31,7 +31,7 @@ Check Authentication from Users file and LDAP Users
 
 =cut
 
-sub Authentication($$$)
+sub Authentication
 {
   my ($appli, $login, $pwd) = @_;
 
@@ -66,7 +66,7 @@ Adds user with '$login', '$pwd', '$role' and '$lang'
 
 =cut
 
-sub Add($$$$$$)
+sub Add
 {
   my ($appli, $login, $pwd, $certificate, $role, $lang) = @_;
 
@@ -99,7 +99,7 @@ Removes User with login '$login'
 
 =cut
 
-sub Remove($$)
+sub Remove
 {
   my ($appli, $login) = @_;
 
@@ -120,7 +120,7 @@ Updates user '$login' with configuration '$update'
 
 =cut
 
-sub Update($$$)
+sub Update
 {
   my ($appli, $login, $update) = @_;
 
@@ -164,7 +164,7 @@ Returns User Restrictions for User '$login'
 
 =cut
 
-sub Restrictions($$)
+sub Restrictions
 {
   my ($appli, $login) = @_;
 
@@ -185,7 +185,7 @@ Updates restrictions '$restrictions' to user '$login'
 
 =cut
 
-sub Update_Restrictions($$$)
+sub Update_Restrictions
 {
   my ($appli, $login, $restrictions) = @_;
 
@@ -214,7 +214,7 @@ Lists all Users (from file & LDAP)
 
 =cut
 
-sub List($)
+sub List
 {
   my $appli = shift;
 
@@ -252,10 +252,7 @@ sub Configurations
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -267,7 +264,7 @@ Inits Users Roles
 
 =cut
 
-sub Roles_Init($)
+sub Roles_Init
 {
   my $appli = shift;
 
@@ -285,7 +282,7 @@ Returns Users Roles Configurations
 
 =cut
 
-sub Roles_Configurations($)
+sub Roles_Configurations
 {
   my $appli = shift;
 
@@ -301,7 +298,7 @@ Returns name of a role
 
 =cut
 
-sub Role_Name($$)
+sub Role_Name
 {
   my ($appli, $role) = @_;
 

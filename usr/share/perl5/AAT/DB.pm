@@ -23,7 +23,7 @@ Returns the Database configuration for the application '$appli'
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $appli = shift;
 
@@ -39,7 +39,7 @@ Connects to the Database for the application '$appli'
 
 =cut
 
-sub Connect($)
+sub Connect
 {
   my $appli = shift;
 
@@ -58,7 +58,7 @@ Checks the Database Connection for the application '$appli'
 
 =cut
 
-sub Connection_Test($)
+sub Connection_Test
 {
   my $appli = shift;
 
@@ -75,7 +75,7 @@ Disconnects from Database application '$appli'
 
 =cut
 
-sub Disconnect($)
+sub Disconnect
 {
   my $appli = shift;
 
@@ -89,7 +89,7 @@ Does the SQL action '$sql' in application '$appli'
 
 =cut
 
-sub Do($$)
+sub Do
 {
   my ($appli, $sql) = @_;
 
@@ -104,7 +104,7 @@ Drops the Table '$table' in application '$appli'
 
 =cut
 
-sub Table_Destruction($$)
+sub Table_Destruction
 {
   my ($appli, $table) = @_;
 
@@ -117,7 +117,7 @@ Inserts values '$field_values' in Table '$table' in application '$appli'
 
 =cut
 
-sub Insert($$$)
+sub Insert
 {
   my ($appli, $table, $field_values) = @_;
 
@@ -143,7 +143,7 @@ Prepares the SQL statement '$sql' in application '$appli'
 
 =cut
 
-sub Prepare($$)
+sub Prepare
 {
   my ($appli, $sql) = @_;
 
@@ -160,7 +160,7 @@ Executes the SQL Query '$query' in application '$appli'
 
 =cut
 
-sub Query($$)
+sub Query
 {
   my ($appli, $query) = @_;
 
@@ -185,7 +185,7 @@ into table '$table' in application '$appli'
 
 =cut
 
-sub Load_Infile($$$$)
+sub Load_Infile
 {
   my ($appli, $table, $file, $lines) = @_;
   my $conf = Configuration($appli);

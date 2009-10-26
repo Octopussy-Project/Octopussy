@@ -20,7 +20,7 @@ Returns Object configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $object = shift;
 
@@ -36,7 +36,7 @@ Returns Object data
 
 =cut
 
-sub Data($$)
+sub Data
 {
   my ($appli, $object) = @_;
   my ($conf_list, $list) = (undef, undef);

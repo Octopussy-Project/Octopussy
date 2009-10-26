@@ -32,7 +32,7 @@ Creates a new Device
 
 =cut
 
-sub New($)
+sub New
 {
   my $conf = shift;
   my $name = $conf->{name};
@@ -56,7 +56,7 @@ Modifies the configuration of a Device
 
 =cut
 
-sub Modify($)
+sub Modify
 {
   my $conf_new   = shift;
   my $status     = Parse_Status($conf_new->{name});
@@ -86,7 +86,7 @@ Sets 'reload_required' to Device '$device'
 
 =cut
 
-sub Reload_Required($)
+sub Reload_Required
 {
   my $device = shift;
 
@@ -101,7 +101,7 @@ Removes device '$device'
 
 =cut
 
-sub Remove($)
+sub Remove
 {
   my $device = shift;
 
@@ -123,7 +123,7 @@ Gets List of Devices
 
 =cut
 
-sub List()
+sub List
 {
   $dir_devices ||= Octopussy::Directory($DIR_DEVICE);
 
@@ -149,7 +149,7 @@ Gets the XML filename for the device '$device_name'
 
 =cut
 
-sub Filename($)
+sub Filename
 {
   my $device_name = shift;
 
@@ -166,13 +166,15 @@ Gets the configuration for the device '$device_name'
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $device_name = shift;
 
   my $conf = AAT::XML::Read(Filename($device_name));
-  $conf->{type} = Octopussy::Parameter('devicetype')
-    if ((defined $conf) && (!defined $conf->{type}));
+  if ((defined $conf) && (!defined $conf->{type}))
+  {
+    $conf->{type} = Octopussy::Parameter('devicetype');
+  }
 
   return ($conf);
 }
@@ -209,22 +211,19 @@ sub Configurations
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
 }
 
-=head2 Filtered_Configurations($sort)
+=head2 Filtered_Configurations($type, $model, $sort)
 
 Gets the configuration for devices filtered by DeviceType/Model 
 
 =cut
 
-sub Filtered_Configurations($$$)
+sub Filtered_Configurations
 {
   my ($type, $model, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
@@ -258,10 +257,7 @@ sub Filtered_Configurations($$$)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -273,7 +269,7 @@ Adds Service or Servicegroup '$service' to Device '$device'
 
 =cut
 
-sub Add_Service($$)
+sub Add_Service
 {
   my ($device, $service) = @_;
 
@@ -315,7 +311,7 @@ Removes a service '$service_name' from device '$device_name'
 
 =cut
 
-sub Remove_Service($$)
+sub Remove_Service
 {
   my ($device_name, $service_name) = @_;
   my $old_status = Parse_Status($device_name);
@@ -352,7 +348,7 @@ in Direction Top, Bottom, Up or Down ('$direction')
 
 =cut
 
-sub Move_Service($$$)
+sub Move_Service
 {
   my ($device, $service, $direction) = @_;
   my ($rank, $old_rank) = (undef, undef);
@@ -416,7 +412,7 @@ Gets Service list from Device list '@devices'
 
 =cut
 
-sub Services(@)
+sub Services
 {
   my @devices  = @_;
   my @services = ();
@@ -456,7 +452,7 @@ sub String_Services
 
 =cut
 
-sub Services_Configurations($$)
+sub Services_Configurations
 {
   my ($device_name, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
@@ -470,10 +466,7 @@ sub Services_Configurations($$)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -483,7 +476,7 @@ sub Services_Configurations($$)
 
 =cut
 
-sub Services_Statistics($)
+sub Services_Statistics
 {
   my $device = shift;
   my %stats;
@@ -510,14 +503,6 @@ sub Services_Statistics($)
             );
           $total += $s->{count};
         }
-=head2 
-        $stats{$s->{service}} = (
-          defined $stats{$s->{service}}
-          ? $stats{$s->{service}} + $s->{count}
-          : $s->{count}
-        );
-        $total += $s->{count};
-=cut
       }
     }
   }
@@ -535,7 +520,7 @@ Returns List of Device which have Service '$service' in its Devices List
 
 =cut
 
-sub With_Service($)
+sub With_Service
 {
   my $service        = shift;
   my @configurations = Configurations('name');
@@ -558,7 +543,7 @@ Returns Device Types List
 
 =cut
 
-sub Types()
+sub Types
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
   my @list = ();
@@ -571,7 +556,7 @@ sub Types()
 
 =cut
 
-sub Type_Configurations()
+sub Type_Configurations
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
   my %type = ();
@@ -586,7 +571,7 @@ Returns Device Models List
 
 =cut
 
-sub Models($)
+sub Models
 {
   my $type = shift;
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
@@ -619,7 +604,7 @@ Returns Parsing status of the Device '$device'
 
 =cut
 
-sub Parse_Status($)
+sub Parse_Status
 {
   my $device = shift;
 
@@ -646,7 +631,7 @@ Pauses Parsing for Device '$device'
 
 =cut
 
-sub Parse_Pause($)
+sub Parse_Pause
 {
   my $device = shift;
 
@@ -682,7 +667,7 @@ Starts Parsing for Device '$device'
 
 =cut
 
-sub Parse_Start($)
+sub Parse_Start
 {
   my $device = shift;
   my $base   = Octopussy::Directory('programs');
@@ -706,7 +691,7 @@ Stops Parsing for Device '$device'
 
 =cut
 
-sub Parse_Stop($)
+sub Parse_Stop
 {
   my $device = shift;
 
@@ -725,7 +710,7 @@ sub Parse_Stop($)
 
 =cut
 
-sub Set_Service_Statistics($$$)
+sub Set_Service_Statistics
 {
   my ($device, $service, $action) = @_;
 

@@ -24,7 +24,7 @@ Create a new Timeperiod
 
 =cut
 
-sub New($)
+sub New
 {
   my $new = shift;
 
@@ -42,17 +42,13 @@ Remove a Timeperiod
 
 =cut
 
-sub Remove($)
+sub Remove
 {
   my $timeperiod = shift;
 
-  my @tps  = ();
   my $file = Octopussy::File($FILE_TIMEPERIODS);
   my $conf = AAT::XML::Read($file);
-  foreach my $t (AAT::ARRAY($conf->{timeperiod}))
-  {
-    push(@tps, $t) if ($t->{label} ne $timeperiod);
-  }
+  my @tps = grep { $_->{label} ne $timeperiod } AAT::ARRAY($conf->{timeperiod});
   $conf->{timeperiod} = \@tps;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
@@ -65,7 +61,7 @@ Returns List of Timeperiods
 
 =cut
 
-sub List()
+sub List
 {
   my @tps = AAT::XML::File_Array_Values(Octopussy::File($FILE_TIMEPERIODS),
     'timeperiod', 'label');
@@ -77,7 +73,7 @@ sub List()
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $tp_name = shift;
 
@@ -124,10 +120,7 @@ sub Configurations
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -137,7 +130,7 @@ sub Configurations
 
 =cut
 
-sub Match($$)
+sub Match
 {
   my ($timeperiod, $datetime) = @_;
 

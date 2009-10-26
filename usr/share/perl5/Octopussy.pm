@@ -21,7 +21,6 @@ use AAT;
 use Octopussy::Alert;
 use Octopussy::Cache;
 
-#use Octopussy::Contact;
 use Octopussy::Configuration;
 use Octopussy::DB;
 use Octopussy::Data_Report;
@@ -54,7 +53,7 @@ Readonly my $APPLICATION_NAME => 'Octopussy';
 Readonly my $SF_SITE =>
   'http://sourceforge.net/project/showfiles.php?group_id=154314';
 
-$Octopussy::VERSION = qv('0.9.9.6');
+$Octopussy::VERSION = qv('0.9.9.7');
 
 =head1 FUNCTIONS
 
@@ -64,7 +63,7 @@ Returns Octopussy Support Email
 
 =cut
 
-sub Email()
+sub Email
 {
   my $info = AAT::Application::Info($APPLICATION_NAME);
 
@@ -77,7 +76,7 @@ Returns Octopussy System User
 
 =cut
 
-sub User()
+sub User
 {
   my $info = AAT::Application::Info($APPLICATION_NAME);
 
@@ -90,7 +89,7 @@ Checks that current user is Octopussy user for program $prog_name
 
 =cut
 
-sub Valid_User($)
+sub Valid_User
 {
   my $prog_name = shift;
 
@@ -111,7 +110,7 @@ Returns Octopussy main module Version
 
 =cut
 
-sub Version()
+sub Version
 {
   return ($Octopussy::VERSION);
 }
@@ -122,7 +121,7 @@ Returns Octopussy WebSite
 
 =cut
 
-sub WebSite()
+sub WebSite
 {
   my $info = AAT::Application::Info($APPLICATION_NAME);
 
@@ -172,7 +171,7 @@ Returns Octopussy Directory '$dir' Value
 
 =cut
 
-sub Directory($)
+sub Directory
 {
   my $dir = shift;
 
@@ -185,7 +184,7 @@ Returns Octopussy Directories from '@dirs' List
 
 =cut
 
-sub Directories(@)
+sub Directories
 {
   my @dirs = @_;
   my @list = ();
@@ -203,7 +202,7 @@ Syslogs error and prints it
 
 =cut
 
-sub Error($$@)
+sub Error
 {
   my ($module, $msg, @args) = @_;
 
@@ -219,7 +218,7 @@ Returns Octopussy File '$file' Value
 
 =cut
 
-sub File($)
+sub File
 {
   my $file = shift;
 
@@ -232,7 +231,7 @@ Returns Octopussy Files from '@files' List
 
 =cut
 
-sub Files(@)
+sub Files
 {
   my @files = @_;
   my @list  = ();
@@ -250,7 +249,7 @@ Returns Octopussy Parameter '$param' Default Value
 
 =cut
 
-sub Parameter($)
+sub Parameter
 {
   my $param = shift;
 
@@ -263,14 +262,14 @@ Returns Status Progress line for ProgressBar of program $bin
 
 =cut
 
-sub Status_Progress($$)
+sub Status_Progress
 {
   my ($bin, $param) = @_;
-  my $dir_pid  = Octopussy::Directory("running");
+  my $dir_pid  = Octopussy::Directory('running');
   my $file_pid = "${dir_pid}${bin}_${param}.pid";
   my $status   = "";
 
-  if (defined open(my $FILEPID, "<", $file_pid))
+  if (defined open(my $FILEPID, '<', $file_pid))
   {
     my $pid = <$FILEPID>;
     chomp($pid);
@@ -288,13 +287,13 @@ Get version of the last release on Sourceforge
 
 =cut
 
-sub Sourceforge_Version()
+sub Sourceforge_Version
 {
-  my $dir_running = Octopussy::Directory("running");
+  my $dir_running = Octopussy::Directory('running');
   my $version     = undef;
   AAT::Download($APPLICATION_NAME, $SF_SITE,
     "${dir_running}/octopussy.sf_version");
-  if (defined open(my $UPDATE, "<", "${dir_running}/octopussy.sf_version"))
+  if (defined open(my $UPDATE, '<', "${dir_running}/octopussy.sf_version"))
   {
     while (<$UPDATE>)
     {
@@ -316,7 +315,7 @@ Downloads Updates from the Web
 
 =cut
 
-sub Web_Updates($)
+sub Web_Updates
 {
   my $type = shift;
   my $file = '_' . lc($type) . '.idx';
@@ -325,7 +324,7 @@ sub Web_Updates($)
   my $dir_running = Octopussy::Directory('running');
   AAT::Download('Octopussy', "$website/Download/$type/$file",
     "$dir_running$file");
-  if (defined open(my $UPDATE, "<", "$dir_running$file"))
+  if (defined open(my $UPDATE, '<', "$dir_running$file"))
   {
     while (<$UPDATE>) { $update{$1} = $2 if ($_ =~ /^(.+):(\d+)$/); }
     close($UPDATE);
@@ -341,7 +340,7 @@ Changes Owner (user & group) for the files '@files'
 
 =cut
 
-sub Chown(@)
+sub Chown
 {
   my @files = @_;
 
@@ -362,7 +361,7 @@ Creates Directory '$dir'
 
 =cut
 
-sub Create_Directory($)
+sub Create_Directory
 {
   my $dir = shift;
 
@@ -402,7 +401,7 @@ Returns File Extension
 
 =cut
 
-sub File_Ext($$)
+sub File_Ext
 {
   my ($file, $extension) = @_;
 
@@ -417,7 +416,7 @@ Returns PID File
 
 =cut
 
-sub PID_File($)
+sub PID_File
 {
   my $name = shift;
 
@@ -452,7 +451,7 @@ Returns Dialog properties for the Dialog '$id'
 
 =cut
 
-sub Dialog($)
+sub Dialog
 {
   my $id = shift;
 
@@ -471,7 +470,7 @@ Reloads Dispatcher
 
 =cut
 
-sub Dispatcher_Reload()
+sub Dispatcher_Reload
 {
   my $dir_pid = Octopussy::Directory('running');
   opendir(DIR, $dir_pid);
@@ -494,7 +493,7 @@ Restarts Octopussy
 
 =cut
 
-sub Restart()
+sub Restart
 {
   `/etc/init.d/octopussy restart`;
 
@@ -507,7 +506,7 @@ Returns Status of Processes syslog-ng, dispatcher & scheduler
 
 =cut
 
-sub Process_Status()
+sub Process_Status
 {
   my %result = ();
 
@@ -515,11 +514,11 @@ sub Process_Status()
   my @lines = `ps -edf | grep "rsyslog" | grep -v grep`;
 
   #$result{"Syslog-ng"} = scalar(@lines);
-  $result{"Rsyslog"} = scalar(@lines);
+  $result{'Rsyslog'} = scalar(@lines);
   @lines = `ps -edf | grep "/usr/sbin/octo_dispatcher" | grep -v grep`;
-  $result{"Dispatcher"} = scalar(@lines);
+  $result{'Dispatcher'} = scalar(@lines);
   @lines = `ps -edf | grep "/usr/sbin/octo_scheduler" | grep -v grep`;
-  $result{"Scheduler"} = scalar(@lines);
+  $result{'Scheduler'} = scalar(@lines);
 
   return (%result);
 }
@@ -530,7 +529,7 @@ Returns timestamp => yyyymmddxxxx
 
 =cut
 
-sub Timestamp_Version($)
+sub Timestamp_Version
 {
   my $conf = shift;
   my ($year, $mon, $mday) = AAT::Datetime::Now();
@@ -552,7 +551,7 @@ Installs Updates
 
 =cut
 
-sub Updates_Installation(@)
+sub Updates_Installation
 {
   my @updates  = @_;
   my $web      = Octopussy::WebSite();

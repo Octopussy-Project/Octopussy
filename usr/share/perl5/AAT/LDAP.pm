@@ -25,7 +25,7 @@ Returns LDAP Configuration
 
 =cut
 
-sub Configuration($)
+sub Configuration
 {
   my $appli = shift;
 
@@ -41,7 +41,7 @@ Checks LDAP Contacts connectivity
 
 =cut
 
-sub Contacts_Connection_Test($)
+sub Contacts_Connection_Test
 {
   my $appli = shift;
 
@@ -70,7 +70,7 @@ Checks LDAP Users connectivity
 
 =cut
 
-sub Users_Connection_Test($)
+sub Users_Connection_Test
 {
   my $appli = shift;
 
@@ -100,7 +100,7 @@ Checks User/Password from LDAP
 
 =cut
 
-sub Check_Password($$$)
+sub Check_Password
 {
   my ($appli, $user, $pwd) = @_;
 
@@ -133,7 +133,7 @@ Returns Contacts List from LDAP
 
 =cut
 
-sub Contacts($)
+sub Contacts
 {
   my $appli    = shift;
   my @contacts = ();
@@ -184,7 +184,7 @@ Returns Users List from LDAP
 
 =cut
 
-sub Users($)
+sub Users
 {
   my $appli = shift;
   my @users = ();

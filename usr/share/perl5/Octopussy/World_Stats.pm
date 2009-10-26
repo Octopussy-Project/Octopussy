@@ -26,15 +26,16 @@ Get/Generates World Statistics ID
 
 sub ID
 {
+  Readonly my $RANDOM_NUMBER => 999;
   my $conf = Configuration();
-
+  
   if (AAT::NOT_NULL($conf) && AAT::NOT_NULL($conf->{id}))
   {
     return ($conf->{id});
   }
   else
   {
-    my $str = time() * rand(999);
+    my $str = time() * rand($RANDOM_NUMBER);
     $str = `echo "$str" | md5sum`;
     chomp($str);
     $str =~ s/^(\S+).+$/$1/;
@@ -48,7 +49,7 @@ Modifies World Statistics configuration
 
 =cut 
 
-sub Modify($)
+sub Modify
 {
   my $conf = shift;
 
@@ -63,7 +64,7 @@ Returns World Statistics Configuration
 
 =cut
 
-sub Configuration()
+sub Configuration
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_WORLD_STATS));
 

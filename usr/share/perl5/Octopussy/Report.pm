@@ -36,7 +36,7 @@ Create a new Report
 
 =cut
 
-sub New($)
+sub New
 {
   my $conf = shift;
 
@@ -51,7 +51,7 @@ Removes a Report '$report'
 
 =cut
 
-sub Remove($)
+sub Remove
 {
   my $report = shift;
 
@@ -66,7 +66,7 @@ Modifies the configuration for the Report '$old_report'
 
 =cut
 
-sub Modify($$)
+sub Modify
 {
   my ($old_report, $conf_new) = @_;
 
@@ -85,7 +85,7 @@ Returns list of Reports with category '$category' (if specified)
 
 =cut 
 
-sub List($$)
+sub List
 {
   my ($category, $report_restriction_list) = @_;
   my @res_list = AAT::ARRAY($report_restriction_list);
@@ -118,7 +118,7 @@ Get the XML filename for the report '$report_name'
 
 =cut 
 
-sub Filename($)
+sub Filename
 {
   my $report_name = shift;
 
@@ -135,7 +135,7 @@ Get the configuration for the report '$report'
 
 =cut 
 
-sub Configuration($)
+sub Configuration
 {
   my $report = shift;
 
@@ -150,7 +150,7 @@ Get the configuration for all reports
 
 =cut
 
-sub Configurations($$)
+sub Configurations
 {
   my ($sort, $category) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
@@ -168,10 +168,7 @@ sub Configurations($$)
   }
   foreach my $f (sort keys %field)
   {
-    foreach my $c (@configurations)
-    {
-      push(@sorted_configurations, $c) if ($c->{$sort} eq $f);
-    }
+    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
   }
 
   return (@sorted_configurations);
@@ -183,7 +180,7 @@ Returns Reports Categories
 
 =cut
 
-sub Categories(@)
+sub Categories
 {
   my @report_restriction_list = @_;
   my %category                = ();
@@ -226,7 +223,7 @@ Data Request with query '$query' from table '$table'
 
 =cut
 
-sub Table_Creation($$)
+sub Table_Creation
 {
   my ($table, $query) = @_;
   my %hash_fields = ();
@@ -263,7 +260,7 @@ sub Table_Creation($$)
       $hash_fields{$f} = 1;
     }
   }
-  foreach my $k (keys %hash_fields) { push(@fields, $k); }
+  @fields = keys %hash_fields;
   Octopussy::DB::Table_Creation($table . "_$$", \@fields, \@indexes);
 
   return (@fields);
@@ -274,7 +271,7 @@ sub Table_Creation($$)
 
 =cut
 
-sub Generate($$$$$$$$$$$$)
+sub Generate
 {
   my (
     $rc,   $begin,     $end,      $outputfile, $devices, $services,
@@ -353,7 +350,7 @@ Generates Command Line Export Options (mail/ftp/scp)
 
 =cut
 
-sub CmdLine_Export_Options($$$)
+sub CmdLine_Export_Options
 {
   my ($conf_mail, $conf_ftp, $conf_scp) = @_;
 
@@ -390,7 +387,7 @@ Generates Command Line and launch octo_reporter
 
 =cut
 
-sub CmdLine($$$$$$$$$$$$)
+sub CmdLine
 {
   my (
     $device, $service,   $loglevel,  $taxonomy, $report,   $start,
@@ -446,7 +443,7 @@ Exports generated report via Mail, FTP, SCP if defined
 
 =cut
 
-sub Export($$$$)
+sub Export
 {
   my ($file, $conf_mail, $conf_ftp, $conf_scp) = @_;
 
@@ -461,7 +458,7 @@ Generates Report's File Information
 
 =cut
 
-sub File_Info($$$$$$)
+sub File_Info
 {
   my ($file, $begin, $end, $devices, $services, $stats) = @_;
 
@@ -484,7 +481,7 @@ Prints Report's File Information in Tooltip
 
 =cut
 
-sub File_Info_Tooltip($$)
+sub File_Info_Tooltip
 {
   my ($file, $lang) = @_;
   my $dir_reports = Octopussy::Directory('data_reports');
@@ -516,7 +513,7 @@ sub File_Info_Tooltip($$)
 
 =cut
 
-sub Updates_Installation(@)
+sub Updates_Installation
 {
   my @reports = @_;
   my $web     = Octopussy::WebSite();
@@ -536,7 +533,7 @@ Returns list of Reports in progress
 
 =cut
 
-sub Running_List()
+sub Running_List
 {
   my $cache = Octopussy::Cache::Init($REPORTER_BIN);
   my $pt    = new Proc::ProcessTable;
