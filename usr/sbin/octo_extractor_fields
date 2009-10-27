@@ -1,0 +1,362 @@
+#!/usr/bin/perl -w
+
+=head1 NAME
+
+octo_extractor_fields - Octopussy Logs Extractor (by table fields) program
+
+=head1 SYNOPSIS
+
+octo_extractor --device <device> --service <service> 
+  --table <table> --loglevel <loglevel> --taxonomy <taxonomy> 
+	--begin YYYYMMDDHHMM --end YYYYMMDDHHMM 
+  --fields <field1,field2,fieldn>
+	[ --pid_param <string> ] [ --json <json_outputfile> ]
+
+=head1 DESCRIPTION
+
+octo_extractor_fields is the program used by the Octopussy Project to extract Logs (by table fields)
+
+=cut
+
+use strict;
+use warnings;
+no strict 'refs';
+use Readonly;
+
+use Getopt::Long;
+Getopt::Long::Configure('bundling');
+use JSON;
+
+use Octopussy;
+
+Readonly my $PROG_NAME    => "octo_extractor_fields";
+Readonly my $PROG_VERSION => Octopussy::Version();
+
+my $help;
+my (@opt_devices, @opt_services) = ((), ());
+my ($opt_table, $opt_loglevel, $opt_taxonomy);
+my ($opt_fields, $opt_begin, $opt_end, $pid_param, $output);
+my $file_pid = undef;
+my $cache    = undef;
+
+=head1 FUNCTIONS
+
+=head2 String_List($type, $any, $fct, @args)
+
+Returns List of elements separated by ", " from one function and args
+
+=cut
+
+sub String_List
+{
+  my ($type, $any, $fct, @args) = @_;
+  my @list = (defined $any ? ('-ANY-') : ());
+
+  my @data = &{$fct}(@args);
+  foreach my $d (@data)
+  {
+    if   (defined $d->{label}) { push(@list, $d->{label}); }
+    if   (defined $d->{value}) { push(@list, $d->{value}); }
+    else                       { push(@list, $d); }
+  }
+
+  print " $type list: " . (join(', ', sort @list)) . "\n";
+}
+
+=head2 Help()
+
+Prints Help
+
+=cut
+
+sub Help
+{
+  my $help_str = <<"EOF";
+
+$PROG_NAME (version $PROG_VERSION)
+
+ Usage: $PROG_NAME --device <device> --service <service> 
+        --table <table> [ --loglevel <loglevel> ] [ --taxonomy <taxonomy> ]
+        --begin YYYYMMDDHHMM --end YYYYMMDDHHMM"
+        --fields <field1,field2,fieldn>
+        [ --pid_param <string> ] [ --output <outputfile> ]
+
+EOF
+
+  print $help_str;
+  if (!@opt_devices)
+  {
+    String_List('Device', 'any', 'Octopussy::Device::List');
+  }
+  elsif (!@opt_services)
+  {
+    String_List('Service', 'any', 'Octopussy::Device::Services', @opt_devices);
+  }
+  elsif (!defined $opt_table)
+  {
+    String_List('Table', undef, 'Octopussy::Table::List', \@opt_devices,
+      \@opt_services);
+  }
+  elsif (!defined $opt_loglevel)
+  {
+    String_List('Loglevel', undef, 'Octopussy::Loglevel::List_And_Any',
+      \@opt_devices, \@opt_services);
+  }
+  elsif (!defined $opt_taxonomy)
+  {
+    String_List('Taxonomy', undef, 'Octopussy::Taxonomy::List_And_Any',
+      \@opt_devices, \@opt_services);
+  }
+  print "\n";
+
+  exit();
+}
+
+=head2 Progress($msg, $num, $nb_match)
+
+Sets progress status
+
+=cut
+
+sub Progress
+{
+  my ($msg, $num, $nb_match) = @_;
+
+  $cache->set("status_$$", AAT::Translation($msg) . " [$num] [$nb_match]");
+}
+
+=head2 Get_Messages_To_Parse($services, $loglevel, $taxonomy, $table, $fields)
+
+Returns list of Messages to parse
+
+=cut
+
+sub Get_Messages_To_Parse
+{
+  my ($services, $loglevel, $taxonomy, $table, $fields) = @_;
+
+  my @msg_to_parse =
+    Octopussy::Message::Parse_List($services, $loglevel, $taxonomy, $table,
+    $fields, undef, $fields);
+
+  return (@msg_to_parse);
+}
+
+=head2 Get_TimePeriod_Files($devices, $services, $begin, $end)
+
+Returns list of Files for Devices $devices, Services $services 
+and Period $begin-$end
+
+=cut
+
+sub Get_TimePeriod_Files
+{
+  my ($devices, $services, $begin, $end) = @_;
+
+  my ($y1, $m1, $d1, $hour1, $min1) = ($1, $2, $3, $4, $5)
+    if ($begin =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/);
+  my ($y2, $m2, $d2, $hour2, $min2) = ($1, $2, $3, $4, $5)
+    if ($end =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/);
+  my %start = (
+    year  => $y1,
+    month => $m1,
+    day   => $d1,
+    hour  => $hour1,
+    min   => $min1
+  );
+  my %finish = (
+    year  => $y2,
+    month => $m2,
+    day   => $d2,
+    hour  => $hour2,
+    min   => $min2
+  );
+  my ($files, $nb_files) =
+    Octopussy::Logs::Minutes_Hash($devices, $services, \%start, \%finish);
+
+  return ($files, $nb_files);
+}
+
+=head2 Print_Logs($devices, $services, $loglevel, $taxo, 
+	$begin, $end, $re_incl, $re_excl)
+
+Prints Logs
+
+=cut
+
+sub Print_Logs
+{
+  my ($devices, $services, $table, $loglevel, $taxo, $begin, $end, $fields) =
+    @_;
+  my $time  = time();
+  my @lines = ();
+
+  Progress('_MSG_EXTRACT_PROGRESS_LISTING_FILES', '1/1', 0);
+  my ($files, $total) = Get_TimePeriod_Files($devices, $services, $begin, $end);
+  my $nb_match = 0;
+  my $i        = 1;
+  my @msg_to_parse =
+    Get_Messages_To_Parse($services, $loglevel, $taxo, $table, $fields);
+  my @logs = ();
+  foreach my $min (sort keys %{$files})
+  {
+    foreach my $f (@{$files->{$min}})
+    {
+      Progress('_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match);
+      if (defined open(my $FILE, '-|', "zcat \"$f\""))
+      {
+        while (<$FILE>)
+        {
+          my $line = $_;
+          foreach my $msg (@msg_to_parse)
+          {
+            if (my @args = $line =~ $msg->{re})
+            {
+              my %data = ();
+              my $i    = 0;
+              foreach my $field (@{$fields})
+              {
+                $data{$field} = $args[$i];
+                $i++;
+              }
+              push(@logs, \%data);
+              $nb_match++;
+            }
+          }
+        }
+        close($FILE);
+        $i++;
+      }
+      else
+      {
+        print "Unable to open file '$f'\n";
+        AAT::Syslog('octo_extractor_fields', 'UNABLE_OPEN_FILE', $f);
+      }
+    }
+  }
+
+=head2
+  my $correlation_key    = 'id';
+  my @correlation_values = ('idpes', 'idcnx', 'cpcnx');
+  my %correl             = ();
+  # Init correlation table
+  foreach my $d (@logs)
+  {
+    foreach my $cv (@correlation_values)
+    {
+      if ( AAT::NOT_NULL($d->{$cv})
+        && ($d->{$cv} ne "N/A")
+        && ($d->{$cv} ne "0"))
+      {
+        $correl{$d->{$correlation_key}}{$cv} = $d->{$cv};
+      }
+    }
+  }
+  # Use correlation table to fill NULL values
+  foreach my $d (@logs)
+  {
+    foreach my $cv (@correlation_values)
+    {
+      if (AAT::NULL($d->{$cv}) || ($d->{$cv} eq 'N/A') || ($d->{$cv} eq '0'))
+      {
+        $d->{$cv} = $correl{$d->{$correlation_key}}{$cv};
+      }
+    }
+  }
+=cut
+
+  if (AAT::NOT_NULL($output))
+  {
+    if (defined open(my $OUT, '>', $output))
+    {
+      #my $json      = new JSON;
+      #my $json_text = $json->pretty->encode(\@logs);
+      my $json_text = to_json(\@logs);
+      print $OUT $json_text;
+      close($OUT) if (AAT::NOT_NULL($output));
+    }
+  }
+  else
+  {
+    foreach my $l (@logs)
+    {
+      foreach my $f (@{$fields})
+      {
+        print '| ', ((defined $l->{$f}) ? $l->{$f} : 'N/A') . ' ';
+      }
+      print "|\n";
+    }
+  }
+
+  AAT::Syslog(
+    'octo_extractor_fields', 'LOG_SEARCH',
+    join(',', @opt_devices),
+    join(',', @opt_services),
+    "${opt_begin}-${opt_end}", time() - $time
+  );
+}
+
+=head2 End()
+
+Ends Extraction
+
+=cut
+
+sub End
+{
+  AAT::Syslog($PROG_NAME, 'Logs Extraction Aborted !');
+  $cache->remove("status_$$");
+  exit();
+}
+
+#
+# MAIN
+#
+$SIG{USR2} = \&End;
+
+my $status = GetOptions(
+  'h'           => \$help,
+  'help'        => \$help,
+  'device=s'    => \@opt_devices,
+  'service=s'   => \@opt_services,
+  'table=s'     => \$opt_table,
+  'fields=s'    => \$opt_fields,
+  'loglevel=s'  => \$opt_loglevel,
+  'taxonomy=s'  => \$opt_taxonomy,
+  'begin=s'     => \$opt_begin,
+  'end=s'       => \$opt_end,
+  'pid_param=s' => \$pid_param,
+  'json=s'      => \$output
+);
+
+Help()
+  if ((!$status)
+  || ($help)
+  || (!@opt_devices)
+  || (!@opt_services)
+  || (!defined $opt_table)
+  || (!defined $opt_fields)
+  || (!defined $opt_begin)
+  || (!defined $opt_end));
+
+$cache = Octopussy::Cache::Init('octo_extractor');
+
+my $pid_name = $PROG_NAME . (defined $pid_param ? "_$pid_param" : '');
+$file_pid = Octopussy::PID_File($pid_name);
+
+my @fields = split(/,/, $opt_fields);
+
+Print_Logs(\@opt_devices, \@opt_services, $opt_table, $opt_loglevel,
+  $opt_taxonomy, $opt_begin, $opt_end, \@fields);
+
+$cache->remove("status_$$");
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=head1 SEE ALSO
+
+octo_dispatcher, octo_extractor, octo_parser, octo_uparser, octo_reporter, octo_scheduler
+
+=cut

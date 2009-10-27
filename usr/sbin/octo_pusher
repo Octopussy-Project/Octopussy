@@ -56,7 +56,7 @@ Inits Pusher
 
 =cut
 
-sub Init()
+sub Init
 {
   %dir_device = ();
   AAT::Syslog($PROG_NAME, 'LOAD_DEVICES_CONFIG');
@@ -86,7 +86,7 @@ Handles Directory ($device/$year/$month/$day)
 
 =cut
 
-sub Handle_Dir($$$$)
+sub Handle_Dir
 {
   my ($device, $day, $month, $year) = @_;
 
@@ -118,7 +118,7 @@ Converts line $line to a syslog line
 
 =cut
 
-sub Convert_To_Syslog($$)
+sub Convert_To_Syslog
 {
   my ($line, $device) = @_;
   chomp($line);

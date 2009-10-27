@@ -62,7 +62,7 @@ Prints Help
 
 =cut
 
-sub Help()
+sub Help
 {
   my $help_str = <<"EOF";
 
@@ -257,7 +257,7 @@ sub Insert_Data($$$$$$$$)
   my $i        = 1;
   my $nb_lines = 0;
   `touch "$FILE_DB.$$"`;
-  `chmod 744 "$FILE_DB.$$"`;
+  chmod 0644, "$FILE_DB.$$";
 
   foreach my $f (@{$files})
   {

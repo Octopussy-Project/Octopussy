@@ -42,7 +42,7 @@ Inits Dispatcher
 
 =cut
 
-sub Init()
+sub Init
 {
   %dir_device  = ();
   %device_type = ();
@@ -59,7 +59,7 @@ sub Init()
   Octopussy::RRDTool::Syslog_By_DeviceType_Init();
 }
 
-sub Stop()
+sub Stop
 {
   $exit_request = 1;
 }
@@ -70,7 +70,7 @@ Handles directory
 
 =cut
 
-sub Handle_Dir($$$$$$)
+sub Handle_Dir
 {
   my ($device, $year, $month, $day, $hour, $min) = @_;
 

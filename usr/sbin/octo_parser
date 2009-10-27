@@ -129,7 +129,7 @@ Inits Parser & launch UParser if needed
 
 =cut
 
-sub Init()
+sub Init
 {
   my $dconf = Octopussy::Device::Configuration($device)
     or Octopussy::Die($PROG_NAME,
@@ -229,7 +229,7 @@ Writes Known Logs '$logs' into Logfile '$file'
 
 =cut
 
-sub Write_Logfile($$)
+sub Write_Logfile
 {
   my ($logfile, $logs) = @_;
 
@@ -257,7 +257,7 @@ Writes Unknown Logs '$logs' into Logfile '$file'
 
 =cut
 
-sub Write_Unknown_Logfile($$)
+sub Write_Unknown_Logfile
 {
   my ($logfile, $logs) = @_;
   $logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
@@ -271,7 +271,7 @@ Moves Incoming file to Unknown file
 
 =cut
 
-sub Incoming_To_Unknown($)
+sub Incoming_To_Unknown
 {
   my $incoming = shift;
   my $unknown  = $incoming;
@@ -309,7 +309,7 @@ Handles Alert(s) for the Message $msg on line $line
 
 =cut
 
-sub Alert_Handler($$)
+sub Alert_Handler
 {
   my ($msg, $line) = @_;
 
@@ -387,7 +387,7 @@ Handles line $line for Service $serv & Message $msg
 
 =cut
 
-sub Line_Handler($$$$$)
+sub Line_Handler
 {
   my ($line, $serv, $msg, $known_msgs, $match) = @_;
 
@@ -424,7 +424,7 @@ Handles Service $serv
 
 =cut
 
-sub Service_Handler($$$$$$$)
+sub Service_Handler
 {
   my ($serv, $y, $m, $d, $hour, $min, $file_new) = @_;
 
@@ -441,7 +441,7 @@ Puts MsgID Statistics in cache
 
 =cut
 
-sub Cache_MsgID_Stats()
+sub Cache_MsgID_Stats
 {
   my @parser_msgid_stats = ();
   foreach my $k1 (keys %msgid_stats)
@@ -468,7 +468,7 @@ Puts Taxonomy Statistics in cache
 
 =cut
 
-sub Cache_Taxonomy_Stats($)
+sub Cache_Taxonomy_Stats
 {
   my $service = shift;
 
@@ -490,7 +490,7 @@ Handles file $file
 
 =cut
 
-sub File_Handler($)
+sub File_Handler
 {
   my $file = shift;
 
