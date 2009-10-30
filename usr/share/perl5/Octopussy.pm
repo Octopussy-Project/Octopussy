@@ -1,4 +1,4 @@
-# $Source$
+# $HeadURL$
 # $Revision$
 # $Date$
 # $Author$
