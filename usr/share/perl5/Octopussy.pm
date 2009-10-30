@@ -1,7 +1,7 @@
-# $Source:
-# $Revision:
-# $Date:
-# $Author:
+# $Source$
+# $Revision$
+# $Date$
+# $Author$
 
 =head1 NAME
 
@@ -54,8 +54,7 @@ use Octopussy::Type;
 use Octopussy::World_Stats;
 
 Readonly my $APPLICATION_NAME => 'Octopussy';
-Readonly my $SF_SITE =>
-  'http://sourceforge.net/project/showfiles.php?group_id=154314';
+Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
 
 $Octopussy::VERSION = qv('0.9.9.7');
 
