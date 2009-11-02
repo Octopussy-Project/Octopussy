@@ -474,6 +474,29 @@ sub Syslog_By_Device_Taxonomy_Yearly_Graph
     "taxonomy_${device}_yearly", 'Yearly Stats', $YEARLY);
 }
 
+=head2 Watermark($stats)
+
+Watermarks Octopussy Report
+
+=cut
+
+sub Watermark
+{
+  my $stats = shift;
+  
+  my $watermark =
+      AAT::Translation::Get($lang, '_MSG_REPORT_GENERATED_BY') . ' v'
+    . Octopussy::Version() . ' - ';
+  $watermark .= sprintf(
+    AAT::Translation::Get($lang, '_MSG_REPORT_DATA_SOURCE'),
+    $stats->{nb_files}, $stats->{nb_lines},
+    int($stats->{seconds} / $MINUTE),
+    $stats->{seconds} % $MINUTE
+  ); 
+
+  return ($watermark);
+}
+
 =head2 Report_Graph($rconf, $begin, $end, $output, $data, $stats, $lang)
 
 Graphs RRD Report
@@ -556,15 +579,7 @@ sub Report_Graph
     Graph_Parameters($output, $start, $finish, $title, $width, $height,
     $rconf->{graph_ylabel});
 
-  my $watermark =
-      AAT::Translation::Get($lang, '_MSG_REPORT_GENERATED_BY') . ' v'
-    . Octopussy::Version() . ' - ';
-  $watermark .= sprintf(
-    AAT::Translation::Get($lang, '_MSG_REPORT_DATA_SOURCE'),
-    $stats->{nb_files}, $stats->{nb_lines},
-    int($stats->{seconds} / $MINUTE),
-    $stats->{seconds} % $MINUTE
-  );
+  my $watermark = Watermark($stats);
   $cmd .= "--watermark \"$watermark\" ";
   $i = 1;
   foreach my $k (sort keys %ds)

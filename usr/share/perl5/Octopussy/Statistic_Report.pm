@@ -174,16 +174,19 @@ sub Messages
         }
         if ($pattern_field =~ /^$conf->{key}$/)
         {
-          if ($type =~ /^REGEXP$/)
+          if ($type eq 'REGEXP')
           {
             $regexp =~ s/<\@REGEXP\\\(\\\"(.+?)\\\"\\\):\S+?\@>/\($1\)/i;
           }
-          elsif ($type =~ /^NUMBER$/)
+          elsif ($type eq 'NUMBER')
           {
             $regexp =~ s/<\@NUMBER:\S+?\@>/\([-+]?\\d+\)/i;
           }
-          elsif ($type =~ /^WORD$/) { $regexp =~ s/<\@WORD:\S+?\@>/\(\\S+\)/i; }
-          elsif ($type =~ /^STRING$/)
+          elsif ($type eq 'WORD') 
+          { 
+            $regexp =~ s/<\@WORD:\S+?\@>/\(\\S+\)/i; 
+          }
+          elsif ($type eq 'STRING')
           {
             $regexp =~ s/<\@STRING:\S+?\@>/\(.+\)/i;
           }
@@ -192,16 +195,22 @@ sub Messages
         }
         if (!$matched)
         {
-          if ($type =~ /^REGEXP$/)
+          if ($type eq 'REGEXP')
           {
             $regexp =~ s/<\@REGEXP\\\(\\\"(.+?)\\\"\\\):\S+?\@>/$1/i;
           }
-          elsif ($type =~ /^NUMBER$/)
+          elsif ($type eq 'NUMBER')
           {
             $regexp =~ s/<\@NUMBER:\S+?\@>/[-+]?\\d+/i;
           }
-          elsif ($type =~ /^WORD$/)   { $regexp =~ s/<\@WORD:\S+?\@>/\\S+/i; }
-          elsif ($type =~ /^STRING$/) { $regexp =~ s/<\@STRING:\S+?\@>/.+/i; }
+          elsif ($type eq 'WORD')   
+          { 
+            $regexp =~ s/<\@WORD:\S+?\@>/\\S+/i; 
+          }
+          elsif ($type eq 'STRING') 
+          { 
+            $regexp =~ s/<\@STRING:\S+?\@>/.+/i; 
+          }
           else { $regexp =~ s/<\@(\S+?):\S+?\@>/$re_types{$1}/i; }
         }
       }

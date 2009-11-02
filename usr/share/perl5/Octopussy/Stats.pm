@@ -59,10 +59,12 @@ Returns System Load
 
 sub Load
 {
-  my $line = `uptime`;
-
+  open(my $PROC, '<', '/proc/loadavg');
+  my $line = <$PROC>;
+  close($PROC);
+  
   return ($1)
-    if ($line =~ /load average: (\d+\.\d+),/);
+    if ($line =~ /^(\S+)/);
 }
 
 =head2 Mem_Total()
@@ -73,16 +75,14 @@ Returns the Total of Memory in MegaBytes
 
 sub Mem_Total
 {
-  my $line = `free | grep Mem:`;
-
-  if ($line =~ /Mem:\s+(\d+)\s+\d+\s+\d+/)
+  open(my $PROC, '<', '/proc/meminfo');
+  my @lines = <$PROC>;
+  close($PROC);
+  while (@lines)
   {
-    my $total = int($1 / 1024);
-    return ('No Memory Detected') if ($total == 0);
-    return ($total);
+    return (int($1 / 1024))
+      if ($_ =~ /^MemTotal:\s+(\d+)/);
   }
-
-  return ();
 }
 
 =head2 Mem_Usage()
@@ -93,19 +93,20 @@ Returns the Memory usage in this format: "$used M / $total M ($percent%)"
 
 sub Mem_Usage
 {
-  my $line = `free | grep Mem:`;
-
-  if ($line =~ /Mem:\s+(\d+)\s+(\d+)\s+\d+/)
+  open(my $PROC, '<', '/proc/meminfo');
+  my @lines = <$PROC>;
+  close($PROC);
+  my ($free, $total) = (0, 0);
+  while (@lines)
   {
-    my $total = int($1 / 1024);
-    my $used  = int($2 / 1024);
-    return ('No Memory Detected') if ($total == 0);
-    my $percent = int($used / $total * 100);
-
-    return ("$used M / $total M ($percent%)");
+    $total = int($1 / 1024)
+      if ($_ =~ /^MemTotal:\s+(\d+)/);
+    $free = int($1 / 1024)
+      if ($_ =~ /^MemFree:\s+(\d+)/);
   }
+  my $percent = int(($total - $free) / $total * 100);
 
-  return ();
+  return (($total - $free) " used M / $total M ($percent%)");
 }
 
 =head2 Swap_Usage()

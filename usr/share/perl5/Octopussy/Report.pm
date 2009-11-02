@@ -312,31 +312,31 @@ sub Generate
   {
     my $file_json = Octopussy::File_Ext($outputfile, 'json');
 
-    if ($type =~ /^ofc_area_hollow$/)
+    if ($type eq 'ofc_area_hollow')
     {
       Octopussy::OFC::Area_Hollow($rc, $data, $file_json);
     }
-    elsif ($type =~ /^ofc_bar_3d$/)
+    elsif ($type eq 'ofc_bar_3d')
     {
       Octopussy::OFC::Bar_3D($rc, $data, $file_json);
     }
-    elsif ($type =~ /^ofc_bar_cylinder$/)
+    elsif ($type eq 'ofc_bar_cylinder')
     {
       Octopussy::OFC::Bar_Cylinder($rc, $data, $file_json);
     }
-    elsif ($type =~ /^ofc_bar_glass$/)
+    elsif ($type eq 'ofc_bar_glass')
     {
       Octopussy::OFC::Bar_Glass($rc, $data, $file_json);
     }
-    elsif ($type =~ /^ofc_bar_sketch$/)
+    elsif ($type eq 'ofc_bar_sketch')
     {
       Octopussy::OFC::Bar_Sketch($rc, $data, $file_json);
     }
-    elsif ($rc->{graph_type} =~ /^ofc_hbar$/)
+    elsif ($rc->{graph_type} eq 'ofc_hbar')
     {
       Octopussy::OFC::Horizontal_Bar($rc, $data, $file_json);
     }
-    elsif ($rc->{graph_type} =~ /^ofc_pie$/)
+    elsif ($rc->{graph_type} eq 'ofc_pie')
     {
       Octopussy::OFC::Pie($rc, $data, $file_json);
     }
@@ -474,7 +474,7 @@ sub File_Info
     nb_files        => $stats->{nb_files},
     nb_lines        => $stats->{nb_lines},
     seconds         => $stats->{seconds},
-    nb_result_lines => $stats->{nb_result_lines}
+    nb_result_lines => $stats->{nb_result_lines},
   );
   AAT::XML::Write($file, \%data, 'octopussy_report_info');
 }
