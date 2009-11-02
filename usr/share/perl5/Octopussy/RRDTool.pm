@@ -65,7 +65,7 @@ sub DS_Count
   my $cmd   = "$RRD_INFO \"$file\" | grep ds | grep \".type = \"";
   my @lines = `$cmd`;
 
-  return (scalar(@lines));
+  return (scalar @lines);
 }
 
 =head2 Graph_Legend($cdef)
@@ -96,7 +96,7 @@ sub Graph_Line
   my ($cdef, $type, $color, $title) = @_;
 
   $title =~ s/://;
-  $title .= ' ' x (24 - length($title));
+  $title .= ' ' x (24 - length $title);
 
   return ("$type:$cdef$color:\"$title\"");
 }
@@ -130,7 +130,7 @@ sub Syslog_By_DeviceType_Init
   my $ds_count = undef;
   $ds_count = DS_Count($RRD_SYSLOG_DTYPE) if (-f "$RRD_SYSLOG_DTYPE");
 
-  if ((!-f "$RRD_SYSLOG_DTYPE") || ($ds_count != (scalar(@dtypes))))
+  if ((!-f "$RRD_SYSLOG_DTYPE") || ($ds_count != (scalar @dtypes)))
   {
     Octopussy::Create_Directory($DIR_RRD);
     my $cmd = "$RRD_CREATE \"$RRD_SYSLOG_DTYPE\" --step $MINUTE ";
@@ -140,7 +140,7 @@ sub Syslog_By_DeviceType_Init
       $cmd .= "DS:$dt:GAUGE:120:0:U ";
     }
     $cmd .= $RRA;
-    system($cmd);
+    system $cmd;
   }
 }
 
@@ -153,9 +153,9 @@ Updates RRD Data for 'Syslog by Device Type' stats
 sub Syslog_By_DeviceType_Update
 {
   my $values = shift;
-  my $value_str = join(':', AAT::ARRAY($values));
+  my $value_str = join ':', AAT::ARRAY($values);
 
-  system("$RRD_UPDATE \"$RRD_SYSLOG_DTYPE\" N:$value_str")
+  system "$RRD_UPDATE \"$RRD_SYSLOG_DTYPE\" N:$value_str"
     if (-f "$RRD_SYSLOG_DTYPE");
 }
 
@@ -189,7 +189,7 @@ sub Syslog_By_DeviceType_Graph
         . Graph_Legend($dt) . ' ';
       $first = 0;
     }
-    system("$cmd 2>&1 1>/dev/null");
+    system "$cmd 2>&1 1>/dev/null";
   }
 }
 
@@ -270,7 +270,7 @@ sub Syslog_By_Device_Service_Taxonomy_Init
       $cmd .= "DS:$t:GAUGE:120:0:U ";
     }
     $cmd .= $RRA;
-    system($cmd);
+    system $cmd;
   }
 }
 
@@ -285,9 +285,9 @@ sub Syslog_By_Device_Service_Taxonomy_Update
 {
   my ($seconds, $device, $service, $values) = @_;
   my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
-  my $value_str = join(':', AAT::ARRAY($values));
+  my $value_str = join ':', AAT::ARRAY($values);
 
-  system("$RRD_UPDATE \"$file\" $seconds:$value_str 2>&1 1>/dev/null");
+  system "$RRD_UPDATE \"$file\" $seconds:$value_str 2>&1 1>/dev/null";
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Graph($device, $service, $file, 
@@ -319,7 +319,7 @@ sub Syslog_By_Device_Service_Taxonomy_Graph
       . Graph_Legend($t) . ' ';
     $first = 0;
   }
-  system("$cmd 2>&1 1>/dev/null");
+  system "$cmd 2>&1 1>/dev/null";
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Hourly_Graph($device, $service)
@@ -401,7 +401,7 @@ sub Syslog_By_Device_Taxonomy_Graph
     $first = 0;
   }
   $cmd .= " $def $cdef $legend";
-  system("$cmd 2>&1 1>/dev/null") if (($cdef ne '') && ($def ne ''));
+  system "$cmd 2>&1 1>/dev/null" if (($cdef ne '') && ($def ne ''));
 }
 
 =head2 Syslog_By_Device_Taxonomy_Hourly_Graph($device)
@@ -474,7 +474,7 @@ sub Syslog_By_Device_Taxonomy_Yearly_Graph
     "taxonomy_${device}_yearly", 'Yearly Stats', $YEARLY);
 }
 
-=head2 Watermark($stats)
+=head2 Watermark($stats, $lang)
 
 Watermarks Octopussy Report
 
@@ -482,8 +482,8 @@ Watermarks Octopussy Report
 
 sub Watermark
 {
-  my $stats = shift;
-  
+  my ($stats, $lang) = @_;
+
   my $watermark =
       AAT::Translation::Get($lang, '_MSG_REPORT_GENERATED_BY') . ' v'
     . Octopussy::Version() . ' - ';
@@ -492,7 +492,7 @@ sub Watermark
     $stats->{nb_files}, $stats->{nb_lines},
     int($stats->{seconds} / $MINUTE),
     $stats->{seconds} % $MINUTE
-  ); 
+  );
 
   return ($watermark);
 }
@@ -525,8 +525,8 @@ sub Report_Graph
   $file_rrd =~ s/\.png/\.rrd/;
   my $start  = `date +%s -d '$1 $2:$3'` if ($begin =~ /(\d{8})(\d\d)(\d\d)/);
   my $finish = `date +%s -d '$1 $2:$3'` if ($end   =~ /(\d{8})(\d\d)(\d\d)/);
-  chomp($start);
-  chomp($finish);
+  chomp $start;
+  chomp $finish;
   my $diff          = ($finish - $start) / $MINUTE;
   my $rrd_step_mins = $MINUTE * $rconf->{rrd_step};
 
@@ -543,7 +543,7 @@ sub Report_Graph
       if (AAT::NOT_NULL($key))
       {
         $ds{$key} = 1;
-        my $block = int(($l->{$tl} - $start) / $rrd_step_mins);
+        my $block = int (($l->{$tl} - $start) / $rrd_step_mins);
         $block = AAT::Padding($block, 10);
         $dataline{$block}{$key} = (
           defined $dataline{$block}{$key}
@@ -562,7 +562,7 @@ sub Report_Graph
     $ds{$k} = $i;
     $i++;
   }
-  system("$cmd RRA:AVERAGE:0.5:1:$diff");
+  system "$cmd RRA:AVERAGE:0.5:1:$diff";
 
   foreach my $ts (sort keys %dataline)
   {
@@ -579,7 +579,7 @@ sub Report_Graph
     Graph_Parameters($output, $start, $finish, $title, $width, $height,
     $rconf->{graph_ylabel});
 
-  my $watermark = Watermark($stats);
+  my $watermark = Watermark($stats, $lang);
   $cmd .= "--watermark \"$watermark\" ";
   $i = 1;
   foreach my $k (sort keys %ds)
@@ -596,7 +596,7 @@ sub Report_Graph
       . Graph_Legend("cdef$i") . ' ';
     $i++;
   }
-  system($cmd);
+  system $cmd;
 }
 
 1;

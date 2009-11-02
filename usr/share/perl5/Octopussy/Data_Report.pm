@@ -31,9 +31,9 @@ sub Type_List
 {
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
 
-  opendir(DIR, $dir_reports);
-  my @dirs = grep { !/^\./ } readdir(DIR);
-  closedir(DIR);
+  opendir DIR, $dir_reports;
+  my @dirs = grep { !/^\./ } readdir DIR;
+  closedir DIR;
 
   return (@dirs);
 }
@@ -50,14 +50,14 @@ sub List
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
   my $dir = $dir_reports . $report;
-  opendir(DIR, $dir);
-  my @dirs = grep { !/^\./ } readdir(DIR);
-  closedir(DIR);
+  opendir DIR, $dir;
+  my @dirs = grep { !/^\./ } readdir DIR;
+  closedir DIR;
 
   my %reports = ();
   foreach my $d (@dirs)
   {
-    push(@{$reports{$1}}, $2)
+    push @{$reports{$1}}, $2
       if ($d =~ /^(.+)\.(\w+)$/);
   }
 
@@ -75,7 +75,7 @@ sub Remove
   my ($report, $filename) = @_;
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
-  system("rm -f \"$dir_reports$report/$filename\".*");
+  system "rm -f \"$dir_reports$report/$filename\".*";
 }
 
 =head2 Remove_All($report)
@@ -103,7 +103,7 @@ sub Remove_Month
   my ($report, $year, $month) = @_;
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
-  system("rm -f \"$dir_reports$report/$report-$year$month\"*");
+  system "rm -f \"$dir_reports$report/$report-$year$month\"*";
 }
 
 1;

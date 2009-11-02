@@ -113,10 +113,10 @@ sub Remove
   Octopussy::DeviceGroup::Remove_Device($device);
   Octopussy::Logs::Remove_Directories($device);
   my $dir_web = Octopussy::Directory('web');
-  system("rm -f $dir_web/rrd/taxonomy_${device}_*ly.png");
+  system "rm -f $dir_web/rrd/taxonomy_${device}_*ly.png";
   my $dir_rrd = Octopussy::Directory('data_rrd');
   File::Path::rmtree("$dir_rrd/$device/");
-  unlink(Filename($device));
+  unlink Filename($device);
   $filename{$device} = undef;
   Octopussy::Dispatcher_Reload();
 }
@@ -144,7 +144,7 @@ sub String_List
   my @list    = List();
   my $str_any = (AAT::NOT_NULL($any) ? '-ANY-, ' : '');
 
-  return ("Device list: $str_any" . (join(', ', sort @list)));
+  return ("Device list: $str_any" . (join ', ', sort @list));
 }
 
 =head2 Filename($device_name)
@@ -211,11 +211,11 @@ sub Configurations
       ($conf->{status} eq 'Started' ? 'parse_pause' : 'parse_start');
     $conf->{logtype} ||= 'syslog';
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -256,12 +256,12 @@ sub Filtered_Configurations
         ($conf->{status} eq 'Started' ? 'parse_pause' : 'parse_start');
       $conf->{logtype} ||= 'syslog';
       $field{$conf->{$sort}} = 1;
-      push(@configurations, $conf);
+      push @configurations, $conf;
     }
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -299,12 +299,12 @@ sub Add_Service
       }
       if (!$exists)
       {
-        push(@{$conf->{service}}, {sid => $s->{sid}, rank => $rank});
+        push @{$conf->{service}}, {sid => $s->{sid}, rank => $rank};
         $rank++;
       }
     }
   }
-  else { push(@{$conf->{service}}, {sid => $service, rank => $rank}); }
+  else { push @{$conf->{service}}, {sid => $service, rank => $rank}; }
   AAT::XML::Write(Filename($device), $conf, $XML_ROOT);
   Parse_Start($device) if ($old_status == $STARTED);
 }
@@ -326,7 +326,7 @@ sub Remove_Service
   my $conf     = AAT::XML::Read(Filename($device_name));
   foreach my $s (AAT::ARRAY($conf->{service}))
   {
-    if ($s->{sid} ne $service_name) { push(@services, $s); }
+    if ($s->{sid} ne $service_name) { push @services, $s; }
     else                            { $rank = $s->{rank}; }
   }
   foreach my $s (@services)
@@ -339,7 +339,7 @@ sub Remove_Service
   }
   $service_name =~ s/ /_/g;
   my $dir_rrd = Octopussy::Directory('data_rrd');
-  system("rm -f $dir_rrd/$device_name/taxonomy_$service_name.rrd");
+  system "rm -f $dir_rrd/$device_name/taxonomy_$service_name.rrd";
   $conf->{service} = \@services;
   AAT::XML::Write(Filename($device_name), $conf, $XML_ROOT);
   Parse_Start($device_name) if ($old_status == $STARTED);
@@ -366,7 +366,7 @@ sub Move_Service
     if ($s->{sid} eq $service)
     {
       return () if (($s->{rank} eq '01')   && ($direction eq 'up'));
-      return () if (($s->{rank} eq "$max") && ($direction eq 'down'));
+      return () if (($s->{rank} eq $max) && ($direction eq 'down'));
       $old_rank = $s->{rank};
       $s->{rank} = (
         $direction eq 'top' ? 1
@@ -378,7 +378,7 @@ sub Move_Service
       $s->{rank} = AAT::Padding($s->{rank}, 2);
       $rank = $s->{rank};
     }
-    push(@services, $s);
+    push @services, $s;
   }
   $conf->{service} = \@services;
   my @services2 = ();
@@ -403,7 +403,7 @@ sub Move_Service
       }
     }
     $s->{rank} = AAT::Padding($s->{rank}, 2);
-    push(@services2, $s);
+    push @services2, $s;
   }
   $conf->{service}         = \@services2;
   $conf->{reload_required} = 1;
@@ -431,7 +431,7 @@ sub Services
     {
       foreach my $s (AAT::ARRAY($conf->{service}))
       {
-        push(@services, $s->{sid}) if ($s->{rank} eq $f);
+        push @services, $s->{sid} if ($s->{rank} eq $f);
       }
     }
   }
@@ -449,7 +449,7 @@ sub String_Services
   my @services = Services(@devices);
   @services = sort keys %{{map { $_ => 1 } @services}};  # sort unique @services
 
-  return ('Service list: -ANY-, ' . join(', ', @services));
+  return ('Service list: -ANY-, ' . join ', ', @services);
 }
 
 =head2 Services_Configurations($device_name, $sort)
@@ -466,11 +466,11 @@ sub Services_Configurations
   foreach my $s (AAT::ARRAY($conf->{service}))
   {
     $field{$s->{$sort}} = 1;
-    push(@configurations, $s);
+    push @configurations, $s;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -498,13 +498,13 @@ sub Services_Statistics
       my $data = $cache_parser->get($k);
       foreach my $s (@{$data})
       {
-        if ($s->{id} == 'TOTAL')
+        if ($s->{id} eq 'TOTAL')
         {
           $stats{$s->{service}} = (
             defined $stats{$s->{service}}
             ? $stats{$s->{service}} + $s->{count}
             : $s->{count}
-            );
+          );
           $total += $s->{count};
         }
       }
@@ -512,7 +512,8 @@ sub Services_Statistics
   }
   foreach my $k (keys %stats)
   {
-    $stats{$k} = ($total == 0 ? 0 : sprintf('%.1f', $stats{$k} * 100 / $total)) . '%';
+    $stats{$k} =
+      ($total == 0 ? 0 : sprintf('%.1f', $stats{$k} * 100 / $total)) . '%';
   }
 
   return (%stats);
@@ -534,7 +535,7 @@ sub With_Service
   {
     foreach my $s (AAT::ARRAY($c->{service}))
     {
-      push(@devices, $c->{name}) if ($s->{sid} eq $service);
+      push @devices, $c->{name} if ($s->{sid} eq $service);
     }
   }
 
@@ -551,7 +552,7 @@ sub Types
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
   my @list = ();
-  foreach my $t (AAT::ARRAY($conf->{device_type})) { push(@list, $t->{dt_id}); }
+  foreach my $t (AAT::ARRAY($conf->{device_type})) { push @list, $t->{dt_id}; }
 
   return (@list);
 }
@@ -587,14 +588,12 @@ sub Models
     {
       foreach my $m (AAT::ARRAY($t->{device_model}))
       {
-        push(
-          @list,
+        push @list,
           {
             name      => $m->{dm_id},
             icon      => $m->{icon},
             footprint => $m->{footprint}
-          }
-        );
+          };
       }
     }
   }
@@ -644,7 +643,7 @@ sub Parse_Pause
   if (-f $file_pid)
   {
     my $pid = `cat "$file_pid"`;
-    chomp($pid);
+    chomp $pid;
     kill USR1 => $pid;
   }
 
@@ -652,7 +651,7 @@ sub Parse_Pause
   if (-f $file_pid)
   {
     my $pid = `cat "$file_pid"`;
-    chomp($pid);
+    chomp $pid;
     kill USR1 => $pid;
   }
 
@@ -724,7 +723,7 @@ sub Set_Service_Statistics
   foreach my $s (AAT::ARRAY($conf->{service}))
   {
     $s->{statistics} = $status if ($s->{sid} eq $service);
-    push(@services, $s);
+    push @services, $s;
   }
   $conf->{service}         = \@services;
   $conf->{reload_required} = 1;

@@ -34,7 +34,7 @@ sub New
 
   my $file = Octopussy::File($FILE_TIMEPERIODS);
   my $conf = AAT::XML::Read($file);
-  push(@{$conf->{timeperiod}}, $new);
+  push @{$conf->{timeperiod}}, $new;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
   return ($file);
@@ -120,11 +120,11 @@ sub Configurations
   {
     my $conf = Configuration($tp);
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);

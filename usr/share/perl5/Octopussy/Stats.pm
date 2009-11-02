@@ -42,13 +42,13 @@ Returns the CPU Usage (user/system/idle/wait in percent)
 sub CPU_Usage
 {
   my $line = `vmstat 1 2 | tail -1`;
-  	
+
   if ($line =~ /.+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)$/)
   {
-  	return ({user => $1, system => $2, idle => $3, wait => $4})
+    return ({user => $1, system => $2, idle => $3, wait => $4});
   }
 
-  return (undef);   
+  return (undef);
 }
 
 =head2 Load()
@@ -59,12 +59,16 @@ Returns System Load
 
 sub Load
 {
-  open(my $PROC, '<', '/proc/loadavg');
-  my $line = <$PROC>;
-  close($PROC);
-  
-  return ($1)
-    if ($line =~ /^(\S+)/);
+  if (defined open my $PROC, '<', '/proc/loadavg')
+  {
+    my $line = <$PROC>;
+    close $PROC;
+
+    return ($1)
+      if ($line =~ /^(\S+)/);
+  }
+
+  return (undef);
 }
 
 =head2 Mem_Total()
@@ -75,14 +79,18 @@ Returns the Total of Memory in MegaBytes
 
 sub Mem_Total
 {
-  open(my $PROC, '<', '/proc/meminfo');
-  my @lines = <$PROC>;
-  close($PROC);
-  while (@lines)
+  if (defined open my $PROC, '<', '/proc/meminfo')
   {
-    return (int($1 / 1024))
-      if ($_ =~ /^MemTotal:\s+(\d+)/);
+    my @lines = <$PROC>;
+    close $PROC;
+    while (@lines)
+    {
+      return (int ($1 / 1024))
+        if ($_ =~ /^MemTotal:\s+(\d+)/);
+    }
   }
+  
+  return (undef);
 }
 
 =head2 Mem_Usage()
@@ -93,20 +101,24 @@ Returns the Memory usage in this format: "$used M / $total M ($percent%)"
 
 sub Mem_Usage
 {
-  open(my $PROC, '<', '/proc/meminfo');
-  my @lines = <$PROC>;
-  close($PROC);
-  my ($free, $total) = (0, 0);
-  while (@lines)
+  if (defined open my $PROC, '<', '/proc/meminfo')
   {
-    $total = int($1 / 1024)
-      if ($_ =~ /^MemTotal:\s+(\d+)/);
-    $free = int($1 / 1024)
-      if ($_ =~ /^MemFree:\s+(\d+)/);
-  }
-  my $percent = int(($total - $free) / $total * 100);
+    my @lines = <$PROC>;
+    close $PROC;
+    my ($free, $total) = (0, 0);
+    while (@lines)
+    {
+      $total = int ($1 / 1024)
+        if ($_ =~ /^MemTotal:\s+(\d+)/);
+      $free = int ($1 / 1024)
+        if ($_ =~ /^MemFree:\s+(\d+)/);
+    }
+    my $percent = int (($total - $free) / $total * 100);
 
-  return (($total - $free) " used M / $total M ($percent%)");
+    return (($total - $free) . " used M / $total M ($percent%)");
+  }
+
+  return (undef);
 }
 
 =head2 Swap_Usage()
@@ -117,19 +129,24 @@ Returns the Swap usage in this format: "$used M / $total M ($percent%)"
 
 sub Swap_Usage
 {
-  my $line = `free | grep Swap:`;
-
-  if ($line =~ /Swap:\s+(\d+)\s+(\d+)\s+\d+/)
+  if (defined open my $PROC, '<', '/proc/meminfo')
   {
-    my $total = int($1 / 1024);
-    my $used  = int($2 / 1024);
-    return ('No Swap Detected') if ($total == 0);
-    my $percent = int($used / $total * 100);
+    my @lines = <$PROC>;
+    close $PROC;
+    my ($free, $total) = (0, 0);
+    while (@lines)
+    {
+      $total = int ($1 / 1024)
+        if ($_ =~ /^SwapTotal:\s+(\d+)/);
+      $free = int ($1 / 1024)
+        if ($_ =~ /^SwapFree:\s+(\d+)/);
+    }
+    my $percent = int (($total - $free) / $total * 100);
 
-    return ("$used M / $total M ($percent%)");
+    return (($total - $free) . " used M / $total M ($percent%)");
   }
 
-  return ();
+  return (undef);
 }
 
 =head2 Partition_Logs
@@ -155,7 +172,7 @@ sub Partition_Logs
     {
       if (defined $dir{$d})
       {
-        push(@result, {directory => $s->{s_id}, usage => $dir{$d}});
+        push @result, {directory => $s->{s_id}, usage => $dir{$d}};
         $match = 1;
       }
       else
@@ -164,7 +181,7 @@ sub Partition_Logs
         $d = ($d eq '' ? '/' : $d);
         if ($d =~ /^\/$/)
         {
-          push(@result, {directory => $s->{s_id}, usage => $dir{$d}});
+          push @result, {directory => $s->{s_id}, usage => $dir{$d}};
           $match = 1;
         }
       }

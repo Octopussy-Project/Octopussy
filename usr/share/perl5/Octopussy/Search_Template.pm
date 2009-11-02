@@ -61,7 +61,7 @@ sub Remove
 {
   my ($user, $search_tpl) = @_;
 
-  unlink(Filename($user, $search_tpl));
+  unlink Filename($user, $search_tpl);
   $filename{$user}{$search_tpl} = undef;
 }
 
@@ -89,7 +89,7 @@ sub List
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
-    push(@tpls, $conf->{name}) if (defined $conf->{name});
+    push @tpls, $conf->{name} if (defined $conf->{name});
   }
 
   return (sort @tpls);
@@ -126,13 +126,13 @@ sub List_Any_User
       my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
       my $key = (defined $conf->{$sort} ? $conf->{$sort} : $d);
       $field{$key} = 1;
-      push(@list, {name => $conf->{name}, user => $d})
+      push @list, {name => $conf->{name}, user => $d}
         if (defined $conf->{name});
     }
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_list, grep { $_->{$sort} eq $f } @list);
+    push @sorted_list, grep { $_->{$sort} eq $f } @list;
   }
 
   return (@sorted_list);
@@ -228,12 +228,12 @@ sub Configurations
     if (defined $conf->{name})
     {
       $field{$conf->{$sort}} = 1;
-      push(@configurations, $conf);
+      push @configurations, $conf;
     }
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);

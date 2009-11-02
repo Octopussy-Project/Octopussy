@@ -35,11 +35,12 @@ sub Add
 
   my $file = Octopussy::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  if (grep { $_->{dg_id} eq $conf_dg->{dg_id} } AAT::ARRAY($conf->{devicegroup}))
+  if (grep { $_->{dg_id} eq $conf_dg->{dg_id} }
+    AAT::ARRAY($conf->{devicegroup}))
   {
     return ('_MSG_DEVICEGROUP_ALREADY_EXISTS');
   }
-  push(@{$conf->{devicegroup}}, $conf_dg);
+  push @{$conf->{devicegroup}}, $conf_dg;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
   return (undef);
@@ -57,7 +58,8 @@ sub Remove
 
   my $file = Octopussy::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  my @dgs = grep { $_->{dg_id} ne $devicegroup } AAT::ARRAY($conf->{devicegroup});
+  my @dgs =
+    grep { $_->{dg_id} ne $devicegroup } AAT::ARRAY($conf->{devicegroup});
   $conf->{devicegroup} = \@dgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
@@ -124,15 +126,15 @@ sub Configurations
         {
           $match = 0 if ($d->{$c->{field}} !~ $c->{pattern});
         }
-        push(@{$conf->{device}}, $d->{name}) if ($match);
+        push @{$conf->{device}}, $d->{name} if ($match);
       }
     }
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -166,7 +168,7 @@ sub Devices
           {
             $match = 0 if ($d->{$c->{field}} !~ $c->{pattern});
           }
-          push(@devices, $d->{name}) if ($match);
+          push @devices, $d->{name} if ($match);
         }
       }
       else { @devices = AAT::ARRAY($dg->{device}); }
@@ -193,10 +195,10 @@ sub Remove_Device
     my @devices = ();
     foreach my $d (AAT::ARRAY($dg->{device}))
     {
-      push(@devices, $d) if ($d ne $device);
+      push @devices, $d if ($d ne $device);
     }
     $dg->{device} = \@devices;
-    push(@dgs, $dg);
+    push @dgs, $dg;
   }
   $conf->{devicegroup} = \@dgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);

@@ -72,7 +72,7 @@ sub Remove
 {
   my $contact = shift;
 
-  unlink(Filename($contact));
+  unlink Filename($contact);
   $filename{$contact} = undef;
 }
 
@@ -94,11 +94,11 @@ sub List
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir_contacts/$f");
-    push(@contacts, $conf->{cid}) if (defined $conf->{cid});
+    push @contacts, $conf->{cid} if (defined $conf->{cid});
   }
   foreach my $c (AAT::LDAP::Contacts('Octopussy'))
   {
-    push(@contacts, $c->{cid}) if (defined $c->{cid});
+    push @contacts, $c->{cid} if (defined $c->{cid});
   }
 
   return (@contacts);
@@ -207,17 +207,17 @@ sub Configurations
     if (defined $conf->{cid})
     {
       $field{$conf->{$sort}} = 1;
-      push(@configurations, $conf);
+      push @configurations, $conf;
     }
   }
   foreach my $c (AAT::LDAP::Contacts('Octopussy'))
   {
     $field{$c->{$sort}} = 1;
-    push(@configurations, $c);
+    push @configurations, $c;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);

@@ -166,13 +166,13 @@ sub SQL_Select_Function
         );
         my $cfield =
           (defined $func ? "$func($s->{value}$second)" : "$s->{value}$second");
-        push(@new_fields, $cfield);
+        push @new_fields, $cfield;
         $match = 1;
         last;
       }
     }
     my $complete_field = (defined $func ? "$func($func_field)" : $field);
-    push(@new_fields, $complete_field) if (!$match);
+    push @new_fields, $complete_field if (!$match);
     $query .= "$field, ";
   }
   $query =~ s/, $/ /;
@@ -194,7 +194,7 @@ sub Column_Names
 
   if ($query =~ /SELECT (.+) FROM/i)
   {
-    my @data = split(/, /, $1);
+    my @data = split /, /, $1;
     foreach my $f (@data)
     {
       $f =~ s/\S+ AS (.+)$/$1/i;
@@ -210,7 +210,7 @@ sub Column_Names
       $hash_columns{$f} = 1;
     }
   }
-  foreach my $k (keys %hash_columns) { push(@columns, $k); }
+  foreach my $k (keys %hash_columns) { push @columns, $k; }
 
   return (@columns);
 }

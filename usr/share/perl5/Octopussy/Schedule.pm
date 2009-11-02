@@ -39,7 +39,7 @@ sub Add
   }
   if (!$exists)
   {
-    push(@{$conf->{schedule}}, $add);
+    push @{$conf->{schedule}}, $add;
     AAT::XML::Write($file, $conf, $XML_ROOT);
   }
   else { return ('_MSG_SCHEDULE_ALREADY_EXISTS'); }
@@ -57,9 +57,10 @@ sub Remove
 {
   my $schedule_title = shift;
 
-  my $file      = Octopussy::File($FILE_SCHEDULES);
-  my $conf      = AAT::XML::Read($file);
-  my @schedules = grep { $_->{title} ne $schedule_title } AAT::ARRAY($conf->{schedule});
+  my $file = Octopussy::File($FILE_SCHEDULES);
+  my $conf = AAT::XML::Read($file);
+  my @schedules =
+    grep { $_->{title} ne $schedule_title } AAT::ARRAY($conf->{schedule});
   $conf->{schedule} = \@schedules;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 }
@@ -118,11 +119,11 @@ sub Configurations
     $conf->{start_datetime}  = "$conf->{start_day}/$conf->{start_hour}";
     $conf->{finish_datetime} = "$conf->{finish_day}/$conf->{finish_hour}";
     $field{$conf->{$sort}}   = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);

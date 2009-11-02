@@ -32,7 +32,7 @@ sub ID
 {
   Readonly my $RANDOM_NUMBER => 999;
   my $conf = Configuration();
-  
+
   if (AAT::NOT_NULL($conf) && AAT::NOT_NULL($conf->{id}))
   {
     return ($conf->{id});

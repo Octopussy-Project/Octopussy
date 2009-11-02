@@ -33,10 +33,10 @@ sub Generate
   my ($conf, $output_file) = @_;
 
   my $json = to_json($conf, {utf8 => 1, pretty => 1});
-  if (defined open(my $FILE, '>', $output_file))
+  if (defined open my $FILE, '>', $output_file)
   {
     print $FILE $json;
-    close($FILE);
+    close $FILE;
     Octopussy::Chown($output_file);
 
     return ($output_file);
@@ -83,8 +83,8 @@ sub Area_Hollow
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
-    push(@labels, $line->{$x});
-    push(@values, {value => $value, label => $label, text => $label});
+    push @labels, $line->{$x};
+    push @values, {value => $value, label => $label, text => $label};
     $max = (($value > $max) ? $value : $max);
   }
   my %conf = (
@@ -115,9 +115,8 @@ sub Bar_3D
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
-    push(@labels, $line->{$x});
-    push(@values, $value)
-      ;    #{ value => $value, label => $label, text => $label });
+    push @labels, $line->{$x};
+    push @values, $value;
     $max = (($value > $max) ? $value : $max);
   }
   my %conf = (
@@ -148,9 +147,8 @@ sub Bar_Cylinder
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
-    push(@labels, $line->{$x});
-    push(@values, $value)
-      ;    #{ value => $value, label => $label, text => $label });
+    push @labels, $line->{$x};
+    push @values, $value;
     $max = (($value > $max) ? $value : $max);
   }
   my %conf = (
@@ -186,9 +184,8 @@ sub Bar_Glass
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
-    push(@labels, $line->{$x});
-    push(@values, $value)
-      ;    #{ value => $value, label => $label, text => $label });
+    push @labels, $line->{$x};
+    push @values, $value;
     $max = (($value > $max) ? $value : $max);
   }
   my %conf = (
@@ -219,9 +216,8 @@ sub Bar_Sketch
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
-    push(@labels, $line->{$x});
-    push(@values, $value)
-      ;    #{ value => $value, label => $label, text => $label });
+    push @labels, $line->{$x};
+    push @values, $value;
     $max = (($value > $max) ? $value : $max);
   }
   my %conf = (
@@ -251,8 +247,8 @@ sub Horizontal_Bar
   foreach my $line (AAT::ARRAY($data))
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
-    push(@labels, $line->{$x});
-    push(@values, {right => $value});
+    push @labels, $line->{$x};
+    push @values, {right => $value};
     $max = (($value > $max) ? $value : $max);
   }
   my %conf = (
@@ -281,7 +277,7 @@ sub Pie
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
-    push(@values, {value => $value, label => $label, text => $label});
+    push @values, {value => $value, label => $label, text => $label};
   }
   my %conf = (
     title    => {text  => $rc->{name}, style  => $STYLE_TITLE},

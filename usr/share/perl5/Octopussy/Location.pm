@@ -14,6 +14,9 @@ package Octopussy::Location;
 use strict;
 use warnings;
 use Readonly;
+
+use List::MoreUtils qw(apply none);
+
 use Octopussy;
 
 Readonly my $FILE_LOCATIONS => 'locations';
@@ -30,9 +33,7 @@ Returns Location Cities List
 sub Cities
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
-  my @list = ();
-
-  foreach my $c (AAT::ARRAY($conf->{city})) { push(@list, $c->{c_name}); }
+  my @list = apply { $_ = $_->{c_name}; } AAT::ARRAY($conf->{city});
 
   return (sort @list);
 }
@@ -50,14 +51,14 @@ sub City_Add
   return () if ((!defined $city) || ($city eq ''));
   my $file   = Octopussy::File($FILE_LOCATIONS);
   my $conf   = AAT::XML::Read($file);
-  my $exists = 0;
-  foreach my $c (Cities()) { $exists = 1 if ($c eq $city); }
-  if (!$exists)
+
+  if (none { $_ eq $city } Cities())
   {
-    push(@{$conf->{city}}, {c_name => $city});
+    push @{$conf->{city}}, {c_name => $city};
     AAT::XML::Write($file, $conf, $XML_ROOT);
     return ($city);
   }
+
   return (undef);
 }
 
@@ -72,12 +73,8 @@ sub City_Remove
   my $city   = shift;
   my $file   = Octopussy::File($FILE_LOCATIONS);
   my $conf   = AAT::XML::Read($file);
-  my @cities = ();
+  my @cities = grep { $_->{c_name} ne $city } AAT::ARRAY($conf->{city});
 
-  foreach my $c (AAT::ARRAY($conf->{city}))
-  {
-    push(@cities, $c) if ($c->{c_name} ne $city);
-  }
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 }
@@ -100,7 +97,7 @@ sub Buildings
   {
     if ($c->{c_name} eq $city)
     {
-      foreach my $b (AAT::ARRAY($c->{building})) { push(@list, $b->{b_name}); }
+      @list = apply { $_ = $_->{b_name}; } AAT::ARRAY($c->{building});
     }
   }
 
@@ -127,15 +124,13 @@ sub Building_Add
   {
     if ($c->{c_name} eq $city)
     {
-      my $exists = 0;
-      foreach my $b (Buildings($city)) { $exists = 1 if ($b eq $building); }
-      if (!$exists)
+      if (none { $_ eq $building } Buildings($city))
       {
-        push(@{$c->{building}}, {b_name => $building});
+        push @{$c->{building}}, {b_name => $building};
         $result = $building;
       }
     }
-    push(@cities, $c);
+    push @cities, $c;
   }
 
   $conf->{city} = \@cities;
@@ -161,13 +156,10 @@ sub Building_Remove
   {
     if ($c->{c_name} eq $city)
     {
-      foreach my $b (AAT::ARRAY($c->{building}))
-      {
-        push(@buildings, $b) if ($b->{b_name} ne $building);
-      }
+      @buildings = grep { $_->{b_name} ne $building } AAT::ARRAY($c->{building});
       $c->{building} = \@buildings;
     }
-    push(@cities, $c);
+    push @cities, $c;
   }
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
@@ -197,7 +189,7 @@ sub Rooms
       {
         if ($b->{b_name} eq $building)
         {
-          foreach my $r (AAT::ARRAY($b->{room})) { push(@list, $r->{r_name}); }
+          @list = apply { $_ = $_->{r_name}; } AAT::ARRAY($b->{room});
         }
       }
     }
@@ -232,22 +224,17 @@ sub Room_Add
       {
         if ($b->{b_name} eq $building)
         {
-          my $exists = 0;
-          foreach my $r (Rooms($city, $building))
+          if (none { $_ eq $room } Rooms($city, $building))
           {
-            $exists = 1 if ($r eq $room);
-          }
-          if (!$exists)
-          {
-            push(@{$b->{room}}, {r_name => $room});
+            push @{$b->{room}}, {r_name => $room};
             $result = $room;
           }
         }
-        push(@buildings, $b);
+        push @buildings, $b;
       }
       $c->{building} = \@buildings;
     }
-    push(@cities, $c);
+    push @cities, $c;
   }
 
   $conf->{city} = \@cities;
@@ -278,17 +265,14 @@ sub Room_Remove
       {
         if ($b->{b_name} eq $building)
         {
-          foreach my $r (AAT::ARRAY($b->{room}))
-          {
-            push(@rooms, $r) if ($r->{r_name} ne $room);
-          }
+          @rooms = grep { $_->{r_name} ne $room } AAT::ARRAY($b->{room});
           $b->{room} = \@rooms;
         }
-        push(@buildings, $b);
+        push @buildings, $b;
       }
       $c->{building} = \@buildings;
     }
-    push(@cities, $c);
+    push @cities, $c;
   }
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
@@ -324,10 +308,7 @@ sub Racks
           {
             if ($r->{r_name} eq $room)
             {
-              foreach my $rack (AAT::ARRAY($r->{rack}))
-              {
-                push(@list, $rack->{r_name});
-              }
+              push @list, apply { $_ = $_->{r_name}; }, AAT::ARRAY($r->{rack});
             }
           }
         }
@@ -366,26 +347,21 @@ sub Rack_Add
           {
             if ($r->{r_name} eq $room)
             {
-              my $exists = 0;
-              foreach my $ra (Racks($city, $building, $room))
+              if (none { $_ eq $rack } Racks($city, $building, $room))
               {
-                $exists = 1 if ($ra eq $rack);
-              }
-              if (!$exists)
-              {
-                push(@{$r->{rack}}, {r_name => $rack});
+                push @{$r->{rack}}, {r_name => $rack};
                 $result = $rack;
               }
             }
-            push(@rooms, $r);
+            push @rooms, $r;
           }
           $b->{room} = \@rooms;
         }
-        push(@buildings, $b);
+        push @buildings, $b;
       }
       $c->{building} = \@buildings;
     }
-    push(@cities, $c);
+    push @cities, $c;
   }
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
@@ -419,22 +395,19 @@ sub Rack_Remove
           {
             if ($r->{r_name} eq $room)
             {
-              my @racks = ();
-              foreach my $rck (AAT::ARRAY($r->{rack}))
-              {
-                push(@racks, $rck) if ($rck->{r_name} ne $rack);
-              }
+              my @racks = grep { $_->{r_name} ne $rack } AAT::ARRAY($r->{rack});
+
               $r->{rack} = \@racks;
             }
-            push(@rooms, $r);
+            push @rooms, $r;
           }
           $b->{room} = \@rooms;
         }
-        push(@buildings, $b);
+        push @buildings, $b;
       }
       $c->{building} = \@buildings;
     }
-    push(@cities, $c);
+    push @cities, $c;
   }
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);

@@ -60,7 +60,7 @@ sub Remove
 {
   my $service = shift;
 
-  unlink(Filename($service));
+  unlink Filename($service);
   $filename{$service} = undef;
 }
 
@@ -142,11 +142,11 @@ sub Configurations
       (AAT::NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
     $conf->{nb_messages} = ($nb < 10 ? "00$nb" : ($nb < 100 ? "0$nb" : $nb));
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -190,7 +190,7 @@ sub Msg_ID_unique
 
   return (0) if ($msgid eq "$service:");
   my $qr_msgid = qr/^$msgid$/;
-  my $conf = Configuration($service);
+  my $conf     = Configuration($service);
   if (grep { $_->{msg_id} =~ $qr_msgid } AAT::ARRAY($conf->{message}))
   {
     return (0);
@@ -217,16 +217,16 @@ sub Add_Message
 
   if (!Msg_ID_unique($service, $mconf->{msg_id}))
   {
-    push(@errors, '_MSG_MSGID_ALREADY_EXIST');
+    push @errors, '_MSG_MSGID_ALREADY_EXIST';
   }
-  push(@errors,
-    Octopussy::Table::Valid_Pattern($mconf->{table}, $mconf->{pattern}));
+  push @errors,
+    Octopussy::Table::Valid_Pattern($mconf->{table}, $mconf->{pattern});
 
-  if (!scalar(@errors))
+  if (!scalar @errors)
   {
     $mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
     $mconf->{pattern} =~ s/\s+$//g;
-    push(@{$conf->{message}}, $mconf);
+    push @{$conf->{message}}, $mconf;
     AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
     Parse_Restart($service);
   }
@@ -250,7 +250,7 @@ sub Remove_Message
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   foreach my $m (AAT::ARRAY($conf->{message}))
   {
-    if ($m->{msg_id} ne $msgid) { push(@messages, $m); }
+    if ($m->{msg_id} ne $msgid) { push @messages, $m; }
     else                        { $rank = $m->{rank}; }
   }
   foreach my $m (@messages)
@@ -283,24 +283,22 @@ sub Modify_Message
   if ( ($conf_modified->{msg_id} ne $msgid)
     && (!Msg_ID_unique($service, $conf_modified->{msg_id})))
   {
-    push(@errors, '_MSG_MSGID_ALREADY_EXIST');
+    push @errors, '_MSG_MSGID_ALREADY_EXIST';
   }
-  push(
-    @errors,
+  push @errors,
     Octopussy::Table::Valid_Pattern(
       $conf_modified->{table},
       $conf_modified->{pattern}
-    )
-  );
-  return (@errors) if (scalar(@errors));
+    );
+  return (@errors) if (scalar @errors);
 
   my $conf = Configuration($service);
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   my @messages = ();
   foreach my $m (AAT::ARRAY($conf->{message}))
   {
-    if   ($m->{msg_id} ne $msgid) { push(@messages, $m); }
-    else                          { push(@messages, $conf_modified); }
+    if   ($m->{msg_id} ne $msgid) { push @messages, $m; }
+    else                          { push @messages, $conf_modified; }
   }
   $conf->{message} = \@messages;
   AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
@@ -330,7 +328,7 @@ sub Move_Message
     if ($m->{msg_id} eq $msgid)
     {
       return () if (($m->{rank} eq '001')  && ($direction eq 'up'));
-      return () if (($m->{rank} eq "$max") && ($direction eq 'down'));
+      return () if (($m->{rank} eq $max) && ($direction eq 'down'));
       $old_rank = $m->{rank};
       $m->{rank} = (
         $direction eq 'top' ? 1
@@ -342,7 +340,7 @@ sub Move_Message
       $m->{rank} = AAT::Padding($m->{rank}, 3);
       $rank = $m->{rank};
     }
-    push(@messages, $m);
+    push @messages, $m;
   }
   $conf->{message} = \@messages;
   my @messages2 = ();
@@ -367,7 +365,7 @@ sub Move_Message
       }
     }
     $m->{rank} = AAT::Padding($m->{rank}, 3);
-    push(@messages2, $m);
+    push @messages2, $m;
   }
   $conf->{message} = \@messages2;
   AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
@@ -394,14 +392,14 @@ sub Messages
   foreach my $s (@services)
   {
     my $conf = Configuration($s);
-    push(@conf_messages, AAT::ARRAY($conf->{message}));
+    push @conf_messages, AAT::ARRAY($conf->{message});
     foreach my $m (AAT::ARRAY($conf->{message})) { $field{$m->{rank}} = 1; }
   }
   foreach my $f (sort keys %field)
   {
     foreach my $m (@conf_messages)
     {
-      push(@messages, $m)
+      push @messages, $m
         if ($m->{rank} eq $f);
     }
   }
@@ -421,7 +419,7 @@ sub Messages_Configurations
   my (@configurations, @sorted_configurations) = ((), ());
   my %field;
   my @services = ();
-  push(@services, (defined $service ? $service : List()));
+  push @services, (defined $service ? $service : List());
 
   foreach my $s (@services)
   {
@@ -429,12 +427,12 @@ sub Messages_Configurations
     foreach my $conf (@messages)
     {
       $field{$conf->{$sort}} = 1;
-      push(@configurations, $conf);
+      push @configurations, $conf;
     }
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -501,7 +499,7 @@ sub Sort_Messages_By_Statistics
       my $mid = $m->{msg_id};
 
       #      print "$mid: " . $percent{$mid} . "\n";
-      push(@messages, $m)
+      push @messages, $m
         if (defined $percent{$mid} && ($percent{$mid} == $p));
     }
   }
@@ -526,7 +524,7 @@ sub Tables
   my %tmp;
 
   foreach my $m (@messages) { $tmp{$m->{table}} = 1; }
-  foreach my $k (sort keys %tmp) { push(@tables, $k); }
+  foreach my $k (sort keys %tmp) { push @tables, $k; }
 
   return (@tables);
 }
@@ -584,17 +582,17 @@ sub Updates
   my $file        = "$dir_running/_services.idx";
 
   AAT::Download('Octopussy', "$web/Download/Services/_services.idx", $file);
-  if (defined open(my $UPDATE, '<', $file))
+  if (defined open my $UPDATE, '<', $file)
   {
     while (<$UPDATE>) { $update{$1} = $2 if ($_ =~ /^(.+):(\d+)$/); }
-    close($UPDATE);
+    close $UPDATE;
   }
   else
   {
-    my ($pack, $file_pack, $line, $sub) = caller(0);
+    my ($pack, $file_pack, $line, $sub) = caller 0;
     AAT::Syslog('Octopussy::Service', 'UNABLE_OPEN_FILE_IN', $file, $sub);
   }
-  unlink($file);
+  unlink $file;
 
   return (\%update);
 }
@@ -665,24 +663,24 @@ sub Updates_Diff
           if ($m2->{$sp} ne $m->{$sp})
           {
             $m->{$sp} = "$m->{$sp} --> $m2->{$sp}";
-            push(@messages, $m);
+            push @messages, $m;
             last;
           }
         }
       }
-      else { push(@list, $m2); }
+      else { push @list, $m2; }
     }
     if (!$match)
     {
       $m->{status} = 'deleted';
-      push(@messages, $m);
+      push @messages, $m;
     }
     @new_messages = @list;
   }
   foreach my $m (@new_messages)
   {
     $m->{status} = 'added';
-    push(@messages, $m);
+    push @messages, $m;
   }
 
   return (@messages);

@@ -99,7 +99,7 @@ sub Remove
 {
   my $alert = shift;
 
-  unlink(Filename($alert));
+  unlink Filename($alert);
   $filename{$alert} = undef;
 }
 
@@ -188,11 +188,11 @@ sub Configurations
   {
     my $conf = Configuration($a);
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -238,7 +238,7 @@ sub For_Device
         }
       }
     }
-    push(@alerts, $ac)
+    push @alerts, $ac
       if (($ac->{status} =~ /^Enabled$/i)
       && (($ac->{type} =~ /Static/i) || ($match)));
   }
@@ -329,10 +329,8 @@ sub Add_Message
   my ($alert_name, $msg_id, $repeat, $interval) = @_;
 
   my $conf = AAT::XML::Read(Filename($alert_name));
-  push(
-    @{$conf->{message}},
-    {msg_id => $msg_id, repeat => $repeat, interval => $interval}
-  );
+  push @{$conf->{message}},
+    {msg_id => $msg_id, repeat => $repeat, interval => $interval};
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
 }
 
@@ -350,7 +348,7 @@ sub Remove_Message
 {
   my ($alert_name, $msg_id) = @_;
 
-  my $conf     = AAT::XML::Read(Filename($alert_name));
+  my $conf = AAT::XML::Read(Filename($alert_name));
   my @messages = grep { $_->{msg_id} ne $msg_id } AAT::ARRAY($conf->{message});
   $conf->{message} = \@messages;
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
@@ -378,14 +376,12 @@ sub Add_Message_Field
   {
     if ($m->{msg_id} eq $msg_id)
     {
-      push(
-        @{$m->{field}},
+      push @{$m->{field}},
         {
           fname      => $field,
           comparator => $comparator,
           fvalue     => $value
-        }
-      );
+        };
       last;
     }
   }
@@ -417,7 +413,7 @@ sub Remove_Message_Field
       my @fields = ();
       foreach my $f (AAT::ARRAY($m->{field}))
       {
-        push(@fields, $f)
+        push @fields, $f
           if (($f->{fname} ne $field)
           || ($f->{comparator} ne $comparator)
           || ($f->{fvalue} ne $value));
@@ -446,7 +442,7 @@ sub Add_Action
   my ($alert_name, $type, $contact, $data) = @_;
 
   my $conf = AAT::XML::Read(Filename($alert_name));
-  push(@{$conf->{action}}, {type => $type, contact => $contact, data => $data});
+  push @{$conf->{action}}, {type => $type, contact => $contact, data => $data};
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
 }
 

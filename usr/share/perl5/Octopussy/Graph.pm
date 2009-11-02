@@ -81,15 +81,15 @@ sub Generate
 
   #$graph->set_legend($g->{data});
   my $gd = $graph->plot($g->{data}) or die $graph->error;
-  if (defined open(my $IMG, '>', $output))
+  if (defined open my $IMG, '>', $output)
   {
     binmode $IMG;
     print $IMG $gd->png;
-    close($IMG);
+    close $IMG;
   }
   else
   {
-    my ($pack, $file_pack, $line, $sub) = caller(0);
+    my ($pack, $file_pack, $line, $sub) = caller 0;
     AAT::Syslog('Octopussy::Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub);
   }
 

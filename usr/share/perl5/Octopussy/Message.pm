@@ -68,7 +68,7 @@ sub List
       if ( ($log_level{$m->{loglevel}} >= $level)
         && ($m->{taxonomy} =~ $qr_taxo))
       {
-        push(@list, $m->{msg_id});
+        push @list, $m->{msg_id};
       }
     }
   }
@@ -96,7 +96,7 @@ sub Fields
   while (($pattern =~ s/<\@(REGEXP\(".+?"\)):(\S+?)\@>//)
     || ($pattern =~ s/<\@(.+?):(\S+?)\@>//))
   {
-    push(@fields, {name => $2, type => $1}) if ($2 !~ /NULL/i);
+    push @fields, {name => $2, type => $1} if ($2 !~ /NULL/i);
   }
 
   return (@fields);
@@ -280,7 +280,7 @@ sub Pattern_To_Regexp
   }
   $regexp .= $tmp;
   $regexp =~ s/\s+$//g;
-  
+
   return ($regexp);
 }
 
@@ -460,7 +460,7 @@ sub Fields_Values
 
   while ($pattern =~ /<\@.+?:(\S+?)\@>/)
   {
-    push(@fields, $1) if ($1 !~ /NULL/i);
+    push @fields, $1 if ($1 !~ /NULL/i);
     $pattern =~ s/.*?(<\@([^\@]+?)\@>)//;
   }
   my @data = $line =~ /$msg->{re}/;
@@ -546,8 +546,8 @@ sub Parse_List
           Pattern_To_Regexp_Fields($m, $fields_regexp, $fields, $fields_list);
         if (defined $regexp)
         {
-          push(@msg_to_parse,
-            {re => qr/$regexp/, positions => $fields_position});
+          push @msg_to_parse,
+            {re => qr/$regexp/, positions => $fields_position};
         }
       }
     }
@@ -571,9 +571,10 @@ sub Alerts
     my @ims   = ();
     foreach my $c (AAT::ARRAY($ac->{contact}))
     {
-      push(@mails, $contact->{$c}->{email})
+      push @mails, $contact->{$c}->{email} 
         if (defined $contact->{$c}->{email});
-      push(@ims, $contact->{$c}->{im}) if (defined $contact->{$c}->{im});
+      push @ims, $contact->{$c}->{im} 
+        if (defined $contact->{$c}->{im});
     }
     if ($ac->{type} =~ /Dynamic/i)
     {
@@ -582,8 +583,7 @@ sub Alerts
         if ( (($s eq $service) || ($s =~ /^-ANY-$/i))
           && ($message->{taxonomy} =~ /$ac->{taxonomy}.*/))
         {
-          push(
-            @alerts,
+          push @alerts,
             {
               name              => $ac->{name},
               level             => $ac->{level},
@@ -601,8 +601,7 @@ sub Alerts
               action_service => $ac->{action_service},    # for Nagios & Zabbix
               imdest         => \@ims,
               maildest       => \@mails
-            }
-          );
+            };
         }
       }
     }
@@ -615,12 +614,10 @@ sub Alerts
           my @fields = ();
           foreach my $f (AAT::ARRAY($m->{field}))
           {
-            push(@fields,
-              {name => $f->{fid}, value => $f->{value}, negate => $f->{negate}}
-            );
+            push @fields,
+              {name => $f->{fid}, value => $f->{value}, negate => $f->{negate}};
           }
-          push(
-            @alerts,
+          push @alerts,
             {
               name              => $ac->{name},
               level             => $ac->{level},
@@ -639,8 +636,7 @@ sub Alerts
               action_service => $ac->{action_service},    # for Nagios & Zabbix
               imdest         => \@ims,
               maildest       => \@mails
-            }
-          );
+            };
         }
       }
     }
@@ -740,15 +736,15 @@ sub Wizard
   my $nb_max   = Octopussy::Parameter('wizard_max_msgs');
   foreach my $f (sort @files)
   {
-    chomp($f);
+    chomp $f;
     if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
     {
       my $timestamp = "$1$2$3$4$5";
-      if (defined open(my $FILE, '-|', "zcat $f"))
+      if (defined open my $FILE, '-|', "zcat $f")
       {
         while (my $line = <$FILE>)
         {
-          chomp($line);
+          chomp $line;
           my $match = 0;
           foreach my $m (@messages)
           {
@@ -759,22 +755,22 @@ sub Wizard
               if ($m->{nb} > 100)
               {
                 $m->{nb} = '100+';
-                close($FILE);
+                close $FILE;
                 return (@messages);
               }
               last;
             }
           }
-          push(@messages, Wizard_Add_Message($timestamp, $line, \@types))
+          push @messages, Wizard_Add_Message($timestamp, $line, \@types)
             if (!$match);
           last if (scalar(@messages) >= $nb_max);
         }
-        close($FILE);
+        close $FILE;
         last if (scalar(@messages) >= $nb_max);
       }
       else
       {
-        my ($pack, $file_pack, $line, $sub) = caller(0);
+        my ($pack, $file_pack, $line, $sub) = caller 0;
         AAT::Syslog('Octopussy::Message', 'UNABLE_OPEN_FILE_IN', $f, $sub);
       }
     }

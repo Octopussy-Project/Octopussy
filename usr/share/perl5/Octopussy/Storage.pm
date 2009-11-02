@@ -41,7 +41,7 @@ sub Add
   {
     return ('_MSG_STORAGE_ALREADY_EXISTS');
   }
-  push(@{$conf->{storage}}, $conf_storage);
+  push @{$conf->{storage}}, $conf_storage;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
   return (undef);
@@ -55,11 +55,11 @@ Removes Storage '$storage'
 
 sub Remove
 {
-  my $storage  = shift;
+  my $storage = shift;
 
-  my $file = Octopussy::File($FILE_STORAGES);
-  my $conf = AAT::XML::Read($file);
-  my @storages = grep { $_->{s_id} ne $storage } AAT::ARRAY($conf->{storage}); 
+  my $file     = Octopussy::File($FILE_STORAGES);
+  my $conf     = AAT::XML::Read($file);
+  my @storages = grep { $_->{s_id} ne $storage } AAT::ARRAY($conf->{storage});
   $conf->{storage} = \@storages;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
@@ -172,19 +172,19 @@ sub Configurations
   my %field;
   my $dir_default = Octopussy::Directory('data_logs');
 
-  push(@sorted_configurations, {s_id => 'DEFAULT', directory => $dir_default});
+  push @sorted_configurations, {s_id => 'DEFAULT', directory => $dir_default};
   foreach my $s (@storages)
   {
     my $conf = Configuration($s);
     if (defined $conf->{s_id})
     {
       $field{$conf->{$sort}} = 1;
-      push(@configurations, $conf);
+      push @configurations, $conf;
     }
   }
   foreach my $f (sort keys %field)
-  { 
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+  {
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);

@@ -56,15 +56,13 @@ sub List
     }
     foreach my $k (keys %level)
     {
-      push(
-        @list,
+      push @list,
         {
           value => $k,
           label => $k,
           color => $color{$k},
           level => $levels{$k}
-        }
-      );
+        };
     }
   }
   else
@@ -77,7 +75,7 @@ sub List
       foreach my $l (AAT::ARRAY($conf->{loglevel}))
       {
         $l->{label} = $l->{value};
-        push(@list, $l) if ($l->{level} eq $f);
+        push @list, $l if ($l->{level} eq $f);
       }
     }
   }
@@ -97,7 +95,7 @@ sub List_And_Any
   my ($dev_list, $serv_list) = @_;
 
   my @list = ('-ANY-');
-  push(@list, List($dev_list, $serv_list));
+  push @list, List($dev_list, $serv_list);
 
   return (undef) if (scalar(@list) == 0);
   return (@list);
@@ -114,10 +112,10 @@ sub String_List
   my @list = ('-ANY-');
   foreach my $d (@data)
   {
-    push(@list, $d->{value});
+    push @list, $d->{value};
   }
 
-  return ('Loglevel list: ' . join(', ', sort @list));
+  return ('Loglevel list: ' . join ', ', sort @list);
 }
 
 =head2 Colors()

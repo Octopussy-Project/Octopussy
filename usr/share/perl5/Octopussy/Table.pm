@@ -66,7 +66,7 @@ sub Remove
 {
   my $table = shift;
 
-  unlink(Filename($table));
+  unlink Filename($table);
   $filename{$table} = undef;
 }
 
@@ -129,11 +129,11 @@ sub Configurations
   {
     my $conf = Configuration($t);
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -155,7 +155,7 @@ sub Add_Field
   {
     return (undef);
   }
-  push(@{$conf->{field}}, {title => $fieldname, type => $fieldtype});
+  push @{$conf->{field}}, {title => $fieldname, type => $fieldtype};
   AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
 
   return ($fieldname);
@@ -171,7 +171,7 @@ sub Remove_Field
 {
   my ($table, $fieldname) = @_;
 
-  my $conf   = AAT::XML::Read(Filename($table));
+  my $conf = AAT::XML::Read(Filename($table));
   my @fields = grep { $_->{title} ne $fieldname } AAT::ARRAY($conf->{field});
   $conf->{field} = \@fields;
   AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
@@ -208,11 +208,11 @@ sub Fields_Configurations
   foreach my $conf (@fields)
   {
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -274,7 +274,7 @@ sub Field_Type_List
   foreach my $f (AAT::ARRAY($conf->{field}))
   {
     my $f_stype = Octopussy::Type::Simple_Type($f->{type});
-    push(@list, $f->{title}) if ($simple_type =~ /^$f_stype$/i);
+    push @list, $f->{title} if ($simple_type =~ /^$f_stype$/i);
   }
 
   return (sort @list);
@@ -315,7 +315,7 @@ sub Devices_and_Services_With
       $device{$dc->{name}} = 1 if (AAT::NOT_NULL($service{$s->{sid}}));
     }
   }
-  @devices = sort keys %device;
+  @devices  = sort keys %device;
   @services = sort keys %service;
   foreach my $dg (Octopussy::DeviceGroup::List())
   {
@@ -324,7 +324,7 @@ sub Devices_and_Services_With
     {
       foreach my $d (sort keys %device) { $match = 1 if ($dgd eq $d); }
     }
-    push(@devicegroups, $dg) if ($match);
+    push @devicegroups, $dg if ($match);
   }
 
   return (\@devicegroups, \@devices, \@services);
@@ -353,12 +353,12 @@ sub Valid_Pattern
       $match = 1
         if (($f->{title} =~ /^$fieldname$/) || ($fieldname =~ /NULL/i));
     }
-    push(@errors, "$fieldname DONT MATCH ! \n") if (!$match);
+    push @errors, "$fieldname DONT MATCH ! \n" if (!$match);
   }
 
   #	foreach my $k (keys %f_pattern)
   # 	{
-  #  	push(@errors, "$fieldname MATCH MORE THAN ONCE ! \n")
+  #  	push @errors, "$fieldname MATCH MORE THAN ONCE ! \n"
   #    	if ($f_pattern{$k} > 1);
   # 	}
 
@@ -420,22 +420,22 @@ sub Updates_Diff
         if ($f2->{type} ne $f->{type})
         {
           $f->{type} = "$f->{type} --> $f2->{type}";
-          push(@fields, $f);
+          push @fields, $f;
         }
       }
-      else { push(@list, $f2); }
+      else { push @list, $f2; }
     }
     if (!$match)
     {
       $f->{status} = 'deleted';
-      push(@fields, $f);
+      push @fields, $f;
     }
     @new_fields = @list;
   }
   foreach my $f (@new_fields)
   {
     $f->{status} = 'added';
-    push(@fields, $f);
+    push @fields, $f;
   }
 
   return (@fields);

@@ -58,7 +58,7 @@ sub List
     }
     foreach my $k (keys %taxo)
     {
-      push(@list, {value => $k, label => $k, color => $color{$k}});
+      push @list, {value => $k, label => $k, color => $color{$k}};
     }
   }
   else
@@ -73,7 +73,7 @@ sub List
         $t->{label} = $t->{value};
         if ($t->{value} eq $f)
         {
-          push(@list, $t);
+          push @list, $t;
         }
       }
     }
@@ -94,7 +94,7 @@ sub List_And_Any
   my ($dev_list, $serv_list) = @_;
 
   my @list = ('-ANY-');
-  push(@list, List($dev_list, $serv_list));
+  push @list, List($dev_list, $serv_list);
 
   return (undef) if (scalar(@list) == 0);
   return (@list);
@@ -111,10 +111,10 @@ sub String_List
   my @list = ('-ANY-');
   foreach my $d (@data)
   {
-    push(@list, $d->{value});
+    push @list, $d->{value};
   }
 
-  return ('Taxonomy list: ' . join(', ', sort @list));
+  return ('Taxonomy list: ' . join ', ', sort @list);
 }
 
 =head2 Colors()

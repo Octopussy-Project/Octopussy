@@ -48,7 +48,7 @@ sub Remove
 {
   my $statistic_report = shift;
 
-  unlink(Filename($statistic_report));
+  unlink Filename($statistic_report);
   $filename{$statistic_report} = undef;
 }
 
@@ -128,11 +128,11 @@ sub Configurations
   {
     my $conf = Configuration($sr);
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations); 
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -153,7 +153,7 @@ sub Messages
   my @messages = ();
   foreach my $s (AAT::ARRAY($services))
   {
-    push(@messages, Octopussy::Service::Messages($s));
+    push @messages, Octopussy::Service::Messages($s);
   }
   foreach my $m (@messages)
   {
@@ -182,9 +182,9 @@ sub Messages
           {
             $regexp =~ s/<\@NUMBER:\S+?\@>/\([-+]?\\d+\)/i;
           }
-          elsif ($type eq 'WORD') 
-          { 
-            $regexp =~ s/<\@WORD:\S+?\@>/\(\\S+\)/i; 
+          elsif ($type eq 'WORD')
+          {
+            $regexp =~ s/<\@WORD:\S+?\@>/\(\\S+\)/i;
           }
           elsif ($type eq 'STRING')
           {
@@ -203,18 +203,18 @@ sub Messages
           {
             $regexp =~ s/<\@NUMBER:\S+?\@>/[-+]?\\d+/i;
           }
-          elsif ($type eq 'WORD')   
-          { 
-            $regexp =~ s/<\@WORD:\S+?\@>/\\S+/i; 
+          elsif ($type eq 'WORD')
+          {
+            $regexp =~ s/<\@WORD:\S+?\@>/\\S+/i;
           }
-          elsif ($type eq 'STRING') 
-          { 
-            $regexp =~ s/<\@STRING:\S+?\@>/.+/i; 
+          elsif ($type eq 'STRING')
+          {
+            $regexp =~ s/<\@STRING:\S+?\@>/.+/i;
           }
           else { $regexp =~ s/<\@(\S+?):\S+?\@>/$re_types{$1}/i; }
         }
       }
-      push(@result, qr/^$regexp\s*[^\t\n\r\f -~]?$/);
+      push @result, qr/^$regexp\s*[^\t\n\r\f -~]?$/;
     }
   }
 

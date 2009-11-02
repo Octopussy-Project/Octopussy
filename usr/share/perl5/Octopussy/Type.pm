@@ -96,16 +96,16 @@ sub List
   my %type;
 
   foreach my $t (AAT::ARRAY($conf->{type})) { $type{"$t->{type_id}"} = 1; }
-  push(@list, 'NUMBER');
-  push(@list, 'BYTES');
-  push(@list, 'SECONDS');
-  push(@list, 'PID');
-  push(@list, 'STRING');
-  push(@list, 'LONG_STRING');
-  push(@list, 'WORD');
-  push(@list, 'EMAIL');
-  push(@list, 'USER_AGENT');
-  push(@list, keys %type);
+  push @list, 'NUMBER';
+  push @list, 'BYTES';
+  push @list, 'SECONDS';
+  push @list, 'PID';
+  push @list, 'STRING';
+  push @list, 'LONG_STRING';
+  push @list, 'WORD';
+  push @list, 'EMAIL';
+  push @list, 'USER_AGENT';
+  push @list, keys %type;
 
   return (@list);
 }
@@ -150,11 +150,11 @@ sub SQL_List
   my %type;
 
   foreach my $t (AAT::ARRAY($conf->{type})) { $type{"$t->{sql_type}"} = 1; }
-  push(@list, 'BIGINT');
+  push @list, 'BIGINT';
 
-  foreach my $k (keys %type) { push(@list, $k); }
+  foreach my $k (keys %type) { push @list, $k; }
 
-  return (sort (@list));
+  return (sort @list);
 }
 
 =head2 Regexp($type)

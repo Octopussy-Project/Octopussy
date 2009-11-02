@@ -27,8 +27,8 @@ my %function_source = ();
 BEGIN
 {
   Readonly my $DIR_PLUGIN_MODULES => '/usr/share/perl5/Octopussy/Plugin/';
-  opendir(DIR, $DIR_PLUGIN_MODULES);
-  my @plugins = grep { /.+\.pm$/ } readdir(DIR);
+  opendir DIR, $DIR_PLUGIN_MODULES;
+  my @plugins = grep { /.+\.pm$/ } readdir DIR;
   foreach my $p (@plugins)
   {
     if ("Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/)
@@ -36,7 +36,7 @@ BEGIN
       require "$1$2";
     }
   }
-  closedir(DIR);
+  closedir DIR;
 }
 
 =head1 FUNCTIONS
@@ -108,7 +108,7 @@ sub Functions
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir_plugins/$f");
-    push(@functions, {plugin => $conf->{name}, functions => $conf->{function}})
+    push @functions, {plugin => $conf->{name}, functions => $conf->{function}}
       if (defined $conf->{function});
   }
 

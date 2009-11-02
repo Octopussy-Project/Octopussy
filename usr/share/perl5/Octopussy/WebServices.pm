@@ -81,14 +81,17 @@ sub PrintFile
 {
   my $file = shift;
 
-  if (defined open(my $FILE, '<', $file)
+  if (defined open my $FILE, '<', $file)
   {
-    while (<$FILE>) { print $_; }
-    close($FILE);
+    while (<$FILE>)
+    {
+      print $_;
+    }
+    close $FILE;
   }
   else
   {
-    my ($pack, $file_pack, $line, $sub) = caller(0);
+    my ($pack, $file_pack, $line, $sub) = caller 0;
     AAT::Syslog('Octopussy::WebServices', 'UNABLE_OPEN_FILE_IN', $f, $sub);
   }
 }

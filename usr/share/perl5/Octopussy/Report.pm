@@ -59,7 +59,7 @@ sub Remove
 {
   my $report = shift;
 
-  unlink(Filename($report));
+  unlink Filename($report);
   $filename{$report} = undef;
   Octopussy::Data_Report::Remove_All($report);
 }
@@ -76,7 +76,7 @@ sub Modify
 
   Remove($old_report);
 
-  #unlink(Filename($report));
+  #unlink Filename($report);
   #$filename{$report} = undef;
 
   New($conf_new);
@@ -104,7 +104,7 @@ sub List
     {
       $in_restriction = 1 if ($conf->{name} eq $res);
     }
-    push(@reports, $conf->{name})
+    push @reports, $conf->{name}
       if (
       (!defined $category)
       || ( (defined $conf->{category})
@@ -165,14 +165,14 @@ sub Configurations
   {
     my $conf = Configuration($r);
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf)
+    push @configurations, $conf
       if (((defined $conf->{category} && $conf->{category} eq $category))
       || (!defined $category)
       || (($category eq 'various') && (!defined $conf->{category})));
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -215,7 +215,7 @@ sub Categories
   }
   foreach my $c (sort keys %category)
   {
-    push(@categories, {category => $c, nb => $category{$c}});
+    push @categories, {category => $c, nb => $category{$c}};
   }
 
   return (@categories);
@@ -237,14 +237,14 @@ sub Table_Creation
   if ( ($query =~ /SELECT .+ FROM .+ GROUP BY (.+) ORDER BY/i)
     || ($query =~ /SELECT .+ FROM .+ GROUP BY (.+)/))
   {
-    @indexes = split(/, /, $1);
+    @indexes = split /, /, $1;
   }
 
   if ( ($query =~ /SELECT (.+) FROM .+ WHERE (.+) GROUP BY/i)
     || ($query =~ /SELECT (.+) FROM .+ WHERE (.+)/i)
     || ($query =~ /SELECT (.+) FROM .+/i))
   {
-    my @data = split(/, /, $1);    #"$1, $2");
+    my @data = split /, /, $1;    #"$1, $2");
     foreach my $f (@data)
     {
       $f =~ s/^\s*\(?UNIX_TIMESTAMP\(//gi;
@@ -288,7 +288,7 @@ sub Generate
     my $dir = $outputfile;
     $dir =~ s/(.+)\/.+/$1/;
     Octopussy::Create_Directory($dir);
-    Octopussy::Plugin::Init({lang => $lang}, split(/\s*,\s*/, $rc->{columns}));
+    Octopussy::Plugin::Init({lang => $lang}, split /\s*,\s*/, $rc->{columns});
     Octopussy::Report::HTML::Generate($outputfile, $rc->{name}, $begin, $end,
       $devices, $services, $data, $rc->{columns}, $rc->{columns_name}, $stats,
       $lang);
@@ -413,17 +413,11 @@ sub CmdLine
   my @devices = ();
   foreach my $d (AAT::ARRAY($device))
   {
-    push(
-      @devices,
-      (
-          ($d !~ /group (.+)/)
-        ? ($d)
-        : Octopussy::DeviceGroup::Devices($1)
-      )
-    );
+    push @devices,
+      (($d !~ /group (.+)/) ? ($d) : Octopussy::DeviceGroup::Devices($1));
   }
-  my $device_list  = join('" --device "',  @devices);
-  my $service_list = join('" --service "', AAT::ARRAY($service));
+  my $device_list  = join '" --device "',  @devices;
+  my $service_list = join '" --service "', AAT::ARRAY($service);
 
   Octopussy::Create_Directory($dir);
 
@@ -554,16 +548,14 @@ sub Running_List
       if ($match)
       {
         my $status = $cache->get("status_$pid");
-        push(
-          @list,
+        push @list,
           {
             report   => $v->{report},
             started  => $v->{started},
             devices  => join(',', @{$v->{devices}}),
             services => join(',', @{$v->{services}}),
             status   => $status
-          }
-        );
+          };
       }
       else
       {

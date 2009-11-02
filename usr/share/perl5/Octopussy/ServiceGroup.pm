@@ -36,12 +36,12 @@ sub Add
 
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  if (grep { $_->{sg_id} eq $conf_sg->{sg_id} } 
-            AAT::ARRAY($conf->{servicegroup}))
+  if (grep { $_->{sg_id} eq $conf_sg->{sg_id} }
+    AAT::ARRAY($conf->{servicegroup}))
   {
     return ('_MSG_SERVICEGROUP_ALREADY_EXISTS');
   }
-  push(@{$conf->{servicegroup}}, $conf_sg);
+  push @{$conf->{servicegroup}}, $conf_sg;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 }
 
@@ -57,7 +57,8 @@ sub Remove
 
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  my @sgs = grep { $_->{sg_id} ne $servicegroup } AAT::ARRAY($conf->{servicegroup});
+  my @sgs =
+    grep { $_->{sg_id} ne $servicegroup } AAT::ARRAY($conf->{servicegroup});
   $conf->{servicegroup} = \@sgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 }
@@ -112,11 +113,11 @@ sub Configurations
   {
     my $conf = Configuration($sg);
     $field{$conf->{$sort}} = 1;
-    push(@configurations, $conf);
+    push @configurations, $conf;
   }
   foreach my $f (sort keys %field)
   {
-    push(@sorted_configurations, grep { $_->{$sort} eq $f } @configurations);
+    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
 
   return (@sorted_configurations);
@@ -140,7 +141,7 @@ sub Services
 
   foreach my $f (sort keys %field)
   {
-    push(@services, grep { $_->{rank} eq $f } AAT::ARRAY($conf->{service}));
+    push @services, grep { $_->{rank} eq $f } AAT::ARRAY($conf->{service});
   }
   return (@services);
 }
@@ -168,10 +169,10 @@ sub Add_Service
       {
         return ();
       }
-      push(@services, {sid => $service, rank => $rank});
+      push @services, {sid => $service, rank => $rank};
     }
     $sg->{service} = \@services;
-    push(@sgs, $sg);
+    push @sgs, $sg;
   }
   $conf->{servicegroup} = \@sgs;
 
@@ -198,7 +199,7 @@ sub Remove_Service
       my $rank     = undef;
       foreach my $s (AAT::ARRAY($sg->{service}))
       {
-        if ($s->{sid} ne $service) { push(@services, $s); }
+        if ($s->{sid} ne $service) { push @services, $s; }
         else                       { $rank = $s->{rank}; }
       }
       return () if (!defined $rank);
@@ -212,7 +213,7 @@ sub Remove_Service
       }
       $sg->{service} = \@services;
     }
-    push(@sgs, $sg);
+    push @sgs, $sg;
   }
   $conf->{servicegroup} = \@sgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);
@@ -239,7 +240,7 @@ sub Move_Service
     {
       my @services = ();
       my $max = (defined $sg->{service} ? scalar(@{$sg->{service}}) : 0);
-      $max = ('0' x (2 - length($max))) . $max;
+      $max = ('0' x (2 - length $max)) . $max;
       foreach my $s (AAT::ARRAY($sg->{service}))
       {
         if ($s->{sid} eq $service)
@@ -250,7 +251,7 @@ sub Move_Service
           $s->{rank} = AAT::Padding($s->{rank}, 2);
           $rank = $s->{rank};
         }
-        push(@services, $s);
+        push @services, $s;
       }
       $sg->{service} = \@services;
       my @services2 = ();
@@ -261,11 +262,11 @@ sub Move_Service
           $s->{rank} = ($direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1);
           $s->{rank} = AAT::Padding($s->{rank}, 2);
         }
-        push(@services2, $s);
+        push @services2, $s;
       }
       $sg->{service} = \@services2;
     }
-    push(@sgs, $sg);
+    push @sgs, $sg;
   }
   $conf->{servicegroup} = \@sgs;
 
