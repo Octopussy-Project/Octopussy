@@ -348,14 +348,14 @@ sub Get_TimePeriod_Files
     month => $m1,
     day   => $d1,
     hour  => $hour1,
-    min   => $min1
+    min   => $min1,
   );
   my %finish = (
     year  => $y2,
     month => $m2,
     day   => $d2,
     hour  => $hour2,
-    min   => $min2
+    min   => $min2,
   );
   my ($files, $nb_files) =
     Octopussy::Logs::Minutes_Hash($devices, $services, \%start, \%finish);

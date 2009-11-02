@@ -13,14 +13,15 @@ package Octopussy::RRDTool;
 
 use strict;
 no strict 'refs';
+use warnings;
 use Readonly;
 
 Readonly my $MINUTE  => 60;
-Readonly my $HOURLY  => 3600;
-Readonly my $DAILY   => 86400;
-Readonly my $WEEKLY  => 604800;
-Readonly my $MONTHLY => 2592000;
-Readonly my $YEARLY  => 31536000;
+Readonly my $HOURLY  => 3_600;
+Readonly my $DAILY   => 86_400;
+Readonly my $WEEKLY  => 604_800;
+Readonly my $MONTHLY => 2_592_000;
+Readonly my $YEARLY  => 31_536_000;
 
 Readonly my $GRAPH_WIDTH  => 400;
 Readonly my $GRAPH_HEIGHT => 180;
@@ -46,7 +47,7 @@ Readonly my @COLORS => (
   '#DD0000', '#00DD00', '#0000DD', '#DDDD00', '#DD00DD', '#00DDDD',
   '#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA',
   '#660000', '#006600', '#000066', '#666600', '#660066', '#006666',
-  '#330000', '#003300', '#000033', '#333300', '#330033', '#003333'
+  '#330000', '#003300', '#000033', '#333300', '#330033', '#003333',
 );
 
 =head1 FUNCTIONS

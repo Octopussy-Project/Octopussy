@@ -39,9 +39,9 @@ sub ID
   }
   else
   {
-    my $str = time() * rand($RANDOM_NUMBER);
+    my $str = time() * rand $RANDOM_NUMBER;
     $str = `echo "$str" | md5sum`;
-    chomp($str);
+    chomp $str;
     $str =~ s/^(\S+).+$/$1/;
     return ($str);
   }

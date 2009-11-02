@@ -205,13 +205,8 @@ sub Directory
   return (Octopussy::Directory('data_logs')) if ($storage eq 'DEFAULT');
 
   my $dir = firstval { $_->{s_id} eq $storage } AAT::ARRAY($conf->{storage});
-  return ($dir->{directory});
-#  foreach my $s (AAT::ARRAY($conf->{storage}))
-#  {
-#    return ($s->{directory}) if ($s->{s_id} eq $storage);
-#  }
 
-  return (undef);
+  return ($dir->{directory});
 }
 
 =head2 Directory_Service($device, $service)

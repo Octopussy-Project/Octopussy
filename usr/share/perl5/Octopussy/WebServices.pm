@@ -21,7 +21,7 @@ use Octopussy;
 my %XML_OUTPUT_OPTIONS = (
   AttrIndent => 1,
   XMLDecl    => "<?xml version='1.0' encoding='iso-8859-1'?>",
-  RootName   => 'octopussy_api'
+  RootName   => 'octopussy_api',
 );
 
 my %api = (
@@ -81,7 +81,7 @@ sub PrintFile
 {
   my $file = shift;
 
-  if (defined open(my $FILE, '<', $file))
+  if (defined open(my $FILE, '<', $file)
   {
     while (<$FILE>) { print $_; }
     close($FILE);

@@ -226,14 +226,14 @@ sub For_Device
     }
     foreach my $d (sort keys %devices)
     {
-      if (($d =~ /^$device$/) || ($d =~ /^-ANY-$/))
+      if (($d eq $device) || ($d eq '-ANY-'))
       {
         my @services = Octopussy::Device::Services($d);
         foreach my $s (@services)
         {
           foreach my $acs (AAT::ARRAY($ac->{service}))
           {
-            $match = 1 if (($s =~ /^$acs$/) || ($acs =~ /^-ANY-$/));
+            $match = 1 if (($s eq $acs) || ($acs eq '-ANY-'));
           }
         }
       }
@@ -461,7 +461,7 @@ sub From_Device
   my ($device, $status) = @_;
   my @alerts = ();
   my $query  = "SELECT * FROM _alerts_ WHERE device='$device'";
-  $query .= (defined $status ? " AND status='$status'" : "");
+  $query .= (defined $status ? " AND status='$status'" : '');
   @alerts = AAT::DB::Query('Octopussy', $query);
 
   return (@alerts);

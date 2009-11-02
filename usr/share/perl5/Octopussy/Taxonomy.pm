@@ -46,8 +46,10 @@ sub List
     @services = uniq @services;
     foreach my $s (@services)
     {
-      @services = Octopussy::Device::Services(AAT::ARRAY($dev_list))
-        if ($s eq '-ANY-');
+      if ($s eq '-ANY-')
+      {
+        @services = Octopussy::Device::Services(AAT::ARRAY($dev_list));
+      }
     }
     @services = uniq @services;
     foreach my $m (Octopussy::Service::Messages(@services))
@@ -69,7 +71,10 @@ sub List
       foreach my $t (AAT::ARRAY($conf->{taxonomy}))
       {
         $t->{label} = $t->{value};
-        push(@list, $t) if ($t->{value} eq $f);
+        if ($t->{value} eq $f)
+        {
+          push(@list, $t);
+        }
       }
     }
   }

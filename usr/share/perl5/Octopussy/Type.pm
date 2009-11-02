@@ -40,10 +40,10 @@ Readonly my %MONTH => (
   Dec => '12',
 );
 
-my $QR_DT1 = qr/^(\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2})/;
-my $QR_DT2 = qr/^\w{3} (\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2}) (\d{4})/;
-my $QR_DT3 = qr/^(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2})/;
-my $QR_DT4 = qr/^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2}) .\d{4}/;
+my $QR_DT1 = qr/^(\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2})/m;
+my $QR_DT2 = qr/^\w{3} (\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2}) (\d{4})/m;
+my $QR_DT3 = qr/^(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2})/m;
+my $QR_DT4 = qr/^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2}) .\d{4}/m;
 
 =head2 Configurations()
 
@@ -214,10 +214,10 @@ sub Simple_Type
   my @list = Configurations();
   foreach my $t (@list)
   {
-    return ($t->{simple_type}) if ($t->{type_id} =~ /^$type/);
+    return ($t->{simple_type}) if ($t->{type_id} =~ /^$type/m);
   }
-  return ('NUMBER') if ($type =~ /^(BYTES|SECONDS|PID)$/);
-  return ('STRING') if ($type =~ /^(EMAIL|USER_AGENT)$/);
+  return ('NUMBER') if ($type =~ /^(BYTES|SECONDS|PID)$/m);
+  return ('STRING') if ($type =~ /^(EMAIL|USER_AGENT)$/m);
 
   return ($type);
 }
@@ -235,7 +235,7 @@ sub SQL_Type
   my @list = Configurations();
   foreach my $t (@list)
   {
-    return ($t->{sql_type}) if ($t->{simple_type} =~ /^$type/);
+    return ($t->{sql_type}) if ($t->{simple_type} =~ /^$type/m);
   }
   if ( $type eq 'NUMBER'
     || $type eq 'BYTES'

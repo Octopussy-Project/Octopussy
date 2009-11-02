@@ -388,18 +388,18 @@ sub Move_Service
     {
       if ($direction =~ /^(top|bottom)$/)
       {
-        if (($direction =~ /^top$/) && ($s->{rank} < $old_rank))
+        if (($direction eq 'top') && ($s->{rank} < $old_rank))
         {
           $s->{rank} += 1;
         }
-        elsif (($direction =~ /^bottom$/) && ($s->{rank} > $old_rank))
+        elsif (($direction eq 'bottom') && ($s->{rank} > $old_rank))
         {
           $s->{rank} -= 1;
         }
       }
       elsif ($s->{rank} eq $rank)
       {
-        $s->{rank} = ($direction =~ /^up$/ ? $s->{rank} + 1 : $s->{rank} - 1);
+        $s->{rank} = ($direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1);
       }
     }
     $s->{rank} = AAT::Padding($s->{rank}, 2);

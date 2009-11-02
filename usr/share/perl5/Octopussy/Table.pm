@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use List::MoreUtils qw(any);
+
 use Octopussy;
 use Octopussy::Type;
 
@@ -149,7 +151,7 @@ sub Add_Field
 
   my $conf = AAT::XML::Read(Filename($table));
 
-  if (grep { $fieldname =~ /^$_->{title}$/ } AAT::ARRAY($conf->{field}))
+  if (any { $fieldname =~ /^$_->{title}$/ } AAT::ARRAY($conf->{field}))
   {
     return (undef);
   }

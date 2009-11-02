@@ -42,9 +42,13 @@ Returns the CPU Usage (user/system/idle/wait in percent)
 sub CPU_Usage
 {
   my $line = `vmstat 1 2 | tail -1`;
+  	
+  if ($line =~ /.+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)$/)
+  {
+  	return ({user => $1, system => $2, idle => $3, wait => $4})
+  }
 
-  return ({user => $1, system => $2, idle => $3, wait => $4})
-    if ($line =~ /.+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)$/);
+  return (undef);   
 }
 
 =head2 Load()

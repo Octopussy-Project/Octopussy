@@ -321,11 +321,11 @@ sub Pattern_Field_Substitution
       $function = $perl_fct if ($long_f =~ /^$sql_field$/);
     }
   }
-  if ($type =~ /^REGEXP/)
+  if ($type eq 'REGEXP')
   {
     $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/\($1\)/i;
   }
-  elsif ($type =~ /^NUMBER$/)
+  elsif ($type eq 'NUMBER')
   {
     my $substitution = (
       defined $field_regexp
@@ -334,13 +334,13 @@ sub Pattern_Field_Substitution
     );
     $regexp =~ s/<\@NUMBER:\S+?\@>/\($substitution\)/i;
   }
-  elsif ($type =~ /^WORD$/)
+  elsif ($type eq 'WORD')
   {
     my $substitution =
       (defined $field_regexp ? $field_regexp->{$f} || '\\S+' : '\\S+');
     $regexp =~ s/<\@WORD:\S+?\@>/\($substitution\)/i;
   }
-  elsif ($type =~ /^STRING$/)
+  elsif ($type eq 'STRING')
   {
     my $substitution =
       (defined $field_regexp ? $field_regexp->{$f} || '.+' : '.+');
@@ -359,8 +359,8 @@ sub Pattern_Field_Unmatched_Substitution
 {
   my ($regexp, $type, $field_regexp, $re_types) = @_;
 
-  if ($type =~ /^REGEXP/) { $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i; }
-  elsif ($type =~ /^NUMBER$/)
+  if ($type eq 'REGEXP') { $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i; }
+  elsif ($type eq 'NUMBER')
   {
     if ($regexp =~ /^(.*?)<\@NUMBER:(\S+?)\@>(.*)$/)
     {
@@ -372,7 +372,7 @@ sub Pattern_Field_Unmatched_Substitution
         ) . $3;
     }
   }
-  elsif ($type =~ /^WORD$/)
+  elsif ($type eq 'WORD')
   {
     if ($regexp =~ /^(.*?)<\@WORD:(\S+?)\@>(.*)$/)
     {
@@ -382,7 +382,7 @@ sub Pattern_Field_Unmatched_Substitution
         . $3;
     }
   }
-  elsif ($type =~ /^STRING$/)
+  elsif ($type eq 'STRING')
   {
     if ($regexp =~ /^(.*?)<\@STRING:(\S+?)\@>(.*)$/)
     {
@@ -579,7 +579,7 @@ sub Alerts
     {
       foreach my $s (AAT::ARRAY($ac->{service}))
       {
-        if ( (($s =~ /^$service$/) || ($s =~ /^-ANY-$/i))
+        if ( (($s eq $service) || ($s =~ /^-ANY-$/i))
           && ($message->{taxonomy} =~ /$ac->{taxonomy}.*/))
         {
           push(
