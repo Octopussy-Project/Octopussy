@@ -210,11 +210,6 @@ sub Configurations
       push @configurations, $conf;
     }
   }
-  foreach my $c (AAT::LDAP::Contacts('Octopussy'))
-  {
-    $field{$c->{$sort}} = 1;
-    push @configurations, $c;
-  }
   foreach my $f (sort keys %field)
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;

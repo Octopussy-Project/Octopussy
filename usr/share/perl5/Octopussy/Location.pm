@@ -124,7 +124,8 @@ sub Building_Add
   {
     if ($c->{c_name} eq $city)
     {
-      if (none { $_ eq $building } Buildings($city))
+      my @buildings = Buildings($city);
+      if ((! scalar @buildings) || (none { $_ eq $building } @buildings))
       {
         push @{$c->{building}}, {b_name => $building};
         $result = $building;
@@ -224,7 +225,8 @@ sub Room_Add
       {
         if ($b->{b_name} eq $building)
         {
-          if (none { $_ eq $room } Rooms($city, $building))
+          my @rooms = Rooms($city, $building);
+          if ((! scalar @rooms) || (none { $_ eq $room } @rooms))
           {
             push @{$b->{room}}, {r_name => $room};
             $result = $room;
@@ -308,7 +310,7 @@ sub Racks
           {
             if ($r->{r_name} eq $room)
             {
-              push @list, apply { $_ = $_->{r_name}; }, AAT::ARRAY($r->{rack});
+              @list = apply { $_ = $_->{r_name}; } AAT::ARRAY($r->{rack});
             }
           }
         }
@@ -347,7 +349,8 @@ sub Rack_Add
           {
             if ($r->{r_name} eq $room)
             {
-              if (none { $_ eq $rack } Racks($city, $building, $room))
+              my @racks = Racks($city, $building, $room);
+              if ((! scalar @racks) || (none { $_ eq $rack } @racks))
               {
                 push @{$r->{rack}}, {r_name => $rack};
                 $result = $rack;
