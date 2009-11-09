@@ -27,7 +27,7 @@ Returns list of Directories from Directory $dir
 
 =cut
 
-sub Get_Directories($)
+sub Get_Directories
 {
   my $dir = shift;
   opendir(DIR, $dir);
@@ -43,7 +43,7 @@ Gets logrotate & limit values for Service $service
 
 =cut
 
-sub Get_Logrotate_Limit($$$)
+sub Get_Logrotate_Limit
 {
   my ($service, $type, $conf) = @_;
 
@@ -72,7 +72,7 @@ Deletes Log Files for specified Device $device
 
 =cut
 
-sub Rotate_Logs($)
+sub Rotate_Logs
 {
   my $device = shift;
   my $conf   = Octopussy::Device::Configuration($device);

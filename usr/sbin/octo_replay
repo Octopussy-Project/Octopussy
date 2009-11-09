@@ -42,7 +42,7 @@ Prints Help
 
 =cut
 
-sub Help()
+sub Help
 {
   my $help_str = <<"EOF";
 

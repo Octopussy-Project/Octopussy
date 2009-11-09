@@ -37,7 +37,7 @@ use Octopussy;
 
 Readonly my $APPLI         => 'Octopussy';
 Readonly my $PROG_NAME     => 'octo_reporter';
-Readonly my $PROG_VERSION  => Octopussy::Version();
+Readonly my $VERSION       => Octopussy::Version();
 Readonly my $FILE_DB       => '/var/run/octopussy/file.db';
 Readonly my $MIN_DB_INSERT => 10_000;
 
@@ -66,7 +66,7 @@ sub Help
 {
   my $help_str = <<"EOF";
 
-$PROG_NAME (version $PROG_VERSION)
+$PROG_NAME (version $VERSION)
 
  Usage: $PROG_NAME --report <report> --device <device> --service <service> 
           --loglevel <loglevel> --taxonomy <taxonomy>
@@ -184,7 +184,7 @@ Returns list of Messages to parse
 
 =cut
 
-sub Get_Messages_To_Parse($$$$$)
+sub Get_Messages_To_Parse
 {
   my ($services, $taxo, $table, $query, $fields_list) = @_;
   my @fields = Octopussy::Report::Table_Creation($table, $query);
@@ -203,7 +203,7 @@ and Period $begin-$end
 
 =cut
 
-sub Get_TimePeriod_Files($$$$)
+sub Get_TimePeriod_Files
 {
   my ($devices, $services, $begin, $end) = @_;
 
@@ -243,7 +243,7 @@ Inserts data
 
 =cut
 
-sub Insert_Data($$$$$$$$)
+sub Insert_Data
 {
   my ($devices, $services, $taxo, $begin, $end, $table, $query, $field_list) =
     @_;

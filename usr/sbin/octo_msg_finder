@@ -30,7 +30,7 @@ Prints Service, MsgID, Taxonomy & Table of line $line
 
 =cut
 
-sub Search_Line(@)
+sub Search_Line
 {
   my ($line, $n) = @_;
   $n ||= 1;

@@ -46,7 +46,7 @@ Prints Help
 
 =cut
 
-sub Help()
+sub Help
 {
   my $help_str = <<"EOF";
 
@@ -100,7 +100,7 @@ Returns list of Messages to parse
 
 =cut
 
-sub Get_Messages_To_Parse($$$$)
+sub Get_Messages_To_Parse
 {
   my ($services, $loglevel, $taxonomy, $msgid) = @_;
   my @msg_to_parse = ();
@@ -143,7 +143,7 @@ Prints Logs
 
 =cut
 
-sub Print_Logs($$$$$$$$$)
+sub Print_Logs
 {
   my (
     $devices, $services, $loglevel, $taxo, $msgid,
@@ -285,7 +285,10 @@ Ends Extraction
 sub End
 {
   AAT::Syslog($PROG_NAME, 'Logs Extraction Aborted !');
-  $cache->remove("status_$$");
+
+  unlink $output; 
+  $cache->remove("status_${pid_param}"); 
+#  $cache->remove("status_$$");
   exit();
 }
 

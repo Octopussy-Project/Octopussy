@@ -2,6 +2,7 @@
 use Octopussy;
 
 my $pid_dir = Octopussy::Directory("running");
+my $pid_param = $Session->{progress_running};
 my $pid_file = $pid_dir . "octo_reporter_${pid_param}.pid";
 
 $Session->{progress_current} = undef;

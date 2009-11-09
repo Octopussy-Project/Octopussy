@@ -61,7 +61,7 @@ Launches Report
 
 =cut
 
-sub Launch_Report($$$$$$)
+sub Launch_Report
 {
   my ($sched, $y, $m, $d, $hour, $min) = @_;
   my $start_day   = $sched->{start_day};

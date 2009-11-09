@@ -78,7 +78,7 @@ Inits UParser
 
 =cut
 
-sub Init()
+sub Init
 {
   @services = Octopussy::Device::Services($device);
   @files    = ();
@@ -101,7 +101,6 @@ sub Init()
 
         foreach my $m (@messages)
         {
-
           # check if the regexp is valid
           my $valid_regexp = eval {
             use warnings FATAL => qw( regexp );
@@ -128,7 +127,7 @@ Writes Logs '$logs' into Logfile '$logfile'
 
 =cut
 
-sub Write_Logfile($$)
+sub Write_Logfile
 {
   my ($logfile, $logs) = @_;
 
@@ -155,7 +154,7 @@ Handles Service $serv
 
 =cut
 
-sub Service_Handler($$$$$$$$)
+sub Service_Handler
 {
   my ($serv, $total, $y, $m, $d, $hour, $min, $file_new) = @_;
 
@@ -177,7 +176,7 @@ Handles file $file
 
 =cut
 
-sub File_Handler($)
+sub File_Handler
 {
   my $file = shift;
 
