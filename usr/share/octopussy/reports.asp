@@ -77,7 +77,10 @@ else
 	my $cmd = Octopussy::Report::CmdLine($device, $service, $loglevel, 
 		$taxonomy, $r, $start, $finish, $pid_param, 
 		\%mail_conf, \%ftp_conf, \%scp_conf, $Session->{AAT_LANGUAGE});
-	sleep(2);
+	
+	my $cache = Octopussy::Cache::Init('octo_reporter');
+    $cache->set("status_$output", "Starting... [0/1]");
+    
  	$Response->Redirect("./report_in_progress.asp?cmd=" 
 		. $Server->URLEncode($cmd));
 }

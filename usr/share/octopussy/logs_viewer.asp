@@ -77,6 +77,10 @@ if ((AAT::NULL($Session->{extractor})) &&
   $Session->{progress_match} = 0;	
 	$Session->{page} = 1;
 	$Session->{progress_running} = $Session->{extracted} = $output;
+	
+	my $cache = Octopussy::Cache::Init('octo_extractor');
+    $cache->set("status_$output", "Starting... [0/1] [0]");
+    
 	$Response->Redirect("$url?extractor=$output");
 }
 
@@ -95,9 +99,11 @@ if ($Session->{extractor} eq "done")
 		my $hre_inc = $Server->HTMLEncode($re_include);
     my $hre_inc2 = $Server->HTMLEncode($re_include2);
     my $hre_inc3 = $Server->HTMLEncode($re_include3);
-		open(FILE, "< $run_dir/logs_${login}_$filename");
-    while (<FILE>)
-    {
+	if (defined open(my $FILE, '<', "$run_dir/logs_${login}_$filename"))
+	{
+		AAT::DEBUG("Open file $run_dir/logs_${login}_$filename !");
+    	while (<$FILE>)
+    	{
 			if (($nb_lines >= ($page-1)*$LINES_BY_PAGE) 
 					&& ($nb_lines <= ($page*$LINES_BY_PAGE)))
 			{
@@ -112,8 +118,13 @@ if ($Session->{extractor} eq "done")
 				$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
 			}
    		$nb_lines++;
-  	}
-		close(FILE);
+  		}
+		close($FILE);
+	}
+	else 
+	{
+		AAT::DEBUG("Can't open file $run_dir/logs_${login}_$filename !");
+	}
 		$last_page = int($nb_lines/$LINES_BY_PAGE) + 1;
 		$text .= "</table>"; 
 	}

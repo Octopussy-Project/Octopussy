@@ -192,7 +192,7 @@ sub Regexps
   $re_types{'SECONDS'}     = '[-+]?\d+';
   $re_types{'PID'}         = '\d+';
   $re_types{'WORD'}        = '\S+';
-  $re_types{'EMAIL'}       = '.+\@.+\..+';
+  $re_types{'EMAIL'}       = '.+@.+\..+';
   $re_types{'USER_AGENT'}  = '.+';
   $re_types{'STRING'}      = '.+';
   $re_types{'LONG_STRING'} = '.+';

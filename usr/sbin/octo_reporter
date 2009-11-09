@@ -132,7 +132,8 @@ sub Progress
   my ($msg, $num) = @_;
 
   my $str_progress = AAT::Translation($msg) . " [$num]";
-  $cache->set("status_$$", $str_progress);
+  $cache->set("status_${pid_param}", $str_progress);
+  #$cache->set("status_$$", $str_progress);
 
   return ($str_progress);
 }
@@ -443,7 +444,7 @@ Progress('_MSG_REPORT_PROGRESS_BUILDING_REPORT', '1/1');
 AAT::Syslog($PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Completed');
 unlink $file_pid;
 $cache->remove("info_$$");
-$cache->remove("status_$$");
+$cache->remove("status_${pid_param}");
 
 =head1 AUTHOR
 
