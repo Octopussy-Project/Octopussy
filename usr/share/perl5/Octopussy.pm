@@ -268,23 +268,9 @@ Returns Status Progress line for ProgressBar of program $bin
 sub Status_Progress
 {
   my ($bin, $param) = @_;
-=head2  
-  my $dir_pid  = Octopussy::Directory('running');
-  my $file_pid = "${dir_pid}${bin}_${param}.pid";
-  my $status   = "";
 
-  if (defined open(my $FILEPID, '<', $file_pid))
-  {
-    my $pid = <$FILEPID>;
-    chomp($pid);
-=cut
     my $cache = Octopussy::Cache::Init($bin);
-    
     my $status = $cache->get("status_$param");
-    
-    #$status = $cache->get("status_${pid}");
-    #close($FILEPID);
-  #}
 
   return ($status);
 }

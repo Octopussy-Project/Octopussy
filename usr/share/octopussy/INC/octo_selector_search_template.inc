@@ -34,45 +34,45 @@ function update_search_params(tpl)
 
 function print_search_params()
 {
-	if (http_request_tpl.readyState == 4)
+  if (http_request_tpl.readyState == 4)
   {
     if (http_request_tpl.status == 200)
     {
-			var form = document.forms[<%= $form_number %>];
+	  var form = document.forms[<%= $form_number %>];
       var xml =  http_request_tpl.responseXML;
       var root = xml.documentElement;
 			var tpl = root.getElementsByTagName('template')[0].firstChild.data;
 			var devices = root.getElementsByTagName('device')[0].firstChild.data;
-			var services = root.getElementsByTagName('service')[0].firstChild.data;			
+			var services = root.getElementsByTagName('service')[0].firstChild.data;
+			var device_list = devices.split(',');
+			var service_list = services.split(',');	
       var loglevel = root.getElementsByTagName('loglevel')[0].firstChild.data;
       var taxonomy = root.getElementsByTagName('taxonomy')[0].firstChild.data;
-
+	  var msgid = root.getElementsByTagName('msgid')[0].firstChild.data;
+	  
 			var re_include = root.getElementsByTagName('re_include')[0];
 			var re_include2 = root.getElementsByTagName('re_include2')[0];
 			var re_include3 = root.getElementsByTagName('re_include3')[0];
 			var re_exclude = root.getElementsByTagName('re_exclude')[0];
       var re_exclude2 = root.getElementsByTagName('re_exclude2')[0];
       var re_exclude3 = root.getElementsByTagName('re_exclude3')[0];
-			var device_list = devices.split(',');
-			var service_list = services.split(',');
 
 			form.template.value = tpl;
-    	for (i = 0; i < form.device.options.length; i++)
-    	{
+      for (i = 0; i < form.device.options.length; i++)
+      {
       	form.device.options[i].selected = 0;
       	for (i2 = 0; i2 < device_list.length; i2++)
       	{
         	if (form.device.options[i].value == device_list[i2])
         		form.device.options[i].selected = 1;
       	}
-    	}
-			refresh_selector_service();
-
+      }
+	  refresh_selector_service();
       for (i = 0; i < form.service.options.length; i++)
       {  
         form.service.options[i].selected = 0;
         for (i2 = 0; i2 < service_list.length; i2++)
-       {
+        {
           if (form.service.options[i].value == service_list[i2])
             form.service.options[i].selected = 1;
         }
@@ -91,8 +91,15 @@ function print_search_params()
         if (form.taxonomy.options[i].value == taxonomy)
           form.taxonomy.options[i].selected = 1;
       }
-
-			if (re_include.firstChild != null)
+	  
+	  for (i = 0; i < form.msgid.options.length; i++)
+      {  
+        form.msgid.options[i].selected = 0;
+        if (form.msgid.options[i].value == msgid)
+          form.msgid.options[i].selected = 1;
+      }
+      
+	  if (re_include.firstChild != null)
         form.re_include.value = re_include.firstChild.data
       else
         form.re_include.value = "";
@@ -117,8 +124,7 @@ function print_search_params()
       else
         form.re_exclude3.value = "";
 
-      }
-		}
-	}
+   }
+  }
 }
 </script>
