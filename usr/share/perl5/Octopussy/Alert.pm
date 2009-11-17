@@ -85,8 +85,11 @@ Modify the configuration for the Alert '$old_alert'
 sub Modify
 {
   my ($old_alert, $conf_new) = @_;
+
   Remove($old_alert);
   New($conf_new);
+
+  return (undef);
 }
 
 =head2 Remove($alert)
@@ -99,8 +102,10 @@ sub Remove
 {
   my $alert = shift;
 
-  unlink Filename($alert);
+  my $nb = unlink Filename($alert);
   $filename{$alert} = undef;
+
+  return ($nb);
 }
 
 =head2 List()
@@ -267,6 +272,8 @@ sub Insert_In_DB
       log       => $line
     }
   );
+
+  return (1);
 }
 
 =head2 Check_All_Closed()
@@ -312,6 +319,8 @@ sub Update_Status
   AAT::DB::Do('Octopussy',
         "UPDATE _alerts_ SET status='$status', "
       . "comment='$comment' WHERE log_id=$id");
+
+  return (1);
 }
 
 #
@@ -332,6 +341,8 @@ sub Add_Message
   push @{$conf->{message}},
     {msg_id => $msg_id, repeat => $repeat, interval => $interval};
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+  
+  return (scalar @{$conf->{message}});
 }
 
 #
@@ -352,6 +363,8 @@ sub Remove_Message
   my @messages = grep { $_->{msg_id} ne $msg_id } AAT::ARRAY($conf->{message});
   $conf->{message} = \@messages;
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+
+  return (scalar @messages);
 }
 
 #
@@ -386,6 +399,8 @@ sub Add_Message_Field
     }
   }
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+
+  return (scalar @{$m->{field}});
 }
 
 #
@@ -423,6 +438,8 @@ sub Remove_Message_Field
     }
   }
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+
+  return (scalar @fields);
 }
 
 #
@@ -444,6 +461,8 @@ sub Add_Action
   my $conf = AAT::XML::Read(Filename($alert_name));
   push @{$conf->{action}}, {type => $type, contact => $contact, data => $data};
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+
+  return (scalar @{$conf->{action}});
 }
 
 =head2 From_Device($device)

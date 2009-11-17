@@ -12,7 +12,6 @@ Octopussy::Message - Octopussy Message module
 package Octopussy::Message;
 
 use strict;
-no strict 'refs';
 use warnings;
 use bytes;
 use utf8;

@@ -44,6 +44,8 @@ sub New
   $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
   Octopussy::Create_Directory("$dir_search_tpl/$user");
   AAT::XML::Write("$dir_search_tpl/$user/$conf->{name}.xml", $conf, $XML_ROOT);
+
+  return ($conf->{name});
 }
 
 =head2 Remove($user, $search_tpl)
@@ -60,9 +62,11 @@ $search_tpl - Name of the Search Template to remove
 sub Remove
 {
   my ($user, $search_tpl) = @_;
-
-  unlink Filename($user, $search_tpl);
+  
+  my $nb = unlink Filename($user, $search_tpl);
   $filename{$user}{$search_tpl} = undef;
+  
+  return ($nb);
 }
 
 =head2 List($user)

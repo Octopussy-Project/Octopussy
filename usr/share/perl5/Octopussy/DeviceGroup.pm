@@ -202,6 +202,8 @@ sub Remove_Device
   }
   $conf->{devicegroup} = \@dgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return (scalar @dgs);
 }
 
 =head2 Services($devicegroup_name)

@@ -116,6 +116,8 @@ sub Remove
   }
   $conf->{user} = \@users;
   AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
+
+  return (scalar @users);
 }
 
 =head2 Update($appli, $login, $update)
@@ -160,6 +162,8 @@ sub Update
   }
   $conf->{user} = \@users;
   AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
+
+  return (scalar @users);
 }
 
 =head2 Restrictions($appli, $login)
@@ -210,6 +214,8 @@ sub Update_Restrictions
   }
   $conf->{user} = \@users;
   AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
+
+  return (scalar @users);
 }
 
 =head2 List($appli)
@@ -278,6 +284,8 @@ sub Roles_Init
   {
     $roles{$r->{value}}{label} = $r->{label};
   }
+
+  return (scalar AAT::ARRAY($conf->{role}));
 }
 
 =head2 Roles_Configurations($appli)

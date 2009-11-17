@@ -110,12 +110,16 @@ sub Send_Message
         $sender->MailMsg({to => $dest, subject => $subject, msg => $body});
       }
       $sender->Close();
+      
+      return (1);
     }
   }
   else
   {
     AAT::Syslog('AAT::SMTP', 'SMTP_INVALID_CONFIG');
   }
+  
+  return (0);
 }
 
 =head2 Send_Message_With_File($appli, $subject, $body, $file, @dests)
@@ -156,12 +160,16 @@ sub Send_Message_With_File
         );
       }
       $sender->Close();
+ 
+      return (1);
     }
   }
   else
   {
     AAT::Syslog('AAT::SMTP', 'SMTP_INVALID_CONFIG');
   }
+  
+  return (0);
 }
 
 1;

@@ -117,11 +117,15 @@ sub Send_Message
     }
     sleep 1;
     $client->Disconnect();
+    
+    return (1);
   }
   else
   {
     AAT::Syslog('AAT::XMPP', 'XMPP_INVALID_CONFIG');
   }
+  
+  return (0);
 }
 
 1;

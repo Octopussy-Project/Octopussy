@@ -53,11 +53,17 @@ sub Send
   {
     my $host    = $nagios_host    || $nsca->{nagios_host};
     my $service = $nagios_service || $nsca->{nagios_service};
-    open(my $NSCA, '|-',
-      "$nsca->{bin} -H $nsca->{nagios_server} -c $nsca->{conf}");
-    print $NSCA "$host\t$service\t$level\t$msg\n";
-    close($NSCA);
+    if (defined open(my $NSCA, '|-',
+      "$nsca->{bin} -H $nsca->{nagios_server} -c $nsca->{conf}"))
+    {
+      print $NSCA "$host\t$service\t$level\t$msg\n";
+      close($NSCA);
+    
+      return (1);
+    }
   }
+  
+  return (0);
 }
 
 1;

@@ -78,21 +78,27 @@ sub Authority_Create
   `echo "01" > $dir_ca/serial`;
 
   `cp $CONF $CONF_CA.tmp`;
-  open(my $FILE, '<', "$CONF_CA.tmp");
-  open(my $OUT,  '>', $CONF_CA);
-  while (my $line = <$FILE>)
+  if ((defined open(my $FILE, '<', "$CONF_CA.tmp")) 
+      && (defined open(my $OUT,  '>', $CONF_CA)))
   {
-    foreach my $k (keys %{$conf})
+    while (my $line = <$FILE>)
     {
-      my $sub = '<' . uc($k) . '>';
-      $line =~ s/$sub/$conf->{$k}/g;
+      foreach my $k (keys %{$conf})
+      {
+        my $sub = '<' . uc($k) . '>';
+        $line =~ s/$sub/$conf->{$k}/g;
+      }
+      print $OUT $line;
     }
-    print $OUT $line;
+    close($FILE);
+    close($OUT);
+    `$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $dir_ca/private/cakey.pem -out $dir_ca/cacert.pem`;
+    `chmod -R 600 $dir_ca/private`;
+  
+    return ("$dir_ca/private");
   }
-  close($FILE);
-  close($OUT);
-`$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $dir_ca/private/cakey.pem -out $dir_ca/cacert.pem`;
-  `chmod -R 600 $dir_ca/private`;
+  
+  return (undef);
 }
 
 =head2 Client_Create($appli, $file, $password, \%conf)
@@ -108,25 +114,31 @@ sub Client_Create
   my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
   my $info = AAT::Application::Info($appli);
   `cp $CONF $CONF_CLIENT.tmp`;
-  open(my $FILE, '<', "$CONF_CLIENT.tmp");
-  open(my $OUT,  '>', $CONF_CLIENT);
-  while (<$FILE>)
+  if ((defined open(my $FILE, '<', "$CONF_CLIENT.tmp")) 
+    && (defined open(my $OUT,  '>', $CONF_CLIENT)))
   {
-    my $line = $_;
-    foreach my $k (keys %{$conf})
+    while (<$FILE>)
     {
-      my $sub = '<' . uc($k) . '>';
-      $line =~ s/$sub/$conf->{$k}/g;
+      my $line = $_;
+      foreach my $k (keys %{$conf})
+      {
+        my $sub = '<' . uc($k) . '>';
+        $line =~ s/$sub/$conf->{$k}/g;
+      }
+      $line =~ s/<DIR>/$dir_ca/g;
+      print $OUT $line;
     }
-    $line =~ s/<DIR>/$dir_ca/g;
-    print $OUT $line;
+    close($FILE);
+    close($OUT);
+    `$SSL_REQ -config $CONF_CLIENT -passout pass:octo -newkey $CIPHER -keyout ${file}.key -out ${file}.req`;
+    `$SSL_CA -config $CONF_CLIENT -passin pass:octo -in ${file}.req -out ${file}.pem`;
+    `$OPENSSL pkcs12 -export -passin pass:octo -passout pass:$password -in ${file}.pem -inkey ${file}.key -out ${file}.p12 -name "$conf->{common_name}"`;
+    `chown $info->{user}: ${file}.p12`;
+  
+    return ("${file}.p12");
   }
-  close($FILE);
-  close($OUT);
-`$SSL_REQ -config $CONF_CLIENT -passout pass:octo -newkey $CIPHER -keyout ${file}.key -out ${file}.req`;
-`$SSL_CA -config $CONF_CLIENT -passin pass:octo -in ${file}.req -out ${file}.pem`;
-`$OPENSSL pkcs12 -export -passin pass:octo -passout pass:$password -in ${file}.pem -inkey ${file}.key -out ${file}.p12 -name "$conf->{common_name}"`;
-  `chown $info->{user}: ${file}.p12`;
+  
+  return (undef);
 }
 
 =head2 Server_Create()
@@ -142,25 +154,31 @@ sub Server_Create
   my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
   my $info = AAT::Application::Info($appli);
   `cp $CONF $CONF_SERVER.tmp`;
-  open(my $FILE, '<', "$CONF_SERVER.tmp");
-  open(my $OUT,  '>', $CONF_SERVER);
-  while (<$FILE>)
+  if ((defined open(my $FILE, '<', "$CONF_SERVER.tmp"))
+    && (defined open(my $OUT,  '>', $CONF_SERVER)))
   {
-    my $line = $_;
-    foreach my $k (keys %{$conf})
+    while (<$FILE>)
     {
-      my $sub = '<' . uc($k) . '>';
-      $line =~ s/$sub/$conf->{$k}/g;
+      my $line = $_;
+      foreach my $k (keys %{$conf})
+      {
+        my $sub = '<' . uc($k) . '>';
+        $line =~ s/$sub/$conf->{$k}/g;
+      }
+      $line =~ s/<DIR>/$dir_ca/g;
+      print $OUT $line;
     }
-    $line =~ s/<DIR>/$dir_ca/g;
-    print $OUT $line;
+    close($FILE);
+    close($OUT);
+    `$SSL_REQ -config $CONF_SERVER -newkey $CIPHER -keyout $dest/server.key -out $dest/server.req`;
+    `$SSL_CA -config $CONF_SERVER -in $dest/server.req -out $dest/server.crt`;
+    `$OPENSSL rsa -passout pass:octo -in $dest/server.key -out $dest/server.key`;
+    `chown $info->{user}: $dest/*`;
+
+    return ("$dest/server.key")
   }
-  close($FILE);
-  close($OUT);
-`$SSL_REQ -config $CONF_SERVER -newkey $CIPHER -keyout $dest/server.key -out $dest/server.req`;
-  `$SSL_CA -config $CONF_SERVER -in $dest/server.req -out $dest/server.crt`;
-  `$OPENSSL rsa -passout pass:octo -in $dest/server.key -out $dest/server.key`;
-  `chown $info->{user}: $dest/*`;
+
+  return (undef);
 }
 
 1;

@@ -98,6 +98,7 @@ sub Generate
   #my $html = $map->imagemap("graph.png", $g->{data});
 
   #return ($html);
+  return ($output);
 }
 
 1;

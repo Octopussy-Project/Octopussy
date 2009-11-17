@@ -36,6 +36,8 @@ sub New
 
   $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
   AAT::XML::Write("$dir_stat_reports/$conf->{name}.xml", $conf, $XML_ROOT);
+
+  return ($conf->{name});
 }
 
 =head2 Remove($statistic_report)
@@ -48,8 +50,10 @@ sub Remove
 {
   my $statistic_report = shift;
 
-  unlink Filename($statistic_report);
+  my $nb = unlink Filename($statistic_report);
   $filename{$statistic_report} = undef;
+  
+  return ($nb);
 }
 
 =head2 Modify($old_report, $conf_new)
@@ -64,6 +68,8 @@ sub Modify
 
   Remove($old_report);
   New($conf_new);
+
+  return (undef);
 }
 
 =head2 List()

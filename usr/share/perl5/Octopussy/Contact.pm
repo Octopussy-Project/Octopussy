@@ -72,8 +72,10 @@ sub Remove
 {
   my $contact = shift;
 
-  unlink Filename($contact);
+  my $nb = unlink Filename($contact);
   $filename{$contact} = undef;
+
+  return ($nb);
 }
 
 =head2 List()

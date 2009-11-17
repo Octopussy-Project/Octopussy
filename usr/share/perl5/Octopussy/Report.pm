@@ -12,7 +12,6 @@ Octopussy::Report - Octopussy Report module
 package Octopussy::Report;
 
 use strict;
-no strict 'refs';
 use warnings;
 use Proc::ProcessTable;
 use Readonly;
@@ -20,8 +19,6 @@ use Readonly;
 use Octopussy;
 use Octopussy::Report::CSV;
 use Octopussy::Report::HTML;
-
-#use Octopussy::Report::OpenDocument;
 use Octopussy::Report::PDF;
 use Octopussy::Report::XML;
 
@@ -47,6 +44,8 @@ sub New
   $dir_reports ||= Octopussy::Directory($DIR_REPORT);
   $conf->{version} = Octopussy::Timestamp_Version(undef);
   AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, $XML_ROOT);
+
+  return ($conf->{name});
 }
 
 =head2 Remove($report)
@@ -59,9 +58,11 @@ sub Remove
 {
   my $report = shift;
 
-  unlink Filename($report);
+  my $nb = unlink Filename($report);
   $filename{$report} = undef;
   Octopussy::Data_Report::Remove_All($report);
+
+  return ($nb);
 }
 
 =head2 Modify($old_report, $conf_new)
@@ -74,12 +75,11 @@ sub Modify
 {
   my ($old_report, $conf_new) = @_;
 
-  Remove($old_report);
-
-  #unlink Filename($report);
-  #$filename{$report} = undef;
-
+  unlink Filename($old_report);
+  $filename{$old_report} = undef;
   New($conf_new);
+  
+  return (undef);
 }
 
 =head2 List($category, $restriction_list)
@@ -346,6 +346,8 @@ sub Generate
   File_Info($file_info, $begin, $end, $devices, $services, $stats);
   Octopussy::Chown($file_info);
   Export($outputfile, $conf_mail, $conf_ftp, $conf_scp);
+
+  return ($outputfile);
 }
 
 =head2 CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
@@ -448,6 +450,8 @@ sub Export
   Octopussy::Export::Using_Mail($conf_mail, $file);
   Octopussy::Export::Using_Ftp($conf_ftp, $file);
   Octopussy::Export::Using_Scp($conf_scp, $file);
+
+  return ($file);
 }
 
 =head2 File_Info($file, $begin, $end, $devices, $services, $stats)
@@ -471,6 +475,8 @@ sub File_Info
     nb_result_lines => $stats->{nb_result_lines},
   );
   AAT::XML::Write($file, \%data, 'octopussy_report_info');
+
+  return ($file);
 }
 
 =head2 File_Info_Tooltip($file, $lang)
@@ -523,6 +529,8 @@ sub Updates_Installation
     $url =~ s/ /\%20/g;
     AAT::Download('Octopussy', $url, "$dir_reports/$r.xml");
   }
+
+  return (scalar @reports);
 }
 
 =head2 Running_List()

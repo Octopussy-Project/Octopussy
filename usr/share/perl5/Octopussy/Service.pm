@@ -12,7 +12,6 @@ Octopussy::Service - Octopussy Service module
 package Octopussy::Service;
 
 use strict;
-no strict 'refs';
 use warnings;
 use Readonly;
 use utf8;
@@ -44,6 +43,8 @@ sub New
   $dir_services ||= Octopussy::Directory($DIR_SERVICE);
   $conf->{version} = Octopussy::Timestamp_Version(undef);
   AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, $XML_ROOT);
+
+  return ($conf->{name});
 }
 
 =head2 Remove($service)
@@ -60,8 +61,10 @@ sub Remove
 {
   my $service = shift;
 
-  unlink Filename($service);
+  my $nb = unlink Filename($service);
   $filename{$service} = undef;
+
+  return ($nb);
 }
 
 =head2 List()
@@ -165,17 +168,15 @@ sub Msg_ID
   my $conf   = Configuration($service);
   my $msg_id = '';
   my $i      = 1;
-  while ($i)
+  while ($i < 1_000)
   {
     $msg_id = $conf->{name} . ":$i";
-    my $matched = 0;
-    foreach my $m (AAT::ARRAY($conf->{message}))
-    {
-      $matched = 1 if ($m->{msg_id} =~ /^$msg_id$/i);
-    }
-    return ($msg_id) if (!$matched);
+    if (! grep { $_->{msg_id} =~ /^$msg_id$/i } AAT::ARRAY($conf->{message}))
+      return ($msg_id) if (!$matched);
     $i++;
   }
+  
+  return (undef);
 }
 
 =head2 Msg_ID_unique($service, $msgid)
@@ -265,6 +266,8 @@ sub Remove_Message
   $conf->{message} = \@messages;
   AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
   Parse_Restart($service);
+
+  return (scalar @messages);
 }
 
 =head2 Modify_Message($service, $msgid, $conf_modified)
@@ -370,6 +373,8 @@ sub Move_Message
   $conf->{message} = \@messages2;
   AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
   Parse_Restart_Required($service);
+
+  return ($rank);
 }
 
 =head2 Messages(@services)
@@ -490,7 +495,7 @@ sub Sort_Messages_By_Statistics
   my $conf          = Configuration($service);
   my @conf_messages = AAT::ARRAY($conf->{message});
   my @messages      = ();
-  my %values        = map(($_, 1), values %percent);
+  my %values        = map { $_ => 1 } values %percent;
   foreach my $p (keys %values)
   {
     print "Percent $p\n";
@@ -508,6 +513,8 @@ sub Sort_Messages_By_Statistics
   {
     print ' -> ' . $m->{msg_id} . "\n";
   }
+
+  return (@messages);
 }
 
 =head2 Tables($service)
@@ -548,6 +555,8 @@ sub Parse_Restart
       Octopussy::Device::Parse_Start($d);
     }
   }
+
+  return (scalar @devices);
 }
 
 =head2 Parse_Restart_Required($service)
@@ -566,6 +575,8 @@ sub Parse_Restart_Required
     Octopussy::Device::Reload_Required($d)
       if (Octopussy::Device::Parse_Status($d));
   }
+  
+  return (scalar @devices);
 }
 
 =head2 Updates()
@@ -615,6 +626,8 @@ sub Updates_Installation
       "$dir_services/$s.xml");
     Parse_Restart($s);
   }
+  
+  return (scalar @services);
 }
 
 =head2 Update_Get_Messages($service)

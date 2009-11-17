@@ -12,7 +12,6 @@ Octopussy::RRDTool - Octopussy RRDTool module
 package Octopussy::RRDTool;
 
 use strict;
-no strict 'refs';
 use warnings;
 use Readonly;
 
@@ -142,6 +141,8 @@ sub Syslog_By_DeviceType_Init
     $cmd .= $RRA;
     system $cmd;
   }
+
+  return ($cmd);
 }
 
 =head2 Syslog_By_DeviceType_Update($values)
@@ -157,6 +158,8 @@ sub Syslog_By_DeviceType_Update
 
   system "$RRD_UPDATE \"$RRD_SYSLOG_DTYPE\" N:$value_str"
     if (-f "$RRD_SYSLOG_DTYPE");
+
+  return (1);
 }
 
 =head2 Syslog_By_DeviceType_Graph($file, $title, $length)
@@ -191,6 +194,8 @@ sub Syslog_By_DeviceType_Graph
     }
     system "$cmd 2>&1 1>/dev/null";
   }
+
+  return ($cmd);
 }
 
 =head2 Syslog_By_DeviceType_Hourly_Graph()
@@ -201,7 +206,9 @@ Graphs RRD Data for 'Syslog by Device Type' hourly stats
 
 sub Syslog_By_DeviceType_Hourly_Graph
 {
-  Syslog_By_DeviceType_Graph('syslog_dtype_hourly', 'Hourly Stats', $HOURLY);
+  my $return = Syslog_By_DeviceType_Graph('syslog_dtype_hourly', 'Hourly Stats', $HOURLY);
+  
+  return ($return);
 }
 
 =head2 Syslog_By_DeviceType_Daily_Graph()
@@ -212,7 +219,9 @@ Graphs RRD Data for 'Syslog by Device Type' daily stats
 
 sub Syslog_By_DeviceType_Daily_Graph
 {
-  Syslog_By_DeviceType_Graph('syslog_dtype_daily', 'Daily Stats', $DAILY);
+  my $return = Syslog_By_DeviceType_Graph('syslog_dtype_daily', 'Daily Stats', $DAILY);
+
+  return ($return);  
 }
 
 =head2 Syslog_By_DeviceType_Weekly_Graph()
@@ -223,7 +232,9 @@ Graphs RRD Data for 'Syslog by Device Type' weekly stats
 
 sub Syslog_By_DeviceType_Weekly_Graph
 {
-  Syslog_By_DeviceType_Graph('syslog_dtype_weekly', 'Weekly Stats', $WEEKLY);
+  my $return = Syslog_By_DeviceType_Graph('syslog_dtype_weekly', 'Weekly Stats', $WEEKLY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_DeviceType_Monthly_Graph()
@@ -234,7 +245,9 @@ Graphs RRD Data for 'Syslog by Device Type' monthly stats
 
 sub Syslog_By_DeviceType_Monthly_Graph
 {
-  Syslog_By_DeviceType_Graph('syslog_dtype_monthly', 'Monthly Stats', $MONTHLY);
+  my $return = Syslog_By_DeviceType_Graph('syslog_dtype_monthly', 'Monthly Stats', $MONTHLY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_DeviceType_Yearly_Graph()
@@ -245,7 +258,9 @@ Graphs RRD Data for 'Syslog by Device Type' yearly stats
 
 sub Syslog_By_DeviceType_Yearly_Graph
 {
-  Syslog_By_DeviceType_Graph('syslog_dtype_yearly', 'Yearly Stats', $YEARLY);
+  my $return = Syslog_By_DeviceType_Graph('syslog_dtype_yearly', 'Yearly Stats', $YEARLY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Init($device, $service)
@@ -272,6 +287,8 @@ sub Syslog_By_Device_Service_Taxonomy_Init
     $cmd .= $RRA;
     system $cmd;
   }
+
+  return ($cmd);
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Update($seconds, $device, $service, 
@@ -288,6 +305,8 @@ sub Syslog_By_Device_Service_Taxonomy_Update
   my $value_str = join ':', AAT::ARRAY($values);
 
   system "$RRD_UPDATE \"$file\" $seconds:$value_str 2>&1 1>/dev/null";
+
+  return (1);
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Graph($device, $service, $file, 
@@ -320,6 +339,8 @@ sub Syslog_By_Device_Service_Taxonomy_Graph
     $first = 0;
   }
   system "$cmd 2>&1 1>/dev/null";
+
+  return ($cmd);
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Hourly_Graph($device, $service)
@@ -332,9 +353,11 @@ sub Syslog_By_Device_Service_Taxonomy_Hourly_Graph
 {
   my ($device, $service) = @_;
 
-  Syslog_By_Device_Service_Taxonomy_Graph($device, $service,
+  my $return = Syslog_By_Device_Service_Taxonomy_Graph($device, $service,
     "taxonomy_${device}-${service}_hourly",
     'Hourly Stats', $HOURLY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Daily_Graph($device, $service)
@@ -347,9 +370,11 @@ sub Syslog_By_Device_Service_Taxonomy_Daily_Graph
 {
   my ($device, $service) = @_;
 
-  Syslog_By_Device_Service_Taxonomy_Graph($device, $service,
+  my $return = Syslog_By_Device_Service_Taxonomy_Graph($device, $service,
     "taxonomy_${device}-${service}_daily",
     'Daily Stats', $DAILY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Graph($device)
@@ -402,6 +427,8 @@ sub Syslog_By_Device_Taxonomy_Graph
   }
   $cmd .= " $def $cdef $legend";
   system "$cmd 2>&1 1>/dev/null" if (($cdef ne '') && ($def ne ''));
+
+  return ($cmd);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Hourly_Graph($device)
@@ -414,8 +441,10 @@ sub Syslog_By_Device_Taxonomy_Hourly_Graph
 {
   my $device = shift;
 
-  Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
+  my $return = Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
     "taxonomy_${device}_hourly", 'Hourly Stats', $HOURLY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Daily_Graph($device)
@@ -428,8 +457,10 @@ sub Syslog_By_Device_Taxonomy_Daily_Graph
 {
   my $device = shift;
 
-  Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
+  my $return = Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
     "taxonomy_${device}_daily", 'Daily Stats', $DAILY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Weekly_Graph($device)
@@ -442,8 +473,10 @@ sub Syslog_By_Device_Taxonomy_Weekly_Graph
 {
   my $device = shift;
 
-  Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
+  my $return = Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
     "taxonomy_${device}_weekly", 'Weekly Stats', $WEEKLY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Monthly_Graph($device)
@@ -456,8 +489,10 @@ sub Syslog_By_Device_Taxonomy_Monthly_Graph
 {
   my $device = shift;
 
-  Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
+  my $return = Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
     "taxonomy_${device}_monthly", 'Monthly Stats', $MONTHLY);
+
+  return ($return);
 }
 
 =head2 Syslog_By_Device_Taxonomy_Yearly_Graph($device)
@@ -470,8 +505,10 @@ sub Syslog_By_Device_Taxonomy_Yearly_Graph
 {
   my $device = shift;
 
-  Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
+  my $return = Octopussy::RRDTool::Syslog_By_Device_Taxonomy_Graph($device,
     "taxonomy_${device}_yearly", 'Yearly Stats', $YEARLY);
+
+  return ($return);
 }
 
 =head2 Watermark($stats, $lang)
@@ -597,6 +634,8 @@ sub Report_Graph
     $i++;
   }
   system $cmd;
+
+  return ($cmd);
 }
 
 1;

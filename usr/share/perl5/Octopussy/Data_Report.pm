@@ -76,6 +76,8 @@ sub Remove
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
   system "rm -f \"$dir_reports$report/$filename\".*";
+
+  return ("$dir_reports$report/${filename}.*");
 }
 
 =head2 Remove_All($report)
@@ -90,6 +92,8 @@ sub Remove_All
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
   File::Path::rmtree("$dir_reports$report/");
+
+  return ("$dir_reports$report/");
 }
 
 =head2 Remove_Month($report, $year, $month)
@@ -104,6 +108,8 @@ sub Remove_Month
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
   system "rm -f \"$dir_reports$report/$report-$year$month\"*";
+
+  return ("$dir_reports$report/$report-$year$month*");
 }
 
 1;

@@ -49,7 +49,11 @@ sub New
     AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, $XML_ROOT);
     Add_Field($conf->{name}, 'datetime', 'DATETIME');
     Add_Field($conf->{name}, 'device',   'WORD');
+    
+    return ($conf->{name});
   }
+
+  return (undef);
 }
 
 =head2 Remove($table)
@@ -65,9 +69,11 @@ $service - Name of the Table to remove
 sub Remove
 {
   my $table = shift;
-
-  unlink Filename($table);
+  
+  my $nb = unlink Filename($table);
   $filename{$table} = undef;
+  
+  return ($nb);
 }
 
 =head2 List()
@@ -175,6 +181,8 @@ sub Remove_Field
   my @fields = grep { $_->{title} ne $fieldname } AAT::ARRAY($conf->{field});
   $conf->{field} = \@fields;
   AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
+
+  return (scalar @fields);
 }
 
 =head2 Fields($table)
@@ -380,6 +388,8 @@ sub Updates_Installation
     AAT::Download('Octopussy', "$web/Download/Tables/$t.xml",
       "$dir_tables/$t.xml");
   }
+
+  return (scalar @tables);
 }
 
 =head2 Update_Get_Fields($table)

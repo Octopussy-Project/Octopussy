@@ -12,7 +12,6 @@ Octopussy::ServiceGroup - Octopussy ServiceGroup Module
 package Octopussy::ServiceGroup;
 
 use strict;
-no strict 'refs';
 use warnings;
 use Readonly;
 
@@ -43,6 +42,8 @@ sub Add
   }
   push @{$conf->{servicegroup}}, $conf_sg;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return (undef);
 }
 
 =head1 Remove($servicegroup)
@@ -61,6 +62,8 @@ sub Remove
     grep { $_->{sg_id} ne $servicegroup } AAT::ARRAY($conf->{servicegroup});
   $conf->{servicegroup} = \@sgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return ($servicegroup);
 }
 
 =head2 List()
@@ -177,6 +180,8 @@ sub Add_Service
   $conf->{servicegroup} = \@sgs;
 
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return ($service);
 }
 
 =head2 Remove_Service($servicegroup, $service)
@@ -217,6 +222,8 @@ sub Remove_Service
   }
   $conf->{servicegroup} = \@sgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return (scalar @sgs);
 }
 
 =head2 Move_Service($servicegroup, $service, $direction)
@@ -245,8 +252,8 @@ sub Move_Service
       {
         if ($s->{sid} eq $service)
         {
-          return () if (($s->{rank} eq '01')   && ($direction eq 'up'));
-          return () if (($s->{rank} eq "$max") && ($direction eq 'down'));
+          return ('01') if (($s->{rank} eq '01')   && ($direction eq 'up'));
+          return ($max) if (($s->{rank} eq $max) && ($direction eq 'down'));
           $s->{rank} = ($direction eq 'up' ? $s->{rank} - 1 : $s->{rank} + 1);
           $s->{rank} = AAT::Padding($s->{rank}, 2);
           $rank = $s->{rank};
@@ -271,6 +278,8 @@ sub Move_Service
   $conf->{servicegroup} = \@sgs;
 
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return ($rank);
 }
 
 1;

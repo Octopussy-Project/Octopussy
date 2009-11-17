@@ -57,6 +57,8 @@ sub Init_All
     print "Init Plugin $p\n";
     &{$func}($conf);
   }
+
+  return (scalar @plugins);
 }
 
 =head2 Init(\%conf, @plugins)
@@ -78,6 +80,8 @@ sub Init
       &{$func}($conf);
     }
   }
+  
+  return (scalar @plugins);
 }
 
 =head2 List()

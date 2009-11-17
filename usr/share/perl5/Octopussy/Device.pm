@@ -52,6 +52,8 @@ sub New
     Octopussy::Chown("$dir_devices/$name.xml");
     Octopussy::Logs::Init_Directories($name);
   }
+
+  return ($name);
 }
 
 =head2 Modify($conf_new)
@@ -82,6 +84,8 @@ sub Modify
   $conf->{minutes_without_logs} = $conf_new->{minutes_without_logs} || '';
   AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
   Parse_Start($conf_new->{name}) if ($status == $STARTED);
+
+  return (undef);
 }
 
 =head2 Reload_Required($device)
@@ -97,6 +101,8 @@ sub Reload_Required
   my $conf = AAT::XML::Read(Filename($device));
   $conf->{reload_required} = 1;
   AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+
+  return ($device);
 }
 
 =head2 Remove($device)
@@ -119,6 +125,8 @@ sub Remove
   unlink Filename($device);
   $filename{$device} = undef;
   Octopussy::Dispatcher_Reload();
+
+  return ($device);
 }
 
 =head2 List()
@@ -307,6 +315,8 @@ sub Add_Service
   else { push @{$conf->{service}}, {sid => $service, rank => $rank}; }
   AAT::XML::Write(Filename($device), $conf, $XML_ROOT);
   Parse_Start($device) if ($old_status == $STARTED);
+
+  return (scalar @{$conf->{service}});
 }
 
 =head2 Remove_Service($device_name, $service_name)
@@ -343,6 +353,8 @@ sub Remove_Service
   $conf->{service} = \@services;
   AAT::XML::Write(Filename($device_name), $conf, $XML_ROOT);
   Parse_Start($device_name) if ($old_status == $STARTED);
+
+  return (scalar @services);
 }
 
 =head2 Move_Service($device, $service, $direction)
@@ -408,6 +420,8 @@ sub Move_Service
   $conf->{service}         = \@services2;
   $conf->{reload_required} = 1;
   AAT::XML::Write(Filename($device), $conf, $XML_ROOT);
+
+  return ($rank);
 }
 
 =head2 Services(@devices)
@@ -662,6 +676,8 @@ sub Parse_Pause
     $conf->{status} = 'Paused';
     AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
   }
+
+  return ($device);
 }
 
 =head2 Parse_Start($device)
@@ -686,6 +702,8 @@ sub Parse_Start
     $conf->{reload_required} = undef;
     AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
   }
+  
+  return ($device);
 }
 
 =head2 Parse_Stop($device)
@@ -707,6 +725,8 @@ sub Parse_Stop
     AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
     Octopussy::Dispatcher_Reload();
   }
+  
+  return ($device);
 }
 
 =head2 Set_Service_Statistics($device, $service, $action)

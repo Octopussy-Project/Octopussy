@@ -54,7 +54,11 @@ sub Send
     my $cmd =
 "$conf_zabbix->{bin} -z $conf_zabbix->{zabbix_server} -s $conf_zabbix->{zabbix_host} -k $conf_zabbix->{zabbix_item} -o \"$msg\"";
     `$cmd`;
+    
+    return (1);
   }
+  
+  return (0);
 }
 
 1;

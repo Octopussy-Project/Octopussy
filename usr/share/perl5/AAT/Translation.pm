@@ -28,7 +28,8 @@ sub Init
 {
   my ($lang, @dirs) = @_;
   my @list = (AAT::Directory('translations'), @dirs);
-
+  my $count = 0;
+  
   foreach my $dir (@list)
   {
     if (-f "$dir${lang}.xml")
@@ -37,6 +38,7 @@ sub Init
       foreach my $m (AAT::ARRAY($conf->{msg}))
       {
         $AAT_Translation{$lang}{$m->{mid}} = $m->{value};
+        $count++;
       }
     }
     if (-f "$dir${lang}_Tooltips.xml")
@@ -45,9 +47,12 @@ sub Init
       foreach my $m (AAT::ARRAY($conf->{msg}))
       {
         $AAT_Translation{$lang}{$m->{mid}} = $m->{value};
+        $count++;
       }
     }
   }
+  
+  return ($count);
 }
 
 =head2 Get($lang, $str)

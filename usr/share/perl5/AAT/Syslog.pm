@@ -67,6 +67,8 @@ sub Messages
   openlog($module, LOG_INFO, LOG_LOCAL5);
   foreach my $msg (AAT::ARRAY($msgs)) { syslog(LOG_INFO, $msg); }
   closelog();
+
+  return (scalar AAT::ARRAY($msgs));
 }
 
 1;

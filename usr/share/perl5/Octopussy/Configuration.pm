@@ -77,6 +77,8 @@ sub Restore
   my $file        = shift;
   my $file_backup = "${DIR_BACKUP}${file}.tgz";
   `tar Pxvfz $file_backup`;
+
+  return (1);
 }
 
 1;

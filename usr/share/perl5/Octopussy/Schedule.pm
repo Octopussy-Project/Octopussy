@@ -63,6 +63,8 @@ sub Remove
     grep { $_->{title} ne $schedule_title } AAT::ARRAY($conf->{schedule});
   $conf->{schedule} = \@schedules;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return (scalar @schedules);
 }
 
 =head2 List()

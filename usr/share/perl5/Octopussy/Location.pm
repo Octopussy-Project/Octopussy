@@ -77,6 +77,8 @@ sub City_Remove
 
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return (scalar @cities);
 }
 
 =head2 Buildings($city)
@@ -164,6 +166,8 @@ sub Building_Remove
   }
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return (scalar @buildings);
 }
 
 =head2 Rooms($city, $building)
@@ -278,6 +282,8 @@ sub Room_Remove
   }
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+
+  return (scalar @rooms);
 }
 
 =head2 Racks($city, $building, $room)
@@ -414,6 +420,8 @@ sub Rack_Remove
   }
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
+  
+  return (scalar @racks);
 }
 
 1;

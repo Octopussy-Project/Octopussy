@@ -12,7 +12,6 @@ Octopussy::DB - Octopussy Database module
 package Octopussy::DB;
 
 use strict;
-no strict 'refs';
 use warnings;
 
 use DBI;
