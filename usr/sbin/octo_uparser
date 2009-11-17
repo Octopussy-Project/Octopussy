@@ -70,6 +70,8 @@ Softly stops the uparser
 sub Exit
 {
   $exit_request = 1;
+
+  return ($exit_request);
 }
 
 =head2 Init()
@@ -119,6 +121,8 @@ sub Init
       (%known_msgs, @unknown_msgs) = ((), ());
     }
   }
+
+  return (scalar @services);
 }
 
 =head2 Write_Logfile($logfile, $logs)
@@ -131,7 +135,7 @@ sub Write_Logfile
 {
   my ($logfile, $logs) = @_;
 
-  if (scalar(@{$logs}) > 0)
+  if (scalar @{$logs} > 0)
   {
     $logfile .= '.gz' if ($logfile !~ /^.+\.gz$/);
     Octopussy::Create_Directory(dirname($logfile));
@@ -146,6 +150,8 @@ sub Write_Logfile
       AAT::Syslog('octo_uparser', 'UNABLE_OPEN_FILE', $logfile);
     }
   }
+
+  return (scalar @{$logs});
 }
 
 =head2 Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new)
@@ -165,9 +171,11 @@ sub Service_Handler
     $PROG_NAME, 'PARSER_DEVICE_SERVICE_EVENTS',
     $device, $serv,
     "$d/$m/$y $hour:$min",
-    scalar(@{$known_msgs{$serv}}), $total
+    scalar @{$known_msgs{$serv}}, $total
   );
   Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}});
+
+  return (@{$known_msgs{$serv}});
 }
 
 =head2 File_Handler($file)
@@ -218,7 +226,11 @@ sub File_Handler
       Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new);
     }
     Write_Logfile($file, \@unknown_msgs);
+  
+    return ($file);
   }
+
+  return (undef);
 }
 
 #

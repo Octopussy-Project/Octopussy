@@ -389,23 +389,23 @@ sub Rack_Remove
   my $file   = Octopussy::File($FILE_LOCATIONS);
   my $conf   = AAT::XML::Read($file);
   my @cities = ();
+  my @buildings = ();
+  my @rooms = ();
+  my @racks = ();
 
   foreach my $c (AAT::ARRAY($conf->{city}))
   {
     if ($c->{c_name} eq $city)
     {
-      my @buildings = ();
       foreach my $b (AAT::ARRAY($c->{building}))
       {
         if ($b->{b_name} eq $building)
         {
-          my @rooms = ();
           foreach my $r (AAT::ARRAY($b->{room}))
           {
             if ($r->{r_name} eq $room)
             {
-              my @racks = grep { $_->{r_name} ne $rack } AAT::ARRAY($r->{rack});
-
+              @racks = grep { $_->{r_name} ne $rack } AAT::ARRAY($r->{rack});
               $r->{rack} = \@racks;
             }
             push @rooms, $r;

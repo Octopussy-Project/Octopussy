@@ -1,3 +1,7 @@
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
 
 =head1 NAME
 
@@ -8,6 +12,8 @@ Octopussy::Plugin::Email - Octopussy Plugin Email
 package Octopussy::Plugin::Email;
 
 use strict;
+use warnings;
+
 use Octopussy;
 
 my $RE_EMAIL = qr/^(.+)\@(.+)$/;
@@ -28,7 +34,7 @@ Returns Email Address Domain (ex: someone@somewhere.org -> somewhere.org)
 
 =cut
 
-sub Domain($)
+sub Domain
 {
   my $email = shift;
 
@@ -41,7 +47,7 @@ Returns Email Address User (ex: someone@somewhere.org -> someone)
 
 =cut
 
-sub User($)
+sub User
 {
   my $email = shift;
 

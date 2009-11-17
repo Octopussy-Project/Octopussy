@@ -1,3 +1,7 @@
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
 
 =head1 NAME
 
@@ -8,6 +12,8 @@ Octopussy::Plugin::SMTP - Octopussy Plugin SMTP
 package Octopussy::Plugin::SMTP;
 
 use strict;
+use warnings;
+
 use Octopussy;
 
 my @bounce_types = (
@@ -62,7 +68,7 @@ my @response_types = (
 
 =cut
 
-sub Init()
+sub Init
 {
 }
 
@@ -72,7 +78,7 @@ Returns Bounce Type
 
 =cut
 
-sub Bounce_Type($)
+sub Bounce_Type
 {
   my $bounce = shift;
 
@@ -91,7 +97,7 @@ Returns Response Type
 
 =cut
 
-sub Response_Type($)
+sub Response_Type
 {
   my $response = shift;
 
@@ -110,7 +116,7 @@ Reurns number of recipients
 
 =cut
 
-sub Recipients_Count($)
+sub Recipients_Count
 {
   my $recipients_list = shift;
 

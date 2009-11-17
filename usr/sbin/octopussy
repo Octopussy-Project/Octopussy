@@ -68,6 +68,8 @@ sub Usage
 {
   print
 "Usage: /etc/init.d/$PROG_NAME {start|stop|restart|dispatcher-start|dispatcher-stop|dispatcher-restart|dispatcher-reload|parser-start|parser-stop|parser-restart|scheduler-stop|scheduler-start|scheduler-restart} <device>\n";
+
+  return (1);
 }
 
 =head2 Commander_Start
@@ -80,6 +82,8 @@ sub Commander_Start
 {
   system("sudo -u $USER $base$COMMANDER &");
   printf($MSG_STATUS, 'Commander', 'Started');
+
+  return (1);
 }
 
 =head2 Commander_Stop
@@ -92,6 +96,8 @@ sub Commander_Stop
 {
   `$KILLALL $COMMANDER`;
   printf($MSG_STATUS, 'Commander', 'Stopped');
+
+  return (1);
 }
 
 =head2 Dispatcher_Start()
@@ -106,6 +112,8 @@ sub Dispatcher_Start
   #`$INITD_SYSLOG_NG start`;
   system("sudo -u $USER $base$DISPATCHER &");
   printf($MSG_STATUS, 'Dispatcher', 'Started');
+
+  return (1);
 }
 
 =head2 Dispatcher_Stop()
@@ -126,6 +134,8 @@ sub Dispatcher_Stop
 
   #`$INITD_SYSLOG_NG stop`;
   printf($MSG_STATUS, 'Dispatcher', 'Stopped');
+
+  return (1);
 }
 
 =head2 Dispatcher_Reload()
@@ -139,6 +149,8 @@ sub Dispatcher_Reload
 
   #`$INITD_SYSLOG_NG restart`;
   printf($MSG_STATUS, 'Dispatcher', 'Reloaded');
+
+  return (1);
 }
 
 =head2 Parser_Start($device)
@@ -176,6 +188,8 @@ sub Parser_Start
       print "Device $d Unknown !\n";
     }
   }
+
+  return (scalar @devices);
 }
 
 =head2 Parser_Stop($device)
@@ -205,6 +219,8 @@ sub Parser_Stop
       printf($MSG_PARSING_STATUS, $d, 'Stopped');
     }
   }
+
+  return (scalar @devices);
 }
 
 =head2 Pusher_Start
@@ -217,6 +233,8 @@ sub Pusher_Start
 {
   system("sudo -u $USER $NICE_PUSHER $base$PUSHER &");
   printf($MSG_STATUS, 'Pusher', 'Started');
+
+  return (1);
 }
 
 =head2 Pusher_Stop
@@ -229,6 +247,8 @@ sub Pusher_Stop
 {
   `$KILLALL $PUSHER`;
   printf($MSG_STATUS, 'Pusher', 'Stopped');
+
+  return (1);
 }
 
 =head2 RRD_Start
@@ -241,6 +261,8 @@ sub RRD_Start
 {
   system("sudo -u $USER $NICE_RRD $base$RRD &");
   printf($MSG_STATUS, 'RRD', 'Started');
+
+  return (1);
 }
 
 =head2 RRD_Stop
@@ -253,6 +275,8 @@ sub RRD_Stop
 {
   `$KILLALL $RRD`;
   printf($MSG_STATUS, 'RRD', 'Stopped');
+
+  return (1);
 }
 
 =head2 Scheduler_Start
@@ -265,6 +289,8 @@ sub Scheduler_Start
 {
   system("sudo -u $USER $NICE_SCHEDULER $base$SCHEDULER &");
   printf($MSG_STATUS, 'Scheduler', 'Started');
+
+  return (1);
 }
 
 =head2 Scheduler_Stop
@@ -277,6 +303,8 @@ sub Scheduler_Stop
 {
   `$KILLALL $SCHEDULER`;
   printf($MSG_STATUS, 'Scheduler', 'Stopped');
+
+  return (1);
 }
 
 =head2 Web_Start
@@ -289,6 +317,8 @@ sub Web_Start
 {
   system("$APACHE2_BIN -f $APACHE2_CONF -k start");
   printf($MSG_STATUS, 'Web', 'Started');
+
+  return (1);
 }
 
 =head2 Web_Stop
@@ -301,6 +331,8 @@ sub Web_Stop
 {
   system("$APACHE2_BIN -f $APACHE2_CONF -k stop");
   printf($MSG_STATUS, 'Web', 'Stopped');
+
+  return (1);
 }
 
 =head2 Start()
@@ -311,7 +343,6 @@ Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
 
 sub Start
 {
-
   # recreate /var/run/octopussy/ for systems that mount it on tmpfs
   Octopussy::Create_Directory($dir_pid);
 
@@ -323,6 +354,8 @@ sub Start
   Pusher_Start();
   Commander_Start();
   Web_Start();
+
+  return (1);
 }
 
 =head2 Stop()
@@ -341,6 +374,8 @@ sub Stop
   Pusher_Stop();
   Dispatcher_Stop();
   `rm -f $dir_pid/*.{err,pid}`;
+
+  return (1);
 }
 
 =head2 Status()
@@ -357,6 +392,8 @@ sub Status
     my $status = ($proc{$k} != 0 ? 'Started' : 'Stopped');
     print "  $k: $status\n";
   }
+
+  return (1);
 }
 
 my $arg    = $ARGV[0] || '';

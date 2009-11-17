@@ -140,9 +140,11 @@ sub Syslog_By_DeviceType_Init
     }
     $cmd .= $RRA;
     system $cmd;
+
+    return ($cmd);
   }
 
-  return ($cmd);
+  return (undef);
 }
 
 =head2 Syslog_By_DeviceType_Update($values)
@@ -193,9 +195,11 @@ sub Syslog_By_DeviceType_Graph
       $first = 0;
     }
     system "$cmd 2>&1 1>/dev/null";
+
+    return ($cmd);
   }
 
-  return ($cmd);
+  return (undef);
 }
 
 =head2 Syslog_By_DeviceType_Hourly_Graph()
@@ -286,9 +290,11 @@ sub Syslog_By_Device_Service_Taxonomy_Init
     }
     $cmd .= $RRA;
     system $cmd;
+
+    return ($cmd);
   }
 
-  return ($cmd);
+  return (undef);
 }
 
 =head2 Syslog_By_Device_Service_Taxonomy_Update($seconds, $device, $service, 
@@ -517,7 +523,7 @@ Watermarks Octopussy Report
 
 =cut
 
-sub Watermark
+sub Report_Graph_Watermark
 {
   my ($stats, $lang) = @_;
 
@@ -616,7 +622,7 @@ sub Report_Graph
     Graph_Parameters($output, $start, $finish, $title, $width, $height,
     $rconf->{graph_ylabel});
 
-  my $watermark = Watermark($stats, $lang);
+  my $watermark = Report_Graph_Watermark($stats, $lang);
   $cmd .= "--watermark \"$watermark\" ";
   $i = 1;
   foreach my $k (sort keys %ds)

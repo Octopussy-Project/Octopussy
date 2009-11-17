@@ -47,7 +47,8 @@ sub Init
   %dir_device  = ();
   %device_type = ();
   AAT::Syslog($PROG_NAME, 'LOAD_DEVICES_CONFIG');
-  foreach my $d (Octopussy::Device::Configurations('name'))
+  my @devices = Octopussy::Device::Configurations('name');
+  foreach my $d (@devices)
   {
     my $type = $d->{type};
     $type =~ s/ /_/g;
@@ -57,11 +58,15 @@ sub Init
       Octopussy::Storage::Directory_Incoming($d->{name});
   }
   Octopussy::RRDTool::Syslog_By_DeviceType_Init();
+
+  return (scalar @devices);
 }
 
 sub Stop
 {
   $exit_request = 1;
+
+  return ($exit_request);
 }
 
 =head2 Handle_Dir($device, $year, $month, $day, $hour, $min)
@@ -112,7 +117,8 @@ sub Write_Logs_10secs
     my $i    = 0;
     if (defined open(my $FILE, '>>', $file))
     {
-      foreach my $l (@{$logs{$device}}) { print $FILE "$l\n"; $i++; }
+      foreach my $l (@{$logs{$device}}) 
+        { print $FILE "$l\n"; $i++; }
       close($FILE);
       $nb_events{$device} += $i;
       $dtype_stats{$device_type{$device}} += $i;
@@ -121,6 +127,8 @@ sub Write_Logs_10secs
     else { AAT::Syslog('octo_dispatcher', 'UNABLE_OPEN_FILE', $file); }
     delete $logs{$device};
   }
+
+  return (1);
 }
 
 =head2 Write_Stats($y, $m, $d, $hour, $min)
@@ -151,6 +159,8 @@ sub Write_Stats
 
   %dtype_stats = ();
   %nb_events   = ();
+
+  return ($total);
 }
 
 #

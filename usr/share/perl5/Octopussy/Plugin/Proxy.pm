@@ -1,3 +1,7 @@
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
 
 =head1 NAME
 
@@ -20,7 +24,7 @@ my @mimes = ();
 
 =cut
 
-sub Init()
+sub Init
 {
   my $conf_mime = AAT::List::Configuration('AAT_Mime');
 
@@ -41,7 +45,7 @@ sub Init()
 
 =cut
 
-sub Cache_Status($)
+sub Cache_Status
 {
   my $str = shift;
 
@@ -53,19 +57,18 @@ sub Cache_Status($)
 
 =cut
 
-sub Logo($$)
+sub Logo
 {
   my ($logo, $alt) = @_;
 
   return ("<img src=\"AAT/IMG/${logo}.png\" alt=\"$alt\"><b>$alt</b>");
-  return ($alt);
 }
 
 =head2 Mime($str) 
 
 =cut
 
-sub Mime($)
+sub Mime
 {
   my $str = shift;
 
@@ -82,7 +85,7 @@ sub Mime($)
 
 =cut
 
-sub TLD($)
+sub TLD
 {
   my $url = shift;
 
@@ -100,7 +103,7 @@ sub TLD($)
 
 =cut
 
-sub WebSite($)
+sub WebSite
 {
   my $url = shift;
 

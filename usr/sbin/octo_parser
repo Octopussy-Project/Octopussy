@@ -81,6 +81,8 @@ Softly stops the parser
 sub Exit
 {
   $exit_request = 1;
+
+  return ($exit_request);
 }
 
 =head2 Reload()
@@ -93,6 +95,8 @@ Softly reloads the configuration of the parser
 sub Reload
 {
   $reload_request = 1;
+
+  return ($reload_request);
 }
 
 =head2 Inotify_Watch($path)
@@ -114,13 +118,16 @@ sub Inotify_Watch
     else { $inotify->watch($filename, IN_CREATE); }
     opendir(DIR, $filename);
     my @content = grep { !/^\./ } readdir(DIR);
-    foreach my $c (sort @content) { Inotify_Watch("$filename/$c"); }
+    foreach my $c (sort @content) 
+      { Inotify_Watch("$filename/$c"); }
   }
   elsif (-f $filename)
   {
     $filename =~ s/\/+/\//g;
     push(@files, $filename);
   }
+
+  return (1);
 }
 
 =head2 Init()
@@ -221,6 +228,8 @@ sub Init
   Octopussy::Create_Directory("$dir/$device/Incoming/")
     if (!-d "$dir/$device/Incoming/");
   Inotify_Watch("$dir/$device/Incoming/");
+
+  return (scalar @services);
 }
 
 =head2 Write_Logfile($file, $logs)
@@ -249,6 +258,8 @@ sub Write_Logfile
       AAT::Syslog($PROG_NAME, 'UNABLE_OPEN_FILE', $logfile);
     }
   }
+
+  return (scalar @{$logs});
 }
 
 =head2 Write_Unknown_Logfile($file, $logs)
@@ -263,6 +274,8 @@ sub Write_Unknown_Logfile
   $logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
 
   Write_Logfile($logfile, $logs);
+
+  return (scalar @{$logs});
 }
 
 =head2 Incoming_To_Unknown($incoming)
@@ -279,13 +292,18 @@ sub Incoming_To_Unknown
   $unknown =~ s/(msg_\d\dh\d\d)_\d+/$1/;
   $unknown .= '.gz' if ($unknown !~ /^.+\.gz$/);
   Octopussy::Create_Directory(dirname($unknown));
+  my $count = 0;
 
   if (defined open(my $FILE, '|-', "gzip >> $unknown"))
   {
     my $cat = ($incoming =~ /.+\.gz$/ ? 'zcat' : 'cat');
     if (defined open(my $INCOMING, '-|', "$cat \"$incoming\""))
     {
-      while (<$INCOMING>) { print $FILE $_; }
+      while (<$INCOMING>) 
+      { 
+        print $FILE $_; 
+        $count++;
+      }
       close($INCOMING);
       unlink $incoming;
     }
@@ -301,6 +319,8 @@ sub Incoming_To_Unknown
     print "Unable to open file '$unknown'\n";
     AAT::Syslog($PROG_NAME, 'UNABLE_OPEN_FILE', $unknown);
   }
+
+  return ($count);
 }
 
 =head2 Alert_Handler($msg, $line)
@@ -379,6 +399,8 @@ sub Alert_Handler
       }
     }
   }
+
+  return (undef);
 }
 
 =head2 Line_Handler($line, $serv, $msg, $known_msgs, $match)
@@ -416,6 +438,8 @@ sub Line_Handler
     push(@{$known_msgs->{$serv}}, $line);
     $$match = 1;
   }
+
+  return ($$match);
 }
 
 =head2 Service_Handler($serv, $y, $m, $d, $hour, $min, $file_new)
@@ -432,7 +456,9 @@ sub Service_Handler
   $dir_service =~ s/ /_/g;
   my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
   Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}});
-  $parser_stats{$serv} += scalar(@{$known_msgs{$serv}});
+  $parser_stats{$serv} += scalar @{$known_msgs{$serv}};
+
+  return (scalar @{$known_msgs{$serv}});
 }
 
 =head2 Cache_MsgID_Stats()
@@ -460,6 +486,8 @@ sub Cache_MsgID_Stats
   }
   $cache->set("parser_msgid_stats_$year$month$day$hour${min}_$device",
     \@parser_msgid_stats);
+
+  return (scalar @parser_msgid_stats);
 }
 
 =head2 Cache_Taxonomy_Stats($service)
@@ -482,6 +510,8 @@ sub Cache_Taxonomy_Stats
     AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);
   $cache->set("parser_taxo_stats_${device}_${service}",
     {datetime => $seconds_to_parse, stats => \@taxo_rrd});
+
+  return (scalar @taxo_rrd);
 }
 
 =head2 File_Handler($file)
@@ -567,7 +597,7 @@ sub File_Handler
               }
             }
             else 
-            {
+            { # MsgID Statistics disabled and no Alert for this Service
               $msgid_stats{$serv}{"$serv:TOTAL"} = (
                 defined $msgid_stats{$serv}{"$serv:TOTAL"}
                 ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
@@ -597,6 +627,8 @@ sub File_Handler
     Write_Unknown_Logfile($file, \@unknown_msgs);
     $seconds_to_parse += (time() - $time);
   }
+
+  return (scalar @unknown_msgs);
 }
 
 #

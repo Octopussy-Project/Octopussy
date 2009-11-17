@@ -91,6 +91,8 @@ sub Launch_Report
     $sched->{mail}[0], $sched->{ftp}[0],
     $sched->{scp}[0],  'EN'
   );
+  
+  return (1);
 }
 
 #

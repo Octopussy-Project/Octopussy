@@ -61,7 +61,8 @@ sub Init
   %dir_device = ();
   AAT::Syslog($PROG_NAME, 'LOAD_DEVICES_CONFIG');
   my $storage = Octopussy::Storage::Default();
-  foreach my $d (Octopussy::Device::Configurations('name'))
+  my @devices = Octopussy::Device::Configurations('name');
+  foreach my $d (@devices)
   {
     if ( (defined $d->{logtype})
       && ($d->{logtype} eq 'asynchronous')
@@ -78,6 +79,8 @@ sub Init
         Octopussy::Storage::Directory_Incoming($d->{name});
     }
   }
+
+  return (scalar @devices);
 }
 
 =head2 Handle_Dir($device, $day, $month, $year)
@@ -176,6 +179,8 @@ sub Write_To_Incoming
       AAT::Syslog('octo_pusher', 'UNABLE_OPEN_FILE', $file);
     }
   }
+
+  return (scalar @lines);
 }
 
 #

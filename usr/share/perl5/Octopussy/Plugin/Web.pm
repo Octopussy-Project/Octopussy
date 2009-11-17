@@ -1,3 +1,7 @@
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
 
 =head1 NAME
 
@@ -8,6 +12,8 @@ Octopussy::Plugin::Web - Octopussy Plugin Web
 package Octopussy::Plugin::Web;
 
 use strict;
+use warnings;
+
 use Octopussy;
 
 my @browsers          = ();
@@ -19,7 +25,7 @@ my @operating_systems = ();
 
 =cut
 
-sub Init()
+sub Init
 {
   my $conf_bot     = AAT::List::Configuration('AAT_Bot');
   my $conf_browser = AAT::List::Configuration('AAT_Browser');
@@ -59,21 +65,20 @@ sub Init()
 
 =cut
 
-sub Logo($$)
+sub Logo
 {
   my ($logo, $alt) = @_;
 
   my $file = "AAT/IMG/${logo}.png";
 
   return ("<img src=\"$file\" alt=\"$alt\"><b>$alt</b>");
-  return ($alt);
 }
 
 =head2 UserAgent_Browser($ua)
 
 =cut
 
-sub UserAgent_Browser($)
+sub UserAgent_Browser
 {
   my $ua = shift;
 
@@ -94,7 +99,7 @@ sub UserAgent_Browser($)
 
 =cut
 
-sub UserAgent_OS($)
+sub UserAgent_OS
 {
   my $ua = shift;
 

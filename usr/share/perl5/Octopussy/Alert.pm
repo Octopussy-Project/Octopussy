@@ -383,7 +383,7 @@ sub Remove_Message
 sub Add_Message_Field
 {
   my ($alert_name, $msg_id, $field, $comparator, $value) = @_;
-
+  
   my $conf = AAT::XML::Read(Filename($alert_name));
   foreach my $m (AAT::ARRAY($conf->{message}))
   {
@@ -400,7 +400,7 @@ sub Add_Message_Field
   }
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
 
-  return (scalar @{$m->{field}});
+  return ($field);
 }
 
 #
@@ -419,13 +419,13 @@ sub Add_Message_Field
 sub Remove_Message_Field
 {
   my ($alert_name, $msg_id, $field, $comparator, $value) = @_;
+  my @fields = ();
 
   my $conf = AAT::XML::Read(Filename($alert_name));
   foreach my $m (AAT::ARRAY($conf->{message}))
   {
     if ($m->{msg_id} eq $msg_id)
     {
-      my @fields = ();
       foreach my $f (AAT::ARRAY($m->{field}))
       {
         push @fields, $f

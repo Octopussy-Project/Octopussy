@@ -90,8 +90,10 @@ sub Progress
 {
   my ($msg, $num, $nb_match) = @_;
 
-  $cache->set("status_${pid_param}", AAT::Translation($msg) . " [$num] [$nb_match]");
-#  $cache->set("status_$$", AAT::Translation($msg) . " [$num] [$nb_match]");
+  my $status = AAT::Translation($msg) . " [$num] [$nb_match]";
+  $cache->set("status_${pid_param}", $status);
+
+  return ($status);
 }
 
 =head2 Get_Messages_To_Parse($services, $loglevel, $taxonomy, $msgid)
@@ -274,6 +276,8 @@ sub Print_Logs
     join(',', @opt_services),
     "${opt_begin}-${opt_end}", time() - $time
   );
+
+  return (scalar @logs);
 }
 
 =head2 End()
@@ -288,7 +292,6 @@ sub End
 
   unlink $output; 
   $cache->remove("status_${pid_param}"); 
-#  $cache->remove("status_$$");
   exit();
 }
 
@@ -335,7 +338,6 @@ Print_Logs(
 );
 
 $cache->remove("status_${pid_param}");
-#$cache->remove("status_$$");
 
 =head1 AUTHOR
 

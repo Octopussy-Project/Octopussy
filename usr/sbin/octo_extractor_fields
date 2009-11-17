@@ -20,7 +20,6 @@ octo_extractor_fields is the program used by the Octopussy Project to extract Lo
 
 use strict;
 use warnings;
-no strict 'refs';
 use Readonly;
 
 use Getopt::Long;
@@ -52,6 +51,8 @@ sub String_List
   my ($type, $any, $fct, @args) = @_;
   my @list = (defined $any ? ('-ANY-') : ());
 
+no strict "refs";
+
   my @data = &{$fct}(@args);
   foreach my $d (@data)
   {
@@ -60,7 +61,9 @@ sub String_List
     else                       { push(@list, $d); }
   }
 
-  print " $type list: " . (join(', ', sort @list)) . "\n";
+use strict "refs";
+
+  return (" $type list: " . (join(', ', sort @list)) . "\n");
 }
 
 =head2 Help()
@@ -86,25 +89,25 @@ EOF
   print $help_str;
   if (!@opt_devices)
   {
-    String_List('Device', 'any', 'Octopussy::Device::List');
+    print String_List('Device', 'any', 'Octopussy::Device::List');
   }
   elsif (!@opt_services)
   {
-    String_List('Service', 'any', 'Octopussy::Device::Services', @opt_devices);
+    print String_List('Service', 'any', 'Octopussy::Device::Services', @opt_devices);
   }
   elsif (!defined $opt_table)
   {
-    String_List('Table', undef, 'Octopussy::Table::List', \@opt_devices,
+    print String_List('Table', undef, 'Octopussy::Table::List', \@opt_devices,
       \@opt_services);
   }
   elsif (!defined $opt_loglevel)
   {
-    String_List('Loglevel', undef, 'Octopussy::Loglevel::List_And_Any',
+    print String_List('Loglevel', undef, 'Octopussy::Loglevel::List_And_Any',
       \@opt_devices, \@opt_services);
   }
   elsif (!defined $opt_taxonomy)
   {
-    String_List('Taxonomy', undef, 'Octopussy::Taxonomy::List_And_Any',
+    print String_List('Taxonomy', undef, 'Octopussy::Taxonomy::List_And_Any',
       \@opt_devices, \@opt_services);
   }
   print "\n";
@@ -122,7 +125,10 @@ sub Progress
 {
   my ($msg, $num, $nb_match) = @_;
 
-  $cache->set("status_$$", AAT::Translation($msg) . " [$num] [$nb_match]");
+  my $status = AAT::Translation($msg) . " [$num] [$nb_match]";
+  $cache->set("status_$$", $status);
+
+  return ($status);
 }
 
 =head2 Get_Messages_To_Parse($services, $loglevel, $taxonomy, $table, $fields)
@@ -294,6 +300,8 @@ sub Print_Logs
     join(',', @opt_services),
     "${opt_begin}-${opt_end}", time() - $time
   );
+
+  return (scalar @logs);
 }
 
 =head2 End()

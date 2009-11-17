@@ -1,3 +1,7 @@
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
 
 =head1 NAME
 
@@ -43,7 +47,7 @@ Converts Bytes to KiloBytes
 
 =cut
 
-sub KiloBytes($)
+sub KiloBytes
 {
   my $bytes = shift;
 
@@ -56,7 +60,7 @@ Converts Bytes to MegaBytes
 
 =cut
 
-sub MegaBytes($)
+sub MegaBytes
 {
   my $bytes = shift;
 
@@ -69,7 +73,7 @@ Converts Bytes to GigaBytes
 
 =cut
 
-sub GigaBytes($)
+sub GigaBytes
 {
   my $bytes = shift;
 
@@ -82,7 +86,7 @@ Converts Bytes to TeraBytes
 
 =cut
 
-sub TeraBytes($)
+sub TeraBytes
 {
   my $bytes = shift;
 
@@ -95,7 +99,7 @@ Converts Seconds to Minutes
 
 =cut
 
-sub Minutes($)
+sub Minutes
 {
   my $seconds = shift;
 
@@ -108,7 +112,7 @@ Converts Seconds to Hours
 
 =cut
 
-sub Hours($)
+sub Hours
 {
   my $seconds = shift;
 

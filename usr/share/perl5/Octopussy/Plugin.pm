@@ -12,7 +12,6 @@ Octopussy::Plugin - Octopussy Plugin module
 package Octopussy::Plugin;
 
 use strict;
-no strict 'refs';
 use warnings;
 use Readonly;
 

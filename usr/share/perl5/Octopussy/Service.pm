@@ -16,6 +16,7 @@ use warnings;
 use Readonly;
 use utf8;
 use Encode;
+
 use Octopussy;
 
 Readonly my $DIR_SERVICE => 'services';
@@ -172,7 +173,9 @@ sub Msg_ID
   {
     $msg_id = $conf->{name} . ":$i";
     if (! grep { $_->{msg_id} =~ /^$msg_id$/i } AAT::ARRAY($conf->{message}))
-      return ($msg_id) if (!$matched);
+    {
+      return ($msg_id);
+    }
     $i++;
   }
   

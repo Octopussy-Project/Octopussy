@@ -1,3 +1,7 @@
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
 
 =head1 NAME
 
@@ -27,49 +31,50 @@ my %rule = ();
 
 =cut
 
-sub Init()
+sub Init
 {
   %rule = ();
   my $last_comment   = '';
   my $last_nessus_id = '';
   my $hdr_count      = 1;
   my $uri_count      = 1;
-  open(my $FILE, '-|', "cat $ACCESS_CONF $ACCESS_DENY");
-  while (<$FILE>)
+  
+  if (defined open(my $FILE, '-|', "cat $ACCESS_CONF $ACCESS_DENY"))
   {
-    $last_comment   = $1 if ($_ =~ /^# \d{5}: (.+)$/);
-    $last_nessus_id = $1 if ($_ =~ /^# CVE: .+\/ Nessus: (\d+).*$/);
-    if ($_ =~ /^$HEADER.+?"(.+)"$/)
+    while (<$FILE>)
     {
-      $rule{'H' . $hdr_count} = {
-        regexp    => $1,
-        comment   => $last_comment,
-        nessus_id => $last_nessus_id
-      };
+      $last_comment   = $1 if ($_ =~ /^# \d{5}: (.+)$/);
+      $last_nessus_id = $1 if ($_ =~ /^# CVE: .+\/ Nessus: (\d+).*$/);
+      if ($_ =~ /^$HEADER.+?"(.+)"$/)
+      {
+        $rule{'H' . $hdr_count} = {
+          regexp    => $1,
+          comment   => $last_comment,
+          nessus_id => $last_nessus_id
+        };
 
-      #print "H" . $hdr_count . "regexp => $1\n";
-      $hdr_count++;
-    }
-    if ($_ =~ /^$URI.+?"(.+)"$/)
-    {
-      $rule{'U' . $uri_count} = {
-        regexp    => $1,
-        comment   => $last_comment,
-        nessus_id => $last_nessus_id
-      };
+        $hdr_count++;
+      }
+      if ($_ =~ /^$URI.+?"(.+)"$/)
+      {
+        $rule{'U' . $uri_count} = {
+          regexp    => $1,
+          comment   => $last_comment,
+          nessus_id => $last_nessus_id
+        };
 
-      #print "U" . $uri_count . "regexp => $1\n";
-      $uri_count++;
+        $uri_count++;
+      }
     }
+    close($FILE);
   }
-  close($FILE);
 }
 
 =head2 Info($id)
 
 =cut
 
-sub Info($)
+sub Info
 {
   my $id = shift;
 
@@ -80,7 +85,7 @@ sub Info($)
 
 =cut
 
-sub Nessus_Id($)
+sub Nessus_Id
 {
   my $id = shift;
   my $url =
@@ -95,7 +100,7 @@ sub Nessus_Id($)
 
 =cut
 
-sub Regexp($)
+sub Regexp
 {
   my $id = shift;
 

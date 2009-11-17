@@ -1,3 +1,7 @@
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
 =head1 NAME
 
 Octopussy::Plugin::IronPort - Octopussy Plugin IronPort
@@ -17,7 +21,7 @@ use Octopussy;
 
 =cut
 
-sub Init()
+sub Init
 {
 }
 
@@ -25,7 +29,7 @@ sub Init()
 
 =cut
 
-sub AntiSpam_Status($)
+sub AntiSpam_Status
 {
   my $line = shift;
 
@@ -38,7 +42,7 @@ sub AntiSpam_Status($)
 
 =cut
 
-sub AntiVirus_Status($)
+sub AntiVirus_Status
 {
   my $line = shift;
 
@@ -51,7 +55,7 @@ sub AntiVirus_Status($)
 
 =cut
 
-sub Virus_Name($)
+sub Virus_Name
 {
   my $line = shift;
 

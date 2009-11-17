@@ -43,7 +43,6 @@ Features:
 package AAT;
 
 use strict;
-no strict 'refs';
 use warnings;
 use Readonly;
 
@@ -87,9 +86,11 @@ sub DEBUG
 
   my ($sec, $min, $hour) = localtime();
 
-  open(my $FILE, '>>', $FILE_DEBUG);
-  print $FILE "$hour:$min:$sec > $text\n";
-  close($FILE);
+  if (defined open(my $FILE, '>>', $FILE_DEBUG))
+  {
+    print $FILE "$hour:$min:$sec > $text\n";
+    close($FILE);
+  }
 
   return ("$hour:$min:$sec > $text");
 }
