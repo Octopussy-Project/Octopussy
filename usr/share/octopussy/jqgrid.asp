@@ -21,7 +21,7 @@ html, body {
  
  <script type="text/javascript">
 jQuery(document).ready(function(){ 
-  jQuery("#s4list").jqGrid({
+  jQuery("#mygrid").jqGrid({
     url:'example.php',
     datatype: 'xml',
     mtype: 'GET',
@@ -33,15 +33,19 @@ jQuery(document).ready(function(){
       {name:'pid', index:'pid', width:80, align:'right'}, 
       {name:'msg', index:'msg', width:80, align:'right'}, 
       ],
-    pager: '#s3pager',
+    pager: '#mypager',
+    width:700,
     rowNum:10,
     rowList:[10,20,30],
     sortname: 'invid',
     sortorder: 'desc',
     viewrecords: true,
-    caption: 'Octopussy Logs Viewer' 
-  }).navGrid('#s3pager', 
-  { edit:false,add:false,del:false,search:true,refresh:true }, 
+    caption: 'Octopussy Logs Viewer',
+  })
+});
+
+jQuery("#mygrid").jqGrid('navGrid','#mypager',
+  {add:false,edit:false,del:false,search:true,refresh:true},
   {}, // edit options 
   {}, // add options 
   {}, //del options 
@@ -49,11 +53,22 @@ jQuery(document).ready(function(){
   ); 
 
 
+/*jQuery("#mygrid").jqGrid('navGrid','#mypager',{edit:false,add:false,del:false});
+
+jQuery("#mygrid").jqGrid('gridResize',{minWidth:350,maxWidth:800,minHeight:80, maxHeight:350});
+
+jQuery("#mygrid").searchGrid( {multipleSearch:true} );
+
+jQuery("mygrid").jqGrid('navButtonAdd','mypager',
+  { caption: "Columns", title: "Reorder Columns", 
+    onClickButton : function (){ jQuery("mygrid").jqGrid('columnChooser'); } 
+  }); 
+*/
 </script>
  
 </head>
 <body>
-<table id="list"></table> 
-<div id="pager"></div> 
+<table id="mygrid"></table> 
+<div id="mypager"></div> 
 </body>
 </html>
