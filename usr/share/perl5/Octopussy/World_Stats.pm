@@ -33,9 +33,9 @@ sub ID
   Readonly my $RANDOM_NUMBER => 999;
   my $conf = Configuration();
 
-  if (AAT::NOT_NULL($conf) && AAT::NOT_NULL($conf->{id}))
+  if ( AAT::NOT_NULL($conf) && AAT::NOT_NULL( $conf->{id} ) )
   {
-    return ($conf->{id});
+    return ( $conf->{id} );
   }
   else
   {
@@ -57,7 +57,7 @@ sub Modify
 {
   my $conf = shift;
 
-  AAT::XML::Write(Octopussy::File($FILE_WORLD_STATS), $conf, $XML_ROOT);
+  AAT::XML::Write( Octopussy::File($FILE_WORLD_STATS), $conf, $XML_ROOT );
 
   return (undef);
 }
@@ -70,7 +70,7 @@ Returns World Statistics Configuration
 
 sub Configuration
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_WORLD_STATS));
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_WORLD_STATS) );
 
   return ($conf);
 }

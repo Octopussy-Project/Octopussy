@@ -26,7 +26,7 @@ use Octopussy;
 Readonly my $PROG_NAME    => 'octo_data';
 Readonly my $PROG_VERSION => Octopussy::Version();
 
-my ($help, $opt_cache, $opt_type, $opt_key);
+my ( $help, $opt_cache, $opt_type, $opt_key );
 
 =head1 FUNCTIONS
 
@@ -48,29 +48,40 @@ $PROG_NAME (version $PROG_VERSION)
 EOF
 
   print $help_str;
-  exit();
+  exit;
 }
 
 #
 # MAIN
 #
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if ( !Octopussy::Valid_User($PROG_NAME) );
 
 my $status = GetOptions(
-  'h'       => \$help,
-  'help'    => \$help,
-  'cache=s' => \$opt_cache,
-  'type=s'  => \$opt_type,
-  'key=s'   => \$opt_key
-);
+                         'h'       => \$help,
+                         'help'    => \$help,
+                         'cache=s' => \$opt_cache,
+                         'type=s'  => \$opt_type,
+                         'key=s'   => \$opt_key
+                       );
 Help()
-  if ((!$status)
-  || ($help)
-  || (!defined $opt_cache)
-  || (!defined $opt_type)
-  || (!defined $opt_key));
+  if (    ( !$status )
+       || ($help)
+       || ( !defined $opt_cache )
+       || ( !defined $opt_type )
+       || ( !defined $opt_key ) );
 
 my $dir_pid = Octopussy::Directory('running');
 my $cache   = Octopussy::Cache::Init("octo_${opt_cache}");
 my $type    = $cache->get("dispatcher_stats_${opt_type}s");
 print $type->{$opt_key};
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=head1 SEE ALSO
+
+octo_extractor, octo_parser, octo_uparser, octo_reporter, octo_rrd, 
+octo_scheduler
+
+=cut

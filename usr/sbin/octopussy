@@ -80,8 +80,8 @@ Starts octo_commander
 
 sub Commander_Start
 {
-  system("sudo -u $USER $base$COMMANDER &");
-  printf($MSG_STATUS, 'Commander', 'Started');
+  system "sudo -u $USER $base$COMMANDER &";
+  printf $MSG_STATUS, 'Commander', 'Started';
 
   return (1);
 }
@@ -95,7 +95,7 @@ Stops octo_commander
 sub Commander_Stop
 {
   `$KILLALL $COMMANDER`;
-  printf($MSG_STATUS, 'Commander', 'Stopped');
+  printf $MSG_STATUS, 'Commander', 'Stopped';
 
   return (1);
 }
@@ -110,8 +110,8 @@ sub Dispatcher_Start
 {
 
   #`$INITD_SYSLOG_NG start`;
-  system("sudo -u $USER $base$DISPATCHER &");
-  printf($MSG_STATUS, 'Dispatcher', 'Started');
+  system "sudo -u $USER $base$DISPATCHER &";
+  printf $MSG_STATUS, 'Dispatcher', 'Started';
 
   return (1);
 }
@@ -125,15 +125,15 @@ Stops syslog-ng that stops octo_dispatcher
 sub Dispatcher_Stop
 {
   my $file_pid = "$dir_pid/octo_dispatcher.pid";
-  if (-f $file_pid)
+  if ( -f $file_pid )
   {
     my $pid = `cat "$file_pid"`;
-    chomp($pid);
+    chomp $pid;
     kill USR1 => $pid;
   }
 
   #`$INITD_SYSLOG_NG stop`;
-  printf($MSG_STATUS, 'Dispatcher', 'Stopped');
+  printf $MSG_STATUS, 'Dispatcher', 'Stopped';
 
   return (1);
 }
@@ -148,7 +148,7 @@ sub Dispatcher_Reload
 {
 
   #`$INITD_SYSLOG_NG restart`;
-  printf($MSG_STATUS, 'Dispatcher', 'Reloaded');
+  printf $MSG_STATUS, 'Dispatcher', 'Reloaded';
 
   return (1);
 }
@@ -164,18 +164,18 @@ sub Parser_Start
   my $device  = shift;
   my @devices = ();
 
-  if (defined $device) { push(@devices, $device); }
-  else                 { @devices = Octopussy::Device::List(); }
+  if ( defined $device ) { push @devices, $device; }
+  else                   { @devices = Octopussy::Device::List(); }
 
   foreach my $d (@devices)
   {
     my $parse_status = Octopussy::Device::Parse_Status($d);
-    if (defined $parse_status)
+    if ( defined $parse_status )
     {
-      if (Octopussy::Device::Parse_Status($d) >= 1)
+      if ( Octopussy::Device::Parse_Status($d) >= 1 )
       {    # Device Status "Started/Paused"
-        system("sudo -u $USER $base$PARSER '$d' &");
-        printf($MSG_PARSING_STATUS, $d, 'Started');
+        system "sudo -u $USER $base$PARSER '$d' &";
+        printf $MSG_PARSING_STATUS, $d, 'Started';
       }
       else
       {
@@ -189,7 +189,7 @@ sub Parser_Start
     }
   }
 
-  return (scalar @devices);
+  return ( scalar @devices );
 }
 
 =head2 Parser_Stop($device)
@@ -203,24 +203,24 @@ sub Parser_Stop
   my $device  = shift;
   my @devices = ();
 
-  if (defined $device) { push(@devices, $device); }
-  else                 { @devices = Octopussy::Device::List(); }
+  if ( defined $device ) { push @devices, $device; }
+  else                   { @devices = Octopussy::Device::List(); }
 
   foreach my $d (@devices)
   {
-    if (Octopussy::Device::Parse_Status($d) >= 1)
+    if ( Octopussy::Device::Parse_Status($d) >= 1 )
     {
       Octopussy::Device::Parse_Pause($d);
-      printf($MSG_PARSING_STATUS, $d, 'Paused');
+      printf $MSG_PARSING_STATUS, $d, 'Paused';
     }
     else
     {
       Octopussy::Device::Parse_Stop($d);
-      printf($MSG_PARSING_STATUS, $d, 'Stopped');
+      printf $MSG_PARSING_STATUS, $d, 'Stopped';
     }
   }
 
-  return (scalar @devices);
+  return ( scalar @devices );
 }
 
 =head2 Pusher_Start
@@ -231,8 +231,8 @@ Starts octo_pusher
 
 sub Pusher_Start
 {
-  system("sudo -u $USER $NICE_PUSHER $base$PUSHER &");
-  printf($MSG_STATUS, 'Pusher', 'Started');
+  system "sudo -u $USER $NICE_PUSHER $base$PUSHER &";
+  printf $MSG_STATUS, 'Pusher', 'Started';
 
   return (1);
 }
@@ -246,7 +246,7 @@ Stops octo_pusher
 sub Pusher_Stop
 {
   `$KILLALL $PUSHER`;
-  printf($MSG_STATUS, 'Pusher', 'Stopped');
+  printf $MSG_STATUS, 'Pusher', 'Stopped';
 
   return (1);
 }
@@ -259,8 +259,8 @@ Starts octo_rrd
 
 sub RRD_Start
 {
-  system("sudo -u $USER $NICE_RRD $base$RRD &");
-  printf($MSG_STATUS, 'RRD', 'Started');
+  system "sudo -u $USER $NICE_RRD $base$RRD &";
+  printf $MSG_STATUS, 'RRD', 'Started';
 
   return (1);
 }
@@ -274,7 +274,7 @@ Stops octo_rrd
 sub RRD_Stop
 {
   `$KILLALL $RRD`;
-  printf($MSG_STATUS, 'RRD', 'Stopped');
+  printf $MSG_STATUS, 'RRD', 'Stopped';
 
   return (1);
 }
@@ -287,8 +287,8 @@ Starts octo_scheduler
 
 sub Scheduler_Start
 {
-  system("sudo -u $USER $NICE_SCHEDULER $base$SCHEDULER &");
-  printf($MSG_STATUS, 'Scheduler', 'Started');
+  system "sudo -u $USER $NICE_SCHEDULER $base$SCHEDULER &";
+  printf $MSG_STATUS, 'Scheduler', 'Started';
 
   return (1);
 }
@@ -302,7 +302,7 @@ Stops octo_scheduler
 sub Scheduler_Stop
 {
   `$KILLALL $SCHEDULER`;
-  printf($MSG_STATUS, 'Scheduler', 'Stopped');
+  printf $MSG_STATUS, 'Scheduler', 'Stopped';
 
   return (1);
 }
@@ -315,8 +315,8 @@ Starts Web Octopussy
 
 sub Web_Start
 {
-  system("$APACHE2_BIN -f $APACHE2_CONF -k start");
-  printf($MSG_STATUS, 'Web', 'Started');
+  system "$APACHE2_BIN -f $APACHE2_CONF -k start";
+  printf $MSG_STATUS, 'Web', 'Started';
 
   return (1);
 }
@@ -329,8 +329,8 @@ Stops Web Octopussy
 
 sub Web_Stop
 {
-  system("$APACHE2_BIN -f $APACHE2_CONF -k stop");
-  printf($MSG_STATUS, 'Web', 'Stopped');
+  system "$APACHE2_BIN -f $APACHE2_CONF -k stop";
+  printf $MSG_STATUS, 'Web', 'Stopped';
 
   return (1);
 }
@@ -343,6 +343,7 @@ Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
 
 sub Start
 {
+
   # recreate /var/run/octopussy/ for systems that mount it on tmpfs
   Octopussy::Create_Directory($dir_pid);
 
@@ -387,9 +388,9 @@ Returns Octopussy programs (dispatcher, rsyslog, scheduler) status
 sub Status
 {
   my %proc = Octopussy::Process_Status();
-  foreach my $k (sort keys %proc)
+  foreach my $k ( sort keys %proc )
   {
-    my $status = ($proc{$k} != 0 ? 'Started' : 'Stopped');
+    my $status = ( $proc{$k} != 0 ? 'Started' : 'Stopped' );
     print "  $k: $status\n";
   }
 
@@ -399,56 +400,56 @@ sub Status
 my $arg    = $ARGV[0] || '';
 my $device = $ARGV[1] || undef;
 
-if    ($arg eq 'start') { Start(); }
-elsif ($arg eq 'stop')  { Stop(); }
-elsif (($arg eq 'restart') || ($arg eq 'force-reload'))
+if    ( $arg eq 'start' ) { Start(); }
+elsif ( $arg eq 'stop' )  { Stop(); }
+elsif ( ( $arg eq 'restart' ) || ( $arg eq 'force-reload' ) )
 {
   Stop();
   Start();
 }
-elsif ($arg eq 'status')
+elsif ( $arg eq 'status' )
 {
   Status();
 }
-elsif ($arg eq 'dispatcher-start') { Dispatcher_Start(); }
-elsif ($arg eq 'dispatcher-stop')  { Dispatcher_Stop(); }
-elsif ($arg eq 'dispatcher-restart')
+elsif ( $arg eq 'dispatcher-start' ) { Dispatcher_Start(); }
+elsif ( $arg eq 'dispatcher-stop' )  { Dispatcher_Stop(); }
+elsif ( $arg eq 'dispatcher-restart' )
 {
   Dispatcher_Stop();
   Dispatcher_Start();
 }
-elsif ($arg eq 'dispatcher-reload') { Dispatcher_Reload(); }
-elsif ($arg eq 'parser-start')      { Parser_Start($device); }
-elsif ($arg eq 'parser-stop')       { Parser_Stop($device); }
-elsif ($arg eq 'parser-restart')
+elsif ( $arg eq 'dispatcher-reload' ) { Dispatcher_Reload(); }
+elsif ( $arg eq 'parser-start' )      { Parser_Start($device); }
+elsif ( $arg eq 'parser-stop' )       { Parser_Stop($device); }
+elsif ( $arg eq 'parser-restart' )
 {
   Parser_Stop($device);
   Parser_Start($device);
 }
-elsif ($arg eq 'pusher-start') { Pusher_Start(); }
-elsif ($arg eq 'pusher-stop')  { Pusher_Stop(); }
-elsif ($arg eq 'pusher-restart')
+elsif ( $arg eq 'pusher-start' ) { Pusher_Start(); }
+elsif ( $arg eq 'pusher-stop' )  { Pusher_Stop(); }
+elsif ( $arg eq 'pusher-restart' )
 {
   Pusher_Stop();
   Pusher_Start();
 }
-elsif ($arg eq 'scheduler-start') { Scheduler_Start(); }
-elsif ($arg eq 'scheduler-stop')  { Scheduler_Stop(); }
-elsif ($arg eq 'scheduler-restart')
+elsif ( $arg eq 'scheduler-start' ) { Scheduler_Start(); }
+elsif ( $arg eq 'scheduler-stop' )  { Scheduler_Stop(); }
+elsif ( $arg eq 'scheduler-restart' )
 {
   Scheduler_Stop();
   Scheduler_Start();
 }
-elsif ($arg eq 'web-start') { Web_Start(); }
-elsif ($arg eq 'web-stop')  { Web_Stop(); }
-elsif ($arg eq 'web-restart')
+elsif ( $arg eq 'web-start' ) { Web_Start(); }
+elsif ( $arg eq 'web-stop' )  { Web_Stop(); }
+elsif ( $arg eq 'web-restart' )
 {
   Web_Stop();
   Web_Start();
 }
 else { Usage(); }
 
-exit(0);
+exit 0;
 
 =head1 AUTHOR
 

@@ -27,19 +27,21 @@ Readonly my $DIR_BACKUP => '/etc/octopussy/';
 
 sub Backup
 {
-  my ($year, $mon, $mday, $h, $m) = AAT::Datetime::Now();
+  my ( $year, $mon, $mday, $h, $m ) = AAT::Datetime::Now();
   my $timestamp   = "$year$mon$mday$h$m";
   my $file_backup = "${DIR_BACKUP}backup_$timestamp.tgz";
   my $dir_main    = Octopussy::Directory('main');
   my $conf_sys    = "${dir_main}{db,ldap,nsca,proxy,smtp,xmpp}.xml";
-  my ($dir_alerts, $dir_contacts, $dir_devices, $dir_maps, $dir_plugins) =
-    Octopussy::Directories('alerts', 'contacts', 'devices', 'maps', 'plugins');
-  my ($dir_reports, $dir_search_templates, $dir_services, $dir_tables) =
-    Octopussy::Directories('reports', 'search_templates', 'services', 'tables');
-  my ($file_devicegroup, $file_locations, $file_schedule) =
-    Octopussy::Files('devicegroups', 'locations', 'schedule');
-  my ($file_servicegroup, $file_storages, $file_timeperiods, $file_users) =
-    Octopussy::Files('servicegroups', 'storages', 'timeperiods', 'users');
+  my ( $dir_alerts, $dir_contacts, $dir_devices, $dir_maps, $dir_plugins ) =
+    Octopussy::Directories( 'alerts', 'contacts', 'devices', 'maps',
+                            'plugins' );
+  my ( $dir_reports, $dir_search_templates, $dir_services, $dir_tables ) =
+    Octopussy::Directories( 'reports',  'search_templates',
+                            'services', 'tables' );
+  my ( $file_devicegroup, $file_locations, $file_schedule ) =
+    Octopussy::Files( 'devicegroups', 'locations', 'schedule' );
+  my ( $file_servicegroup, $file_storages, $file_timeperiods, $file_users ) =
+    Octopussy::Files( 'servicegroups', 'storages', 'timeperiods', 'users' );
 
 `tar Picvfz $file_backup $conf_sys $dir_alerts $dir_contacts $dir_devices $dir_maps $dir_plugins $dir_reports $dir_search_templates $dir_services $dir_tables $file_devicegroup $file_locations $file_schedule $file_servicegroup $file_storages $file_timeperiods $file_users`;
 
@@ -56,11 +58,11 @@ sub Backup_List
 {
   my @backups = ();
 
-  my @list = AAT::FS::Directory_Files($DIR_BACKUP, qr/^backup_.+$/);
-  foreach my $e (reverse sort @list)
+  my @list = AAT::FS::Directory_Files( $DIR_BACKUP, qr/^backup_.+$/ );
+  foreach my $e ( reverse sort @list )
   {
-    push @backups, {label => "Backup $2/$3/$4 $5:$6", value => $1}
-      if ($e =~ /(backup_(\d{4})(\d{2})(\d{2})(\d{2})(\d{2}))\.tgz/);
+    push @backups, { label => "Backup $2/$3/$4 $5:$6", value => $1 }
+      if ( $e =~ /(backup_(\d{4})(\d{2})(\d{2})(\d{2})(\d{2}))\.tgz/ );
   }
 
   return (@backups);

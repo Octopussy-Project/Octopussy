@@ -22,12 +22,12 @@ Readonly my $APPLI      => 'Octopussy';
 Readonly my $PROG_NAME  => 'octo_world_stats';
 Readonly my $UPDATE_URL => Octopussy::Parameter('url_world_stats_update');
 
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if ( !Octopussy::Valid_User($PROG_NAME) );
 
 my $conf = Octopussy::World_Stats::Configuration();
-if ($conf->{status} eq 'enabled')
+if ( $conf->{status} eq 'enabled' )
 {
-  my ($id, $country) = ($conf->{id}, $conf->{country});
+  my ( $id, $country ) = ( $conf->{id}, $conf->{country} );
 
   my $dir_pid = Octopussy::Directory('running');
   my $cache   = Octopussy::Cache::Init('octo_dispatcher');
@@ -38,29 +38,30 @@ if ($conf->{status} eq 'enabled')
   my $mem         = Octopussy::Stats::Mem_Total();
   my @devices     = Octopussy::Device::List();
   my @services    = Octopussy::Device::Services(@devices);
-  my $nb_devices  = scalar(@devices);
-  my $nb_services = scalar(@services);
+  my $nb_devices  = scalar @devices;
+  my $nb_services = scalar @services;
   my @keys        = $cache->get_keys();
-  my ($y, $m, $d, $h) = AAT::Datetime::Now();
+  my ( $y, $m, $d, $h ) = AAT::Datetime::Now();
 
-  foreach my $k (sort @keys)
+  foreach my $k ( sort @keys )
   {
-    if (($k =~ /^dispatcher_stats_hourly_(\d{10})$/) && ($1 !~ /^$y$m$d$h$/))
+    if (    ( $k =~ /^dispatcher_stats_hourly_(\d{10})$/ )
+         && ( $1 !~ /^$y$m$d$h$/ ) )
     {
       my $hour = $1;
       my $url =
           "$UPDATE_URL?id=$id&country=$country&version=$version"
         . "&cpu=$cpu&memory=$mem&hour=$hour&nb_devices=$nb_devices"
         . "&nb_services=$nb_services&nb_logs="
-        . ($cache->get($k) || '0');
-      AAT::Download($APPLI, $url, '/dev/null');
+        . ( $cache->get($k) || '0' );
+      AAT::Download( $APPLI, $url, '/dev/null' );
     }
   }
-  AAT::Syslog('octo_world_stats', 'WORLD_STATS_SENT');
+  AAT::Syslog( 'octo_world_stats', 'WORLD_STATS_SENT' );
 }
 else
 {
-  print 'World Statistics are disabled !\n';
+  print "World Statistics are disabled !\n";
 }
 
 =head1 AUTHOR

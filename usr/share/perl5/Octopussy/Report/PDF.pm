@@ -12,10 +12,12 @@ Octopussy::Report::PDF - Octopussy PDF Report module
 package Octopussy::Report::PDF;
 
 use strict;
-no strict 'refs';
+use warnings;
+use Readonly;
 
-my $HTMLDOC = "/usr/bin/htmldoc --quiet --webpage --no-compression --no-jpeg";
-my $SED     = "/bin/sed";
+Readonly my $HTMLDOC =>
+  '/usr/bin/htmldoc --quiet --webpage --no-compression --no-jpeg';
+Readonly my $SED => '/bin/sed';
 
 =head1 FUNCTIONS
 
@@ -25,16 +27,18 @@ Generates PDF Document from an HTML one.
 
 =cut
 
-sub Generate_From_HTML($)
+sub Generate_From_HTML
 {
   my $file = shift;
 
   $ENV{HTMLDOC_NOCGI} = 1;
-  my $file_pdf = Octopussy::File_Ext($file, "pdf");
+  my $file_pdf = Octopussy::File_Ext( $file, 'pdf' );
 `$SED "s/AAT_THEMES/\\\/usr\\\/share\\\/octopussy\\\/AAT_THEMES/g" "$file" > "$file.tmp"`;
   `$HTMLDOC -f "$file_pdf" "$file.tmp"`;
   Octopussy::Chown($file_pdf);
-  unlink("$file.tmp");
+  unlink "$file.tmp";
+
+  return ($file_pdf);
 }
 
 1;

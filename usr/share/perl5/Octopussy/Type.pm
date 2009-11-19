@@ -26,19 +26,19 @@ Readonly my $LONG_STRING_COLOR => 'darkgray';
 Readonly my $WORD_COLOR        => 'green';
 
 Readonly my %MONTH => (
-  Jan => '01',
-  Feb => '02',
-  Mar => '03',
-  Apr => '04',
-  May => '05',
-  Jun => '06',
-  Jul => '07',
-  Aug => '08',
-  Sep => '09',
-  Oct => '10',
-  Nov => '11',
-  Dec => '12',
-);
+                        Jan => '01',
+                        Feb => '02',
+                        Mar => '03',
+                        Apr => '04',
+                        May => '05',
+                        Jun => '06',
+                        Jul => '07',
+                        Aug => '08',
+                        Sep => '09',
+                        Oct => '10',
+                        Nov => '11',
+                        Dec => '12',
+                      );
 
 my $QR_DT1 = qr/^(\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2})/m;
 my $QR_DT2 = qr/^\w{3} (\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2}) (\d{4})/m;
@@ -53,9 +53,9 @@ Get list of type configurations
 
 sub Configurations
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_TYPES) );
 
-  return (AAT::ARRAY($conf->{type}));
+  return ( AAT::ARRAY( $conf->{type} ) );
 }
 
 =head2 Colors()
@@ -91,11 +91,11 @@ Get list of types
 
 sub List
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_TYPES) );
   my @list = ();
   my %type;
 
-  foreach my $t (AAT::ARRAY($conf->{type})) { $type{"$t->{type_id}"} = 1; }
+  foreach my $t ( AAT::ARRAY( $conf->{type} ) ) { $type{"$t->{type_id}"} = 1; }
   push @list, 'NUMBER';
   push @list, 'BYTES';
   push @list, 'SECONDS';
@@ -118,7 +118,7 @@ Get list of simple types (*_DATETIME -> DATETIME, *_STRING -> STRING...)
 
 sub Simple_List
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_TYPES) );
   my @list = ();
   my %type;
 
@@ -131,7 +131,10 @@ sub Simple_List
   $type{'WORD'}        = 1;
   $type{'EMAIL'}       = 1;
   $type{'USER_AGENT'}  = 1;
-  foreach my $t (AAT::ARRAY($conf->{type})) { $type{"$t->{simple_type}"} = 1; }
+  foreach my $t ( AAT::ARRAY( $conf->{type} ) )
+  {
+    $type{"$t->{simple_type}"} = 1;
+  }
   @list = sort keys %type;
 
   return (@list);
@@ -145,16 +148,16 @@ Get list of SQL types
 
 sub SQL_List
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_TYPES) );
   my @list = ();
   my %type;
 
-  foreach my $t (AAT::ARRAY($conf->{type})) { $type{"$t->{sql_type}"} = 1; }
+  foreach my $t ( AAT::ARRAY( $conf->{type} ) ) { $type{"$t->{sql_type}"} = 1; }
   push @list, 'BIGINT';
 
-  foreach my $k (keys %type) { push @list, $k; }
+  foreach my $k ( keys %type ) { push @list, $k; }
 
-  return (sort @list);
+  return ( sort @list );
 }
 
 =head2 Regexp($type)
@@ -170,7 +173,7 @@ sub Regexp
   my @list = Configurations();
   foreach my $t (@list)
   {
-    return ($t->{re}) if ($t->{type_id} eq $type);
+    return ( $t->{re} ) if ( $t->{type_id} eq $type );
   }
 
   return (undef);
@@ -214,10 +217,10 @@ sub Simple_Type
   my @list = Configurations();
   foreach my $t (@list)
   {
-    return ($t->{simple_type}) if ($t->{type_id} =~ /^$type/m);
+    return ( $t->{simple_type} ) if ( $t->{type_id} =~ /^$type/m );
   }
-  return ('NUMBER') if ($type =~ /^(BYTES|SECONDS|PID)$/m);
-  return ('STRING') if ($type =~ /^(EMAIL|USER_AGENT)$/m);
+  return ('NUMBER') if ( $type =~ /^(BYTES|SECONDS|PID)$/m );
+  return ('STRING') if ( $type =~ /^(EMAIL|USER_AGENT)$/m );
 
   return ($type);
 }
@@ -235,23 +238,23 @@ sub SQL_Type
   my @list = Configurations();
   foreach my $t (@list)
   {
-    return ($t->{sql_type}) if ($t->{simple_type} =~ /^$type/m);
+    return ( $t->{sql_type} ) if ( $t->{simple_type} =~ /^$type/m );
   }
-  if ( $type eq 'NUMBER'
-    || $type eq 'BYTES'
-    || $type eq 'SECONDS'
-    || $type eq 'PID')
+  if (    $type eq 'NUMBER'
+       || $type eq 'BYTES'
+       || $type eq 'SECONDS'
+       || $type eq 'PID' )
   {
     return ('BIGINT');
   }
-  elsif (($type eq 'STRING')
-    || ($type eq 'WORD')
-    || ($type eq 'EMAIL')
-    || ($type eq 'USER_AGENT'))
+  elsif (    ( $type eq 'STRING' )
+          || ( $type eq 'WORD' )
+          || ( $type eq 'EMAIL' )
+          || ( $type eq 'USER_AGENT' ) )
   {
     return ('VARCHAR(250)');
   }
-  elsif ($type eq 'LONG_STRING') { return ('TEXT'); }
+  elsif ( $type eq 'LONG_STRING' ) { return ('TEXT'); }
 
   return (undef);
 }
@@ -266,14 +269,14 @@ sub SQL_Datetime
 {
   my $dt = shift;
 
-  if ($dt =~ $QR_DT1)
+  if ( $dt =~ $QR_DT1 )
   {
-    my ($year, $mon, $mday) = AAT::Datetime::Now();
+    my ( $year, $mon, $mday ) = AAT::Datetime::Now();
     return ("$year-$MONTH{$1}-$2 $3:$4:$5");
   }
-  elsif ($dt =~ $QR_DT2) { return ("$6-$MONTH{$1}-$2 $3:$4:$5"); }
-  elsif ($dt =~ $QR_DT3) { return ("$1-$2-$3 $4:$5:$6"); }
-  elsif ($dt =~ $QR_DT4) { return ("$3-$MONTH{$2}-$1 $4:$5:$6"); }
+  elsif ( $dt =~ $QR_DT2 ) { return ("$6-$MONTH{$1}-$2 $3:$4:$5"); }
+  elsif ( $dt =~ $QR_DT3 ) { return ("$1-$2-$3 $4:$5:$6"); }
+  elsif ( $dt =~ $QR_DT4 ) { return ("$3-$MONTH{$2}-$1 $4:$5:$6"); }
 
   return ($dt);
 }

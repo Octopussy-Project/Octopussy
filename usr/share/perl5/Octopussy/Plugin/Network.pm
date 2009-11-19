@@ -28,10 +28,12 @@ sub Init
 {
   my $conf_port = AAT::List::Configuration('AAT_Port');
 
-  foreach my $i (AAT::ARRAY($conf_port->{item}))
+  foreach my $i ( AAT::ARRAY( $conf_port->{item} ) )
   {
-    $services{$i->{value}} = $i->{label};
+    $services{ $i->{value} } = $i->{label};
   }
+
+  return (1);
 }
 
 =head2 Mask_8($addr)
@@ -91,8 +93,10 @@ sub Ripe_Info
 
   my $url =
       '<a href="http://ripe.net/fcgi-bin/whois?form_type=simple&'
-    . 'full_query_string=&searchtext=+' . $addr
-    . '&do_search=Search">' . $addr . '</a>';
+    . 'full_query_string=&searchtext=+'
+    . $addr
+    . '&do_search=Search">'
+    . $addr . '</a>';
 
   return ($url);
 }
@@ -105,7 +109,7 @@ sub Service
 {
   my $port = shift;
 
-  return ($services{$port} || $port);
+  return ( $services{$port} || $port );
 }
 
 1;

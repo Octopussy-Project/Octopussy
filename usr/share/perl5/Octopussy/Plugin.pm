@@ -27,10 +27,10 @@ BEGIN
 {
   Readonly my $DIR_PLUGIN_MODULES => '/usr/share/perl5/Octopussy/Plugin/';
   opendir DIR, $DIR_PLUGIN_MODULES;
-  my @plugins = grep { /.+\.pm$/ } readdir DIR;
+  my @plugins = grep {/.+\.pm$/} readdir DIR;
   foreach my $p (@plugins)
   {
-    if ("Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/)
+    if ( "Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/ )
     {
       require "$1$2";
     }
@@ -48,7 +48,7 @@ sub Init_All
 {
   my $conf = shift;
 
-  my @plugins = AAT::FS::Directory_Files($DIR_PLUGIN_MODULES, qr/.+\.pm$/);
+  my @plugins = AAT::FS::Directory_Files( $DIR_PLUGIN_MODULES, qr/.+\.pm$/ );
   foreach my $p (@plugins)
   {
     $p =~ s/\.pm$//;
@@ -57,7 +57,7 @@ sub Init_All
     &{$func}($conf);
   }
 
-  return (scalar @plugins);
+  return ( scalar @plugins );
 }
 
 =head2 Init(\%conf, @plugins)
@@ -66,12 +66,12 @@ sub Init_All
 
 sub Init
 {
-  my ($conf, @plugins) = @_;
+  my ( $conf, @plugins ) = @_;
   my %done = ();
 
   foreach my $p (@plugins)
   {
-    if (($p =~ /Octopussy::Plugin::(.+?)::/) && (!defined $done{$1}))
+    if ( ( $p =~ /Octopussy::Plugin::(.+?)::/ ) && ( !defined $done{$1} ) )
     {
       my $func = 'Octopussy::Plugin::' . $1 . '::Init';
       print "Init Plugin $1\n";
@@ -79,8 +79,8 @@ sub Init
       &{$func}($conf);
     }
   }
-  
-  return (scalar @plugins);
+
+  return ( scalar @plugins );
 }
 
 =head2 List()
@@ -93,7 +93,7 @@ sub List
 {
   $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
 
-  return (AAT::XML::Name_List($dir_plugins));
+  return ( AAT::XML::Name_List($dir_plugins) );
 }
 
 =head2 Functions()
@@ -107,12 +107,12 @@ sub Functions
   my @functions = ();
 
   $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
-  my @files = AAT::FS::Directory_Files($dir_plugins, qr/.+\.xml$/);
+  my @files = AAT::FS::Directory_Files( $dir_plugins, qr/.+\.xml$/ );
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir_plugins/$f");
-    push @functions, {plugin => $conf->{name}, functions => $conf->{function}}
-      if (defined $conf->{function});
+    push @functions, { plugin => $conf->{name}, functions => $conf->{function} }
+      if ( defined $conf->{function} );
   }
 
   return (@functions);
@@ -126,22 +126,22 @@ sub Function_Source
 {
   my $fct = shift;
 
-  if ($fct =~ /Octopussy::Plugin::(.+)::.+$/)
+  if ( $fct =~ /Octopussy::Plugin::(.+)::.+$/ )
   {
     my $mod = $1;
-    if (!defined $function_source{$fct})
+    if ( !defined $function_source{$fct} )
     {
       $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
       my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
-      foreach my $pf (AAT::ARRAY($conf->{function}))
+      foreach my $pf ( AAT::ARRAY( $conf->{function} ) )
       {
-        $function_source{$fct} = $pf->{source} if ($pf->{perl} eq $fct);
+        $function_source{$fct} = $pf->{source} if ( $pf->{perl} eq $fct );
       }
-      $function_source{$fct} = 'OUTPUT' if (!defined $function_source{$fct});
+      $function_source{$fct} = 'OUTPUT' if ( !defined $function_source{$fct} );
     }
   }
 
-  return ($function_source{$fct});
+  return ( $function_source{$fct} );
 }
 
 =head2 SQL_Convert($str)
@@ -155,9 +155,9 @@ sub SQL_Convert
 {
   my $str = shift;
 
-  if ($str =~ /^(\S+::\S+?)\((\S+)\)$/)
+  if ( $str =~ /^(\S+::\S+?)\((\S+)\)$/ )
   {
-    my ($fct, $field) = ($1, $2);
+    my ( $fct, $field ) = ( $1, $2 );
     $fct =~ s/^Octopussy:://;
     $fct =~ s/::/_/g;
     return ("${fct}__${field}");
@@ -174,15 +174,15 @@ sub SQL_Convert
 
 sub Field_Data
 {
-  my ($line, $long_field) = @_;
+  my ( $line, $long_field ) = @_;
   my $result = undef;
 
-  if ($long_field =~ /^(\S+::\S+?)\((\S+)\)$/)
+  if ( $long_field =~ /^(\S+::\S+?)\((\S+)\)$/ )
   {
-    my ($plugin, $field) = ($1, $2);
-    if (Function_Source($plugin) eq 'OUTPUT')
+    my ( $plugin, $field ) = ( $1, $2 );
+    if ( Function_Source($plugin) eq 'OUTPUT' )
     {
-      $result = &{$plugin}($line->{$field});
+      $result = &{$plugin}( $line->{$field} );
     }
     else
     {

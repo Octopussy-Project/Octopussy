@@ -41,15 +41,15 @@ sub New
   my $conf = shift;
 
   $dir_contacts ||= Octopussy::Directory('contacts');
-  if (AAT::NOT_NULL($conf->{cid})
-    && (AAT::NOT_NULL($conf->{email}) || AAT::NOT_NULL($conf->{im})))
+  if ( AAT::NOT_NULL( $conf->{cid} )
+       && ( AAT::NOT_NULL( $conf->{email} ) || AAT::NOT_NULL( $conf->{im} ) ) )
   {
     my @list  = List();
     my $exist = 0;
-    foreach my $c (@list) { $exist = 1 if ($c =~ /^$conf->{cid}$/); }
-    if (!$exist)
+    foreach my $c (@list) { $exist = 1 if ( $c =~ /^$conf->{cid}$/ ); }
+    if ( !$exist )
     {
-      AAT::XML::Write("$dir_contacts/$conf->{cid}.xml", $conf, $XML_ROOT);
+      AAT::XML::Write( "$dir_contacts/$conf->{cid}.xml", $conf, $XML_ROOT );
     }
     else { return ('_MSG_CONTACT_ALREADY_EXISTS'); }
   }
@@ -91,16 +91,16 @@ Returns:
 sub List
 {
   $dir_contacts ||= Octopussy::Directory('contacts');
-  my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
+  my @files = AAT::FS::Directory_Files( $dir_contacts, qr/.+\.xml$/ );
   my @contacts = ();
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir_contacts/$f");
-    push @contacts, $conf->{cid} if (defined $conf->{cid});
+    push @contacts, $conf->{cid} if ( defined $conf->{cid} );
   }
-  foreach my $c (AAT::LDAP::Contacts('Octopussy'))
+  foreach my $c ( AAT::LDAP::Contacts('Octopussy') )
   {
-    push @contacts, $c->{cid} if (defined $c->{cid});
+    push @contacts, $c->{cid} if ( defined $c->{cid} );
   }
 
   return (@contacts);
@@ -124,15 +124,15 @@ sub Filename
 {
   my $contact = shift;
 
-  return ($filename{$contact}) if (defined $filename{$contact});
-  if (AAT::NOT_NULL($contact))
+  return ( $filename{$contact} ) if ( defined $filename{$contact} );
+  if ( AAT::NOT_NULL($contact) )
   {
     $dir_contacts ||= Octopussy::Directory('contacts');
-    my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
+    my @files = AAT::FS::Directory_Files( $dir_contacts, qr/.+\.xml$/ );
     foreach my $f (@files)
     {
       my $conf = AAT::XML::Read("$dir_contacts/$f");
-      if ((defined $conf) && ($conf->{cid} =~ /^$contact$/))
+      if ( ( defined $conf ) && ( $conf->{cid} =~ /^$contact$/ ) )
       {
         $filename{$contact} = "$dir_contacts/$f";
         return ("$dir_contacts/$f");
@@ -161,16 +161,16 @@ sub Configuration
 {
   my $contact = shift;
 
-  my $conf = AAT::XML::Read(Filename($contact));
-  if (defined $conf)
+  my $conf = AAT::XML::Read( Filename($contact) );
+  if ( defined $conf )
   {
     $conf->{type} = 'local';
   }
   else
   {
-    foreach my $c (AAT::LDAP::Contacts('Octopussy'))
+    foreach my $c ( AAT::LDAP::Contacts('Octopussy') )
     {
-      if (defined $c->{cid})
+      if ( defined $c->{cid} )
       {
         $conf = $c;
         $conf->{type} = 'LDAP';
@@ -199,20 +199,20 @@ Returns:
 sub Configurations
 {
   my $sort = shift;
-  my (@configurations, @sorted_configurations) = ((), ());
+  my ( @configurations, @sorted_configurations ) = ( (), () );
   my @contacts = List();
   my %field;
 
   foreach my $c (@contacts)
   {
     my $conf = Configuration($c);
-    if (defined $conf->{cid})
+    if ( defined $conf->{cid} )
     {
-      $field{$conf->{$sort}} = 1;
+      $field{ $conf->{$sort} } = 1;
       push @configurations, $conf;
     }
   }
-  foreach my $f (sort keys %field)
+  foreach my $f ( sort keys %field )
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }

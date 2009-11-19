@@ -37,12 +37,13 @@ sub Add
 
   my $file = Octopussy::File($FILE_STORAGES);
   my $conf = AAT::XML::Read($file);
-  if (grep { $_->{s_id} eq $conf_storage->{s_id} } AAT::ARRAY($conf->{storage}))
+  if ( grep { $_->{s_id} eq $conf_storage->{s_id} }
+       AAT::ARRAY( $conf->{storage} ) )
   {
     return ('_MSG_STORAGE_ALREADY_EXISTS');
   }
-  push @{$conf->{storage}}, $conf_storage;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+  push @{ $conf->{storage} }, $conf_storage;
+  AAT::XML::Write( $file, $conf, $XML_ROOT );
 
   return (undef);
 }
@@ -59,9 +60,9 @@ sub Remove
 
   my $file     = Octopussy::File($FILE_STORAGES);
   my $conf     = AAT::XML::Read($file);
-  my @storages = grep { $_->{s_id} ne $storage } AAT::ARRAY($conf->{storage});
+  my @storages = grep { $_->{s_id} ne $storage } AAT::ARRAY( $conf->{storage} );
   $conf->{storage} = \@storages;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+  AAT::XML::Write( $file, $conf, $XML_ROOT );
 
   return (undef);
 }
@@ -72,16 +73,16 @@ sub Remove
 
 sub Default
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_STORAGES));
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_STORAGES) );
 
-  return (undef) if (!defined $conf);
+  return (undef) if ( !defined $conf );
   return (
-    {
-      incoming => $conf->{default_incoming},
-      unknown  => $conf->{default_unknown},
-      known    => $conf->{default_known}
-    }
-  );
+           {
+             incoming => $conf->{default_incoming},
+             unknown  => $conf->{default_unknown},
+             known    => $conf->{default_known}
+           }
+         );
 }
 
 =head2 Default_Set($conf_new)
@@ -98,7 +99,7 @@ sub Default_Set
   $conf->{default_unknown}  = $conf_new->{unknown};
   $conf->{default_known}    = $conf_new->{known};
 
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+  AAT::XML::Write( $file, $conf, $XML_ROOT );
 
   return ($file);
 }
@@ -115,8 +116,8 @@ Returns:
 
 sub List
 {
-  my @storages = AAT::XML::File_Array_Values(Octopussy::File($FILE_STORAGES),
-    'storage', 's_id');
+  my @storages = AAT::XML::File_Array_Values( Octopussy::File($FILE_STORAGES),
+                                              'storage', 's_id' );
 
   return (@storages);
 }
@@ -139,12 +140,13 @@ sub Configuration
 {
   my $storage = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_STORAGES));
-  return ({name => 'DEFAULT', directory => Octopussy::Directory('data_logs')})
-    if ($storage eq 'DEFAULT');
-  foreach my $s (AAT::ARRAY($conf->{storage}))
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_STORAGES) );
+  return (
+         { name => 'DEFAULT', directory => Octopussy::Directory('data_logs') } )
+    if ( $storage eq 'DEFAULT' );
+  foreach my $s ( AAT::ARRAY( $conf->{storage} ) )
   {
-    return ($s) if ($s->{s_id} eq $storage);
+    return ($s) if ( $s->{s_id} eq $storage );
   }
 
   return (undef);
@@ -167,22 +169,22 @@ Returns:
 sub Configurations
 {
   my $sort = shift || 's_id';
-  my (@configurations, @sorted_configurations) = ((), ());
+  my ( @configurations, @sorted_configurations ) = ( (), () );
   my @storages = List();
   my %field;
   my $dir_default = Octopussy::Directory('data_logs');
 
-  push @sorted_configurations, {s_id => 'DEFAULT', directory => $dir_default};
+  push @sorted_configurations, { s_id => 'DEFAULT', directory => $dir_default };
   foreach my $s (@storages)
   {
     my $conf = Configuration($s);
-    if (defined $conf->{s_id})
+    if ( defined $conf->{s_id} )
     {
-      $field{$conf->{$sort}} = 1;
+      $field{ $conf->{$sort} } = 1;
       push @configurations, $conf;
     }
   }
-  foreach my $f (sort keys %field)
+  foreach my $f ( sort keys %field )
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
@@ -200,13 +202,13 @@ sub Directory
 {
   my $storage = shift;
 
-  return (undef) if (!defined $storage);
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_STORAGES));
-  return (Octopussy::Directory('data_logs')) if ($storage eq 'DEFAULT');
+  return (undef) if ( !defined $storage );
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_STORAGES) );
+  return ( Octopussy::Directory('data_logs') ) if ( $storage eq 'DEFAULT' );
 
-  my $dir = firstval { $_->{s_id} eq $storage } AAT::ARRAY($conf->{storage});
+  my $dir = firstval { $_->{s_id} eq $storage } AAT::ARRAY( $conf->{storage} );
 
-  return ($dir->{directory});
+  return ( $dir->{directory} );
 }
 
 =head2 Directory_Service($device, $service)
@@ -217,14 +219,14 @@ Returns directory for Device '$device' Service '$service' Logs
 
 sub Directory_Service
 {
-  my ($device, $service) = @_;
+  my ( $device, $service ) = @_;
 
   my $storage = Default();
   my $dconf   = Octopussy::Device::Configuration($device);
   my $dir =
-       Directory($dconf->{"storage_$service"})
-    || Directory($dconf->{'storage_known'})
-    || Directory($storage->{known});
+       Directory( $dconf->{"storage_$service"} )
+    || Directory( $dconf->{'storage_known'} )
+    || Directory( $storage->{known} );
 
   return ($dir);
 }
@@ -241,8 +243,8 @@ sub Directory_Incoming
 
   my $storage = Default();
   my $dconf   = Octopussy::Device::Configuration($device);
-  my $dir     = Directory($dconf->{storage_incoming})
-    || Directory($storage->{incoming});
+  my $dir     = Directory( $dconf->{storage_incoming} )
+    || Directory( $storage->{incoming} );
 
   return ($dir);
 }
@@ -259,8 +261,8 @@ sub Directory_Unknown
 
   my $storage = Default();
   my $dconf   = Octopussy::Device::Configuration($device);
-  my $dir     = Directory($dconf->{storage_unknown})
-    || Directory($storage->{unknown});
+  my $dir     = Directory( $dconf->{storage_unknown} )
+    || Directory( $storage->{unknown} );
 
   return ($dir);
 }

@@ -30,12 +30,12 @@ Readonly my $STYLE_TITLE =>
 
 sub Generate
 {
-  my ($conf, $output_file) = @_;
+  my ( $conf, $output_file ) = @_;
 
-  my $json = to_json($conf, {utf8 => 1, pretty => 1});
-  if (defined open my $FILE, '>', $output_file)
+  my $json = to_json( $conf, { utf8 => 1, pretty => 1 } );
+  if ( defined open my $FILE, '>', $output_file )
   {
-    print $FILE $json;
+    print {$FILE} $json;
     close $FILE;
     Octopussy::Chown($output_file);
 
@@ -54,13 +54,13 @@ sub Step
   my $max  = shift;
   my $step = 1;
 
-  if ($max =~ /^(\d)(\d+)$/)
+  if ( $max =~ /^(\d)(\d+)$/ )
   {
-    my $multi = 10**(length($2) - 1);
+    my $multi = 10**( length($2) - 1 );
     $multi ||= 1;
-    if ($1 == 1) { $step = 2 * $multi; }
-    elsif ($1 =~ /[2-5]/) { $step = 5 * $multi; }
-    else                  { $step = 10 * $multi; }
+    if ( $1 == 1 ) { $step = 2 * $multi; }
+    elsif ( $1 =~ /[2-5]/ ) { $step = 5 * $multi; }
+    else                    { $step = 10 * $multi; }
   }
 
   return ($step);
@@ -72,28 +72,28 @@ sub Step
 
 sub Area_Hollow
 {
-  my ($rc, $data, $output_file) = @_;
+  my ( $rc, $data, $output_file ) = @_;
 
-  my $x      = Octopussy::DB::SQL_As_Substitution($rc->{x});
-  my $y      = Octopussy::DB::SQL_As_Substitution($rc->{y});
+  my $x      = Octopussy::DB::SQL_As_Substitution( $rc->{x} );
+  my $y      = Octopussy::DB::SQL_As_Substitution( $rc->{y} );
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line ( AAT::ARRAY($data) )
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
     push @labels, $line->{$x};
-    push @values, {value => $value, label => $label, text => $label};
-    $max = (($value > $max) ? $value : $max);
+    push @values, { value => $value, label => $label, text => $label };
+    $max = ( ( $value > $max ) ? $value : $max );
   }
   my %conf = (
-    title => {text => $rc->{name}, style => $STYLE_TITLE},
-    x_axis => {labels => {steps => 10, labels => \@labels}},
-    y_axis   => {steps => Step($max),    min    => 0, max => $max},
-    elements => [{type => 'area_hollow', values => \@values}]
-  );
-  Octopussy::OFC::Generate(\%conf, $output_file);
+    title => { text => $rc->{name}, style => $STYLE_TITLE },
+    x_axis => { labels => { steps => 10, labels => \@labels } },
+    y_axis => { steps => Step($max), min => 0, max => $max },
+    elements => [ { type => 'area_hollow', values => \@values } ],
+             );
+  Octopussy::OFC::Generate( \%conf, $output_file );
 
   return ($output_file);
 }
@@ -104,28 +104,28 @@ sub Area_Hollow
 
 sub Bar_3D
 {
-  my ($rc, $data, $output_file) = @_;
+  my ( $rc, $data, $output_file ) = @_;
 
-  my $x      = Octopussy::DB::SQL_As_Substitution($rc->{x});
-  my $y      = Octopussy::DB::SQL_As_Substitution($rc->{y});
+  my $x      = Octopussy::DB::SQL_As_Substitution( $rc->{x} );
+  my $y      = Octopussy::DB::SQL_As_Substitution( $rc->{y} );
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line ( AAT::ARRAY($data) )
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
     push @labels, $line->{$x};
     push @values, $value;
-    $max = (($value > $max) ? $value : $max);
+    $max = ( ( $value > $max ) ? $value : $max );
   }
   my %conf = (
-    title => {text => $rc->{name}, style => $STYLE_TITLE},
-    x_axis => {labels => {steps => 10, labels => \@labels}},
-    y_axis   => {steps => Step($max), min    => 0, max => $max},
-    elements => [{type => 'bar_3d',   values => \@values}]
-  );
-  Octopussy::OFC::Generate(\%conf, $output_file);
+    title => { text => $rc->{name}, style => $STYLE_TITLE },
+    x_axis => { labels => { steps => 10, labels => \@labels } },
+    y_axis => { steps => Step($max), min => 0, max => $max },
+    elements => [ { type => 'bar_3d', values => \@values } ],
+             );
+  Octopussy::OFC::Generate( \%conf, $output_file );
 
   return ($output_file);
 }
@@ -136,33 +136,33 @@ sub Bar_3D
 
 sub Bar_Cylinder
 {
-  my ($rc, $data, $output_file) = @_;
+  my ( $rc, $data, $output_file ) = @_;
 
-  my $x      = Octopussy::DB::SQL_As_Substitution($rc->{x});
-  my $y      = Octopussy::DB::SQL_As_Substitution($rc->{y});
+  my $x      = Octopussy::DB::SQL_As_Substitution( $rc->{x} );
+  my $y      = Octopussy::DB::SQL_As_Substitution( $rc->{y} );
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line ( AAT::ARRAY($data) )
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
     push @labels, $line->{$x};
     push @values, $value;
-    $max = (($value > $max) ? $value : $max);
+    $max = ( ( $value > $max ) ? $value : $max );
   }
   my %conf = (
-    title  => {text => $rc->{name}, style => $STYLE_TITLE},
-    x_axis => {
-      colour        => '#909090',
-      '3d'          => 5,
-      'tick-height' => 4,
-      labels        => {steps => 10, labels => \@labels}
-    },
-    y_axis   => {steps => Step($max),     min    => 0, max => $max},
-    elements => [{type => 'bar_cylinder', values => \@values}]
-  );
-  Octopussy::OFC::Generate(\%conf, $output_file);
+               title  => { text => $rc->{name}, style => $STYLE_TITLE },
+               x_axis => {
+                           colour        => '#909090',
+                           '3d'          => 5,
+                           'tick-height' => 4,
+                           labels        => { steps => 10, labels => \@labels },
+                         },
+               y_axis => { steps => Step($max), min => 0, max => $max },
+               elements => [ { type => 'bar_cylinder', values => \@values } ]
+             );
+  Octopussy::OFC::Generate( \%conf, $output_file );
 
   return ($output_file);
 }
@@ -173,28 +173,28 @@ sub Bar_Cylinder
 
 sub Bar_Glass
 {
-  my ($rc, $data, $output_file) = @_;
+  my ( $rc, $data, $output_file ) = @_;
 
-  my $x      = Octopussy::DB::SQL_As_Substitution($rc->{x});
-  my $y      = Octopussy::DB::SQL_As_Substitution($rc->{y});
+  my $x      = Octopussy::DB::SQL_As_Substitution( $rc->{x} );
+  my $y      = Octopussy::DB::SQL_As_Substitution( $rc->{y} );
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line ( AAT::ARRAY($data) )
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
     push @labels, $line->{$x};
     push @values, $value;
-    $max = (($value > $max) ? $value : $max);
+    $max = ( ( $value > $max ) ? $value : $max );
   }
   my %conf = (
-    title => {text => $rc->{name}, style => $STYLE_TITLE},
-    x_axis => {labels => {steps => 10, labels => \@labels}},
-    y_axis   => {steps => Step($max),  min    => 0, max => $max},
-    elements => [{type => 'bar_glass', values => \@values}]
-  );
-  Octopussy::OFC::Generate(\%conf, $output_file);
+    title => { text => $rc->{name}, style => $STYLE_TITLE },
+    x_axis => { labels => { steps => 10, labels => \@labels } },
+    y_axis => { steps => Step($max), min => 0, max => $max },
+    elements => [ { type => 'bar_glass', values => \@values } ],
+             );
+  Octopussy::OFC::Generate( \%conf, $output_file );
 
   return ($output_file);
 }
@@ -205,28 +205,28 @@ sub Bar_Glass
 
 sub Bar_Sketch
 {
-  my ($rc, $data, $output_file) = @_;
+  my ( $rc, $data, $output_file ) = @_;
 
-  my $x      = Octopussy::DB::SQL_As_Substitution($rc->{x});
-  my $y      = Octopussy::DB::SQL_As_Substitution($rc->{y});
+  my $x      = Octopussy::DB::SQL_As_Substitution( $rc->{x} );
+  my $y      = Octopussy::DB::SQL_As_Substitution( $rc->{y} );
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line ( AAT::ARRAY($data) )
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
     push @labels, $line->{$x};
     push @values, $value;
-    $max = (($value > $max) ? $value : $max);
+    $max = ( ( $value > $max ) ? $value : $max );
   }
   my %conf = (
-    title => {text => $rc->{name}, style => $STYLE_TITLE},
-    x_axis => {labels => {steps => 10, labels => \@labels}},
-    y_axis   => {steps => Step($max),   min    => 0, max => $max},
-    elements => [{type => 'bar_sketch', values => \@values}]
-  );
-  Octopussy::OFC::Generate(\%conf, $output_file);
+    title => { text => $rc->{name}, style => $STYLE_TITLE },
+    x_axis => { labels => { steps => 10, labels => \@labels } },
+    y_axis => { steps => Step($max), min => 0, max => $max },
+    elements => [ { type => 'bar_sketch', values => \@values } ],
+             );
+  Octopussy::OFC::Generate( \%conf, $output_file );
 
   return ($output_file);
 }
@@ -237,27 +237,27 @@ sub Bar_Sketch
 
 sub Horizontal_Bar
 {
-  my ($rc, $data, $output_file) = @_;
+  my ( $rc, $data, $output_file ) = @_;
 
-  my $x      = Octopussy::DB::SQL_As_Substitution($rc->{x});
-  my $y      = Octopussy::DB::SQL_As_Substitution($rc->{y});
+  my $x      = Octopussy::DB::SQL_As_Substitution( $rc->{x} );
+  my $y      = Octopussy::DB::SQL_As_Substitution( $rc->{y} );
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line ( AAT::ARRAY($data) )
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     push @labels, $line->{$x};
-    push @values, {right => $value};
-    $max = (($value > $max) ? $value : $max);
+    push @values, { right => $value };
+    $max = ( ( $value > $max ) ? $value : $max );
   }
   my %conf = (
-    title => {text => $rc->{name}, style => $STYLE_TITLE},
-    x_axis => {steps => int($max / $STEP_HBAR), min => 0, max => $max},
-    y_axis   => {offset => 1,      labels => \@labels},
-    elements => [{type  => 'hbar', values => \@values}]
-  );
-  Octopussy::OFC::Generate(\%conf, $output_file);
+    title => { text => $rc->{name}, style => $STYLE_TITLE },
+    x_axis => { steps => int( $max / $STEP_HBAR ), min => 0, max => $max },
+    y_axis => { offset => 1, labels => \@labels },
+    elements => [ { type => 'hbar', values => \@values } ],
+             );
+  Octopussy::OFC::Generate( \%conf, $output_file );
 
   return ($output_file);
 }
@@ -268,22 +268,22 @@ sub Horizontal_Bar
 
 sub Pie
 {
-  my ($rc, $data, $output_file) = @_;
+  my ( $rc, $data, $output_file ) = @_;
 
-  my $x      = Octopussy::DB::SQL_As_Substitution($rc->{x});
-  my $y      = Octopussy::DB::SQL_As_Substitution($rc->{y});
+  my $x      = Octopussy::DB::SQL_As_Substitution( $rc->{x} );
+  my $y      = Octopussy::DB::SQL_As_Substitution( $rc->{y} );
   my @values = ();
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line ( AAT::ARRAY($data) )
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
-    push @values, {value => $value, label => $label, text => $label};
+    push @values, { value => $value, label => $label, text => $label };
   }
   my %conf = (
-    title    => {text  => $rc->{name}, style  => $STYLE_TITLE},
-    elements => [{type => 'pie',       values => \@values}]
-  );
-  Octopussy::OFC::Generate(\%conf, $output_file);
+    title => { text => $rc->{name}, style => $STYLE_TITLE },
+    elements => [ { type => 'pie', values => \@values } ]
+             );
+  Octopussy::OFC::Generate( \%conf, $output_file );
 
   return ($output_file);
 }

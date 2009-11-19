@@ -12,7 +12,7 @@ Octopussy::Report::CSV - Octopussy CSV Report module
 package Octopussy::Report::CSV;
 
 use strict;
-no strict 'refs';
+use warnings;
 
 =head1 FUNCTIONS
 
@@ -20,33 +20,39 @@ no strict 'refs';
 
 =cut
 
-sub Generate($$$$)
+sub Generate
 {
-  my ($file, $array_data, $array_fields, $array_headers) = @_;
-  my @fields = split(/,/, $array_fields);
-  my $csv = join(";", split(/,/, $array_headers)) . "\n";
+  my ( $file, $array_data, $array_fields, $array_headers ) = @_;
+  my @fields = split /,/, $array_fields;
+  my $csv = join( ';', split /,/, $array_headers ) . "\n";
 
-  foreach my $line (@{$array_data})
+  foreach my $line ( @{$array_data} )
   {
     foreach my $f (@fields)
     {
-      my $result = Octopussy::Plugin::Field_Data($line, $f);
-      if (defined $result)
+      my $result = Octopussy::Plugin::Field_Data( $line, $f );
+      if ( defined $result )
       {
-        if (ref $result eq "ARRAY")
+        if ( ref $result eq 'ARRAY' )
         {
-          foreach my $res (@{$result}) { $csv .= "$res "; }
+          foreach my $res ( @{$result} ) { $csv .= "$res "; }
         }
         else { $csv .= $result; }
       }
-      else { $csv .= $line->{$f} || "N/A"; }
-      $csv .= ";";
+      else { $csv .= $line->{$f} || 'N/A'; }
+      $csv .= ';';
     }
     $csv .= "\n";
   }
-  open(OUTPUT, "> $file");
-  print OUTPUT $csv;
-  close(OUTPUT);
+  if ( defined open my $OUTPUT, '>', $file )
+  {
+    print {$OUTPUT} $csv;
+    close $OUTPUT;
+
+    return ($file);
+  }
+
+  return (undef);
 }
 
 1;

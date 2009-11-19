@@ -34,8 +34,8 @@ sub New
 
   my $file = Octopussy::File($FILE_TIMEPERIODS);
   my $conf = AAT::XML::Read($file);
-  push @{$conf->{timeperiod}}, $new;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+  push @{ $conf->{timeperiod} }, $new;
+  AAT::XML::Write( $file, $conf, $XML_ROOT );
 
   return ($file);
 }
@@ -52,9 +52,10 @@ sub Remove
 
   my $file = Octopussy::File($FILE_TIMEPERIODS);
   my $conf = AAT::XML::Read($file);
-  my @tps = grep { $_->{label} ne $timeperiod } AAT::ARRAY($conf->{timeperiod});
+  my @tps =
+    grep { $_->{label} ne $timeperiod } AAT::ARRAY( $conf->{timeperiod} );
   $conf->{timeperiod} = \@tps;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+  AAT::XML::Write( $file, $conf, $XML_ROOT );
 
   return ($file);
 }
@@ -67,8 +68,8 @@ Returns List of Timeperiods
 
 sub List
 {
-  my @tps = AAT::XML::File_Array_Values(Octopussy::File($FILE_TIMEPERIODS),
-    'timeperiod', 'label');
+  my @tps = AAT::XML::File_Array_Values( Octopussy::File($FILE_TIMEPERIODS),
+                                         'timeperiod', 'label' );
 
   return (@tps);
 }
@@ -81,24 +82,24 @@ sub Configuration
 {
   my $tp_name = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
-  foreach my $tp (AAT::ARRAY($conf->{timeperiod}))
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_TIMEPERIODS) );
+  foreach my $tp ( AAT::ARRAY( $conf->{timeperiod} ) )
   {
-    if ($tp->{label} eq $tp_name)
+    if ( $tp->{label} eq $tp_name )
     {
       my $str = '';
-      foreach my $dt (AAT::ARRAY($tp->{dt}))
+      foreach my $dt ( AAT::ARRAY( $tp->{dt} ) )
       {
-        foreach my $k (AAT::HASH_KEYS($dt))
+        foreach my $k ( AAT::HASH_KEYS($dt) )
         {
-          if ($k =~ /^(\S{3})\S+/)
+          if ( $k =~ /^(\S{3})\S+/ )
           {
             $str .= "$1: $dt->{$k}, ";
           }
         }
       }
       $str =~ s/, $//;
-      return ({label => $tp->{label}, periods => $str});
+      return ( { label => $tp->{label}, periods => $str } );
     }
   }
 
@@ -112,17 +113,17 @@ sub Configuration
 sub Configurations
 {
   my $sort = shift || 'label';
-  my (@configurations, @sorted_configurations) = ((), ());
+  my ( @configurations, @sorted_configurations ) = ( (), () );
   my @tps = List();
   my %field;
 
   foreach my $tp (@tps)
   {
     my $conf = Configuration($tp);
-    $field{$conf->{$sort}} = 1;
+    $field{ $conf->{$sort} } = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $f ( sort keys %field )
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
@@ -136,33 +137,35 @@ sub Configurations
 
 sub Match
 {
-  my ($timeperiod, $datetime) = @_;
+  my ( $timeperiod, $datetime ) = @_;
 
-  return (1) if ((!defined $timeperiod) || ($timeperiod =~ /-ANY-/));
-  if ($datetime =~ /^(\S+) (\d+):(\d+)$/)
+  return (1) if ( ( !defined $timeperiod ) || ( $timeperiod =~ /-ANY-/ ) );
+  if ( $datetime =~ /^(\S+) (\d+):(\d+)$/ )
   {
-    my ($day, $hour, $min) = ($1, $2, $3);
+    my ( $day, $hour, $min ) = ( $1, $2, $3 );
     my $nb   = $hour * 100 + $min;
-    my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
-    foreach my $tp (AAT::ARRAY($conf->{timeperiod}))
+    my $conf = AAT::XML::Read( Octopussy::File($FILE_TIMEPERIODS) );
+    foreach my $tp ( AAT::ARRAY( $conf->{timeperiod} ) )
     {
-      if ($tp->{label} eq $timeperiod)
+      if ( $tp->{label} eq $timeperiod )
       {
-        foreach my $dt (AAT::ARRAY($tp->{dt}))
+        foreach my $dt ( AAT::ARRAY( $tp->{dt} ) )
         {
-          foreach my $k (AAT::HASH_KEYS($dt))
+          foreach my $k ( AAT::HASH_KEYS($dt) )
           {
-            if ($k eq $day)
+            if ( $k eq $day )
             {
-              if ($dt->{$k} =~ /^\!(\d+):(\d+)-(\d+):(\d+)$/)
+              if ( $dt->{$k} =~ /^\!(\d+):(\d+)-(\d+):(\d+)$/ )
               {
                 return (1)
-                  if (($nb < ($1 * 100 + $2)) || ($nb > ($3 * 100 + $4)));
+                  if (    ( $nb < ( $1 * 100 + $2 ) )
+                       || ( $nb > ( $3 * 100 + $4 ) ) );
               }
-              elsif ($dt->{$k} =~ /^(\d+):(\d+)-(\d+):(\d+)$/)
+              elsif ( $dt->{$k} =~ /^(\d+):(\d+)-(\d+):(\d+)$/ )
               {
                 return (1)
-                  if (($nb > ($1 * 100 + $2)) && ($nb < ($3 * 100 + $4)));
+                  if (    ( $nb > ( $1 * 100 + $2 ) )
+                       && ( $nb < ( $3 * 100 + $4 ) ) );
               }
             }
           }

@@ -26,32 +26,32 @@ Inits Translation Data from directories '@dirs' for language '$lang'
 
 sub Init
 {
-  my ($lang, @dirs) = @_;
-  my @list = (AAT::Directory('translations'), @dirs);
+  my ( $lang, @dirs ) = @_;
+  my @list = ( AAT::Directory('translations'), @dirs );
   my $count = 0;
-  
+
   foreach my $dir (@list)
   {
-    if (-f "$dir${lang}.xml")
+    if ( -f "$dir${lang}.xml" )
     {    # Basic Translations
       my $conf = AAT::XML::Read("$dir${lang}.xml");
-      foreach my $m (AAT::ARRAY($conf->{msg}))
+      foreach my $m ( AAT::ARRAY( $conf->{msg} ) )
       {
-        $AAT_Translation{$lang}{$m->{mid}} = $m->{value};
+        $AAT_Translation{$lang}{ $m->{mid} } = $m->{value};
         $count++;
       }
     }
-    if (-f "$dir${lang}_Tooltips.xml")
+    if ( -f "$dir${lang}_Tooltips.xml" )
     {    # Tooltips Translations
       my $conf = AAT::XML::Read("$dir${lang}_Tooltips.xml");
-      foreach my $m (AAT::ARRAY($conf->{msg}))
+      foreach my $m ( AAT::ARRAY( $conf->{msg} ) )
       {
-        $AAT_Translation{$lang}{$m->{mid}} = $m->{value};
+        $AAT_Translation{$lang}{ $m->{mid} } = $m->{value};
         $count++;
       }
     }
   }
-  
+
   return ($count);
 }
 
@@ -63,12 +63,12 @@ Gets Translation for string '$str' in language '$lang'
 
 sub Get
 {
-  my ($lang, $str) = @_;
+  my ( $lang, $str ) = @_;
 
-  return (undef) if (AAT::NULL($str));
-  Init($lang) if (!defined $AAT_Translation{$lang}{'_DAY'});
+  return (undef) if ( AAT::NULL($str) );
+  Init($lang) if ( !defined $AAT_Translation{$lang}{'_DAY'} );
 
-  return ($AAT_Translation{$lang}{$str} || $str);
+  return ( $AAT_Translation{$lang}{$str} || $str );
 }
 
 1;

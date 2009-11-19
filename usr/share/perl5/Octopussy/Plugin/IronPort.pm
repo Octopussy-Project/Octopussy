@@ -2,6 +2,7 @@
 # $Revision$
 # $Date$
 # $Author$
+
 =head1 NAME
 
 Octopussy::Plugin::IronPort - Octopussy Plugin IronPort
@@ -33,7 +34,10 @@ sub AntiSpam_Status
 {
   my $line = shift;
 
-  return ($1) if ($line =~ /^using engine: CASE (spam \w+)$/);
+  if ( $line =~ /^using engine: CASE (spam \w+)$/ )
+  {
+    return ($1);
+  }
 
   return (undef);
 }
@@ -46,7 +50,10 @@ sub AntiVirus_Status
 {
   my $line = shift;
 
-  return ($1) if ($line =~ /^antivirus (\w+).*$/);
+  if ( $line =~ /^antivirus (\w+).*$/ )
+  {
+    return ($1);
+  }
 
   return (undef);
 }
@@ -59,8 +66,10 @@ sub Virus_Name
 {
   my $line = shift;
 
-  return ($2)
-    if (($line =~ /^antivirus (\w+) '(.+?)'.*$/) && ($1 ne 'unscannable'));
+  if ( ( $line =~ /^antivirus (\w+) '(.+?)'.*$/ ) && ( $1 ne 'unscannable' ) )
+  {
+    return ($2);
+  }
 
   return (undef);
 }

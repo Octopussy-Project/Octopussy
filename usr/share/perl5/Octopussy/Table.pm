@@ -42,15 +42,15 @@ sub New
 {
   my $conf = shift;
 
-  if (AAT::NOT_NULL($conf->{name}))
+  if ( AAT::NOT_NULL( $conf->{name} ) )
   {
     $dir_tables ||= Octopussy::Directory($DIR_TABLE);
     $conf->{version} = Octopussy::Timestamp_Version(undef);
-    AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, $XML_ROOT);
-    Add_Field($conf->{name}, 'datetime', 'DATETIME');
-    Add_Field($conf->{name}, 'device',   'WORD');
-    
-    return ($conf->{name});
+    AAT::XML::Write( "$dir_tables/$conf->{name}.xml", $conf, $XML_ROOT );
+    Add_Field( $conf->{name}, 'datetime', 'DATETIME' );
+    Add_Field( $conf->{name}, 'device',   'WORD' );
+
+    return ( $conf->{name} );
   }
 
   return (undef);
@@ -69,10 +69,10 @@ $service - Name of the Table to remove
 sub Remove
 {
   my $table = shift;
-  
+
   my $nb = unlink Filename($table);
   $filename{$table} = undef;
-  
+
   return ($nb);
 }
 
@@ -86,7 +86,7 @@ sub List
 {
   $dir_tables ||= Octopussy::Directory($DIR_TABLE);
 
-  return (AAT::XML::Name_List($dir_tables));
+  return ( AAT::XML::Name_List($dir_tables) );
 }
 
 =head2 Filename($table)
@@ -99,11 +99,11 @@ sub Filename
 {
   my $table = shift;
 
-  return ($filename{$table}) if (defined $filename{$table});
+  return ( $filename{$table} ) if ( defined $filename{$table} );
   $dir_tables ||= Octopussy::Directory($DIR_TABLE);
-  $filename{$table} = AAT::XML::Filename($dir_tables, $table);
+  $filename{$table} = AAT::XML::Filename( $dir_tables, $table );
 
-  return ($filename{$table});
+  return ( $filename{$table} );
 }
 
 =head2 Configuration($table)
@@ -116,7 +116,7 @@ sub Configuration
 {
   my $table = shift;
 
-  return (AAT::XML::Read(Filename($table)));
+  return ( AAT::XML::Read( Filename($table) ) );
 }
 
 =head2 Configurations($sort)
@@ -128,16 +128,16 @@ Get the configuration for all Tables
 sub Configurations
 {
   my $sort = shift || 'name';
-  my (@configurations, @sorted_configurations) = ((), ());
+  my ( @configurations, @sorted_configurations ) = ( (), () );
   my @tables = List();
   my %field;
   foreach my $t (@tables)
   {
     my $conf = Configuration($t);
-    $field{$conf->{$sort}} = 1;
+    $field{ $conf->{$sort} } = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $f ( sort keys %field )
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
@@ -153,16 +153,16 @@ Adds Field '$fieldname' of type '$fieldtype' to Table '$table'
 
 sub Add_Field
 {
-  my ($table, $fieldname, $fieldtype) = @_;
+  my ( $table, $fieldname, $fieldtype ) = @_;
 
-  my $conf = AAT::XML::Read(Filename($table));
+  my $conf = AAT::XML::Read( Filename($table) );
 
-  if (any { $fieldname =~ /^$_->{title}$/ } AAT::ARRAY($conf->{field}))
+  if ( any { $fieldname =~ /^$_->{title}$/ } AAT::ARRAY( $conf->{field} ) )
   {
     return (undef);
   }
-  push @{$conf->{field}}, {title => $fieldname, type => $fieldtype};
-  AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
+  push @{ $conf->{field} }, { title => $fieldname, type => $fieldtype };
+  AAT::XML::Write( Filename($table), $conf, $XML_ROOT );
 
   return ($fieldname);
 }
@@ -175,14 +175,14 @@ Removes Field '$fieldname' from Table '$table'
 
 sub Remove_Field
 {
-  my ($table, $fieldname) = @_;
+  my ( $table, $fieldname ) = @_;
 
-  my $conf = AAT::XML::Read(Filename($table));
-  my @fields = grep { $_->{title} ne $fieldname } AAT::ARRAY($conf->{field});
+  my $conf = AAT::XML::Read( Filename($table) );
+  my @fields = grep { $_->{title} ne $fieldname } AAT::ARRAY( $conf->{field} );
   $conf->{field} = \@fields;
-  AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
+  AAT::XML::Write( Filename($table), $conf, $XML_ROOT );
 
-  return (scalar @fields);
+  return ( scalar @fields );
 }
 
 =head2 Fields($table)
@@ -195,9 +195,9 @@ sub Fields
 {
   my $table = shift;
 
-  my $conf = AAT::XML::Read(Filename($table));
+  my $conf = AAT::XML::Read( Filename($table) );
 
-  return (AAT::ARRAY($conf->{field}));
+  return ( AAT::ARRAY( $conf->{field} ) );
 }
 
 =head2 Fields_Configurations($table, $sort)
@@ -208,17 +208,17 @@ Gets the configuration for all Fields
 
 sub Fields_Configurations
 {
-  my ($table, $sort) = @_;
-  my (@configurations, @sorted_configurations) = ((), ());
+  my ( $table, $sort ) = @_;
+  my ( @configurations, @sorted_configurations ) = ( (), () );
   my @fields = Fields($table);
   my %field;
 
   foreach my $conf (@fields)
   {
-    $field{$conf->{$sort}} = 1;
+    $field{ $conf->{$sort} } = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $f ( sort keys %field )
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
@@ -234,24 +234,25 @@ Generates SQL code to create the Table '$table'
 
 sub SQL
 {
-  my ($table, $fields, $indexes) = @_;
+  my ( $table, $fields, $indexes ) = @_;
   my $real_table = $table;
 
   $real_table =~ s/_\d+$//;
-  my $conf  = AAT::XML::Read(Filename($real_table));
+  my $conf  = AAT::XML::Read( Filename($real_table) );
   my $sql   = "CREATE TABLE `$table` (";
   my $index = '';
 
-  foreach my $sf (AAT::ARRAY($fields))
+  foreach my $sf ( AAT::ARRAY($fields) )
   {
 
     #foreach my $ind (AAT::ARRAY($indexes))
     #	{ $index .= "INDEX ($ind), "  if ($ind eq $sf); }
-    foreach my $f (AAT::ARRAY($conf->{field}))
+    foreach my $f ( AAT::ARRAY( $conf->{field} ) )
     {
-      if (($sf =~ /^$f->{title}$/i) || ($sf =~ /^Plugin_\S+__$f->{title}$/i))
+      if (    ( $sf =~ /^$f->{title}$/i )
+           || ( $sf =~ /^Plugin_\S+__$f->{title}$/i ) )
       {
-        $sql .= "`$sf` " . uc(Octopussy::Type::SQL_Type($f->{type})) . ', ';
+        $sql .= "`$sf` " . uc( Octopussy::Type::SQL_Type( $f->{type} ) ) . ', ';
       }
     }
   }
@@ -275,17 +276,17 @@ Gets field list from Table '$table' where Field type is '$type'
 
 sub Field_Type_List
 {
-  my ($table, $type) = @_;
+  my ( $table, $type ) = @_;
   my $conf        = Configuration($table);
   my $simple_type = Octopussy::Type::Simple_Type($type);
   my @list        = ();
-  foreach my $f (AAT::ARRAY($conf->{field}))
+  foreach my $f ( AAT::ARRAY( $conf->{field} ) )
   {
-    my $f_stype = Octopussy::Type::Simple_Type($f->{type});
-    push @list, $f->{title} if ($simple_type =~ /^$f_stype$/i);
+    my $f_stype = Octopussy::Type::Simple_Type( $f->{type} );
+    push @list, $f->{title} if ( $simple_type =~ /^$f_stype$/i );
   }
 
-  return (sort @list);
+  return ( sort @list );
 }
 
 =head2 Devices_and_Services_With($table)
@@ -298,8 +299,8 @@ which contains messages with Table '$table'
 sub Devices_and_Services_With
 {
   my $table = shift;
-  my (%device, %service);
-  my (@devicegroups, @devices, @services) = ((), (), ());
+  my ( %device, %service );
+  my ( @devicegroups, @devices, @services ) = ( (), (), () );
 
   my @service_list = Octopussy::Service::List();
   foreach my $serv (@service_list)
@@ -307,7 +308,7 @@ sub Devices_and_Services_With
     my @messages = Octopussy::Service::Messages($serv);
     foreach my $m (@messages)
     {
-      if ($m->{table} eq $table)
+      if ( $m->{table} eq $table )
       {
         $service{$serv} = 1;
         last;
@@ -318,24 +319,24 @@ sub Devices_and_Services_With
   my @dconfs = Octopussy::Device::Configurations();
   foreach my $dc (@dconfs)
   {
-    foreach my $s (AAT::ARRAY($dc->{service}))
+    foreach my $s ( AAT::ARRAY( $dc->{service} ) )
     {
-      $device{$dc->{name}} = 1 if (AAT::NOT_NULL($service{$s->{sid}}));
+      $device{ $dc->{name} } = 1 if ( AAT::NOT_NULL( $service{ $s->{sid} } ) );
     }
   }
   @devices  = sort keys %device;
   @services = sort keys %service;
-  foreach my $dg (Octopussy::DeviceGroup::List())
+  foreach my $dg ( Octopussy::DeviceGroup::List() )
   {
     my $match = 0;
-    foreach my $dgd (Octopussy::DeviceGroup::Devices($dg))
+    foreach my $dgd ( Octopussy::DeviceGroup::Devices($dg) )
     {
-      foreach my $d (sort keys %device) { $match = 1 if ($dgd eq $d); }
+      foreach my $d ( sort keys %device ) { $match = 1 if ( $dgd eq $d ); }
     }
     push @devicegroups, $dg if ($match);
   }
 
-  return (\@devicegroups, \@devices, \@services);
+  return ( \@devicegroups, \@devices, \@services );
 }
 
 =head2 Valid_Pattern($table, $pattern)
@@ -344,24 +345,27 @@ sub Devices_and_Services_With
 
 sub Valid_Pattern
 {
-  my ($table, $pattern) = @_;
+  my ( $table, $pattern ) = @_;
   my @fields    = Fields($table);
   my %f_pattern = ();
   my @errors    = ();
 
-  while (($pattern =~ s/<\@REGEXP\("\S+?"\):(\S+?)\@>//)
-    || ($pattern =~ s/<\@\S+?:(\S+?)\@>//))
+  while (    ( $pattern =~ s/<\@REGEXP\("\S+?"\):(\S+?)\@>// )
+          || ( $pattern =~ s/<\@\S+?:(\S+?)\@>// ) )
   {
     my $fieldname = $1;
     my $match     = 0;
-    $f_pattern{$fieldname} =
-      (AAT::NOT_NULL($f_pattern{$fieldname}) ? $f_pattern{$fieldname} + 1 : 1);
+    $f_pattern{$fieldname} = (
+                               AAT::NOT_NULL( $f_pattern{$fieldname} )
+                               ? $f_pattern{$fieldname} + 1
+                               : 1
+                             );
     foreach my $f (@fields)
     {
       $match = 1
-        if (($f->{title} =~ /^$fieldname$/) || ($fieldname =~ /NULL/i));
+        if ( ( $f->{title} =~ /^$fieldname$/ ) || ( $fieldname =~ /NULL/i ) );
     }
-    push @errors, "$fieldname DONT MATCH ! \n" if (!$match);
+    push @errors, "$fieldname DONT MATCH ! \n" if ( !$match );
   }
 
   #	foreach my $k (keys %f_pattern)
@@ -385,11 +389,11 @@ sub Updates_Installation
 
   foreach my $t (@tables)
   {
-    AAT::Download('Octopussy', "$web/Download/Tables/$t.xml",
-      "$dir_tables/$t.xml");
+    AAT::Download( 'Octopussy', "$web/Download/Tables/$t.xml",
+                   "$dir_tables/$t.xml" );
   }
 
-  return (scalar @tables);
+  return ( scalar @tables );
 }
 
 =head2 Update_Get_Fields($table)
@@ -401,11 +405,11 @@ sub Update_Get_Fields
   my $table = shift;
   my $web   = Octopussy::WebSite();
 
-  AAT::Download('Octopussy', "$web/Download/Tables/$table.xml",
-    "/tmp/$table.xml");
+  AAT::Download( 'Octopussy', "$web/Download/Tables/$table.xml",
+                 "/tmp/$table.xml" );
   my $conf_new = AAT::XML::Read("/tmp/$table.xml");
 
-  return (AAT::ARRAY($conf_new->{field}));
+  return ( AAT::ARRAY( $conf_new->{field} ) );
 }
 
 =head2 Updates_Diff($table)
@@ -418,16 +422,16 @@ sub Updates_Diff
   my $conf       = Configuration($table);
   my @fields     = ();
   my @new_fields = Update_Get_Fields($table);
-  foreach my $f (AAT::ARRAY($conf->{field}))
+  foreach my $f ( AAT::ARRAY( $conf->{field} ) )
   {
     my @list  = ();
     my $match = 0;
     foreach my $f2 (@new_fields)
     {
-      if ($f2->{title} eq $f->{title})
+      if ( $f2->{title} eq $f->{title} )
       {
         $match = 1;
-        if ($f2->{type} ne $f->{type})
+        if ( $f2->{type} ne $f->{type} )
         {
           $f->{type} = "$f->{type} --> $f2->{type}";
           push @fields, $f;
@@ -435,7 +439,7 @@ sub Updates_Diff
       }
       else { push @list, $f2; }
     }
-    if (!$match)
+    if ( !$match )
     {
       $f->{status} = 'deleted';
       push @fields, $f;

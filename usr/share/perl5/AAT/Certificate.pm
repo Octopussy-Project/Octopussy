@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Copy;
+
 use AAT;
 
 Readonly my $CA_DAYS => 3650;
@@ -43,18 +45,18 @@ sub Authority_Configuration
   my $appli = shift;
   my %conf  = ();
 
-  my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
+  my $dir_ca = AAT::Application::Directory( $appli, 'certificate_authority' );
   my @lines = `$SSL_X509 -text -noout -in $dir_ca/cacert.pem`;
   foreach my $line (@lines)
   {
-    if ($line =~
+    if ( $line =~
 /Subject: C=(\w+), ST=(.+?), L=(.+?), O=(.+?), OU=(.+?), CN=(.+?)\/emailAddress=(\S+)$/
       )
     {
       (
         $conf{country}, $conf{state}, $conf{city}, $conf{org}, $conf{org_unit},
         $conf{common_name}, $conf{email}
-      ) = ($1, $2, $3, $4, $5, $6, $7);
+      ) = ( $1, $2, $3, $4, $5, $6, $7 );
     }
   }
 
@@ -69,35 +71,36 @@ Creates a Certificate Authority
 
 sub Authority_Create
 {
-  my ($appli, $conf) = @_;
+  my ( $appli, $conf ) = @_;
 
-  my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
+  my $dir_ca = AAT::Application::Directory( $appli, 'certificate_authority' );
   File::Path::rmtree($dir_ca);
-  `mkdir -p $dir_ca/{certs,crl,newcerts,private}`;
-  `touch $dir_ca/index.txt`;
-  `echo "01" > $dir_ca/serial`;
+  system "mkdir -p $dir_ca/{certs,crl,newcerts,private}";
+  system "touch $dir_ca/index.txt";
+  system "echo '01' > $dir_ca/serial";
 
-  `cp $CONF $CONF_CA.tmp`;
-  if ((defined open(my $FILE, '<', "$CONF_CA.tmp")) 
-      && (defined open(my $OUT,  '>', $CONF_CA)))
+  copy( $CONF, "$CONF_CA.tmp" );
+  if (    ( defined open my $FILE, '<', "$CONF_CA.tmp" )
+       && ( defined open my $OUT, '>', $CONF_CA ) )
   {
-    while (my $line = <$FILE>)
+    while ( my $line = <$FILE> )
     {
-      foreach my $k (keys %{$conf})
+      foreach my $k ( keys %{$conf} )
       {
         my $sub = '<' . uc($k) . '>';
         $line =~ s/$sub/$conf->{$k}/g;
       }
-      print $OUT $line;
+      print {$OUT} $line;
     }
-    close($FILE);
-    close($OUT);
-    `$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $dir_ca/private/cakey.pem -out $dir_ca/cacert.pem`;
-    `chmod -R 600 $dir_ca/private`;
-  
+    close $FILE;
+    close $OUT;
+    system
+"$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $dir_ca/private/cakey.pem -out $dir_ca/cacert.pem";
+    chmod 0600, glob "$dir_ca/private/*";
+
     return ("$dir_ca/private");
   }
-  
+
   return (undef);
 }
 
@@ -109,35 +112,40 @@ Creates a Client Certificate
 
 sub Client_Create
 {
-  my ($appli, $file, $password, $conf) = @_;
+  my ( $appli, $file, $password, $conf ) = @_;
 
-  my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
+  my $dir_ca = AAT::Application::Directory( $appli, 'certificate_authority' );
   my $info = AAT::Application::Info($appli);
-  `cp $CONF $CONF_CLIENT.tmp`;
-  if ((defined open(my $FILE, '<', "$CONF_CLIENT.tmp")) 
-    && (defined open(my $OUT,  '>', $CONF_CLIENT)))
+  my ( $login, $pwd, $uid, $gid ) = getpwnam $info->{user};
+
+  copy( $CONF, "$CONF_CLIENT.tmp" );
+  if (    ( defined open my $FILE, '<', "$CONF_CLIENT.tmp" )
+       && ( defined open my $OUT, '>', $CONF_CLIENT ) )
   {
     while (<$FILE>)
     {
       my $line = $_;
-      foreach my $k (keys %{$conf})
+      foreach my $k ( keys %{$conf} )
       {
         my $sub = '<' . uc($k) . '>';
         $line =~ s/$sub/$conf->{$k}/g;
       }
       $line =~ s/<DIR>/$dir_ca/g;
-      print $OUT $line;
+      print {$OUT} $line;
     }
-    close($FILE);
-    close($OUT);
-    `$SSL_REQ -config $CONF_CLIENT -passout pass:octo -newkey $CIPHER -keyout ${file}.key -out ${file}.req`;
-    `$SSL_CA -config $CONF_CLIENT -passin pass:octo -in ${file}.req -out ${file}.pem`;
-    `$OPENSSL pkcs12 -export -passin pass:octo -passout pass:$password -in ${file}.pem -inkey ${file}.key -out ${file}.p12 -name "$conf->{common_name}"`;
-    `chown $info->{user}: ${file}.p12`;
-  
+    close $FILE;
+    close $OUT;
+    system
+"$SSL_REQ -config $CONF_CLIENT -passout pass:octo -newkey $CIPHER -keyout ${file}.key -out ${file}.req";
+    system
+"$SSL_CA -config $CONF_CLIENT -passin pass:octo -in ${file}.req -out ${file}.pem";
+    system
+"$OPENSSL pkcs12 -export -passin pass:octo -passout pass:$password -in ${file}.pem -inkey ${file}.key -out ${file}.p12 -name '$conf->{common_name}'";
+    chown $uid, $gid, "${file}.p12";
+
     return ("${file}.p12");
   }
-  
+
   return (undef);
 }
 
@@ -149,33 +157,38 @@ Creates a Server Certificate
 
 sub Server_Create
 {
-  my ($appli, $dest, $conf) = @_;
+  my ( $appli, $dest, $conf ) = @_;
 
-  my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
+  my $dir_ca = AAT::Application::Directory( $appli, 'certificate_authority' );
   my $info = AAT::Application::Info($appli);
-  `cp $CONF $CONF_SERVER.tmp`;
-  if ((defined open(my $FILE, '<', "$CONF_SERVER.tmp"))
-    && (defined open(my $OUT,  '>', $CONF_SERVER)))
+  my ( $login, $pwd, $uid, $gid ) = getpwnam $info->{user};
+
+  copy( $CONF, "$CONF_SERVER.tmp" );
+  if (    ( defined open my $FILE, '<', "$CONF_SERVER.tmp" )
+       && ( defined open my $OUT, '>', $CONF_SERVER ) )
   {
     while (<$FILE>)
     {
       my $line = $_;
-      foreach my $k (keys %{$conf})
+      foreach my $k ( keys %{$conf} )
       {
         my $sub = '<' . uc($k) . '>';
         $line =~ s/$sub/$conf->{$k}/g;
       }
       $line =~ s/<DIR>/$dir_ca/g;
-      print $OUT $line;
+      print {$OUT} $line;
     }
-    close($FILE);
-    close($OUT);
-    `$SSL_REQ -config $CONF_SERVER -newkey $CIPHER -keyout $dest/server.key -out $dest/server.req`;
-    `$SSL_CA -config $CONF_SERVER -in $dest/server.req -out $dest/server.crt`;
-    `$OPENSSL rsa -passout pass:octo -in $dest/server.key -out $dest/server.key`;
-    `chown $info->{user}: $dest/*`;
+    close $FILE;
+    close $OUT;
+    system
+"$SSL_REQ -config $CONF_SERVER -newkey $CIPHER -keyout $dest/server.key -out $dest/server.req";
+    system
+      "$SSL_CA -config $CONF_SERVER -in $dest/server.req -out $dest/server.crt";
+    system
+"$OPENSSL rsa -passout pass:octo -in $dest/server.key -out $dest/server.key";
+    chown $uid, $gid, glob "$dest/*";
 
-    return ("$dest/server.key")
+    return ("$dest/server.key");
   }
 
   return (undef);

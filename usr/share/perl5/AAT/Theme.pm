@@ -27,11 +27,11 @@ Returns list of available Themes
 
 sub List
 {
-  opendir(DIR, $DIR_THEME);
-  my @themes = grep { !/^\.+/ } readdir(DIR);
-  closedir(DIR);
+  opendir DIR, $DIR_THEME;
+  my @themes = grep { !/^\.+/ } readdir DIR;
+  closedir DIR;
 
-  return (sort (@themes));
+  return ( sort @themes );
 }
 
 =head2 CSS_File($theme)
@@ -44,10 +44,10 @@ sub CSS_File
 {
   my $theme = shift;
 
-  $theme = 'DEFAULT' if (AAT::NULL($theme));
+  $theme = 'DEFAULT' if ( AAT::NULL($theme) );
   my $file = "$DIR_THEME$theme/style.css";
 
-  return ((-f "$file") ? $file : undef);
+  return ( ( -f "$file" ) ? $file : undef );
 }
 
 1;

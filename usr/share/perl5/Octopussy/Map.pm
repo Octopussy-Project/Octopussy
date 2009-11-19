@@ -32,7 +32,7 @@ sub List
 {
   $dir_maps ||= Octopussy::Directory($DIR_MAP);
 
-  return (AAT::XML::Name_List($dir_maps));
+  return ( AAT::XML::Name_List($dir_maps) );
 }
 
 =head2 Filename($map)
@@ -47,7 +47,7 @@ sub Filename
 
   $dir_maps ||= Octopussy::Directory($DIR_MAP);
 
-  return (AAT::XML::Filename($dir_maps, $map));
+  return ( AAT::XML::Filename( $dir_maps, $map ) );
 }
 
 =head2 Configuration($map)
@@ -60,7 +60,7 @@ sub Configuration
 {
   my $map = shift;
 
-  return (AAT::XML::Read(Filename($map)));
+  return ( AAT::XML::Read( Filename($map) ) );
 }
 
 1;

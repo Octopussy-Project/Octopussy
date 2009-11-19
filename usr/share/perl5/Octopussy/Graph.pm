@@ -46,16 +46,16 @@ Generate graph
 
 sub Generate
 {
-  my ($g, $output) = @_;
+  my ( $g, $output ) = @_;
 
   $GD::Graph::Error::Debug = 5;
 
   $output = $output || 'graph.png';
-  my $fct = 'GD::Graph::' . ($g->{type} || $TYPE);
-  my $graph = $fct->new($g->{width} || $WIDTH, $g->{height} || $HEIGHT);
+  my $fct = 'GD::Graph::' . ( $g->{type} || $TYPE );
+  my $graph = $fct->new( $g->{width} || $WIDTH, $g->{height} || $HEIGHT );
 
-  $graph->set(bar_spacing => $BAR_SPACING) if ($g->{type} =~ /bars$/);
-  $graph->set(start_angle => $START_ANGLE) if ($g->{type} =~ /^pie$/);
+  $graph->set( bar_spacing => $BAR_SPACING ) if ( $g->{type} =~ /bars$/ );
+  $graph->set( start_angle => $START_ANGLE ) if ( $g->{type} eq 'pie' );
   my @colors = GD::Graph::colour::colour_list(32);
 
   #read_rgb("/etc/X11/rgb.txt");
@@ -80,17 +80,17 @@ sub Generate
   ) or die $graph->error;
 
   #$graph->set_legend($g->{data});
-  my $gd = $graph->plot($g->{data}) or die $graph->error;
-  if (defined open my $IMG, '>', $output)
+  my $gd = $graph->plot( $g->{data} ) or die $graph->error;
+  if ( defined open my $IMG, '>', $output )
   {
     binmode $IMG;
-    print $IMG $gd->png;
+    print {$IMG} $gd->png;
     close $IMG;
   }
   else
   {
-    my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog('Octopussy::Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub);
+    my ( $pack, $file_pack, $line, $sub ) = caller 0;
+    AAT::Syslog( 'Octopussy::Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub );
   }
 
   #my $map = new GD::Graph::Map($graph, newWindow => 1);

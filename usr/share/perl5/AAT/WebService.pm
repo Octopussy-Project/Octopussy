@@ -12,7 +12,6 @@ AAT::WebService - AAT WebService module
 package AAT::WebService;
 
 use strict;
-no strict 'refs';
 use warnings;
 
 my %ws = ();
@@ -26,12 +25,14 @@ my %ws = ();
 sub Init
 {
   my $appli = shift;
-  my $conf = AAT::XML::Read(AAT::Application::File($appli, 'webservices'));
+  my $conf = AAT::XML::Read( AAT::Application::File( $appli, 'webservices' ) );
 
-  foreach my $f (AAT::ARRAY($conf->{function}))
+  foreach my $f ( AAT::ARRAY( $conf->{function} ) )
   {
-    $ws{$appli}{$f->{label}} = $f->{cmd};
+    $ws{$appli}{ $f->{label} } = $f->{cmd};
   }
+
+  return (1);
 }
 
 =head2 Command($cmd, $args)
@@ -40,9 +41,11 @@ sub Init
 
 sub Command
 {
-  my ($appli, $cmd, $args) = @_;
+  my ( $appli, $cmd, $args ) = @_;
 
   print "$ws{$appli}{$cmd} ()";
+
+  return ("$ws{$appli}{$cmd} ()");
 }
 
 1;

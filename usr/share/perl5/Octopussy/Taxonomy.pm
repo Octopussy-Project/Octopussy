@@ -31,47 +31,50 @@ Get list of taxonomy entries
 
 sub List
 {
-  my ($dev_list, $serv_list) = @_;
+  my ( $dev_list, $serv_list ) = @_;
   my @list = ();
 
-  if ((AAT::NOT_NULL($dev_list)) || (AAT::NOT_NULL($serv_list)))
+  if ( ( AAT::NOT_NULL($dev_list) ) || ( AAT::NOT_NULL($serv_list) ) )
   {
-    my %taxo     = ();
-    my %color    = Colors();
+    my %taxo  = ();
+    my %color = Colors();
     my @services = (
-      (AAT::NOT_NULL($serv_list))
-      ? AAT::ARRAY($serv_list)
-      : Octopussy::Device::Services(AAT::ARRAY($dev_list))
-    );
+                     ( AAT::NOT_NULL($serv_list) )
+                     ? AAT::ARRAY($serv_list)
+                     : Octopussy::Device::Services( AAT::ARRAY($dev_list) )
+                   );
     @services = uniq @services;
     foreach my $s (@services)
     {
-      if ($s eq '-ANY-')
+      if ( $s eq '-ANY-' )
       {
-        @services = Octopussy::Device::Services(AAT::ARRAY($dev_list));
+        @services = Octopussy::Device::Services( AAT::ARRAY($dev_list) );
       }
     }
     @services = uniq @services;
-    foreach my $m (Octopussy::Service::Messages(@services))
+    foreach my $m ( Octopussy::Service::Messages(@services) )
     {
-      $taxo{$m->{taxonomy}} = 1;
+      $taxo{ $m->{taxonomy} } = 1;
     }
-    foreach my $k (keys %taxo)
+    foreach my $k ( keys %taxo )
     {
-      push @list, {value => $k, label => $k, color => $color{$k}};
+      push @list, { value => $k, label => $k, color => $color{$k} };
     }
   }
   else
   {
     my %field;
-    my $conf = AAT::XML::Read(Octopussy::File($FILE_TAXONOMY));
-    foreach my $t (AAT::ARRAY($conf->{taxonomy})) { $field{$t->{value}} = 1; }
-    foreach my $f (sort keys %field)
+    my $conf = AAT::XML::Read( Octopussy::File($FILE_TAXONOMY) );
+    foreach my $t ( AAT::ARRAY( $conf->{taxonomy} ) )
     {
-      foreach my $t (AAT::ARRAY($conf->{taxonomy}))
+      $field{ $t->{value} } = 1;
+    }
+    foreach my $f ( sort keys %field )
+    {
+      foreach my $t ( AAT::ARRAY( $conf->{taxonomy} ) )
       {
         $t->{label} = $t->{value};
-        if ($t->{value} eq $f)
+        if ( $t->{value} eq $f )
         {
           push @list, $t;
         }
@@ -79,7 +82,7 @@ sub List
     }
   }
 
-  return (undef) if (scalar(@list) == 0);
+  return (undef) if ( scalar(@list) == 0 );
   return (@list);
 }
 
@@ -91,12 +94,12 @@ Get list of taxonomy entries and '-ANY-'
 
 sub List_And_Any
 {
-  my ($dev_list, $serv_list) = @_;
+  my ( $dev_list, $serv_list ) = @_;
 
   my @list = ('-ANY-');
-  push @list, List($dev_list, $serv_list);
+  push @list, List( $dev_list, $serv_list );
 
-  return (undef) if (scalar(@list) == 0);
+  return (undef) if ( scalar(@list) == 0 );
   return (@list);
 }
 
@@ -106,15 +109,15 @@ sub List_And_Any
 
 sub String_List
 {
-  my ($devices, $services) = @_;
-  my @data = Octopussy::Taxonomy::List($devices, $services);
+  my ( $devices, $services ) = @_;
+  my @data = Octopussy::Taxonomy::List( $devices, $services );
   my @list = ('-ANY-');
   foreach my $d (@data)
   {
     push @list, $d->{value};
   }
 
-  return ('Taxonomy list: ' . join ', ', sort @list);
+  return ( 'Taxonomy list: ' . join ', ', sort @list );
 }
 
 =head2 Colors()
@@ -123,9 +126,9 @@ sub String_List
 
 sub Colors
 {
-  my $conf  = AAT::XML::Read(Octopussy::File($FILE_TAXONOMY));
+  my $conf  = AAT::XML::Read( Octopussy::File($FILE_TAXONOMY) );
   my %color = ();
-  foreach my $t (AAT::ARRAY($conf->{taxonomy}))
+  foreach my $t ( AAT::ARRAY( $conf->{taxonomy} ) )
   {
     $color{"$t->{value}"} = $t->{color};
   }

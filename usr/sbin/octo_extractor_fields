@@ -28,13 +28,13 @@ use JSON;
 
 use Octopussy;
 
-Readonly my $PROG_NAME    => "octo_extractor_fields";
+Readonly my $PROG_NAME    => 'octo_extractor_fields';
 Readonly my $PROG_VERSION => Octopussy::Version();
 
 my $help;
-my (@opt_devices, @opt_services) = ((), ());
-my ($opt_table, $opt_loglevel, $opt_taxonomy);
-my ($opt_fields, $opt_begin, $opt_end, $pid_param, $output);
+my ( @opt_devices, @opt_services ) = ( (), () );
+my ( $opt_table, $opt_loglevel, $opt_taxonomy );
+my ( $opt_fields, $opt_begin, $opt_end, $pid_param, $output );
 my $file_pid = undef;
 my $cache    = undef;
 
@@ -48,22 +48,22 @@ Returns List of elements separated by ", " from one function and args
 
 sub String_List
 {
-  my ($type, $any, $fct, @args) = @_;
-  my @list = (defined $any ? ('-ANY-') : ());
+  my ( $type, $any, $fct, @args ) = @_;
+  my @list = ( defined $any ? ('-ANY-') : () );
 
-no strict "refs";
+  no strict "refs";
 
   my @data = &{$fct}(@args);
   foreach my $d (@data)
   {
-    if   (defined $d->{label}) { push(@list, $d->{label}); }
-    if   (defined $d->{value}) { push(@list, $d->{value}); }
-    else                       { push(@list, $d); }
+    if   ( defined $d->{label} ) { push @list, $d->{label}; }
+    if   ( defined $d->{value} ) { push @list, $d->{value}; }
+    else                         { push @list, $d; }
   }
 
-use strict "refs";
+  use strict "refs";
 
-  return (" $type list: " . (join(', ', sort @list)) . "\n");
+  return ( " $type list: " . join( ', ', sort @list ) . "\n" );
 }
 
 =head2 Help()
@@ -87,32 +87,33 @@ $PROG_NAME (version $PROG_VERSION)
 EOF
 
   print $help_str;
-  if (!@opt_devices)
+  if ( !@opt_devices )
   {
-    print String_List('Device', 'any', 'Octopussy::Device::List');
+    print String_List( 'Device', 'any', 'Octopussy::Device::List' );
   }
-  elsif (!@opt_services)
+  elsif ( !@opt_services )
   {
-    print String_List('Service', 'any', 'Octopussy::Device::Services', @opt_devices);
+    print String_List( 'Service', 'any', 'Octopussy::Device::Services',
+                       @opt_devices );
   }
-  elsif (!defined $opt_table)
+  elsif ( !defined $opt_table )
   {
-    print String_List('Table', undef, 'Octopussy::Table::List', \@opt_devices,
-      \@opt_services);
+    print String_List( 'Table', undef, 'Octopussy::Table::List', \@opt_devices,
+                       \@opt_services );
   }
-  elsif (!defined $opt_loglevel)
+  elsif ( !defined $opt_loglevel )
   {
-    print String_List('Loglevel', undef, 'Octopussy::Loglevel::List_And_Any',
-      \@opt_devices, \@opt_services);
+    print String_List( 'Loglevel', undef, 'Octopussy::Loglevel::List_And_Any',
+                       \@opt_devices, \@opt_services );
   }
-  elsif (!defined $opt_taxonomy)
+  elsif ( !defined $opt_taxonomy )
   {
-    print String_List('Taxonomy', undef, 'Octopussy::Taxonomy::List_And_Any',
-      \@opt_devices, \@opt_services);
+    print String_List( 'Taxonomy', undef, 'Octopussy::Taxonomy::List_And_Any',
+                       \@opt_devices, \@opt_services );
   }
   print "\n";
 
-  exit();
+  exit;
 }
 
 =head2 Progress($msg, $num, $nb_match)
@@ -123,10 +124,10 @@ Sets progress status
 
 sub Progress
 {
-  my ($msg, $num, $nb_match) = @_;
+  my ( $msg, $num, $nb_match ) = @_;
 
   my $status = AAT::Translation($msg) . " [$num] [$nb_match]";
-  $cache->set("status_$$", $status);
+  $cache->set( "status_$$", $status );
 
   return ($status);
 }
@@ -139,11 +140,14 @@ Returns list of Messages to parse
 
 sub Get_Messages_To_Parse
 {
-  my ($services, $loglevel, $taxonomy, $table, $fields) = @_;
+  my ( $services, $loglevel, $taxonomy, $table, $fields ) = @_;
 
   my @msg_to_parse =
-    Octopussy::Message::Parse_List($services, $loglevel, $taxonomy, $table,
-    $fields, undef, $fields);
+    Octopussy::Message::Parse_List(
+                                    $services, $loglevel, $taxonomy,
+                                    $table,    $fields,   undef,
+                                    $fields
+                                  );
 
   return (@msg_to_parse);
 }
@@ -157,30 +161,33 @@ and Period $begin-$end
 
 sub Get_TimePeriod_Files
 {
-  my ($devices, $services, $begin, $end) = @_;
+  my ( $devices, $services, $begin, $end ) = @_;
 
-  my ($y1, $m1, $d1, $hour1, $min1) = ($1, $2, $3, $4, $5)
-    if ($begin =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/);
-  my ($y2, $m2, $d2, $hour2, $min2) = ($1, $2, $3, $4, $5)
-    if ($end =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/);
+  my ( $y1, $m1, $d1, $hour1, $min1 );
+  my ( $y2, $m2, $d2, $hour2, $min2 );
+
+  ( $y1, $m1, $d1, $hour1, $min1 ) = ( $1, $2, $3, $4, $5 )
+    if ( $begin =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/ );
+  ( $y2, $m2, $d2, $hour2, $min2 ) = ( $1, $2, $3, $4, $5 )
+    if ( $end =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/ );
   my %start = (
-    year  => $y1,
-    month => $m1,
-    day   => $d1,
-    hour  => $hour1,
-    min   => $min1
-  );
+                year  => $y1,
+                month => $m1,
+                day   => $d1,
+                hour  => $hour1,
+                min   => $min1,
+              );
   my %finish = (
-    year  => $y2,
-    month => $m2,
-    day   => $d2,
-    hour  => $hour2,
-    min   => $min2
-  );
-  my ($files, $nb_files) =
-    Octopussy::Logs::Minutes_Hash($devices, $services, \%start, \%finish);
+                 year  => $y2,
+                 month => $m2,
+                 day   => $d2,
+                 hour  => $hour2,
+                 min   => $min2,
+               );
+  my ( $files, $nb_files ) =
+    Octopussy::Logs::Minutes_Hash( $devices, $services, \%start, \%finish );
 
-  return ($files, $nb_files);
+  return ( $files, $nb_files );
 }
 
 =head2 Print_Logs($devices, $services, $loglevel, $taxo, 
@@ -192,51 +199,53 @@ Prints Logs
 
 sub Print_Logs
 {
-  my ($devices, $services, $table, $loglevel, $taxo, $begin, $end, $fields) =
+  my ( $devices, $services, $table, $loglevel, $taxo, $begin, $end, $fields ) =
     @_;
-  my $time  = time();
+  my $time  = time;
   my @lines = ();
 
-  Progress('_MSG_EXTRACT_PROGRESS_LISTING_FILES', '1/1', 0);
-  my ($files, $total) = Get_TimePeriod_Files($devices, $services, $begin, $end);
+  Progress( '_MSG_EXTRACT_PROGRESS_LISTING_FILES', '1/1', 0 );
+  my ( $files, $total ) =
+    Get_TimePeriod_Files( $devices, $services, $begin, $end );
   my $nb_match = 0;
   my $i        = 1;
   my @msg_to_parse =
-    Get_Messages_To_Parse($services, $loglevel, $taxo, $table, $fields);
+    Get_Messages_To_Parse( $services, $loglevel, $taxo, $table, $fields );
   my @logs = ();
-  foreach my $min (sort keys %{$files})
+  foreach my $min ( sort keys %{$files} )
   {
-    foreach my $f (@{$files->{$min}})
+
+    foreach my $f ( @{ $files->{$min} } )
     {
-      Progress('_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match);
-      if (defined open(my $FILE, '-|', "zcat \"$f\""))
+      Progress( '_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match );
+      if ( defined open my $FILE, '-|', "zcat \"$f\"" )
       {
         while (<$FILE>)
         {
           my $line = $_;
           foreach my $msg (@msg_to_parse)
           {
-            if (my @args = $line =~ $msg->{re})
+            if ( my @args = $line =~ $msg->{re} )
             {
               my %data = ();
               my $i    = 0;
-              foreach my $field (@{$fields})
+              foreach my $field ( @{$fields} )
               {
                 $data{$field} = $args[$i];
                 $i++;
               }
-              push(@logs, \%data);
+              push @logs, \%data;
               $nb_match++;
             }
           }
         }
-        close($FILE);
+        close $FILE;
         $i++;
       }
       else
       {
         print "Unable to open file '$f'\n";
-        AAT::Syslog('octo_extractor_fields', 'UNABLE_OPEN_FILE', $f);
+        AAT::Syslog( 'octo_extractor_fields', 'UNABLE_OPEN_FILE', $f );
       }
     }
   }
@@ -271,37 +280,34 @@ sub Print_Logs
   }
 =cut
 
-  if (AAT::NOT_NULL($output))
+  if ( AAT::NOT_NULL($output) )
   {
-    if (defined open(my $OUT, '>', $output))
+    if ( defined open my $OUT, '>', $output )
     {
-      #my $json      = new JSON;
-      #my $json_text = $json->pretty->encode(\@logs);
-      my $json_text = to_json(\@logs);
-      print $OUT $json_text;
-      close($OUT) if (AAT::NOT_NULL($output));
+      my $json_text = to_json( \@logs );
+      print {$OUT} $json_text;
+      close $OUT if ( AAT::NOT_NULL($output) );
     }
   }
   else
   {
     foreach my $l (@logs)
     {
-      foreach my $f (@{$fields})
+      foreach my $f ( @{$fields} )
       {
-        print '| ', ((defined $l->{$f}) ? $l->{$f} : 'N/A') . ' ';
+        print '| ', ( ( defined $l->{$f} ) ? $l->{$f} : 'N/A' ) . ' ';
       }
       print "|\n";
     }
   }
 
   AAT::Syslog(
-    'octo_extractor_fields', 'LOG_SEARCH',
-    join(',', @opt_devices),
-    join(',', @opt_services),
-    "${opt_begin}-${opt_end}", time() - $time
-  );
+               'octo_extractor_fields', 'LOG_SEARCH',
+               join( ',', @opt_devices ), join( ',', @opt_services ),
+               "${opt_begin}-${opt_end}", time() - $time
+             );
 
-  return (scalar @logs);
+  return ( scalar @logs );
 }
 
 =head2 End()
@@ -312,9 +318,9 @@ Ends Extraction
 
 sub End
 {
-  AAT::Syslog($PROG_NAME, 'Logs Extraction Aborted !');
+  AAT::Syslog( $PROG_NAME, 'Logs Extraction Aborted !' );
   $cache->remove("status_$$");
-  exit();
+  exit;
 }
 
 #
@@ -323,39 +329,39 @@ sub End
 $SIG{USR2} = \&End;
 
 my $status = GetOptions(
-  'h'           => \$help,
-  'help'        => \$help,
-  'device=s'    => \@opt_devices,
-  'service=s'   => \@opt_services,
-  'table=s'     => \$opt_table,
-  'fields=s'    => \$opt_fields,
-  'loglevel=s'  => \$opt_loglevel,
-  'taxonomy=s'  => \$opt_taxonomy,
-  'begin=s'     => \$opt_begin,
-  'end=s'       => \$opt_end,
-  'pid_param=s' => \$pid_param,
-  'json=s'      => \$output
-);
+                         'h'           => \$help,
+                         'help'        => \$help,
+                         'device=s'    => \@opt_devices,
+                         'service=s'   => \@opt_services,
+                         'table=s'     => \$opt_table,
+                         'fields=s'    => \$opt_fields,
+                         'loglevel=s'  => \$opt_loglevel,
+                         'taxonomy=s'  => \$opt_taxonomy,
+                         'begin=s'     => \$opt_begin,
+                         'end=s'       => \$opt_end,
+                         'pid_param=s' => \$pid_param,
+                         'json=s'      => \$output,
+                       );
 
 Help()
-  if ((!$status)
-  || ($help)
-  || (!@opt_devices)
-  || (!@opt_services)
-  || (!defined $opt_table)
-  || (!defined $opt_fields)
-  || (!defined $opt_begin)
-  || (!defined $opt_end));
+  if (    ( !$status )
+       || ($help)
+       || ( !@opt_devices )
+       || ( !@opt_services )
+       || ( !defined $opt_table )
+       || ( !defined $opt_fields )
+       || ( !defined $opt_begin )
+       || ( !defined $opt_end ) );
 
 $cache = Octopussy::Cache::Init('octo_extractor');
 
-my $pid_name = $PROG_NAME . (defined $pid_param ? "_$pid_param" : '');
+my $pid_name = $PROG_NAME . ( defined $pid_param ? "_$pid_param" : '' );
 $file_pid = Octopussy::PID_File($pid_name);
 
-my @fields = split(/,/, $opt_fields);
+my @fields = split /,/, $opt_fields;
 
-Print_Logs(\@opt_devices, \@opt_services, $opt_table, $opt_loglevel,
-  $opt_taxonomy, $opt_begin, $opt_end, \@fields);
+Print_Logs( \@opt_devices, \@opt_services, $opt_table, $opt_loglevel,
+            $opt_taxonomy, $opt_begin,     $opt_end,   \@fields );
 
 $cache->remove("status_$$");
 

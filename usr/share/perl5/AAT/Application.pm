@@ -30,9 +30,9 @@ sub Info
   my $appli = shift;
 
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (AAT::ARRAY($conf->{application}))
+  foreach my $a ( AAT::ARRAY( $conf->{application} ) )
   {
-    return ($a) if ($a->{name} eq $appli);
+    return ($a) if ( $a->{name} eq $appli );
   }
 
   return (undef);
@@ -46,15 +46,15 @@ Returns Directory for Application '$appli' Name '$name'
 
 sub Directory
 {
-  my ($appli, $name) = @_;
+  my ( $appli, $name ) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (AAT::ARRAY($conf->{application}))
+  foreach my $a ( AAT::ARRAY( $conf->{application} ) )
   {
-    if ($a->{name} eq $appli)
+    if ( $a->{name} eq $appli )
     {
-      foreach my $d (AAT::ARRAY($a->{directory}))
+      foreach my $d ( AAT::ARRAY( $a->{directory} ) )
       {
-        return ($d->{value}) if ($d->{name} eq $name);
+        return ( $d->{value} ) if ( $d->{name} eq $name );
       }
     }
   }
@@ -70,15 +70,15 @@ Returns File for Application '$appli' Name '$name'
 
 sub File
 {
-  my ($appli, $name) = @_;
+  my ( $appli, $name ) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (AAT::ARRAY($conf->{application}))
+  foreach my $a ( AAT::ARRAY( $conf->{application} ) )
   {
-    if ($a->{name} eq $appli)
+    if ( $a->{name} eq $appli )
     {
-      foreach my $f (AAT::ARRAY($a->{file}))
+      foreach my $f ( AAT::ARRAY( $a->{file} ) )
       {
-        return ($f->{value}) if ($f->{name} eq $name);
+        return ( $f->{value} ) if ( $f->{name} eq $name );
       }
     }
   }
@@ -94,15 +94,15 @@ Returns Parameter Default Value for Application '$appli' Parameter '$param'
 
 sub Parameter
 {
-  my ($appli, $param) = @_;
+  my ( $appli, $param ) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (AAT::ARRAY($conf->{application}))
+  foreach my $a ( AAT::ARRAY( $conf->{application} ) )
   {
-    if ($a->{name} eq $appli)
+    if ( $a->{name} eq $appli )
     {
-      foreach my $p (AAT::ARRAY($a->{parameter}))
+      foreach my $p ( AAT::ARRAY( $a->{parameter} ) )
       {
-        return ($p->{value}) if ($p->{name} eq $param);
+        return ( $p->{value} ) if ( $p->{name} eq $param );
       }
     }
   }

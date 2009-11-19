@@ -20,11 +20,19 @@ use Octopussy;
 
 Readonly my $DIR_ALERT   => 'alerts';
 Readonly my $XML_ROOT    => 'octopussy_alert';
-Readonly my @COMPARATORS => ('<', '>', '=', '<=', '>=', 'LIKE');
-Readonly my @LEVELS      => (
-  {label => 'Warning',  value => 'Warning',  color => 'orange'},
-  {label => 'Critical', value => 'Critical', color => 'red'}
-);
+Readonly my @COMPARATORS => ( '<', '>', '=', '<=', '>=', 'LIKE' );
+Readonly my @LEVELS => (
+                         {
+                           label => 'Warning',
+                           value => 'Warning',
+                           color => 'orange'
+                         },
+                         {
+                           label => 'Critical',
+                           value => 'Critical',
+                           color => 'red'
+                         }
+                       );
 
 my $dir_alerts = undef;
 my %filename;
@@ -44,20 +52,20 @@ sub New
   my $file_xml = "$dir_alerts/$conf->{name}.xml";
   $conf->{msgbody} =~ s/\r\n/ \@\@\@ /g;
 
-  if (defined AAT::XML::Write($file_xml, $conf, $XML_ROOT))
+  if ( defined AAT::XML::Write( $file_xml, $conf, $XML_ROOT ) )
   {
     my %devices = ();
-    if (${$conf->{device}}[0] =~ /-ANY-/i)
+    if ( ${ $conf->{device} }[0] =~ /-ANY-/i )
     {
-      foreach my $d (Octopussy::Device::List()) { $devices{$d} = 1; }
+      foreach my $d ( Octopussy::Device::List() ) { $devices{$d} = 1; }
     }
     else
     {
-      foreach my $d (AAT::ARRAY($conf->{device}))
+      foreach my $d ( AAT::ARRAY( $conf->{device} ) )
       {
-        if ($d =~ /group (.+)/)
+        if ( $d =~ /group (.+)/ )
         {
-          foreach my $dev (Octopussy::DeviceGroup::Devices($1))
+          foreach my $dev ( Octopussy::DeviceGroup::Devices($1) )
           {
             $devices{$dev} = 1;
           }
@@ -65,7 +73,7 @@ sub New
         else { $devices{$d} = 1; }
       }
     }
-    foreach my $d (sort keys %devices)
+    foreach my $d ( sort keys %devices )
     {
       Octopussy::Device::Parse_Pause($d);
       Octopussy::Device::Parse_Start($d);
@@ -84,7 +92,7 @@ Modify the configuration for the Alert '$old_alert'
 
 sub Modify
 {
-  my ($old_alert, $conf_new) = @_;
+  my ( $old_alert, $conf_new ) = @_;
 
   Remove($old_alert);
   New($conf_new);
@@ -118,7 +126,7 @@ sub List
 {
   $dir_alerts ||= Octopussy::Directory($DIR_ALERT);
 
-  return (AAT::XML::Name_List($dir_alerts));
+  return ( AAT::XML::Name_List($dir_alerts) );
 }
 
 =head2 Comparators()
@@ -153,11 +161,11 @@ sub Filename
 {
   my $alert_name = shift;
 
-  return ($filename{$alert_name}) if (defined $filename{$alert_name});
+  return ( $filename{$alert_name} ) if ( defined $filename{$alert_name} );
   $dir_alerts ||= Octopussy::Directory($DIR_ALERT);
   $filename{$alert_name} = "$dir_alerts/$alert_name.xml";
 
-  return ($filename{$alert_name});
+  return ( $filename{$alert_name} );
 }
 
 =head2 Configuration($alert_name)
@@ -170,7 +178,7 @@ sub Configuration
 {
   my $alert_name = shift;
 
-  my $conf = AAT::XML::Read(Filename($alert_name));
+  my $conf = AAT::XML::Read( Filename($alert_name) );
   $conf->{msgbody} =~ s/ \@\@\@ /\n/g;
 
   return ($conf);
@@ -185,17 +193,17 @@ Get the configuration for all alerts
 sub Configurations
 {
   my $sort = shift || 'name';
-  my (@configurations, @sorted_configurations) = ((), ());
+  my ( @configurations, @sorted_configurations ) = ( (), () );
   my @alerts = List();
   my %field;
 
   foreach my $a (@alerts)
   {
     my $conf = Configuration($a);
-    $field{$conf->{$sort}} = 1;
+    $field{ $conf->{$sort} } = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $f ( sort keys %field )
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
@@ -214,38 +222,38 @@ sub For_Device
   my $device = shift;
   my @alerts = ();
 
-  foreach my $ac (Octopussy::Alert::Configurations())
+  foreach my $ac ( Octopussy::Alert::Configurations() )
   {
     my $match   = 0;
     my %devices = ();
-    foreach my $d (AAT::ARRAY($ac->{device}))
+    foreach my $d ( AAT::ARRAY( $ac->{device} ) )
     {
-      if ($d =~ /group (.+)/)
+      if ( $d =~ /group (.+)/ )
       {
-        foreach my $dev (Octopussy::DeviceGroup::Devices($1))
+        foreach my $dev ( Octopussy::DeviceGroup::Devices($1) )
         {
           $devices{$dev} = 1;
         }
       }
       else { $devices{$d} = 1; }
     }
-    foreach my $d (sort keys %devices)
+    foreach my $d ( sort keys %devices )
     {
-      if (($d eq $device) || ($d eq '-ANY-'))
+      if ( ( $d eq $device ) || ( $d eq '-ANY-' ) )
       {
         my @services = Octopussy::Device::Services($d);
         foreach my $s (@services)
         {
-          foreach my $acs (AAT::ARRAY($ac->{service}))
+          foreach my $acs ( AAT::ARRAY( $ac->{service} ) )
           {
-            $match = 1 if (($s eq $acs) || ($acs eq '-ANY-'));
+            $match = 1 if ( ( $s eq $acs ) || ( $acs eq '-ANY-' ) );
           }
         }
       }
     }
     push @alerts, $ac
-      if (($ac->{status} =~ /^Enabled$/i)
-      && (($ac->{type} =~ /Static/i) || ($match)));
+      if (    ( $ac->{status} =~ /^Enabled$/i )
+           && ( ( $ac->{type} =~ /Static/i ) || ($match) ) );
   }
 
   return (@alerts);
@@ -257,21 +265,21 @@ sub For_Device
 
 sub Insert_In_DB
 {
-  my ($device, $alert, $line, $date) = @_;
+  my ( $device, $alert, $line, $date ) = @_;
 
   my $datestr =
-    Date::Manip::UnixDate(Date::Manip::ParseDate($date), '%Y/%m/%d %H:%M:%S');
+    Date::Manip::UnixDate( Date::Manip::ParseDate($date), '%Y/%m/%d %H:%M:%S' );
   AAT::DB::Insert(
-    'Octopussy',
-    '_alerts_',
-    {
-      alert_id  => $alert->{name},
-      date_time => $datestr,
-      device    => $device,
-      level     => $alert->{level},
-      log       => $line
-    }
-  );
+                   'Octopussy',
+                   '_alerts_',
+                   {
+                     alert_id  => $alert->{name},
+                     date_time => $datestr,
+                     device    => $device,
+                     level     => $alert->{level},
+                     log       => $line
+                   }
+                 );
 
   return (1);
 }
@@ -284,10 +292,10 @@ Checks if all Alerts are closed
 
 sub Check_All_Closed
 {
-  my @result = AAT::DB::Query('Octopussy',
-    'SELECT * FROM _alerts_ ' . "WHERE status NOT LIKE 'Closed'");
+  my @result = AAT::DB::Query( 'Octopussy',
+                     q(SELECT * FROM _alerts_ WHERE status NOT LIKE 'Closed') );
 
-  return (scalar(@result) == 0 ? 1 : 0);
+  return ( scalar(@result) == 0 ? 1 : 0 );
 }
 
 =head2 Opened_List($device)
@@ -303,7 +311,7 @@ sub Opened_List
   my $query =
     'SELECT * FROM _alerts_ ' . "WHERE device='$device' AND status='Opened'";
 
-  return (AAT::DB::Query('Octopussy', $query));
+  return ( AAT::DB::Query( 'Octopussy', $query ) );
 }
 
 =head2 Update_Status($id, $status, $comment
@@ -314,11 +322,13 @@ Updates Alert with id '$id' to Status '$status' & with Comment '$comment'
 
 sub Update_Status
 {
-  my ($id, $status, $comment) = @_;
+  my ( $id, $status, $comment ) = @_;
 
-  AAT::DB::Do('Octopussy',
-        "UPDATE _alerts_ SET status='$status', "
-      . "comment='$comment' WHERE log_id=$id");
+  AAT::DB::Do(
+               'Octopussy',
+               "UPDATE _alerts_ SET status='$status', "
+                 . "comment='$comment' WHERE log_id=$id"
+             );
 
   return (1);
 }
@@ -335,14 +345,14 @@ sub Update_Status
 #
 sub Add_Message
 {
-  my ($alert_name, $msg_id, $repeat, $interval) = @_;
+  my ( $alert_name, $msg_id, $repeat, $interval ) = @_;
 
-  my $conf = AAT::XML::Read(Filename($alert_name));
-  push @{$conf->{message}},
-    {msg_id => $msg_id, repeat => $repeat, interval => $interval};
-  AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
-  
-  return (scalar @{$conf->{message}});
+  my $conf = AAT::XML::Read( Filename($alert_name) );
+  push @{ $conf->{message} },
+    { msg_id => $msg_id, repeat => $repeat, interval => $interval };
+  AAT::XML::Write( Filename($alert_name), $conf, $XML_ROOT );
+
+  return ( scalar @{ $conf->{message} } );
 }
 
 #
@@ -357,14 +367,15 @@ sub Add_Message
 #
 sub Remove_Message
 {
-  my ($alert_name, $msg_id) = @_;
+  my ( $alert_name, $msg_id ) = @_;
 
-  my $conf = AAT::XML::Read(Filename($alert_name));
-  my @messages = grep { $_->{msg_id} ne $msg_id } AAT::ARRAY($conf->{message});
+  my $conf = AAT::XML::Read( Filename($alert_name) );
+  my @messages =
+    grep { $_->{msg_id} ne $msg_id } AAT::ARRAY( $conf->{message} );
   $conf->{message} = \@messages;
-  AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+  AAT::XML::Write( Filename($alert_name), $conf, $XML_ROOT );
 
-  return (scalar @messages);
+  return ( scalar @messages );
 }
 
 #
@@ -382,14 +393,14 @@ sub Remove_Message
 #
 sub Add_Message_Field
 {
-  my ($alert_name, $msg_id, $field, $comparator, $value) = @_;
-  
-  my $conf = AAT::XML::Read(Filename($alert_name));
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  my ( $alert_name, $msg_id, $field, $comparator, $value ) = @_;
+
+  my $conf = AAT::XML::Read( Filename($alert_name) );
+  foreach my $m ( AAT::ARRAY( $conf->{message} ) )
   {
-    if ($m->{msg_id} eq $msg_id)
+    if ( $m->{msg_id} eq $msg_id )
     {
-      push @{$m->{field}},
+      push @{ $m->{field} },
         {
           fname      => $field,
           comparator => $comparator,
@@ -398,7 +409,7 @@ sub Add_Message_Field
       last;
     }
   }
-  AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+  AAT::XML::Write( Filename($alert_name), $conf, $XML_ROOT );
 
   return ($field);
 }
@@ -418,28 +429,28 @@ sub Add_Message_Field
 #
 sub Remove_Message_Field
 {
-  my ($alert_name, $msg_id, $field, $comparator, $value) = @_;
+  my ( $alert_name, $msg_id, $field, $comparator, $value ) = @_;
   my @fields = ();
 
-  my $conf = AAT::XML::Read(Filename($alert_name));
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  my $conf = AAT::XML::Read( Filename($alert_name) );
+  foreach my $m ( AAT::ARRAY( $conf->{message} ) )
   {
-    if ($m->{msg_id} eq $msg_id)
+    if ( $m->{msg_id} eq $msg_id )
     {
-      foreach my $f (AAT::ARRAY($m->{field}))
+      foreach my $f ( AAT::ARRAY( $m->{field} ) )
       {
         push @fields, $f
-          if (($f->{fname} ne $field)
-          || ($f->{comparator} ne $comparator)
-          || ($f->{fvalue} ne $value));
+          if (    ( $f->{fname} ne $field )
+               || ( $f->{comparator} ne $comparator )
+               || ( $f->{fvalue} ne $value ) );
       }
       $m->{field} = \@fields;
       last;
     }
   }
-  AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+  AAT::XML::Write( Filename($alert_name), $conf, $XML_ROOT );
 
-  return (scalar @fields);
+  return ( scalar @fields );
 }
 
 #
@@ -456,13 +467,14 @@ sub Remove_Message_Field
 #
 sub Add_Action
 {
-  my ($alert_name, $type, $contact, $data) = @_;
+  my ( $alert_name, $type, $contact, $data ) = @_;
 
-  my $conf = AAT::XML::Read(Filename($alert_name));
-  push @{$conf->{action}}, {type => $type, contact => $contact, data => $data};
-  AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
+  my $conf = AAT::XML::Read( Filename($alert_name) );
+  push @{ $conf->{action} },
+    { type => $type, contact => $contact, data => $data };
+  AAT::XML::Write( Filename($alert_name), $conf, $XML_ROOT );
 
-  return (scalar @{$conf->{action}});
+  return ( scalar @{ $conf->{action} } );
 }
 
 =head2 From_Device($device)
@@ -473,11 +485,11 @@ Returns Alerts generated by device '$device'
 
 sub From_Device
 {
-  my ($device, $status) = @_;
+  my ( $device, $status ) = @_;
   my @alerts = ();
   my $query  = "SELECT * FROM _alerts_ WHERE device='$device'";
-  $query .= (defined $status ? " AND status='$status'" : '');
-  @alerts = AAT::DB::Query('Octopussy', $query);
+  $query .= ( defined $status ? " AND status='$status'" : '' );
+  @alerts = AAT::DB::Query( 'Octopussy', $query );
 
   return (@alerts);
 }
@@ -490,8 +502,8 @@ Builds Alert Message
 
 sub Message_Building
 {
-  my ($alert, $device, $line, $msg) = @_;
-  my %field = Octopussy::Message::Fields_Values($msg, $line);
+  my ( $alert, $device, $line, $msg ) = @_;
+  my %field = Octopussy::Message::Fields_Values( $msg, $line );
 
   my $subject = $alert->{msgsubject}     || '';
   my $body    = $alert->{msgbody}        || '';
@@ -520,7 +532,7 @@ sub Message_Building
   $service =~ s/__log__/$line/gi;
   $service =~ s/__field_(\w+)__/$field{$1}/gi;
 
-  return ($subject, $body, $host, $service);
+  return ( $subject, $body, $host, $service );
 }
 
 =head2 Tracker($al, $dev, $stat, $sort, $limit)
@@ -529,25 +541,28 @@ sub Message_Building
 
 sub Tracker
 {
-  my ($al, $dev, $stat, $sort, $limit) = @_;
+  my ( $al, $dev, $stat, $sort, $limit ) = @_;
   $sort ||= 'date_time';
   my $query = 'SELECT * FROM _alerts_'
     . (
-    (($al ne '') || ($dev ne '') || ($stat ne ''))
-    ? ' WHERE '
-      . (($al ne '') ? "alert_id='$al'" : '')
-      . (($dev ne '') ? (($al ne '') ? ' AND ' : '') . "device='$dev'" : '')
-      . (
-        ($stat ne '')
-      ? ((($al ne '') || ($dev ne '')) ? ' AND ' : '') . "status='$stat'"
+      ( ( $al ne '' ) || ( $dev ne '' ) || ( $stat ne '' ) )
+      ? ' WHERE ' 
+        . ( ( $al ne '' ) ? "alert_id='$al'" : '' )
+        . (
+        ( $dev ne '' ) ? ( ( $al ne '' ) ? ' AND ' : '' ) . "device='$dev'" : ''
+        )
+        . (
+              ( $stat ne '' )
+            ? ( ( ( $al ne '' ) || ( $dev ne '' ) ) ? ' AND ' : '' )
+              . "status='$stat'"
+            : ''
+          )
       : ''
-      )
-    : ''
     )
     . " ORDER BY $sort "
-    . ($sort ne 'date_time' ? 'ASC' : 'DESC')
-    . (AAT::NOT_NULL($limit) ? " LIMIT $limit" : '');
-  my @alerts = AAT::DB::Query('Octopussy', $query);
+    . ( $sort ne 'date_time' ? 'ASC' : 'DESC' )
+    . ( AAT::NOT_NULL($limit) ? " LIMIT $limit" : '' );
+  my @alerts = AAT::DB::Query( 'Octopussy', $query );
 
   return (@alerts);
 }

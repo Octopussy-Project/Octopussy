@@ -46,7 +46,7 @@ sub Items
 
   my $conf = Configuration($list);
 
-  return (AAT::ARRAY($conf->{item}));
+  return ( AAT::ARRAY( $conf->{item} ) );
 }
 
 1;

@@ -35,9 +35,9 @@ sub New
   my $conf = shift;
 
   $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
-  AAT::XML::Write("$dir_stat_reports/$conf->{name}.xml", $conf, $XML_ROOT);
+  AAT::XML::Write( "$dir_stat_reports/$conf->{name}.xml", $conf, $XML_ROOT );
 
-  return ($conf->{name});
+  return ( $conf->{name} );
 }
 
 =head2 Remove($statistic_report)
@@ -52,7 +52,7 @@ sub Remove
 
   my $nb = unlink Filename($statistic_report);
   $filename{$statistic_report} = undef;
-  
+
   return ($nb);
 }
 
@@ -64,7 +64,7 @@ Modify the configuration for the statistic_report '$old_report'
 
 sub Modify
 {
-  my ($old_report, $conf_new) = @_;
+  my ( $old_report, $conf_new ) = @_;
 
   Remove($old_report);
   New($conf_new);
@@ -82,7 +82,7 @@ sub List
 {
   $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
 
-  return (AAT::XML::Name_List($dir_stat_reports));
+  return ( AAT::XML::Name_List($dir_stat_reports) );
 }
 
 =head2 Filename($statistic_report_name)
@@ -95,13 +95,13 @@ sub Filename
 {
   my $statistic_report_name = shift;
 
-  return ($filename{$statistic_report_name})
-    if (defined $filename{$statistic_report_name});
+  return ( $filename{$statistic_report_name} )
+    if ( defined $filename{$statistic_report_name} );
   $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
   $filename{$statistic_report_name} =
-    AAT::FS::Directory_Files($dir_stat_reports, $statistic_report_name);
+    AAT::FS::Directory_Files( $dir_stat_reports, $statistic_report_name );
 
-  return ($filename{$statistic_report_name});
+  return ( $filename{$statistic_report_name} );
 }
 
 =head2 Configuration($statistic_report)
@@ -114,7 +114,7 @@ sub Configuration
 {
   my $statistic_report = shift;
 
-  my $conf = AAT::XML::Read(Filename($statistic_report));
+  my $conf = AAT::XML::Read( Filename($statistic_report) );
 
   return ($conf);
 }
@@ -126,17 +126,17 @@ sub Configuration
 sub Configurations
 {
   my $sort = shift || 'name';
-  my (@configurations, @sorted_configurations) = ((), ());
+  my ( @configurations, @sorted_configurations ) = ( (), () );
   my @stat_reports = List();
   my %field;
 
   foreach my $sr (@stat_reports)
   {
     my $conf = Configuration($sr);
-    $field{$conf->{$sort}} = 1;
+    $field{ $conf->{$sort} } = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $f ( sort keys %field )
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
@@ -150,70 +150,70 @@ sub Configurations
 
 sub Messages
 {
-  my ($statistic_report, $services) = @_;
+  my ( $statistic_report, $services ) = @_;
   my %re_types = Octopussy::Type::Regexps();
   my @result   = ();
 
   my $conf     = Configuration($statistic_report);
-  my @filters  = AAT::ARRAY($conf->{filter});
+  my @filters  = AAT::ARRAY( $conf->{filter} );
   my @messages = ();
-  foreach my $s (AAT::ARRAY($services))
+  foreach my $s ( AAT::ARRAY($services) )
   {
     push @messages, Octopussy::Service::Messages($s);
   }
   foreach my $m (@messages)
   {
-    if ($m->{table} =~ /^$conf->{table}$/)
+    if ( $m->{table} =~ /^$conf->{table}$/ )
     {
-      my $regexp = Octopussy::Message::Escape_Characters($m->{pattern});
-      while ($regexp =~ /<\@(.+?):(\S+?)\@>/i)
+      my $regexp = Octopussy::Message::Escape_Characters( $m->{pattern} );
+      while ( $regexp =~ /<\@(.+?):(\S+?)\@>/i )
       {
-        my ($type, $pattern_field) = ($1, $2);
+        my ( $type, $pattern_field ) = ( $1, $2 );
         my $matched = 0;
         foreach my $f (@filters)
         {
-          if ($pattern_field =~ /^$f->{field}$/)
+          if ( $pattern_field =~ /^$f->{field}$/ )
           {
             $regexp =~ s/<\@.+?:\S+\@>/$f->{regexp}/i;
             $matched = 1;
           }
         }
-        if ($pattern_field =~ /^$conf->{key}$/)
+        if ( $pattern_field =~ /^$conf->{key}$/ )
         {
-          if ($type eq 'REGEXP')
+          if ( $type eq 'REGEXP' )
           {
             $regexp =~ s/<\@REGEXP\\\(\\\"(.+?)\\\"\\\):\S+?\@>/\($1\)/i;
           }
-          elsif ($type eq 'NUMBER')
+          elsif ( $type eq 'NUMBER' )
           {
             $regexp =~ s/<\@NUMBER:\S+?\@>/\([-+]?\\d+\)/i;
           }
-          elsif ($type eq 'WORD')
+          elsif ( $type eq 'WORD' )
           {
             $regexp =~ s/<\@WORD:\S+?\@>/\(\\S+\)/i;
           }
-          elsif ($type eq 'STRING')
+          elsif ( $type eq 'STRING' )
           {
             $regexp =~ s/<\@STRING:\S+?\@>/\(.+\)/i;
           }
           else { $regexp =~ s/<\@(\S+?):\S+?\@>/\($re_types{$1}\)/i; }
           $matched = 1;
         }
-        if (!$matched)
+        if ( !$matched )
         {
-          if ($type eq 'REGEXP')
+          if ( $type eq 'REGEXP' )
           {
             $regexp =~ s/<\@REGEXP\\\(\\\"(.+?)\\\"\\\):\S+?\@>/$1/i;
           }
-          elsif ($type eq 'NUMBER')
+          elsif ( $type eq 'NUMBER' )
           {
             $regexp =~ s/<\@NUMBER:\S+?\@>/[-+]?\\d+/i;
           }
-          elsif ($type eq 'WORD')
+          elsif ( $type eq 'WORD' )
           {
             $regexp =~ s/<\@WORD:\S+?\@>/\\S+/i;
           }
-          elsif ($type eq 'STRING')
+          elsif ( $type eq 'STRING' )
           {
             $regexp =~ s/<\@STRING:\S+?\@>/.+/i;
           }

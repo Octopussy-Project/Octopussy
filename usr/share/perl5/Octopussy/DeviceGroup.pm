@@ -35,13 +35,13 @@ sub Add
 
   my $file = Octopussy::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  if (grep { $_->{dg_id} eq $conf_dg->{dg_id} }
-    AAT::ARRAY($conf->{devicegroup}))
+  if ( grep { $_->{dg_id} eq $conf_dg->{dg_id} }
+       AAT::ARRAY( $conf->{devicegroup} ) )
   {
     return ('_MSG_DEVICEGROUP_ALREADY_EXISTS');
   }
-  push @{$conf->{devicegroup}}, $conf_dg;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+  push @{ $conf->{devicegroup} }, $conf_dg;
+  AAT::XML::Write( $file, $conf, $XML_ROOT );
 
   return (undef);
 }
@@ -59,9 +59,9 @@ sub Remove
   my $file = Octopussy::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);
   my @dgs =
-    grep { $_->{dg_id} ne $devicegroup } AAT::ARRAY($conf->{devicegroup});
+    grep { $_->{dg_id} ne $devicegroup } AAT::ARRAY( $conf->{devicegroup} );
   $conf->{devicegroup} = \@dgs;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+  AAT::XML::Write( $file, $conf, $XML_ROOT );
 
   return (undef);
 }
@@ -74,8 +74,8 @@ Get List of Device Group
 
 sub List
 {
-  my @dgs = AAT::XML::File_Array_Values(Octopussy::File($FILE_DEVICEGROUPS),
-    'devicegroup', 'dg_id');
+  my @dgs = AAT::XML::File_Array_Values( Octopussy::File($FILE_DEVICEGROUPS),
+                                         'devicegroup', 'dg_id' );
 
   return (@dgs);
 }
@@ -90,10 +90,10 @@ sub Configuration
 {
   my $devicegroup = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEGROUPS));
-  foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
+  my $conf = AAT::XML::Read( Octopussy::File($FILE_DEVICEGROUPS) );
+  foreach my $dg ( AAT::ARRAY( $conf->{devicegroup} ) )
   {
-    return ($dg) if ($dg->{dg_id} eq $devicegroup);
+    return ($dg) if ( $dg->{dg_id} eq $devicegroup );
   }
 
   return (undef);
@@ -108,7 +108,7 @@ Get the configuration for all devicegroups
 sub Configurations
 {
   my $sort = shift || 'dg_id';
-  my (@configurations, @sorted_configurations) = ((), ());
+  my ( @configurations, @sorted_configurations ) = ( (), () );
   my @dgs = List();
   my %field;
 
@@ -116,23 +116,23 @@ sub Configurations
   foreach my $dg (@dgs)
   {
     my $conf = Configuration($dg);
-    if ($conf->{type} eq 'dynamic')
+    if ( $conf->{type} eq 'dynamic' )
     {
-      @{$conf->{device}} = ();
+      @{ $conf->{device} } = ();
       foreach my $d (@dc)
       {
         my $match = 1;
-        foreach my $c (AAT::ARRAY($conf->{criteria}))
+        foreach my $c ( AAT::ARRAY( $conf->{criteria} ) )
         {
-          $match = 0 if ($d->{$c->{field}} !~ $c->{pattern});
+          $match = 0 if ( $d->{ $c->{field} } !~ $c->{pattern} );
         }
-        push @{$conf->{device}}, $d->{name} if ($match);
+        push @{ $conf->{device} }, $d->{name} if ($match);
       }
     }
-    $field{$conf->{$sort}} = 1;
+    $field{ $conf->{$sort} } = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $f ( sort keys %field )
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
@@ -150,28 +150,28 @@ sub Devices
 {
   my $devicegroup = shift;
 
-  my $conf    = AAT::XML::Read(Octopussy::File($FILE_DEVICEGROUPS));
+  my $conf    = AAT::XML::Read( Octopussy::File($FILE_DEVICEGROUPS) );
   my @devices = ();
 
-  foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
+  foreach my $dg ( AAT::ARRAY( $conf->{devicegroup} ) )
   {
-    if ($dg->{dg_id} eq $devicegroup)
+    if ( $dg->{dg_id} eq $devicegroup )
     {
-      if ($dg->{type} eq 'dynamic')
+      if ( $dg->{type} eq 'dynamic' )
       {
         my @dc = Octopussy::Device::Configurations();
         foreach my $d (@dc)
         {
           my $match     = 1;
-          my @criterias = AAT::ARRAY($dg->{criteria});
+          my @criterias = AAT::ARRAY( $dg->{criteria} );
           foreach my $c (@criterias)
           {
-            $match = 0 if ($d->{$c->{field}} !~ $c->{pattern});
+            $match = 0 if ( $d->{ $c->{field} } !~ $c->{pattern} );
           }
           push @devices, $d->{name} if ($match);
         }
       }
-      else { @devices = AAT::ARRAY($dg->{device}); }
+      else { @devices = AAT::ARRAY( $dg->{device} ); }
     }
   }
 
@@ -190,20 +190,20 @@ sub Remove_Device
   my $file   = Octopussy::File($FILE_DEVICEGROUPS);
   my $conf   = AAT::XML::Read($file);
   my @dgs    = ();
-  foreach my $dg (AAT::ARRAY($conf->{devicegroup}))
+  foreach my $dg ( AAT::ARRAY( $conf->{devicegroup} ) )
   {
     my @devices = ();
-    foreach my $d (AAT::ARRAY($dg->{device}))
+    foreach my $d ( AAT::ARRAY( $dg->{device} ) )
     {
-      push @devices, $d if ($d ne $device);
+      push @devices, $d if ( $d ne $device );
     }
     $dg->{device} = \@devices;
     push @dgs, $dg;
   }
   $conf->{devicegroup} = \@dgs;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+  AAT::XML::Write( $file, $conf, $XML_ROOT );
 
-  return (scalar @dgs);
+  return ( scalar @dgs );
 }
 
 =head2 Services($devicegroup_name)
@@ -215,8 +215,9 @@ Get Services for the DeviceGroup '$devicegroup_name'
 sub Services
 {
   my $devicegroup_name = shift;
-  my @services = Octopussy::Device::Services(Devices($devicegroup_name));
-  @services = sort keys %{{map { $_ => 1 } @services}};  # sort unique @services
+  my @services = Octopussy::Device::Services( Devices($devicegroup_name) );
+  @services =
+    sort keys %{ { map { $_ => 1 } @services } };    # sort unique @services
 
   return (@services);
 }

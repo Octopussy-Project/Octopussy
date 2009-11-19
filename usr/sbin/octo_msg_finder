@@ -32,7 +32,7 @@ Prints Service, MsgID, Taxonomy & Table of line $line
 
 sub Search_Line
 {
-  my ($line, $n) = @_;
+  my ( $line, $n ) = @_;
   $n ||= 1;
   my $match = 0;
   foreach my $serv (@services)
@@ -42,7 +42,7 @@ sub Search_Line
     foreach my $m (@messages)
     {
       my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-      if ($line =~ /^$regexp\s*[^\t\n\r\f -~]?$/i)
+      if ( $line =~ /^$regexp\s*[^\t\n\r\f -~]?$/i )
       {
         $match = 1;
         print "\nLine $n: $line\n";
@@ -53,7 +53,7 @@ sub Search_Line
       }
     }
   }
-  if (!$match)
+  if ( !$match )
   {
     print "\nLine: $line\n";
     print "  --> MESSAGE UNKNOWN\n";
@@ -64,19 +64,19 @@ sub Search_Line
 
 my $arg = $ARGV[0];
 
-if (AAT::NOT_NULL($arg))
+if ( AAT::NOT_NULL($arg) )
 {
-  my $cat = ($arg =~ /.+\.gz$/ ? 'zcat' : 'cat');
-  if ((-f $arg) 
-    && (defined open(my $FILE, '-|', "$cat \"$arg\"")))
+  my $cat = ( $arg =~ /.+\.gz$/ ? 'zcat' : 'cat' );
+  if (    ( -f $arg )
+       && ( defined open my $FILE, '-|', "$cat \"$arg\"" ) )
   {
     my $i = 1;
     while (<$FILE>)
     {
-      Search_Line($_, $i);
+      Search_Line( $_, $i );
       $i++;
     }
-    close($FILE);
+    close $FILE;
   }
   else
   {

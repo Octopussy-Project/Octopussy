@@ -30,9 +30,9 @@ Returns list of Directories from Directory $dir
 sub Get_Directories
 {
   my $dir = shift;
-  opendir(DIR, $dir);
-  my @dirs = grep { !/^\./ } readdir(DIR);
-  closedir(DIR);
+  opendir DIR, $dir;
+  my @dirs = grep { !/^\./ } readdir DIR;
+  closedir DIR;
 
   return (@dirs);
 }
@@ -45,25 +45,25 @@ Gets logrotate & limit values for Service $service
 
 sub Get_Logrotate_Limit
 {
-  my ($service, $type, $conf) = @_;
+  my ( $service, $type, $conf ) = @_;
 
   my $logrotate = $conf->{logrotate};
-  if (($type ne 'incoming') && ($type ne 'unknown'))
+  if ( ( $type ne 'incoming' ) && ( $type ne 'unknown' ) )
   {
-    foreach my $ds (AAT::ARRAY($conf->{service}))
+    foreach my $ds ( AAT::ARRAY( $conf->{service} ) )
     {
       my $sid = $ds->{sid};
       $sid =~ s/ /_/g;
-      if ((defined $ds->{logrotate}) && ($sid =~ /^$service$/))
+      if ( ( defined $ds->{logrotate} ) && ( $sid =~ /^$service$/ ) )
       {
         $logrotate = $ds->{logrotate};
       }
     }
   }
-  my $limit = Date::Manip::DateCalc('today', "-$logrotate days");
+  my $limit = Date::Manip::DateCalc( 'today', "-$logrotate days" );
   $limit =~ s/^(\d{8}).+$/$1/;
 
-  return ($logrotate, $limit);
+  return ( $logrotate, $limit );
 }
 
 =head2 Rotate_Logs($device)
@@ -77,41 +77,41 @@ sub Rotate_Logs
   my $device = shift;
   my $conf   = Octopussy::Device::Configuration($device);
 
-  return () if (AAT::NULL($conf->{logrotate}));
+  return () if ( AAT::NULL( $conf->{logrotate} ) );
 
   my $storage = Octopussy::Storage::Default();
-  foreach my $t ('incoming', 'unknown', 'known')
+  foreach my $t ( 'incoming', 'unknown', 'known' )
   {
     my $dir =
-      Octopussy::Storage::Directory($conf->{"storage_$t"} || $storage->{$t});
+      Octopussy::Storage::Directory( $conf->{"storage_$t"} || $storage->{$t} );
     my @services = (
-      $t eq 'incoming'
-      ? ('Incoming')
-      : ($t eq 'unknown' ? ('Unknown') : Get_Directories("$dir/$device/"))
+          $t eq 'incoming'
+          ? ('Incoming')
+          : ( $t eq 'unknown' ? ('Unknown') : Get_Directories("$dir/$device/") )
     );
     foreach my $s (@services)
     {
-      my ($logrotate, $limit) = Get_Logrotate_Limit($s, $t, $conf);
-      AAT::Syslog($PROG_NAME, 'DELETE_LOGS_OLDER_THAN', $device, $s,
-        $logrotate);
+      my ( $logrotate, $limit ) = Get_Logrotate_Limit( $s, $t, $conf );
+      AAT::Syslog( $PROG_NAME, 'DELETE_LOGS_OLDER_THAN', $device, $s,
+                   $logrotate );
       print "Removing $device $s [$logrotate] logs files...\n";
-      foreach my $y (Get_Directories("$dir/$device/$s"))
+      foreach my $y ( Get_Directories("$dir/$device/$s") )
       {
-        foreach my $m (Get_Directories("$dir/$device/$s/$y"))
+        foreach my $m ( Get_Directories("$dir/$device/$s/$y") )
         {
-          foreach my $d (Get_Directories("$dir/$device/$s/$y/$m"))
+          foreach my $d ( Get_Directories("$dir/$device/$s/$y/$m") )
           {
-            if (($t eq 'incoming') || ($t eq 'unknown'))
+            if ( ( $t eq 'incoming' ) || ( $t eq 'unknown' ) )
             {    # Removes only empty directories for Incoming & Unknown
               `rmdir "$dir/$device/$s/$y/$m/$d/" 2> /dev/null`;
-              AAT::Syslog($PROG_NAME, 'DELETE_LOGS_DIR',
-                "$dir/$device/$s/$y/$m/$d/");
+              AAT::Syslog( $PROG_NAME, 'DELETE_LOGS_DIR',
+                           "$dir/$device/$s/$y/$m/$d/" );
             }
-            elsif (($y * 10_000 + $m * 100 + $d) < $limit)
+            elsif ( ( $y * 10_000 + $m * 100 + $d ) < $limit )
             {
               `rm -rf "$dir/$device/$s/$y/$m/$d/"`;
-              AAT::Syslog($PROG_NAME, 'DELETE_LOGS_DIR',
-                "$dir/$device/$s/$y/$m/$d/");
+              AAT::Syslog( $PROG_NAME, 'DELETE_LOGS_DIR',
+                           "$dir/$device/$s/$y/$m/$d/" );
             }
           }
 
@@ -125,15 +125,15 @@ sub Rotate_Logs
     }
   }
 
-  return ($conf->{logrotate});
+  return ( $conf->{logrotate} );
 }
 
 #
 # MAIN
 #
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if ( !Octopussy::Valid_User($PROG_NAME) );
 
-foreach my $d (Octopussy::Device::List())
+foreach my $d ( Octopussy::Device::List() )
 {
   Rotate_Logs($d);
 }
