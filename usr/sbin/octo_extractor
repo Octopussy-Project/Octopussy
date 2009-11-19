@@ -279,7 +279,7 @@ sub Print_Logs
                "${opt_begin}-${opt_end}", time() - $time
              );
 
-  return ( scalar @logs );
+  return ( $nb_match );
 }
 
 =head2 End()
