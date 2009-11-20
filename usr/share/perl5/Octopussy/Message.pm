@@ -246,6 +246,26 @@ sub Color_Without_Field
   return ($re);
 }
 
+sub Color_Match
+{
+  my ($log, $re) = @_;
+
+  while (($log !~ $re) && ($re ne ''))
+  {
+#    print " >> RE: $re\n";
+    $re = substr($re, 0, -1);
+#    sleep 1;
+  }
+
+  if ($log =~ /^($re)/)
+  {
+    my $match = $1;
+    my $unmatch = substr($log, length($1));
+
+    return ($match, $unmatch);
+  }
+}
+
 =head2 Pattern_To_Regexp($msg)
 
 Converts message pattern from message '$msg' into Regexp

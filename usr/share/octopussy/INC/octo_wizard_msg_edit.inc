@@ -28,7 +28,7 @@ my $colored_str = $Server->HTMLEncode(Octopussy::Message::Color($msg_pattern));
   </AAT:BoxRow>
   <AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
   <AAT:BoxRow>
-  <AAT:BoxCol cspan="4"><AAT:Label value="$msg_orig" /></AAT:BoxCol>
+  <AAT:BoxCol cspan="4"><div id="color_match"></div></AAT:BoxCol>
   </AAT:BoxRow>
   </AAT:Box>
 </AAT:BoxCol>
@@ -118,12 +118,16 @@ function Print_Check_Result()
 			{
 				img_status_pattern.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_ok.png\" width=\"24\">";
 			}
+
       if ((pattern_status == "OK") && (msgid_status == "OK")) 
 				{ document.form.submit.disabled = false; }
 			else
 				{ document.form.submit.disabled = true; }
+
 			var pattern_colored = document.getElementById("pattern_colored");
       pattern_colored.innerHTML = root.getElementsByTagName('pattern_colored')[0].firstChild.data;
+      var color_match = document.getElementById("color_match");
+      color_match.innerHTML = root.getElementsByTagName('color_match')[0].firstChild.data;
     }
   }
 }
@@ -147,7 +151,7 @@ function Print_Check_Result()
 	</AAT:BoxRow>
 	<AAT:BoxRow>
   <AAT:BoxCol cspan="3"><font size="-2">
-	<div id="pattern_colored"></div>
+  <div id="pattern_colored"></div>
 	</font></AAT:BoxCol>
 	<AAT:BoxCol align="R"><div id="img_status_pattern"></div></AAT:BoxCol>
 	</AAT:BoxRow>
