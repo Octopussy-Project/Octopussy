@@ -3,7 +3,7 @@
                    icon="software/logo_sendmail"
                    name="Sendmail"
                    nb_messages="018"
-                   version="200911200001"
+                   version="200911200002"
                    website="http://www.sendmail.org/">
   <message loglevel="Information"
            msg_id="Sendmail:from"
@@ -147,6 +147,12 @@
            msg_id="Sendmail:to_relay2"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;] &lt;@WORD:mail_id@&gt;: to=&lt;@EMAIL:recipient@&gt;, ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt;, xdelay=&lt;@WORD:NULL@&gt;, mailer=&lt;@WORD:NULL@&gt;, pri=&lt;@WORD:NULL@&gt;, relay=&lt;@STRING:relay@&gt;, dsn=&lt;@WORD:NULL@&gt;, stat=&lt;@STRING:status@&gt;"
            rank="024"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="Sendmail:to_user4"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; sendmail[&lt;@NUMBER:NULL@&gt;] &lt;@WORD:mail_id@&gt;: to=&lt;@WORD:recipient@&gt; ctladdr=&lt;@STRING:NULL@&gt;, delay=&lt;@WORD:NULL@&gt;, xdelay=&lt;@WORD:NULL@&gt;, mailer=&lt;@WORD:NULL@&gt;, pri=&lt;@WORD:NULL@&gt;, relay=&lt;@STRING:relay@&gt;, dsn=&lt;@WORD:NULL@&gt; stat=&lt;@STRING:status@&gt;"
+           rank="025"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
 </octopussy_service>
