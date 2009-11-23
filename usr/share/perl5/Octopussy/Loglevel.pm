@@ -50,6 +50,7 @@ sub List
     }
     @services =
       sort keys %{ { map { $_ => 1 } @services } };    # sort unique @services
+
     foreach my $m ( Octopussy::Service::Messages(@services) )
     {
       $level{ $m->{loglevel} } = 1;

@@ -51,17 +51,16 @@ sub String_List
   my ( $type, $any, $fct, @args ) = @_;
   my @list = ( defined $any ? ('-ANY-') : () );
 
-  no strict "refs";
-
-  my @data = &{$fct}(@args);
+  my @data = $fct->(@args);
   foreach my $d (@data)
   {
-    if   ( defined $d->{label} ) { push @list, $d->{label}; }
-    if   ( defined $d->{value} ) { push @list, $d->{value}; }
+    if ( ref $d eq 'HASH')
+    {
+      if   ( defined $d->{label} ) { push @list, $d->{label}; }
+      elsif   ( defined $d->{value} ) { push @list, $d->{value}; }
+    }
     else                         { push @list, $d; }
   }
-
-  use strict "refs";
 
   return ( " $type list: " . join( ', ', sort @list ) . "\n" );
 }
@@ -89,26 +88,26 @@ EOF
   print $help_str;
   if ( !@opt_devices )
   {
-    print String_List( 'Device', 'any', 'Octopussy::Device::List' );
+    print String_List( 'Device', 'any', \&Octopussy::Device::List );
   }
   elsif ( !@opt_services )
   {
-    print String_List( 'Service', 'any', 'Octopussy::Device::Services',
+    print String_List( 'Service', 'any', \&Octopussy::Device::Services,
                        @opt_devices );
   }
   elsif ( !defined $opt_table )
   {
-    print String_List( 'Table', undef, 'Octopussy::Table::List', \@opt_devices,
+    print String_List( 'Table', undef, \&Octopussy::Table::List, \@opt_devices,
                        \@opt_services );
   }
   elsif ( !defined $opt_loglevel )
   {
-    print String_List( 'Loglevel', undef, 'Octopussy::Loglevel::List_And_Any',
+    print String_List( 'Loglevel', undef, \&Octopussy::Loglevel::List_And_Any,
                        \@opt_devices, \@opt_services );
   }
   elsif ( !defined $opt_taxonomy )
   {
-    print String_List( 'Taxonomy', undef, 'Octopussy::Taxonomy::List_And_Any',
+    print String_List( 'Taxonomy', undef, \&Octopussy::Taxonomy::List_And_Any,
                        \@opt_devices, \@opt_services );
   }
   print "\n";
