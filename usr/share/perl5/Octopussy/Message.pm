@@ -246,23 +246,39 @@ sub Color_Without_Field
   return ($re);
 }
 
-sub Color_Match
-{
-  my ($log, $re) = @_;
+=head2 Minimal_Match($log, $re)
 
-  while (($log !~ $re) && ($re ne ''))
-  {
-#    print " >> RE: $re\n";
-    $re = substr($re, 0, -1);
-#    sleep 1;
+=cut
+
+sub Minimal_Match
+{
+  my ( $log, $re ) = @_;
+
+  eval { qr/$re/; };
+  while ( ($@) && ( $re ne '' ) )
+  {    # reduce length of the regexp until it becomes a valid regexp
+    $re = substr( $re, 0, -1 );
+    eval { qr/$re/; };
   }
 
-  if ($log =~ /^($re)/)
+  while ( ( $log !~ $re ) && ( $re ne '' ) )
+  {
+    $re = substr( $re, 0, -1 );
+
+    eval { qr/$re/; };
+    while ( ($@) && ( $re ne '' ) )
+    {    # reduce length of the regexp until it becomes a valid regexp
+      $re = substr( $re, 0, -1 );
+      eval { qr/$re/; };
+    }
+  }
+
+  if ( $log =~ /^($re)/ )
   {
     my $match = $1;
-    my $unmatch = substr($log, length($1));
+    my $unmatch = substr( $log, length($match) );
 
-    return ($match, $unmatch);
+    return ( $match, $unmatch );
   }
 }
 
