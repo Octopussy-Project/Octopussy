@@ -25,15 +25,13 @@ Readonly my $PROG_NAME => 'octo_commander';
 exit if ( !Octopussy::Valid_User($PROG_NAME) );
 
 my $cache = Octopussy::Cache::Init($PROG_NAME);
-while (1)
-{
-  my $commands = $cache->get('commands');
-  $cache->remove('commands');    # TODO If cache set between get & remove ?
-  foreach my $c ( @{$commands} )
-  {
-    system $c if ( $c =~ /^\/usr\/sbin\/octo.+/ );
-  }
-  sleep 1;
+while (1) {
+    my $commands = $cache->get('commands');
+    $cache->remove('commands');    # TODO If cache set between get & remove ?
+    foreach my $c ( @{$commands} ) {
+        system $c if ( $c =~ /^\/usr\/sbin\/octo.+/ );
+    }
+    sleep 1;
 }
 
 =head1 AUTHOR

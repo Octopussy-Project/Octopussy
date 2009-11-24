@@ -29,25 +29,24 @@ my %conf;
 my %dir_device;
 
 Readonly my %month => (
-                        Jan => '01',
-                        Feb => '02',
-                        Mar => '03',
-                        Apr => '04',
-                        May => '05',
-                        Jun => '06',
-                        Jul => '07',
-                        Aug => '08',
-                        Sep => '09',
-                        Oct => '10',
-                        Nov => '11',
-                        Dec => '12',
-                      );
+    Jan => '01',
+    Feb => '02',
+    Mar => '03',
+    Apr => '04',
+    May => '05',
+    Jun => '06',
+    Jul => '07',
+    Aug => '08',
+    Sep => '09',
+    Oct => '10',
+    Nov => '11',
+    Dec => '12',
+);
 
 Readonly my @months => (
-                         undef, 'Jan', 'Feb', 'Mar', 'Apr', 'May',
-                         'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
-                         'Dec',
-                       );
+    undef, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+    'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+);
 
 =head1 FUNCTIONS
 
@@ -57,29 +56,26 @@ Inits Pusher
 
 =cut
 
-sub Init
-{
-  %dir_device = ();
-  AAT::Syslog( $PROG_NAME, 'LOAD_DEVICES_CONFIG' );
-  my $storage = Octopussy::Storage::Default();
-  my @devices = Octopussy::Device::Configurations('name');
-  foreach my $d (@devices)
-  {
-    if (    ( defined $d->{logtype} )
-         && ( $d->{logtype} eq 'asynchronous' )
-         && ( defined $d->{async} ) )
-    {
-      foreach my $as ( @{ $d->{async} } )
-      {
-        push @{ $conf{ $d->{name} } },
-          { regexp => qr/$as->{regexp}/, output => $as->{output} };
-      }
-      $dir_device{ $d->{name} } =
-        Octopussy::Storage::Directory_Incoming( $d->{name} );
+sub Init {
+    %dir_device = ();
+    AAT::Syslog( $PROG_NAME, 'LOAD_DEVICES_CONFIG' );
+    my $storage = Octopussy::Storage::Default();
+    my @devices = Octopussy::Device::Configurations('name');
+    foreach my $d (@devices) {
+        if (   ( defined $d->{logtype} )
+            && ( $d->{logtype} eq 'asynchronous' )
+            && ( defined $d->{async} ) )
+        {
+            foreach my $as ( @{ $d->{async} } ) {
+                push @{ $conf{ $d->{name} } },
+                  { regexp => qr/$as->{regexp}/, output => $as->{output} };
+            }
+            $dir_device{ $d->{name} } =
+              Octopussy::Storage::Directory_Incoming( $d->{name} );
+        }
     }
-  }
 
-  return ( scalar @devices );
+    return ( scalar @devices );
 }
 
 =head2 Handle_Dir($device, $day, $month, $year)
@@ -88,30 +84,29 @@ Handles Directory ($device/$year/$month/$day)
 
 =cut
 
-sub Handle_Dir
-{
-  my ( $device, $day, $month, $year ) = @_;
+sub Handle_Dir {
+    my ( $device, $day, $month, $year ) = @_;
 
-  if ( !defined $dir_device{$device} )
-  {
-    if ( !-f Octopussy::Device::Filename($device) )
-    {
-      Octopussy::Device::New(
-                              {
-                                name        => $device,
-                                address     => $device,
-                                description => 'New Device !'
-                              }
-                            );
-      my $storage = Octopussy::Storage::Default();
-      $dir_device{$device} = Octopussy::Storage::Directory_Incoming($device);
+    if ( !defined $dir_device{$device} ) {
+        if ( !-f Octopussy::Device::Filename($device) ) {
+            Octopussy::Device::New(
+                {
+                    name        => $device,
+                    address     => $device,
+                    description => 'New Device !'
+                }
+            );
+            my $storage = Octopussy::Storage::Default();
+            $dir_device{$device} =
+              Octopussy::Storage::Directory_Incoming($device);
+        }
     }
-  }
-  $day = ( $day < 10 ? '0' . $day : $day );
-  my $dir_incoming = "$dir_device{$device}/$device/Incoming/$year/$month/$day";
-  Octopussy::Create_Directory($dir_incoming);
+    $day = ( $day < 10 ? '0' . $day : $day );
+    my $dir_incoming =
+      "$dir_device{$device}/$device/Incoming/$year/$month/$day";
+    Octopussy::Create_Directory($dir_incoming);
 
-  return ($dir_incoming);
+    return ($dir_incoming);
 }
 
 =head2 Convert_To_Syslog($line, $device)
@@ -120,37 +115,32 @@ Converts line $line to a syslog line
 
 =cut
 
-sub Convert_To_Syslog
-{
-  my ( $line, $device ) = @_;
-  chomp $line;
-  my $syslog = $line;
-  foreach my $as ( AAT::ARRAY( $conf{$device} ) )
-  {
-    if ( AAT::NOT_NULL( $as->{output} ) )
-    {
-      $syslog = $as->{output};
-      if ( my @var = $line =~ /$as->{regexp}/ )
-      {
-        if ( $syslog =~ /__localtime\((\d+)\)__/ )
-        {
-          my ( $sec, $min, $hour, $mday, $mon, $year ) =
-            localtime $var[ $1 - 1 ];
-          $hour = ( $hour < 10 ? "0$hour" : $hour );
-          $min  = ( $min < 10  ? "0$min"  : $min );
-          $sec  = ( $sec < 10  ? "0$sec"  : $sec );
-          $mday = ( $mday < 10 ? " $mday" : $mday );
-          my $substitution = "$months[$mon] $mday $hour:$min:$sec";
-          $syslog =~ s/__localtime\(\d+\)__/$substitution/g;
+sub Convert_To_Syslog {
+    my ( $line, $device ) = @_;
+    chomp $line;
+    my $syslog = $line;
+    foreach my $as ( AAT::ARRAY( $conf{$device} ) ) {
+        if ( AAT::NOT_NULL( $as->{output} ) ) {
+            $syslog = $as->{output};
+            if ( my @var = $line =~ /$as->{regexp}/ ) {
+                if ( $syslog =~ /__localtime\((\d+)\)__/ ) {
+                    my ( $sec, $min, $hour, $mday, $mon, $year ) =
+                      localtime $var[ $1 - 1 ];
+                    $hour = ( $hour < 10 ? "0$hour" : $hour );
+                    $min  = ( $min < 10  ? "0$min"  : $min );
+                    $sec  = ( $sec < 10  ? "0$sec"  : $sec );
+                    $mday = ( $mday < 10 ? " $mday" : $mday );
+                    my $substitution = "$months[$mon] $mday $hour:$min:$sec";
+                    $syslog =~ s/__localtime\(\d+\)__/$substitution/g;
+                }
+                $syslog =~ s/__(\d+)__/$var[$1-1]/g;
+                $syslog =~ s/__device__/$device/g;
+                last;
+            }
         }
-        $syslog =~ s/__(\d+)__/$var[$1-1]/g;
-        $syslog =~ s/__device__/$device/g;
-        last;
-      }
     }
-  }
 
-  return ($syslog);
+    return ($syslog);
 }
 
 =head2 Write_To_Incoming($dev, $year, $month, $mday, $hour, $min, @lines)
@@ -159,28 +149,24 @@ Writes to Incoming Directory
 
 =cut
 
-sub Write_To_Incoming
-{
-  my ( $dev, $year, $month, $mday, $hour, $min, @lines ) = @_;
+sub Write_To_Incoming {
+    my ( $dev, $year, $month, $mday, $hour, $min, @lines ) = @_;
 
-  if ( scalar @lines > 0 )
-  {
-    my $dir = Handle_Dir( $dev, $mday, $month, $year );
-    my $file = "$dir/msg_$hour" . "h$min.log";
-    if ( defined open my $INCOMING, '>>', $file )
-    {
-      foreach my $l (@lines) { print {$INCOMING} "$l\n"; }
-      close $INCOMING;
-      Octopussy::Chown($file);
+    if ( scalar @lines > 0 ) {
+        my $dir = Handle_Dir( $dev, $mday, $month, $year );
+        my $file = "$dir/msg_$hour" . "h$min.log";
+        if ( defined open my $INCOMING, '>>', $file ) {
+            foreach my $l (@lines) { print {$INCOMING} "$l\n"; }
+            close $INCOMING;
+            Octopussy::Chown($file);
+        }
+        else {
+            print "Unable to open file '$file'\n";
+            AAT::Syslog( 'octo_pusher', 'UNABLE_OPEN_FILE', $file );
+        }
     }
-    else
-    {
-      print "Unable to open file '$file'\n";
-      AAT::Syslog( 'octo_pusher', 'UNABLE_OPEN_FILE', $file );
-    }
-  }
 
-  return ( scalar @lines );
+    return ( scalar @lines );
 }
 
 #
@@ -197,69 +183,74 @@ $SIG{HUP} = \&Init;
 Octopussy::PID_File($PROG_NAME);
 AAT::Syslog( $PROG_NAME, 'PROGRAM_START' );
 
-while (1)
-{
-  Init();
-  my $DIR_PUSHER = Octopussy::Directory('data_logs_pusher');
-  if ( -d $DIR_PUSHER )
-  {
-    opendir DIR, $DIR_PUSHER;
-    my @dirs = grep { !/^\./ } readdir DIR;
-    closedir DIR;
-    foreach my $d (@dirs)
-    {
-      if ( ( -d "$DIR_PUSHER/$d/" ) && ( defined $conf{$d} ) )
-      {
-        opendir DIR2, "$DIR_PUSHER/$d/";
-        my @files = grep { !/^\./ } readdir DIR2;
-        foreach my $f (@files)
-        {
-          if ( defined open my $FILE, '<', "$DIR_PUSHER/$d/$f" )
-          {
-            my @lines = ();
-            while (<$FILE>)
-            {
-              my $syslog = Convert_To_Syslog( $_, $d );
-              if ( $syslog =~ /^(\w{3}) \s?(\d{1,2}) (\d\d):(\d\d):\d\d (\S+)/ )
-              {
-                $device = $5;
-                ( $n_min, $n_hour, $n_mday, $n_month, $n_year ) = (
-                    $4, $3, $2, $month{$1},
-                    ( $month{$1} > $n_month ? $n_year - 1 : $n_year )
-                                                                  );
-                if (    ( $n_min ne $min )
-                     || ( $n_hour  ne $hour )
-                     || ( $n_mday  ne $mday )
-                     || ( $n_month ne $month ) )
-                {
-                  Write_To_Incoming( $device, $year, $month, $mday,
-                                     $hour,   $min,  @lines );
-                  ( $year, $month, $mday, $hour, $min ) =
-                    ( $n_year, $n_month, $n_mday, $n_hour, $n_min );
-                  @lines = ();
+while (1) {
+    Init();
+    my $DIR_PUSHER = Octopussy::Directory('data_logs_pusher');
+    if ( -d $DIR_PUSHER ) {
+        opendir DIR, $DIR_PUSHER;
+        my @dirs = grep { !/^\./ } readdir DIR;
+        closedir DIR;
+        foreach my $d (@dirs) {
+            if ( ( -d "$DIR_PUSHER/$d/" ) && ( defined $conf{$d} ) ) {
+                opendir DIR2, "$DIR_PUSHER/$d/";
+                my @files = grep { !/^\./ } readdir DIR2;
+                foreach my $f (@files) {
+                    if ( defined open my $FILE, '<', "$DIR_PUSHER/$d/$f" ) {
+                        my @lines = ();
+                        while (<$FILE>) {
+                            my $syslog = Convert_To_Syslog( $_, $d );
+                            if ( $syslog =~
+                                /^(\w{3}) \s?(\d{1,2}) (\d\d):(\d\d):\d\d (\S+)/
+                              )
+                            {
+                                $device = $5;
+                                ( $n_min, $n_hour, $n_mday, $n_month, $n_year )
+                                  = (
+                                    $4, $3, $2,
+                                    $month{$1},
+                                    (
+                                          $month{$1} > $n_month
+                                        ? $n_year - 1
+                                        : $n_year
+                                    )
+                                  );
+                                if (   ( $n_min ne $min )
+                                    || ( $n_hour  ne $hour )
+                                    || ( $n_mday  ne $mday )
+                                    || ( $n_month ne $month ) )
+                                {
+                                    Write_To_Incoming(
+                                        $device, $year, $month, $mday,
+                                        $hour,   $min,  @lines
+                                    );
+                                    ( $year, $month, $mday, $hour, $min ) = (
+                                        $n_year, $n_month, $n_mday,
+                                        $n_hour, $n_min
+                                    );
+                                    @lines = ();
+                                }
+                                push @lines, $syslog;
+                            }
+                        }
+                        close $FILE;
+                        unlink "$DIR_PUSHER/$d/$f"
+                          if ( ( scalar @lines > 0 )
+                            || ( -z "$DIR_PUSHER/$d/$f" ) );
+                        Write_To_Incoming(
+                            $device, $year, $month, $mday,
+                            $hour,   $min,  @lines
+                        ) if ( defined $device );
+                    }
+                    else {
+                        print "Unable to open file '$f'\n";
+                        AAT::Syslog( 'octo_pusher', 'UNABLE_OPEN_FILE', $f );
+                    }
                 }
-                push @lines, $syslog;
-              }
+                closedir DIR2;
             }
-            close $FILE;
-            unlink "$DIR_PUSHER/$d/$f"
-              if ( ( scalar @lines > 0 ) || ( -z "$DIR_PUSHER/$d/$f" ) );
-            Write_To_Incoming(
-                               $device, $year, $month, $mday,
-                               $hour,   $min,  @lines
-                             ) if ( defined $device );
-          }
-          else
-          {
-            print "Unable to open file '$f'\n";
-            AAT::Syslog( 'octo_pusher', 'UNABLE_OPEN_FILE', $f );
-          }
         }
-        closedir DIR2;
-      }
     }
-  }
-  sleep 300;
+    sleep 300;
 }
 
 =head1 AUTHOR
