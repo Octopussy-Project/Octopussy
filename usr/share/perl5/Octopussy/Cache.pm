@@ -26,10 +26,13 @@ Readonly my $EXPIRES_PARSER     => '1 day';
 Readonly my $EXPIRES_REPORTER   => '1 day';
 Readonly my $DIRECTORY_UMASK    => '007';
 
-my (
-     $cache_commander, $cache_dispatcher, $cache_extractor,
-     $cache_parser,    $cache_reporter
-   ) = ( undef, undef, undef, undef, undef );
+my %cache = (
+  'octo_commander' => { cache => undef, expires => $EXPIRES_COMMANDER },
+  'octo_dispatcher' => { cache => undef, expires => $EXPIRES_DISPATCHER }, 
+  'octo_extractor' => { cache => undef, expires => $EXPIRES_EXTRACTOR },
+  'octo_parser' => { cache => undef, expires => $EXPIRES_PARSER },
+  'octo_reporter' => { cache => undef, expires => $EXPIRES_REPORTER },
+  );
 
 =head1 FUNCTIONS
 
@@ -43,45 +46,14 @@ sub Init
 {
   my $namespace = shift;
 
-  if ( $namespace eq 'octo_commander' )
+  if ( defined $cache{$namespace} )
   {
-    if ( AAT::NULL($cache_commander) )
+    if (! defined $cache{$namespace}{cache} )
     {
-      $cache_commander = Set( $namespace, $EXPIRES_COMMANDER );
+      $cache{$namespace}{cache} = 
+        Set( $namespace, $cache{$namespace}{expires} );
     }
-    return ($cache_commander);
-  }
-  elsif ( $namespace eq 'octo_dispatcher' )
-  {
-    if ( AAT::NULL($cache_dispatcher) )
-    {
-      $cache_dispatcher = Set( $namespace, $EXPIRES_DISPATCHER );
-    }
-    return ($cache_dispatcher);
-  }
-  elsif ( $namespace eq 'octo_extractor' )
-  {
-    if ( AAT::NULL($cache_extractor) )
-    {
-      $cache_extractor = Set( $namespace, $EXPIRES_EXTRACTOR );
-    }
-    return ($cache_extractor);
-  }
-  elsif ( $namespace eq 'octo_parser' )
-  {
-    if ( AAT::NULL($cache_parser) )
-    {
-      $cache_parser = Set( $namespace, $EXPIRES_PARSER );
-    }
-    return ($cache_parser);
-  }
-  elsif ( $namespace eq 'octo_reporter' )
-  {
-    if ( AAT::NULL($cache_reporter) )
-    {
-      $cache_reporter = Set( $namespace, $EXPIRES_REPORTER );
-    }
-    return ($cache_reporter);
+    return ($cache{$namespace}{cache});
   }
 
   return (undef);

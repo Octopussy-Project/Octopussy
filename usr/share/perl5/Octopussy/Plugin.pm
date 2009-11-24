@@ -32,7 +32,7 @@ BEGIN
   {
     if ( "Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/ )
     {
-      require "$1$2";
+      require "$1$2"; ## no critic
     }
   }
   closedir DIR;

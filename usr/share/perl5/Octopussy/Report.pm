@@ -326,34 +326,19 @@ sub Generate
   elsif ( $type =~ /^ofc_.+/ )
   {
     my $file_json = Octopussy::File_Ext( $outputfile, 'json' );
-
-    if ( $type eq 'ofc_area_hollow' )
+    my %ofc_graph = (
+      'ofc_area_hollow' => \&Octopussy::OFC::Area_Hollow,
+      'ofc_bar_3d' => \&Octopussy::OFC::Bar_3D,
+      'ofc_bar_cylinder' => \&Octopussy::OFC::Bar_Cylinder,
+      'ofc_bar_glass' => \&Octopussy::OFC::Bar_Glass,
+      'ofc_bar_sketch' => \&Octopussy::OFC::Bar_Sketch,
+      'ofc_hbar' => \&Octopussy::OFC::Horizontal_Bar,
+      'ofc_pie' => \&Octopussy::OFC::Pie,
+      );
+    
+    if ( defined $ofc_graph{$type} )
     {
-      Octopussy::OFC::Area_Hollow( $rc, $data, $file_json );
-    }
-    elsif ( $type eq 'ofc_bar_3d' )
-    {
-      Octopussy::OFC::Bar_3D( $rc, $data, $file_json );
-    }
-    elsif ( $type eq 'ofc_bar_cylinder' )
-    {
-      Octopussy::OFC::Bar_Cylinder( $rc, $data, $file_json );
-    }
-    elsif ( $type eq 'ofc_bar_glass' )
-    {
-      Octopussy::OFC::Bar_Glass( $rc, $data, $file_json );
-    }
-    elsif ( $type eq 'ofc_bar_sketch' )
-    {
-      Octopussy::OFC::Bar_Sketch( $rc, $data, $file_json );
-    }
-    elsif ( $rc->{graph_type} eq 'ofc_hbar' )
-    {
-      Octopussy::OFC::Horizontal_Bar( $rc, $data, $file_json );
-    }
-    elsif ( $rc->{graph_type} eq 'ofc_pie' )
-    {
-      Octopussy::OFC::Pie( $rc, $data, $file_json );
+      $ofc_graph{$type}->($rc, $data, $file_json);
     }
   }
   Octopussy::Chown($outputfile);

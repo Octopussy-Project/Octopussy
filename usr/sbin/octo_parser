@@ -184,7 +184,8 @@ sub Init {
                 qr/$re/;
             };
 
-            if ($valid_regexp) {
+            if ($valid_regexp) 
+            {
                 my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
                 if ( ( $s_conf->{statistics} ) || ( scalar(@msg_alerts) > 0 ) )
                 { # statistics are enabled or this msg has alert(s) -> add to msg list
@@ -199,7 +200,8 @@ sub Init {
                         alerts => \@msg_alerts
                       };
                 }
-                $ra->add($regexp);
+                
+                $ra->add(Octopussy::Message::Pattern_To_Regexp_Without_Catching($m));
             }
             else {
                 AAT::Syslog( $PROG_NAME, 'SERVICE_MSG_INVALID_REGEXP',

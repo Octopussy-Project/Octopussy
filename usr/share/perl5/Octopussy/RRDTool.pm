@@ -592,81 +592,96 @@ sub Report_Graph
   my $height   = $rconf->{graph_height} || $GRAPH_HEIGHT;
   my $file_rrd = $output;
   $file_rrd =~ s/\.png/\.rrd/;
-  my $start  = `date +%s -d '$1 $2:$3'` if ( $begin =~ /(\d{8})(\d\d)(\d\d)/ );
-  my $finish = `date +%s -d '$1 $2:$3'` if ( $end   =~ /(\d{8})(\d\d)(\d\d)/ );
-  chomp $start;
-  chomp $finish;
-  my $diff          = ( $finish - $start ) / $MINUTE;
-  my $rrd_step_mins = $MINUTE * $rconf->{rrd_step};
 
-  my %ds       = ();
-  my %dataline = ();
-  foreach my $l ( AAT::ARRAY($data) )
+  my ($start, $finish) = (undef, undef);
+  if ( $begin =~ /(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)/ )
   {
-    if ( $l->{$tl} >= $start )
+    $start = AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
+  }
+  if ( $end =~ /(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)/ )
+  {
+    $finish = AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
+  }
+  #my $start  = `date +%s -d '$1 $2:$3'` if ( $begin =~ /(\d{8})(\d\d)(\d\d)/ );
+  #my $finish = `date +%s -d '$1 $2:$3'` if ( $end   =~ /(\d{8})(\d\d)(\d\d)/ );
+  #chomp $start;
+  #chomp $finish;
+  if ((defined $start) && (defined $finish))
+  {
+    my $diff          = ( $finish - $start ) / $MINUTE;
+    my $rrd_step_mins = $MINUTE * $rconf->{rrd_step};
+
+    my %ds       = ();
+    my %dataline = ();
+    foreach my $l ( AAT::ARRAY($data) )
     {
-      my $key =
-          $l->{$ds1}
-        . ( AAT::NOT_NULL( $l->{$ds2} ) ? " / $l->{$ds2}" : '' )
-        . ( AAT::NOT_NULL( $l->{$ds3} ) ? " / $l->{$ds3}" : '' );
-      if ( AAT::NOT_NULL($key) )
+      if ( $l->{$tl} >= $start )
       {
-        $ds{$key} = 1;
-        my $block = int( ( $l->{$tl} - $start ) / $rrd_step_mins );
-        $block = AAT::Padding( $block, 10 );
-        $dataline{$block}{$key} = (
+        my $key =
+          $l->{$ds1}
+          . ( AAT::NOT_NULL( $l->{$ds2} ) ? " / $l->{$ds2}" : '' )
+          . ( AAT::NOT_NULL( $l->{$ds3} ) ? " / $l->{$ds3}" : '' );
+        if ( AAT::NOT_NULL($key) )
+        {
+          $ds{$key} = 1;
+          my $block = int( ( $l->{$tl} - $start ) / $rrd_step_mins );
+          $block = AAT::Padding( $block, 10 );
+          $dataline{$block}{$key} = (
                                     defined $dataline{$block}{$key}
                                     ? $dataline{$block}{$key} + $l->{$dsv}
                                     : $l->{$dsv}
                                   );
+        }
       }
     }
-  }
 
-  my $cmd = "$RRD_CREATE \"$file_rrd\" --start $start --step $rrd_step_mins ";
-  my $i   = 1;
-  foreach my $k ( sort keys %ds )
-  {
-    $cmd .= "DS:ds$i:GAUGE:" . ( 2 * $rrd_step_mins ) . ':0:U ';
-    $ds{$k} = $i;
-    $i++;
-  }
-  system "$cmd RRA:AVERAGE:0.5:1:$diff";
-
-  foreach my $ts ( sort keys %dataline )
-  {
-    my $update = ( $start + ( $ts * $rrd_step_mins ) + 1 ) . ':';
-    foreach my $d ( sort keys %ds )
+    my $cmd = "$RRD_CREATE \"$file_rrd\" --start $start --step $rrd_step_mins ";
+    my $i   = 1;
+    foreach my $k ( sort keys %ds )
     {
-      $update .= ( $dataline{$ts}{$d} || '0' ) . ':';
+      $cmd .= "DS:ds$i:GAUGE:" . ( 2 * $rrd_step_mins ) . ':0:U ';
+      $ds{$k} = $i;
+      $i++;
     }
-    $update =~ s/:$//;
-    `$RRD_UPDATE "$file_rrd" $update`;
-  }
+    system "$cmd RRA:AVERAGE:0.5:1:$diff";
 
-  $cmd = Graph_Parameters( $output, $start, $finish, $title, $width, $height,
+    foreach my $ts ( sort keys %dataline )
+    {
+      my $update = ( $start + ( $ts * $rrd_step_mins ) + 1 ) . ':';
+      foreach my $d ( sort keys %ds )
+      {
+        $update .= ( $dataline{$ts}{$d} || '0' ) . ':';
+      }
+      $update =~ s/:$//;
+      `$RRD_UPDATE "$file_rrd" $update`;
+    }
+
+    $cmd = Graph_Parameters( $output, $start, $finish, $title, $width, $height,
                            $rconf->{graph_ylabel} );
 
-  my $watermark = Report_Graph_Watermark( $stats, $lang );
-  $cmd .= "--watermark \"$watermark\" ";
-  $i = 1;
-  foreach my $k ( sort keys %ds )
-  {
-    my $color = ( ( $i < 30 ) ? $COLORS[ $i - 1 ] : '#909090' );
-    my $rtype = (
+    my $watermark = Report_Graph_Watermark( $stats, $lang );
+    $cmd .= "--watermark \"$watermark\" ";
+    $i = 1;
+    foreach my $k ( sort keys %ds )
+    {
+      my $color = ( ( $i < 30 ) ? $COLORS[ $i - 1 ] : '#909090' );
+      my $rtype = (
                   ( $rconf->{graph_type} =~ /rrd_line/ )
                   ? 'LINE'
                   : ( ( $i == 1 ) ? 'AREA' : 'STACK' )
                 );
-    $cmd .= "DEF:def$i=\"$file_rrd\":ds$i:AVERAGE CDEF:cdef$i=def$i ";
-    $cmd .=
+      $cmd .= "DEF:def$i=\"$file_rrd\":ds$i:AVERAGE CDEF:cdef$i=def$i ";
+      $cmd .=
         Graph_Line( "cdef$i", $rtype, $color, $k ) . ' '
       . Graph_Legend("cdef$i") . ' ';
-    $i++;
-  }
-  system $cmd;
+      $i++;
+    }
+    system $cmd;
 
-  return ($cmd);
+    return ($cmd);
+  }
+
+  return (undef);
 }
 
 1;

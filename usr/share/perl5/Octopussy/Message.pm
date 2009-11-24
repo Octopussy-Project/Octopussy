@@ -254,23 +254,27 @@ sub Minimal_Match
 {
   my ( $log, $re ) = @_;
 
-  eval { qr/$re/; };
+  eval { qr/^$re/; };
   while ( ($@) && ( $re ne '' ) )
   {    # reduce length of the regexp until it becomes a valid regexp
     $re = substr( $re, 0, -1 );
-    eval { qr/$re/; };
+    eval { qr/^$re/; };
   }
 
-  while ( ( $log !~ $re ) && ( $re ne '' ) )
+  while ( ( $log !~ qr/^$re/ ) && ( $re ne '' ) )
   {
     $re = substr( $re, 0, -1 );
-
-    eval { qr/$re/; };
+    eval { qr/^$re/; };
     while ( ($@) && ( $re ne '' ) )
     {    # reduce length of the regexp until it becomes a valid regexp
       $re = substr( $re, 0, -1 );
-      eval { qr/$re/; };
+      eval { qr/^$re/; };
     }
+  }
+
+  if ($re eq '')
+  {
+    return ('', $log);
   }
 
   if ( $log =~ /^($re)/ )
@@ -319,6 +323,42 @@ sub Pattern_To_Regexp
   return ($regexp);
 }
 
+
+=head2 Pattern_To_Regexp_Without_Catching($msg)
+
+Converts message pattern from message '$msg' into Regexp without catching
+(same as Pattern_To_Regexp except don't add 'catching' parentheses)
+
+=cut
+
+sub Pattern_To_Regexp_Without_Catching
+{
+  my $msg = shift;
+
+  my %re_types = Octopussy::Type::Regexps();
+  my $regexp   = '';
+  my $tmp      = $msg->{pattern};
+  while (    ( AAT::NOT_NULL($tmp) )
+          && ( $tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i ) )
+  {
+    my ( $before, $type, $re_value, $field, $after ) = ( $1, $2, $3, $4, $5 );
+    $regexp .= ( Escape_Characters($before) . $re_value );
+    $tmp = $after;
+  }
+  $tmp = $regexp . ( AAT::NOT_NULL($tmp) ? Escape_Characters($tmp) : '' );
+  $regexp = '';
+  while ( $tmp =~ /^(.*?)<\@([^\@]+?):(\S+?)\@>(.*)$/i )
+  {
+    my ( $before, $type, $field, $after ) = ( $1, $2, $3, $4 );
+    $regexp .= $before . $re_types{$type};
+    $tmp = $after;
+  }
+  $regexp .= $tmp;
+  $regexp =~ s/\s+$//g;
+
+  return ($regexp);
+}
+
 =head2 Short_Pattern_To_Regexp($msg)
 
 =cut
@@ -342,7 +382,11 @@ sub Short_Pattern_To_Regexp
 sub Pattern_Field_Substitution
 {
   my ( $regexp, $f, $type, $field_regexp, $field_list, $re_types ) = @_;
-
+  my %subs = (
+    'NUMBER' => { match => '<\@NUMBER:\S+?\@>', re => '[-+]?\\d+' },
+    'STRING' => { match => '<\@STRING:\S+?\@>', re => '.+' },
+    'WORD'  => { match => '<\@WORD:\S+?\@>', re => '\\S+' },
+    );
   my $long_f = $f;
   $f =~ s/Plugin_\S+__//;
   my $function = undef;
@@ -356,32 +400,20 @@ sub Pattern_Field_Substitution
       $function = $perl_fct if ( $long_f =~ /^$sql_field$/ );
     }
   }
+  
+
   if ( $type eq 'REGEXP' )
   {
     $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/\($1\)/i;
   }
-  elsif ( $type eq 'NUMBER' )
+  elsif (defined $subs{$type})
   {
     my $substitution = (
                          defined $field_regexp
-                         ? $field_regexp->{$f} || '[-+]?\\d+'
-                         : '[-+]?\\d+'
-                       );
-    $regexp =~ s/<\@NUMBER:\S+?\@>/\($substitution\)/i;
+                         ? $field_regexp->{$f} || $subs{$type}{re} 
+                         : $subs{$type}{re} );
+    $regexp =~ s/$subs{$type}{match}/\($substitution\)/i;
   }
-  elsif ( $type eq 'WORD' )
-  {
-    my $substitution =
-      ( defined $field_regexp ? $field_regexp->{$f} || '\\S+' : '\\S+' );
-    $regexp =~ s/<\@WORD:\S+?\@>/\($substitution\)/i;
-  }
-  elsif ( $type eq 'STRING' )
-  {
-    my $substitution =
-      ( defined $field_regexp ? $field_regexp->{$f} || '.+' : '.+' );
-    $regexp =~ s/<\@STRING:\S+?\@>/\($substitution\)/i;
-  }
-  else { $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/\($re_types->{$1}\)/i; }
 
   return ( $regexp, $function );
 }
@@ -394,36 +426,23 @@ sub Pattern_Field_Unmatched_Substitution
 {
   my ( $regexp, $type, $field_regexp, $re_types ) = @_;
 
+  my %subs = (
+    'NUMBER' => { match => qr/^(.*?)<\@NUMBER:(\S+?)\@>(.*)$/, 
+      re => '[-+]?\\d+' },
+    'STRING' => { match => qr/^(.*?)<\@STRING:(\S+?)\@>(.*)$/, 
+      re => '.+' },
+    'WORD'  => { match => qr/^(.*?)<\@WORD:(\S+?)\@>(.*)$/, 
+      re => '\\S+' },
+    );
+
   if ( $type eq 'REGEXP' ) { $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i; }
-  elsif ( $type eq 'NUMBER' )
+  elsif (defined $subs{$type})
   {
-    if ( $regexp =~ /^(.*?)<\@NUMBER:(\S+?)\@>(.*)$/ )
-    {
-      $regexp = $1
-        . (
-            defined $field_regexp
-            ? $field_regexp->{$2} || '[-+]?\\d+'
-            : '[-+]?\\d+'
-          ) . $3;
-    }
-  }
-  elsif ( $type eq 'WORD' )
-  {
-    if ( $regexp =~ /^(.*?)<\@WORD:(\S+?)\@>(.*)$/ )
+    if ( $regexp =~ $subs{$type}{match} )
     {
       $regexp =
           $1
-        . ( defined $field_regexp ? $field_regexp->{$2} || '\\S+' : '\\S+' )
-        . $3;
-    }
-  }
-  elsif ( $type eq 'STRING' )
-  {
-    if ( $regexp =~ /^(.*?)<\@STRING:(\S+?)\@>(.*)$/ )
-    {
-      $regexp =
-          $1
-        . ( defined $field_regexp ? $field_regexp->{$2} || '.+' : '.+' )
+        . ( defined $field_regexp ? $field_regexp->{$2} || $subs{$type}{re} : $subs{$type}{re} )
         . $3;
     }
   }
