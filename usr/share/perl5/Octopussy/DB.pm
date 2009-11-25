@@ -153,18 +153,18 @@ sub SQL_Select_Function
     {
       if ( $field =~ /$s->{regexp}/ )
       {
-        my ( $first, $second ) = ( $1, $2 );
+        my ( $fct, $param ) = ( $1, $2 );
         $field = (
               ( ( $field !~ /^DAY/ ) && ( $field !~ /^UNIX/ ) )
-              ? "$first as $s->{substitution}$second"
+              ? "$fct as $s->{substitution}$param"
               : (
                 ( $field =~ /^UNIX/ )
-                ? "UNIX_TIMESTAMP(DATE_FORMAT($second,$s->{substitution}$second"
-                : "DATE_FORMAT($second,$s->{substitution}$second"
+                ? "UNIX_TIMESTAMP(DATE_FORMAT($param,$s->{substitution}$param"
+                : "DATE_FORMAT($param,$s->{substitution}$param"
               )
         );
         my $cfield = (
-           defined $func ? "$func($s->{value}$second)" : "$s->{value}$second" );
+           defined $func ? "$func($s->{value}$param)" : "$s->{value}$param" );
         push @new_fields, $cfield;
         $match = 1;
         last;

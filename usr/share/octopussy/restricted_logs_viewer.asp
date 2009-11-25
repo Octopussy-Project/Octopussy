@@ -33,7 +33,7 @@ if (AAT::NOT_NULL($Session->{cancel}))
 {
 	my $pid_param = $Session->{extracted};
 	my $pid_file = $run_dir . "octo_extractor_${pid_param}.pid";
-	$pid = `cat "$pid_file"`;
+  my $pid = Octopussy::PID_Value($pid_file);
 	kill USR2 => $pid;	
 
 	($Session->{extractor}, $Session->{cancel}, $Session->{logs}, 

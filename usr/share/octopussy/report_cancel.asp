@@ -10,7 +10,7 @@ $Session->{progress_desc} = undef;
 $Session->{progress_running} = undef;
 $Session->{progress_total} = undef;
 
-$pid = `cat "$pid_file"`;
+my $pid = Octopussy::PID_Value($pid_file);
 kill USR2 => $pid;
 $Response->Redirect("./reports.asp");
 %>

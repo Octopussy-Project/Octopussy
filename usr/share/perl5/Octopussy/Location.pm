@@ -81,6 +81,19 @@ sub City_Remove
   return ( scalar @cities );
 }
 
+=head2 City_Matched
+
+Returns City that matches '$city' from Cities '$cities' list
+
+=cut
+
+sub City_Matched
+{
+  my ($cities, $city) = @_;
+
+  return ( grep { $_->{c_name} eq $city } AAT::ARRAY( $cities ) );
+}
+
 =head2 Buildings($city)
 
 Returns Buildings List
@@ -95,12 +108,9 @@ sub Buildings
   my @cities = Cities();
   $city ||= $cities[0];
 
-  foreach my $c ( AAT::ARRAY( $conf->{city} ) )
+  foreach my $c ( City_Matched($conf->{city}, $city) )
   {
-    if ( $c->{c_name} eq $city )
-    {
       @list = apply { $_ = $_->{b_name}; } AAT::ARRAY( $c->{building} );
-    }
   }
 
   return ( sort @list );
@@ -171,6 +181,19 @@ sub Building_Remove
   return ( scalar @buildings );
 }
 
+=head2 Building_Matched
+
+Returns Building that matches '$building' from Buildings '$buildings' list
+
+=cut
+
+sub Building_Matched
+{
+  my ($buildings, $building) = @_;
+
+  return (grep { $_->{b_name} eq $building } AAT::ARRAY( $buildings ));
+}
+
 =head2 Rooms($city, $building)
 
 Returns Rooms List
@@ -187,17 +210,11 @@ sub Rooms
   my @buildings = Buildings($city);
   $building ||= $buildings[0];
 
-  foreach my $c ( AAT::ARRAY( $conf->{city} ) )
+  foreach my $c ( City_Matched($conf->{city}, $city) )
   {
-    if ( $c->{c_name} eq $city )
+    foreach my $b ( Building_Matched($c->{building}, $building) )
     {
-      foreach my $b ( AAT::ARRAY( $c->{building} ) )
-      {
-        if ( $b->{b_name} eq $building )
-        {
-          @list = apply { $_ = $_->{r_name}; } AAT::ARRAY( $b->{room} );
-        }
-      }
+      @list = apply { $_ = $_->{r_name}; } AAT::ARRAY( $b->{room} );
     }
   }
 
@@ -287,6 +304,19 @@ sub Room_Remove
   return ( scalar @rooms );
 }
 
+=head2 Room_Matched
+
+Returns Room that matches '$room' from Rooms '$rooms' list
+
+=cut
+
+sub Room_Matched
+{
+  my ($rooms, $room) = @_;
+
+  return ( grep { $_->{r_name} eq $room } AAT::ARRAY( $rooms ) );
+}
+
 =head2 Racks($city, $building, $room)
 
 Returns Racks List
@@ -305,22 +335,13 @@ sub Racks
   my @rooms = Rooms( $city, $building );
   $room ||= $rooms[0];
 
-  foreach my $c ( AAT::ARRAY( $conf->{city} ) )
+  foreach my $c ( City_Matched($conf->{city}, $city) )
   {
-    if ( $c->{c_name} eq $city )
+    foreach my $b ( Building_Matched($c->{building}, $building) )
     {
-      foreach my $b ( AAT::ARRAY( $c->{building} ) )
+      foreach my $r ( Room_Matched($b->{room}, $room) )
       {
-        if ( $b->{b_name} eq $building )
-        {
-          foreach my $r ( AAT::ARRAY( $b->{room} ) )
-          {
-            if ( $r->{r_name} eq $room )
-            {
-              @list = apply { $_ = $_->{r_name}; } AAT::ARRAY( $r->{rack} );
-            }
-          }
-        }
+        @list = apply { $_ = $_->{r_name}; } AAT::ARRAY( $r->{rack} );
       }
     }
   }

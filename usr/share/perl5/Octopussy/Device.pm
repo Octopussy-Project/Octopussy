@@ -366,6 +366,44 @@ sub Remove_Service
   return ( scalar @services );
 }
 
+=head2 Update_Services_Rank
+
+
+
+=cut
+
+sub Update_Services_Rank
+{
+  my ($conf, $service, $direction, $rank, $old_rank) = @_;
+
+  my @services = ();
+  foreach my $s ( AAT::ARRAY( $conf->{service} ) )
+  {
+    if ( $s->{sid} ne $service )
+    {
+      if ( ( $direction eq 'top' ) || ( $direction eq 'bottom' ) )
+      {
+        if ( ( $direction eq 'top' ) && ( $s->{rank} < $old_rank ) )
+        {
+          $s->{rank} += 1;
+        }
+        elsif ( ( $direction eq 'bottom' ) && ( $s->{rank} > $old_rank ) )
+        {
+          $s->{rank} -= 1;
+        }
+      }
+      elsif ( $s->{rank} eq $rank )
+      {
+        $s->{rank} = ( $direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1 );
+      }
+    }
+    $s->{rank} = AAT::Padding( $s->{rank}, 2 );
+    push @services, $s;
+  }  
+
+  return (@services);
+}
+
 =head2 Move_Service($device, $service, $direction)
 
 Moves Service '$service' into Device '$device' Services List 
@@ -401,30 +439,9 @@ sub Move_Service
     push @services, $s;
   }
   $conf->{service} = \@services;
-  my @services2 = ();
-  foreach my $s ( AAT::ARRAY( $conf->{service} ) )
-  {
-    if ( $s->{sid} ne $service )
-    {
-      if ( ( $direction eq 'top' ) || ( $direction eq 'bottom' ) )
-      {
-        if ( ( $direction eq 'top' ) && ( $s->{rank} < $old_rank ) )
-        {
-          $s->{rank} += 1;
-        }
-        elsif ( ( $direction eq 'bottom' ) && ( $s->{rank} > $old_rank ) )
-        {
-          $s->{rank} -= 1;
-        }
-      }
-      elsif ( $s->{rank} eq $rank )
-      {
-        $s->{rank} = ( $direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1 );
-      }
-    }
-    $s->{rank} = AAT::Padding( $s->{rank}, 2 );
-    push @services2, $s;
-  }
+
+  my @services2 = Update_Services_Ranks($conf, $service, $direction, 
+    $rank, $old_rank);
   $conf->{service}         = \@services2;
   $conf->{reload_required} = 1;
   AAT::XML::Write( Filename($device), $conf, $XML_ROOT );
@@ -676,16 +693,14 @@ sub Parse_Pause
   my $file_pid = "$dir_pid/${PARSER_BIN}_${device}.pid";
   if ( -f $file_pid )
   {
-    my $pid = `cat "$file_pid"`;
-    chomp $pid;
+    my $pid = Octopussy::PID_Value($file_pid);
     kill USR1 => $pid;
   }
 
   $file_pid = "$dir_pid/${UPARSER_BIN}_${device}.pid";
   if ( -f $file_pid )
   {
-    my $pid = `cat "$file_pid"`;
-    chomp $pid;
+    my $pid = Octopussy::PID_Value($file_pid);
     kill USR1 => $pid;
   }
 

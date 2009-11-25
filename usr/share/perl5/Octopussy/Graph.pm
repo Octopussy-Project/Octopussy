@@ -48,7 +48,7 @@ sub Generate
 {
   my ( $g, $output ) = @_;
 
-  $GD::Graph::Error::Debug = 5;
+#  $GD::Graph::Error::Debug = 5;
 
   $output = $output || 'graph.png';
   my $fct = 'GD::Graph::' . ( $g->{type} || $TYPE );
@@ -77,10 +77,10 @@ sub Generate
     #      y_tick_number     => 8,
     #      y_label_skip      => 2
     dclrs => \@colors
-  ) or die $graph->error;
+  ) or croak $graph->error;
 
   #$graph->set_legend($g->{data});
-  my $gd = $graph->plot( $g->{data} ) or die $graph->error;
+  my $gd = $graph->plot( $g->{data} ) or croak $graph->error;
   if ( defined open my $IMG, '>', $output )
   {
     binmode $IMG;

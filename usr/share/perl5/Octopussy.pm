@@ -439,6 +439,25 @@ sub PID_File
   return ($file_pid);
 }
 
+=head2 PID_Value
+
+=cut
+
+sub PID_Value
+{
+  my $file = shift;
+  my $value = undef;
+
+  if (defined open my $F_PID, '<', $file)
+  {
+    $value = <$F_PID>;
+    chomp $value;
+    close $F_PID;
+  }
+
+  return ($value);
+}
+
 =head2 Dialog($id)
 
 Returns Dialog properties for the Dialog '$id'
