@@ -400,7 +400,6 @@ sub Pattern_Field_Substitution
       $function = $perl_fct if ( $long_f =~ /^$sql_field$/ );
     }
   }
-  
 
   if ( $type eq 'REGEXP' )
   {
@@ -414,7 +413,11 @@ sub Pattern_Field_Substitution
                          : $subs{$type}{re} );
     $regexp =~ s/$subs{$type}{match}/\($substitution\)/i;
   }
-
+  else 
+  { 
+    $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/\($re_types->{$1}\)/i; 
+  }
+ 
   return ( $regexp, $function );
 }
 

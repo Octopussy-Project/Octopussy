@@ -602,10 +602,7 @@ sub Report_Graph
   {
     $finish = AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
   }
-  #my $start  = `date +%s -d '$1 $2:$3'` if ( $begin =~ /(\d{8})(\d\d)(\d\d)/ );
-  #my $finish = `date +%s -d '$1 $2:$3'` if ( $end   =~ /(\d{8})(\d\d)(\d\d)/ );
-  #chomp $start;
-  #chomp $finish;
+
   if ((defined $start) && (defined $finish))
   {
     my $diff          = ( $finish - $start ) / $MINUTE;

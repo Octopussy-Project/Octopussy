@@ -232,7 +232,7 @@ sub Files
               my $num = ( $f->{numday} + $2 * 100 + $3 );
               if ( ( $start_num <= $num ) && ( $num <= $finish_num ) )
               {
-                push @list, "$dir/$dev/$s/$1/$file";
+                push @list, "$dir/$dev/$s/$file";
               }
             }
           }
@@ -309,7 +309,7 @@ sub Minutes_Hash
               my $num = ( $f->{numday} + $2 * 100 + $3 );
               if ( ( $start_num <= $num ) && ( $num <= $finish_num ) )
               {
-                push @{ $minute_files{$num} }, "$dir/$dev/$s/$1/$file";
+                push @{ $minute_files{$num} }, "$dir/$dev/$s/$file";
                 $nb_files++;
               }
             }
