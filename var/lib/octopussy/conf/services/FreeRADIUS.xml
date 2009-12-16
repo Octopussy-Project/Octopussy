@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="FreeRADIUS service"
+                   icon="software/logo_freeradius"
+                   name="FreeRADIUS"
+                   version="200912160006"
+                   website="http://freeradius.org">
+  <message loglevel="Information"
+           msg_id="FreeRADIUS:ready_to_process_requests"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Ready to process requests.&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="FreeRADIUS:login_incorrect"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Login incorrect: .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Auth.Failure" />
+  <message loglevel="Information"
+           msg_id="FreeRADIUS:login_ok"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Login OK: .+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Auth.Success" />
+</octopussy_service>
