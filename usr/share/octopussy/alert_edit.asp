@@ -11,15 +11,24 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 	my @contacts = AAT::ARRAY($f->{contact});
   my $body = $f->{body};
 	Octopussy::Alert::Modify($f->{old_alert},
-		{ name => $f->{name}, description => $f->{description},
-      level => $f->{level}, type => "Dynamic", taxonomy => $f->{taxonomy},
-      status => $f->{status}, timeperiod => $f->{timeperiod},
+		{ name => $f->{name}, 
+			description => Encode::decode_utf8($f->{description}), 
+			level => $f->{level}, type => "Dynamic", taxonomy => $f->{taxonomy},
+			status => ($f->{status} || "Enabled"),
+			timeperiod => $f->{timeperiod}, 
+			device => \@devices, service => \@services,
 			regexp_include => $f->{regexp_include},
-      regexp_exclude => $f->{regexp_exclude},
+			regexp_exclude => $f->{regexp_exclude},
 			thresold_time => $f->{thresold_time},
 			thresold_duration => $f->{thresold_duration},
-      device => \@devices, service => \@services, action => \@actions,
-      contact => \@contacts, msgsubject => $f->{subject}, msgbody => $body });			
+			action => \@actions, contact => \@contacts, 
+			msgsubject => Encode::decode_utf8($f->{subject}), 
+      msgbody => Encode::decode_utf8($f->{body}),
+      action_host => Encode::decode_utf8($f->{action_host}),
+      action_service => Encode::decode_utf8($f->{action_service}),
+      action_body => Encode::decode_utf8($f->{action_body}),
+      }
+		);			
 	AAT::Syslog("octo_WebUI", "GENERIC_MODIFIED", "Alert", $f->{old_alert});
 	$Response->Redirect("./alerts.asp");
 }

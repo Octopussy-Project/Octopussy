@@ -9,6 +9,8 @@ my ($a_name, $a_desc, $a_level, $a_status, $a_taxo, $a_timeperiod,
 my ($a_re_include, $a_re_exclude) = 
 	($conf->{regexp_include}, $conf->{regexp_exclude});
 my ($a_msg_subject, $a_msg_body) = ($conf->{msgsubject}, $conf->{msgbody});
+my ($action_host, $action_service, $action_body) = 
+	($conf->{action_host}, $conf->{action_service}, $conf->{action_body});
 my @devices = AAT::ARRAY($conf->{device});
 my @services = AAT::ARRAY($conf->{service});
 my @actions = AAT::ARRAY($conf->{action});
@@ -146,20 +148,20 @@ my @used_services = Octopussy::Service::List_Used();
   <AAT:BoxCol>
   <AAT:Label value="_HOST" tooltip="_TOOLTIP_ALERT_MSG" style="B"/>
   </AAT:BoxCol>
-  <AAT:BoxCol><AAT:Entry name="action_host" size="30" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="action_host" size="30" value="$action_host" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Label value="_SERVICE" tooltip="_TOOLTIP_ALERT_MSG" style="B"/>
   </AAT:BoxCol>
-  <AAT:BoxCol><AAT:Entry name="action_service" size="30" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="action_service" size="30" value="$action_service" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Label value="_BODY" tooltip="_TOOLTIP_ALERT_MSG" style="B"/></AAT:BoxCol>
-  <AAT:BoxCol><AAT:TextArea name="body" cols="60" rows="5" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:TextArea name="action_body" cols="60" rows="5" data="$action_body" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

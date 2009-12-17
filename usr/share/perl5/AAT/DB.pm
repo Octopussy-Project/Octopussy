@@ -135,9 +135,9 @@ sub Insert
   if ( defined $dbh{$appli} )
   {
     my $sql = "INSERT INTO $table(";
-    $sql .= join ', ', sort AAT::HASH_KEYS($field_values);
+    $sql .= join ', ', sort(AAT::HASH_KEYS($field_values));
     $sql .= ') VALUES(';
-    foreach my $k ( sort AAT::HASH_KEYS($field_values) )
+    foreach my $k ( sort(AAT::HASH_KEYS($field_values)) )
     {
       $sql .= $dbh{$appli}->quote( $field_values->{$k} ) . ', ';
     }

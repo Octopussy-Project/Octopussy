@@ -132,7 +132,7 @@ my @used_services = Octopussy::Service::List_Used();
   <AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Label value="_BODY" tooltip="_TOOLTIP_ALERT_MSG" style="B"/></AAT:BoxCol>
-  <AAT:BoxCol><AAT:TextArea name="body" cols="60" rows="5" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:TextArea name="action_body" cols="60" rows="5" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>

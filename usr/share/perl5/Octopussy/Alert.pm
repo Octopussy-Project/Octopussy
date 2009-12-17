@@ -51,6 +51,7 @@ sub New
   $dir_alerts ||= Octopussy::Directory($DIR_ALERT);
   my $file_xml = "$dir_alerts/$conf->{name}.xml";
   $conf->{msgbody} =~ s/\r\n/ \@\@\@ /g;
+  $conf->{action_body} =~ s/\r\n/ \@\@\@ /g;
 
   if ( defined AAT::XML::Write( $file_xml, $conf, $XML_ROOT ) )
   {
@@ -180,6 +181,7 @@ sub Configuration
 
   my $conf = AAT::XML::Read( Filename($alert_name) );
   $conf->{msgbody} =~ s/ \@\@\@ /\n/g;
+  $conf->{action_body} =~ s/ \@\@\@ /\n/g;
 
   return ($conf);
 }
@@ -494,6 +496,19 @@ sub From_Device
   return (@alerts);
 }
 
+sub Message_Replace
+{
+  my ($str, $alert, $device, $line, $field) = @_;
+  
+  $str =~ s/__device__/$device/gi;
+  $str =~ s/__alert__/$alert->{name}/gi;
+  $str =~ s/__level__/$alert->{level}/gi;
+  $str =~ s/__log__/$line/gi;
+  $str =~ s/__field_(\w+)__/$field->{$1}/gi;
+
+  return ($str);
+}
+
 =head2 Message_Building($alert, $device, $line, $msg)
 
 Builds Alert Message
@@ -509,30 +524,17 @@ sub Message_Building
   my $body    = $alert->{msgbody}        || '';
   my $host    = $alert->{action_host}    || '';    # For Nagios/Zabbix
   my $service = $alert->{action_service} || '';    # For Nagios/Zabbix
+  my $action_body = $alert->{action_body}        || ''; # For Nagios/Zabbix
 
-  $subject =~ s/__device__/$device/gi;
-  $subject =~ s/__alert__/$alert->{name}/gi;
-  $subject =~ s/__level__/$alert->{level}/gi;
-  $subject =~ s/__log__/$line/gi;
-  $subject =~ s/__field_(\w+)__/$field{$1}/gi;
-  $body    =~ s/__device__/$device/gi;
-  $body    =~ s/__alert__/$alert->{name}/gi;
-  $body    =~ s/__level__/$alert->{level}/gi;
-  $body    =~ s/__log__/$line/gi;
-  $body    =~ s/__field_(\w+)__/$field{$1}/gi;
+  $subject = Message_Replace($subject, $alert, $device, $line, \%field);
+  $body = Message_Replace($body, $alert, $device, $line, \%field);
   $body    =~ s/\s*\@\@\@\s*/\n/g;
-  $host    =~ s/__device__/$device/gi;
-  $host    =~ s/__alert__/$alert->{name}/gi;
-  $host    =~ s/__level__/$alert->{level}/gi;
-  $host    =~ s/__log__/$line/gi;
-  $host    =~ s/__field_(\w+)__/$field{$1}/gi;
-  $service =~ s/__device__/$device/gi;
-  $service =~ s/__alert__/$alert->{name}/gi;
-  $service =~ s/__level__/$alert->{level}/gi;
-  $service =~ s/__log__/$line/gi;
-  $service =~ s/__field_(\w+)__/$field{$1}/gi;
-
-  return ( $subject, $body, $host, $service );
+  $action_body = Message_Replace($action_body, $alert, $device, $line, \%field);
+  $action_body    =~ s/\s*\@\@\@\s*/\n/g;
+  $host = Message_Replace($host, $alert, $device, $line, \%field);
+  $service = Message_Replace($service, $alert, $device, $line, \%field);
+ 
+  return ( $subject, $body, $host, $service, $action_body );
 }
 
 =head2 Tracker($al, $dev, $stat, $sort, $limit)

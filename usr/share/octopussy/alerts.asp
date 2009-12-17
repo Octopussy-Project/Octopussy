@@ -34,7 +34,8 @@ else
 			msgsubject => Encode::decode_utf8($f->{subject}), 
       msgbody => Encode::decode_utf8($f->{body}),
       action_host => Encode::decode_utf8($f->{action_host}),
-      action_service => Encode::decode_utf8($f->{action_service})
+      action_service => Encode::decode_utf8($f->{action_service}),
+      action_body => Encode::decode_utf8($f->{action_body}),
       });
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Alert", $alert);
   }
