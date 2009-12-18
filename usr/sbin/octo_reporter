@@ -44,13 +44,13 @@ Readonly my $MIN_DB_INSERT => 10_000;
 my $file_pid = undef;
 
 my $help;
-my ( @devices, @services ) = ( (), () );
-my ( $report, $rc,  $loglevel,  $taxonomy );
-my ( $begin,  $end, $pid_param, $lang );
-my ( $mail_subject, $mail_recipients );
-my ( $host_ftp, $dir_ftp, $user_ftp, $pwd_ftp );
-my ( $host_scp, $dir_scp, $user_scp );
-my ( $type, $title ) = qw(bars test);
+my (@devices, @services) = ((), ());
+my ($report, $rc,  $loglevel,  $taxonomy);
+my ($begin,  $end, $pid_param, $lang);
+my ($mail_subject, $mail_recipients);
+my ($host_ftp, $dir_ftp, $user_ftp, $pwd_ftp);
+my ($host_scp, $dir_scp, $user_scp);
+my ($type, $title) = qw(bars test);
 my $output = undef;
 my $cache  = undef;
 
@@ -62,8 +62,9 @@ Prints Help
 
 =cut
 
-sub Help {
-    my $help_str = <<"EOF";
+sub Help
+{
+  my $help_str = <<"EOF";
 
 $PROG_NAME (version $VERSION)
 
@@ -81,38 +82,43 @@ $PROG_NAME (version $VERSION)
 
 EOF
 
-    print $help_str;
+  print $help_str;
 
-    if ( !defined $report ) {
-        my @reps = Octopussy::Report::List( undef, undef );
-        print ' Report list: ' . join( ', ', @reps ) . "\n";
+  if (!defined $report)
+  {
+    my @reps = Octopussy::Report::List(undef, undef);
+    print ' Report list: ' . join(', ', @reps) . "\n";
+  }
+  else
+  {
+    $rc = Octopussy::Report::Configuration($report);
+    if (!defined $rc)
+    {
+      print "Error: Unable to get configuration for Report [$report]\n";
+      exit;
     }
-    else {
-        $rc = Octopussy::Report::Configuration($report);
-        if ( !defined $rc ) {
-            print "Error: Unable to get configuration for Report [$report]\n";
-            exit;
-        }
-        my ( $dev_groups, $devs, $servs ) =
-          Octopussy::Table::Devices_and_Services_With( $rc->{table} );
-        if ( ( !@devices ) && ( defined $devs ) ) {
-            print ' Device list: ' . join( ', ', @{$devs} ) . "\n";
-        }
-        elsif ( ( !@services ) && ( defined $servs ) ) {
-            print ' Service list: ' . join( ', ', sort @{$servs} ) . "\n";
-        }
-        elsif ( !defined $loglevel ) {
-            print ' '
-              . Octopussy::Loglevel::String_List( $devs, $servs ) . "\n";
-        }
-        elsif ( !defined $taxonomy ) {
-            print ' '
-              . Octopussy::Taxonomy::String_List( $devs, $servs ) . "\n";
-        }
+    my ($dev_groups, $devs, $servs) =
+      Octopussy::Table::Devices_and_Services_With($rc->{table});
+    if ((!@devices) && (defined $devs))
+    {
+      print ' Device list: ' . join(', ', @{$devs}) . "\n";
     }
-    print "\n";
+    elsif ((!@services) && (defined $servs))
+    {
+      print ' Service list: ' . join(', ', sort @{$servs}) . "\n";
+    }
+    elsif (!defined $loglevel)
+    {
+      print ' ' . Octopussy::Loglevel::String_List($devs, $servs) . "\n";
+    }
+    elsif (!defined $taxonomy)
+    {
+      print ' ' . Octopussy::Taxonomy::String_List($devs, $servs) . "\n";
+    }
+  }
+  print "\n";
 
-    exit;
+  exit;
 }
 
 =head2 Progress($msg, $num)
@@ -121,13 +127,14 @@ Sets progress status
 
 =cut
 
-sub Progress {
-    my ( $msg, $num ) = @_;
+sub Progress
+{
+  my ($msg, $num) = @_;
 
-    my $str_progress = AAT::Translation($msg) . " [$num]";
-    $cache->set( "status_${pid_param}", $str_progress );
+  my $str_progress = AAT::Translation($msg) . " [$num]";
+  $cache->set("status_${pid_param}", $str_progress);
 
-    return ($str_progress);
+  return ($str_progress);
 }
 
 =head2 SQL($ref_pos, @args)
@@ -136,33 +143,38 @@ Generates SQL line
 
 =cut
 
-sub SQL {
-    my ( $ref_pos, @args ) = @_;
-    my $line = '';
+sub SQL
+{
+  my ($ref_pos, @args) = @_;
+  my $line = '';
 
-    foreach my $p ( @{$ref_pos} ) {
-        if ( defined $p ) {
-            if ( defined $p->{pos} ) {
-                my $f = $p->{function};
-                return (undef)
-                  if ( ( defined $f )
-                    && ( !defined &{$f}( $args[ $p->{pos} ] ) ) );
-                my $value = (
-                    defined $f
-                    ? &{$f}( $args[ $p->{pos} ] )
-                    : $args[ $p->{pos} ]
-                );
-                $value =~ s/\t+/ /g;
-                $line .= Octopussy::Type::SQL_Datetime($value);
-            }
-            else {
-                $line .= 'NULL';
-            }
-        }
-        $line .= "\t";
+  foreach my $p (@{$ref_pos})
+  {
+    if (defined $p)
+    {
+      if (defined $p->{pos})
+      {
+        my $f = $p->{function};
+        return (undef)
+          if ((defined $f)
+          && (!defined &{$f}($args[$p->{pos}])));
+        my $value = (
+          defined $f
+          ? &{$f}($args[$p->{pos}])
+          : $args[$p->{pos}]
+        );
+        $value =~ s/\t+/ /g;
+        $line .= Octopussy::Type::SQL_Datetime($value);
+      }
+      else
+      {
+        $line .= 'NULL';
+      }
     }
+    $line .= "\t";
+  }
 
-    return ($line);
+  return ($line);
 }
 
 =head2 Get_Messages_To_Parse($services, $taxo, $table, $query, $fields_list)
@@ -171,15 +183,16 @@ Returns list of Messages to parse
 
 =cut
 
-sub Get_Messages_To_Parse {
-    my ( $services, $taxo, $table, $query, $fields_list ) = @_;
-    my @fields = Octopussy::Report::Table_Creation( $table, $query );
-    my $fields_regexp = Octopussy::Message::Regexped_Fields($query);
-    my @msg_to_parse =
-      Octopussy::Message::Parse_List( $services, $loglevel, $taxo, $table,
-        \@fields, $fields_regexp, $fields_list );
+sub Get_Messages_To_Parse
+{
+  my ($services, $taxo, $table, $query, $fields_list) = @_;
+  my @fields = Octopussy::Report::Table_Creation($table, $query);
+  my $fields_regexp = Octopussy::Message::Regexped_Fields($query);
+  my @msg_to_parse =
+    Octopussy::Message::Parse_List($services, $loglevel, $taxo, $table,
+    \@fields, $fields_regexp, $fields_list);
 
-    return (@msg_to_parse);
+  return (@msg_to_parse);
 }
 
 =head2 Get_TimePeriod_Files($devices, $services, $begin, $end)
@@ -189,37 +202,37 @@ and Period $begin-$end
 
 =cut
 
-sub Get_TimePeriod_Files {
-    my ( $devices, $services, $begin, $end ) = @_;
+sub Get_TimePeriod_Files
+{
+  my ($devices, $services, $begin, $end) = @_;
 
-    my $re_date = qr/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/;
-    my ( $y1, $m1, $d1, $hour1, $min1 );
-    my ( $y2, $m2, $d2, $hour2, $min2 );
+  my $re_date = qr/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/;
+  my ($y1, $m1, $d1, $hour1, $min1);
+  my ($y2, $m2, $d2, $hour2, $min2);
 
-    if (   ( ( $y1, $m1, $d1, $hour1, $min1 ) = $begin =~ $re_date )
-        && ( ( $y2, $m2, $d2, $hour2, $min2 ) = $end =~ $re_date ) )
-    {
-        my %start = (
-            year  => $y1,
-            month => $m1,
-            day   => $d1,
-            hour  => $hour1,
-            min   => $min1,
-        );
-        my %finish = (
-            year  => $y2,
-            month => $m2,
-            day   => $d2,
-            hour  => $hour2,
-            min   => $min2,
-        );
-        my $files =
-          Octopussy::Logs::Files( $devices, $services, \%start, \%finish );
+  if ( (($y1, $m1, $d1, $hour1, $min1) = $begin =~ $re_date)
+    && (($y2, $m2, $d2, $hour2, $min2) = $end =~ $re_date))
+  {
+    my %start = (
+      year  => $y1,
+      month => $m1,
+      day   => $d1,
+      hour  => $hour1,
+      min   => $min1,
+    );
+    my %finish = (
+      year  => $y2,
+      month => $m2,
+      day   => $d2,
+      hour  => $hour2,
+      min   => $min2,
+    );
+    my $files = Octopussy::Logs::Files($devices, $services, \%start, \%finish);
 
-        return ($files);
-    }
+    return ($files);
+  }
 
-    return (undef);
+  return (undef);
 }
 
 =head2 Insert_Data($devices, $services, $taxo, $begin, $end, $table, 
@@ -229,55 +242,60 @@ Inserts data
 
 =cut
 
-sub Insert_Data {
-    my ( $devices, $services, $taxo, $begin, $end, $table, $query, $field_list )
-      = @_;
-    Progress( '_MSG_REPORT_PROGRESS_LISTING_FILES', '1/1' );
-    my @msg_to_parse =
-      Get_Messages_To_Parse( $services, $taxo, $table, $query, $field_list );
-    my $files      = Get_TimePeriod_Files( $devices, $services, $begin, $end );
-    my $total      = scalar @{$files};
-    my @known_msgs = ();
-    AAT::Syslog( 'octo_core',
-            "$total file(s) to parse with "
-          . scalar @msg_to_parse
-          . ' message(s).' );
-    my $i        = 1;
-    my $nb_lines = 0;
-    `touch "$FILE_DB.$$"`;
-    chmod 0644, "$FILE_DB.$$";
+sub Insert_Data
+{
+  my ($devices, $services, $taxo, $begin, $end, $table, $query, $field_list) =
+    @_;
+  Progress('_MSG_REPORT_PROGRESS_LISTING_FILES', '1/1');
+  my @msg_to_parse =
+    Get_Messages_To_Parse($services, $taxo, $table, $query, $field_list);
+  my $files      = Get_TimePeriod_Files($devices, $services, $begin, $end);
+  my $total      = scalar @{$files};
+  my @known_msgs = ();
+  AAT::Syslog('octo_core',
+    "$total file(s) to parse with " . scalar @msg_to_parse . ' message(s).');
+  my $i        = 1;
+  my $nb_lines = 0;
+  `touch "$FILE_DB.$$"`;
+  chmod 0644, "$FILE_DB.$$";
 
-    foreach my $f ( @{$files} ) {
-        Progress( '_MSG_REPORT_PROGRESS_INSERTING_DATA', $i . "/$total" );
-        if ( defined open my $FILE, '-|', "zcat \"$f\"" ) {
-            while ( my $line = <$FILE> ) {
-                chomp $line;
-                $nb_lines++;
-                foreach my $msg (@msg_to_parse) {
-                    if ( my (@args) = $line =~ $msg->{re} ) {
-                        my $sql = SQL( $msg->{positions}, @args );
-                        push @known_msgs, $sql if ( defined $sql );
-                        last;
-                    }
-                }
-            }
-            close $FILE;
+  foreach my $f (@{$files})
+  {
+    Progress('_MSG_REPORT_PROGRESS_INSERTING_DATA', $i . "/$total");
+    if (defined open my $FILE, '-|', "zcat \"$f\"")
+    {
+      while (my $line = <$FILE>)
+      {
+        chomp $line;
+        $nb_lines++;
+        foreach my $msg (@msg_to_parse)
+        {
+          if (my (@args) = $line =~ $msg->{re})
+          {
+            my $sql = SQL($msg->{positions}, @args);
+            push @known_msgs, $sql if (defined $sql);
+            last;
+          }
         }
-        else {
-            print "Unable to open file '$f'\n";
-            AAT::Syslog( $APPLI, 'UNABLE_OPEN_FILE', $f );
-        }
-        if ( scalar @known_msgs > $MIN_DB_INSERT )
-        {    # Insert in DB only every $MIN_DB_INSERT+ lines
-            AAT::DB::Load_Infile( $APPLI, $table, "$FILE_DB.$$", \@known_msgs );
-            @known_msgs = ();
-        }
-        $i++;
+      }
+      close $FILE;
     }
-    AAT::DB::Load_Infile( $APPLI, $table, "$FILE_DB.$$", \@known_msgs );
-    unlink "$FILE_DB.$$";
+    else
+    {
+      print "Unable to open file '$f'\n";
+      AAT::Syslog($APPLI, 'UNABLE_OPEN_FILE', $f);
+    }
+    if (scalar @known_msgs > $MIN_DB_INSERT)
+    {    # Insert in DB only every $MIN_DB_INSERT+ lines
+      AAT::DB::Load_Infile($APPLI, $table, "$FILE_DB.$$", \@known_msgs);
+      @known_msgs = ();
+    }
+    $i++;
+  }
+  AAT::DB::Load_Infile($APPLI, $table, "$FILE_DB.$$", \@known_msgs);
+  unlink "$FILE_DB.$$";
 
-    return ( $total, $nb_lines );
+  return ($total, $nb_lines);
 }
 
 =head2 End()
@@ -286,140 +304,142 @@ Ends Reporter
 
 =cut
 
-sub End {
-    AAT::Syslog( $PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Aborted' );
-    AAT::DB::Table_Destruction( $APPLI, $rc->{table} . "_$$" );
-    unlink $file_pid;
-    unlink "$FILE_DB.$$";
-    $cache->remove("info_$$");
-    $cache->remove("status_$$");
-    exit;
+sub End
+{
+  AAT::Syslog($PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Aborted');
+  AAT::DB::Table_Destruction($APPLI, $rc->{table} . "_$$");
+  unlink $file_pid;
+  unlink "$FILE_DB.$$";
+  $cache->remove("info_$$");
+  $cache->remove("status_$$");
+  exit;
 }
 
 #
 # MAIN
 #
-exit if ( !Octopussy::Valid_User($PROG_NAME) );
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 $SIG{USR2} = \&End;
 
 my $status = GetOptions(
-    'h'                 => \$help,
-    'help'              => \$help,
-    'report=s'          => \$report,
-    'devices=s'         => \@devices,
-    'services=s'        => \@services,
-    'loglevel=s'        => \$loglevel,
-    'taxonomy=s'        => \$taxonomy,
-    'begin=s'           => \$begin,
-    'end=s'             => \$end,
-    'lang=s'            => \$lang,
-    'pid_param=s'       => \$pid_param,
-    'output=s'          => \$output,
-    'mail_subject=s'    => \$mail_subject,
-    'mail_recipients=s' => \$mail_recipients,
-    'ftp_host=s'        => \$host_ftp,
-    'ftp_dir=s'         => \$dir_ftp,
-    'ftp_user=s'        => \$user_ftp,
-    'ftp_pwd=s'         => \$pwd_ftp,
-    'scp_host=s'        => \$host_scp,
-    'scp_dir=s'         => \$dir_scp,
-    'scp_user=s'        => \$user_scp,
+  'h'                 => \$help,
+  'help'              => \$help,
+  'report=s'          => \$report,
+  'devices=s'         => \@devices,
+  'services=s'        => \@services,
+  'loglevel=s'        => \$loglevel,
+  'taxonomy=s'        => \$taxonomy,
+  'begin=s'           => \$begin,
+  'end=s'             => \$end,
+  'lang=s'            => \$lang,
+  'pid_param=s'       => \$pid_param,
+  'output=s'          => \$output,
+  'mail_subject=s'    => \$mail_subject,
+  'mail_recipients=s' => \$mail_recipients,
+  'ftp_host=s'        => \$host_ftp,
+  'ftp_dir=s'         => \$dir_ftp,
+  'ftp_user=s'        => \$user_ftp,
+  'ftp_pwd=s'         => \$pwd_ftp,
+  'scp_host=s'        => \$host_scp,
+  'scp_dir=s'         => \$dir_scp,
+  'scp_user=s'        => \$user_scp,
 );
 
 Help()
-  if ( ( !$status )
-    || ($help)
-    || ( !defined $report )
-    || ( !@devices )
-    || ( !@services )
-    || ( !defined $begin )
-    || ( !defined $end )
-    || ( !defined $output ) );
+  if ((!$status)
+  || ($help)
+  || (!defined $report)
+  || (!@devices)
+  || (!@services)
+  || (!defined $begin)
+  || (!defined $end)
+  || (!defined $output));
 
 my $pid = $$;
 $cache = Octopussy::Cache::Init('octo_reporter');
 
-Progress( '_MSG_REPORT_PROGRESS_REPORT_CONFIG', '1/1' );
-$rc = ( defined $report ? Octopussy::Report::Configuration($report) : undef );
+Progress('_MSG_REPORT_PROGRESS_REPORT_CONFIG', '1/1');
+$rc = (defined $report ? Octopussy::Report::Configuration($report) : undef);
 print "Error: Unable to get configuration for Report [$report]\n"
-  if ( !defined $rc );
+  if (!defined $rc);
 
 $lang ||= 'EN';
 
 my $time = time;
 print "Report: $rc->{name}\n";
 print "Description: $rc->{description}\n";
-my $pid_name = $PROG_NAME . ( defined $pid_param ? "_$pid_param" : '' );
+my $pid_name = $PROG_NAME . (defined $pid_param ? "_$pid_param" : '');
 $file_pid = Octopussy::PID_File($pid_name);
 my $started = Date::Manip::ParseDateString("epoch $time");
 my %info    = (
-    report   => $rc->{name},
-    started  => Date::Manip::UnixDate( $started, '%Y/%m/%d %H:%M' ),
-    devices  => \@devices,
-    services => \@services,
+  report   => $rc->{name},
+  started  => Date::Manip::UnixDate($started, '%Y/%m/%d %H:%M'),
+  devices  => \@devices,
+  services => \@services,
 );
-$cache->set( "info_$pid", \%info );
+$cache->set("info_$pid", \%info);
 
 my $str_report_gen = printf
   'Report Generation: D=[%s] S=[%s] T=[%s]',
-  join( ',', @devices ),
-  join( ',', @services ),
+  join(',', @devices),
+  join(',', @services),
   $rc->{table};
-AAT::Syslog( $PROG_NAME, $str_report_gen );
-AAT::Syslog( $PROG_NAME, "Report Generation: B=[$begin] E=[$end]" );
-AAT::Syslog( $PROG_NAME,
-    "Report Generation: type=[$rc->{graph_type}] title=[$rc->{name}]" );
+AAT::Syslog($PROG_NAME, $str_report_gen);
+AAT::Syslog($PROG_NAME, "Report Generation: B=[$begin] E=[$end]");
+AAT::Syslog($PROG_NAME,
+  "Report Generation: type=[$rc->{graph_type}] title=[$rc->{name}]");
 
 my @field_list = ();
 push @field_list, split /\s*,\s*/, $rc->{columns}
-  if ( AAT::NOT_NULL( $rc->{columns} ) );
-foreach my $ds ( 'datasource1', 'datasource2', 'datasource3' ) {
-    push @field_list, $rc->{$ds} if ( AAT::NOT_NULL( $rc->{$ds} ) );
+  if (AAT::NOT_NULL($rc->{columns}));
+foreach my $ds ('datasource1', 'datasource2', 'datasource3')
+{
+  push @field_list, $rc->{$ds} if (AAT::NOT_NULL($rc->{$ds}));
 }
 
-Progress( '_MSG_REPORT_PROGRESS_INIT_PLUGIN', '1/1' );
-Octopussy::Plugin::Init( { lang => $lang }, @field_list );
+Progress('_MSG_REPORT_PROGRESS_INIT_PLUGIN', '1/1');
+Octopussy::Plugin::Init({lang => $lang}, @field_list);
 
 #foreach my $e ($rc->{datasource1}, $rc->{datasource2}, $rc->{datasource3})
 #	{ push(@field_list, $e)	if ($e ne ""); }
-Progress( '_MSG_REPORT_PROGRESS_INIT_DB', '1/1' );
+Progress('_MSG_REPORT_PROGRESS_INIT_DB', '1/1');
 
-my ( $nb_files, $nb_lines ) =
-  Insert_Data( \@devices, \@services, $taxonomy, $begin, $end, $rc->{table},
-    $rc->{query}, \@field_list );
+my ($nb_files, $nb_lines) =
+  Insert_Data(\@devices, \@services, $taxonomy, $begin, $end, $rc->{table},
+  $rc->{query}, \@field_list);
 
-Progress( '_MSG_REPORT_PROGRESS_QUERYING_DB', '0/1' );
+Progress('_MSG_REPORT_PROGRESS_QUERYING_DB', '0/1');
 my $query = $rc->{query};
 $query =~    #s/FROM(\.*[, ])($rc->{table})([, ]\.*)/FROM$1$2_$pid$3/i;
   s/FROM ($rc->{table})(.*)?/FROM $1_$pid$2/i;
 
 #$query =~ s/ (\w+) JOIN(\.*[, ])($rc->{table})([, ]\.*)/ $1 JOIN$2$3_$pid$4/gi;
 
-my @data = AAT::DB::Query( $APPLI, $query );
-Progress( '_MSG_REPORT_PROGRESS_QUERYING_DB', '1/1' );
+my @data = AAT::DB::Query($APPLI, $query);
+Progress('_MSG_REPORT_PROGRESS_QUERYING_DB', '1/1');
 
-AAT::DB::Table_Destruction( $APPLI, $rc->{table} . "_$pid" );
+AAT::DB::Table_Destruction($APPLI, $rc->{table} . "_$pid");
 
-Progress( '_MSG_REPORT_PROGRESS_BUILDING_REPORT', '0/1' );
-my %conf_mail = ( recipients => $mail_recipients, subject => $mail_subject );
+Progress('_MSG_REPORT_PROGRESS_BUILDING_REPORT', '0/1');
+my %conf_mail = (recipients => $mail_recipients, subject => $mail_subject);
 my %conf_ftp =
-  ( host => $host_ftp, dir => $dir_ftp, user => $user_ftp, pwd => $pwd_ftp );
-my %conf_scp = ( host => $host_scp, dir => $dir_scp, user => $user_scp );
+  (host => $host_ftp, dir => $dir_ftp, user => $user_ftp, pwd => $pwd_ftp);
+my %conf_scp = (host => $host_scp, dir => $dir_scp, user => $user_scp);
 my %report_stats = (
-    nb_files        => $nb_files,
-    nb_lines        => $nb_lines,
-    nb_result_lines => scalar(@data),
-    seconds         => ( time() - $time ),
+  nb_files        => $nb_files,
+  nb_lines        => $nb_lines,
+  nb_result_lines => scalar(@data),
+  seconds         => (time() - $time),
 );
 
 Octopussy::Report::Generate(
-    $rc,        $begin,     $end,           $output,
-    \@devices,  \@services, \@data,         \%conf_mail,
-    \%conf_ftp, \%conf_scp, \%report_stats, $lang
+  $rc,        $begin,     $end,           $output,
+  \@devices,  \@services, \@data,         \%conf_mail,
+  \%conf_ftp, \%conf_scp, \%report_stats, $lang
 );
-Progress( '_MSG_REPORT_PROGRESS_BUILDING_REPORT', '1/1' );
-AAT::Syslog( $PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Completed' );
+Progress('_MSG_REPORT_PROGRESS_BUILDING_REPORT', '1/1');
+AAT::Syslog($PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Completed');
 unlink $file_pid;
 $cache->remove("info_$$");
 $cache->remove("status_${pid_param}");

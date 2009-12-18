@@ -31,10 +31,10 @@ Readonly my $PROG_NAME    => 'octo_extractor';
 Readonly my $PROG_VERSION => Octopussy::Version();
 
 my $help;
-my ( @opt_devices, @opt_services ) = ( (), () );
-my ( $opt_loglevel, $opt_taxonomy, $opt_msgid );
-my ( $opt_begin, $opt_end, $pid_param, $output );
-my ( @opt_include, @opt_exclude );
+my (@opt_devices, @opt_services) = ((), ());
+my ($opt_loglevel, $opt_taxonomy, $opt_msgid);
+my ($opt_begin, $opt_end, $pid_param, $output);
+my (@opt_include, @opt_exclude);
 my $file_pid = undef;
 my $cache    = undef;
 
@@ -46,8 +46,9 @@ Prints Help
 
 =cut
 
-sub Help {
-    my $help_str = <<"EOF";
+sub Help
+{
+  my $help_str = <<"EOF";
 
 $PROG_NAME (version $PROG_VERSION)
 
@@ -59,23 +60,24 @@ $PROG_NAME (version $PROG_VERSION)
 
 EOF
 
-    print $help_str;
-    my $list = ' ';
-    if ( !@opt_devices ) { $list .= Octopussy::Device::String_List('any'); }
-    elsif ( !@opt_services ) {
-        $list .= Octopussy::Device::String_Services(@opt_devices);
-    }
-    elsif ( !defined $opt_loglevel ) {
-        $list .=
-          Octopussy::Loglevel::String_List( \@opt_devices, \@opt_services );
-    }
-    elsif ( !defined $opt_taxonomy ) {
-        $list .=
-          Octopussy::Taxonomy::String_List( \@opt_devices, \@opt_services );
-    }
-    print "$list\n\n";
+  print $help_str;
+  my $list = ' ';
+  if (!@opt_devices) { $list .= Octopussy::Device::String_List('any'); }
+  elsif (!@opt_services)
+  {
+    $list .= Octopussy::Device::String_Services(@opt_devices);
+  }
+  elsif (!defined $opt_loglevel)
+  {
+    $list .= Octopussy::Loglevel::String_List(\@opt_devices, \@opt_services);
+  }
+  elsif (!defined $opt_taxonomy)
+  {
+    $list .= Octopussy::Taxonomy::String_List(\@opt_devices, \@opt_services);
+  }
+  print "$list\n\n";
 
-    exit;
+  exit;
 }
 
 =head2 Progress($msg, $num, $nb_match)
@@ -84,13 +86,14 @@ Sets progress status
 
 =cut
 
-sub Progress {
-    my ( $msg, $num, $nb_match ) = @_;
+sub Progress
+{
+  my ($msg, $num, $nb_match) = @_;
 
-    my $status = AAT::Translation($msg) . " [$num] [$nb_match]";
-    $cache->set( "status_${pid_param}", $status );
+  my $status = AAT::Translation($msg) . " [$num] [$nb_match]";
+  $cache->set("status_${pid_param}", $status);
 
-    return ($status);
+  return ($status);
 }
 
 =head2 Get_Messages_To_Parse($services, $loglevel, $taxonomy, $msgid)
@@ -99,41 +102,47 @@ Returns list of Messages to parse
 
 =cut
 
-sub Get_Messages_To_Parse {
-    my ( $services, $loglevel, $taxonomy, $msgid ) = @_;
-    my @msg_to_parse = ();
+sub Get_Messages_To_Parse
+{
+  my ($services, $loglevel, $taxonomy, $msgid) = @_;
+  my @msg_to_parse = ();
 
-    if ( ( AAT::NOT_NULL($msgid) ) && ( $msgid ne '-ANY-' ) ) {
-        my $msg = Octopussy::Message::Configuration( $services, $msgid );
-        my $re = Octopussy::Message::Pattern_To_Regexp($msg);
-        push @msg_to_parse, { re => $re };
-    }
-    else {
-        @msg_to_parse =
-          Octopussy::Message::Parse_List( $services, $loglevel, $taxonomy,
-            undef, undef, undef, undef );
-    }
+  if ((AAT::NOT_NULL($msgid)) && ($msgid ne '-ANY-'))
+  {
+    my $msg = Octopussy::Message::Configuration($services, $msgid);
+    my $re = Octopussy::Message::Pattern_To_Regexp($msg);
+    push @msg_to_parse, {re => $re};
+  }
+  else
+  {
+    @msg_to_parse =
+      Octopussy::Message::Parse_List($services, $loglevel, $taxonomy, undef,
+      undef, undef, undef);
+  }
 
-    return (@msg_to_parse);
+  return (@msg_to_parse);
 }
 
 =head2 Line_Match_Regexps
 
 =cut
 
-sub Line_Match_Regexps {
-    my ( $line, $includes, $excludes ) = @_;
-    my $match = 1;
+sub Line_Match_Regexps
+{
+  my ($line, $includes, $excludes) = @_;
+  my $match = 1;
 
-    foreach my $inc ( AAT::ARRAY($includes) ) {
-        $match = 0 if ( $line !~ $inc );
-    }
-    foreach my $excl ( AAT::ARRAY($excludes) ) {
-        $match = 0
-          if ( $line =~ $excl );
-    }
+  foreach my $inc (AAT::ARRAY($includes))
+  {
+    $match = 0 if ($line !~ $inc);
+  }
+  foreach my $excl (AAT::ARRAY($excludes))
+  {
+    $match = 0
+      if ($line =~ $excl);
+  }
 
-    return ($match);
+  return ($match);
 }
 
 =head2 Print_Logs($devices, $services, $loglevel, $taxo, $msgid,
@@ -143,124 +152,141 @@ Prints Logs
 
 =cut
 
-sub Print_Logs {
-    my (
-        $devices, $services, $loglevel, $taxo, $msgid,
-        $begin,   $end,      $re_incl,  $re_excl
-    ) = @_;
-    my $time     = time;
-    my @lines    = ();
-    my @includes = ();
-    my @excludes = ();
-    foreach my $inc ( AAT::ARRAY($re_incl) ) {
-        push @includes, qr/$inc/ if ( AAT::NOT_NULL($inc) );
-    }
-    foreach my $excl ( AAT::ARRAY($re_excl) ) {
-        push @excludes, qr/$excl/ if ( AAT::NOT_NULL($excl) );
-    }
+sub Print_Logs
+{
+  my (
+    $devices, $services, $loglevel, $taxo, $msgid,
+    $begin,   $end,      $re_incl,  $re_excl
+  ) = @_;
+  my $time     = time;
+  my @lines    = ();
+  my @includes = ();
+  my @excludes = ();
+  foreach my $inc (AAT::ARRAY($re_incl))
+  {
+    push @includes, qr/$inc/ if (AAT::NOT_NULL($inc));
+  }
+  foreach my $excl (AAT::ARRAY($re_excl))
+  {
+    push @excludes, qr/$excl/ if (AAT::NOT_NULL($excl));
+  }
 
-    Progress( '_MSG_EXTRACT_PROGRESS_LISTING_FILES', '0/1', 0 );
-    my ( $files, $total ) =
-      Octopussy::Logs::Get_TimePeriod_Files( $devices, $services, $begin,
-        $end );
-    my $nb_match = 0;
-    open my $OUT, '>', $output if ( AAT::NOT_NULL($output) );
-    if (   ( @{$services}[0] =~ /-ANY-/i )
-        && ( AAT::NULL($taxo) || ( $taxo =~ /-ANY-/i ) )
-        && ( AAT::NULL($loglevel) || ( $loglevel =~ /-ANY-/i ) ) )
+  Progress('_MSG_EXTRACT_PROGRESS_LISTING_FILES', '0/1', 0);
+  my ($files, $total) =
+    Octopussy::Logs::Get_TimePeriod_Files($devices, $services, $begin, $end);
+  my $nb_match = 0;
+  if ((AAT::NOT_NULL($output)) && (defined open my $OUT, '>', $output))
+  {
+    if ( (@{$services}[0] =~ /-ANY-/i)
+      && (AAT::NULL($taxo) || ($taxo =~ /-ANY-/i))
+      && (AAT::NULL($loglevel) || ($loglevel =~ /-ANY-/i)))
     {
-        my $i = 1;
-        foreach my $min ( sort keys %{$files} ) {
-            my @logs = ();
-            foreach my $f ( @{ $files->{$min} } ) {
-                Progress( '_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total",
-                    $nb_match );
-                if ( defined open my $FILE, '-|', "zcat \"$f\"" ) {
-                    while ( my $line = <$FILE> ) {
-                        if ( Line_Match_Regexps( $line, \@includes, \@excludes )
-                          )
-                        {
-                            push @logs, $line;
-                            $nb_match++;
-                        }
-                    }
-                    close $FILE;
-                }
-                else {
-                    print "Unable to open file '$f'\n";
-                    AAT::Syslog( 'octo_extractor', 'UNABLE_OPEN_FILE', $f );
-                }
-                $i++;
+      my $i = 1;
+      foreach my $min (sort keys %{$files})
+      {
+        my @logs = ();
+        foreach my $f (@{$files->{$min}})
+        {
+          Progress('_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match);
+          if (defined open my $FILE, '-|', "zcat \"$f\"")
+          {
+            while (my $line = <$FILE>)
+            {
+              if (Line_Match_Regexps($line, \@includes, \@excludes))
+              {
+                push @logs, $line;
+                $nb_match++;
+              }
             }
-            if ( AAT::NOT_NULL($output) ) {
-                foreach my $l ( sort @logs ) { print {$OUT} $l; }
-            }
-            else {
-                foreach my $l ( sort @logs ) { print $l; }
-            }
+            close $FILE;
+          }
+          else
+          {
+            print "Unable to open file '$f'\n";
+            AAT::Syslog('octo_extractor', 'UNABLE_OPEN_FILE', $f);
+          }
+          $i++;
         }
-    }
-    else {
-        my $i = 1;
-        my @msg_to_parse =
-          Get_Messages_To_Parse( $services, $loglevel, $taxo, $msgid );
-
-        foreach my $min ( sort keys %{$files} ) {
-            my @logs = ();
-            foreach my $f ( @{ $files->{$min} } ) {
-                Progress( '_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total",
-                    $nb_match );
-                if ( defined open my $FILE, '-|', "zcat \"$f\"" ) {
-                    if ( $f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/ ) {
-                        while ( my $line = <$FILE> ) {
-                            foreach my $msg (@msg_to_parse) {
-                                if ( $line =~ $msg->{re} ) {
-                                    if (
-                                        Line_Match_Regexps(
-                                            $line, \@includes, \@excludes
-                                        )
-                                      )
-                                    {
-                                        push @logs, $line;
-                                        $nb_match++;
-                                    }
-                                    last;
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        while (<$FILE>) {
-                            push( @logs, $_ );
-                            $nb_match++;
-                        }
-                    }
-                    close $FILE;
-                    $i++;
-                }
-                else {
-                    print "Unable to open file '$f'\n";
-                    AAT::Syslog( 'octo_extractor', 'UNABLE_OPEN_FILE', $f );
-                }
-            }
-            if ( AAT::NOT_NULL($output) ) {
-                foreach my $l ( sort @logs ) { print {$OUT} $l; }
-            }
-            else {
-                foreach my $l ( sort @logs ) { print $l; }
-            }
+        if (AAT::NOT_NULL($output))
+        {
+          foreach my $l (sort @logs) { print {$OUT} $l; }
         }
+        else
+        {
+          foreach my $l (sort @logs) { print $l; }
+        }
+      }
     }
-    close $OUT if ( AAT::NOT_NULL($output) );
+    else
+    {
+      my $i = 1;
+      my @msg_to_parse =
+        Get_Messages_To_Parse($services, $loglevel, $taxo, $msgid);
 
-    AAT::Syslog(
-        'octo_extractor', 'LOG_SEARCH',
-        join( ',', @opt_devices ),
-        join( ',', @opt_services ),
-        "${opt_begin}-${opt_end}", time() - $time
-    );
+      foreach my $min (sort keys %{$files})
+      {
+        my @logs = ();
+        foreach my $f (@{$files->{$min}})
+        {
+          Progress('_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match);
+          if (defined open my $FILE, '-|', "zcat \"$f\"")
+          {
+            if ($f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/)
+            {
+              while (my $line = <$FILE>)
+              {
+                foreach my $msg (@msg_to_parse)
+                {
+                  if ($line =~ $msg->{re})
+                  {
+                    if (Line_Match_Regexps($line, \@includes, \@excludes))
+                    {
+                      push @logs, $line;
+                      $nb_match++;
+                    }
+                    last;
+                  }
+                }
+              }
+            }
+            else
+            {
+              while (<$FILE>)
+              {
+                push(@logs, $_);
+                $nb_match++;
+              }
+            }
+            close $FILE;
+            $i++;
+          }
+          else
+          {
+            print "Unable to open file '$f'\n";
+            AAT::Syslog('octo_extractor', 'UNABLE_OPEN_FILE', $f);
+          }
+        }
+        if (AAT::NOT_NULL($output))
+        {
+          foreach my $l (sort @logs) { print {$OUT} $l; }
+        }
+        else
+        {
+          foreach my $l (sort @logs) { print $l; }
+        }
+      }
+    }
+    close $OUT if (AAT::NOT_NULL($output));
+  }
 
-    return ($nb_match);
+  AAT::Syslog(
+    'octo_extractor', 'LOG_SEARCH',
+    join(',', @opt_devices),
+    join(',', @opt_services),
+    "${opt_begin}-${opt_end}", time() - $time
+  );
+
+  return ($nb_match);
 }
 
 =head2 End()
@@ -269,54 +295,55 @@ Ends Extraction
 
 =cut
 
-sub End {
-    AAT::Syslog( $PROG_NAME, 'Logs Extraction Aborted !' );
+sub End
+{
+  AAT::Syslog($PROG_NAME, 'Logs Extraction Aborted !');
 
-    unlink $output;
-    $cache->remove("status_${pid_param}");
-    exit;
+  unlink $output;
+  $cache->remove("status_${pid_param}");
+  exit;
 }
 
 #
 # MAIN
 #
-exit if ( !Octopussy::Valid_User($PROG_NAME) );
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 $SIG{USR2} = \&End;
 
 my $status = GetOptions(
-    'h'           => \$help,
-    'help'        => \$help,
-    'device=s'    => \@opt_devices,
-    'service=s'   => \@opt_services,
-    'loglevel=s'  => \$opt_loglevel,
-    'taxonomy=s'  => \$opt_taxonomy,
-    'msgid=s'     => \$opt_msgid,
-    'begin=s'     => \$opt_begin,
-    'end=s'       => \$opt_end,
-    'include=s'   => \@opt_include,
-    'exclude=s'   => \@opt_exclude,
-    'pid_param=s' => \$pid_param,
-    'output=s'    => \$output
+  'h'           => \$help,
+  'help'        => \$help,
+  'device=s'    => \@opt_devices,
+  'service=s'   => \@opt_services,
+  'loglevel=s'  => \$opt_loglevel,
+  'taxonomy=s'  => \$opt_taxonomy,
+  'msgid=s'     => \$opt_msgid,
+  'begin=s'     => \$opt_begin,
+  'end=s'       => \$opt_end,
+  'include=s'   => \@opt_include,
+  'exclude=s'   => \@opt_exclude,
+  'pid_param=s' => \$pid_param,
+  'output=s'    => \$output
 );
 
 Help()
-  if ( ( !$status )
-    || ($help)
-    || ( !@opt_devices )
-    || ( !@opt_services )
-    || ( !defined $opt_begin )
-    || ( !defined $opt_end ) );
+  if ((!$status)
+  || ($help)
+  || (!@opt_devices)
+  || (!@opt_services)
+  || (!defined $opt_begin)
+  || (!defined $opt_end));
 
 $cache = Octopussy::Cache::Init('octo_extractor');
 
-my $pid_name = $PROG_NAME . ( defined $pid_param ? "_$pid_param" : '' );
+my $pid_name = $PROG_NAME . (defined $pid_param ? "_$pid_param" : '');
 $file_pid = Octopussy::PID_File($pid_name);
 
 Print_Logs(
-    \@opt_devices, \@opt_services, $opt_loglevel,
-    $opt_taxonomy, $opt_msgid,     $opt_begin,
-    $opt_end,      \@opt_include,  \@opt_exclude
+  \@opt_devices, \@opt_services, $opt_loglevel,
+  $opt_taxonomy, $opt_msgid,     $opt_begin,
+  $opt_end,      \@opt_include,  \@opt_exclude
 );
 
 $cache->remove("status_${pid_param}");

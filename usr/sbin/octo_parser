@@ -36,36 +36,37 @@ Readonly my $NICE_UPARSER => 'nice -n 20';
 my $dir_program = Octopussy::Directory('programs');
 my $dir_pid     = Octopussy::Directory('running');
 my $device      = $ARGV[0];
-my ( $reload_request, $exit_request ) = ( 0, 0 );
+my ($reload_request, $exit_request) = (0, 0);
 my $cache = Octopussy::Cache::Init($PROG_NAME);
 
 my @services;
-my ( %alert,      %service );
-my ( %taxo_stats, %msgid_stats );
+my (%alert,      %service);
+my (%taxo_stats, %msgid_stats);
 my $minutes_without_logs;
 my %dir_data = ();
-my ( @files, @taxo_list, %known_msgs, @unknown_msgs ) = ( (), (), (), () );
-my ( $file, $file_last ) = ( undef, undef );
+my (@files, @taxo_list, %known_msgs, @unknown_msgs) = ((), (), (), ());
+my ($file, $file_last) = (undef, undef);
 
 my %parser_stats = ();
-my ( $year, $month, $day, $hour, $min ) = ( 0, 0, 0, 0, 0 );
-my ( $nb_lines_minute, $seconds_to_parse ) = ( 0, 0 );
+my ($year, $month, $day, $hour, $min) = (0, 0, 0, 0, 0);
+my ($nb_lines_minute, $seconds_to_parse) = (0, 0);
 
-my $file_pid = Octopussy::PID_File( $PROG_NAME . "_$device" );
+my $file_pid = Octopussy::PID_File($PROG_NAME . "_$device");
 my $count    = 0;
-while ( ( !defined $file_pid ) && ( $count < 10 ) )
+while ((!defined $file_pid) && ($count < 10))
 {    # wait 10 secs max that old parser stops
-    sleep 1;
-    $count++;
+  sleep 1;
+  $count++;
 }
-if ( !defined $file_pid ) {
-    Octopussy::Die( $PROG_NAME,
-        "[CRITICAL] Parsing $device - Process already running !" );
+if (!defined $file_pid)
+{
+  Octopussy::Die($PROG_NAME,
+    "[CRITICAL] Parsing $device - Process already running !");
 }
 
 my $inotify = new Linux::Inotify2
-  or Octopussy::Die( $PROG_NAME,
-    "[CRITICAL] Unable to create new inotify object for Device $device: $!" );
+  or Octopussy::Die($PROG_NAME,
+  "[CRITICAL] Unable to create new inotify object for Device $device: $!");
 $inotify->blocking(0);
 
 =head1 FUNCTIONS
@@ -77,10 +78,11 @@ Softly stops the parser
 
 =cut
 
-sub Exit {
-    $exit_request = 1;
+sub Exit
+{
+  $exit_request = 1;
 
-    return ($exit_request);
+  return ($exit_request);
 }
 
 =head2 Reload()
@@ -90,10 +92,11 @@ Softly reloads the configuration of the parser
 
 =cut
 
-sub Reload {
-    $reload_request = 1;
+sub Reload
+{
+  $reload_request = 1;
 
-    return ($reload_request);
+  return ($reload_request);
 }
 
 =head2 Inotify_Watch($path)
@@ -102,25 +105,29 @@ Watches '$path' with inotify
 
 =cut
 
-sub Inotify_Watch {
-    my $filename = shift;
+sub Inotify_Watch
+{
+  my $filename = shift;
 
-    if ( -d $filename ) {
-        if ( $filename =~ /\/Incoming\/+\d{4}\/+\d{2}\/+\d{2}/ ) {
-            $inotify->watch( $filename, IN_CLOSE_WRITE );
-        }
-        else { $inotify->watch( $filename, IN_CREATE ); }
-        opendir DIR, $filename;
-        my @content = grep { !/^\./ } readdir DIR;
-        closedir DIR;
-        foreach my $c ( sort @content ) { Inotify_Watch("$filename/$c"); }
+  if (-d $filename)
+  {
+    if ($filename =~ /\/Incoming\/+\d{4}\/+\d{2}\/+\d{2}/)
+    {
+      $inotify->watch($filename, IN_CLOSE_WRITE);
     }
-    elsif ( -f $filename ) {
-        $filename =~ s/\/+/\//g;
-        push @files, $filename;
-    }
+    else { $inotify->watch($filename, IN_CREATE); }
+    opendir DIR, $filename;
+    my @content = grep { !/^\./ } readdir DIR;
+    closedir DIR;
+    foreach my $c (sort @content) { Inotify_Watch("$filename/$c"); }
+  }
+  elsif (-f $filename)
+  {
+    $filename =~ s/\/+/\//g;
+    push @files, $filename;
+  }
 
-    return (1);
+  return (1);
 }
 
 =head2 Init()
@@ -129,102 +136,103 @@ Inits Parser & launch UParser if needed
 
 =cut
 
-sub Init {
-    my $dconf = Octopussy::Device::Configuration($device)
-      or Octopussy::Die( $PROG_NAME,
-        "[CRITICAL] Unable to get Device configuration for '$device'" );
-    $minutes_without_logs = $dconf->{minutes_without_logs};
-    @services  = Octopussy::Device::Services_Configurations( $device, 'rank' );
-    @taxo_list = Octopussy::Taxonomy::List()
-      or Octopussy::Die( $PROG_NAME,
-        '[CRITICAL] Unable to get Taxonomy configuration]' );
-    $dir_data{'Unknown'} = Octopussy::Storage::Directory_Unknown($device);
-    foreach my $s_conf (@services) {
-        my $serv = $s_conf->{sid};
-        my $ra   = Regexp::Assemble->new;
+sub Init
+{
+  my $dconf = Octopussy::Device::Configuration($device)
+    or Octopussy::Die($PROG_NAME,
+    "[CRITICAL] Unable to get Device configuration for '$device'");
+  $minutes_without_logs = $dconf->{minutes_without_logs};
+  @services  = Octopussy::Device::Services_Configurations($device, 'rank');
+  @taxo_list = Octopussy::Taxonomy::List()
+    or Octopussy::Die($PROG_NAME,
+    '[CRITICAL] Unable to get Taxonomy configuration]');
+  $dir_data{'Unknown'} = Octopussy::Storage::Directory_Unknown($device);
+  foreach my $s_conf (@services)
+  {
+    my $serv = $s_conf->{sid};
+    my $ra   = Regexp::Assemble->new;
 
-        $dir_data{$serv} =
-          Octopussy::Storage::Directory_Service( $device, $serv );
-        Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Init( $device,
-            $serv );
-        my @msg_to_parse = ();
-        my @messages     = Octopussy::Service::Messages($serv);
-        AAT::Syslog( $PROG_NAME, 'PARSER_INIT_SERVICE', $serv,
-            scalar @messages );
-        my @dev_alerts = Octopussy::Alert::For_Device($device);
+    $dir_data{$serv} = Octopussy::Storage::Directory_Service($device, $serv);
+    Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Init($device, $serv);
+    my @msg_to_parse = ();
+    my @messages     = Octopussy::Service::Messages($serv);
+    AAT::Syslog($PROG_NAME, 'PARSER_INIT_SERVICE', $serv, scalar @messages);
+    my @dev_alerts = Octopussy::Alert::For_Device($device);
 
-        my %contact = ();
-        foreach my $c ( Octopussy::Contact::Configurations('cid') ) {
-            $contact{ $c->{cid} } = $c;
+    my %contact = ();
+    foreach my $c (Octopussy::Contact::Configurations('cid'))
+    {
+      $contact{$c->{cid}} = $c;
+    }
+    foreach my $m (@messages)
+    {
+      my @alerts =
+        Octopussy::Message::Alerts($device, $serv, $m, \@dev_alerts, \%contact);
+      my @msg_alerts = ();
+      foreach my $a (@alerts)
+      {
+        $alert{$a->{name}} = $a;
+        foreach my $act (@{$a->{action}})
+        {
+          $alert{$a->{name}}->{action_mail} = 1
+            if ($act =~ /Mail/i);
+          $alert{$a->{name}}->{action_jabber} = 1
+            if ($act =~ /Jabber/i);
+          $alert{$a->{name}}->{action_nsca} = 1
+            if ($act =~ /NSCA/i);
+          $alert{$a->{name}}->{action_zabbix} = 1
+            if ($act =~ /Zabbix/i);
         }
-        foreach my $m (@messages) {
-            my @alerts =
-              Octopussy::Message::Alerts( $device, $serv, $m, \@dev_alerts,
-                \%contact );
-            my @msg_alerts = ();
-            foreach my $a (@alerts) {
-                $alert{ $a->{name} } = $a;
-                foreach my $act ( @{ $a->{action} } ) {
-                    $alert{ $a->{name} }->{action_mail} = 1
-                      if ( $act =~ /Mail/i );
-                    $alert{ $a->{name} }->{action_jabber} = 1
-                      if ( $act =~ /Jabber/i );
-                    $alert{ $a->{name} }->{action_nsca} = 1
-                      if ( $act =~ /NSCA/i );
-                    $alert{ $a->{name} }->{action_zabbix} = 1
-                      if ( $act =~ /Zabbix/i );
-                }
-                push @msg_alerts, $a->{name};
-            }
+        push @msg_alerts, $a->{name};
+      }
 
-            # check if the regexp is valid
-            my $valid_regexp = eval {
-                use warnings FATAL => qw( regexp );
-                my $re = Octopussy::Message::Pattern_To_Regexp($m);
-                qr/$re/;
-            };
+      # check if the regexp is valid
+      my $valid_regexp = eval {
+        use warnings FATAL => qw( regexp );
+        my $re = Octopussy::Message::Pattern_To_Regexp($m);
+        qr/$re/;
+      };
 
-            if ($valid_regexp) 
+      if ($valid_regexp)
+      {
+        my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
+        if (($s_conf->{statistics}) || (scalar(@msg_alerts) > 0))
+        {   # statistics are enabled or this msg has alert(s) -> add to msg list
+          push @{$service{$serv}{msgs}},
             {
-                my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-                if ( ( $s_conf->{statistics} ) || ( scalar(@msg_alerts) > 0 ) )
-                { # statistics are enabled or this msg has alert(s) -> add to msg list
-                    push @{ $service{$serv}{msgs} },
-                      {
-                        re      => qr/^$regexp\s*[^\t\n\r\f -~]?$/i,
-                        id      => $m->{msg_id},
-                        pattern => (
-                            ( scalar(@msg_alerts) > 0 ) ? $m->{pattern} : undef
-                        ),
-                        taxo   => $m->{taxonomy},
-                        alerts => \@msg_alerts
-                      };
-                }
-                
-                $ra->add(Octopussy::Message::Pattern_To_Regexp_Without_Catching($m));
-            }
-            else {
-                AAT::Syslog( $PROG_NAME, 'SERVICE_MSG_INVALID_REGEXP',
-                    $m->{msg_id}, $@ );
-                print
-"Msg $m->{msg_id} dropped because Runtime regexp compilation produced:\n$@\n";
-            }
+            re      => qr/^$regexp\s*[^\t\n\r\f -~]?$/i,
+            id      => $m->{msg_id},
+            pattern => ((scalar(@msg_alerts) > 0) ? $m->{pattern} : undef),
+            taxo    => $m->{taxonomy},
+            alerts  => \@msg_alerts
+            };
         }
-        $service{$serv}{global_regexp} = $ra->re;
-    }
-    if ( AAT::NOT_NULL( $cache->get("uparser_$device") ) ) {
-        $cache->set( "uparser_$device", 'reload' );
-    }
-    else { system "$NICE_UPARSER ${dir_program}octo_uparser $device &"; }
-    ( $file, $file_last ) = ( undef, undef );
-    ( @files, %known_msgs, @unknown_msgs ) = ( (), (), () );
 
-    my $dir = Octopussy::Storage::Directory_Incoming($device);
-    Octopussy::Create_Directory("$dir/$device/Incoming/")
-      if ( !-d "$dir/$device/Incoming/" );
-    Inotify_Watch("$dir/$device/Incoming/");
+        $ra->add(Octopussy::Message::Pattern_To_Regexp_Without_Catching($m));
+      }
+      else
+      {
+        AAT::Syslog($PROG_NAME, 'SERVICE_MSG_INVALID_REGEXP', $m->{msg_id}, $@);
+        print
+"Msg $m->{msg_id} dropped because Runtime regexp compilation produced:\n$@\n";
+      }
+    }
+    $service{$serv}{global_regexp} = $ra->re;
+  }
+  if (AAT::NOT_NULL($cache->get("uparser_$device")))
+  {
+    $cache->set("uparser_$device", 'reload');
+  }
+  else { system "$NICE_UPARSER ${dir_program}octo_uparser $device &"; }
+  ($file, $file_last) = (undef, undef);
+  (@files, %known_msgs, @unknown_msgs) = ((), (), ());
 
-    return ( scalar @services );
+  my $dir = Octopussy::Storage::Directory_Incoming($device);
+  Octopussy::Create_Directory("$dir/$device/Incoming/")
+    if (!-d "$dir/$device/Incoming/");
+  Inotify_Watch("$dir/$device/Incoming/");
+
+  return (scalar @services);
 }
 
 =head2 Write_Logfile($file, $logs)
@@ -233,24 +241,28 @@ Writes Known Logs '$logs' into Logfile '$file'
 
 =cut
 
-sub Write_Logfile {
-    my ( $logfile, $logs ) = @_;
+sub Write_Logfile
+{
+  my ($logfile, $logs) = @_;
 
-    if ( scalar( @{$logs} ) > 0 ) {
-        $logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
-        $logfile .= '.gz' if ( $logfile !~ /^.+\.gz$/ );
-        Octopussy::Create_Directory( dirname($logfile) );
-        if ( defined open my $FILE, '|-', "gzip >> $logfile" ) {
-            foreach my $log ( @{$logs} ) { print {$FILE} "$log\n"; }
-            close $FILE;
-        }
-        else {
-            print "Unable to open file '$logfile'\n";
-            AAT::Syslog( $PROG_NAME, 'UNABLE_OPEN_FILE', $logfile );
-        }
+  if (scalar(@{$logs}) > 0)
+  {
+    $logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
+    $logfile .= '.gz' if ($logfile !~ /^.+\.gz$/);
+    Octopussy::Create_Directory(dirname($logfile));
+    if (defined open my $FILE, '|-', "gzip >> $logfile")
+    {
+      foreach my $log (@{$logs}) { print {$FILE} "$log\n"; }
+      close $FILE;
     }
+    else
+    {
+      print "Unable to open file '$logfile'\n";
+      AAT::Syslog($PROG_NAME, 'UNABLE_OPEN_FILE', $logfile);
+    }
+  }
 
-    return ( scalar @{$logs} );
+  return (scalar @{$logs});
 }
 
 =head2 Write_Unknown_Logfile($file, $logs)
@@ -259,13 +271,14 @@ Writes Unknown Logs '$logs' into Logfile '$file'
 
 =cut
 
-sub Write_Unknown_Logfile {
-    my ( $logfile, $logs ) = @_;
-    $logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
+sub Write_Unknown_Logfile
+{
+  my ($logfile, $logs) = @_;
+  $logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
 
-    Write_Logfile( $logfile, $logs );
+  Write_Logfile($logfile, $logs);
 
-    return ( scalar @{$logs} );
+  return (scalar @{$logs});
 }
 
 =head2 Incoming_To_Unknown($incoming)
@@ -274,37 +287,43 @@ Moves Incoming file to Unknown file
 
 =cut
 
-sub Incoming_To_Unknown {
-    my $incoming = shift;
-    my $unknown  = $incoming;
-    $unknown =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
-    $unknown =~ s/(msg_\d\dh\d\d)_\d+/$1/;
-    $unknown .= '.gz' if ( $unknown !~ /^.+\.gz$/ );
-    Octopussy::Create_Directory( dirname($unknown) );
-    my $count = 0;
+sub Incoming_To_Unknown
+{
+  my $incoming = shift;
+  my $unknown  = $incoming;
+  $unknown =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
+  $unknown =~ s/(msg_\d\dh\d\d)_\d+/$1/;
+  $unknown .= '.gz' if ($unknown !~ /^.+\.gz$/);
+  Octopussy::Create_Directory(dirname($unknown));
+  my $count = 0;
 
-    if ( defined open my $FILE, '|-', "gzip >> $unknown" ) {
-        my $cat = ( $incoming =~ /.+\.gz$/ ? 'zcat' : 'cat' );
-        if ( defined open my $INCOMING, '-|', "$cat \"$incoming\"" ) {
-            while (<$INCOMING>) {
-                print {$FILE} $_;
-                $count++;
-            }
-            close $INCOMING;
-            unlink $incoming;
-        }
-        else {
-            print "Unable to open file '$incoming'\n";
-            AAT::Syslog( $PROG_NAME, 'UNABLE_OPEN_FILE', $incoming );
-        }
-        close $FILE;
+  if (defined open my $FILE, '|-', "gzip >> $unknown")
+  {
+    my $cat = ($incoming =~ /.+\.gz$/ ? 'zcat' : 'cat');
+    if (defined open my $INCOMING, '-|', "$cat \"$incoming\"")
+    {
+      while (<$INCOMING>)
+      {
+        print {$FILE} $_;
+        $count++;
+      }
+      close $INCOMING;
+      unlink $incoming;
     }
-    else {
-        print "Unable to open file '$unknown'\n";
-        AAT::Syslog( $PROG_NAME, 'UNABLE_OPEN_FILE', $unknown );
+    else
+    {
+      print "Unable to open file '$incoming'\n";
+      AAT::Syslog($PROG_NAME, 'UNABLE_OPEN_FILE', $incoming);
     }
+    close $FILE;
+  }
+  else
+  {
+    print "Unable to open file '$unknown'\n";
+    AAT::Syslog($PROG_NAME, 'UNABLE_OPEN_FILE', $unknown);
+  }
 
-    return ($count);
+  return ($count);
 }
 
 =head2 Alert_Handler($msg, $line)
@@ -313,92 +332,81 @@ Handles Alert(s) for the Message $msg on line $line
 
 =cut
 
-sub Alert_Handler {
-    my ( $msg, $line ) = @_;
+sub Alert_Handler
+{
+  my ($msg, $line) = @_;
 
-    if ( $line =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) \S+/ ) {
-        my $date       = $1;
-        my $parse_date = Date::Manip::ParseDate($date);
-        my $date_tp    = Date::Manip::UnixDate( $parse_date, '%A %H:%M' );
-        my $secs       = Date::Manip::UnixDate( $parse_date, '%s' );
-        foreach my $msg_alert ( @{ $msg->{alerts} } ) {
-            my $a = $alert{$msg_alert};
-            if (
-                ( Octopussy::TimePeriod::Match( $a->{timeperiod}, $date_tp ) )
-                && (
-                    (
-                        AAT::NULL( $a->{regexp_incl} )
-                        || ( $line =~ /$a->{regexp_incl}/ )
-                    )
-                )
-                && (
-                    (
-                        AAT::NULL( $a->{regexp_excl} )
-                        || ( $line !~ /$a->{regexp_excl}/ )
-                    )
-                )
-              )
-            {
-                my $alert_logs = $cache->get( $a->{name} );
-                if ( defined $a->{thresold_time} ) {
-                    push @{$alert_logs}, { timestamp => $secs, log => $line };
-                }
-                if (   ( !defined $a->{thresold_time} )
-                    || ( scalar( @{$alert_logs} ) >= $a->{thresold_time} ) )
-                {
-                    my $match = 1;
-                    if ( defined $a->{thresold_time} ) {
-                        while ( ( $secs - ${$alert_logs}[0]->{timestamp} ) >
-                            $a->{thresold_duration} )
-                        {
-                            shift @{$alert_logs};
-                            $match = 0;
-                        }
-                    }
-                    if ($match) {
-                        my $data = '';
-                        if ( defined $a->{thresold_time} ) {
-                            foreach my $d ( @{$alert_logs} ) {
-                                $data .= "$d->{log}\n";
-                            }
-                        }
-                        else { $data = $line; }
-                        $alert_logs = ();
-                        Octopussy::Alert::Insert_In_DB( $device, $a, $data,
-                            $date );
-                        my ( $subject, $body, $action_host, $action_service, $action_body ) =
-                          Octopussy::Alert::Message_Building( $a, $device,
-                            $data, $msg );
-                        if ( defined $a->{action_jabber} ) {
-                            AAT::XMPP::Send_Message( 'Octopussy', $subject,
-                                @{ $a->{imdest} } );
-                            foreach my $line ( split( /\n/, $body ) ) {
-                                AAT::XMPP::Send_Message( 'Octopussy', $line,
-                                    @{ $a->{imdest} } );
-                            }
-                        }
-                        AAT::SMTP::Send_Message( 'Octopussy', $subject, $body,
-                            @{ $a->{maildest} } )
-                          if ( defined $a->{action_mail} );
-                        AAT::NSCA::Send(
-                            'Octopussy',
-                            ( ( $a->{level} =~ /Warning/i ) ? 1 : 2 ),
-                            $action_body,
-                            $a->{nagios_host},
-                            $a->{nagios_service}
-                        ) if ( defined $a->{action_nsca} );
-                        AAT::Zabbix::Send(
-                            'Octopussy',  $action_body,
-                            $action_host, $action_service
-                        ) if ( defined $a->{action_zabbix} );
-                    }
-                }
-                $cache->set( $a->{name}, $alert_logs );
-            }
+  if ($line =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) \S+/)
+  {
+    my $date       = $1;
+    my $parse_date = Date::Manip::ParseDate($date);
+    my $date_tp    = Date::Manip::UnixDate($parse_date, '%A %H:%M');
+    my $secs       = Date::Manip::UnixDate($parse_date, '%s');
+    foreach my $msg_alert (@{$msg->{alerts}})
+    {
+      my $a = $alert{$msg_alert};
+      if ( (Octopussy::TimePeriod::Match($a->{timeperiod}, $date_tp))
+        && ((AAT::NULL($a->{regexp_incl}) || ($line =~ /$a->{regexp_incl}/)))
+        && ((AAT::NULL($a->{regexp_excl}) || ($line !~ /$a->{regexp_excl}/))))
+      {
+        my $alert_logs = $cache->get($a->{name});
+        if (defined $a->{thresold_time})
+        {
+          push @{$alert_logs}, {timestamp => $secs, log => $line};
         }
+        if ( (!defined $a->{thresold_time})
+          || (scalar(@{$alert_logs}) >= $a->{thresold_time}))
+        {
+          my $match = 1;
+          if (defined $a->{thresold_time})
+          {
+            while (($secs - ${$alert_logs}[0]->{timestamp}) >
+              $a->{thresold_duration})
+            {
+              shift @{$alert_logs};
+              $match = 0;
+            }
+          }
+          if ($match)
+          {
+            my $data = '';
+            if (defined $a->{thresold_time})
+            {
+              foreach my $d (@{$alert_logs})
+              {
+                $data .= "$d->{log}\n";
+              }
+            }
+            else { $data = $line; }
+            $alert_logs = ();
+            Octopussy::Alert::Insert_In_DB($device, $a, $data, $date);
+            my ($subject, $body, $action_host, $action_service, $action_body) =
+              Octopussy::Alert::Message_Building($a, $device, $data, $msg);
+            if (defined $a->{action_jabber})
+            {
+              AAT::XMPP::Send_Message('Octopussy', $subject, @{$a->{imdest}});
+              foreach my $line (split(/\n/, $body))
+              {
+                AAT::XMPP::Send_Message('Octopussy', $line, @{$a->{imdest}});
+              }
+            }
+            AAT::SMTP::Send_Message('Octopussy', $subject, $body,
+              @{$a->{maildest}})
+              if (defined $a->{action_mail});
+            AAT::NSCA::Send('Octopussy', (($a->{level} =~ /Warning/i) ? 1 : 2),
+              $action_body, $a->{nagios_host}, $a->{nagios_service})
+              if (defined $a->{action_nsca});
+            AAT::Zabbix::Send('Octopussy', $action_body, $action_host,
+              $action_service)
+              if (defined $a->{action_zabbix});
+          }
+        }
+        $cache->set($a->{name}, $alert_logs);
+      }
     }
+  }
 
-    return (undef);
+  return (undef);
 }
 
 =head2 Line_Handler($line, $serv, $msg, $known_msgs, $match)
@@ -407,37 +415,40 @@ Handles line $line for Service $serv & Message $msg
 
 =cut
 
-sub Line_Handler {
-    my ( $line, $serv, $msg, $known_msgs, $match ) = @_;
+sub Line_Handler
+{
+  my ($line, $serv, $msg, $known_msgs, $match) = @_;
 
-    if ( $line =~ $msg->{re} ) {
-        Alert_Handler( $msg, $line ) if ( scalar( @{ $msg->{alerts} } ) > 0 );
-        push @{ $known_msgs->{$serv} }, $line;
-        $taxo_stats{$serv}{ $msg->{taxo} } = (
-            defined $taxo_stats{$serv}{ $msg->{taxo} }
-            ? $taxo_stats{$serv}{ $msg->{taxo} } + 1
-            : 1
-        );
+  if ($line =~ $msg->{re})
+  {
+    Alert_Handler($msg, $line) if (scalar(@{$msg->{alerts}}) > 0);
+    push @{$known_msgs->{$serv}}, $line;
+    $taxo_stats{$serv}{$msg->{taxo}} = (
+      defined $taxo_stats{$serv}{$msg->{taxo}}
+      ? $taxo_stats{$serv}{$msg->{taxo}} + 1
+      : 1
+    );
 
-        $msgid_stats{$serv}{ $msg->{id} } = (
-            defined $msgid_stats{$serv}{ $msg->{id} }
-            ? $msgid_stats{$serv}{ $msg->{id} } + 1
-            : 1
-        );
-        $msgid_stats{$serv}{"$serv:TOTAL"} = (
-            defined $msgid_stats{$serv}{"$serv:TOTAL"}
-            ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
-            : 1
-        );
+    $msgid_stats{$serv}{$msg->{id}} = (
+      defined $msgid_stats{$serv}{$msg->{id}}
+      ? $msgid_stats{$serv}{$msg->{id}} + 1
+      : 1
+    );
+    $msgid_stats{$serv}{"$serv:TOTAL"} = (
+      defined $msgid_stats{$serv}{"$serv:TOTAL"}
+      ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+      : 1
+    );
 
-        $$match = 1;
-    }
-    elsif ( $line =~ /last message repeated \d+ time/ ) {
-        push @{ $known_msgs->{$serv} }, $line;
-        $$match = 1;
-    }
+    $$match = 1;
+  }
+  elsif ($line =~ /last message repeated \d+ time/)
+  {
+    push @{$known_msgs->{$serv}}, $line;
+    $$match = 1;
+  }
 
-    return ($$match);
+  return ($$match);
 }
 
 =head2 Service_Handler($serv, $y, $m, $d, $hour, $min, $file_new)
@@ -446,16 +457,17 @@ Handles Service $serv
 
 =cut
 
-sub Service_Handler {
-    my ( $serv, $y, $m, $d, $hour, $min, $file_new ) = @_;
+sub Service_Handler
+{
+  my ($serv, $y, $m, $d, $hour, $min, $file_new) = @_;
 
-    my $dir_service = $serv;
-    $dir_service =~ s/ /_/g;
-    my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
-    Write_Logfile( "$dir$file_new", \@{ $known_msgs{$serv} } );
-    $parser_stats{$serv} += scalar @{ $known_msgs{$serv} };
+  my $dir_service = $serv;
+  $dir_service =~ s/ /_/g;
+  my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
+  Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}});
+  $parser_stats{$serv} += scalar @{$known_msgs{$serv}};
 
-    return ( scalar @{ $known_msgs{$serv} } );
+  return (scalar @{$known_msgs{$serv}});
 }
 
 =head2 Cache_MsgID_Stats()
@@ -464,24 +476,27 @@ Puts MsgID Statistics in cache
 
 =cut
 
-sub Cache_MsgID_Stats {
-    my @parser_msgid_stats = ();
-    foreach my $k1 ( keys %msgid_stats ) {
-        foreach my $k2 ( keys %{ $msgid_stats{$k1} } ) {
-            if ( $k2 =~ /^.+?:(.+)$/ ) {
-                my $id    = $1;
-                my $count = $msgid_stats{$k1}{$k2};
-                push @parser_msgid_stats,
-                  { service => $k1, id => $id, count => $count }
-                  if ( $count > 0 );
-                $msgid_stats{$k1}{$k2} = 0;
-            }
-        }
+sub Cache_MsgID_Stats
+{
+  my @parser_msgid_stats = ();
+  foreach my $k1 (keys %msgid_stats)
+  {
+    foreach my $k2 (keys %{$msgid_stats{$k1}})
+    {
+      if ($k2 =~ /^.+?:(.+)$/)
+      {
+        my $id    = $1;
+        my $count = $msgid_stats{$k1}{$k2};
+        push @parser_msgid_stats, {service => $k1, id => $id, count => $count}
+          if ($count > 0);
+        $msgid_stats{$k1}{$k2} = 0;
+      }
     }
-    $cache->set( "parser_msgid_stats_$year$month$day$hour${min}_$device",
-        \@parser_msgid_stats );
+  }
+  $cache->set("parser_msgid_stats_$year$month$day$hour${min}_$device",
+    \@parser_msgid_stats);
 
-    return ( scalar @parser_msgid_stats );
+  return (scalar @parser_msgid_stats);
 }
 
 =head2 Cache_Taxonomy_Stats($service)
@@ -490,20 +505,22 @@ Puts Taxonomy Statistics in cache
 
 =cut
 
-sub Cache_Taxonomy_Stats {
-    my $service = shift;
+sub Cache_Taxonomy_Stats
+{
+  my $service = shift;
 
-    my @taxo_rrd = ();
-    foreach my $t (@taxo_list) {
-        push @taxo_rrd, $taxo_stats{$service}{ $t->{value} } || 0;
-        $taxo_stats{$service}{ $t->{value} } = 0;
-    }
-    my $seconds_to_parse =
-      AAT::Datetime::Seconds_Since_1970( $year, $month, $day, $hour, $min );
-    $cache->set( "parser_taxo_stats_${device}_${service}",
-        { datetime => $seconds_to_parse, stats => \@taxo_rrd } );
+  my @taxo_rrd = ();
+  foreach my $t (@taxo_list)
+  {
+    push @taxo_rrd, $taxo_stats{$service}{$t->{value}} || 0;
+    $taxo_stats{$service}{$t->{value}} = 0;
+  }
+  my $seconds_to_parse =
+    AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);
+  $cache->set("parser_taxo_stats_${device}_${service}",
+    {datetime => $seconds_to_parse, stats => \@taxo_rrd});
 
-    return ( scalar @taxo_rrd );
+  return (scalar @taxo_rrd);
 }
 
 =head2 File_Handler($file)
@@ -512,157 +529,164 @@ Handles file $file
 
 =cut
 
-sub File_Handler {
-    my $file = shift;
+sub File_Handler
+{
+  my $file = shift;
 
-    my $time = time;
-    if (   ( -f $file )
-        && ( $file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)_\d+\.log)/ ) )
+  my $time = time;
+  if ( (-f $file)
+    && ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)_\d+\.log)/))
+  {
+    my ($n_year, $n_month, $n_day, $file_new, $n_hour, $n_min) =
+      ($1, $2, $3, $4, $5, $6);
+
+    if ($year == 0)
     {
-        my ( $n_year, $n_month, $n_day, $file_new, $n_hour, $n_min ) =
-          ( $1, $2, $3, $4, $5, $6 );
-
-        if ( $year == 0 ) {
-            ( $year, $month, $day, $hour, $min ) =
-              ( $n_year, $n_month, $n_day, $n_hour, $n_min );
-        }
-        if (   ( $n_min != $min )
-            || ( $n_hour != $hour )
-            || ( $n_day != $day )
-            || ( $n_month != $month ) )
-        {    # not the same minute than previous file -> write stats to syslog
-            foreach my $s_conf (@services) {
-                my $s = $s_conf->{sid};
-                if (   ( AAT::NOT_NULL( $parser_stats{$s} ) )
-                    && ( $parser_stats{$s} != 0 ) )
-                {
-                    AAT::Syslog(
-                        $PROG_NAME,
-                        'PARSER_DEVICE_SERVICE_EVENTS',
-                        $device,
-                        $s,
-                        "$day/$month/$year $hour:$min",
-                        $parser_stats{$s},
-                        $nb_lines_minute
-                    );
-                    Cache_Taxonomy_Stats($s);
-                    $parser_stats{$s} = 0;
-                }
-            }
-            Cache_MsgID_Stats();
-            AAT::Syslog(
-                $PROG_NAME, 'PARSER_DEVICE_PARSING_DURATION',
-                $device, "$day/$month/$year $hour:$min",
-                $seconds_to_parse
-            );
-            ( $nb_lines_minute, $seconds_to_parse ) = ( 0, 0 );
-            ( $year, $month, $day, $hour, $min ) =
-              ( $n_year, $n_month, $n_day, $n_hour, $n_min );
-        }
-
-        ( %known_msgs, @unknown_msgs ) = ( (), () );
-        my $cat = ( $file =~ /.+\.gz$/ ? 'zcat' : 'cat' );
-        if (   ( -f "$file" )
-            && ( defined open my $FILE, '-|', "$cat \"$file\"" ) )
+      ($year, $month, $day, $hour, $min) =
+        ($n_year, $n_month, $n_day, $n_hour, $n_min);
+    }
+    if ( ($n_min != $min)
+      || ($n_hour != $hour)
+      || ($n_day != $day)
+      || ($n_month != $month))
+    {    # not the same minute than previous file -> write stats to syslog
+      foreach my $s_conf (@services)
+      {
+        my $s = $s_conf->{sid};
+        if ( (AAT::NOT_NULL($parser_stats{$s}))
+          && ($parser_stats{$s} != 0))
         {
-            while ( my $line = <$FILE> ) {
-                chomp $line;
-                my $match = 0;
-                foreach my $s_conf (@services) {
-                    my $serv = $s_conf->{sid};
-                    if ( $line =~ $service{$serv}{global_regexp} ) {
-                        if (   ( defined $service{$serv}{msgs} )
-                            && ( scalar @{ $service{$serv}{msgs} } ) )
-                        { # MsgID Statistics enabled and/or Alerts for this Service
-                            foreach my $msg ( @{ $service{$serv}{msgs} } ) {
-                                Line_Handler( $line, $serv, $msg, \%known_msgs,
-                                    \$match );
-                                last if ($match);
-                            }
-                            if ( !$match ) {
-                                $msgid_stats{$serv}{"$serv:TOTAL"} = (
-                                    defined $msgid_stats{$serv}{"$serv:TOTAL"}
-                                    ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
-                                    : 1
-                                );
-                                push @{ $known_msgs{$serv} }, $line;
-                            }
-                        }
-                        else
-                        { # MsgID Statistics disabled and no Alert for this Service
-                            $msgid_stats{$serv}{"$serv:TOTAL"} = (
-                                defined $msgid_stats{$serv}{"$serv:TOTAL"}
-                                ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
-                                : 1
-                            );
-                            push @{ $known_msgs{$serv} }, $line;
-                        }
-                        $match = 1;
-                    }
-                    last if ($match);
-                }
-                push @unknown_msgs, $line if ( !$match );
-                $nb_lines_minute++;
-            }
-            close $FILE;
-            unlink $file;
+          AAT::Syslog(
+            $PROG_NAME, 'PARSER_DEVICE_SERVICE_EVENTS',
+            $device, $s, "$day/$month/$year $hour:$min",
+            $parser_stats{$s}, $nb_lines_minute
+          );
+          Cache_Taxonomy_Stats($s);
+          $parser_stats{$s} = 0;
         }
-        else {
-            print "Unable to open file '$file'\n";
-            AAT::Syslog( $PROG_NAME, 'UNABLE_OPEN_FILE', $file );
-        }
-        foreach my $serv ( keys %known_msgs ) {
-            Service_Handler(
-                $serv,   $n_year, $n_month, $n_day,
-                $n_hour, $n_min,  $file_new
-            );
-        }
-        Write_Unknown_Logfile( $file, \@unknown_msgs );
-        $seconds_to_parse += ( time() - $time );
+      }
+      Cache_MsgID_Stats();
+      AAT::Syslog(
+        $PROG_NAME, 'PARSER_DEVICE_PARSING_DURATION',
+        $device, "$day/$month/$year $hour:$min",
+        $seconds_to_parse
+      );
+      ($nb_lines_minute, $seconds_to_parse) = (0, 0);
+      ($year, $month, $day, $hour, $min) =
+        ($n_year, $n_month, $n_day, $n_hour, $n_min);
     }
 
-    return ( scalar @unknown_msgs );
+    (%known_msgs, @unknown_msgs) = ((), ());
+    my $cat = ($file =~ /.+\.gz$/ ? 'zcat' : 'cat');
+    if ( (-f "$file")
+      && (defined open my $FILE, '-|', "$cat \"$file\""))
+    {
+      while (my $line = <$FILE>)
+      {
+        chomp $line;
+        my $match = 0;
+        foreach my $s_conf (@services)
+        {
+          my $serv = $s_conf->{sid};
+          if ($line =~ $service{$serv}{global_regexp})
+          {
+            if ( (defined $service{$serv}{msgs})
+              && (scalar @{$service{$serv}{msgs}}))
+            {    # MsgID Statistics enabled and/or Alerts for this Service
+              foreach my $msg (@{$service{$serv}{msgs}})
+              {
+                Line_Handler($line, $serv, $msg, \%known_msgs, \$match);
+                last if ($match);
+              }
+              if (!$match)
+              {
+                $msgid_stats{$serv}{"$serv:TOTAL"} = (
+                  defined $msgid_stats{$serv}{"$serv:TOTAL"}
+                  ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+                  : 1
+                );
+                push @{$known_msgs{$serv}}, $line;
+              }
+            }
+            else
+            {    # MsgID Statistics disabled and no Alert for this Service
+              $msgid_stats{$serv}{"$serv:TOTAL"} = (
+                defined $msgid_stats{$serv}{"$serv:TOTAL"}
+                ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+                : 1
+              );
+              push @{$known_msgs{$serv}}, $line;
+            }
+            $match = 1;
+          }
+          last if ($match);
+        }
+        push @unknown_msgs, $line if (!$match);
+        $nb_lines_minute++;
+      }
+      close $FILE;
+      unlink $file;
+    }
+    else
+    {
+      print "Unable to open file '$file'\n";
+      AAT::Syslog($PROG_NAME, 'UNABLE_OPEN_FILE', $file);
+    }
+    foreach my $serv (keys %known_msgs)
+    {
+      Service_Handler($serv, $n_year, $n_month, $n_day, $n_hour, $n_min,
+        $file_new);
+    }
+    Write_Unknown_Logfile($file, \@unknown_msgs);
+    $seconds_to_parse += (time() - $time);
+  }
+
+  return (scalar @unknown_msgs);
 }
 
 #
 # MAIN
 #
-exit if ( !Octopussy::Valid_User($PROG_NAME) );
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 $SIG{HUP}  = \&Reload;
 $SIG{USR1} = \&Exit;
 
-AAT::Syslog( $PROG_NAME, 'PARSER_START', $device );
+AAT::Syslog($PROG_NAME, 'PARSER_START', $device);
 Init();
-AAT::Syslog( $PROG_NAME, 'PARSER_FILES_TO_PARSE', $device, scalar @files );
+AAT::Syslog($PROG_NAME, 'PARSER_FILES_TO_PARSE', $device, scalar @files);
 my $last_logs_time = time;
-while ( !$exit_request ) {
-    my @events = $inotify->read;
-    foreach my $e (@events) { Inotify_Watch( $e->fullname ); }
-    if ( scalar @files > 0 ) { $last_logs_time = time; }
-    else {
-        my $diff = time - $last_logs_time;
-        if (   ( AAT::NOT_NULL($minutes_without_logs) )
-            && ( $diff > ( $minutes_without_logs * 60 ) ) )
-        {
-            AAT::Syslog( $PROG_NAME, 'DEVICE_HASNT_SENT_ANY_LOGS', $device,
-                int( $diff / 60 ) );
-        }
+while (!$exit_request)
+{
+  my @events = $inotify->read;
+  foreach my $e (@events) { Inotify_Watch($e->fullname); }
+  if (scalar @files > 0) { $last_logs_time = time; }
+  else
+  {
+    my $diff = time - $last_logs_time;
+    if ( (AAT::NOT_NULL($minutes_without_logs))
+      && ($diff > ($minutes_without_logs * 60)))
+    {
+      AAT::Syslog($PROG_NAME, 'DEVICE_HASNT_SENT_ANY_LOGS', $device,
+        int($diff / 60));
     }
-    while ( $file = shift @files ) {
-        chomp $file;
-        if   ( scalar @services == 0 ) { Incoming_To_Unknown($file); }
-        else                           { File_Handler($file); }
-        last if ( $reload_request || $exit_request );
-    }
-    if ($reload_request) {
-        $reload_request = 0;
-        Init();
-    }
+  }
+  while ($file = shift @files)
+  {
+    chomp $file;
+    if   (scalar @services == 0) { Incoming_To_Unknown($file); }
+    else                         { File_Handler($file); }
+    last if ($reload_request || $exit_request);
+  }
+  if ($reload_request)
+  {
+    $reload_request = 0;
+    Init();
+  }
 
-    if ( !$exit_request ) { sleep 2; }
+  if (!$exit_request) { sleep 2; }
 }
-AAT::Syslog( $PROG_NAME, 'PARSER_STOP', $device );
+AAT::Syslog($PROG_NAME, 'PARSER_STOP', $device);
 
 =head1 AUTHOR
 

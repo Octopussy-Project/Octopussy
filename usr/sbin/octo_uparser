@@ -30,29 +30,30 @@ use Octopussy;
 
 Readonly my $PROG_NAME => 'octo_uparser';
 
-exit if ( !Octopussy::Valid_User($PROG_NAME) );
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 my $device = $ARGV[0];
 
 my $cache = Octopussy::Cache::Init('octo_parser');
-$cache->set( "uparser_$device", 'running' );
+$cache->set("uparser_$device", 'running');
 
-my ( @files, @services );
+my (@files, @services);
 my %service;
 my %dir_data = ();
-my ( %known_msgs, @unknown_msgs ) = ( (), (), () );
-my ( $file, $last_file ) = ( undef, undef );
+my (%known_msgs, @unknown_msgs) = ((), (), ());
+my ($file, $last_file) = (undef, undef);
 
-my $file_pid = Octopussy::PID_File( $PROG_NAME . "_$device" );
+my $file_pid = Octopussy::PID_File($PROG_NAME . "_$device");
 my $count    = 0;
-while ( ( !defined $file_pid ) && ( $count < 10 ) )
+while ((!defined $file_pid) && ($count < 10))
 {    # wait 10 secs max that old parser stops
-    sleep 1;
-    $count++;
+  sleep 1;
+  $count++;
 }
-if ( !defined $file_pid ) {
-    Octopussy::Die( $PROG_NAME,
-        "[CRITICAL] Parsing $device - Process already running !" );
+if (!defined $file_pid)
+{
+  Octopussy::Die($PROG_NAME,
+    "[CRITICAL] Parsing $device - Process already running !");
 }
 
 my $exit_request = 0;
@@ -66,10 +67,11 @@ Softly stops the uparser
 
 =cut
 
-sub Exit {
-    $exit_request = 1;
+sub Exit
+{
+  $exit_request = 1;
 
-    return ($exit_request);
+  return ($exit_request);
 }
 
 =head2 Init()
@@ -78,47 +80,49 @@ Inits UParser
 
 =cut
 
-sub Init {
-    @services = Octopussy::Device::Services($device);
-    @files    = ();
-    if ( scalar @services > 0 ) {
-        push @files, Octopussy::Logs::Unknown_Files($device);
-        if ( scalar @files > 0 ) {
-            my $storage = Octopussy::Storage::Default();
-            $dir_data{'Unknown'} =
-              Octopussy::Storage::Directory_Unknown($device);
-            foreach my $serv (@services) {
-                my $ra = Regexp::Assemble->new;
-                $dir_data{$serv} =
-                  Octopussy::Storage::Directory_Service( $device, $serv );
-                my @msg_to_parse = ();
-                my @messages     = Octopussy::Service::Messages($serv);
-                AAT::Syslog(
-                    $PROG_NAME, 'PARSER_INIT_SERVICE',
-                    $serv,      scalar @messages
-                );
+sub Init
+{
+  @services = Octopussy::Device::Services($device);
+  @files    = ();
+  if (scalar @services > 0)
+  {
+    push @files, Octopussy::Logs::Unknown_Files($device);
+    if (scalar @files > 0)
+    {
+      my $storage = Octopussy::Storage::Default();
+      $dir_data{'Unknown'} = Octopussy::Storage::Directory_Unknown($device);
+      foreach my $serv (@services)
+      {
+        my $ra = Regexp::Assemble->new;
+        $dir_data{$serv} =
+          Octopussy::Storage::Directory_Service($device, $serv);
+        my @msg_to_parse = ();
+        my @messages     = Octopussy::Service::Messages($serv);
+        AAT::Syslog($PROG_NAME, 'PARSER_INIT_SERVICE', $serv, scalar @messages);
 
-                foreach my $m (@messages) {
+        foreach my $m (@messages)
+        {
 
-                    # check if the regexp is valid
-                    my $valid_regexp = eval {
-                        use warnings FATAL => qw( regexp );
-                        my $re = Octopussy::Message::Pattern_To_Regexp($m);
-                        qr/$re/;
-                    };
-                    if ($valid_regexp) {
-                        my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-                        $ra->add($regexp);
-                    }
-                }
-                $service{$serv}{global_regexp} = $ra->re;
-            }
-            ( $file, $last_file ) = ( undef, undef );
-            ( %known_msgs, @unknown_msgs ) = ( (), () );
+          # check if the regexp is valid
+          my $valid_regexp = eval {
+            use warnings FATAL => qw( regexp );
+            my $re = Octopussy::Message::Pattern_To_Regexp($m);
+            qr/$re/;
+          };
+          if ($valid_regexp)
+          {
+            my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
+            $ra->add($regexp);
+          }
         }
+        $service{$serv}{global_regexp} = $ra->re;
+      }
+      ($file, $last_file) = (undef, undef);
+      (%known_msgs, @unknown_msgs) = ((), ());
     }
+  }
 
-    return ( scalar @services );
+  return (scalar @services);
 }
 
 =head2 Write_Logfile($logfile, $logs)
@@ -127,23 +131,27 @@ Writes Logs '$logs' into Logfile '$logfile'
 
 =cut
 
-sub Write_Logfile {
-    my ( $logfile, $logs ) = @_;
+sub Write_Logfile
+{
+  my ($logfile, $logs) = @_;
 
-    if ( scalar @{$logs} > 0 ) {
-        $logfile .= '.gz' if ( $logfile !~ /^.+\.gz$/ );
-        Octopussy::Create_Directory( dirname($logfile) );
-        if ( defined open my $FILE, '|-', "gzip >> $logfile" ) {
-            foreach my $log ( @{$logs} ) { print {$FILE} "$log\n"; }
-            close $FILE;
-        }
-        else {
-            print "Unable to open file '$logfile'\n";
-            AAT::Syslog( 'octo_uparser', 'UNABLE_OPEN_FILE', $logfile );
-        }
+  if (scalar @{$logs} > 0)
+  {
+    $logfile .= '.gz' if ($logfile !~ /^.+\.gz$/);
+    Octopussy::Create_Directory(dirname($logfile));
+    if (defined open my $FILE, '|-', "gzip >> $logfile")
+    {
+      foreach my $log (@{$logs}) { print {$FILE} "$log\n"; }
+      close $FILE;
     }
+    else
+    {
+      print "Unable to open file '$logfile'\n";
+      AAT::Syslog('octo_uparser', 'UNABLE_OPEN_FILE', $logfile);
+    }
+  }
 
-    return ( scalar @{$logs} );
+  return (scalar @{$logs});
 }
 
 =head2 Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new)
@@ -152,21 +160,22 @@ Handles Service $serv
 
 =cut
 
-sub Service_Handler {
-    my ( $serv, $total, $y, $m, $d, $hour, $min, $file_new ) = @_;
+sub Service_Handler
+{
+  my ($serv, $total, $y, $m, $d, $hour, $min, $file_new) = @_;
 
-    my $dir_service = $serv;
-    $dir_service =~ s/ /_/g;
-    my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
-    AAT::Syslog(
-        $PROG_NAME, 'PARSER_DEVICE_SERVICE_EVENTS',
-        $device, $serv,
-        "$d/$m/$y $hour:$min",
-        scalar @{ $known_msgs{$serv} }, $total
-    );
-    Write_Logfile( "$dir$file_new", \@{ $known_msgs{$serv} } );
+  my $dir_service = $serv;
+  $dir_service =~ s/ /_/g;
+  my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
+  AAT::Syslog(
+    $PROG_NAME, 'PARSER_DEVICE_SERVICE_EVENTS',
+    $device, $serv,
+    "$d/$m/$y $hour:$min",
+    scalar @{$known_msgs{$serv}}, $total
+  );
+  Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}});
 
-    return ( @{ $known_msgs{$serv} } );
+  return (@{$known_msgs{$serv}});
 }
 
 =head2 File_Handler($file)
@@ -175,47 +184,53 @@ Handles file $file
 
 =cut
 
-sub File_Handler {
-    my $file = shift;
+sub File_Handler
+{
+  my $file = shift;
 
-    if (   ( -f $file )
-        && ( $file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)\.log.*)$/ ) )
+  if ( (-f $file)
+    && ($file =~ /\/(\d+)\/(\d+)\/(\d+)\/(msg_(\d\d)h(\d\d)\.log.*)$/))
+  {
+    my ($y, $m, $d, $file_new, $hour, $min) = ($1, $2, $3, $4, $5, $6);
+    (%known_msgs, @unknown_msgs) = ((), ());
+    my $total = 0;
+    my $cat = ($file =~ /.+\.gz$/ ? 'zcat' : 'cat');
+    if (defined open my $FILE, '-|', "$cat \"$file\"")
     {
-        my ( $y, $m, $d, $file_new, $hour, $min ) = ( $1, $2, $3, $4, $5, $6 );
-        ( %known_msgs, @unknown_msgs ) = ( (), () );
-        my $total = 0;
-        my $cat = ( $file =~ /.+\.gz$/ ? 'zcat' : 'cat' );
-        if ( defined open my $FILE, '-|', "$cat \"$file\"" ) {
-            while ( my $line = <$FILE> ) {
-                chomp $line;
-                my $match = 0;
-                foreach my $serv (@services) {
-                    if ( $line =~ $service{$serv}{global_regexp} ) {
-                        push @{ $known_msgs{$serv} }, $line;
-                        $match = 1;
-                        last;
-                    }
-                }
-                push @unknown_msgs, $line if ( !$match );
-                $total++;
-            }
-            close $FILE;
-            unlink $file;
+      while (my $line = <$FILE>)
+      {
+        chomp $line;
+        my $match = 0;
+        foreach my $serv (@services)
+        {
+          if ($line =~ $service{$serv}{global_regexp})
+          {
+            push @{$known_msgs{$serv}}, $line;
+            $match = 1;
+            last;
+          }
         }
-        else {
-            print "Unable to open file '$file'\n";
-            AAT::Syslog( $PROG_NAME, 'UNABLE_OPEN_FILE', $file );
-        }
-        foreach my $serv ( keys %known_msgs ) {
-            Service_Handler( $serv, $total, $y, $m, $d, $hour, $min,
-                $file_new );
-        }
-        Write_Logfile( $file, \@unknown_msgs );
-
-        return ($file);
+        push @unknown_msgs, $line if (!$match);
+        $total++;
+      }
+      close $FILE;
+      unlink $file;
     }
+    else
+    {
+      print "Unable to open file '$file'\n";
+      AAT::Syslog($PROG_NAME, 'UNABLE_OPEN_FILE', $file);
+    }
+    foreach my $serv (keys %known_msgs)
+    {
+      Service_Handler($serv, $total, $y, $m, $d, $hour, $min, $file_new);
+    }
+    Write_Logfile($file, \@unknown_msgs);
 
-    return (undef);
+    return ($file);
+  }
+
+  return (undef);
 }
 
 #
@@ -224,15 +239,16 @@ sub File_Handler {
 
 $SIG{USR1} = \&Exit;
 
-AAT::Syslog( $PROG_NAME, 'PARSER_START', $device );
+AAT::Syslog($PROG_NAME, 'PARSER_START', $device);
 Init();
-foreach my $file (@files) {
-    chomp $file;
-    File_Handler($file);
-    Init() if ( $cache->get("uparser_$device") eq 'reload' );
-    last if ($exit_request);
+foreach my $file (@files)
+{
+  chomp $file;
+  File_Handler($file);
+  Init() if ($cache->get("uparser_$device") eq 'reload');
+  last if ($exit_request);
 }
-AAT::Syslog( $PROG_NAME, 'PARSER_STOP', $device );
+AAT::Syslog($PROG_NAME, 'PARSER_STOP', $device);
 $cache->remove("uparser_$device");
 
 =head1 AUTHOR

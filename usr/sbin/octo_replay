@@ -29,8 +29,8 @@ Readonly my $PROG_NAME    => 'octo_replay';
 Readonly my $PROG_VERSION => Octopussy::Version();
 
 my $help;
-my ( $opt_device, $opt_service, $opt_begin, $opt_end ) =
-  ( undef, undef, undef, undef );
+my ($opt_device, $opt_service, $opt_begin, $opt_end) =
+  (undef, undef, undef, undef);
 my $file_pid = undef;
 my $cache    = undef;
 
@@ -42,8 +42,9 @@ Prints Help
 
 =cut
 
-sub Help {
-    my $help_str = <<"EOF";
+sub Help
+{
+  my $help_str = <<"EOF";
 
 $PROG_NAME (version $PROG_VERSION)
 
@@ -52,65 +53,71 @@ $PROG_NAME (version $PROG_VERSION)
 
 EOF
 
-    print $help_str;
-    if ( !defined $opt_device ) {
-        print ' ' . Octopussy::Device::String_List(undef) . "\n";
-    }
-    elsif ( !defined $opt_service ) {
-        print ' '
-          . Octopussy::Device::String_Services( AAT::ARRAY($opt_device) )
-          . "\n";
-    }
-    print "\n";
+  print $help_str;
+  if (!defined $opt_device)
+  {
+    print ' ' . Octopussy::Device::String_List(undef) . "\n";
+  }
+  elsif (!defined $opt_service)
+  {
+    print ' '
+      . Octopussy::Device::String_Services(AAT::ARRAY($opt_device)) . "\n";
+  }
+  print "\n";
 
-    exit;
+  exit;
 }
 
 #
 # MAIN
 #
-exit if ( !Octopussy::Valid_User($PROG_NAME) );
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 my $status = GetOptions(
-    'h'         => \$help,
-    'help'      => \$help,
-    'device=s'  => \$opt_device,
-    'service=s' => \$opt_service,
-    'begin=s'   => \$opt_begin,
-    'end=s'     => \$opt_end,
+  'h'         => \$help,
+  'help'      => \$help,
+  'device=s'  => \$opt_device,
+  'service=s' => \$opt_service,
+  'begin=s'   => \$opt_begin,
+  'end=s'     => \$opt_end,
 );
 
 Help()
-  if ( ( !$status )
-    || ($help)
-    || ( !defined $opt_device )
-    || ( !defined $opt_service )
-    || ( !defined $opt_begin )
-    || ( !defined $opt_end ) );
+  if ((!$status)
+  || ($help)
+  || (!defined $opt_device)
+  || (!defined $opt_service)
+  || (!defined $opt_begin)
+  || (!defined $opt_end));
 
 my $dir_incoming =
   Octopussy::Storage::Directory_Incoming($opt_device) . "$opt_device/Incoming/";
-my ( $files, $total ) =
-  Octopussy::Logs::Get_TimePeriod_Files( $opt_device, $opt_service, $opt_begin,
-    $opt_end );
-foreach my $min ( sort keys %{$files} ) {
-    my @logs = ();
-    foreach my $f ( @{ $files->{$min} } ) {
-        if ( defined open my $FILE, '-|', "zcat \"$f\"" ) {
-            while (<$FILE>) { push @logs, $_; }
-            close $FILE;
-            unlink $f;
-        }
+my ($files, $total) =
+  Octopussy::Logs::Get_TimePeriod_Files($opt_device, $opt_service, $opt_begin,
+  $opt_end);
+foreach my $min (sort keys %{$files})
+{
+  my @logs = ();
+  foreach my $f (@{$files->{$min}})
+  {
+    if (defined open my $FILE, '-|', "zcat \"$f\"")
+    {
+      while (<$FILE>) { push @logs, $_; }
+      close $FILE;
+      unlink $f;
     }
+  }
 
-    if ( $min =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/ ) {
-        my $incoming = $dir_incoming . "$1/$2/$3/msg_${4}h${5}_00.log";
-        if ( defined open my $INCOMING, '>', $incoming ) {
-            foreach my $l ( sort @logs ) { print {$INCOMING} $l; }
-            close $INCOMING;
-            Octopussy::Chown($incoming);
-        }
+  if ($min =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/)
+  {
+    my $incoming = $dir_incoming . "$1/$2/$3/msg_${4}h${5}_00.log";
+    if (defined open my $INCOMING, '>', $incoming)
+    {
+      foreach my $l (sort @logs) { print {$INCOMING} $l; }
+      close $INCOMING;
+      Octopussy::Chown($incoming);
     }
+  }
 }
 
 =head1 AUTHOR

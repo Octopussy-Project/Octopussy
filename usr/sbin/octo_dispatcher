@@ -23,7 +23,7 @@ use Octopussy;
 
 Readonly my $PROG_NAME => 'octo_dispatcher';
 
-exit if ( !Octopussy::Valid_User($PROG_NAME) );
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 my $exit_request = 0;
 my $cache        = Octopussy::Cache::Init('octo_dispatcher');
@@ -42,28 +42,31 @@ Inits Dispatcher
 
 =cut
 
-sub Init {
-    %dir_device  = ();
-    %device_type = ();
-    AAT::Syslog( $PROG_NAME, 'LOAD_DEVICES_CONFIG' );
-    my @devices = Octopussy::Device::Configurations('name');
-    foreach my $d (@devices) {
-        my $type = $d->{type};
-        $type =~ s/ /_/g;
-        my $status = ( defined $d->{status} ? $d->{status} : 'Paused' );
-        $device_type{ $d->{name} } = ( $status ne 'Stopped' ? $type : '' );
-        $dir_device{ $d->{name} } =
-          Octopussy::Storage::Directory_Incoming( $d->{name} );
-    }
-    Octopussy::RRDTool::Syslog_By_DeviceType_Init();
+sub Init
+{
+  %dir_device  = ();
+  %device_type = ();
+  AAT::Syslog($PROG_NAME, 'LOAD_DEVICES_CONFIG');
+  my @devices = Octopussy::Device::Configurations('name');
+  foreach my $d (@devices)
+  {
+    my $type = $d->{type};
+    $type =~ s/ /_/g;
+    my $status = (defined $d->{status} ? $d->{status} : 'Paused');
+    $device_type{$d->{name}} = ($status ne 'Stopped' ? $type : '');
+    $dir_device{$d->{name}} =
+      Octopussy::Storage::Directory_Incoming($d->{name});
+  }
+  Octopussy::RRDTool::Syslog_By_DeviceType_Init();
 
-    return ( scalar @devices );
+  return (scalar @devices);
 }
 
-sub Stop {
-    $exit_request = 1;
+sub Stop
+{
+  $exit_request = 1;
 
-    return ($exit_request);
+  return ($exit_request);
 }
 
 =head2 Handle_Dir($device, $year, $month, $day, $hour, $min)
@@ -72,28 +75,29 @@ Handles directory
 
 =cut
 
-sub Handle_Dir {
-    my ( $device, $year, $month, $day, $hour, $min ) = @_;
+sub Handle_Dir
+{
+  my ($device, $year, $month, $day, $hour, $min) = @_;
 
-    if ( !defined $dir_device{$device} ) {
-        if ( !-f Octopussy::Device::Filename($device) ) {
-            Octopussy::Device::New(
-                {
-                    name        => $device,
-                    address     => $device,
-                    description => "New Device ($year/$month/$day $hour:$min) !"
-                }
-            );
-            $device_type{$device} = Octopussy::Parameter('devicetype');
-            $dir_device{$device} =
-              Octopussy::Storage::Directory_Incoming($device);
+  if (!defined $dir_device{$device})
+  {
+    if (!-f Octopussy::Device::Filename($device))
+    {
+      Octopussy::Device::New(
+        {
+          name        => $device,
+          address     => $device,
+          description => "New Device ($year/$month/$day $hour:$min) !"
         }
+      );
+      $device_type{$device} = Octopussy::Parameter('devicetype');
+      $dir_device{$device}  = Octopussy::Storage::Directory_Incoming($device);
     }
-    my $dir_incoming =
-      "$dir_device{$device}/$device/Incoming/$year/$month/$day";
-    Octopussy::Create_Directory($dir_incoming);
+  }
+  my $dir_incoming = "$dir_device{$device}/$device/Incoming/$year/$month/$day";
+  Octopussy::Create_Directory($dir_incoming);
 
-    return ($dir_incoming);
+  return ($dir_incoming);
 }
 
 =head2 Write_Logs_10secs($y, $m, $d, $hour, $min, $mod)
@@ -102,28 +106,32 @@ Writes Logs by 10 seconds block
 
 =cut
 
-sub Write_Logs_10secs {
-    my ( $y, $m, $d, $hour, $min, $mod ) = @_;
+sub Write_Logs_10secs
+{
+  my ($y, $m, $d, $hour, $min, $mod) = @_;
 
-    foreach my $device ( keys %logs ) {
-        my $dir  = Handle_Dir( $device, $y, $m, $d, $hour, $min );
-        my $file = "$dir/msg_${hour}h${min}_$mod.log";
-        my $i    = 0;
-        if ( defined open my $FILE, '>>', $file ) {
-            foreach my $l ( @{ $logs{$device} } ) {
-                print {$FILE} "$l\n";
-                $i++;
-            }
-            close $FILE;
-            $nb_events{$device} += $i;
-            $dtype_stats{ $device_type{$device} } += $i;
-            Octopussy::Chown($file) if ( -f $file );
-        }
-        else { AAT::Syslog( 'octo_dispatcher', 'UNABLE_OPEN_FILE', $file ); }
-        delete $logs{$device};
+  foreach my $device (keys %logs)
+  {
+    my $dir  = Handle_Dir($device, $y, $m, $d, $hour, $min);
+    my $file = "$dir/msg_${hour}h${min}_$mod.log";
+    my $i    = 0;
+    if (defined open my $FILE, '>>', $file)
+    {
+      foreach my $l (@{$logs{$device}})
+      {
+        print {$FILE} "$l\n";
+        $i++;
+      }
+      close $FILE;
+      $nb_events{$device} += $i;
+      $dtype_stats{$device_type{$device}} += $i;
+      Octopussy::Chown($file) if (-f $file);
     }
+    else { AAT::Syslog('octo_dispatcher', 'UNABLE_OPEN_FILE', $file); }
+    delete $logs{$device};
+  }
 
-    return (1);
+  return (1);
 }
 
 =head2 Write_Stats($y, $m, $d, $hour, $min)
@@ -132,94 +140,93 @@ Writes Statistics
 
 =cut
 
-sub Write_Stats {
-    my ( $y, $m, $d, $hour, $min ) = @_;
-    my @syslogs = ();
-    my $total   = 0;
+sub Write_Stats
+{
+  my ($y, $m, $d, $hour, $min) = @_;
+  my @syslogs = ();
+  my $total   = 0;
 
-    foreach my $k ( sort keys %nb_events ) {
-        push @syslogs, "Device: $k - Events: $nb_events{$k}";
-        $total += $nb_events{$k};
-    }
-    AAT::Syslog::Messages( $PROG_NAME, \@syslogs );
-    $cache->set( 'dispatcher_stats_datetime',    "$y$m$d$hour$min" );
-    $cache->set( 'dispatcher_stats_devices',     \%nb_events );
-    $cache->set( 'dispatcher_stats_devicetypes', \%dtype_stats );
+  foreach my $k (sort keys %nb_events)
+  {
+    push @syslogs, "Device: $k - Events: $nb_events{$k}";
+    $total += $nb_events{$k};
+  }
+  AAT::Syslog::Messages($PROG_NAME, \@syslogs);
+  $cache->set('dispatcher_stats_datetime',    "$y$m$d$hour$min");
+  $cache->set('dispatcher_stats_devices',     \%nb_events);
+  $cache->set('dispatcher_stats_devicetypes', \%dtype_stats);
 
-    my $nb = $cache->get("dispatcher_stats_hourly_$y$m$d$hour");
-    $nb = ( AAT::NOT_NULL($nb) ? $nb + $total : $total );
-    $cache->set( "dispatcher_stats_hourly_$y$m$d$hour", $nb );
+  my $nb = $cache->get("dispatcher_stats_hourly_$y$m$d$hour");
+  $nb = (AAT::NOT_NULL($nb) ? $nb + $total : $total);
+  $cache->set("dispatcher_stats_hourly_$y$m$d$hour", $nb);
 
-    %dtype_stats = ();
-    %nb_events   = ();
+  %dtype_stats = ();
+  %nb_events   = ();
 
-    return ($total);
+  return ($total);
 }
 
 #
 # MAIN
 #
 
-my ( $device, $line ) = ( undef, undef );
-my ( $year, $month, $mday, $hour, $min, $sec ) = AAT::Datetime::Now();
-my ( $n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec ) =
-  AAT::Datetime::Now();
+my ($device, $line) = (undef, undef);
+my ($year,   $month,   $mday,   $hour,   $min,   $sec)   = AAT::Datetime::Now();
+my ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
 
 $SIG{HUP}  = \&Init;
 $SIG{USR1} = \&Stop;
 
 Octopussy::PID_File($PROG_NAME);
-AAT::Syslog( $PROG_NAME, 'PROGRAM_START' );
+AAT::Syslog($PROG_NAME, 'PROGRAM_START');
 Init();
 
-while ( !$exit_request ) {
-    my $fifo = Octopussy::File('fifo');
-    Octopussy::Create_Fifo($fifo);
-    open my $FIFO, '<', $fifo
-      or Octopussy::Die( $PROG_NAME,
-        "[CRITICAL] Can't open named pipe $fifo: $!" );
-    while ( my $line = <$FIFO> ) {
-        chomp $line;
-        $line =~ s/^<\d+>//;
-        if ( ( $line =~ /^\w{3} \s?\d{1,2} \d\d:\d\d:\d\d (\S+)/ )
-            || ( $line =~
-                /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}\S+ (\S+)/ ) )
+while (!$exit_request)
+{
+  my $fifo = Octopussy::File('fifo');
+  Octopussy::Create_Fifo($fifo);
+  open my $FIFO, '<', $fifo
+    or Octopussy::Die($PROG_NAME, "[CRITICAL] Can't open named pipe $fifo: $!");
+  while (my $line = <$FIFO>)
+  {
+    chomp $line;
+    $line =~ s/^<\d+>//;
+    if ( ($line =~ /^\w{3} \s?\d{1,2} \d\d:\d\d:\d\d (\S+)/)
+      || ($line =~ /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}\S+ (\S+)/))
+    {
+      $device = $1;
+      ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) =
+        AAT::Datetime::Now();
+      if ( (int($n_sec / 10) != int($sec / 10))
+        || ($n_min != $min)
+        || ($n_hour != $hour)
+        || ($n_mday != $mday)
+        || ($n_month != $month))
+      {
+        my $mod = (int($sec / 10) * 10);
+
+        # every 10 secs, we write log files like msg_HHhMM_XX.log
+        Write_Logs_10secs($year, $month, $mday, $hour, $min, $mod);
+
+        if ( ($n_min != $min)
+          || ($n_hour != $hour)
+          || ($n_mday != $mday)
+          || ($n_month != $month))    # not the same minute than last minute
         {
-            $device = $1;
-            ( $n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec ) =
-              AAT::Datetime::Now();
-            if (   ( int( $n_sec / 10 ) != int( $sec / 10 ) )
-                || ( $n_min != $min )
-                || ( $n_hour != $hour )
-                || ( $n_mday != $mday )
-                || ( $n_month != $month ) )
-            {
-                my $mod = ( int( $sec / 10 ) * 10 );
-
-                # every 10 secs, we write log files like msg_HHhMM_XX.log
-                Write_Logs_10secs( $year, $month, $mday, $hour, $min, $mod );
-
-                if (   ( $n_min != $min )
-                    || ( $n_hour != $hour )
-                    || ( $n_mday != $mday )
-                    || ( $n_month != $month )
-                  )    # not the same minute than last minute
-                {
-                    Write_Stats( $year, $month, $mday, $hour, $min );
-                    ( $year, $month, $mday, $hour, $min ) =
-                      ( $n_year, $n_month, $n_mday, $n_hour, $n_min );
-                }
-                $sec = $n_sec;
-            }
-            push @{ $logs{$device} }, $line
-              if ( ( !defined $device_type{$device} )
-                || ( $device_type{$device} ne '' ) );
+          Write_Stats($year, $month, $mday, $hour, $min);
+          ($year, $month, $mday, $hour, $min) =
+            ($n_year, $n_month, $n_mday, $n_hour, $n_min);
         }
-        last if ($exit_request);
+        $sec = $n_sec;
+      }
+      push @{$logs{$device}}, $line
+        if ((!defined $device_type{$device})
+        || ($device_type{$device} ne ''));
     }
-    close $FIFO;
-    Write_Logs_10secs( $year, $month, $mday, $hour, $min,
-        int( $sec / 10 ) * 10 );
+    last if ($exit_request);
+  }
+  close $FIFO;
+  Write_Logs_10secs($year, $month, $mday, $hour, $min, int($sec / 10) * 10);
 }
 
 =head1 AUTHOR
