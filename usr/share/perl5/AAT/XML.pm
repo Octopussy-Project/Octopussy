@@ -33,15 +33,15 @@ which XML Data field 'name' is '$name'
 
 sub Filename
 {
-  my ( $dir, $name ) = @_;
+  my ($dir, $name) = @_;
 
-  return ( $filename{$dir}{$name} ) if ( defined $filename{$dir}{$name} );
-  my @files = AAT::FS::Directory_Files( $dir, qr/.+\.xml$/ );
+  return ($filename{$dir}{$name}) if (defined $filename{$dir}{$name});
+  my @files = AAT::FS::Directory_Files($dir, qr/.+\.xml$/);
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir/$f");
-    $filename{$dir}{ $conf->{name} } = "$dir/$f";
-    return ("$dir/$f") if ( $conf->{name} eq $name );
+    $filename{$dir}{$conf->{name}} = "$dir/$f";
+    return ("$dir/$f") if ($conf->{name} eq $name);
   }
 
   return (undef);
@@ -57,14 +57,14 @@ sub Name_List
 {
   my $dir   = shift;
   my @list  = ();
-  my @files = AAT::FS::Directory_Files( $dir, qr/.+\.xml$/ );
+  my @files = AAT::FS::Directory_Files($dir, qr/.+\.xml$/);
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir/$f");
-    push @list, $conf->{name} if ( defined $conf->{name} );
+    push @list, $conf->{name} if (defined $conf->{name});
   }
 
-  return ( sort @list );
+  return (sort @list);
 }
 
 =head2 File_Array_Values
@@ -75,16 +75,16 @@ Returns List of Values of each Field '$field' from File '$file', Array '$array'
 
 sub File_Array_Values
 {
-  my ( $file, $array, $field ) = @_;
+  my ($file, $array, $field) = @_;
   my @list = ();
 
   my $conf = AAT::XML::Read($file);
-  foreach my $item ( AAT::ARRAY( $conf->{$array} ) )
+  foreach my $item (AAT::ARRAY($conf->{$array}))
   {
     push @list, $item->{$field};
   }
 
-  return ( sort @list );
+  return (sort @list);
 }
 
 =head2 Read($file, $no_option)
@@ -95,24 +95,23 @@ Reads XML content from file '$file' OR from XML_CACHE
 
 sub Read
 {
-  my ( $file, $no_option ) = @_;
-  my %XML_INPUT_OPTIONS = ( KeyAttr => [], ForceArray => 1 );
+  my ($file, $no_option) = @_;
+  my %XML_INPUT_OPTIONS = (KeyAttr => [], ForceArray => 1);
 
-  if ( ( defined $file ) && ( -f $file ) )
+  if ((defined $file) && (-f $file))
   {
     my @stats = stat $file;
-    if (    ( defined $XML_CACHE{$file} )
-         && ( $stats[9] == $XML_CACHE{$file}{modif_time} ) )
+    if ( (defined $XML_CACHE{$file})
+      && ($stats[9] == $XML_CACHE{$file}{modif_time}))
     {
-      return ( $XML_CACHE{$file}{xml} );
+      return ($XML_CACHE{$file}{xml});
     }
     else
     {
-      return (undef) if ( ( !defined $file ) || ( !-f $file ) );
-      my $xml = eval {
-        XMLin( $file, ( defined $no_option ? () : %XML_INPUT_OPTIONS ) );
-      };
-      AAT::Syslog( 'AAT::XML', 'XML_READ_ERROR', $EVAL_ERROR ) if ($EVAL_ERROR);
+      return (undef) if ((!defined $file) || (!-f $file));
+      my $xml =
+        eval { XMLin($file, (defined $no_option ? () : %XML_INPUT_OPTIONS)); };
+      AAT::Syslog('AAT::XML', 'XML_READ_ERROR', $EVAL_ERROR) if ($EVAL_ERROR);
       $XML_CACHE{$file}{modif_time} = $stats[9];
       $XML_CACHE{$file}{xml}        = $xml;
       return ($xml);
@@ -130,24 +129,24 @@ Writes XML content '$data' to file '$file'
 
 sub Write
 {
-  my ( $file, $data, $root_name ) = @_;
+  my ($file, $data, $root_name) = @_;
 
   my %XML_OUTPUT_OPTIONS = (
-                           AttrIndent => 1,
-                           KeyAttr    => [],
-                           XMLDecl => q(<?xml version='1.0' encoding='UTF-8'?>),
-                           RootName => $root_name || 'aat_config',
+    AttrIndent => 1,
+    KeyAttr    => [],
+    XMLDecl    => q(<?xml version='1.0' encoding='UTF-8'?>),
+    RootName   => $root_name || 'aat_config',
   );
-  my $xml = XMLout( $data, %XML_OUTPUT_OPTIONS );
+  my $xml = XMLout($data, %XML_OUTPUT_OPTIONS);
 
-  if ( defined open my $FILE, '>', $file )
+  if (defined open my $FILE, '>', $file)
   {
     print {$FILE} $xml;
     close $FILE;
   }
   else
   {
-    AAT::Syslog( 'AAT::XML', 'XML_WRITE_ERROR', $EVAL_ERROR ) if ($EVAL_ERROR);
+    AAT::Syslog('AAT::XML', 'XML_WRITE_ERROR', $EVAL_ERROR) if ($EVAL_ERROR);
     return (undef);
   }
 

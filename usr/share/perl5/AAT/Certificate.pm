@@ -45,18 +45,18 @@ sub Authority_Configuration
   my $appli = shift;
   my %conf  = ();
 
-  my $dir_ca = AAT::Application::Directory( $appli, 'certificate_authority' );
+  my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
   my @lines = `$SSL_X509 -text -noout -in $dir_ca/cacert.pem`;
   foreach my $line (@lines)
   {
-    if ( $line =~
+    if ($line =~
 /Subject: C=(\w+), ST=(.+?), L=(.+?), O=(.+?), OU=(.+?), CN=(.+?)\/emailAddress=(\S+)$/
       )
     {
       (
         $conf{country}, $conf{state}, $conf{city}, $conf{org}, $conf{org_unit},
         $conf{common_name}, $conf{email}
-      ) = ( $1, $2, $3, $4, $5, $6, $7 );
+      ) = ($1, $2, $3, $4, $5, $6, $7);
     }
   }
 
@@ -71,21 +71,21 @@ Creates a Certificate Authority
 
 sub Authority_Create
 {
-  my ( $appli, $conf ) = @_;
+  my ($appli, $conf) = @_;
 
-  my $dir_ca = AAT::Application::Directory( $appli, 'certificate_authority' );
+  my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
   File::Path::rmtree($dir_ca);
   system "mkdir -p $dir_ca/{certs,crl,newcerts,private}";
   system "touch $dir_ca/index.txt";
   system "echo '01' > $dir_ca/serial";
 
-  copy( $CONF, "$CONF_CA.tmp" );
-  if (    ( defined open my $FILE, '<', "$CONF_CA.tmp" )
-       && ( defined open my $OUT, '>', $CONF_CA ) )
+  copy($CONF, "$CONF_CA.tmp");
+  if ( (defined open my $FILE, '<', "$CONF_CA.tmp")
+    && (defined open my $OUT, '>', $CONF_CA))
   {
-    while ( my $line = <$FILE> )
+    while (my $line = <$FILE>)
     {
-      foreach my $k ( keys %{$conf} )
+      foreach my $k (keys %{$conf})
       {
         my $sub = '<' . uc($k) . '>';
         $line =~ s/$sub/$conf->{$k}/g;
@@ -112,20 +112,20 @@ Creates a Client Certificate
 
 sub Client_Create
 {
-  my ( $appli, $file, $password, $conf ) = @_;
+  my ($appli, $file, $password, $conf) = @_;
 
-  my $dir_ca = AAT::Application::Directory( $appli, 'certificate_authority' );
+  my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
   my $info = AAT::Application::Info($appli);
-  my ( $login, $pwd, $uid, $gid ) = getpwnam $info->{user};
+  my ($login, $pwd, $uid, $gid) = getpwnam $info->{user};
 
-  copy( $CONF, "$CONF_CLIENT.tmp" );
-  if (    ( defined open my $FILE, '<', "$CONF_CLIENT.tmp" )
-       && ( defined open my $OUT, '>', $CONF_CLIENT ) )
+  copy($CONF, "$CONF_CLIENT.tmp");
+  if ( (defined open my $FILE, '<', "$CONF_CLIENT.tmp")
+    && (defined open my $OUT, '>', $CONF_CLIENT))
   {
     while (<$FILE>)
     {
       my $line = $_;
-      foreach my $k ( keys %{$conf} )
+      foreach my $k (keys %{$conf})
       {
         my $sub = '<' . uc($k) . '>';
         $line =~ s/$sub/$conf->{$k}/g;
@@ -157,20 +157,20 @@ Creates a Server Certificate
 
 sub Server_Create
 {
-  my ( $appli, $dest, $conf ) = @_;
+  my ($appli, $dest, $conf) = @_;
 
-  my $dir_ca = AAT::Application::Directory( $appli, 'certificate_authority' );
+  my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
   my $info = AAT::Application::Info($appli);
-  my ( $login, $pwd, $uid, $gid ) = getpwnam $info->{user};
+  my ($login, $pwd, $uid, $gid) = getpwnam $info->{user};
 
-  copy( $CONF, "$CONF_SERVER.tmp" );
-  if (    ( defined open my $FILE, '<', "$CONF_SERVER.tmp" )
-       && ( defined open my $OUT, '>', $CONF_SERVER ) )
+  copy($CONF, "$CONF_SERVER.tmp");
+  if ( (defined open my $FILE, '<', "$CONF_SERVER.tmp")
+    && (defined open my $OUT, '>', $CONF_SERVER))
   {
     while (<$FILE>)
     {
       my $line = $_;
-      foreach my $k ( keys %{$conf} )
+      foreach my $k (keys %{$conf})
       {
         my $sub = '<' . uc($k) . '>';
         $line =~ s/$sub/$conf->{$k}/g;

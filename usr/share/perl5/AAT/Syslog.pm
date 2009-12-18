@@ -31,24 +31,24 @@ Syslog Message $msg from $module
 
 sub Message
 {
-  my ( $module, $msg, @args ) = @_;
+  my ($module, $msg, @args) = @_;
 
   $MSG_LOGS_FILE ||= AAT::File('message_logs');
-  if ( !defined $AAT_Syslog{GENERIC_CREATED} )
+  if (!defined $AAT_Syslog{GENERIC_CREATED})
   {
     my $conf = AAT::XML::Read($MSG_LOGS_FILE);
-    foreach my $m ( AAT::ARRAY( $conf->{log} ) )
+    foreach my $m (AAT::ARRAY($conf->{log}))
     {
-      $AAT_Syslog{ $m->{mid} } = $m->{message};
+      $AAT_Syslog{$m->{mid}} = $m->{message};
     }
   }
   my $message = $AAT_Syslog{$msg} || $msg;
-  $message =~ s/\%\%ARG(\d+)\%\%/$args[$1-1]/g if ( scalar(@args) > 0 );
+  $message =~ s/\%\%ARG(\d+)\%\%/$args[$1-1]/g if (scalar(@args) > 0);
   $message =~ s/\%\%LOGIN\%\%/$main::Session->{AAT_LOGIN}/g
-    if ( defined $main::Session->{AAT_LOGIN} );
+    if (defined $main::Session->{AAT_LOGIN});
 
-  openlog( $module, LOG_INFO, LOG_LOCAL5 );
-  syslog( LOG_INFO, $message );
+  openlog($module, LOG_INFO, LOG_LOCAL5);
+  syslog(LOG_INFO, $message);
   closelog();
 
   return ($message);
@@ -62,13 +62,13 @@ Syslog many messages from $module in one shot
 
 sub Messages
 {
-  my ( $module, $msgs ) = @_;
+  my ($module, $msgs) = @_;
 
-  openlog( $module, LOG_INFO, LOG_LOCAL5 );
-  foreach my $msg ( AAT::ARRAY($msgs) ) { syslog( LOG_INFO, $msg ); }
+  openlog($module, LOG_INFO, LOG_LOCAL5);
+  foreach my $msg (AAT::ARRAY($msgs)) { syslog(LOG_INFO, $msg); }
   closelog();
 
-  return ( scalar AAT::ARRAY($msgs) );
+  return (scalar AAT::ARRAY($msgs));
 }
 
 1;

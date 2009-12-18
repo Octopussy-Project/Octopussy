@@ -24,13 +24,13 @@ Returns Files List from Directory '$dir' that match '$pattern'
 
 sub Directory_Files
 {
-  my ( $dir, $pattern ) = @_;
+  my ($dir, $pattern) = @_;
 
   opendir DIR, $dir;
-  my @files = grep {/$pattern/} readdir DIR;
+  my @files = grep { /$pattern/ } readdir DIR;
   closedir DIR;
 
-  return ( sort @files );
+  return (sort @files);
 }
 
 1;

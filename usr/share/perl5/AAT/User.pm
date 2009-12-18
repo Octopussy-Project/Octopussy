@@ -37,28 +37,28 @@ Check Authentication from Users file and LDAP Users
 
 sub Authentication
 {
-  my ( $appli, $login, $pwd ) = @_;
+  my ($appli, $login, $pwd) = @_;
 
-  $USERS_FILE ||= AAT::Application::File( $appli, 'users' );
+  $USERS_FILE ||= AAT::Application::File($appli, 'users');
   my $conf = AAT::XML::Read($USERS_FILE);
-  my $md5 = unix_md5_crypt( $pwd, $SALT );
-  foreach my $u ( AAT::ARRAY( $conf->{user} ) )
+  my $md5 = unix_md5_crypt($pwd, $SALT);
+  foreach my $u (AAT::ARRAY($conf->{user}))
   {
-    return ($u) if ( ( $u->{login} eq $login ) && ( $u->{password} eq $md5 ) );
+    return ($u) if (($u->{login} eq $login) && ($u->{password} eq $md5));
   }
 
-  if ( AAT::LDAP::Check_Password( $appli, $login, $pwd ) )
+  if (AAT::LDAP::Check_Password($appli, $login, $pwd))
   {
     return (
-             {
-               login     => $login,
-               password  => $pwd,
-               role      => $DEFAULT_ROLE,
-               language  => $DEFAULT_LANGUAGE,
-               theme     => $DEFAULT_THEME,
-               menu_mode => $DEFAULT_MENU_MODE
-             }
-           );
+      {
+        login     => $login,
+        password  => $pwd,
+        role      => $DEFAULT_ROLE,
+        language  => $DEFAULT_LANGUAGE,
+        theme     => $DEFAULT_THEME,
+        menu_mode => $DEFAULT_MENU_MODE
+      }
+    );
   }
 
   return (undef);
@@ -72,25 +72,25 @@ Adds user with '$login', '$pwd', '$role' and '$lang'
 
 sub Add
 {
-  my ( $appli, $login, $pwd, $certificate, $role, $lang ) = @_;
+  my ($appli, $login, $pwd, $certificate, $role, $lang) = @_;
 
-  $USERS_FILE ||= AAT::Application::File( $appli, 'users' );
+  $USERS_FILE ||= AAT::Application::File($appli, 'users');
   my $conf = AAT::XML::Read($USERS_FILE);
-  foreach my $u ( AAT::ARRAY( $conf->{user} ) )
+  foreach my $u (AAT::ARRAY($conf->{user}))
   {
-    return ('_MSG_USER_ALREADY_EXISTS') if ( $u->{login} eq $login );
+    return ('_MSG_USER_ALREADY_EXISTS') if ($u->{login} eq $login);
   }
-  push @{ $conf->{user} },
+  push @{$conf->{user}},
     {
-      login       => $login,
-      password    => unix_md5_crypt( $pwd, $SALT ),
-      certificate => $certificate,
-      role        => $role,
-      language    => $lang || $DEFAULT_LANGUAGE,
-      theme       => $DEFAULT_THEME,
-      menu_mode   => $DEFAULT_MENU_MODE,
+    login       => $login,
+    password    => unix_md5_crypt($pwd, $SALT),
+    certificate => $certificate,
+    role        => $role,
+    language    => $lang || $DEFAULT_LANGUAGE,
+    theme       => $DEFAULT_THEME,
+    menu_mode   => $DEFAULT_MENU_MODE,
     };
-  AAT::XML::Write( $USERS_FILE, $conf, "${appli}_users" );
+  AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 
   return (undef);
 }
@@ -103,19 +103,19 @@ Removes User with login '$login'
 
 sub Remove
 {
-  my ( $appli, $login ) = @_;
+  my ($appli, $login) = @_;
 
-  $USERS_FILE ||= AAT::Application::File( $appli, 'users' );
+  $USERS_FILE ||= AAT::Application::File($appli, 'users');
   my $conf  = AAT::XML::Read($USERS_FILE);
   my @users = ();
-  foreach my $u ( AAT::ARRAY( $conf->{user} ) )
+  foreach my $u (AAT::ARRAY($conf->{user}))
   {
-    push @users, $u if ( $u->{login} ne $login );
+    push @users, $u if ($u->{login} ne $login);
   }
   $conf->{user} = \@users;
-  AAT::XML::Write( $USERS_FILE, $conf, "${appli}_users" );
+  AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 
-  return ( scalar @users );
+  return (scalar @users);
 }
 
 =head2 Update($appli, $login, $update)
@@ -126,40 +126,40 @@ Updates user '$login' with configuration '$update'
 
 sub Update
 {
-  my ( $appli, $login, $update ) = @_;
+  my ($appli, $login, $update) = @_;
 
-  $USERS_FILE ||= AAT::Application::File( $appli, 'users' );
+  $USERS_FILE ||= AAT::Application::File($appli, 'users');
   my $conf  = AAT::XML::Read($USERS_FILE);
   my @users = ();
-  foreach my $u ( AAT::ARRAY( $conf->{user} ) )
+  foreach my $u (AAT::ARRAY($conf->{user}))
   {
-    if ( $u->{login} ne $login )
+    if ($u->{login} ne $login)
     {
       push @users, $u;
     }
     else
     {
       my $pwd = (
-                    AAT::NOT_NULL( $update->{password} )
-                  ? unix_md5_crypt( $update->{password}, $SALT )
-                  : $u->{password}
-                );
+          AAT::NOT_NULL($update->{password})
+        ? unix_md5_crypt($update->{password}, $SALT)
+        : $u->{password}
+      );
       push @users,
         {
-          login => $update->{login} || $login,
-          password     => $pwd,
-          role         => $update->{role} || $u->{role},
-          language     => $update->{language} || $u->{language},
-          theme        => $update->{theme} || $u->{theme},
-          menu_mode    => $update->{menu_mode} || $u->{menu_mode},
-          restrictions => $u->{restrictions},
+        login => $update->{login} || $login,
+        password     => $pwd,
+        role         => $update->{role} || $u->{role},
+        language     => $update->{language} || $u->{language},
+        theme        => $update->{theme} || $u->{theme},
+        menu_mode    => $update->{menu_mode} || $u->{menu_mode},
+        restrictions => $u->{restrictions},
         };
     }
   }
   $conf->{user} = \@users;
-  AAT::XML::Write( $USERS_FILE, $conf, "${appli}_users" );
+  AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 
-  return ( scalar @users );
+  return (scalar @users);
 }
 
 =head2 Restrictions($appli, $login)
@@ -170,15 +170,15 @@ Returns User Restrictions for User '$login'
 
 sub Restrictions
 {
-  my ( $appli, $login ) = @_;
+  my ($appli, $login) = @_;
 
-  $USERS_FILE ||= AAT::Application::File( $appli, 'users' );
+  $USERS_FILE ||= AAT::Application::File($appli, 'users');
   my $conf = AAT::XML::Read($USERS_FILE);
-  foreach my $u ( AAT::ARRAY( $conf->{user} ) )
+  foreach my $u (AAT::ARRAY($conf->{user}))
   {
-    return ( $u->{restrictions}[0] )
-      if (    ( $u->{login} eq $login )
-           && ( AAT::NOT_NULL( $u->{restrictions} ) ) );
+    return ($u->{restrictions}[0])
+      if (($u->{login} eq $login)
+      && (AAT::NOT_NULL($u->{restrictions})));
   }
 
   return (undef);
@@ -192,14 +192,14 @@ Updates restrictions '$restrictions' to user '$login'
 
 sub Update_Restrictions
 {
-  my ( $appli, $login, $restrictions ) = @_;
+  my ($appli, $login, $restrictions) = @_;
 
-  $USERS_FILE ||= AAT::Application::File( $appli, 'users' );
+  $USERS_FILE ||= AAT::Application::File($appli, 'users');
   my $conf  = AAT::XML::Read($USERS_FILE);
   my @users = ();
-  foreach my $u ( AAT::ARRAY( $conf->{user} ) )
+  foreach my $u (AAT::ARRAY($conf->{user}))
   {
-    if ( $u->{login} ne $login )
+    if ($u->{login} ne $login)
     {
       push @users, $u;
     }
@@ -210,9 +210,9 @@ sub Update_Restrictions
     }
   }
   $conf->{user} = \@users;
-  AAT::XML::Write( $USERS_FILE, $conf, "${appli}_users" );
+  AAT::XML::Write($USERS_FILE, $conf, "${appli}_users");
 
-  return ( scalar @users );
+  return (scalar @users);
 }
 
 =head2 List($appli)
@@ -225,10 +225,10 @@ sub List
 {
   my $appli = shift;
 
-  $USERS_FILE ||= AAT::Application::File( $appli, 'users' );
+  $USERS_FILE ||= AAT::Application::File($appli, 'users');
   my $conf  = AAT::XML::Read($USERS_FILE);
   my @users = ();
-  foreach my $u ( AAT::ARRAY( $conf->{user} ) )
+  foreach my $u (AAT::ARRAY($conf->{user}))
   {
     $u->{type} = 'local';
     push @users, $u;
@@ -247,17 +247,17 @@ Returns configurations for all Users
 
 sub Configurations
 {
-  my ( $appli, $sort ) = @_;
-  my ( @configurations, @sorted_configurations ) = ( (), () );
+  my ($appli, $sort) = @_;
+  my (@configurations, @sorted_configurations) = ((), ());
   my @users = List($appli);
   my %field;
 
   foreach my $conf (@users)
   {
-    $field{ $conf->{$sort} } = 1;
+    $field{$conf->{$sort}} = 1;
     push @configurations, $conf;
   }
-  foreach my $f ( sort keys %field )
+  foreach my $f (sort keys %field)
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }
@@ -275,14 +275,14 @@ sub Roles_Init
 {
   my $appli = shift;
 
-  $ROLES_FILE ||= AAT::Application::File( $appli, 'user_roles' );
+  $ROLES_FILE ||= AAT::Application::File($appli, 'user_roles');
   my $conf = AAT::XML::Read($ROLES_FILE);
-  foreach my $r ( AAT::ARRAY( $conf->{role} ) )
+  foreach my $r (AAT::ARRAY($conf->{role}))
   {
-    $roles{ $r->{value} }{label} = $r->{label};
+    $roles{$r->{value}}{label} = $r->{label};
   }
 
-  return ( scalar AAT::ARRAY( $conf->{role} ) );
+  return (scalar AAT::ARRAY($conf->{role}));
 }
 
 =head2 Roles_Configurations($appli)
@@ -295,10 +295,10 @@ sub Roles_Configurations
 {
   my $appli = shift;
 
-  $ROLES_FILE ||= AAT::Application::File( $appli, 'user_roles' );
+  $ROLES_FILE ||= AAT::Application::File($appli, 'user_roles');
   my $conf = AAT::XML::Read($ROLES_FILE);
 
-  return ( AAT::ARRAY( $conf->{role} ) );
+  return (AAT::ARRAY($conf->{role}));
 }
 
 =head2 Role_Name($appli, $role)
@@ -309,11 +309,11 @@ Returns name of a role
 
 sub Role_Name
 {
-  my ( $appli, $role ) = @_;
+  my ($appli, $role) = @_;
 
-  Roles_Init($appli) if ( !%roles );
+  Roles_Init($appli) if (!%roles);
 
-  return ( $roles{$role}{label} );
+  return ($roles{$role}{label});
 }
 
 1;
