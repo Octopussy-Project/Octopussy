@@ -123,9 +123,6 @@ sub Convert_To_Syslog {
     foreach my $as ( AAT::ARRAY( $conf{$device} ) ) {
         if ( AAT::NOT_NULL( $as->{output} ) ) {
             $syslog = $as->{output};
-
-            AAT::DEBUG("CONVERT $line [" . $as->{regexp} . "] to $syslog");
-
             if ( my @var = $line =~ /$as->{regexp}/ ) {
                 if ( $syslog =~ /__localtime\((\d+)\)__/ ) {
                     my ( $sec, $min, $hour, $mday, $mon, $year ) =
@@ -138,10 +135,10 @@ sub Convert_To_Syslog {
                     $syslog =~ s/__localtime\(\d+\)__/$substitution/g;
                 }
                 if ( $syslog =~ /__d2m2y2hms\((\d+)\)__/ )
-                { # __d2m2y2hms(2)__ __device__ __1__
+                { 
                   if ($var[ $1 - 1 ] =~ /(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)/)
                   {
-                    my $substitution = "$months[$2] $1 $4:$5:$6";
+                    my $substitution = $months[int($2)] . " $1 $4:$5:$6";
                     $syslog =~ s/__d2m2y2hms\(\d+\)__/$substitution/g;
                   }  
                 }
@@ -151,8 +148,6 @@ sub Convert_To_Syslog {
             }
         }
     }
-
-    AAT::DEBUG("CONVERT RES: $syslog");
 
     return ($syslog);
 }
@@ -168,7 +163,7 @@ sub Write_To_Incoming {
 
     if ( scalar @lines > 0 ) {
         my $dir = Handle_Dir( $dev, $mday, $month, $year );
-        my $file = "$dir/msg_$hour" . "h$min.log";
+        my $file = "$dir/msg_${hour}h${min}_00.log";
         if ( defined open my $INCOMING, '>>', $file ) {
             foreach my $l (@lines) { print {$INCOMING} "$l\n"; }
             close $INCOMING;
