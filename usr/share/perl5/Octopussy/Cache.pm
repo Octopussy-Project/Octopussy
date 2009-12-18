@@ -27,12 +27,12 @@ Readonly my $EXPIRES_REPORTER   => '1 day';
 Readonly my $DIRECTORY_UMASK    => '007';
 
 my %cache = (
-  'octo_commander' => { cache => undef, expires => $EXPIRES_COMMANDER },
-  'octo_dispatcher' => { cache => undef, expires => $EXPIRES_DISPATCHER }, 
-  'octo_extractor' => { cache => undef, expires => $EXPIRES_EXTRACTOR },
-  'octo_parser' => { cache => undef, expires => $EXPIRES_PARSER },
-  'octo_reporter' => { cache => undef, expires => $EXPIRES_REPORTER },
-  );
+  'octo_commander'  => {cache => undef, expires => $EXPIRES_COMMANDER},
+  'octo_dispatcher' => {cache => undef, expires => $EXPIRES_DISPATCHER},
+  'octo_extractor'  => {cache => undef, expires => $EXPIRES_EXTRACTOR},
+  'octo_parser'     => {cache => undef, expires => $EXPIRES_PARSER},
+  'octo_reporter'   => {cache => undef, expires => $EXPIRES_REPORTER},
+);
 
 =head1 FUNCTIONS
 
@@ -46,12 +46,11 @@ sub Init
 {
   my $namespace = shift;
 
-  if ( defined $cache{$namespace} )
+  if (defined $cache{$namespace})
   {
-    if (! defined $cache{$namespace}{cache} )
+    if (!defined $cache{$namespace}{cache})
     {
-      $cache{$namespace}{cache} = 
-        Set( $namespace, $cache{$namespace}{expires} );
+      $cache{$namespace}{cache} = Set($namespace, $cache{$namespace}{expires});
     }
     return ($cache{$namespace}{cache});
   }
@@ -67,18 +66,18 @@ Sets Cache Directory
 
 sub Set
 {
-  my ( $namespace, $expires ) = @_;
+  my ($namespace, $expires) = @_;
 
   my $dir = Octopussy::Directory('cache');
   Octopussy::Create_Directory($dir);
   my $cache = new Cache::FileCache(
-                                    {
-                                      namespace          => $namespace,
-                                      cache_root         => $dir,
-                                      default_expires_in => $expires,
-                                      directory_umask    => $DIRECTORY_UMASK
-                                    }
-                                  ) or croak('Couldn\'t instantiate FileCache');
+    {
+      namespace          => $namespace,
+      cache_root         => $dir,
+      default_expires_in => $expires,
+      directory_umask    => $DIRECTORY_UMASK
+    }
+  ) or croak('Couldn\'t instantiate FileCache');
 
   return ($cache);
 }

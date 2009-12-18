@@ -39,14 +39,13 @@ $user - user who create this template
 
 sub New
 {
-  my ( $user, $conf ) = @_;
+  my ($user, $conf) = @_;
 
   $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
   Octopussy::Create_Directory("$dir_search_tpl/$user");
-  AAT::XML::Write( "$dir_search_tpl/$user/$conf->{name}.xml", $conf,
-                   $XML_ROOT );
+  AAT::XML::Write("$dir_search_tpl/$user/$conf->{name}.xml", $conf, $XML_ROOT);
 
-  return ( $conf->{name} );
+  return ($conf->{name});
 }
 
 =head2 Remove($user, $search_tpl)
@@ -62,9 +61,9 @@ $search_tpl - Name of the Search Template to remove
 
 sub Remove
 {
-  my ( $user, $search_tpl ) = @_;
+  my ($user, $search_tpl) = @_;
 
-  my $nb = unlink Filename( $user, $search_tpl );
+  my $nb = unlink Filename($user, $search_tpl);
   $filename{$user}{$search_tpl} = undef;
 
   return ($nb);
@@ -89,16 +88,15 @@ sub List
   my $user = shift;
 
   $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
-  my @files =
-    AAT::FS::Directory_Files( "$dir_search_tpl/$user/", qr/.+\.xml$/ );
+  my @files = AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
   my @tpls = ();
   foreach my $f (@files)
   {
     my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
-    push @tpls, $conf->{name} if ( defined $conf->{name} );
+    push @tpls, $conf->{name} if (defined $conf->{name});
   }
 
-  return ( sort @tpls );
+  return (sort @tpls);
 }
 
 =head2 List_Any_User($sort)
@@ -119,24 +117,24 @@ sub List_Any_User
 {
   my $sort = shift;
 
-  my ( @list, @sorted_list ) = ();
+  my (@list, @sorted_list) = ();
   my %field;
 
   $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
-  my @dirs = AAT::FS::Directory_Files( "$dir_search_tpl/", qr/\w+$/ );
+  my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
   foreach my $d (@dirs)
   {
-    my @files = AAT::FS::Directory_Files( "$dir_search_tpl/$d/", qr/.+\.xml$/ );
+    my @files = AAT::FS::Directory_Files("$dir_search_tpl/$d/", qr/.+\.xml$/);
     foreach my $f (@files)
     {
       my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
-      my $key = ( defined $conf->{$sort} ? $conf->{$sort} : $d );
+      my $key = (defined $conf->{$sort} ? $conf->{$sort} : $d);
       $field{$key} = 1;
-      push @list, { name => $conf->{name}, user => $d }
-        if ( defined $conf->{name} );
+      push @list, {name => $conf->{name}, user => $d}
+        if (defined $conf->{name});
     }
   }
-  foreach my $f ( sort keys %field )
+  foreach my $f (sort keys %field)
   {
     push @sorted_list, grep { $_->{$sort} eq $f } @list;
   }
@@ -161,19 +159,19 @@ $filename - Filename of the XML file for Search Template '$search_tpl'
 
 sub Filename
 {
-  my ( $user, $search_tpl ) = @_;
+  my ($user, $search_tpl) = @_;
 
-  return ( $filename{$user}{$search_tpl} )
-    if ( defined $filename{$user}{$search_tpl} );
-  if ( AAT::NOT_NULL($search_tpl) )
+  return ($filename{$user}{$search_tpl})
+    if (defined $filename{$user}{$search_tpl});
+  if (AAT::NOT_NULL($search_tpl))
   {
     $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
     my @files =
-      AAT::FS::Directory_Files( "$dir_search_tpl/$user/", qr/.+\.xml$/ );
+      AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
     foreach my $f (@files)
     {
       my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
-      if ( ( defined $conf ) && ( $conf->{name} =~ /^$search_tpl$/ ) )
+      if ((defined $conf) && ($conf->{name} =~ /^$search_tpl$/))
       {
         $filename{$user}{$search_tpl} = "$dir_search_tpl/$user/$f";
         return ("$dir_search_tpl/$user/$f");
@@ -201,9 +199,9 @@ Returns:
 
 sub Configuration
 {
-  my ( $user, $search_tpl ) = @_;
+  my ($user, $search_tpl) = @_;
 
-  return ( AAT::XML::Read( Filename( $user, $search_tpl ) ) );
+  return (AAT::XML::Read(Filename($user, $search_tpl)));
 }
 
 =head2 Configurations($user, $sort)
@@ -223,21 +221,21 @@ Returns:
 
 sub Configurations
 {
-  my ( $user, $sort ) = @_;
-  my ( @configurations, @sorted_configurations ) = ( (), () );
+  my ($user, $sort) = @_;
+  my (@configurations, @sorted_configurations) = ((), ());
   my @tpls = List($user);
   my %field;
 
   foreach my $t (@tpls)
   {
-    my $conf = Configuration( $user, $t );
-    if ( defined $conf->{name} )
+    my $conf = Configuration($user, $t);
+    if (defined $conf->{name})
     {
-      $field{ $conf->{$sort} } = 1;
+      $field{$conf->{$sort}} = 1;
       push @configurations, $conf;
     }
   }
-  foreach my $f ( sort keys %field )
+  foreach my $f (sort keys %field)
   {
     push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
   }

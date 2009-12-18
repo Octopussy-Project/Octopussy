@@ -57,11 +57,11 @@ sub List
   my %reports = ();
   foreach my $d (@dirs)
   {
-    push @{ $reports{$1} }, $2
-      if ( $d =~ /^(.+)\.(\w+)$/ );
+    push @{$reports{$1}}, $2
+      if ($d =~ /^(.+)\.(\w+)$/);
   }
 
-  return ( \%reports );
+  return (\%reports);
 }
 
 =head2 Remove($report, $filename)
@@ -72,7 +72,7 @@ Removes Report '$report' with Filename '$filename'
 
 sub Remove
 {
-  my ( $report, $filename ) = @_;
+  my ($report, $filename) = @_;
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
   system "rm -f \"$dir_reports$report/$filename\".*";
@@ -104,7 +104,7 @@ Removes All Reports '$report' in Month '$year/month'
 
 sub Remove_Month
 {
-  my ( $report, $year, $month ) = @_;
+  my ($report, $year, $month) = @_;
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT_DATA);
   system "rm -f \"$dir_reports$report/$report-$year$month\"*";

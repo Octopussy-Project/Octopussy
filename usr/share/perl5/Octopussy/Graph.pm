@@ -33,6 +33,7 @@ Readonly my $START_ANGLE   => 180;
 Readonly my $WIDTH         => 1024;
 Readonly my $HEIGHT        => 768;
 Readonly my $MARGIN        => 20;
+Readonly my $NB_COLOR      => 32;
 Readonly my $LOGO          => '';
 Readonly my $LOGO_POSITION => 'UR';
 
@@ -46,17 +47,17 @@ Generate graph
 
 sub Generate
 {
-  my ( $g, $output ) = @_;
+  my ($g, $output) = @_;
 
-#  $GD::Graph::Error::Debug = 5;
+  #  $GD::Graph::Error::Debug = 5;
 
   $output = $output || 'graph.png';
-  my $fct = 'GD::Graph::' . ( $g->{type} || $TYPE );
-  my $graph = $fct->new( $g->{width} || $WIDTH, $g->{height} || $HEIGHT );
+  my $fct = 'GD::Graph::' . ($g->{type} || $TYPE);
+  my $graph = $fct->new($g->{width} || $WIDTH, $g->{height} || $HEIGHT);
 
-  $graph->set( bar_spacing => $BAR_SPACING ) if ( $g->{type} =~ /bars$/ );
-  $graph->set( start_angle => $START_ANGLE ) if ( $g->{type} eq 'pie' );
-  my @colors = GD::Graph::colour::colour_list(32);
+  $graph->set(bar_spacing => $BAR_SPACING) if ($g->{type} =~ /bars$/);
+  $graph->set(start_angle => $START_ANGLE) if ($g->{type} eq 'pie');
+  my @colors = GD::Graph::colour::colour_list($NB_COLORS);
 
   #read_rgb("/etc/X11/rgb.txt");
   $graph->set(
@@ -80,8 +81,8 @@ sub Generate
   ) or croak $graph->error;
 
   #$graph->set_legend($g->{data});
-  my $gd = $graph->plot( $g->{data} ) or croak $graph->error;
-  if ( defined open my $IMG, '>', $output )
+  my $gd = $graph->plot($g->{data}) or croak $graph->error;
+  if (defined open my $IMG, '>', $output)
   {
     binmode $IMG;
     print {$IMG} $gd->png;
@@ -89,8 +90,8 @@ sub Generate
   }
   else
   {
-    my ( $pack, $file_pack, $line, $sub ) = caller 0;
-    AAT::Syslog( 'Octopussy::Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub );
+    my ($pack, $file_pack, $line, $sub) = caller 0;
+    AAT::Syslog('Octopussy::Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub);
   }
 
   #my $map = new GD::Graph::Map($graph, newWindow => 1);
