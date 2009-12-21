@@ -55,6 +55,8 @@ use Octopussy::World_Stats;
 
 Readonly my $APPLICATION_NAME => 'Octopussy';
 Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
+Readonly my $IDX_STAT_UID => 4;
+Readonly my $IDX_STAT_GID => 5;
 
 $Octopussy::VERSION = qv('0.9.9.7');
 
@@ -96,13 +98,13 @@ sub Valid_User
 {
   my $prog_name = shift;
 
-  my @info      = getpwuid($<);
+  my @info      = getpwuid $<;
   my $octo_user = User();
 
   return (1) if ($info[0] =~ /^$octo_user$/);
 
   AAT::Syslog($prog_name, "You have to be Octopussy user to use $prog_name");
-  printf("You have to be Octopussy user to use %s !\n", $prog_name);
+  printf "You have to be Octopussy user to use %s !\n", $prog_name;
 
   return (0);
 }
@@ -141,12 +143,12 @@ sub Commander
 {
   my $cmd = shift;
 
-  my $cache = Octopussy::Cache::Init("octo_commander");
+  my $cache = Octopussy::Cache::Init('octo_commander');
   if (defined $cache)
   {
-    my $commands = $cache->get("commands") || ();
-    push(@{$commands}, $cmd);
-    $cache->set("commands", $commands);
+    my $commands = $cache->get('commands') || ();
+    push @{$commands}, $cmd;
+    $cache->set('commands', $commands);
 
     return ($cmd);
   }
@@ -193,7 +195,7 @@ sub Directories
   my @list = ();
   foreach my $d (@dirs)
   {
-    push(@list, AAT::Application::Directory($APPLICATION_NAME, $d));
+    push @list, AAT::Application::Directory($APPLICATION_NAME, $d);
   }
 
   return (@list);
@@ -240,7 +242,7 @@ sub Files
   my @list  = ();
   foreach my $f (@files)
   {
-    push(@list, AAT::Application::File($APPLICATION_NAME, $f));
+    push @list, AAT::Application::File($APPLICATION_NAME, $f);
   }
 
   return (@list);
@@ -269,8 +271,8 @@ sub Status_Progress
 {
   my ($bin, $param) = @_;
 
-    my $cache = Octopussy::Cache::Init($bin);
-    my $status = $cache->get("status_$param");
+  my $cache  = Octopussy::Cache::Init($bin);
+  my $status = $cache->get("status_$param");
 
   return ($status);
 }
@@ -287,7 +289,7 @@ sub Sourceforge_Version
   my $version     = undef;
   AAT::Download($APPLICATION_NAME, $SF_SITE,
     "${dir_running}/octopussy.sf_version");
-  if (defined open(my $UPDATE, '<', "${dir_running}/octopussy.sf_version"))
+  if (defined open my $UPDATE, '<', "${dir_running}/octopussy.sf_version")
   {
     while (<$UPDATE>)
     {
@@ -296,8 +298,8 @@ sub Sourceforge_Version
 /showfiles.php\?group_id=154314&amp;package_id=\d+&amp;release_id=\d+">Octopussy (\S+)<\/a>/
         );
     }
-    close($UPDATE);
-    unlink("${dir_running}octopussy.sf_version");
+    close $UPDATE;
+    unlink "${dir_running}octopussy.sf_version";
   }
 
   return ($version);
@@ -318,11 +320,11 @@ sub Web_Updates
   my $dir_running = Octopussy::Directory('running');
   AAT::Download('Octopussy', "$website/Download/$type/$file",
     "$dir_running$file");
-  if (defined open(my $UPDATE, '<', "$dir_running$file"))
+  if (defined open my $UPDATE, '<', "$dir_running$file")
   {
     while (<$UPDATE>) { $update{$1} = $2 if ($_ =~ /^(.+):(\d+)$/); }
-    close($UPDATE);
-    unlink("$dir_running$file");
+    close $UPDATE;
+    unlink "$dir_running$file";
   }
 
   return (\%update);
@@ -339,7 +341,7 @@ sub Chown
   my @files = @_;
 
   my $user = User();
-  my $list = "";
+  my $list = '';
   foreach my $f (@files)
   {
     $list .= "\"$f\" ";
@@ -422,9 +424,9 @@ sub PID_File
   if ($line =~ /uid=(\d+)\($user\) gid=(\d+)\($user\)/)
   {
     my ($uid, $gid) = ($1, $2);
-    my @attr = stat($file_pid);
+    my @attr = stat $file_pid;
 
-    if ((-f $file_pid) && (($uid != $attr[4]) || ($gid != $attr[5])))
+    if ((-f $file_pid) && (($uid != $attr[$IDX_STAT_UID]) || ($gid != $attr[$IDX_STAT_GID])))
     {
       AAT::Syslog('octopussy',
         "ERROR: pid file '$file_pid' doesn't match octopussy uid/gid !");
@@ -445,7 +447,7 @@ sub PID_File
 
 sub PID_Value
 {
-  my $file = shift;
+  my $file  = shift;
   my $value = undef;
 
   if (defined open my $F_PID, '<', $file)
@@ -486,15 +488,15 @@ Reloads Dispatcher
 sub Dispatcher_Reload
 {
   my $dir_pid = Octopussy::Directory('running');
-  opendir(DIR, $dir_pid);
+  opendir DIR, $dir_pid;
   my @files = grep { /octo_dispatcher\.pid$/ } readdir DIR;
-  closedir(DIR);
+  closedir DIR;
 
   foreach my $file (@files)
   {
     my $pid = `cat $dir_pid$file`;
-    chomp($pid);
-    `/bin/kill -HUP $pid`;
+    chomp $pid;
+    kill HUP => $pid;
   }
 
   return (1);
@@ -527,11 +529,11 @@ sub Process_Status
   my @lines = `ps -edf | grep "rsyslog" | grep -v grep`;
 
   #$result{"Syslog-ng"} = scalar(@lines);
-  $result{'Rsyslog'} = scalar(@lines);
+  $result{'Rsyslog'} = scalar @lines;
   @lines = `ps -edf | grep "/usr/sbin/octo_dispatcher" | grep -v grep`;
-  $result{'Dispatcher'} = scalar(@lines);
+  $result{'Dispatcher'} = scalar @lines;
   @lines = `ps -edf | grep "/usr/sbin/octo_scheduler" | grep -v grep`;
-  $result{'Scheduler'} = scalar(@lines);
+  $result{'Scheduler'} = scalar @lines;
 
   return (%result);
 }

@@ -48,12 +48,12 @@ sub List
   my ($ref_serv, $loglevel, $taxonomy) = @_;
   my %log_level = Octopussy::Loglevel::Levels();
   my $level     = (
-    (AAT::NOT_NULL($loglevel) && ($loglevel !~ /^-ANY-$/i))
+    (AAT::NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
     ? $log_level{$loglevel}
     : 0
   );
   my $qr_taxo = (
-    (AAT::NOT_NULL($taxonomy) && ($taxonomy !~ /^-ANY-$/i))
+    (AAT::NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
     ? qr/^$taxonomy(\..+)?/
     : qr/.+/
   );
@@ -256,7 +256,7 @@ sub Longest_Valid_Regexp
 
   while ((!eval { use warnings FATAL => qw(regexp); qr/^$re/; }) && ($re ne ''))
   {    # reduce regexp length until it becomes a valid regexp
-    $re = substr($re, 0, -1);
+    $re = substr $re, 0, -1;
   }
 
   return ($re);
@@ -273,7 +273,7 @@ sub Minimal_Match
   $re = Longest_Valid_Regexp($re);
   while (($log !~ qr/^$re/) && ($re ne ''))
   {
-    $re = substr($re, 0, -1);
+    $re = substr $re, 0, -1;
     $re = Longest_Valid_Regexp($re);
   }
 
@@ -284,7 +284,7 @@ sub Minimal_Match
   elsif ($log =~ /^($re)/)
   {
     my $match = $1;
-    my $unmatch = substr($log, length($match));
+    my $unmatch = substr $log, length $match;
 
     return ($match, $unmatch);
   }
@@ -386,9 +386,9 @@ sub Pattern_Field_Substitution
 {
   my ($regexp, $f, $type, $field_regexp, $field_list, $re_types) = @_;
   my %subs = (
-    'NUMBER' => {match => '<\@NUMBER:\S+?\@>', re => '[-+]?\\d+'},
-    'STRING' => {match => '<\@STRING:\S+?\@>', re => '.+'},
-    'WORD'   => {match => '<\@WORD:\S+?\@>',   re => '\\S+'},
+    'NUMBER' => {match => '<\@NUMBER:\S+?\@>', re => '[-+]?\\d+'},  ## no critic
+    'STRING' => {match => '<\@STRING:\S+?\@>', re => '.+'},         ## no critic
+    'WORD'   => {match => '<\@WORD:\S+?\@>',   re => '\\S+'},       ## no critic
   );
   my $long_f = $f;
   $f =~ s/Plugin_\S+__//;
@@ -589,18 +589,18 @@ sub Parse_List
     = @_;
 
   my @servs = (
-    (defined $services) && (@{$services}[0] !~ /-ANY-/i)
+    (defined $services) && (@{$services}[0] ne '-ANY-')
     ? @{$services}
     : Octopussy::Service::List()
   );
   my %log_level = Octopussy::Loglevel::Levels();
   my $level     = (
-    (AAT::NOT_NULL($loglevel) && ($loglevel !~ /^-ANY-$/i))
+    (AAT::NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
     ? $log_level{$loglevel}
     : 0
   );
   my $qr_taxo = (
-    (AAT::NOT_NULL($taxonomy) && ($taxonomy !~ /^-ANY-$/i))
+    (AAT::NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
     ? qr/^$taxonomy(\..+)?/
     : qr/.+/
   );
@@ -653,7 +653,7 @@ sub Alerts
     {
       foreach my $s (AAT::ARRAY($ac->{service}))
       {
-        if ( (($s eq $service) || ($s =~ /^-ANY-$/i))
+        if ( (($s eq $service) || ($s eq '-ANY-'))
           && ($message->{taxonomy} =~ /$ac->{taxonomy}.*/))
         {
           push @alerts, {

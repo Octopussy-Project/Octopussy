@@ -88,7 +88,7 @@ sub Mem_Total
     close $PROC;
     while (my $line = shift @lines)
     {
-      return (int($1 / $KBYTE))
+      return (int($1 / $KBYTE))    ## no critic
         if ($line =~ /^MemTotal:\s+(\d+)/);
     }
   }
@@ -111,13 +111,17 @@ sub Mem_Usage
     my ($free, $total) = (0, 0);
     while (my $line = shift @lines)
     {
-      $total = int($1 / $KBYTE)
-        if ($line =~ /^MemTotal:\s+(\d+)/);
-      $free = int($1 / $KBYTE)
-        if ($line =~ /^MemFree:\s+(\d+)/);
+      if ($line =~ /^MemTotal:\s+(\d+)/)
+      {
+        $total = int($1 / $KBYTE);    ## no critic
+      }
+      if ($line =~ /^MemFree:\s+(\d+)/)
+      {
+        $free = int($1 / $KBYTE);     ## no critic
+      }
     }
     return ('No Memory Detected') if ($total == 0);
-    my $percent = int(($total - $free) / $total * 100);
+    my $percent = int(($total - $free) / $total * 100);    ## no critic
 
     return (($total - $free) . " used M / $total M ($percent%)");
   }
@@ -140,13 +144,17 @@ sub Swap_Usage
     my ($free, $total) = (0, 0);
     while (my $line = shift @lines)
     {
-      $total = int($1 / 1024)
-        if ($line =~ /^SwapTotal:\s+(\d+)/);
-      $free = int($1 / 1024)
-        if ($line =~ /^SwapFree:\s+(\d+)/);
+      if ($line =~ /^SwapTotal:\s+(\d+)/)
+      {
+        $total = int($1 / 1024);    ## no critic
+      }
+      if ($line =~ /^SwapFree:\s+(\d+)/)
+      {
+        $free = int($1 / 1024);     ## no critic
+      }
     }
     return ('No Swap Detected') if ($total == 0);
-    my $percent = int(($total - $free) / $total * 100);
+    my $percent = int(($total - $free) / $total * 100);    ## no critic
 
     return (($total - $free) . " used M / $total M ($percent%)");
   }

@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use List::MoreUtils qw(any);
+
 use Octopussy;
 
 Readonly my $FILE_SERVICEGROUPS => 'servicegroups';
@@ -35,7 +37,7 @@ sub Add
 
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  if (grep { $_->{sg_id} eq $conf_sg->{sg_id} }
+  if (any { $_->{sg_id} eq $conf_sg->{sg_id} }
     AAT::ARRAY($conf->{servicegroup}))
   {
     return ('_MSG_SERVICEGROUP_ALREADY_EXISTS');
@@ -168,7 +170,7 @@ sub Add_Service
     {
       my $rank = scalar(@services) + 1;
       $rank = AAT::Padding($rank, 2);
-      if (grep { $_->{sid} =~ /^$service$/ } @services)
+      if (any { $_->{sid} =~ /^$service$/ } @services)
       {
         return ();
       }

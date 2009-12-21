@@ -423,7 +423,7 @@ sub Syslog_By_Device_Taxonomy_Graph
         $def .=
             "DEF:$t"
           . chr(65 + $i)
-          . "=\"$DIR_RRD/$device/taxonomy_$s.rrd\":$t:AVERAGE ";
+          . qq(="$DIR_RRD/$device/taxonomy_$s.rrd":$t:AVERAGE );
         $cdef .=
             ($i == 0 ? " CDEF:$t=" : '') 
           . $t
@@ -547,6 +547,37 @@ sub Report_Graph_Watermark
   return ($watermark);
 }
 
+sub Report_Graph_Set_DS
+{
+  my $rconf = shift;
+
+  my ($dsv, $ds1, $ds2, $ds3) = (
+    Octopussy::DB::SQL_As_Substitution($rconf->{datasources_value}),
+    Octopussy::DB::SQL_As_Substitution($rconf->{datasource1}),
+    Octopussy::DB::SQL_As_Substitution($rconf->{datasource2}),
+    Octopussy::DB::SQL_As_Substitution($rconf->{datasource3}),
+  );
+
+  if ($dsv =~ /^(\S+::\S+)\((\S+)\)/)
+  {
+    $dsv = $2;
+  }
+  if ($ds1 =~ /^(\S+::\S+)\((\S+)\)/)
+  {
+    $ds1 = $2;
+  }
+  if ($ds2 =~ /^(\S+::\S+)\((\S+)\)/)
+  {
+    $ds2 = $2;
+  }
+  if ($ds3 =~ /^(\S+::\S+)\((\S+)\)/)
+  {
+    $ds3 = $2;
+  }
+
+  return ($dsv, $ds1, $ds2, $ds3);
+}
+
 =head2 Report_Graph($rconf, $begin, $end, $output, $data, $stats, $lang)
 
 Graphs RRD Report
@@ -556,17 +587,7 @@ Graphs RRD Report
 sub Report_Graph
 {
   my ($rconf, $begin, $end, $output, $data, $stats, $lang) = @_;
-  my ($dsv, $ds1, $ds2, $ds3) = (
-    Octopussy::DB::SQL_As_Substitution($rconf->{datasources_value}),
-    Octopussy::DB::SQL_As_Substitution($rconf->{datasource1}),
-    Octopussy::DB::SQL_As_Substitution($rconf->{datasource2}),
-    Octopussy::DB::SQL_As_Substitution($rconf->{datasource3})
-  );
-  $dsv = $2 if ($dsv =~ /^(\S+::\S+)\((\S+)\)/);
-  $ds1 = $2 if ($ds1 =~ /^(\S+::\S+)\((\S+)\)/);
-  $ds2 = $2 if ($ds2 =~ /^(\S+::\S+)\((\S+)\)/);
-  $ds3 = $2 if ($ds3 =~ /^(\S+::\S+)\((\S+)\)/);
-
+  my ($dsv, $ds1, $ds2, $ds3) = Report_Graph_Set_DS($rconf);
   my $tl       = Octopussy::DB::SQL_As_Substitution($rconf->{timeline});
   my $title    = $rconf->{graph_title} || '';
   my $width    = $rconf->{graph_width} || $GRAPH_WIDTH;
@@ -602,7 +623,7 @@ sub Report_Graph
         if (AAT::NOT_NULL($key))
         {
           $ds{$key} = 1;
-          my $block = int(($l->{$tl} - $start) / $rrd_step_mins);
+          my $block = int(($l->{$tl} - $start) / $rrd_step_mins);   ## no critic
           $block = AAT::Padding($block, 10);
           $dataline{$block}{$key} = (
             defined $dataline{$block}{$key}

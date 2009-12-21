@@ -15,7 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use List::MoreUtils qw(firstval);
+use List::MoreUtils qw(any firstval);
 
 use Octopussy;
 
@@ -37,7 +37,7 @@ sub Add
 
   my $file = Octopussy::File($FILE_STORAGES);
   my $conf = AAT::XML::Read($file);
-  if (grep { $_->{s_id} eq $conf_storage->{s_id} } AAT::ARRAY($conf->{storage}))
+  if (any { $_->{s_id} eq $conf_storage->{s_id} } AAT::ARRAY($conf->{storage}))
   {
     return ('_MSG_STORAGE_ALREADY_EXISTS');
   }

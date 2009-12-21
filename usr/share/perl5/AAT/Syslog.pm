@@ -45,7 +45,7 @@ sub Message
   my $message = $AAT_Syslog{$msg} || $msg;
   $message =~ s/\%\%ARG(\d+)\%\%/$args[$1-1]/g if (scalar(@args) > 0);
   $message =~ s/\%\%LOGIN\%\%/$main::Session->{AAT_LOGIN}/g
-    if (defined $main::Session->{AAT_LOGIN});
+    if (defined $main::Session->{AAT_LOGIN}); ## no critic
 
   openlog($module, LOG_INFO, LOG_LOCAL5);
   syslog(LOG_INFO, $message);

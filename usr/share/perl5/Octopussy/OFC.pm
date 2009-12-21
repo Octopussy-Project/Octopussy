@@ -160,7 +160,7 @@ sub Bar_Cylinder
       labels        => {steps => 10, labels => \@labels},
     },
     y_axis   => {steps => Step($max),     min    => 0, max => $max},
-    elements => [{type => 'bar_cylinder', values => \@values}]
+    elements => [{type => 'bar_cylinder', values => \@values}],
   );
   Octopussy::OFC::Generate(\%conf, $output_file);
 

@@ -347,7 +347,8 @@ sub Menu_Mode
 {
   my $mode = shift;
 
-  $main::Session->{AAT_MENU_MODE} = (NOT_NULL($mode) ? $mode : 'ICONS_AND_TEXT');
+  $main::Session->{AAT_MENU_MODE} =
+    (NOT_NULL($mode) ? $mode : 'ICONS_AND_TEXT');
 
   return ($main::Session->{AAT_MENU_MODE});
 }

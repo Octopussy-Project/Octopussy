@@ -154,9 +154,9 @@ sub Messages
   my %re_types = Octopussy::Type::Regexps();
   my @result   = ();
   my %subs     = (
-    'NUMBER' => {match => '<\@NUMBER:\S+?\@>', re => '[-+]?\\d+'},
-    'STRING' => {match => '<\@STRING:\S+?\@>', re => '.+'},
-    'WORD'   => {match => '<\@WORD:\S+?\@>',   re => '\\S+'},
+    'NUMBER' => {match => '<\@NUMBER:\S+?\@>', re => '[-+]?\\d+'},  ## no critic
+    'STRING' => {match => '<\@STRING:\S+?\@>', re => '.+'},         ## no critic
+    'WORD'   => {match => '<\@WORD:\S+?\@>',   re => '\\S+'},       ## no critic
   );
 
   my $conf     = Configuration($statistic_report);

@@ -46,13 +46,13 @@ sub Data
   my ($conf_list, $list) = (undef, undef);
 
   my $conf = Configuration($object);
-  if ($conf->{backend} =~ /^XML$/i)
+  if ($conf->{backend} eq 'XML')
   {
     $conf_list = AAT::XML::Read($conf->{source});
     $object    = lc $object;
     $list      = $conf_list->{$object};
   }
-  elsif ($conf->{backend} =~ /^DB$/i)
+  elsif ($conf->{backend} eq 'DB')
   {
     my @data = AAT::DB::Query($appli, "SELECT * FROM $conf->{source}");
     $list = \@data;

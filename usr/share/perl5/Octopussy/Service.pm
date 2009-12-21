@@ -17,7 +17,7 @@ use Readonly;
 use utf8;
 use Encode;
 
-use List::MoreUtils qw(uniq);
+use List::MoreUtils qw(any none uniq);
 
 use Octopussy;
 
@@ -175,7 +175,7 @@ sub Msg_ID
   while ($i < 1_000)
   {
     $msg_id = $conf->{name} . ":$i";
-    if (!grep { $_->{msg_id} =~ /^$msg_id$/i } AAT::ARRAY($conf->{message}))
+    if (none { $_->{msg_id} =~ /^$msg_id$/i } AAT::ARRAY($conf->{message}))
     {
       return ($msg_id);
     }
@@ -198,7 +198,7 @@ sub Msg_ID_unique
   return (0) if ($msgid eq "$service:");
   my $qr_msgid = qr/^$msgid$/;
   my $conf     = Configuration($service);
-  if (grep { $_->{msg_id} =~ $qr_msgid } AAT::ARRAY($conf->{message}))
+  if (any { $_->{msg_id} =~ $qr_msgid } AAT::ARRAY($conf->{message}))
   {
     return (0);
   }
@@ -358,16 +358,13 @@ sub Move_Message
   {
     if ($m->{msg_id} ne $msgid)
     {
-      if ($direction =~ /^(top|bottom)$/)
+      if (($direction eq 'top') && ($m->{rank} < $old_rank))
       {
-        if (($direction eq 'top') && ($m->{rank} < $old_rank))
-        {
-          $m->{rank} += 1;
-        }
-        elsif (($direction eq 'bottom') && ($m->{rank} > $old_rank))
-        {
-          $m->{rank} -= 1;
-        }
+        $m->{rank} += 1;
+      }
+      elsif (($direction eq 'bottom') && ($m->{rank} > $old_rank))
+      {
+        $m->{rank} -= 1;
       }
       elsif ($m->{rank} eq $rank)
       {
