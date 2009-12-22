@@ -25,6 +25,9 @@ Readonly my $YEARLY  => 31_536_000;
 Readonly my $GRAPH_WIDTH  => 400;
 Readonly my $GRAPH_HEIGHT => 180;
 
+Readonly my $ASCII_CODE_A     => 65;
+Readonly my $TITLE_MAX_LENGTH => 24;
+
 Readonly my $RRD_CREATE => '/usr/bin/rrdtool create';
 Readonly my $RRD_GRAPH  => '/usr/bin/rrdtool graph';
 Readonly my $RRD_INFO   => '/usr/bin/rrdtool info';
@@ -95,7 +98,7 @@ sub Graph_Line
   my ($cdef, $type, $color, $title) = @_;
 
   $title =~ s/://;
-  $title .= ' ' x (24 - length $title);
+  $title .= ' ' x ($TITLE_MAX_LENGTH - length $title);
 
   return (qq($type:$cdef$color:"$title"));
 }
@@ -422,14 +425,14 @@ sub Syslog_By_Device_Taxonomy_Graph
       {
         $def .=
             "DEF:$t"
-          . chr(65 + $i)
+          . chr($ASCII_CODE_A + $i)
           . qq(="$DIR_RRD/$device/taxonomy_$s.rrd":$t:AVERAGE );
         $cdef .=
             ($i == 0 ? " CDEF:$t=" : '') 
           . $t
-          . chr(65 + $i)
+          . chr($ASCII_CODE_A + $i)
           . ",UN,0,$t"
-          . chr(65 + $i) . ',IF,'
+          . chr($ASCII_CODE_A + $i) . ',IF,'
           . ($i > 0 ? '+,' : '');
         $i++;
       }
@@ -664,7 +667,7 @@ sub Report_Graph
     $i = 1;
     foreach my $k (sort keys %ds)
     {
-      my $color = (($i < 30) ? $COLORS[$i - 1] : '#909090');
+      my $color = (($i < (scalar @COLORS)) ? $COLORS[$i - 1] : '#909090');
       my $rtype = (
         ($rconf->{graph_type} =~ /rrd_line/)
         ? 'LINE'

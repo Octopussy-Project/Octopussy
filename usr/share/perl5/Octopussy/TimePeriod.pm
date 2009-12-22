@@ -19,6 +19,7 @@ use Octopussy;
 
 Readonly my $FILE_TIMEPERIODS => 'timeperiods';
 Readonly my $XML_ROOT         => 'octopussy_timeperiods';
+Readonly my $DIGIT_HOUR       => 100;
 
 =head1 FUNCTIONS
 
@@ -143,40 +144,32 @@ sub Match
   if ($datetime =~ /^(\S+) (\d+):(\d+)$/)
   {
     my ($day, $hour, $min) = ($1, $2, $3);
-    my $nb   = $hour * 100 + $min;
+    my $nb   = $hour * $DIGIT_HOUR + $min;
     my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
 
     foreach my $tp (grep { $_->{label} eq $timeperiod }
       AAT::ARRAY($conf->{timeperiod}))
     {
-
-      #      if ($tp->{label} eq $timeperiod)
-      #      {
       foreach my $dt (AAT::ARRAY($tp->{dt}))
       {
         foreach my $k (grep { $_ eq $day } AAT::HASH_KEYS($dt))
         {
 
-          #            if ($k eq $day)
-          #            {
           if ($dt->{$k} =~ /^\!(\d+):(\d+)-(\d+):(\d+)$/)
           {
             return (1)
-              if (($nb < ($1 * 100 + $2))
-              || ($nb > ($3 * 100 + $4)));
+              if (($nb < ($1 * $DIGIT_HOUR + $2))
+              || ($nb > ($3 * $DIGIT_HOUR + $4)));
           }
           elsif ($dt->{$k} =~ /^(\d+):(\d+)-(\d+):(\d+)$/)
           {
             return (1)
-              if (($nb > ($1 * 100 + $2))
-              && ($nb < ($3 * 100 + $4)));
+              if (($nb > ($1 * $DIGIT_HOUR + $2))
+              && ($nb < ($3 * $DIGIT_HOUR + $4)));
           }
 
-          #            }
         }
       }
-
-      #}
     }
   }
 

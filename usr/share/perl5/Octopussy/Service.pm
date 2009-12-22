@@ -21,9 +21,10 @@ use List::MoreUtils qw(any none uniq);
 
 use Octopussy;
 
-Readonly my $DIR_SERVICE => 'services';
-Readonly my $XML_ROOT    => 'octopussy_service';
-Readonly my $PADDING     => 3;
+Readonly my $DIR_SERVICE            => 'services';
+Readonly my $XML_ROOT               => 'octopussy_service';
+Readonly my $PADDING                => 3;
+Readonly my $MAX_NB_MSGS_IN_SERVICE => 999;
 
 my $dir_services = undef;
 my %filename;
@@ -172,7 +173,7 @@ sub Msg_ID
   my $conf   = Configuration($service);
   my $msg_id = '';
   my $i      = 1;
-  while ($i < 1_000)
+  while ($i <= $MAX_NB_MSGS_IN_SERVICE)
   {
     $msg_id = $conf->{name} . ":$i";
     if (none { $_->{msg_id} =~ /^$msg_id$/i } AAT::ARRAY($conf->{message}))

@@ -14,10 +14,13 @@ package Octopussy::Message;
 use strict;
 use warnings;
 use bytes;
+use Readonly;
 use utf8;
 
 use Octopussy;
 use Octopussy::Contact;
+
+Readonly my $WIZARD_MAX_SAME_MSG => 100;
 
 =head1 FUNCTIONS
 
@@ -798,6 +801,48 @@ sub Wizard_Add_Message
   );
 }
 
+=head2 Wizard_File($f, $messages)
+
+=cut
+
+sub Wizard_File
+{
+  my ($f, $messages) = @_;
+
+  if (defined open my $FILE, '-|', "zcat $f")
+  {
+    while (my $line = <$FILE>)
+    {
+      chomp $line;
+      my $match = 0;
+      foreach my $m (grep { $line =~ $_->{re} } @{$messages})
+      {
+        $m->{nb} = $m->{nb} + 1;
+        $match = 1;
+        if ($m->{nb} > $WIZARD_MAX_SAME_MSG)
+        {
+          $m->{nb} = '100+';
+          close $FILE;
+          return ($WIZARD_MAX_SAME_MSG);
+        }
+        last;
+      }
+      push @{$messages}, Wizard_Add_Message($timestamp, $line, \@types)
+        if (!$match);
+      last if (scalar(@{$messages}) >= $nb_max);
+    }
+    close $FILE;
+    last if (scalar(@{$messages}) >= $nb_max);
+  }
+  else
+  {
+    my ($pack, $file_pack, $line, $sub) = caller 0;
+    AAT::Syslog('Octopussy::Message', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+  }
+
+  return (scalar @{$messages});
+}
+
 =head2 Wizard($device)
 
 =cut
@@ -809,42 +854,14 @@ sub Wizard
   my @messages = ();
   my @files    = Octopussy::Logs::Unknown_Files($device);
   my $nb_max   = Octopussy::Parameter('wizard_max_msgs');
+
   foreach my $f (sort @files)
   {
     chomp $f;
     if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
     {
       my $timestamp = "$1$2$3$4$5";
-      if (defined open my $FILE, '-|', "zcat $f")
-      {
-        while (my $line = <$FILE>)
-        {
-          chomp $line;
-          my $match = 0;
-          foreach my $m (grep { $line =~ $_->{re} } @messages)
-          {
-            $m->{nb} = $m->{nb} + 1;
-            $match = 1;
-            if ($m->{nb} > 100)
-            {
-              $m->{nb} = '100+';
-              close $FILE;
-              return (@messages);
-            }
-            last;
-          }
-          push @messages, Wizard_Add_Message($timestamp, $line, \@types)
-            if (!$match);
-          last if (scalar(@messages) >= $nb_max);
-        }
-        close $FILE;
-        last if (scalar(@messages) >= $nb_max);
-      }
-      else
-      {
-        my ($pack, $file_pack, $line, $sub) = caller 0;
-        AAT::Syslog('Octopussy::Message', 'UNABLE_OPEN_FILE_IN', $f, $sub);
-      }
+      Wizard_File($f, \@messages);
     }
   }
 

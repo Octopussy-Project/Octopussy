@@ -25,6 +25,7 @@ use Octopussy::Report::XML;
 Readonly my $DIR_REPORT   => 'reports';
 Readonly my $REPORTER_BIN => 'octo_reporter';
 Readonly my $XML_ROOT     => 'octopussy_report';
+Readonly my $MINUTE       => 60;
 
 my $dir_reports = undef;
 my %filename;
@@ -488,8 +489,9 @@ sub File_Info_Tooltip
       . ": $c->{start} -> $c->{finish}<br><hr>"
       . sprintf(
       AAT::Translation::Get($lang, '_MSG_REPORT_DATA_SOURCE'),
-      $c->{nb_files},          $c->{nb_lines},
-      int($c->{seconds} / 60), $c->{seconds} % 60
+      $c->{nb_files}, $c->{nb_lines},
+      int($c->{seconds} / $MINUTE),
+      $c->{seconds} % $MINUTE
       )
       . '<br>'
       . AAT::Translation::Get($lang, '_MSG_REPORT_GENERATED_BY') . ' v'

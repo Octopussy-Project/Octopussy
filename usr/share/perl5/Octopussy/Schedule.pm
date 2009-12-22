@@ -18,6 +18,7 @@ use Octopussy;
 
 Readonly my $FILE_SCHEDULES => 'schedule';
 Readonly my $XML_ROOT       => 'octopussy_schedule';
+Readonly my $HOURS_IN_DAY   => 24;
 
 =head1 FUNCTIONS
 
@@ -146,7 +147,8 @@ sub Period_Check
   $end_day    =~ s/Day-//;
   $end_hour   =~ s/Hour-//;
   return (1)
-    if (($begin_day * 24 + $begin_hour) > ($end_day * 24 + $end_hour));
+    if (($begin_day * $HOURS_IN_DAY + $begin_hour) >
+    ($end_day * $HOURS_IN_DAY + $end_hour));
 
   return (0);
 }

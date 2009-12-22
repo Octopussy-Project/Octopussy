@@ -13,8 +13,15 @@ package Octopussy::Logs;
 
 use strict;
 use warnings;
+use Readonly;
 
 use Octopussy;
+
+# Multipliers to get Date Number (YYYYMMDDHHMM)
+Readonly my $DIGIT_YEAR  => 100_000_000;
+Readonly my $DIGIT_MONTH => 1_000_000;
+Readonly my $DIGIT_DAY   => 10_000;
+Readonly my $DIGIT_HOUR  => 100;
 
 =head2 Device_List($devices)
 
@@ -154,34 +161,38 @@ sub Remove_Directories
   return (undef);
 }
 
+=head2 Files_Year_Month_Day($start, $finish, $dir_service, $y)
+
+=cut
+
 sub Files_Year_Month_Day
 {
-  my ($start, $finish, $dir, $dev, $s, $y) = @_;
+  my ($start, $finish, $dir_service, $y) = @_;
 
   my @files        = ();
-  my $start_year   = $start->{year} * 100_000_000;
-  my $start_month  = $start_year + $start->{month} * 1_000_000;
-  my $start_day    = $start_month + $start->{day} * 10_000;
-  my $finish_year  = $finish->{year} * 100_000_000;
-  my $finish_month = $finish_year + $finish->{month} * 1_000_000;
-  my $finish_day   = $finish_month + $finish->{day} * 10_000;
+  my $start_year   = $start->{year} * $DIGIT_YEAR;
+  my $start_month  = $start_year + $start->{month} * $DIGIT_MONTH;
+  my $start_day    = $start_month + $start->{day} * $DIGIT_DAY;
+  my $finish_year  = $finish->{year} * $DIGIT_YEAR;
+  my $finish_month = $finish_year + $finish->{month} * $DIGIT_MONTH;
+  my $finish_day   = $finish_month + $finish->{day} * $DIGIT_DAY;
 
-  my $num_year = $y * 100_000_000;
+  my $num_year = $y * $DIGIT_YEAR;
   if (($start_year <= $num_year) && ($num_year <= $finish_year))
   {
-    foreach my $m (Get_Directories("$dir/$dev/$s/$y"))
+    foreach my $m (Get_Directories("$dir_service/$y"))
     {
-      my $num_month = $num_year + $m * 1_000_000;
+      my $num_month = $num_year + $m * $DIGIT_MONTH;
       if (($start_month <= $num_month) && ($num_month <= $finish_month))
       {
-        foreach my $d (Get_Directories("$dir/$dev/$s/$y/$m"))
+        foreach my $d (Get_Directories("$dir_service/$y/$m"))
         {
-          my $num_day = $num_month + $d * 10_000;
+          my $num_day = $num_month + $d * $DIGIT_DAY;
           if (($start_day <= $num_day) && ($num_day <= $finish_day))
           {
             push @files,
               map { {file => "$y/$m/$d/" . $_, numday => $num_day} }
-              AAT::FS::Directory_Files("$dir/$dev/$s/$y/$m/$d", qr/^msg_/);
+              AAT::FS::Directory_Files("$dir_service/$y/$m/$d", qr/^msg_/);
           }
         }
       }
@@ -189,6 +200,31 @@ sub Files_Year_Month_Day
   }
 
   return (@files);
+}
+
+=head2 Files_Year_Month_Day_Hour_Min($dir_service, $start_num, $finish_num, $files)
+
+=cut
+
+sub Files_Year_Month_Day_Hour_Min
+{
+  my ($dir_service, $start_num, $finish_num, $files) = @_;
+  my @list = ();
+
+  foreach my $f (@{$files})
+  {
+    my $file = $f->{file};
+    if ($file =~ /^(\d{4}\/\d{2}\/\d{2})\/msg_(\d{2})h(\d{2})/)
+    {
+      my $num = ($f->{numday} + ($2 * $DIGIT_HOUR) + $3);
+      if (($start_num <= $num) && ($num <= $finish_num))
+      {
+        push @list, "$dir_service/$file";
+      }
+    }
+  }
+
+  return (@list);
 }
 
 =head2 Files($devices, $services, $start, $finish)
@@ -205,14 +241,18 @@ sub Files
   my %devs  = Device_List($ref_devices);
   my %servs = Service_List($ref_services);
 
-  my $start_year   = $start->{year} * 100_000_000;
-  my $start_month  = $start_year + $start->{month} * 1_000_000;
-  my $start_day    = $start_month + $start->{day} * 10_000;
-  my $start_num    = $start_day + $start->{hour} * 100 + $start->{min};
-  my $finish_year  = $finish->{year} * 100_000_000;
-  my $finish_month = $finish_year + $finish->{month} * 1_000_000;
-  my $finish_day   = $finish_month + $finish->{day} * 10_000;
-  my $finish_num   = $finish_day + $finish->{hour} * 100 + $finish->{min};
+  my $start_num =
+    ($start->{year} * $DIGIT_YEAR) +
+    ($start->{month} * $DIGIT_MONTH) +
+    ($start->{day} * $DIGIT_DAY) +
+    ($start->{hour} * $DIGIT_HOUR) +
+    $start->{min};
+  my $finish_num =
+    ($finish->{year} * $DIGIT_YEAR) +
+    ($finish->{month} * $DIGIT_MONTH) +
+    ($finish->{day} * $DIGIT_DAY) +
+    ($finish->{hour} * $DIGIT_HOUR) +
+    $finish->{min};
 
   foreach my $dev (sort keys %devs)
   {
@@ -223,19 +263,12 @@ sub Files
         my $dir = Octopussy::Storage::Directory_Service($dev, $s);
         foreach my $y (Get_Directories("$dir/$dev/$s"))
         {
-          my @files = Files_Year_Month_Day($start, $finish, $dir, $dev, $s, $y);
-          foreach my $f (@files)
-          {
-            my $file = $f->{file};
-            if ($file =~ /^(\d{4}\/\d{2}\/\d{2})\/msg_(\d{2})h(\d{2})/)
-            {
-              my $num = ($f->{numday} + $2 * 100 + $3);
-              if (($start_num <= $num) && ($num <= $finish_num))
-              {
-                push @list, "$dir/$dev/$s/$file";
-              }
-            }
-          }
+          my @files = Files_Year_Month_Day($start, $finish, "$dir/$dev/$s", $y);
+
+          push @list,
+            Files_Year_Month_Day_Hour_Min("$dir/$dev/$s", $start_num,
+            $finish_num, \@files);
+
         }
       }
     }
@@ -282,14 +315,18 @@ sub Minutes_Hash
   my %minute_files = ();
   my $nb_files     = 0;
 
-  my $start_year   = $start->{year} * 100_000_000;
-  my $start_month  = $start_year + $start->{month} * 1_000_000;
-  my $start_day    = $start_month + $start->{day} * 10_000;
-  my $start_num    = $start_day + $start->{hour} * 100 + $start->{min};
-  my $finish_year  = $finish->{year} * 100_000_000;
-  my $finish_month = $finish_year + $finish->{month} * 1_000_000;
-  my $finish_day   = $finish_month + $finish->{day} * 10_000;
-  my $finish_num   = $finish_day + $finish->{hour} * 100 + $finish->{min};
+  my $start_num =
+    ($start->{year} * $DIGIT_YEAR) +
+    ($start->{month} * $DIGIT_MONTH) +
+    ($start->{day} * $DIGIT_DAY) +
+    ($start->{hour} * $DIGIT_HOUR) +
+    $start->{min};
+  my $finish_num =
+    ($finish->{year} * $DIGIT_YEAR) +
+    ($finish->{month} * $DIGIT_MONTH) +
+    ($finish->{day} * $DIGIT_DAY) +
+    ($finish->{hour} * $DIGIT_HOUR) +
+    $finish->{min};
 
   foreach my $dev (sort keys %devs)
   {
@@ -300,13 +337,13 @@ sub Minutes_Hash
         my $dir = Octopussy::Storage::Directory_Service($dev, $s);
         foreach my $y (Get_Directories("$dir/$dev/$s"))
         {
-          my @files = Files_Year_Month_Day($start, $finish, $dir, $dev, $s, $y);
+          my @files = Files_Year_Month_Day($start, $finish, "$dir/$dev/$s", $y);
           foreach my $f (@files)
           {
             my $file = $f->{file};
             if ($file =~ /^(\d{4}\/\d{2}\/\d{2})\/msg_(\d{2})h(\d{2})/)
             {
-              my $num = ($f->{numday} + $2 * 100 + $3);
+              my $num = ($f->{numday} + $2 * $DIGIT_HOUR + $3);
               if (($start_num <= $num) && ($num <= $finish_num))
               {
                 push @{$minute_files{$num}}, "$dir/$dev/$s/$file";
