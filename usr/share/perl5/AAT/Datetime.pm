@@ -33,7 +33,7 @@ Readonly my $MAX_HOURS    => 23;
 Readonly my $MAX_MINUTES  => 59;
 Readonly my $MAX_MONTH    => 12;
 Readonly my $MAX_MONTHDAY => 31;
-Readonly my $YEAR_START   => 1900;
+Readonly my $START_YEAR   => 1900;
 
 =head1 FUNCTIONS
 

@@ -801,13 +801,13 @@ sub Wizard_Add_Message
   );
 }
 
-=head2 Wizard_File($f, $messages)
+=head2 Wizard_File($f, $timestamp, $nb_max, $messages, $types)
 
 =cut
 
 sub Wizard_File
 {
-  my ($f, $messages) = @_;
+  my ($f, $timestamp, $nb_max, $messages, $types) = @_;
 
   if (defined open my $FILE, '-|', "zcat $f")
   {
@@ -827,7 +827,7 @@ sub Wizard_File
         }
         last;
       }
-      push @{$messages}, Wizard_Add_Message($timestamp, $line, \@types)
+      push @{$messages}, Wizard_Add_Message($timestamp, $line, $types)
         if (!$match);
       last if (scalar(@{$messages}) >= $nb_max);
     }
@@ -861,7 +861,7 @@ sub Wizard
     if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
     {
       my $timestamp = "$1$2$3$4$5";
-      Wizard_File($f, \@messages);
+      Wizard_File($f, $timestamp, $nb_max, \@messages, \@types);
     }
   }
 

@@ -581,6 +581,38 @@ sub Report_Graph_Set_DS
   return ($dsv, $ds1, $ds2, $ds3);
 }
 
+=head2
+
+=cut
+
+sub Report_Graph_RRD_Create_Update
+{
+  my ($file_rrd, $start, $rrd_step_mins, $diff, $ds, $dataline) = @_;
+
+  my $cmd = qq($RRD_CREATE "$file_rrd" --start $start --step $rrd_step_mins );
+  my $i   = 1;
+  foreach my $k (sort keys %{$ds})
+  {
+    $cmd .= "DS:ds$i:GAUGE:" . (2 * $rrd_step_mins) . ':0:U ';
+    $ds->{$k} = $i;
+    $i++;
+  }
+  system "$cmd RRA:AVERAGE:0.5:1:$diff";
+
+  foreach my $ts (sort keys %{$dataline})
+  {
+    my $update = ($start + ($ts * $rrd_step_mins) + 1) . ':';
+    foreach my $d (sort keys %{$ds})
+    {
+      $update .= ($dataline->{$ts}{$d} || '0') . ':';
+    }
+    $update =~ s/:$//;
+    system qq($RRD_UPDATE "$file_rrd" $update);
+  }
+
+  return (1);
+}
+
 =head2 Report_Graph($rconf, $begin, $end, $output, $data, $stats, $lang)
 
 Graphs RRD Report
@@ -637,34 +669,16 @@ sub Report_Graph
       }
     }
 
-    my $cmd = qq($RRD_CREATE "$file_rrd" --start $start --step $rrd_step_mins );
-    my $i   = 1;
-    foreach my $k (sort keys %ds)
-    {
-      $cmd .= "DS:ds$i:GAUGE:" . (2 * $rrd_step_mins) . ':0:U ';
-      $ds{$k} = $i;
-      $i++;
-    }
-    system "$cmd RRA:AVERAGE:0.5:1:$diff";
+    Report_Graph_RRD_Create_Update($file_rrd, $start, $rrd_step_mins, $diff,
+      \%ds, \%dataline);
 
-    foreach my $ts (sort keys %dataline)
-    {
-      my $update = ($start + ($ts * $rrd_step_mins) + 1) . ':';
-      foreach my $d (sort keys %ds)
-      {
-        $update .= ($dataline{$ts}{$d} || '0') . ':';
-      }
-      $update =~ s/:$//;
-      system qq($RRD_UPDATE "$file_rrd" $update);
-    }
-
-    $cmd =
+    my $cmd =
       Graph_Parameters($output, $start, $finish, $title, $width, $height,
       $rconf->{graph_ylabel});
 
     my $watermark = Report_Graph_Watermark($stats, $lang);
     $cmd .= qq(--watermark "$watermark" );
-    $i = 1;
+    my $i = 1;
     foreach my $k (sort keys %ds)
     {
       my $color = (($i < (scalar @COLORS)) ? $COLORS[$i - 1] : '#909090');

@@ -146,7 +146,7 @@ sub Convert_To_Syslog
         {
           if ($var[$1 - 1] =~ /(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)/)
           {
-            my $substitution = $months[int($2)] . " $1 $4:$5:$6";
+            my $substitution = $months[int $2] . " $1 $4:$5:$6";
             $syslog =~ s/__d2m2y2hms\(\d+\)__/$substitution/g;
           }
         }

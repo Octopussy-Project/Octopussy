@@ -21,6 +21,8 @@ use Octopussy;
 Readonly my $STEP_HBAR => 10;
 Readonly my $STYLE_TITLE =>
   '{font-size: 20px; color:#0000ff; font-family: Verdana; text-align: center;}';
+Readonly my $SIZE_3D     => 5;
+Readonly my $TICK_HEIGHT => 4;
 
 =head1 FUNCTIONS
 
@@ -56,11 +58,13 @@ sub Step
 
   if ($max =~ /^(\d)(\d+)$/)
   {
+    ## no critic
     my $multi = 10**(length($2) - 1);
     $multi ||= 1;
     if ($1 == 1) { $step = 2 * $multi; }
     elsif ($1 =~ /[2-5]/) { $step = 5 * $multi; }
     else                  { $step = 10 * $multi; }
+    ## use critic
   }
 
   return ($step);
@@ -155,8 +159,8 @@ sub Bar_Cylinder
     title  => {text => $rc->{name}, style => $STYLE_TITLE},
     x_axis => {
       colour        => '#909090',
-      '3d'          => 5,
-      'tick-height' => 4,
+      '3d'          => $SIZE_3D,
+      'tick-height' => $TICK_HEIGHT,
       labels        => {steps => 10, labels => \@labels},
     },
     y_axis   => {steps => Step($max),     min    => 0, max => $max},
