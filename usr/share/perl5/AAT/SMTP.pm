@@ -13,9 +13,13 @@ package AAT::SMTP;
 
 use strict;
 use warnings;
+use Readonly;
 
 use Mail::Sender;
 use Net::Telnet;
+
+Readonly my $SMTP_PORT    => 25;
+Readonly my $SMTP_TIMEOUT => 3;
 
 my %conf_file = ();
 
@@ -53,9 +57,9 @@ sub Connection_Test
   {
     my $con = new Net::Telnet(
       Host    => $conf->{server},
-      Port    => 25,
+      Port    => $SMTP_PORT,
       Errmode => 'return',
-      Timeout => 3
+      Timeout => $SMTP_TIMEOUT
     );
     my $sender = (
       AAT::NOT_NULL($conf->{auth_type})

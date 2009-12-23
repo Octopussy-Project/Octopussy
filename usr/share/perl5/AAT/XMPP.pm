@@ -25,7 +25,11 @@ package AAT::XMPP;
 
 use strict;
 use warnings;
+use Readonly;
+
 use Net::XMPP;
+
+Readonly my $XMPP_TIMEOUT => 3;
 
 my %conf_file = ();
 
@@ -66,7 +70,7 @@ sub Connection_Test
       hostname => $conf_xmpp->{server},
       port     => $conf_xmpp->{port},
       tls      => $conf_xmpp->{tls},
-      timeout  => 3
+      timeout  => $XMPP_TIMEOUT,
     );
     if (@res)
     {

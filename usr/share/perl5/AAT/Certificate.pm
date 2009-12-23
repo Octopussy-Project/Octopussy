@@ -49,6 +49,7 @@ sub Authority_Configuration
   my @lines = `$SSL_X509 -text -noout -in $dir_ca/cacert.pem`;
   foreach my $line (@lines)
   {
+    ## no critic
     if ($line =~
 /Subject: C=(\w+), ST=(.+?), L=(.+?), O=(.+?), OU=(.+?), CN=(.+?)\/emailAddress=(\S+)$/
       )
@@ -58,6 +59,7 @@ sub Authority_Configuration
         $conf{common_name}, $conf{email}
       ) = ($1, $2, $3, $4, $5, $6, $7);
     }
+    ## use critic
   }
 
   return (%conf);
@@ -96,7 +98,7 @@ sub Authority_Create
     close $OUT;
     system
 "$SSL_REQ -config $CONF_CA -passout pass:octo -x509 -newkey $CIPHER -days $CA_DAYS -keyout $dir_ca/private/cakey.pem -out $dir_ca/cacert.pem";
-    chmod 0600, glob "$dir_ca/private/*";
+    chmod 0600, glob "$dir_ca/private/*";    ## no critic
 
     return ("$dir_ca/private");
   }

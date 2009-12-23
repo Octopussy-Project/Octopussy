@@ -14,10 +14,12 @@ package AAT::XML;
 use strict;
 use warnings;
 use open ':utf8';
-
+use Readonly;
 use English qw( -no_match_vars );
 
 use XML::Simple;
+
+Readonly my $STAT_MODIF_TIME => 9;
 
 my %XML_CACHE = ();
 my %filename  = ();
@@ -102,7 +104,7 @@ sub Read
   {
     my @stats = stat $file;
     if ( (defined $XML_CACHE{$file})
-      && ($stats[9] == $XML_CACHE{$file}{modif_time}))
+      && ($stats[$STAT_MODIF_TIME] == $XML_CACHE{$file}{modif_time}))
     {
       return ($XML_CACHE{$file}{xml});
     }
@@ -112,7 +114,7 @@ sub Read
       my $xml =
         eval { XMLin($file, (defined $no_option ? () : %XML_INPUT_OPTIONS)); };
       AAT::Syslog('AAT::XML', 'XML_READ_ERROR', $EVAL_ERROR) if ($EVAL_ERROR);
-      $XML_CACHE{$file}{modif_time} = $stats[9];
+      $XML_CACHE{$file}{modif_time} = $stats[$STAT_MODIF_TIME];
       $XML_CACHE{$file}{xml}        = $xml;
       return ($xml);
     }

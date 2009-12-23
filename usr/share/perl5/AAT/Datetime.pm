@@ -29,6 +29,12 @@ Readonly my @WEEKDAY_NAME => (
   '_THURSDAY', '_FRIDAY', '_SATURDAY', '_SUNDAY',
 );
 
+Readonly my $MAX_HOURS    => 23;
+Readonly my $MAX_MINUTES  => 59;
+Readonly my $MAX_MONTH    => 12;
+Readonly my $MAX_MONTHDAY => 31;
+Readonly my $YEAR_START   => 1900;
+
 =head1 FUNCTIONS
 
 =head2 Month_Name($month)
@@ -79,7 +85,7 @@ Returns current date (now!) in an Array (YYYY, MM, DD, HH, MM, SS)
 sub Now
 {
   my ($sec, $min, $hour, $mday, $mon, $year) = localtime time;
-  $year += 1900;
+  $year += $START_YEAR;
   $mon++;
   $mon  = ($mon < 10  ? '0' . $mon  : $mon);
   $mday = ($mday < 10 ? '0' . $mday : $mday);
@@ -231,7 +237,7 @@ sub Current_Hour
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
   ($begin{hour}, $begin{min}) = ($hour, 0);
   ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, 59);
+  ($end{hour}, $end{min}) = ($hour, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -319,7 +325,7 @@ sub Last_Day
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
   ($begin{hour}, $begin{min}) = (0, 0);
   ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = (23, 59);
+  ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -341,7 +347,7 @@ sub Last_Hour
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
   ($begin{hour}, $begin{min}) = ($hour, 0);
   ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, 59);
+  ($end{hour}, $end{min}) = ($hour, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -363,7 +369,7 @@ sub Last_Month
   ($begin{hour}, $begin{min}) = (0, 0);
   ($end{year}, $end{month}, $end{day}) =
     ($year, $month, Month_Nb_Days($year, $month));
-  ($end{hour}, $end{min}) = (23, 59);
+  ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -389,7 +395,7 @@ sub Last_Week
   ($year, $month, $day, $hour, $min) =
     Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
   ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = (23, 59);
+  ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -407,8 +413,8 @@ sub Last_Year
   my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year - 1, 1, 1);
   ($begin{hour}, $begin{min}) = (0, 0);
-  ($end{year}, $end{month}, $end{day}) = ($year - 1, 12, 31);
-  ($end{hour}, $end{min}) = (23, 59);
+  ($end{year}, $end{month}, $end{day}) = ($year - 1, $MAX_MONTH, $MAX_MONTHDAY);
+  ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
