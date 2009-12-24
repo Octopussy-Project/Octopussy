@@ -1,5 +1,8 @@
 <% 
 my %arg = @_; 
+
+my @list = ( { label => AAT::Translation("_UNKNOWN"), value => "Unknown" } );
+
 foreach my $c (sort (Octopussy::Location::Cities()))
 {
   foreach my $b (sort (Octopussy::Location::Buildings($c)))

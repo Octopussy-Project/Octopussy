@@ -52,7 +52,7 @@ sub City_Add
   my $file = Octopussy::File($FILE_LOCATIONS);
   my $conf = AAT::XML::Read($file);
 
-  if (none { $_ eq $city } Cities())
+  if ((!defined $conf) || (none { $_ eq $city } Cities()))
   {
     push @{$conf->{city}}, {c_name => $city};
     AAT::XML::Write($file, $conf, $XML_ROOT);
