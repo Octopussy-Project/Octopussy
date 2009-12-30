@@ -180,8 +180,8 @@ sub Configuration
   my $alert_name = shift;
 
   my $conf = AAT::XML::Read(Filename($alert_name));
-  $conf->{msgbody}     =~ s/ \@\@\@ /\n/g;
-  $conf->{action_body} =~ s/ \@\@\@ /\n/g;
+  $conf->{msgbody}     =~ s/ \@\@\@ /\n/g if (defined $conf->{msgbody});
+  $conf->{action_body} =~ s/ \@\@\@ /\n/g if (defined $conf->{action_body});
 
   return ($conf);
 }

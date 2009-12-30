@@ -7,7 +7,8 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	my @devices = AAT::ARRAY($f->{device});
 	my @services = AAT::ARRAY($f->{service});
-	my @actions = AAT::ARRAY($f->{action});
+  my @actions = (AAT::ARRAY($f->{action_mailing}),
+      AAT::ARRAY($f->{action_program}));
 	my @contacts = AAT::ARRAY($f->{contact});
   my $body = $f->{body};
 	Octopussy::Alert::Modify($f->{old_alert},
