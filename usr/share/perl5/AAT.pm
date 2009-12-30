@@ -332,9 +332,9 @@ sub Language
 {
   my $lang = shift;
 
-  $main::Session->{AAT_LANGUAGE} = (NOT_NULL($lang) ? $lang : 'EN');
+  $main::Session->{AAT_LANGUAGE} = $lang  if (NOT_NULL($lang)); # Set Language
 
-  return ($main::Session->{AAT_LANGUAGE});
+  return ($main::Session->{AAT_LANGUAGE} || 'EN'); # Get Language
 }
 
 =head2 Menu_Mode($mode)
@@ -347,10 +347,9 @@ sub Menu_Mode
 {
   my $mode = shift;
 
-  $main::Session->{AAT_MENU_MODE} =
-    (NOT_NULL($mode) ? $mode : 'ICONS_AND_TEXT');
+  $main::Session->{AAT_MENU_MODE} = $mode if (NOT_NULL($mode)); # Set Menu_Mode
 
-  return ($main::Session->{AAT_MENU_MODE});
+  return ($main::Session->{AAT_MENU_MODE} || 'ICONS_AND_TEXT'); # Get Menu_Mode
 }
 
 =head2 Theme($theme)
@@ -363,9 +362,9 @@ sub Theme
 {
   my $theme = shift;
 
-  $main::Session->{AAT_THEME} = (NOT_NULL($theme) ? $theme : 'DEFAULT');
+  $main::Session->{AAT_THEME} = $theme if (NOT_NULL($theme)); # Set Theme
 
-  return ($main::Session->{AAT_THEME});
+  return ($main::Session->{AAT_THEME} || 'DEFAULT'); # Get Theme
 }
 
 =head2 Translation($str)
