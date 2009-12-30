@@ -2,7 +2,7 @@
 my %arg = @_;
 
 my $url = $arg{url};
-my $sort = defined $arg{sort} ? lc($arg{sort}) : "name";
+my $sort = AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "name";
 my $role = $Session->{AAT_ROLE};
 my $lnk = "./devices.asp?devices_table_sort";
 my @list = Octopussy::Device::List();
