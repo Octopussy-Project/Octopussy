@@ -175,7 +175,7 @@ sub Partition_Logs
   foreach my $l (@lines)
   {
     $dir{"$2"} = $1
-      if ($l =~ /\S+\s+\S+\s+\S+\s+\S+\s+(\S+)\s+(\S+)/);
+      if ($l =~ /^(?:\S+)?\s+\S+\s+\S+\s+\S+\s+(\d+\%)\s+(\S+)/);
   }
   foreach my $s (@storages)
   {
