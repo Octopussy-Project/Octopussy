@@ -639,7 +639,8 @@ sub Parse_List
 sub Alerts
 {
   my ($device, $service, $message, $dev_alerts, $contact) = @_;
-  my @alerts = ();
+  my @alerts    = ();
+  my %log_level = Octopussy::Loglevel::Levels();
 
   foreach my $ac (AAT::ARRAY($dev_alerts))
   {
@@ -654,10 +655,20 @@ sub Alerts
     }
     if ($ac->{type} =~ /Dynamic/i)
     {
+      my $ac_level =
+        ((AAT::NOT_NULL($ac->{loglevel}) && ($ac->{loglevel} ne '-ANY-'))
+        ? $log_level{$ac->{loglevel}}
+        : 0);
+
       foreach my $s (AAT::ARRAY($ac->{service}))
       {
-        if ( (($s eq $service) || ($s eq '-ANY-'))
-          && ($message->{taxonomy} =~ /$ac->{taxonomy}.*/))
+        if (
+          (($s eq $service) || ($s eq '-ANY-'))
+          && ( (!defined $ac->{taxonomy})
+            || ($ac->{taxonomy} eq '-ANY-')
+            || ($message->{taxonomy} =~ /^$ac->{taxonomy}.*/))
+          && ($log_level{$message->{loglevel}} >= $ac_level)
+          )
         {
           push @alerts, {
             name              => $ac->{name},

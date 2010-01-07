@@ -2,10 +2,11 @@
 my %arg = @_;
 
 my $conf = Octopussy::Alert::Configuration($arg{alert});
-my ($a_name, $a_desc, $a_level, $a_status, $a_taxo, $a_timeperiod, 
+my ($a_name, $a_desc, $a_level, $a_status, $a_loglevel, $a_taxo, $a_timeperiod, 
 	$a_thresold_time, $a_thresold_duration) = ($conf->{name}, 
-	$conf->{description}, $conf->{level}, $conf->{status}, $conf->{taxonomy}, 
-	$conf->{timeperiod}, $conf->{thresold_time}, $conf->{thresold_duration});
+	$conf->{description}, $conf->{level}, $conf->{status}, $conf->{loglevel}, 
+  $conf->{taxonomy}, $conf->{timeperiod}, 
+  $conf->{thresold_time}, $conf->{thresold_duration});
 my ($a_re_include, $a_re_exclude) = 
 	($conf->{regexp_include}, $conf->{regexp_exclude});
 my ($a_msg_subject, $a_msg_body) = ($conf->{msgsubject}, $conf->{msgbody});
@@ -62,9 +63,16 @@ my @used_services = Octopussy::Service::List_Used();
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_LOGLEVEL" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol>
+  <AAT:Inc file="octo_selector_loglevel" name="loglevel" any="1" 
+    selected="$a_loglevel" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>
   <AAT:BoxCol>
-  <AAT:Inc file="octo_selector_taxonomy" name="taxonomy" 
+  <AAT:Inc file="octo_selector_taxonomy" name="taxonomy" any="1" 
 		selected="$a_taxo" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

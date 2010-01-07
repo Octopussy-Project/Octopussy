@@ -106,7 +106,6 @@ if ($Session->{extractor} eq "done")
     my $hre_inc3 = $Server->HTMLEncode($re_include3);
 	if (defined open(my $FILE, '<', "$run_dir/logs_${login}_$filename"))
 	{
-		AAT::DEBUG("Open file $run_dir/logs_${login}_$filename !");
     	while (<$FILE>)
     	{
 			if (($nb_lines >= ($page-1)*$LINES_BY_PAGE) 
@@ -125,10 +124,6 @@ if ($Session->{extractor} eq "done")
    		$nb_lines++;
   		}
 		close($FILE);
-	}
-	else 
-	{
-		AAT::DEBUG("Can't open file $run_dir/logs_${login}_$filename !");
 	}
 		$last_page = int($nb_lines/$LINES_BY_PAGE) + 1;
 		$text .= "</table>"; 

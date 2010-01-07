@@ -39,9 +39,14 @@ my @used_services = Octopussy::Service::List_Used();
 	restricted_services=\@used_services /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
+  <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_LOGLEVEL" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Inc file="octo_selector_loglevel" any="1" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_TAXONOMY" style="B"/></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Inc file="octo_selector_taxonomy" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Inc file="octo_selector_taxonomy" any="1" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Button name="period" /></AAT:BoxCol>

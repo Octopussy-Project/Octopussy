@@ -22,9 +22,9 @@ else
 
     Octopussy::Alert::New({ name => $alert, 
 			description => Encode::decode_utf8($f->{description}), 
-			level => $f->{level}, type => "Dynamic", taxonomy => $f->{taxonomy},
+			level => $f->{level}, type => "Dynamic", loglevel => $f->{loglevel},
+      taxonomy => $f->{taxonomy}, timeperiod => $f->{timeperiod},
 			status => ($f->{status} || "Enabled"),
-			timeperiod => $f->{timeperiod}, 
 			device => \@devices, service => \@services,
 			regexp_include => $f->{regexp_include},
 			regexp_exclude => $f->{regexp_exclude},
