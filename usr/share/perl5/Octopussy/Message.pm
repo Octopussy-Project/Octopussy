@@ -685,6 +685,7 @@ sub Alerts
             nagios_service    => $ac->{nagios_service},    # only for NSCA
             action_host       => $ac->{action_host},       # for Nagios & Zabbix
             action_service    => $ac->{action_service},    # for Nagios & Zabbix
+            action_body       => $ac->{action_body},       # for Nagios & Zabbix
             imdest            => \@ims,
             maildest          => \@mails
           };
@@ -723,6 +724,7 @@ sub Alerts
             nagios_service    => $ac->{nagios_service},    # only for NSCA
             action_host       => $ac->{action_host},       # for Nagios & Zabbix
             action_service    => $ac->{action_service},    # for Nagios & Zabbix
+            action_body       => $ac->{action_body},       # for Nagios & Zabbix
             imdest            => \@ims,
             maildest          => \@mails
           };
