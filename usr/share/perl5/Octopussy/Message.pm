@@ -655,10 +655,11 @@ sub Alerts
     }
     if ($ac->{type} =~ /Dynamic/i)
     {
-      my $ac_level =
-        ((AAT::NOT_NULL($ac->{loglevel}) && ($ac->{loglevel} ne '-ANY-'))
+      my $ac_level = (
+        (AAT::NOT_NULL($ac->{loglevel}) && ($ac->{loglevel} ne '-ANY-'))
         ? $log_level{$ac->{loglevel}}
-        : 0);
+        : 0
+      );
 
       foreach my $s (AAT::ARRAY($ac->{service}))
       {

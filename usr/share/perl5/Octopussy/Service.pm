@@ -290,6 +290,7 @@ sub Modify_Message
 {
   my ($service, $msgid, $conf_modified) = @_;
   $conf_modified->{pattern} = Encode::decode_utf8($conf_modified->{pattern});
+  $conf_modified->{pattern} =~ s/\r\n//g;
   $conf_modified->{pattern} =~ s/\s+$//g;
 
   my @errors = ();

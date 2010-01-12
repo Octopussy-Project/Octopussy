@@ -2,7 +2,7 @@
 <octopussy_service description="SSH Daemon Service"
                    name="Sshd"
                    nb_messages="079"
-                   version="200907020001">
+                   version="201001120003">
   <message loglevel="Information"
            msg_id="Sshd:session_for_user"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*session .+ for user .+&quot;):msg@&gt;"
@@ -17,7 +17,7 @@
            taxonomy="Auth.Failure" />
   <message loglevel="Notice"
            msg_id="Sshd:authentication_failure"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*authentication failure;.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]:   &lt;@REGEXP(&quot;.*authentication failure;.+&quot;):msg@&gt;"
            rank="003"
            table="Message"
            taxonomy="Auth.Failure" />
@@ -137,7 +137,7 @@
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Sshd:invalid_user"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Invalid user .+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]:   &lt;@REGEXP(&quot;Invalid user .+&quot;):msg@&gt;"
            rank="023"
            table="Message"
            taxonomy="Auth.Failure" />

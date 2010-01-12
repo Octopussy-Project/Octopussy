@@ -2,7 +2,7 @@
 <octopussy_service description="Clam AntiVirus Service"
                    name="ClamAV"
                    nb_messages="007"
-                   version="200909150005"
+                   version="200912140001"
                    website="http://www.clamav.net/">
   <message loglevel="Information"
            msg_id="ClamAV:clamav_update_process_started"
@@ -98,6 +98,12 @@
            msg_id="ClamAV:trying_again_5_secs"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freshclam&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Trying again in 5 secs.*&quot;):msg@&gt;"
            rank="016"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="ClamAV:dont_panic"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freshclam&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;DON'T PANIC!.*&quot;):msg@&gt;"
+           rank="017"
            table="Message"
            taxonomy="Application" />
 </octopussy_service>

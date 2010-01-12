@@ -43,6 +43,7 @@ sub New
   my $conf = shift;
 
   $dir_reports ||= Octopussy::Directory($DIR_REPORT);
+  $conf->{query} =~ s/\r\n//;
   $conf->{version} = Octopussy::Timestamp_Version(undef);
   AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, $XML_ROOT);
 
@@ -76,6 +77,7 @@ sub Modify
 {
   my ($old_report, $conf_new) = @_;
 
+  $conf_new->{query} =~ s/\r\n//;
   unlink Filename($old_report);
   $filename{$old_report} = undef;
   New($conf_new);
