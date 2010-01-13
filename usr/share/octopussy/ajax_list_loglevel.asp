@@ -1,8 +1,8 @@
 <%
-my $devs = $Request->QueryString("devices");
-my $servs = $Request->QueryString("services");
-my $table = $Request->QueryString("table");
-my $selected = $Request->QueryString("selected");
+my $devs = $Request->Form("devices");
+my $servs = $Request->Form("services");
+my $table = $Request->Form("table");
+my $selected = $Request->Form("selected");
 my @list = (defined $arg{any} ? ({ value => "-ANY-", color => "black" }) : ());
 
 if (AAT::NOT_NULL($table))

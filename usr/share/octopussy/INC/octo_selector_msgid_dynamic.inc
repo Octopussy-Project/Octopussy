@@ -50,10 +50,13 @@ function refresh_selector_msgid()
   if (!http_request_msgid)
     { return false; }
   http_request_msgid.onreadystatechange = print_selector_msgid;
-  http_request_msgid.open('GET', "ajax_list_msgid.asp?"
-		+ "services=" + services_str + "&loglevel=" + loglevel_str 
-		+ "&taxonomy=" + taxonomy_str + "&selected=" + selected_str, true);
-  http_request_msgid.send(null);	
+  http_request_msgid.open('POST', "ajax_list_msgid.asp", true);
+  var post_params = "services=" + services_str + "&loglevel=" + loglevel_str 
+		+ "&taxonomy=" + taxonomy_str + "&selected=" + selected_str;
+  http_request_msgid.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http_request_msgid.setRequestHeader("Content-length", post_params.length);
+  http_request_msgid.setRequestHeader("Connection", "close");
+  http_request_msgid.send(post_params);	
 
 	return true;
 }

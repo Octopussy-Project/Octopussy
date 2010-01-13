@@ -35,11 +35,17 @@ function refresh_selector_service()
   http_request_service = HttpRequest();
   if (!http_request_service)
     { return false; }
+
   http_request_service.onreadystatechange = print_selector_service;
-  http_request_service.open('GET', "ajax_list_service.asp?"
-    + "devices=" + devices_str + "&selected=" + selected_str 
-		+ "&restricted=" + restricted_str, true);
-  http_request_service.send(null); 
+  http_request_service.open('POST', "ajax_list_service.asp", true);
+  var post_params = "devices=" + devices_str + "&selected=" + selected_str 
+                + "&restricted=" + restricted_str;
+
+  http_request_service.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http_request_service.setRequestHeader("Content-length", post_params.length);
+  http_request_service.setRequestHeader("Connection", "close");
+
+  http_request_service.send(post_params);
 	
   return true;
 }

@@ -46,10 +46,13 @@ function refresh_selector_loglevel()
   if (!http_request_loglevel)
     { return false; }
   http_request_loglevel.onreadystatechange = print_selector_loglevel;
-  http_request_loglevel.open('GET', "ajax_list_loglevel.asp?"
-    + "devices=" + devices_str + "&services=" + services_str
-    + "&table=" + table_str + "&selected=" + selected_str, true);
-  http_request_loglevel.send(null); 
+  http_request_loglevel.open('POST', "ajax_list_loglevel.asp", true);
+  var post_params = "devices=" + devices_str + "&services=" + services_str
+    + "&table=" + table_str + "&selected=" + selected_str;
+  http_request_loglevel.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http_request_loglevel.setRequestHeader("Content-length", post_params.length);
+  http_request_loglevel.setRequestHeader("Connection", "close");
+  http_request_loglevel.send(post_params); 
 
   return true;
 }
