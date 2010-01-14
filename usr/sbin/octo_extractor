@@ -91,7 +91,7 @@ sub Progress
   my ($msg, $num, $nb_match) = @_;
 
   my $status = AAT::Translation($msg) . " [$num] [$nb_match]";
-  $cache->set("status_${pid_param}", $status);
+  $cache->set("status_${pid_param}", $status) if (defined $pid_param);
 
   return ($status);
 }
@@ -145,6 +145,102 @@ sub Line_Match_Regexps
   return ($match);
 }
 
+=head2 Print_Lines($OUT, $ouput, $logs)
+
+=cut
+
+sub Print_Lines
+{
+  my ($OUT, $ouput, $logs) = @_;
+
+  if (AAT::NOT_NULL($output))
+  {
+    foreach my $l (sort @{$logs}) { print {$OUT} $l; }
+  }
+  else
+  {
+    foreach my $l (sort @{$logs}) { print $l; }
+  }
+}
+
+=head2 File_Handler_With_Filter($f, $logs, $includes, $excludes, $msg_to_parse)
+
+=cut
+
+sub File_Handler_With_Filter
+{
+  my ($f, $logs, $includes, $excludes, $msg_to_parse) = @_;
+  my $nb_match = 0;
+
+  if (defined open my $FILE, '-|', "zcat \"$f\"")
+  {
+    if ($f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/)
+    {    # 'Known' Service -> filter with msg_to_parse
+      while (my $line = <$FILE>)
+      {
+        foreach my $msg (@{$msg_to_parse})
+        {
+          if ($line =~ $msg->{re})
+          {
+            if (Line_Match_Regexps($line, $includes, $excludes))
+            {
+              push @{$logs}, $line;
+              $nb_match++;
+            }
+            last;
+          }
+        }
+      }
+    }
+    else
+    {    # 'Unknown' Service -> no filter
+      while (<$FILE>)
+      {
+        push @{$logs}, $_;
+        $nb_match++;
+      }
+    }
+    close $FILE;
+  }
+  else
+  {
+    print "Unable to open file '$f'\n";
+    AAT::Syslog('octo_extractor', 'UNABLE_OPEN_FILE', $f);
+  }
+
+  return ($nb_match);
+}
+
+=head2 File_Handler_Without_Filter($f, $logs, $includes, $excludes)
+
+=cut
+
+sub File_Handler_Without_Filter
+{
+  my ($f, $logs, $includes, $excludes) = @_;
+  my $nb_match = 0;
+
+  if (defined open my $FILE, '-|', "zcat \"$f\"")
+  {
+    while (my $line = <$FILE>)
+    {
+      if (Line_Match_Regexps($line, $includes, $excludes))
+      {
+        push @{$logs}, $line;
+        $nb_match++;
+      }
+    }
+    close $FILE;
+  }
+  else
+  {
+    print "Unable to open file '$f'\n";
+    AAT::Syslog('octo_extractor', 'UNABLE_OPEN_FILE', $f);
+  }
+
+  return ($nb_match);
+}
+
 =head2 Print_Logs($devices, $services, $loglevel, $taxo, $msgid,
 	$begin, $end, $re_incl, $re_excl)
 
@@ -175,8 +271,14 @@ sub Print_Logs
   my ($files, $total) =
     Octopussy::Logs::Get_TimePeriod_Files($devices, $services, $begin, $end);
   my $nb_match = 0;
-  if ((AAT::NOT_NULL($output)) && (defined open my $OUT, '>', $output))
-  {
+
+  if ((AAT::NOT_NULL($output)) && (!defined open my $OUT, '>', $output))
+  {    # output file defined but not able to open
+    print "Unable to open file '$output'\n";
+    AAT::Syslog('octo_extractor', 'UNABLE_OPEN_FILE', $output);
+  }
+  else
+  {    # output file opened or STDIN
     if ( (@{$services}[0] =~ /-ANY-/i)
       && (AAT::NULL($taxo) || ($taxo =~ /-ANY-/i))
       && (AAT::NULL($loglevel) || ($loglevel =~ /-ANY-/i)))
@@ -188,33 +290,11 @@ sub Print_Logs
         foreach my $f (@{$files->{$min}})
         {
           Progress('_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match);
-          if (defined open my $FILE, '-|', "zcat \"$f\"")
-          {
-            while (my $line = <$FILE>)
-            {
-              if (Line_Match_Regexps($line, \@includes, \@excludes))
-              {
-                push @logs, $line;
-                $nb_match++;
-              }
-            }
-            close $FILE;
-          }
-          else
-          {
-            print "Unable to open file '$f'\n";
-            AAT::Syslog('octo_extractor', 'UNABLE_OPEN_FILE', $f);
-          }
+          $nb_match +=
+            File_Handler_Without_Filter($f, \@logs, \@includes, \@excludes);
           $i++;
         }
-        if (AAT::NOT_NULL($output))
-        {
-          foreach my $l (sort @logs) { print {$OUT} $l; }
-        }
-        else
-        {
-          foreach my $l (sort @logs) { print $l; }
-        }
+        Print_Lines($OUT, $output, \@logs);
       }
     }
     else
@@ -229,51 +309,12 @@ sub Print_Logs
         foreach my $f (@{$files->{$min}})
         {
           Progress('_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match);
-          if (defined open my $FILE, '-|', "zcat \"$f\"")
-          {
-            if ($f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/)
-            {
-              while (my $line = <$FILE>)
-              {
-                foreach my $msg (@msg_to_parse)
-                {
-                  if ($line =~ $msg->{re})
-                  {
-                    if (Line_Match_Regexps($line, \@includes, \@excludes))
-                    {
-                      push @logs, $line;
-                      $nb_match++;
-                    }
-                    last;
-                  }
-                }
-              }
-            }
-            else
-            {
-              while (<$FILE>)
-              {
-                push(@logs, $_);
-                $nb_match++;
-              }
-            }
-            close $FILE;
-            $i++;
-          }
-          else
-          {
-            print "Unable to open file '$f'\n";
-            AAT::Syslog('octo_extractor', 'UNABLE_OPEN_FILE', $f);
-          }
+          $nb_match +=
+            File_Handler_With_Filter($f, \@logs, \@includes, \@excludes,
+            \@msg_to_parse);
+          $i++;
         }
-        if (AAT::NOT_NULL($output))
-        {
-          foreach my $l (sort @logs) { print {$OUT} $l; }
-        }
-        else
-        {
-          foreach my $l (sort @logs) { print $l; }
-        }
+        Print_Lines($OUT, $output, \@logs);
       }
     }
     close $OUT if (AAT::NOT_NULL($output));
@@ -300,7 +341,7 @@ sub End
   AAT::Syslog($PROG_NAME, 'Logs Extraction Aborted !');
 
   unlink $output;
-  $cache->remove("status_${pid_param}");
+  $cache->remove("status_${pid_param}") if (defined $pid_param);
   exit;
 }
 
@@ -346,7 +387,7 @@ Print_Logs(
   $opt_end,      \@opt_include,  \@opt_exclude
 );
 
-$cache->remove("status_${pid_param}");
+$cache->remove("status_${pid_param}") if (defined $pid_param);
 
 =head1 AUTHOR
 
