@@ -407,7 +407,7 @@ sub Pattern_Field_Substitution
     }
   }
 
-  if ($type eq 'REGEXP')
+  if ($type =~ /^REGEXP/)
   {
     $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/\($1\)/i;
   }
@@ -451,7 +451,7 @@ sub Pattern_Field_Unmatched_Substitution
     },
   );
 
-  if ($type eq 'REGEXP') { $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i; }
+  if ($type =~ /^REGEXP/) { $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i; }
   elsif (defined $subs{$type})
   {
     if ($regexp =~ $subs{$type}{match})
@@ -464,7 +464,10 @@ sub Pattern_Field_Unmatched_Substitution
         ) . $3;
     }
   }
-  else { $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/$re_types->{$1}/; }
+  else 
+  { 
+    $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/$re_types->{$1}/; 
+  }
 
   return ($regexp);
 }
