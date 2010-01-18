@@ -610,7 +610,7 @@ sub Updates
   else
   {
     my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog('Octopussy::Service', 'UNABLE_OPEN_FILE_IN', $file, $sub);
+    AAT::Syslog('Octopussy_Service', 'UNABLE_OPEN_FILE_IN', $file, $sub);
   }
   unlink $file;
 

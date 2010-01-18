@@ -854,7 +854,7 @@ sub Wizard_File
   else
   {
     my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog('Octopussy::Message', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+    AAT::Syslog('Octopussy_Message', 'UNABLE_OPEN_FILE_IN', $f, $sub);
   }
 
   return (scalar @{$messages});

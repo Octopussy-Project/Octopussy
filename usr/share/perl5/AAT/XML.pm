@@ -113,7 +113,7 @@ sub Read
       return (undef) if ((!defined $file) || (!-f $file));
       my $xml =
         eval { XMLin($file, (defined $no_option ? () : %XML_INPUT_OPTIONS)); };
-      AAT::Syslog('AAT::XML', 'XML_READ_ERROR', $EVAL_ERROR) if ($EVAL_ERROR);
+      AAT::Syslog('AAT_XML', 'XML_READ_ERROR', $EVAL_ERROR) if ($EVAL_ERROR);
       $XML_CACHE{$file}{modif_time} = $stats[$STAT_MODIF_TIME];
       $XML_CACHE{$file}{xml}        = $xml;
       return ($xml);
@@ -148,7 +148,7 @@ sub Write
   }
   else
   {
-    AAT::Syslog('AAT::XML', 'XML_WRITE_ERROR', $EVAL_ERROR) if ($EVAL_ERROR);
+    AAT::Syslog('AAT_XML', 'XML_WRITE_ERROR', $EVAL_ERROR) if ($EVAL_ERROR);
     return (undef);
   }
 

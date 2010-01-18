@@ -127,7 +127,7 @@ sub Send_Message
   }
   else
   {
-    AAT::Syslog('AAT::XMPP', 'XMPP_INVALID_CONFIG');
+    AAT::Syslog('AAT_XMPP', 'XMPP_INVALID_CONFIG');
   }
 
   return (0);

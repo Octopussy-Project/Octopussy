@@ -223,7 +223,7 @@ sub Load_Infile
   else
   {
     my ($pack, $file, $line, $sub) = caller 0;
-    AAT::Syslog('AAT::DB', "Unable to open file '$file' in $sub");
+    AAT::Syslog('AAT_DB', "Unable to open file '$file' in $sub");
   }
 
   return (1);

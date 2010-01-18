@@ -450,7 +450,7 @@ sub Get
     else
     {
       my ($pack, $file_pack, $line, $sub) = caller 0;
-      AAT::Syslog('Octopussy::Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+      AAT::Syslog('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
     }
     last if ($counter >= $limit);
   }
@@ -563,7 +563,7 @@ sub Remove
     else
     {
       my ($pack, $file_pack, $line, $sub) = caller 0;
-      AAT::Syslog('Octopussy::Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+      AAT::Syslog('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
     }
     unlink $f;
     if (defined open my $NEW, '|-', "gzip > '$f'")
@@ -574,7 +574,7 @@ sub Remove
     else
     {
       my ($pack, $file_pack, $line, $sub) = caller 0;
-      AAT::Syslog('Octopussy::Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+      AAT::Syslog('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
     }
   }
 

@@ -120,7 +120,7 @@ sub Send_Message
   }
   else
   {
-    AAT::Syslog('AAT::SMTP', 'SMTP_INVALID_CONFIG');
+    AAT::Syslog('AAT_SMTP', 'SMTP_INVALID_CONFIG');
   }
 
   return (0);
@@ -170,7 +170,7 @@ sub Send_Message_With_File
   }
   else
   {
-    AAT::Syslog('AAT::SMTP', 'SMTP_INVALID_CONFIG');
+    AAT::Syslog('AAT_SMTP', 'SMTP_INVALID_CONFIG');
   }
 
   return (0);

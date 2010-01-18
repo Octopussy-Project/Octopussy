@@ -91,7 +91,7 @@ sub Generate
   else
   {
     my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog('Octopussy::Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub);
+    AAT::Syslog('Octopussy_Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub);
   }
 
   #my $map = new GD::Graph::Map($graph, newWindow => 1);

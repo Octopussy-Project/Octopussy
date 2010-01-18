@@ -82,7 +82,7 @@ sub Connect
 {
   my $error = AAT::DB::Connect('Octopussy');
 
-  AAT::Syslog('octo_DBI', $error) if (defined $error);
+  AAT::Syslog('Octopussy_DB', $error) if (defined $error);
 
   return ($error);
 }
