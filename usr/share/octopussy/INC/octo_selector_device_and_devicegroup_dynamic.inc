@@ -7,8 +7,8 @@ my %selected = ();
 foreach my $s (AAT::ARRAY($arg{selected}))
   { $selected{$s} = 1; }
 
-my @restricted_devices = (AAT::NOT_NULL($arg{restricted_devices})
-	? AAT::ARRAY($arg{restricted_devices}) : ());
+my @restricted_devices = (AAT::NOT_NULL($Session->{restricted_devices})
+	? AAT::ARRAY($Session->{restricted_devices}) : ());
 my (@dg_list, @d_list) = ((), ());
 
 if (AAT::NOT_NULL(\@restricted_devices))

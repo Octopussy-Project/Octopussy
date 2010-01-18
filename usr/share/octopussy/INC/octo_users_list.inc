@@ -2,7 +2,7 @@
 my %arg = @_;
 my $url = $arg{url};
 my $url_sort = $url . "?users_table_sort=";
-my $sort = defined $arg{sort} ? lc($arg{sort}) : "login";
+my $sort = $arg{sort};
 my $role = $Session->{AAT_ROLE};
 %>
 <AAT:Box align="C" icon="buttons/bt_users" title="_USERS">

@@ -1,7 +1,7 @@
 <%
-my $devs = $Request->Form("devices");
-my $selected = $Request->Form("selected");
-my $restricted = $Request->Form("restricted");
+my $devs = $Request->QueryString("devices");
+my $selected = $Request->QueryString("selected");
+my $restricted = $Session->{restricted_services};
 my @devices = (AAT::NOT_NULL($devs) ? split(/,/, $devs) : undef);
 my @selecteds = (AAT::NOT_NULL($selected) ? split(/,/, $selected) : undef);
 my @restricteds = (AAT::NOT_NULL($restricted) ? split(/,/, $restricted) : undef);

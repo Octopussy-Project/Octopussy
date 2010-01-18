@@ -9,9 +9,6 @@ foreach my $s (AAT::ARRAY($arg{selected}))
 
 my $str_any = AAT::Translation("-ANY-");
 my $str_unknown = "<" . AAT::Translation("_UNKNOWN") . ">";
-
-my @services = (AAT::NOT_NULL($arg{restricted_services}) 
-	? AAT::ARRAY($arg{restricted_services}) : Octopussy::Service::List());
 %>
 <select<%= $select_options %> name="service" 
 	onchange="refresh_selector_loglevel();refresh_selector_taxonomy();refresh_selector_msgid();">
@@ -24,28 +21,27 @@ function refresh_selector_service()
 {
   var selector_device = document.forms[<%= $form_number %>].device;
   var devices_str = '';
-	var selected_str = '<% print join(",", @{$arg{selected}}); %>';
-	var restricted_str = '<% print join(",", @{$arg{restricted_services}}); %>';
+  var selected_str = '';
+  
+  <%
+  if (defined $arg{selected})
+  {%>
+  selected_str = '<% print join(",", @{$arg{selected}}); %>';<% 
+  }%>
 
   for (i = 0; i < selector_device.options.length; i++)
   {
     if (selector_device.options[i].selected == 1)
       devices_str = devices_str + selector_device.options[i].value + ',';
   }
+  
   http_request_service = HttpRequest();
   if (!http_request_service)
     { return false; }
-
   http_request_service.onreadystatechange = print_selector_service;
-  http_request_service.open('POST', "ajax_list_service.asp", true);
-  var post_params = "devices=" + devices_str + "&selected=" + selected_str 
-                + "&restricted=" + restricted_str;
-
-  http_request_service.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  http_request_service.setRequestHeader("Content-length", post_params.length);
-  http_request_service.setRequestHeader("Connection", "close");
-
-  http_request_service.send(post_params);
+  var params = "devices=" + devices_str + "&selected=" + selected_str;
+  http_request_service.open('GET', "ajax_list_service.asp?" + params, true);
+  http_request_service.send(null);
 	
   return true;
 }

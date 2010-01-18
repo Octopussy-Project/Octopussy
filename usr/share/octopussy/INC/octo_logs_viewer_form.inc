@@ -18,8 +18,8 @@ my ($re_exclude, $re_exclude2, $re_exclude3) =
 my @devices = AAT::ARRAY($arg{devices});
 my @services = AAT::ARRAY($arg{services});
 
-my @restricted_devices = AAT::ARRAY($arg{restricted_devices});
-my @restricted_services = AAT::ARRAY($arg{restricted_services});
+#my @restricted_devices = AAT::ARRAY($arg{restricted_devices});
+#my @restricted_services = AAT::ARRAY($arg{restricted_services});
 my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
 %>
 <AAT:Form action="$arg{url}">
@@ -37,8 +37,7 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
     <AAT:Button name="device" /><br>
     <AAT:Label value="_DEVICES" align="R" style="B" /></AAT:BoxCol>
     <AAT:BoxCol><AAT:Inc file="octo_selector_device_and_devicegroup_dynamic"
-      unknown=$unknown multiple="1" size="5" selected=\@devices 
-			restricted_devices=\@restricted_devices /></AAT:BoxCol>
+      unknown=$unknown multiple="1" size="5" selected=\@devices  /></AAT:BoxCol>
     <AAT:BoxCol align="C">
     <AAT:Button name="service" /><br>
     <AAT:Label value="_SERVICES" align="R" style="B" /></AAT:BoxCol>

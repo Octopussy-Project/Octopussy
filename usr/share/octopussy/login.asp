@@ -13,8 +13,15 @@ if ((defined $f->{login}) && (defined $f->{password}))
  	if (defined $auth->{login})
  	{
 		$Session->{Timeout} = 60;
-  	$Session->{AAT_LOGIN} = $auth->{login};
+  		$Session->{AAT_LOGIN} = $auth->{login}; 
 		$Session->{AAT_ROLE} = $auth->{role};
+		if ($auth->{role} eq 'restricted')
+		{ 	# restricted user -> get devices & services restrictions
+			my $restrictions = AAT::User::Restrictions('Octopussy', $auth->{login});
+  			$Session->{restricted_devices} = $restrictions->{device};
+  			$Session->{restricted_services} = $restrictions->{service};
+  			$Session->{restricted_minutes_search} = $restrictions->{max_minutes_search};
+		}
 		$Session->{AAT_LANGUAGE} = $auth->{language};
 		$Session->{AAT_THEME} = $auth->{theme};
 		$Session->{AAT_MENU_MODE} = $auth->{menu_mode};

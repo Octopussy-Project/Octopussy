@@ -12,9 +12,6 @@ my $url = "./restricted_logs_viewer.asp";
 
 my @devices = AAT::ARRAY($Session->{device});
 my @services = AAT::ARRAY($Session->{service});
-my $restrictions = AAT::User::Restrictions("Octopussy", $login);
-my @restricted_devices = AAT::ARRAY($restrictions->{device});
-my @restricted_services = AAT::ARRAY($restrictions->{service});
 
 my $page = $Session->{page} || 1;
 my $dt = $Session->{dt};
@@ -68,13 +65,13 @@ if ((AAT::NULL($Session->{extractor})) &&
 	my $any = 0;
 	foreach my $d (@devices)
 		{ $any = 1 if ($d =~ /-ANY-/); }
-	my @devices_cmd = ($any ? @restricted_devices : @devices);
+	my @devices_cmd = ($any ? @{$Session->{restricted_devices}} : @devices);
 	$any = 0;
 	foreach my $s (@services)
     { $any = 1 if ($s =~ /-ANY-/); }	
-	my @services_cmd = ($any ? @restricted_services : @services);
+	my @services_cmd = ($any ? @{$Session->{restricted_services}} : @services);
 	if (AAT::Datetime::Delta("$y1/$m1/$d1 $hour1:$min1:00", "$y2/$m2/$d2 $hour2:$min2:00")
-				> $restrictions->{max_minutes_search})
+				> $Session->{restricted_minutes_search})
 	{
 		$user_limit_reached = 1;
 	}
@@ -194,13 +191,11 @@ else
 <%
 }
 $Response->Include("INC/octo_logs_viewer_form.inc", url => $url, 
-	devices => \@devices, services => \@services,
-	restricted_devices => \@restricted_devices,
-	restricted_services => \@restricted_services);
+	devices => \@devices, services => \@services);
 if ($user_limit_reached)
 {
   my $msg = sprintf(AAT::Translation("_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"), 
-		$restrictions->{max_minutes_search});
+		$Session->{restricted_minutes_search});
 %><AAT:Message level="2" msg="$msg" /><%
 }
 else
