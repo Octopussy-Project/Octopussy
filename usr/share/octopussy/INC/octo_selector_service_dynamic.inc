@@ -39,8 +39,9 @@ function refresh_selector_service()
   if (!http_request_service)
     { return false; }
   http_request_service.onreadystatechange = print_selector_service;
-  var params = "devices=" + devices_str + "&selected=" + selected_str;
-  http_request_service.open('GET', "ajax_list_service.asp?" + params, true);
+  var params = 'devices=' + encodeURIComponent(devices_str) 
+    + '&selected=' + encodeURIComponent(selected_str);
+  http_request_service.open('GET', 'ajax_list_service.asp?' + params, true);
   http_request_service.send(null);
 	
   return true;

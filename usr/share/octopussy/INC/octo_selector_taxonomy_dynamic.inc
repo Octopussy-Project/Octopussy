@@ -48,13 +48,12 @@ function refresh_selector_taxonomy()
   if (!http_request_taxonomy)
     { return false; }
   http_request_taxonomy.onreadystatechange = print_selector_taxonomy;
-  http_request_taxonomy.open('POST', "ajax_list_taxonomy.asp", true);
-  var post_params = "devices=" + devices_str + "&services=" + services_str
-		+ "&table=" + table_str + "&selected=" + selected_str;
-  http_request_taxonomy.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  http_request_taxonomy.setRequestHeader("Content-length", post_params.length);
-  http_request_taxonomy.setRequestHeader("Connection", "close");
-  http_request_taxonomy.send(post_params);	
+  var params = 'devices=' + encodeURIComponent(devices_str)
+    + '&services=' + encodeURIComponent(services_str)
+    + '&table=' + encodeURIComponent(table_str)
+    + '&selected=' + encodeURIComponent(selected_str);
+  http_request_taxonomy.open('GET', 'ajax_list_taxonomy.asp?' + params, true);
+  http_request_taxonomy.send(null);	
 
 	return true;
 }

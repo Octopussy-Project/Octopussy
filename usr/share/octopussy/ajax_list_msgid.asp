@@ -1,8 +1,8 @@
 <%
-my $servs = $Request->Form("services");
-my $loglevel = $Request->Form("loglevel");
-my $taxonomy = $Request->Form("taxonomy");
-my $selected = $Request->Form("selected");
+my $servs = $Request->QueryString("services");
+my $loglevel = $Request->QueryString("loglevel");
+my $taxonomy = $Request->QueryString("taxonomy");
+my $selected = $Request->QueryString("selected");
 my @list = (defined $arg{any} ? ("-ANY-") : ());
 
 my @services = (AAT::NOT_NULL($servs) ? split(/,/, $servs) : undef);

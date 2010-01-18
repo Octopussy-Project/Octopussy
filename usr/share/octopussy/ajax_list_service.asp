@@ -4,7 +4,7 @@ my $selected = $Request->QueryString("selected");
 my $restricted = $Session->{restricted_services};
 my @devices = (AAT::NOT_NULL($devs) ? split(/,/, $devs) : undef);
 my @selecteds = (AAT::NOT_NULL($selected) ? split(/,/, $selected) : undef);
-my @restricteds = (AAT::NOT_NULL($restricted) ? split(/,/, $restricted) : undef);
+my @restricteds = (AAT::NOT_NULL($restricted) ? @{$restricted} : undef);
 
 my @device_list = ();
 foreach my $d (@devices)
