@@ -252,7 +252,7 @@ sub Configurations
   my @users = List($appli);
   my %field;
   $sort = (AAT::NOT_NULL($sort) ? lc($sort) : 'login');
-  
+
   foreach my $conf (@users)
   {
     $field{$conf->{$sort}} = 1;

@@ -464,9 +464,9 @@ sub Pattern_Field_Unmatched_Substitution
         ) . $3;
     }
   }
-  else 
-  { 
-    $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/$re_types->{$1}/; 
+  else
+  {
+    $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/$re_types->{$1}/;
   }
 
   return ($regexp);

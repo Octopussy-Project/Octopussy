@@ -67,17 +67,18 @@ Prints usage for Octopussy program
 
 sub Usage
 {
+  my $version = Octopussy::Version();
   my $usage = <<'EOF';
 Usage: 
-	/etc/init.d/$PROG_NAME {start|stop|restart}
-	/etc/init.d/$PROG_NAME {dispatcher-start|dispatcher-stop|dispatcher-restart|dispatcher-reload}
-	/etc/init.d/$PROG_NAME {parser-start|parser-stop|parser-restart} <device>
-	/etc/init.d/$PROG_NAME {pusher-start|pusher-stop|pusher-restart}
-	/etc/init.d/$PROG_NAME {scheduler-start|scheduler-stop|scheduler-restart}
-	/etc/init.d/$PROG_NAME {web-start|web-stop}\n";
+	octopussy {start|stop|restart}
+	octopussy {dispatcher-start|dispatcher-stop|dispatcher-restart|dispatcher-reload}
+	octopussy {parser-start|parser-stop|parser-restart} <device>
+	octopussy {pusher-start|pusher-stop|pusher-restart}
+	octopussy {scheduler-start|scheduler-stop|scheduler-restart}
+	octopussy {web-start|web-stop}\n";
 EOF
 
-  print $usage;
+  print "\nOctopussy $version\n\n$usage\n";
 
   return (1);
 }

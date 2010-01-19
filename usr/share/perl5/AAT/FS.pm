@@ -26,13 +26,13 @@ sub Directory_Files
 {
   my ($dir, $pattern) = @_;
   my @files = ();
-  
+
   if (opendir DIR, $dir)
   {
     @files = grep { /$pattern/ } readdir DIR;
     closedir DIR;
   }
-  
+
   return (sort @files);
 }
 

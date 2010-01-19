@@ -58,7 +58,7 @@ my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
 	</AAT:BoxRow>
 	<AAT:BoxRow>
 		<AAT:BoxCol align="R">
-		<AAT:Label value="_MSGID" style="B" /></AAT:BoxCol>
+		<AAT:Label value="_MSG_ID" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol cspan="3">
     <AAT:Inc file="octo_selector_msgid_dynamic" selected="$msgid" any="1" /></AAT:BoxCol>
 	</AAT:BoxRow>

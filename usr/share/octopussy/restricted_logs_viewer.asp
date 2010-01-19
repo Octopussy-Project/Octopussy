@@ -44,6 +44,9 @@ if (AAT::NOT_NULL($f->{template}))
   {
 		Octopussy::Search_Template::New($login, { name => $Session->{template}, 
 			device => \@devices, service => \@services, 
+      loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
+      msgid => $Session->{msgid},
+      begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2", 
 			re_include => $re_include, re_include2 => $re_include2,
 			re_include3 => $re_include3, re_exclude => $re_exclude, 
 			re_exclude2 => $re_exclude2, re_exclude3 => $re_exclude3 } );
