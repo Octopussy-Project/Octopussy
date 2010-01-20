@@ -213,6 +213,24 @@ sub Escape_Message
   return ($escaped);
 }
 
+=head2 Color_Reserved_Word(\%color, $word, $str)
+
+Colors pattern '$pattern'
+
+=cut
+
+sub Color_Reserved_Word
+{
+  my ($color, $word, $str) = @_;
+
+  if (defined $color->{$word})
+  {
+    return (qq(<b><font color="$color->{$2}">$str</font></b>));
+  }
+
+  return ($str);
+}
+
 =head2 Color($pattern)
 
 Colors pattern '$pattern'
@@ -228,8 +246,7 @@ sub Color
   $re =~ s/<(\w)/&lt;$1/g;
   $re =~
 s/(<\@REGEXP\(".+?"\):\S+?\@>)/<b><font color="$color{REGEXP}">$1<\/font><\/b>/gi;
-  $re =~
-    s/(<\@([^\@]+?):\S+?\@>)/<b><font color="$color{$2}">$1<\/font><\/b>/gi;
+  $re =~ s/(<\@(\w+?):\w+?\@>)/&Color_Reserved_Word(\%color, $2, $1)/egi;
 
   return ($re);
 }
@@ -293,6 +310,27 @@ sub Minimal_Match
   }
 }
 
+=head2 Reserved_Word_To_Regexp(\%re_types, $type, $field, $str)
+
+Converts Reserved Word expression (<@$type:$field@>) into Regexp
+
+=cut
+
+sub Reserved_Word_To_Regexp
+{
+  my ($re_types, $type, $field, $str) = @_;
+
+  if (defined $re_types->{$type})
+  {
+    $str =
+      ($field =~ /NULL/i)
+      ? $re_types->{$type}
+      : '(' . $re_types->{$type} . ')';
+  }
+
+  return ($str);
+}
+
 =head2 Pattern_To_Regexp($msg)
 
 Converts message pattern from message '$msg' into Regexp
@@ -316,14 +354,8 @@ sub Pattern_To_Regexp
   }
   $tmp = $regexp . (AAT::NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
   $regexp = '';
-  while ($tmp =~ /^(.*?)<\@([^\@]+?):(\S+?)\@>(.*)$/i)
-  {
-    my ($before, $type, $field, $after) = ($1, $2, $3, $4);
-    my $subs =
-      ($field =~ /NULL/i) ? $re_types{$type} : '(' . $re_types{$type} . ')';
-    $regexp .= $before . $subs;
-    $tmp = $after;
-  }
+  $tmp =~
+s/(<\@([^\@]+?):(\S+?)\@>)/&Reserved_Word_To_Regexp(\%re_types, $2, $3, $1)/egi;
   $regexp .= $tmp;
   $regexp =~ s/\s+$//g;
 
