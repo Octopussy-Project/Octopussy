@@ -365,9 +365,10 @@ sub Remove_Service
   return (scalar @services);
 }
 
-=head2 Update_Services_Rank
 
+=head2 Update_Services_Rank($conf, $service, $direction, $rank, $old_rank)
 
+Updates Services Rank
 
 =cut
 
@@ -441,7 +442,7 @@ sub Move_Service
   $conf->{service} = \@services;
 
   my @services2 =
-    Update_Services_Ranks($conf, $service, $direction, $rank, $old_rank);
+    Update_Services_Rank($conf, $service, $direction, $rank, $old_rank);
   $conf->{service}         = \@services2;
   $conf->{reload_required} = 1;
   AAT::XML::Write(Filename($device), $conf, $XML_ROOT);
