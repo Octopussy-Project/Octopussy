@@ -2,7 +2,7 @@
 <octopussy_service description="FreeRADIUS service"
                    icon="software/logo_freeradius"
                    name="FreeRADIUS"
-                   version="200912160006"
+                   version="201001220003"
                    website="http://freeradius.org">
   <message loglevel="Information"
            msg_id="FreeRADIUS:ready_to_process_requests"
@@ -22,4 +22,22 @@
            rank="001"
            table="Message"
            taxonomy="Auth.Success" />
+  <message loglevel="Warning"
+           msg_id="FreeRADIUS:errors_initializing_modules"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Errors initializing modules&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="FreeRADIUS:errors_reading"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Errors reading .+&quot;):msg@&gt;"
+           rank="005"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="FreeRADIUS:instantiation_failed_for_module"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*Instantiation failed for module .+&quot;):msg@&gt;"
+           rank="006"
+           table="Message"
+           taxonomy="Config.Errors" />
 </octopussy_service>

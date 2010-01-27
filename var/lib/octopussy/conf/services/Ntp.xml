@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Ntp Service"
                    name="Ntp"
-                   nb_messages="033"
-                   version="200905270001">
+                   nb_messages="034"
+                   version="201001220002">
   <message loglevel="Information"
            msg_id="Ntp:step_time_server"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpdate[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;step time server \S+ offset \S+ sec&quot;):msg@&gt;"
@@ -205,6 +205,18 @@
            msg_id="Ntp:no_servers_be_used"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpdate[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;no servers can be used, exiting&quot;):msg@&gt;"
            rank="034"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Ntp:failed_initialize_interface"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;failed to initialize interface for address .+&quot;):msg@&gt;"
+           rank="035"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Ntp:unable_create_socket"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;unable to create socket on .+&quot;):msg@&gt;"
+           rank="036"
            table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>

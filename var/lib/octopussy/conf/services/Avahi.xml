@@ -2,11 +2,11 @@
 <octopussy_service description="Avahi (Zeroconf Networking) Service"
                    icon="software/logo_avahi"
                    name="Avahi"
-                   version="200810030010"
+                   version="201001180001"
                    website="http://avahi.org/">
   <message loglevel="Information"
            msg_id="Avahi:registering_new_address_record"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Registering new address record for .+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Registering new address record for .+&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Application" />
@@ -54,8 +54,7 @@
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Avahi:registering_record_with_walues"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Registering \w+ record with values .+&quot;):msg@&gt;
-"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Registering \w+ record with values .+&quot;):msg@&gt; "
            rank="009"
            table="Message"
            taxonomy="Application" />

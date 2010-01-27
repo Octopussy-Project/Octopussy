@@ -3,7 +3,7 @@
                    icon="software/logo_syslog-ng"
                    name="Syslog-ng"
                    nb_messages="027"
-                   version="200907020002"
+                   version="201001190001"
                    website="http://www.balabit.com/network-security/syslog-ng/">
   <message loglevel="Warning"
            msg_id="Syslog-ng:stats_dropped"
@@ -177,6 +177,12 @@
            msg_id="Syslog-ng:error_creating_socket"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Error creating socket.*&quot;):msg@&gt;"
            rank="029"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Syslog-ng:allowed_concurrent_connections_exceeded"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; syslog-ng[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Number of allowed concurrent connections exceeded.*&quot;):msg@&gt;"
+           rank="030"
            table="Message"
            taxonomy="Application.Errors" />
 </octopussy_service>
