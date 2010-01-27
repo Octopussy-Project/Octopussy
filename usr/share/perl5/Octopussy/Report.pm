@@ -169,8 +169,8 @@ sub Configurations
     my $conf = Configuration($r);
     $field{$conf->{$sort}} = 1;
     push @configurations, $conf
-      if (((defined $conf->{category} && $conf->{category} eq $category))
-      || (!defined $category)
+      if ((!defined $category)
+      || ((defined $conf->{category}) && ($conf->{category} eq $category))
       || (($category eq 'various') && (!defined $conf->{category})));
   }
   foreach my $f (sort keys %field)

@@ -858,7 +858,7 @@ sub Wizard_File
 {
   my ($f, $timestamp, $nb_max, $messages, $types) = @_;
 
-  if (defined open my $FILE, '-|', "zcat $f")
+  if ((-f $f) && (defined open my $FILE, '-|', "zcat $f"))
   {
     while (my $line = <$FILE>)
     {
@@ -874,14 +874,13 @@ sub Wizard_File
           close $FILE;
           return ($WIZARD_MAX_SAME_MSG);
         }
-        last;
+        last  if (scalar(@{$messages}) >= $nb_max);
       }
       push @{$messages}, Wizard_Add_Message($timestamp, $line, $types)
         if (!$match);
       last if (scalar(@{$messages}) >= $nb_max);
     }
     close $FILE;
-    last if (scalar(@{$messages}) >= $nb_max);
   }
   else
   {
@@ -912,6 +911,7 @@ sub Wizard
       my $timestamp = "$1$2$3$4$5";
       Wizard_File($f, $timestamp, $nb_max, \@messages, \@types);
     }
+    last if (scalar(@messages) >= $nb_max);
   }
 
   return (@messages);

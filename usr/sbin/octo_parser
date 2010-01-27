@@ -217,7 +217,8 @@ sub Init
 "Msg $m->{msg_id} dropped because Runtime regexp compilation produced:\n$@\n";
       }
     }
-    $service{$serv}{global_regexp} = $ra->re;
+    my $gre = $ra->re;
+    $service{$serv}{global_regexp} = qr/^$gre/i;
   }
   if (AAT::NOT_NULL($cache->get("uparser_$device")))
   {

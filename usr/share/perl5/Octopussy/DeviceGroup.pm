@@ -125,7 +125,8 @@ sub Configurations
         my $match = 1;
         foreach my $c (AAT::ARRAY($conf->{criteria}))
         {
-          $match = 0 if ($d->{$c->{field}} !~ $c->{pattern});
+          $match = 0 if ((defined $d->{$c->{field}}) 
+                          && ($d->{$c->{field}} !~ $c->{pattern}));
         }
         push @{$conf->{device}}, $d->{name} if ($match);
       }
@@ -167,7 +168,8 @@ sub Devices
           my @criterias = AAT::ARRAY($dg->{criteria});
           foreach my $c (@criterias)
           {
-            $match = 0 if ($d->{$c->{field}} !~ $c->{pattern});
+            $match = 0 if ((defined $d->{$c->{field}})
+                          && ($d->{$c->{field}} !~ $c->{pattern}));
           }
           push @devices, $d->{name} if ($match);
         }
