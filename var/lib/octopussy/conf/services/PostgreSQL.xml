@@ -3,7 +3,7 @@
                    icon="software/logo_postgresql"
                    name="PostgreSQL"
                    nb_messages="053"
-                   version="200907100011"
+                   version="201001270007"
                    website="http://www.postgresql.org">
   <message loglevel="Information"
            msg_id="PostgreSQL:autovacuum_processing_database"
@@ -394,5 +394,30 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@WORD:client@&gt; &lt;@WORD:user@&gt; &lt;@WORD:db@&gt; &lt;@REGEXP(&quot;NOTICE:  truncate of .+ failed - doing delete&quot;):msg@&gt;"
            rank="065"
            table="Database_Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="PostgreSQL:autovacuum_launcher_started"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@REGEXP(&quot;LOG:\s*autovacuum launcher started&quot;):msg@&gt;"
+           rank="066"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="PostgreSQL:checkpoint_complete"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@REGEXP(&quot;LOG:\s*checkpoint complete: .+&quot;):msg@&gt;"
+           rank="067"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="PostgreSQL:checkpoint_starting"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; &lt;@REGEXP(&quot;LOG:\s*checkpoint starting: .+&quot;):msg@&gt;"
+           rank="068"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="PostgreSQL:automatic_analyze_of_table"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postgres[&lt;@PID:pid@&gt;]: &lt;@STRING:NULL@&gt; 
+&lt;@REGEXP(&quot;LOG:\s*automatic analyze of table .+&quot;):msg@&gt;"
+           rank="069"
+           table="Message"
            taxonomy="Application" />
 </octopussy_service>
