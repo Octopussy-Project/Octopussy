@@ -236,6 +236,7 @@ sub Add_Message
   if (!scalar @errors)
   {
     $mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
+    $mconf->{pattern} =~ s/\r\n//g;
     $mconf->{pattern} =~ s/\s+$//g;
     push @{$conf->{message}}, $mconf;
     AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
