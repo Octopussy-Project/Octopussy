@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Stunnel Service"
                    name="Stunnel"
-                   nb_messages="025"
-                   version="201001190017"
+                   nb_messages="033"
+                   version="201002010009"
                    website="http://www.stunnel.org/">
   <message loglevel="Information"
            msg_id="Stunnel:nb_clients_allowed"
@@ -200,6 +200,37 @@
            msg_id="Stunnel:pid_file_msgs"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG7\[\S+\]: \w+ pid file .+&quot;):msg@&gt;"
            rank="033"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Stunnel:write_shutdown"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG7\[\S+\]: \w+ write shutdown&quot;):msg@&gt;"
+           rank="034"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Stunnel:permitted_by_libwrap_from"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG7\[\S+\]: \S+ permitted by libwrap from .+&quot;):msg@&gt;"
+           rank="035"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Stunnel:accepted_fd"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG7\[\S+\]: \S+ accepted FD=\d+ from .+&quot;):msg@&gt;"
+           rank="036"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Stunnel:compression_enabled"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG6\[\S+\]: Compression enabled using \S+ method&quot;):msg@&gt;"
+           rank="037"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Stunnel:private_key_loaded"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; stunnel: &lt;@REGEXP(&quot;LOG7\[\S+\]: Private key 
+loaded&quot;):msg@&gt;"
+           rank="038"
            table="Message"
            taxonomy="Application" />
 </octopussy_service>

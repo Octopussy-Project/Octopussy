@@ -2,7 +2,7 @@
 <octopussy_service description="FreeRADIUS service"
                    icon="software/logo_freeradius"
                    name="FreeRADIUS"
-                   version="201001220003"
+                   version="201002010003"
                    website="http://freeradius.org">
   <message loglevel="Information"
            msg_id="FreeRADIUS:ready_to_process_requests"
@@ -38,6 +38,24 @@
            msg_id="FreeRADIUS:instantiation_failed_for_module"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*Instantiation failed for module .+&quot;):msg@&gt;"
            rank="006"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="FreeRADIUS:syntax_error"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+: Syntax error: .+&quot;):msg@&gt;"
+           rank="007"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="FreeRADIUS:failed_to_find_module"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+: Failed to find module .+&quot;):msg@&gt;"
+           rank="008"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="FreeRADIUS:errors_parsing_section"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;freeradius&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+: Errors parsing \w+ section.&quot;):msg@&gt;"
+           rank="009"
            table="Message"
            taxonomy="Config.Errors" />
 </octopussy_service>
