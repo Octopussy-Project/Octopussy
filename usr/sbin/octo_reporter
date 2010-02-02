@@ -377,6 +377,7 @@ my %info    = (
   started  => Date::Manip::UnixDate($started, '%Y/%m/%d %H:%M'),
   devices  => \@devices,
   services => \@services,
+  pid_param => $pid_param,
 );
 $cache->set("info_$pid", \%info);
 

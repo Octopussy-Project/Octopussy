@@ -541,11 +541,13 @@ sub Running_List
     if ($k =~ /^info_(\d+)/)
     {
       my $pid   = $1;
+      my $pid_param = $v->{pid_param};
       my $match = 0;
-      foreach my $p (@{$pt->table}) { $match = 1 if ($pid == $p->{pid}); }
+      foreach my $p (@{$pt->table}) 
+        { $match = 1 if ($pid == $p->{pid}); }
       if ($match)
       {
-        my $status = $cache->get("status_$pid");
+        my $status = $cache->get("status_${pid_param}");
         push @list,
           {
           report   => $v->{report},
@@ -559,6 +561,7 @@ sub Running_List
       {
         $cache->remove("info_$pid");
         $cache->remove("status_$pid");
+        $cache->remove("status_${pid_param}");
       }
     }
   }
