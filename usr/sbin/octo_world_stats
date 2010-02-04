@@ -14,9 +14,15 @@ use strict;
 use warnings;
 use Readonly;
 
-use Date::Manip;
+use POSIX qw(strftime);
 use URI::Escape;
+
+use AAT;
 use Octopussy;
+use Octopussy::Cache;
+use Octopussy::Device;
+use Octopussy::Stats;
+use Octopussy::World_Stats;
 
 Readonly my $APPLI      => 'Octopussy';
 Readonly my $PROG_NAME  => 'octo_world_stats';
@@ -41,12 +47,12 @@ if ($conf->{status} eq 'enabled')
   my $nb_devices  = scalar @devices;
   my $nb_services = scalar @services;
   my @keys        = $cache->get_keys();
-  my ($y, $m, $d, $h) = AAT::Datetime::Now();
+  my $timestamp   = strftime("%Y%m%d%H", localtime);
 
   foreach my $k (sort @keys)
   {
     if ( ($k =~ /^dispatcher_stats_hourly_(\d{10})$/)
-      && ($1 !~ /^$y$m$d$h$/))
+      && ($1 !~ /^$timestamp$/))
     {
       my $hour = $1;
       my $url =

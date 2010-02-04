@@ -19,7 +19,13 @@ use Encode;
 
 use List::MoreUtils qw(any none uniq);
 
+use AAT;
+use AAT::XML;
 use Octopussy;
+use Octopussy::Cache;
+use Octopussy::Device;
+use Octopussy::Service;
+use Octopussy::Table;
 
 Readonly my $DIR_SERVICE            => 'services';
 Readonly my $XML_ROOT               => 'octopussy_service';
@@ -465,8 +471,8 @@ sub Messages_Statistics
   my $cache_parser = Octopussy::Cache::Init('octo_parser');
 
   my (%percent, %stat) = ((), ());
-  my ($y, $mon, $d, $h, $m) = AAT::Datetime::Now();
-  my $limit = int("$y$mon$d$h$m") - Octopussy::Parameter('msgid_history');
+  my $timestamp  = strftime("%Y%m%d%H%M", localtime); 
+  my $limit = int($timestamp) - Octopussy::Parameter('msgid_history');
   my $total = 0;
   foreach my $k (sort $cache_parser->get_keys())
   {

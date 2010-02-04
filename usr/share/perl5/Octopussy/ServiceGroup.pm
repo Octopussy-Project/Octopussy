@@ -17,6 +17,8 @@ use Readonly;
 
 use List::MoreUtils qw(any);
 
+use AAT;
+use AAT::XML;
 use Octopussy;
 
 Readonly my $FILE_SERVICEGROUPS => 'servicegroups';

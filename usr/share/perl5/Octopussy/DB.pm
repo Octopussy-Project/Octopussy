@@ -15,7 +15,11 @@ use strict;
 use warnings;
 
 use DBI;
-use Octopussy;
+
+use AAT;
+use AAT::DB;
+use Octopussy::Plugin;
+use Octopussy::Table;
 
 my @sql_substitutions = (
   {

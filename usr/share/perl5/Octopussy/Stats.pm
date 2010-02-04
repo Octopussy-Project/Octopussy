@@ -16,7 +16,8 @@ use warnings;
 use Readonly;
 
 use Sys::CPU;
-use Octopussy;
+use Octopussy::Cache;
+use Octopussy::Storage;
 
 Readonly my $KBYTE => 1024;
 

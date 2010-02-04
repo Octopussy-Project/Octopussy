@@ -17,6 +17,7 @@ use bytes;
 use Readonly;
 use utf8;
 
+use AAT;
 use Octopussy;
 use Octopussy::Loglevel;
 use Octopussy::Logs;

@@ -16,9 +16,18 @@ use warnings;
 use Readonly;
 
 use List::MoreUtils qw(uniq);
+use POSIX qw(strftime);
 
+use AAT;
 use AAT::FS;
+use AAT::XML;
 use Octopussy;
+use Octopussy::Cache;
+use Octopussy::Device;
+use Octopussy::DeviceGroup;
+use Octopussy::Logs;
+use Octopussy::Service;
+use Octopussy::ServiceGroup;
 
 Readonly my $PAUSED            => 1;
 Readonly my $STARTED           => 2;
@@ -528,8 +537,8 @@ sub Services_Statistics
   my $device = shift;
   my %stats;
 
-  my ($y, $mon, $d, $h, $m) = AAT::Datetime::Now();
-  my $limit = int("$y$mon$d$h$m") - Octopussy::Parameter('msgid_history');
+  my $timestamp   = strftime("%Y%m%d%H%M", localtime);
+  my $limit = int($timestamp) - Octopussy::Parameter('msgid_history');
   my $cache_parser = Octopussy::Cache::Init('octo_parser');
   my $total        = 0;
   foreach my $k (sort $cache_parser->get_keys())

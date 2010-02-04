@@ -15,6 +15,9 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT;
+use AAT::Datetime;
+use AAT::Translation;
 use Octopussy;
 use Octopussy::DB;
 use Octopussy::Device;

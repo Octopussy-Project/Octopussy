@@ -15,7 +15,14 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT;
+use AAT::FS;
 use Octopussy;
+use Octopussy::Device;
+use Octopussy::DeviceGroup;
+use Octopussy::Logs;
+use Octopussy::Service;
+use Octopussy::Storage;
 
 # Multipliers to get Date Number (YYYYMMDDHHMM)
 Readonly my $DIGIT_YEAR  => 100_000_000;

@@ -15,7 +15,10 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT;
+use AAT::FS;
 use AAT::LDAP;
+use AAT::XML;
 use Octopussy;
 
 Readonly my $XML_ROOT => 'octopussy_contact';

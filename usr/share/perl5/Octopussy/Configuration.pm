@@ -15,6 +15,10 @@ use strict;
 use warnings;
 use Readonly;
 
+use POSIX qw(strftime);
+
+use AAT;
+use AAT::FS;
 use Octopussy;
 
 Readonly my $DIR_BACKUP => '/etc/octopussy/';
@@ -27,8 +31,7 @@ Readonly my $DIR_BACKUP => '/etc/octopussy/';
 
 sub Backup
 {
-  my ($year, $mon, $mday, $h, $m) = AAT::Datetime::Now();
-  my $timestamp   = "$year$mon$mday$h$m";
+  my $timestamp   = strftime("%Y%m%d%H%M", localtime);
   my $file_backup = "${DIR_BACKUP}backup_$timestamp.tgz";
   my $dir_main    = Octopussy::Directory('main');
   my $conf_sys    = "${dir_main}{db,ldap,nsca,proxy,smtp,xmpp}.xml";

@@ -15,8 +15,6 @@ use strict;
 use warnings;
 use Readonly;
 
-use Octopussy;
-
 use GD::Graph;
 use GD::Graph::area;
 use GD::Graph::bars;
@@ -25,7 +23,7 @@ use GD::Graph::hbars;
 use GD::Graph::lines;
 use GD::Graph::pie;
 
-#use GD::Graph::Map;
+use AAT;
 
 Readonly my $TYPE          => 'bars';
 Readonly my $BAR_SPACING   => 3;

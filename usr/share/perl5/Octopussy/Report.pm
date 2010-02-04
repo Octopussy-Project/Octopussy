@@ -13,9 +13,15 @@ package Octopussy::Report;
 
 use strict;
 use warnings;
-use Proc::ProcessTable;
 use Readonly;
 
+use POSIX qw(strftime);
+use Proc::ProcessTable;
+
+use AAT;
+use AAT::FS;
+use AAT::Translation;
+use AAT::XML;
 use Octopussy;
 use Octopussy::Report::CSV;
 use Octopussy::Report::HTML;
@@ -390,8 +396,7 @@ sub CmdLine
 
   my $base    = Octopussy::Directory('programs');
   my $dir_pid = Octopussy::Directory('running');
-  my ($year, $month, $mday, $hour, $min) = AAT::Datetime::Now();
-  my $date   = "$year$month$mday-$hour$min";
+  my $date   = strftime("%Y%m%d-%H%M", localtime);;
   my $dir    = Octopussy::Directory('data_reports') . $report->{name} . '/';
   my $output = "$dir$report->{name}-$date."
     . (

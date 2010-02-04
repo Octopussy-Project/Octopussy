@@ -17,7 +17,10 @@ use Readonly;
 
 use List::MoreUtils qw(any uniq);
 
+use AAT;
+use AAT::XML;
 use Octopussy;
+use Octopussy::Device;
 
 Readonly my $FILE_DEVICEGROUPS => 'devicegroups';
 Readonly my $XML_ROOT          => 'octopussy_devicegroups';

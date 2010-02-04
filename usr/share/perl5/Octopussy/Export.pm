@@ -17,7 +17,8 @@ use warnings;
 use Net::FTP;
 use Net::SCP;
 
-use Octopussy;
+use AAT;
+use AAT::SMTP;
 
 =head1 FUNCTIONS
 

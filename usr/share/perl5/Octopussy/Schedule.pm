@@ -14,6 +14,9 @@ package Octopussy::Schedule;
 use strict;
 use warnings;
 use Readonly;
+
+use AAT;
+use AAT::XML;
 use Octopussy;
 
 Readonly my $FILE_SCHEDULES => 'schedule';

@@ -16,6 +16,10 @@ use warnings;
 use Readonly;
 use bytes;
 use utf8;
+
+use AAT;
+use AAT::FS;
+use AAT::XML;
 use Octopussy;
 
 Readonly my $DIR_SEARCH_TPL => 'search_templates';

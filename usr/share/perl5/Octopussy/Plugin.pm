@@ -16,6 +16,9 @@ no strict 'refs';
 use warnings;
 use Readonly;
 
+use AAT;
+use AAT::FS;
+use AAT::XML;
 use Octopussy;
 
 Readonly my $DIR_PLUGIN         => 'plugins';

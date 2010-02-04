@@ -17,6 +17,8 @@ use Readonly;
 
 use List::MoreUtils qw(apply none);
 
+use AAT;
+use AAT::XML;
 use Octopussy;
 
 Readonly my $FILE_LOCATIONS => 'locations';

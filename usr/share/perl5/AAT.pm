@@ -46,14 +46,8 @@ use strict;
 use warnings;
 use Readonly;
 
-sub grep_heap { system "grep -A1 heap /proc/$$/smaps" }
-
-BEGIN { print "AAT Start\n"; grep_heap }
-
 use File::Path;
 use LWP;
-
-BEGIN { print "After AAT LWP\n"; grep_heap }
 
 use AAT::Application;
 use AAT::Proxy;

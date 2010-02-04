@@ -16,7 +16,14 @@ use warnings;
 use Readonly;
 use bytes;
 use utf8;
+
+use AAT;
+use AAT::DB;
+use AAT::XML;
 use Octopussy;
+use Octopussy::Device;
+use Octopussy::DeviceGroup;
+use Octopussy::Message;
 
 Readonly my $DIR_ALERT   => 'alerts';
 Readonly my $XML_ROOT    => 'octopussy_alert';

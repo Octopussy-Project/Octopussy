@@ -14,6 +14,8 @@ package Octopussy::Map;
 use strict;
 use warnings;
 use Readonly;
+
+use AAT::XML;
 use Octopussy;
 
 Readonly my $DIR_MAP => 'maps';

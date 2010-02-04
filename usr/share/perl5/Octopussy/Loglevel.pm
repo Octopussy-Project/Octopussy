@@ -17,7 +17,12 @@ use Readonly;
 
 use List::MoreUtils qw(uniq);
 
+use AAT;
+use AAT::XML;
 use Octopussy;
+use Octopussy::Device;
+use Octopussy::Loglevel;
+use Octopussy::Service;
 
 Readonly my $FILE_LOGLEVEL => 'loglevel';
 

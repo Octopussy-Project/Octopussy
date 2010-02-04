@@ -17,7 +17,10 @@ use Readonly;
 
 use List::MoreUtils qw(any firstval);
 
+use AAT;
+use AAT::XML;
 use Octopussy;
+use Octopussy::Device;
 
 Readonly my $FILE_STORAGES => 'storages';
 Readonly my $XML_ROOT      => 'octopussy_storages';

@@ -16,27 +16,15 @@ use warnings;
 use version;
 use Readonly;
 
-sub grep_heap { system "grep -A1 heap /proc/$$/smaps" }
-
-BEGIN { grep_heap }
-
 use File::Basename;
 use File::Path;
 use Proc::PID::File;
-use POSIX qw(mkfifo);
-
-BEGIN { print "after posix\n"; grep_heap }
+use POSIX qw(mkfifo strftime);
 
 use AAT;
 use AAT::Application;
-use AAT::Datetime;
 use AAT::XML;
-
-BEGIN { print "after Octopussy AAT\n"; grep_heap }
-
 use Octopussy::Cache;
-
-BEGIN { grep_heap }
 
 Readonly my $APPLICATION_NAME => 'Octopussy';
 Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
@@ -532,17 +520,17 @@ Returns timestamp => yyyymmddxxxx
 sub Timestamp_Version
 {
   my $conf = shift;
-  my ($year, $mon, $mday) = AAT::Datetime::Now();
+  my $date = strftime("%Y%m%d", localtime);
 
   my $version = 1;
   if (AAT::NOT_NULL($conf->{version})
-    && ($conf->{version} =~ /^$year$mon$mday(\d{4})/))
+    && ($conf->{version} =~ /^$date(\d{4})/))
   {
     $version = $1 + 1;
   }
   $version = AAT::Padding($version, 4);
 
-  return ("$year$mon$mday$version");
+  return ("$date$version");
 }
 
 =head2 Updates_Installation(@updates)

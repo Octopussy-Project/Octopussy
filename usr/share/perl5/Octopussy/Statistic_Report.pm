@@ -14,7 +14,14 @@ package Octopussy::Statistic_Report;
 use strict;
 use warnings;
 use Readonly;
+
+use AAT;
+use AAT::FS;
+use AAT::XML;
 use Octopussy;
+use Octopussy::Message;
+use Octopussy::Service;
+use Octopussy::Type;
 
 Readonly my $DIR_STAT_REPORT => 'statistic_reports';
 Readonly my $XML_ROOT        => 'octopussy_statistic_report';
