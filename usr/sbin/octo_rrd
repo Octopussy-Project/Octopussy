@@ -21,6 +21,9 @@ use Readonly;
 
 use AAT;
 use Octopussy;
+use Octopussy::Cache;
+use Octopussy::Device;
+use Octopussy::RRDTool;
 
 Readonly my $PROG_NAME => 'octo_rrd';
 

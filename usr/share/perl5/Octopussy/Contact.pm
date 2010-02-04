@@ -15,6 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT::LDAP;
 use Octopussy;
 
 Readonly my $XML_ROOT => 'octopussy_contact';

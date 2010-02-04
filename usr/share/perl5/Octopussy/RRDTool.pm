@@ -15,6 +15,11 @@ use strict;
 use warnings;
 use Readonly;
 
+use Octopussy;
+use Octopussy::DB;
+use Octopussy::Device;
+use Octopussy::Taxonomy;
+
 Readonly my $MINUTE  => 60;
 Readonly my $HOURLY  => 3_600;
 Readonly my $DAILY   => 86_400;

@@ -16,42 +16,27 @@ use warnings;
 use version;
 use Readonly;
 
+sub grep_heap { system "grep -A1 heap /proc/$$/smaps" }
+
+BEGIN { grep_heap }
+
 use File::Basename;
 use File::Path;
 use Proc::PID::File;
 use POSIX qw(mkfifo);
 
+BEGIN { print "after posix\n"; grep_heap }
+
 use AAT;
-use Octopussy::Alert;
+use AAT::Application;
+use AAT::Datetime;
+use AAT::XML;
+
+BEGIN { print "after Octopussy AAT\n"; grep_heap }
+
 use Octopussy::Cache;
 
-use Octopussy::Configuration;
-use Octopussy::DB;
-use Octopussy::Data_Report;
-use Octopussy::Device;
-use Octopussy::DeviceGroup;
-use Octopussy::Export;
-use Octopussy::Location;
-use Octopussy::Loglevel;
-use Octopussy::Logs;
-use Octopussy::Map;
-use Octopussy::Message;
-use Octopussy::OFC;
-use Octopussy::Plugin;
-use Octopussy::Report;
-use Octopussy::RRDTool;
-use Octopussy::Schedule;
-use Octopussy::Search_Template;
-use Octopussy::Service;
-use Octopussy::ServiceGroup;
-use Octopussy::Statistic_Report;
-use Octopussy::Stats;
-use Octopussy::Storage;
-use Octopussy::Table;
-use Octopussy::Taxonomy;
-use Octopussy::TimePeriod;
-use Octopussy::Type;
-use Octopussy::World_Stats;
+BEGIN { grep_heap }
 
 Readonly my $APPLICATION_NAME => 'Octopussy';
 Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';

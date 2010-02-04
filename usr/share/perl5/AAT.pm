@@ -46,28 +46,21 @@ use strict;
 use warnings;
 use Readonly;
 
+sub grep_heap { system "grep -A1 heap /proc/$$/smaps" }
+
+BEGIN { print "AAT Start\n"; grep_heap }
+
 use File::Path;
 use LWP;
+
+BEGIN { print "After AAT LWP\n"; grep_heap }
+
 use AAT::Application;
-use AAT::Certificate;
-use AAT::Datetime;
-use AAT::DB;
-use AAT::File;
-use AAT::FS;
-use AAT::LDAP;
-use AAT::List;
-use AAT::NSCA;
-use AAT::Object;
 use AAT::Proxy;
-use AAT::SMTP;
 use AAT::Syslog;
 use AAT::Theme;
 use AAT::Translation;
-use AAT::User;
-use AAT::WebService;
 use AAT::XML;
-use AAT::XMPP;
-use AAT::Zabbix;
 
 Readonly my $FILE_DEBUG => '/var/run/aat/AAT.debug';
 

@@ -28,7 +28,19 @@ use Linux::Inotify2;
 use Regexp::Assemble;
 
 use AAT;
+use AAT::XMPP;
+
 use Octopussy;
+use Octopussy::Alert;
+use Octopussy::Cache;
+use Octopussy::Contact;
+use Octopussy::Device;
+use Octopussy::Message;
+use Octopussy::RRDTool;
+use Octopussy::Service;
+use Octopussy::Storage;
+use Octopussy::Taxonomy;
+use Octopussy::TimePeriod;
 
 Readonly my $PROG_NAME    => 'octo_parser';
 Readonly my $NICE_UPARSER => 'nice -n 20';

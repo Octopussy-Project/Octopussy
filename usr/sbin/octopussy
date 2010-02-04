@@ -33,6 +33,7 @@ use warnings;
 use Readonly;
 
 use Octopussy;
+use Octopussy::Device;
 
 Readonly my $PROG_NAME       => 'octopussy';
 Readonly my $USER            => 'octopussy';

@@ -17,8 +17,6 @@ use Readonly;
 
 use Cache::FileCache;
 
-use AAT;
-
 Readonly my $EXPIRES_COMMANDER  => '1 hour';
 Readonly my $EXPIRES_DISPATCHER => '2 days';
 Readonly my $EXPIRES_EXTRACTOR  => '1 hour';

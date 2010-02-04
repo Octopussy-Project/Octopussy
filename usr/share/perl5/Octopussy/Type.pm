@@ -16,6 +16,9 @@ use warnings;
 use Readonly;
 
 use AAT;
+use AAT::Datetime;
+use AAT::XML;
+
 use Octopussy;
 
 Readonly my $FILE_TYPES        => 'types';

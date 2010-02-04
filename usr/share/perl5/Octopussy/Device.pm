@@ -17,6 +17,7 @@ use Readonly;
 
 use List::MoreUtils qw(uniq);
 
+use AAT::FS;
 use Octopussy;
 
 Readonly my $PAUSED            => 1;

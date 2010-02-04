@@ -20,9 +20,14 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
-use Octopussy;
 use Date::Manip;
+
+use AAT;
+use AAT::Datetime;
+use Octopussy;
+use Octopussy::Report;
+use Octopussy::RRDTool;
+use Octopussy::Schedule;
 
 Readonly my $PROG_NAME => 'octo_scheduler';
 

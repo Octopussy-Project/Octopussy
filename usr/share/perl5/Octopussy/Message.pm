@@ -18,7 +18,11 @@ use Readonly;
 use utf8;
 
 use Octopussy;
-use Octopussy::Contact;
+use Octopussy::Loglevel;
+use Octopussy::Logs;
+use Octopussy::Plugin;
+use Octopussy::Service;
+use Octopussy::Type;
 
 Readonly my $WIZARD_MAX_SAME_MSG => 100;
 
