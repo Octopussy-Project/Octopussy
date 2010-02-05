@@ -407,7 +407,7 @@ sub Alert_Handler
               @{$a->{maildest}})
               if (defined $a->{action_mail});
             AAT::NSCA::Send('Octopussy', (($a->{level} =~ /Warning/i) ? 1 : 2),
-              $action_body, $a->{nagios_host}, $a->{nagios_service})
+              $action_body, $action_host, $action_service)
               if (defined $a->{action_nsca});
             AAT::Zabbix::Send('Octopussy', $action_body, $action_host,
               $action_service)

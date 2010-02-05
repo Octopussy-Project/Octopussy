@@ -40,7 +40,7 @@ my @used_services = Octopussy::Service::List_Used();
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Label value="_LOGLEVEL" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_LOG_LEVEL" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:Inc file="octo_selector_loglevel" any="1" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

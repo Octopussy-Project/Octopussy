@@ -1,6 +1,46 @@
 use utf8;
+
 use AAT;
+use AAT::Certificate;
+use AAT::Datetime;
+use AAT::DB;
+use AAT::LDAP;
+use AAT::List;
+use AAT::NSCA;
+use AAT::SMTP;
+use AAT::Translation;
+use AAT::User;
+use AAT::XML;
+use AAT::XMPP;
 use Octopussy;
+use Octopussy::Alert;
+use Octopussy::Cache;
+use Octopussy::Configuration;
+use Octopussy::Contact;
+use Octopussy::Data_Report;
+use Octopussy::DB;
+use Octopussy::Device;
+use Octopussy::DeviceGroup;
+use Octopussy::Location;
+use Octopussy::Loglevel;
+use Octopussy::Logs;
+use Octopussy::Map;
+use Octopussy::Message;
+use Octopussy::Plugin;
+use Octopussy::Report;
+use Octopussy::RRDTool;
+use Octopussy::Schedule;
+use Octopussy::Search_Template;
+use Octopussy::Service;
+use Octopussy::ServiceGroup;
+use Octopussy::Statistic_Report;
+use Octopussy::Stats;
+use Octopussy::Storage;
+use Octopussy::Table;
+use Octopussy::Taxonomy;
+use Octopussy::TimePeriod;
+use Octopussy::Type;
+use Octopussy::World_Stats;
 
 =head1 FUNCTIONS
 
