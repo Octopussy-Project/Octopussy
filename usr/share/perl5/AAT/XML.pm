@@ -147,6 +147,7 @@ sub Write
   {
     print {$FILE} $xml;
     close $FILE;
+    delete $XML_CACHE{$file};
   }
   else
   {

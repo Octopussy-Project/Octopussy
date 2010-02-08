@@ -45,7 +45,7 @@ sub Backup
     Octopussy::Files('servicegroups', 'storages', 'timeperiods', 'users');
 
   system
-"tar Picvfz $file_backup $conf_sys $dir_alerts $dir_contacts $dir_devices $dir_maps $dir_plugins $dir_reports $dir_search_templates $dir_services $dir_tables $file_devicegroup $file_locations $file_schedule $file_servicegroup $file_storages $file_timeperiods $file_users";
+"tar Picfz $file_backup $conf_sys $dir_alerts $dir_contacts $dir_devices $dir_maps $dir_plugins $dir_reports $dir_search_templates $dir_services $dir_tables $file_devicegroup $file_locations $file_schedule $file_servicegroup $file_storages $file_timeperiods $file_users";
 
   return ($file_backup);
 }
@@ -80,7 +80,7 @@ sub Restore
 {
   my $file        = shift;
   my $file_backup = "${DIR_BACKUP}${file}.tgz";
-  system "tar Pxvfz $file_backup";
+  system "tar Pxfz $file_backup";
 
   return (1);
 }
