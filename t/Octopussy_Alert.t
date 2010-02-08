@@ -62,12 +62,11 @@ Octopussy::Alert::Modify($name, \%conf);
 ok($old_size < -s $file, 'Octopussy::Alert::Modify()');
 
 my $new_conf = Octopussy::Alert::Configuration($name);
-print $new_conf->{description} . "\n" . $new_conf->{name} . "\n";
 ok((($new_conf->{description} eq $new_desc) && ($new_conf->{name} eq $name)),
   'Octopussy::Alert::Configuration()');
 
-#Octopussy::Alert::Remove($name);
-#ok(AAT::NOT_NULL($file) && !-f $file, 'Octopussy::Alert::Remove()');
+Octopussy::Alert::Remove($name);
+ok(AAT::NOT_NULL($file) && !-f $file, 'Octopussy::Alert::Remove()');
 
 =head2
 my @contacts2 = Octopussy::Contact::List();
