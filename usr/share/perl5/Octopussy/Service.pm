@@ -100,7 +100,7 @@ Returns List of Services used
 sub List_Used
 {
   my @services = Octopussy::Device::Services(Octopussy::Device::List());
-  @services = sort uniq @services;
+  @services = sort(uniq(@services));
 
   return (@services);
 }

@@ -499,7 +499,7 @@ sub Services
 sub String_Services
 {
   my @devices  = @_;
-  my @services = sort (uniq(Services(@devices)));
+  my @services = sort(uniq(Services(@devices)));
 
   return ('Service list: -ANY-, ' . join ', ', @services);
 }
