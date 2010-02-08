@@ -22,6 +22,7 @@ use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
 use Octopussy;
+use Octopussy::Cache;
 
 Readonly my $PROG_NAME    => 'octo_data';
 Readonly my $PROG_VERSION => Octopussy::Version();

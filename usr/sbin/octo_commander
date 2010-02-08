@@ -19,6 +19,7 @@ use warnings;
 use Readonly;
 
 use Octopussy;
+use Octopussy::Cache;
 
 Readonly my $PROG_NAME => 'octo_commander';
 

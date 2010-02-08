@@ -18,7 +18,10 @@ to help users to determine to wich Message/Service a log belongs to
 use strict;
 use warnings;
 
+use AAT;
 use Octopussy;
+use Octopussy::Message;
+use Octopussy::Service;
 
 my @services = Octopussy::Service::List();
 
