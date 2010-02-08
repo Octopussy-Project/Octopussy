@@ -35,7 +35,7 @@ and these Perl modules (from CPAN):
 - Sys::CPU
 - Unix::Syslog
 - URI
-- XML::Simple
+- XML::Simple (Take a look http://search.cpan.org/~grantm/XML-Simple-2.18/lib/XML/Simple.pm#ENVIRONMENT for possible performance issues)
 
 Good Luck !
 
