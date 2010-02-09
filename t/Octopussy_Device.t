@@ -16,14 +16,12 @@ use Readonly;
 
 use Test::More tests => 4;
 
+use Octopussy;
 use Octopussy::Device;
 
-#
-# check Device.pm (4 tests)
-#
+Readonly my $DIR_DEVICES => Octopussy::Directory('devices');
 Readonly my $PREFIX      => 'Octo_TEST_';
 Readonly my $DEV_DESC    => "${PREFIX}device Description";
-Readonly my $DIR_DEVICES => '/var/lib/octopussy/conf/devices/';
 
 Octopussy::Device::New({name => "${PREFIX}device", address => '1.2.3.4'});
 ok(-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::Device::New()');
