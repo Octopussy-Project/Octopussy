@@ -51,6 +51,11 @@ sub Configuration
   return (undef);
 }
 
+
+=head2 List($ref_serv, $loglevel, $taxonomy)
+
+=cut
+
 sub List
 {
   my ($ref_serv, $loglevel, $taxonomy) = @_;
@@ -82,6 +87,7 @@ sub List
 
   return (@list);
 }
+
 
 =head2 Fields($service, $msg_id)
 

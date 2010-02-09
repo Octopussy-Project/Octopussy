@@ -14,7 +14,8 @@ package Octopussy::Plugin::Network;
 use strict;
 use warnings;
 
-use Octopussy;
+use AAT;
+use AAT::List;
 
 my %services = ();
 
