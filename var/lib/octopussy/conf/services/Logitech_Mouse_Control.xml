@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Logitech Mouse Control"
+                   name="Logitech_Mouse_Control"
+                   version="201002100006"
+                   website="http://www.lomoco.org/">
+  <message loglevel="Information"
+           msg_id="Logitech_Mouse_Control:wheel_mouse_optical_caps"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;lomoco&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+: .+ Wheel Mouse Optical .+ Caps: .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Logitech_Mouse_Control:empty"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;lomoco&quot;):daemon@&gt;:"
+           rank="001"
+           table="Message"
+           taxonomy="Application" />
+</octopussy_service>

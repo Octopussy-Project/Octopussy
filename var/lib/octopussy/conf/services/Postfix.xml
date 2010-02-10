@@ -3,7 +3,7 @@
                    icon="software/logo_postfix"
                    name="Postfix"
                    nb_messages="084"
-                   version="200909150004"
+                   version="201002100004"
                    website="http://www.postfix.org/">
   <message loglevel="Critical"
            msg_id="Postfix:postalias_error_file_parameter"
@@ -30,8 +30,8 @@
            table="Message"
            taxonomy="Config.Errors" />
   <message loglevel="Information"
-           msg_id="Postfix:starting_mail_system"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/postfix-script: &lt;@REGEXP(&quot;starting the Postfix mail system&quot;):msg@&gt; "
+           msg_id="Postfix:starting_postfix_mail_system"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/postfix-script: &lt;@REGEXP(&quot;starting the Postfix mail system&quot;):msg@&gt;"
            rank="005"
            table="Message"
            taxonomy="System" />
@@ -271,7 +271,7 @@
            taxonomy="System.Errors" />
   <message loglevel="Warning"
            msg_id="Postfix:reload_configuration"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; postfix/master[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;reload configuration .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;postfix\/master&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;reload .*configuration .+&quot;):msg@&gt;"
            rank="045"
            table="Message"
            taxonomy="Config.Changes" />
@@ -599,4 +599,10 @@
            rank="099"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
+  <message loglevel="Notice"
+           msg_id="Postfix:starting_postfix_mail_system2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;postfix.+&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;starting the Postfix mail system&quot;):msg@&gt;"
+           rank="100"
+           table="Message"
+           taxonomy="Application.Start" />
 </octopussy_service>

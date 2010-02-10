@@ -2,7 +2,7 @@
 <octopussy_service description="Linux High Availability Attr"
                    icon="software/logo_linux_ha"
                    name="Linux_HA_Attr"
-                   version="201002010004"
+                   version="200906020002"
                    website="">
   <message loglevel="Information"
            msg_id="Linux_HA_Attr:starting_mainloop"
@@ -58,16 +58,4 @@
            rank="009"
            table="Message"
            taxonomy="Network.Errors" />
-  <message loglevel="Information"
-           msg_id="Linux_HA_Attr:working_ipc_channel_took"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;attrd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;WARN: .+ working on IPC channel took .+&quot;):msg@&gt;"
-           rank="010"
-           table="Message"
-           taxonomy="System" />
-  <message loglevel="Warning"
-           msg_id="Linux_HA_Attr:connection_logging_daemon_failed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;attrd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;WARN: Initializing connection to logging daemon failed.*&quot;):msg@&gt;"
-           rank="011"
-           table="Message"
-           taxonomy="System.Errors" />
 </octopussy_service>

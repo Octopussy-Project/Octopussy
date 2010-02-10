@@ -2,7 +2,7 @@
 <octopussy_service description="Linux Kernel USB Service"
                    icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel_USB"
-                   version="200904140004"
+                   version="201002100006"
                    website="">
   <message loglevel="Debug"
            msg_id="Linux_Kernel_USB:storage_info"
@@ -68,6 +68,24 @@
            msg_id="Linux_Kernel_USB:ports_detected"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.*hub .+: \d+ ports detected&quot;):msg@&gt;"
            rank="011"
+           table="Message"
+           taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_USB:product"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.+ usb \d+.\d+: Product: .+&quot;):msg@&gt;"
+           rank="012"
+           table="Message"
+           taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_USB:manufacturer"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.+ usb \d+.\d+: Manufacturer: .+&quot;):msg@&gt;"
+           rank="013"
+           table="Message"
+           taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Linux_Kernel_USB:serialnumber"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.+ usb \d+.\d+: SerialNumber: .+&quot;):msg@&gt;"
+           rank="014"
            table="Message"
            taxonomy="Hardware" />
 </octopussy_service>

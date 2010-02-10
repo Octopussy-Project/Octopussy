@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="ACPI Service"
+                   name="ACPI"
+                   nb_messages="001"
+                   version="201002100002"
+                   website="http://sourceforge.net/projects/acpid/">
+  <message loglevel="Notice"
+           msg_id="ACPI:client_connected"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;client connected.+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="ACPI:client_has_disconnected"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;client.+ has disconnected&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="ACPI:client_rule_loaded"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ client rule loaded&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Notice"
+           msg_id="ACPI:exiting"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;exiting&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Application.Stop" />
+</octopussy_service>

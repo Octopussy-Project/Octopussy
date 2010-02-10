@@ -3,7 +3,7 @@
                    icon="operating_systems/os_windows"
                    name="Windows_Snare"
                    nb_messages="040"
-                   version="200901220008"
+                   version="201002100002"
                    website="http://www.intersectalliance.com/projects/SnareWindows/index.html">
   <message loglevel="Notice"
            msg_id="Windows_Snare:service_was_stopped"
@@ -243,6 +243,12 @@
            msg_id="Windows_Snare:AD_Computer_Account_Deleted"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;Security;&lt;@NUMBER:NULL@&gt;;&lt;@DATE_TIME_APACHE_ERROR:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@WORD:source@&gt;;&lt;@WORD:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@WORD:NULL@&gt; Audit;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;Account Management&quot;):category@&gt;  ;;&lt;@REGEXP(&quot;Computer Account Deleted: .*&quot;):msg@&gt;;&lt;@WORD:NULL@&gt;"
            rank="040"
+           table="Windows_Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Windows_Snare:detected_application_listening_for_incoming_traffic"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;Security;&lt;@NUMBER:NULL@&gt;;&lt;@DATE_TIME_APACHE_ERROR:datetime@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@WORD:source@&gt;;&lt;@WORD:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Failure Audit&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;Detailed Tracking&quot;):category@&gt;;;&lt;@REGEXP(&quot;.+ Windows Firewall.+ detected an application listening for incoming traffic.&quot;):msg@&gt;&lt;@STRING:NULL@&gt;"
+           rank="041"
            table="Windows_Message"
            taxonomy="Application" />
 </octopussy_service>

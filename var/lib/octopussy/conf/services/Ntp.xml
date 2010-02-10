@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Ntp Service"
                    name="Ntp"
-                   nb_messages="034"
-                   version="201001220002">
+                   nb_messages="038"
+                   version="201002100001">
   <message loglevel="Information"
            msg_id="Ntp:step_time_server"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpdate[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;step time server \S+ offset \S+ sec&quot;):msg@&gt;"
@@ -219,4 +219,16 @@
            rank="036"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Notice"
+           msg_id="Ntp:max_descriptors_initial_socket_boundary"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;ntp_io:.+ max descriptors:.+ initial socket boundary:.+&quot;):msg@&gt;"
+           rank="037"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Ntp:new_interface_resolver_wake_up"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; ntpd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;new interface.+ found: waking up resolver&quot;):msg@&gt;"
+           rank="038"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

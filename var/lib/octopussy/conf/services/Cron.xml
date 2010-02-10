@@ -3,10 +3,10 @@
                    icon="operating_systems/os_linux_generic"
                    name="Cron"
                    nb_messages="031"
-                   version="200812120002">
+                   version="201002100001">
   <message loglevel="Information"
            msg_id="Cron:cmd"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*CRON.*&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: (&lt;@STRING:user@&gt;) CMD (&lt;@STRING:msg@&gt;)  "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*CRON.*&quot;):NULL@&gt;[&lt;@PID:pid@&gt;]: (&lt;@STRING:user@&gt;) CMD (&lt;@STRING:msg@&gt;)"
            rank="001"
            table="Message"
            taxonomy="System" />
