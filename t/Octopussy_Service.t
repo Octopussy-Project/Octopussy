@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 9;
+use Test::More tests => 10;
 
 use Octopussy;
 use Octopussy::Service;
@@ -41,6 +41,8 @@ my $conf = Octopussy::Service::Configuration($SERVICE);
 ok($conf->{name} eq $SERVICE && $conf->{description} eq $SERVICE_DESC, 
   'Octopussy::Service::Configuration()');
 
+my $msgid1 = Octopussy::Service::Msg_ID($SERVICE);
+
 $msg_conf{msg_id} = "${SERVICE}:first";
 Octopussy::Service::Add_Message($SERVICE, \%msg_conf);
 $msg_conf{msg_id} = "${SERVICE}:second";
@@ -63,12 +65,12 @@ ok($rank eq "001", 'Octopussy::Service::Move_Message(top)');
 $rank = Octopussy::Service::Move_Message($SERVICE, "${SERVICE}:second", 'up');
 ok($rank eq "002", 'Octopussy::Service::Move_Message(up)');
 
-=head2 comment
-Octopussy::Device::Modify(
-  {name => "${PREFIX}device", description => $DEV_DESC});
-$conf = Octopussy::Device::Configuration("${PREFIX}device");
-ok($conf->{description} eq $DEV_DESC, 'Octopussy::Device::Modify()');
-=cut
+$msg_conf{msg_id} = "${SERVICE}:001";
+Octopussy::Service::Add_Message($SERVICE, \%msg_conf);
+
+my $msgid2 = Octopussy::Service::Msg_ID($SERVICE);
+ok(($msgid1 eq "${SERVICE}:001") && ($msgid2 eq "${SERVICE}:002"), 
+  'Octopussy::Service::Msg_ID()');
 
 Octopussy::Service::Remove($SERVICE);
 ok(!-f "${DIR_SERVICES}${SERVICE}.xml", 'Octopussy::Service::Remove()');

@@ -48,6 +48,11 @@ ok(scalar @fields == 4, 'Octopussy::Message::Fields()');
 my $table = Octopussy::Message::Table($SERVICE, $MSGID);
 ok($table eq 'Message', 'Octopussy::Message::Table()');
 
+my $sql = Octopussy::Message::Pattern_To_SQL($mconf, '123456', ());
+print "$sql\n";
+my $sql = Octopussy::Message::Pattern_To_SQL($mconf, '123456', ('datetime', 'msg'));
+print "$sql\n";
+
 my $re = Octopussy::Message::Pattern_To_Regexp($mconf);
 ok($re eq $RE, 'Octopussy::Message::Pattern_To_Regexp()');
 $mconf->{re} = $re;
