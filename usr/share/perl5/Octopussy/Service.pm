@@ -18,6 +18,7 @@ use utf8;
 use Encode;
 
 use List::MoreUtils qw(any none uniq);
+use POSIX qw(strftime);
 
 use AAT;
 use AAT::XML;
@@ -179,9 +180,12 @@ sub Msg_ID
   my $conf   = Configuration($service);
   my $msg_id = '';
   my $i      = 1;
+
+  return ($conf->{name} . ':' . sprintf("%03d", $i))
+    if ((!defined $conf->{message}) || (scalar AAT::ARRAY($conf->{message}) == 0));
   while ($i <= $MAX_NB_MSGS_IN_SERVICE)
   {
-    $msg_id = $conf->{name} . ":$i";
+    $msg_id = $conf->{name} . ':' . sprintf("%03d", $i);
     if (none { $_->{msg_id} =~ /^$msg_id$/i } AAT::ARRAY($conf->{message}))
     {
       return ($msg_id);

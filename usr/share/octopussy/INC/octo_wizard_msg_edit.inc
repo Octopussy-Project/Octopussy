@@ -9,7 +9,6 @@ my $msg_orig = $Server->HTMLEncode($arg{msg_orig});
 my $msg_pattern = $arg{msg_pattern};
 $msg_pattern =~ s/"/&quot;/g;
 my ($m_begin, $m_end) = split (/:/, Octopussy::Service::Msg_ID($service));
-$m_end = "";
 my $colored_str = $Server->HTMLEncode(Octopussy::Message::Color($msg_pattern));
 %>
 <AAT:Box align="C">

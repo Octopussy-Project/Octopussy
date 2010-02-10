@@ -12,6 +12,7 @@ use AAT::Translation;
 use AAT::User;
 use AAT::XML;
 use AAT::XMPP;
+use AAT::Zabbix;
 use Octopussy;
 use Octopussy::Alert;
 use Octopussy::Cache;
