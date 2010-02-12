@@ -22,8 +22,4 @@
          type="STRING" />
   <field title="user_agent"
          type="USER_AGENT" />
-  <field title="datetime"
-         type="DATETIME" />
-  <field title="device"
-         type="WORD" />
 </octopussy_table>

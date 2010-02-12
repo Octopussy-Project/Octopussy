@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Heartbeat Service"
                    name="Heartbeat"
-                   nb_messages="054"
-                   version="201002110011"
+                   nb_messages="053"
+                   version="200904140001"
                    website="http://www.linux-ha.org/Heartbeat">
   <message loglevel="Information"
            msg_id="Heartbeat:debug_msg"
@@ -325,31 +325,7 @@
   <message loglevel="Debug"
            msg_id="Heartbeat:dopd_debug"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*dopd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;debug: .+&quot;):msg@&gt;"
-           rank="057"
-           table="Message"
-           taxonomy="System" />
-  <message loglevel="Warning"
-           msg_id="Heartbeat:dopd_too_slow"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*dopd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*working on IPC channel took.*&quot;):msg@&gt;"
-           rank="055"
-           table="Message"
-           taxonomy="Application" />
-  <message loglevel="Information"
-           msg_id="Heartbeat:attrd_shutdown"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;attrd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@WORD:level@&gt;: &lt;@REGEXP(&quot;attrd_shutdown: Exiting&quot;):msg@&gt;"
            rank="054"
            table="Message"
-           taxonomy="Application.Stop" />
-  <message loglevel="Warning"
-           msg_id="Heartbeat:not_connecting_to_logging_daemon"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@WORD:level@&gt;: &lt;@REGEXP(&quot;Initializing connection to logging daemon failed.*&quot;):msg@&gt;"
-           rank="056"
-           table="Message"
-           taxonomy="Application.Errors" />
-  <message loglevel="Alert"
-           msg_id="Heartbeat:node_dead"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.*/dopd&quot;):daemon@&gt;: [&lt;@PID:pid@&gt;]: &lt;@WORD:level@&gt; &lt;@REGEXP(&quot;Cluster node.*status: dead&quot;):msg@&gt;"
-           rank="058"
-           table="Message"
-           taxonomy="Application.Stop" />
+           taxonomy="System" />
 </octopussy_service>

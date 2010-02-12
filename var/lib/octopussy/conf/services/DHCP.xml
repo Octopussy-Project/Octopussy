@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="ISC DHCP Server"
                    name="DHCP"
-                   version="200912170009"
+                   nb_messages="008"
+                   version="201002110001"
                    website="">
   <message loglevel="Information"
            msg_id="DHCP:request"
@@ -47,7 +48,7 @@
            taxonomy="Network" />
   <message loglevel="Warning"
            msg_id="DHCP:unknown_lease"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dhcpd: &lt;@REGEXP(&quot;DHCPREQUEST&quot;):action@&gt; for &lt;@IP_ADDR:client_ip@&gt; (&lt;@STRING:NULL@&gt;) from &lt;@MAC_ADDR:client_mac@&gt; via &lt;@NET_INTERFACE:server_nic@&gt;: &lt;@REGEXP(&quot;unknown lease&quot;):msg@&gt; &lt;@IP_ADDR:client_ip@&gt;."
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; dhcpd: &lt;@REGEXP(&quot;DHCPREQUEST&quot;):action@&gt; for &lt;@IP_ADDR:client_ip@&gt; (&lt;@STRING:NULL@&gt;) from &lt;@MAC_ADDR:client_mac@&gt; via &lt;@NET_INTERFACE:server_nic@&gt;: &lt;@REGEXP(&quot;unknown lease .+&quot;):msg@&gt;"
            rank="008"
            table="DHCP_Event"
            taxonomy="Network" />

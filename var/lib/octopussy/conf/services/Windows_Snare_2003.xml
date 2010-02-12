@@ -2,8 +2,8 @@
 <octopussy_service description="Windows 2003 Snare Agent Service"
                    icon="operating_systems/os_windows"
                    name="Windows_Snare_2003"
-                   nb_messages="026"
-                   version="200911260014"
+                   nb_messages="027"
+                   version="201002110003"
                    website="http://www.intersectalliance.com/projects/SnareWindows/index.html">
   <message loglevel="Information"
            msg_id="Windows_Snare_2003:service_stoping"
@@ -84,8 +84,8 @@
            table="Windows_Message"
            taxonomy="Auth.Failure" />
   <message loglevel="Information"
-           msg_id="Windows_Snare_2003:security_NetWork_Logon_Successful"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;&lt;@WORD:source@&gt;;&lt;@NUMBER:NULL@&gt;;&lt;@REGEXP(&quot;.+&quot;):msg@&gt;;&lt;@NUMBER:event_id@&gt;;Security;&lt;@STRING:user@&gt;;User;Success Audit;&lt;@WORD:computer@&gt;;Logon/Logoff;;&lt;@REGEXP(&quot;Successful Network Logon.+&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
+           msg_id="Windows_Snare_2003:security_network_logon_successful"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;&lt;@WORD:source@&gt;;&lt;@NUMBER:NULL@&gt;;&lt;@STRING:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;Security;&lt;@STRING:user@&gt;;User;Success Audit;&lt;@WORD:computer@&gt;;Logon/Logoff;;&lt;@REGEXP(&quot;Successful Network Logon.+&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
            rank="014"
            table="Windows_Message"
            taxonomy="Auth.Success" />
@@ -138,8 +138,8 @@
            table="Windows_Message"
            taxonomy="Application" />
   <message loglevel="Information"
-           msg_id="Windows_Snare_2003:system_UpTime"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;&lt;@WORD:source@&gt;;&lt;@NUMBER:NULL@&gt;;&lt;@WORD:NULL@&gt; &lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@NUMBER:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;EventLog;Unknown User;N/A;Information;&lt;@WORD:computer@&gt;;None;&lt;@REGEXP(&quot;.*\d+.*&quot;):msg@&gt;;&lt;@REGEXP(&quot;The system uptime is \d+ seconds.+&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
+           msg_id="Windows_Snare_2003:system_uptime"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;&lt;@WORD:source@&gt;;&lt;@NUMBER:NULL@&gt;;&lt;@WORD:NULL@&gt; &lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@NUMBER:NULL@&gt;;&lt;@NUMBER:event_id@&gt;;EventLog;Unknown User;N/A;Information;&lt;@WORD:computer@&gt;;None;&lt;@REGEXP(&quot;.*\d+.*&quot;):NULL@&gt;;&lt;@REGEXP(&quot;The system uptime is \d+ seconds.+&quot;):msg@&gt;;&lt;@NUMBER:NULL@&gt;"
            rank="023"
            table="Windows_Message"
            taxonomy="System" />
