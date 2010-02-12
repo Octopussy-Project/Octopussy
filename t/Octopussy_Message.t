@@ -18,14 +18,19 @@ use Test::More tests => 6;
 
 use Octopussy::Message;
 
-Readonly my $SERVICE  => 'Octopussy';
-Readonly my $MSGID    => 'Octopussy:user_logged_in';
+Readonly my $SERVICE => 'Octopussy';
+Readonly my $MSGID   => 'Octopussy:user_logged_in';
 
-Readonly my $RE     => '(\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2}) (\S+) octo_(\S+): (User .+ succesfully logged in.)';
-Readonly my $RE2    => '\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2} \S+ octo_\S+: User .+ succesfully logged in.';
+Readonly my $RE =>
+'(\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2}) (\S+) octo_(\S+): (User .+ succesfully logged in.)';
+Readonly my $RE2 =>
+'\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2} \S+ octo_\S+: User .+ succesfully logged in.';
 
-Readonly my $SAMPLE => 'Feb  1 10:10:00 localhost octo_WebUI: User admin succesfully logged in.';
+Readonly my $SAMPLE =>
+  'Feb  1 10:10:00 localhost octo_WebUI: User admin succesfully logged in.';
 Readonly my $SAMPLE_MSG => 'User admin succesfully logged in.';
+
+Readonly my $REQUIRED_NB_FIELDS => 4;
 
 =head2 msg
 <message loglevel="Notice"
@@ -39,11 +44,11 @@ to_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;User .+ succesfully logged in.&quot;
 =cut
 
 my $mconf = Octopussy::Message::Configuration($SERVICE, $MSGID);
-ok(AAT::NOT_NULL($mconf) && $mconf->{taxonomy} eq 'Auth.Success', 
+ok(AAT::NOT_NULL($mconf) && $mconf->{taxonomy} eq 'Auth.Success',
   'Octopussy::Message::Configuration()');
 
 my @fields = Octopussy::Message::Fields($SERVICE, $MSGID);
-ok(scalar @fields == 4, 'Octopussy::Message::Fields()');
+ok(scalar @fields == $REQUIRED_NB_FIELDS, 'Octopussy::Message::Fields()');
 
 my $table = Octopussy::Message::Table($SERVICE, $MSGID);
 ok($table eq 'Message', 'Octopussy::Message::Table()');
@@ -61,7 +66,7 @@ my $re2 = Octopussy::Message::Pattern_To_Regexp_Without_Catching($mconf);
 ok($re2 eq $RE2, 'Octopussy::Message::Pattern_To_Regexp_Without_Catching()');
 
 my %field = Octopussy::Message::Fields_Values($mconf, $SAMPLE);
-ok(scalar(keys %field) == 4 && $field{msg} eq $SAMPLE_MSG, 
+ok(scalar(keys %field) == $REQUIRED_NB_FIELDS && $field{msg} eq $SAMPLE_MSG,
   'Octopussy::Message::Fields_Values()');
 
 1;

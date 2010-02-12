@@ -20,9 +20,6 @@ use Test::More tests => 4;
 
 use Octopussy::Contact;
 
-#
-# check Contact.pm (4 tests)
-#
 Readonly my $PREFIX => 'Octo_TEST_';
 
 my ($id, $lastname, $firstname, $desc, $email, $im) = (

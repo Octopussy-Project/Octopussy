@@ -24,7 +24,6 @@ use Octopussy::Table;
 
 my $str_error = '';
 
-
 =head1 FUNCTIONS
 
 =head2 Error
@@ -38,7 +37,6 @@ sub Error
   $str_error .= sprintf("[ERROR] $str\n", @args);
 }
 
-
 =head2 MAIN
 
 =cut
@@ -47,21 +45,21 @@ my @tables = Octopussy::Table::List();
 
 foreach my $table (@tables)
 {
-  my $conf = Octopussy::Table::Configuration($table); 
+  my $conf        = Octopussy::Table::Configuration($table);
   my %field_count = ();
   foreach my $f (@{$conf->{field}})
   {
-    $field_count{$f->{title}} = 
+    $field_count{$f->{title}} =
       (defined $field_count{$f->{title}}) ? $field_count{$f->{title}} + 1 : 1;
   }
-  Error("Need to define 'datetime' Field in Table '%s'", $table)  
+  Error("Need to define 'datetime' Field in Table '%s'", $table)
     if (!defined $field_count{datetime});
-  Error("Need to define 'device' Field in Table '%s'", $table)  
+  Error("Need to define 'device' Field in Table '%s'", $table)
     if (!defined $field_count{device});
   foreach my $k (keys %field_count)
   {
-    Error("\tField '%s' in Table '%s' defined more than one time !", 
-      $k, $table) if ($field_count{$k} > 1);
+    Error("\tField '%s' in Table '%s' defined more than one time !", $k, $table)
+      if ($field_count{$k} > 1);
   }
 }
 

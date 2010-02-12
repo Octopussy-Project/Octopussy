@@ -21,11 +21,12 @@ use Octopussy;
 # check Octopussy.pm (7 tests)
 #
 my $email = Octopussy::Email();
-ok(AAT::NOT_NULL($email) && $email =~ /^\S+\@\S+$/, 'Octopussy::Email()');  
+ok(AAT::NOT_NULL($email) && $email =~ /^\S+\@\S+$/, 'Octopussy::Email()');
 my $user = Octopussy::User();
-ok(AAT::NOT_NULL($user) && $user =~ /^\w+$/,      'Octopussy::User()');
+ok(AAT::NOT_NULL($user) && $user =~ /^\w+$/, 'Octopussy::User()');
 my $version = Octopussy::Version();
-ok(AAT::NOT_NULL($version) && $version =~ /^\d+\.\d+.*$/, 'Octopussy::Version()');
+ok(AAT::NOT_NULL($version) && $version =~ /^\d+\.\d+.*$/,
+  'Octopussy::Version()');
 
 ok(AAT::NOT_NULL(Octopussy::Directory('main')), 'Octopussy::Directory()');
 my @dirs = Octopussy::Directories('main', 'data_logs');

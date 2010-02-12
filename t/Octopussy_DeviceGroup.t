@@ -23,16 +23,18 @@ use Octopussy::DeviceGroup;
 #
 Readonly my $PREFIX      => 'Octo_TEST_';
 Readonly my $DG_ID       => "${PREFIX}devicegroup";
-Readonly my $DG_DESC    => "${PREFIX}devicegroup Description";
+Readonly my $DG_DESC     => "${PREFIX}devicegroup Description";
 Readonly my $DIR_DEVICES => '/var/lib/octopussy/conf/devices/';
 
-my $error1 = Octopussy::DeviceGroup::Add({ dg_id => $DG_ID, 
-  description => $DG_DESC, type => "static", 
-  device => [ "${PREFIX}device1", "${PREFIX}device2" ] });
+my %conf = (
+  dg_id       => $DG_ID,
+  description => $DG_DESC,
+  type        => 'static',
+  device      => ["${PREFIX}device1", "${PREFIX}device2"],
+);
 
-my $error2 = Octopussy::DeviceGroup::Add({ dg_id => $DG_ID,
-  description => $DG_DESC, type => "static", 
-  device => [ "${PREFIX}device1", "${PREFIX}device2" ] });
+my $error1 = Octopussy::DeviceGroup::Add(\%conf);
+my $error2 = Octopussy::DeviceGroup::Add(\%conf);
 
 ok(((!defined $error1) && (defined $error2)), 'Octopussy::DeviceGroup::Add()');
 

@@ -34,7 +34,8 @@ ok(AAT::NOT_NULL($file) && -f $file, 'Octopussy::Configuration::Backup()');
 unlink $FILE_TEST;
 
 my @list2 = Octopussy::Configuration::Backup_List();
-ok(scalar @list + 1 == scalar @list2, 'Octopussy::Configuration::Backup_List()'); 
+ok(scalar @list + 1 == scalar @list2,
+  'Octopussy::Configuration::Backup_List()');
 
 my $restore = basename($file);
 $restore =~ s/\.tgz$//;

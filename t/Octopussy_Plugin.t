@@ -22,50 +22,50 @@ use Octopussy::Plugin;
 
 Readonly my $LANG => 'FR';
 
+Readonly my $REQUIRED_NB_PLUGINS => 3;
+
 Readonly my $TEST_MAIL        => 'octo.devel@gmail.com';
 Readonly my $TEST_MAIL_DOMAIN => 'gmail.com';
 Readonly my $TEST_MAIL_USER   => 'octo.devel';
 
-Readonly my $TEST_NETWORK         => '10.20.30.40';
-Readonly my $TEST_NETWORK_MASK8   => '10.XXX.XXX.XXX';
-Readonly my $TEST_NETWORK_MASK16  => '10.20.XXX.XXX';
-Readonly my $TEST_NETWORK_MASK24  => '10.20.30.XXX';
+Readonly my $TEST_NETWORK        => '10.20.30.40';
+Readonly my $TEST_NETWORK_MASK8  => '10.XXX.XXX.XXX';
+Readonly my $TEST_NETWORK_MASK16 => '10.20.XXX.XXX';
+Readonly my $TEST_NETWORK_MASK24 => '10.20.30.XXX';
 
-Readonly my $TEST_BYTES       => 32_000_000;
-Readonly my $TEST_BYTES_K_FR  => '31250.0 Koctets'; 
-Readonly my $TEST_BYTES_M_FR  => '30.5 Moctets';
+Readonly my $TEST_BYTES      => 32_000_000;
+Readonly my $TEST_BYTES_K_FR => '31250.0 Koctets';
+Readonly my $TEST_BYTES_M_FR => '30.5 Moctets';
 
-my @plugins = (
-  'Octopussy::Plugin::Email',
-  'Octopussy::Plugin::Network',
-  'Octopussy::Plugin::Unit',
+my @plugins = qw(
+  Octopussy::Plugin::Email
+  Octopussy::Plugin::Network
+  Octopussy::Plugin::Unit
   );
 
-my @functions = (
-  'Octopussy::Plugin::Email::Domain', 
-  'Octopussy::Plugin::Email::User',
-
-  'Octopussy::Plugin::Network::Mask_8',
-  'Octopussy::Plugin::Network::Mask_16',
-  'Octopussy::Plugin::Network::Mask_24',
-
-  'Octopussy::Plugin::Unit::KiloBytes',
-  'Octopussy::Plugin::Unit::MegaBytes',
+my @functions = qw(
+  Octopussy::Plugin::Email::Domain
+  Octopussy::Plugin::Email::User
+  Octopussy::Plugin::Network::Mask_8
+  Octopussy::Plugin::Network::Mask_16
+  Octopussy::Plugin::Network::Mask_24
+  Octopussy::Plugin::Unit::KiloBytes
+  Octopussy::Plugin::Unit::MegaBytes
   );
 
 my @list = Octopussy::Plugin::List();
-ok(scalar @plugins >= 3, 'Octopussy::Plugin::List()');
+ok(scalar @plugins >= $REQUIRED_NB_PLUGINS, 'Octopussy::Plugin::List()');
 
-my $nb_plugins_init = Octopussy::Plugin::Init({lang => $LANG}, @functions); 
-ok($nb_plugins_init == 3, 'Octopussy::Plugin::Init()');
+my $nb_plugins_init = Octopussy::Plugin::Init({lang => $LANG}, @functions);
+ok($nb_plugins_init == $REQUIRED_NB_PLUGINS, 'Octopussy::Plugin::Init()');
 
 my @p_functions = Octopussy::Plugin::Functions();
-my $match = 0;
+my $match       = 0;
 foreach my $pf (@p_functions)
 {
   foreach my $f (@{$pf->{functions}})
   {
-    $match++  if (any { $f->{perl} eq $_ } @functions);
+    $match++ if (any { $f->{perl} eq $_ } @functions);
   }
 }
 ok($match == scalar @functions, 'Octopussy::Plugin::Functions()');

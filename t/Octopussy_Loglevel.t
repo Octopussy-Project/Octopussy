@@ -24,11 +24,11 @@ Readonly my $NB_LOGLEVELS => 7;
 # check Loglevel.pm (2 tests)
 #
 my %color = Octopussy::Loglevel::Colors();
-ok((((scalar(keys %color)) == $NB_LOGLEVELS) && ($color{'Debug'} eq 'gray')),
+ok((((scalar keys %color) == $NB_LOGLEVELS) && ($color{'Debug'} eq 'gray')),
   'Octopussy::Loglevel::Colors()');
 
 my %level = Octopussy::Loglevel::Levels();
-ok((((scalar(keys %level)) == $NB_LOGLEVELS) && ($level{'Debug'} == 1)),
+ok((((scalar keys %level) == $NB_LOGLEVELS) && ($level{'Debug'} == 1)),
   'Octopussy::Loglevel::Levels()');
 
 1;

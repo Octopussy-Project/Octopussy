@@ -23,6 +23,7 @@ use AAT::FS;
 use AAT::Translation;
 use AAT::XML;
 use Octopussy;
+use Octopussy::Data_Report;
 use Octopussy::Report::CSV;
 use Octopussy::Report::HTML;
 use Octopussy::Report::PDF;
