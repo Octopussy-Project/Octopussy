@@ -57,7 +57,7 @@ sub CPU_Usage
 
 =head2 Load()
 
-Returns System Load
+Returns System Load (information from /proc/loadavg)
 
 =cut
 
@@ -77,7 +77,7 @@ sub Load
 
 =head2 Mem_Total()
 
-Returns the Total of Memory in MegaBytes
+Returns the Total of Memory in MegaBytes (information from /proc/meminfo)
 
 =cut
 

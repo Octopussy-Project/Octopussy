@@ -17,6 +17,7 @@ It checks:
 =cut
 
 use strict;
+use warnings;
 
 use Test::More tests => 1;
 
@@ -35,6 +36,8 @@ sub Error
   my ($str, @args) = @_;
 
   $str_error .= sprintf("[ERROR] $str\n", @args);
+
+  return (undef);
 }
 
 =head2 MAIN

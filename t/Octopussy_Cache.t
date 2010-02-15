@@ -37,12 +37,12 @@ ok(AAT::NULL($no_cache), 'Octopussy::Cache::Init() only for some namespaces');
 $cache->set("${PREFIX}cache_key", "${PREFIX}cache_value");
 my $cache_value = $cache->get("${PREFIX}cache_key");
 
-ok($cache_value eq "${PREFIX}cache_value", '$cache->get / $cache->set');
+ok($cache_value eq "${PREFIX}cache_value", 'cache->get / cache->set');
 
 $cache->remove("${PREFIX}cache_key");
 $cache_value = $cache->get("${PREFIX}cache_key");
 
-ok(AAT::NULL($cache_value), '$cache->remove');
+ok(AAT::NULL($cache_value), 'cache->remove');
 
 1;
 

@@ -48,6 +48,7 @@ my $QR_DT2 = qr/^\w{3} (\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2}) (\d{4})/m;
 my $QR_DT3 = qr/^(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2})/m;
 my $QR_DT4 = qr/^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2}) .\d{4}/m;
 
+
 =head2 Configurations()
 
 Get list of type configurations
@@ -60,6 +61,7 @@ sub Configurations
 
   return (AAT::ARRAY($conf->{type}));
 }
+
 
 =head2 Colors()
 
@@ -85,6 +87,7 @@ sub Colors
 
   return (%color);
 }
+
 
 =head2 List()
 
@@ -112,6 +115,7 @@ sub List
 
   return (@list);
 }
+
 
 =head2 Simple_List()
 

@@ -1,7 +1,23 @@
 #!/usr/bin/perl -w
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
+
+=head1 NAME
+
+services_integrity.t - Octopussy Services integrity Test
+
+=head1 DESCRIPTION
+
+It checks that:
+
+=cut
 
 use strict;
+use warnings;
 
+use English qw( -no_match_vars );
 use Test::More tests => 1;
 
 use AAT;
@@ -55,6 +71,8 @@ sub Msg
 
   $error{$level}{$type} =
     (AAT::NOT_NULL($error{$level}{$type}) ? $error{$level}{$type} + 1 : 1);
+
+  return ($error{$level}{$type});
 }
 
 =head2 Check_Service_Message_Id($service, $msgid)
@@ -82,6 +100,8 @@ sub Check_Service_Message_Id
   {
     Msg("ERROR", "service", "MSG_ID_INVALID", $service, $msgid);
   }
+
+  return (undef);
 }
 
 =head2 Check_Service_Message_Rank($service, $msgid, $rank, $nb_msg, $seen_rank)
@@ -94,7 +114,7 @@ sub Check_Service_Message_Rank
   my $i_rank = int($rank);
 
   Msg("ERROR", "service", "MSG_RANK_BAD_FORMAT", $service, $msgid)
-    if (length($rank) != 3);
+    if (length($rank) != 3);    ## no critic
   if (AAT::NOT_NULL($seen_rank->{"$i_rank"}))
   {
     Msg("ERROR", "service", "MSG_RANK_DUPLICATED", $service, $rank, $msgid,
@@ -104,8 +124,10 @@ sub Check_Service_Message_Rank
   if (($i_rank < 1) || ($i_rank > $nb_msg))
   {
     Msg("ERROR", "service", "MSG_RANK_OUT_OF_RANGE", $service, $rank,
-      AAT::Padding($nb_msg, 3));
+      sprintf('%03d', 3));
   }
+
+  return (undef);
 }
 
 =head2 Check_Service_Message_Pattern($service, $msgid, $m)
@@ -124,7 +146,7 @@ sub Check_Service_Message_Pattern
   foreach my $f (@fields)
   {
     Msg("WARNING", "service", "MSG_PATTERN_PID", $service, $msgid)
-      if (($f->{name} =~ /^pid$/) && ($f->{type} !~ /^PID$/));
+      if (($f->{name} eq 'pid') && ($f->{type} ne 'PID'));
     $fcount{$f->{name}} =
       (AAT::NOT_NULL($fcount{$f->{name}}) ? $fcount{$f->{name}} + 1 : 1);
   }
@@ -138,8 +160,11 @@ sub Check_Service_Message_Pattern
   }
   my $re = Octopussy::Message::Pattern_To_Regexp($m);
   eval ' "test" =~ /$re/ ';
-  Msg("WARNING", "service", "MSG_PATTERN_INVALID_REGEXP", $service, $msgid, $@)
-    if $@;
+  Msg("WARNING", "service", "MSG_PATTERN_INVALID_REGEXP", $service, $msgid,
+    $EVAL_ERROR)
+    if ($EVAL_ERROR);
+
+  return (undef);
 }
 
 =head2 Check_Service_Messages($service, \%table, \%loglevel, \%taxo)
@@ -176,6 +201,8 @@ sub Check_Service_Messages
     Msg("ERROR", "service", "MSG_RANK_MISSING", $serv, $i)
       if (AAT::NULL($seen_rank{$i}));
   }
+
+  return (undef);
 }
 
 =head2 MAIN
@@ -204,3 +231,9 @@ ok($error{ERROR}{service} == 0 && $error{WARNING}{service} == 0,
   or diag($str_error);
 
 1;
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=cut

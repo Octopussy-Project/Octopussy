@@ -22,9 +22,6 @@ use Octopussy::Table;
 Readonly my $PREFIX            => 'Octo_TEST_';
 Readonly my $DEFAULT_NB_FIELDS => 2;
 
-#
-# check Table.pm
-#
 my ($table, $table_desc, $table_field) =
   ("${PREFIX}table", "${PREFIX}table_desc", "${PREFIX}table_field");
 my $dir = Octopussy::Directory('tables');
