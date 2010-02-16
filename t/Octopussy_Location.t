@@ -22,13 +22,24 @@ use Octopussy::Location;
 my ($city, $building, $room, $rack) =
   ('City Test', 'Building Test', 'Room Test', 'Rack Test');
 
-ok(Octopussy::Location::City_Add($city) eq $city,
+my $city_add1 = Octopussy::Location::City_Add($city);
+my $city_add2 = Octopussy::Location::City_Add($city);
+ok($city_add1 eq $city && !defined $city_add2,
   'Octopussy::Location::City_Add()');
-ok(Octopussy::Location::Building_Add($city, $building) eq $building,
+
+my $building_add1 = Octopussy::Location::Building_Add($city, $building);
+my $building_add2 = Octopussy::Location::Building_Add($city, $building);
+ok($building_add1 eq $building && !defined $building_add2,
   'Octopussy::Location::Building_Add()');
-ok(Octopussy::Location::Room_Add($city, $building, $room) eq $room,
+
+my $room_add1 = Octopussy::Location::Room_Add($city, $building, $room);
+my $room_add2 = Octopussy::Location::Room_Add($city, $building, $room);
+ok($room_add1 eq $room && !defined $room_add2,
   'Octopussy::Location::Room_Add()');
-ok(Octopussy::Location::Rack_Add($city, $building, $room, $rack) eq $rack,
+
+my $rack_add1 = Octopussy::Location::Rack_Add($city, $building, $room, $rack);
+my $rack_add2 = Octopussy::Location::Rack_Add($city, $building, $room, $rack);
+ok($rack_add1 eq $rack && !defined $rack_add2,
   'Octopussy::Location::Rack_Add()');
 
 my @racks = Octopussy::Location::Racks($city, $building, $room);
