@@ -17,9 +17,6 @@ use Test::More tests => 2;
 
 use Octopussy::Taxonomy;
 
-#
-# check Taxonomy.pm (2 tests)
-#
 my @taxo_list     = Octopussy::Taxonomy::List();
 my @taxo_list_any = Octopussy::Taxonomy::List_And_Any();
 

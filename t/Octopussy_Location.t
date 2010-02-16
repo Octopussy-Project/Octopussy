@@ -19,9 +19,6 @@ use Test::More tests => 12;
 
 use Octopussy::Location;
 
-#
-# check Location.pm (12 tests)
-#
 my ($city, $building, $room, $rack) =
   ('City Test', 'Building Test', 'Room Test', 'Rack Test');
 

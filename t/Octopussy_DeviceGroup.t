@@ -18,9 +18,6 @@ use Test::More tests => 2;
 
 use Octopussy::DeviceGroup;
 
-#
-# check DeviceGroup.pm (2 tests)
-#
 Readonly my $PREFIX      => 'Octo_TEST_';
 Readonly my $DG_ID       => "${PREFIX}devicegroup";
 Readonly my $DG_DESC     => "${PREFIX}devicegroup Description";
@@ -49,7 +46,7 @@ ok($conf->{description} eq $DEV_DESC, 'Octopussy::Device::Modify()');
 =cut
 
 Octopussy::DeviceGroup::Remove($DG_ID);
-ok(!-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::Device::Remove()');
+ok(!-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::DeviceGroup::Remove()');
 
 1;
 

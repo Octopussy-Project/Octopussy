@@ -17,9 +17,6 @@ use Test::More tests => 8;
 use AAT;
 use Octopussy;
 
-#
-# check Octopussy.pm (7 tests)
-#
 my $email = Octopussy::Email();
 ok(AAT::NOT_NULL($email) && $email =~ /^\S+\@\S+$/, 'Octopussy::Email()');
 my $user = Octopussy::User();

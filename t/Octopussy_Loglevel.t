@@ -20,9 +20,6 @@ use Octopussy::Loglevel;
 
 Readonly my $NB_LOGLEVELS => 7;
 
-#
-# check Loglevel.pm (2 tests)
-#
 my %color = Octopussy::Loglevel::Colors();
 ok((((scalar keys %color) == $NB_LOGLEVELS) && ($color{'Debug'} eq 'gray')),
   'Octopussy::Loglevel::Colors()');
