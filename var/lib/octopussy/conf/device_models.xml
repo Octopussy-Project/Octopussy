@@ -25,12 +25,18 @@
 			icon="operating_systems/os_windows" />
   	<device_model dm_id="Windows 98" 
 			icon="operating_systems/os_windows"/>
+    <device_model dm_id="Windows ME" 
+      icon="operating_systems/os_windows"/>
+    <device_model dm_id="Windows NT" 
+      icon="operating_systems/os_windows"/>
   	<device_model dm_id="Windows 2000" 
-			icon="operating_systems/os_windows"/>
-  	<device_model dm_id="Windows NT" 
 			icon="operating_systems/os_windows"/>
   	<device_model dm_id="Windows XP" 
 			icon="operating_systems/os_windows"/>
+    <device_model dm_id="Windows Vista" 
+      icon="operating_systems/os_windows"/>
+    <device_model dm_id="Windows 7" 
+      icon="operating_systems/os_windows"/>
 	</device_type>
 	
 	<device_type dt_id="Firewall" color="#FF0000">
@@ -56,6 +62,11 @@
 		</device_model>
 		
 		<device_model dm_id="Other" />
+
+    <device_model dm_id="Cisco ASA"
+      icon="companies/logo_cisco">
+      <default_service>Cisco_Asa</default_service>
+    </device_model>
 
 		<device_model dm_id="Cisco PIX" 
 			icon="companies/logo_cisco">
@@ -167,12 +178,24 @@
 			icon="operating_systems/os_windows" />
   	<device_model dm_id="Windows 98" 
 			icon="operating_systems/os_windows" />
+    <device_model dm_id="Windows ME" 
+      icon="operating_systems/os_windows" />
+    <device_model dm_id="Windows NT" 
+      icon="operating_systems/os_windows" />
   	<device_model dm_id="Windows 2000" 
-			icon="operating_systems/os_windows" />
-  	<device_model dm_id="Windows NT" 
 			icon="operating_systems/os_windows" />
   	<device_model dm_id="Windows XP" 
 			icon="operating_systems/os_windows" />
+    <device_model dm_id="Windows Vista" 
+      icon="operating_systems/os_windows" />
+    <device_model dm_id="Windows 7" 
+      icon="operating_systems/os_windows" />
+    <device_model dm_id="Windows Server 2000" 
+      icon="operating_systems/os_windows" />
+    <device_model dm_id="Windows Server 2003" 
+      icon="operating_systems/os_windows" />
+    <device_model dm_id="Windows Server 2008" 
+      icon="operating_systems/os_windows" />
   </device_type>
 
 	<device_type dt_id="Storage System" color="#0000FF">
