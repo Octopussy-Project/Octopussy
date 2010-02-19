@@ -1,18 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Hardware Abstraction Layer Service"
                    name="Hald"
-                   version="201002100003"
+                   nb_messages="003"
+                   version="201002180004"
                    website="http://freedesktop.org/wiki/Software/hal">
   <message loglevel="Information"
            msg_id="Hald:mounted_by_uid"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; hald: &lt;@REGEXP(&quot;mounted .+ on behalf of uid \d+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;hald&quot;):daemon@&gt;: &lt;@REGEXP(&quot;mounted .+ on behalf of uid \d+&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Hardware" />
   <message loglevel="Information"
            msg_id="Hald:unmounted_by_uid"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; hald: &lt;@REGEXP(&quot;unmounted .+ from .+ on behalf of uid \d+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;hald&quot;):daemon@&gt;: &lt;@REGEXP(&quot;unmounted .+ from .+ on behalf of uid \d+&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="Hardware" />
+  <message loglevel="Information"
+           msg_id="Hald:attempting_to_unmount_as_enclosing_drive_was_disconnected"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;hald&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+attempting to.+unmount.+as enclosing drive was disconnected&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

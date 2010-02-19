@@ -117,4 +117,10 @@
            rank="019"
            table="Message"
            taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Smartd:power_on_hours_changed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ SMART Usage Attribute: .+ Power_On_Hours changed from \d+ to \d+&quot;):msg@&gt;"
+           rank="020"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

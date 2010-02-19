@@ -3,7 +3,7 @@
                    icon="software/logo_avahi"
                    name="Avahi"
                    nb_messages="017"
-                   version="201002100019"
+                   version="201002180001"
                    website="http://avahi.org/">
   <message loglevel="Information"
            msg_id="Avahi:registering_new_address_record"
@@ -43,7 +43,7 @@
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Avahi:found_user_and_group"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Found user .+ (UID \d+) and group .+ (GID \d+).&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Found user.+\(UID \d+\) and group.+\(GID \d+\).&quot;):msg@&gt;"
            rank="007"
            table="Message"
            taxonomy="Application" />
@@ -105,6 +105,12 @@
            msg_id="Avahi:service_successfully_established"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Service .+ successfully established.&quot;):msg@&gt;"
            rank="017"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Avahi:received_response_with_invalid_source_port"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Received response from host .+ with invalid source port .+ on interface .+&quot;):msg@&gt;"
+           rank="018"
            table="Message"
            taxonomy="Application" />
 </octopussy_service>

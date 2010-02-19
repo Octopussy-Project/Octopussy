@@ -3,7 +3,7 @@
                    icon="software/logo_apache"
                    name="Apache"
                    nb_messages="012"
-                   version="200802210005"
+                   version="201002180002"
                    website="http://httpd.apache.org/">
   <message loglevel="Critical"
            msg_id="Apache:syntax_error_on_line"
@@ -67,13 +67,13 @@
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Apache:pam_ldap_error_bind"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; httpd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;pam_ldap: error trying to bind as user .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;httpd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;pam_ldap: error trying to bind as user .+&quot;):msg@&gt;"
            rank="011"
            table="Message"
            taxonomy="Auth.Failure" />
   <message loglevel="Warning"
            msg_id="Apache:certificate_doesnt_match_servername"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; httpd[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;[warn] RSA server certificate CommonName .+ does NOT match server name.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;httpd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;[warn] RSA server certificate CommonName .+ does NOT match server name.+&quot;):msg@&gt;"
            rank="012"
            table="Message"
            taxonomy="Config.Errors" />

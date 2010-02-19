@@ -2,11 +2,11 @@
 <octopussy_service description="File Alteration Monitor Service"
                    name="Fam"
                    nb_messages="001"
-                   version="200802270002"
-										website="http://oss.sgi.com/projects/fam/">
+                   version="201002180001"
+                   website="http://oss.sgi.com/projects/fam/">
   <message loglevel="Notice"
            msg_id="Fam:stat_failed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; famd[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;stat on &quot;.+&quot; failed: No such file or directory&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;famd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;stat on &quot;.+&quot; failed: No such file or directory&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Application.Errors" />

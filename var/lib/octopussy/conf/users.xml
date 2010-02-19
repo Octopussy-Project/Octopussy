@@ -6,5 +6,38 @@
         password="$1$OP$DS01VEfxN0orlyWumUTfE1"
         restrictions=""
         role="admin"
-        theme="DEFAULT" />
+        theme="DEFAULT"
+        type="local" />
+  <user certificate=""
+        language="FR"
+        login="test"
+        menu_mode="TEXT_AND_ICONS"
+        password="$1$OP$jsgfesjHKRu5KMgKmYyXi0"
+        role="restricted"
+        theme="DEFAULT"
+        type="local">
+    <restrictions max_minutes_search="120">
+      <alert>-NONE-</alert>
+      <device>bat</device>
+      <device>pcstt</device>
+      <report>-NONE-</report>
+      <service>Anacron</service>
+    </restrictions>
+  </user>
+  <user certificate=""
+        language="EN"
+        login="res"
+        menu_mode="TEXT_AND_ICONS"
+        password="$1$OP$0/ybgep87n9FjfWz8Nte4."
+        role="restricted"
+        theme="DEFAULT">
+    <restrictions max_minutes_search="120">
+      <alert>-NONE-</alert>
+      <device>XDVLOGR</device>
+      <report>-NONE-</report>
+      <service>Cron</service>
+      <service>Octopussy</service>
+      <service>Sshd</service>
+    </restrictions>
+  </user>
 </Octopussy_users>

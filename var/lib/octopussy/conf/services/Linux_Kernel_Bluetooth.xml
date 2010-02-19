@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Linux Kernel Bluetooth Service"
                    name="Linux_Kernel_Bluetooth"
+		   icon="operating_systems/os_linux_generic"
                    version="200908120004"
                    website="">
   <message loglevel="Information"

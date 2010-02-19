@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Linux Kernel Auditing Service"
                    name="Linux_Kernel_Audit"
+		   icon="operating_systems/os_linux_generic"
                    version="200908120002"
                    website="">
   <message loglevel="Notice"
