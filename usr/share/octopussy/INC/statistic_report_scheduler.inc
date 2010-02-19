@@ -54,7 +54,7 @@ if (scalar(@report_list) > 0)
     { type => "AAT_Entry", colspan => 3, args => { name => "scp_dir" } } ],
   [ { label => "User" },
     { type => "AAT_Entry", args => { name => "scp_user" } },
-    { label => "_SSH_PUBKEY_REQUIRED", colspan => 4, color => "red" } ],
+    { label => "_MSG_SSH_PUBKEY_REQUIRED", colspan => 4, color => "red" } ],
   [ { label => "<hr>", colspan => 6 } ],
   [ { type => "AAT_Form_Submit", value="_SCHEDULE", 
 			align => "center", colspan => 6 },

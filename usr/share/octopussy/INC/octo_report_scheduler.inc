@@ -37,7 +37,7 @@ if (scalar(@report_list) > 0)
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
-  <AAT:BoxCol align="R"><AAT:Label value="_LOGLEVEL" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol align="R"><AAT:Label value="_LOG_LEVEL" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Inc file="octo_selector_loglevel" any="1" /></AAT:BoxCol>
   <AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="_TAXONOMY" style="B" /></AAT:BoxCol>

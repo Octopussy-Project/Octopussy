@@ -30,7 +30,7 @@ my @table = (
     { type => "AAT_Selector",
       args => { multiple => 1, size => 2, name => "action",
                 list => [ "Jabber", "Mail" ] } } ],
-  [ { label => "_CONTACT" },
+  [ { label => "_CONTACTS" },
     { type => "octo_selector_contact", args => { multiple => 1, size => 3 } } ],
   [ { label => "_SUBJECT" },
     { type => "AAT_Entry", args => { name => "subject", length => 40 } } ],

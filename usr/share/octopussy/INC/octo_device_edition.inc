@@ -75,7 +75,7 @@ if ($conf->{logtype} eq "asynchronous")
 	</AAT:BoxRow>
 	<AAT:BoxRow>
   <AAT:BoxCol></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_SYSLOG_OUPUT" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_SYSLOG_OUTPUT" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Entry name="output" size="60" value="$output" />
 	</AAT:BoxCol>
 	</AAT:BoxRow><%
@@ -89,7 +89,7 @@ if ($conf->{logtype} eq "asynchronous")
 	</AAT:BoxRow>
   <AAT:BoxRow>
   <AAT:BoxCol></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_SYSLOG_OUPUT" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_SYSLOG_OUTPUT" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Entry name="output" size="60" value="" />
 	</AAT:BoxCol>
   </AAT:BoxRow><%
