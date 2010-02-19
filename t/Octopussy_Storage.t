@@ -15,36 +15,40 @@ use warnings;
 use Readonly;
 
 use List::MoreUtils qw(none);
-use Test::More tests => 5;
+use Test::More tests => 7;
 
 use Octopussy::Storage;
 
-Readonly my $PREFIX            => 'Octo_TEST_';
-Readonly my $FILE_STORAGE      => Octopussy::File('storages');
-Readonly my $STORAGE           => "${PREFIX}storage";
-Readonly my $STORAGE_PATH      => '/tmp';
+Readonly my $PREFIX       => 'Octo_TEST_';
+Readonly my $FILE_STORAGE => Octopussy::File('storages');
+Readonly my $STORAGE      => "${PREFIX}storage";
+Readonly my $STORAGE_PATH => '/tmp';
 
 # Backup current Configuration
 system "mv $FILE_STORAGE ${FILE_STORAGE}.backup";
 
-my %default = ( 
-  incoming => $STORAGE, 
-  unknown => $STORAGE,
-  known => $STORAGE,
-  );
+my %default = (
+  incoming => $STORAGE,
+  unknown  => $STORAGE,
+  known    => $STORAGE,
+);
 
 my $file = Octopussy::Storage::Default_Set(\%default);
 ok(-f $file, 'Octopussy::Storage::Default_Set()');
 
 my $default = Octopussy::Storage::Default();
-ok($default->{incoming} eq $STORAGE && $default->{unknown} eq $STORAGE
-  && $default->{known} eq $STORAGE, 'Octopussy::Storage::Default()');
+ok(
+  $default->{incoming}     eq $STORAGE
+    && $default->{unknown} eq $STORAGE
+    && $default->{known}   eq $STORAGE,
+  'Octopussy::Storage::Default()'
+);
 
 my @list1 = Octopussy::Storage::List();
 my %conf = (s_id => $STORAGE, directory => $STORAGE_PATH);
 Octopussy::Storage::Add(\%conf);
 my @list2 = Octopussy::Storage::List();
-ok(scalar @list2 == 1, 'Octopussy::Storage::Add()');
+ok(scalar @list2 == 1,                 'Octopussy::Storage::Add()');
 ok(scalar @list1 + 1 == scalar @list2, 'Octopussy::Storage::List()');
 
 my $conf2 = Octopussy::Storage::Configuration($STORAGE);
