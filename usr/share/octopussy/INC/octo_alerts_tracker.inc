@@ -85,7 +85,9 @@ foreach my $a (@alerts)
 		<AAT:BoxCol align="C">
 		<AAT:CheckBox name="alert_id_$log_id" selected="$arg{selectall}" />
 		</AAT:BoxCol>
-	</AAT:BoxRow><%
+	</AAT:BoxRow>
+  <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
+  <%
 		$nb++;
 	}
 	last	if ($nb >= $nb_alerts_max);
