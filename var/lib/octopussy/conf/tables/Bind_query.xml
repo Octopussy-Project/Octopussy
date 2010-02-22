@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_table name="Bind_query"
                  description="Bind query Table"
-                 version="200608020001">
+                 version="201002220001">
   <field title="datetime"
          type="DATETIME" />
   <field title="client"
@@ -12,4 +12,8 @@
          type="STRING" />
   <field title="query"
          type="STRING" />
+  <field title="daemon"
+         type="WORD" />
+  <field title="pid"
+         type="PID" />
 </octopussy_table>

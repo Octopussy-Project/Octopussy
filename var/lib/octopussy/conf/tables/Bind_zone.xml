@@ -1,5 +1,5 @@
 <octopussy_table name="Bind_zone"
-     description="Bind zone Table" version="200608020001">
+     description="Bind zone Table" version="201002220001">
   <field title="datetime"
          type="DATETIME" />
   <field title="device"
@@ -12,4 +12,8 @@
          type="STRING" />
   <field title="status"
          type="STRING" />
+  <field title="daemon"
+         type="WORD" />
+  <field title="pid"
+         type="PID" />
 </octopussy_table>

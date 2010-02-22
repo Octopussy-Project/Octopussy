@@ -1,5 +1,7 @@
-<octopussy_table name="Rsync_error"
-     description="Rsync Error Messages Table" version="200608020001">
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Rsync Error Messages Table"
+                 name="Rsync_error"
+                 version="200608020001">
   <field title="datetime"
          type="DATETIME" />
   <field title="device"
@@ -12,4 +14,6 @@
          type="STRING" />
   <field title="pid"
          type="PID" />
+  <field title="daemon"
+         type="WORD" />
 </octopussy_table>

@@ -16,4 +16,6 @@
          type="STRING" />
   <field title="nb_check"
          type="NUMBER" />
+  <field title="daemon"
+         type="WORD" />
 </octopussy_table>

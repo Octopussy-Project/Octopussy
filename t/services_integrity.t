@@ -31,23 +31,23 @@ my %error     = ();
 my $str_error = '';
 
 my %msg = (
-  MSG_ID_DUPLICATED    => "Service: %s - Duplicated msgid %s",
-  MSG_ID_INVALID       => "Service: %s -  Invalid msgid: %s",
-  MSG_ID_NOT_EXPLICIT  => "Service: %s - Not enough explicit msgid: %s",
-  MSG_LOGLEVEL_UNKNOWN => "Service: %s - msgid %s has unknown loglevel '%s'",
+  MSG_ID_DUPLICATED    => "Service: %s - Duplicated msgid '%s'",
+  MSG_ID_INVALID       => "Service: %s - Invalid msgid '%s'",
+  MSG_ID_NOT_EXPLICIT  => "Service: %s - Not enough explicit msgid '%s'",
+  MSG_LOGLEVEL_UNKNOWN => "Service: %s - msgid '%s' has unknown loglevel '%s'",
   MSG_PATTERN_DUPLICATED_FIELD =>
-    "Service: %s - Duplicated field %s in msgid %s",
-  MSG_PATTERN_FIELD_UNKNOWN  => "Service: %s - Field '%s' unknown for msgid %s",
-  MSG_PATTERN_INVALID_REGEXP => "Service: %s - msg regexp of %s is invalid: %s",
+    "Service: %s - Duplicated field '%s' in msgid '%s'",
+  MSG_PATTERN_FIELD_UNKNOWN  => "Service: %s - Field '%s' unknown for msgid '%s'",
+  MSG_PATTERN_INVALID_REGEXP => "Service: %s - msg regexp of '%s' is invalid: %s",
   MSG_PATTERN_PID =>
-    "Service: %s - msg pattern of %s contains pid field not of PID type",
-  MSG_RANK_BAD_FORMAT => "Service: %s - Bad rank format for msgid %s",
+    "Service: %s - msg pattern of '%s' contains pid field not of PID type",
+  MSG_RANK_BAD_FORMAT => "Service: %s - Bad rank format for msgid '%s'",
   MSG_RANK_DUPLICATED =>
-    "Service: %s - Duplicated msg rank %s between %s and %s",
-  MSG_RANK_MISSING      => "Service: %s - msg rank %s is missing",
-  MSG_RANK_OUT_OF_RANGE => "Service: %s - msg rank %s is out of range[001-%s]",
-  MSG_TABLE_UNKNOWN     => "Service: %s - msgid %s has unknown table '%s'",
-  MSG_TAXONOMY_UNKNOWN  => "Service: %s - msgid %s has unknown taxonomy '%s'",
+    "Service: %s - Duplicated msg rank '%s' between '%s' and '%s'",
+  MSG_RANK_MISSING      => "Service: %s - msg rank '%s' is missing",
+  MSG_RANK_OUT_OF_RANGE => "Service: %s - msg rank '%s' is out of range[001-%s]",
+  MSG_TABLE_UNKNOWN     => "Service: %s - msgid '%s' has unknown table '%s'",
+  MSG_TAXONOMY_UNKNOWN  => "Service: %s - msgid '%s' has unknown taxonomy '%s'",
   SVC_NAME_INVALID      => "Service: %s -  Invalid service name",
 );
 
@@ -155,7 +155,8 @@ sub Check_Service_Message_Pattern
     Msg("ERROR", "service", "MSG_PATTERN_DUPLICATED_FIELD",
       $service, $fc, $msgid)
       if ($fcount{$fc} > 1);
-    Msg("ERROR", "service", "MSG_PATTERN_FIELD_UNKNOWN", $service, $fc, $msgid)
+    Msg("ERROR", "service", "MSG_PATTERN_FIELD_UNKNOWN", $service, 
+      "$table:$fc", $msgid)
       if (AAT::NULL($tf{$fc}));
   }
   my $re = Octopussy::Message::Pattern_To_Regexp($m);
