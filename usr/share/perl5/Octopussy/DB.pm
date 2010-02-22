@@ -54,22 +54,22 @@ my @sql_substitutions = (
   },
   {
     regexp       => '^(DAY\((.+?)\))',
-    substitution => '\'\%d/\%m/\%Y\') as D_',
+    substitution => '\'%d/%m/%Y\') as D_',
     value        => 'D_'
   },
   {
     regexp       => '^(DAY_HOUR\((.+?)\))',
-    substitution => '\'\%d/\%m/\%Y \%Hh\') as DH_',
+    substitution => '\'%d/%m/%Y %Hh\') as DH_',
     value        => 'DH_'
   },
   {
     regexp       => '^(DAY_HOUR_MIN\((.+?)\))',
-    substitution => '\'\%d/\%m/\%Y \%Hh\%i\') as DHM_',
+    substitution => '\'%d/%m/%Y %Hh%i\') as DHM_',
     value        => 'DHM_'
   },
   {
     regexp       => '^(UNIX_TIMESTAMP\((.+?)\))',
-    substitution => '\'\%Y-\%m-\%d \%H:\%i:00\')) as UT_',
+    substitution => '\'%Y-%m-%d %H:%i:00\')) as UT_',
     value        => 'UT_'
   },
 );
