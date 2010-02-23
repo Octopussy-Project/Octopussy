@@ -182,7 +182,8 @@ sub Msg_ID
   my $i      = 1;
 
   return ($conf->{name} . ':' . sprintf("%03d", $i))
-    if ((!defined $conf->{message}) || (scalar AAT::ARRAY($conf->{message}) == 0));
+    if ((!defined $conf->{message})
+    || (scalar AAT::ARRAY($conf->{message}) == 0));
   while ($i <= $MAX_NB_MSGS_IN_SERVICE)
   {
     $msg_id = $conf->{name} . ':' . sprintf("%03d", $i);
@@ -475,9 +476,9 @@ sub Messages_Statistics
   my $cache_parser = Octopussy::Cache::Init('octo_parser');
 
   my (%percent, %stat) = ((), ());
-  my $timestamp  = strftime("%Y%m%d%H%M", localtime); 
-  my $limit = int($timestamp) - Octopussy::Parameter('msgid_history');
-  my $total = 0;
+  my $timestamp = strftime("%Y%m%d%H%M", localtime);
+  my $limit     = int($timestamp) - Octopussy::Parameter('msgid_history');
+  my $total     = 0;
   foreach my $k (sort $cache_parser->get_keys())
   {
     if (($k =~ /^parser_msgid_stats_(\d{12})_(\S+)$/) && ($1 >= $limit))

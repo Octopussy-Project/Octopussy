@@ -69,7 +69,7 @@ Prints usage for Octopussy program
 sub Usage
 {
   my $version = Octopussy::Version();
-  my $usage = <<'EOF';
+  my $usage   = <<'EOF';
 Usage: 
 	octopussy {start|stop|restart}
 	octopussy {dispatcher-start|dispatcher-stop|dispatcher-restart|dispatcher-reload}

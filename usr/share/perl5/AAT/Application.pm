@@ -15,6 +15,9 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT;
+use AAT::XML;
+
 Readonly my $AAT_CONF_FILE => '/etc/aat/aat.xml';
 
 =head1 FUNCTIONS

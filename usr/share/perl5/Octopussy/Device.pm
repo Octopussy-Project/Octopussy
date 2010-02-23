@@ -375,7 +375,6 @@ sub Remove_Service
   return (scalar @services);
 }
 
-
 =head2 Update_Services_Rank($conf, $service, $direction, $rank, $old_rank)
 
 Updates Services Rank
@@ -537,8 +536,8 @@ sub Services_Statistics
   my $device = shift;
   my %stats;
 
-  my $timestamp   = strftime("%Y%m%d%H%M", localtime);
-  my $limit = int($timestamp) - Octopussy::Parameter('msgid_history');
+  my $timestamp    = strftime("%Y%m%d%H%M", localtime);
+  my $limit        = int($timestamp) - Octopussy::Parameter('msgid_history');
   my $cache_parser = Octopussy::Cache::Init('octo_parser');
   my $total        = 0;
   foreach my $k (sort $cache_parser->get_keys())

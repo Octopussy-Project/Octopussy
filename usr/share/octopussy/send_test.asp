@@ -7,7 +7,7 @@ $subject = $body = "Octopussy " . uc($type) . " Send Test";
 
 if ($type eq "smtp")
 {
-  AAT::SMTP::Send_Message("Octopussy", $subject, $body, $dest);
+  AAT::SMTP::Send_Message("Octopussy", { subject => $subject, body => $body, dests => [ $dest ] });
 }
 elsif ($type eq "xmpp")
 {

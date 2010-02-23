@@ -18,6 +18,8 @@ use Readonly;
 use Mail::Sender;
 use Net::Telnet;
 
+use AAT::Application;
+
 Readonly my $SMTP_PORT    => 25;
 Readonly my $SMTP_TIMEOUT => 3;
 
@@ -89,7 +91,7 @@ Send message to @dests
 
 =cut
 
-sub Send_Message
+sub Send_Message_Old
 {
   my ($appli, $subject, $body, @dests) = @_;
 
@@ -112,6 +114,62 @@ sub Send_Message
       foreach my $dest (@dests)
       {
         $sender->MailMsg({to => $dest, subject => $subject, msg => $body});
+      }
+      $sender->Close();
+
+      return (1);
+    }
+  }
+  else
+  {
+    AAT::Syslog('AAT_SMTP', 'SMTP_INVALID_CONFIG');
+  }
+
+  return (0);
+}
+
+sub Send_Message
+{
+  my ($appli, $msg_data) = @_;
+
+  my $conf = Configuration($appli);
+  if (AAT::NOT_NULL($conf->{server}) && AAT::NOT_NULL($conf->{sender}))
+  {
+    my $from    = $msg_data->{from} || $conf->{sender};
+    my $subject = $msg_data->{subject};
+    my $body    = $msg_data->{body};
+
+    my $sender = (
+      AAT::NOT_NULL($conf->{auth_type})
+      ? new Mail::Sender {
+        smtp    => $conf->{server},
+        from    => $from,
+        auth    => $conf->{auth_type},
+        authid  => $conf->{auth_login},
+        authpwd => $conf->{auth_password}
+        }
+      : new Mail::Sender {smtp => $conf->{server}, from => $from}
+    );
+
+    if ((defined $sender) && (ref $sender))
+    {
+      foreach my $dest (AAT::ARRAY($msg_data->{dests}))
+      {
+        if (defined $msg_data->{file})
+        {
+          $sender->MailFile(
+            {
+              to      => $dest,
+              subject => $subject,
+              msg     => $body,
+              file    => $msg_data->{file}
+            }
+          );
+        }
+        else
+        {
+          $sender->MailMsg({to => $dest, subject => $subject, msg => $body});
+        }
       }
       $sender->Close();
 

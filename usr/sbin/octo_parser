@@ -28,6 +28,7 @@ use Linux::Inotify2;
 use Regexp::Assemble;
 
 use AAT;
+use AAT::SMTP;
 use AAT::XMPP;
 
 use Octopussy;
@@ -403,8 +404,8 @@ sub Alert_Handler
                 AAT::XMPP::Send_Message('Octopussy', $line, @{$a->{imdest}});
               }
             }
-            AAT::SMTP::Send_Message('Octopussy', $subject, $body,
-              @{$a->{maildest}})
+            AAT::SMTP::Send_Message('Octopussy',
+              {subject => $subject, body => $body, dests => $a->{maildest}})
               if (defined $a->{action_mail});
             AAT::NSCA::Send('Octopussy', (($a->{level} =~ /Warning/i) ? 1 : 2),
               $action_body, $action_host, $action_service)

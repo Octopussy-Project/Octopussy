@@ -51,7 +51,6 @@ sub Configuration
   return (undef);
 }
 
-
 =head2 List($ref_serv, $loglevel, $taxonomy)
 
 =cut
@@ -87,7 +86,6 @@ sub List
 
   return (@list);
 }
-
 
 =head2 Fields($service, $msg_id)
 
@@ -885,7 +883,7 @@ sub Wizard_File
           close $FILE;
           return ($WIZARD_MAX_SAME_MSG);
         }
-        last  if (scalar(@{$messages}) >= $nb_max);
+        last if (scalar(@{$messages}) >= $nb_max);
       }
       push @{$messages}, Wizard_Add_Message($timestamp, $line, $types)
         if (!$match);

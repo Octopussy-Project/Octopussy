@@ -54,8 +54,10 @@ else
 	my $start = "$y1$m1$d1$h1$min1";
 	my $finish = "$y2$m2$d2$h2$min2";
 	my $recipients = "";
-	foreach my $rec ($f->{mail_recipients})
+	foreach my $rec (AAT::ARRAY($f->{mail_recipients}))
 	{
+    AAT::DEBUG("recipient: $rec");
+
 		my $c = Octopussy::Contact::Configuration($rec);
 		$recipients .= "$c->{email},"
 	}

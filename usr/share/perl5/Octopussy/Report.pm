@@ -24,10 +24,14 @@ use AAT::Translation;
 use AAT::XML;
 use Octopussy;
 use Octopussy::Data_Report;
+use Octopussy::DB;
+use Octopussy::Export;
+use Octopussy::OFC;
 use Octopussy::Report::CSV;
 use Octopussy::Report::HTML;
 use Octopussy::Report::PDF;
 use Octopussy::Report::XML;
+use Octopussy::RRDTool;
 
 Readonly my $DIR_REPORT   => 'reports';
 Readonly my $REPORTER_BIN => 'octo_reporter';
@@ -397,9 +401,9 @@ sub CmdLine
 
   my $base    = Octopussy::Directory('programs');
   my $dir_pid = Octopussy::Directory('running');
-  my $date   = strftime("%Y%m%d-%H%M", localtime);;
-  my $dir    = Octopussy::Directory('data_reports') . $report->{name} . '/';
-  my $output = "$dir$report->{name}-$date."
+  my $date    = strftime("%Y%m%d-%H%M", localtime);
+  my $dir     = Octopussy::Directory('data_reports') . $report->{name} . '/';
+  my $output  = "$dir$report->{name}-$date."
     . (
     $report->{graph_type} eq 'array'
     ? 'html'
@@ -418,12 +422,15 @@ sub CmdLine
   Octopussy::Create_Directory($dir);
 
   my $cmd =
-      "$base$REPORTER_BIN --report \"$report->{name}\""
+      "$base$REPORTER_BIN --quiet --report \"$report->{name}\""
     . " --device \"$device_list\" --service \"$service_list\""
     . " --loglevel $loglevel --taxonomy $taxonomy --pid_param \"$pid_param\""
     . " --begin $start --end $finish --lang \"$lang\" "
     . CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
     . " --output \"$output\"";
+
+  print $cmd;
+  AAT::DEBUG($cmd);
 
   #. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
   Octopussy::Commander("$cmd &");
@@ -546,11 +553,10 @@ sub Running_List
     my $v = $cache->get($k);
     if ($k =~ /^info_(\d+)/)
     {
-      my $pid   = $1;
+      my $pid       = $1;
       my $pid_param = $v->{pid_param};
-      my $match = 0;
-      foreach my $p (@{$pt->table}) 
-        { $match = 1 if ($pid == $p->{pid}); }
+      my $match     = 0;
+      foreach my $p (@{$pt->table}) { $match = 1 if ($pid == $p->{pid}); }
       if ($match)
       {
         my $status = $cache->get("status_${pid_param}");

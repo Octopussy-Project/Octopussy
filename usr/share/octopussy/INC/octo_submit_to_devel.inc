@@ -1,19 +1,20 @@
 <%
-my @list = ();
 my $smtp_conf = AAT::SMTP::Configuration("Octopussy");
-foreach my $s (Octopussy::Service::List())
-{
-  push(@list, { label => "SERVICE $s",
-    value => Octopussy::Service::Filename($s) });
-}
-foreach my $t (Octopussy::Table::List())
-{
-  push(@list, { label => "TABLE $t",
-    value => Octopussy::Table::Filename($t) });
-}
 
 if (AAT::NOT_NULL($smtp_conf->{server}))
 {
+  my @list = ();
+
+  foreach my $s (Octopussy::Service::List())
+  {
+    push(@list, { label => "SERVICE $s",
+      value => Octopussy::Service::Filename($s) });
+  }
+  foreach my $t (Octopussy::Table::List())
+  {
+    push(@list, { label => "TABLE $t",
+      value => Octopussy::Table::Filename($t) });
+  }
 %>
 <AAT:Form method="POST" action="./submit.asp">
 <AAT:Box align="C">

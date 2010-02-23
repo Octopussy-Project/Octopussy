@@ -132,7 +132,6 @@ sub Configurations
   return (@sorted_configurations);
 }
 
-
 =head2 Match($timeperiod, $datetime)
 
 Checks if $datetime (format: 'dayname hour:min') matches TimePeriod $timeperiod
