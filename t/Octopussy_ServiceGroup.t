@@ -79,7 +79,7 @@ my @list4 = Octopussy::ServiceGroup::List();
 ok(scalar @list4 == scalar @list1, 'Octopussy::ServiceGroup::Remove()');
 
 # Restore backuped configuration
-system "cp ${SG_FILE}.backup $SG_FILE";
+system "mv ${SG_FILE}.backup $SG_FILE";
 
 1;
 

@@ -879,7 +879,6 @@ sub Wizard_File
         $match = 1;
         if ($m->{nb} > $WIZARD_MAX_SAME_MSG)
         {
-          $m->{nb} = '100+';
           close $FILE;
           return ($WIZARD_MAX_SAME_MSG);
         }

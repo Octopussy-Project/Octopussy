@@ -12,6 +12,11 @@ Octopussy.t - Octopussy Source Code Checker for Octopussy
 
 use strict;
 use warnings;
+use Readonly;
+
+Readonly my $PREFIX => 'Octo_Test_';
+#Readonly my $FILE1 => "/tmp/${PREFIX}file1";
+#Readonly my $FILE2 => "/tmp/${PREFIX}file2";
 
 use Test::More tests => 8;
 use AAT;
@@ -24,6 +29,12 @@ ok(AAT::NOT_NULL($user) && $user =~ /^\w+$/, 'Octopussy::User()');
 my $version = Octopussy::Version();
 ok(AAT::NOT_NULL($version) && $version =~ /^\d+\.\d+.*$/,
   'Octopussy::Version()');
+
+#unlink $FILE1, $FILE2;
+#system "touch $FILE1 $FILE2";
+#Octopussy::Chown($FILE1, $FILE2);
+#unlink $FILE1, $FILE2;
+#Octopussy::Chown($FILE1, $FILE2);
 
 ok(AAT::NOT_NULL(Octopussy::Directory('main')), 'Octopussy::Directory()');
 my @dirs = Octopussy::Directories('main', 'data_logs');

@@ -27,6 +27,7 @@ my %conf_file = ();
 
 =head1 FUNCTIONS
 
+
 =head2 Configuration($appli)
 
 Returns SMTP configuration
@@ -42,6 +43,7 @@ sub Configuration
 
   return ($conf->{smtp});
 }
+
 
 =head2 Connection_Test($appli)
 
@@ -85,48 +87,12 @@ sub Connection_Test
   return ($status);
 }
 
-=head2 Send_Message($appli, $subject, $body, @dests)
+
+=head2 Send_Message($appli, $msg_data)
 
 Send message to @dests
 
 =cut
-
-sub Send_Message_Old
-{
-  my ($appli, $subject, $body, @dests) = @_;
-
-  my $conf = Configuration($appli);
-  if (AAT::NOT_NULL($conf->{server}) && AAT::NOT_NULL($conf->{sender}))
-  {
-    my $sender = (
-      AAT::NOT_NULL($conf->{auth_type})
-      ? new Mail::Sender {
-        smtp    => $conf->{server},
-        from    => $conf->{sender},
-        auth    => $conf->{auth_type},
-        authid  => $conf->{auth_login},
-        authpwd => $conf->{auth_password}
-        }
-      : new Mail::Sender {smtp => $conf->{server}, from => $conf->{sender}}
-    );
-    if ((defined $sender) && (ref $sender))
-    {
-      foreach my $dest (@dests)
-      {
-        $sender->MailMsg({to => $dest, subject => $subject, msg => $body});
-      }
-      $sender->Close();
-
-      return (1);
-    }
-  }
-  else
-  {
-    AAT::Syslog('AAT_SMTP', 'SMTP_INVALID_CONFIG');
-  }
-
-  return (0);
-}
 
 sub Send_Message
 {
@@ -184,55 +150,6 @@ sub Send_Message
   return (0);
 }
 
-=head2 Send_Message_With_File($appli, $subject, $body, $file, @dests)
-
-Send message with file to @dests
-
-=cut
-
-sub Send_Message_With_File
-{
-  my ($appli, $subject, $body, $file, @dests) = @_;
-
-  my $conf = Configuration($appli);
-  if (AAT::NOT_NULL($conf->{server}) && AAT::NOT_NULL($conf->{sender}))
-  {
-    my $sender = (
-      AAT::NOT_NULL($conf->{auth_type})
-      ? new Mail::Sender {
-        smtp    => $conf->{server},
-        from    => $conf->{sender},
-        auth    => $conf->{auth_type},
-        authid  => $conf->{auth_login},
-        authpwd => $conf->{auth_password}
-        }
-      : new Mail::Sender {smtp => $conf->{server}, from => $conf->{sender}}
-    );
-    if ((defined $sender) && (ref $sender))
-    {
-      foreach my $dest (@dests)
-      {
-        $sender->MailFile(
-          {
-            to      => $dest,
-            subject => $subject,
-            msg     => $body,
-            file    => $file
-          }
-        );
-      }
-      $sender->Close();
-
-      return (1);
-    }
-  }
-  else
-  {
-    AAT::Syslog('AAT_SMTP', 'SMTP_INVALID_CONFIG');
-  }
-
-  return (0);
-}
 
 1;
 

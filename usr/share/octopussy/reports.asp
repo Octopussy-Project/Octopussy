@@ -56,9 +56,7 @@ else
 	my $recipients = "";
 	foreach my $rec (AAT::ARRAY($f->{mail_recipients}))
 	{
-    AAT::DEBUG("recipient: $rec");
-
-		my $c = Octopussy::Contact::Configuration($rec);
+    	my $c = Octopussy::Contact::Configuration($rec);
 		$recipients .= "$c->{email},"
 	}
 	$recipients =~ s/,$//;
@@ -79,9 +77,9 @@ else
 	my $cmd = Octopussy::Report::CmdLine($device, $service, $loglevel, 
 		$taxonomy, $r, $start, $finish, $pid_param, 
 		\%mail_conf, \%ftp_conf, \%scp_conf, $Session->{AAT_LANGUAGE});
-	
+	   
 	my $cache = Octopussy::Cache::Init('octo_reporter');
-    $cache->set("status_$output", "Starting... [0/1]");
+    $cache->set("status_${pid_param}", "Starting... [0/1]");
     
  	$Response->Redirect("./report_in_progress.asp?cmd=" 
 		. $Server->URLEncode($cmd));

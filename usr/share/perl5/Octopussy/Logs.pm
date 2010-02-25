@@ -284,7 +284,10 @@ sub Files
   return (\@list);
 }
 
+
 =head2 Availability($device, $start, $finish)
+
+Returns Logs Availability for specified $device and period ($start-$finish)
 
 =cut
 
@@ -532,7 +535,7 @@ sub Unknown_Number
           $nb = `zcat "$f" | wc -l`;
           chomp $nb;
           $total += $nb if ($nb >= 0);
-          last if ($total > $max_nb);
+          return ($total)	if ($total > $max_nb);
         }
       }
     }

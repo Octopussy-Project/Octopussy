@@ -59,7 +59,7 @@ ok($file eq $FILE_TIMEPERIOD && -s $file == $old_size,
   'Octopussy::TimePeriod::Remove()');
 
 # Restore backuped configuration
-system "cp ${FILE_TIMEPERIOD}.backup $FILE_TIMEPERIOD";
+system "mv ${FILE_TIMEPERIOD}.backup $FILE_TIMEPERIOD";
 
 1;
 
