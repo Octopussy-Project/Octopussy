@@ -13,8 +13,11 @@ package Octopussy::Plugin::Proxy;
 
 use strict;
 use warnings;
+use Readonly;
 
 use Octopussy;
+
+Readonly my $RE_HIT => qr/^.+_HIT.*$/;
 
 my @mimes = ();
 
@@ -28,16 +31,16 @@ sub Init
 {
   my $conf_mime = AAT::List::Configuration('AAT_Mime');
 
-  foreach my $i ( AAT::ARRAY( $conf_mime->{item} ) )
+  foreach my $i (AAT::ARRAY($conf_mime->{item}))
   {
     push
       @mimes,
       {
-        label  => $i->{label},
-        logo   => $i->{logo},
-        regexp => qr/$i->{regexp}/i
+      label  => $i->{label},
+      logo   => $i->{logo},
+      regexp => qr/$i->{regexp}/i
       }
-      if ( AAT::NOT_NULL( $i->{regexp} ) );
+      if (AAT::NOT_NULL($i->{regexp}));
   }
 
   return (1);
@@ -45,13 +48,15 @@ sub Init
 
 =head2 Cache_Status($str)
 
+Returns Cache Status
+
 =cut
 
 sub Cache_Status
 {
   my $str = shift;
 
-  return ('Cached') if ( $str =~ /.+_HIT.*/ );
+  return ('Cached') if ($str =~ $RE_HIT);
   return ('Not Cached');
 }
 
@@ -61,7 +66,7 @@ sub Cache_Status
 
 sub Logo
 {
-  my ( $logo, $alt ) = @_;
+  my ($logo, $alt) = @_;
 
   return (qq(<img src="AAT/IMG/${logo}.png" alt="$alt"><b>$alt</b>));
 }
@@ -76,8 +81,8 @@ sub Mime
 
   foreach my $i (@mimes)
   {
-    return ( Logo( 'web_mime/' . ( $i->{logo} || '' ), $i->{label} ) )
-      if ( ( defined $i->{regexp} ) && ( $str =~ /$i->{regexp}/ ) );
+    return (Logo('web_mime/' . ($i->{logo} || ''), $i->{label}))
+      if ((defined $i->{regexp}) && ($str =~ $i->{regexp}));
   }
 
   return ($str);
@@ -91,12 +96,12 @@ sub TLD
 {
   my $url = shift;
 
-  if (    ( $url =~ /^(https?:\/\/)?[^\/]*\.([a-z]{2,4})(:\d+)*$/i )
-       || ( $url =~ /^(https?:\/\/)?[^\/]*\.([a-z]{2,4})(:\d+)*\/.*$/i ) )
+  if ( ($url =~ /^(https?:\/\/)?[^\/]*\.([a-z]{2,4})(:\d+)*$/i)
+    || ($url =~ /^(https?:\/\/)?[^\/]*\.([a-z]{2,4})(:\d+)*\/.*$/i))
   {
     my $tld = $2;
-    return ( Logo( "flags/$tld", $tld ) )
-      if ( -f "AAT/IMG/flags/$tld.png" );
+    return (Logo("flags/$tld", $tld))
+      if (-f "AAT/IMG/flags/$tld.png");
     return ($tld);
   }
   return ($url);
@@ -110,11 +115,10 @@ sub WebSite
 {
   my $url = shift;
 
-  if (  ( $url =~ /^(https?:\/\/)?[^\/]*?(\.)?(\d+\.\d+\.\d+\.\d+)(:\d+)*$/i )
-     || ( $url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*$/i )
-     || (
-       $url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*\/.*$/i )
-     )
+  if ( ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?(\d+\.\d+\.\d+\.\d+)(:\d+)*$/i)
+    || ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*$/i)
+    || ($url =~ /^(https?:\/\/)?[^\/]*?(\.)?([a-z0-9_-]+\.[a-z]+)(:\d+)*\/.*$/i)
+    )
   {
     return ($3);
   }

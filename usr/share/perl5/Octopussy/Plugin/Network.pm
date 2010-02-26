@@ -29,9 +29,9 @@ sub Init
 {
   my $conf_port = AAT::List::Configuration('AAT_Port');
 
-  foreach my $i ( AAT::ARRAY( $conf_port->{item} ) )
+  foreach my $i (AAT::ARRAY($conf_port->{item}))
   {
-    $services{ $i->{value} } = $i->{label};
+    $services{$i->{value}} = $i->{label};
   }
 
   return (1);
@@ -110,7 +110,7 @@ sub Service
 {
   my $port = shift;
 
-  return ( $services{$port} || $port );
+  return ($services{$port} || $port);
 }
 
 1;

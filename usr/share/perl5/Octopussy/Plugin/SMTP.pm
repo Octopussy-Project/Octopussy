@@ -17,50 +17,50 @@ use warnings;
 use Octopussy;
 
 my @bounce_types = (
-                     {
-                       re   => 'Bad destination host.*',
-                       type => 'Bad Destination Host'
-                     },
-                     {
-                       re   => 'Unknown address error.*',
-                       type => 'Unknown Address Error'
-                     },
-                   );
+  {
+    re   => qr/^Bad destination host.*$/i,
+    type => 'Bad Destination Host'
+  },
+  {
+    re   => qr/^Unknown address error.*$/i,
+    type => 'Unknown Address Error'
+  },
+);
 
 my @response_types = (
-                       {
-                         re   => '.*accepted for delivery.*',
-                         type => 'Accepeted for delivery'
-                       },
-                       {
-                         re   => '.*Message.* accepted.*',
-                         type => 'Message accepted'
-                       },
-                       {
-                         re   => '.*message queued.*',
-                         type => 'Queued'
-                       },
-                       {
-                         re   => 'ok.*',
-                         type => 'Ok'
-                       },
-                       {
-                         re   => '.*ok\.*',
-                         type => 'Ok'
-                       },
-                       {
-                         re   => '.* queued as .*',
-                         type => 'Queued'
-                       },
-                       {
-                         re   => '.*Queued mail.*',
-                         type => 'Queued'
-                       },
-                       {
-                         re   => '.*Requested mail action okay.*',
-                         type => 'Requested mail action okay'
-                       },
-                     );
+  {
+    re   => qr/^.*accepted for delivery.*$/i,
+    type => 'Accepeted for delivery'
+  },
+  {
+    re   => qr/^.*Message.* accepted.*$/i,
+    type => 'Message accepted'
+  },
+  {
+    re   => qr/^.*message queued.*$/i,
+    type => 'Queued'
+  },
+  {
+    re   => qr/^ok.*$/i,
+    type => 'Ok'
+  },
+  {
+    re   => qr/.*ok\.*$/i,
+    type => 'Ok'
+  },
+  {
+    re   => qr/^.* queued as .*$/i,
+    type => 'Queued'
+  },
+  {
+    re   => qr/^.*Queued mail.*$/i,
+    type => 'Queued'
+  },
+  {
+    re   => qr/^.*Requested mail action okay.*$/i,
+    type => 'Requested mail action okay'
+  },
+);
 
 =head1 FUNCTIONS
 
@@ -82,10 +82,10 @@ sub Bounce_Type
 {
   my $bounce = shift;
 
-  return (undef) if ( !defined $bounce );
+  return (undef) if (!defined $bounce);
   foreach my $bt (@bounce_types)
   {
-    return ( $bt->{type} ) if ( $bounce =~ /^$bt->{re}$/i );
+    return ($bt->{type}) if ($bounce =~ $bt->{re});
   }
 
   return ($bounce);
@@ -101,10 +101,10 @@ sub Response_Type
 {
   my $response = shift;
 
-  return (undef) if ( !defined $response );
+  return (undef) if (!defined $response);
   foreach my $rt (@response_types)
   {
-    return ( $rt->{type} ) if ( $response =~ /^$rt->{re}$/i );
+    return ($rt->{type}) if ($response =~ $rt->{re});
   }
 
   return ($response);
@@ -122,7 +122,7 @@ sub Recipients_Count
 
   my @recipients = split /,/, $recipients_list;
 
-  return ( scalar @recipients );
+  return (scalar @recipients);
 }
 
 1;

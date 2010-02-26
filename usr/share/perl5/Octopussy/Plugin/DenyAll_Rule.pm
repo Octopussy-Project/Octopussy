@@ -41,29 +41,29 @@ sub Init
   my $hdr_count      = 1;
   my $uri_count      = 1;
 
-  if ( defined open my $FILE, '-|', "cat $ACCESS_CONF $ACCESS_DENY" )
+  if (defined open my $FILE, '-|', "cat $ACCESS_CONF $ACCESS_DENY")
   {
     while (<$FILE>)
     {
-      $last_comment   = $1 if ( $_ =~ /^# \d{5}: (.+)$/ );
-      $last_nessus_id = $1 if ( $_ =~ /^# CVE: .+\/ Nessus: (\d+).*$/ );
-      if ( $_ =~ /^$HEADER.+?"(.+)"$/ )
+      $last_comment   = $1 if ($_ =~ /^# \d{5}: (.+)$/);
+      $last_nessus_id = $1 if ($_ =~ /^# CVE: .+\/ Nessus: (\d+).*$/);
+      if ($_ =~ /^$HEADER.+?"(.+)"$/)
       {
-        $rule{ 'H' . $hdr_count } = {
-                                      regexp    => $1,
-                                      comment   => $last_comment,
-                                      nessus_id => $last_nessus_id
-                                    };
+        $rule{'H' . $hdr_count} = {
+          regexp    => $1,
+          comment   => $last_comment,
+          nessus_id => $last_nessus_id
+        };
 
         $hdr_count++;
       }
-      if ( $_ =~ /^$URI.+?"(.+)"$/ )
+      if ($_ =~ /^$URI.+?"(.+)"$/)
       {
-        $rule{ 'U' . $uri_count } = {
-                                      regexp    => $1,
-                                      comment   => $last_comment,
-                                      nessus_id => $last_nessus_id
-                                    };
+        $rule{'U' . $uri_count} = {
+          regexp    => $1,
+          comment   => $last_comment,
+          nessus_id => $last_nessus_id
+        };
 
         $uri_count++;
       }
@@ -82,7 +82,7 @@ sub Info
 {
   my $id = shift;
 
-  return ( $rule{$id}{comment} || 'N/A' );
+  return ($rule{$id}{comment} || 'N/A');
 }
 
 =head2 Nessus_Id($id)
@@ -97,7 +97,7 @@ sub Nessus_Id
     . $rule{$id}{nessus_id}
     . "\">$rule{$id}{nessus_id}</a>";
 
-  return ( defined $rule{$id}{nessus_id} ? $url : 'N/A' );
+  return (defined $rule{$id}{nessus_id} ? $url : 'N/A');
 }
 
 =head2 Regexp($id)
@@ -108,7 +108,7 @@ sub Regexp
 {
   my $id = shift;
 
-  return ( $rule{$id}{regexp} || 'N/A' );
+  return ($rule{$id}{regexp} || 'N/A');
 }
 
 1;

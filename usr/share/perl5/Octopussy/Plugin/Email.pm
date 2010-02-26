@@ -38,7 +38,7 @@ sub Domain
 {
   my $email = shift;
 
-  if ( $email =~ $RE_EMAIL )
+  if ($email =~ $RE_EMAIL)
   {
     return ($2);
   }
@@ -54,7 +54,7 @@ sub User
 {
   my $email = shift;
 
-  if ( $email =~ $RE_EMAIL )
+  if ($email =~ $RE_EMAIL)
   {
     return ($1);
   }

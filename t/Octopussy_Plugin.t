@@ -40,7 +40,10 @@ Readonly my $TEST_BYTES_M_FR => '30.5 Moctets';
 my @plugins = qw(
   Octopussy::Plugin::Email
   Octopussy::Plugin::Network
+  Octopussy::Plugin::Proxy
+  Octopussy::Plugin::SMTP
   Octopussy::Plugin::Unit
+  Octopussy::Plugin::Web
   );
 
 my @functions = qw(

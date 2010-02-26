@@ -23,6 +23,8 @@ my @operating_systems = ();
 
 =head2 Init()
 
+Initializes Browsers and Operating Systems information
+
 =cut
 
 sub Init
@@ -33,29 +35,29 @@ sub Init
   my $conf_os      = AAT::List::Configuration('AAT_Operating_System');
 
   my @list = (
-               AAT::ARRAY( $conf_browser->{item} ),
-               AAT::ARRAY( $conf_mobile->{item} ),
-               AAT::ARRAY( $conf_bot->{item} ),
-             );
+    AAT::ARRAY($conf_browser->{item}),
+    AAT::ARRAY($conf_mobile->{item}),
+    AAT::ARRAY($conf_bot->{item}),
+  );
   foreach my $i (@list)
   {
     push @browsers,
       {
-        label  => $i->{label},
-        logo   => $i->{logo},
-        regexp => qr/$i->{regexp}/
+      label  => $i->{label},
+      logo   => $i->{logo},
+      regexp => qr/$i->{regexp}/
       }
-      if ( AAT::NOT_NULL( $i->{regexp} ) );
+      if (AAT::NOT_NULL($i->{regexp}));
   }
-  foreach my $i ( AAT::ARRAY( $conf_os->{item} ) )
+  foreach my $i (AAT::ARRAY($conf_os->{item}))
   {
     push @operating_systems,
       {
-        label  => $i->{label},
-        logo   => $i->{logo},
-        regexp => qr/$i->{regexp}/
+      label  => $i->{label},
+      logo   => $i->{logo},
+      regexp => qr/$i->{regexp}/
       }
-      if ( AAT::NOT_NULL( $i->{regexp} ) );
+      if (AAT::NOT_NULL($i->{regexp}));
   }
 
   return (1);
@@ -63,11 +65,13 @@ sub Init
 
 =head2 Logo($logo, $alt)
 
+Returns Browser or Operating System Logo
+ 
 =cut
 
 sub Logo
 {
-  my ( $logo, $alt ) = @_;
+  my ($logo, $alt) = @_;
 
   my $file = "AAT/IMG/${logo}.png";
 
@@ -76,6 +80,7 @@ sub Logo
 
 =head2 UserAgent_Browser($ua)
 
+Returns Browser from UserAgent information
 =cut
 
 sub UserAgent_Browser
@@ -84,11 +89,11 @@ sub UserAgent_Browser
 
   foreach my $i (@browsers)
   {
-    if ( ( defined $i->{regexp} ) && ( $ua =~ /$i->{regexp}/ ) )
+    if ($ua =~ $i->{regexp})
     {
-      return ( Logo( "$i->{logo}", $i->{label} ) )
-        if ( defined $i->{logo} );
-      return ( $i->{label} );
+      return (Logo("$i->{logo}", $i->{label}))
+        if (defined $i->{logo});
+      return ($i->{label});
     }
   }
 
@@ -96,6 +101,8 @@ sub UserAgent_Browser
 }
 
 =head2 UserAgent_OS($ua)
+
+Returns Operating System from UserAgent information
 
 =cut
 
@@ -105,8 +112,8 @@ sub UserAgent_OS
 
   foreach my $i (@operating_systems)
   {
-    return ( Logo( ( $i->{logo} || '' ), $i->{label} ) )
-      if ( ( defined $i->{regexp} ) && ( $ua =~ /$i->{regexp}/ ) );
+    return (Logo(($i->{logo} || ''), $i->{label}))
+      if ($ua =~ $i->{regexp});
   }
 
   return ($ua);
