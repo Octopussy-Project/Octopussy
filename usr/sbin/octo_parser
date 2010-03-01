@@ -28,8 +28,10 @@ use Linux::Inotify2;
 use Regexp::Assemble;
 
 use AAT;
+use AAT::NSCA;
 use AAT::SMTP;
 use AAT::XMPP;
+use AAT::Zabbix;
 
 use Octopussy;
 use Octopussy::Alert;
