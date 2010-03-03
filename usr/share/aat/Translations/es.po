@@ -1,0 +1,1257 @@
+msgid "_ENGLISH"
+msgstr "Ingles"
+
+msgid "_FRENCH"
+msgstr "Frances"
+
+msgid "_GERMAN"
+msgstr "Aleman"
+
+msgid "_ITALIAN"
+msgstr "Italiano"
+
+msgid "_PORTUGUESE"
+msgstr "Portugues"
+
+msgid "_RUSSIAN"
+msgstr "Ruso"
+
+msgid "_SPANISH"
+msgstr "Español"
+
+msgid "_DISABLED"
+msgstr "Deshabilitado"
+
+msgid "_ENABLED"
+msgstr "Habilitado"
+
+msgid "_YES"
+msgstr "Si"
+
+msgid "_NO"
+msgstr "No"
+
+msgid "_MINUTE"
+msgstr "Minuto"
+
+msgid "_MINUTES"
+msgstr "Minutos"
+
+msgid "_HOUR"
+msgstr "Hora"
+
+msgid "_HOURS"
+msgstr "Horas"
+
+msgid "_DAY"
+msgstr "Dia"
+
+msgid "_DAYS"
+msgstr "Dias"
+
+msgid "_WEEK"
+msgstr "Semana"
+
+msgid "_MONTH"
+msgstr "Mes"
+
+msgid "_YEAR"
+msgstr "Ano"
+
+msgid "_EVERY_DAY"
+msgstr "Todos los dias"
+
+msgid "_EVERY_MONTH"
+msgstr "Todos los meses"
+
+msgid "_TODAY"
+msgstr "Hoy"
+
+msgid "_YESTERDAY"
+msgstr "Ayer"
+
+msgid "_CURRENT_HOUR"
+msgstr "Hora Actual"
+
+msgid "_CURRENT_DAY"
+msgstr "Dia Actual"
+
+msgid "_CURRENT_WEEK"
+msgstr "Semana Actual"
+
+msgid "_CURRENT_MONTH"
+msgstr "Mes Actual"
+
+msgid "_CURRENT_YEAR"
+msgstr "Año Actual"
+
+msgid "_CUSTOMIZED"
+msgstr "Personalizado"
+
+msgid "_LAST_HOUR"
+msgstr "Ultima Hora"
+
+msgid "_LAST_DAY"
+msgstr "Ultimo Dia"
+
+msgid "_LAST_WEEK"
+msgstr "Ultima Semana"
+
+msgid "_LAST_MONTH"
+msgstr "Ultimo Mes"
+
+msgid "_LAST_YEAR"
+msgstr "Ultimo Año"
+
+msgid "_MONDAY"
+msgstr "Lunes"
+
+msgid "_TUESDAY"
+msgstr "Martes"
+
+msgid "_WEDNESDAY"
+msgstr "Miercoles"
+
+msgid "_THURSDAY"
+msgstr "Jueves"
+
+msgid "_FRIDAY"
+msgstr "Viernes"
+
+msgid "_SATURDAY"
+msgstr "Sabado"
+
+msgid "_SUNDAY"
+msgstr "Domingo"
+
+msgid "_JANUARY"
+msgstr "Enero"
+
+msgid "_FEBRUARY"
+msgstr "Febrero"
+
+msgid "_MARCH"
+msgstr "Marzo"
+
+msgid "_APRIL"
+msgstr "Abril"
+
+msgid "_MAY"
+msgstr "Mayo"
+
+msgid "_JUNE"
+msgstr "Junio"
+
+msgid "_JULY"
+msgstr "Julio"
+
+msgid "_AUGUST"
+msgstr "Agosto"
+
+msgid "_SEPTEMBER"
+msgstr "Septiembre"
+
+msgid "_OCTOBER"
+msgstr "Octubre"
+
+msgid "_NOVEMBER"
+msgstr "Noviembre"
+
+msgid "_DECEMBER"
+msgstr "Diciembre"
+
+msgid "_HOURLY_STATS"
+msgstr "Estadisticas Horarias"
+
+msgid "_DAILY_STATS"
+msgstr "Estadisticas Diarias"
+
+msgid "_WEEKLY_STATS"
+msgstr "Estadisticas Semanales"
+
+msgid "_MONTHLY_STATS"
+msgstr "Estadisticas Mensuales"
+
+msgid "_YEARLY_STATS"
+msgstr "Estadisticas Anuales"
+
+msgid "_ACTION"
+msgstr "Accion"
+
+msgid "_BACKUP"
+msgstr "Backup"
+
+msgid "_BEGIN"
+msgstr "Inicio"
+
+msgid "_BINARY"
+msgstr "Binario"
+
+msgid "_BODY"
+msgstr "Cuerpo del Mensaje"
+
+msgid "_BUG_REPORT"
+msgstr "Informar de Bugs"
+
+msgid "_BYTES"
+msgstr "Bytes"
+
+msgid "_CANCEL"
+msgstr "Cancelar"
+
+msgid "_CERTIFICATE"
+msgstr "Certificado"
+
+msgid "_COLUMNS"
+msgstr "Columnas"
+
+msgid "_COLUMNS_NAMES"
+msgstr "Nombres de Columnas"
+
+msgid "_COMMON_NAME"
+msgstr "Nombre (CN)"
+
+msgid "_CONFIG_FILE"
+msgstr "Fichero de Configuracion"
+
+msgid "_DASHBOARD"
+msgstr "Dashboard"
+
+msgid "_DELETE"
+msgstr "Suprimir"
+
+msgid "_DIRECTORY"
+msgstr "Directorio"
+
+msgid "_EDIT"
+msgstr "Editar"
+
+msgid "_END"
+msgstr "Fin"
+
+msgid "_FEATURE_REQUEST"
+msgstr "Solicitud de Funcionalidades"
+
+msgid "_FINISH"
+msgstr "Final"
+
+msgid "_HELP"
+msgstr "Ayuda"
+
+msgid "_HOST"
+msgstr "Host"
+
+msgid "_ICONS_AND_TEXT"
+msgstr "Iconos y Texto"
+
+msgid "_ICONS_ONLY"
+msgstr "Solo Iconos"
+
+msgid "_KEY"
+msgstr "Llave"
+
+msgid "_LOGOUT"
+msgstr "Desconexion"
+
+msgid "_MENU_DISPLAY"
+msgstr "Mostrar Menu"
+
+msgid "_MODIFY"
+msgstr "Modificar"
+
+msgid "_NEXT"
+msgstr "Siguiente"
+
+msgid "_OK"
+msgstr "Ok"
+
+msgid "_PAUSE"
+msgstr "Pausa"
+
+msgid "_PAUSED"
+msgstr "Pausado"
+
+msgid "_REMOVE"
+msgstr "Borrar"
+
+msgid "_RESTORE"
+msgstr "Restaurar"
+
+msgid "_RESTORE_FROM_FILE"
+msgstr "Restaurar de Fichero"
+
+msgid "_SAVE"
+msgstr "Guardar"
+
+msgid "_SERVER"
+msgstr "Servidor"
+
+msgid "_START"
+msgstr "Inicio"
+
+msgid "_STARTED"
+msgstr "Iniciado"
+
+msgid "_STATUS"
+msgstr "Estado"
+
+msgid "_STOP"
+msgstr "Parar"
+
+msgid "_STOPPED"
+msgstr "Detenido"
+
+msgid "_TEXT_ONLY"
+msgstr "Solo texto"
+
+msgid "_UPDATE"
+msgstr "Actualizar"
+
+msgid "_USER"
+msgstr "Usuario"
+
+msgid "_USERS"
+msgstr "Usuarios"
+
+msgid "_BIRTHDATE"
+msgstr "Fecha de Nacimiento"
+
+msgid "_CALENDAR"
+msgstr "Calendario"
+
+msgid "_CATEGORY"
+msgstr "Categoria"
+
+msgid "_COMMENT"
+msgstr "Comentario"
+
+msgid "_DATE_BEGIN"
+msgstr "Fecha de Inicio"
+
+msgid "_DATE_END"
+msgstr "Fecha de Fin"
+
+msgid "_DATETIME"
+msgstr "_DATETIME"
+
+msgid "_DAY_OF_MONTH"
+msgstr "Dia del Mes"
+
+msgid "_DAY_OF_WEEK"
+msgstr "Dia de la Semana"
+
+msgid "_DEFAULT_STORAGES"
+msgstr "Almacenamiento por defecto"
+
+msgid "_DESCRIPTION"
+msgstr "Descripcion"
+
+msgid "_EMAIL"
+msgstr "Correo Electronico"
+
+msgid "_EXPORT_FTP"
+msgstr "Exportar FTP"
+
+msgid "_EXPORT_MAIL"
+msgstr "Exportar Correo Electronico"
+
+msgid "_EXPORT_SCP"
+msgstr "Exportar SCP"
+
+msgid "_FIELD"
+msgstr "Campo"
+
+msgid "_FIELDS_OF_TABLE"
+msgstr "Campos de la Tabla"
+
+msgid "_FILE"
+msgstr "Fichero"
+
+msgid "_FILTER"
+msgstr "Filtrar"
+
+msgid "_FIRSTNAME"
+msgstr "Nombre"
+
+msgid "_LASTNAME"
+msgstr "Apellido"
+
+msgid "_LANGUAGE"
+msgstr "Lenguaje"
+
+msgid "_LOGIN"
+msgstr "Login"
+
+msgid "_MAIL_SERVER"
+msgstr "Servidor de Correo"
+
+msgid "_NAME"
+msgstr "Nombre"
+
+msgid "_NEW_PASSWORD"
+msgstr "Nueva Contraseña"
+
+msgid "_PASSWORD"
+msgstr "Contrasena"
+
+msgid "_NB"
+msgstr "_NB"
+
+msgid "_PORT"
+msgstr "Puerto"
+
+msgid "_QUERY"
+msgstr "Peticion"
+
+msgid "_RECIPIENTS"
+msgstr "Destinatarios"
+
+msgid "_SELECT_ALL"
+msgstr "Seleccionar Todo"
+
+msgid "_SQL_QUERY_DEFINITION"
+msgstr "Definicion de Consulta SQL"
+
+msgid "_SUBJECT"
+msgstr "Asunto"
+
+msgid "_THEME"
+msgstr "Tema"
+
+msgid "_TITLE"
+msgstr "Titulo"
+
+msgid "_TYPE"
+msgstr "Type"
+
+msgid "_UNKNOWN"
+msgstr "Desconocido"
+
+msgid "_USED_SPACE"
+msgstr "Espacio Usado"
+
+msgid "_USER_PREFS"
+msgstr "Preferencias de Usuario"
+
+msgid "_USER_RESTRICTIONS"
+msgstr "Restricciones de Usuario"
+
+msgid "_VALUE"
+msgstr "Valor"
+
+msgid "_VERSION"
+msgstr "Version"
+
+msgid "_WEBSITE"
+msgstr "Website"
+
+msgid "_ADD_NEW_SERVICE"
+msgstr "Añadir Nuevo Servicio"
+
+msgid "_ADD_SERVICE_TO_DEVICE"
+msgstr "Añadir Servicio al Dispositivo"
+
+msgid "_ADD_SERVICE_TO_SERVICEGROUP"
+msgstr "Añadir Servicio al Grupo de Servicio"
+
+msgid "_ADD_STORAGE"
+msgstr "Añadir Almacenamiento"
+
+msgid "_ALERT"
+msgstr "Alerta"
+
+msgid "_ALERT_DESCRIPTION"
+msgstr "Decripcion de Alerta"
+
+msgid "_ALERT_LEVEL"
+msgstr "Nivel de Alerta"
+
+msgid "_ALERT_NAME"
+msgstr "Nombre de Alerta"
+
+msgid "_ALERTS"
+msgstr "Alertas"
+
+msgid "_ALERTS_VIEWER"
+msgstr "Visor de Alertas"
+
+msgid "_BASE"
+msgstr "Base"
+
+msgid "_BUILDING"
+msgstr "Edificio"
+
+msgid "_CITY"
+msgstr "Ciudad"
+
+msgid "_CONTACTS"
+msgstr "Contactos"
+
+msgid "_CONTACTS_AUTH_DN"
+msgstr "_CONTACTS_AUTH_DN"
+
+msgid "_CONTACTS_AUTH_PASSWORD"
+msgstr "_CONTACTS_AUTH_PASSWORD"
+
+msgid "_CONTACTS_BASE"
+msgstr "Base de Contactos"
+
+msgid "_CONTACTS_FILTER"
+msgstr "Filtro de Contactos"
+
+msgid "_CONTACTS_SERVER"
+msgstr "Servidor de Contactos"
+
+msgid "_COUNTRY"
+msgstr "Pais"
+
+msgid "_CPU_USAGE"
+msgstr "Uso de CPU"
+
+msgid "_CREATE_REPORT"
+msgstr "Crear Informe"
+
+msgid "_DEFAULT_DIR_INCOMING_LOGS"
+msgstr "Directorio de Entrada de Logs por defecto"
+
+msgid "_DEFAULT_DIR_KNOWN_LOGS"
+msgstr "Directorio de Logs Conocidos por defecto"
+
+msgid "_DEFAULT_DIR_UNKNOWN_LOGS"
+msgstr "Directorio de Logs Desconocidos por defecto"
+
+msgid "_DEVICE"
+msgstr "Dispositivo"
+
+msgid "_DEVICE_ADDRESS"
+msgstr "Dirección del Dispositivo"
+
+msgid "_DEVICE_DESCRIPTION"
+msgstr "Descripción del Dispositivo"
+
+msgid "_DEVICE_MODEL"
+msgstr "Modelo del Dispositivo"
+
+msgid "_DEVICE_NAME"
+msgstr "Nombre del Dispositivo"
+
+msgid "_DEVICE_TYPE"
+msgstr "Tipo del Dispositivo"
+
+msgid "_DEVICES"
+msgstr "Dispositivos"
+
+msgid "_DEVICEGROUPS"
+msgstr "Grupo de Dispositivos"
+
+msgid "_DIR_INCOMING_LOGS"
+msgstr "Directorio de entrada de Logs"
+
+msgid "_DIR_KNOWN_LOGS"
+msgstr "Directorio de Logs Conocidos"
+
+msgid "_DIR_UNKNOWN_LOGS"
+msgstr "Directorio de Logs Desconocidos"
+
+msgid "_DOWNLOAD_CSV_FILE"
+msgstr "Descargar Archivo CSV"
+
+msgid "_DOWNLOAD_FILE"
+msgstr "Descargar Archivo"
+
+msgid "_DOWNLOAD_ZIP_FILE"
+msgstr "Descargar Archivo ZIP"
+
+msgid "_DURATION_D"
+msgstr "Duracion (d)"
+
+msgid "_FINISH_PERIOD"
+msgstr "Periodo Finalizado"
+
+msgid "_GET_LOGS"
+msgstr "Adquirir Logs"
+
+msgid "_GRAPH_HEIGHT"
+msgstr "Altura del Grafico"
+
+msgid "_GRAPH_TITLE"
+msgstr "Titulo del Grafico"
+
+msgid "_GRAPH_TYPE"
+msgstr "Tipo de Grafico"
+
+msgid "_GRAPH_WIDTH"
+msgstr "Ancho del Grafico"
+
+msgid "_GROUP_NAME"
+msgstr "Nombre de Grupo"
+
+msgid "_IP_ADDRESS"
+msgstr "Direccion IP"
+
+msgid "_LAST_ALERTS"
+msgstr "Ulimas Alertas"
+
+msgid "_LAST_LOGS"
+msgstr "Ultimos Logs"
+
+msgid "_LAUNCH_REPORT"
+msgstr "Lanzar Informe"
+
+msgid "_LEVEL"
+msgstr "Nivel"
+
+msgid "_LOAD"
+msgstr "Carga"
+
+msgid "_LOCATION"
+msgstr "Ubicacion"
+
+msgid "_LOCATIONS"
+msgstr "Ubicaciones"
+
+msgid "_LOG"
+msgstr "Log"
+
+msgid "_LOG_LEVEL"
+msgstr "Nivel de Log"
+
+msgid "_LOG_TYPE"
+msgstr "Tipo de Log"
+
+msgid "_LOGROTATE"
+msgstr "Rotado de Logs"
+
+msgid "_LOGS_VIEWER"
+msgstr "Visor de Logs"
+
+msgid "_LOGS_AVAILABILITY"
+msgstr "_Logs Availability"
+
+msgid "_LOGS_WIZARD"
+msgstr "Asistente de Logs"
+
+msgid "_MAPS"
+msgstr "Mapas"
+
+msgid "_MATCH"
+msgstr "Coincidencia"
+
+msgid "_MAX_MINUTES_SEARCH"
+msgstr "_MAX. number of minutes to search"
+
+msgid "_MAX_TIME_WITHOUT_LOG"
+msgstr "Tiempo Maximo sin Logs"
+
+msgid "_MEM_USAGE"
+msgstr "Uso de Memoria"
+
+msgid "_MESSAGES"
+msgstr "Mensajes"
+
+msgid "_MSG_ID"
+msgstr "_MSG_ID"
+
+msgid "_NAGIOS_HOST_DEFINED"
+msgstr "Equipo definido en Nagios"
+
+msgid "_NAGIOS_SERVER"
+msgstr "Servidor Nagios"
+
+msgid "_NAGIOS_SERVICE_DEFINED"
+msgstr "Servicio definido en Nagios"
+
+msgid "_NB_MESSAGES"
+msgstr "Mensages NB"
+
+msgid "_NB_REPORTS"
+msgstr "Informes NB"
+
+msgid "_NEW_ALERT"
+msgstr "Nueva Alarma"
+
+msgid "_NEW_BUILDING"
+msgstr "Nuevo Edificio"
+
+msgid "_NEW_CITY"
+msgstr "Nueva Ciudad"
+
+msgid "_NEW_CONTACT"
+msgstr "Nuevo Contacto"
+
+msgid "_NEW_DEVICE"
+msgstr "Nuevo Dispositivo"
+
+msgid "_NEW_DEVICEGROUP"
+msgstr "Nuevo Grupo de Dispositivos"
+
+msgid "_NEW_DYNAMIC_ALERT"
+msgstr "Nueva Alerta Dinamica"
+
+msgid "_NEW_DYNAMIC_DEVICEGROUP"
+msgstr "Nuevo Grupo de Dispotivos Dinamico"
+
+msgid "_NEW_FIELD"
+msgstr "_NEW_FIELD"
+
+msgid "_NEW_OCTOPUSSY_VERSION_AVAILABLE"
+msgstr "Nueva Version de Octopussy Disponible"
+
+msgid "_NEW_RACK"
+msgstr "Nuevo Rack"
+
+msgid "_NEW_REPORT"
+msgstr "Nuevo Informe"
+
+msgid "_NEW_ROOM"
+msgstr "Nueva Sala"
+
+msgid "_NEW_SERVICE"
+msgstr "Nuevo Servicio"
+
+msgid "_NEW_SERVICEGROUP"
+msgstr "Nuevo Grupo de Servicio"
+
+msgid "_NEW_STATIC_DEVICEGROUP"
+msgstr "Nuevo Grupo Estatico de Disposivos"
+
+msgid "_NEW_TABLE"
+msgstr "Nueva Tabla"
+
+msgid "_NEW_TIMEPERIOD"
+msgstr "Nuevo Periodo de Tiempo"
+
+msgid "_NEW_USER"
+msgstr "Nuevo Usuario"
+
+msgid "_OFFICIAL_WEBSITE"
+msgstr "Sitio Web Oficial"
+
+msgid "_ORGANIZATION"
+msgstr "Organizacion"
+
+msgid "_ORGANIZATIONAL_UNIT"
+msgstr "Unidad Organizativa"
+
+msgid "_PAGE"
+msgstr "Pagina"
+
+msgid "_PAGE_FIRST"
+msgstr "Pagina Inicial"
+
+msgid "_PAGE_LAST"
+msgstr "Pagina Final"
+
+msgid "_PAGE_NEXT"
+msgstr "Pagina Siguiente"
+
+msgid "_PAGE_PREVIOUS"
+msgstr "Pagina Anterior"
+
+msgid "_PARTITION_LOGS"
+msgstr "Partition Logs"
+
+msgid "_PERIOD"
+msgstr "Periodo"
+
+msgid "_PERIODS"
+msgstr "Periodos"
+
+msgid "_PROCESSOR"
+msgstr "Procesador"
+
+msgid "_QUICK_SEARCH_ON_THIS_PAGE"
+msgstr "Busqueda Rapida en esta Pagina"
+
+msgid "_RACK"
+msgstr "Rack"
+
+msgid "_RANK"
+msgstr "Puesto"
+
+msgid "_REGEXP_EXC"
+msgstr "Regexp (Excl.)"
+
+msgid "_REGEXP_INC"
+msgstr "Regexp (Incl.)"
+
+msgid "_RELOAD"
+msgstr "Recargar"
+
+msgid "_RELOAD_ALL"
+msgstr "Recargar Todo"
+
+msgid "_RELOAD_REQUIRED"
+msgstr "Es Necesario Recargar"
+
+msgid "_REMOVE_LOG_MINUTE"
+msgstr "Borrar Log minuto"
+
+msgid "_REPETITION_N"
+msgstr "Repetir (n)"
+
+msgid "_REPORT"
+msgstr "Informe"
+
+msgid "_REPORT_CATEGORIES"
+msgstr "Informe Categorias"
+
+msgid "_REPORT_CREATION"
+msgstr "Creacion de Informe"
+
+msgid "_REPORT_CSV"
+msgstr "Informe CSV"
+
+msgid "_REPORT_EDITION"
+msgstr "_REPORT_EDITION"
+
+msgid "_REPORT_FIELDS_ORDER"
+msgstr "Informe Campos Ordenados"
+
+msgid "_REPORT_HTML"
+msgstr "Informe HTML"
+
+msgid "_REPORT_NAME"
+msgstr "Informe Nombre"
+
+msgid "_REPORT_PDF"
+msgstr "Informe PDF"
+
+msgid "_REPORT_SCHEDULER"
+msgstr "Planificador de Informes"
+
+msgid "_REPORT_XML"
+msgstr "Informe XML"
+
+msgid "_REPORTS"
+msgstr "Informes"
+
+msgid "_REPORTS_UPDATES"
+msgstr "Informe Actualizaciones"
+
+msgid "_REPORTS_VIEWER"
+msgstr "Visor de Informes"
+
+msgid "_RIGHTS"
+msgstr "Derechos"
+
+msgid "_ROLE"
+msgstr "Rol"
+
+msgid "_ROOM"
+msgstr "Sala"
+
+msgid "_RUNNING_REPORTS"
+msgstr "Ejecutando informes"
+
+msgid "_SAVE_AS_SEARCH_TEMPLATE"
+msgstr "Guardar la busqueda como plantilla"
+
+msgid "_SCHEDULE"
+msgstr "Planificar"
+
+msgid "_SCHEDULE_REPORT"
+msgstr "Planificar un Informe"
+
+msgid "_SCHEDULER"
+msgstr "Planificador"
+
+msgid "_SEARCH_TEMPLATES"
+msgstr "Buscar plantillas"
+
+msgid "_SELECT_THIS_MSG"
+msgstr "Seleccionar este mensaje"
+
+msgid "_SELECTION"
+msgstr "Selección"
+
+msgid "_SENDER"
+msgstr "Remitente"
+
+msgid "_SERVER"
+msgstr "Servidor"
+
+msgid "_SERVICE"
+msgstr "Servicio"
+
+msgid "_SERVICE_NAME"
+msgstr "Service Name"
+
+msgid "_SERVICEGROUPS"
+msgstr "Grupos de Servicio"
+
+msgid "_SERVICES"
+msgstr "Servicios"
+
+msgid "_SERVICES_UPDATES"
+msgstr "Actualizaciones de servicios"
+
+msgid "_START"
+msgstr "Inicio"
+
+msgid "_START_PERIOD"
+msgstr "Inicio de Periodo"
+
+msgid "_START_TIME"
+msgstr "Hora de Inicio"
+
+msgid "_STATE"
+msgstr "Estado"
+
+msgid "_STATIC"
+msgstr "Estatico"
+
+msgid "_STATISTICS"
+msgstr "Estadisticos"
+
+msgid "_STATISTIC_REPORTS"
+msgstr "Informes estadisticos"
+
+msgid "_STORAGES"
+msgstr "Almacenamientos"
+
+msgid "_STREET"
+msgstr "Calle"
+
+msgid "_SUPPORT_REQUEST"
+msgstr "Solicitar Soporte"
+
+msgid "_SWAP_USAGE"
+msgstr "Uso de Swap"
+
+msgid "_SYSTEM_CONFIG"
+msgstr "Configuracion de Sistema"
+
+msgid "_TABLE"
+msgstr "Tabla"
+
+msgid "_TABLE_NAME"
+msgstr "Nombre de tablas"
+
+msgid "_TABLES"
+msgstr "Tablas"
+
+msgid "_TABLES_UPDATES"
+msgstr "Actualizaciones de tabla"
+
+msgid "_TAXONOMY"
+msgstr "Taxonomia"
+
+msgid "_TICKET_CLOSED"
+msgstr "Cerrado"
+
+msgid "_TICKET_OPENED"
+msgstr "Abierto"
+
+msgid "_TICKET_WAIT_FOR_INFO"
+msgstr "Esperando informacion"
+
+msgid "_TICKET_WORK_PROGRESS"
+msgstr "Trabajo en curso"
+
+msgid "_TIMEPERIOD"
+msgstr "Periodo"
+
+msgid "_TIMEPERIOD_NAME"
+msgstr "Nombre del Periodo"
+
+msgid "_TIMEPERIODS"
+msgstr "Periodos"
+
+msgid "_UNKNOWN_MSGS"
+msgstr "Mensajes Desconocidos"
+
+msgid "_USERS_AUTH_DN"
+msgstr "_USERS_AUTH_DN"
+
+msgid "_USERS_AUTH_PASSWORD"
+msgstr "_USERS_AUTH_PASSWORD"
+
+msgid "_USERS_BASE"
+msgstr "Base de Usuarios"
+
+msgid "_USERS_FILTER"
+msgstr "Filtro de Usuarios"
+
+msgid "_USERS_SERVER"
+msgstr "Servidor de Usuarios"
+
+msgid "_WORLD_STATISTICS"
+msgstr "Estadisticas mundiales"
+
+msgid "_DLG_DELETE_ALERT"
+msgstr "Estas seguro de que quieres borrar la Alerta '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_CONTACT"
+msgstr "Estas seguro de que quieres borrar el Contacto '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_DEVICE"
+msgstr "Estas seguro de que quieres borrar el Dispositivo '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_DEVICEGROUP"
+msgstr "Estas seguro de que quieres borrar el Grupo de Dispositivos '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_DEVICE_SERVICE"
+msgstr "Estas seguro de que quieres borrar el Servicio '%%arg1%%' del Dispositivo '%%arg2%%' ?"
+
+msgid "_DLG_DELETE_LOCATION_BUILDING"
+msgstr "Estas seguro de que quieres borrar la Ciudad '%%arg1%%' Edificio '%%arg2%%' ?"
+
+msgid "_DLG_DELETE_LOCATION_CITY"
+msgstr "Estas seguro de que quieres borrar la Ciudad '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_LOCATION_RACK"
+msgstr "Estas seguro de que quieres borrar la Ciudad '%%arg1%%' Edificio '%%arg2%%' Habitacion '%%arg3%%' Rack '%%arg4%%' ?"
+
+msgid "_DLG_DELETE_LOCATION_ROOM"
+msgstr "Estas seguro de que quieres borrar la Ciudad '%%arg1%%' Edificio '%%arg2%%' Habitacion '%%arg3%%' ?"
+
+msgid "_DLG_DELETE_LOG"
+msgstr "Estas seguro de que quieres borrar la linea de Log #%%log%% ?"
+
+msgid "_DLG_DELETE_LOG_MINUTE"
+msgstr "Estas seguro de que quieres borrar el Fichero de Log #%%datetime%% ?"
+
+msgid "_DLG_DELETE_MESSAGE"
+msgstr "Estas seguro de que quieres borrar el Mensaje '%%msg%%' del Servicio '%%service%%' ?"
+
+msgid "_DLG_DELETE_REPORT"
+msgstr "Estas seguro de que quieres borrar el Informe '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_REPORT_DATA"
+msgstr "Estas seguro de que quieres borrar el Informe '%%arg1%%' '%%arg2%%' ?"
+
+msgid "_DLG_DELETE_REPORT_MONTH"
+msgstr "_DLG_DELETE_REPORT_MONTH"
+
+msgid "_DLG_DELETE_REPORT_SCHEDULE"
+msgstr "Estas seguro de que quieres borrar la planificacion del Informe '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_SEARCH_TEMPLATE"
+msgstr "Estas seguro de que quieres borrar la plantilla '%%arg1%%' '%%arg2%%' ?"
+
+msgid "_DLG_DELETE_SERVICE"
+msgstr "Estas seguro de que quieres borrar el Servicio '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_SERVICEGROUP"
+msgstr "Estas seguro de que quieres borrar el Grupo de Servicio '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_SERVICEGROUP_SERVICE"
+msgstr "Estas seguro de que quieres borrar el Servicio '%%arg2%%' del Grupo de Servicio '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_STATISTIC_REPORT"
+msgstr "Estas seguro de que quieres borrar el Informe Estadistico '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_STATISTIC_REPORT_SCHEDULE"
+msgstr "Estas seguro de que quiere borrar la planificación del Informe Esatdistico '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_STORAGE"
+msgstr "Estas seguro de que quieres borrar el almacenamiento '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_TABLE"
+msgstr "Estas seguro de que quieres borrar la Tabla '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_TIMEPERIOD"
+msgstr "Estas seguro de que quieres borrar el Periodo de Tiempo '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_USER"
+msgstr "Estas seguro de que quieres borrar al Usuario '%%arg1%%' ?"
+
+msgid "_DLG_LOGOUT"
+msgstr "Estas seguro de que quieres desconectar ?"
+
+msgid "_DLG_PARSE_PAUSE"
+msgstr "Estas seguro de que quieres pausar el analisis del Dispositivo '%%arg1%%' ?"
+
+msgid "_DLG_PARSE_START"
+msgstr "Estas seguro de que quieres comenzar a analizar el Dispositivo '%%arg1%%' ?"
+
+msgid "_DLG_PARSE_STOP"
+msgstr "Estas seguro de que quieres dejar de analizar el Dispositivo '%%arg1%%' ?"
+
+msgid "_DLG_RESTORE_CONFIG"
+msgstr "Estas seguro de que quieres restaurar la configuración del fichero '%%arg1%%' ?"
+
+msgid "_MSG_ALERT_RAISED_ONLY"
+msgstr "Se lanzará la alerta solo si se registra n veces en menos de d segundos en un dispositivo"
+
+msgid "_MSG_CHECK_UPDATES"
+msgstr "Buscar Actualizaciones"
+
+msgid "_MSG_CONFIG_RESTORED"
+msgstr "Configuracion restaurada desde fichero '%s'"
+
+msgid "_MSG_CONTACT_ALREADY_EXIST"
+msgstr "El Contacto ya existe !"
+
+msgid "_MSG_CONTACT_INFO_INVALID"
+msgstr "La Informacion del Contacto necesita al menos el ID y el Email/IM !"
+
+msgid "_MSG_CONTACT_ME"
+msgstr "Para cualquier otra cosa, puedes contactar conmigo en octo.devel@gmail.com"
+
+msgid "_MSG_DYNAMIC_ALERT_CREATION"
+msgstr "Creacion de Alertas Dinamicas"
+
+msgid "_MSG_FIELD_DONT_EXIST"
+msgstr "El campo no existe!"
+
+msgid "_MSG_INVALID_LOGIN_PASSWORD"
+msgstr "Has introducido un usuario/contrasenia erronea !"
+
+msgid "_MSG_INVALID_SCHEDULE_PERIOD"
+msgstr "Has introducido un periodo invalido para esta planificación !"
+
+msgid "_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
+msgstr "__LOGS availability for device %s"
+
+msgid "_MSG_MAIL_SENT_TO_SUPPORT"
+msgstr "Correo enviado al soporte de Octopussy."
+
+msgid "_MSG_MAP_CREATION_INFO"
+msgstr "Para mas informacion en la creacion de Mapas, visita la pagina de web de Octopussy !"
+
+msgid "_MSG_MSGID_ALREADY_EXISTS"
+msgstr "Message ID ya existe !"
+
+msgid "_MSG_MSGS_FOR_SERVICE"
+msgstr "Mensajes para el Servicio %s (version %s)"
+
+msgid "_MSG_NB_LINES"
+msgstr "Numero de lineas: "
+
+msgid "_MSG_NEED_DEFINE_CONTACT"
+msgstr "Si quieres enviar Alertas, tienes antes que definir Contactos."
+
+msgid "_MSG_NEED_REPORT_FOR_SCHEDULE"
+msgstr "Necesitas crear al menos un Informe antes de poder hacer planificaciones."
+
+msgid "_MSG_NEED_SMTP_SERVER_TO_SUBMIT"
+msgstr "Necesitas configurar el Servidor SMTP para contactar con el soporte de Octopussy !"
+
+msgid "_MSG_NO_GRAPH_AVAILABLE"
+msgstr "No hay grafico disponible !"
+
+msgid "_MSG_NO_MSG_FOR_SERVICE"
+msgstr "No hay mensaje definido para el servicio %s (%d)"
+
+msgid "_MSG_NO_UPDATES_AVAILABLE"
+msgstr "No hay Actualizaciones disponibles"
+
+msgid "_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
+msgstr "Estoy preparado para enviar información anonima a 8pussy.org"
+
+msgid "_MSG_REACH_MAX_LINES"
+msgstr "Maximo de %d lineas alcanzado!"
+
+msgid "_MSG_REPORT_DATA_SOURCE"
+msgstr "Informacion de %d files / %d lineas gestionada en $d minutos y %d segundos."
+
+msgid "_MSG_REPORT_GENERATED_BY"
+msgstr "Generado por Octopussy"
+
+msgid "_MSG_REPORT_PROGRESS_BUILDING_REPORT"
+msgstr "Generando Informe..."
+
+msgid "_MSG_REPORT_PROGRESS_INIT_DB"
+msgstr "Inicializando Base de datos..."
+
+msgid "_MSG_REPORT_PROGRESS_INIT_PLUGIN"
+msgstr "Inicializando Plugins..."
+
+msgid "_MSG_REPORT_PROGRESS_INSERTING_DATA"
+msgstr "Insertando datos..."
+
+msgid "_MSG_REPORT_PROGRESS_LISTING_FILES"
+msgstr "Recuperando ficheros de datos..."
+
+msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
+msgstr "Consultando Base de datos..."
+
+msgid "_MSG_RESTART_OCTOPUSSY"
+msgstr "Reiniciar Octopussy"
+
+msgid "_MSG_SCHEDULE_ALREADY_EXISTS"
+msgstr "La planificación ya existe!"
+
+msgid "_MSG_SEND_MY_NEW"
+msgstr "Enviar mi nuevo/actualizado Servicio/Tabla"
+
+msgid "_MSG_SERVICES_FOR_DEVICE"
+msgstr "Servicios para dispositivo %s"
+
+msgid "_MSG_SERVICES_FOR_SERVICEGROUP"
+msgstr "Servicios por Grupo de Servicio %s"
+
+msgid "_MSG_SSH_PUBKEY_REQUIRED"
+msgstr "Es necesaria una Clave Pulica SSH"
+
+msgid "_MSG_STATIC_ALERT_CREATION"
+msgstr "Creación de alerta estatica"
+
+msgid "_MSG_STORAGES_DEFAULT_DIRECTORIES"
+msgstr "Este directorio de almacenamiento por defecto es solo usado para nuevos dispositivos! Si quieres cambiar el direc torio de Logs para un Dispositivo/Servicio, hazlo en la pagina de Dispositivos/Almacenmiento."
+
+msgid "_MSG_STORAGES_FOR_DEVICE"
+msgstr "Almacenamiento para el dispositivo %s"
+
+msgid "_MSG_SUBMIT_TO_IMPROVE"
+msgstr "Enviar mi Servicio/Tabla para mejorar Octopussy"
+
+msgid "_MSG_THIS_IS_MY_NEW"
+msgstr "Este es mi nuevo/actualizado Servicio/Tabla"
+
+msgid "_MSG_TOTAL_EVENTS_LAST_MINUTE"
+msgstr "Eventos Totales en el ultimo minuto"
+
+msgid "_MSG_TOTAL_REPORTS"
+msgstr "TOTAL: %d informes"
+
+msgid "_MSG_UPDATE_CONFIG"
+msgstr "Actualizar la Configuracion"
+
+msgid "_MSG_UPDATE_PREFS"
+msgstr "Actualizar las Preferencias"
+
+msgid "_MSG_UPDATE_SELECTED_REPORTS"
+msgstr "Actualizar Informes Seleccionados"
+
+msgid "_MSG_UPDATE_SELECTED_SERVICES"
+msgstr "Actualizar Servicios Seleccionados"
+
+msgid "_MSG_UPDATE_SELECTED_TABLES"
+msgstr "Actualizar Tablas Seleccionadas"
+
+msgid "_MSG_USER_ALREADY_EXISTS"
+msgstr "El usuario ya existe !"
+
+msgid "_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"
+msgstr "_YOUR user can only view %d minutes of logs"
+
+msgid "_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
+msgstr "Lista de mensajes del asistente, limitadas a %d por defecto"
+
+msgid "_TOOLTIP_ALERT_MSG"
+msgstr "El Asunto y el Cuerpo del mensaje pueden usar estos valores predefinidos:<br> <b>__device__</b>: el equipo que manda la linea de log que genera la alerta.<br> <b>__alert__</b>: el Nombre de la Alerta.<br> <b>__level__</b>: el Nivel de la Alerta.<br> <b>__log__</b>: la linea completa de log.<br>"
+
+msgid "_TOOLTIP_DEVICE_STATUS"
+msgstr "El estado de la maquina puede ser:<br> <b>Parado</b>: los logs son directamente descartados<br> <b>Pausado</b>: los logs son escritps pero no analizados<br> <b>Iniciado</b>: los logs son totalmente gestionados.<br>"
+
+msgid "_TOOLTIP_SYSTEM_DB"
+msgstr "La Base de Datos solo se usa para almacenar las alertas y ejecutar la preguntas SQL de los Informes.<br> <b>Servidor:</b> (<i>default: localhost</i>)<br> <b>Usuario:</b> (<i>default: octopussy</i>)<br> <b>Contraseña:</b> (<i>default: octopussy</i>)<br><b>Base:</b> (<i>default: octopussy</i>)<br>"
+
+msgid "_TOOLTIP_SYSTEM_JABBER"
+msgstr "Jabber es usado para enviar Alertas a los Conctactos de Mensajeria Instantanea.<br> <b>Servidor:</b> (<i>tujabber.tudominio.com</i>)<br> <b>Ususario:</b> (<i>tuusuariojabber</i>)<br> <b>Contraseña:</b> (<i>tucontraseñajabber</i>)<br><hr> Mas info sobre Jabber: http://www.jabber.org/"
+
+msgid "_TOOLTIP_SYSTEM_LDAP"
+msgstr "LDAP es usado para recuperar los Contactos y los Usuarios.<br> <b>Servidor de Contactos:</b> (<i>tuservidorldap.tudominio.com</i>)<br> <b>Base de Contactos:</b> (<i>ou=Contactos,dc=tudominio,dc=com</i>)<br> <b>Filtro de Contactos:</b> <br> <b>Servidor de Contactos:</b> (<i>tuservidorldap.tudominio.com</i>)<br> <b>Base de Usuarios:</b> (<i>ou=Usuarios,dc=tudominio,dc=com</i>)<br> <b>Filtro de Usuarios:</b> <br> <hr> Mas info sobre LDAP: http://www.openldap.org/"
+
+msgid "_TOOLTIP_SYSTEM_NSCA"
+msgstr "NSCA es usado para enviar Alertas a la consola de monitorización Nagios.<br> <b>Binario:</b> Nombre del binario send_nsca<br> <b>Fichero de Configuracion:</b> Fichero de configuracion de tu send_nsca<br> <b>Servidor Nagios:</b> Direccion de tu servidor Nagios<br> <b>Equipo definido en Nagios:</b> Nombre del Equipo definido en Nagios para gestionar las Alertas de Octopussy<br> <b>Servicio definido en Nagios:</b> Nombre del Servicio definido en Nagios para gestionar las Alertas Octopussy<br> <hr> Mas info sobre Nagios y NSCA: http://www.nagios.org/"
+
+msgid "_TOOLTIP_SYSTEM_PROXY"
+msgstr "Proxy usado para conseguir la actualizaciones a traves de un proxy.<br> <b>Servidor:</b> (<i>yourproxy.yourdomain.com</i>)<br> <b>Puerto:</b> (<i>proxy_port</i>)<br> <b>Usuario:</b> (<i>proxy_user</i>)<br> <b>Contraseña:</b> (<i>proxy_password</i>)<br>"
+
+msgid "_TOOLTIP_SYSTEM_SMTP"
+msgstr "SMTP es usado para enviar las Alertas e Informes a los Contactos o para contactar con el soporte de Octopussy.<br> <b>Servidor:</b> (<i>tusmtp.tudominio.com</i>)<br><b>Remitente:</b> (<i>tu@tudominio.com</i>)<br>"
+

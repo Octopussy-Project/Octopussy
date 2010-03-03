@@ -13,47 +13,33 @@ package AAT::Translation;
 
 use strict;
 use warnings;
+use Readonly;
 
+use AAT;
+    
 my %AAT_Translation = ();
+
+use Locale::Maketext::Simple( 
+	Path => '/usr/share/aat/Translations/',  # can't use AAT::Directory('translations') :(
+	);  
+
 
 =head1 FUNCTIONS
 
-=head2 Init($lang, @dirs)
+=head2 Init($lang)
 
-Inits Translation Data from directories '@dirs' for language '$lang'
+Inits Translation Data for language '$lang'
 
 =cut
 
 sub Init
 {
-  my ($lang, @dirs) = @_;
-  my @list = (AAT::Directory('translations'), @dirs);
-  my $count = 0;
+  my $lang = shift;
 
-  foreach my $dir (@list)
-  {
-    if (-f "$dir${lang}.xml")
-    {    # Basic Translations
-      my $conf = AAT::XML::Read("$dir${lang}.xml");
-      foreach my $m (AAT::ARRAY($conf->{msg}))
-      {
-        $AAT_Translation{$lang}{$m->{mid}} = $m->{value};
-        $count++;
-      }
-    }
-    if (-f "$dir${lang}_Tooltips.xml")
-    {    # Tooltips Translations
-      my $conf = AAT::XML::Read("$dir${lang}_Tooltips.xml");
-      foreach my $m (AAT::ARRAY($conf->{msg}))
-      {
-        $AAT_Translation{$lang}{$m->{mid}} = $m->{value};
-        $count++;
-      }
-    }
-  }
-
-  return ($count);
+	loc_lang($lang);	
+	$AAT_Translation{$lang}{'_USER'} = loc("_USER");
 }
+
 
 =head2 Get($lang, $str)
 
@@ -66,9 +52,11 @@ sub Get
   my ($lang, $str) = @_;
 
   return (undef) if (AAT::NULL($str));
-  Init($lang) if (!defined $AAT_Translation{$lang}{'_DAY'});
-
-  return ($AAT_Translation{$lang}{$str} || $str);
+  Init($lang) if (!defined $AAT_Translation{$lang}{'_USER'});
+	$AAT_Translation{$lang}{$str} = (loc($str) || $str)
+		if (!defined $AAT_Translation{$lang}{$str}); 
+	
+  return ($AAT_Translation{$lang}{$str});
 }
 
 1;
