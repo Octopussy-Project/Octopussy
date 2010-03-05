@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 7;
+use Test::More tests => 9;
 
 use Octopussy;
 use Octopussy::Device;
@@ -23,7 +23,45 @@ use Octopussy::Logs;
 Readonly my $PREFIX => 'Octo_TEST_';
 Readonly my $DEVICE => "${PREFIX}Device";
 Readonly my $SERVICE => "${PREFIX}Service";
+Readonly my $EXTRACTOR => '/usr/sbin/octo_extractor';
 Readonly my $DIR_LOGS => Octopussy::Directory('data_logs');
+Readonly my $BEGIN => '201001010000'; 
+Readonly my $END => '201001010030';
+Readonly my $YEAR => '2010';
+Readonly my $MONTH => '01';
+Readonly my $DAY => '01';
+Readonly my $OUTPUT => 'output_file.txt';
+Readonly my $CMDLINE_DEV_SVC => qq(--device "${DEVICE}_1" --device "${DEVICE}_2" --service "${SERVICE}_1" --service "${SERVICE}_2");
+Readonly my $CMDLINE_LEVEL_TAXO_ID => qq(--loglevel "-ANY-" --taxonomy "-ANY-" --msgid "-ANY-");
+Readonly my $CMDLINE_PERIOD => qq(--begin $BEGIN --end $END);
+Readonly my $RE_CMDLINE => qr{^$EXTRACTOR $CMDLINE_DEV_SVC $CMDLINE_LEVEL_TAXO_ID $CMDLINE_PERIOD.*--output "$OUTPUT"};
+
+
+=head2 Generate_Fake_Logs_Files
+
+=cut
+
+sub Generate_Fake_Logs_Files
+{
+	system "mkdir -p $DIR_LOGS/$DEVICE/Incoming/2010/01/01/";
+	system "mkdir -p $DIR_LOGS/$DEVICE/Unknown/2010/01/01/";
+	system "mkdir -p $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/";
+	for (my $i = 0; $i <= 59; $i++)
+	{
+		my $minute = sprintf('%02d', $i);
+		system "touch $DIR_LOGS/$DEVICE/Incoming/2010/01/01/msg_00h${minute}.log";
+		my $data = "";
+		for (my $i2 = 0; $i2 <= 99; $i2++)
+			{ $data .= "line $i2\n"; }
+		if (defined open my $FILE, '|-', "gzip >> $DIR_LOGS/$DEVICE/Unknown/2010/01/01/msg_00h${minute}.log.gz")
+  	{
+  		print {$FILE} $data; 
+   		close $FILE;
+		}
+		system "touch $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/msg_00h${minute}.log.gz";
+		system "touch $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/msg_01h${minute}.log.gz";	
+	}	
+}
 
 my ($d_incoming, $d_unknown) = Octopussy::Logs::Init_Directories($DEVICE);
 my $dirs_created = 1 if (-d $d_incoming && -d $d_unknown);
@@ -33,40 +71,65 @@ ok($d_incoming =~ /\/$DEVICE\/Incoming\// && $d_unknown =~ /\/$DEVICE\/Unknown\/
 Octopussy::Logs::Remove_Directories($DEVICE);
 ok((!-d $d_incoming && !-d $d_unknown), 'Octopussy::Logs::Remove_Directories()');
 
+Generate_Fake_Logs_Files();
+
 my %start = ( year => 2010, month => 1, day => 1, hour => 0, min => 0 );
-my %finish = ( year => 2010, month => 1, day => 1, hour => 0, min => 30 );
+my %finish = ( year => 2010, month => 1, day => 1, hour => 0, min => 29 );
 my $start_num = sprintf("%04d%02d%02d%02d%02d", 
 	$start{year}, $start{month}, $start{day}, $start{hour}, $start{min});
 my $finish_num = sprintf("%04d%02d%02d%02d%02d", 
 	$finish{year}, $finish{month}, $finish{day}, $finish{hour}, $finish{min});
 
-# Generate logs files
-system "mkdir -p $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/";
-system "touch $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/msg_00h00.log.gz";
-system "touch $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/msg_00h01.log.gz";
-system "touch $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/msg_01h00.log.gz";
-
 my @files_ymd = Octopussy::Logs::Files_Year_Month_Day(\%start, \%finish, "$DIR_LOGS/$DEVICE/$SERVICE", '2010');
-ok(scalar @files_ymd == 3, 
+ok(scalar @files_ymd == 120, 
 	'Octopussy::Logs::Files_Year_Month_Day()');
-
 my @files_ymdhm = Octopussy::Logs::Files_Year_Month_Day_Hour_Min("$DIR_LOGS/$DEVICE/$SERVICE",
 	$start_num, $finish_num, \@files_ymd);
-ok(scalar @files_ymdhm == 2, 'Octopussy::Logs::Files_Year_Month_Day_Hour_Min()');
+ok(scalar @files_ymdhm == 30, 'Octopussy::Logs::Files_Year_Month_Day_Hour_Min()');
 
 # Need to create Device/Service
 Octopussy::Device::New({name => $DEVICE, address => '1.2.3.4'});
 Octopussy::Device::Add_Service($DEVICE, $SERVICE);
 
 my $list_files = Octopussy::Logs::Files([ $DEVICE ], [ $SERVICE ], \%start, \%finish);
-ok(scalar @{$list_files} == 2, 'Octopussy::Logs::Files()');
+ok(scalar @{$list_files} == 30, 'Octopussy::Logs::Files()');
 
 my $avail = Octopussy::Logs::Availability($DEVICE, \%start, \%finish);
-ok($avail->{$SERVICE}{'01'}{'01'}{'00'}{'00'} && $avail->{$SERVICE}{'01'}{'01'}{'00'}{'01'}, 
+ok($avail->{$SERVICE}{'01'}{'01'}{'00'}{'00'} && $avail->{$SERVICE}{'01'}{'01'}{'00'}{'29'}, 
 	'Octopussy::Logs::Availability()');
 
-my ($hash_files, $nb_files) = Octopussy::Logs::Minutes_Hash([ $DEVICE ], [ $SERVICE ], \%start, \%finish);
-ok($nb_files == 2 && defined $hash_files->{201001010001}, 'Octopussy::Logs::Minutes_Hash()');
+my ($hash_files, $nb_files) = 
+	Octopussy::Logs::Minutes_Hash([ $DEVICE ], [ $SERVICE ], \%start, \%finish);
+ok($nb_files == 30 && defined $hash_files->{201001010029}, 'Octopussy::Logs::Minutes_Hash()');
+
+($list_files, $nb_files) = 
+	Octopussy::Logs::Get_TimePeriod_Files([ $DEVICE ], [ $SERVICE ], $BEGIN, $END);
+ok($nb_files == 31, 'Octopussy::Logs::Get_TimePeriod_Files()');
+
+# TO TEST
+# Octopussy::Logs::Incoming_Files();
+# Octopussy::Logs::Unknown_Files();
+# Octopussy::Logs::Unknown_Number();
+# Octopussy::Logs::Remove();
+
+#Octopussy::Logs::Remove_Minute($DEVICE, $YEAR, $MONTH, $DAY, '00', '00');
+#my $list_files = Octopussy::Logs::Files([ $DEVICE ], [ $SERVICE ], \%start, \%finish);
+#ok(scalar @{$list_files} == 1, 'Octopussy::Logs::Remove_Minute()');
+
+my %conf_extract = (
+	devices => [ "${DEVICE}_1", "${DEVICE}_2" ],
+	services => [ "${SERVICE}_1", "${SERVICE}_2" ],
+	loglevel => '-ANY-', 
+	taxonomy => '-ANY-', 
+	msgid => '-ANY-',
+	includes => [ "include1", "include2" ],
+	excludes => [ "exclude1", "exclude2" ],
+	begin => $BEGIN, end => $END,
+	pid_param => 'pid_param',
+	output => $OUTPUT,
+);
+my $cmd = Octopussy::Logs::Extract_Cmd_Line(\%conf_extract);
+ok($cmd =~ $RE_CMDLINE, 'Octopussy::Logs::Get_TimePeriod_Files()');
 
 # Clean stuff
 Octopussy::Device::Remove($DEVICE);
