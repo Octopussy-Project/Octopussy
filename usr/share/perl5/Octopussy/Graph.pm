@@ -37,7 +37,7 @@ Readonly my $LOGO_POSITION => 'UR';
 
 =head1 FUNCTIONS
 
-=head2 Generate($g)
+=head2 Generate($g, $output)
 
 Generate graph
 
@@ -46,8 +46,6 @@ Generate graph
 sub Generate
 {
   my ($g, $output) = @_;
-
-  #  $GD::Graph::Error::Debug = 5;
 
   $output = $output || 'graph.png';
   my $fct = 'GD::Graph::' . ($g->{type} || $TYPE);
@@ -92,11 +90,6 @@ sub Generate
     AAT::Syslog('Octopussy_Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub);
   }
 
-  #my $map = new GD::Graph::Map($graph, newWindow => 1);
-  #$map->set(info => "%x du total");
-  #my $html = $map->imagemap("graph.png", $g->{data});
-
-  #return ($html);
   return ($output);
 }
 

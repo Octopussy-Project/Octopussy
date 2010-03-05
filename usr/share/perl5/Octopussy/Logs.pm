@@ -248,18 +248,12 @@ sub Files
   my %devs  = Device_List($ref_devices);
   my %servs = Service_List($ref_services);
 
-  my $start_num =
-    ($start->{year} * $DIGIT_YEAR) +
-    ($start->{month} * $DIGIT_MONTH) +
-    ($start->{day} * $DIGIT_DAY) +
-    ($start->{hour} * $DIGIT_HOUR) +
-    $start->{min};
-  my $finish_num =
-    ($finish->{year} * $DIGIT_YEAR) +
-    ($finish->{month} * $DIGIT_MONTH) +
-    ($finish->{day} * $DIGIT_DAY) +
-    ($finish->{hour} * $DIGIT_HOUR) +
-    $finish->{min};
+  my $start_num = sprintf("%04d%02d%02d%02d%02d", 
+  	$start->{year}, $start->{month}, $start->{day}, 
+  	$start->{hour}, $start->{min});
+  my $finish_num = sprintf("%04d%02d%02d%02d%02d", 
+  	$finish->{year}, $finish->{month}, $finish->{day},
+		$finish->{hour}, $finish->{min});
 
   foreach my $dev (sort keys %devs)
   {
@@ -294,7 +288,7 @@ Returns Logs Availability for specified $device and period ($start-$finish)
 sub Availability
 {
   my ($device, $start, $finish) = @_;
-
+	
   my @services     = Octopussy::Device::Services($device);
   my %availability = ();
   foreach my $s (@services)
@@ -325,18 +319,12 @@ sub Minutes_Hash
   my %minute_files = ();
   my $nb_files     = 0;
 
-  my $start_num =
-    ($start->{year} * $DIGIT_YEAR) +
-    ($start->{month} * $DIGIT_MONTH) +
-    ($start->{day} * $DIGIT_DAY) +
-    ($start->{hour} * $DIGIT_HOUR) +
-    $start->{min};
-  my $finish_num =
-    ($finish->{year} * $DIGIT_YEAR) +
-    ($finish->{month} * $DIGIT_MONTH) +
-    ($finish->{day} * $DIGIT_DAY) +
-    ($finish->{hour} * $DIGIT_HOUR) +
-    $finish->{min};
+	my $start_num = sprintf("%04d%02d%02d%02d%02d", 
+  	$start->{year}, $start->{month}, $start->{day}, 
+  	$start->{hour}, $start->{min});
+  my $finish_num = sprintf("%04d%02d%02d%02d%02d", 
+  	$finish->{year}, $finish->{month}, $finish->{day},
+		$finish->{hour}, $finish->{min});
 
   foreach my $dev (sort keys %devs)
   {
