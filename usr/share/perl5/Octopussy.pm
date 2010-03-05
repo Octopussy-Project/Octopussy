@@ -16,6 +16,7 @@ use warnings;
 use version;
 use Readonly;
 
+use App::Info::HTTPD::Apache;
 use File::Basename;
 use File::Path;
 use Proc::PID::File;
@@ -31,7 +32,7 @@ Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
 Readonly my $IDX_STAT_UID => 4;
 Readonly my $IDX_STAT_GID => 5;
 
-$Octopussy::VERSION = qv('0.9.9.9.6');
+$Octopussy::VERSION = qv('0.9.9.9.7');
 
 =head1 FUNCTIONS
 
@@ -105,6 +106,22 @@ sub WebSite
 
   return ($info->{website});
 }
+
+
+=head2 Apache2_Binary()
+
+Returns Apache2 Binary
+
+=cut
+
+sub Apache2_Binary
+{	
+	my $apache = App::Info::HTTPD::Apache->new();
+  return ($apache->executable)	if (defined $apache->executable);
+      
+  return (undef);
+}
+
 
 =head2 Commander($cmd)
 

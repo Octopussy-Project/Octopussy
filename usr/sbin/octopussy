@@ -37,7 +37,6 @@ use Octopussy::Device;
 
 Readonly my $PROG_NAME       => 'octopussy';
 Readonly my $USER            => 'octopussy';
-Readonly my $APACHE2_BIN     => '/usr/sbin/apache2';
 Readonly my $APACHE2_CONF    => '/etc/octopussy/apache2.conf';
 Readonly my $COMMANDER       => 'octo_commander';
 Readonly my $DISPATCHER      => 'octo_dispatcher';
@@ -318,28 +317,34 @@ sub Scheduler_Stop
   return (1);
 }
 
+
 =head2 Web_Start
 
-Starts Web Octopussy
+Starts Web Octopussy (Launches Apache2 with Octopussy Apache2 configuration file)
 
 =cut
 
 sub Web_Start
 {
+  my $APACHE2_BIN = Octopussy::Apache2_Binary();
+  
   system "$APACHE2_BIN -f $APACHE2_CONF -k start";
   printf $MSG_STATUS, 'Web', 'Started';
 
   return (1);
 }
 
+
 =head2 Web_Stop
 
-Stops Web Octopussy
+Stops Web Octopussy (Stops Apache2 with Octopussy Apache2 configuration file)
 
 =cut
 
 sub Web_Stop
 {
+  my $APACHE2_BIN = Octopussy::Apache2_Binary();
+  
   system "$APACHE2_BIN -f $APACHE2_CONF -k stop";
   printf $MSG_STATUS, 'Web', 'Stopped';
 
@@ -354,7 +359,6 @@ Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
 
 sub Start
 {
-
   # recreate /var/run/octopussy/ for systems that mount it on tmpfs
   Octopussy::Create_Directory($dir_pid);
 

@@ -14,6 +14,7 @@ Before installing Octopussy, be sure to have installed:
 - htmldoc
 
 and these Perl modules (from CPAN):
+- App::Info
 - Cache::Cache
 - Crypt::PasswdMD5
 - Date::Manip
