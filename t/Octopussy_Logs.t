@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 9;
+use Test::More tests => 14;
 
 use Octopussy;
 use Octopussy::Device;
@@ -37,7 +37,7 @@ Readonly my $CMDLINE_PERIOD => qq(--begin $BEGIN --end $END);
 Readonly my $RE_CMDLINE => qr{^$EXTRACTOR $CMDLINE_DEV_SVC $CMDLINE_LEVEL_TAXO_ID $CMDLINE_PERIOD.*--output "$OUTPUT"};
 
 
-=head2 Generate_Fake_Logs_Files
+=head2 Generate_Fake_Logs_Files()
 
 =cut
 
@@ -62,6 +62,7 @@ sub Generate_Fake_Logs_Files
 		system "touch $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/msg_01h${minute}.log.gz";	
 	}	
 }
+
 
 my ($d_incoming, $d_unknown) = Octopussy::Logs::Init_Directories($DEVICE);
 my $dirs_created = 1 if (-d $d_incoming && -d $d_unknown);
@@ -106,15 +107,21 @@ ok($nb_files == 30 && defined $hash_files->{201001010029}, 'Octopussy::Logs::Min
 	Octopussy::Logs::Get_TimePeriod_Files([ $DEVICE ], [ $SERVICE ], $BEGIN, $END);
 ok($nb_files == 31, 'Octopussy::Logs::Get_TimePeriod_Files()');
 
-# TO TEST
-# Octopussy::Logs::Incoming_Files();
-# Octopussy::Logs::Unknown_Files();
-# Octopussy::Logs::Unknown_Number();
-# Octopussy::Logs::Remove();
+my @files_incoming = Octopussy::Logs::Incoming_Files($DEVICE);
+ok(scalar @files_incoming == 60, 'Octopussy::Logs::Incoming_Files');
 
-#Octopussy::Logs::Remove_Minute($DEVICE, $YEAR, $MONTH, $DAY, '00', '00');
-#my $list_files = Octopussy::Logs::Files([ $DEVICE ], [ $SERVICE ], \%start, \%finish);
-#ok(scalar @{$list_files} == 1, 'Octopussy::Logs::Remove_Minute()');
+my @files_unknown = Octopussy::Logs::Unknown_Files($DEVICE);
+ok(scalar @files_unknown == 60, 'Octopussy::Logs::Unknown_Files');
+
+my $nb_lines_unknown = Octopussy::Logs::Unknown_Number($DEVICE);
+ok($nb_lines_unknown == 100, 'Octopussy::Logs::Unknown_Number');
+
+my $nb_removed = Octopussy::Logs::Remove($DEVICE, 'line 9\d+');
+ok($nb_removed == 600, 'Octopussy::Logs::Remove()');
+
+Octopussy::Logs::Remove_Minute($DEVICE, $YEAR, $MONTH, $DAY, '00', '00');
+@files_unknown = Octopussy::Logs::Unknown_Files($DEVICE);
+ok(scalar @files_unknown == 59, 'Octopussy::Logs::Remove_Minute()');
 
 my %conf_extract = (
 	devices => [ "${DEVICE}_1", "${DEVICE}_2" ],
