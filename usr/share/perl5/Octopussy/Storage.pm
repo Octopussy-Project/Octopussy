@@ -171,8 +171,7 @@ sub Configurations
 {
   my $sort = shift || 's_id';
   my (@configurations, @sorted_configurations) = ((), ());
-  my @storages = List();
-  my %field;
+  my @storages    = List();
   my $dir_default = Octopussy::Directory('data_logs');
 
   push @sorted_configurations, {s_id => 'DEFAULT', directory => $dir_default};
@@ -181,13 +180,12 @@ sub Configurations
     my $conf = Configuration($s);
     if (defined $conf->{s_id})
     {
-      $field{$conf->{$sort}} = 1;
       push @configurations, $conf;
     }
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

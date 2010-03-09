@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 4;
+use Test::More tests => 6;
 
 use Octopussy;
 use Octopussy::Device;
@@ -22,12 +22,21 @@ use Octopussy::Device;
 Readonly my $DIR_DEVICES => Octopussy::Directory('devices');
 Readonly my $PREFIX      => 'Octo_TEST_';
 Readonly my $DEV_DESC    => "${PREFIX}device Description";
+Readonly my @SERVICES		 => ('Octopussy', 'Sshd', 'Linux_Kernel', 'Linux_System');
 
 Octopussy::Device::New({name => "${PREFIX}device", address => '1.2.3.4'});
 ok(-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::Device::New()');
 
 my $conf = Octopussy::Device::Configuration("${PREFIX}device");
 ok($conf->{name} eq "${PREFIX}device", 'Octopussy::Device::Configuration()');
+
+my $nb_services = 0;
+foreach my $s (@SERVICES)
+	{ $nb_services = Octopussy::Device::Add_Service("${PREFIX}device", $s); }
+ok($nb_services == scalar @SERVICES, 'Octopussy::Device::Add_Service()');
+
+my @services = Octopussy::Device::Services("${PREFIX}device");
+ok(scalar @services == scalar @SERVICES, 'Octopussy::Device::Services()');
 
 Octopussy::Device::Modify(
   {name => "${PREFIX}device", description => $DEV_DESC});

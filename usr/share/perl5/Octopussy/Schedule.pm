@@ -106,7 +106,7 @@ sub Configuration
 
 =head2 Configurations($sort)
 
-Get the configuration for all Schedules
+Gets the configuration for all Schedules sorted by '$sort' (default: 'title')
 
 =cut
 
@@ -117,19 +117,17 @@ sub Configurations
 
   my (@configurations, @sorted_configurations) = ((), ());
   my @schedules = List();
-  my %field;
 
   foreach my $s (@schedules)
   {
     my $conf = Configuration($s);
     $conf->{start_datetime}  = "$conf->{start_day}/$conf->{start_hour}";
     $conf->{finish_datetime} = "$conf->{finish_day}/$conf->{finish_hour}";
-    $field{$conf->{$sort}}   = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

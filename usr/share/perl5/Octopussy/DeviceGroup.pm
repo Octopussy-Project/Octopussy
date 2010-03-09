@@ -114,7 +114,6 @@ sub Configurations
   my $sort = shift || 'dg_id';
   my (@configurations, @sorted_configurations) = ((), ());
   my @dgs = List();
-  my %field;
 
   my @dc = Octopussy::Device::Configurations();
   foreach my $dg (@dgs)
@@ -135,12 +134,11 @@ sub Configurations
         push @{$conf->{device}}, $d->{name} if ($match);
       }
     }
-    $field{$conf->{$sort}} = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

@@ -16,13 +16,13 @@ use warnings;
 use Readonly;
 
 use AAT;
-    
+
 my %AAT_Translation = ();
 
-use Locale::Maketext::Simple( 
-	Path => '/usr/share/aat/Translations/',  # can't use AAT::Directory('translations') :(
-	);  
-
+use Locale::Maketext::Simple(
+  Path => '/usr/share/aat/Translations/'
+  ,    # can't use AAT::Directory('translations') :(
+);
 
 =head1 FUNCTIONS
 
@@ -36,10 +36,9 @@ sub Init
 {
   my $lang = shift;
 
-	loc_lang($lang);	
-	$AAT_Translation{$lang}{'_USER'} = loc("_USER");
+  loc_lang($lang);
+  $AAT_Translation{$lang}{'_USER'} = loc("_USER");
 }
-
 
 =head2 Get($lang, $str)
 
@@ -53,9 +52,9 @@ sub Get
 
   return (undef) if (AAT::NULL($str));
   Init($lang) if (!defined $AAT_Translation{$lang}{'_USER'});
-	$AAT_Translation{$lang}{$str} = (loc($str) || $str)
-		if (!defined $AAT_Translation{$lang}{$str}); 
-	
+  $AAT_Translation{$lang}{$str} = (loc($str) || $str)
+    if (!defined $AAT_Translation{$lang}{$str});
+
   return ($AAT_Translation{$lang}{$str});
 }
 

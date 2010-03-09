@@ -44,7 +44,6 @@ sub Configuration
   return ($conf->{smtp});
 }
 
-
 =head2 Connection_Test($appli)
 
 Checks the SMTP connection
@@ -86,7 +85,6 @@ sub Connection_Test
 
   return ($status);
 }
-
 
 =head2 Send_Message($appli, $msg_data)
 
@@ -149,7 +147,6 @@ sub Send_Message
 
   return (0);
 }
-
 
 1;
 

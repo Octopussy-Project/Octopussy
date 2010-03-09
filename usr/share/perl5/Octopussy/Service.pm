@@ -140,7 +140,7 @@ sub Configuration
 
 =head2 Configurations($sort)
 
-Returns the configuration for all Services
+Returns the configuration for all Services sorted by '$sort' (default: 'name')
 
 =cut
 
@@ -149,19 +149,18 @@ sub Configurations
   my $sort = shift || 'name';
   my (@configurations, @sorted_configurations) = ((), ());
   my @services = List();
-  my %field;
+
   foreach my $s (@services)
   {
     my $conf = Configuration($s);
     my $nb =
       (AAT::NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
     $conf->{nb_messages} = ($nb < 10 ? "00$nb" : ($nb < 100 ? "0$nb" : $nb));
-    $field{$conf->{$sort}} = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);
@@ -397,37 +396,31 @@ sub Move_Message
 
 =head2 Messages(@services)
 
-Get messages from Service list '@services'
+Get messages from Service list '@services' sorted by 'rank'
 
 =cut
 
 sub Messages
 {
-  my @services      = @_;
-  my @messages      = ();
-  my @conf_messages = ();
-  my %field;
+  my @services = @_;
+  my (@messages, @conf_messages) = ((), ());
 
   foreach my $s (@services)
   {
-    @services = Octopussy::Service::List() if ($s eq '-ANY-');
+    if ($s eq '-ANY-')
+    {
+      @services = Octopussy::Service::List();
+      last;
+    }
   }
   foreach my $s (@services)
   {
     my $conf = Configuration($s);
     push @conf_messages, AAT::ARRAY($conf->{message});
-    foreach my $m (AAT::ARRAY($conf->{message}))
-    {
-      $field{$m->{rank}} = 1;
-    }
   }
-  foreach my $f (sort keys %field)
+  foreach my $m (sort { $a->{rank} cmp $b->{rank} } @conf_messages)
   {
-    foreach my $m (@conf_messages)
-    {
-      push @messages, $m
-        if ($m->{rank} eq $f);
-    }
+    push @messages, $m;
   }
 
   return (@messages);
@@ -435,7 +428,7 @@ sub Messages
 
 =head2 Messages_Configurations($service, $sort)
 
-Get the configuration for all messages from '$service'
+Get the configuration for all messages from '$service' sorted by '$sort'
 
 =cut
 
@@ -443,22 +436,17 @@ sub Messages_Configurations
 {
   my ($service, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
-  my %field;
   my @services = ();
   push @services, (defined $service ? $service : List());
 
   foreach my $s (@services)
   {
     my @messages = Messages($s);
-    foreach my $conf (@messages)
-    {
-      $field{$conf->{$sort}} = 1;
-      push @configurations, $conf;
-    }
+    foreach my $conf (@messages) { push @configurations, $conf; }
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

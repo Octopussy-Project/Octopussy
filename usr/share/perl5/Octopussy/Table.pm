@@ -130,16 +130,15 @@ sub Configurations
   my $sort = shift || 'name';
   my (@configurations, @sorted_configurations) = ((), ());
   my @tables = List();
-  my %field;
+
   foreach my $t (@tables)
   {
     my $conf = Configuration($t);
-    $field{$conf->{$sort}} = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);
@@ -209,18 +208,12 @@ Gets the configuration for all Fields
 sub Fields_Configurations
 {
   my ($table, $sort) = @_;
-  my (@configurations, @sorted_configurations) = ((), ());
-  my @fields = Fields($table);
-  my %field;
+  my @sorted_configurations = ();
+  my @fields                = Fields($table);
 
-  foreach my $conf (@fields)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @fields)
   {
-    $field{$conf->{$sort}} = 1;
-    push @configurations, $conf;
-  }
-  foreach my $f (sort keys %field)
-  {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

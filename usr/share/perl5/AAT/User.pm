@@ -248,19 +248,13 @@ Returns configurations for all Users
 sub Configurations
 {
   my ($appli, $sort) = @_;
-  my (@configurations, @sorted_configurations) = ((), ());
-  my @users = List($appli);
-  my %field;
+  my @sorted_configurations = ();
+  my @users                 = List($appli);
   $sort = (AAT::NOT_NULL($sort) ? lc($sort) : 'login');
 
-  foreach my $conf (@users)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @users)
   {
-    $field{$conf->{$sort}} = 1;
-    push @configurations, $conf;
-  }
-  foreach my $f (sort keys %field)
-  {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

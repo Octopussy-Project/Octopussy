@@ -114,17 +114,15 @@ sub Configurations
   my $sort = shift || 'sg_id';
   my (@configurations, @sorted_configurations) = ((), ());
   my @sgs = List();
-  my %field;
 
   foreach my $sg (@sgs)
   {
     my $conf = Configuration($sg);
-    $field{$conf->{$sort}} = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);
@@ -132,24 +130,22 @@ sub Configurations
 
 =head2 Services($servicegroup)
 
-Returns list of Services in ServiceGroup '$servicegroup'
+Returns list of Services (sorted by rank) in ServiceGroup '$servicegroup'
 
 =cut
 
 sub Services
 {
   my $servicegroup = shift;
+  my $conf         = Configuration($servicegroup);
+  my @services     = ();
 
-  my $conf     = Configuration($servicegroup);
-  my @services = ();
-  my %field;
-
-  foreach my $s (AAT::ARRAY($conf->{service})) { $field{$s->{rank}} = 1; }
-
-  foreach my $f (sort keys %field)
+  foreach
+    my $s (sort { $a->{rank} cmp $b->{rank} } AAT::ARRAY($conf->{service}))
   {
-    push @services, grep { $_->{rank} eq $f } AAT::ARRAY($conf->{service});
+    push @services, $s;
   }
+
   return (@services);
 }
 

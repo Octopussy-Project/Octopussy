@@ -120,9 +120,7 @@ Returns:
 sub List_Any_User
 {
   my $sort = shift;
-
   my (@list, @sorted_list) = ();
-  my %field;
 
   $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
   my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
@@ -133,14 +131,13 @@ sub List_Any_User
     {
       my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
       my $key = (defined $conf->{$sort} ? $conf->{$sort} : $d);
-      $field{$key} = 1;
       push @list, {name => $conf->{name}, user => $d}
         if (defined $conf->{name});
     }
   }
-  foreach my $f (sort keys %field)
+  foreach my $i (sort { $a->{$sort} cmp $b->{$sort} } @list)
   {
-    push @sorted_list, grep { $_->{$sort} eq $f } @list;
+    push @sorted_list, $i;
   }
 
   return (@sorted_list);
@@ -228,20 +225,18 @@ sub Configurations
   my ($user, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
   my @tpls = List($user);
-  my %field;
 
   foreach my $t (@tpls)
   {
     my $conf = Configuration($user, $t);
     if (defined $conf->{name})
     {
-      $field{$conf->{$sort}} = 1;
       push @configurations, $conf;
     }
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

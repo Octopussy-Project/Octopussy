@@ -215,7 +215,6 @@ sub Configurations
   my $sort = shift || 'name';
   my (@configurations, @sorted_configurations) = ((), ());
   my @devices = List();
-  my %field;
 
   foreach my $d (@devices)
   {
@@ -231,12 +230,11 @@ sub Configurations
     $conf->{action2} =
       ($conf->{status} eq 'Started' ? 'parse_pause' : 'parse_start');
     $conf->{logtype} ||= 'syslog';
-    $field{$conf->{$sort}} = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);
@@ -253,7 +251,6 @@ sub Filtered_Configurations
   my ($type, $model, $sort) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
   my @devices = List();
-  my %field;
 
   foreach my $d (@devices)
   {
@@ -276,13 +273,13 @@ sub Filtered_Configurations
       $conf->{action2} =
         ($conf->{status} eq 'Started' ? 'parse_pause' : 'parse_start');
       $conf->{logtype} ||= 'syslog';
-      $field{$conf->{$sort}} = 1;
       push @configurations, $conf;
     }
   }
-  foreach my $f (sort keys %field)
+
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);
@@ -461,7 +458,7 @@ sub Move_Service
 
 =head2 Services(@devices)
 
-Gets Service list from Device list '@devices'
+Gets Service list (sorted by rank) from Device list '@devices'
 
 =cut
 
@@ -474,17 +471,10 @@ sub Services
   {
     return (Octopussy::Service::List()) if ($d eq '-ANY-');
     my $conf = AAT::XML::Read(Filename($d));
-    my %field;
-    foreach my $s (AAT::ARRAY($conf->{service}))
+    foreach
+      my $s (sort { $a->{rank} cmp $b->{rank} } AAT::ARRAY($conf->{service}))
     {
-      $field{$s->{rank}} = 1;
-    }
-    foreach my $f (sort keys %field)
-    {
-      foreach my $s (AAT::ARRAY($conf->{service}))
-      {
-        push @services, $s->{sid} if ($s->{rank} eq $f);
-      }
+      push @services, $s->{sid};
     }
   }
 
@@ -503,28 +493,25 @@ sub String_Services
   return ('Service list: -ANY-, ' . join ', ', @services);
 }
 
-=head2 Services_Configurations($device_name, $sort)
+=head2 Services_Configurations($device, $sort)
+
+Returns Services Configurations sorted by '$sort' field for Device '$device'
 
 =cut
 
 sub Services_Configurations
 {
-  my ($device_name, $sort) = @_;
-  my (@configurations, @sorted_configurations) = ((), ());
-  my $conf = AAT::XML::Read(Filename($device_name));
-  my %field;
+  my ($device, $sort) = @_;
+  my @configurations = ();
+  my $conf           = AAT::XML::Read(Filename($device));
 
-  foreach my $s (AAT::ARRAY($conf->{service}))
+  foreach
+    my $s (sort { $a->{rank} cmp $b->{rank} } AAT::ARRAY($conf->{service}))
   {
-    $field{$s->{$sort}} = 1;
     push @configurations, $s;
   }
-  foreach my $f (sort keys %field)
-  {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
-  }
 
-  return (@sorted_configurations);
+  return (@configurations);
 }
 
 =head2 Services_Statistics($device)

@@ -202,23 +202,21 @@ Returns:
 
 sub Configurations
 {
-  my $sort = shift;
+  my $sort = shift || 'cid';
   my (@configurations, @sorted_configurations) = ((), ());
   my @contacts = List();
-  my %field;
 
   foreach my $c (@contacts)
   {
     my $conf = Configuration($c);
     if (defined $conf->{cid})
     {
-      $field{$conf->{$sort}} = 1;
       push @configurations, $conf;
     }
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

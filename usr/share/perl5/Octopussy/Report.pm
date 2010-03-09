@@ -173,20 +173,18 @@ sub Configurations
   my ($sort, $category) = @_;
   my (@configurations, @sorted_configurations) = ((), ());
   my @reports = List(undef, undef);
-  my %field;
 
   foreach my $r (@reports)
   {
     my $conf = Configuration($r);
-    $field{$conf->{$sort}} = 1;
     push @configurations, $conf
       if ((!defined $category)
       || ((defined $conf->{category}) && ($conf->{category} eq $category))
       || (($category eq 'various') && (!defined $conf->{category})));
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);

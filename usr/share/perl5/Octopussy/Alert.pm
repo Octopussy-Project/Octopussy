@@ -204,17 +204,15 @@ sub Configurations
   my $sort = shift || 'name';
   my (@configurations, @sorted_configurations) = ((), ());
   my @alerts = List();
-  my %field;
 
   foreach my $a (@alerts)
   {
     my $conf = Configuration($a);
-    $field{$conf->{$sort}} = 1;
     push @configurations, $conf;
   }
-  foreach my $f (sort keys %field)
+  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
   {
-    push @sorted_configurations, grep { $_->{$sort} eq $f } @configurations;
+    push @sorted_configurations, $c;
   }
 
   return (@sorted_configurations);
