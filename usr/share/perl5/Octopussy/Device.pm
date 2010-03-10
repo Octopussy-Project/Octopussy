@@ -590,7 +590,7 @@ sub Types
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
   my @list = ();
-  foreach my $t (AAT::ARRAY($conf->{device_type}))
+  foreach my $t (sort { $a->{dt_id} cmp $b->{dt_id} } AAT::ARRAY($conf->{device_type}))
   {
     push @list, $t->{dt_id};
   }
@@ -626,11 +626,11 @@ sub Models
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
   my @list = ();
 
-  foreach my $t (AAT::ARRAY($conf->{device_type}))
+  foreach my $t (sort { $a->{dt_id} cmp $b->{dt_id} } AAT::ARRAY($conf->{device_type}))
   {
     if ($t->{dt_id} eq $type)
     {
-      foreach my $m (AAT::ARRAY($t->{device_model}))
+      foreach my $m (sort { $a->{dm_id} cmp $b->{dm_id} } AAT::ARRAY($t->{device_model}))
       {
         push @list,
           {
