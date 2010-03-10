@@ -48,6 +48,13 @@ ok($conf->{description} eq $DEV_DESC, 'Octopussy::Device::Modify()');
 Octopussy::DeviceGroup::Remove($DG_ID);
 ok(!-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::DeviceGroup::Remove()');
 
+# TO_DO
+# List()
+# Configurations()
+# Devices()
+# Remove_Device()
+# Services()
+
 1;
 
 =head1 AUTHOR
