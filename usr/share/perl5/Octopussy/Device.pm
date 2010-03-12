@@ -142,6 +142,7 @@ sub Remove
   return ($device);
 }
 
+
 =head2 List()
 
 Gets List of Devices
@@ -155,7 +156,10 @@ sub List
   return (AAT::XML::Name_List($dir_devices));
 }
 
+
 =head2 String_List
+
+Returns Device List as a string like 'Device list: <device_list>'
 
 =cut
 
@@ -557,9 +561,10 @@ sub Services_Statistics
   return (%stats);
 }
 
+
 =head2 With_Service($service)
 
-Returns List of Device which have Service '$service' in its Devices List
+Returns List of Device which have Service '$service' in its Services List
 
 =cut
 

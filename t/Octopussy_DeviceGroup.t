@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 2;
+use Test::More tests => 6;
 
 use Octopussy::DeviceGroup;
 
@@ -30,30 +30,28 @@ my %conf = (
   device      => ["${PREFIX}device1", "${PREFIX}device2"],
 );
 
+my @list1 = Octopussy::DeviceGroup::List();
+
 my $error1 = Octopussy::DeviceGroup::Add(\%conf);
 my $error2 = Octopussy::DeviceGroup::Add(\%conf);
-
 ok(((!defined $error1) && (defined $error2)), 'Octopussy::DeviceGroup::Add()');
 
-=head2
-my $conf = Octopussy::Device::Configuration("${PREFIX}device");
-ok($conf->{name} eq "${PREFIX}device", 'Octopussy::Device::Configuration()');
+my $conf = Octopussy::DeviceGroup::Configuration($DG_ID);
+ok($conf->{dg_id} eq "${PREFIX}devicegroup", 'Octopussy::DeviceGroup::Configuration()');
 
-Octopussy::Device::Modify(
-  {name => "${PREFIX}device", description => $DEV_DESC});
-$conf = Octopussy::Device::Configuration("${PREFIX}device");
-ok($conf->{description} eq $DEV_DESC, 'Octopussy::Device::Modify()');
-=cut
+my @list2 = Octopussy::DeviceGroup::List();
+ok((scalar @list1 == scalar @list2 - 1) && (grep /$DG_ID/, @list2), 
+	'Octopussy::DeviceGroup::List()');
+
+my @devices = Octopussy::DeviceGroup::Devices($DG_ID);
+ok(scalar @devices == 2, 'Octopussy::DeviceGroup::Devices()');
+
+my $nb_dgs = Octopussy::DeviceGroup::Remove_Device("${PREFIX}device1");
+
+ok(scalar @devices == 2, 'Octopussy::DeviceGroup::Devices()');
 
 Octopussy::DeviceGroup::Remove($DG_ID);
 ok(!-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::DeviceGroup::Remove()');
-
-# TO_DO
-# List()
-# Configurations()
-# Devices()
-# Remove_Device()
-# Services()
 
 1;
 

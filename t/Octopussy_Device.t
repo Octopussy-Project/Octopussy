@@ -14,7 +14,8 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 9;
+use List::MoreUtils qw(true);
+use Test::More tests => 14;
 
 use Octopussy;
 use Octopussy::Device;
@@ -41,6 +42,9 @@ ok($nb_services == scalar @SERVICES, 'Octopussy::Device::Add_Service()');
 my @services = Octopussy::Device::Services($DEVICE);
 ok(scalar @services == scalar @SERVICES, 'Octopussy::Device::Services()');
 
+my @list_with = Octopussy::Device::With_Service('Octopussy');
+ok((grep /$DEVICE/, @list_with), 'Octopussy::Device::With_Service()');
+
 $nb_services = Octopussy::Device::Remove_Service($DEVICE, 'Octopussy');
 ok($nb_services == scalar @SERVICES - 1, 'Octopussy::Device::Remove_Service()');
 
@@ -56,18 +60,29 @@ Octopussy::Device::Modify({name => $DEVICE, description => $DEV_DESC});
 $conf = Octopussy::Device::Configuration($DEVICE);
 ok($conf->{description} eq $DEV_DESC, 'Octopussy::Device::Modify()');
 
+my @list = Octopussy::Device::List();
+ok((grep /$DEVICE/, @list), 'Octopussy::Device::List()');
+
+my $str1 = Octopussy::Device::String_List();
+my $str2 = Octopussy::Device::String_List('any');
+ok($str1 =~ /^Device list: .*$DEVICE.*$/ && $str2 =~ /^Device list: -ANY-, .*$DEVICE.*$/,
+	'Octopussy::Device::String_List');
+	
 Octopussy::Device::Remove($DEVICE);
 ok(!-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::Device::Remove()');
 
+my @types = Octopussy::Device::Types();
+my $nb_types = scalar(grep /^(Desktop PC|Firewall|Router|Server|Switch)$/, @types);
+ok(scalar @types >= 10 && $nb_types == 5, 'Octopussy::Device::Types()');
+
+my @models = Octopussy::Device::Models('Server');
+my $nb_models = true { $_->{name} =~ /^(Linux|Windows).*$/ } @models;
+ok(scalar @models >= 20 && $nb_models >= 14, 'Octopussy::Device::Models()');
+
 # TO_DO
-# List()
-# String_List()
 # Filtered_Configurations()
 # Services_Configurations()
-# With_Service()
-# Types()
 # Type_Configurations()
-# Models()
 
 1;
 

@@ -70,6 +70,7 @@ sub Remove
   return (undef);
 }
 
+
 =head2 List()
 
 Get List of Device Group
@@ -83,6 +84,7 @@ sub List
 
   return (@dgs);
 }
+
 
 =head2 Configuration($devicegroup)
 
@@ -144,6 +146,7 @@ sub Configurations
   return (@sorted_configurations);
 }
 
+
 =head2 Devices($devicegroup)
 
 Get Devices for the devicegroup '$devicegroup'
@@ -183,6 +186,7 @@ sub Devices
 
   return (@devices);
 }
+
 
 =head2 Remove_Device($device)
 

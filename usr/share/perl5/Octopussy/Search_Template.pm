@@ -109,7 +109,7 @@ Get template name / user List
 
 Parameters:
 
-$sort - selected field to sort List
+$sort - selected field to sort List (default: 'name')
 
 Returns:
 
@@ -119,8 +119,8 @@ Returns:
 
 sub List_Any_User
 {
-  my $sort = shift;
-  my (@list, @sorted_list) = ();
+  my $sort = shift || 'name';
+  my (@list, @sorted_list) = ((), ());
 
   $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
   my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
@@ -130,7 +130,6 @@ sub List_Any_User
     foreach my $f (@files)
     {
       my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
-      my $key = (defined $conf->{$sort} ? $conf->{$sort} : $d);
       push @list, {name => $conf->{name}, user => $d}
         if (defined $conf->{name});
     }
