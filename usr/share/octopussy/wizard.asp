@@ -7,7 +7,7 @@ my $timestamp = $Request->QueryString("timestamp");
 
 my $title = (AAT::NULL($device) 
   ? AAT::Translation("_LOGS_WIZARD") 
-  : sprintf("%s [%s]", AAT::Translation("_LOGS_WIZARD"), $device));
+  : sprintf("%s (%s)", AAT::Translation("_LOGS_WIZARD"), $device));
 %>
 <WebUI:PageTop title="$title" />
 <%
