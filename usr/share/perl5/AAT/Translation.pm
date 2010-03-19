@@ -50,7 +50,6 @@ sub Get
 {
   my ($lang, $str) = @_;
 
-	$lang = lc($lang);
   return (undef) if (AAT::NULL($str));
   Init($lang) if (!defined $AAT_Translation{$lang}{'_USER'});
   $AAT_Translation{$lang}{$str} = (loc($str) || $str)
