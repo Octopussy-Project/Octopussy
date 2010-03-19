@@ -6,7 +6,7 @@ my $sort = $arg{sort};
 $Response->Include("AAT/INC/AAT_Table_Function.inc",
   id => "schedules_table", url => $url, sort => $sort || "title",
   header_icon => "buttons/bt_report", 
-	header_title => "_STATISTICS_REPORT_SCHEDULER",
+	header_title => "_STATISTIC_REPORT_SCHEDULER",
   function => "Octopussy::Schedule::Configurations",
   function_args => [ $sort ],
 

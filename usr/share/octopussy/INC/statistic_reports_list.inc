@@ -1,7 +1,7 @@
 <%
 $Response->Include("AAT/INC/AAT_Table_Function.inc",
   id => "statistic_reports_table", url => $url, sort => $sort || "name",
-  header_icon => "buttons/bt_report", header_title => "_STATISTICS_REPORTS",
+  header_icon => "buttons/bt_report", header_title => "_STATISTIC_REPORTS",
   function => "Octopussy::Statistic_Report::Configurations",
   function_args => [ $sort ],
   fields => [
