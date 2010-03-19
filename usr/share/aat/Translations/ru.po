@@ -217,6 +217,18 @@ msgstr "Конфигурационнай файл"
 msgid "_DASHBOARD"
 msgstr "Панель управления"
 
+msgid "_DATASOURCE"
+msgstr "_DATASOURCE"
+
+msgid "_DATASOURCES"
+msgstr "_DATASOURCES"
+
+msgid "_DATASOURCE_VALUE"
+msgstr "_DATASOURCE_VALUE"
+
+msgid "_DATASOURCES_VALUE"
+msgstr "_DATASOURCES_VALUE"
+
 msgid "_DELETE"
 msgstr "Удалить"
 
@@ -247,14 +259,23 @@ msgstr "_ICONS_AND_TEXT"
 msgid "_ICONS_ONLY"
 msgstr "_ICONS_ONLY"
 
+msgid "_INFORMATION"
+msgstr "_INFORMATION"
+
 msgid "_KEY"
 msgstr "Ключ"
+
+msgid "_LABEL"
+msgstr "_LABEL"
 
 msgid "_LOGOUT"
 msgstr "Выйти"
 
 msgid "_MENU_DISPLAY"
 msgstr "_MENU_DISPLAY"
+
+msgid "_MODIFICATION"
+msgstr "_MODIFICATION"
 
 msgid "_MODIFY"
 msgstr "Изменить"
@@ -391,6 +412,9 @@ msgstr "Название"
 msgid "_NB"
 msgstr "_NB"
 
+msgid "_NB_ITEMS"
+msgstr "_NB_ITEMS"
+
 msgid "_NEW_PASSWORD"
 msgstr "_NEW_PASSWORD"
 
@@ -474,6 +498,12 @@ msgstr "Тревоги"
 
 msgid "_ALERTS_VIEWER"
 msgstr "Просмотр тревог"
+
+msgid "_AUTHENTICATION"
+msgstr "_AUTHENTICATION"
+
+msgid "_BACK"
+msgstr "_BACK"
 
 msgid "_BASE"
 msgstr "База"
@@ -583,6 +613,9 @@ msgstr "Тип графика"
 msgid "_GRAPH_WIDTH"
 msgstr "Ширина графика"
 
+msgid "_GRAPH_Y_LABEL"
+msgstr "_GRAPH_Y_LABEL"
+
 msgid "_GROUP_NAME"
 msgstr "Название графика"
 
@@ -615,6 +648,9 @@ msgstr "Лог"
 
 msgid "_LOG_LEVEL"
 msgstr "Уровень лога"
+
+msgid "_LOG_REGEXP"
+msgstr "_LOG_REGEXP"
 
 msgid "_LOG_TYPE"
 msgstr "Тип лога"
@@ -667,6 +703,9 @@ msgstr "Nb-сообщения"
 msgid "_NB_REPORTS"
 msgstr "Nb-отчёты"
 
+msgid "_NEGATE"
+msgstr "_NEGATE"
+
 msgid "_NEW_ALERT"
 msgstr "Новая тревога"
 
@@ -711,6 +750,9 @@ msgstr "Новый сервис"
 
 msgid "_NEW_SERVICEGROUP"
 msgstr "_NEW_SERVICEGROUP"
+
+msgid "_NEW_STATIC_ALERT"
+msgstr "_NEW_STATIC_ALERT"
 
 msgid "_NEW_STATIC_DEVICEGROUP"
 msgstr "Новая статическая группа устройств"
@@ -757,6 +799,9 @@ msgstr "Период"
 msgid "_PERIODS"
 msgstr "Периоды"
 
+msgid "_PERL_FUNCTION"
+msgstr "_PERL_FUNCTION"
+
 msgid "_PROCESSOR"
 msgstr "Процессор"
 
@@ -768,6 +813,9 @@ msgstr "Стойка"
 
 msgid "_RANK"
 msgstr "Ранг"
+
+msgid "_REAL_TIME_LOGS_VIEWER"
+msgstr "_REAL_TIME_LOGS_VIEWER"
 
 msgid "_REGEXP_EXC"
 msgstr "Регулярное выражение (искл.)"
@@ -808,14 +856,29 @@ msgstr "Правка отчёта"
 msgid "_REPORT_FIELDS_ORDER"
 msgstr "Порядок полей в отчёте"
 
+msgid "_REPORT_FILE_DOESNT_EXIST"
+msgstr "_REPORT_FILE_DOESNT_EXIST"
+
 msgid "_REPORT_HTML"
 msgstr "Отчёт в формате HTML"
+
+msgid "_REPORT_IN_PROGRESS"
+msgstr "_REPORT_IN_PROGRESS"
 
 msgid "_REPORT_NAME"
 msgstr "Название отчёта"
 
+msgid "_REPORT_OFC"
+msgstr "_REPORT_OFC"
+
 msgid "_REPORT_PDF"
 msgstr "Отчёт в формате PDF"
+
+msgid "_REPORT_RRD_GRAPH"
+msgstr "_REPORT_RRD_GRAPH"
+
+msgid "_REPORT_RRD_GRAPH_CREATION"
+msgstr "_REPORT_RRD_GRAPH_CREATION"
 
 msgid "_REPORT_SCHEDULER"
 msgstr "Расписание отчёта"
@@ -841,6 +904,12 @@ msgstr "Роль"
 msgid "_ROOM"
 msgstr "Комната"
 
+msgid "_ROTATE_LEFT"
+msgstr "_ROTATE_LEFT"
+
+msgid "_ROTATE_RIGHT"
+msgstr "_ROTATE_RIGHT"
+
 msgid "_RUNNING_REPORTS"
 msgstr "_RUNNING_REPORTS"
 
@@ -852,6 +921,9 @@ msgstr "Расписание"
 
 msgid "_SCHEDULE_REPORT"
 msgstr "Отчёт по планировщику"
+
+msgid "_SCHEDULE_STATISTIC_REPORT"
+msgstr "_SCHEDULE_STATISTIC_REPORT"
 
 msgid "_SCHEDULER"
 msgstr "Планировщик"
@@ -886,6 +958,12 @@ msgstr "Сервисы"
 msgid "_SERVICES_UPDATES"
 msgstr "Обновления сервисов"
 
+msgid "_SOURCE"
+msgstr "_SOURCE"
+
+msgid "_SHOW_DIFF"
+msgstr "_SHOW_DIFF"
+
 msgid "_START"
 msgstr "Пуск"
 
@@ -901,8 +979,17 @@ msgstr "_STATE"
 msgid "_STATIC"
 msgstr "Статический"
 
+msgid "_STATIC_ALERT_CONFIGURATION"
+msgstr "_STATIC_ALERT_CONFIGURATION"
+
 msgid "_STATISTICS"
 msgstr "_STATISTIC"
+
+msgid "_STATISTIC_REPORT_EDITION"
+msgstr "_STATISTIC_REPORT_EDITION"
+
+msgid "_STATISTIC_REPORT_SCHEDULER"
+msgstr "_STATISTIC_REPORT_SCHEDULER"
 
 msgid "_STATISTIC_REPORTS"
 msgstr "Статистические отчёты"
@@ -918,6 +1005,9 @@ msgstr "Запрос поддержки"
 
 msgid "_SWAP_USAGE"
 msgstr "Использование swap"
+
+msgid "_SYSLOG_OUTPUT"
+msgstr "_SYSLOG_OUTPUT"
 
 msgid "_SYSTEM_CONFIG"
 msgstr "Системная конфигурация"
@@ -949,6 +1039,9 @@ msgstr "Ожидание информации"
 msgid "_TICKET_WORK_PROGRESS"
 msgstr "В процессе"
 
+msgid "_TIMELINE"
+msgstr "_TIMELINE"
+
 msgid "_TIMEPERIOD"
 msgstr "Период времени"
 
@@ -957,6 +1050,9 @@ msgstr "Название периода времени"
 
 msgid "_TIMEPERIODS"
 msgstr "Периоды времени"
+
+msgid "_TIMESTEP"
+msgstr "_TIMESTEP"
 
 msgid "_UNKNOWN_MSGS"
 msgstr "Неизвестные сообщения"
@@ -978,6 +1074,21 @@ msgstr "Сервер пользователей"
 
 msgid "_WORLD_STATISTICS"
 msgstr "_WORLD_STATISTICS"
+
+msgid "_ZABBIX_HOST_DEFINED"
+msgstr "_ZABBIX_HOST_DEFINED"
+
+msgid "_ZABBIX_SERVER"
+msgstr "_ZABBIX_SERVER"
+
+msgid "_ZABBIX_ITEM_DEFINED"
+msgstr "_ZABBIX_ITEM_DEFINED"
+
+msgid "_ZOOM_IN"
+msgstr "_ZOOM_IN"
+
+msgid "_ZOOM_OUT"
+msgstr "_ZOOM_OUT"
 
 msgid "_DLG_DELETE_ALERT"
 msgstr "_Do you really want to delete Alert '%%arg1%%' ?"
@@ -1093,6 +1204,12 @@ msgstr "По всем другим вопросам обращайтесь ко 
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Создание динамической тревоги"
 
+msgid "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "_MSG_EXTRACT_PROGRESS_DATA"
+
+msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+
 msgid "_MSG_FIELD_DONT_EXIST"
 msgstr "Поле не существует!"
 
@@ -1113,6 +1230,9 @@ msgstr "За более подробной информацией по созд�
 
 msgid "_MSG_MSGID_ALREADY_EXISTS"
 msgstr "ID сообщения уже существует!"
+
+msgid "_MSG_MSGID_CANT_BE_NULL"
+msgstr "_MSG_MSGID_CANT_BE_NULL"
 
 msgid "_MSG_MSGS_FOR_SERVICE"
 msgstr "Сообщения для сервиса %s (версия %s)"
@@ -1167,6 +1287,9 @@ msgstr "Получение файлов данных..."
 
 msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
 msgstr "Опрашивание базы данных..."
+
+msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
 
 msgid "_MSG_RESTART_OCTOPUSSY"
 msgstr "Перезагрузить Octopussy"

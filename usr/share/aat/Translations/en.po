@@ -1,7 +1,7 @@
-msgid "ENGLISH"
+msgid "_ENGLISH"
 msgstr "English"
 
-msgid "FRench"
+msgid "_FRENCH"
 msgstr "French"
 
 msgid "_GERMAN"
@@ -217,6 +217,18 @@ msgstr "Configuration File"
 msgid "_DASHBOARD"
 msgstr "Dashboard"
 
+msgid "_DATASOURCE"
+msgstr "Datasource"
+
+msgid "_DATASOURCES"
+msgstr "Datasources"
+
+msgid "_DATASOURCE_VALUE"
+msgstr "Datasource Value"
+
+msgid "_DATASOURCES_VALUE"
+msgstr "Datasources Value"
+
 msgid "_DELETE"
 msgstr "Delete"
 
@@ -247,14 +259,23 @@ msgstr "Icons and Text"
 msgid "_ICONS_ONLY"
 msgstr "Icons Only"
 
+msgid "_INFORMATION"
+msgstr "Information"
+
 msgid "_KEY"
 msgstr "Key"
+
+msgid "_LABEL"
+msgstr "Label"
 
 msgid "_LOGOUT"
 msgstr "Logout"
 
 msgid "_MENU_DISPLAY"
 msgstr "Menu Display"
+
+msgid "_MODIFICATION"
+msgstr "Modification"
 
 msgid "_MODIFY"
 msgstr "Modify"
@@ -391,6 +412,9 @@ msgstr "Name"
 msgid "_NB"
 msgstr "Nb"
 
+msgid "_NB_ITEMS"
+msgstr "Nb Items"
+
 msgid "_NEW_PASSWORD"
 msgstr "New Password"
 
@@ -474,6 +498,12 @@ msgstr "Alerts"
 
 msgid "_ALERTS_VIEWER"
 msgstr "Alerts Viewer"
+
+msgid "_AUTHENTICATION"
+msgstr "Authentication"
+
+msgid "_BACK"
+msgstr "Back"
 
 msgid "_BASE"
 msgstr "Base"
@@ -583,6 +613,9 @@ msgstr "Graph Type"
 msgid "_GRAPH_WIDTH"
 msgstr "Graph Width"
 
+msgid "_GRAPH_Y_LABEL"
+msgstr "Graph Y Label"
+
 msgid "_GROUP_NAME"
 msgstr "Group Name"
 
@@ -615,6 +648,9 @@ msgstr "Log"
 
 msgid "_LOG_LEVEL"
 msgstr "Log Level"
+
+msgid "_LOG_REGEXP"
+msgstr "Log Regexp"
 
 msgid "_LOG_TYPE"
 msgstr "Log Type"
@@ -667,6 +703,9 @@ msgstr "Nb Messages"
 msgid "_NB_REPORTS"
 msgstr "Nb Reports"
 
+msgid "_NEGATE"
+msgstr "Negate"
+
 msgid "_NEW_ALERT"
 msgstr "New Alert"
 
@@ -711,6 +750,9 @@ msgstr "New Service"
 
 msgid "_NEW_SERVICEGROUP"
 msgstr "New ServiceGroup"
+
+msgid "_NEW_STATIC_ALERT"
+msgstr "New Static Alert"
 
 msgid "_NEW_STATIC_DEVICEGROUP"
 msgstr "New Static DeviceGroup"
@@ -757,6 +799,9 @@ msgstr "Period"
 msgid "_PERIODS"
 msgstr "Periods"
 
+msgid "_PERL_FUNCTION"
+msgstr "Perl Function"
+
 msgid "_PROCESSOR"
 msgstr "Processor"
 
@@ -768,6 +813,9 @@ msgstr "Rack"
 
 msgid "_RANK"
 msgstr "Rank"
+
+msgid "_REAL_TIME_LOGS_VIEWER"
+msgstr "Real Time Logs Viewer"
 
 msgid "_REGEXP_EXC"
 msgstr "Regexp (Excl.)"
@@ -808,14 +856,29 @@ msgstr "Report Edition"
 msgid "_REPORT_FIELDS_ORDER"
 msgstr "Report Fields Order"
 
+msgid "_REPORT_FILE_DOESNT_EXIST"
+msgstr "Report File doesn't exist !"
+
 msgid "_REPORT_HTML"
 msgstr "HTML Format Report"
+
+msgid "_REPORT_IN_PROGRESS"
+msgstr "Report in Progress"
 
 msgid "_REPORT_NAME"
 msgstr "Report Name"
 
+msgid "_REPORT_OFC"
+msgstr "Open Flash Chart Report"
+
 msgid "_REPORT_PDF"
 msgstr "PDF Format Report"
+
+msgid "_REPORT_RRD_GRAPH"
+msgstr "Graph RRD Report"
+
+msgid "_REPORT_RRD_GRAPH_CREATION"
+msgstr "RRD Graph Report Creation"
 
 msgid "_REPORT_SCHEDULER"
 msgstr "Report Scheduler"
@@ -841,6 +904,12 @@ msgstr "Role"
 msgid "_ROOM"
 msgstr "Room"
 
+msgid "_ROTATE_LEFT"
+msgstr "Rotate Left"
+
+msgid "_ROTATE_RIGHT"
+msgstr "Rotate Right"
+
 msgid "_RUNNING_REPORTS"
 msgstr "Running Reports"
 
@@ -851,7 +920,10 @@ msgid "_SCHEDULE"
 msgstr "Schedule"
 
 msgid "_SCHEDULE_REPORT"
-msgstr "Scheduler Report"
+msgstr "Schedule Report"
+
+msgid "_SCHEDULE_STATISTIC_REPORT"
+msgstr "Schedule Statistic Report"
 
 msgid "_SCHEDULER"
 msgstr "Scheduler"
@@ -886,6 +958,12 @@ msgstr "Services"
 msgid "_SERVICES_UPDATES"
 msgstr "Services Updates"
 
+msgid "_SOURCE"
+msgstr "Source"
+
+msgid "_SHOW_DIFF"
+msgstr "Show Differences"
+
 msgid "_START"
 msgstr "Start"
 
@@ -901,8 +979,17 @@ msgstr "State"
 msgid "_STATIC"
 msgstr "Static"
 
+msgid "_STATIC_ALERT_CONFIGURATION"
+msgstr "Static Alert Configuration"
+
 msgid "_STATISTICS"
 msgstr "Statistics"
+
+msgid "_STATISTIC_REPORT_EDITION"
+msgstr "Statistic Report Edition"
+
+msgid "_STATISTIC_REPORT_SCHEDULER"
+msgstr "Statistic Report Scheduler"
 
 msgid "_STATISTIC_REPORTS"
 msgstr "Statistic Reports"
@@ -918,6 +1005,9 @@ msgstr "Support Request"
 
 msgid "_SWAP_USAGE"
 msgstr "Swap Usage"
+
+msgid "_SYSLOG_OUTPUT"
+msgstr "Syslog Output"
 
 msgid "_SYSTEM_CONFIG"
 msgstr "System Configuration"
@@ -949,6 +1039,9 @@ msgstr "Waiting for Info"
 msgid "_TICKET_WORK_PROGRESS"
 msgstr "Work in Progress"
 
+msgid "_TIMELINE"
+msgstr "Timeline"
+
 msgid "_TIMEPERIOD"
 msgstr "TimePeriod"
 
@@ -957,6 +1050,9 @@ msgstr "TimePeriod Name"
 
 msgid "_TIMEPERIODS"
 msgstr "TimePeriods"
+
+msgid "_TIMESTEP"
+msgstr "Time Step"
 
 msgid "_UNKNOWN_MSGS"
 msgstr "Unknown Messages"
@@ -978,6 +1074,21 @@ msgstr "Users Server"
 
 msgid "_WORLD_STATISTICS"
 msgstr "World Statistics"
+
+msgid "_ZABBIX_HOST_DEFINED"
+msgstr "Host defined in Zabbix"
+
+msgid "_ZABBIX_SERVER"
+msgstr "Zabbix Server"
+
+msgid "_ZABBIX_ITEM_DEFINED"
+msgstr "Item defined in Zabbix"
+
+msgid "_ZOOM_IN"
+msgstr "Zoom In"
+
+msgid "_ZOOM_OUT"
+msgstr "Zoom Out"
 
 msgid "_DLG_DELETE_ALERT"
 msgstr "Do you really want to delete Alert '%%arg1%%' ?"
@@ -1093,6 +1204,12 @@ msgstr "For anything else, contact me at octo.devel@gmail.com"
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Dynamic Alert Creation"
 
+msgid "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "Working on Data..."
+
+msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "Listing Files..."
+
 msgid "_MSG_FIELD_DONT_EXIST"
 msgstr "Field doesn't exist !"
 
@@ -1113,6 +1230,9 @@ msgstr "For more information on creating Maps, go to the Octopussy WebSite !"
 
 msgid "_MSG_MSGID_ALREADY_EXISTS"
 msgstr "Message ID already exists !"
+
+msgid "_MSG_MSGID_CANT_BE_NULL"
+msgstr "Message ID can't be NULL"
 
 msgid "_MSG_MSGS_FOR_SERVICE"
 msgstr "Messages for Service %s (version %s)"
@@ -1167,6 +1287,9 @@ msgstr "Getting data files..."
 
 msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
 msgstr "Querying Database..."
+
+msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "Loading Report Configuration..."
 
 msgid "_MSG_RESTART_OCTOPUSSY"
 msgstr "Restart Octopussy"
@@ -1255,3 +1378,5 @@ msgstr "Proxy is used to get updates through a proxy.<br> <b>Server:</b> (<i>you
 msgid "_TOOLTIP_SYSTEM_SMTP"
 msgstr "SMTP is used to send Alerts and Reports to Contacts or contact Octopussy support.<br> <b>Server:</b> (<i>yoursmtp.yourdomain.com</i>)<br> <b>Sender:</b> (<i>you@yourdomain.com</i>)<br>"
 
+msgid "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "Configuration to send alert to your Zabbix Server"

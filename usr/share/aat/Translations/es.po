@@ -217,6 +217,18 @@ msgstr "Fichero de Configuracion"
 msgid "_DASHBOARD"
 msgstr "Dashboard"
 
+msgid "_DATASOURCE"
+msgstr "_DATASOURCE"
+
+msgid "_DATASOURCES"
+msgstr "_DATASOURCES"
+
+msgid "_DATASOURCE_VALUE"
+msgstr "_DATASOURCE_VALUE"
+
+msgid "_DATASOURCES_VALUE"
+msgstr "_DATASOURCES_VALUE"
+
 msgid "_DELETE"
 msgstr "Suprimir"
 
@@ -247,14 +259,23 @@ msgstr "Iconos y Texto"
 msgid "_ICONS_ONLY"
 msgstr "Solo Iconos"
 
+msgid "_INFORMATION"
+msgstr "_INFORMATION"
+
 msgid "_KEY"
 msgstr "Llave"
+
+msgid "_LABEL"
+msgstr "_LABEL"
 
 msgid "_LOGOUT"
 msgstr "Desconexion"
 
 msgid "_MENU_DISPLAY"
 msgstr "Mostrar Menu"
+
+msgid "_MODIFICATION"
+msgstr "_MODIFICATION"
 
 msgid "_MODIFY"
 msgstr "Modificar"
@@ -388,14 +409,17 @@ msgstr "Servidor de Correo"
 msgid "_NAME"
 msgstr "Nombre"
 
+msgid "_NB"
+msgstr "_NB"
+
+msgid "_NB_ITEMS"
+msgstr "_NB_ITEMS"
+
 msgid "_NEW_PASSWORD"
 msgstr "Nueva Contraseña"
 
 msgid "_PASSWORD"
 msgstr "Contrasena"
-
-msgid "_NB"
-msgstr "_NB"
 
 msgid "_PORT"
 msgstr "Puerto"
@@ -474,6 +498,12 @@ msgstr "Alertas"
 
 msgid "_ALERTS_VIEWER"
 msgstr "Visor de Alertas"
+
+msgid "_AUTHENTICATION"
+msgstr "_AUTHENTICATION"
+
+msgid "_BACK"
+msgstr "_BACK"
 
 msgid "_BASE"
 msgstr "Base"
@@ -583,6 +613,9 @@ msgstr "Tipo de Grafico"
 msgid "_GRAPH_WIDTH"
 msgstr "Ancho del Grafico"
 
+msgid "_GRAPH_Y_LABEL"
+msgstr "_GRAPH_Y_LABEL"
+
 msgid "_GROUP_NAME"
 msgstr "Nombre de Grupo"
 
@@ -616,17 +649,20 @@ msgstr "Log"
 msgid "_LOG_LEVEL"
 msgstr "Nivel de Log"
 
+msgid "_LOG_REGEXP"
+msgstr "_LOG_REGEXP"
+
 msgid "_LOG_TYPE"
 msgstr "Tipo de Log"
 
 msgid "_LOGROTATE"
 msgstr "Rotado de Logs"
 
-msgid "_LOGS_VIEWER"
-msgstr "Visor de Logs"
-
 msgid "_LOGS_AVAILABILITY"
 msgstr "_Logs Availability"
+
+msgid "_LOGS_VIEWER"
+msgstr "Visor de Logs"
 
 msgid "_LOGS_WIZARD"
 msgstr "Asistente de Logs"
@@ -666,6 +702,9 @@ msgstr "Mensages NB"
 
 msgid "_NB_REPORTS"
 msgstr "Informes NB"
+
+msgid "_NEGATE"
+msgstr "_NEGATE"
 
 msgid "_NEW_ALERT"
 msgstr "Nueva Alarma"
@@ -712,6 +751,9 @@ msgstr "Nuevo Servicio"
 msgid "_NEW_SERVICEGROUP"
 msgstr "Nuevo Grupo de Servicio"
 
+msgid "_NEW_STATIC_ALERT"
+msgstr "_NEW_STATIC_ALERT"
+
 msgid "_NEW_STATIC_DEVICEGROUP"
 msgstr "Nuevo Grupo Estatico de Disposivos"
 
@@ -757,6 +799,9 @@ msgstr "Periodo"
 msgid "_PERIODS"
 msgstr "Periodos"
 
+msgid "_PERL_FUNCTION"
+msgstr "_PERL_FUNCTION"
+
 msgid "_PROCESSOR"
 msgstr "Procesador"
 
@@ -768,6 +813,9 @@ msgstr "Rack"
 
 msgid "_RANK"
 msgstr "Puesto"
+
+msgid "_REAL_TIME_LOGS_VIEWER"
+msgstr "_REAL_TIME_LOGS_VIEWER"
 
 msgid "_REGEXP_EXC"
 msgstr "Regexp (Excl.)"
@@ -808,14 +856,29 @@ msgstr "_REPORT_EDITION"
 msgid "_REPORT_FIELDS_ORDER"
 msgstr "Informe Campos Ordenados"
 
+msgid "_REPORT_FILE_DOESNT_EXIST"
+msgstr "_REPORT_FILE_DOESNT_EXIST"
+
 msgid "_REPORT_HTML"
 msgstr "Informe HTML"
+
+msgid "_REPORT_IN_PROGRESS"
+msgstr "_REPORT_IN_PROGRESS"
 
 msgid "_REPORT_NAME"
 msgstr "Informe Nombre"
 
+msgid "_REPORT_OFC"
+msgstr "_REPORT_OFC"
+
 msgid "_REPORT_PDF"
 msgstr "Informe PDF"
+
+msgid "_REPORT_RRD_GRAPH"
+msgstr "_REPORT_RRD_GRAPH"
+
+msgid "_REPORT_RRD_GRAPH_CREATION"
+msgstr "_REPORT_RRD_GRAPH_CREATION"
 
 msgid "_REPORT_SCHEDULER"
 msgstr "Planificador de Informes"
@@ -841,6 +904,12 @@ msgstr "Rol"
 msgid "_ROOM"
 msgstr "Sala"
 
+msgid "_ROTATE_LEFT"
+msgstr "_ROTATE_LEFT"
+
+msgid "_ROTATE_RIGHT"
+msgstr "_ROTATE_RIGHT"
+
 msgid "_RUNNING_REPORTS"
 msgstr "Ejecutando informes"
 
@@ -852,6 +921,9 @@ msgstr "Planificar"
 
 msgid "_SCHEDULE_REPORT"
 msgstr "Planificar un Informe"
+
+msgid "_SCHEDULE_STATISTIC_REPORT"
+msgstr "_SCHEDULE_STATISTIC_REPORT"
 
 msgid "_SCHEDULER"
 msgstr "Planificador"
@@ -886,6 +958,12 @@ msgstr "Servicios"
 msgid "_SERVICES_UPDATES"
 msgstr "Actualizaciones de servicios"
 
+msgid "_SOURCE"
+msgstr "_SOURCE"
+
+msgid "_SHOW_DIFF"
+msgstr "_SHOW_DIFF"
+
 msgid "_START"
 msgstr "Inicio"
 
@@ -901,8 +979,17 @@ msgstr "Estado"
 msgid "_STATIC"
 msgstr "Estatico"
 
+msgid "_STATIC_ALERT_CONFIGURATION"
+msgstr "_STATIC_ALERT_CONFIGURATION"
+
 msgid "_STATISTICS"
 msgstr "Estadisticos"
+
+msgid "_STATISTIC_REPORT_EDITION"
+msgstr "_STATISTIC_REPORT_EDITION"
+
+msgid "_STATISTIC_REPORT_SCHEDULER"
+msgstr "_STATISTIC_REPORT_SCHEDULER"
 
 msgid "_STATISTIC_REPORTS"
 msgstr "Informes estadisticos"
@@ -918,6 +1005,9 @@ msgstr "Solicitar Soporte"
 
 msgid "_SWAP_USAGE"
 msgstr "Uso de Swap"
+
+msgid "_SYSLOG_OUTPUT"
+msgstr "_SYSLOG_OUTPUT"
 
 msgid "_SYSTEM_CONFIG"
 msgstr "Configuracion de Sistema"
@@ -949,6 +1039,9 @@ msgstr "Esperando informacion"
 msgid "_TICKET_WORK_PROGRESS"
 msgstr "Trabajo en curso"
 
+msgid "_TIMELINE"
+msgstr "_TIMELINE"
+
 msgid "_TIMEPERIOD"
 msgstr "Periodo"
 
@@ -957,6 +1050,9 @@ msgstr "Nombre del Periodo"
 
 msgid "_TIMEPERIODS"
 msgstr "Periodos"
+
+msgid "_TIMESTEP"
+msgstr "_TIMESTEP"
 
 msgid "_UNKNOWN_MSGS"
 msgstr "Mensajes Desconocidos"
@@ -978,6 +1074,21 @@ msgstr "Servidor de Usuarios"
 
 msgid "_WORLD_STATISTICS"
 msgstr "Estadisticas mundiales"
+
+msgid "_ZABBIX_HOST_DEFINED"
+msgstr "_ZABBIX_HOST_DEFINED"
+
+msgid "_ZABBIX_SERVER"
+msgstr "_ZABBIX_SERVER"
+
+msgid "_ZABBIX_ITEM_DEFINED"
+msgstr "_ZABBIX_ITEM_DEFINED"
+
+msgid "_ZOOM_IN"
+msgstr "_ZOOM_IN"
+
+msgid "_ZOOM_OUT"
+msgstr "_ZOOM_OUT"
 
 msgid "_DLG_DELETE_ALERT"
 msgstr "Estas seguro de que quieres borrar la Alerta '%%arg1%%' ?"
@@ -1093,6 +1204,12 @@ msgstr "Para cualquier otra cosa, puedes contactar conmigo en octo.devel@gmail.c
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Creacion de Alertas Dinamicas"
 
+msgid "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "_MSG_EXTRACT_PROGRESS_DATA"
+
+msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+
 msgid "_MSG_FIELD_DONT_EXIST"
 msgstr "El campo no existe!"
 
@@ -1113,6 +1230,9 @@ msgstr "Para mas informacion en la creacion de Mapas, visita la pagina de web de
 
 msgid "_MSG_MSGID_ALREADY_EXISTS"
 msgstr "Message ID ya existe !"
+
+msgid "_MSG_MSGID_CANT_BE_NULL"
+msgstr "_MSG_MSGID_CANT_BE_NULL"
 
 msgid "_MSG_MSGS_FOR_SERVICE"
 msgstr "Mensajes para el Servicio %s (version %s)"
@@ -1167,6 +1287,9 @@ msgstr "Recuperando ficheros de datos..."
 
 msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
 msgstr "Consultando Base de datos..."
+
+msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
 
 msgid "_MSG_RESTART_OCTOPUSSY"
 msgstr "Reiniciar Octopussy"

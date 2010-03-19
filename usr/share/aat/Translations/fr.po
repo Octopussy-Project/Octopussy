@@ -217,6 +217,18 @@ msgstr "Fichier de Configuration"
 msgid "_DASHBOARD"
 msgstr "Tableau de Bord"
 
+msgid "_DATASOURCE"
+msgstr "Source de Données"
+
+msgid "_DATASOURCES"
+msgstr "Sources de Données"
+
+msgid "_DATASOURCE_VALUE"
+msgstr "Valeur de la Source de Données"
+
+msgid "_DATASOURCES_VALUE"
+msgstr "Valeur des Sources de Données"
+
 msgid "_DELETE"
 msgstr "Supprimer"
 
@@ -247,14 +259,23 @@ msgstr "Icones et Texte"
 msgid "_ICONS_ONLY"
 msgstr "Icones Seulement"
 
+msgid "_INFORMATION"
+msgstr "Information"
+
 msgid "_KEY"
 msgstr "Clé"
+
+msgid "_LABEL"
+msgstr "Label"
 
 msgid "_LOGOUT"
 msgstr "Déconnexion"
 
 msgid "_MENU_DISPLAY"
 msgstr "Affichage Menu"
+
+msgid "_MODIFICATION"
+msgstr "Modification"
 
 msgid "_MODIFY"
 msgstr "Modifier"
@@ -391,6 +412,9 @@ msgstr "Nom"
 msgid "_NB"
 msgstr "Nb"
 
+msgid "_NB_ITEMS"
+msgstr "Nb d'éléments"
+
 msgid "_NEW_PASSWORD"
 msgstr "Nouveau Mot de Passe"
 
@@ -474,6 +498,12 @@ msgstr "Alertes"
 
 msgid "_ALERTS_VIEWER"
 msgstr "Visionneur d'Alertes"
+
+msgid "_AUTHENTICATION"
+msgstr "Authentification"
+
+msgid "_BACK"
+msgstr "Retour"
 
 msgid "_BASE"
 msgstr "Base"
@@ -583,6 +613,9 @@ msgstr "Type de Graphique"
 msgid "_GRAPH_WIDTH"
 msgstr "Largeur du Graphique"
 
+msgid "_GRAPH_Y_LABEL"
+msgstr "Graph Y Label"
+
 msgid "_GROUP_NAME"
 msgstr "Nom du Groupe"
 
@@ -615,6 +648,9 @@ msgstr "Log"
 
 msgid "_LOG_LEVEL"
 msgstr "Niveau de Log"
+
+msgid "_LOG_REGEXP"
+msgstr "Log Regexp"
 
 msgid "_LOG_TYPE"
 msgstr "Type de Log"
@@ -667,6 +703,9 @@ msgstr "Nb Messages"
 msgid "_NB_REPORTS"
 msgstr "Nb Rapports"
 
+msgid "_NEGATE"
+msgstr "Negation"
+
 msgid "_NEW_ALERT"
 msgstr "Nouvelle Alerte"
 
@@ -711,6 +750,9 @@ msgstr "Nouveau Service"
 
 msgid "_NEW_SERVICEGROUP"
 msgstr "Nouveau Groupe de Services"
+
+msgid "_NEW_STATIC_ALERT"
+msgstr "New Static Alert"
 
 msgid "_NEW_STATIC_DEVICEGROUP"
 msgstr "Nouveau Groupe d'Equipement Statique"
@@ -757,6 +799,9 @@ msgstr "Période"
 msgid "_PERIODS"
 msgstr "Périodes"
 
+msgid "_PERL_FUNCTION"
+msgstr "Perl Function"
+
 msgid "_PROCESSOR"
 msgstr "Processeur"
 
@@ -768,6 +813,9 @@ msgstr "Rack"
 
 msgid "_RANK"
 msgstr "Rang"
+
+msgid "_REAL_TIME_LOGS_VIEWER"
+msgstr "Real Time Logs Viewer"
 
 msgid "_REGEXP_EXC"
 msgstr "Regexp (Excl.)"
@@ -808,14 +856,29 @@ msgstr "Edition de Rapport"
 msgid "_REPORT_FIELDS_ORDER"
 msgstr "Ordre des Champs du Rapport"
 
+msgid "_REPORT_FILE_DOESNT_EXIST"
+msgstr "Le fichier du rapport n'existe pas !"
+
 msgid "_REPORT_HTML"
 msgstr "Rapport au format HTML"
+
+msgid "_REPORT_IN_PROGRESS"
+msgstr "Rapport en cours"
 
 msgid "_REPORT_NAME"
 msgstr "Nom du Rapport"
 
+msgid "_REPORT_OFC"
+msgstr "Rapport Open Flash Chart"
+
 msgid "_REPORT_PDF"
 msgstr "Rapport au format PDF"
+
+msgid "_REPORT_RRD_GRAPH"
+msgstr "Rapport Graph RRD"
+
+msgid "_REPORT_RRD_GRAPH_CREATION"
+msgstr "RRD Graph Report Creation"
 
 msgid "_REPORT_SCHEDULER"
 msgstr "Planificateur de Rapport"
@@ -841,6 +904,12 @@ msgstr "Role"
 msgid "_ROOM"
 msgstr "Salle"
 
+msgid "_ROTATE_LEFT"
+msgstr "Rotation Gauche"
+
+msgid "_ROTATE_RIGHT"
+msgstr "Rotation Droite"
+
 msgid "_RUNNING_REPORTS"
 msgstr "Rapports en cours"
 
@@ -852,6 +921,9 @@ msgstr "Planifier"
 
 msgid "_SCHEDULE_REPORT"
 msgstr "Planifier un Rapport"
+
+msgid "_SCHEDULE_STATISTIC_REPORT"
+msgstr "Planifier un Rapport Statistique"
 
 msgid "_SCHEDULER"
 msgstr "Planificateur"
@@ -886,6 +958,12 @@ msgstr "Services"
 msgid "_SERVICES_UPDATES"
 msgstr "Mise à Jour de Services"
 
+msgid "_SOURCE"
+msgstr "Source"
+
+msgid "_SHOW_DIFF"
+msgstr "Montrer les Differences"
+
 msgid "_START"
 msgstr "Démarrer"
 
@@ -901,8 +979,17 @@ msgstr "Etat"
 msgid "_STATIC"
 msgstr "Statique"
 
+msgid "_STATIC_ALERT_CONFIGURATION"
+msgstr "Configuration d'Alerte Statique"
+
 msgid "_STATISTICS"
 msgstr "Statistiques"
+
+msgid "_STATISTIC_REPORT_EDITION"
+msgstr "Edition de Rapport Statistique"
+
+msgid "_STATISTIC_REPORT_SCHEDULER"
+msgstr "Planification de Rapport Statistique"
 
 msgid "_STATISTIC_REPORTS"
 msgstr "Rapports Statistiques"
@@ -918,6 +1005,9 @@ msgstr "Demande de Support"
 
 msgid "_SWAP_USAGE"
 msgstr "Utilisation Swap"
+
+msgid "_SYSLOG_OUTPUT"
+msgstr "Sortie Syslog"
 
 msgid "_SYSTEM_CONFIG"
 msgstr "Configuration Système"
@@ -949,6 +1039,9 @@ msgstr "En attente d'info"
 msgid "_TICKET_WORK_PROGRESS"
 msgstr "Travail en Cours"
 
+msgid "_TIMELINE"
+msgstr "Chronologie"
+
 msgid "_TIMEPERIOD"
 msgstr "Période"
 
@@ -957,6 +1050,9 @@ msgstr "Nom de la Période"
 
 msgid "_TIMEPERIODS"
 msgstr "Périodes"
+
+msgid "_TIMESTEP"
+msgstr "Etape"
 
 msgid "_UNKNOWN_MSGS"
 msgstr "Messages Inconnus"
@@ -978,6 +1074,21 @@ msgstr "Serveur Utilisateurs"
 
 msgid "_WORLD_STATISTICS"
 msgstr "Statistiques Mondiales"
+
+msgid "_ZABBIX_HOST_DEFINED"
+msgstr "Hote défini dans Zabbix"
+
+msgid "_ZABBIX_SERVER"
+msgstr "Serveur Zabbix"
+
+msgid "_ZABBIX_ITEM_DEFINED"
+msgstr "Elément défini dans Zabbix"
+
+msgid "_ZOOM_IN"
+msgstr "Zoom Avant"
+
+msgid "_ZOOM_OUT"
+msgstr "Zoom Arrière"
 
 msgid "_DLG_DELETE_ALERT"
 msgstr "Voulez vous vraiment supprimer l'Alerte '%%arg1%%' ?"
@@ -1093,6 +1204,12 @@ msgstr "Pour tout le reste, contactez moi a octo.devel@gmail.com"
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Création d'Alerte Dynamique"
 
+msgid "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "Extraction des Données..."
+
+msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "Liste des Fichiers..."
+
 msgid "_MSG_FIELD_DONT_EXIST"
 msgstr "Le champ n'existe pas !"
 
@@ -1113,6 +1230,9 @@ msgstr "Pour plus d'information sur la création des Maps, allez sur le site Web
 
 msgid "_MSG_MSGID_ALREADY_EXISTS"
 msgstr "Message ID déjà existant !"
+
+msgid "_MSG_MSGID_CANT_BE_NULL"
+msgstr "Message ID ne peut pas être nul"
 
 msgid "_MSG_MSGS_FOR_SERVICE"
 msgstr "Messages pour le Service %s (version %s)"
@@ -1167,6 +1287,9 @@ msgstr "Récuperation des fichiers de données..."
 
 msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
 msgstr "Requete sur la Base de Données..."
+
+msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "Chargement de la configuration du Rapport..."
 
 msgid "_MSG_RESTART_OCTOPUSSY"
 msgstr "Redémarrer Octopussy"
@@ -1255,3 +1378,5 @@ msgstr "Le Proxy est utilisé pour récupérer les mises à jour à travers un P
 msgid "_TOOLTIP_SYSTEM_SMTP"
 msgstr "SMTP est utilisé pour envoyer les Alertes et les Rapports aux Contacts ou contacter le support Octopussy.<br> <b>Serveur:</b> (<i>votresmtp.votredomaine.com</i>)<br> <b>Expediteur:</b> (<i>vous@votredomaine.com</i>)<br>"
 
+msgid "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "Configuration pour envoyer des alertes au serveur Zabbix"

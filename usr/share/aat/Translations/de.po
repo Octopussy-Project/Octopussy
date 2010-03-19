@@ -217,6 +217,18 @@ msgstr "Konfigurationsdatei"
 msgid "_DASHBOARD"
 msgstr "_DASHBOARD"
 
+msgid "_DATASOURCE"
+msgstr "_DATASOURCE"
+
+msgid "_DATASOURCES"
+msgstr "_DATASOURCES"
+
+msgid "_DATASOURCE_VALUE"
+msgstr "_DATASOURCE_VALUE"
+
+msgid "_DATASOURCES_VALUE"
+msgstr "_DATASOURCES_VALUE"
+
 msgid "_DELETE"
 msgstr "Loeschen"
 
@@ -247,14 +259,23 @@ msgstr "_ICONS_AND_TEXT"
 msgid "_ICONS_ONLY"
 msgstr "_ICONS_ONLY"
 
+msgid "_INFORMATION"
+msgstr "_INFORMATION"
+
 msgid "_KEY"
 msgstr "Key"
+
+msgid "_LABEL"
+msgstr "_LABEL"
 
 msgid "_LOGOUT"
 msgstr "Logout"
 
 msgid "_MENU_DISPLAY"
 msgstr "_MENU_DISPLAY"
+
+msgid "_MODIFICATION"
+msgstr "_MODIFICATION"
 
 msgid "_MODIFY"
 msgstr "Modifizieren"
@@ -391,6 +412,9 @@ msgstr "Name"
 msgid "_NB"
 msgstr "_NB"
 
+msgid "_NB_ITEMS"
+msgstr "_NB_ITEMS"
+
 msgid "_NEW_PASSWORD"
 msgstr "_NEW_PASSWORD"
 
@@ -474,6 +498,12 @@ msgstr "Anzeige Alarm"
 
 msgid "_ALERTS_VIEWER"
 msgstr "Anzeige Alarm"
+
+msgid "_AUTHENTICATION"
+msgstr "_AUTHENTICATION"
+
+msgid "_BACK"
+msgstr "_BACK"
 
 msgid "_BASE"
 msgstr "Base"
@@ -583,6 +613,9 @@ msgstr "_GRAPH_TYPE"
 msgid "_GRAPH_WIDTH"
 msgstr "_GRAPH_WIDTH"
 
+msgid "_GRAPH_Y_LABEL"
+msgstr "_GRAPH_Y_LABEL"
+
 msgid "_GROUP_NAME"
 msgstr "Gruppenname"
 
@@ -615,6 +648,9 @@ msgstr "Log"
 
 msgid "_LOG_LEVEL"
 msgstr "Log Stufe"
+
+msgid "_LOG_REGEXP"
+msgstr "_LOG_REGEXP"
 
 msgid "_LOG_TYPE"
 msgstr "Log Typ"
@@ -667,6 +703,9 @@ msgstr "_NB_MESSAGES"
 msgid "_NB_REPORTS"
 msgstr "_NB_REPORTS"
 
+msgid "_NEGATE"
+msgstr "_NEGATE"
+
 msgid "_NEW_ALERT"
 msgstr "Neuer Alarm"
 
@@ -711,6 +750,9 @@ msgstr "Neuer Service"
 
 msgid "_NEW_SERVICEGROUP"
 msgstr "_NEW_SERVICEGROUP"
+
+msgid "_NEW_STATIC_ALERT"
+msgstr "_NEW_STATIC_ALERT"
 
 msgid "_NEW_STATIC_DEVICEGROUP"
 msgstr "_NEW_STATIC_DEVICEGROUP"
@@ -757,6 +799,9 @@ msgstr "Periode"
 msgid "_PERIODS"
 msgstr "Perioden"
 
+msgid "_PERL_FUNCTION"
+msgstr "_PERL_FUNCTION"
+
 msgid "_PROCESSOR"
 msgstr "Prozessor"
 
@@ -768,6 +813,9 @@ msgstr "Rack"
 
 msgid "_RANK"
 msgstr "Rang"
+
+msgid "_REAL_TIME_LOGS_VIEWER"
+msgstr "_REAL_TIME_LOGS_VIEWER"
 
 msgid "_REGEXP_EXC"
 msgstr "Regexp (Excl.)"
@@ -808,14 +856,29 @@ msgstr "_REPORT_EDITION"
 msgid "_REPORT_FIELDS_ORDER"
 msgstr "_REPORT_FIELDS_ORDER"
 
+msgid "_REPORT_FILE_DOESNT_EXIST"
+msgstr "_REPORT_FILE_DOESNT_EXIST"
+
 msgid "_REPORT_HTML"
 msgstr "_REPORT_HTML"
+
+msgid "_REPORT_IN_PROGRESS"
+msgstr "_REPORT_IN_PROGRESS"
 
 msgid "_REPORT_NAME"
 msgstr "_REPORT_NAME"
 
+msgid "_REPORT_OFC"
+msgstr "_REPORT_OFC"
+
 msgid "_REPORT_PDF"
 msgstr "_REPORT_PDF"
+
+msgid "_REPORT_RRD_GRAPH"
+msgstr "_REPORT_RRD_GRAPH"
+
+msgid "_REPORT_RRD_GRAPH_CREATION"
+msgstr "_REPORT_RRD_GRAPH_CREATION"
 
 msgid "_REPORT_SCHEDULER"
 msgstr "Berichtsplaner"
@@ -841,6 +904,12 @@ msgstr "_ROLE"
 msgid "_ROOM"
 msgstr "Raum"
 
+msgid "_ROTATE_LEFT"
+msgstr "_ROTATE_LEFT"
+
+msgid "_ROTATE_RIGHT"
+msgstr "_ROTATE_RIGHT"
+
 msgid "_RUNNING_REPORTS"
 msgstr "_RUNNING_REPORTS"
 
@@ -852,6 +921,9 @@ msgstr "Planer"
 
 msgid "_SCHEDULE_REPORT"
 msgstr "Berichte planen"
+
+msgid "_SCHEDULE_STATISTIC_REPORT"
+msgstr "_SCHEDULE_STATISTIC_REPORT"
 
 msgid "_SCHEDULER"
 msgstr "Planer"
@@ -886,6 +958,12 @@ msgstr "Services"
 msgid "_SERVICES_UPDATES"
 msgstr "Services Updates"
 
+msgid "_SOURCE"
+msgstr "_SOURCE"
+
+msgid "_SHOW_DIFF"
+msgstr "_SHOW_DIFF"
+
 msgid "_START"
 msgstr "_START"
 
@@ -901,8 +979,17 @@ msgstr "_STATE"
 msgid "_STATIC"
 msgstr "Statisch"
 
+msgid "_STATIC_ALERT_CONFIGURATION"
+msgstr "_STATIC_ALERT_CONFIGURATION"
+
 msgid "_STATISTICS"
 msgstr "_STATISTICS"
+
+msgid "_STATISTIC_REPORT_EDITION"
+msgstr "_STATISTIC_REPORT_EDITION"
+
+msgid "_STATISTIC_REPORT_SCHEDULER"
+msgstr "_STATISTIC_REPORT_SCHEDULER"
 
 msgid "_STATISTIC_REPORTS"
 msgstr "Statistic Reports"
@@ -918,6 +1005,9 @@ msgstr "Support Anfrage"
 
 msgid "_SWAP_USAGE"
 msgstr "Swap Auslastung"
+
+msgid "_SYSLOG_OUTPUT"
+msgstr "_SYSLOG_OUTPUT"
 
 msgid "_SYSTEM_CONFIG"
 msgstr "Konfiguration"
@@ -949,6 +1039,9 @@ msgstr "Warten auf Informationen"
 msgid "_TICKET_WORK_PROGRESS"
 msgstr "Bearbeitung"
 
+msgid "_TIMELINE"
+msgstr "_TIMELINE"
+
 msgid "_TIMEPERIOD"
 msgstr "Zeitabschnitt"
 
@@ -957,6 +1050,9 @@ msgstr "Name des Zeitraumes"
 
 msgid "_TIMEPERIODS"
 msgstr "Zeitraeume"
+
+msgid "_TIMESTEP"
+msgstr "_TIMESTEP"
 
 msgid "_UNKNOWN_MSGS"
 msgstr "Unbekannte Meldung"
@@ -978,6 +1074,21 @@ msgstr "Server des Benutzers"
 
 msgid "_WORLD_STATISTICS"
 msgstr "_WORLD_STATISTICS"
+
+msgid "_ZABBIX_HOST_DEFINED"
+msgstr "_ZABBIX_HOST_DEFINED"
+
+msgid "_ZABBIX_SERVER"
+msgstr "_ZABBIX_SERVER"
+
+msgid "_ZABBIX_ITEM_DEFINED"
+msgstr "_ZABBIX_ITEM_DEFINED"
+
+msgid "_ZOOM_IN"
+msgstr "_ZOOM_IN"
+
+msgid "_ZOOM_OUT"
+msgstr "_ZOOM_OUT"
 
 msgid "_DLG_DELETE_ALERT"
 msgstr "Wollen Sie wirklich den Alarm '%%arg1%%' loeschen ?"
@@ -1093,6 +1204,12 @@ msgstr "Fuer alles Andere erreichen Sie mich unter octo.devel@gmail.com"
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Dynamische Alarm Erstellung"
 
+msgid "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "_MSG_EXTRACT_PROGRESS_DATA"
+
+msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+
 msgid "_MSG_FIELD_DONT_EXIST"
 msgstr "_MSG_FIELD_DONT_EXIST"
 
@@ -1113,6 +1230,9 @@ msgstr "Weitere Informationen zum Anfertigen von Darstellungen finden Sie auf de
 
 msgid "_MSG_MSGID_ALREADY_EXISTS"
 msgstr "Message ID exisitiert bereits !"
+
+msgid "_MSG_MSGID_CANT_BE_NULL"
+msgstr "_MSG_MSGID_CANT_BE_NULL"
 
 msgid "_MSG_MSGS_FOR_SERVICE"
 msgstr "Meldungen fur den Service %s (version %s)"
@@ -1167,6 +1287,9 @@ msgstr "Empfange Daten..."
 
 msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
 msgstr "Datenbankabfrage..."
+
+msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
 
 msgid "_MSG_RESTART_OCTOPUSSY"
 msgstr "Restart Octopussy"

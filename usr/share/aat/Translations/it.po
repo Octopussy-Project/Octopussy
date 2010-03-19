@@ -217,6 +217,18 @@ msgstr "File di config"
 msgid "_DASHBOARD"
 msgstr "Dashboard"
 
+msgid "_DATASOURCE"
+msgstr "_DATASOURCE"
+
+msgid "_DATASOURCES"
+msgstr "_DATASOURCES"
+
+msgid "_DATASOURCE_VALUE"
+msgstr "_DATASOURCE_VALUE"
+
+msgid "_DATASOURCES_VALUE"
+msgstr "_DATASOURCES_VALUE"
+
 msgid "_DELETE"
 msgstr "Elimina"
 
@@ -247,14 +259,23 @@ msgstr "Icone e testo"
 msgid "_ICONS_ONLY"
 msgstr "Solo icone"
 
+msgid "_INFORMATION"
+msgstr "_INFORMATION"
+
 msgid "_KEY"
 msgstr "Chiave"
+
+msgid "_LABEL"
+msgstr "_LABEL"
 
 msgid "_LOGOUT"
 msgstr "Esci"
 
 msgid "_MENU_DISPLAY"
 msgstr "Mostra menu"
+
+msgid "_MODIFICATION"
+msgstr "_MODIFICATION"
 
 msgid "_MODIFY"
 msgstr "Modifica"
@@ -391,6 +412,9 @@ msgstr "Nome"
 msgid "_NB"
 msgstr "Nb"
 
+msgid "_NB_ITEMS"
+msgstr "_NB_ITEMS"
+
 msgid "_NEW_PASSWORD"
 msgstr "Nuova Password"
 
@@ -474,6 +498,12 @@ msgstr "Allarmi"
 
 msgid "_ALERTS_VIEWER"
 msgstr "Visualizzatore allarmi"
+
+msgid "_AUTHENTICATION"
+msgstr "_AUTHENTICATION"
+
+msgid "_BACK"
+msgstr "_BACK"
 
 msgid "_BASE"
 msgstr "Base"
@@ -583,6 +613,9 @@ msgstr "Tipo di grafico"
 msgid "_GRAPH_WIDTH"
 msgstr "Larghezza del grafico"
 
+msgid "_GRAPH_Y_LABEL"
+msgstr "_GRAPH_Y_LABEL"
+
 msgid "_GROUP_NAME"
 msgstr "Nome gruppo"
 
@@ -615,6 +648,9 @@ msgstr "Log"
 
 msgid "_LOG_LEVEL"
 msgstr "Livello di log"
+
+msgid "_LOG_REGEXP"
+msgstr "_LOG_REGEXP"
 
 msgid "_LOG_TYPE"
 msgstr "Tipo di log"
@@ -667,6 +703,9 @@ msgstr "Nb Messaggi"
 msgid "_NB_REPORTS"
 msgstr "Nb Reports"
 
+msgid "_NEGATE"
+msgstr "_NEGATE"
+
 msgid "_NEW_ALERT"
 msgstr "Nuovo Allarme"
 
@@ -711,6 +750,9 @@ msgstr "Nuovo Servizio"
 
 msgid "_NEW_SERVICEGROUP"
 msgstr "Nuovo Gruppo Servizi"
+
+msgid "_NEW_STATIC_ALERT"
+msgstr "_NEW_STATIC_ALERT"
 
 msgid "_NEW_STATIC_DEVICEGROUP"
 msgstr "Nuovo Gruppo apparati statico"
@@ -757,6 +799,9 @@ msgstr "Periodo"
 msgid "_PERIODS"
 msgstr "Periodi"
 
+msgid "_PERL_FUNCTION"
+msgstr "_PERL_FUNCTION"
+
 msgid "_PROCESSOR"
 msgstr "Processore"
 
@@ -768,6 +813,9 @@ msgstr "Rack"
 
 msgid "_RANK"
 msgstr "Rank"
+
+msgid "_REAL_TIME_LOGS_VIEWER"
+msgstr "_REAL_TIME_LOGS_VIEWER"
 
 msgid "_REGEXP_EXC"
 msgstr "Regexp (Excl.)"
@@ -808,14 +856,29 @@ msgstr "Edizione Report"
 msgid "_REPORT_FIELDS_ORDER"
 msgstr "Ordine campi Report"
 
+msgid "_REPORT_FILE_DOESNT_EXIST"
+msgstr "_REPORT_FILE_DOESNT_EXIST"
+
 msgid "_REPORT_HTML"
 msgstr "HTML Format Report"
+
+msgid "_REPORT_IN_PROGRESS"
+msgstr "_REPORT_IN_PROGRESS"
 
 msgid "_REPORT_NAME"
 msgstr "Nome Report"
 
+msgid "_REPORT_OFC"
+msgstr "_REPORT_OFC"
+
 msgid "_REPORT_PDF"
 msgstr "PDF Format Report"
+
+msgid "_REPORT_RRD_GRAPH"
+msgstr "_REPORT_RRD_GRAPH"
+
+msgid "_REPORT_RRD_GRAPH_CREATION"
+msgstr "_REPORT_RRD_GRAPH_CREATION"
 
 msgid "_REPORT_SCHEDULER"
 msgstr "Report Scheduler"
@@ -841,6 +904,12 @@ msgstr "Ruoli"
 msgid "_ROOM"
 msgstr "Stanza"
 
+msgid "_ROTATE_LEFT"
+msgstr "_ROTATE_LEFT"
+
+msgid "_ROTATE_RIGHT"
+msgstr "_ROTATE_RIGHT"
+
 msgid "_RUNNING_REPORTS"
 msgstr "Report attivi"
 
@@ -852,6 +921,9 @@ msgstr "Pianificazione"
 
 msgid "_SCHEDULE_REPORT"
 msgstr "Report pianificazione"
+
+msgid "_SCHEDULE_STATISTIC_REPORT"
+msgstr "_SCHEDULE_STATISTIC_REPORT"
 
 msgid "_SCHEDULER"
 msgstr "Pianificatore"
@@ -886,6 +958,12 @@ msgstr "Servizi"
 msgid "_SERVICES_UPDATES"
 msgstr "Aggiornamenti servizi"
 
+msgid "_SOURCE"
+msgstr "_SOURCE"
+
+msgid "_SHOW_DIFF"
+msgstr "_SHOW_DIFF"
+
 msgid "_START"
 msgstr "Inizia"
 
@@ -901,8 +979,17 @@ msgstr "Stato"
 msgid "_STATIC"
 msgstr "Statico"
 
+msgid "_STATIC_ALERT_CONFIGURATION"
+msgstr "_STATIC_ALERT_CONFIGURATION"
+
 msgid "_STATISTICS"
 msgstr "_STATISTICS"
+
+msgid "_STATISTIC_REPORT_EDITION"
+msgstr "_STATISTIC_REPORT_EDITION"
+
+msgid "_STATISTIC_REPORT_SCHEDULER"
+msgstr "_STATISTIC_REPORT_SCHEDULER"
 
 msgid "_STATISTIC_REPORTS"
 msgstr "Statistiche"
@@ -918,6 +1005,9 @@ msgstr "Richiesta supporto"
 
 msgid "_SWAP_USAGE"
 msgstr "Uso swap"
+
+msgid "_SYSLOG_OUTPUT"
+msgstr "_SYSLOG_OUTPUT"
 
 msgid "_SYSTEM_CONFIG"
 msgstr "Configurazione sistema"
@@ -949,6 +1039,9 @@ msgstr "In attesa di Info"
 msgid "_TICKET_WORK_PROGRESS"
 msgstr "in lavorazione"
 
+msgid "_TIMELINE"
+msgstr "_TIMELINE"
+
 msgid "_TIMEPERIOD"
 msgstr "Periodo temporale"
 
@@ -957,6 +1050,9 @@ msgstr "Nome periodo temporale"
 
 msgid "_TIMEPERIODS"
 msgstr "periodo temporale"
+
+msgid "_TIMESTEP"
+msgstr "_TIMESTEP"
 
 msgid "_UNKNOWN_MSGS"
 msgstr "Messaggio sconosciuto"
@@ -978,6 +1074,21 @@ msgstr "Server utenti"
 
 msgid "_WORLD_STATISTICS"
 msgstr "Statistiche totali"
+
+msgid "_ZABBIX_HOST_DEFINED"
+msgstr "_ZABBIX_HOST_DEFINED"
+
+msgid "_ZABBIX_SERVER"
+msgstr "_ZABBIX_SERVER"
+
+msgid "_ZABBIX_ITEM_DEFINED"
+msgstr "_ZABBIX_ITEM_DEFINED"
+
+msgid "_ZOOM_IN"
+msgstr "_ZOOM_IN"
+
+msgid "_ZOOM_OUT"
+msgstr "_ZOOM_OUT"
 
 msgid "_DLG_DELETE_ALERT"
 msgstr "Vuoi rimuovere realmente l'allarme '%%arg1%%' ?"
@@ -1093,6 +1204,12 @@ msgstr "per qualsiasi problema, contattatemi quiç octo.devel@gmail.com"
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Creazione allarme dinamico"
 
+msgid "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "_MSG_EXTRACT_PROGRESS_DATA"
+
+msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+
 msgid "_MSG_FIELD_DONT_EXIST"
 msgstr "Campo inesistente !"
 
@@ -1113,6 +1230,9 @@ msgstr "Maggiori informazioni sulla creazione mappe disponibili sul sito web di 
 
 msgid "_MSG_MSGID_ALREADY_EXISTS"
 msgstr "ID messaggio già presente!"
+
+msgid "_MSG_MSGID_CANT_BE_NULL"
+msgstr "_MSG_MSGID_CANT_BE_NULL"
 
 msgid "_MSG_MSGS_FOR_SERVICE"
 msgstr "Messaggi per il servizio %s (versione %s)"
@@ -1167,6 +1287,9 @@ msgstr "Ricezione file di dati..."
 
 msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
 msgstr "Interrogazione Database..."
+
+msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
 
 msgid "_MSG_RESTART_OCTOPUSSY"
 msgstr "Riavvia Octopussy"
