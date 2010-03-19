@@ -45,7 +45,7 @@ if (AAT::NOT_NULL($smtp_conf->{server}))
 else
 {
   %><div align="center">
-	<AAT:Label value="_SMTP_SERVER_TO_SUBMIT" link="./system.asp" />
+	<AAT:Label value="_MSG_NEED_SMTP_SERVER_TO_SUBMIT" link="./system.asp" />
 	</div><%
 }
 %>

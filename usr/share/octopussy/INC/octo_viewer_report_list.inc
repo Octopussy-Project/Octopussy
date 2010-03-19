@@ -20,7 +20,7 @@ my %type = (
 	html => { mime => "html", tooltip => "_REPORT_HTML" },
   json => {  mime => "log", tooltip => "_REPORT_OFC" },
 	pdf => { mime => "pdf", tooltip => "_REPORT_PDF" },
-	png => { mime => "log", tooltip => "_REPORT_RRDGraph" },
+	png => { mime => "log", tooltip => "_REPORT_RRD_GRAPH" },
 	xml => { mime => "xml", tooltip => "_REPORT_XML" } );
 %>
 <AAT:Box align="C" icon="buttons/bt_report" title="_REPORTS_VIEWER">

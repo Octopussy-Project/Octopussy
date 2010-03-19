@@ -16,11 +16,11 @@ if (AAT::NOT_NULL($f->{name}))
 	for my $i (1..7)
 	{
 		my $d = AAT::Translation(AAT::Datetime::WeekDay_Name($i));
-		my $start_h = "$d" . "_start_hour";
-		my $start_m = "$d" . "_start_min";
-		my $finish_h = "$d" . "_finish_hour";
-    my $finish_m = "$d" . "_finish_min";
-		my $negate = "$d" . "_Negate";
+		my $start_h = "${d}_start_hour";
+		my $start_m = "${d}_start_min";
+		my $finish_h = "${d}_finish_hour";
+    my $finish_m = "${d}_finish_min";
+		my $negate = "${d}_Negate";
 		push(@dts, { $d => ($f->{$negate} eq "on" ? "!" : "")
 			. "$f->{$start_h}:$f->{$start_m}"
 			. "-$f->{$finish_h}:$f->{$finish_m}" } );
