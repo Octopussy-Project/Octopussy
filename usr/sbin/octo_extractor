@@ -82,6 +82,20 @@ EOF
   {
     $list .= Octopussy::Taxonomy::String_List(\@opt_devices, \@opt_services);
   }
+  
+  my @d_unknowns = Octopussy::Device::Unknowns(@opt_devices);
+  my @s_unknowns = Octopussy::Service::Unknowns(@opt_services);
+  my @l_unknowns = Octopussy::Loglevel::Unknowns($opt_loglevel);
+  my @t_unknowns = Octopussy::Taxonomy::Unknowns($opt_taxonomy);
+  printf "[ERROR] Unknown Device(s): %s\n", join ', ', @d_unknowns
+  	if (scalar @d_unknowns);
+  printf "[ERROR] Unknown Service(s): %s\n", join ', ', @s_unknowns
+  	if (scalar @s_unknowns);
+  printf "[ERROR] Unknown Loglevel(s): %s\n", join ', ', @l_unknowns
+  	if (scalar @l_unknowns);
+  printf "[ERROR] Unknown Taxonom(y/ies): %s\n", join ', ', @t_unknowns
+  	if (scalar @t_unknowns);
+  	
   print "$list\n\n";
 
   exit;

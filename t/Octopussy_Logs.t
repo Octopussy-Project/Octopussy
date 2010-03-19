@@ -26,7 +26,7 @@ Readonly my $SERVICE   => "${PREFIX}Service";
 Readonly my $EXTRACTOR => '/usr/sbin/octo_extractor';
 Readonly my $DIR_LOGS  => Octopussy::Directory('data_logs');
 Readonly my $BEGIN     => '201001010000';
-Readonly my $END       => '201001010030';
+Readonly my $END       => '201001010029';
 Readonly my $YEAR      => '2010';
 Readonly my $MONTH     => '01';
 Readonly my $DAY       => '01';
@@ -50,9 +50,9 @@ sub Generate_Fake_Logs_Files
   system "mkdir -p $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/";
   for (my $i = 0 ; $i <= 59 ; $i++)
   {
-    my $minute = sprintf('%02d', $i);
+    my $minute = sprintf '%02d', $i;
     system "touch $DIR_LOGS/$DEVICE/Incoming/2010/01/01/msg_00h${minute}.log";
-    my $data = "";
+    my $data = '';
     for (my $i2 = 0 ; $i2 <= 99 ; $i2++) { $data .= "line $i2\n"; }
     if (defined open my $FILE,
       '|-',
@@ -85,10 +85,10 @@ Generate_Fake_Logs_Files();
 
 my %start  = (year => 2010, month => 1, day => 1, hour => 0, min => 0);
 my %finish = (year => 2010, month => 1, day => 1, hour => 0, min => 29);
-my $start_num = sprintf("%04d%02d%02d%02d%02d",
-  $start{year}, $start{month}, $start{day}, $start{hour}, $start{min});
-my $finish_num = sprintf("%04d%02d%02d%02d%02d",
-  $finish{year}, $finish{month}, $finish{day}, $finish{hour}, $finish{min});
+my $start_num = sprintf '%04d%02d%02d%02d%02d',
+  $start{year}, $start{month}, $start{day}, $start{hour}, $start{min};
+my $finish_num = sprintf '%04d%02d%02d%02d%02d',
+  $finish{year}, $finish{month}, $finish{day}, $finish{hour}, $finish{min};
 
 my @files_ymd = Octopussy::Logs::Files_Year_Month_Day(\%start, \%finish,
   "$DIR_LOGS/$DEVICE/$SERVICE", '2010');
@@ -121,7 +121,7 @@ ok($nb_files == 30 && defined $hash_files->{201001010029},
 
 ($list_files, $nb_files) =
   Octopussy::Logs::Get_TimePeriod_Files([$DEVICE], [$SERVICE], $BEGIN, $END);
-ok($nb_files == 31, 'Octopussy::Logs::Get_TimePeriod_Files()');
+ok($nb_files == 30, 'Octopussy::Logs::Get_TimePeriod_Files()');
 
 my @files_incoming = Octopussy::Logs::Incoming_Files($DEVICE);
 ok(scalar @files_incoming == 60, 'Octopussy::Logs::Incoming_Files');
@@ -145,15 +145,15 @@ my %conf_extract = (
   loglevel  => '-ANY-',
   taxonomy  => '-ANY-',
   msgid     => '-ANY-',
-  includes  => ["include1",     "include2"],
-  excludes  => ["exclude1",     "exclude2"],
+  includes  => ['include1',     'include2'],
+  excludes  => ['exclude1',     'exclude2'],
   begin     => $BEGIN,
   end       => $END,
   pid_param => 'pid_param',
   output    => $OUTPUT,
 );
 my $cmd = Octopussy::Logs::Extract_Cmd_Line(\%conf_extract);
-ok($cmd =~ $RE_CMDLINE, 'Octopussy::Logs::Get_TimePeriod_Files()');
+ok($cmd =~ $RE_CMDLINE, 'Octopussy::Logs::Extract_Cmd_Line()');
 
 # Clean stuff
 Octopussy::Device::Remove($DEVICE);

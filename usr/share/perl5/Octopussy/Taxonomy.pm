@@ -18,6 +18,8 @@ use Readonly;
 use List::MoreUtils qw(uniq);
 
 use Octopussy;
+use Octopussy::Device;
+use Octopussy::Service;
 
 Readonly my $FILE_TAXONOMY => 'taxonomy';
 
@@ -110,15 +112,47 @@ sub List_And_Any
 sub String_List
 {
   my ($devices, $services) = @_;
-  my @data = Octopussy::Taxonomy::List($devices, $services);
-  my @list = ('-ANY-');
-  foreach my $d (@data)
+  
+  my @d_unknowns = Octopussy::Device::Unknowns(@{$devices});
+  my @s_unknowns = Octopussy::Service::Unknowns(@{$services});
+  if (scalar @d_unknowns)
   {
-    push @list, $d->{value};
+  	return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @d_unknowns);
   }
+  elsif (scalar @s_unknowns)
+  {
+  	return (sprintf '[ERROR] Unknown Service(s): %s', join ', ', @s_unknowns);
+  }
+  else
+  {
+  	my @data = Octopussy::Taxonomy::List($devices, $services);
+  	my @list = ('-ANY-');
+  	foreach my $d (@data)
+  		{ push @list, $d->{value}; }
 
-  return ('Taxonomy list: ' . join ', ', sort @list);
+  	return ('Taxonomy list: ' . join ', ', sort @list);
+  }
 }
+
+
+=head2 Unknowns(@taxos)
+
+Returns list of Unknown Taxonomies in @taxos list
+
+=cut
+
+sub Unknowns
+{
+	my @taxos = @_;
+	my @unknowns = ();
+	
+	my %exist = map { $_->{value} => 1 } List();
+	foreach my $t (@taxos)
+		{ push @unknowns, $t if ((!defined $exist{$t}) && ($t ne '-ANY-')); }
+	
+	return (@unknowns)	
+}
+
 
 =head2 Colors()
 

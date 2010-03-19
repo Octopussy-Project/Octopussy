@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 10;
+use Test::More tests => 11;
 
 use Octopussy;
 use Octopussy::Service;
@@ -82,6 +82,9 @@ ok(($msgid1 eq "${SERVICE}:001") && ($msgid2 eq "${SERVICE}:002"),
 
 Octopussy::Service::Remove($SERVICE);
 ok(!-f "${DIR_SERVICES}${SERVICE}.xml", 'Octopussy::Service::Remove()');
+
+my @unknowns = Octopussy::Service::Unknowns('-ANY-', $SERVICE);
+ok(scalar @unknowns == 1, 'Octopussy::Service::Unknowns()');
 
 1;
 

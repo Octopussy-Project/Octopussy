@@ -172,6 +172,25 @@ sub String_List
   return ("Device list: $str_any" . (join ', ', sort @list));
 }
 
+
+=head2 Unknowns(@devices)
+
+Returns list of Unknown Devices in @devices list
+
+=cut
+
+sub Unknowns
+{
+	my @devices = @_;
+	my @unknowns = ();
+	
+	my %exist = map { $_ => 1 } List();
+	foreach my $d (@devices)
+		{ push @unknowns, $d if ((!defined $exist{$d}) && ($d ne '-ANY-')); }
+	
+	return (@unknowns)	
+}
+
 =head2 Filename($device_name)
 
 Gets the XML filename for the device '$device_name'
@@ -485,13 +504,22 @@ sub Services
   return (@services);
 }
 
+
 =head2 String_Services
+
+Returns Service List as a string like 'Service list: <service_list>'
 
 =cut 
 
 sub String_Services
 {
   my @devices  = @_;
+  
+  my @unknowns = Unknowns(@devices);
+  if (scalar @unknowns)
+  {
+  	return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @unknowns);
+  }
   my @services = sort(uniq(Services(@devices)));
 
   return ('Service list: -ANY-, ' . join ', ', @services);

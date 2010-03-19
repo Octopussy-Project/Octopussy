@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 4;
+use Test::More tests => 6;
 
 use Octopussy;
 use Octopussy::Device;
@@ -72,6 +72,14 @@ ok(scalar @lines_loglevel == 31, "octo_extractor --loglevel 'Notice' --taxonomy 
 my $cmd_msgid = "$EXTRACT_DEV_SVC --loglevel '-ANY-' --taxonomy '-ANY-' --msgid 'Octopussy:parser_service_events' $PERIOD";
 my @lines_msgid = `$cmd_msgid`;
 ok(scalar @lines_msgid == (10*31), "octo_extractor --loglevel '-ANY-' --taxonomy '-ANY-' --msgid 'Octopussy:parser_service_events'");
+
+my $cmd_include = "$EXTRACT_DEV_SVC --loglevel '-ANY-' --taxonomy '-ANY-' --msgid '-ANY-' $PERIOD --include 'Time: \\d+ seconds'";
+my @lines_include = `$cmd_include`;
+ok(scalar @lines_include == 31, 'octo_extractor (with --include)');
+
+my $cmd_exclude = "$EXTRACT_DEV_SVC --loglevel '-ANY-' --taxonomy '-ANY-' --msgid '-ANY-' $PERIOD --exclude 'Time: \\d+ seconds'";
+my @lines_exclude = `$cmd_exclude`;
+ok(scalar @lines_exclude == (10*31), 'octo_extractor (with --exclude)');
 
 # Clean stuff
 Octopussy::Device::Remove($DEVICE);

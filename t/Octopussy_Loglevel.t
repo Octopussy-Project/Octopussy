@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 2;
+use Test::More tests => 3;
 
 use Octopussy::Loglevel;
 
@@ -27,6 +27,9 @@ ok((((scalar keys %color) == $NB_LOGLEVELS) && ($color{'Debug'} eq 'gray')),
 my %level = Octopussy::Loglevel::Levels();
 ok((((scalar keys %level) == $NB_LOGLEVELS) && ($level{'Debug'} == 1)),
   'Octopussy::Loglevel::Levels()');
+
+my @unknowns = Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel');
+ok(scalar @unknowns == 1, 'Octopussy::Loglevel::Unknowns()');
 
 1;
 

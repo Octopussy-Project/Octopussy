@@ -106,6 +106,25 @@ sub List_Used
   return (@services);
 }
 
+
+=head2 Unknowns(@services)
+
+Returns list of Unknown Services in @services list
+
+=cut
+
+sub Unknowns
+{
+	my @services = @_;
+	my @unknowns = ();
+	
+	my %exist = map { $_ => 1 } List();
+	foreach my $s (@services)
+		{ push @unknowns, $s if ((!defined $exist{$s}) && ($s ne '-ANY-')); }
+	
+	return (@unknowns)	
+}
+
 =head2 Filename($service)
 
 Returns the XML filename for the service '$service'
@@ -138,6 +157,7 @@ sub Configuration
   return ($conf);
 }
 
+
 =head2 Configurations($sort)
 
 Returns the configuration for all Services sorted by '$sort' (default: 'name')
@@ -153,9 +173,8 @@ sub Configurations
   foreach my $s (@services)
   {
     my $conf = Configuration($s);
-    my $nb =
-      (AAT::NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
-    $conf->{nb_messages} = ($nb < 10 ? "00$nb" : ($nb < 100 ? "0$nb" : $nb));
+    $conf->{nb_messages} = sprintf '%03d', 
+    	(AAT::NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
     push @configurations, $conf;
   }
   foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
@@ -511,8 +530,6 @@ sub Sort_Messages_By_Statistics
     foreach my $m (AAT::ARRAY($conf->{message}))
     {
       my $mid = $m->{msg_id};
-
-      #      print "$mid: " . $percent{$mid} . "\n";
       push @messages, $m
         if (defined $percent{$mid} && ($percent{$mid} == $p));
     }

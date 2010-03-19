@@ -110,22 +110,57 @@ sub List_And_Any
   return (@list);
 }
 
+
 =head2 String_List($devices, $services)
+
+Returns Loglevel List as a string like 'Loglevel list: <loglevel_list>'
 
 =cut
 
 sub String_List
 {
   my ($devices, $services) = @_;
-  my @data = Octopussy::Loglevel::List($devices, $services);
-  my @list = ('-ANY-');
-  foreach my $d (@data)
+  
+  my @d_unknowns = Octopussy::Device::Unknowns(@{$devices});
+  my @s_unknowns = Octopussy::Service::Unknowns(@{$services});
+  if (scalar @d_unknowns)
   {
-    push @list, $d->{value};
+  	return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @d_unknowns);
   }
+  elsif (scalar @s_unknowns)
+  {
+  	return (sprintf '[ERROR] Unknown Service(s): %s', join ', ', @s_unknowns);
+  }
+  else
+  {
+  	my @data = Octopussy::Loglevel::List($devices, $services);
+  	my @list = ('-ANY-');
+  	foreach my $d (@data)
+  		{ push @list, $d->{value}; }
 
-  return ('Loglevel list: ' . join ', ', sort @list);
+  	return ('Loglevel list: ' . join ', ', sort @list);
+  }
 }
+
+
+=head2 Unknowns(@loglevels)
+
+Returns list of Unknown Loglevels in @loglevels list
+
+=cut
+
+sub Unknowns
+{
+	my @loglevels = @_;
+	my @unknowns = ();
+	
+	my %exist = map { $_->{label} => 1 } List();
+	foreach my $l (@loglevels)
+		{ push @unknowns, $l if ((!defined $exist{$l}) && ($l ne '-ANY-')); }
+	
+	return (@unknowns)	
+}
+
 
 =head2 Colors()
 
