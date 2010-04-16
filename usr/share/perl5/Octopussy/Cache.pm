@@ -32,6 +32,7 @@ my %cache = (
   'octo_extractor'  => {cache => undef, expires => $EXPIRES_EXTRACTOR},
   'octo_parser'     => {cache => undef, expires => $EXPIRES_PARSER},
   'octo_reporter'   => {cache => undef, expires => $EXPIRES_REPORTER},
+  'octo_syslog_cache' => {cache => undef, expires => $EXPIRES_DISPATCHER},
 );
 
 =head1 FUNCTIONS

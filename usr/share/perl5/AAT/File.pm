@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT;
+
 Readonly my $DIR_MIME_SMALL => 'THEMES/DEFAULT/mime/22x22';
 Readonly my $DIR_MIME_BIG   => 'THEMES/DEFAULT/mime/128x128';
 

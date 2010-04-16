@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT;
+use AAT::List;
 use Octopussy;
 
 Readonly my $RE_HIT => qr/^.+_HIT.*$/;

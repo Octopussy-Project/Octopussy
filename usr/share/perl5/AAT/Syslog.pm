@@ -17,6 +17,9 @@ use warnings;
 use Unix::Syslog qw(:macros);
 use Unix::Syslog qw(:subs);
 
+use AAT;
+use AAT::XML;
+
 my $MSG_LOGS_FILE = undef;
 
 my %AAT_Syslog = ();

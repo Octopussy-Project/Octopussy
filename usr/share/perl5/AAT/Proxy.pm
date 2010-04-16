@@ -15,6 +15,10 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT;
+use AAT::Application;
+use AAT::XML;
+
 Readonly my $FILE_TEST => '/tmp/test.html';
 Readonly my $URL_TEST  => 'http://www.google.com';
 

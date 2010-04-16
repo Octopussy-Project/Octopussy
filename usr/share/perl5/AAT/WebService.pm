@@ -14,6 +14,10 @@ package AAT::WebService;
 use strict;
 use warnings;
 
+use AAT;
+use AAT::Application;
+use AAT::XML;
+
 my %ws = ();
 
 =head1 FUNCTIONS

@@ -18,7 +18,9 @@ use Readonly;
 use Mail::Sender;
 use Net::Telnet;
 
+use AAT;
 use AAT::Application;
+use AAT::XML;
 
 Readonly my $SMTP_PORT    => 25;
 Readonly my $SMTP_TIMEOUT => 3;

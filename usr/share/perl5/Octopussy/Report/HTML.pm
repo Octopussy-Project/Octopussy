@@ -14,7 +14,10 @@ package Octopussy::Report::HTML;
 use strict;
 use warnings;
 
+use AAT;
+use AAT::Translation;
 use Octopussy;
+use Octopussy::Plugin;
 
 =head1 FUNCTIONS
 

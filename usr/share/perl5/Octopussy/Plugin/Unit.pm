@@ -15,6 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT::Translation;
 use Octopussy;
 
 Readonly my $KBYTES  => 1024;

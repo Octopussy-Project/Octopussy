@@ -14,6 +14,9 @@ package AAT::Zabbix;
 use strict;
 use warnings;
 
+use AAT::Application;
+use AAT::XML;
+
 my %conf_file = ();
 
 =head1 FUNCTIONS

@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path qw(rmtree);
+
 use AAT;
 use AAT::FS;
 use Octopussy;

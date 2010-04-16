@@ -14,6 +14,8 @@ package Octopussy::Plugin::Web;
 use strict;
 use warnings;
 
+use AAT;
+use AAT::List;
 use Octopussy;
 
 my @browsers          = ();

@@ -17,6 +17,10 @@ use Readonly;
 
 use Net::LDAP;
 
+use AAT;
+use AAT::Application;
+use AAT::XML;
+
 Readonly my $DEFAULT_ROLE => 'rw';
 
 my %conf_file = ();

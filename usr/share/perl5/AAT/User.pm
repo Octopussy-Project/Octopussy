@@ -16,6 +16,11 @@ use warnings;
 use Readonly;
 use Crypt::PasswdMD5;
 
+use AAT;
+use AAT::Application;
+use AAT::LDAP;
+use AAT::XML;
+
 Readonly my $SALT              => 'OP';
 Readonly my $DEFAULT_LANGUAGE  => 'EN';
 Readonly my $DEFAULT_ROLE      => 'rw';

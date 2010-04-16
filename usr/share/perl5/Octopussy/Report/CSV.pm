@@ -14,6 +14,8 @@ package Octopussy::Report::CSV;
 use strict;
 use warnings;
 
+use Octopussy::Plugin;
+
 =head1 FUNCTIONS
 
 =head2 Generate($file, $array_data, $array_fields, $array_headers)

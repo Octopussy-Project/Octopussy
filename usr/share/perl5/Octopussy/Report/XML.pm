@@ -15,6 +15,9 @@ use strict;
 use warnings;
 
 use AAT;
+use AAT::XML;
+use Octopussy;
+use Octopussy::Plugin;
 
 =head1 FUNCTIONS
 

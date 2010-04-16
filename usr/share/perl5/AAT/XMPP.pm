@@ -29,6 +29,10 @@ use Readonly;
 
 use Net::XMPP;
 
+use AAT;
+use AAT::Application;
+use AAT::XML;
+
 Readonly my $XMPP_TIMEOUT => 3;
 
 my %conf_file = ();

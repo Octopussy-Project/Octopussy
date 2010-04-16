@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path qw(rmtree);
+
 use Octopussy;
 
 Readonly my $DIR_REPORT_DATA => 'data_reports';

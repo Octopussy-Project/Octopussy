@@ -14,6 +14,7 @@ package AAT::List;
 use strict;
 use warnings;
 
+use AAT;
 use AAT::XML;
 
 =head1 FUNCTIONS

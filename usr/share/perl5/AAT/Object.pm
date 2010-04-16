@@ -14,6 +14,8 @@ package AAT::Object;
 use strict;
 use warnings;
 
+use AAT;
+use AAT::DB;
 use AAT::XML;
 
 =head1 FUNCTIONS

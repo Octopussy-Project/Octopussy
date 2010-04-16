@@ -16,6 +16,10 @@ use warnings;
 
 use DBI;
 
+use AAT;
+use AAT::Application;
+use AAT::XML;
+
 my %conf_file = ();
 my %dbh       = ();
 

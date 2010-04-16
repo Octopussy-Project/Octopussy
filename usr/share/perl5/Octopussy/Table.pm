@@ -17,7 +17,12 @@ use Readonly;
 
 use List::MoreUtils qw(any);
 
+use AAT;
+use AAT::XML;
 use Octopussy;
+use Octopussy::Device;
+use Octopussy::DeviceGroup;
+use Octopussy::Service;
 use Octopussy::Type;
 
 Readonly my $DIR_TABLE => 'tables';

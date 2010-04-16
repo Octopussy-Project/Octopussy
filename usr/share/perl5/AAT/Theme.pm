@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT;
+
 Readonly my $DIR_THEME => 'AAT/THEMES/';
 
 =head1 FUNCTIONS

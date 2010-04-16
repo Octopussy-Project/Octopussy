@@ -15,6 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use Octopussy;
+
 Readonly my $HTMLDOC =>
   '/usr/bin/htmldoc --quiet --webpage --no-compression --no-jpeg';
 Readonly my $SED => '/bin/sed';

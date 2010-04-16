@@ -19,6 +19,7 @@ use English qw( -no_match_vars );
 
 use XML::Simple;
 
+use AAT;
 use AAT::FS;
 
 Readonly my $STAT_MODIF_TIME => 9;

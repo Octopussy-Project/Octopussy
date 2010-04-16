@@ -15,6 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path qw(rmtree);
 use List::MoreUtils qw(uniq);
 use POSIX qw(strftime);
 
