@@ -338,7 +338,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Hour
 
 sub Last_Hour
 {
-  my $date = Date::Manip::DateCalc('today', '-1hour');
+  my $date = Date::Manip::DateCalc('now', '-1hour');
   my ($year, $month, $day, $hour, $min) =
     Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
   $hour =~ s/^0//;
