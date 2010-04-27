@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Linux High Availability Crm"
                    name="Linux_HA_Crm"
+		   icon="software/logo_linux_ha"
                    nb_messages="000"
                    version="200905270001"
                    website="">

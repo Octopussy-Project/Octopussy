@@ -28,4 +28,8 @@
          type="FLOAT_NUMBER" />
   <field title="nrcpt"
          type="NUMBER" />
+  <field title="daemon"
+         type="WORD" />
+  <field title="pid"
+         type="NUMBER" />
 </octopussy_table>

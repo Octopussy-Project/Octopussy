@@ -26,4 +26,6 @@
          type="IP_ADDR" />
   <field title="status"
          type="STRING" />
+  <field title="apachetime"
+         type="DATETIME" />
 </octopussy_table>

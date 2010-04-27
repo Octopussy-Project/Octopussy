@@ -1,5 +1,7 @@
-<octopussy_table name="Bind_zone"
-     description="Bind zone Table" version="201002220001">
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Bind zone Table"
+                 name="Bind_zone"
+                 version="200608020001">
   <field title="datetime"
          type="DATETIME" />
   <field title="device"

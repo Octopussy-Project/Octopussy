@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='iso-8859-1'?>
-<octopussy_service name="Dell_Switch"
-                   description="Dell Switch Service"
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Dell Switch Service"
                    icon="companies/logo_dell"
-									 website="http://www.dell.com/content/products/category.aspx/networking?c=us&amp;cs=555&amp;l=en&amp;s=biz"
-                   version="200703070003">
+                   name="Dell_Switch"
+                   version="201002180009"
+                   website="http://www.dell.com/content/products/category.aspx/networking?c=us&amp;cs=555&amp;l=en&amp;s=biz">
   <message loglevel="Warning"
            msg_id="Dell_Switch:authentication_failed_for"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; %&lt;@REGEXP(&quot;AAA-E-AUTHFAIL&quot;):msg_id@&gt;: &lt;@REGEXP(&quot;Authentication failed for .+&quot;):msg@&gt;"

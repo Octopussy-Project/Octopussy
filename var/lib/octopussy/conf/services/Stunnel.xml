@@ -269,7 +269,7 @@
            table="Message"
            taxonomy="Application" />
   <message loglevel="Information"
-           msg_id="Stunnel:ssl_closed_on sslread"
+           msg_id="Stunnel:ssl_closed_on_sslread"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;stunnel&quot;):daemon@&gt;: &lt;@REGEXP(&quot;LOG7\[\S+\]: SSL .*closed on SSL_read&quot;):msg@&gt;"
            rank="045"
            table="Message"

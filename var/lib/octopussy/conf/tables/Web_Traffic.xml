@@ -22,4 +22,6 @@
          type="STRING" />
   <field title="user_agent"
          type="USER_AGENT" />
+  <field title="apachetime"
+         type="DATETIME" />
 </octopussy_table>

@@ -1,5 +1,7 @@
-<octopussy_table name="Cisco_Pix_url_access"
-     description="Cisco Pix url access Table" version="200608020001">
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Cisco Pix url access Table"
+                 name="Cisco_Pix_url_access"
+                 version="200608020001">
   <field title="datetime"
          type="DATETIME" />
   <field title="device"
@@ -12,4 +14,6 @@
          type="STRING" />
   <field title="pix_addr"
          type="STRING" />
+  <field title="datetime_long"
+         type="DATETIME" />
 </octopussy_table>

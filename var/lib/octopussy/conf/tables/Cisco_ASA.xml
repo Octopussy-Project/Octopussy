@@ -62,4 +62,18 @@
          type="STRING" />
   <field title="hit_cnt"
          type="WORD" />
+  <field title="dst_addr_2"
+         type="IP_ADDR" />
+  <field title="dst_port_2"
+         type="NUMBER" />
+  <field title="src_addr_2"
+         type="IP_ADDR" />
+  <field title="src_port_2"
+         type="NUMBER" />
+  <field title="protocol_2"
+         type="WORD" />
+  <field title="bytes_limit"
+         type="NUMBER" />
+  <field title="connections_max"
+         type="NUMBER" />
 </octopussy_table>
