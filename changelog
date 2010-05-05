@@ -1,0 +1,706 @@
+octopussy (0.9.9.9.6); urgency=high
+
+  * Bugfix: 'undefined value within %re_type or %color in Message.pm' messages
+  * Bugfix: 'change service rank - internal server error msg'
+  * Bugfix: 'use strict in Plugin.pm' & 'pid_param' error messages
+  * Bugfix: minor changes in DeviceGroup, Message & Report modules
+  * Bugfix: octo_parser
+  * Bugfix: '\r\n' in message creation with Wizard
+  * Bugfix: 2 minor changes in Web Interface
+  * Bugfix: missing status in Running Reports in Reports Viewer
+  * Bugfix 2946434 & 2946818: 'sort uniq' problem
+  * Bugfix: Major fix for XML Caching when reading just after writing in AAT::XML.pm
+  * Bugfix: Remove verbose tar in Octopussy::Configuration.pm
+  * Bugfix 2948940: Fixes the missing servicename for the 1st message of a service
+  * Bugfix: '\' character problem with DAY, DAY_HOUR, DAY_HOUR_MIN, UNIX_TIMESTAMP in Report SQL functions 
+ 
+  * Faster Wizard when there is a lot of 'unknown files'
+  * Reduce the memory used by octopussy binaries
+  * Test suite created with more than 120 tests
+  * MobilePhone list updates
+  * Major Services updates
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Thu, 25 Feb 2010 18:30
+
+octopussy (0.9.9.9.2); urgency=high
+
+  * A lot of bugs have been introduced in the last releases (logs viewer/octo_extractor), this release should fix that !
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 19 Jan 2010 20:15
+
+octopussy (0.9.9.9); urgency=high
+
+  * Bugfix 'adding locations does not update' (ID: 2920425)
+  * Bugfix 'User properties are not updated' (ID: 2921789)
+  * Bugfixes on Alerts
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 12 Jan 2010 19:00 
+
+octopussy (0.9.9.8); urgency=high
+
+  * Major Bufixes in octo_extractor/octo_reporter (ID: 2906742,2907323,2915014)
+  * Bugfix in Alert Creation (ID: 2903747 & 2906983)
+  * Code cleaning (Perl Best Practices)
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 23 Dec 2009 19:30
+
+octopussy (0.9.9.7); urgency=medium
+
+  * Better Logs Wizard (unmatched part of log is now in red) (FR ID: 2901173)
+  * Minor bugfixes
+  * Code cleaning (Perl Best Practices)
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 24 Nov 2009 19:20
+
+octopussy (0.9.9.6); urgency=high
+
+  * Major speed improvement (4X-5X) for octo_parser & octo_uparser !
+  * Major Code Cleaning (Perltidy & Perl Best Practices)
+  * You can now Disable/Enable statistics by Device/Service
+  * Zabbix_sender available to send Alerts
+  * You can now specify Host & Service for Nagios NSCA & Zabbix_sender Alerts
+  * Better Wizard Search Service (FR ID: 1732804)
+  * Unclosed file in octo_parser bug fixed (ID: 2798302) 
+  * Authenticated LDAP are now supported (ID: 2808664)
+  * Invalid Regexp messages are logged in octo_parser
+  * Invalid Regexp messages are showed in Service Messages list
+  * Service Message Statistics are now in this format (xx.x%)
+ 
+  -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 21 Oct 2009 19:00
+
+octopussy (0.9.9.4); urgency=high
+
+  * dispatcher bugs fixed (ID: 2787361,2791070,2792199)
+  * cron.daily logrotate bug fixed (ID: 2790071)
+  * Apache2 Installation bug fixed (ID: 2790082)
+  * Rsyslog Installation bug fixed (ID: 2790769)
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Mon, 18 May 2009 20:30
+
+octopussy (0.9.9.3); urgency=high
+
+  * syslog-ng replaced by rsyslog
+  * /etc/init.d/octopussy is now LSB compliant 
+    (http://wiki.debian.org/LSBInitScripts)
+  * Better Debian installation
+  * Minor Bugfixes/Improvements
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 28 Apr 2009 19:00
+
+octopussy (0.9.9.2); urgency=high
+
+  * Better reports with Open Flash Chart !
+  * RRD taxonomy bug fixed (ID: 2659959)
+  * Minor Bugfixes/Improvements
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Mon, 20 Apr 2009 21:00
+
+octopussy (0.9.9.1); urgency=high
+
+  * Major Bug discovered & fixed in octo_dispatcher 
+    (no more logs were handled by Octopussy ! :()
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 25 Feb 2009 12:00
+
+octopussy (0.9.9); urgency=high
+
+	* New feature: Logs Availability Viewer
+	* Now, you can 'replay' logs with octo_replay !
+	* Before, you can only set log retention duration by Device,
+		now, you can set it by Device/Service
+	* Logs Viewer now with Loglevel, Taxonomy & MsgID filtering
+	* Bugfix (ID:2509315) now /usr/sbin/octo_* require to be launched by Octopussy user
+  * So Many Bugfixes...
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Mon, 23 Feb 2009 19:20
+	
+octopussy (0.9.8.8); urgency=high
+
+	* Major bugfix on octo_dispatcher ! (Bug ID: 2343806)
+	* Bugfix the apache2 restart bug (Bug ID: 2304276)
+	* You can now limit the number of minutes to search for restricted users
+	* Minor WebUI improvements
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Tue, 02 Dec 2008 20:30
+	
+octopussy (0.9.8.7); urgency=high
+
+	* Wget replaced by LWP
+	* Major Bugfixes in octo_parser & octo_uparser
+	* Bugfixes all the bugs introduced in the last 2 releases (Taxonomy::List) 
+	* Bugfixes for Perl 5.10 support
+	* IT & PT Translations updated
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Tue, 25 Nov 2008 19:00
+
+octopussy (0.9.8.6); urgency=high
+
+  * Bugfix the RRDTool bug (ID: 2293036) introduced in last release
+	* Bugfix 'the number of alerts alaways 0' bug (SR ID: 2272569)
+	* 'REGEXP' reserved word is now 100% Perl Regexp 
+		( () [] are working now) (ID: 2284493)
+	* Services updates in order to work with the updated 'REGEXP' reserved word
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Mon, 17 Nov 2008 18:00
+
+octopussy (0.9.8.5); urgency=high
+
+	* Loglevel added in Logs Viewer & Reporter
+	* Selector for Services, Loglevel & Taxonomy are fully dynamic now
+  * Better/Easier Report SQL Query Configurator (except for WHERE clause)
+  * Minor bugfix on octo_world_stats
+  * Code cleaning
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Thu, 13 Nov 2008 19:10
+
+octopussy (0.9.8.4); urgency=high
+
+	* Octopussy World Stats
+  * New type PID (NUMBER type with no MIN,MAX,AVG,SUM functions)
+  * Bugfix on Report Edition(ID 1835898)
+  * Lot of major & minor bugfixes
+  * Code cleaning
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 29 Oct 2008 19:10
+
+octopussy (0.9.8.1); urgency=high
+
+  * Fixes bugs introduced by 0.9.8
+	* Code cleaning
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Thu, 04 Sep 2008 19:00
+
+octopussy (0.9.8); urgency=high
+
+	* Possibility to move to First/Last Service in Device Services List
+	* Possibility to move to First/Last Message in Service Messages List
+	* '10 seconds step' logging feature added
+  * Dispatcher doesn't update RRD files anymore, 
+    a new process has been created for that, octo_rrd
+	* Major Bugfixes (ID 2033700,2033938)
+	* Bugfixes in Logs Viewer (ID 2067498)
+	* Services updates
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 03 Sep 2008 18:45
+
+octopussy (0.9.7.6); urgency=medium
+
+	* 'Running Reports List' feature added
+  * Minor Bugfixes
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Thu, 24 Jul 2008 18:00
+
+octopussy (0.9.7.4); urgency=high
+
+	* Really better communication between WebUI & octo_reporter & octo_extractor
+	* Minor Bugfixes
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 16 Jul 2008 19:00
+
+octopussy (0.9.7); urgency=high
+
+  * Major Bugfix on AAT::XML module
+  * Taxonomy selection added in Logs Viewer
+	* Linux Inotify 'feature' added to octo_parser ! (no more waste of time between dispatcher & parser)
+	* Italian translation (not complete) added (thanks to Giuliano Natali)
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Mon, 07 Jul 2008 18:30
+
+octopussy (0.9.6.6); urgency=high
+
+	* 'Devices list filtering' feature added (ID 1841748)
+	* 'check new Octopussy version' feature added (ID 1732808)
+	* 'octo_extractor uses too much memory' bug fixed (ID 1968031)
+	* Major Bugfixes on dynamic selector for Devices/Services
+	* Some work on Web Interface
+	* So many bugfixes
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 28 May 2008 18:40
+
+octopussy (0.9.6.2); urgency=high
+
+	* Major Bugfixes on Logs Viewer
+	* Major Bugfixes on Backup
+	* Bugfix the wizard bug (ID 1951515)
+	* 'Search Templates administration' feature added
+	* 'Search Templates removing in Logs Viewer' feature added
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  Mon, 28 Apr 2008 18:30
+
+octopussy (0.9.6); urgency=high
+
+	* ServiceGroup feature added (you can now add a list of services to one device in one shot)
+	* Bugfix to disable deletion of last admin user
+  * Bugfix on Selector_DateTime_Simple (for hour & min < 10)
+  * Bugfixes on Logs Viewer
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Mon, 21 Apr 2008 18:30
+
+octopussy (0.9.5.8)
+
+	* 'Reload Required' feature added (Parser are not reloaded anymore when you move Service or Message)
+	* Really Better Logs Viewer
+	* Parsers now stop cleanly
+	* Bugfix on Logs sort (with unsorted month)
+	* Lot of Bugfixes
+	* Major Security fix !
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Thu, 10 Apr 2008 18:30
+
+octopussy (0.9.5.4)
+
+	* Alerts with Regexp(Include/Exclude) 
+	* Backup/Restore configuration feature added
+	* Menu Configuration added (Icons&Text, IconsOnly, TextOnly)
+	* New Types: Bytes & User_Agent (with specific plugins)
+	* Russian translation (not complete) added (thanks to Andrew Pantyukhin)
+	* Lot of Bugfixes
+
+	-- Sebastien Thebert <octo.devel@gmail.com>	 Tue, 11 Mar 2008 18:30
+
+octopussy (0.9.5)
+
+	* Migration to Apache2
+	* Better Logs Viewer with Ajax
+	* Included Help/Documentation
+	* Reducing number of Tables -> Global report easier
+	* Min & Max SQL functions added to Reports
+	* Yearly Stats added
+	* Services Added/Updated
+	* Report ProgressBar in Ajax now
+	* A lot of Minor Bugfixes
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Tue, 12 Feb 2008 20:00
+
+octopussy (0.9.4.8)
+
+	* Report XML output added
+	* In Wizard, now you can check if unknown logs match Service that don't
+	belong to Device
+	* Device Type is no more used for Logs Directories (Code Cleaner)
+	* Bugfix for specific chars in Alerts msgs, Contacts & Wizard msgs
+	* Bugfixes in Report Scheduler
+	* Bugfixes in octo_logrotate
+	* Code Cleaning
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 19 Dec 2007 18:30
+
+octopussy (0.9.4.4)
+
+	* You can now specify type (line or stack) and step (N minutes) to RRD Graph
+	* RRD Taxonomy Graph for each device are now generated only when needed 
+		(lower load from octo_logrotate)
+	* Code Cleaning (All AAT data is now in /usr/share/aat/ directory)
+	* Bugfix on RRD Graph Report Edition
+	* Lot of Bugfixes in installation scripts & documentation
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 21 Nov 2007 19:00
+
+octopussy (0.9.4)
+
+	* Storages used space now on main page
+	* Handling User Restrictions (by Device/Service/ALert/Report)
+	* Detection of Devices that don't send logs for n minutes
+	* Simple Datetime Selector (current/last hour/day/week/month/year) added
+	* Code cleaning and documentation
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 14 Nov 2007 20:30
+
+octopussy (0.9.3.8)
+
+	* Bugfix of device with status 'Stopped' that restarted after Octopussy
+	restart
+	* Major Bugfix on Report Scheduler
+	* Global Performance improvment by 'nicing' Octopussy programs (pusher,
+	scheduler, uparser, rrdgraph)
+	* Message fields can now be inserted in Alert messages
+	* WebUI - Service logos added in Services list
+	* First Mac OS X System/Kernel messages created
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 24 Oct 2007 18:30
+
+octopussy (0.9.3.4)
+
+	* Major BugFixes on Alerts Viewer
+	* Major Bugfix on octo_alerter introduced in last release
+	* Reports now in PDF (with htmldoc)
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 17 Oct 2007 19:00
+
+octopussy (0.9.3.1)
+
+	* Portuguese translation added (thanks to Rafael Henrique Vieira)
+	* Bugfix on 'Total Events on Last minute'
+	* Bugfix on Report Scheduler
+	* Bugfix for Creation of Report with only one field
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 03 Oct 2007 19:00
+
+octopussy (0.9.3)
+
+	* 'Storages' feature added 
+		(you can now decide where to store logs by Device/Service)
+	* Categories added in Report Viwer
+	* Possibility to Remove Reports for 1 month
+	* RRD files removed after Device/Service removed
+	* Tooltip in Reports Viewer to show an abstract of the Report
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Mon, 01 Oct 2007 19:00
+
+octopussy (0.9.2.4)
+
+	* Improvements of octo_parser/octo_uparser (faster & lower load)
+	* Change Reserved Word 'CONSTANT' by 'REGEXP' 
+	* Migration Apache::ASP Toolkit continued (all system stuff is now handled
+	by AAT)
+	* Cleaned last release debugging messages
+	* Add 'Check Connection' feature to the System Configuration Panel
+	* Lot of Bugfixes
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Fri, 14 Sep 2007 19:30
+
+octopussy (0.9.2)
+
+	* Start Apache::ASP Toolkit migration
+	* Better WebUI with new Icons (mix of Tango, Futurosoft & Crystal
+	Project)
+	* Live syntax checker on Wizard
+	* Lot of Bugfixes on alerts handling
+	* Add choise of DB Type in System COnfiguration
+	* Fix the bug of the Unknown messages not reparsed in Wizard
+	* Minor Bugfixes (Bug Id: 1721184, 1757568)
+	* Now users.xml are not overwritten anymore in Debian installation
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Mon, 13 Aug 2007 19:00
+
+octopussy (0.9.1.3)
+
+	* Fix 3 bugs in non-debian installation
+	* Fix the Logs Wizard problem again (Bug id 1712057)
+	* Minor WebUI improvements
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Thu, 10 May 2007 17:00
+
+octopussy (0.9.1.2)
+
+	* Fix the Logs Wizard problem (Bug id 1712057)
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 09 May 2007 12:00
+
+octopussy (0.9.1.1)
+
+	* Fix the librrd0 problem on Debian Etch
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 02 May 2007 15:30
+
+octopussy (0.9.1)
+
+	* Bugs with XML/utf8 fixed (Bug id 1708864), Octopussy is now fully utf8 !
+	* WebUI improvements
+	* Bugfixes on logs viewer, updater, reporter & scheduler
+	* Device Dashboard Page with Device Taxonomy RRD Graph
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Fri, 27 Apr 2007 19:30
+	
+octopussy (0.9.0.8)
+
+	* Alerts handle Repetition/Duration
+	* Online Update for Translations added.
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 04 Apr 2007 18:30
+	
+octopussy (0.9.0.6)
+
+	* RRDTool Graph used for Reports !
+	* Basic Reports are now available 
+	* Online Update for Basic Reports added.
+	* Minor Bugfixes
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Tue, 27 Mar 2007 12:00
+	
+octopussy (0.9.0.2)
+
+	* Improve 'LogsFiles' function which improve extractor/reporter speed
+	* Add Proxy Configuration to get Octopussy updates
+	* Bugfix on Sending Alerts
+	* Bugfix on New Device Detection
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Tue, 06 Mar 2007 19:30
+	
+octopussy (0.9)
+	
+	* Lot of Minor Bugfixes
+	* Code Cleaning
+	* You can now submit your Service/Table to support directly from the WebUI
+	* Stop/Start/Pause device functionality
+	* Tooltips
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 28 Feb 2007 18:00
+	
+octopussy (0.8.9.9)
+
+	* Major Bugfix on Report SQL Request creation
+	* Bugfix on sending Alerts vi email/IM
+	* Spanish translation updated (thanks to Victor Barahona)
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Fri, 05 Jan 2007 18:30
+	
+octopussy (0.8.9.8)
+
+	* Major Bugfix on installation script
+		(https://sourceforge.net/forum/forum.php?thread_id=1622659&forum_id=629149)
+	* Major Bugfixes on memory usage which improve global performance
+	* In Wizard, now you can delete one minute of unknown logs in one click
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 03 Jan 2007 18:00
+	
+octopussy (0.8.9.6)
+
+	* Web Interface Enhancements
+	* Minor Bugfixes
+	* Code Cleaning
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 29 Nov 2006 14:50
+
+octopussy (0.8.9.5)
+
+	* Web Interface Enhancements
+	* Lots of minor bugfixes/features enhancements
+	* Code Cleaning
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Fri, 24 Nov 2006 16:30
+	
+octopussy (0.8.9)
+
+	* Device Footprint functionality added (Octopussy can now determine Device
+	Type & Model, and set Services with New Device log lines)
+	* Plugins can now be applied in Input (before SQL insert) or Output (after
+	SQL query) 
+	* RRDTool integration
+	* Lot of Bugfixes/Enhancements
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Tue, 07 Nov 2006 19:30
+
+octopussy (0.8.8)
+
+	* Online Update (on 8pussy.org) for Octopussy Services & Tables added !
+	* octo_pusher (octo_dispatcher for non-syslog devices) added !
+	* Updated Web Interface buttons with The Tango Desktop Project icons
+	* Many Minor Bugfixes
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 20 Sep 2006 15:30
+	
+octopussy (0.8.7.4)
+
+	* Minor Bugfixes & Feature enhancements
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Thu, 31 Aug 2006 18:00
+	
+octopussy (0.8.7)
+
+	* Lot of Bugfixes on installation !
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 09 Aug 2006 10:00
+	
+octopussy (0.8.6.2)
+
+	* Dynamic Alerts edition added.
+	* Disabled OpenDocument Export because installation problems in v0.8.6
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Fri, 04 Aug 2006 17:00
+	
+octopussy (0.8.6)
+	
+	* Reports exporting methods (mail/ftp/scp) added to Scheduler
+	* Remove empty directories with octo_logrotate
+	* Remove logfiles exceeding logrotate limit with octo_logrotate
+	* Handling logs directories & files when changing device type fixed 
+	* Code Cleaning
+	* Minor Bugfixes
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 02 Aug 2006 17:00
+	
+octopussy (0.8.5)
+
+	* Version 0.8.4 was completely buggy, this is the fixed version !
+	* Modified Plugin Architecture (see 'Plugin Howto' on 8pussy.org)
+	* Minor bugfixes
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Thu, 21 Jul 2006 10:00
+	
+octopussy (0.8.4)
+
+	* Bugfix on octo_dispatcher when no NTP sync !
+	* TimePeriods functionality added
+	* Dynamic Alerts with TimePeriod added
+	* Reports exporting methods added (by mail/ftp/scp)
+	* Dispatcher & Parser improvments
+	* Bugfix (Headers fields in Report)
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 19 Jul 2006 18:00
+	
+octopussy (0.8.2)
+
+	* Bugfixes (removing logs in wizard & empty msgs for alerts)
+	* Data from reports can now be handled by external plugins !
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Tue, 11 Jul 2006 18:00
+
+octopussy (0.8)
+
+	* Bugfixes
+	* Add 'date_time' fields in Alerts -> Better sort in Alerts Tracker Interface
+	* Export logs in 'txt' & 'csv' file format
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Thu, 05 Jul 2006 19:00
+	
+octopussy (0.7.9.9)
+
+	* "System Configuration" Interface for DB, LDAP, Jabber, SMTP configuration
+	* "Message Matching Statictics" in Service
+	* Users LDAP Authentication is now working
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Fri, 30 Jun 2006 19:00
+
+octopussy (0.7.9.8)
+
+	* LDAP powered for contacts & users (users can't connect with LDAP yet)
+	* Alerts Notifications can be sent via sendxmpp (Jabber)
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Thu, 22 Jun 2006 16:00
+	 
+octopussy (0.7.9.6)
+
+	* Web Page for Messages filtering (Service, Log Level, Taxonomy, Table)
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Mon, 19 Jun 2006 19:00
+	
+octopussy (0.7.9.4)
+
+	* Alerts Creation via Web Interface
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Thu, 15 Jun 2006 18:00
+		
+octopussy (0.7.9.2)
+
+	* Modification for SMTP & Alerts configuration
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Fri, 09 Jun 2006 17:40
+					
+octopussy (0.7.9)
+
+	* Bugfixes in octo_reporter
+	* Bugfixes in octo_scheduler
+	* Clear empty directories with octo_logrotate 
+	* Dynamic Devicegroups
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Tue, 06 Jun 2006 10:30
+
+octopussy (0.7.8)
+
+	* Bugfixes
+	* Code cleaning
+	* LOgs Viewer & Reporter faster
+	* New Services
+
+	-- Sebastien Thebert <octo.devel@gmail.com>
+	
+octopussy (0.7.75)
+
+	* Bugfixes
+	* WebUI really faster than before
+	* First Debian Packaging
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Fri, 28 Apr 2006 18:00
+		
+octopussy (0.7.7)
+
+	* Now works with syslog-ng ! (should fix logrotate problems)
+
+	-- Sebastien Thebert <octo.devel@gmail.com> 
+
+octopussy (0.7.6)
+
+	* Bugfixes & improvements
+
+	-- Sebastien Thebert <octo.devel@gmail.com>
+
+octopussy (0.7.5)
+
+	* Added checks for table & fields in message when creating/modifying message
+	* Added checks for space in tablenames (substituted by '_')
+	* Added checks for uniq msgids
+	* Maps can redirect to alerts 
+
+	-- Sebastien Thebert <octo.devel@gmail.com>
+
+octopussy (0.7.4)
+
+	* Bugfixes
+	* Added Maps functionality
+	
+	-- Sebastien Thebert <octo.devel@gmail.com>
+
+octopussy (0.7.2)
+
+	* Explicit msg_id for service messages
+	* Added "LIMIT" functionality in Report
+	* Added Predefined Taxonomy in Report
+	* Added "versioning" (yyyymmddxxxx) in services
+
+	-- Sebastien Thebert <octo.devel@gmail.com>
+
+octopussy (0.7)
+
+	* Bugfixes/WebUI improvements
+	* Lot of new Services/messages
+	* Enabled "message removing" in Wizard
+	* Added "Report sort order (ascending/descending)"
+	* Bugfix for "nested quantifiers errors" in Wizard
+	* Incoming & Unknown messages now divided in 2 specific directories
+
+	-- Sebastien Thebert <octo.devel@gmail.com>
+
+octopussy (0.6.4)
+
+	* Bugfixes
+	* Calendar added
+	* Locations added
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Mon, 23 Jan 2006 17:00
+
+octopussy (0.6)
+
+	* Logrotate & Scheduler full functionality 
+	* javascript code for dynamic device/service selector
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Mon, 16 Jan 2006 18:00
+
+octopussy (0.5.6)
+
+	* A lot of bugfixes
+	* Logrotate functionality added
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 11 Jan 2006 19:00
+
+octopussy (0.5.2)
+
+	* Some code cleaning
+	* Some minor changes on File Hierarchy
+	* Added user rights checkings before any Add/Modify/Remove action
+	* Added Dialog Boxes !
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Thu, 29 Dec 2005 19:00
+
+octopussy (0.5)
+
+	* A lot of improvements & new features since 0.4 version !
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 28 Dec 2005 20:00
+
+octopussy (0.4)
+
+	* First Public Release
+
+	-- Sebastien Thebert <octo.devel@gmail.com>  Wed, 14 Dec 2005 00:30
+
