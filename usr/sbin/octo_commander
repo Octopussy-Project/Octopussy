@@ -32,7 +32,10 @@ while (1)
   $cache->remove('commands');    # TODO If cache set between get & remove ?
   foreach my $c (@{$commands})
   {
-    system $c if ($c =~ /^\/usr\/sbin\/octo.+/);
+  	if (my ($command, $args) = $c =~ /^(\/usr\/sbin\/octo_\S+)(.*)/)
+  	{
+    	system $command, $args;
+  	}
   }
   sleep 1;
 }

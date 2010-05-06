@@ -21,6 +21,7 @@ use bytes;    # Fix the 'Malformed UTF-8 character' warning
 use utf8;
 use Readonly;
 
+use Date::Manip;
 use File::Basename;
 use File::Copy;
 use File::Path;
@@ -28,6 +29,7 @@ use Linux::Inotify2;
 use Regexp::Assemble;
 
 use AAT;
+use AAT::Datetime;
 use AAT::NSCA;
 use AAT::SMTP;
 use AAT::XMPP;

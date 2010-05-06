@@ -32,6 +32,7 @@ use Octopussy::Device;
 use Octopussy::Loglevel;
 use Octopussy::Logs;
 use Octopussy::Message;
+use Octopussy::Service;
 use Octopussy::Taxonomy;
 
 Readonly my $PROG_NAME    => 'octo_extractor';

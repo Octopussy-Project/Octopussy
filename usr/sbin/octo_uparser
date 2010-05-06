@@ -26,6 +26,8 @@ use File::Copy;
 use File::Path;
 use Regexp::Assemble;
 
+use AAT;
+
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Device;
