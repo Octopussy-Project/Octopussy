@@ -7,9 +7,12 @@ packaging_svn2debian.pl - Program to create Debian package from SVN repository
 =cut
 
 use strict;
+use warnings;
 use Readonly;
 
+use File::Find;
 use File::Path;
+use File::Spec::Functions qw( catfile );
 
 Readonly my $PACKAGE => 'octopussy';
 Readonly my $BIN_POD2MAN => '/usr/bin/pod2man';
@@ -40,6 +43,20 @@ sub Octopussy_Version
 }
 
 
+=head2 Changelog
+
+Generates /usr/share/doc/octopussy/changelog.gz file from changelog file
+
+=cut
+
+sub Changelog
+{
+	printf "Generating changelog file...\n";
+	mkpath("$DIR_TMP/usr/share/doc/$PACKAGE/");
+	`cat ./changelog | gzip -9 > $DIR_TMP/usr/share/doc/$PACKAGE/changelog.gz`;
+}
+
+
 =head2 Copy_Files
 
 Copy files from SVN to temporary Debian packaging directory
@@ -48,6 +65,8 @@ Copy files from SVN to temporary Debian packaging directory
 
 sub Copy_Files
 {
+	`cp ./copyright $DIR_TMP/usr/share/doc/$PACKAGE/`;
+ 
   printf "Copying Debian packaging files...\n";
   mkpath("$DIR_TMP/DEBIAN/");
   `cp -R ./DEBIAN/* $DIR_TMP/DEBIAN/`;
@@ -66,8 +85,29 @@ sub Copy_Files
   `cp -R ./etc/aat/* $DIR_TMP/etc/aat/`;
   `cp -R ./etc/$PACKAGE/* $DIR_TMP/etc/$PACKAGE/`;
   `cp -R ./var/lib/$PACKAGE/conf/* $DIR_TMP/var/lib/$PACKAGE/conf/`;
-}
+  `chmod -R 644 $DIR_TMP/etc/$PACKAGE/`;
+  mkpath("$DIR_TMP/etc/rsyslog.d/");
+	`cp ./etc/rsyslog.d/$PACKAGE.conf $DIR_TMP/etc/rsyslog.d/`;
+	`chmod -R 644 $DIR_TMP/etc/rsyslog.d/`; 
 
+  printf "Copying Program files...\n";
+  mkpath("$DIR_TMP/usr/sbin/");
+  `cp ./usr/sbin/octo* $DIR_TMP/usr/sbin/`;
+  
+  printf "Copying WebSite files...\n";
+  mkpath("$DIR_TMP/usr/share/aat/");
+  mkpath("$DIR_TMP/usr/share/$PACKAGE/");
+	`cp -R ./usr/share/aat/* $DIR_TMP/usr/share/aat/`;
+	`cp -R ./usr/share/$PACKAGE/* $DIR_TMP/usr/share/$PACKAGE/`;
+	
+	print "Removing svn files...\n";
+  `find $DIR_TMP -type d -name ".svn" -exec rm -rf \{\} \\;`;
+  
+  rmtree("$DIR_TMP/etc/$PACKAGE/CA/");
+  `rm -rf $DIR_TMP/var/lib/$PACKAGE/conf/{devicegroups,locations,schedule,servicegroups}.xml`;
+  # Removing Catalyst stuff for now...
+  rmtree('./usr/share/octopussy/Octopussy-Web/');
+}
 
 =head2 Man()
 
@@ -123,6 +163,7 @@ my $filename_pkg = "${PACKAGE}_${version}_all.deb";
 
 rmtree($DIR_TMP);
 Man();
+Changelog();
 Copy_Files();
 
 `sed -i "s/^Version:.*/Version: $version/" ./$FILE_DEBIAN_CONTROL`;
@@ -132,60 +173,10 @@ Copy_Files();
 
 =head2 TODO
 
-my $OCTO_DOC = "octopussy_doc";
-my $FILE_CHANGELOG = "$DIR/usr/share/doc/$PACKAGE/changelog.gz";
-
-# Function: Changelog()
-sub Changelog
-{
-	`cp $OCTO_DOC/changelog $OCTO_DOC/changelog.tmp`;
-  `rm -f $OCTO_DOC/changelog.tmp.gz`;
-	`gzip -9 $OCTO_DOC/changelog.tmp`;
-	`mv $OCTO_DOC/changelog.tmp.gz $DIR/usr/share/doc/$PACKAGE/changelog.gz`;
-}
-
-# CREATING DIRECTORIES
-`mkdir -p $DIR/etc/rsyslog.d/`;
-`mkdir -p $DIR/usr/sbin/`;
-`mkdir -p $DIR/usr/share/$AAT/`;
-`mkdir -p $DIR/usr/share/$PACKAGE/`;
-
-# COPYING FILES
-`cp /etc/rsyslog.d/$PACKAGE.conf $DIR/etc/rsyslog.d/`;
-`chmod -R 644 $DIR/etc/rsyslog.d/ $DIR/etc/$PACKAGE/`;
-`cp /usr/sbin/octo* $DIR/usr/sbin/`;
-`cp -R /usr/share/$AAT/* $DIR/usr/share/$AAT/`;
-`cp -R /usr/share/$PACKAGE/* $DIR/usr/share/$PACKAGE/`;
-
-# Exclude 'private' data
-`rm -rf $DIR/etc/$PACKAGE/backup*`;
-`rm -rf $DIR/etc/$PACKAGE/CA/`;
-`rm -rf $DIR/var/lib/$PACKAGE/conf/alerts/*`;
-`rm -rf $DIR/var/lib/$PACKAGE/conf/contacts/*`;
-`rm -rf $DIR/var/lib/$PACKAGE/conf/devices/*`;
-`rm -rf $DIR/var/lib/$PACKAGE/conf/maps/*`;
-`rm -rf $DIR/var/lib/$PACKAGE/conf/reports/*`;
-`rm -rf $DIR/var/lib/$PACKAGE/conf/search_templates/*`;
-`rm -rf $DIR/var/lib/$PACKAGE/conf/{devicegroups,locations,schedule,servicegroups}.xml`;
-`rm -rf $DIR/usr/share/$PACKAGE/rrd/*`;
-#`rm -rf $DIR/usr/share/$PACKAGE/JS/*`;
-# no Catalyst for now
-`rm -rf $DIR/usr/share/$PACKAGE/console/`;
-
-
-# COPYING REPORTS
-`cp -R /var/lib/$PACKAGE/conf/reports/Bind* $DIR/var/lib/$PACKAGE/conf/reports/`;
-
-# Exclude 'private' 'CA_*' data
-`rm -rf $DIR/usr/share/perl5/Octopussy/Plugin/CA_*`;
-`rm -rf $DIR/usr/share/perl5/Octopussy/Plugin/DenyAll*`;
-`rm -rf $DIR/var/lib/$PACKAGE/conf/{plugins,services,tables}/CA_*.xml`;
-`rm -rf $DIR/usr/share/aat/Lists/CA_*.xml`;
-
 #
 # BUILDING PACKAGE
 #
-`chown -R root: $DIR/`; #/usr/share/doc/*`;
+`chown -R root: $DIR/`; 
 #`chown -R root: $DIR/DEBIAN/*`;
 `find $DIR/usr/sbin/ -name "octo*" | xargs chmod 750`;
 `find $DIR/usr/share/perl5/Octopussy/Plugin/ -name "*" | xargs chmod 644`;
