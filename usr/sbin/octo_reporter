@@ -30,8 +30,10 @@ use strict;
 use warnings;
 use Readonly;
 
+use Date::Manip;
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
+use Term::ProgressBar 2.00;
 
 use AAT;
 use AAT::DB;
@@ -270,9 +272,12 @@ sub Insert_Data
   `touch "$FILE_DB.$$"`;
   chmod 0644, "$FILE_DB.$$";
 
+  my $progressbar = Term::ProgressBar->new({name => 'Inserting Data...', count => $total, ETA => 'linear'})
+  	if (!defined $pid_param);
   foreach my $f (@{$files})
   {
     Progress('_MSG_REPORT_PROGRESS_INSERTING_DATA', $i . "/$total");
+    $progressbar->update($i) if (!defined $pid_param);
     if (defined open my $FILE, '-|', "zcat \"$f\"")
     {
       while (my $line = <$FILE>)

@@ -1,9 +1,9 @@
 Package: octopussy
-Version: 0.9.9.9.6
+Version: 0.9.9.9.7
 Section: net
 Priority: optional
 Architecture: all
-Depends: adduser, debconf, apache2, rsyslog, nscd, perl, perl-modules, sudo, mysql-server, libapache2-mod-perl2, libapache-asp-perl, libapp-info-perl, libunix-syslog-perl, libxml-simple-perl, libcrypt-passwdmd5-perl, libdbi-perl, libdbd-mysql-perl, libsys-cpu-perl, libdate-manip-perl, libnet-scp-perl, libnet-telnet-perl, libnet-xmpp-perl, libmail-sender-perl, libnet-ldap-perl, librrd4|librrd2, rrdtool, htmldoc, liblinux-inotify2-perl, libcache-cache-perl, libproc-process-perl, liburi-perl, libproc-pid-file-perl, libwww-perl, libjson-perl, libreadonly-perl, libregexp-assemble-perl, liblist-moreutils-perl
+Depends: adduser, debconf, apache2, rsyslog, nscd, perl, perl-modules, sudo, mysql-server, libapache2-mod-perl2, libapache-asp-perl, libapp-info-perl, libunix-syslog-perl, libxml-simple-perl, libcrypt-passwdmd5-perl, libdbi-perl, libdbd-mysql-perl, libsys-cpu-perl, libdate-manip-perl, libnet-scp-perl, libnet-telnet-perl, libnet-xmpp-perl, libmail-sender-perl, libnet-ldap-perl, librrd4|librrd2, rrdtool, htmldoc, liblinux-inotify2-perl, libcache-cache-perl, libproc-process-perl, liburi-perl, libproc-pid-file-perl, libwww-perl, libjson-perl, libreadonly-perl, libregexp-assemble-perl, liblist-moreutils-perl, libterm-progressbar-perl
 Maintainer: Sebastien Thebert <octo.devel@gmail.com>
 Description: logs analyzer, alerter & reporter
  Octopussy is a logs analyzer, alerter & reporter with Web interface.
