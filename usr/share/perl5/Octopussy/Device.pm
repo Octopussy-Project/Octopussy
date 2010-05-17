@@ -19,8 +19,8 @@ use File::Path qw(rmtree);
 use List::MoreUtils qw(uniq);
 use POSIX qw(strftime);
 
-use AAT;
 use AAT::FS;
+use AAT::Utils qw( ARRAY NOT_NULL NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Cache;
@@ -55,7 +55,7 @@ sub New
   my $conf = shift;
   my $name = $conf->{name};
 
-  if (AAT::NOT_NULL($name))
+  if (NOT_NULL($name))
   {
     $dir_devices ||= Octopussy::Directory($DIR_DEVICE);
     $conf->{type}  = $conf->{type}  || Octopussy::Parameter('devicetype');
@@ -143,7 +143,6 @@ sub Remove
   return ($device);
 }
 
-
 =head2 List()
 
 Gets List of Devices
@@ -157,7 +156,6 @@ sub List
   return (AAT::XML::Name_List($dir_devices));
 }
 
-
 =head2 String_List
 
 Returns Device List as a string like 'Device list: <device_list>'
@@ -168,11 +166,10 @@ sub String_List
 {
   my $any     = shift;
   my @list    = List();
-  my $str_any = (AAT::NOT_NULL($any) ? '-ANY-, ' : '');
+  my $str_any = (NOT_NULL($any) ? '-ANY-, ' : '');
 
   return ("Device list: $str_any" . (join ', ', sort @list));
 }
-
 
 =head2 Unknowns(@devices)
 
@@ -182,14 +179,16 @@ Returns list of Unknown Devices in @devices list
 
 sub Unknowns
 {
-	my @devices = @_;
-	my @unknowns = ();
-	
-	my %exist = map { $_ => 1 } List();
-	foreach my $d (@devices)
-		{ push @unknowns, $d if ((!defined $exist{$d}) && ($d ne '-ANY-')); }
-	
-	return (@unknowns)	
+  my @devices  = @_;
+  my @unknowns = ();
+
+  my %exist = map { $_ => 1 } List();
+  foreach my $d (@devices)
+  {
+    push @unknowns, $d if ((!defined $exist{$d}) && ($d ne '-ANY-'));
+  }
+
+  return (@unknowns);
 }
 
 =head2 Filename($device_name)
@@ -280,8 +279,8 @@ sub Filtered_Configurations
   {
     my $conf = Configuration($d);
     if (
-      ((AAT::NULL($type)) || ($type eq '-ANY-') || ($type eq $conf->{type}))
-      && ( (AAT::NULL($model))
+      ((NULL($type)) || ($type eq '-ANY-') || ($type eq $conf->{type}))
+      && ( (NULL($model))
         || ($model eq '-ANY-')
         || ($model eq $conf->{model}))
        )
@@ -320,27 +319,27 @@ sub Add_Service
   my ($device, $service) = @_;
 
   my $conf = AAT::XML::Read(Filename($device));
-  foreach my $dev_serv (AAT::ARRAY($conf->{service}))
+  foreach my $dev_serv (ARRAY($conf->{service}))
   {
     return () if ($dev_serv->{sid} =~ /^$service$/);
   }
 
   my $old_status = Parse_Status($device);
   Parse_Pause($device) if ($old_status == $STARTED);
-  my $rank = AAT::Padding(
+  my $rank = sprintf(
+    "%02d",
     (
-      AAT::NOT_NULL($conf->{service})
+      NOT_NULL($conf->{service})
       ? (scalar(@{$conf->{service}}) + 1)
       : 1
-    ),
-    2
+    )
   );
   if ($service =~ /^group (.+)$/)
   {
     foreach my $s (Octopussy::ServiceGroup::Services($1))
     {
       my $exists = 0;
-      foreach my $dev_serv (AAT::ARRAY($conf->{service}))
+      foreach my $dev_serv (ARRAY($conf->{service}))
       {
         $exists = 1 if ($dev_serv->{sid} =~ /^$s->{sid}$/);
       }
@@ -373,7 +372,7 @@ sub Remove_Service
   my @services = ();
   my $rank     = undef;
   my $conf     = AAT::XML::Read(Filename($device_name));
-  foreach my $s (AAT::ARRAY($conf->{service}))
+  foreach my $s (ARRAY($conf->{service}))
   {
     if ($s->{sid} ne $service_name) { push @services, $s; }
     else                            { $rank = $s->{rank}; }
@@ -383,7 +382,7 @@ sub Remove_Service
     if ($s->{rank} > $rank)
     {
       $s->{rank} -= 1;
-      $s->{rank} = AAT::Padding($s->{rank}, 2);
+      $s->{rank} = sprintf("%02d", $s->{rank});
     }
   }
   $service_name =~ s/ /_/g;
@@ -407,7 +406,7 @@ sub Update_Services_Rank
   my ($conf, $service, $direction, $rank, $old_rank) = @_;
 
   my @services = ();
-  foreach my $s (AAT::ARRAY($conf->{service}))
+  foreach my $s (ARRAY($conf->{service}))
   {
     if ($s->{sid} ne $service)
     {
@@ -427,7 +426,7 @@ sub Update_Services_Rank
         $s->{rank} = ($direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1);
       }
     }
-    $s->{rank} = AAT::Padding($s->{rank}, 2);
+    $s->{rank} = sprintf("%02d", $s->{rank});
     push @services, $s;
   }
 
@@ -448,8 +447,8 @@ sub Move_Service
   my $conf     = AAT::XML::Read(Filename($device));
   my @services = ();
   my $max      = (defined $conf->{service} ? scalar(@{$conf->{service}}) : 0);
-  $max = AAT::Padding($max, 2);
-  foreach my $s (AAT::ARRAY($conf->{service}))
+  $max = sprintf("%02d", $max);
+  foreach my $s (ARRAY($conf->{service}))
   {
 
     if ($s->{sid} eq $service)
@@ -464,7 +463,7 @@ sub Move_Service
           : ($direction eq 'down' ? $s->{rank} + 1 : $max)
         )
       );
-      $s->{rank} = AAT::Padding($s->{rank}, 2);
+      $s->{rank} = sprintf("%02d", $s->{rank});
       $rank = $s->{rank};
     }
     push @services, $s;
@@ -495,8 +494,7 @@ sub Services
   {
     return (Octopussy::Service::List()) if ($d eq '-ANY-');
     my $conf = AAT::XML::Read(Filename($d));
-    foreach
-      my $s (sort { $a->{rank} cmp $b->{rank} } AAT::ARRAY($conf->{service}))
+    foreach my $s (sort { $a->{rank} cmp $b->{rank} } ARRAY($conf->{service}))
     {
       push @services, $s->{sid};
     }
@@ -504,7 +502,6 @@ sub Services
 
   return (@services);
 }
-
 
 =head2 String_Services
 
@@ -514,12 +511,12 @@ Returns Service List as a string like 'Service list: <service_list>'
 
 sub String_Services
 {
-  my @devices  = @_;
-  
+  my @devices = @_;
+
   my @unknowns = Unknowns(@devices);
   if (scalar @unknowns)
   {
-  	return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @unknowns);
+    return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @unknowns);
   }
   my @services = sort(uniq(Services(@devices)));
 
@@ -538,8 +535,7 @@ sub Services_Configurations
   my @configurations = ();
   my $conf           = AAT::XML::Read(Filename($device));
 
-  foreach
-    my $s (sort { $a->{rank} cmp $b->{rank} } AAT::ARRAY($conf->{service}))
+  foreach my $s (sort { $a->{rank} cmp $b->{rank} } ARRAY($conf->{service}))
   {
     push @configurations, $s;
   }
@@ -590,7 +586,6 @@ sub Services_Statistics
   return (%stats);
 }
 
-
 =head2 With_Service($service)
 
 Returns List of Device which have Service '$service' in its Services List
@@ -605,7 +600,7 @@ sub With_Service
 
   foreach my $c (@configurations)
   {
-    foreach my $s (AAT::ARRAY($c->{service}))
+    foreach my $s (ARRAY($c->{service}))
     {
       push @devices, $c->{name} if ($s->{sid} eq $service);
     }
@@ -624,7 +619,8 @@ sub Types
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
   my @list = ();
-  foreach my $t (sort { $a->{dt_id} cmp $b->{dt_id} } AAT::ARRAY($conf->{device_type}))
+  foreach
+    my $t (sort { $a->{dt_id} cmp $b->{dt_id} } ARRAY($conf->{device_type}))
   {
     push @list, $t->{dt_id};
   }
@@ -640,7 +636,7 @@ sub Type_Configurations
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
   my %type = ();
-  foreach my $t (AAT::ARRAY($conf->{device_type}))
+  foreach my $t (ARRAY($conf->{device_type}))
   {
     $type{$t->{dt_id}} = $t;
   }
@@ -660,11 +656,13 @@ sub Models
   my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEMODELS));
   my @list = ();
 
-  foreach my $t (sort { $a->{dt_id} cmp $b->{dt_id} } AAT::ARRAY($conf->{device_type}))
+  foreach
+    my $t (sort { $a->{dt_id} cmp $b->{dt_id} } ARRAY($conf->{device_type}))
   {
     if ($t->{dt_id} eq $type)
     {
-      foreach my $m (sort { $a->{dm_id} cmp $b->{dm_id} } AAT::ARRAY($t->{device_model}))
+      foreach
+        my $m (sort { $a->{dm_id} cmp $b->{dm_id} } ARRAY($t->{device_model}))
       {
         push @list,
           {
@@ -804,7 +802,7 @@ sub Set_Service_Statistics
   my $status   = ($action eq 'enable' ? 1 : 0);
   my $conf     = Configuration($device);
   my @services = ();
-  foreach my $s (AAT::ARRAY($conf->{service}))
+  foreach my $s (ARRAY($conf->{service}))
   {
     $s->{statistics} = $status if ($s->{sid} eq $service);
     push @services, $s;

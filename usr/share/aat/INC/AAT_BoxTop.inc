@@ -5,8 +5,8 @@ my $align = (defined $arg{align} ?
 		: (($arg{align} =~ /^R/i) ? "right" : $arg{align} )) : "left");
 my $w = $arg{width};
 my $bicolor = (defined $arg{bicolor} ? 1 : 0);
-my $space = (AAT::NOT_NULL($arg{cellspacing}) ? $arg{cellspacing} : 0);
-my $padd = (AAT::NOT_NULL($arg{cellpadding}) ? $arg{cellpadding} : 2);
+my $space = (NOT_NULL($arg{cellspacing}) ? $arg{cellspacing} : 0);
+my $padd = (NOT_NULL($arg{cellpadding}) ? $arg{cellpadding} : 2);
 %>
 <!-- BoxTop -->
 <div align="<%= $align %>">

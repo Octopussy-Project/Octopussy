@@ -2,7 +2,7 @@
 my %arg = @_; 
 use AAT;
 
-if ((AAT::NULL($Session->{AAT_LOGIN})) 
+if ((NULL($Session->{AAT_LOGIN})) 
 	|| ($Session->{AAT_ROLE} eq "restricted"))
 {	
 	my $page = "./login.asp?redirect=" 

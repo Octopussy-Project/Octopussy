@@ -46,7 +46,7 @@ my @auth_types = qw(-NONE- LOGIN PLAIN CRAM-MD5 NTLM);
 	<AAT:BoxCol><AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
 	<AAT:BoxCol>
 <%
-if (AAT::NOT_NULL($server))
+if (NOT_NULL($server))
 {
 	my ($level, $msg) = ((AAT::SMTP::Connection_Test($arg{appli})) 
 		? (0, "SMTP Connection is OK !") : (2, "SMTP Connection is NOT OK !"));

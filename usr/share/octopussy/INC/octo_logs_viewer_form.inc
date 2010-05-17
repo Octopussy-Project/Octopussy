@@ -15,12 +15,12 @@ my ($re_include, $re_include2, $re_include3) =
 my ($re_exclude, $re_exclude2, $re_exclude3) =
   ($Session->{re_exclude}, $Session->{re_exclude2}, $Session->{re_exclude3});
 
-my @devices = AAT::ARRAY($arg{devices});
-my @services = AAT::ARRAY($arg{services});
+my @devices = ARRAY($arg{devices});
+my @services = ARRAY($arg{services});
 
-#my @restricted_devices = AAT::ARRAY($arg{restricted_devices});
-#my @restricted_services = AAT::ARRAY($arg{restricted_services});
-my $unknown = (AAT::NOT_NULL($arg{unknown}) ? 1 : undef);
+#my @restricted_devices = ARRAY($arg{restricted_devices});
+#my @restricted_services = ARRAY($arg{restricted_services});
+my $unknown = (NOT_NULL($arg{unknown}) ? 1 : undef);
 %>
 <AAT:Form action="$arg{url}">
 <AAT:Box align="C" title="_LOGS_VIEWER" icon="buttons/bt_search">

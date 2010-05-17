@@ -17,7 +17,7 @@ use Readonly;
 
 use List::MoreUtils qw(uniq);
 
-use AAT;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Device;
@@ -39,20 +39,20 @@ sub List
   my ($dev_list, $serv_list) = @_;
   my @list = ();
 
-  if ((AAT::NOT_NULL($dev_list)) || (AAT::NOT_NULL($serv_list)))
+  if ((NOT_NULL($dev_list)) || (NOT_NULL($serv_list)))
   {
     my %level    = ();
     my %color    = Colors();
     my %levels   = Levels();
     my @services = (
-      (AAT::NOT_NULL($serv_list))
-      ? AAT::ARRAY($serv_list)
-      : Octopussy::Device::Services(AAT::ARRAY($dev_list))
+      (NOT_NULL($serv_list))
+      ? ARRAY($serv_list)
+      : Octopussy::Device::Services(ARRAY($dev_list))
     );
     @services = sort(uniq(@services));
     foreach my $s (@services)
     {
-      @services = Octopussy::Device::Services(AAT::ARRAY($dev_list))
+      @services = Octopussy::Device::Services(ARRAY($dev_list))
         if ($s eq '-ANY-');
     }
     @services = sort(uniq(@services));
@@ -75,13 +75,13 @@ sub List
   {
     my %field;
     my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
-    foreach my $l (AAT::ARRAY($conf->{loglevel}))
+    foreach my $l (ARRAY($conf->{loglevel}))
     {
       $field{$l->{level}} = 1;
     }
     foreach my $f (reverse sort keys %field)
     {
-      foreach my $l (AAT::ARRAY($conf->{loglevel}))
+      foreach my $l (ARRAY($conf->{loglevel}))
       {
         $l->{label} = $l->{value};
         push @list, $l if ($l->{level} eq $f);
@@ -110,7 +110,6 @@ sub List_And_Any
   return (@list);
 }
 
-
 =head2 String_List($devices, $services)
 
 Returns Loglevel List as a string like 'Loglevel list: <loglevel_list>'
@@ -120,28 +119,26 @@ Returns Loglevel List as a string like 'Loglevel list: <loglevel_list>'
 sub String_List
 {
   my ($devices, $services) = @_;
-  
+
   my @d_unknowns = Octopussy::Device::Unknowns(@{$devices});
   my @s_unknowns = Octopussy::Service::Unknowns(@{$services});
   if (scalar @d_unknowns)
   {
-  	return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @d_unknowns);
+    return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @d_unknowns);
   }
   elsif (scalar @s_unknowns)
   {
-  	return (sprintf '[ERROR] Unknown Service(s): %s', join ', ', @s_unknowns);
+    return (sprintf '[ERROR] Unknown Service(s): %s', join ', ', @s_unknowns);
   }
   else
   {
-  	my @data = Octopussy::Loglevel::List($devices, $services);
-  	my @list = ('-ANY-');
-  	foreach my $d (@data)
-  		{ push @list, $d->{value}; }
+    my @data = Octopussy::Loglevel::List($devices, $services);
+    my @list = ('-ANY-');
+    foreach my $d (@data) { push @list, $d->{value}; }
 
-  	return ('Loglevel list: ' . join ', ', sort @list);
+    return ('Loglevel list: ' . join ', ', sort @list);
   }
 }
-
 
 =head2 Unknowns(@loglevels)
 
@@ -151,16 +148,17 @@ Returns list of Unknown Loglevels in @loglevels list
 
 sub Unknowns
 {
-	my @loglevels = @_;
-	my @unknowns = ();
-	
-	my %exist = map { $_->{label} => 1 } List();
-	foreach my $l (@loglevels)
-		{ push @unknowns, $l if ((!defined $exist{$l}) && ($l ne '-ANY-')); }
-	
-	return (@unknowns)	
-}
+  my @loglevels = @_;
+  my @unknowns  = ();
 
+  my %exist = map { $_->{label} => 1 } List();
+  foreach my $l (@loglevels)
+  {
+    push @unknowns, $l if ((!defined $exist{$l}) && ($l ne '-ANY-'));
+  }
+
+  return (@unknowns);
+}
 
 =head2 Colors()
 
@@ -171,7 +169,7 @@ sub Colors
   my %color = ();
 
   my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
-  foreach my $l (AAT::ARRAY($conf->{loglevel}))
+  foreach my $l (ARRAY($conf->{loglevel}))
   {
     $color{$l->{value}} = $l->{color};
   }
@@ -188,7 +186,7 @@ sub Levels
   my %level = ();
 
   my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
-  foreach my $l (AAT::ARRAY($conf->{loglevel}))
+  foreach my $l (ARRAY($conf->{loglevel}))
   {
     $level{$l->{value}} = $l->{level};
   }

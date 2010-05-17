@@ -8,7 +8,7 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 {
 	if ($action eq "add")
 	{
-		if (AAT::NOT_NULL($name) && ($f->{directory} =~ /^\//))
+		if (NOT_NULL($name) && ($f->{directory} =~ /^\//))
 		{
 			Octopussy::Storage::Add(
 				{ s_id => $name, directory => $f->{directory} } );

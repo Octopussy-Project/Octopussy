@@ -5,9 +5,9 @@ my $statistic_report = $Request->QueryString("statistic_report");
 my $table = $Request->QueryString("table");
 my $modify = $f->{modify};
 
-if ((AAT::NOT_NULL($modify)) && ($Session->{AAT_ROLE} !~ /ro/i))
+if ((NOT_NULL($modify)) && ($Session->{AAT_ROLE} !~ /ro/i))
 {
-	if (AAT::NULL($f->{old_statistic_report}))
+	if (NULL($f->{old_statistic_report}))
 	{
 		Octopussy::Statistic_Report::New( 
 			{ name => $f->{name}, description => $f->{description},

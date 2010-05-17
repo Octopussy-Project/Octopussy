@@ -16,6 +16,7 @@ use Readonly;
 
 use Test::More tests => 5;
 
+use AAT::Utils qw( NOT_NULL );
 use Octopussy::Alert;
 
 Readonly my $PREFIX => 'Octo_TEST_';
@@ -50,7 +51,7 @@ my %conf = (
 );
 
 my $file = Octopussy::Alert::New(\%conf);
-ok(AAT::NOT_NULL($file) && -f $file, 'Octopussy::Alert::New()');
+ok(NOT_NULL($file) && -f $file, 'Octopussy::Alert::New()');
 
 my @list2 = Octopussy::Alert::List();
 ok(scalar @list + 1 == scalar @list2, 'Octopussy::Alert::List()');
@@ -65,7 +66,7 @@ ok((($new_conf->{description} eq $new_desc) && ($new_conf->{name} eq $name)),
   'Octopussy::Alert::Configuration()');
 
 Octopussy::Alert::Remove($name);
-ok(AAT::NOT_NULL($file) && !-f $file, 'Octopussy::Alert::Remove()');
+ok(NOT_NULL($file) && !-f $file, 'Octopussy::Alert::Remove()');
 
 =head2
 my @contacts2 = Octopussy::Contact::List();

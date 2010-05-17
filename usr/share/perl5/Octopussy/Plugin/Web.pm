@@ -14,8 +14,8 @@ package Octopussy::Plugin::Web;
 use strict;
 use warnings;
 
-use AAT;
 use AAT::List;
+use AAT::Utils qw( ARRAY NOT_NULL);
 use Octopussy;
 
 my @browsers          = ();
@@ -37,9 +37,9 @@ sub Init
   my $conf_os      = AAT::List::Configuration('AAT_Operating_System');
 
   my @list = (
-    AAT::ARRAY($conf_browser->{item}),
-    AAT::ARRAY($conf_mobile->{item}),
-    AAT::ARRAY($conf_bot->{item}),
+    ARRAY($conf_browser->{item}),
+    ARRAY($conf_mobile->{item}),
+    ARRAY($conf_bot->{item}),
   );
   foreach my $i (@list)
   {
@@ -49,9 +49,9 @@ sub Init
       logo   => $i->{logo},
       regexp => qr/$i->{regexp}/
       }
-      if (AAT::NOT_NULL($i->{regexp}));
+      if (NOT_NULL($i->{regexp}));
   }
-  foreach my $i (AAT::ARRAY($conf_os->{item}))
+  foreach my $i (ARRAY($conf_os->{item}))
   {
     push @operating_systems,
       {
@@ -59,7 +59,7 @@ sub Init
       logo   => $i->{logo},
       regexp => qr/$i->{regexp}/
       }
-      if (AAT::NOT_NULL($i->{regexp}));
+      if (NOT_NULL($i->{regexp}));
   }
 
   return (1);

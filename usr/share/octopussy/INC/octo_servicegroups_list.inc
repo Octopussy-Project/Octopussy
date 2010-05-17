@@ -17,7 +17,7 @@ foreach my $sg (Octopussy::ServiceGroup::Configurations($sort))
 {
 	my ($id, $desc) = ($sg->{sg_id}, $sg->{description});
 	my $services_list = "";
-	foreach my $sgc (AAT::ARRAY($sg->{service}))
+	foreach my $sgc (ARRAY($sg->{service}))
 		{ $services_list .= "$sgc->{sid}, "; }
 	$services_list =~ s/, $//;
 	$services_list =~ s/^(.{60})(.*)/$1\.\.\./;

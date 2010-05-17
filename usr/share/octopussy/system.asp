@@ -8,7 +8,7 @@ my $action = $f->{action} || $q->{action};
 my $file = $f->{file} || $q->{file};
 my $restored = 0;
 
-if (AAT::NOT_NULL($action) && ($action eq "backup"))
+if (NOT_NULL($action) && ($action eq "backup"))
 { 
 	$file = Octopussy::Configuration::Backup(); 
 	if ($file =~ /(backup_\d{12}.tgz)/)
@@ -18,9 +18,9 @@ if (AAT::NOT_NULL($action) && ($action eq "backup"))
 			input_file => $file, output_file => $filename } );
 	}
 }
-elsif ((AAT::NOT_NULL($file)) && ($action eq "restore"))
+elsif ((NOT_NULL($file)) && ($action eq "restore"))
 	{ $Response->Redirect("./dialog.asp?id=restore_config&arg1=$file"); }
-elsif ((AAT::NOT_NULL($file)) && ($action eq "restore_confirmed"))
+elsif ((NOT_NULL($file)) && ($action eq "restore_confirmed"))
 { 
 	Octopussy::Configuration::Restore($file); 
 	$restored = 1;

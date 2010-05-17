@@ -10,8 +10,8 @@ my $user_limit_reached = 0;
 my $text = "";
 my $url = "./restricted_logs_viewer.asp";
 
-my @devices = AAT::ARRAY($Session->{device});
-my @services = AAT::ARRAY($Session->{service});
+my @devices = ARRAY($Session->{device});
+my @services = ARRAY($Session->{service});
 
 my $page = $Session->{page} || 1;
 my $dt = $Session->{dt};
@@ -26,7 +26,7 @@ my ($re_include, $re_include2, $re_include3) =
 my ($re_exclude, $re_exclude2, $re_exclude3) = 
 	($Session->{re_exclude}, $Session->{re_exclude2}, $Session->{re_exclude3});
 
-if (AAT::NOT_NULL($Session->{cancel}))
+if (NOT_NULL($Session->{cancel}))
 {
 	my $pid_param = $Session->{extracted};
 	my $pid_file = $run_dir . "octo_extractor_${pid_param}.pid";
@@ -38,9 +38,9 @@ if (AAT::NOT_NULL($Session->{cancel}))
     (undef, undef, undef, undef, undef, undef);	
 }
 
-if (AAT::NOT_NULL($f->{template}))
+if (NOT_NULL($f->{template}))
 {
-	if (AAT::NOT_NULL($f->{template_save}))
+	if (NOT_NULL($f->{template_save}))
   {
 		Octopussy::Search_Template::New($login, { name => $Session->{template}, 
 			device => \@devices, service => \@services, 
@@ -55,9 +55,9 @@ if (AAT::NOT_NULL($f->{template}))
 		{ Octopussy::Search_Template::Remove($login, $f->{template}); }
 }
 
-if ((AAT::NULL($Session->{extractor})) && 
-		((AAT::NOT_NULL($Session->{logs})) || (AAT::NOT_NULL($Session->{file})) 
-			|| (AAT::NOT_NULL($Session->{csv})) || (AAT::NOT_NULL($Session->{zip})))
+if ((NULL($Session->{extractor})) && 
+		((NOT_NULL($Session->{logs})) || (NOT_NULL($Session->{file})) 
+			|| (NOT_NULL($Session->{csv})) || (NOT_NULL($Session->{zip})))
 	&& ((scalar(@devices) > 0) && (scalar(@services) > 0) 
 	&& ($devices[0] ne "") && ($services[0] ne "")))
 {
@@ -103,7 +103,7 @@ if ((AAT::NULL($Session->{extractor})) &&
 if ($Session->{extractor} eq "done")
 {
 	my $filename = $Session->{extracted};
-	if (AAT::NOT_NULL($Session->{file}))
+	if (NOT_NULL($Session->{file}))
 	{
 		my $output = $Session->{export} . ".txt";
 		($Session->{file}, $Session->{export}, $Session->{extractor}, 
@@ -112,7 +112,7 @@ if ($Session->{extractor} eq "done")
 			input_file => "${run_dir}/logs_${login}_$filename", 
 			output_file => $output } );
 	}
-	elsif (AAT::NOT_NULL($Session->{csv}))
+	elsif (NOT_NULL($Session->{csv}))
 	{
 		open(FILE, "< $run_dir/logs_${login}_$filename");
 		while (<FILE>)
@@ -127,7 +127,7 @@ if ($Session->{extractor} eq "done")
 		AAT::File_Save( { contenttype => "text/csv",
      	input_data => $text, output_file => $output } );
 	}
-	elsif (AAT::NOT_NULL($Session->{zip})) 
+	elsif (NOT_NULL($Session->{zip})) 
 	{
 		my $output = $Session->{export} . ".txt.gz";
 		open(ZIP, "|gzip >> $run_dir/logs_${login}_$filename.gz");
@@ -157,11 +157,11 @@ if ($Session->{extractor} eq "done")
 			{
 				my $line = $Server->HTMLEncode($_);
 				$line =~ s/($hre_inc)/<font color="red"><b>$1<\/b><\/font>/g
-          if (AAT::NOT_NULL($hre_inc));
+          if (NOT_NULL($hre_inc));
         $line =~ s/($hre_inc2)/<font color="green"><b>$1<\/b><\/font>/g
-          if (AAT::NOT_NULL($hre_inc2));
+          if (NOT_NULL($hre_inc2));
         $line =~ s/($hre_inc3)/<font color="blue"><b>$1<\/b><\/font>/g
-          if (AAT::NOT_NULL($hre_inc3));
+          if (NOT_NULL($hre_inc3));
 				$line =~ s/(\S{120})(\S+?)/$1\n$2/g;
 				$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
 			}
@@ -175,7 +175,7 @@ if ($Session->{extractor} eq "done")
 		(undef, undef, undef);
 }
 
-if ((AAT::NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
+if ((NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
 {
 %>
 <WebUI:PageTopRestricted title="Logs" onLoad="extract_progress()" />

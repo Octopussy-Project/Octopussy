@@ -4,14 +4,14 @@ my $select_options = (defined $arg{multiple} ? " multiple" : "")
 	. (defined $arg{size} ? " size=$arg{size}" : "");
 
 my %selected = ();
-foreach my $s (AAT::ARRAY($arg{selected}))
+foreach my $s (ARRAY($arg{selected}))
   { $selected{$s} = 1; }
 
-my @restricted_devices = (AAT::NOT_NULL($Session->{restricted_devices})
-	? AAT::ARRAY($Session->{restricted_devices}) : ());
+my @restricted_devices = (NOT_NULL($Session->{restricted_devices})
+	? ARRAY($Session->{restricted_devices}) : ());
 my (@dg_list, @d_list) = ((), ());
 
-if (AAT::NOT_NULL(\@restricted_devices))
+if (NOT_NULL(\@restricted_devices))
 {
 	foreach my $e (@restricted_devices)
 		{ push(@dg_list, $1) if ($e =~ /^group (.+)$/); }
@@ -19,7 +19,7 @@ if (AAT::NOT_NULL(\@restricted_devices))
 else
 	{ @dg_list = Octopussy::DeviceGroup::List(); }
 
-if (AAT::NOT_NULL(\@restricted_devices))
+if (NOT_NULL(\@restricted_devices))
 {
 	foreach my $e (@restricted_devices)
     { push(@d_list, $e) if ($e !~ /^group /); }

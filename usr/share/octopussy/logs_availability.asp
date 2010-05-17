@@ -4,7 +4,7 @@ my $q = $Request->Params();
 my ($device, $year, $month, $day, $hour, $period) = 
 	($q->{device}, $q->{year}, $q->{month}, $q->{day}, $q->{hour}, $q->{period});
 
-if (AAT::NOT_NULL($period))
+if (NOT_NULL($period))
 {
 	my ($y, $m, $d, $h) = AAT::Datetime::Now();
 	if ($period =~ /^hour$/)
@@ -43,24 +43,24 @@ my @list = (
 </AAT:Box>
 </AAT:Form>
 <%
-if (AAT::NOT_NULL($device))
+if (NOT_NULL($device))
 {
-	if (AAT::NOT_NULL($hour))
+	if (NOT_NULL($hour))
 	{
 	%><AAT:Inc file="octo_logs_availability_hour" device="$device" 
   	year="$year" month="$month" day="$day" hour="$hour" /><%	
 	}
-	elsif (AAT::NOT_NULL($day))
+	elsif (NOT_NULL($day))
 	{
 	%><AAT:Inc file="octo_logs_availability_day" device="$device" 
 		year="$year" month="$month" day="$day" /><%
 	}
-	elsif (AAT::NOT_NULL($month))
+	elsif (NOT_NULL($month))
 	{
 	%><AAT:Inc file="octo_logs_availability_month" device="$device" 
     year="$year" month="$month" /><%
 	}
-	elsif (AAT::NOT_NULL($year))
+	elsif (NOT_NULL($year))
 	{
 	%><AAT:Inc file="octo_logs_availability_year" device="$device" 
    	year="$year" /><%

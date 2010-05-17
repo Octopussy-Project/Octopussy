@@ -9,7 +9,7 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 	{
 		my $conf = Octopussy::Device::Configuration($device);
 		my @services = ();
-		foreach my $s (AAT::ARRAY($conf->{service}))
+		foreach my $s (ARRAY($conf->{service}))
 		{
 			my $serv = $s->{sid};
 			if (defined $f->{"logrotate_$serv"})

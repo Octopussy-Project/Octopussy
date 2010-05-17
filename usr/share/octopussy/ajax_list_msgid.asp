@@ -5,7 +5,7 @@ my $taxonomy = $Request->QueryString("taxonomy");
 my $selected = $Request->QueryString("selected");
 my @list = (defined $arg{any} ? ("-ANY-") : ());
 
-my @services = (AAT::NOT_NULL($servs) ? split(/,/, $servs) : undef);
+my @services = (NOT_NULL($servs) ? split(/,/, $servs) : undef);
 push(@list, sort(Octopussy::Message::List(\@services, $loglevel, $taxonomy)));
 %>
 <?xml version='1.0' encoding='UTF-8'?>

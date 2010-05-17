@@ -8,9 +8,9 @@ my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("devices_table_sort");	
 
 $Session->{AAT_PAGE_CURRENT} = 
-	"./devices.asp" . (AAT::NOT_NULL($sort) ? "?devices_table_sort=$sort" : "");
+	"./devices.asp" . (NOT_NULL($sort) ? "?devices_table_sort=$sort" : "");
 
-if (AAT::NULL($device))
+if (NULL($device))
 {
 	if ($action eq "parse_reload_all")
   {
@@ -18,7 +18,7 @@ if (AAT::NULL($device))
    	foreach my $dc (@dconfs)
    	{
     	my $status = Octopussy::Device::Parse_Status($dc->{name});
-     	if ((AAT::NOT_NULL($dc->{reload_required})) && ($status == 2))
+     	if ((NOT_NULL($dc->{reload_required})) && ($status == 2))
       {
       	Octopussy::Device::Parse_Pause($dc->{name});
         Octopussy::Device::Parse_Start($dc->{name});
@@ -37,7 +37,7 @@ if (AAT::NULL($device))
 }
 else
 {
-	if ((AAT::NOT_NULL($device) && (!-f Octopussy::Device::Filename($device)))
+	if ((NOT_NULL($device) && (!-f Octopussy::Device::Filename($device)))
 			&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Device::New({ name => $device, address => $f->{address}, 
@@ -48,7 +48,7 @@ else
 		$Response->Redirect("./device_services.asp?device=$device");
 	}
 	$Response->Redirect("./device_services.asp?device=$device")
-		if (AAT::NULL($action));
+		if (NULL($action));
 	if ($Session->{AAT_ROLE} !~ /ro/i)
 	{
 		if ($action eq "remove")

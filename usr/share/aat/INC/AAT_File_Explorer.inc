@@ -22,7 +22,7 @@ closedir(DIR);
 foreach my $file (sort @files)
 {
 	my $mime_icon = AAT::File::Mime_Icon("$arg{directory}/$file");
-	if (AAT::NOT_NULL($arg{size}) || AAT::NOT_NULL($arg{date}))
+	if (NOT_NULL($arg{size}) || NOT_NULL($arg{date}))
 	{
 		my @stat = stat("$arg{directory}/$file");
 		my $size = $stat[7];	
@@ -32,7 +32,7 @@ foreach my $file (sort @files)
 	<AAT:Picture file="$mime_icon" />
 	<AAT:Label value="$file" size="-1" popup_link="$link" />
 	</AAT:BoxCol><%
-	if (AAT::NOT_NULL($arg{size}))
+	if (NOT_NULL($arg{size}))
 	{%>
 		<AAT:BoxCol align="R"><AAT:Label value="$size" />
 		</AAT:BoxCol><%

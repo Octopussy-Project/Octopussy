@@ -19,7 +19,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
+use AAT::Utils qw( NOT_NULL );
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Device;
@@ -39,7 +39,7 @@ my $old_time          = '';
 while (1)
 {
   my $time = $cache_dispatcher->get('dispatcher_stats_datetime');
-  if (AAT::NOT_NULL($time))
+  if (NOT_NULL($time))
   {
     if ($time ne $old_time)
     {    # Update RRDGraph for Octopussy Main page
@@ -49,7 +49,7 @@ while (1)
       {
         $dt =~ s/ /_/;
         my $nb = (
-          AAT::NOT_NULL($dtype_stats->{$dt})
+          NOT_NULL($dtype_stats->{$dt})
           ? $dtype_stats->{$dt}
           : 0
         );

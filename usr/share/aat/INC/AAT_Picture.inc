@@ -6,9 +6,9 @@ if ((defined $arg{file}) && (-f $arg{file}))
 	my $tooltip = AAT::Translation($arg{tooltip} || "");
 	$tooltip =~ s/'/\\'/g if (defined $tooltip);
 	my $twidth = (defined $tooltip ? ((length($tooltip) < 50) ? length($tooltip)*8 : 400) : 0);
-	my $str_tooltip = (AAT::NOT_NULL($tooltip) ?
+	my $str_tooltip = (NOT_NULL($tooltip) ?
 	  "<div onMouseover=\"tooltip('" . $tooltip . "', " . $twidth . ")\"; onMouseout=\"hidetooltip()\">" : "");
-	my $str_tooltip_end = (AAT::NOT_NULL($tooltip) ? "</div>" : "");
+	my $str_tooltip_end = (NOT_NULL($tooltip) ? "</div>" : "");
   my $width = (defined $arg{width} ? " width='$arg{width}'" : "");
   my $height = (defined $arg{height} ? " height='$arg{height}'" : "");
 	my $alt = (defined $arg{alt} ? " alt=\"$arg{alt}\"" : "");

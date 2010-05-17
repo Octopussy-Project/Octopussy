@@ -14,8 +14,8 @@ package Octopussy::Plugin::Network;
 use strict;
 use warnings;
 
-use AAT;
 use AAT::List;
+use AAT::Utils qw( ARRAY );
 
 my %services = ();
 
@@ -29,7 +29,7 @@ sub Init
 {
   my $conf_port = AAT::List::Configuration('AAT_Port');
 
-  foreach my $i (AAT::ARRAY($conf_port->{item}))
+  foreach my $i (ARRAY($conf_port->{item}))
   {
     $services{$i->{value}} = $i->{label};
   }

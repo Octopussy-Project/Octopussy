@@ -11,7 +11,7 @@ my $conf = AAT::XML::Read("OBJECTS/$arg{object}.xml");
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
-foreach my $f (AAT::ARRAY($conf->{field}))
+foreach my $f (ARRAY($conf->{field}))
 {
 	my $label = $f->{label};
 	my $name = $f->{fid};

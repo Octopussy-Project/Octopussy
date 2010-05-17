@@ -18,8 +18,9 @@ use Readonly;
 use Mail::Sender;
 use Net::Telnet;
 
-use AAT;
 use AAT::Application;
+use AAT::Syslog;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 
 Readonly my $SMTP_PORT    => 25;
@@ -57,8 +58,8 @@ sub Connection_Test
   my $appli  = shift;
   my $status = 0;
   my $conf   = Configuration($appli);
-  if ( AAT::NOT_NULL($conf->{server})
-    && AAT::NOT_NULL($conf->{sender}))
+  if ( NOT_NULL($conf->{server})
+    && NOT_NULL($conf->{sender}))
   {
     my $con = new Net::Telnet(
       Host    => $conf->{server},
@@ -67,7 +68,7 @@ sub Connection_Test
       Timeout => $SMTP_TIMEOUT
     );
     my $sender = (
-      AAT::NOT_NULL($conf->{auth_type})
+      NOT_NULL($conf->{auth_type})
       ? new Mail::Sender {
         smtp    => $conf->{server},
         from    => $conf->{sender},
@@ -99,14 +100,14 @@ sub Send_Message
   my ($appli, $msg_data) = @_;
 
   my $conf = Configuration($appli);
-  if (AAT::NOT_NULL($conf->{server}) && AAT::NOT_NULL($conf->{sender}))
+  if (NOT_NULL($conf->{server}) && NOT_NULL($conf->{sender}))
   {
     my $from    = $msg_data->{from} || $conf->{sender};
     my $subject = $msg_data->{subject};
     my $body    = $msg_data->{body};
 
     my $sender = (
-      AAT::NOT_NULL($conf->{auth_type})
+      NOT_NULL($conf->{auth_type})
       ? new Mail::Sender {
         smtp    => $conf->{server},
         from    => $from,
@@ -119,7 +120,7 @@ sub Send_Message
 
     if ((defined $sender) && (ref $sender))
     {
-      foreach my $dest (AAT::ARRAY($msg_data->{dests}))
+      foreach my $dest (ARRAY($msg_data->{dests}))
       {
         if (defined $msg_data->{file})
         {
@@ -144,7 +145,7 @@ sub Send_Message
   }
   else
   {
-    AAT::Syslog('AAT_SMTP', 'SMTP_INVALID_CONFIG');
+    AAT::Syslog::Message('AAT_SMTP', 'SMTP_INVALID_CONFIG');
   }
 
   return (0);

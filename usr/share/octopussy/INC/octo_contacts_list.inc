@@ -41,7 +41,7 @@ foreach my $c (Octopussy::Contact::Configurations($sort))
 	<AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
 	<AAT:BoxCol>
   <%
-  if (AAT::NOT_NULL($email))
+  if (NOT_NULL($email))
   {
   %><AAT:IMG name="buttons/bt_mail_forward" width="20" 
     link="./send_test.asp?type=smtp&dest=$email" tooltip="Test SMTP Send" /><%
@@ -51,7 +51,7 @@ foreach my $c (Octopussy::Contact::Configurations($sort))
   <AAT:BoxCol><AAT:Label value="$email" /></AAT:BoxCol>
   <AAT:BoxCol>
   <%
-  if (AAT::NOT_NULL($im))
+  if (NOT_NULL($im))
   {
   %><AAT:IMG name="buttons/bt_mail_forward" width="20" 
     link="./send_test.asp?type=xmpp&dest=$im" tooltip="Test XMPP Send" /><%

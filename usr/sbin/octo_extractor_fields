@@ -26,7 +26,9 @@ use Getopt::Long;
 Getopt::Long::Configure('bundling');
 use JSON;
 
-use AAT;
+use AAT::Syslog;
+use AAT::Translation;
+use AAT::Utils qw( NOT_NULL NULL );
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Device;
@@ -133,7 +135,7 @@ sub Progress
 {
   my ($msg, $num, $nb_match) = @_;
 
-  my $status = AAT::Translation($msg) . " [$num] [$nb_match]";
+  my $status = AAT::Translation::Get('EN', $msg) . " [$num] [$nb_match]";
   $cache->set("status_$$", $status);
 
   return ($status);
@@ -248,7 +250,7 @@ sub Print_Logs
       else
       {
         print "Unable to open file '$f'\n";
-        AAT::Syslog('octo_extractor_fields', 'UNABLE_OPEN_FILE', $f);
+        AAT::Syslog::Message('octo_extractor_fields', 'UNABLE_OPEN_FILE', $f);
       }
     }
   }
@@ -262,7 +264,7 @@ sub Print_Logs
   {
     foreach my $cv (@correlation_values)
     {
-      if ( AAT::NOT_NULL($d->{$cv})
+      if ( NOT_NULL($d->{$cv})
         && ($d->{$cv} ne "N/A")
         && ($d->{$cv} ne "0"))
       {
@@ -275,7 +277,7 @@ sub Print_Logs
   {
     foreach my $cv (@correlation_values)
     {
-      if (AAT::NULL($d->{$cv}) || ($d->{$cv} eq 'N/A') || ($d->{$cv} eq '0'))
+      if (NULL($d->{$cv}) || ($d->{$cv} eq 'N/A') || ($d->{$cv} eq '0'))
       {
         $d->{$cv} = $correl{$d->{$correlation_key}}{$cv};
       }
@@ -283,13 +285,13 @@ sub Print_Logs
   }
 =cut
 
-  if (AAT::NOT_NULL($output))
+  if (NOT_NULL($output))
   {
     if (defined open my $OUT, '>', $output)
     {
       my $json_text = to_json(\@logs);
       print {$OUT} $json_text;
-      close $OUT if (AAT::NOT_NULL($output));
+      close $OUT if (NOT_NULL($output));
     }
   }
   else
@@ -304,7 +306,7 @@ sub Print_Logs
     }
   }
 
-  AAT::Syslog(
+  AAT::Syslog::Message(
     'octo_extractor_fields', 'LOG_SEARCH',
     join(',', @opt_devices),
     join(',', @opt_services),
@@ -322,7 +324,7 @@ Ends Extraction
 
 sub End
 {
-  AAT::Syslog($PROG_NAME, 'Logs Extraction Aborted !');
+  AAT::Syslog::Message($PROG_NAME, 'Logs Extraction Aborted !');
   $cache->remove("status_$$");
   exit;
 }

@@ -53,7 +53,7 @@ my ($server, $auth_dn, $auth_password, $base, $filter) =
   <AAT:BoxCol><AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
 	<AAT:BoxCol>
 <%
-if (AAT::NOT_NULL($server))
+if (NOT_NULL($server))
 {
   my ($level, $msg) = ((AAT::LDAP::Users_Connection_Test($arg{appli}))
 		? (0, "LDAP Connection is OK !") : (2, "LDAP Connection is NOT OK !"));

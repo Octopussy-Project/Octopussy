@@ -10,7 +10,7 @@ my %arg = @_;
 <AAT:BoxRow>
 <AAT:BoxCol><AAT:Picture file="$arg{file}" /></AAT:BoxCol>
 <AAT:BoxCol valign="middle"><%
-if (AAT::NOT_NULL($arg{zoom}))
+if (NOT_NULL($arg{zoom}))
 {%>
 	<AAT:Box>
 	<AAT:BoxRow><AAT:BoxCol><AAT:Button name="zoom_in" tooltip="_ZOOM_IN" />

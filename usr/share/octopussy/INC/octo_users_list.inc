@@ -38,7 +38,7 @@ foreach my $c (AAT::User::Configurations("Octopussy", $sort))
 	<AAT:BoxCol><AAT:Label value="$login" no_trans="1"/></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="--------" /></AAT:BoxCol>
 	<AAT:BoxCol align="C"><% 
-	if ((AAT::NOT_NULL($certif)) && ($certif == 1))
+	if ((NOT_NULL($certif)) && ($certif == 1))
 	{
 	%>
 <!--<AAT:IMG name="generic_keys" width="32" />-->

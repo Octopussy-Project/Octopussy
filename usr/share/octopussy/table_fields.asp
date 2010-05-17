@@ -3,7 +3,7 @@
 my $f = $Request->Form();
 my $q = $Request->QueryString();
 my $table = $f->{table} || $q->{table};
-$Response->Redirect("./tables.asp")	if (AAT::NULL($table));
+$Response->Redirect("./tables.asp")	if (NULL($table));
 my $field = $f->{fieldname} || $q->{fieldname};
 my $sort = $q->{table_fields_table_sort};
 

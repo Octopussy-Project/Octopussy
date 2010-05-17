@@ -12,10 +12,10 @@ my ($a_re_include, $a_re_exclude) =
 my ($a_msg_subject, $a_msg_body) = ($conf->{msgsubject}, $conf->{msgbody});
 my ($action_host, $action_service, $action_body) = 
 	($conf->{action_host}, $conf->{action_service}, $conf->{action_body});
-my @devices = AAT::ARRAY($conf->{device});
-my @services = AAT::ARRAY($conf->{service});
-my @actions = AAT::ARRAY($conf->{action});
-my @contacts = AAT::ARRAY($conf->{contact});
+my @devices = ARRAY($conf->{device});
+my @services = ARRAY($conf->{service});
+my @actions = ARRAY($conf->{action});
+my @contacts = ARRAY($conf->{contact});
 my $msg_alert_raised_only = AAT::Translation("_MSG_ALERT_RAISED_ONLY");
 my @used_services = Octopussy::Service::List_Used();
 %>

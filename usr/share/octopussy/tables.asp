@@ -6,7 +6,7 @@ my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("tables_table_sort");
 $table =~ s/ /_/g;
 
-if (AAT::NULL($table))
+if (NULL($table))
 {
 	%><AAT:Inc file="octo_tables_list" url="./tables.asp" sort="$sort" /><%
 }

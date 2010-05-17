@@ -15,9 +15,9 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
 use AAT::FS;
 use AAT::LDAP;
+use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 use Octopussy;
 
@@ -45,8 +45,8 @@ sub New
   my $conf = shift;
 
   $dir_contacts ||= Octopussy::Directory('contacts');
-  if (AAT::NOT_NULL($conf->{cid})
-    && (AAT::NOT_NULL($conf->{email}) || AAT::NOT_NULL($conf->{im})))
+  if (NOT_NULL($conf->{cid})
+    && (NOT_NULL($conf->{email}) || NOT_NULL($conf->{im})))
   {
     my @list  = List();
     my $exist = 0;
@@ -129,7 +129,7 @@ sub Filename
   my $contact = shift;
 
   return ($filename{$contact}) if (defined $filename{$contact});
-  if (AAT::NOT_NULL($contact))
+  if (NOT_NULL($contact))
   {
     $dir_contacts ||= Octopussy::Directory('contacts');
     my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);

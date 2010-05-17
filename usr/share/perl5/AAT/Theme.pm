@@ -15,7 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
+use AAT::Utils qw( NULL );
 
 Readonly my $DIR_THEME => 'AAT/THEMES/';
 
@@ -29,9 +29,9 @@ Returns list of available Themes
 
 sub List
 {
-  opendir DIR, $DIR_THEME;
-  my @themes = grep { !/^\.+/ } readdir DIR;
-  closedir DIR;
+  opendir(my $dir, $DIR_THEME);
+  my @themes = grep { !/^\.+/ } readdir $dir;
+  closedir $dir;
 
   return (sort @themes);
 }
@@ -46,7 +46,7 @@ sub CSS_File
 {
   my $theme = shift;
 
-  $theme = 'DEFAULT' if (AAT::NULL($theme));
+  $theme = 'DEFAULT' if (NULL($theme));
   my $file = "$DIR_THEME$theme/style.css";
 
   return ((-f "$file") ? $file : undef);

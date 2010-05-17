@@ -15,7 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
+use AAT::Utils qw( NOT_NULL );
 
 Readonly my $DIR_MIME_SMALL => 'THEMES/DEFAULT/mime/22x22';
 Readonly my $DIR_MIME_BIG   => 'THEMES/DEFAULT/mime/128x128';
@@ -31,7 +31,7 @@ sub Mime_Icon
   my ($file, $type) = @_;
 
   my $dir = (
-    ((AAT::NOT_NULL($type)) && ($type =~ /BIG/i))
+    ((NOT_NULL($type)) && ($type =~ /BIG/i))
     ? $DIR_MIME_BIG
     : $DIR_MIME_SMALL
   );

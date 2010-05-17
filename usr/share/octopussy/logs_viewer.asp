@@ -9,8 +9,8 @@ my $last_page = 1;
 my $text = "";
 my $url = "./logs_viewer.asp";
 
-my @devices = AAT::ARRAY($Session->{device});
-my @services = AAT::ARRAY($Session->{service});
+my @devices = ARRAY($Session->{device});
+my @services = ARRAY($Session->{service});
 
 my $page = $Session->{page} || 1;
 my $dt = $Session->{dt};
@@ -25,7 +25,7 @@ my ($re_include, $re_include2, $re_include3) =
 my ($re_exclude, $re_exclude2, $re_exclude3) = 
 	($Session->{re_exclude}, $Session->{re_exclude2}, $Session->{re_exclude3});
 
-if (AAT::NOT_NULL($Session->{cancel}))
+if (NOT_NULL($Session->{cancel}))
 {
 	my $pid_param = $Session->{extracted};
   my $pid_file = $run_dir . "octo_extractor_${pid_param}.pid";
@@ -37,9 +37,9 @@ if (AAT::NOT_NULL($Session->{cancel}))
 }
 
 
-if (AAT::NOT_NULL($f->{template}))
+if (NOT_NULL($f->{template}))
 {
-	if (AAT::NOT_NULL($f->{template_save}))
+	if (NOT_NULL($f->{template_save}))
 	{
   	Octopussy::Search_Template::New($login, { name => $f->{template},
   		device => \@devices, service => \@services,
@@ -50,13 +50,13 @@ if (AAT::NOT_NULL($f->{template}))
   		re_include3 => $re_include3, re_exclude => $re_exclude,
   		re_exclude2 => $re_exclude2, re_exclude3 => $re_exclude3 } );		
 	}
-	elsif (AAT::NOT_NULL($f->{template_remove}))
+	elsif (NOT_NULL($f->{template_remove}))
 		{ Octopussy::Search_Template::Remove($login, $f->{template}); }
 }
 
-if ((AAT::NULL($Session->{extractor})) && 
-		((AAT::NOT_NULL($f->{logs})) || (AAT::NOT_NULL($f->{file})) 
-			|| (AAT::NOT_NULL($f->{csv})) || (AAT::NOT_NULL($f->{zip})))
+if ((NULL($Session->{extractor})) && 
+		((NOT_NULL($f->{logs})) || (NOT_NULL($f->{file})) 
+			|| (NOT_NULL($f->{csv})) || (NOT_NULL($f->{zip})))
 	&& ((scalar(@devices) > 0) && (scalar(@services) > 0) 
 	&& ($devices[0] ne "") && ($services[0] ne "")))
 {
@@ -89,8 +89,8 @@ if ((AAT::NULL($Session->{extractor})) &&
 
 if ($Session->{extractor} eq "done")
 {
-	if (AAT::NOT_NULL($Session->{file}) || AAT::NOT_NULL($Session->{csv})
-		|| AAT::NOT_NULL($Session->{zip}))
+	if (NOT_NULL($Session->{file}) || NOT_NULL($Session->{csv})
+		|| NOT_NULL($Session->{zip}))
 	{
 		$Response->Redirect("./export_extract.asp");
 	}
@@ -111,11 +111,11 @@ if ($Session->{extractor} eq "done")
 			{
 				my $line = $Server->HTMLEncode($_);
 				$line =~ s/($hre_inc)/<font color="red"><b>$1<\/b><\/font>/g
-          if (AAT::NOT_NULL($hre_inc));
+          if (NOT_NULL($hre_inc));
         $line =~ s/($hre_inc2)/<font color="green"><b>$1<\/b><\/font>/g
-          if (AAT::NOT_NULL($hre_inc2));
+          if (NOT_NULL($hre_inc2));
         $line =~ s/($hre_inc3)/<font color="blue"><b>$1<\/b><\/font>/g
-          if (AAT::NOT_NULL($hre_inc3));
+          if (NOT_NULL($hre_inc3));
 				$line =~ s/(\S{120})(\S+?)/$1\n$2/g;
 				$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
 			}
@@ -130,7 +130,7 @@ if ($Session->{extractor} eq "done")
 		(undef, undef, undef);
 }
 
-if ((AAT::NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
+if ((NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
 {
 %><WebUI:PageTop title="_LOGS_VIEWER" onLoad="extract_progress()" />
 	<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />

@@ -19,8 +19,8 @@ use utf8;
 
 use Date::Manip;
 
-use AAT;
 use AAT::DB;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Device;
@@ -71,7 +71,7 @@ sub New
     }
     else
     {
-      foreach my $d (AAT::ARRAY($conf->{device}))
+      foreach my $d (ARRAY($conf->{device}))
       {
         if ($d =~ /group (.+)/)
         {
@@ -235,7 +235,7 @@ sub For_Device
   {
     my $match   = 0;
     my %devices = ();
-    foreach my $d (AAT::ARRAY($ac->{device}))
+    foreach my $d (ARRAY($ac->{device}))
     {
       if ($d =~ /group (.+)/)
       {
@@ -253,7 +253,7 @@ sub For_Device
         my @services = Octopussy::Device::Services($d);
         foreach my $s (@services)
         {
-          foreach my $acs (AAT::ARRAY($ac->{service}))
+          foreach my $acs (ARRAY($ac->{service}))
           {
             $match = 1 if (($s eq $acs) || ($acs eq '-ANY-'));
           }
@@ -378,7 +378,7 @@ sub Remove_Message
 
   my $conf = AAT::XML::Read(Filename($alert_name));
   my @messages =
-    grep { $_->{msg_id} ne $msg_id } AAT::ARRAY($conf->{message});
+    grep { $_->{msg_id} ne $msg_id } ARRAY($conf->{message});
   $conf->{message} = \@messages;
   AAT::XML::Write(Filename($alert_name), $conf, $XML_ROOT);
 
@@ -403,7 +403,7 @@ sub Add_Message_Field
   my ($alert_name, $msg_id, $field, $comparator, $value) = @_;
 
   my $conf = AAT::XML::Read(Filename($alert_name));
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  foreach my $m (ARRAY($conf->{message}))
   {
     if ($m->{msg_id} eq $msg_id)
     {
@@ -440,11 +440,11 @@ sub Remove_Message_Field
   my @fields = ();
 
   my $conf = AAT::XML::Read(Filename($alert_name));
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  foreach my $m (ARRAY($conf->{message}))
   {
     if ($m->{msg_id} eq $msg_id)
     {
-      foreach my $f (AAT::ARRAY($m->{field}))
+      foreach my $f (ARRAY($m->{field}))
       {
         push @fields, $f
           if (($f->{fname} ne $field)
@@ -564,7 +564,7 @@ sub Tracker
     )
     . " ORDER BY $sort "
     . ($sort ne 'date_time' ? 'ASC' : 'DESC')
-    . (AAT::NOT_NULL($limit) ? " LIMIT $limit" : '');
+    . (NOT_NULL($limit) ? " LIMIT $limit" : '');
   my @alerts = AAT::DB::Query('Octopussy', $query);
 
   return (@alerts);

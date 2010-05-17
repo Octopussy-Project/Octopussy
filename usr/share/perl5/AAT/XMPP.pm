@@ -29,8 +29,9 @@ use Readonly;
 
 use Net::XMPP;
 
-use AAT;
 use AAT::Application;
+use AAT::Syslog;
+use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 
 Readonly my $XMPP_TIMEOUT => 3;
@@ -67,7 +68,7 @@ sub Connection_Test
   my $status = 0;
 
   my $conf_xmpp = Configuration($appli);
-  if (AAT::NOT_NULL($conf_xmpp->{server}))
+  if (NOT_NULL($conf_xmpp->{server}))
   {
     my $client = new Net::XMPP::Client();
     my @res    = $client->Connect(
@@ -119,7 +120,7 @@ sub Send_Message
     );
     foreach my $dest (@dests)
     {
-      if (AAT::NOT_NULL($dest))
+      if (NOT_NULL($dest))
       {
         $client->MessageSend('to' => $dest, 'body' => "$msg");
       }
@@ -131,7 +132,7 @@ sub Send_Message
   }
   else
   {
-    AAT::Syslog('AAT_XMPP', 'XMPP_INVALID_CONFIG');
+    AAT::Syslog::Message('AAT_XMPP', 'XMPP_INVALID_CONFIG');
   }
 
   return (0);

@@ -16,8 +16,9 @@ use warnings;
 
 use DBI;
 
-use AAT;
 use AAT::Application;
+use AAT::Syslog;
+use AAT::Utils qw( ARRAY HASH_KEYS );
 use AAT::XML;
 
 my %conf_file = ();
@@ -139,9 +140,9 @@ sub Insert
   if (defined $dbh{$appli})
   {
     my $sql = "INSERT INTO $table(";
-    $sql .= join ', ', sort(AAT::HASH_KEYS($field_values));
+    $sql .= join ', ', sort(HASH_KEYS($field_values));
     $sql .= ') VALUES(';
-    foreach my $k (sort(AAT::HASH_KEYS($field_values)))
+    foreach my $k (sort(HASH_KEYS($field_values)))
     {
       $sql .= $dbh{$appli}->quote($field_values->{$k}) . ', ';
     }
@@ -209,7 +210,7 @@ sub Load_Infile
 
   if (defined open my $DBFILE, '>', $file)
   {
-    foreach my $l (AAT::ARRAY($lines))
+    foreach my $l (ARRAY($lines))
     {
       print {$DBFILE} "$l\n"
         if ($l =~ /\S+/);
@@ -227,7 +228,7 @@ sub Load_Infile
   else
   {
     my ($pack, $file, $line, $sub) = caller 0;
-    AAT::Syslog('AAT_DB', "Unable to open file '$file' in $sub");
+    AAT::Syslog::Message('AAT_DB', "Unable to open file '$file' in $sub");
   }
 
   return (1);

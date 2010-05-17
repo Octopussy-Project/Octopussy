@@ -23,7 +23,7 @@ use GD::Graph::hbars;
 use GD::Graph::lines;
 use GD::Graph::pie;
 
-use AAT;
+use AAT::Syslog;
 
 Readonly my $TYPE          => 'bars';
 Readonly my $BAR_SPACING   => 3;
@@ -87,7 +87,8 @@ sub Generate
   else
   {
     my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog('Octopussy_Graph', 'UNABLE_OPEN_FILE_IN', $output, $sub);
+    AAT::Syslog::Message('Octopussy_Graph', 'UNABLE_OPEN_FILE_IN', $output,
+      $sub);
   }
 
   return ($output);

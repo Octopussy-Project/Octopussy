@@ -5,7 +5,7 @@ my $action = $Request->QueryString("action");
 my $msg = $Request->QueryString("log");
 my $timestamp = $Request->QueryString("timestamp");
 
-my $title = (AAT::NULL($device) 
+my $title = (NULL($device) 
   ? AAT::Translation("_LOGS_WIZARD") 
   : sprintf("%s (%s)", AAT::Translation("_LOGS_WIZARD"), $device));
 %>
@@ -13,7 +13,7 @@ my $title = (AAT::NULL($device)
 <%
 if ($Session->{AAT_ROLE} !~ /ro/)
 {
-	if (AAT::NULL($device))
+	if (NULL($device))
 	{
 		%><AAT:Inc file="octo_wizard" url="./wizard.asp" sort="$sort" /><%
 	}

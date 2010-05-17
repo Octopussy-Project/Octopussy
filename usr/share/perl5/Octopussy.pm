@@ -22,8 +22,11 @@ use File::Path;
 use Proc::PID::File;
 use POSIX qw(mkfifo strftime);
 
-use AAT;
+#use AAT;
 use AAT::Application;
+use AAT::Download;
+use AAT::Syslog;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy::Cache;
 
@@ -77,7 +80,7 @@ sub Valid_User
 
   return (1) if ($info[0] =~ /^$octo_user$/);
 
-  AAT::Syslog($prog_name, "You have to be Octopussy user to use $prog_name");
+  AAT::Syslog::Message($prog_name, "You have to be Octopussy user to use $prog_name");
   printf "You have to be Octopussy user to use %s !\n", $prog_name;
 
   return (0);
@@ -156,7 +159,7 @@ sub Die
 {
   my ($prog_name, $msg) = @_;
 
-  AAT::Syslog($prog_name, $msg);
+  AAT::Syslog::Message($prog_name, $msg);
   die $msg;
 }
 
@@ -201,7 +204,7 @@ sub Error
 {
   my ($module, $msg, @args) = @_;
 
-  my $message = AAT::Syslog($module, $msg, @args);
+  my $message = AAT::Syslog::Message($module, $msg, @args);
   print "$module: $message\n";
 
   return ("$module: $message\n");
@@ -277,7 +280,7 @@ sub Sourceforge_Version
 {
   my $dir_running = Octopussy::Directory('running');
   my $version     = undef;
-  AAT::Download($APPLICATION_NAME, $SF_SITE,
+  AAT::Download::File($APPLICATION_NAME, $SF_SITE,
     "${dir_running}/octopussy.sf_version");
   if (defined open my $UPDATE, '<', "${dir_running}/octopussy.sf_version")
   {
@@ -308,7 +311,7 @@ sub Web_Updates
   my %update;
   my $website     = WebSite();
   my $dir_running = Octopussy::Directory('running');
-  AAT::Download('Octopussy', "$website/Download/$type/$file",
+  AAT::Download::File('Octopussy', "$website/Download/$type/$file",
     "$dir_running$file");
   if (defined open my $UPDATE, '<', "$dir_running$file")
   {
@@ -418,7 +421,7 @@ sub PID_File
 
     if ((-f $file_pid) && (($uid != $attr[$IDX_STAT_UID]) || ($gid != $attr[$IDX_STAT_GID])))
     {
-      AAT::Syslog('octopussy',
+      AAT::Syslog::Message('octopussy',
         "ERROR: pid file '$file_pid' doesn't match octopussy uid/gid !");
     }
     else
@@ -461,7 +464,7 @@ sub Dialog
   my $id = shift;
 
   my $conf = AAT::XML::Read(Octopussy::File('dialogs'));
-  foreach my $d (AAT::ARRAY($conf->{dialog}))
+  foreach my $d (ARRAY($conf->{dialog}))
   {
     return ($d) if ($d->{d_id} eq $id);
   }
@@ -540,12 +543,12 @@ sub Timestamp_Version
   my $date = strftime("%Y%m%d", localtime);
 
   my $version = 1;
-  if (AAT::NOT_NULL($conf->{version})
+  if (NOT_NULL($conf->{version})
     && ($conf->{version} =~ /^$date(\d{4})/))
   {
     $version = $1 + 1;
   }
-  $version = AAT::Padding($version, 4);
+  $version = sprintf("%04d", $version);
 
   return ("$date$version");
 }
@@ -564,7 +567,7 @@ sub Updates_Installation
 
   foreach my $u (@updates)
   {
-    AAT::Download('Octopussy', "$web/Download/System/$u.xml",
+    AAT::Download::File('Octopussy', "$web/Download/System/$u.xml",
       "$dir_main/$u.xml");
   }
 

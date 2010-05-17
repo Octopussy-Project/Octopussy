@@ -5,7 +5,7 @@ my $table = $Session->{table};
 my @list = ("ASCENDING", "DESCENDING");
 
 my ($query, $columns) =
-	Octopussy::DB::SQL_Select_Function(AAT::ARRAY($Session->{select}));
+	Octopussy::DB::SQL_Select_Function(ARRAY($Session->{select}));
 my $group_by_str = join(", ", @{$Session->{group_by}});
 my $order_by_str = join(", ", @{$Session->{order_by}});
 %>

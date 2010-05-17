@@ -18,6 +18,8 @@ use Test::More tests => 3;
 
 use File::Basename;
 
+use AAT::Utils qw( NOT_NULL );
+
 use Octopussy::Configuration;
 
 Readonly my $FILE_TEST => '/var/lib/octopussy/conf/contacts/test.test';
@@ -28,7 +30,7 @@ my @list = Octopussy::Configuration::Backup_List();
 system qq{touch $FILE_TEST};
 
 my $file = Octopussy::Configuration::Backup();
-ok(AAT::NOT_NULL($file) && -f $file, 'Octopussy::Configuration::Backup()');
+ok(NOT_NULL($file) && -f $file, 'Octopussy::Configuration::Backup()');
 
 # Removes the file which should be restored
 unlink $FILE_TEST;

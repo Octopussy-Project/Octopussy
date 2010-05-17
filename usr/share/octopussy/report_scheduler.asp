@@ -51,7 +51,7 @@ if ((defined $name) && ($Session->{AAT_ROLE} !~ /ro/i))
 				taxonomy => $f->{taxonomy}, 
 				mail => \%mail_conf, ftp => \%ftp_conf, scp => \%scp_conf, 
 				report => $f->{report}});
-			if (AAT::NOT_NULL($error))
+			if (NOT_NULL($error))
 			{
 			%><AAT:Message level="2" msg="$error" /><%
 			}

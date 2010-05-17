@@ -5,7 +5,7 @@ my $alert = Encode::decode_utf8($f->{alert} || $Request->QueryString("alert"));
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("alerts_table_sort") || "name";
 
-if (AAT::NULL($alert))
+if (NULL($alert))
 {
 	%><AAT:Inc file="octo_alerts_list" url="./alerts.asp" sort="$sort" /><%
 }
@@ -14,11 +14,11 @@ else
   if ((!-f Octopussy::Alert::Filename($alert)) 
 			&& ($Session->{AAT_ROLE} !~ /ro/i))
   {
-		my @devices = AAT::ARRAY($f->{device});
-  	my @services = AAT::ARRAY($f->{service});
-  	my @actions = (AAT::ARRAY($f->{action_mailing}), 
-      AAT::ARRAY($f->{action_program}));
-  	my @contacts = AAT::ARRAY($f->{contact});
+		my @devices = ARRAY($f->{device});
+  	my @services = ARRAY($f->{service});
+  	my @actions = (ARRAY($f->{action_mailing}), 
+      ARRAY($f->{action_program}));
+  	my @contacts = ARRAY($f->{contact});
 
     Octopussy::Alert::New({ name => $alert, 
 			description => Encode::decode_utf8($f->{description}), 

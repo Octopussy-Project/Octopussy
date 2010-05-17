@@ -3,10 +3,10 @@ my %arg = @_;
 
 my @alerts = ("-ANY-");
 push(@alerts, (defined $arg{restricted_alerts}
-	? AAT::ARRAY($arg{restricted_alerts}) : Octopussy::Alert::List()));
+	? ARRAY($arg{restricted_alerts}) : Octopussy::Alert::List()));
 my @devices = ("-ANY-");
 push(@devices, (defined $arg{restricted_devices} 
-	? AAT::ARRAY($arg{restricted_devices}) : Octopussy::Device::List()));
+	? ARRAY($arg{restricted_devices}) : Octopussy::Device::List()));
 %>
 <AAT:Form action="$arg{url}">
 <AAT:Box align="C">

@@ -7,7 +7,7 @@ my $mode = AAT::Menu_Mode();
 %>
 <AAT:Box align="$align">
 <%
-foreach my $e (AAT::ARRAY($a{items}))
+foreach my $e (ARRAY($a{items}))
 {
 	my ($label, $link, $p_link, $icon) = 
 		($e->{label}, $e->{link}, $e->{popup_link}, $e->{icon});
@@ -18,17 +18,17 @@ foreach my $e (AAT::ARRAY($a{items}))
 	else
 	{
 		%><AAT:BoxRowMenu><AAT:BoxCol valign="middle"><%
-		if ((AAT::NOT_NULL($icon)) && ($mode ne "TEXT_ONLY"))
+		if ((NOT_NULL($icon)) && ($mode ne "TEXT_ONLY"))
 		{
 			my $alt = "Icon Menu " . AAT::Translation($label);
-			if (AAT::NOT_NULL($link))
+			if (NOT_NULL($link))
 			{
 				if ($mode eq "ICONS_ONLY")
 					{ %><AAT:IMG name="$icon" link="$link" tooltip="$label" alt="$alt" /><% }
 				else
 					{ %><AAT:IMG name="$icon" link="$link" alt="$alt" /><% }
 			}
-			elsif (AAT::NOT_NULL($p_link))
+			elsif (NOT_NULL($p_link))
 			{ 
 				if ($mode eq "ICONS_ONLY")
           { %><AAT:IMG name="$icon" popup_link="$p_link" tooltip="$label" alt="$alt" /><% }
@@ -37,14 +37,14 @@ foreach my $e (AAT::ARRAY($a{items}))
 			}
 		}%>
 		</AAT:BoxCol><AAT:BoxCol valign="middle"><%
-		if ((AAT::NULL($link)) && (AAT::NULL($p_link)) && (AAT::NOT_NULL($label)) 
-				&& ((AAT::NULL($icon)) || ($mode ne "ICONS_ONLY")))
+		if ((NULL($link)) && (NULL($p_link)) && (NOT_NULL($label)) 
+				&& ((NULL($icon)) || ($mode ne "ICONS_ONLY")))
 			{ %><AAT:Label value="$label" /><% }
-		elsif ((AAT::NOT_NULL($link)) 
-						&& ((AAT::NULL($icon)) || ($mode ne "ICONS_ONLY")))
+		elsif ((NOT_NULL($link)) 
+						&& ((NULL($icon)) || ($mode ne "ICONS_ONLY")))
 			{ %><AAT:Label value="$label" link="$link" /><% }
-		elsif ((AAT::NOT_NULL($p_link)) 
-						&& ((AAT::NULL($icon)) || ($mode ne "ICONS_ONLY")))
+		elsif ((NOT_NULL($p_link)) 
+						&& ((NULL($icon)) || ($mode ne "ICONS_ONLY")))
 			{ %><AAT:Label value="$label" popup_link="$p_link" /><% }
 		%></AAT:BoxCol></AAT:BoxRowMenu><%
 	}

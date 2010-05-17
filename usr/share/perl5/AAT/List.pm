@@ -15,6 +15,7 @@ use strict;
 use warnings;
 
 use AAT;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
 =head1 FUNCTIONS
@@ -47,7 +48,7 @@ sub Items
 
   my $conf = Configuration($list);
 
-  return (AAT::ARRAY($conf->{item}));
+  return (ARRAY($conf->{item}));
 }
 
 1;

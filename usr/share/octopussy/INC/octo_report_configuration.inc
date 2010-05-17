@@ -7,7 +7,7 @@ my $r = Octopussy::Report::Configuration($report);
 my ($devicegroups, $devices, $services) = 
 	Octopussy::Table::Devices_and_Services_With($r->{table});
 my @res_devs = ();
-foreach my $dg (AAT::ARRAY($devicegroups))
+foreach my $dg (ARRAY($devicegroups))
 	{ push(@res_devs, "group $dg"); }
 push(@res_devs, @{$devices});
 my $desc = $r->{description};

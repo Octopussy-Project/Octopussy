@@ -63,7 +63,7 @@ if (defined $icon)
 </AAT:BoxRow><%
 if ($conf->{logtype} eq "asynchronous")
 {
-	foreach my $a (AAT::ARRAY($conf->{async}))
+	foreach my $a (ARRAY($conf->{async}))
   {
 		if ($a->{regexp} ne "")
 		{

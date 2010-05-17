@@ -11,10 +11,10 @@ my $color = ($arg{level} == 2 ? "red"
 <tr valign="middle">
 <td><AAT:Button name="$button" /></td>
 <td>
-<%if (AAT::NOT_NULL($arg{link}))
+<%if (NOT_NULL($arg{link}))
 {%><a href="<%= $arg{link} %>"><%}%>
 <AAT:Label value="$arg{msg}" color="$color" />
-<%if (AAT::NOT_NULL($arg{link}))
+<%if (NOT_NULL($arg{link}))
 {%></a><%}%>
 </td>
 </tr>

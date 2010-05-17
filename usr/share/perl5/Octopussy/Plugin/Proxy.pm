@@ -15,8 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
 use AAT::List;
+use AAT::Utils qw( ARRAY NOT_NULL);
 use Octopussy;
 
 Readonly my $RE_HIT => qr/^.+_HIT.*$/;
@@ -33,7 +33,7 @@ sub Init
 {
   my $conf_mime = AAT::List::Configuration('AAT_Mime');
 
-  foreach my $i (AAT::ARRAY($conf_mime->{item}))
+  foreach my $i (ARRAY($conf_mime->{item}))
   {
     push
       @mimes,
@@ -42,7 +42,7 @@ sub Init
       logo   => $i->{logo},
       regexp => qr/$i->{regexp}/i
       }
-      if (AAT::NOT_NULL($i->{regexp}));
+      if (NOT_NULL($i->{regexp}));
   }
 
   return (1);

@@ -3,7 +3,7 @@ my %arg = @_;
 
 my $action = $Session->{action};
 my $i = $Session->{field};
-my @selected = AAT::ARRAY($Session->{select});
+my @selected = ARRAY($Session->{select});
 my $tmp = $selected[$i];
 if ($action eq "up")
 {

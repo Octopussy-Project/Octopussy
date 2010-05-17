@@ -5,7 +5,7 @@ my $url = $arg{url};
 my $tablename = $arg{table};
 $url .= "?table=$tablename";
 my $url_sort = $url . "&table_fields_table_sort=";
-my $sort = (AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "title");
+my $sort = (NOT_NULL($arg{sort}) ? lc($arg{sort}) : "title");
 my $role = $Session->{AAT_ROLE};
 my $action_str = (($role !~ /ro/i) ? "Action" : "");
 my $title = AAT::Translation("_FIELDS_OF_TABLE") . " $tablename";

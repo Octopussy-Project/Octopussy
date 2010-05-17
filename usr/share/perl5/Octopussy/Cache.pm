@@ -27,11 +27,11 @@ Readonly my $EXPIRES_REPORTER   => '1 day';
 Readonly my $DIRECTORY_UMASK    => '007';
 
 my %cache = (
-  'octo_commander'  => {cache => undef, expires => $EXPIRES_COMMANDER},
-  'octo_dispatcher' => {cache => undef, expires => $EXPIRES_DISPATCHER},
-  'octo_extractor'  => {cache => undef, expires => $EXPIRES_EXTRACTOR},
-  'octo_parser'     => {cache => undef, expires => $EXPIRES_PARSER},
-  'octo_reporter'   => {cache => undef, expires => $EXPIRES_REPORTER},
+  'octo_commander'    => {cache => undef, expires => $EXPIRES_COMMANDER},
+  'octo_dispatcher'   => {cache => undef, expires => $EXPIRES_DISPATCHER},
+  'octo_extractor'    => {cache => undef, expires => $EXPIRES_EXTRACTOR},
+  'octo_parser'       => {cache => undef, expires => $EXPIRES_PARSER},
+  'octo_reporter'     => {cache => undef, expires => $EXPIRES_REPORTER},
   'octo_syslog_cache' => {cache => undef, expires => $EXPIRES_DISPATCHER},
 );
 

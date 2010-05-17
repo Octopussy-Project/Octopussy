@@ -44,7 +44,7 @@ my ($server, $port, $user, $pwd) =
   <AAT:BoxCol><AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
 	<AAT:BoxCol>
 <%
-if (AAT::NOT_NULL($server))
+if (NOT_NULL($server))
 {
 	my ($level, $msg) = ((AAT::Proxy::Connection_Test($arg{appli}))
   	? (0, "Proxy Connection is OK !") : (2, "Proxy Connection is NOT OK !"));

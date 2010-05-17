@@ -16,8 +16,8 @@ no strict 'refs';
 use warnings;
 use Readonly;
 
-use AAT;
 use AAT::FS;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy;
 
@@ -135,7 +135,7 @@ sub Function_Source
     {
       $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
       my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
-      foreach my $pf (AAT::ARRAY($conf->{function}))
+      foreach my $pf (ARRAY($conf->{function}))
       {
         $function_source{$fct} = $pf->{source} if ($pf->{perl} eq $fct);
       }

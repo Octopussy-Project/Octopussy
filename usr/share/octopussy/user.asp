@@ -10,13 +10,13 @@ if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))
   AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "User", $login);
   $Response->Redirect("./user.asp");
 }
-elsif ((AAT::NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
+elsif ((NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	$Session->{AAT_MSG_ERROR} =
     AAT::User::Add("Octopussy", $login, $f->{password}, 
 			$f->{certificate}, $f->{user_role}, $f->{AAT_Language});
   AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "User", $login)
-  	if (AAT::NOT_NULL($Session->{AAT_MSG_ERROR}));
+  	if (NOT_NULL($Session->{AAT_MSG_ERROR}));
 	if ($f->{certificate} == 1)
  	{
   	my %conf = ( country => "FR", state => "Ile de France", city => "Paris",

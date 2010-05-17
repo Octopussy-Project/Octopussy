@@ -21,8 +21,9 @@ use Readonly;
 use File::Copy;
 use File::Path;
 
-use AAT;
 use AAT::Datetime;
+use AAT::Syslog;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::Storage;
@@ -63,7 +64,7 @@ Inits Pusher
 sub Init
 {
   %dir_device = ();
-  AAT::Syslog($PROG_NAME, 'LOAD_DEVICES_CONFIG');
+  AAT::Syslog::Message($PROG_NAME, 'LOAD_DEVICES_CONFIG');
   my $storage = Octopussy::Storage::Default();
   my @devices = Octopussy::Device::Configurations('name');
   foreach my $d (@devices)
@@ -129,9 +130,9 @@ sub Convert_To_Syslog
   chomp $line;
   my $syslog = $line;
 
-  foreach my $as (AAT::ARRAY($conf{$device}))
+  foreach my $as (ARRAY($conf{$device}))
   {
-    if (AAT::NOT_NULL($as->{output}))
+    if (NOT_NULL($as->{output}))
     {
       $syslog = $as->{output};
       if (my @var = $line =~ /$as->{regexp}/)
@@ -187,7 +188,7 @@ sub Write_To_Incoming
     else
     {
       print "Unable to open file '$file'\n";
-      AAT::Syslog('octo_pusher', 'UNABLE_OPEN_FILE', $file);
+      AAT::Syslog::Message('octo_pusher', 'UNABLE_OPEN_FILE', $file);
     }
   }
 
@@ -206,7 +207,7 @@ my ($n_year, $n_month, $n_mday, $n_hour, $n_min) = AAT::Datetime::Now();
 
 $SIG{HUP} = \&Init;
 Octopussy::PID_File($PROG_NAME);
-AAT::Syslog($PROG_NAME, 'PROGRAM_START');
+AAT::Syslog::Message($PROG_NAME, 'PROGRAM_START');
 
 while (1)
 {
@@ -268,7 +269,7 @@ while (1)
           else
           {
             print "Unable to open file '$f'\n";
-            AAT::Syslog('octo_pusher', 'UNABLE_OPEN_FILE', $f);
+            AAT::Syslog::Message('octo_pusher', 'UNABLE_OPEN_FILE', $f);
           }
         }
         closedir DIR2;

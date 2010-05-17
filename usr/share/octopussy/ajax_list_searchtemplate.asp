@@ -3,8 +3,8 @@ my $login = $Session->{AAT_LOGIN};
 my $tpl = $Request->QueryString("template");
 
 my $conf = Octopussy::Search_Template::Configuration($login, $tpl);
-my $dev_str = join(",", AAT::ARRAY($conf->{device}));
-my $serv_str = join(",", AAT::ARRAY($conf->{service}));
+my $dev_str = join(",", ARRAY($conf->{device}));
+my $serv_str = join(",", ARRAY($conf->{service}));
 %>
 <?xml version='1.0' encoding='UTF-8'?>
 <root>

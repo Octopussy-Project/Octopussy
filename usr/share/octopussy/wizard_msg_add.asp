@@ -3,7 +3,7 @@
 my @errors = ();
 my $f = $Request->Form();
 
-if (AAT::NULL($f->{msgid_end}))
+if (NULL($f->{msgid_end}))
 	{ push(@errors, "_MSG_MSGID_CANT_BE_NULL"); }
 else
 {

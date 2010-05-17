@@ -3,7 +3,7 @@
   onchange="location = '<%= $arg{url} %>' + this.options[this.selectedIndex].value;">
 <%
 my $list = $arg{list};
-foreach my $e (AAT::ARRAY($list))
+foreach my $e (ARRAY($list))
 {
 	%><option value="<%= $e %>"<%= $arg{selected} eq $e ? " selected" : "" %>>
 	<%= AAT::Translation($e) %></option><% 

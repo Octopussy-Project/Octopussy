@@ -15,8 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
 use AAT::FS;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Message;
@@ -165,9 +165,9 @@ sub Messages
   );
 
   my $conf     = Configuration($statistic_report);
-  my @filters  = AAT::ARRAY($conf->{filter});
+  my @filters  = ARRAY($conf->{filter});
   my @messages = ();
-  foreach my $s (AAT::ARRAY($services))
+  foreach my $s (ARRAY($services))
   {
     push @messages, Octopussy::Service::Messages($s);
   }

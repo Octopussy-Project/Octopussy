@@ -5,14 +5,14 @@ my $cid = $f->{cid} || $Request->QueryString("cid");
 my $action = $f->{action} || $Request->QueryString("action");
 my $sort = $Request->QueryString("contacts_table_sort") || "lastname";	
 
-if ((AAT::NOT_NULL($action)) && ($action eq "remove") 
+if ((NOT_NULL($action)) && ($action eq "remove") 
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	Octopussy::Contact::Remove($cid);
 	AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Contact", $cid);
 	$Response->Redirect("./contacts.asp");
 }
-elsif ((AAT::NOT_NULL($action)) && ($action eq "new") 
+elsif ((NOT_NULL($action)) && ($action eq "new") 
 			&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
  	$Session->{AAT_MSG_ERROR} = Octopussy::Contact::New( { 
@@ -21,7 +21,7 @@ elsif ((AAT::NOT_NULL($action)) && ($action eq "new")
   	description => Encode::decode_utf8($f->{description}), 
     email => $Server->HTMLEncode($f->{email}), im => $f->{im} } );
 	AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Contact", $cid)
-		if (AAT::NOT_NULL($Session->{AAT_MSG_ERROR}));
+		if (NOT_NULL($Session->{AAT_MSG_ERROR}));
 	$Response->Redirect("./contacts.asp");
 }
 %>

@@ -15,7 +15,7 @@ my $cols = scalar(@{$obj_conf->{field}}) + $actions;
 </AAT:BoxRow>
 <AAT:BoxRow>
 <%
-foreach my $f (AAT::ARRAY($obj_conf->{field}))
+foreach my $f (ARRAY($obj_conf->{field}))
 {
 	my $label = $f->{label};
 	%><AAT:BoxCol><AAT:Label value="$label" style="B" /></AAT:BoxCol><%
@@ -33,10 +33,10 @@ if ($actions)
 <%
 my $list = AAT::Object::Data($arg{object});
 
-foreach my $c (AAT::ARRAY($list))
+foreach my $c (ARRAY($list))
 {
 	%><AAT:BoxRow><%
-	foreach my $f (AAT::ARRAY($obj_conf->{field}))
+	foreach my $f (ARRAY($obj_conf->{field}))
 	{
 		%><AAT:BoxCol><%= $c->{$f->{fid}} %></AAT:BoxCol><%
 	}

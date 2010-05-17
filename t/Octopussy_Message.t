@@ -16,6 +16,7 @@ use Readonly;
 
 use Test::More tests => 6;
 
+use AAT::Utils qw( NOT_NULL );
 use Octopussy::Message;
 
 Readonly my $SERVICE => 'Octopussy';
@@ -44,7 +45,7 @@ to_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;User .+ succesfully logged in.&quot;
 =cut
 
 my $mconf = Octopussy::Message::Configuration($SERVICE, $MSGID);
-ok(AAT::NOT_NULL($mconf) && $mconf->{taxonomy} eq 'Auth.Success',
+ok(NOT_NULL($mconf) && $mconf->{taxonomy} eq 'Auth.Success',
   'Octopussy::Message::Configuration()');
 
 my @fields = Octopussy::Message::Fields($SERVICE, $MSGID);

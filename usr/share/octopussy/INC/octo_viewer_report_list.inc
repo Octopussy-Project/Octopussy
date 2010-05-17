@@ -9,7 +9,7 @@ my $url_base = "./report_show.asp?report_type=$report";
 my $lang = $Session->{AAT_LANGUAGE};
 
 my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
-my @res_reports = AAT::ARRAY($restricts->{report});
+my @res_reports = ARRAY($restricts->{report});
 my $in_restriction = (scalar(@res_reports) > 0 ? 0 : 1);
 foreach my $res (@res_reports)
 	{ $in_restriction = 1 if ($rconf->{name} eq $res); }
@@ -72,7 +72,7 @@ foreach my $r (sort keys %{$reports})
 				{ %><AAT:Label value="$1 - $2/$3/$4 $5:$6" /><% }
 			%></AAT:BoxCol>
 			<AAT:BoxCol><table><tr><%
-			foreach my $ext (sort (AAT::ARRAY($reports->{$r})))
+			foreach my $ext (sort (ARRAY($reports->{$r})))
 	    {
 				if ($ext =~ /rrd$/)
         {

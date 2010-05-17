@@ -15,8 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
 use AAT::Application;
+use AAT::Download;
 use AAT::XML;
 
 Readonly my $FILE_TEST => '/tmp/test.html';
@@ -52,7 +52,7 @@ sub Connection_Test
 {
   my $appli = shift;
 
-  AAT::Download($appli, $URL_TEST, $FILE_TEST);
+  AAT::Download::File($appli, $URL_TEST, $FILE_TEST);
   my $status = ((-s $FILE_TEST > 0) ? 1 : 0);
   unlink $FILE_TEST if (-f $FILE_TEST);
 

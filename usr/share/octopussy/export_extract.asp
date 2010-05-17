@@ -3,7 +3,7 @@ my $run_dir = Octopussy::Directory("running");
 my $login = $Session->{AAT_LOGIN};
 my $filename = $Session->{extracted};
 
-if (AAT::NOT_NULL($Session->{file}))
+if (NOT_NULL($Session->{file}))
 {
 	my $output = $Session->{export} . ".txt";
 	($Session->{file}, $Session->{export}, $Session->{extractor},
@@ -12,7 +12,7 @@ if (AAT::NOT_NULL($Session->{file}))
   	input_file => "${run_dir}/logs_${login}_$filename", 
 		output_file => $output } );
 }
-elsif (AAT::NOT_NULL($Session->{csv}))
+elsif (NOT_NULL($Session->{csv}))
 {
 	open(FILE, "< $run_dir/logs_${login}_$filename");
  	while (<FILE>)
@@ -27,7 +27,7 @@ elsif (AAT::NOT_NULL($Session->{csv}))
   AAT::File_Save( { contenttype => "text/csv",
   	input_data => $text, output_file => $output } );
 }
-elsif (AAT::NOT_NULL($Session->{zip}))
+elsif (NOT_NULL($Session->{zip}))
 {
 	my $output = $Session->{export} . ".txt.gz";
  	open(ZIP, "|gzip >> $run_dir/logs_${login}_$filename.gz");

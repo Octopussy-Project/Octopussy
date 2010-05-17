@@ -7,7 +7,7 @@ my $desc = $arg{desc} || "File ";
 my $BARS = $arg{bars} || 40;
 my $current = $arg{current};
 my $total = $arg{total};
-if (AAT::NOT_NULL($total))
+if (NOT_NULL($total))
 {
 	my $cancel = $arg{cancel};
 	my $cbars = $current * $BARS / $total;

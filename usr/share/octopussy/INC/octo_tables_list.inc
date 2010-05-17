@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 my $url = $arg{url};
-my $sort = (AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "name");
+my $sort = (NOT_NULL($arg{sort}) ? lc($arg{sort}) : "name");
 my $role = $Session->{AAT_ROLE};
 %>
 <AAT:Box align="C" title="_TABLES" icon="buttons/bt_table">

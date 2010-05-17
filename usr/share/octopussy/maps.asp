@@ -29,7 +29,7 @@ if (defined $map)
 	<map name="<%= $map %>">
 	<%
 	my $link = "./device_dashboard.asp?device=";
-	foreach my $a (AAT::ARRAY($conf->{area}))
+	foreach my $a (ARRAY($conf->{area}))
 	{
 	%><area shape="rect" 
 			coords="<%= $a->{x1} %>,<%= $a->{y1} %>,<%= $a->{x2} %>,<%= $a->{y2} %>"
@@ -37,7 +37,7 @@ if (defined $map)
 	}
 	%></map><%
 
-	foreach my $a (AAT::ARRAY($conf->{area}))
+	foreach my $a (ARRAY($conf->{area}))
 	{
 		my @alerts = Octopussy::Alert::From_Device($a->{device}, "Opened");
 		if ((defined $a->{device}) && (scalar(@alerts) > 0))

@@ -1,7 +1,7 @@
 <%
 my @alerts = Octopussy::Alert::Tracker("", "", "Opened", "", 
 	Octopussy::Parameter("max_alerts"));
-my $nb_alerts = (AAT::NOT_NULL(\@alerts) ? scalar(@alerts) : 0);
+my $nb_alerts = (NOT_NULL(\@alerts) ? scalar(@alerts) : 0);
 my $alerts_color = (($nb_alerts > 0) ? "red" : "green");
 
 my $nb_unknown = 0;

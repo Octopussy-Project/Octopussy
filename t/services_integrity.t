@@ -20,7 +20,7 @@ use warnings;
 use English qw( -no_match_vars );
 use Test::More tests => 1;
 
-use AAT;
+use AAT::Utils qw( NOT_NULL NULL );
 use Octopussy;
 use Octopussy::Message;
 use Octopussy::Table;
@@ -73,7 +73,7 @@ sub Msg
   }
 
   $error{$level}{$type} =
-    (AAT::NOT_NULL($error{$level}{$type}) ? $error{$level}{$type} + 1 : 1);
+    (NOT_NULL($error{$level}{$type}) ? $error{$level}{$type} + 1 : 1);
 
   return ($error{$level}{$type});
 }
@@ -86,7 +86,7 @@ sub Check_Service_Message_Id
 {
   my ($service, $msgid, $seen_msgid) = @_;
 
-  if (AAT::NOT_NULL($seen_msgid->{$msgid}))
+  if (NOT_NULL($seen_msgid->{$msgid}))
   {
     Msg("ERROR", "service", "MSG_ID_DUPLICATED", $service, $msgid);
   }
@@ -118,7 +118,7 @@ sub Check_Service_Message_Rank
 
   Msg("ERROR", "service", "MSG_RANK_BAD_FORMAT", $service, $msgid)
     if (length($rank) != 3);    ## no critic
-  if (AAT::NOT_NULL($seen_rank->{"$i_rank"}))
+  if (NOT_NULL($seen_rank->{"$i_rank"}))
   {
     Msg("ERROR", "service", "MSG_RANK_DUPLICATED", $service, $rank, $msgid,
       $seen_rank->{"$i_rank"});
@@ -151,7 +151,7 @@ sub Check_Service_Message_Pattern
     Msg("WARNING", "service", "MSG_PATTERN_PID", $service, $msgid)
       if (($f->{name} eq 'pid') && ($f->{type} ne 'PID'));
     $fcount{$f->{name}} =
-      (AAT::NOT_NULL($fcount{$f->{name}}) ? $fcount{$f->{name}} + 1 : 1);
+      (NOT_NULL($fcount{$f->{name}}) ? $fcount{$f->{name}} + 1 : 1);
   }
   foreach my $fc (sort keys %fcount)
   {
@@ -160,7 +160,7 @@ sub Check_Service_Message_Pattern
       if ($fcount{$fc} > 1);
     Msg("ERROR", "service", "MSG_PATTERN_FIELD_UNKNOWN", $service, "$table:$fc",
       $msgid)
-      if (AAT::NULL($tf{$fc}));
+      if (NULL($tf{$fc}));
   }
   my $re = Octopussy::Message::Pattern_To_Regexp($m);
   eval ' "test" =~ /$re/ ';
@@ -193,17 +193,17 @@ sub Check_Service_Messages
     Check_Service_Message_Rank($serv, $msgid, $rank, $nb_messages, \%seen_rank);
     Check_Service_Message_Pattern($serv, $msgid, $m);
     Msg("ERROR", "service", "MSG_TABLE_UNKNOWN", $service, $msgid, $m_table)
-      if (AAT::NULL($table->{$m_table}));
+      if (NULL($table->{$m_table}));
     Msg("ERROR", "service", "MSG_LOGLEVEL_UNKNOWN", $service, $msgid,
       $m_loglevel)
-      if (AAT::NULL($loglevel->{$m_loglevel}));
+      if (NULL($loglevel->{$m_loglevel}));
     Msg("ERROR", "service", "MSG_TAXONOMY_UNKNOWN", $service, $msgid, $m_taxo)
-      if (AAT::NULL($taxo->{$m_taxo}));
+      if (NULL($taxo->{$m_taxo}));
   }
   for my $i (1 .. $nb_messages)
   {
     Msg("ERROR", "service", "MSG_RANK_MISSING", $serv, $i)
-      if (AAT::NULL($seen_rank{$i}));
+      if (NULL($seen_rank{$i}));
   }
 
   return (undef);

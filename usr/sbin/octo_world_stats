@@ -17,7 +17,8 @@ use Readonly;
 use POSIX qw(strftime);
 use URI::Escape;
 
-use AAT;
+use AAT::Download;
+use AAT::Syslog;
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Device;
@@ -60,10 +61,10 @@ if ($conf->{status} eq 'enabled')
         . "&cpu=$cpu&memory=$mem&hour=$hour&nb_devices=$nb_devices"
         . "&nb_services=$nb_services&nb_logs="
         . ($cache->get($k) || '0');
-      AAT::Download($APPLI, $url, '/dev/null');
+      AAT::Download::File($APPLI, $url, '/dev/null');
     }
   }
-  AAT::Syslog('octo_world_stats', 'WORLD_STATS_SENT');
+  AAT::Syslog::Message('octo_world_stats', 'WORLD_STATS_SENT');
 }
 else
 {

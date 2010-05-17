@@ -3,7 +3,7 @@ my %arg = @_;
 my $url = $arg{url};
 my $url_sort = $url . "?category=$arg{category}&reports_table_sort=";
 my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
-my @res_reports = AAT::ARRAY($restricts->{report});
+my @res_reports = ARRAY($restricts->{report});
 my @report_types = Octopussy::Report::List($arg{category}, \@res_reports);
 %>
 <AAT:Box align="C" icon="buttons/bt_report" title="_REPORTS_VIEWER">

@@ -5,7 +5,7 @@ my $url_sort = $url . "?$arg{id}_sort=";
 my @table = ();
 
 my @header = ();
-foreach my $field (AAT::ARRAY($arg{fields}))
+foreach my $field (ARRAY($arg{fields}))
 {
 	push(@header, { label => ucfirst($field->{label}) || ucfirst($field->{name}), 
 		style => "bold", align => $field->{alignment}, tooltip => $field->{tooltip},
@@ -26,20 +26,20 @@ push(@table, \@header);
 push(@table, [ { label => "<hr>", 
 	colspan => scalar(@{$arg{fields}}) + scalar(@{$arg{actions}}) } ] );
 
-foreach my $line (&{$arg{function}}(AAT::ARRAY($arg{function_args})))
+foreach my $line (&{$arg{function}}(ARRAY($arg{function_args})))
 {
 	my @row = ();
-	foreach my $field (AAT::ARRAY($arg{fields}))
+	foreach my $field (ARRAY($arg{fields}))
 	{
 		my $link = (defined $field->{link_url} ? $field->{link_url} : $url) . "?";
-		foreach my $la (AAT::ARRAY($field->{link_args}))
+		foreach my $la (ARRAY($field->{link_args}))
 		{ 
 			$link .= "$la->{name}=" 
 				. (defined $la->{field_value} ? $line->{$la->{field_value}} 
 						: $la->{value}) . "&"; 
 		}
 		my $value = ((ref($line->{$field->{name}}) eq "ARRAY") 
-			? join(", ", sort(AAT::ARRAY($line->{$field->{name}})))
+			? join(", ", sort(ARRAY($line->{$field->{name}})))
 			: $line->{$field->{name}});
 		if (!defined $field->{type})
 		{
@@ -54,10 +54,10 @@ foreach my $line (&{$arg{function}}(AAT::ARRAY($arg{function_args})))
 		}
 	}
 
-	foreach my $a (AAT::ARRAY($arg{actions}))	
+	foreach my $a (ARRAY($arg{actions}))	
 	{
 		my $link = (defined $a->{link_url} ? $a->{link_url} : $url) . "?";
-		foreach my $la (AAT::ARRAY($a->{link_args}))
+		foreach my $la (ARRAY($a->{link_args}))
     { 
 			$link .= "$la->{name}=" 
 				. (defined $la->{field_value} ? $line->{$la->{field_value}} 

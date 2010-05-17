@@ -9,7 +9,7 @@ if ((defined $timeperiod) && ($action eq "remove"))
 }
 
 my $f = $Request->Form();
-if (AAT::NOT_NULL($f->{name}))
+if (NOT_NULL($f->{name}))
 {
 	my @dts = ();
 

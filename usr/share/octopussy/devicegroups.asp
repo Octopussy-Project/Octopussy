@@ -5,7 +5,7 @@ my $dg = $f->{devicegroup} || $Request->QueryString("devicegroup");
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("devicegroups_table_sort");
 
-if (AAT::NULL($dg))
+if (NULL($dg))
 {
 	%><AAT:Inc file="octo_devicegroups_list" 
 		url="./devicegroups.asp" sort="$sort" /><%
@@ -28,7 +28,7 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 				my $field = $f->{"criteria_field$i"};
 				my $value = Encode::decode_utf8($f->{"criteria_value$i"});
 				push(@criterias, { field => $field, pattern => $value })
-					if (AAT::NOT_NULL($value));
+					if (NOT_NULL($value));
 			}	
 			$Session->{AAT_MSG_ERROR} = 
 				Octopussy::DeviceGroup::Add({ dg_id => $dg, description => $dg_desc,
@@ -42,7 +42,7 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 					type => "static", device => $f->{devices} });
 		}
 		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "DeviceGroup", $dg)
-			if (AAT::NOT_NULL($Session->{AAT_MSG_ERROR}));
+			if (NOT_NULL($Session->{AAT_MSG_ERROR}));
 	}
 	$Response->Redirect("./devicegroups.asp");
 }

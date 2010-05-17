@@ -2,9 +2,9 @@
 my $devs = $Request->QueryString("devices");
 my $selected = $Request->QueryString("selected");
 my $restricted = $Session->{restricted_services};
-my @devices = (AAT::NOT_NULL($devs) ? split(/,/, $devs) : undef);
-my @selecteds = (AAT::NOT_NULL($selected) ? split(/,/, $selected) : undef);
-my @restricteds = (AAT::NOT_NULL($restricted) ? @{$restricted} : undef);
+my @devices = (NOT_NULL($devs) ? split(/,/, $devs) : undef);
+my @selecteds = (NOT_NULL($selected) ? split(/,/, $selected) : undef);
+my @restricteds = (NOT_NULL($restricted) ? @{$restricted} : undef);
 
 my @device_list = ();
 foreach my $d (@devices)
@@ -15,7 +15,7 @@ foreach my $d (@devices)
 		{ push(@device_list, $d); }
 }
 my @list = ();
-push(@list, ((AAT::NOT_NULL(@device_list))
+push(@list, ((NOT_NULL(@device_list))
 	? sort(Octopussy::Device::Services(@device_list)) 
 	: Octopussy::Service::List()));
 @list = sort keys %{{ map { $_ => 1 } @list }}; # sort unique @list
@@ -25,7 +25,7 @@ push(@list, ((AAT::NOT_NULL(@device_list))
 <%
 foreach my $item (@list)
 {
-	my $restrict = (AAT::NULL(@restricteds) ? 1 :0); # 1 = no restrictions
+	my $restrict = (NULL(@restricteds) ? 1 :0); # 1 = no restrictions
 	foreach my $r (@restricteds)
 		{ $restrict = 1	if ($r eq $item); }
 	if ($restrict)

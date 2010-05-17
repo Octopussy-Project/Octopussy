@@ -15,7 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy;
 
@@ -37,7 +37,7 @@ sub Add
   my $exists = 0;
   my $file   = Octopussy::File($FILE_SCHEDULES);
   my $conf   = AAT::XML::Read($file);
-  foreach my $sched (AAT::ARRAY($conf->{schedule}))
+  foreach my $sched (ARRAY($conf->{schedule}))
   {
     $exists = 1 if ($sched->{title} eq $add->{title});
   }
@@ -64,7 +64,7 @@ sub Remove
   my $file = Octopussy::File($FILE_SCHEDULES);
   my $conf = AAT::XML::Read($file);
   my @schedules =
-    grep { $_->{title} ne $schedule_title } AAT::ARRAY($conf->{schedule});
+    grep { $_->{title} ne $schedule_title } ARRAY($conf->{schedule});
   $conf->{schedule} = \@schedules;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
@@ -96,7 +96,7 @@ sub Configuration
   my $schedule = shift;
   my $conf     = AAT::XML::Read(Octopussy::File($FILE_SCHEDULES));
 
-  foreach my $s (AAT::ARRAY($conf->{schedule}))
+  foreach my $s (ARRAY($conf->{schedule}))
   {
     return ($s) if ($s->{title} eq $schedule);
   }

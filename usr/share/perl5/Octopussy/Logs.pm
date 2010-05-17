@@ -17,8 +17,9 @@ use Readonly;
 
 use File::Path qw(rmtree);
 
-use AAT;
 use AAT::FS;
+use AAT::Syslog;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::DeviceGroup;
@@ -44,7 +45,7 @@ sub Device_List
   my @devs    = ();
   my %hash_dev;
 
-  foreach my $d (AAT::ARRAY($devices))
+  foreach my $d (ARRAY($devices))
   {
     push @devs,
       (($d !~ /group (.+)/) ? $d : Octopussy::DeviceGroup::Devices($1));
@@ -80,7 +81,7 @@ sub Service_List
   my $services = shift;
   my %hash_serv;
 
-  foreach my $s (AAT::ARRAY($services))
+  foreach my $s (ARRAY($services))
   {
     if ($s =~ /-ANY-/i)
     {
@@ -265,7 +266,7 @@ sub Files
   {
     foreach my $s (sort (Octopussy::Device::Services($dev), 'Unknown'))
     {
-      if (AAT::NOT_NULL($servs{$s}))
+      if (NOT_NULL($servs{$s}))
       {
         my $dir = Octopussy::Storage::Directory_Service($dev, $s);
         foreach my $y (Get_Directories("$dir/$dev/$s"))
@@ -339,7 +340,7 @@ sub Minutes_Hash
   {
     foreach my $s (sort (Octopussy::Device::Services($dev), 'Unknown'))
     {
-      if (AAT::NOT_NULL($servs{$s}))
+      if (NOT_NULL($servs{$s}))
       {
         my $dir = Octopussy::Storage::Directory_Service($dev, $s);
         foreach my $y (Get_Directories("$dir/$dev/$s"))
@@ -426,16 +427,16 @@ sub Get
   my $counter  = 0;
   my @includes = ();
   my @excludes = ();
-  foreach my $inc (AAT::ARRAY($re_incl))
+  foreach my $inc (ARRAY($re_incl))
   {
-    push @includes, qr/$inc/ if (AAT::NOT_NULL($inc));
+    push @includes, qr/$inc/ if (NOT_NULL($inc));
   }
-  foreach my $excl (AAT::ARRAY($re_excl))
+  foreach my $excl (ARRAY($re_excl))
   {
-    push @excludes, qr/$excl/ if (AAT::NOT_NULL($excl));
+    push @excludes, qr/$excl/ if (NOT_NULL($excl));
   }
 
-  foreach my $f (sort (AAT::ARRAY($files)))
+  foreach my $f (sort (ARRAY($files)))
   {
     ($year, $month) = ($1, $2) if ($f =~ /(\d{4})\/(\d{2})\/\d{2}\/msg_/);
     if (defined open my $FILE, '-|', "zcat '$f'")
@@ -457,7 +458,7 @@ sub Get
     else
     {
       my ($pack, $file_pack, $line, $sub) = caller 0;
-      AAT::Syslog('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+      AAT::Syslog::Message('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
     }
     last if ($counter >= $limit);
   }
@@ -570,7 +571,7 @@ sub Remove
     else
     {
       my ($pack, $file_pack, $line, $sub) = caller 0;
-      AAT::Syslog('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+      AAT::Syslog::Message('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
     }
     unlink $f;
     if (defined open my $NEW, '|-', "gzip > '$f'")
@@ -581,7 +582,7 @@ sub Remove
     else
     {
       my ($pack, $file_pack, $line, $sub) = caller 0;
-      AAT::Syslog('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+      AAT::Syslog::Message('Octopussy_Logs', 'UNABLE_OPEN_FILE_IN', $f, $sub);
     }
   }
 
@@ -617,20 +618,20 @@ Generate Command Line for octo_extractor
 sub Extract_Cmd_Line
 {
   my $conf     = shift;
-  my @devices  = AAT::ARRAY($conf->{devices});
-  my @services = AAT::ARRAY($conf->{services});
+  my @devices  = ARRAY($conf->{devices});
+  my @services = ARRAY($conf->{services});
   my $dev_str  = '--device "' . join('" --device "', @devices) . '"';
   my $serv_str = '--service "' . join('" --service "', @services) . '"';
   my ($incl_str, $excl_str) = ('', '');
-  foreach my $inc (AAT::ARRAY($conf->{includes}))
+  foreach my $inc (ARRAY($conf->{includes}))
   {
     $inc =~ s/"/\\"/g;
-    $incl_str .= "--include \"$inc\" " if (AAT::NOT_NULL($inc));
+    $incl_str .= "--include \"$inc\" " if (NOT_NULL($inc));
   }
-  foreach my $exc (AAT::ARRAY($conf->{excludes}))
+  foreach my $exc (ARRAY($conf->{excludes}))
   {
     $exc =~ s/"/\\"/g;
-    $excl_str .= "--exclude \"$exc\" " if (AAT::NOT_NULL($exc));
+    $excl_str .= "--exclude \"$exc\" " if (NOT_NULL($exc));
   }
   my $cmd =
       "/usr/sbin/octo_extractor $dev_str $serv_str"

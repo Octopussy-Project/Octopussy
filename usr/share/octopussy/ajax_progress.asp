@@ -18,7 +18,7 @@ elsif (($bin eq "octo_extractor") && ($status =~ /.+\[(\d+)\/(\d+)\] \[(\d+)\]$/
 %>
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
-	<desc><%= (AAT::NOT_NULL($status) ? $Session->{progress_desc} : "...") %></desc>
+	<desc><%= (NOT_NULL($status) ? $Session->{progress_desc} : "...") %></desc>
 	<current><%= $Session->{progress_current} %></current>
 	<total><%= $Session->{progress_total} %></total>
 	<match><%= $Session->{progress_match} %></match>

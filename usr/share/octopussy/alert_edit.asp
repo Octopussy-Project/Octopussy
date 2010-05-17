@@ -5,11 +5,11 @@ my $f = $Request->Form();
 
 if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 {
-	my @devices = AAT::ARRAY($f->{device});
-	my @services = AAT::ARRAY($f->{service});
-  my @actions = (AAT::ARRAY($f->{action_mailing}),
-      AAT::ARRAY($f->{action_program}));
-	my @contacts = AAT::ARRAY($f->{contact});
+	my @devices = ARRAY($f->{device});
+	my @services = ARRAY($f->{service});
+  my @actions = (ARRAY($f->{action_mailing}),
+      ARRAY($f->{action_program}));
+	my @contacts = ARRAY($f->{contact});
   my $body = $f->{body};
 	Octopussy::Alert::Modify($f->{old_alert},
 		{ name => $f->{name}, 

@@ -32,7 +32,7 @@ else
   <AAT:BoxCol cspan="3" align="C">
 	<AAT:Label value="$str" size="+1" /></AAT:BoxCol>
 <%
-if (AAT::NOT_NULL($site))
+if (NOT_NULL($site))
 {
 %><AAT:BoxCol cspan="3" align="R">
 	<AAT:Label value="_OFFICIAL_WEBSITE" link_new="$site" /></AAT:BoxCol>

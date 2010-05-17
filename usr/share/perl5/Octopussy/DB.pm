@@ -16,8 +16,8 @@ use warnings;
 
 use DBI;
 
-use AAT;
 use AAT::DB;
+use AAT::Syslog;
 use Octopussy::Plugin;
 use Octopussy::Table;
 
@@ -86,7 +86,7 @@ sub Connect
 {
   my $error = AAT::DB::Connect('Octopussy');
 
-  AAT::Syslog('Octopussy_DB', $error) if (defined $error);
+  AAT::Syslog::Message('Octopussy_DB', $error) if (defined $error);
 
   return ($error);
 }

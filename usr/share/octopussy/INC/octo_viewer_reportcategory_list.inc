@@ -2,7 +2,7 @@
 my %arg = @_;
 my $url = $arg{url};
 my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
-my @res_reports = AAT::ARRAY($restricts->{report});
+my @res_reports = ARRAY($restricts->{report});
 %>
 <AAT:Box align="C" title="_REPORTS_VIEWER" icon="buttons/bt_report">
 <AAT:BoxRow>

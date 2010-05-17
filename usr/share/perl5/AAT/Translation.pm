@@ -15,7 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
+use AAT::Utils qw( NULL );
 
 my %AAT_Translation = ();
 
@@ -50,7 +50,7 @@ sub Get
 {
   my ($lang, $str) = @_;
 
-  return (undef) if (AAT::NULL($str));
+  return (undef) if (NULL($str));
   Init($lang) if (!defined $AAT_Translation{$lang}{'_USER'});
   $AAT_Translation{$lang}{$str} = (loc($str) || $str)
     if (!defined $AAT_Translation{$lang}{$str});

@@ -15,7 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
+use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 use Octopussy;
 
@@ -35,7 +35,7 @@ sub ID
   Readonly my $RANDOM_NUMBER => 999;
   my $conf = Configuration();
 
-  if (AAT::NOT_NULL($conf) && AAT::NOT_NULL($conf->{id}))
+  if (NOT_NULL($conf) && NOT_NULL($conf->{id}))
   {
     return ($conf->{id});
   }

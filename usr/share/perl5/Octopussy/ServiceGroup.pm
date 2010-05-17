@@ -18,6 +18,7 @@ use Readonly;
 use List::MoreUtils qw(any);
 
 use AAT;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy;
 
@@ -39,8 +40,7 @@ sub Add
 
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  if (any { $_->{sg_id} eq $conf_sg->{sg_id} }
-    AAT::ARRAY($conf->{servicegroup}))
+  if (any { $_->{sg_id} eq $conf_sg->{sg_id} } ARRAY($conf->{servicegroup}))
   {
     return ('_MSG_SERVICEGROUP_ALREADY_EXISTS');
   }
@@ -63,7 +63,7 @@ sub Remove
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
   my @sgs =
-    grep { $_->{sg_id} ne $servicegroup } AAT::ARRAY($conf->{servicegroup});
+    grep { $_->{sg_id} ne $servicegroup } ARRAY($conf->{servicegroup});
   $conf->{servicegroup} = \@sgs;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
@@ -95,7 +95,7 @@ sub Configuration
   my $servicegroup = shift;
 
   my $conf = AAT::XML::Read(Octopussy::File($FILE_SERVICEGROUPS));
-  foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
+  foreach my $sg (ARRAY($conf->{servicegroup}))
   {
     return ($sg) if ($sg->{sg_id} eq $servicegroup);
   }
@@ -140,8 +140,7 @@ sub Services
   my $conf         = Configuration($servicegroup);
   my @services     = ();
 
-  foreach
-    my $s (sort { $a->{rank} cmp $b->{rank} } AAT::ARRAY($conf->{service}))
+  foreach my $s (sort { $a->{rank} cmp $b->{rank} } ARRAY($conf->{service}))
   {
     push @services, $s;
   }
@@ -161,13 +160,13 @@ sub Add_Service
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
   my @sgs  = ();
-  foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
+  foreach my $sg (ARRAY($conf->{servicegroup}))
   {
-    my @services = AAT::ARRAY($sg->{service});
+    my @services = ARRAY($sg->{service});
     if ($sg->{sg_id} eq $servicegroup)
     {
       my $rank = scalar(@services) + 1;
-      $rank = AAT::Padding($rank, 2);
+      $rank = sprintf("%02d", $rank);
       if (any { $_->{sid} =~ /^$service$/ } @services)
       {
         return ();
@@ -196,13 +195,13 @@ sub Remove_Service
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
   my @sgs  = ();
-  foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
+  foreach my $sg (ARRAY($conf->{servicegroup}))
   {
     if ($sg->{sg_id} eq $servicegroup)
     {
       my @services = ();
       my $rank     = undef;
-      foreach my $s (AAT::ARRAY($sg->{service}))
+      foreach my $s (ARRAY($sg->{service}))
       {
         if ($s->{sid} ne $service) { push @services, $s; }
         else                       { $rank = $s->{rank}; }
@@ -213,7 +212,7 @@ sub Remove_Service
         if ($s->{rank} > $rank)
         {
           $s->{rank} -= 1;
-          $s->{rank} = AAT::Padding($s->{rank}, 2);
+          $s->{rank} = sprintf("%02d", $s->{rank});
         }
       }
       $sg->{service} = \@services;
@@ -241,14 +240,14 @@ sub Move_Service
   my @sgs  = ();
   my $file = Octopussy::File($FILE_SERVICEGROUPS);
   my $conf = AAT::XML::Read($file);
-  foreach my $sg (AAT::ARRAY($conf->{servicegroup}))
+  foreach my $sg (ARRAY($conf->{servicegroup}))
   {
     if ($sg->{sg_id} eq $servicegroup)
     {
       my @services = ();
       my $max = (defined $sg->{service} ? scalar(@{$sg->{service}}) : 0);
       $max = ('0' x (2 - length $max)) . $max;
-      foreach my $s (AAT::ARRAY($sg->{service}))
+      foreach my $s (ARRAY($sg->{service}))
       {
         if ($s->{sid} eq $service)
         {
@@ -256,19 +255,19 @@ sub Move_Service
           return ($max)
             if (($s->{rank} eq $max) && ($direction eq 'down'));
           $s->{rank} = ($direction eq 'up' ? $s->{rank} - 1 : $s->{rank} + 1);
-          $s->{rank} = AAT::Padding($s->{rank}, 2);
+          $s->{rank} = sprintf("%02d", $s->{rank});
           $rank = $s->{rank};
         }
         push @services, $s;
       }
       $sg->{service} = \@services;
       my @services2 = ();
-      foreach my $s (AAT::ARRAY($sg->{service}))
+      foreach my $s (ARRAY($sg->{service}))
       {
         if (($s->{rank} eq $rank) && ($s->{sid} ne $service))
         {
           $s->{rank} = ($direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1);
-          $s->{rank} = AAT::Padding($s->{rank}, 2);
+          $s->{rank} = sprintf("%02d", $s->{rank});
         }
         push @services2, $s;
       }

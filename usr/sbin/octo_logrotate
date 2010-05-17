@@ -16,7 +16,8 @@ use Readonly;
 
 use Date::Manip;
 
-use AAT;
+use AAT::Syslog;
+use AAT::Utils qw( ARRAY NULL );
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::Storage;
@@ -54,7 +55,7 @@ sub Get_Logrotate_Limit
   my $logrotate = $conf->{logrotate};
   if (($type ne 'incoming') && ($type ne 'unknown'))
   {
-    foreach my $ds (AAT::ARRAY($conf->{service}))
+    foreach my $ds (ARRAY($conf->{service}))
     {
       my $sid = $ds->{sid};
       $sid =~ s/ /_/g;
@@ -81,7 +82,7 @@ sub Rotate_Logs
   my $device = shift;
   my $conf   = Octopussy::Device::Configuration($device);
 
-  return () if (AAT::NULL($conf->{logrotate}));
+  return () if (NULL($conf->{logrotate}));
 
   my $storage = Octopussy::Storage::Default();
   foreach my $t ('incoming', 'unknown', 'known')
@@ -98,7 +99,7 @@ sub Rotate_Logs
     foreach my $s (@services)
     {
       my ($logrotate, $limit) = Get_Logrotate_Limit($s, $t, $conf);
-      AAT::Syslog($PROG_NAME, 'DELETE_LOGS_OLDER_THAN', $device, $s,
+      AAT::Syslog::Message($PROG_NAME, 'DELETE_LOGS_OLDER_THAN', $device, $s,
         $logrotate);
       print "Removing $device $s [$logrotate] logs files...\n";
       foreach my $y (Get_Directories("$dir/$device/$s"))
@@ -110,13 +111,13 @@ sub Rotate_Logs
             if (($t eq 'incoming') || ($t eq 'unknown'))
             {    # Removes only empty directories for Incoming & Unknown
               system qq{rmdir "$dir/$device/$s/$y/$m/$d/" 2> /dev/null};
-              AAT::Syslog($PROG_NAME, 'DELETE_LOGS_DIR',
+              AAT::Syslog::Message($PROG_NAME, 'DELETE_LOGS_DIR',
                 "$dir/$device/$s/$y/$m/$d/");
             }
             elsif (($y * 10_000 + $m * 100 + $d) < $limit)
             {
               system qq{rm -rf "$dir/$device/$s/$y/$m/$d/"};
-              AAT::Syslog($PROG_NAME, 'DELETE_LOGS_DIR',
+              AAT::Syslog::Message($PROG_NAME, 'DELETE_LOGS_DIR',
                 "$dir/$device/$s/$y/$m/$d/");
             }
           }

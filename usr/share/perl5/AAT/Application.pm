@@ -15,7 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
 Readonly my $AAT_CONF_FILE => '/etc/aat/aat.xml';
@@ -33,7 +33,7 @@ sub Info
   my $appli = shift;
 
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (AAT::ARRAY($conf->{application}))
+  foreach my $a (ARRAY($conf->{application}))
   {
     return ($a) if ($a->{name} eq $appli);
   }
@@ -51,11 +51,11 @@ sub Directory
 {
   my ($appli, $name) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (AAT::ARRAY($conf->{application}))
+  foreach my $a (ARRAY($conf->{application}))
   {
     if ($a->{name} eq $appli)
     {
-      foreach my $d (AAT::ARRAY($a->{directory}))
+      foreach my $d (ARRAY($a->{directory}))
       {
         return ($d->{value}) if ($d->{name} eq $name);
       }
@@ -75,11 +75,11 @@ sub File
 {
   my ($appli, $name) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (AAT::ARRAY($conf->{application}))
+  foreach my $a (ARRAY($conf->{application}))
   {
     if ($a->{name} eq $appli)
     {
-      foreach my $f (AAT::ARRAY($a->{file}))
+      foreach my $f (ARRAY($a->{file}))
       {
         return ($f->{value}) if ($f->{name} eq $name);
       }
@@ -99,11 +99,11 @@ sub Parameter
 {
   my ($appli, $param) = @_;
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (AAT::ARRAY($conf->{application}))
+  foreach my $a (ARRAY($conf->{application}))
   {
     if ($a->{name} eq $appli)
     {
-      foreach my $p (AAT::ARRAY($a->{parameter}))
+      foreach my $p (ARRAY($a->{parameter}))
       {
         return ($p->{value}) if ($p->{name} eq $param);
       }

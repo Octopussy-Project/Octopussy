@@ -6,11 +6,11 @@ my $ok = 1;
 if (defined $f->{update})
 {
   my %conf = ();
-  if (AAT::NOT_NULL($f->{old_pwd}) || AAT::NOT_NULL($f->{new_pwd1})
-    || AAT::NOT_NULL($f->{new_pwd2}))
+  if (NOT_NULL($f->{old_pwd}) || NOT_NULL($f->{new_pwd1})
+    || NOT_NULL($f->{new_pwd2}))
   {
     my $auth = AAT::User::Authentication("Octopussy", $login, $f->{old_pwd});
-    if (AAT::NULL($auth->{login}))
+    if (NULL($auth->{login}))
     {
       $ok = 0;
       %><AAT:Message level="2" msg="Wrong Password !" /><%

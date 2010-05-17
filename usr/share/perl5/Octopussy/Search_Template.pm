@@ -17,8 +17,8 @@ use Readonly;
 use bytes;
 use utf8;
 
-use AAT;
 use AAT::FS;
+use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 use Octopussy;
 
@@ -163,7 +163,7 @@ sub Filename
 
   return ($filename{$user}{$search_tpl})
     if (defined $filename{$user}{$search_tpl});
-  if (AAT::NOT_NULL($search_tpl))
+  if (NOT_NULL($search_tpl))
   {
     $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
     my @files =

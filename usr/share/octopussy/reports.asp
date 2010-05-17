@@ -21,16 +21,16 @@ my $m2 = $Session->{"dt2_month"};
 my $y2 = $Session->{"dt2_year"};
 my ($h2, $min2) = ($Session->{"dt2_hour"}, $Session->{"dt2_min"});
 
-if ((AAT::NOT_NULL($action)) && ($action eq "remove") 
+if ((NOT_NULL($action)) && ($action eq "remove") 
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	Octopussy::Report::Remove($report);
 	AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Report", $report);
  	$Response->Redirect("./reports.asp");	
 }
-elsif (AAT::NULL($report))
+elsif (NULL($report))
 {
-	if (AAT::NULL($category))
+	if (NULL($category))
 	{
 	%><AAT:Inc file="octo_report_categories_list" url="$url" sort="$sort" /><%
 	}
@@ -40,7 +40,7 @@ elsif (AAT::NULL($report))
 			category="$category" sort="$sort" /><%
 	}
 }
-elsif (AAT::NULL($f->{submit}))
+elsif (NULL($f->{submit}))
 {
 %><AAT:Inc file="octo_report_configuration" report="$report"
 	url="./reports.asp?device=$device&service=$service" 
@@ -54,7 +54,7 @@ else
 	my $start = "$y1$m1$d1$h1$min1";
 	my $finish = "$y2$m2$d2$h2$min2";
 	my $recipients = "";
-	foreach my $rec (AAT::ARRAY($f->{mail_recipients}))
+	foreach my $rec (ARRAY($f->{mail_recipients}))
 	{
     	my $c = Octopussy::Contact::Configuration($rec);
 		$recipients .= "$c->{email},"

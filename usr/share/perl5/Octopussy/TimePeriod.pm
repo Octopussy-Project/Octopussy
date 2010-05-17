@@ -15,7 +15,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
+use AAT::Utils qw( ARRAY HASH_KEYS );
 use AAT::XML;
 use Octopussy;
 
@@ -56,7 +56,7 @@ sub Remove
   my $file = Octopussy::File($FILE_TIMEPERIODS);
   my $conf = AAT::XML::Read($file);
   my @tps =
-    grep { $_->{label} ne $timeperiod } AAT::ARRAY($conf->{timeperiod});
+    grep { $_->{label} ne $timeperiod } ARRAY($conf->{timeperiod});
   $conf->{timeperiod} = \@tps;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
@@ -86,14 +86,14 @@ sub Configuration
   my $tp_name = shift;
 
   my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
-  foreach my $tp (AAT::ARRAY($conf->{timeperiod}))
+  foreach my $tp (ARRAY($conf->{timeperiod}))
   {
     if ($tp->{label} eq $tp_name)
     {
       my $str = '';
-      foreach my $dt (AAT::ARRAY($tp->{dt}))
+      foreach my $dt (ARRAY($tp->{dt}))
       {
-        foreach my $k (AAT::HASH_KEYS($dt))
+        foreach my $k (HASH_KEYS($dt))
         {
           if ($k =~ /^(\S{3})\S+/)
           {
@@ -151,12 +151,12 @@ sub Match
     my $nb   = $hour * $DIGIT_HOUR + $min;
     my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
 
-    foreach my $tp (grep { $_->{label} eq $timeperiod }
-      AAT::ARRAY($conf->{timeperiod}))
+    foreach
+      my $tp (grep { $_->{label} eq $timeperiod } ARRAY($conf->{timeperiod}))
     {
-      foreach my $dt (AAT::ARRAY($tp->{dt}))
+      foreach my $dt (ARRAY($tp->{dt}))
       {
-        foreach my $k (grep { $_ eq $day } AAT::HASH_KEYS($dt))
+        foreach my $k (grep { $_ eq $day } HASH_KEYS($dt))
         {
 
           if ($dt->{$k} =~ /^\!(\d+):(\d+)-(\d+):(\d+)$/)

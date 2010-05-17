@@ -6,7 +6,7 @@ $arg{selected} ||= $conf->{selected_by_default};
 my %selecteds = ();
 if (ref $arg{selected} eq "ARRAY")
 {
-	foreach my $s (AAT::ARRAY($arg{selected}))
+	foreach my $s (ARRAY($arg{selected}))
 		{ $selecteds{$s} = 1; }
 }
 else

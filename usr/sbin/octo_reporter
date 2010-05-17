@@ -35,8 +35,10 @@ use Getopt::Long;
 Getopt::Long::Configure('bundling');
 use Term::ProgressBar 2.00;
 
-use AAT;
 use AAT::DB;
+use AAT::Syslog;
+use AAT::Translation;
+use AAT::Utils qw( NOT_NULL );
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Loglevel;
@@ -144,7 +146,7 @@ sub Progress
 {
   my ($msg, $num) = @_;
 
-  my $str_progress = AAT::Translation($msg) . " [$num]";
+  my $str_progress = AAT::Translation::Get('EN', $msg) . " [$num]";
   $cache->set("status_${pid_param}", $str_progress) if (defined $pid_param);
 
   return ($str_progress);
@@ -265,15 +267,16 @@ sub Insert_Data
   my $files      = Get_TimePeriod_Files($devices, $services, $begin, $end);
   my $total      = scalar @{$files};
   my @known_msgs = ();
-  AAT::Syslog('octo_core',
+  AAT::Syslog::Message('octo_core',
     "$total file(s) to parse with " . scalar @msg_to_parse . ' message(s).');
   my $i        = 1;
   my $nb_lines = 0;
   `touch "$FILE_DB.$$"`;
   chmod 0644, "$FILE_DB.$$";
 
-  my $progressbar = Term::ProgressBar->new({name => 'Inserting Data...', count => $total, ETA => 'linear'})
-  	if (!defined $pid_param);
+  my $progressbar = Term::ProgressBar->new(
+    {name => 'Inserting Data...', count => $total, ETA => 'linear'})
+    if (!defined $pid_param);
   foreach my $f (@{$files})
   {
     Progress('_MSG_REPORT_PROGRESS_INSERTING_DATA', $i . "/$total");
@@ -299,7 +302,7 @@ sub Insert_Data
     else
     {
       print "Unable to open file '$f'\n";
-      AAT::Syslog($APPLI, 'UNABLE_OPEN_FILE', $f);
+      AAT::Syslog::Message($APPLI, 'UNABLE_OPEN_FILE', $f);
     }
     if (scalar @known_msgs > $MIN_DB_INSERT)
     {    # Insert in DB only every $MIN_DB_INSERT+ lines
@@ -322,7 +325,7 @@ Ends Reporter
 
 sub End
 {
-  AAT::Syslog($PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Aborted');
+  AAT::Syslog::Message($PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Aborted');
   AAT::DB::Table_Destruction($APPLI, $rc->{table} . "_$$");
   unlink $file_pid;
   unlink "$FILE_DB.$$";
@@ -411,9 +414,9 @@ my $str_report_begin_end = "Report Generation: B=[$begin] E=[$end]";
 my $str_report_type =
   "Report Generation: type=[$rc->{graph_type}] title=[$rc->{name}]";
 
-AAT::Syslog($PROG_NAME, $str_report_gen);
-AAT::Syslog($PROG_NAME, $str_report_begin_end);
-AAT::Syslog($PROG_NAME, $str_report_type);
+AAT::Syslog::Message($PROG_NAME, $str_report_gen);
+AAT::Syslog::Message($PROG_NAME, $str_report_begin_end);
+AAT::Syslog::Message($PROG_NAME, $str_report_type);
 
 if (!$quiet)
 {
@@ -424,10 +427,10 @@ if (!$quiet)
 
 my @field_list = ();
 push @field_list, split /\s*,\s*/, $rc->{columns}
-  if (AAT::NOT_NULL($rc->{columns}));
+  if (NOT_NULL($rc->{columns}));
 foreach my $ds ('datasource1', 'datasource2', 'datasource3')
 {
-  push @field_list, $rc->{$ds} if (AAT::NOT_NULL($rc->{$ds}));
+  push @field_list, $rc->{$ds} if (NOT_NULL($rc->{$ds}));
 }
 
 Progress('_MSG_REPORT_PROGRESS_INIT_PLUGIN', '1/1');
@@ -471,7 +474,7 @@ Octopussy::Report::Generate(
   \%conf_ftp, \%conf_scp, \%report_stats, $lang
 );
 Progress('_MSG_REPORT_PROGRESS_BUILDING_REPORT', '1/1');
-AAT::Syslog($PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Completed');
+AAT::Syslog::Message($PROG_NAME, 'REPORTER_GENERATION_STATUS', 'Completed');
 unlink $file_pid;
 $cache->remove("info_$$");
 $cache->remove("status_${pid_param}") if (defined $pid_param);

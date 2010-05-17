@@ -18,7 +18,7 @@ to help users to determine to wich Message/Service a log belongs to
 use strict;
 use warnings;
 
-use AAT;
+use AAT::Utils qw( NOT_NULL );
 use Octopussy;
 use Octopussy::Message;
 use Octopussy::Service;
@@ -67,7 +67,7 @@ sub Search_Line
 
 my $arg = $ARGV[0];
 
-if (AAT::NOT_NULL($arg))
+if (NOT_NULL($arg))
 {
   my $cat = ($arg =~ /.+\.gz$/ ? 'zcat' : 'cat');
   if ( (-f $arg)

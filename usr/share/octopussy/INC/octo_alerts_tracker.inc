@@ -8,7 +8,7 @@ $al =~ s/-ANY-//gi;
 $dev =~ s/-ANY-//gi;
 $stat =~ s/-ANY-//gi;
 my $today = AAT::Datetime::Now_String();
-my $sort = (AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "date_time");
+my $sort = (NOT_NULL($arg{sort}) ? lc($arg{sort}) : "date_time");
 my $url_sort = $arg{url} . "?sort";
 %>
 <AAT:Form action="$arg{url}">
@@ -54,7 +54,7 @@ my $url_sort = $arg{url} . "?sort";
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
-my @res_alerts = AAT::ARRAY($restricts->{alert});
+my @res_alerts = ARRAY($restricts->{alert});
 my $limit = ((scalar(@res_alerts) > 0) ? undef : $nb_alerts_max);
 my @alerts = Octopussy::Alert::Tracker($al, $dev, $stat, $sort, $limit);
 my $nb = 0;

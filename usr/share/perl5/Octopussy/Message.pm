@@ -17,7 +17,8 @@ use bytes;
 use Readonly;
 use utf8;
 
-use AAT;
+use AAT::Syslog;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use Octopussy;
 use Octopussy::Loglevel;
 use Octopussy::Logs;
@@ -39,10 +40,10 @@ sub Configuration
 {
   my ($service, $msg_id) = @_;
 
-  foreach my $s (AAT::ARRAY($service))
+  foreach my $s (ARRAY($service))
   {
     my $conf = Octopussy::Service::Configuration($s);
-    foreach my $m (AAT::ARRAY($conf->{message}))
+    foreach my $m (ARRAY($conf->{message}))
     {
       return ($m) if ($m->{msg_id} eq $msg_id);
     }
@@ -60,21 +61,21 @@ sub List
   my ($ref_serv, $loglevel, $taxonomy) = @_;
   my %log_level = Octopussy::Loglevel::Levels();
   my $level     = (
-    (AAT::NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
+    (NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
     ? $log_level{$loglevel}
     : 0
   );
   my $qr_taxo = (
-    (AAT::NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
+    (NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
     ? qr/^$taxonomy(\..+)?/
     : qr/.+/
   );
   my @list = ();
 
-  foreach my $serv (AAT::ARRAY($ref_serv))
+  foreach my $serv (ARRAY($ref_serv))
   {
     my $conf = Octopussy::Service::Configuration($serv);
-    foreach my $m (AAT::ARRAY($conf->{message}))
+    foreach my $m (ARRAY($conf->{message}))
     {
       if ( ($log_level{$m->{loglevel}} >= $level)
         && ($m->{taxonomy} =~ $qr_taxo))
@@ -99,7 +100,7 @@ sub Fields
   my @fields = ();
   my $conf   = Octopussy::Service::Configuration($service);
   my $msg    = undef;
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  foreach my $m (ARRAY($conf->{message}))
   {
     $msg = $m if ($m->{msg_id} eq "$msg_id");
   }
@@ -125,7 +126,7 @@ sub Table
 
   my $conf = Octopussy::Service::Configuration($service);
 
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  foreach my $m (ARRAY($conf->{message}))
   {
     return ($m->{table}) if ($m->{msg_id} eq "$msg_id");
   }
@@ -353,7 +354,7 @@ sub Pattern_To_Regexp
   my %re_types = Octopussy::Type::Regexps();
   my $regexp   = '';
   my $tmp      = $msg->{pattern};
-  while ((AAT::NOT_NULL($tmp))
+  while ((NOT_NULL($tmp))
     && ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i))
   {
     my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
@@ -361,7 +362,7 @@ sub Pattern_To_Regexp
     $regexp .= (Escape_Characters($before) . $subs);
     $tmp = $after;
   }
-  $tmp = $regexp . (AAT::NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
+  $tmp = $regexp . (NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
   $regexp = '';
   $tmp =~
 s/(<\@([^\@]+?):(\S+?)\@>)/&Reserved_Word_To_Regexp(\%re_types, $2, $3, $1)/egi;
@@ -385,14 +386,14 @@ sub Pattern_To_Regexp_Without_Catching
   my %re_types = Octopussy::Type::Regexps();
   my $regexp   = '';
   my $tmp      = $msg->{pattern};
-  while ((AAT::NOT_NULL($tmp))
+  while ((NOT_NULL($tmp))
     && ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i))
   {
     my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
     $regexp .= (Escape_Characters($before) . $re_value);
     $tmp = $after;
   }
-  $tmp = $regexp . (AAT::NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
+  $tmp = $regexp . (NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
   $regexp = '';
   while ($tmp =~ /^(.*?)<\@([^\@]+?):(\S+?)\@>(.*)$/i)
   {
@@ -437,7 +438,7 @@ sub Pattern_Field_Substitution
   my $long_f = $f;
   $f =~ s/Plugin_\S+__//;
   my $function = undef;
-  foreach my $fl (AAT::ARRAY($field_list))
+  foreach my $fl (ARRAY($field_list))
   {
     if ( ($fl =~ /^(\S+::\S+)\($f\)$/)
       && (Octopussy::Plugin::Function_Source($1) eq 'INPUT'))
@@ -532,7 +533,7 @@ sub Pattern_To_Regexp_Fields
     my ($type, $pattern_field) = ($1, $2);
     my $matched = 0;
     my $i       = 0;
-    foreach my $f (AAT::ARRAY($ref_fields))
+    foreach my $f (ARRAY($ref_fields))
     {
       if ( ($pattern_field =~ /^$f$/)
         || ($f =~ /^Plugin_\S+__$pattern_field$/))
@@ -642,12 +643,12 @@ sub Parse_List
   );
   my %log_level = Octopussy::Loglevel::Levels();
   my $level     = (
-    (AAT::NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
+    (NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
     ? $log_level{$loglevel}
     : 0
   );
   my $qr_taxo = (
-    (AAT::NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
+    (NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
     ? qr/^$taxonomy(\..+)?/
     : qr/.+/
   );
@@ -686,11 +687,11 @@ sub Alerts
   my @alerts    = ();
   my %log_level = Octopussy::Loglevel::Levels();
 
-  foreach my $ac (AAT::ARRAY($dev_alerts))
+  foreach my $ac (ARRAY($dev_alerts))
   {
     my @mails = ();
     my @ims   = ();
-    foreach my $c (AAT::ARRAY($ac->{contact}))
+    foreach my $c (ARRAY($ac->{contact}))
     {
       push @mails, $contact->{$c}->{email}
         if (defined $contact->{$c}->{email});
@@ -700,12 +701,12 @@ sub Alerts
     if ($ac->{type} =~ /Dynamic/i)
     {
       my $ac_level = (
-        (AAT::NOT_NULL($ac->{loglevel}) && ($ac->{loglevel} ne '-ANY-'))
+        (NOT_NULL($ac->{loglevel}) && ($ac->{loglevel} ne '-ANY-'))
         ? $log_level{$ac->{loglevel}}
         : 0
       );
 
-      foreach my $s (AAT::ARRAY($ac->{service}))
+      foreach my $s (ARRAY($ac->{service}))
       {
         if (
           (($s eq $service) || ($s eq '-ANY-'))
@@ -739,12 +740,12 @@ sub Alerts
     }
     elsif ($ac->{type} =~ /Static/i)
     {
-      foreach my $m (AAT::ARRAY($ac->{message}))
+      foreach my $m (ARRAY($ac->{message}))
       {
         if ($message->{msg_id} =~ /^$m->{mid}$/)
         {
           my @fields = ();
-          foreach my $f (AAT::ARRAY($m->{field}))
+          foreach my $f (ARRAY($m->{field}))
           {
             push @fields,
               {
@@ -796,7 +797,7 @@ sub Wizard_Msg_Modified
 
   $line =~
 s/^\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2} \S+ /<\@DATE_TIME_SYSLOG\@> <\@WORD\@> /mgi;
-  foreach my $t (AAT::ARRAY($types))
+  foreach my $t (ARRAY($types))
   {
     my $re   = $t->{re};
     my $type = $t->{type_id};
@@ -821,7 +822,7 @@ sub Wizard_Msg_Regexp
 {
   my ($re, $types) = @_;
 
-  foreach my $t (AAT::ARRAY($types))
+  foreach my $t (ARRAY($types))
   {
     $re =~ s/<\@$t->{type_id}\@>/$t->{re}/mgi;
   }
@@ -893,7 +894,7 @@ sub Wizard_File
   else
   {
     my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog('Octopussy_Message', 'UNABLE_OPEN_FILE_IN', $f, $sub);
+    AAT::Syslog::Message('Octopussy_Message', 'UNABLE_OPEN_FILE_IN', $f, $sub);
   }
 
   return (scalar @{$messages});

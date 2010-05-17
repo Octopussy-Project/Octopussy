@@ -15,8 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
 use AAT::Datetime;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
 use Octopussy;
@@ -58,7 +58,7 @@ sub Configurations
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
 
-  return (AAT::ARRAY($conf->{type}));
+  return (ARRAY($conf->{type}));
 }
 
 =head2 Colors()
@@ -98,7 +98,7 @@ sub List
   my @list = ();
   my %type;
 
-  foreach my $t (AAT::ARRAY($conf->{type})) { $type{"$t->{type_id}"} = 1; }
+  foreach my $t (ARRAY($conf->{type})) { $type{"$t->{type_id}"} = 1; }
   push @list, 'NUMBER';
   push @list, 'BYTES';
   push @list, 'SECONDS';
@@ -134,7 +134,7 @@ sub Simple_List
   $type{'WORD'}        = 1;
   $type{'EMAIL'}       = 1;
   $type{'USER_AGENT'}  = 1;
-  foreach my $t (AAT::ARRAY($conf->{type}))
+  foreach my $t (ARRAY($conf->{type}))
   {
     $type{"$t->{simple_type}"} = 1;
   }
@@ -155,7 +155,7 @@ sub SQL_List
   my @list = ();
   my %type;
 
-  foreach my $t (AAT::ARRAY($conf->{type})) { $type{"$t->{sql_type}"} = 1; }
+  foreach my $t (ARRAY($conf->{type})) { $type{"$t->{sql_type}"} = 1; }
   push @list, 'BIGINT';
 
   foreach my $k (keys %type) { push @list, $k; }

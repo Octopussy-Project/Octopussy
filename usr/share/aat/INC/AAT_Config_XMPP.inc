@@ -48,7 +48,7 @@ my ($server, $port, $tls, $user, $pwd) =
   <AAT:BoxCol><AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
   <AAT:BoxCol>
 <%
-if (AAT::NOT_NULL($server))
+if (NOT_NULL($server))
 {
 	my ($level, $msg) = ((AAT::XMPP::Connection_Test($arg{appli})) 
 		? (0, "XMPP Connection is OK !") : (2, "XMPP Connection is NOT OK !"));

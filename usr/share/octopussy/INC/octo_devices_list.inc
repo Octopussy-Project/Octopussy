@@ -2,14 +2,14 @@
 my %arg = @_;
 
 my $url = $arg{url};
-my $sort = AAT::NOT_NULL($arg{sort}) ? lc($arg{sort}) : "name";
+my $sort = NOT_NULL($arg{sort}) ? lc($arg{sort}) : "name";
 my $role = $Session->{AAT_ROLE};
 my $lnk = "./devices.asp?devices_table_sort";
 my @list = Octopussy::Device::List();
 my @dconfs = Octopussy::Device::Filtered_Configurations($arg{dtype}, $arg{dmodel}, $sort);
 my $reload = 0;
 foreach my $d (@dconfs)
-	{ $reload = 1	if (AAT::NOT_NULL($d->{reload_required})); }
+	{ $reload = 1	if (NOT_NULL($d->{reload_required})); }
 my $title = AAT::Translation("_DEVICES");
 $title .= " (" . scalar(@dconfs) . "/" . scalar(@list) . ")";
 %>
@@ -54,6 +54,9 @@ foreach my $d (@dconfs)
 	my $tt2 = "_" . uc($bt2);
 	my $link1 = "./dialog.asp?id=parse_$bt1&arg1=$name";
 	my $link2 = "./dialog.asp?id=parse_$bt2&arg1=$name";
+	
+	my $remove_link = "./dialog.asp?id=delete_device&arg1=" . $Server->URLEncode($name) . "&action=remove";
+	
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
   $i++;	
 %><AAT:BoxRow class="$class">
@@ -83,8 +86,8 @@ foreach my $d (@dconfs)
     link="./device_edit.asp?device=$name" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Button name="report" tooltip="_DASHBOARD"
     link="./device_dashboard.asp?device=$name" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Button name="remove" tooltip="_REMOVE"
-    popup_link="./dialog.asp?id=delete_device&arg1=$name&action=remove" />
+	<AAT:BoxCol>
+	<AAT:Button name="remove" tooltip="_REMOVE" popup_link="$remove_link" />
 	</AAT:BoxCol>
 	</AAT:BoxRow><%
 }

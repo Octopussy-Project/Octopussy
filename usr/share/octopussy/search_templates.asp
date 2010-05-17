@@ -5,7 +5,7 @@ my $action = $Request->QueryString("action");
 my $user = $Request->QueryString("user");
 my $template = $Request->QueryString("template");
 my $sort = $Request->QueryString("search_templates_table_sort");
-if (AAT::NOT_NULL($action) && ($action eq "remove") && ($role !~ /ro/i))
+if (NOT_NULL($action) && ($action eq "remove") && ($role !~ /ro/i))
 {
 	Octopussy::Search_Template::Remove($user, $template);	
 	$Session->{template} = undef;

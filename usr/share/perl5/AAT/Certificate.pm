@@ -18,7 +18,6 @@ use Readonly;
 use File::Copy;
 use File::Path qw(rmtree);
 
-use AAT;
 use AAT::Application;
 
 Readonly my $CA_DAYS => 3650;

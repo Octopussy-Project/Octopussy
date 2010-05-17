@@ -18,9 +18,10 @@ use Readonly;
 use POSIX qw(strftime);
 use Proc::ProcessTable;
 
-use AAT;
+use AAT::Download;
 use AAT::FS;
 use AAT::Translation;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Cache;
@@ -109,7 +110,7 @@ Returns list of Reports with category '$category' (if specified)
 sub List
 {
   my ($category, $report_restriction_list) = @_;
-  my @res_list = AAT::ARRAY($report_restriction_list);
+  my @res_list = ARRAY($report_restriction_list);
   $dir_reports ||= Octopussy::Directory($DIR_REPORT);
   my @files = AAT::FS::Directory_Files($dir_reports, qr/.+\.xml$/);
   my @reports = ();
@@ -361,23 +362,23 @@ sub CmdLine_Export_Options
   my ($conf_mail, $conf_ftp, $conf_scp) = @_;
 
   my $options = (
-    AAT::NOT_NULL($conf_mail->{recipients})
+    NOT_NULL($conf_mail->{recipients})
     ? " --mail_recipients \"$conf_mail->{recipients}\""
     : ''
     )
     . (
-    AAT::NOT_NULL($conf_mail->{subject})
+    NOT_NULL($conf_mail->{subject})
     ? " --mail_subject \"$conf_mail->{subject}\""
     : ''
     )
     . (
-    AAT::NOT_NULL($conf_ftp->{host})
+    NOT_NULL($conf_ftp->{host})
     ? " --ftp_host \"$conf_ftp->{host}\" --ftp_dir \"$conf_ftp->{dir}\""
       . " --ftp_user \"$conf_ftp->{user}\" --ftp_pwd \"$conf_ftp->{pwd}\""
     : ''
     )
     . (
-    AAT::NOT_NULL($conf_scp->{host})
+    NOT_NULL($conf_scp->{host})
     ? " --scp_host \"$conf_scp->{host}\" --scp_dir \"$conf_scp->{dir}\""
       . " --scp_user \"$conf_scp->{user}\""
     : ''
@@ -412,13 +413,13 @@ sub CmdLine
     );
 
   my @devices = ();
-  foreach my $d (AAT::ARRAY($device))
+  foreach my $d (ARRAY($device))
   {
     push @devices,
       (($d !~ /group (.+)/) ? ($d) : Octopussy::DeviceGroup::Devices($1));
   }
   my $device_list  = join '" --device "',  @devices;
-  my $service_list = join '" --service "', AAT::ARRAY($service);
+  my $service_list = join '" --service "', ARRAY($service);
 
   Octopussy::Create_Directory($dir);
 
@@ -429,9 +430,6 @@ sub CmdLine
     . " --begin $start --end $finish --lang \"$lang\" "
     . CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
     . " --output \"$output\"";
-
-  print $cmd;
-  AAT::DEBUG($cmd);
 
   #. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
   Octopussy::Commander("$cmd &");
@@ -531,7 +529,7 @@ sub Updates_Installation
   {
     my $url = "$web/Download/Reports/$r.xml";
     $url =~ s/ /\%20/g;
-    AAT::Download('Octopussy', $url, "$dir_reports/$r.xml");
+    AAT::Download::File('Octopussy', $url, "$dir_reports/$r.xml");
   }
 
   return (scalar @reports);

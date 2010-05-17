@@ -317,7 +317,6 @@ sub Scheduler_Stop
   return (1);
 }
 
-
 =head2 Web_Start
 
 Starts Web Octopussy (Launches Apache2 with Octopussy Apache2 configuration file)
@@ -327,13 +326,12 @@ Starts Web Octopussy (Launches Apache2 with Octopussy Apache2 configuration file
 sub Web_Start
 {
   my $APACHE2_BIN = Octopussy::Apache2_Binary();
-  
+
   system "$APACHE2_BIN -f $APACHE2_CONF -k start";
   printf $MSG_STATUS, 'Web', 'Started';
 
   return (1);
 }
-
 
 =head2 Web_Stop
 
@@ -344,7 +342,7 @@ Stops Web Octopussy (Stops Apache2 with Octopussy Apache2 configuration file)
 sub Web_Stop
 {
   my $APACHE2_BIN = Octopussy::Apache2_Binary();
-  
+
   system "$APACHE2_BIN -f $APACHE2_CONF -k stop";
   printf $MSG_STATUS, 'Web', 'Stopped';
 
@@ -359,6 +357,7 @@ Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
 
 sub Start
 {
+
   # recreate /var/run/octopussy/ for systems that mount it on tmpfs
   Octopussy::Create_Directory($dir_pid);
 

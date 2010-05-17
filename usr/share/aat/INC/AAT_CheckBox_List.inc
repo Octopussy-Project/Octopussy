@@ -5,7 +5,7 @@ my %arg = @_;
 my $max_cols = $arg{max_cols} || 10;
 my $i = 1;
 
-foreach my $e (AAT::ARRAY($arg{list}))
+foreach my $e (ARRAY($arg{list}))
 {
 	my $value = (ref $e eq "HASH" ? $e->{value} : $e);
   my $label = (ref $e eq "HASH" ? $e->{label} : $e);

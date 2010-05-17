@@ -18,6 +18,7 @@ use Unix::Syslog qw(:macros);
 use Unix::Syslog qw(:subs);
 
 use AAT;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
 my $MSG_LOGS_FILE = undef;
@@ -40,7 +41,7 @@ sub Message
   if (!defined $AAT_Syslog{GENERIC_CREATED})
   {
     my $conf = AAT::XML::Read($MSG_LOGS_FILE);
-    foreach my $m (AAT::ARRAY($conf->{log}))
+    foreach my $m (ARRAY($conf->{log}))
     {
       $AAT_Syslog{$m->{mid}} = $m->{message};
     }
@@ -68,10 +69,10 @@ sub Messages
   my ($module, $msgs) = @_;
 
   openlog($module, LOG_INFO, LOG_LOCAL5);
-  foreach my $msg (AAT::ARRAY($msgs)) { syslog(LOG_INFO, $msg); }
+  foreach my $msg (ARRAY($msgs)) { syslog(LOG_INFO, $msg); }
   closelog();
 
-  return (scalar AAT::ARRAY($msgs));
+  return (scalar ARRAY($msgs));
 }
 
 1;

@@ -23,7 +23,7 @@ use Readonly;
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
-use AAT;
+use AAT::Utils qw( ARRAY );
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::Logs;
@@ -64,8 +64,7 @@ EOF
   }
   elsif (!defined $opt_service)
   {
-    print ' '
-      . Octopussy::Device::String_Services(AAT::ARRAY($opt_device)) . "\n";
+    print ' ' . Octopussy::Device::String_Services(ARRAY($opt_device)) . "\n";
   }
   print "\n";
 

@@ -11,7 +11,7 @@ my %stats = Octopussy::Device::Services_Statistics($device);
 my $str = sprintf(AAT::Translation("_MSG_SERVICES_FOR_DEVICE"), $device);
 my $dconf = Octopussy::Device::Configuration($device);
 
-if (AAT::NOT_NULL($dconf->{reload_required}))
+if (NOT_NULL($dconf->{reload_required}))
 {
 	%><AAT:Box align="C"><AAT:BoxRow>
 	<AAT:BoxCol><AAT:Message level="1" msg="_RELOAD_REQUIRED" /></AAT:BoxCol>

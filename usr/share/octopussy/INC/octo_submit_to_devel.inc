@@ -1,7 +1,7 @@
 <%
 my $smtp_conf = AAT::SMTP::Configuration("Octopussy");
 
-if (AAT::NOT_NULL($smtp_conf->{server}))
+if (NOT_NULL($smtp_conf->{server}))
 {
   my @list = ();
 

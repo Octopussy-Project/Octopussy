@@ -26,11 +26,11 @@ foreach my $f (@fields)
 	
 	foreach my $p_fc (@plugin_funcs)
 	{
-		foreach my $fc (AAT::ARRAY($p_fc->{functions}))
+		foreach my $fc (ARRAY($p_fc->{functions}))
 		{
       my $fct = $fc->{perl};
 			my $label = $p_fc->{plugin} . "::$fc->{label}";
-			foreach my $fc_field (AAT::ARRAY($fc->{field}))
+			foreach my $fc_field (ARRAY($fc->{field}))
 			{
 				if ("$arg{table}:$f->{title}" eq $fc_field)
 				{
@@ -55,7 +55,7 @@ foreach my $f (@fields)
           }
 				}
 			}
-			foreach my $fc_ftype (AAT::ARRAY($fc->{field_type}))
+			foreach my $fc_ftype (ARRAY($fc->{field_type}))
       {
 				if ($fc_ftype =~ /$type/)
 				{

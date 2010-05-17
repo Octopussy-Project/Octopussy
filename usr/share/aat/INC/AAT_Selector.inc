@@ -2,14 +2,14 @@
 my %arg = @_;
 
 my %selecteds = ();
-foreach my $s (AAT::ARRAY($arg{selected}))
+foreach my $s (ARRAY($arg{selected}))
 	{ $selecteds{$s} = 1; }
 my %exclude = ();
-foreach my $e (AAT::ARRAY($arg{exclude}))
+foreach my $e (ARRAY($arg{exclude}))
 	{ $exclude{$e} = 1; }
 %>
 <select <%= (defined $arg{multiple} ? "multiple " : "") %> <%= (defined $arg{size} ? "size=$arg{size} " : "") %> name="<%= $arg{name} %>"<%= (defined $arg{onchange} ? " onchange=\"$arg{onchange}\"" : "") %>><%	
-foreach my $e (AAT::ARRAY($arg{list}))
+foreach my $e (ARRAY($arg{list}))
 {
 	my $value = (ref $e eq "HASH" ? $e->{value} : $e);
 	if (!defined $exclude{$value})

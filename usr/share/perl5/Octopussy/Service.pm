@@ -20,7 +20,9 @@ use Encode;
 use List::MoreUtils qw(any none uniq);
 use POSIX qw(strftime);
 
-use AAT;
+use AAT::Download;
+use AAT::Syslog;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Cache;
@@ -106,7 +108,6 @@ sub List_Used
   return (@services);
 }
 
-
 =head2 Unknowns(@services)
 
 Returns list of Unknown Services in @services list
@@ -115,14 +116,16 @@ Returns list of Unknown Services in @services list
 
 sub Unknowns
 {
-	my @services = @_;
-	my @unknowns = ();
-	
-	my %exist = map { $_ => 1 } List();
-	foreach my $s (@services)
-		{ push @unknowns, $s if ((!defined $exist{$s}) && ($s ne '-ANY-')); }
-	
-	return (@unknowns)	
+  my @services = @_;
+  my @unknowns = ();
+
+  my %exist = map { $_ => 1 } List();
+  foreach my $s (@services)
+  {
+    push @unknowns, $s if ((!defined $exist{$s}) && ($s ne '-ANY-'));
+  }
+
+  return (@unknowns);
 }
 
 =head2 Filename($service)
@@ -157,7 +160,6 @@ sub Configuration
   return ($conf);
 }
 
-
 =head2 Configurations($sort)
 
 Returns the configuration for all Services sorted by '$sort' (default: 'name')
@@ -173,8 +175,8 @@ sub Configurations
   foreach my $s (@services)
   {
     my $conf = Configuration($s);
-    $conf->{nb_messages} = sprintf '%03d', 
-    	(AAT::NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
+    $conf->{nb_messages} = sprintf '%03d',
+      (NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
     push @configurations, $conf;
   }
   foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
@@ -201,11 +203,11 @@ sub Msg_ID
 
   return ($conf->{name} . ':' . sprintf("%03d", $i))
     if ((!defined $conf->{message})
-    || (scalar AAT::ARRAY($conf->{message}) == 0));
+    || (scalar ARRAY($conf->{message}) == 0));
   while ($i <= $MAX_NB_MSGS_IN_SERVICE)
   {
     $msg_id = $conf->{name} . ':' . sprintf("%03d", $i);
-    if (none { $_->{msg_id} =~ /^$msg_id$/i } AAT::ARRAY($conf->{message}))
+    if (none { $_->{msg_id} =~ /^$msg_id$/i } ARRAY($conf->{message}))
     {
       return ($msg_id);
     }
@@ -228,7 +230,7 @@ sub Msg_ID_unique
   return (0) if ($msgid eq "$service:");
   my $qr_msgid = qr/^$msgid$/;
   my $conf     = Configuration($service);
-  if (any { $_->{msg_id} =~ $qr_msgid } AAT::ARRAY($conf->{message}))
+  if (any { $_->{msg_id} =~ $qr_msgid } ARRAY($conf->{message}))
   {
     return (0);
   }
@@ -248,11 +250,11 @@ sub Add_Message
   my $conf = Configuration($service);
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   my $rank = (
-    AAT::NOT_NULL($conf->{message})
+    NOT_NULL($conf->{message})
     ? scalar(@{$conf->{message}}) + 1
     : 1
   );
-  $mconf->{rank} = AAT::Padding($rank, $PADDING);
+  $mconf->{rank} = sprintf("%03d", $rank);
   my @errors = ();
 
   if (!Msg_ID_unique($service, $mconf->{msg_id}))
@@ -289,7 +291,7 @@ sub Remove_Message
   my $rank     = undef;
   my $conf     = Configuration($service);
   $conf->{version} = Octopussy::Timestamp_Version($conf);
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  foreach my $m (ARRAY($conf->{message}))
   {
     if ($m->{msg_id} ne $msgid) { push @messages, $m; }
     else                        { $rank = $m->{rank}; }
@@ -299,7 +301,7 @@ sub Remove_Message
     if ($m->{rank} > $rank)
     {
       $m->{rank} -= 1;
-      $m->{rank} = AAT::Padding($m->{rank}, $PADDING);
+      $m->{rank} = sprintf("%03d", $m->{rank});
     }
   }
 
@@ -337,7 +339,7 @@ sub Modify_Message
   my $conf = Configuration($service);
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   my @messages = ();
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  foreach my $m (ARRAY($conf->{message}))
   {
     if   ($m->{msg_id} ne $msgid) { push @messages, $m; }
     else                          { push @messages, $conf_modified; }
@@ -363,8 +365,8 @@ sub Move_Message
   $conf->{version} = Octopussy::Timestamp_Version($conf);
   my @messages = ();
   my $max = (defined $conf->{message} ? scalar(@{$conf->{message}}) : 0);
-  $max = AAT::Padding($max, $PADDING);
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  $max = sprintf("%03d", $max);
+  foreach my $m (ARRAY($conf->{message}))
   {
 
     if ($m->{msg_id} eq $msgid)
@@ -379,14 +381,14 @@ sub Move_Message
           : ($direction eq 'down' ? $m->{rank} + 1 : $max)
         )
       );
-      $m->{rank} = AAT::Padding($m->{rank}, $PADDING);
+      $m->{rank} = sprintf("%03d", $m->{rank});
       $rank = $m->{rank};
     }
     push @messages, $m;
   }
   $conf->{message} = \@messages;
   my @messages2 = ();
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  foreach my $m (ARRAY($conf->{message}))
   {
     if ($m->{msg_id} ne $msgid)
     {
@@ -403,7 +405,7 @@ sub Move_Message
         $m->{rank} = ($direction eq 'up' ? $m->{rank} + 1 : $m->{rank} - 1);
       }
     }
-    $m->{rank} = AAT::Padding($m->{rank}, $PADDING);
+    $m->{rank} = sprintf("%03d", $m->{rank});
     push @messages2, $m;
   }
   $conf->{message} = \@messages2;
@@ -435,7 +437,7 @@ sub Messages
   foreach my $s (@services)
   {
     my $conf = Configuration($s);
-    push @conf_messages, AAT::ARRAY($conf->{message});
+    push @conf_messages, ARRAY($conf->{message});
   }
   foreach my $m (sort { $a->{rank} cmp $b->{rank} } @conf_messages)
   {
@@ -521,13 +523,13 @@ sub Sort_Messages_By_Statistics
 
   my %percent       = Messages_Statistics($service);
   my $conf          = Configuration($service);
-  my @conf_messages = AAT::ARRAY($conf->{message});
+  my @conf_messages = ARRAY($conf->{message});
   my @messages      = ();
   my %values        = map { $_ => 1 } values %percent;
   foreach my $p (keys %values)
   {
     print "Percent $p\n";
-    foreach my $m (AAT::ARRAY($conf->{message}))
+    foreach my $m (ARRAY($conf->{message}))
     {
       my $mid = $m->{msg_id};
       push @messages, $m
@@ -618,7 +620,8 @@ sub Updates
   my $dir_running = Octopussy::Directory('running');
   my $file        = "$dir_running/_services.idx";
 
-  AAT::Download('Octopussy', "$web/Download/Services/_services.idx", $file);
+  AAT::Download::File('Octopussy', "$web/Download/Services/_services.idx",
+    $file);
   if (defined open my $UPDATE, '<', $file)
   {
     while (<$UPDATE>) { $update{$1} = $2 if ($_ =~ /^(.+):(\d+)$/); }
@@ -627,7 +630,8 @@ sub Updates
   else
   {
     my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog('Octopussy_Service', 'UNABLE_OPEN_FILE_IN', $file, $sub);
+    AAT::Syslog::Message('Octopussy_Service', 'UNABLE_OPEN_FILE_IN', $file,
+      $sub);
   }
   unlink $file;
 
@@ -648,7 +652,7 @@ sub Updates_Installation
 
   foreach my $s (@services)
   {
-    AAT::Download('Octopussy', "$web/Download/Services/$s.xml",
+    AAT::Download::File('Octopussy', "$web/Download/Services/$s.xml",
       "$dir_services/$s.xml");
     Parse_Restart($s);
   }
@@ -668,11 +672,11 @@ sub Update_Get_Messages
   my $web         = Octopussy::WebSite();
   my $dir_running = Octopussy::Directory('running');
 
-  AAT::Download('Octopussy', "$web/Download/Services/$service.xml",
+  AAT::Download::File('Octopussy', "$web/Download/Services/$service.xml",
     "$dir_running$service.xml");
   my $conf_new = AAT::XML::Read("$dir_running$service.xml");
 
-  return (AAT::ARRAY($conf_new->{message}));
+  return (ARRAY($conf_new->{message}));
 }
 
 =head2 Updates_Diff($service)
@@ -688,7 +692,7 @@ sub Updates_Diff
   my @messages      = ();
   my @serv_property = qw(rank taxonomy table loglevel pattern);
   my @new_messages  = Update_Get_Messages($service);
-  foreach my $m (AAT::ARRAY($conf->{message}))
+  foreach my $m (ARRAY($conf->{message}))
   {
     my @list  = ();
     my $match = 0;

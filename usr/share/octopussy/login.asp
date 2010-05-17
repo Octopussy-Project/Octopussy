@@ -1,6 +1,5 @@
 <AAT:PageTop title="Octopussy Login" icon="IMG/octopussy.gif" />
 <AAT:PageTheme />
-<!--<link rel="jetpack" href="jetpack.js" name="Octopussy JetPack"/>-->
 <%
 my $f = $Request->Form();
 my $page = $Request->QueryString("redirect");
@@ -36,7 +35,7 @@ if ((defined $f->{login}) && (defined $f->{password}))
  	}
 	my $redirect = (($auth->{role} =~  /restricted/i) 
 		? "./restricted_logs_viewer.asp" 
-		: (AAT::NOT_NULL($page) ? "./$page" : "./index.asp"));
+		: (NOT_NULL($page) ? "./$page" : "./index.asp"));
 	$Response->Redirect($redirect);
 }
 %>

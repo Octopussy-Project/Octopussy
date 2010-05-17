@@ -17,7 +17,7 @@ use Readonly;
 
 use Net::LDAP;
 
-use AAT;
+use AAT::Utils qw( NOT_NULL );
 use AAT::Application;
 use AAT::XML;
 
@@ -57,7 +57,7 @@ sub Contacts_Connection_Test
   my $l    = Net::LDAP->new($ldap->{contacts_server});
   return (0) if (!defined $l);
   my $msg = (
-    AAT::NOT_NULL($ldap->{contacts_auth_dn})
+    NOT_NULL($ldap->{contacts_auth_dn})
     ? $l->bind($ldap->{contacts_auth_dn},
       password => $ldap->{contacts_auth_password})
     : $l->bind()
@@ -86,7 +86,7 @@ sub Users_Connection_Test
   my $l    = Net::LDAP->new($ldap->{users_server});
   return (0) if (!defined $l);
   my $msg = (
-    AAT::NOT_NULL($ldap->{users_auth_dn})
+    NOT_NULL($ldap->{users_auth_dn})
     ? $l->bind(
       $ldap->{users_auth_dn}, password => $ldap->{users_auth_password}
       )
@@ -152,7 +152,7 @@ sub Contacts
     my $l = Net::LDAP->new($ldap->{contacts_server});
     return () if (!defined $l);
     my $msg = (
-      AAT::NOT_NULL($ldap->{contacts_auth_dn})
+      NOT_NULL($ldap->{contacts_auth_dn})
       ? $l->bind($ldap->{contacts_auth_dn},
         password => $ldap->{contacts_auth_password})
       : $l->bind()
@@ -202,7 +202,7 @@ sub Users
     my $l = Net::LDAP->new($ldap->{users_server});
     return () if (!defined $l);
     my $msg = (
-      AAT::NOT_NULL($ldap->{users_auth_dn})
+      NOT_NULL($ldap->{users_auth_dn})
       ? $l->bind($ldap->{users_auth_dn},
         password => $ldap->{users_auth_password})
       : $l->bind()

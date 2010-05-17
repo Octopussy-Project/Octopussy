@@ -20,9 +20,6 @@ use strict;
 use warnings;
 use Readonly;
 
-use Date::Manip;
-
-use AAT;
 use AAT::Datetime;
 use Octopussy;
 use Octopussy::Report;

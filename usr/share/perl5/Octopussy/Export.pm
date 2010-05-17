@@ -17,8 +17,8 @@ use warnings;
 use Net::FTP;
 use Net::SCP;
 
-use AAT;
 use AAT::SMTP;
+use AAT::Utils qw( NOT_NULL );
 
 =head1 FUNCTIONS
 
@@ -32,7 +32,7 @@ sub Using_Ftp
 {
   my ($conf_ftp, $file) = @_;
 
-  if (AAT::NOT_NULL($conf_ftp->{host}))
+  if (NOT_NULL($conf_ftp->{host}))
   {
     my $ftp = Net::FTP->new($conf_ftp->{host}, Passive => 0);
     $ftp->login($conf_ftp->{user}, $conf_ftp->{pwd});
@@ -56,7 +56,7 @@ sub Using_Mail
 {
   my ($conf_mail, $file) = @_;
 
-  if (AAT::NOT_NULL($conf_mail->{recipients}))
+  if (NOT_NULL($conf_mail->{recipients}))
   {
     my @dests = ();
     foreach my $r (split /,/, $conf_mail->{recipients}) { push @dests, $r; }
@@ -86,7 +86,7 @@ sub Using_Scp
 {
   my ($conf_scp, $file) = @_;
 
-  if (AAT::NOT_NULL($conf_scp->{host}))
+  if (NOT_NULL($conf_scp->{host}))
   {
     my $scp = Net::SCP->new($conf_scp->{host}, $conf_scp->{user});
     $scp->scp($file, $conf_scp->{dir});

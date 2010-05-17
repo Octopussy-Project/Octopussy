@@ -4,7 +4,7 @@ my $form_number = $arg{form_number} || 0;
 my $select_options = (defined $arg{multiple} ? " multiple" : "")
   . (defined $arg{size} ? " size=$arg{size}" : "");
 my %selected = ();
-foreach my $s (AAT::ARRAY($arg{selected}))
+foreach my $s (ARRAY($arg{selected}))
   { $selected{$s} = 1; }
 
 my $str_any = AAT::Translation("-ANY-");

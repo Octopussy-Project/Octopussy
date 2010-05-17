@@ -5,7 +5,7 @@ my $sg = $f->{servicegroup} || $Request->QueryString("servicegroup");
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("servicegroups_table_sort");
 
-if (AAT::NULL($sg))
+if (NULL($sg))
 {
 	%><AAT:Inc file="octo_servicegroups_list" url="./servicegroups.asp" 
 		sort="$sort" /><%
@@ -23,7 +23,7 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 		my $sg_desc = $f->{sg_description};
 		my @services = ();
 		my $rank = 1;
-		foreach my $s (AAT::ARRAY($f->{services}))
+		foreach my $s (ARRAY($f->{services}))
 		{ 
 			push(@services, { rank => AAT::Padding($rank, 2), sid => $s }); 
 			$rank++;

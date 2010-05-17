@@ -16,23 +16,24 @@ use Readonly;
 
 use Test::More tests => 8;
 
+use AAT::Utils qw( NOT_NULL NULL );
 use Octopussy::Cache;
 
 Readonly my $PREFIX => 'Octo_TEST_';
 
 my $cache = Octopussy::Cache::Init('octo_commander');
-ok(AAT::NOT_NULL($cache), 'Octopussy::Cache::Init(octo_commander)');
+ok(NOT_NULL($cache), 'Octopussy::Cache::Init(octo_commander)');
 $cache = Octopussy::Cache::Init('octo_dispatcher');
-ok(AAT::NOT_NULL($cache), 'Octopussy::Cache::Init(octo_dispatcher)');
+ok(NOT_NULL($cache), 'Octopussy::Cache::Init(octo_dispatcher)');
 $cache = Octopussy::Cache::Init('octo_extractor');
-ok(AAT::NOT_NULL($cache), 'Octopussy::Cache::Init(octo_extractor)');
+ok(NOT_NULL($cache), 'Octopussy::Cache::Init(octo_extractor)');
 $cache = Octopussy::Cache::Init('octo_parser');
-ok(AAT::NOT_NULL($cache), 'Octopussy::Cache::Init(octo_parser)');
+ok(NOT_NULL($cache), 'Octopussy::Cache::Init(octo_parser)');
 $cache = Octopussy::Cache::Init('octo_reporter');
-ok(AAT::NOT_NULL($cache), 'Octopussy::Cache::Init(octo_reporter)');
+ok(NOT_NULL($cache), 'Octopussy::Cache::Init(octo_reporter)');
 
 my $no_cache = Octopussy::Cache::Init($PREFIX);
-ok(AAT::NULL($no_cache), 'Octopussy::Cache::Init() only for some namespaces');
+ok(NULL($no_cache), 'Octopussy::Cache::Init() only for some namespaces');
 
 $cache->set("${PREFIX}cache_key", "${PREFIX}cache_value");
 my $cache_value = $cache->get("${PREFIX}cache_key");
@@ -42,7 +43,7 @@ ok($cache_value eq "${PREFIX}cache_value", 'cache->get / cache->set');
 $cache->remove("${PREFIX}cache_key");
 $cache_value = $cache->get("${PREFIX}cache_key");
 
-ok(AAT::NULL($cache_value), 'cache->remove');
+ok(NULL($cache_value), 'cache->remove');
 
 1;
 

@@ -3,7 +3,7 @@
 my $f = $Request->Form();
 my $email = Octopussy::Email();
 
-if (AAT::NOT_NULL($f->{file}))
+if (NOT_NULL($f->{file}))
 {
 	AAT::SMTP::Send_Message("Octopussy", { from => $f->{from}, 
     subject => AAT::Translation("_MSG_THIS_IS_MY_NEW"), body => $f->{comment}, 

@@ -16,7 +16,7 @@ use Readonly;
 
 use JSON;
 
-use AAT;
+use AAT::Utils qw( ARRAY );
 use Octopussy;
 use Octopussy::DB;
 
@@ -85,7 +85,7 @@ sub Area_Hollow
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line (ARRAY($data))
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
@@ -117,7 +117,7 @@ sub Bar_3D
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line (ARRAY($data))
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
@@ -149,7 +149,7 @@ sub Bar_Cylinder
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line (ARRAY($data))
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
@@ -186,7 +186,7 @@ sub Bar_Glass
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line (ARRAY($data))
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
@@ -218,7 +218,7 @@ sub Bar_Sketch
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line (ARRAY($data))
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};
@@ -250,7 +250,7 @@ sub Horizontal_Bar
   my @labels = ();
   my @values = ();
   my $max    = 0;
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line (ARRAY($data))
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     push @labels, $line->{$x};
@@ -279,7 +279,7 @@ sub Pie
   my $x      = Octopussy::DB::SQL_As_Substitution($rc->{x});
   my $y      = Octopussy::DB::SQL_As_Substitution($rc->{y});
   my @values = ();
-  foreach my $line (AAT::ARRAY($data))
+  foreach my $line (ARRAY($data))
   {
     my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
     my $label = $line->{$x};

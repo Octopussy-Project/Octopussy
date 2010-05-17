@@ -17,7 +17,7 @@ use Readonly;
 
 use List::MoreUtils qw(any firstval);
 
-use AAT;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Device;
@@ -40,7 +40,7 @@ sub Add
 
   my $file = Octopussy::File($FILE_STORAGES);
   my $conf = AAT::XML::Read($file);
-  if (any { $_->{s_id} eq $conf_storage->{s_id} } AAT::ARRAY($conf->{storage}))
+  if (any { $_->{s_id} eq $conf_storage->{s_id} } ARRAY($conf->{storage}))
   {
     return ('_MSG_STORAGE_ALREADY_EXISTS');
   }
@@ -62,7 +62,7 @@ sub Remove
 
   my $file     = Octopussy::File($FILE_STORAGES);
   my $conf     = AAT::XML::Read($file);
-  my @storages = grep { $_->{s_id} ne $storage } AAT::ARRAY($conf->{storage});
+  my @storages = grep { $_->{s_id} ne $storage } ARRAY($conf->{storage});
   $conf->{storage} = \@storages;
   AAT::XML::Write($file, $conf, $XML_ROOT);
 
@@ -145,7 +145,7 @@ sub Configuration
   my $conf = AAT::XML::Read(Octopussy::File($FILE_STORAGES));
   return ({name => 'DEFAULT', directory => Octopussy::Directory('data_logs')})
     if ($storage eq 'DEFAULT');
-  foreach my $s (AAT::ARRAY($conf->{storage}))
+  foreach my $s (ARRAY($conf->{storage}))
   {
     return ($s) if ($s->{s_id} eq $storage);
   }
@@ -205,7 +205,7 @@ sub Directory
   my $conf = AAT::XML::Read(Octopussy::File($FILE_STORAGES));
   return (Octopussy::Directory('data_logs')) if ($storage eq 'DEFAULT');
 
-  my $dir = firstval { $_->{s_id} eq $storage } AAT::ARRAY($conf->{storage});
+  my $dir = firstval { $_->{s_id} eq $storage } ARRAY($conf->{storage});
 
   return ($dir->{directory});
 }

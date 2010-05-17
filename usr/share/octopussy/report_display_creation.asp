@@ -3,7 +3,7 @@
 my $f = $Request->Form();
 my @select = $f->{select};
 
-if (AAT::NULL($f->{title}))
+if (NULL($f->{title}))
 {
 	%><AAT:Inc file="octo_report_data_configurator" url="./report_creation.asp" /><%
 }

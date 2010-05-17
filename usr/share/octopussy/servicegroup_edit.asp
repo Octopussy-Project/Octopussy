@@ -16,7 +16,7 @@ if ((defined $servicegroup) && ($Session->{AAT_ROLE} !~ /ro/i))
  	{ 	
 		Octopussy::ServiceGroup::Move_Service($servicegroup, $service, $action);
  	}
-  elsif (AAT::NOT_NULL($service))
+  elsif (NOT_NULL($service))
     { Octopussy::ServiceGroup::Add_Service($servicegroup, $service); }
 }
 %>

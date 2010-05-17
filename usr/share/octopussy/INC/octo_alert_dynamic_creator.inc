@@ -1,8 +1,8 @@
 <%
 my %arg = @_;
 my $lang = $Session->{AAT_LANGUAGE};
-my @devices = AAT::ARRAY($arg{devices});
-my @services = AAT::ARRAY($arg{services});
+my @devices = ARRAY($arg{devices});
+my @services = ARRAY($arg{services});
 my @used_services = Octopussy::Service::List_Used();
 %>
 <AAT:Form action="$arg{url}">

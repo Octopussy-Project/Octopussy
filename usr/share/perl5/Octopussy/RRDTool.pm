@@ -15,9 +15,9 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT;
 use AAT::Datetime;
 use AAT::Translation;
+use AAT::Utils qw( ARRAY NOT_NULL);
 use Octopussy;
 use Octopussy::DB;
 use Octopussy::Device;
@@ -167,7 +167,7 @@ Updates RRD Data for 'Syslog by Device Type' stats
 sub Syslog_By_DeviceType_Update
 {
   my $values = shift;
-  my $value_str = join ':', AAT::ARRAY($values);
+  my $value_str = join ':', ARRAY($values);
 
   system "$RRD_UPDATE \"$RRD_SYSLOG_DTYPE\" N:$value_str"
     if (-f $RRD_SYSLOG_DTYPE);
@@ -325,7 +325,7 @@ sub Syslog_By_Device_Service_Taxonomy_Update
 {
   my ($seconds, $device, $service, $values) = @_;
   my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
-  my $value_str = join ':', AAT::ARRAY($values);
+  my $value_str = join ':', ARRAY($values);
 
   system qq($RRD_UPDATE "$file" $seconds:$value_str 2>&1 1>/dev/null);
 
@@ -655,19 +655,19 @@ sub Report_Graph
 
     my %ds       = ();
     my %dataline = ();
-    foreach my $l (AAT::ARRAY($data))
+    foreach my $l (ARRAY($data))
     {
       if ($l->{$tl} >= $start)
       {
         my $key =
             $l->{$ds1}
-          . (AAT::NOT_NULL($l->{$ds2}) ? " / $l->{$ds2}" : '')
-          . (AAT::NOT_NULL($l->{$ds3}) ? " / $l->{$ds3}" : '');
-        if (AAT::NOT_NULL($key))
+          . (NOT_NULL($l->{$ds2}) ? " / $l->{$ds2}" : '')
+          . (NOT_NULL($l->{$ds3}) ? " / $l->{$ds3}" : '');
+        if (NOT_NULL($key))
         {
           $ds{$key} = 1;
           my $block = int(($l->{$tl} - $start) / $rrd_step_mins);   ## no critic
-          $block = AAT::Padding($block, 10);
+          $block = sprintf("%010d", $block);
           $dataline{$block}{$key} = (
             defined $dataline{$block}{$key}
             ? $dataline{$block}{$key} + $l->{$dsv}

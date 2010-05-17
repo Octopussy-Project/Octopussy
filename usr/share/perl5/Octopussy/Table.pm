@@ -17,7 +17,8 @@ use Readonly;
 
 use List::MoreUtils qw(any);
 
-use AAT;
+use AAT::Download;
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Device;
@@ -47,7 +48,7 @@ sub New
 {
   my $conf = shift;
 
-  if (AAT::NOT_NULL($conf->{name}))
+  if (NOT_NULL($conf->{name}))
   {
     $dir_tables ||= Octopussy::Directory($DIR_TABLE);
     $conf->{version} = Octopussy::Timestamp_Version(undef);
@@ -161,7 +162,7 @@ sub Add_Field
 
   my $conf = AAT::XML::Read(Filename($table));
 
-  if (any { $fieldname =~ /^$_->{title}$/ } AAT::ARRAY($conf->{field}))
+  if (any { $fieldname =~ /^$_->{title}$/ } ARRAY($conf->{field}))
   {
     return (undef);
   }
@@ -182,7 +183,7 @@ sub Remove_Field
   my ($table, $fieldname) = @_;
 
   my $conf = AAT::XML::Read(Filename($table));
-  my @fields = grep { $_->{title} ne $fieldname } AAT::ARRAY($conf->{field});
+  my @fields = grep { $_->{title} ne $fieldname } ARRAY($conf->{field});
   $conf->{field} = \@fields;
   AAT::XML::Write(Filename($table), $conf, $XML_ROOT);
 
@@ -201,7 +202,7 @@ sub Fields
 
   my $conf = AAT::XML::Read(Filename($table));
 
-  return (AAT::ARRAY($conf->{field}));
+  return (ARRAY($conf->{field}));
 }
 
 =head2 Fields_Configurations($table, $sort)
@@ -240,12 +241,12 @@ sub SQL
   my $sql   = "CREATE TABLE `$table` (";
   my $index = '';
 
-  foreach my $sf (AAT::ARRAY($fields))
+  foreach my $sf (ARRAY($fields))
   {
 
-    #foreach my $ind (AAT::ARRAY($indexes))
+    #foreach my $ind (ARRAY($indexes))
     #	{ $index .= "INDEX ($ind), "  if ($ind eq $sf); }
-    foreach my $f (AAT::ARRAY($conf->{field}))
+    foreach my $f (ARRAY($conf->{field}))
     {
       if ( ($sf =~ /^$f->{title}$/i)
         || ($sf =~ /^Plugin_\S+__$f->{title}$/i))
@@ -255,7 +256,7 @@ sub SQL
     }
   }
 
-  #foreach my $f (AAT::ARRAY($conf->{field}))
+  #foreach my $f (ARRAY($conf->{field}))
   #{
   #	if (Octopussy::Type::SQL_Type($f->{type}) =~ /TEXT/)
   #		{ $sql .= "PRIMARY KEY ($f->{title}(250)), "; }
@@ -278,7 +279,7 @@ sub Field_Type_List
   my $conf        = Configuration($table);
   my $simple_type = Octopussy::Type::Simple_Type($type);
   my @list        = ();
-  foreach my $f (AAT::ARRAY($conf->{field}))
+  foreach my $f (ARRAY($conf->{field}))
   {
     my $f_stype = Octopussy::Type::Simple_Type($f->{type});
     push @list, $f->{title} if ($simple_type =~ /^$f_stype$/i);
@@ -317,9 +318,9 @@ sub Devices_and_Services_With
   my @dconfs = Octopussy::Device::Configurations();
   foreach my $dc (@dconfs)
   {
-    foreach my $s (AAT::ARRAY($dc->{service}))
+    foreach my $s (ARRAY($dc->{service}))
     {
-      $device{$dc->{name}} = 1 if (AAT::NOT_NULL($service{$s->{sid}}));
+      $device{$dc->{name}} = 1 if (NOT_NULL($service{$s->{sid}}));
     }
   }
   @devices  = sort keys %device;
@@ -354,7 +355,7 @@ sub Valid_Pattern
     my $fieldname = $1;
     my $match     = 0;
     $f_pattern{$fieldname} = (
-      AAT::NOT_NULL($f_pattern{$fieldname})
+      NOT_NULL($f_pattern{$fieldname})
       ? $f_pattern{$fieldname} + 1
       : 1
     );
@@ -387,7 +388,7 @@ sub Updates_Installation
 
   foreach my $t (@tables)
   {
-    AAT::Download('Octopussy', "$web/Download/Tables/$t.xml",
+    AAT::Download::File('Octopussy', "$web/Download/Tables/$t.xml",
       "$dir_tables/$t.xml");
   }
 
@@ -403,11 +404,11 @@ sub Update_Get_Fields
   my $table = shift;
   my $web   = Octopussy::WebSite();
 
-  AAT::Download('Octopussy', "$web/Download/Tables/$table.xml",
+  AAT::Download::File('Octopussy', "$web/Download/Tables/$table.xml",
     "/tmp/$table.xml");
   my $conf_new = AAT::XML::Read("/tmp/$table.xml");
 
-  return (AAT::ARRAY($conf_new->{field}));
+  return (ARRAY($conf_new->{field}));
 }
 
 =head2 Updates_Diff($table)
@@ -420,7 +421,7 @@ sub Updates_Diff
   my $conf       = Configuration($table);
   my @fields     = ();
   my @new_fields = Update_Get_Fields($table);
-  foreach my $f (AAT::ARRAY($conf->{field}))
+  foreach my $f (ARRAY($conf->{field}))
   {
     my @list  = ();
     my $match = 0;

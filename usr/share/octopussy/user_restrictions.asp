@@ -6,12 +6,12 @@ my $user = $Request->QueryString("user");
 
 my $restricts = AAT::User::Restrictions("Octopussy", $user);
 
-my @devices_sel = AAT::ARRAY($f->{device} || $Request->QueryString("device")
+my @devices_sel = ARRAY($f->{device} || $Request->QueryString("device")
   || $restricts->{device} || "-ANY-");
-my @services_sel = AAT::ARRAY($f->{service} || $Request->QueryString("service")
+my @services_sel = ARRAY($f->{service} || $Request->QueryString("service")
   || $restricts->{service} || "-ANY-");
-my @alerts_sel = AAT::ARRAY($f->{alert} || $restricts->{alert} || "-NONE-");
-my @reports_sel = AAT::ARRAY($f->{report} || $restricts->{report} || "-NONE-");
+my @alerts_sel = ARRAY($f->{alert} || $restricts->{alert} || "-NONE-");
+my @reports_sel = ARRAY($f->{report} || $restricts->{report} || "-NONE-");
 my $max_minutes_search = $f->{max_minutes_search} 
 	|| $restricts->{max_minutes_search} || 120;
 
@@ -23,7 +23,7 @@ my @used_services = Octopussy::Service::List_Used();
 
 if ($Session->{AAT_ROLE} =~ /admin/i)
 {
-	if (AAT::NOT_NULL($f->{submit}))
+	if (NOT_NULL($f->{submit}))
 	{
   	my $conf = { device => \@devices_sel, service => \@services_sel,
 			alert => \@alerts_sel, report => \@reports_sel, 

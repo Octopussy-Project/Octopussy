@@ -7,22 +7,22 @@ my $room = Encode::decode_utf8($f->{room} || $Request->QueryString("room"));
 my $rack = Encode::decode_utf8($f->{rack} || $Request->QueryString("rack"));
 my $action = $Request->QueryString("action");
 
-if ((AAT::NOT_NULL($action)) && ($action eq "remove"))
+if ((NOT_NULL($action)) && ($action eq "remove"))
 {
 	if (defined $city)
   {
-    if (AAT::NULL($building))
+    if (NULL($building))
    	{ 
 			Octopussy::Location::City_Remove($city); 
 			AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Location City", $city);
 		}
-    elsif (AAT::NULL($room))
+    elsif (NULL($room))
    	{ 
 			Octopussy::Location::Building_Remove($city, $building); 
 			AAT::Syslog("octo_WebUI", "GENERIC_DELETED", 
 				"Location Building", "$city - $building");
 		}
-    elsif (AAT::NULL($rack))
+    elsif (NULL($rack))
     { 
 			Octopussy::Location::Room_Remove($city, $building, $room); 
 			AAT::Syslog("octo_WebUI", "GENERIC_DELETED", 
@@ -41,18 +41,18 @@ else
 {
 	if (defined $city)
 	{
-		if (AAT::NULL($building))
+		if (NULL($building))
 		{	
 			Octopussy::Location::City_Add($city); 
 			AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Location City", $city);
 		}
-		elsif (AAT::NULL($room))
+		elsif (NULL($room))
 		{ 
 			Octopussy::Location::Building_Add($city, $building); 
 			AAT::Syslog("octo_WebUI", "GENERIC_CREATED", 
 				"Location Building", "$city - $building");
 		}
-		elsif (AAT::NULL($rack))
+		elsif (NULL($rack))
 		{ 
 			Octopussy::Location::Room_Add($city, $building, $room); 
 			AAT::Syslog("octo_WebUI", "GENERIC_CREATED", 

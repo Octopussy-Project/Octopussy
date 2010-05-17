@@ -17,7 +17,7 @@ use Readonly;
 
 use List::MoreUtils qw(apply none);
 
-use AAT;
+use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy;
 
@@ -35,7 +35,7 @@ Returns Location Cities List
 sub Cities
 {
   my $conf = AAT::XML::Read(Octopussy::File($FILE_LOCATIONS));
-  my @list = apply { $_ = $_->{c_name}; } AAT::ARRAY($conf->{city});
+  my @list = apply { $_ = $_->{c_name}; } ARRAY($conf->{city});
 
   return (sort @list);
 }
@@ -76,7 +76,7 @@ sub City_Remove
   my $city   = shift;
   my $file   = Octopussy::File($FILE_LOCATIONS);
   my $conf   = AAT::XML::Read($file);
-  my @cities = grep { $_->{c_name} ne $city } AAT::ARRAY($conf->{city});
+  my @cities = grep { $_->{c_name} ne $city } ARRAY($conf->{city});
 
   $conf->{city} = \@cities;
   AAT::XML::Write($file, $conf, $XML_ROOT);
@@ -94,7 +94,7 @@ sub City_Matched
 {
   my ($cities, $city) = @_;
 
-  return (grep { $_->{c_name} eq $city } AAT::ARRAY($cities));
+  return (grep { $_->{c_name} eq $city } ARRAY($cities));
 }
 
 =head2 Buildings($city)
@@ -113,7 +113,7 @@ sub Buildings
 
   foreach my $c (City_Matched($conf->{city}, $city))
   {
-    @list = apply { $_ = $_->{b_name}; } AAT::ARRAY($c->{building});
+    @list = apply { $_ = $_->{b_name}; } ARRAY($c->{building});
   }
 
   return (sort @list);
@@ -135,7 +135,7 @@ sub Building_Add
   my @cities = ();
   my $result = undef;
 
-  foreach my $c (AAT::ARRAY($conf->{city}))
+  foreach my $c (ARRAY($conf->{city}))
   {
     if ($c->{c_name} eq $city)
     {
@@ -168,12 +168,12 @@ sub Building_Remove
   my @cities    = ();
   my @buildings = ();
 
-  foreach my $c (AAT::ARRAY($conf->{city}))
+  foreach my $c (ARRAY($conf->{city}))
   {
     if ($c->{c_name} eq $city)
     {
       @buildings =
-        grep { $_->{b_name} ne $building } AAT::ARRAY($c->{building});
+        grep { $_->{b_name} ne $building } ARRAY($c->{building});
       $c->{building} = \@buildings;
     }
     push @cities, $c;
@@ -194,7 +194,7 @@ sub Building_Matched
 {
   my ($buildings, $building) = @_;
 
-  return (grep { $_->{b_name} eq $building } AAT::ARRAY($buildings));
+  return (grep { $_->{b_name} eq $building } ARRAY($buildings));
 }
 
 =head2 Rooms($city, $building)
@@ -217,7 +217,7 @@ sub Rooms
   {
     foreach my $b (Building_Matched($c->{building}, $building))
     {
-      @list = apply { $_ = $_->{r_name}; } AAT::ARRAY($b->{room});
+      @list = apply { $_ = $_->{r_name}; } ARRAY($b->{room});
     }
   }
 
@@ -242,11 +242,11 @@ sub Room_Add
   my @rooms     = ();
   my $result    = undef;
 
-  foreach my $c (AAT::ARRAY($conf->{city}))
+  foreach my $c (ARRAY($conf->{city}))
   {
     if ($c->{c_name} eq $city)
     {
-      foreach my $b (AAT::ARRAY($c->{building}))
+      foreach my $b (ARRAY($c->{building}))
       {
         if ($b->{b_name} eq $building)
         {
@@ -284,15 +284,15 @@ sub Room_Remove
   my @buildings = ();
   my @rooms     = ();
 
-  foreach my $c (AAT::ARRAY($conf->{city}))
+  foreach my $c (ARRAY($conf->{city}))
   {
     if ($c->{c_name} eq $city)
     {
-      foreach my $b (AAT::ARRAY($c->{building}))
+      foreach my $b (ARRAY($c->{building}))
       {
         if ($b->{b_name} eq $building)
         {
-          @rooms = grep { $_->{r_name} ne $room } AAT::ARRAY($b->{room});
+          @rooms = grep { $_->{r_name} ne $room } ARRAY($b->{room});
           $b->{room} = \@rooms;
         }
         push @buildings, $b;
@@ -317,7 +317,7 @@ sub Room_Matched
 {
   my ($rooms, $room) = @_;
 
-  return (grep { $_->{r_name} eq $room } AAT::ARRAY($rooms));
+  return (grep { $_->{r_name} eq $room } ARRAY($rooms));
 }
 
 =head2 Racks($city, $building, $room)
@@ -344,7 +344,7 @@ sub Racks
     {
       foreach my $r (Room_Matched($b->{room}, $room))
       {
-        @list = apply { $_ = $_->{r_name}; } AAT::ARRAY($r->{rack});
+        @list = apply { $_ = $_->{r_name}; } ARRAY($r->{rack});
       }
     }
   }
@@ -368,15 +368,15 @@ sub Rack_Add
   my (@cities, @buildings, @rooms) = ((), (), ());
   my $result = undef;
 
-  foreach my $c (AAT::ARRAY($conf->{city}))
+  foreach my $c (ARRAY($conf->{city}))
   {
     if ($c->{c_name} eq $city)
     {
-      foreach my $b (AAT::ARRAY($c->{building}))
+      foreach my $b (ARRAY($c->{building}))
       {
         if ($b->{b_name} eq $building)
         {
-          foreach my $r (AAT::ARRAY($b->{room}))
+          foreach my $r (ARRAY($b->{room}))
           {
             if ($r->{r_name} eq $room)
             {
@@ -418,19 +418,19 @@ sub Rack_Remove
   my @rooms     = ();
   my @racks     = ();
 
-  foreach my $c (AAT::ARRAY($conf->{city}))
+  foreach my $c (ARRAY($conf->{city}))
   {
     if ($c->{c_name} eq $city)
     {
-      foreach my $b (AAT::ARRAY($c->{building}))
+      foreach my $b (ARRAY($c->{building}))
       {
         if ($b->{b_name} eq $building)
         {
-          foreach my $r (AAT::ARRAY($b->{room}))
+          foreach my $r (ARRAY($b->{room}))
           {
             if ($r->{r_name} eq $room)
             {
-              @racks = grep { $_->{r_name} ne $rack } AAT::ARRAY($r->{rack});
+              @racks = grep { $_->{r_name} ne $rack } ARRAY($r->{rack});
               $r->{rack} = \@racks;
             }
             push @rooms, $r;

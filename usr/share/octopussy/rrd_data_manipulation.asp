@@ -19,7 +19,7 @@ $file =~ s/rrd$/png/;
 	<AAT:Entry name="graph_title" value="$r_title" size="40" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol><AAT:Label value="_GRAPH_YLABEL" style="B"/></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="_GRAPH_Y_LABEL" style="B"/></AAT:BoxCol>
   <AAT:BoxCol>
 	<AAT:Entry name="graph_ylabel" value="$r_ylabel" size="40" /></AAT:BoxCol>
 </AAT:BoxRow>
