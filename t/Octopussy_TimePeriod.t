@@ -17,9 +17,10 @@ use Readonly;
 use List::MoreUtils qw(any);
 use Test::More tests => 5;
 
+use Octopussy::FS;
 use Octopussy::TimePeriod;
 
-Readonly my $FILE_TIMEPERIOD   => Octopussy::File('timeperiods');
+Readonly my $FILE_TIMEPERIOD   => Octopussy::FS::File('timeperiods');
 Readonly my $PREFIX            => 'Octo_TEST_';
 Readonly my $TP_LABEL          => "${PREFIX}timeperiod_label";
 Readonly my $TP_RESULT_PERIODS => 'Mon: 08:00-20:00, Tue: 08:00-20:00';

@@ -113,7 +113,7 @@ if (defined $f->{config})
       zabbix_host => $f->{"zabbix_host"}, zabbix_item => $f->{"zabbix_item"} } );
     AAT::Update_Configuration("Octopussy", "zabbix", \%zabbix_conf, "aat_zabbix");
   }
-	AAT::Syslog("octo_WebUI", "SYSTEM_CONFIG_MODIFIED");
+	AAT::Syslog::Message("octo_WebUI", "SYSTEM_CONFIG_MODIFIED");
 }
 %>
 <AAT:Inc file="octo_system_configurator" action="./system.asp" />

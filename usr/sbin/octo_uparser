@@ -26,11 +26,14 @@ use File::Copy;
 use File::Path;
 use Regexp::Assemble;
 
-use AAT;
+use AAT::Datetime;
+use AAT::Syslog;
+use AAT::Utils qw( NOT_NULL NULL);
 
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::Logs;
 use Octopussy::Message;
 use Octopussy::Service;
@@ -146,7 +149,7 @@ sub Write_Logfile
   if (scalar @{$logs} > 0)
   {
     $logfile .= '.gz' if ($logfile !~ /^.+\.gz$/);
-    Octopussy::Create_Directory(dirname($logfile));
+    Octopussy::FS::Create_Directory(dirname($logfile));
     if (defined open my $FILE, '|-', "gzip >> $logfile")
     {
       foreach my $log (@{$logs}) { print {$FILE} "$log\n"; }

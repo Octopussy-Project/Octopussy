@@ -16,16 +16,17 @@ use Readonly;
 
 use Test::More tests => 6;
 
-use Octopussy;
 use Octopussy::Device;
+use Octopussy::FS;
 
 Readonly my $BIN => 'sudo -u octopussy  /usr/sbin/octo_extractor';
-Readonly my $DIR_LOGS  => Octopussy::Directory('data_logs');
+Readonly my $DIR_LOGS  => Octopussy::FS::Directory('data_logs');
 Readonly my $PREFIX    => 'Octo_TEST_';
 Readonly my $DEVICE    => "${PREFIX}Device";
 Readonly my $SERVICE   => "Octopussy";
 Readonly my $EXTRACT_DEV_SVC => "$BIN --device $DEVICE --service $SERVICE";
 Readonly my $PERIOD => '--begin 201001010000 --end 201001010030';
+
 
 =head2 Generate_Fake_Logs_Files()
 

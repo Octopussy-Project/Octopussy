@@ -16,6 +16,7 @@ use warnings;
 use Readonly;
 
 use Octopussy;
+use Octopussy::FS;
 
 Readonly my $HTMLDOC =>
   '/usr/bin/htmldoc --quiet --webpage --no-compression --no-jpeg';
@@ -37,7 +38,7 @@ sub Generate_From_HTML
   my $file_pdf = Octopussy::File_Ext( $file, 'pdf' );
 `$SED "s/AAT_THEMES/\\\/usr\\\/share\\\/octopussy\\\/AAT_THEMES/g" "$file" > "$file.tmp"`;
   `$HTMLDOC -f "$file_pdf" "$file.tmp"`;
-  Octopussy::Chown($file_pdf);
+  Octopussy::FS::Chown($file_pdf);
   unlink "$file.tmp";
 
   return ($file_pdf);

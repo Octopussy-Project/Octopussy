@@ -21,6 +21,7 @@ use AAT::FS;
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 use Octopussy;
+use Octopussy::FS;
 
 Readonly my $DIR_SEARCH_TPL => 'search_templates';
 Readonly my $XML_ROOT       => 'octopussy_search_template';
@@ -45,8 +46,8 @@ sub New
 {
   my ($user, $conf) = @_;
 
-  $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
-  Octopussy::Create_Directory("$dir_search_tpl/$user");
+  $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
+  Octopussy::FS::Create_Directory("$dir_search_tpl/$user");
   AAT::XML::Write("$dir_search_tpl/$user/$conf->{name}.xml", $conf, $XML_ROOT);
 
   return ($conf->{name});
@@ -91,7 +92,7 @@ sub List
 {
   my $user = shift;
 
-  $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
+  $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
   my @files = AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
   my @tpls = ();
   foreach my $f (@files)
@@ -122,7 +123,7 @@ sub List_Any_User
   my $sort = shift || 'name';
   my (@list, @sorted_list) = ((), ());
 
-  $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
+  $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
   my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
   foreach my $d (@dirs)
   {
@@ -165,7 +166,7 @@ sub Filename
     if (defined $filename{$user}{$search_tpl});
   if (NOT_NULL($search_tpl))
   {
-    $dir_search_tpl ||= Octopussy::Directory($DIR_SEARCH_TPL);
+    $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
     my @files =
       AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
     foreach my $f (@files)

@@ -23,6 +23,7 @@ Getopt::Long::Configure('bundling');
 
 use Octopussy;
 use Octopussy::Cache;
+use Octopussy::FS;
 
 Readonly my $PROG_NAME    => 'octo_data';
 Readonly my $PROG_VERSION => Octopussy::Version();
@@ -71,7 +72,7 @@ Help()
   || (!defined $opt_type)
   || (!defined $opt_key));
 
-my $dir_pid = Octopussy::Directory('running');
+my $dir_pid = Octopussy::FS::Directory('running');
 my $cache   = Octopussy::Cache::Init("octo_${opt_cache}");
 my $type    = $cache->get("dispatcher_stats_${opt_type}s");
 print $type->{$opt_key};

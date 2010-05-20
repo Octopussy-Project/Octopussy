@@ -142,7 +142,7 @@ sub Syslog_By_DeviceType_Init
 
   if ((!-f $RRD_SYSLOG_DTYPE) || ($ds_count != (scalar @dtypes)))
   {
-    Octopussy::Create_Directory($DIR_RRD);
+    Octopussy::FS::Create_Directory($DIR_RRD);
     my $cmd = qq($RRD_CREATE "$RRD_SYSLOG_DTYPE" --step $MINUTE );
     foreach my $dt (@dtypes)
     {
@@ -297,7 +297,7 @@ sub Syslog_By_Device_Service_Taxonomy_Init
   my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
   if (!-f $file)
   {
-    Octopussy::Create_Directory("$DIR_RRD/$device");
+    Octopussy::FS::Create_Directory("$DIR_RRD/$device");
     my $cmd = qq($RRD_CREATE "$file" --step $MINUTE );
     foreach my $taxo (Octopussy::Taxonomy::List())
     {

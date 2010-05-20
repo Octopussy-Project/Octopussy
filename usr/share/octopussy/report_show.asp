@@ -2,7 +2,7 @@
 my $role = $Session->{AAT_ROLE};
 my $report_type = $Request->QueryString("report_type");
 my $filename = $Request->QueryString("filename");
-my $dir_reports = Octopussy::Directory("data_reports");
+my $dir_reports = Octopussy::FS::Directory("data_reports");
 
 if ($role =~ /restricted/i)
 {

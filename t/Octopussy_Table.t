@@ -17,6 +17,7 @@ use Readonly;
 use List::MoreUtils qw(none);
 use Test::More tests => 5;
 
+use Octopussy::FS;
 use Octopussy::Table;
 
 Readonly my $PREFIX            => 'Octo_TEST_';
@@ -24,7 +25,7 @@ Readonly my $DEFAULT_NB_FIELDS => 2;
 
 my ($table, $table_desc, $table_field) =
   ("${PREFIX}table", "${PREFIX}table_desc", "${PREFIX}table_field");
-my $dir = Octopussy::Directory('tables');
+my $dir = Octopussy::FS::Directory('tables');
 
 Octopussy::Table::New({name => $table, description => $table_desc});
 ok(-f "${dir}/${table}.xml", 'Octopussy::Table::New()');

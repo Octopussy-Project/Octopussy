@@ -34,6 +34,7 @@ use Readonly;
 
 use Octopussy;
 use Octopussy::Device;
+use Octopussy::FS;
 
 Readonly my $PROG_NAME       => 'octopussy';
 Readonly my $USER            => 'octopussy';
@@ -51,8 +52,8 @@ Readonly my $KILLALL         => '/usr/bin/killall';
 Readonly my $INITD_MYSQL     => '/etc/init.d/mysql';
 Readonly my $INITD_SYSLOG_NG => '/etc/init.d/syslog-ng';
 
-Readonly my $base    => Octopussy::Directory('programs');
-Readonly my $dir_pid => Octopussy::Directory('running');
+Readonly my $base    => Octopussy::FS::Directory('programs');
+Readonly my $dir_pid => Octopussy::FS::Directory('running');
 
 my $MSG_STATUS         = "$PROG_NAME %s %s.\n";
 my $MSG_PARSING_STATUS = "$PROG_NAME Parsing '%s' %s.\n";
@@ -359,7 +360,7 @@ sub Start
 {
 
   # recreate /var/run/octopussy/ for systems that mount it on tmpfs
-  Octopussy::Create_Directory($dir_pid);
+  Octopussy::FS::Create_Directory($dir_pid);
 
   Dispatcher_Start();
   `$INITD_MYSQL restart`;

@@ -17,7 +17,7 @@ use Readonly;
 
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
-use Octopussy;
+use Octopussy::FS;
 
 Readonly my $FILE_WORLD_STATS => 'world_stats';
 Readonly my $XML_ROOT         => 'octopussy_world_stats';
@@ -59,7 +59,7 @@ sub Modify
 {
   my $conf = shift;
 
-  AAT::XML::Write(Octopussy::File($FILE_WORLD_STATS), $conf, $XML_ROOT);
+  AAT::XML::Write(Octopussy::FS::File($FILE_WORLD_STATS), $conf, $XML_ROOT);
 
   return (undef);
 }
@@ -72,7 +72,7 @@ Returns World Statistics Configuration
 
 sub Configuration
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_WORLD_STATS));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_WORLD_STATS));
 
   return ($conf);
 }

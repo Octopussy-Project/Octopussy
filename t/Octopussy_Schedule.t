@@ -16,10 +16,10 @@ use Readonly;
 
 use Test::More tests => 3;
 
-use Octopussy;
+use Octopussy::FS;
 use Octopussy::Schedule;
 
-Readonly my $FILE_SCHEDULES => Octopussy::File('schedule');
+Readonly my $FILE_SCHEDULES => Octopussy::FS::File('schedule');
 Readonly my $PREFIX         => 'Octo_TEST_';
 Readonly my $SCHED_TITLE    => "${PREFIX}schedule";
 Readonly my $SCHED_REPORT   => "${PREFIX}sched_report";

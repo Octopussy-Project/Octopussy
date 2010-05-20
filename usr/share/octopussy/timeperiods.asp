@@ -5,7 +5,7 @@ my $action = $Request->QueryString("action");
 if ((defined $timeperiod) && ($action eq "remove"))
 {
 	Octopussy::TimePeriod::Remove($timeperiod);
-	AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Timeperiod", $timeperiod);
+	AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Timeperiod", $timeperiod);
 }
 
 my $f = $Request->Form();
@@ -26,7 +26,7 @@ if (NOT_NULL($f->{name}))
 			. "-$f->{$finish_h}:$f->{$finish_m}" } );
 	}
 	Octopussy::TimePeriod::New({ label => $f->{name}, dt => \@dts });
-	AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Timeperiod", $f->{name});
+	AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Timeperiod", $f->{name});
 }
 %>
 <AAT:Inc file="octo_timeperiods_list" url="./timeperiods.asp" />

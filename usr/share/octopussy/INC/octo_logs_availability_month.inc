@@ -4,7 +4,7 @@ my $COLOR_NOT_AVAILABLE = "gray";
 
 my %arg = @_;
 my ($device, $year, $month) = ($arg{device},  $arg{year}, 
-	AAT::Padding($arg{month}, 2));
+	sprintf("%02d", $arg{month}));
 my $nb_days = AAT::Datetime::Month_Nb_Days($year, $month);
 
 my %start = ( year => $year, month => $month, day => 1, 
@@ -57,7 +57,7 @@ function logs_viewer_day(service,day)
 	<%
 	foreach my $d (1..$nb_days)
 	{ 
-		my $day = AAT::Padding($d, 2);
+		my $day = sprintf("%02d", $d);
 		my $link = "./logs_availability.asp?device=$device"
 			. "&year=$year&month=$month&day=$day";
 		%><td><AAT:Label value="$day" link="$link" size="-1" /></td><%
@@ -70,13 +70,13 @@ function logs_viewer_day(service,day)
 	foreach my $d (1..$nb_days)
   {
   	%><td><table cellspadding="0" cellspacing="0"><tr><%
-    my $day = AAT::Padding($d, 2);
+    my $day = sprintf("%02d", $d);
    	foreach my $i1 (0..11)
     {
     	my $have_logs = 0;
      	foreach my $i2 (0..$step-1)
      	{
-      	my $hour = AAT::Padding(($i1*$step + $i2), 2);
+      	my $hour = sprintf("%02d", ($i1*$step + $i2));
        	$have_logs = 1  if (defined $avail->{_DEVICE_}{$month}{$day}{$hour});
      	}
       my $color = ($have_logs ? $COLOR_AVAILABLE : $COLOR_NOT_AVAILABLE);
@@ -95,13 +95,13 @@ function logs_viewer_day(service,day)
 		foreach my $d (1..$nb_days)
   	{
 			%><td><table cellspadding="0" cellspacing="0"><tr><%
-    	my $day = AAT::Padding($d, 2);
+    	my $day = sprintf("%02d", $d);
 			foreach my $i1 (0..11)
 			{
 				my $have_logs = 0;
 				foreach my $i2 (0..$step-1)
 				{
-					my $hour = AAT::Padding(($i1*$step + $i2), 2);
+					my $hour = sprintf("%02d", ($i1*$step + $i2));
 					$have_logs = 1	if (defined $avail->{$service}{$month}{$day}{$hour});
 				}
 				my $color = ($have_logs ? $COLOR_AVAILABLE : $COLOR_NOT_AVAILABLE);

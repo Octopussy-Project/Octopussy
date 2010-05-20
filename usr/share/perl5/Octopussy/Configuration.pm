@@ -19,9 +19,10 @@ use POSIX qw(strftime);
 
 use AAT;
 use AAT::FS;
-use Octopussy;
+use Octopussy::FS;
 
 Readonly my $DIR_BACKUP => '/etc/octopussy/';
+
 
 =head1 FUNCTIONS
 
@@ -33,16 +34,16 @@ sub Backup
 {
   my $timestamp   = strftime("%Y%m%d%H%M", localtime);
   my $file_backup = "${DIR_BACKUP}backup_$timestamp.tgz";
-  my $dir_main    = Octopussy::Directory('main');
+  my $dir_main    = Octopussy::FS::Directory('main');
   my $conf_sys    = "${dir_main}{db,ldap,nsca,proxy,smtp,xmpp}.xml";
   my ($dir_alerts, $dir_contacts, $dir_devices, $dir_maps, $dir_plugins) =
-    Octopussy::Directories('alerts', 'contacts', 'devices', 'maps', 'plugins');
+    Octopussy::FS::Directories('alerts', 'contacts', 'devices', 'maps', 'plugins');
   my ($dir_reports, $dir_search_templates, $dir_services, $dir_tables) =
-    Octopussy::Directories('reports', 'search_templates', 'services', 'tables');
+    Octopussy::FS::Directories('reports', 'search_templates', 'services', 'tables');
   my ($file_devicegroup, $file_locations, $file_schedule) =
-    Octopussy::Files('devicegroups', 'locations', 'schedule');
+    Octopussy::FS::Files('devicegroups', 'locations', 'schedule');
   my ($file_servicegroup, $file_storages, $file_timeperiods, $file_users) =
-    Octopussy::Files('servicegroups', 'storages', 'timeperiods', 'users');
+    Octopussy::FS::Files('servicegroups', 'storages', 'timeperiods', 'users');
 
   system
 "tar Picfz $file_backup $conf_sys $dir_alerts $dir_contacts $dir_devices $dir_maps $dir_plugins $dir_reports $dir_search_templates $dir_services $dir_tables $file_devicegroup $file_locations $file_schedule $file_servicegroup $file_storages $file_timeperiods $file_users";

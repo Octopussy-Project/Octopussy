@@ -23,11 +23,12 @@ use Linux::Inotify2;
 
 use AAT;
 use Octopussy;
+use Octopussy::FS;
 
 Readonly my $PROG_NAME => 'octo_statistics_reporter';
 
-my $dir_program = Octopussy::Directory('programs');
-my $dir_pid     = Octopussy::Directory('running');
+my $dir_program = Octopussy::FS::Directory('programs');
+my $dir_pid     = Octopussy::FS::Directory('running');
 my $report      = $ARGV[0];
 
 #

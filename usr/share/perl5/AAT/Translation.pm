@@ -21,7 +21,7 @@ my %AAT_Translation = ();
 
 use Locale::Maketext::Simple(
   Path => '/usr/share/aat/Translations/'
-  ,    # can't use AAT::Directory('translations') :(
+  ,    # can't use AAT::Application::Directory('AAT', 'translations') :(
 );
 
 =head1 FUNCTIONS

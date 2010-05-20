@@ -8,6 +8,7 @@ use AAT::LDAP;
 use AAT::List;
 use AAT::NSCA;
 use AAT::SMTP;
+use AAT::Syslog;
 use AAT::Translation;
 use AAT::User;
 use AAT::Utils qw( ARRAY NOT_NULL NULL);
@@ -23,6 +24,8 @@ use Octopussy::Data_Report;
 use Octopussy::DB;
 use Octopussy::Device;
 use Octopussy::DeviceGroup;
+use Octopussy::FS;
+use Octopussy::Info;
 use Octopussy::Location;
 use Octopussy::Loglevel;
 use Octopussy::Logs;
@@ -80,7 +83,7 @@ Removes any Logs Search files
 =cut
 sub Session_OnEnd()
 {
-	my $run_dir = Octopussy::Directory("running");
+	my $run_dir = Octopussy::FS::Directory("running");
 	my $login = $Session->{AAT_LOGIN};
 
 	`rm -f $run_dir/logs_${login}_*`;	

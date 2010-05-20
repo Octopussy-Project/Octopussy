@@ -49,7 +49,7 @@ function logs_viewer_month(service,month,nb_days)
 	foreach my $m (1..12)
 	{ 
 		my $month_name =  AAT::Datetime::Month_Name($m);
-		my $month = AAT::Padding($m, 2);
+		my $month = sprintf("%02d", $m)
 		my $link = "./logs_availability.asp?device=$device"
 			. "&year=$year&month=$month";
 		%><td><AAT:Label value="$month_name" link="$link" size="-2" /></td><%
@@ -62,12 +62,12 @@ function logs_viewer_month(service,month,nb_days)
 	foreach my $m (1..12)
   {
   	%><td><table cellspadding="0" cellspacing="0"><tr><%
-    my $month = AAT::Padding($m, 2);
+    my $month = sprintf("%02d", $m);
 		my $nb_days = AAT::Datetime::Month_Nb_Days($year, $month);
    	foreach my $i1 (1..$nb_days)
     {
     	my $have_logs = 0;
-     	my $day = AAT::Padding($i1, 2);
+     	my $day = sprintf("%02d", $i1);
       $have_logs = 1  if (defined $avail->{_DEVICE_}{$month}{$day});
       my $color = ($have_logs ? $COLOR_AVAILABLE : $COLOR_NOT_AVAILABLE);
      	%><td bgcolor="<%= $color %>" height="32" width="2" onclick="logs_viewer_month('-ANY-',<%= $month %>,<%= $nb_days %>)"></td><%
@@ -85,12 +85,12 @@ function logs_viewer_month(service,month,nb_days)
 		foreach my $m (1..12)
   	{
 			%><td><table cellspadding="0" cellspacing="0"><tr><%
-    	my $month = AAT::Padding($m, 2);
+    	my $month = sprintf("%02d", $m);
 			my $nb_days = AAT::Datetime::Month_Nb_Days($year, $month);
 			foreach my $i1 (1..$nb_days)
 			{
 				my $have_logs = 0;
-				my $day = AAT::Padding($i1, 2);
+				my $day = sprintf("%02d", $i1);
 				$have_logs = 1	if (defined $avail->{$service}{$month}{$day});
 				my $color = ($have_logs ? $COLOR_AVAILABLE : $COLOR_NOT_AVAILABLE);
 				%><td bgcolor="<%= $color %>" height="32" width="2" onclick="logs_viewer_month('<%= $service %>',<%= $month %>,<%= $nb_days %>)"></td><%

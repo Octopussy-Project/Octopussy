@@ -1,7 +1,7 @@
 <%
-AAT::Syslog("octo_WebUI", "USER_LOGGED_OUT");
+AAT::Syslog::Message("octo_WebUI", "USER_LOGGED_OUT");
 
-my $run_dir = Octopussy::Directory("running");
+my $run_dir = Octopussy::FS::Directory("running");
 my $login = $Session->{AAT_LOGIN};
 `rm -f $run_dir/logs_${login}_*`;
 

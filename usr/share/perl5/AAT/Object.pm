@@ -14,7 +14,7 @@ package AAT::Object;
 use strict;
 use warnings;
 
-use AAT;
+use AAT::Application;
 use AAT::DB;
 use AAT::XML;
 
@@ -30,7 +30,7 @@ sub Configuration
 {
   my $object = shift;
 
-  my $dir  = AAT::Directory('objects');
+  my $dir  = AAT::Application::Directory('AAT', 'objects');
   my $conf = AAT::XML::Read("$dir${object}.xml");
 
   return ($conf);

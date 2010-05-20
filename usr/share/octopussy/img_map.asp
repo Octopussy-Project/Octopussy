@@ -5,7 +5,7 @@ my $buffer = "";
 my $map = $Request->QueryString("map");
 
 my $conf = Octopussy::Map::Configuration($map);
-my $map_dir = Octopussy::Directory("maps");
+my $map_dir = Octopussy::FS::Directory("maps");
 
 local *IMAGE;
 open IMAGE, $map_dir . $conf->{filename};

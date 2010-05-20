@@ -1,7 +1,7 @@
 <WebUI:PageTop title="Bug Report" />
 <%
 my $f = $Request->Form();
-my $email = Octopussy::Email();
+my $email = Octopussy::Info::Email();
 
 if (NOT_NULL($f->{file}))
 {

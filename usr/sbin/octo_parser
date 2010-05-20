@@ -37,6 +37,7 @@ use Octopussy::Alert;
 use Octopussy::Cache;
 use Octopussy::Contact;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::Message;
 use Octopussy::RRDTool;
 use Octopussy::Service;
@@ -47,8 +48,8 @@ use Octopussy::TimePeriod;
 Readonly my $PROG_NAME    => 'octo_parser';
 Readonly my $NICE_UPARSER => 'nice -n 20';
 
-my $dir_program = Octopussy::Directory('programs');
-my $dir_pid     = Octopussy::Directory('running');
+my $dir_program = Octopussy::FS::Directory('programs');
+my $dir_pid     = Octopussy::FS::Directory('running');
 my $device      = $ARGV[0];
 my ($reload_request, $exit_request) = (0, 0);
 my $cache = Octopussy::Cache::Init($PROG_NAME);
@@ -260,7 +261,7 @@ sub Init
   (@files, %known_msgs, @unknown_msgs) = ((), (), ());
 
   my $dir = Octopussy::Storage::Directory_Incoming($device);
-  Octopussy::Create_Directory("$dir/$device/Incoming/")
+  Octopussy::FS::Create_Directory("$dir/$device/Incoming/")
     if (!-d "$dir/$device/Incoming/");
   Inotify_Watch("$dir/$device/Incoming/");
 

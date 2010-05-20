@@ -34,7 +34,7 @@ if (defined $f->{update})
     AAT::Language($f->{AAT_Language});
 		AAT::Menu_Mode($f->{AAT_MenuMode});
     AAT::Theme($f->{AAT_Theme});
-    AAT::Syslog("octo_WebUI", "USER_PREF_MODIFIED");
+    AAT::Syslog::Message("octo_WebUI", "USER_PREF_MODIFIED");
     $Response->Redirect("./restricted_user_pref.asp");
   }
 }

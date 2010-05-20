@@ -19,7 +19,7 @@ use AAT::FS;
 use AAT::LDAP;
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
-use Octopussy;
+use Octopussy::FS;
 
 Readonly my $XML_ROOT => 'octopussy_contact';
 
@@ -44,7 +44,7 @@ sub New
 {
   my $conf = shift;
 
-  $dir_contacts ||= Octopussy::Directory('contacts');
+  $dir_contacts ||= Octopussy::FS::Directory('contacts');
   if (NOT_NULL($conf->{cid})
     && (NOT_NULL($conf->{email}) || NOT_NULL($conf->{im})))
   {
@@ -94,7 +94,7 @@ Returns:
 
 sub List
 {
-  $dir_contacts ||= Octopussy::Directory('contacts');
+  $dir_contacts ||= Octopussy::FS::Directory('contacts');
   my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
   my @contacts = ();
   foreach my $f (@files)
@@ -131,7 +131,7 @@ sub Filename
   return ($filename{$contact}) if (defined $filename{$contact});
   if (NOT_NULL($contact))
   {
-    $dir_contacts ||= Octopussy::Directory('contacts');
+    $dir_contacts ||= Octopussy::FS::Directory('contacts');
     my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
     foreach my $f (@files)
     {

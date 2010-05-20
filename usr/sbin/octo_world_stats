@@ -22,6 +22,7 @@ use AAT::Syslog;
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::Stats;
 use Octopussy::World_Stats;
 
@@ -36,7 +37,7 @@ if ($conf->{status} eq 'enabled')
 {
   my ($id, $country) = ($conf->{id}, $conf->{country});
 
-  my $dir_pid = Octopussy::Directory('running');
+  my $dir_pid = Octopussy::FS::Directory('running');
   my $cache   = Octopussy::Cache::Init('octo_dispatcher');
   my $version = Octopussy::Version();
   my $cpu     = Octopussy::Stats::CPU_Info();

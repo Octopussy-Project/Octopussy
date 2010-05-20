@@ -23,6 +23,8 @@ use AAT::XML;
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::DeviceGroup;
+use Octopussy::FS;
+use Octopussy::Info;
 use Octopussy::Service;
 use Octopussy::Type;
 
@@ -50,7 +52,7 @@ sub New
 
   if (NOT_NULL($conf->{name}))
   {
-    $dir_tables ||= Octopussy::Directory($DIR_TABLE);
+    $dir_tables ||= Octopussy::FS::Directory($DIR_TABLE);
     $conf->{version} = Octopussy::Timestamp_Version(undef);
     AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, $XML_ROOT);
     Add_Field($conf->{name}, 'datetime', 'DATETIME');
@@ -90,7 +92,7 @@ Get List of Tables
 
 sub List
 {
-  $dir_tables ||= Octopussy::Directory($DIR_TABLE);
+  $dir_tables ||= Octopussy::FS::Directory($DIR_TABLE);
 
   return (AAT::XML::Name_List($dir_tables));
 }
@@ -106,7 +108,7 @@ sub Filename
   my $table = shift;
 
   return ($filename{$table}) if (defined $filename{$table});
-  $dir_tables ||= Octopussy::Directory($DIR_TABLE);
+  $dir_tables ||= Octopussy::FS::Directory($DIR_TABLE);
   $filename{$table} = AAT::XML::Filename($dir_tables, $table);
 
   return ($filename{$table});
@@ -383,8 +385,8 @@ sub Valid_Pattern
 sub Updates_Installation
 {
   my @tables = @_;
-  my $web    = Octopussy::WebSite();
-  $dir_tables ||= Octopussy::Directory($DIR_TABLE);
+  my $web    = Octopussy::Info::WebSite();
+  $dir_tables ||= Octopussy::FS::Directory($DIR_TABLE);
 
   foreach my $t (@tables)
   {
@@ -402,7 +404,7 @@ sub Updates_Installation
 sub Update_Get_Fields
 {
   my $table = shift;
-  my $web   = Octopussy::WebSite();
+  my $web   = Octopussy::Info::WebSite();
 
   AAT::Download::File('Octopussy', "$web/Download/Tables/$table.xml",
     "/tmp/$table.xml");

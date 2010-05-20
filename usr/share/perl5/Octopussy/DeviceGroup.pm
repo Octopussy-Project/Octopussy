@@ -19,8 +19,8 @@ use List::MoreUtils qw(any uniq);
 
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
-use Octopussy;
 use Octopussy::Device;
+use Octopussy::FS;
 
 Readonly my $FILE_DEVICEGROUPS => 'devicegroups';
 Readonly my $XML_ROOT          => 'octopussy_devicegroups';
@@ -38,7 +38,7 @@ sub Add
   my $conf_dg = shift;
   my @dgs     = ();
 
-  my $file = Octopussy::File($FILE_DEVICEGROUPS);
+  my $file = Octopussy::FS::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);
   if (any { $_->{dg_id} eq $conf_dg->{dg_id} } ARRAY($conf->{devicegroup}))
   {
@@ -60,7 +60,7 @@ sub Remove
 {
   my $devicegroup = shift;
 
-  my $file = Octopussy::File($FILE_DEVICEGROUPS);
+  my $file = Octopussy::FS::File($FILE_DEVICEGROUPS);
   my $conf = AAT::XML::Read($file);
   my @dgs =
     grep { $_->{dg_id} ne $devicegroup } ARRAY($conf->{devicegroup});
@@ -78,7 +78,7 @@ Get List of Device Group
 
 sub List
 {
-  my @dgs = AAT::XML::File_Array_Values(Octopussy::File($FILE_DEVICEGROUPS),
+  my @dgs = AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_DEVICEGROUPS),
     'devicegroup', 'dg_id');
 
   return (@dgs);
@@ -94,7 +94,7 @@ sub Configuration
 {
   my $devicegroup = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_DEVICEGROUPS));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEGROUPS));
   foreach my $dg (ARRAY($conf->{devicegroup}))
   {
     return ($dg) if ($dg->{dg_id} eq $devicegroup);
@@ -154,7 +154,7 @@ sub Devices
 {
   my $devicegroup = shift;
 
-  my $conf    = AAT::XML::Read(Octopussy::File($FILE_DEVICEGROUPS));
+  my $conf    = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEGROUPS));
   my @devices = ();
 
   foreach my $dg (ARRAY($conf->{devicegroup}))
@@ -193,7 +193,7 @@ Removes Device '$device' from all DeviceGroups
 sub Remove_Device
 {
   my $device = shift;
-  my $file   = Octopussy::File($FILE_DEVICEGROUPS);
+  my $file   = Octopussy::FS::File($FILE_DEVICEGROUPS);
   my $conf   = AAT::XML::Read($file);
   my @dgs    = ();
   foreach my $dg (ARRAY($conf->{devicegroup}))

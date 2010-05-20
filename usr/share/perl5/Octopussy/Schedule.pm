@@ -17,7 +17,7 @@ use Readonly;
 
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
-use Octopussy;
+use Octopussy::FS;
 
 Readonly my $FILE_SCHEDULES => 'schedule';
 Readonly my $XML_ROOT       => 'octopussy_schedule';
@@ -35,7 +35,7 @@ sub Add
 {
   my $add    = shift;
   my $exists = 0;
-  my $file   = Octopussy::File($FILE_SCHEDULES);
+  my $file   = Octopussy::FS::File($FILE_SCHEDULES);
   my $conf   = AAT::XML::Read($file);
   foreach my $sched (ARRAY($conf->{schedule}))
   {
@@ -61,7 +61,7 @@ sub Remove
 {
   my $schedule_title = shift;
 
-  my $file = Octopussy::File($FILE_SCHEDULES);
+  my $file = Octopussy::FS::File($FILE_SCHEDULES);
   my $conf = AAT::XML::Read($file);
   my @schedules =
     grep { $_->{title} ne $schedule_title } ARRAY($conf->{schedule});
@@ -79,7 +79,7 @@ Returns Schedules List
 
 sub List
 {
-  my @schedules = AAT::XML::File_Array_Values(Octopussy::File($FILE_SCHEDULES),
+  my @schedules = AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_SCHEDULES),
     $FILE_SCHEDULES, 'title');
 
   return (@schedules);
@@ -94,7 +94,7 @@ Returns Schedules Configuration
 sub Configuration
 {
   my $schedule = shift;
-  my $conf     = AAT::XML::Read(Octopussy::File($FILE_SCHEDULES));
+  my $conf     = AAT::XML::Read(Octopussy::FS::File($FILE_SCHEDULES));
 
   foreach my $s (ARRAY($conf->{schedule}))
   {

@@ -2,7 +2,7 @@
 <%
 my $report_type = $Request->QueryString("report_type");
 my $filename = $Request->QueryString("filename");
-my $dir_reports = Octopussy::Directory("data_reports");
+my $dir_reports = Octopussy::FS::Directory("data_reports");
 my $file = "$dir_reports/$report_type/$filename";
 my $rconf = Octopussy::Report::Configuration($report_type);
 my ($r_title, $r_ylabel, $r_rrd_step, $r_graph_width, $r_graph_height) = 

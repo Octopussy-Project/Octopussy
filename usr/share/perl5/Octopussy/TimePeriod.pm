@@ -17,7 +17,7 @@ use Readonly;
 
 use AAT::Utils qw( ARRAY HASH_KEYS );
 use AAT::XML;
-use Octopussy;
+use Octopussy::FS;
 
 Readonly my $FILE_TIMEPERIODS => 'timeperiods';
 Readonly my $XML_ROOT         => 'octopussy_timeperiods';
@@ -35,7 +35,7 @@ sub New
 {
   my $new = shift;
 
-  my $file = Octopussy::File($FILE_TIMEPERIODS);
+  my $file = Octopussy::FS::File($FILE_TIMEPERIODS);
   my $conf = AAT::XML::Read($file);
   push @{$conf->{timeperiod}}, $new;
   AAT::XML::Write($file, $conf, $XML_ROOT);
@@ -53,7 +53,7 @@ sub Remove
 {
   my $timeperiod = shift;
 
-  my $file = Octopussy::File($FILE_TIMEPERIODS);
+  my $file = Octopussy::FS::File($FILE_TIMEPERIODS);
   my $conf = AAT::XML::Read($file);
   my @tps =
     grep { $_->{label} ne $timeperiod } ARRAY($conf->{timeperiod});
@@ -71,7 +71,7 @@ Returns List of Timeperiods
 
 sub List
 {
-  my @tps = AAT::XML::File_Array_Values(Octopussy::File($FILE_TIMEPERIODS),
+  my @tps = AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_TIMEPERIODS),
     'timeperiod', 'label');
 
   return (@tps);
@@ -85,7 +85,7 @@ sub Configuration
 {
   my $tp_name = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TIMEPERIODS));
   foreach my $tp (ARRAY($conf->{timeperiod}))
   {
     if ($tp->{label} eq $tp_name)
@@ -149,7 +149,7 @@ sub Match
   {
     my ($day, $hour, $min) = ($1, $2, $3);
     my $nb   = $hour * $DIGIT_HOUR + $min;
-    my $conf = AAT::XML::Read(Octopussy::File($FILE_TIMEPERIODS));
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TIMEPERIODS));
 
     foreach
       my $tp (grep { $_->{label} eq $timeperiod } ARRAY($conf->{timeperiod}))

@@ -19,7 +19,7 @@ use AAT::Datetime;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
-use Octopussy;
+use Octopussy::FS;
 
 Readonly my $FILE_TYPES        => 'types';
 Readonly my $REGEXP_COLOR      => 'red';
@@ -56,7 +56,7 @@ Get list of type configurations
 
 sub Configurations
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TYPES));
 
   return (ARRAY($conf->{type}));
 }
@@ -94,7 +94,7 @@ Get list of types
 
 sub List
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TYPES));
   my @list = ();
   my %type;
 
@@ -121,7 +121,7 @@ Get list of simple types (*_DATETIME -> DATETIME, *_STRING -> STRING...)
 
 sub Simple_List
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TYPES));
   my @list = ();
   my %type;
 
@@ -151,7 +151,7 @@ Get list of SQL types
 
 sub SQL_List
 {
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_TYPES));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TYPES));
   my @list = ();
   my %type;
 

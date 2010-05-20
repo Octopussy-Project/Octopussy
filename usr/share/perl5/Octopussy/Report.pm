@@ -29,6 +29,8 @@ use Octopussy::Data_Report;
 use Octopussy::DB;
 use Octopussy::DeviceGroup;
 use Octopussy::Export;
+use Octopussy::FS;
+use Octopussy::Info;
 use Octopussy::OFC;
 use Octopussy::Plugin;
 use Octopussy::Report::CSV;
@@ -57,7 +59,7 @@ sub New
 {
   my $conf = shift;
 
-  $dir_reports ||= Octopussy::Directory($DIR_REPORT);
+  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
   $conf->{query} =~ s/\r\n//;
   $conf->{version} = Octopussy::Timestamp_Version(undef);
   AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, $XML_ROOT);
@@ -111,7 +113,7 @@ sub List
 {
   my ($category, $report_restriction_list) = @_;
   my @res_list = ARRAY($report_restriction_list);
-  $dir_reports ||= Octopussy::Directory($DIR_REPORT);
+  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
   my @files = AAT::FS::Directory_Files($dir_reports, qr/.+\.xml$/);
   my @reports = ();
   foreach my $f (@files)
@@ -145,7 +147,7 @@ sub Filename
   my $report_name = shift;
 
   return ($filename{$report_name}) if (defined $filename{$report_name});
-  $dir_reports ||= Octopussy::Directory($DIR_REPORT);
+  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
   $filename{$report_name} = AAT::XML::Filename($dir_reports, $report_name);
 
   return ($filename{$report_name});
@@ -303,20 +305,20 @@ sub Generate
   {
     my $dir = $outputfile;
     $dir =~ s/(.+)\/.+/$1/;
-    Octopussy::Create_Directory($dir);
+    Octopussy::FS::Create_Directory($dir);
     Octopussy::Plugin::Init({lang => $lang}, split /\s*,\s*/, $rc->{columns});
     Octopussy::Report::HTML::Generate($outputfile, $rc->{name}, $begin, $end,
       $devices, $services, $data, $rc->{columns}, $rc->{columns_name}, $stats,
       $lang);
-    my $file_xml = Octopussy::File_Ext($outputfile, 'xml');
+    my $file_xml = Octopussy::FS::File_Ext($outputfile, 'xml');
     Octopussy::Report::XML::Generate($file_xml, $rc->{name}, $begin, $end,
       $devices, $services, $data, $rc->{columns}, $rc->{columns_name}, $stats,
       $lang);
-    Octopussy::Chown($file_xml);
-    my $file_csv = Octopussy::File_Ext($outputfile, 'csv');
+    Octopussy::FS::Chown($file_xml);
+    my $file_csv = Octopussy::FS::File_Ext($outputfile, 'csv');
     Octopussy::Report::CSV::Generate($file_csv, $data, $rc->{columns},
       $rc->{columns_name});
-    Octopussy::Chown($file_csv);
+    Octopussy::FS::Chown($file_csv);
     Octopussy::Report::PDF::Generate_From_HTML($outputfile);
   }
   elsif ($type =~ /^rrd_/)
@@ -326,7 +328,7 @@ sub Generate
   }
   elsif ($type =~ /^ofc_.+/)
   {
-    my $file_json = Octopussy::File_Ext($outputfile, 'json');
+    my $file_json = Octopussy::FS::File_Ext($outputfile, 'json');
     my %ofc_graph = (
       'ofc_area_hollow'  => \&Octopussy::OFC::Area_Hollow,
       'ofc_bar_3d'       => \&Octopussy::OFC::Bar_3D,
@@ -342,10 +344,10 @@ sub Generate
       $ofc_graph{$type}->($rc, $data, $file_json);
     }
   }
-  Octopussy::Chown($outputfile);
-  my $file_info = Octopussy::File_Ext($outputfile, 'info');
+  Octopussy::FS::Chown($outputfile);
+  my $file_info = Octopussy::FS::File_Ext($outputfile, 'info');
   File_Info($file_info, $begin, $end, $devices, $services, $stats);
-  Octopussy::Chown($file_info);
+  Octopussy::FS::Chown($file_info);
   Export($outputfile, $conf_mail, $conf_ftp, $conf_scp);
 
   return ($outputfile);
@@ -401,10 +403,10 @@ sub CmdLine
     $finish, $pid_param, $conf_mail, $conf_ftp, $conf_scp, $lang
   ) = @_;
 
-  my $base    = Octopussy::Directory('programs');
-  my $dir_pid = Octopussy::Directory('running');
+  my $base    = Octopussy::FS::Directory('programs');
+  my $dir_pid = Octopussy::FS::Directory('running');
   my $date    = strftime("%Y%m%d-%H%M", localtime);
-  my $dir     = Octopussy::Directory('data_reports') . $report->{name} . '/';
+  my $dir     = Octopussy::FS::Directory('data_reports') . $report->{name} . '/';
   my $output  = "$dir$report->{name}-$date."
     . (
     $report->{graph_type} eq 'array'
@@ -421,7 +423,7 @@ sub CmdLine
   my $device_list  = join '" --device "',  @devices;
   my $service_list = join '" --service "', ARRAY($service);
 
-  Octopussy::Create_Directory($dir);
+  Octopussy::FS::Create_Directory($dir);
 
   my $cmd =
       "$base$REPORTER_BIN --quiet --report \"$report->{name}\""
@@ -488,7 +490,7 @@ Prints Report's File Information in Tooltip
 sub File_Info_Tooltip
 {
   my ($file, $lang) = @_;
-  my $dir_reports = Octopussy::Directory('data_reports');
+  my $dir_reports = Octopussy::FS::Directory('data_reports');
   $file = "$dir_reports/$1/$file"
     if ($file =~ /^(.+?)-\d{8}-\d{2}\d{2}.info$/);
   my $ttip = undef;
@@ -522,8 +524,8 @@ sub File_Info_Tooltip
 sub Updates_Installation
 {
   my @reports = @_;
-  my $web     = Octopussy::WebSite();
-  $dir_reports ||= Octopussy::Directory($DIR_REPORT);
+  my $web     = Octopussy::Info::WebSite();
+  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
 
   foreach my $r (@reports)
   {

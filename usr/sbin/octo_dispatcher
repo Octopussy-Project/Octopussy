@@ -25,6 +25,7 @@ use AAT::Utils qw( NOT_NULL );
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::RRDTool;
 use Octopussy::Storage;
 
@@ -33,7 +34,7 @@ Readonly my $QR_SYSLOG1 => qr/^\w{3} \s?\d{1,2} \d\d:\d\d:\d\d (\S+)/;
 Readonly my $QR_SYSLOG2 =>
   qr/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}\S+ (\S+)/;
 
-#exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 my $exit_request = 0;
 my $cache        = Octopussy::Cache::Init('octo_dispatcher');
@@ -107,7 +108,7 @@ sub Handle_Dir
     }
   }
   my $dir_incoming = "$dir_device{$device}/$device/Incoming/$year/$month/$day";
-  Octopussy::Create_Directory($dir_incoming);
+  Octopussy::FS::Create_Directory($dir_incoming);
 
   return ($dir_incoming);
 }
@@ -137,7 +138,7 @@ sub Write_Logs_10secs
       close $FILE;
       $nb_events{$device} += $i;
       $dtype_stats{$device_type{$device}} += $i;
-      Octopussy::Chown($file) if (-f $file);
+      Octopussy::FS::Chown($file) if (-f $file);
     }
     else { AAT::Syslog::Message('octo_dispatcher', 'UNABLE_OPEN_FILE', $file); }
     delete $logs{$device};
@@ -195,7 +196,7 @@ Init();
 
 while (!$exit_request)
 {
-  my $fifo = Octopussy::File('fifo');
+  my $fifo = Octopussy::FS::File('fifo');
   Octopussy::Create_Fifo($fifo);
   open my $FIFO, '<', $fifo
     or Octopussy::Die($PROG_NAME, "[CRITICAL] Can't open named pipe $fifo: $!");

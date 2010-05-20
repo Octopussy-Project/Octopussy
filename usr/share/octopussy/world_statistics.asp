@@ -8,7 +8,7 @@ if (defined $f->{submit})
   my $status = (NOT_NULL($f->{send_data}) ? "enabled" : "disabled" );
   Octopussy::World_Stats::Modify( 
     { id => $id, country => $f->{country}, status => $status } );
-  AAT::Syslog("octo_WebUI", "WORLD_STATS_STATUS_CHANGED", $status);
+  AAT::Syslog::Message("octo_WebUI", "WORLD_STATS_STATUS_CHANGED", $status);
 }
 my $conf = Octopussy::World_Stats::Configuration();
 my $c_country = $conf->{country};

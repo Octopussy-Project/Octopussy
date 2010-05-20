@@ -17,7 +17,7 @@ use warnings;
 use Unix::Syslog qw(:macros);
 use Unix::Syslog qw(:subs);
 
-use AAT;
+use AAT::FS;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
@@ -37,7 +37,7 @@ sub Message
 {
   my ($module, $msg, @args) = @_;
 
-  $MSG_LOGS_FILE ||= AAT::File('message_logs');
+  $MSG_LOGS_FILE ||= AAT::FS::File('message_logs');
   if (!defined $AAT_Syslog{GENERIC_CREATED})
   {
     my $conf = AAT::XML::Read($MSG_LOGS_FILE);

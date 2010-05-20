@@ -17,10 +17,9 @@ use Readonly;
 use List::MoreUtils qw(true);
 use Test::More tests => 5;
 
-use Octopussy;
 use Octopussy::Search_Template;
 
-Readonly my $DIR_REPORTS    => Octopussy::Directory('search_templates');
+Readonly my $DIR_REPORTS    => Octopussy::FS::Directory('search_templates');
 Readonly my $PREFIX         => 'Octo_TEST_';
 Readonly my $USER           => "${PREFIX}user";
 Readonly my $DEVICE         => "${PREFIX}device";

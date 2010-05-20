@@ -25,6 +25,7 @@ use AAT::XML;
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::DeviceGroup;
+use Octopussy::FS;
 use Octopussy::Message;
 
 Readonly my $DIR_ALERT   => 'alerts';
@@ -57,7 +58,7 @@ Create a new Alert and then restart parser for Devices concerned
 sub New
 {
   my $conf = shift;
-  $dir_alerts ||= Octopussy::Directory($DIR_ALERT);
+  $dir_alerts ||= Octopussy::FS::Directory($DIR_ALERT);
   my $file_xml = "$dir_alerts/$conf->{name}.xml";
   $conf->{msgbody}     =~ s/\r\n/ \@\@\@ /g;
   $conf->{action_body} =~ s/\r\n/ \@\@\@ /g;
@@ -134,7 +135,7 @@ Get List of Alerts
 
 sub List
 {
-  $dir_alerts ||= Octopussy::Directory($DIR_ALERT);
+  $dir_alerts ||= Octopussy::FS::Directory($DIR_ALERT);
 
   return (AAT::XML::Name_List($dir_alerts));
 }
@@ -172,7 +173,7 @@ sub Filename
   my $alert_name = shift;
 
   return ($filename{$alert_name}) if (defined $filename{$alert_name});
-  $dir_alerts ||= Octopussy::Directory($DIR_ALERT);
+  $dir_alerts ||= Octopussy::FS::Directory($DIR_ALERT);
   $filename{$alert_name} = "$dir_alerts/$alert_name.xml";
 
   return ($filename{$alert_name});

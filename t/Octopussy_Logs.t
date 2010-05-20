@@ -16,15 +16,15 @@ use Readonly;
 
 use Test::More tests => 14;
 
-use Octopussy;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::Logs;
 
 Readonly my $PREFIX    => 'Octo_TEST_';
 Readonly my $DEVICE    => "${PREFIX}Device";
 Readonly my $SERVICE   => "${PREFIX}Service";
 Readonly my $EXTRACTOR => '/usr/sbin/octo_extractor';
-Readonly my $DIR_LOGS  => Octopussy::Directory('data_logs');
+Readonly my $DIR_LOGS  => Octopussy::FS::Directory('data_logs');
 Readonly my $BEGIN     => '201001010000';
 Readonly my $END       => '201001010029';
 Readonly my $YEAR      => '2010';

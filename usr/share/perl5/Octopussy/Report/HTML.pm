@@ -30,7 +30,7 @@ sub CSS
   my $style = shift;
 
   my $css = '';
-  my $dir = AAT::Directory('themes');
+  my $dir = AAT::Application::Directory('AAT', 'themes');
   if ( defined open my $FILE, '<', "$dir$style/report_style.css" )
   {
     while (<$FILE>) { $css .= $_; }

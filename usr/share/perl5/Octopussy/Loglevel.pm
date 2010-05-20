@@ -19,8 +19,8 @@ use List::MoreUtils qw(uniq);
 
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
-use Octopussy;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::Loglevel;
 use Octopussy::Service;
 
@@ -74,7 +74,7 @@ sub List
   else
   {
     my %field;
-    my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_LOGLEVEL));
     foreach my $l (ARRAY($conf->{loglevel}))
     {
       $field{$l->{level}} = 1;
@@ -168,7 +168,7 @@ sub Colors
 {
   my %color = ();
 
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_LOGLEVEL));
   foreach my $l (ARRAY($conf->{loglevel}))
   {
     $color{$l->{value}} = $l->{color};
@@ -185,7 +185,7 @@ sub Levels
 {
   my %level = ();
 
-  my $conf = AAT::XML::Read(Octopussy::File($FILE_LOGLEVEL));
+  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_LOGLEVEL));
   foreach my $l (ARRAY($conf->{loglevel}))
   {
     $level{$l->{value}} = $l->{level};

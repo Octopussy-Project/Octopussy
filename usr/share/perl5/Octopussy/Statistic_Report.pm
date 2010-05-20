@@ -19,6 +19,7 @@ use AAT::FS;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy;
+use Octopussy::FS;
 use Octopussy::Message;
 use Octopussy::Service;
 use Octopussy::Type;
@@ -41,7 +42,7 @@ sub New
 {
   my $conf = shift;
 
-  $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
+  $dir_stat_reports ||= Octopussy::FS::Directory($DIR_STAT_REPORT);
   AAT::XML::Write("$dir_stat_reports/$conf->{name}.xml", $conf, $XML_ROOT);
 
   return ($conf->{name});
@@ -87,7 +88,7 @@ Get List of Statistic Report
 
 sub List
 {
-  $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
+  $dir_stat_reports ||= Octopussy::FS::Directory($DIR_STAT_REPORT);
 
   return (AAT::XML::Name_List($dir_stat_reports));
 }
@@ -104,7 +105,7 @@ sub Filename
 
   return ($filename{$statistic_report_name})
     if (defined $filename{$statistic_report_name});
-  $dir_stat_reports ||= Octopussy::Directory($DIR_STAT_REPORT);
+  $dir_stat_reports ||= Octopussy::FS::Directory($DIR_STAT_REPORT);
   $filename{$statistic_report_name} =
     AAT::FS::Directory_Files($dir_stat_reports, $statistic_report_name);
 

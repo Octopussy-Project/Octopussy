@@ -27,6 +27,8 @@ use AAT::XML;
 use Octopussy;
 use Octopussy::Cache;
 use Octopussy::Device;
+use Octopussy::FS;
+use Octopussy::Info;
 use Octopussy::Service;
 use Octopussy::Table;
 
@@ -54,7 +56,7 @@ sub New
 {
   my $conf = shift;
 
-  $dir_services ||= Octopussy::Directory($DIR_SERVICE);
+  $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
   $conf->{version} = Octopussy::Timestamp_Version(undef);
   AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, $XML_ROOT);
 
@@ -89,7 +91,7 @@ Returns List of Services
 
 sub List
 {
-  $dir_services ||= Octopussy::Directory($DIR_SERVICE);
+  $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
 
   return (AAT::XML::Name_List($dir_services));
 }
@@ -139,7 +141,7 @@ sub Filename
   my $service = shift;
 
   return ($filename{$service}) if (defined $filename{$service});
-  $dir_services ||= Octopussy::Directory($DIR_SERVICE);
+  $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
   $filename{$service} = "$dir_services/$service.xml";
 
   return ($filename{$service});
@@ -616,8 +618,8 @@ Gets Services Updates from Internet
 sub Updates
 {
   my %update;
-  my $web         = Octopussy::WebSite();
-  my $dir_running = Octopussy::Directory('running');
+  my $web         = Octopussy::Info::WebSite();
+  my $dir_running = Octopussy::FS::Directory('running');
   my $file        = "$dir_running/_services.idx";
 
   AAT::Download::File('Octopussy', "$web/Download/Services/_services.idx",
@@ -647,8 +649,8 @@ Installs Services Updates
 sub Updates_Installation
 {
   my @services = @_;
-  my $web      = Octopussy::WebSite();
-  $dir_services ||= Octopussy::Directory($DIR_SERVICE);
+  my $web      = Octopussy::Info::WebSite();
+  $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
 
   foreach my $s (@services)
   {
@@ -669,8 +671,8 @@ Returns Service Updates Messages
 sub Update_Get_Messages
 {
   my $service     = shift;
-  my $web         = Octopussy::WebSite();
-  my $dir_running = Octopussy::Directory('running');
+  my $web         = Octopussy::Info::WebSite();
+  my $dir_running = Octopussy::FS::Directory('running');
 
   AAT::Download::File('Octopussy', "$web/Download/Services/$service.xml",
     "$dir_running$service.xml");

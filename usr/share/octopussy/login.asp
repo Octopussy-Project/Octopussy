@@ -25,12 +25,12 @@ if ((defined $f->{login}) && (defined $f->{password}))
 		$Session->{AAT_THEME} = $auth->{theme};
 		$Session->{AAT_MENU_MODE} = $auth->{menu_mode};
 		AAT::Translation::Init($Session->{AAT_LANGUAGE});
-		AAT::Syslog("octo_WebUI", "USER_LOGGED_IN");
+		AAT::Syslog::Message("octo_WebUI", "USER_LOGGED_IN");
  	}
  	else
  	{
 		$Session->{AAT_MSG_ERROR} = "_MSG_INVALID_LOGIN_PASSWORD";
-		AAT::Syslog("octo_WebUI", "USER_FAILED_LOGIN");
+		AAT::Syslog::Message("octo_WebUI", "USER_FAILED_LOGIN");
   	$Response->Redirect("./login.asp");
  	}
 	my $redirect = (($auth->{role} =~  /restricted/i) 

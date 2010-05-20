@@ -17,8 +17,8 @@ use Readonly;
 use JSON;
 
 use AAT::Utils qw( ARRAY );
-use Octopussy;
 use Octopussy::DB;
+use Octopussy::FS;
 
 Readonly my $STEP_HBAR => 10;
 Readonly my $STYLE_TITLE =>
@@ -41,7 +41,7 @@ sub Generate
   {
     print {$FILE} $json;
     close $FILE;
-    Octopussy::Chown($output_file);
+    Octopussy::FS::Chown($output_file);
 
     return ($output_file);
   }

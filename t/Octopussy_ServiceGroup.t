@@ -16,10 +16,11 @@ use Readonly;
 
 use Test::More tests => 8;
 
+use Octopussy::FS;
 use Octopussy::ServiceGroup;
 
 Readonly my $PREFIX          => 'Octo_TEST_';
-Readonly my $SG_FILE         => Octopussy::File('servicegroups');
+Readonly my $SG_FILE         => Octopussy::FS::File('servicegroups');
 Readonly my $SG_ID           => "${PREFIX}servicegroup";
 Readonly my $SG_DESC         => "${PREFIX}servicegroup Description";
 Readonly my $DIR_SERVICES    => '/var/lib/octopussy/conf/services/';

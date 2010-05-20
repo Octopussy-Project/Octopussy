@@ -16,7 +16,7 @@ use warnings;
 use Readonly;
 
 use AAT::XML;
-use Octopussy;
+use Octopussy::FS;
 
 Readonly my $DIR_MAP => 'maps';
 
@@ -32,7 +32,7 @@ Get list of Maps
 
 sub List
 {
-  $dir_maps ||= Octopussy::Directory($DIR_MAP);
+  $dir_maps ||= Octopussy::FS::Directory($DIR_MAP);
 
   return (AAT::XML::Name_List($dir_maps));
 }
@@ -47,7 +47,7 @@ sub Filename
 {
   my $map = shift;
 
-  $dir_maps ||= Octopussy::Directory($DIR_MAP);
+  $dir_maps ||= Octopussy::FS::Directory($DIR_MAP);
 
   return (AAT::XML::Filename($dir_maps, $map));
 }

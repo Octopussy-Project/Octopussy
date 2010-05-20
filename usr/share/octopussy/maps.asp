@@ -4,7 +4,7 @@
 <%
 my $map = $Request->QueryString("map");
 my $url = "./maps.asp";
-my $website = Octopussy::WebSite() . "/dokuwiki/doku.php";
+my $website = Octopussy::Info::WebSite();
 my @maps = Octopussy::Map::List();
 $map = $maps[0]	if (scalar(@maps) == 1);
 foreach my $m (@maps)

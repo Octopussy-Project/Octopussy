@@ -54,6 +54,7 @@ use AAT::Proxy;
 use AAT::Syslog;
 use AAT::Theme;
 use AAT::Translation;
+use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 
 Readonly my $FILE_DEBUG => '/var/run/aat/AAT.debug';
@@ -80,48 +81,6 @@ sub DEBUG
   }
 
   return ("$hour:$min:$sec > $text");
-}
-
-
-=head2 Padding($str, $padding)
-
-Fills the string $str with '0' to have $padding characters 
-( ex: Padding("7", 3) returns "007" )
-
-=cut
-
-sub Padding
-{
-  my ($str, $padding) = @_;
-  $padding ||= 3;
-
-  return (('0' x ($padding - length($str))) . $str);
-}
-
-=head2 Directory($dir)
-
-Returns Configuration Directory for directory '$dir'
-
-=cut
-
-sub Directory
-{
-  my $dir = shift;
-
-  return (AAT::Application::Directory('AAT', $dir));
-}
-
-=head2 File($file)
-
-Returns Configuration filename for file '$file'
-
-=cut
-
-sub File
-{
-  my $file = shift;
-
-  return (AAT::Application::File('AAT', $file));
 }
 
 
@@ -226,17 +185,6 @@ sub Translation
   return (AAT::Translation::Get($lang, $str));
 }
 
-=head2 Syslog($module, $msg, @args)
-
-
-=cut
-
-sub Syslog
-{
-  my ($module, $msg, @args) = @_;
-
-  AAT::Syslog::Message($module, $msg, @args);
-}
 
 ##################################################
 
@@ -323,6 +271,7 @@ sub JS_Inc
   $main::Response->Include('AAT/INC/AAT_JS_Inc.inc', %{$args});
 }
 
+
 =head2 File_Save($conf)
 
 =cut 
@@ -334,7 +283,7 @@ sub File_Save
   $main::Response->{ContentType} = $conf->{contenttype};
   $main::Response->AddHeader('Content-Disposition',
     "filename=\"$conf->{output_file}\"");
-  if (AAT::NOT_NULL($conf->{input_file}))
+  if (NOT_NULL($conf->{input_file}))
   {
     if (defined open(my $FILE, '<', $conf->{input_file}))
     {
@@ -342,7 +291,7 @@ sub File_Save
       close($FILE);
     }
   }
-  elsif (AAT::NOT_NULL($conf->{input_data}))
+  elsif (NOT_NULL($conf->{input_data}))
   {
     $main::Response->BinaryWrite($conf->{input_data});
   }

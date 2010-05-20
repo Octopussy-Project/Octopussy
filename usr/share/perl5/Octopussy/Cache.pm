@@ -18,6 +18,7 @@ use Readonly;
 use Cache::FileCache;
 
 use Octopussy;
+use Octopussy::FS;
 
 Readonly my $EXPIRES_COMMANDER  => '1 hour';
 Readonly my $EXPIRES_DISPATCHER => '2 days';
@@ -69,8 +70,8 @@ sub Set
 {
   my ($namespace, $expires) = @_;
 
-  my $dir = Octopussy::Directory('cache');
-  Octopussy::Create_Directory($dir);
+  my $dir = Octopussy::FS::Directory('cache');
+  Octopussy::FS::Create_Directory($dir);
   my $cache = new Cache::FileCache(
     {
       namespace          => $namespace,

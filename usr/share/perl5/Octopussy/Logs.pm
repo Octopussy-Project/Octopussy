@@ -134,8 +134,8 @@ sub Init_Directories
   my $storage  = Octopussy::Storage::Default();
   my $incoming = Octopussy::Storage::Directory($storage->{incoming});
   my $unknown  = Octopussy::Storage::Directory($storage->{unknown});
-  Octopussy::Create_Directory("$incoming/$device/Incoming/");
-  Octopussy::Create_Directory("$unknown/$device/Unknown/");
+  Octopussy::FS::Create_Directory("$incoming/$device/Incoming/");
+  Octopussy::FS::Create_Directory("$unknown/$device/Unknown/");
 
   return ("$incoming/$device/Incoming/", "$unknown/$device/Unknown/");
 }
@@ -478,7 +478,7 @@ sub Incoming_Files
   my $device = shift;
 
   my $dir = Octopussy::Storage::Directory_Incoming($device);
-  Octopussy::Create_Directory("$dir/$device/Incoming/");
+  Octopussy::FS::Create_Directory("$dir/$device/Incoming/");
   my @files = `find "$dir/$device/Incoming/" -name "msg_*.log"`;
 
   return (sort @files);
@@ -497,7 +497,7 @@ sub Unknown_Files
   my @unknown = ();
 
   my $dir = Octopussy::Storage::Directory_Unknown($device);
-  Octopussy::Create_Directory("$dir/$device/Unknown/");
+  Octopussy::FS::Create_Directory("$dir/$device/Unknown/");
   my @files        = `find "$dir/$device/Unknown/" -name "msg_*.log.gz"`;
   my @sorted_files = sort @files;
   return (@sorted_files) if (!defined $first_file);
@@ -519,7 +519,7 @@ sub Unknown_Number
   my $max_nb = Octopussy::Parameter('wizard_max_msgs');
   my ($total, $nb) = (0, 0);
   my $dir = Octopussy::Storage::Directory_Unknown($device);
-  Octopussy::Create_Directory("$dir/$device/Unknown/");
+  Octopussy::FS::Create_Directory("$dir/$device/Unknown/");
 
   foreach my $fy (glob "$dir/$device/Unknown/*")
   {

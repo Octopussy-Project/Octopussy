@@ -1,6 +1,6 @@
 <%
 my $f = $Request->Form();
-my $run_dir = Octopussy::Directory("running");
+my $run_dir = Octopussy::FS::Directory("running");
 my $login = $Session->{AAT_LOGIN};
 my $msg_nb_lines = AAT::Translation("_MSG_NB_LINES");
 my $LINES_BY_PAGE = 1000;

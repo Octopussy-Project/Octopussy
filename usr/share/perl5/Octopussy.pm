@@ -22,13 +22,14 @@ use File::Path;
 use Proc::PID::File;
 use POSIX qw(mkfifo strftime);
 
-#use AAT;
 use AAT::Application;
 use AAT::Download;
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy::Cache;
+use Octopussy::FS;
+use Octopussy::Info;
 
 Readonly my $APPLICATION_NAME => 'Octopussy';
 Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
@@ -38,32 +39,6 @@ Readonly my $IDX_STAT_GID => 5;
 $Octopussy::VERSION = qv('0.9.9.9.7');
 
 =head1 FUNCTIONS
-
-=head2 Email()
-
-Returns Octopussy Support Email
-
-=cut
-
-sub Email
-{
-  my $info = AAT::Application::Info($APPLICATION_NAME);
-
-  return ($info->{email});
-}
-
-=head2 User()
-
-Returns Octopussy System User
-
-=cut
-
-sub User
-{
-  my $info = AAT::Application::Info($APPLICATION_NAME);
-
-  return ($info->{user});
-}
 
 =head2 Valid_User($prog_name)
 
@@ -95,19 +70,6 @@ Returns Octopussy main module Version
 sub Version
 {
   return ($Octopussy::VERSION);
-}
-
-=head2 WebSite()
-
-Returns Octopussy WebSite
-
-=cut
-
-sub WebSite
-{
-  my $info = AAT::Application::Info($APPLICATION_NAME);
-
-  return ($info->{website});
 }
 
 
@@ -163,36 +125,6 @@ sub Die
   die $msg;
 }
 
-=head2 Directory($dir)
-
-Returns Octopussy Directory '$dir' Value
-
-=cut
-
-sub Directory
-{
-  my $dir = shift;
-
-  return (AAT::Application::Directory($APPLICATION_NAME, $dir));
-}
-
-=head2 Directories(@dirs)
-
-Returns Octopussy Directories from '@dirs' List
-
-=cut
-
-sub Directories
-{
-  my @dirs = @_;
-  my @list = ();
-  foreach my $d (@dirs)
-  {
-    push @list, AAT::Application::Directory($APPLICATION_NAME, $d);
-  }
-
-  return (@list);
-}
 
 =head2 Error
 
@@ -210,36 +142,6 @@ sub Error
   return ("$module: $message\n");
 }
 
-=head2 File($file)
-
-Returns Octopussy File '$file' Value
-
-=cut
-
-sub File
-{
-  my $file = shift;
-
-  return (AAT::Application::File($APPLICATION_NAME, $file));
-}
-
-=head2 Files(@files)
-
-Returns Octopussy Files from '@files' List
-
-=cut
-
-sub Files
-{
-  my @files = @_;
-  my @list  = ();
-  foreach my $f (@files)
-  {
-    push @list, AAT::Application::File($APPLICATION_NAME, $f);
-  }
-
-  return (@list);
-}
 
 =head2 Parameter($param)
 
@@ -278,7 +180,7 @@ Get version of the last release on Sourceforge
 
 sub Sourceforge_Version
 {
-  my $dir_running = Octopussy::Directory('running');
+  my $dir_running = Octopussy::FS::Directory('running');
   my $version     = undef;
   AAT::Download::File($APPLICATION_NAME, $SF_SITE,
     "${dir_running}/octopussy.sf_version");
@@ -310,7 +212,7 @@ sub Web_Updates
   my $file = '_' . lc($type) . '.idx';
   my %update;
   my $website     = WebSite();
-  my $dir_running = Octopussy::Directory('running');
+  my $dir_running = Octopussy::FS::Directory('running');
   AAT::Download::File('Octopussy', "$website/Download/$type/$file",
     "$dir_running$file");
   if (defined open my $UPDATE, '<', "$dir_running$file")
@@ -323,45 +225,6 @@ sub Web_Updates
   return (\%update);
 }
 
-=head2 Chown(@files)
-
-Changes Owner (user & group) for the files '@files'
-
-=cut
-
-sub Chown
-{
-  my @files = @_;
-
-  my $user = User();
-  my $list = '';
-  foreach my $f (@files)
-  {
-    $list .= "\"$f\" ";
-  }
-  system "chown -R $user:$user $list 2&> /dev/null";
-
-  return (1);
-}
-
-=head2 Create_Directory($dir)
-
-Creates Directory '$dir'
-
-=cut
-
-sub Create_Directory
-{
-  my $dir = shift;
-
-  if (!-d $dir)
-  {
-    mkpath($dir);
-    Chown($dir);
-  }
-
-  return ($dir);
-}
 
 =head2 Create_Fifo($fifo)
 
@@ -409,7 +272,7 @@ sub PID_File
 {
   my $name = shift;
 
-  my $dir_pid  = Octopussy::Directory('running');
+  my $dir_pid  = Octopussy::FS::Directory('running');
   my $file_pid = $dir_pid . $name . '.pid';
   my $user     = User();
 
@@ -463,7 +326,7 @@ sub Dialog
 {
   my $id = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::File('dialogs'));
+  my $conf = AAT::XML::Read(Octopussy::FS::File('dialogs'));
   foreach my $d (ARRAY($conf->{dialog}))
   {
     return ($d) if ($d->{d_id} eq $id);
@@ -480,7 +343,7 @@ Reloads Dispatcher
 
 sub Dispatcher_Reload
 {
-  my $dir_pid = Octopussy::Directory('running');
+  my $dir_pid = Octopussy::FS::Directory('running');
   opendir DIR, $dir_pid;
   my @files = grep { /octo_dispatcher\.pid$/ } readdir DIR;
   closedir DIR;
@@ -562,8 +425,8 @@ Installs Updates
 sub Updates_Installation
 {
   my @updates  = @_;
-  my $web      = Octopussy::WebSite();
-  my $dir_main = Octopussy::Directory('main');
+  my $web      = Octopussy::Info::WebSite();
+  my $dir_main = Octopussy::FS::Directory('main');
 
   foreach my $u (@updates)
   {

@@ -19,7 +19,7 @@ use Readonly;
 use AAT::FS;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
-use Octopussy;
+use Octopussy::FS;
 
 Readonly my $DIR_PLUGIN         => 'plugins';
 Readonly my $DIR_PLUGIN_MODULES => '/usr/share/perl5/Octopussy/Plugin/';
@@ -93,7 +93,7 @@ Returns List of Plugins
 
 sub List
 {
-  $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
+  $dir_plugins ||= Octopussy::FS::Directory($DIR_PLUGIN);
 
   return (AAT::XML::Name_List($dir_plugins));
 }
@@ -108,7 +108,7 @@ sub Functions
 {
   my @functions = ();
 
-  $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
+  $dir_plugins ||= Octopussy::FS::Directory($DIR_PLUGIN);
   my @files = AAT::FS::Directory_Files($dir_plugins, qr/.+\.xml$/);
   foreach my $f (@files)
   {
@@ -133,7 +133,7 @@ sub Function_Source
     my $mod = $1;
     if (!defined $function_source{$fct})
     {
-      $dir_plugins ||= Octopussy::Directory($DIR_PLUGIN);
+      $dir_plugins ||= Octopussy::FS::Directory($DIR_PLUGIN);
       my $conf = AAT::XML::Read("$dir_plugins/$mod.xml");
       foreach my $pf (ARRAY($conf->{function}))
       {
@@ -188,7 +188,7 @@ sub Field_Data
     }
     else
     {
-      my $plugin_sql = Octopussy::Plugin::SQL_Convert($long_field);
+      my $plugin_sql = SQL_Convert($long_field);
       $result = $line->{$plugin_sql};
     }
   }

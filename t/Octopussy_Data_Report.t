@@ -18,8 +18,9 @@ use File::Path;
 use Test::More tests => 5;
 
 use Octopussy::Data_Report;
+use Octopussy::FS;
 
-Readonly my $DIR_DATA_REPORTS => Octopussy::Directory('data_reports');
+Readonly my $DIR_DATA_REPORTS => Octopussy::FS::Directory('data_reports');
 Readonly my $PREFIX           => 'Octo_TEST_';
 Readonly my $DATA_REPORT      => "${PREFIX}Data_Report";
 

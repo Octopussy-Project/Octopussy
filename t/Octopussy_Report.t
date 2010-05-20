@@ -16,10 +16,10 @@ use Readonly;
 
 use Test::More tests => 6;
 
-use Octopussy;
+use Octopussy::FS;
 use Octopussy::Report;
 
-Readonly my $DIR_REPORTS  => Octopussy::Directory('reports');
+Readonly my $DIR_REPORTS  => Octopussy::FS::Directory('reports');
 Readonly my $PREFIX       => 'Octo_TEST_';
 Readonly my $REPORT_TITLE => "${PREFIX}report";
 Readonly my $REPORT_TABLE => 'Message';

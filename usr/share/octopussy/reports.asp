@@ -25,7 +25,7 @@ if ((NOT_NULL($action)) && ($action eq "remove")
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	Octopussy::Report::Remove($report);
-	AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Report", $report);
+	AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Report", $report);
  	$Response->Redirect("./reports.asp");	
 }
 elsif (NULL($report))

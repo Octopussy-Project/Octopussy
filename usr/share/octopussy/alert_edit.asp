@@ -30,7 +30,7 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
       action_body => Encode::decode_utf8($f->{action_body}),
       }
 		);			
-	AAT::Syslog("octo_WebUI", "GENERIC_MODIFIED", "Alert", $f->{old_alert});
+	AAT::Syslog::Message("octo_WebUI", "GENERIC_MODIFIED", "Alert", $f->{old_alert});
 	$Response->Redirect("./alerts.asp");
 }
 else

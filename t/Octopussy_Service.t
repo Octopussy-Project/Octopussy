@@ -16,10 +16,10 @@ use Readonly;
 
 use Test::More tests => 11;
 
-use Octopussy;
+use Octopussy::FS;
 use Octopussy::Service;
 
-Readonly my $DIR_SERVICES => Octopussy::Directory('services');
+Readonly my $DIR_SERVICES => Octopussy::FS::Directory('services');
 Readonly my $PREFIX       => 'Octo_TEST_';
 Readonly my $SERVICE      => "${PREFIX}Service";
 Readonly my $SERVICE_DESC => "${PREFIX}Service Description";

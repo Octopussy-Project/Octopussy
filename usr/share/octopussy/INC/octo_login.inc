@@ -1,7 +1,7 @@
 <% 
 my %arg = @_;
 my $version = "Octopussy " . Octopussy::Version();
-my $website = Octopussy::WebSite(); 
+my $website = Octopussy::Info::WebSite(); 
 my $redirect = $arg{redirect};
 %>
 <AAT:Form method="POST" action="./login.asp?redirect=$redirect">

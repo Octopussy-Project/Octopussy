@@ -139,7 +139,7 @@ foreach my $d (AAT::DB::Query("Octopussy", $query))
   $i++;
 %>
   <AAT:BoxRow class="$class">
-  <AAT:BoxCol align="C"><%= AAT::Padding($i, 2) %></AAT:BoxCol>
+  <AAT:BoxCol align="C"><%= sprintf("%02d", $i) %></AAT:BoxCol>
   <AAT:BoxCol align="C"><AAT:Picture file="$flagfile" /></AAT:BoxCol> 
   <AAT:BoxCol><%= $d->{cpu} %></AAT:BoxCol>
   <AAT:BoxCol align="R"><%= $d->{memory} %> M</AAT:BoxCol>

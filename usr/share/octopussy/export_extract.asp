@@ -1,5 +1,5 @@
 <%
-my $run_dir = Octopussy::Directory("running");
+my $run_dir = Octopussy::FS::Directory("running");
 my $login = $Session->{AAT_LOGIN};
 my $filename = $Session->{extracted};
 

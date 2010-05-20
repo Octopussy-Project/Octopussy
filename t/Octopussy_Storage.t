@@ -17,10 +17,11 @@ use Readonly;
 use List::MoreUtils qw(none);
 use Test::More tests => 7;
 
+use Octopussy::FS;
 use Octopussy::Storage;
 
 Readonly my $PREFIX       => 'Octo_TEST_';
-Readonly my $FILE_STORAGE => Octopussy::File('storages');
+Readonly my $FILE_STORAGE => Octopussy::FS::File('storages');
 Readonly my $STORAGE      => "${PREFIX}storage";
 Readonly my $STORAGE_PATH => '/tmp';
 

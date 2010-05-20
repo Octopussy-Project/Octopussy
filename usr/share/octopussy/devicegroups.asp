@@ -15,7 +15,7 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 	if ($action eq "remove")
 	{
 		Octopussy::DeviceGroup::Remove($dg);
-		AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "DeviceGroup", $dg);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "DeviceGroup", $dg);
 	}
 	else
 	{
@@ -41,7 +41,7 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 				Octopussy::DeviceGroup::Add({ dg_id => $dg, description => $dg_desc,
 					type => "static", device => $f->{devices} });
 		}
-		AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "DeviceGroup", $dg)
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "DeviceGroup", $dg)
 			if (NOT_NULL($Session->{AAT_MSG_ERROR}));
 	}
 	$Response->Redirect("./devicegroups.asp");

@@ -19,8 +19,8 @@ use List::MoreUtils qw(uniq);
 
 use AAT::Utils qw( ARRAY NOT_NULL);
 use AAT::XML;
-use Octopussy;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::Service;
 
 Readonly my $FILE_TAXONOMY => 'taxonomy';
@@ -68,7 +68,7 @@ sub List
   else
   {
     my %field;
-    my $conf = AAT::XML::Read(Octopussy::File($FILE_TAXONOMY));
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TAXONOMY));
     foreach my $t (ARRAY($conf->{taxonomy}))
     {
       $field{$t->{value}} = 1;
@@ -161,7 +161,7 @@ sub Unknowns
 
 sub Colors
 {
-  my $conf  = AAT::XML::Read(Octopussy::File($FILE_TAXONOMY));
+  my $conf  = AAT::XML::Read(Octopussy::FS::File($FILE_TAXONOMY));
   my %color = ();
   foreach my $t (ARRAY($conf->{taxonomy}))
   {

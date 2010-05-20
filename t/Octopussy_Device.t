@@ -19,8 +19,9 @@ use Test::More tests => 15;
 
 use Octopussy;
 use Octopussy::Device;
+use Octopussy::FS;
 
-Readonly my $DIR_DEVICES  => Octopussy::Directory('devices');
+Readonly my $DIR_DEVICES  => Octopussy::FS::Directory('devices');
 Readonly my $PREFIX       => 'Octo_TEST_';
 Readonly my $DEVICE       => "${PREFIX}device";
 Readonly my $DEV_DESC     => "${PREFIX}device Description";

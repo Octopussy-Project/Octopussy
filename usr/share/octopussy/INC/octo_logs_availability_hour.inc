@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 my ($device, $year, $month, $day, $hour) = ($arg{device}, $arg{year}, 
-	AAT::Padding($arg{month}, 2), AAT::Padding($arg{day}, 2), $arg{hour});
+	sprintf("%02d", $arg{month}), sprintf("%02d", $arg{day}), $arg{hour});
 
 my %start = ( year => $year, month => $month, day => $day, 
 	hour => $hour, min => 0 );
@@ -21,7 +21,7 @@ my $link_prev = "./logs_availability.asp?device=$device"
       	? "&year=" . ($year - 1) . "&month=12&day=31&hour=23"
       	: "&year=$year&month=" . ($month - 1) . "&day=" . $prev_nb_days . "&hour=23")
     	: "&year=$year&month=$month&day=" . ($day - 1) . "&hour=23")
-		: "&year=$year&month=$month&day=$day&hour=" . AAT::Padding($hour - 1, 2));
+		: "&year=$year&month=$month&day=$day&hour=" . sprintf("%02d", $hour - 1));
 my $link_next = "./logs_availability.asp?device=$device"
 	. (($hour =~ /^23$/)
   	? (($day =~ /^$nb_days$/)
@@ -29,7 +29,7 @@ my $link_next = "./logs_availability.asp?device=$device"
       	? "&year=" . ($year + 1) . "&month=1&day=1&hour=00"
       	: "&year=$year&month=" . ($month + 1) . "&day=1&hour=00")
     	: "&year=$year&month=$month&day=" . ($day + 1) . "&hour=00")
-		: "&year=$year&month=$month&day=$day&hour=" . AAT::Padding($hour + 1, 2));
+		: "&year=$year&month=$month&day=$day&hour=" . sprintf("%02d", $hour + 1));
 %>
 <script type="text/javascript">
 function logs_viewer_min(service,min)
@@ -62,7 +62,7 @@ function logs_viewer_min(service,min)
 	<%
 	foreach my $m (0..59)
 	{ 
-		my $minute = AAT::Padding($m, 2);
+		my $minute = sprintf("%02d", $m);
 		%><td><AAT:Label value="$minute" size="-1" /></td><%
 	}
 	%>
@@ -72,7 +72,7 @@ function logs_viewer_min(service,min)
 	<td><AAT:Label value="$device" style="B" /></td><%
 	foreach my $m (0..59)
   {
-    my $min = AAT::Padding($m, 2);
+    my $min = sprintf("%02d", $m);
     my $color = (!defined $avail->{_DEVICE_}{$month}{$day}{$hour}{$min} 
 			? "gray" : "green");
   	%><td bgcolor="<%= $color %>" height="32" width="10" onclick="logs_viewer_min('-ANY-',<%= $min %>)"></td><%
@@ -86,7 +86,7 @@ function logs_viewer_min(service,min)
 		<td><AAT:Label value="$service" style="B" size="-1" /></td><%
 		foreach my $m (0..59)
   	{
-    	my $min = AAT::Padding($m, 2);
+    	my $min = sprintf("%02d", $m);
 			my $color = (!defined $avail->{$service}{$month}{$day}{$hour}{$min} 
       	? "gray" : "green");
 			%><td bgcolor="<%= $color %>" height="32" width="10" onclick="logs_viewer_min('<%= $service %>',<%= $min %>)"></td><%

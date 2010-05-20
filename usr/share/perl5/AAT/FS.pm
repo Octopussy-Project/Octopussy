@@ -14,6 +14,7 @@ package AAT::FS;
 use strict;
 use warnings;
 
+
 =head1 FUNCTIONS
 
 =head2 Directory_Files($dir, $pattern)
@@ -34,6 +35,20 @@ sub Directory_Files
   }
 
   return (sort @files);
+}
+
+
+=head2 File($file)
+
+Returns Configuration filename for file '$file'
+
+=cut
+
+sub File
+{
+  my $file = shift;
+
+  return (AAT::Application::File('AAT', $file));
 }
 
 1;

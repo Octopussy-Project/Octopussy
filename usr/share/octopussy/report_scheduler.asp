@@ -16,7 +16,7 @@ if ((defined $name) && ($Session->{AAT_ROLE} !~ /ro/i))
 	if ($action =~ /remove/)
 	{
 		Octopussy::Schedule::Remove($name);
-		AAT::Syslog("octo_WebUI", "GENERIC_DELETED", "Schedule", $name);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Schedule", $name);
 		$Response->Redirect("./scheduler.asp");
 	}
 	else
@@ -56,7 +56,7 @@ if ((defined $name) && ($Session->{AAT_ROLE} !~ /ro/i))
 			%><AAT:Message level="2" msg="$error" /><%
 			}
 			else
-				{ AAT::Syslog("octo_WebUI", "GENERIC_CREATED", "Schedule", $name); }
+				{ AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Schedule", $name); }
 		}
 		else
 		{

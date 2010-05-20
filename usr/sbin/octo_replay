@@ -26,6 +26,7 @@ Getopt::Long::Configure('bundling');
 use AAT::Utils qw( ARRAY );
 use Octopussy;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::Logs;
 use Octopussy::Storage;
 
@@ -118,7 +119,7 @@ foreach my $min (sort keys %{$files})
     {
       foreach my $l (sort @logs) { print {$INCOMING} $l; }
       close $INCOMING;
-      Octopussy::Chown($incoming);
+      Octopussy::FS::Chown($incoming);
     }
   }
 }

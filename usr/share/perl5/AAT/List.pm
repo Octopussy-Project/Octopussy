@@ -14,7 +14,7 @@ package AAT::List;
 use strict;
 use warnings;
 
-use AAT;
+use AAT::Application;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
@@ -30,7 +30,7 @@ sub Configuration
 {
   my $list = shift;
 
-  my $dir  = AAT::Directory('lists');
+  my $dir  = AAT::Application::Directory('AAT', 'lists');
   my $conf = AAT::XML::Read("$dir${list}.xml");
 
   return ($conf);
