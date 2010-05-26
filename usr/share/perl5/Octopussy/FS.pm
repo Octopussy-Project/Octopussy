@@ -15,8 +15,10 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT::Application;
+use File::Path;
 
+use AAT::Application;
+use Octopussy::Info;
 
 Readonly my $APPLICATION_NAME => 'Octopussy';
 
@@ -32,7 +34,7 @@ sub Chown
 {
   my @files = @_;
 
-  my $user = User();
+  my $user = Octopussy::Info::User();
   my $list = '';
   foreach my $f (@files)
   {

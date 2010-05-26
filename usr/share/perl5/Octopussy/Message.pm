@@ -677,18 +677,19 @@ sub Parse_List
   return (@msg_to_parse);
 }
 
-=head2 Alerts($device, $service, $message, \@dev_alerts, \%contact)
+=head2 Alerts($device, $service, $message, \@dev_alerts)
 
 =cut
 
 sub Alerts
 {
-  my ($device, $service, $message, $dev_alerts, $contact) = @_;
+  my ($device, $service, $message, $dev_alerts) = @_; #, $contact) = @_;
   my @alerts    = ();
   my %log_level = Octopussy::Loglevel::Levels();
 
   foreach my $ac (ARRAY($dev_alerts))
   {
+=head2 comment  	
     my @mails = ();
     my @ims   = ();
     foreach my $c (ARRAY($ac->{contact}))
@@ -698,6 +699,7 @@ sub Alerts
       push @ims, $contact->{$c}->{im}
         if (defined $contact->{$c}->{im});
     }
+=cut    
     if ($ac->{type} =~ /Dynamic/i)
     {
       my $ac_level = (
@@ -732,8 +734,9 @@ sub Alerts
             action_host       => $ac->{action_host},       # for Nagios & Zabbix
             action_service    => $ac->{action_service},    # for Nagios & Zabbix
             action_body       => $ac->{action_body},       # for Nagios & Zabbix
-            imdest            => \@ims,
-            maildest          => \@mails
+            contacts					=> $ac->{contact},
+            #imdest            => \@ims,
+            #maildest          => \@mails
           };
         }
       }
@@ -771,8 +774,9 @@ sub Alerts
             action_host       => $ac->{action_host},       # for Nagios & Zabbix
             action_service    => $ac->{action_service},    # for Nagios & Zabbix
             action_body       => $ac->{action_body},       # for Nagios & Zabbix
-            imdest            => \@ims,
-            maildest          => \@mails
+            contacts					=> $ac->{contact},
+            #imdest            => \@ims,
+            #maildest          => \@mails
           };
         }
       }

@@ -23,6 +23,7 @@ use AAT::Utils qw( ARRAY NOT_NULL );
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::DeviceGroup;
+use Octopussy::FS;
 use Octopussy::Logs;
 use Octopussy::Service;
 use Octopussy::Storage;

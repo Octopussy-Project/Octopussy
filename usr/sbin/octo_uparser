@@ -109,7 +109,7 @@ sub Init
           Octopussy::Storage::Directory_Service($device, $serv);
         my @msg_to_parse = ();
         my @messages     = Octopussy::Service::Messages($serv);
-        AAT::Syslog($PROG_NAME, 'PARSER_INIT_SERVICE', $serv, scalar @messages);
+        AAT::Syslog::Message($PROG_NAME, 'PARSER_INIT_SERVICE', $serv, scalar @messages);
 
         foreach my $m (@messages)
         {
@@ -158,7 +158,7 @@ sub Write_Logfile
     else
     {
       print "Unable to open file '$logfile'\n";
-      AAT::Syslog('octo_uparser', 'UNABLE_OPEN_FILE', $logfile);
+      AAT::Syslog::Message('octo_uparser', 'UNABLE_OPEN_FILE', $logfile);
     }
   }
 
@@ -178,7 +178,7 @@ sub Service_Handler
   my $dir_service = $serv;
   $dir_service =~ s/ /_/g;
   my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
-  AAT::Syslog(
+  AAT::Syslog::Message(
     $PROG_NAME, 'PARSER_DEVICE_SERVICE_EVENTS',
     $device, $serv,
     "$d/$m/$y $hour:$min",
@@ -230,7 +230,7 @@ sub File_Handler
     else
     {
       print "Unable to open file '$file'\n";
-      AAT::Syslog($PROG_NAME, 'UNABLE_OPEN_FILE', $file);
+      AAT::Syslog::Message($PROG_NAME, 'UNABLE_OPEN_FILE', $file);
     }
     foreach my $serv (keys %known_msgs)
     {
@@ -250,7 +250,7 @@ sub File_Handler
 
 $SIG{USR1} = \&Exit;
 
-AAT::Syslog($PROG_NAME, 'PARSER_START', $device);
+AAT::Syslog::Message($PROG_NAME, 'PARSER_START', $device);
 Init();
 foreach my $file (@files)
 {
@@ -259,7 +259,7 @@ foreach my $file (@files)
   Init() if ($cache->get("uparser_$device") eq 'reload');
   last if ($exit_request);
 }
-AAT::Syslog($PROG_NAME, 'PARSER_STOP', $device);
+AAT::Syslog::Message($PROG_NAME, 'PARSER_STOP', $device);
 $cache->remove("uparser_$device");
 
 =head1 AUTHOR

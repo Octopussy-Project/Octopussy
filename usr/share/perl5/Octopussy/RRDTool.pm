@@ -21,6 +21,7 @@ use AAT::Utils qw( ARRAY NOT_NULL);
 use Octopussy;
 use Octopussy::DB;
 use Octopussy::Device;
+use Octopussy::FS;
 use Octopussy::Taxonomy;
 
 Readonly my $MINUTE  => 60;

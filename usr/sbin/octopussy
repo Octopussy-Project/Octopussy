@@ -45,6 +45,7 @@ Readonly my $PARSER          => 'octo_parser';
 Readonly my $PUSHER          => 'octo_pusher';
 Readonly my $RRD             => 'octo_rrd';
 Readonly my $SCHEDULER       => 'octo_scheduler';
+Readonly my $SENDER       	 => 'octo_sender';
 Readonly my $NICE_PUSHER     => 'nice -n 10';
 Readonly my $NICE_RRD        => 'nice -n 15';
 Readonly my $NICE_SCHEDULER  => 'nice -n 10';
@@ -76,6 +77,7 @@ Usage:
 	octopussy {parser-start|parser-stop|parser-restart} <device>
 	octopussy {pusher-start|pusher-stop|pusher-restart}
 	octopussy {scheduler-start|scheduler-stop|scheduler-restart}
+	octopussy {sender-start|sender-stop|sender-restart}
 	octopussy {web-start|web-stop}\n";
 EOF
 
@@ -318,6 +320,37 @@ sub Scheduler_Stop
   return (1);
 }
 
+
+=head2 Sender_Start
+
+Starts octo_sender
+
+=cut
+
+sub Sender_Start
+{
+  system "sudo -u $USER $NICE_SCHEDULER $base$SENDER &";
+  printf $MSG_STATUS, 'Sender', 'Started';
+
+  return (1);
+}
+
+
+=head2 Sender_Stop
+
+Stops octo_sender
+
+=cut
+
+sub Sender_Stop
+{
+  `$KILLALL $SENDER`;
+  printf $MSG_STATUS, 'Sender', 'Stopped';
+
+  return (1);
+}
+
+
 =head2 Web_Start
 
 Starts Web Octopussy (Launches Apache2 with Octopussy Apache2 configuration file)
@@ -358,7 +391,6 @@ Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
 
 sub Start
 {
-
   # recreate /var/run/octopussy/ for systems that mount it on tmpfs
   Octopussy::FS::Create_Directory($dir_pid);
 
@@ -367,6 +399,7 @@ sub Start
   Parser_Start();
   RRD_Start();
   Scheduler_Start();
+  Sender_Start();
   Pusher_Start();
   Commander_Start();
   Web_Start();
@@ -387,6 +420,7 @@ sub Stop
   Parser_Stop();
   RRD_Stop();
   Scheduler_Stop();
+  Sender_Stop();
   Pusher_Stop();
   Dispatcher_Stop();
   `rm -f $dir_pid/*.{err,pid}`;
@@ -427,13 +461,16 @@ my %action = (
   'dispatcher-restart' => sub { Dispatcher_Stop(); Dispatcher_Start(); },
   'parser-start'       => \&Parser_Start,
   'parser-stop'        => \&Parser_Stop,
-  'parser-restart' => sub { my $d = shift; Parser_Stop($d); Parser_Start($d); },
-  'pusher-start'   => \&Pusher_Start,
-  'pusher-stop'    => \&Pusher_Stop,
-  'pusher-restart' => sub { Pusher_Stop(); Pusher_Start(); },
+  'parser-restart' 		 => sub { my $d = shift; Parser_Stop($d); Parser_Start($d); },
+  'pusher-start'   		 => \&Pusher_Start,
+  'pusher-stop'        => \&Pusher_Stop,
+  'pusher-restart'     => sub { Pusher_Stop(); Pusher_Start(); },
   'scheduler-start'   => \&Scheduler_Start,
   'scheduler-stop'    => \&Scheduler_Stop,
   'scheduler-restart' => sub { Scheduler_Stop(); Scheduler_Start(); },
+  'sender-start'   		=> \&Sender_Start,
+  'sender-stop'    		=> \&Sender_Stop,
+  'sender-restart' 		=> sub { Sender_Stop(); Sender_Start(); },
   'web-start'         => \&Web_Start,
   'web-stop'          => \&Web_Stop,
 

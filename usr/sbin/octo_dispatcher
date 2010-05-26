@@ -77,8 +77,6 @@ sub Stop
 {
   $exit_request = 1;
 
-  printf("SIGNAL STOP !!!\n");
-
   return ($exit_request);
 }
 

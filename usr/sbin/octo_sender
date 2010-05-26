@@ -1,0 +1,102 @@
+#!/usr/bin/perl -w
+
+=head1 NAME
+
+octo_sender - Octopussy Sender program
+
+=head1 SYNOPSIS
+
+octo_sender 
+
+=head1 DESCRIPTION
+
+octo_sender is the program used by the Octopussy Project to send messages
+
+=cut
+
+use strict;
+use warnings;
+use Readonly;
+
+use AAT::NSCA;
+use AAT::SMTP;
+use AAT::Utils qw( ARRAY );
+use AAT::XMPP;
+use AAT::Zabbix;
+            
+use Octopussy;
+use Octopussy::Alert;
+use Octopussy::Cache;
+use Octopussy::Contact;
+
+Readonly my $PROG_NAME => 'octo_sender';
+
+#exit if (!Octopussy::Valid_User($PROG_NAME));
+
+my %contact = ();
+foreach my $c (Octopussy::Contact::Configurations('cid'))
+{
+	$contact{$c->{cid}} = $c;
+}
+
+my $cache = Octopussy::Cache::Init($PROG_NAME);
+while (1)
+{
+	my @keys  = $cache->get_keys();
+	foreach my $k (sort @keys)
+	{
+		my $msg = $cache->get($k);
+		my $action = $msg->{action};
+		#printf "Action: $action\nDevice: $msg->{device}\nData: $msg->{data}\nMsg: $msg->{msg}\n\n";
+		
+		my ($subject, $body, $action_host, $action_service, $action_body) =
+   		Octopussy::Alert::Message_Building($action, $msg->{device}, $msg->{data}, $msg->{msg});
+            
+ 		if (defined $action->{action_jabber})
+   	{
+   		my @ims = ();
+   		foreach my $c (ARRAY($action->{contacts}))
+   		{
+   			push @ims, $contact{$c}->{im}
+        	if (defined $contact{$c}->{im});	
+   		}
+   		printf "IMs: %s\n", @ims;
+    	AAT::XMPP::Send_Message('Octopussy', $subject, @ims);
+   		foreach my $line (split(/\n/, $body))
+   		{
+      	AAT::XMPP::Send_Message('Octopussy', $line, @ims);
+    	}
+  	}
+  	if (defined $action->{action_mail})
+  	{
+  		my @mails = ();
+  		foreach my $c (ARRAY($action->{contacts}))
+   		{
+   			push @mails, $contact{$c}->{im}
+        	if (defined $contact{$c}->{im});	
+   		}
+   		printf "Mails: %s\n", @mails;
+  		AAT::SMTP::Send_Message('Octopussy',
+    		{subject => $subject, body => $body, dests => @mails});
+  	}
+   	AAT::NSCA::Send('Octopussy', (($action->{level} =~ /Warning/i) ? 1 : 2),
+    	$action_body, $action_host, $action_service)
+    	if (defined $action->{action_nsca});
+   	AAT::Zabbix::Send('Octopussy', $action_body, $action_host, $action_service)
+    	if (defined $action->{action_zabbix});
+              
+		$cache->remove($k);
+	}
+  sleep 1;
+}
+
+=head1 AUTHOR
+
+Sebastien Thebert <octo.devel@gmail.com>
+
+=head1 SEE ALSO
+
+octo_commander, octo_extractor, octo_parser, octo_uparser, octo_reporter, octo_rrd, 
+octo_scheduler
+
+=cut

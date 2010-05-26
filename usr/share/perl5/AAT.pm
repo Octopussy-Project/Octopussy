@@ -9,8 +9,6 @@ AAT - Apache::ASP Toolkit module
 
 =head1 SYNOPSIS
 
-=begin 
-
  <AAT:PageTop title="Apache::ASP Toolkit Demo" />
  <AAT:Button name="dialog_ok" />
  <AAT:Button name="dialog_cancel" />
@@ -27,16 +25,13 @@ AAT - Apache::ASP Toolkit module
 AAT is useful to create Web Interface rapidly and easily.
 
 Features:
-
+=over features
 =item * Integrated User Authentication/Role
-
 =item * Integrated Database Functions
-
 =item * Integrated XML Read/Write (with Cache) Functions
-
 =item * Multilanguage 
-
 =item * Themable
+=back
 
 =cut
 

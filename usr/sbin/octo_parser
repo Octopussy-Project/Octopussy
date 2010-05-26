@@ -30,12 +30,11 @@ use Regexp::Assemble;
 
 use AAT::Datetime;
 use AAT::Syslog;
-use AAT::Utils qw( NOT_NULL NULL);
+use AAT::Utils qw( NOT_NULL NULL );
 
 use Octopussy;
 use Octopussy::Alert;
 use Octopussy::Cache;
-use Octopussy::Contact;
 use Octopussy::Device;
 use Octopussy::FS;
 use Octopussy::Message;
@@ -53,6 +52,8 @@ my $dir_pid     = Octopussy::FS::Directory('running');
 my $device      = $ARGV[0];
 my ($reload_request, $exit_request) = (0, 0);
 my $cache = Octopussy::Cache::Init($PROG_NAME);
+
+my $cache_sender = Octopussy::Cache::Init('octo_sender');
 
 my @services;
 my (%alert,      %service);
@@ -178,15 +179,17 @@ sub Init
       scalar @messages);
     my @dev_alerts = Octopussy::Alert::For_Device($device);
 
+=head2 comment 
     my %contact = ();
     foreach my $c (Octopussy::Contact::Configurations('cid'))
     {
       $contact{$c->{cid}} = $c;
     }
+=cut    
     foreach my $m (@messages)
     {
       my @alerts =
-        Octopussy::Message::Alerts($device, $serv, $m, \@dev_alerts, \%contact);
+        Octopussy::Message::Alerts($device, $serv, $m, \@dev_alerts);#, \%contact);
       my @msg_alerts = ();
       foreach my $a (@alerts)
       {
@@ -265,10 +268,12 @@ sub Init
     if (!-d "$dir/$device/Incoming/");
   Inotify_Watch("$dir/$device/Incoming/");
 
+=head2 comments
   foreach my $mod (keys %required_module)
   {
     eval "require $mod";    # eval used for bareword problem
   }
+=cut
 
   return (scalar @services);
 }
@@ -287,7 +292,7 @@ sub Write_Logfile
   {
     $logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
     $logfile .= '.gz' if ($logfile !~ /^.+\.gz$/);
-    Octopussy::Create_Directory(dirname($logfile));
+    Octopussy::FS::Create_Directory(dirname($logfile));
     if (defined open my $FILE, '|-', "gzip >> $logfile")
     {
       foreach my $log (@{$logs}) { print {$FILE} "$log\n"; }
@@ -425,25 +430,9 @@ sub Alert_Handler
             else { $data = $line; }
             $alert_logs = ();
             Octopussy::Alert::Insert_In_DB($device, $a, $data, $date);
-            my ($subject, $body, $action_host, $action_service, $action_body) =
-              Octopussy::Alert::Message_Building($a, $device, $data, $msg);
-            if (defined $a->{action_jabber})
-            {
-              AAT::XMPP::Send_Message('Octopussy', $subject, @{$a->{imdest}});
-              foreach my $line (split(/\n/, $body))
-              {
-                AAT::XMPP::Send_Message('Octopussy', $line, @{$a->{imdest}});
-              }
-            }
-            AAT::SMTP::Send_Message('Octopussy',
-              {subject => $subject, body => $body, dests => $a->{maildest}})
-              if (defined $a->{action_mail});
-            AAT::NSCA::Send('Octopussy', (($a->{level} =~ /Warning/i) ? 1 : 2),
-              $action_body, $action_host, $action_service)
-              if (defined $a->{action_nsca});
-            AAT::Zabbix::Send('Octopussy', $action_body, $action_host,
-              $action_service)
-              if (defined $a->{action_zabbix});
+            
+            $cache_sender->set("msg_$device", { action => $a, device => $device, data => $data, msg => $msg });
+
           }
         }
         $cache->set($a->{name}, $alert_logs);

@@ -51,7 +51,7 @@ sub Valid_User
   my $prog_name = shift;
 
   my @info      = getpwuid $<;
-  my $octo_user = User();
+  my $octo_user = Octopussy::Info::User();
 
   return (1) if ($info[0] =~ /^$octo_user$/);
 
@@ -274,7 +274,7 @@ sub PID_File
 
   my $dir_pid  = Octopussy::FS::Directory('running');
   my $file_pid = $dir_pid . $name . '.pid';
-  my $user     = User();
+  my $user     = Octopussy::Info::User();
 
   my $line = `id $user`;
   if ($line =~ /uid=(\d+)\($user\) gid=(\d+)\($user\)/)
