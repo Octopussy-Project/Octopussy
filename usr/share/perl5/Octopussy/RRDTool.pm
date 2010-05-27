@@ -15,7 +15,8 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT::Datetime;
+use POSIX qw( mktime );
+
 use AAT::Translation;
 use AAT::Utils qw( ARRAY NOT_NULL);
 use Octopussy;
@@ -642,11 +643,13 @@ sub Report_Graph
   my ($start, $finish) = (undef, undef);
   if ($begin =~ /(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)/)
   {
-    $start = AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
+    $start = mktime(0, $5, $4, $3, $2-1, $1-1900);
+    #AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
   }
   if ($end =~ /(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)/)
   {
-    $finish = AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
+    $finish = mktime(0, $5, $4, $3, $2-1, $1-1900);
+    #AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
   }
 
   if ((defined $start) && (defined $finish))

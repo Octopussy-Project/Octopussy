@@ -31,13 +31,14 @@ Readonly my $YEAR      => '2010';
 Readonly my $MONTH     => '01';
 Readonly my $DAY       => '01';
 Readonly my $OUTPUT    => 'output_file.txt';
-Readonly my $CMDLINE_DEV_SVC =>
+Readonly my $CMD_DEV_SVC =>
 qq(--device "${DEVICE}_1" --device "${DEVICE}_2" --service "${SERVICE}_1" --service "${SERVICE}_2");
-Readonly my $CMDLINE_LEVEL_TAXO_ID =>
+Readonly my $CMD_LEVEL_TAXO_ID =>
   qq(--loglevel "-ANY-" --taxonomy "-ANY-" --msgid "-ANY-");
-Readonly my $CMDLINE_PERIOD => qq(--begin $BEGIN --end $END);
+Readonly my $CMD_PERIOD => qq(--begin $BEGIN --end $END);
 Readonly my $RE_CMDLINE =>
-qr{^$EXTRACTOR $CMDLINE_DEV_SVC $CMDLINE_LEVEL_TAXO_ID $CMDLINE_PERIOD.*--output "$OUTPUT"};
+qr{^$EXTRACTOR $CMD_DEV_SVC $CMD_LEVEL_TAXO_ID $CMD_PERIOD.*--output "$OUTPUT"};
+
 
 =head2 Generate_Fake_Logs_Files()
 
@@ -45,9 +46,9 @@ qr{^$EXTRACTOR $CMDLINE_DEV_SVC $CMDLINE_LEVEL_TAXO_ID $CMDLINE_PERIOD.*--output
 
 sub Generate_Fake_Logs_Files
 {
-  system "mkdir -p $DIR_LOGS/$DEVICE/Incoming/2010/01/01/";
-  system "mkdir -p $DIR_LOGS/$DEVICE/Unknown/2010/01/01/";
-  system "mkdir -p $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/";
+  system "mkdir -p $DIR_LOGS/$DEVICE/Incoming/$YEAR/01/01/";
+  system "mkdir -p $DIR_LOGS/$DEVICE/Unknown/$YEAR/01/01/";
+  system "mkdir -p $DIR_LOGS/$DEVICE/$SERVICE/$YEAR/01/01/";
   for (my $i = 0 ; $i <= 59 ; $i++)
   {
     my $minute = sprintf '%02d', $i;
@@ -83,15 +84,15 @@ ok((!-d $d_incoming && !-d $d_unknown),
 
 Generate_Fake_Logs_Files();
 
-my %start  = (year => 2010, month => 1, day => 1, hour => 0, min => 0);
-my %finish = (year => 2010, month => 1, day => 1, hour => 0, min => 29);
+my %start  = (year => $YEAR, month => 1, day => 1, hour => 0, min => 0);
+my %finish = (year => $YEAR, month => 1, day => 1, hour => 0, min => 29);
 my $start_num = sprintf '%04d%02d%02d%02d%02d',
   $start{year}, $start{month}, $start{day}, $start{hour}, $start{min};
 my $finish_num = sprintf '%04d%02d%02d%02d%02d',
   $finish{year}, $finish{month}, $finish{day}, $finish{hour}, $finish{min};
 
 my @files_ymd = Octopussy::Logs::Files_Year_Month_Day(\%start, \%finish,
-  "$DIR_LOGS/$DEVICE/$SERVICE", '2010');
+  "$DIR_LOGS/$DEVICE/$SERVICE", $YEAR);
 ok(scalar @files_ymd == 120, 'Octopussy::Logs::Files_Year_Month_Day()');
 my @files_ymdhm =
   Octopussy::Logs::Files_Year_Month_Day_Hour_Min("$DIR_LOGS/$DEVICE/$SERVICE",

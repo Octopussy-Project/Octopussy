@@ -7,7 +7,7 @@
 my %arg = @_;
 
 my $w = (defined $arg{show_week} ? 1 : 0);
-my ($y, $m, $d) = AAT::Datetime::Now();
+my ($y, $m, $d) = AAT::Utils::Now();
 my $nb_days = AAT::Datetime::Month_Nb_Days($y, $m);
 my $month_name = AAT::Datetime::Month_Name($m);
 my $nb_cols = (5+$w);

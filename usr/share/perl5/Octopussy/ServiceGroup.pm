@@ -78,7 +78,8 @@ Gets list of ServiceGroup
 
 sub List
 {
-  my @sgs = AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_SERVICEGROUPS),
+  my @sgs =
+    AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_SERVICEGROUPS),
     'servicegroup', 'sg_id');
 
   return (@sgs);

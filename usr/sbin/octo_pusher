@@ -21,7 +21,6 @@ use Readonly;
 use File::Copy;
 use File::Path;
 
-use AAT::Datetime;
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY NOT_NULL );
 use Octopussy;
@@ -203,8 +202,8 @@ exit if (!Octopussy::Valid_User($PROG_NAME));
 
 my $device = undef;
 
-my ($year,   $month,   $mday,   $hour,   $min)   = AAT::Datetime::Now();
-my ($n_year, $n_month, $n_mday, $n_hour, $n_min) = AAT::Datetime::Now();
+my ($year,   $month,   $mday,   $hour,   $min)   = AAT::Utils::Now();
+my ($n_year, $n_month, $n_mday, $n_hour, $n_min) = AAT::Utils::Now();
 
 $SIG{HUP} = \&Init;
 Octopussy::PID_File($PROG_NAME);

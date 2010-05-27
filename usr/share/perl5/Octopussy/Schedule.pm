@@ -79,7 +79,8 @@ Returns Schedules List
 
 sub List
 {
-  my @schedules = AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_SCHEDULES),
+  my @schedules =
+    AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_SCHEDULES),
     $FILE_SCHEDULES, 'title');
 
   return (@schedules);

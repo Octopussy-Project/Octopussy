@@ -18,6 +18,7 @@ use strict;
 use warnings;
 
 use English qw( -no_match_vars );
+use List::MoreUtils qw( apply );
 use Test::More tests => 1;
 
 use AAT::Utils qw( NOT_NULL NULL );

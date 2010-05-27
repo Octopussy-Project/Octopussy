@@ -7,7 +7,7 @@ my $stat = $arg{status} || "";
 $al =~ s/-ANY-//gi;
 $dev =~ s/-ANY-//gi;
 $stat =~ s/-ANY-//gi;
-my $today = AAT::Datetime::Now_String();
+my $today = AAT::Utils::Now_String();
 my $sort = (NOT_NULL($arg{sort}) ? lc($arg{sort}) : "date_time");
 my $url_sort = $arg{url} . "?sort";
 %>

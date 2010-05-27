@@ -20,7 +20,10 @@ use strict;
 use warnings;
 use Readonly;
 
+use Date::Manip;
+
 use AAT::Datetime;
+use AAT::Utils;
 use Octopussy;
 use Octopussy::Report;
 use Octopussy::RRDTool;
@@ -76,9 +79,9 @@ sub Launch_Report
   $finish_hour =~ s/Hour-(\d+)/$1 hours/i;
 
   my $start =
-    UnixDate(DateCalc('now', "- $start_day $start_hour"), '%Y%m%d%H%M');
+    Date::Manip::UnixDate(Date::Manip::DateCalc('now', "- $start_day $start_hour"), '%Y%m%d%H%M');
   my $finish =
-    UnixDate(DateCalc('now', "- $finish_day $finish_hour"), '%Y%m%d%H%M');
+    Date::Manip::UnixDate(Date::Manip::DateCalc('now', "- $finish_day $finish_hour"), '%Y%m%d%H%M');
   print "$start - $finish\n";
 
   my $report = Octopussy::Report::Configuration($sched->{report});
@@ -149,7 +152,7 @@ exit if (!Octopussy::Valid_User($PROG_NAME));
 
 while (1)
 {
-  my ($year, $mon, $mday, $hour, $min) = AAT::Datetime::Now();
+  my ($year, $mon, $mday, $hour, $min) = AAT::Utils::Now();
   my $wday = AAT::Datetime::WeekDay($year, $mon, $mday);
   my %dt = (
     year     => $year,

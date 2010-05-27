@@ -17,7 +17,7 @@ use Readonly;
 use bytes;
 use utf8;
 
-use Date::Manip;
+#use Date::Manip;
 
 use AAT::DB;
 use AAT::Utils qw( ARRAY NOT_NULL );
@@ -277,8 +277,11 @@ sub Insert_In_DB
 {
   my ($device, $alert, $line, $date) = @_;
 
-  my $datestr =
-    Date::Manip::UnixDate(Date::Manip::ParseDate($date), '%Y/%m/%d %H:%M:%S');
+	if ($date =~ /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/)
+	{
+  #my $datestr =
+  #  Date::Manip::UnixDate(Date::Manip::ParseDate($date), '%Y/%m/%d %H:%M:%S');
+  	my $datestr = "$1/$2/$3 $4:$5:$6";
   AAT::DB::Insert(
     'Octopussy',
     '_alerts_',
@@ -290,8 +293,10 @@ sub Insert_In_DB
       log       => $line
     }
   );
+  	return (1);
+	}
 
-  return (1);
+  return (0);
 }
 
 =head2 Check_All_Closed()

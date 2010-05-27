@@ -26,7 +26,6 @@ use File::Copy;
 use File::Path;
 use Regexp::Assemble;
 
-use AAT::Datetime;
 use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL NULL);
 

@@ -15,7 +15,6 @@ use strict;
 use warnings;
 use Readonly;
 
-use AAT::Datetime;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
@@ -274,7 +273,7 @@ sub SQL_Datetime
 
   if ($dt =~ $QR_DT1)
   {
-    my ($year, $mon, $mday) = AAT::Datetime::Now();
+    my ($year, $mon, $mday) = AAT::Utils::Now();
     return ("$year-$MONTH{$1}-$2 $3:$4:$5");
   }
   elsif ($dt =~ $QR_DT2) { return ("$6-$MONTH{$1}-$2 $3:$4:$5"); }

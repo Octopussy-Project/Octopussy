@@ -19,12 +19,14 @@ use strict;
 use warnings;
 
 use Readonly;
-use Test::More tests => 26;
+use Test::More tests => 29;
 
 Readonly my $USER          => 'octopussy';
 Readonly my $GROUP         => 'octopussy';
 Readonly my $DIR_BIN       => '/usr/sbin';
 Readonly my $DIR_CONF      => '/var/lib/octopussy/conf';
+Readonly my $DIR_ETC_AAT   => '/etc/aat';
+Readonly my $DIR_ETC_OCTO  => '/etc/octopussy';
 Readonly my $DIR_SERVICES  => '/var/lib/octopussy/conf/services';
 Readonly my $DIR_TABLES    => '/var/lib/octopussy/conf/tables';
 Readonly my $MASK          => 07777;
@@ -44,6 +46,10 @@ Readonly my @FILES_CONF => (
   "$DIR_CONF/device_models.xml", "$DIR_CONF/loglevel.xml",
   "$DIR_CONF/taxonomy.xml",      "$DIR_CONF/types.xml",
   "$DIR_CONF/user_roles.xml",    "$DIR_CONF/users.xml",
+);
+
+Readonly my @FILES_ETC => (
+  "$DIR_ETC_AAT/aat.xml", "$DIR_ETC_OCTO/apache2.conf",
 );
 
 Readonly my @FILES_SERVICES => (
@@ -116,6 +122,8 @@ BEGIN { use_ok('Octopussy::Configuration') }
 BEGIN { use_ok('Octopussy::Contact') }
 BEGIN { use_ok('Octopussy::Device') }
 BEGIN { use_ok('Octopussy::DeviceGroup') }
+BEGIN { use_ok('Octopussy::FS') }
+BEGIN { use_ok('Octopussy::Info') }
 BEGIN { use_ok('Octopussy::Location') }
 BEGIN { use_ok('Octopussy::Loglevel') }
 BEGIN { use_ok('Octopussy::Logs') }
@@ -135,8 +143,12 @@ my $error     = 0;
 my $str_error = '';
 
 # Checks Binary Files
-($error, $str_error) = Check_Files('0700', @FILES_BIN);
+($error, $str_error) = Check_Files('0770', @FILES_BIN);
 ok(!$error, 'Octopussy Binary Files') or diag($str_error);
+
+# Checks /etc Files
+($error, $str_error) = Check_Files('0660', @FILES_ETC);
+ok(!$error, 'Octopussy /etc Files') or diag($str_error);
 
 # Checks Configuration Files
 ($error, $str_error) = Check_Files('0660', @FILES_CONF);

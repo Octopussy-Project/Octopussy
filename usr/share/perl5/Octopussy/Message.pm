@@ -683,12 +683,13 @@ sub Parse_List
 
 sub Alerts
 {
-  my ($device, $service, $message, $dev_alerts) = @_; #, $contact) = @_;
+  my ($device, $service, $message, $dev_alerts) = @_;    #, $contact) = @_;
   my @alerts    = ();
   my %log_level = Octopussy::Loglevel::Levels();
 
   foreach my $ac (ARRAY($dev_alerts))
   {
+
 =head2 comment  	
     my @mails = ();
     my @ims   = ();
@@ -700,6 +701,7 @@ sub Alerts
         if (defined $contact->{$c}->{im});
     }
 =cut    
+
     if ($ac->{type} =~ /Dynamic/i)
     {
       my $ac_level = (
@@ -734,7 +736,8 @@ sub Alerts
             action_host       => $ac->{action_host},       # for Nagios & Zabbix
             action_service    => $ac->{action_service},    # for Nagios & Zabbix
             action_body       => $ac->{action_body},       # for Nagios & Zabbix
-            contacts					=> $ac->{contact},
+            contacts          => $ac->{contact},
+
             #imdest            => \@ims,
             #maildest          => \@mails
           };
@@ -774,7 +777,8 @@ sub Alerts
             action_host       => $ac->{action_host},       # for Nagios & Zabbix
             action_service    => $ac->{action_service},    # for Nagios & Zabbix
             action_body       => $ac->{action_body},       # for Nagios & Zabbix
-            contacts					=> $ac->{contact},
+            contacts          => $ac->{contact},
+
             #imdest            => \@ims,
             #maildest          => \@mails
           };

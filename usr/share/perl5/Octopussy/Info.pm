@@ -19,7 +19,6 @@ use AAT::Application;
 
 Readonly my $APPLICATION_NAME => 'Octopussy';
 
-
 =head1 FUNCTIONS
 
 =head2 Email()
@@ -35,7 +34,6 @@ sub Email
   return ($info->{email});
 }
 
-
 =head2 User()
 
 Returns Octopussy System User
@@ -49,7 +47,6 @@ sub User
   return ($info->{user});
 }
 
-
 =head2 WebSite()
 
 Returns Octopussy WebSite
@@ -62,7 +59,6 @@ sub WebSite
 
   return ($info->{website});
 }
-
 
 1;
 

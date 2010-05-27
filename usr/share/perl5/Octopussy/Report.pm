@@ -406,8 +406,8 @@ sub CmdLine
   my $base    = Octopussy::FS::Directory('programs');
   my $dir_pid = Octopussy::FS::Directory('running');
   my $date    = strftime("%Y%m%d-%H%M", localtime);
-  my $dir     = Octopussy::FS::Directory('data_reports') . $report->{name} . '/';
-  my $output  = "$dir$report->{name}-$date."
+  my $dir    = Octopussy::FS::Directory('data_reports') . $report->{name} . '/';
+  my $output = "$dir$report->{name}-$date."
     . (
     $report->{graph_type} eq 'array'
     ? 'html'

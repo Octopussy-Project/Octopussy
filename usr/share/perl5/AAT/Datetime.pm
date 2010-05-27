@@ -76,41 +76,6 @@ sub Month_Nb_Days
   return (Date::Manip::Date_DaysInMonth($month, $year));
 }
 
-=head2 Now()
-
-Returns current date (now!) in an Array (YYYY, MM, DD, HH, MM, SS)
-
-=cut
-
-sub Now
-{
-  my ($sec, $min, $hour, $mday, $mon, $year) = localtime time;
-  $year += $START_YEAR;
-  $mon++;
-  $mon  = ($mon < 10  ? '0' . $mon  : $mon);
-  $mday = ($mday < 10 ? '0' . $mday : $mday);
-  $hour = ($hour < 10 ? '0' . $hour : $hour);
-  $min  = ($min < 10  ? '0' . $min  : $min);
-  $sec  = ($sec < 10  ? '0' . $sec  : $sec);
-
-  return ($year, $mon, $mday, $hour, $min, $sec);
-}
-
-=head2 Now_String()
-
-Get te actual time in "YYYY/MM/DD HH:MM" format
-
-Returns:
- $now_string - string "YYYY/MM/DD HH:MM" formated
-
-=cut
-
-sub Now_String
-{
-  my ($year, $month, $mday, $hour, $min) = Now();
-
-  return ("$year/$month/$mday $hour:$min");
-}
 
 =head2 Delta
 
@@ -122,8 +87,8 @@ sub Delta
 {
   my ($date1, $date2) = @_;
 
-  my $diff = DateCalc(ParseDate($date1), ParseDate($date2));
-  my $result = Delta_Format($diff, 0, '%mt');    # delta in minutes
+  my $diff = Date::Manip::DateCalc(Date::Manip::ParseDate($date1), Date::Manip::ParseDate($date2));
+  my $result = Date::Manip::Delta_Format($diff, 0, '%mt');    # delta in minutes
 
   if ($result =~ /^[-+]?(\d+)\.\d*$/)
   {
@@ -199,7 +164,7 @@ sub YearWeek
 {
   my ($year, $month, $day) = @_;
 
-  return (Date_WeekOfYear($month, $day, $year, 1));
+  return (Date::Manip::Date_WeekOfYear($month, $day, $year, 1));
 }
 
 =head2 Current_Day()
@@ -210,7 +175,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Day
 
 sub Current_Day
 {
-  my ($year, $month, $day, $hour, $min) = Now();
+  my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
   $hour =~ s/^0//;
   $min  =~ s/^0//;
 
@@ -231,7 +196,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Hour
 
 sub Current_Hour
 {
-  my ($year, $month, $day, $hour, $min) = Now();
+  my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
   $hour =~ s/^0//;
   my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
@@ -250,7 +215,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Month
 
 sub Current_Month
 {
-  my ($year, $month, $day, $hour, $min) = Now();
+  my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
   $hour =~ s/^0//;
   $min  =~ s/^0//;
 
@@ -271,7 +236,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Week
 
 sub Current_Week
 {
-  my ($year, $month, $day, $hour, $min) = Now();
+  my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
   my $wday = WeekDay($year, $month, $day);
   $wday--;
   $hour =~ s/^0//;
@@ -296,7 +261,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Year
 
 sub Current_Year
 {
-  my ($year, $month, $day, $hour, $min) = Now();
+  my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
   $hour =~ s/^0//;
   $min  =~ s/^0//;
 
@@ -382,7 +347,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Week
 
 sub Last_Week
 {
-  my ($year, $month, $day, $hour, $min) = Now();
+  my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
   my $wday = WeekDay($year, $month, $day);
   $wday--;
   my $date = Date::Manip::DateCalc('today', "-1week -${wday}day");
@@ -408,7 +373,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Year
 
 sub Last_Year
 {
-  my ($year, $month, $day, $hour, $min) = Now();
+  my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
 
   my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year - 1, 1, 1);

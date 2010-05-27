@@ -9,7 +9,7 @@ foreach my $k (keys %arg)
 	{ $arg_str .= "&$k=$arg{$k}"; }
 %>
 <%
-my ($y, $m, $d) = AAT::Datetime::Now();
+my ($y, $m, $d) = AAT::Utils::Now();
 $m = $Request->QueryString("month") || $m;
 $y = $Request->QueryString("year") || $y;
 my $prev_m = ($m > 1 ? $m - 1 : 12);

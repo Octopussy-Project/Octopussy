@@ -23,7 +23,6 @@ use Octopussy::FS;
 
 Readonly my $DIR_BACKUP => '/etc/octopussy/';
 
-
 =head1 FUNCTIONS
 
 =head2 Backup()
@@ -37,9 +36,11 @@ sub Backup
   my $dir_main    = Octopussy::FS::Directory('main');
   my $conf_sys    = "${dir_main}{db,ldap,nsca,proxy,smtp,xmpp}.xml";
   my ($dir_alerts, $dir_contacts, $dir_devices, $dir_maps, $dir_plugins) =
-    Octopussy::FS::Directories('alerts', 'contacts', 'devices', 'maps', 'plugins');
+    Octopussy::FS::Directories('alerts', 'contacts', 'devices', 'maps',
+    'plugins');
   my ($dir_reports, $dir_search_templates, $dir_services, $dir_tables) =
-    Octopussy::FS::Directories('reports', 'search_templates', 'services', 'tables');
+    Octopussy::FS::Directories('reports', 'search_templates', 'services',
+    'tables');
   my ($file_devicegroup, $file_locations, $file_schedule) =
     Octopussy::FS::Files('devicegroups', 'locations', 'schedule');
   my ($file_servicegroup, $file_storages, $file_timeperiods, $file_users) =

@@ -118,7 +118,8 @@ Returns:
 
 sub List
 {
-  my @storages = AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_STORAGES),
+  my @storages =
+    AAT::XML::File_Array_Values(Octopussy::FS::File($FILE_STORAGES),
     'storage', 's_id');
 
   return (@storages);
@@ -143,7 +144,8 @@ sub Configuration
   my $storage = shift;
 
   my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_STORAGES));
-  return ({name => 'DEFAULT', directory => Octopussy::FS::Directory('data_logs')})
+  return (
+    {name => 'DEFAULT', directory => Octopussy::FS::Directory('data_logs')})
     if ($storage eq 'DEFAULT');
   foreach my $s (ARRAY($conf->{storage}))
   {

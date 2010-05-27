@@ -24,7 +24,6 @@ use AAT::Utils qw( ARRAY NOT_NULL NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::Cache;
-use Octopussy::Device;
 use Octopussy::DeviceGroup;
 use Octopussy::FS;
 use Octopussy::Logs;

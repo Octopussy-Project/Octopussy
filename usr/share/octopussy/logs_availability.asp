@@ -6,7 +6,7 @@ my ($device, $year, $month, $day, $hour, $period) =
 
 if (NOT_NULL($period))
 {
-	my ($y, $m, $d, $h) = AAT::Datetime::Now();
+	my ($y, $m, $d, $h) = AAT::Utils::Now();
 	if ($period =~ /^hour$/)
 		{ ($year, $month, $day, $hour) = ($y, $m, $d, $h); }
 	elsif ($period =~ /^day$/)

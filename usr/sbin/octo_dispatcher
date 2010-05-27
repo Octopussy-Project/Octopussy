@@ -19,7 +19,6 @@ use Readonly;
 
 use File::Copy;
 
-use AAT::Datetime;
 use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL );
 use Octopussy;
@@ -182,8 +181,8 @@ sub Write_Stats
 #
 
 my ($device, $line) = (undef, undef);
-my ($year,   $month,   $mday,   $hour,   $min,   $sec)   = AAT::Datetime::Now();
-my ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Datetime::Now();
+my ($year,   $month,   $mday,   $hour,   $min,   $sec)   = AAT::Utils::Now();
+my ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) = AAT::Utils::Now();
 
 $SIG{HUP}  = \&Init;
 $SIG{USR1} = \&Stop;
@@ -206,7 +205,7 @@ while (!$exit_request)
     {
       $device = $1;
       ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) =
-        AAT::Datetime::Now();
+        AAT::Utils::Now();
       if ( (int($n_sec / 10) != int($sec / 10))
         || ($n_min != $min)
         || ($n_hour != $hour)

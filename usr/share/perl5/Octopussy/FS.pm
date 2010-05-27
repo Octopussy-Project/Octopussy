@@ -45,7 +45,6 @@ sub Chown
   return (1);
 }
 
-
 =head2 Create_Directory($dir)
 
 Creates Directory '$dir'
@@ -65,7 +64,6 @@ sub Create_Directory
   return ($dir);
 }
 
-
 =head2 Directory($dir)
 
 Returns Octopussy Directory '$dir' Value
@@ -78,7 +76,6 @@ sub Directory
 
   return (AAT::Application::Directory($APPLICATION_NAME, $dir));
 }
-
 
 =head2 Directories(@dirs)
 
@@ -98,7 +95,6 @@ sub Directories
   return (@list);
 }
 
-
 =head2 File($file)
 
 Returns Octopussy File '$file' Value
@@ -111,7 +107,6 @@ sub File
 
   return (AAT::Application::File($APPLICATION_NAME, $file));
 }
-
 
 =head2 Files(@files)
 

@@ -19,6 +19,8 @@ use Exporter 'import';
 
 our @EXPORT_OK = qw( ARRAY HASH HASH_KEYS NOT_NULL NULL );
 
+Readonly my $START_YEAR   => 1900;
+
 =head1 FUNCTIONS
 
 =head2 ARRAY($value)
@@ -128,6 +130,46 @@ sub NULL
 
   return (((defined $value) && ($value ne '')) ? 0 : 1);
 }
+
+
+=head2 Now()
+
+Returns current date (now!) in an Array (YYYY, MM, DD, HH, MM, SS)
+
+=cut
+
+sub Now
+{
+	my ($sec, $min, $hour, $mday, $mon, $year) = localtime time;
+	
+  $year += $START_YEAR;
+  $mon++;
+  $mon  = ($mon < 10  ? '0' . $mon  : $mon);
+  $mday = ($mday < 10 ? '0' . $mday : $mday);
+  $hour = ($hour < 10 ? '0' . $hour : $hour);
+  $min  = ($min < 10  ? '0' . $min  : $min);
+  $sec  = ($sec < 10  ? '0' . $sec  : $sec);
+
+  return ($year, $mon, $mday, $hour, $min, $sec);
+}
+
+
+=head2 Now_String()
+
+Get te actual time in "YYYY/MM/DD HH:MM" format
+
+Returns:
+ $now_string - string "YYYY/MM/DD HH:MM" formated
+
+=cut
+
+sub Now_String
+{
+  my ($year, $month, $mday, $hour, $min) = Now();
+
+  return ("$year/$month/$mday $hour:$min");
+}
+
 
 1;
 

@@ -25,10 +25,10 @@ use File::Basename;
 use File::Copy;
 use File::Path;
 use Linux::Inotify2;
-use POSIX qw(strftime);
+use POSIX qw( mktime strftime );
 use Regexp::Assemble;
 
-use AAT::Datetime;
+#use AAT::Datetime;
 use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL NULL );
 
@@ -178,14 +178,6 @@ sub Init
     AAT::Syslog::Message($PROG_NAME, 'PARSER_INIT_SERVICE', $serv,
       scalar @messages);
     my @dev_alerts = Octopussy::Alert::For_Device($device);
-
-=head2 comment 
-    my %contact = ();
-    foreach my $c (Octopussy::Contact::Configurations('cid'))
-    {
-      $contact{$c->{cid}} = $c;
-    }
-=cut    
     foreach my $m (@messages)
     {
       my @alerts =
@@ -196,26 +188,10 @@ sub Init
         $alert{$a->{name}} = $a;
         foreach my $act (@{$a->{action}})
         {
-          if ($act =~ /Mail/i)
-          {
-            $alert{$a->{name}}->{action_mail} = 1;
-            $required_module{'AAT::SMTP'} = 1;
-          }
-          if ($act =~ /Jabber/i)
-          {
-            $alert{$a->{name}}->{action_jabber} = 1;
-            $required_module{'AAT::XMPP'} = 1;
-          }
-          if ($act =~ /NSCA/i)
-          {
-            $alert{$a->{name}}->{action_nsca} = 1;
-            $required_module{'AAT::NSCA'} = 1;
-          }
-          if ($act =~ /Zabbix/i)
-          {
-            $alert{$a->{name}}->{action_zabbix} = 1;
-            $required_module{'AAT::Zabbix'} = 1;
-          }
+          $alert{$a->{name}}->{action_mail} = 1		if ($act =~ /Mail/i);
+          $alert{$a->{name}}->{action_jabber} = 1 if ($act =~ /Jabber/i);
+          $alert{$a->{name}}->{action_nsca} = 1 	if ($act =~ /NSCA/i);
+          $alert{$a->{name}}->{action_zabbix} = 1	if ($act =~ /Zabbix/i);
         }
         push @msg_alerts, $a->{name};
       }
@@ -267,13 +243,6 @@ sub Init
   Octopussy::FS::Create_Directory("$dir/$device/Incoming/")
     if (!-d "$dir/$device/Incoming/");
   Inotify_Watch("$dir/$device/Incoming/");
-
-=head2 comments
-  foreach my $mod (keys %required_module)
-  {
-    eval "require $mod";    # eval used for bareword problem
-  }
-=cut
 
   return (scalar @services);
 }
@@ -369,7 +338,8 @@ sub Incoming_To_Unknown
   return ($count);
 }
 
-=head2 Alert_Handler($msg, $line, $date)
+
+=head2 Alert_Handler($msg, $line)
 
 Handles Alert(s) for the Message $msg on line $line
 
@@ -377,20 +347,15 @@ Handles Alert(s) for the Message $msg on line $line
 
 sub Alert_Handler
 {
-  my ($msg, $line, $date) = @_;
+  my ($msg, $line) = @_;
 
-  if ($line =~ /^\w{3} \s?\d{1,2} (\d\d):(\d\d):(\d\d) \S+/)
+  if ($line =~ /^\w{3} \s?\d{1,2} \d\d:\d\d:(\d\d) \S+/)
   {
-    my ($year, $month, $day) = $date =~ /(\d{4})(\d\d)(\d\d)/;
-    my ($hour, $min, $sec) = ($1, $2, $3);
+    my $sec = $1;
     my $date_tp =
       strftime("%A %H:%M", $sec, $min, $hour, $day, $month - 1, $year - 1900);
     my $secs =
       strftime("%s", $sec, $min, $hour, $day, $month - 1, $year - 1900);
-
-    #my $parse_date = Date::Manip::ParseDate($date);
-    #my $date_tp    = Date::Manip::UnixDate($parse_date, '%A %H:%M');
-    #my $secs       = Date::Manip::UnixDate($parse_date, '%s');
 
     foreach my $msg_alert (@{$msg->{alerts}})
     {
@@ -429,10 +394,9 @@ sub Alert_Handler
             }
             else { $data = $line; }
             $alert_logs = ();
-            Octopussy::Alert::Insert_In_DB($device, $a, $data, $date);
+            Octopussy::Alert::Insert_In_DB($device, $a, $data, "$year$month$day$hour$min$sec");
             
             $cache_sender->set("msg_$device", { action => $a, device => $device, data => $data, msg => $msg });
-
           }
         }
         $cache->set($a->{name}, $alert_logs);
@@ -443,7 +407,7 @@ sub Alert_Handler
   return (undef);
 }
 
-=head2 Line_Handler($line, $serv, $msg, $known_msgs, $match, $date)
+=head2 Line_Handler($line, $serv, $msg, $known_msgs, $match)
 
 Handles line $line for Service $serv & Message $msg
 
@@ -451,11 +415,11 @@ Handles line $line for Service $serv & Message $msg
 
 sub Line_Handler
 {
-  my ($line, $serv, $msg, $known_msgs, $match, $date) = @_;
+  my ($line, $serv, $msg, $known_msgs, $match) = @_;
 
   if ($line =~ $msg->{re})
   {
-    Alert_Handler($msg, $line, $date) if (scalar(@{$msg->{alerts}}) > 0);
+    Alert_Handler($msg, $line) if (scalar(@{$msg->{alerts}}) > 0);
     push @{$known_msgs->{$serv}}, $line;
     $taxo_stats{$serv}{$msg->{taxo}} = (
       defined $taxo_stats{$serv}{$msg->{taxo}}
@@ -549,13 +513,46 @@ sub Cache_Taxonomy_Stats
     push @taxo_rrd, $taxo_stats{$service}{$t->{value}} || 0;
     $taxo_stats{$service}{$t->{value}} = 0;
   }
-  my $seconds_to_parse =
-    AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);
+  my $seconds_to_parse = mktime(0, $min, $hour, $day, $month-1, $year-1900);
+    #AAT::Datetime::Seconds_Since_1970($year, $month, $day, $hour, $min);
   $cache->set("parser_taxo_stats_${device}_${service}",
     {datetime => $seconds_to_parse, stats => \@taxo_rrd});
 
   return (scalar @taxo_rrd);
 }
+
+
+=head2 Stats_Handler()
+
+Handles Statistics for one minute
+
+=cut
+
+sub Stats_Handler
+{
+	foreach my $s_conf (@services)
+  {
+  	my $s = $s_conf->{sid};
+    if ( (NOT_NULL($parser_stats{$s})) && ($parser_stats{$s} != 0))
+   	{
+    	AAT::Syslog::Message(
+            $PROG_NAME, 'PARSER_DEVICE_SERVICE_EVENTS',
+            $device, $s, "$day/$month/$year $hour:$min",
+            $parser_stats{$s}, $nb_lines_minute
+          );
+    	Cache_Taxonomy_Stats($s);
+      $parser_stats{$s} = 0;
+   	}
+ 	}
+  Cache_MsgID_Stats();
+ 	AAT::Syslog::Message(
+        $PROG_NAME, 'PARSER_DEVICE_PARSING_DURATION',
+        $device, "$day/$month/$year $hour:$min",
+        $seconds_to_parse
+      );
+	($nb_lines_minute, $seconds_to_parse) = (0, 0);	
+}
+
 
 =head2 File_Handler($file)
 
@@ -583,29 +580,8 @@ sub File_Handler
       || ($n_hour != $hour)
       || ($n_day != $day)
       || ($n_month != $month))
-    {    # not the same minute than previous file -> write stats to syslog
-      foreach my $s_conf (@services)
-      {
-        my $s = $s_conf->{sid};
-        if ( (NOT_NULL($parser_stats{$s}))
-          && ($parser_stats{$s} != 0))
-        {
-          AAT::Syslog::Message(
-            $PROG_NAME, 'PARSER_DEVICE_SERVICE_EVENTS',
-            $device, $s, "$day/$month/$year $hour:$min",
-            $parser_stats{$s}, $nb_lines_minute
-          );
-          Cache_Taxonomy_Stats($s);
-          $parser_stats{$s} = 0;
-        }
-      }
-      Cache_MsgID_Stats();
-      AAT::Syslog::Message(
-        $PROG_NAME, 'PARSER_DEVICE_PARSING_DURATION',
-        $device, "$day/$month/$year $hour:$min",
-        $seconds_to_parse
-      );
-      ($nb_lines_minute, $seconds_to_parse) = (0, 0);
+    {    # not the same minute than previous file -> write stats to syslog 
+      Stats_Handler();
       ($year, $month, $day, $hour, $min) =
         ($n_year, $n_month, $n_day, $n_hour, $n_min);
     }
@@ -629,8 +605,7 @@ sub File_Handler
             {    # MsgID Statistics enabled and/or Alerts for this Service
               foreach my $msg (@{$service{$serv}{msgs}})
               {
-                Line_Handler($line, $serv, $msg, \%known_msgs, \$match,
-                  "$year$month$day");
+                Line_Handler($line, $serv, $msg, \%known_msgs, \$match);
                 last if ($match);
               }
               if (!$match)

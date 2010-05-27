@@ -6,7 +6,7 @@
 <%
 my %arg = @_;
 
-my ($y, $m, $d) = AAT::Datetime::Now();
+my ($y, $m, $d) = AAT::Utils::Now();
 my $dname = AAT::Datetime::WeekDay_Name($d);
 my $month_name = AAT::Datetime::Month_Name($m);
 %>
