@@ -31,14 +31,85 @@ use Octopussy::Contact;
 
 Readonly my $PROG_NAME => 'octo_sender';
 
-#exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::Valid_User($PROG_NAME));
 
 my %contact = ();
-foreach my $c (Octopussy::Contact::Configurations('cid'))
+my $file_pid = Octopussy::PID_File($PROG_NAME);
+
+
+=head1 FUNCTIONS
+
+=head2 Contact_Configuration()
+
+=cut
+
+sub Contact_Configuration
 {
-	$contact{$c->{cid}} = $c;
+	use AAT;
+	
+	AAT::DEBUG("$PROG_NAME: Load Contact Configuration");
+	foreach my $c (keys %contact)
+	{
+		delete $contact{$c};
+	}
+	foreach my $c (Octopussy::Contact::Configurations('cid'))
+	{
+		$contact{$c->{cid}} = $c;
+	}
+	my $nb_contacts = scalar(keys %contact);
+	AAT::Syslog::Message($PROG_NAME, 'LOAD_CONTACTS_CONFIG', $nb_contacts);
 }
 
+
+=head2 Get_IM_Addresses($action)
+
+Returns list of IM addresses from Contacts
+
+=cut
+
+sub Get_IM_Addresses
+{
+	my $action = shift;
+	my @ims = ();
+	
+	foreach my $c (ARRAY($action->{contacts}))
+  {
+  	push @ims, $contact{$c}->{im}
+    	if (defined $contact{$c}->{im});	
+  }
+  
+  return (@ims);
+}
+
+
+=head2 Get_Mail_Addresses($action)
+
+Returns list of mail addresses from Contacts
+
+=cut
+
+sub Get_Mail_Addresses
+{
+	my $action = shift;
+	my @mails = ();
+	
+ 	foreach my $c (ARRAY($action->{contacts}))
+	{
+  	push @mails, $contact{$c}->{im}
+    	if (defined $contact{$c}->{im});	
+ 	}
+ 	
+ 	return (@mails);
+}
+
+
+#
+# MAIN
+#
+
+$SIG{HUP}  = \&Contact_Configuration;
+
+Contact_Configuration();
 my $cache = Octopussy::Cache::Init($PROG_NAME);
 while (1)
 {
@@ -46,21 +117,13 @@ while (1)
 	foreach my $k (sort @keys)
 	{
 		my $msg = $cache->get($k);
-		my $action = $msg->{action};
-		#printf "Action: $action\nDevice: $msg->{device}\nData: $msg->{data}\nMsg: $msg->{msg}\n\n";
-		
+		my $action = $msg->{action};		
 		my ($subject, $body, $action_host, $action_service, $action_body) =
    		Octopussy::Alert::Message_Building($action, $msg->{device}, $msg->{data}, $msg->{msg});
             
  		if (defined $action->{action_jabber})
    	{
-   		my @ims = ();
-   		foreach my $c (ARRAY($action->{contacts}))
-   		{
-   			push @ims, $contact{$c}->{im}
-        	if (defined $contact{$c}->{im});	
-   		}
-   		printf "IMs: %s\n", @ims;
+   		my @ims = Get_IM_Addresses($action);
     	AAT::XMPP::Send_Message('Octopussy', $subject, @ims);
    		foreach my $line (split(/\n/, $body))
    		{
@@ -69,13 +132,7 @@ while (1)
   	}
   	if (defined $action->{action_mail})
   	{
-  		my @mails = ();
-  		foreach my $c (ARRAY($action->{contacts}))
-   		{
-   			push @mails, $contact{$c}->{im}
-        	if (defined $contact{$c}->{im});	
-   		}
-   		printf "Mails: %s\n", @mails;
+  		my @mails = Get_Mail_Addresses($action);
   		AAT::SMTP::Send_Message('Octopussy',
     		{subject => $subject, body => $body, dests => @mails});
   	}

@@ -245,6 +245,6 @@ Sebastien Thebert <octo.devel@gmail.com>
 =head1 SEE ALSO
 
 octo_extractor, octo_parser, octo_uparser, octo_reporter, octo_rrd, 
-octo_scheduler
+octo_scheduler, octo_sender
 
 =cut

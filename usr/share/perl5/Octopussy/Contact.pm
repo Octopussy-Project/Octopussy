@@ -23,9 +23,7 @@ use Octopussy::FS;
 
 Readonly my $XML_ROOT => 'octopussy_contact';
 
-# String: $dir_contacts
-# Directory for the Contacts configuration files
-my $dir_contacts = undef;
+my ($dir_contacts, $dir_pid) = (undef, undef);
 my %filename;
 
 =head1 FUNCTIONS
@@ -54,6 +52,7 @@ sub New
     if (!$exist)
     {
       AAT::XML::Write("$dir_contacts/$conf->{cid}.xml", $conf, $XML_ROOT);
+      Reload_Sender_Configuration();    
     }
     else { return ('_MSG_CONTACT_ALREADY_EXISTS'); }
   }
@@ -61,6 +60,7 @@ sub New
 
   return (undef);
 }
+
 
 =head2 Remove($contact)
 
@@ -78,7 +78,8 @@ sub Remove
 
   my $nb = unlink Filename($contact);
   $filename{$contact} = undef;
-
+	Reload_Sender_Configuration();
+	
   return ($nb);
 }
 
@@ -220,6 +221,28 @@ sub Configurations
   }
 
   return (@sorted_configurations);
+}
+
+
+=head2 Reload_Sender_Configuration()
+
+Sends 'HUP' signal to octo_sender in order to reload its Contacts configuration
+
+=cut
+
+sub Reload_Sender_Configuration
+{    
+	$dir_pid ||= Octopussy::FS::Directory('running');
+	my $file_pid = "$dir_pid/octo_sender.pid";
+	if (-f $file_pid)
+ 	{
+  	my $pid = Octopussy::PID_Value($file_pid);
+   	kill HUP => $pid;
+   	
+   	return (1);
+ 	}
+ 	
+ 	return (0);
 }
 
 1;

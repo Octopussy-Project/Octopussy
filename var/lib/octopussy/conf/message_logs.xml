@@ -21,8 +21,10 @@
 	<log mid="GENERIC_REMOVED_FROM"
     message="%%ARG1%% '%%ARG2%%' has been removed from %%ARG3%% '%%ARG4%%' by %%LOGIN%%" />
 
-  <log mid="LOAD_DEVICES_CONFIG" message="Load Devices Configuration" />
-
+  	<log mid="LOAD_CONTACTS_CONFIG" message="Load Contacts Configuration (%%ARG1%% contacts)" />
+  	
+	<log mid="LOAD_DEVICES_CONFIG" message="Load Devices Configuration" />
+	
 	<log mid="LOG_SEARCH"
 		message="Logs Search on Device[%%ARG1%%] Service[%%ARG2%%] Period[%%ARG3%%] by %%LOGIN%% takes %%ARG4%% seconds." />
 
