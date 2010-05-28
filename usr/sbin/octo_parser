@@ -28,7 +28,6 @@ use Linux::Inotify2;
 use POSIX qw( mktime strftime );
 use Regexp::Assemble;
 
-#use AAT::Datetime;
 use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL NULL );
 
@@ -680,6 +679,8 @@ while (!$exit_request)
     {
       AAT::Syslog::Message($PROG_NAME, 'DEVICE_HASNT_SENT_ANY_LOGS', $device,
         int($diff / 60));
+     	# alert 'about no logs sent' only every $minutes_without_logs minutes
+     	$last_logs_time = time;  
     }
   }
   while ($file = shift @files)
