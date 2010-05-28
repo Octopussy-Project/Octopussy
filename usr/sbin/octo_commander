@@ -34,7 +34,7 @@ while (1)
   {
     if (my ($command, $args) = $c =~ /^(\/usr\/sbin\/octo_\S+)(.*)/)
     {
-      system $command, $args;
+      system "$command $args";
     }
   }
   sleep 1;

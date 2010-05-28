@@ -21,8 +21,8 @@ use warnings;
 use Readonly;
 
 use Date::Manip;
+use POSIX qw( strftime );
 
-use AAT::Datetime;
 use AAT::Utils;
 use Octopussy;
 use Octopussy::Report;
@@ -153,7 +153,8 @@ exit if (!Octopussy::Valid_User($PROG_NAME));
 while (1)
 {
   my ($year, $mon, $mday, $hour, $min) = AAT::Utils::Now();
-  my $wday = AAT::Datetime::WeekDay($year, $mon, $mday);
+  my $wday = strftime("%w", 0, 0, 0, $mday, $mon-1, $year-1900);
+  $wday = ($wday == 0 ? $wday = 7 : $wday); # on sunday we want 7 instead of 0 
   my %dt = (
     year     => $year,
     month    => $mon,

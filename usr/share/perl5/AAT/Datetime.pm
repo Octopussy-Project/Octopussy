@@ -16,6 +16,7 @@ use warnings;
 use Readonly;
 
 use Date::Manip;
+use POSIX qw( strftime );
 
 Readonly my @MONTH_NAME => (
   '',        '_JANUARY',   '_FEBRUARY', '_MARCH',
@@ -114,6 +115,7 @@ sub Seconds_Since_1970
 #return (Date::Manip::Date_SecsSince1970($month,$day,$year,$hour,$min, 0)) # GMT+3 fix
 }
 
+
 =head2 WeekDay($year, $month, $day)
 
 Get the Day of Week (1 for Monday, 7 for Sunday)
@@ -132,7 +134,10 @@ sub WeekDay
 {
   my ($year, $month, $day) = @_;
 
-  return (Date::Manip::Date_DayOfWeek($month, $day, $year));
+	my $wday = strftime("%w", 0, 0, 0, $day, $month-1, $year-1900);
+  $wday = ($wday == 0 ? 7 : $wday); # on Sunday we want 7 instead of 0
+  
+  return ($wday);
 }
 
 =head2 WeekDay_Name($wday)
