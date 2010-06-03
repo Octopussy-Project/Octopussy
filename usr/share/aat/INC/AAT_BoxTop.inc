@@ -24,7 +24,7 @@ if ((defined $arg{icon}) || (defined $arg{title}))
 	<div align="center" class="box">
 	<table cellspacing="0" cellpadding="2">
 	<tr>
-		<td class="box"><AAT:IMG name="$arg{icon}" /></td>
+		<td class="box"><AAT:IMG name="$arg{icon}" width="32" height="32" /></td>
 		<td class="box"><AAT:Label value="$arg{title}" style="B" size="+1" /></td>
 	</tr>
 	</table>

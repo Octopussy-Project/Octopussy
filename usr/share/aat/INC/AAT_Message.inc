@@ -9,7 +9,7 @@ my $color = ($arg{level} == 2 ? "red"
 %>
 <table>
 <tr valign="middle">
-<td><AAT:Button name="$button" /></td>
+<td><AAT:Button name="$button" width="32" height="32" /></td>
 <td>
 <%if (NOT_NULL($arg{link}))
 {%><a href="<%= $arg{link} %>"><%}%>

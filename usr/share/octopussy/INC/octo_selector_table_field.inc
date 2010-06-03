@@ -11,4 +11,4 @@ foreach my $e (Octopussy::Table::Field_Type_List($arg{table}, $arg{field_type}))
 	{ push(@list, { label => "[" . uc($e) . "]", value => $e }); }
 %>
 <AAT:Selector name="table_field_$arg{field_number}" 
-	list=\@list selected="$arg{selected}" />
+	list=\@list selected="$arg{selected}" no_trans="1" />

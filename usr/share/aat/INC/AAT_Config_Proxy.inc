@@ -1,8 +1,3 @@
-<!--
-#################### Octopussy Project ####################
- $Id$
-###########################################################
--->
 <%
 my %arg = @_;
 my $tt = $arg{tooltip};
@@ -22,7 +17,7 @@ my ($server, $port, $user, $pwd) =
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol rspan="3">
-	<AAT:IMG name="generic_proxy" tooltip="$tt" /></AAT:BoxCol>
+	<AAT:IMG name="generic_proxy" tooltip="$tt" width="64" height="64" /></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Label value="_PORT" style="B" tooltip="$tt" /></AAT:BoxCol>
   <AAT:BoxCol cspan="2">

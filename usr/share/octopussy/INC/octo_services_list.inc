@@ -36,7 +36,7 @@ foreach my $s (Octopussy::Service::Configurations($sort))
 <AAT:BoxCol align="C"><%
 if ($role !~ /ro/i)
 {
-%><AAT:Button name="remove" tooltip="_REMOVE"
+%><AAT:Button name="remove" tooltip="_REMOVE" width="32" height="32"
     popup_link="./dialog.asp?id=delete_service&arg1=$name&action=remove" /><%
 }
 %></AAT:BoxCol>

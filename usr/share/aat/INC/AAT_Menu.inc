@@ -24,16 +24,16 @@ foreach my $e (ARRAY($a{items}))
 			if (NOT_NULL($link))
 			{
 				if ($mode eq "ICONS_ONLY")
-					{ %><AAT:IMG name="$icon" link="$link" tooltip="$label" alt="$alt" /><% }
+					{ %><AAT:IMG name="$icon" width="32" height="32" link="$link" tooltip="$label" alt="$alt" /><% }
 				else
-					{ %><AAT:IMG name="$icon" link="$link" alt="$alt" /><% }
+					{ %><AAT:IMG name="$icon" width="32" height="32" link="$link" alt="$alt" /><% }
 			}
 			elsif (NOT_NULL($p_link))
 			{ 
 				if ($mode eq "ICONS_ONLY")
-          { %><AAT:IMG name="$icon" popup_link="$p_link" tooltip="$label" alt="$alt" /><% }
+          { %><AAT:IMG name="$icon" width="32" height="32" popup_link="$p_link" tooltip="$label" alt="$alt" /><% }
 				else
-					{ %><AAT:IMG name="$icon" popup_link="$p_link" alt="$alt" /><% }
+					{ %><AAT:IMG name="$icon" width="32" height="32" popup_link="$p_link" alt="$alt" /><% }
 			}
 		}%>
 		</AAT:BoxCol><AAT:BoxCol valign="middle"><%

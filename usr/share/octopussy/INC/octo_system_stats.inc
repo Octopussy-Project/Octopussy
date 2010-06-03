@@ -7,7 +7,7 @@ my $nb_storages = scalar(@storages) + 1;
 %>
 <AAT:Box align="C">
   <AAT:BoxRow>
-		<AAT:BoxCol rspan="2"><AAT:IMG name="hardware_cpu" /></AAT:BoxCol>
+		<AAT:BoxCol rspan="2"><AAT:IMG name="hardware_cpu" width="64" height="64" /></AAT:BoxCol>
     <AAT:BoxCol valign="top">
 		<AAT:Label value="_PROCESSOR" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol valign="top" cspan="2">
@@ -20,7 +20,7 @@ my $nb_storages = scalar(@storages) + 1;
 		<AAT:Label value="$cpu_str" /></AAT:BoxCol>
   </AAT:BoxRow>
 	<AAT:BoxRow>
-		<AAT:BoxCol rspan="3"><AAT:IMG name="hardware_memory" /></AAT:BoxCol>
+		<AAT:BoxCol rspan="3"><AAT:IMG name="hardware_memory" width="64" height="64" /></AAT:BoxCol>
     <AAT:BoxCol valign="top">
 		<AAT:Label value="_MEM_USAGE" style="B" /></AAT:BoxCol>
     <AAT:BoxCol valign="top" cspan="2">
@@ -41,7 +41,7 @@ my $nb_storages = scalar(@storages) + 1;
 	<AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
 	<AAT:BoxRow>
 		<AAT:BoxCol rspan="$nb_storages">
-		<AAT:IMG name="generic_used_space" /></AAT:BoxCol>
+		<AAT:IMG name="generic_used_space" width="64" height="64" /></AAT:BoxCol>
 		<AAT:BoxCol rspan="$nb_storages">
 		<AAT:Label value="_STORAGES" style="B" /></AAT:BoxCol>
 		<AAT:BoxCol><AAT:Label value="_NAME" style="B" /></AAT:BoxCol>

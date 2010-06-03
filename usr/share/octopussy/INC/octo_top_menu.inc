@@ -10,7 +10,7 @@ $lang = (-f "HELP/$lang/${help_lnk}.html" ? $lang : "en");
 <AAT:Box width="100%">
 <AAT:BoxRow>
 	<AAT:BoxCol>
-	<AAT:Button name="user_prefs" tooltip="_USER_PREFS" link="./user_pref.asp"/>
+	<AAT:Button name="user_prefs" tooltip="_USER_PREFS" link="./user_pref.asp" width="32" height="32" />
   </AAT:BoxCol>
 	<AAT:BoxCol width="100%" align="C">
 	<AAT:Label value="$version" style="B" link="./index.asp" /><br>
@@ -18,7 +18,7 @@ $lang = (-f "HELP/$lang/${help_lnk}.html" ? $lang : "en");
 	</AAT:BoxCol>	
 	<AAT:BoxCol><AAT:Help page="HELP/$lang/${help_lnk}.html" /></AAT:BoxCol>
 	<AAT:BoxCol>
-	<AAT:Button name="exit" tooltip="_LOGOUT" popup_link="$logout_lnk"/>
+	<AAT:Button name="exit" tooltip="_LOGOUT" popup_link="$logout_lnk" width="32" height="32" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>

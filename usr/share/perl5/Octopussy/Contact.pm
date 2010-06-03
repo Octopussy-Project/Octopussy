@@ -19,6 +19,7 @@ use AAT::FS;
 use AAT::LDAP;
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
+use Octopussy;
 use Octopussy::FS;
 
 Readonly my $XML_ROOT => 'octopussy_contact';

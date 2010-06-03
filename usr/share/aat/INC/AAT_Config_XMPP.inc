@@ -19,7 +19,7 @@ my ($server, $port, $tls, $user, $pwd) =
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol rspan="4">
-  <AAT:IMG name="generic_jabber" tooltip="$tt" /></AAT:BoxCol>
+  <AAT:IMG name="generic_jabber" tooltip="$tt" width="64" height="64" /></AAT:BoxCol>
   <AAT:BoxCol valign="top">
   <AAT:Label value="port" style="B" tooltip="$tt" /></AAT:BoxCol>
   <AAT:BoxCol cspan="2" valign="top">

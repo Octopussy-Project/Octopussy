@@ -20,7 +20,7 @@ my ($server, $auth_dn, $auth_password, $base, $filter) =
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol rspan="4">
-	<AAT:IMG name="generic_contacts" tooltip="$tt" /></AAT:BoxCol>
+	<AAT:IMG name="generic_contacts" tooltip="$tt" width="64" height="64" /></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Label value="_CONTACTS_AUTH_DN" style="B" tooltip="$tt" /></AAT:BoxCol>
   <AAT:BoxCol cspan="2">
