@@ -9,7 +9,7 @@
            msg_id="Apache_Mod_Security:access_denied"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; [&lt;@DATE_TIME_APACHE_ERROR:apachetime@&gt;] [error] [client &lt;@IP_ADDR:client@&gt;] ModSecurity: &lt;@STRING:msg@&gt; [id &quot;&lt;@NUMBER:msg_id@&gt;&quot;] [msg &quot;&lt;@STRING:msg_category@&gt;&quot;] [severity &quot;&lt;@WORD:severity@&gt;&quot;] [hostname &quot;&lt;@WORD:hostname@&gt;&quot;] [uri &quot;&lt;@STRING:uri@&gt;&quot;] [unique_id &quot;&lt;@WORD:unique_id@&gt;&quot;]"
            rank="001"
-           table="Apache_ModSecurity"
+           table="Apache_Mod_Security"
            taxonomy="Access.Failure" />
   <message loglevel="Notice"
            msg_id="Apache_Mod_Security:client_denied_server_configuration"
@@ -27,7 +27,7 @@
            msg_id="Apache_Mod_Security:error_reading_request_body"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; [&lt;@DATE_TIME_APACHE_ERROR:apachetime@&gt;] [error] [client &lt;@IP_ADDR:client@&gt;] ModSecurity: &lt;@REGEXP(&quot;Error reading request body: .+&quot;):msg@&gt; [hostname &quot;&lt;@WORD:hostname@&gt;&quot;] [uri &quot;&lt;@STRING:uri@&gt;&quot;] [unique_id &quot;&lt;@WORD:unique_id@&gt;&quot;]"
            rank="002"
-           table="Apache_ModSecurity"
+           table="Apache_Mod_Security"
            taxonomy="Application.Errors" />
   <message loglevel="Notice"
            msg_id="Apache_Mod_Security:error_reading_headers"

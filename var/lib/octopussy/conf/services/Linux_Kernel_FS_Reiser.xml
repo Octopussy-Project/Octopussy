@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Linux Kernel ReiserFS Service"
-									 icon="operating_systems/os_linux_generic"
+                   icon="operating_systems/os_linux_generic"
                    name="Linux_Kernel_FS_Reiser"
-                   version="200805220006"
+                   version="201002190003"
                    website="">
   <message loglevel="Information"
            msg_id="Linux_Kernel_FS_Reiser:found_reiserfs_format"

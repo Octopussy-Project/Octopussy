@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Audit Event Multiplexor Service"
+                   name="Audispd"
+                   version="201004300005"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Audispd:max_restarts_parser_called_with"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;audispd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;max_restarts_parser called with: \d+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Audispd:priority_boost_parser_called_with"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;audispd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;priority_boost_parser called with: \d+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Audispd:plugin_initialized"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;audispd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ plugin initialized&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Audispd:audispd_initialized_with_q_depth_and_active_plugins"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;audispd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;audispd initialized with q_depth=\d+ and \d+ active plugins&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Application" />
+</octopussy_service>

@@ -24,4 +24,10 @@
          type="DATETIME" />
   <field title="device"
          type="WORD" />
+  <field title="event_count"
+         type="NUMBER" />
+  <field title="src"
+         type="WORD" />
+  <field title="datetime2"
+         type="DATETIME" />
 </octopussy_table>

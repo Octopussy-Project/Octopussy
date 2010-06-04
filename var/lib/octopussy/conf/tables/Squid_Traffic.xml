@@ -23,4 +23,8 @@
          type="STRING" />
   <field title="type"
          type="STRING" />
+  <field title="pid"
+         type="PID" />
+  <field title="daemon"
+         type="WORD" />
 </octopussy_table>

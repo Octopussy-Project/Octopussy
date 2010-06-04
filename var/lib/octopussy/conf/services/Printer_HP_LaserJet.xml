@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_service description="Printer"
+<octopussy_service description="HP LaserJet Printer Service"
                    name="Printer_HP_LaserJet"
                    nb_messages="008"
                    version="200901080016"

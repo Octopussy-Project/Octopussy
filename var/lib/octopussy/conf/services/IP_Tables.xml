@@ -3,7 +3,7 @@
                    icon="software/logo_netfilter"
                    name="IP_Tables"
                    nb_messages="008"
-                   version="200811200051"
+                   version="201004300001"
                    website="http://www.netfilter.org/">
   <message loglevel="Information"
            msg_id="IP_Tables:traffic_tcp_fragmented_input"
@@ -113,4 +113,10 @@
            rank="009"
            table="Firewall_Traffic"
            taxonomy="Traffic" />
+  <message loglevel="Information"
+           msg_id="IP_Tables:copyright_information"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;.+ ip_tables: .+ Netfilter Core Team&quot;):msg@&gt;"
+           rank="019"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

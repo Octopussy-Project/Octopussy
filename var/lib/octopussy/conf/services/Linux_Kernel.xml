@@ -1457,4 +1457,10 @@
            rank="242"
            table="Message"
            taxonomy="Network.Errors" />
+  <message loglevel="Notice"
+           msg_id="Linux_Kernel:registered_transport_module"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; kernel: &lt;@REGEXP(&quot;RPC: Registered .+ transport module.&quot;):msg@&gt;"
+           rank="243"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

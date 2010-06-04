@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="PC Smart Card Service"
                    name="Pcscd"
-                   nb_messages="024"
-                   version="201002150001"
+                   nb_messages="031"
+                   version="201002220010"
                    website="http://pcsclite.alioth.debian.org/">
   <message loglevel="Information"
            msg_id="Pcscd:apdu_exchange_with_smartcard_or_cardreader"
@@ -160,4 +160,46 @@
            rank="026"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Pcscd:apdu_message"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pcscd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;APDU:.+&quot;):msg@&gt;"
+           rank="027"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Pcscd:sw_message"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pcscd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;SW:.+&quot;):msg@&gt;"
+           rank="028"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Pcscd:cannot_create_file_or_directory_permission_denied"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pcscd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+annot create.+Permission denied&quot;):msg@&gt;"
+           rank="030"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Pcscd:cannot_create_public_shared_file"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pcscd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+annot create public shared file.+Permission denied&quot;):msg@&gt;"
+           rank="029"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Debug"
+           msg_id="Pcscd:log_level_set"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pcscd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+LogSetLevel.+level=.+&quot;):msg@&gt;"
+           rank="031"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Pcscd:cannot_remove_no_such_file_or_directory"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pcscd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+annot remove.+No such file or directory&quot;):msg@&gt;"
+           rank="032"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Pcscd:cannot_remove_file_or_directory_permission_denied"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;pcscd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+annot remove.+Permission denied&quot;):msg@&gt;"
+           rank="033"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

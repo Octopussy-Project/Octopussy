@@ -48,20 +48,14 @@
          type="STRING" />
   <field title="interface"
          type="STRING" />
-  <field title="interval_seconds"
-         type="NUMBER" />
   <field title="msg"
          type="STRING" />
   <field title="acl_id"
          type="STRING" />
-  <field title="connections"
-         type="NUMBER" />
   <field title="type"
          type="WORD" />
   <field title="user"
          type="STRING" />
-  <field title="hit_cnt"
-         type="WORD" />
   <field title="dst_addr_2"
          type="IP_ADDR" />
   <field title="dst_port_2"
@@ -69,11 +63,5 @@
   <field title="src_addr_2"
          type="IP_ADDR" />
   <field title="src_port_2"
-         type="NUMBER" />
-  <field title="protocol_2"
-         type="WORD" />
-  <field title="bytes_limit"
-         type="NUMBER" />
-  <field title="connections_max"
          type="NUMBER" />
 </octopussy_table>

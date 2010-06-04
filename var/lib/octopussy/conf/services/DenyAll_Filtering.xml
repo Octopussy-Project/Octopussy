@@ -5,7 +5,7 @@
                    version="201002120004"
                    website="http://www.deny-all.com">
   <message loglevel="Notice"
-           msg_id="DenyAll_Filtering:acces_to4"
+           msg_id="DenyAll_Filtering:access_to4"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:denyall_product@&gt; &lt;@WORD:instance@&gt;: - &lt;@IP_ADDR:src_addr@&gt; &quot;-&quot; [&lt;@DATE_TIME_APACHE_ACCESS:NULL@&gt;] RE &lt;@WORD:rule@&gt; &lt;@WORD:action@&gt; access to '&lt;@WORD:http_method@&gt; &lt;@STRING:url@&gt;"
            rank="011"
            table="DenyAll_Filtering"

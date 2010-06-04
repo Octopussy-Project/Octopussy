@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_table description="Apache ModSecurity Table"
-                 name="Apache_ModSecurity"
+                 name="Apache_Mod_Security"
                  version="200711130001">
   <field title="datetime"
          type="DATETIME" />

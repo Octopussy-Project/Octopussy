@@ -3,7 +3,7 @@
                    icon="software/logo_squid"
                    name="Squid_System"
                    nb_messages="082"
-                   version="201001220005"
+                   version="201002180009"
                    website="http://www.squid-cache.org/">
   <message loglevel="Information"
            msg_id="Squid_System:logfile_rotate"
@@ -361,13 +361,13 @@
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Squid_System:debug_info"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:NULL@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;\s+\w+_direct = .+&quot;):NULL@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\s+\w+_direct = .+&quot;):msg@&gt;"
            rank="061"
            table="Message"
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Squid_System:debug_info2"
-           pattern="&lt;@DATE_TIME_SYSLOG:NULL@&gt; &lt;@WORD:NULL@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;\s+timedout = .+&quot;):msg@&gt; "
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\s+timedout = .+&quot;):msg@&gt;"
            rank="062"
            table="Message"
            taxonomy="System" />
@@ -391,7 +391,7 @@
            taxonomy="Config.Errors" />
   <message loglevel="Information"
            msg_id="Squid_System:no_resolv_conf"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;[&lt;@NUMBER:NULL@&gt;]: &lt;@REGEXP(&quot;.*resolv.conf.*No such file or directory.*&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;squid&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*resolv.conf.*No such file or directory.*&quot;):msg@&gt;"
            rank="066"
            table="Message"
            taxonomy="System" />
@@ -457,7 +457,7 @@
            taxonomy="Config.Errors" />
   <message loglevel="Critical"
            msg_id="Squid_System:invalid_ip_address3"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; (squid): &lt;@REGEXP(&quot;decode_addr: Invalid IP address .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; (&lt;@REGEXP(&quot;squid&quot;):daemon@&gt;): &lt;@REGEXP(&quot;decode_addr: Invalid IP address .+&quot;):msg@&gt;"
            rank="077"
            table="Message"
            taxonomy="Config.Errors" />

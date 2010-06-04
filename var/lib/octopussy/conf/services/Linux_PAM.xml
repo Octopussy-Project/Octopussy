@@ -3,7 +3,7 @@
                    icon="operating_systems/os_linux_generic"
                    name="Linux_PAM"
                    nb_messages="016"
-                   version="200906020001"
+                   version="201004280001"
                    website="http://www.kernel.org/pub/linux/libs/pam/">
   <message loglevel="Warning"
            msg_id="Linux_PAM:user_access_denied"
@@ -107,4 +107,16 @@
            rank="017"
            table="Message"
            taxonomy="Auth.Failure" />
+  <message loglevel="Information"
+           msg_id="Linux_PAM:non_alphanumeric_key"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:daemon@&gt;: &lt;@REGEXP(&quot;pam_env\(\S+\): non-alphanumeric key .+ ignoring&quot;):msg@&gt;"
+           rank="018"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Linux_PAM:non_alphanumeric_key2"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:daemon@&gt;: &lt;@REGEXP(&quot;.+ pam_env\(\S+\): non-alphanumeric key .+ ignoring&quot;):msg@&gt;"
+           rank="019"
+           table="Message"
+           taxonomy="System" />
 </octopussy_service>

@@ -474,13 +474,13 @@
            taxonomy="System" />
   <message loglevel="Notice"
            msg_id="Linux_System:account_already_exists"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;(?:groupadd|useradd|adduser)&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;account already exists - account=&lt;@WORD:user@&gt; .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;(?:groupadd|useradd|adduser)&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;account already exists - account=.+&quot;):msg@&gt;"
            rank="079"
            table="Message"
            taxonomy="System" />
   <message loglevel="Notice"
            msg_id="Linux_System:group_already_exists"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.+&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;group already exists - group=&lt;@WORD:user@&gt; .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;.+&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;group already exists - group=.+&quot;):msg@&gt;"
            rank="080"
            table="Message"
            taxonomy="System" />

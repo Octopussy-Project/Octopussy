@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Smart Monitoring Service"
                    name="Smartd"
-                   version="201002100002"
+                   version="201004090006"
                    website="http://sourceforge.net/projects/smartmontools/">
   <message loglevel="Information"
            msg_id="Smartd:airflow_temperature_cel_changed"
@@ -29,7 +29,7 @@
            taxonomy="Application.Stop" />
   <message loglevel="Information"
            msg_id="Smartd:written_or_read_device_state"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ state (written|read) (to|from) .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ state (?:written|read) (?:to|from) .+&quot;):msg@&gt;"
            rank="005"
            table="Message"
            taxonomy="System" />
@@ -56,7 +56,7 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ opened&quot;):msg@&gt;"
            rank="009"
            table="Message"
-           taxonomy="Application" />
+           taxonomy="System" />
   <message loglevel="Information"
            msg_id="Smartd:config_file_parsed_scanning_devices"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Configuration file .+ was parsed.+ found .+ scanning devices&quot;):msg@&gt;"
@@ -80,28 +80,28 @@
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ is SMART capable.+ Adding to .+ list.&quot;):msg@&gt;"
            rank="013"
            table="Message"
-           taxonomy="Application" />
+           taxonomy="System" />
   <message loglevel="Information"
            msg_id="Smartd:device_type_changed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ type changed from .+ to .+&quot;):msg@&gt;"
            rank="014"
            table="Message"
-           taxonomy="Application" />
+           taxonomy="System" />
   <message loglevel="Information"
            msg_id="Smartd:device_found_in_database"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ found in .+ database.&quot;):msg@&gt;"
            rank="015"
            table="Message"
-           taxonomy="Application" />
+           taxonomy="System" />
   <message loglevel="Information"
            msg_id="Smartd:monitoring_devices"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Monitoring .+ devices&quot;):msg@&gt;"
            rank="016"
            table="Message"
-           taxonomy="Application" />
+           taxonomy="System" />
   <message loglevel="Information"
            msg_id="Smartd:background_foreground_mode"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;smartd has .+ into (background|foreground) mode. New PID=&lt;@PID:pid@&gt;.&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;smartd has .+ into \w+ground mode. New PID=.+&quot;):msg@&gt;"
            rank="017"
            table="Message"
            taxonomy="Application" />
@@ -121,6 +121,18 @@
            msg_id="Smartd:power_on_hours_changed"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ SMART Usage Attribute: .+ Power_On_Hours changed from \d+ to \d+&quot;):msg@&gt;"
            rank="020"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Smartd:read_device_state"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device:.+state read from.+&quot;):msg@&gt;"
+           rank="021"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Smartd:seek_error_rate_changed"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;smartd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Device: .+ SMART Prefailure Attribute:.+ Seek_Error_Rate changed from \d+ to \d+&quot;):msg@&gt;"
+           rank="022"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

@@ -1,5 +1,6 @@
 <octopussy_table name="Samhain"
-     description="Samhain Messages Table" version="200608020001">
+     description="Samhain Messages Table" 
+     version="200608020001">
   <field title="level"
          type="STRING" />
   <field title="msg"
@@ -10,4 +11,8 @@
          type="DATETIME" />
   <field title="policy"
          type="WORD" />
+  <field title="daemon"
+         type="WORD" />
+  <field title="pid"
+         type="PID" />
 </octopussy_table>

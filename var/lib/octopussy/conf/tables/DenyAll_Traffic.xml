@@ -19,7 +19,7 @@
          type="FLOAT_NUMBER" />
   <field title="denyall_time"
          type="FLOAT_NUMBER" />
-  <field title="server"
+  <field title="device"
          type="STRING" />
   <field title="datetime"
          type="DATETIME" />

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Linux Network Interface Services"
+                   name="Linux_Network_Interface"
+                   version="201004300006"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Linux_Network_Interface:interface_config_changed_restart_interface"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;if.*&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ changed config file: config --&gt; restart interface!&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Config.Changes" />
+  <message loglevel="Information"
+           msg_id="Linux_Network_Interface:device_information"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;if.*&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ device: .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Hardware.Network" />
+  <message loglevel="Information"
+           msg_id="Linux_Network_Interface:interface"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;if.*&quot;):daemon@&gt; &lt;@NET_INTERFACE:interface@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Hardware.Network" />
+  <message loglevel="Information"
+           msg_id="Linux_Network_Interface:ip_address"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;if.*&quot;):daemon@&gt;: &lt;@REGEXP(&quot;IP address: .+&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Hardware.Network" />
+  <message loglevel="Information"
+           msg_id="Linux_Network_Interface:empty"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;if.*&quot;):daemon@&gt;:"
+           rank="005"
+           table="Message"
+           taxonomy="Hardware.Network" />
+</octopussy_service>

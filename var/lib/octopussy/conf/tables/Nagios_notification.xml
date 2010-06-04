@@ -1,5 +1,6 @@
 <octopussy_table name="Nagios_notification"
-     description="Nagios Notification Table" version="201002220001">
+                 description="Nagios Notification Table" 
+	             version="201002220001">
   <field title="datetime"
          type="DATETIME" />
   <field title="device"

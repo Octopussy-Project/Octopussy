@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Rpc.statd Service"
+                   icon=""
+                   name="Rpc_statd"
+                   nb_messages="004"
+                   version="201006040001">
+  <message loglevel="Notice"
+           msg_id="Rpc_statd:running_as_chown_to_choose_different_user"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rpc.statd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;statd running as.+chown.+to choose different user&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Rpc_statd:flags"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rpc.statd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Flags:.+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Rpc_statd:version_starting"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rpc.statd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Version.+Starting&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Rpc_statd:unregistering_exiting"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rpc.statd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Caught signal \d+, un-registering and exiting.&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Application.Stop" />
+</octopussy_service>

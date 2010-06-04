@@ -3,7 +3,7 @@
                    icon="software/logo_avahi"
                    name="Avahi"
                    nb_messages="017"
-                   version="201002180001"
+                   version="201004300002"
                    website="http://avahi.org/">
   <message loglevel="Information"
            msg_id="Avahi:registering_new_address_record"
@@ -111,6 +111,24 @@
            msg_id="Avahi:received_response_with_invalid_source_port"
            pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Received response from host .+ with invalid source port .+ on interface .+&quot;):msg@&gt;"
            rank="018"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Avahi:no_querier_to_remove"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.+ called but no querier to remove.&quot;):msg@&gt;"
+           rank="019"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Avahi:withdrawing_address_record_for_ip_on_interface"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Withdrawing address record for .+ on .+&quot;):msg@&gt;"
+           rank="020"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Avahi:interface_no_longer_relevant_for_mDNS"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;avahi-daemon&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Interface .+ no longer relevant for mDNS.&quot;):msg@&gt;"
+           rank="021"
            table="Message"
            taxonomy="Application" />
 </octopussy_service>
