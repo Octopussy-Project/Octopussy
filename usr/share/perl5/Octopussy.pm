@@ -241,7 +241,7 @@ sub Create_Fifo
     my ($file, $dir, $suffix) = fileparse($fifo);
     Create_Directory($dir);
     mkfifo($fifo, '0700');
-    Chown($fifo);
+    Octopussy::FS::Chown($fifo);
   }
 
   return ($fifo);

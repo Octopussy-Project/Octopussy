@@ -39,7 +39,7 @@ my $error = Octopussy::Contact::New(
   }
 );
 
-ok(!defined $error, 'Octopussy::Contact::New()');
+ok(!defined $error, 'Octopussy::Contact::New()') or diag($error);
 
 my $c = Octopussy::Contact::Configuration($id);
 
@@ -47,7 +47,7 @@ ok((($c->{lastname} eq $lastname) && ($c->{email} eq $email)),
   'Octopussy::Contact::Configuration()');
 
 my @contacts = Octopussy::Contact::Configurations('lastname');
-ok(any { $_->{cid} eq $id } @contacts, 'Octopussy::Contact::Configurations()');
+ok((any { $_->{cid} eq $id } @contacts), 'Octopussy::Contact::Configurations()');
 
 Octopussy::Contact::Remove($id);
 my @contacts2 = Octopussy::Contact::List();

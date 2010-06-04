@@ -38,6 +38,8 @@ sub Init
 
   loc_lang($lang);
   $AAT_Translation{$lang}{'_USER'} = loc("_USER");
+
+  return (1);
 }
 
 =head2 Get($lang, $str)

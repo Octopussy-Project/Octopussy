@@ -181,6 +181,7 @@ sub Check_Service_Messages
   my ($service, $table, $loglevel, $taxo) = @_;
   my $conf        = Octopussy::Service::Configuration($service);
   my $serv        = $conf->{name};
+  print "ERROR with $service\n"	if (!defined $conf->{message});
   my $nb_messages = scalar(@{$conf->{message}});
   my %seen_msgid  = ();
   my %seen_rank   = ();
