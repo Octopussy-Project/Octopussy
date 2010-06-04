@@ -156,8 +156,13 @@ Copy_Files();
 `sed -i "s/^Version:.*/Version: $version/" ./$FILE_DEBIAN_CONTROL`;
 `dpkg-deb --build $DIR_TMP $filename_pkg`;
 
-rmtree($DIR_TMP);
+rmtree("$DIR_TMP/DEBIAN");
+`mv $DIR_TMP octopussy`;
+`cp ./LINUX/{INSTALL.sh,OCTOPUSSY.sql,README.txt} octopussy/`;
+`tar cvfz octopussy-$version.tar.gz octopussy/`;
 
+rmtree($DIR_TMP);
+rmtree('octopussy');
 
 =head1 AUTHOR
 

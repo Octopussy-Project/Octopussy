@@ -64,7 +64,7 @@ my ($file, $file_last) = (undef, undef);
 
 my %parser_stats = ();
 my ($year, $month, $day, $hour, $min) = (0, 0, 0, 0, 0);
-my ($nb_lines_minute, $seconds_to_parse) = (0, 0);
+my ($nb_lines_minute, $seconds_to_parse, $count_sender) = (0, 0, 1);
 
 my $file_pid = Octopussy::PID_File($PROG_NAME . "_$device");
 my $count    = 0;
@@ -395,7 +395,9 @@ sub Alert_Handler
             $alert_logs = ();
             Octopussy::Alert::Insert_In_DB($device, $a, $data, "$year$month$day$hour$min$sec");
             
-            $cache_sender->set("msg_$device", { action => $a, device => $device, data => $data, msg => $msg });
+            my $sender_id = "msg_${device}_" . sprintf("%06d", $count_sender);
+            $cache_sender->set($sender_id, { action => $a, device => $device, data => $data, msg => $msg });
+            $count_sender++;
           }
         }
         $cache->set($a->{name}, $alert_logs);

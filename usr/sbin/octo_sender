@@ -121,7 +121,7 @@ while (1)
 		my ($subject, $body, $action_host, $action_service, $action_body) =
    		Octopussy::Alert::Message_Building($action, $msg->{device}, $msg->{data}, $msg->{msg});
             
- 		if (defined $action->{action_jabber})
+ 		if (defined $action->{action_jabber} && AAT::XMPP::Configured('Octopussy'))
    	{
    		my @ims = Get_IM_Addresses($action);
     	AAT::XMPP::Send_Message('Octopussy', $subject, @ims);

@@ -56,6 +56,24 @@ sub Configuration
   return ($conf->{xmpp});
 }
 
+
+=head2 Configuration($appli)
+
+Returns '1' if XMPP is configured (server & port) else '0'
+
+=cut
+
+sub Configured
+{
+	my $appli = shift;
+
+  $conf_file{$appli} ||= AAT::Application::File($appli, 'xmpp');
+  my $conf = AAT::XML::Read($conf_file{$appli}, 1);
+  
+  return ((defined $conf->{server} && defined $conf->{port}) ? 1 : 0);
+}
+
+
 =head2 Connection_Test($appli)
 
 Checks the XMPP Connection
