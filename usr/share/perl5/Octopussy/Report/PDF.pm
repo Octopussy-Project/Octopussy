@@ -35,7 +35,7 @@ sub Generate_From_HTML
   my $file = shift;
 
   $ENV{HTMLDOC_NOCGI} = 1;
-  my $file_pdf = Octopussy::File_Ext( $file, 'pdf' );
+  my $file_pdf = Octopussy::FS::File_Ext( $file, 'pdf' );
 `$SED "s/AAT_THEMES/\\\/usr\\\/share\\\/octopussy\\\/AAT_THEMES/g" "$file" > "$file.tmp"`;
   `$HTMLDOC -f "$file_pdf" "$file.tmp"`;
   Octopussy::FS::Chown($file_pdf);

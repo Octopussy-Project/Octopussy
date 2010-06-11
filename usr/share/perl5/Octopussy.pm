@@ -247,20 +247,6 @@ sub Create_Fifo
   return ($fifo);
 }
 
-=head2 File_Ext($file, $extension)
-
-Returns File Extension
-
-=cut
-
-sub File_Ext
-{
-  my ($file, $extension) = @_;
-
-  $file =~ s/(\.\w+)$/\.$extension/;
-
-  return ($file);
-}
 
 =head2 PID_File
 

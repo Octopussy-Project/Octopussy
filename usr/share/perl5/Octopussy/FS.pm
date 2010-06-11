@@ -95,6 +95,7 @@ sub Directories
   return (@list);
 }
 
+
 =head2 File($file)
 
 Returns Octopussy File '$file' Value
@@ -107,6 +108,7 @@ sub File
 
   return (AAT::Application::File($APPLICATION_NAME, $file));
 }
+
 
 =head2 Files(@files)
 
@@ -124,6 +126,22 @@ sub Files
   }
 
   return (@list);
+}
+
+
+=head2 File_Ext($file, $extension)
+
+Returns File Extension
+
+=cut
+
+sub File_Ext
+{
+  my ($file, $extension) = @_;
+
+  $file =~ s/(\.\w+)$/\.$extension/;
+
+  return ($file);
 }
 
 1;
