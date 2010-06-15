@@ -19,6 +19,10 @@ use LWP;
 
 use AAT::Proxy;
 use AAT::Syslog;
+use AAT::Utils qw( NOT_NULL );
+
+Readonly my $TIMEOUT => 5; # 5 seconds before timeout
+
 
 =head1 FUNCTIONS
 
@@ -39,6 +43,7 @@ sub File
   my $ua = LWP::UserAgent->new;
   $ua->agent($appli);
   $ua->proxy('http', $proxy);
+  $ua->timeout($TIMEOUT);
   my $req = HTTP::Request->new(GET => $download);
   my $res = $ua->request($req);
   if ($res->is_success)

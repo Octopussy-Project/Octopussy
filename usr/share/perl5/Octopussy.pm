@@ -211,7 +211,7 @@ sub Web_Updates
   my $type = shift;
   my $file = '_' . lc($type) . '.idx';
   my %update;
-  my $website     = WebSite();
+  my $website     = Octopussy::Info::WebSite();
   my $dir_running = Octopussy::FS::Directory('running');
   AAT::Download::File('Octopussy', "$website/Download/$type/$file",
     "$dir_running$file");
