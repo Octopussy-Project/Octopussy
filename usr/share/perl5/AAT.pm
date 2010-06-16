@@ -758,13 +758,13 @@ sub Msg_Error
 {
   if (NOT_NULL($main::Session->{AAT_MSG_ERROR}))
   {
-    print '<div align=\"center\">\n';
+    print "<div align=\"center\">\n";
     $main::Response->Include(
       'AAT/INC/AAT_Message.inc',
       level => 2,
       msg   => $main::Session->{AAT_MSG_ERROR}
     );
-    print '</div>\n';
+    print "</div>\n";
   }
   $main::Session->{AAT_MSG_ERROR} = undef;
 }
@@ -950,7 +950,7 @@ Usage: <AAT:Selector_Language />
 sub Selector_Language
 {
   my ($args, $body) = @_;
-  my $language = Language();
+  my $language = $args->{selected} || Language();
   my @list     = (
     {label => '_ENGLISH',    value => 'EN'},
     {label => '_FRENCH',     value => 'FR'},

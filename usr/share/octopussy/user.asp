@@ -14,7 +14,7 @@ elsif ((NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	$Session->{AAT_MSG_ERROR} =
     AAT::User::Add("Octopussy", $login, $f->{password}, 
-			$f->{certificate}, $f->{user_role}, $f->{AAT_Language});
+			$f->{certificate}, $f->{user_role}, $f->{AAT_Language}, $f->{status});
   AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "User", $login)
   	if (NOT_NULL($Session->{AAT_MSG_ERROR}));
 	if ($f->{certificate} == 1)

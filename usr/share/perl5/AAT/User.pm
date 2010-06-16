@@ -49,7 +49,7 @@ sub Authentication
   my $md5 = unix_md5_crypt($pwd, $SALT);
   foreach my $u (ARRAY($conf->{user}))
   {
-    return ($u) if (($u->{login} eq $login) && ($u->{password} eq $md5));
+    return ($u) if (($u->{login} eq $login) && ($u->{password} eq $md5) && Enabled($u));
   }
 
   if (AAT::LDAP::Check_Password($appli, $login, $pwd))
@@ -69,7 +69,7 @@ sub Authentication
   return (undef);
 }
 
-=head2 Add($appli, $login, $pwd, $certificate, $role, $lang)
+=head2 Add($appli, $login, $pwd, $certificate, $role, $lang, $status)
 
 Adds user with '$login', '$pwd', '$role' and '$lang'
 
@@ -77,7 +77,7 @@ Adds user with '$login', '$pwd', '$role' and '$lang'
 
 sub Add
 {
-  my ($appli, $login, $pwd, $certificate, $role, $lang) = @_;
+  my ($appli, $login, $pwd, $certificate, $role, $lang, $status) = @_;
 
   $USERS_FILE ||= AAT::Application::File($appli, 'users');
   my $conf = AAT::XML::Read($USERS_FILE);
@@ -92,6 +92,7 @@ sub Add
     certificate => $certificate,
     role        => $role,
     language    => $lang || $DEFAULT_LANGUAGE,
+    status      => $status || 'enabled',
     theme       => $DEFAULT_THEME,
     menu_mode   => $DEFAULT_MENU_MODE,
     };
@@ -155,6 +156,7 @@ sub Update
         password     => $pwd,
         role         => $update->{role} || $u->{role},
         language     => $update->{language} || $u->{language},
+        status       => $update->{status} || $u->{status},
         theme        => $update->{theme} || $u->{theme},
         menu_mode    => $update->{menu_mode} || $u->{menu_mode},
         restrictions => $u->{restrictions},
@@ -244,6 +246,28 @@ sub List
   return (@users);
 }
 
+
+=head2 Configuration($appli, $login)
+
+Returns configuration for user '$login'
+
+=cut
+
+sub Configuration
+{
+  my ($appli, $login) = @_;
+  
+  $USERS_FILE ||= AAT::Application::File($appli, 'users');
+  my $conf  = AAT::XML::Read($USERS_FILE);
+  foreach my $u (ARRAY($conf->{user}))
+  {
+  	return ($u) if ($u->{login} eq $login);
+  }
+
+  return (undef);
+}
+
+
 =head2 Configurations($appli, $sort)
 
 Returns configurations for all Users
@@ -263,6 +287,21 @@ sub Configurations
   }
 
   return (@sorted_configurations);
+}
+
+
+=head2 Enabled($user)
+
+Returns 1 if user status is 'Enabled' or not defined, else returns 0.
+
+=cut
+
+sub Enabled
+{
+	my $user = shift;
+	
+	return (1)	if ((! defined $user->{status}) || ($user->{status} eq 'Enabled'));
+	return (0);	
 }
 
 =head2 Roles_Init($appli)
