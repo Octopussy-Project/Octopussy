@@ -24,6 +24,7 @@ and these Perl modules (from CPAN):
 - JSON
 - Linux::Inotify2
 - List::MoreUtils
+- Locale::Maketext::Simple
 - LWP
 - Mail::Sender
 - Net::FTP
