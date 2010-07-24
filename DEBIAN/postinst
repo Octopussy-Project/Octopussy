@@ -36,6 +36,7 @@ $CHOWN /var/lib/$OCTO/ /var/lib/$OCTO/logs/ 2> /dev/null || true
 $CHOWNR /var/lib/$OCTO/{conf,reports,rrd} /var/run/$AAT/ /var/run/$OCTO/ 2> /dev/null || true
 $FIND /usr/share/perl5/AAT* -name "*.pm" |xargs $CHMOD
 $FIND /usr/share/perl5/Octopussy* -name "*.pm" |xargs $CHMOD
+$CHMOD_X /usr/sbin/octo*
 
 #
 # Create Octopussy MySQL Database
