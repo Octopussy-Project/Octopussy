@@ -71,7 +71,8 @@ sub Copy_Files
   `svn export ./DEBIAN/ $DIR_TMP/DEBIAN/`;
   `chmod 755 $DIR_TMP/DEBIAN/`;
   `chmod 755 $DIR_TMP/DEBIAN/con*`;
-  `chmod 755 $DIR_TMP/DEBIAN/{post,pre}{inst,rm}`;
+  `chmod 755 $DIR_TMP/DEBIAN/post*`;
+  `chmod 755 $DIR_TMP/DEBIAN/pre*`;
 
   printf "Copying Perl modules...\n";
   `svn export ./usr/share/perl5/ $DIR_TMP/usr/share/perl5/`;

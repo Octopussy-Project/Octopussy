@@ -40,7 +40,7 @@ sub Chown
   {
     $list .= "\"$f\" ";
   }
-  system "chown -R $user:$user $list 2&> /dev/null";
+  system "chown -R $user:$user $list 2> /dev/null";
 
   return (1);
 }
