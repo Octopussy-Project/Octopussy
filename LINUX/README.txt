@@ -34,6 +34,7 @@ and these Perl modules (from CPAN):
 - Net::XMPP
 - Proc::PID::File
 - Proc::ProcessTable
+- Readonly
 - Sys::CPU
 - Unix::Syslog
 - URI

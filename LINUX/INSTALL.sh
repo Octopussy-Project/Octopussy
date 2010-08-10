@@ -4,8 +4,8 @@ AAT="aat"
 OCTO="octopussy"
 CRON_FILE="/etc/cron.daily/octo_logrotate"
 
-ADDGROUP="/usr/sbin/addgroup --system"
-ADDUSER="/usr/sbin/adduser --system --disabled-password --no-create-home"
+ADDGROUP="/usr/sbin/groupadd -r"
+ADDUSER="/usr/sbin/useradd -r -M"
 CAT="/bin/cat"
 CHKCONFIG="/sbin/chkconfig"
 CHMOD_X="/bin/chmod 755"
@@ -32,7 +32,7 @@ if id $OCTO >/dev/null 2>&1 ; then
     $USERMOD $OCTO $OCTO
   fi
 else
-  $ADDUSER --group --quiet $OCTO
+  $ADDUSER $OCTO
 fi
 
 #

@@ -36,7 +36,7 @@ Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
 Readonly my $IDX_STAT_UID => 4;
 Readonly my $IDX_STAT_GID => 5;
 
-$Octopussy::VERSION = qv('0.9.9.9.8');
+$Octopussy::VERSION = qv('0.9.9.9.9');
 
 =head1 FUNCTIONS
 
