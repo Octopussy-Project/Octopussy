@@ -21,11 +21,19 @@ SED="/bin/sed -i"
 USERMOD="/usr/sbin/usermod -g"
 DIR_FIFO="/var/spool/octopussy/"
 FILE_FIFO="/var/spool/octopussy/octo_fifo"
+DIR_PERL=`perl -MConfig -e 'print $Config::Config{installsitelib}'`;
 
+
+#
+# Display information (requirements, ...)
+#
 $CAT README.txt
+sleep 3
+
 #
 # Add User & Group Octopussy
 #
+$ECHO "Adding octopussy user & group..."
 if id $OCTO >/dev/null 2>&1 ; then
   if [ `id $OCTO -g -n` != "$OCTO" ] ; then
     $ADDGROUP $OCTO || true
@@ -38,12 +46,13 @@ fi
 #
 # Create Directories & Change Octopussy permission files
 #
+$ECHO "Creating directories & changing permissions"
 $MKDIR /etc/$AAT/
 $MKDIR /etc/$OCTO/
 $MKDIR /usr/share/$AAT/
 $MKDIR /usr/share/$OCTO/
-$MKDIR /usr/share/perl5/AAT/
-$MKDIR /usr/share/perl5/Octopussy/
+$MKDIR $DIR_PERL/AAT/
+$MKDIR $DIR_PERL/Octopussy/
 $MKDIR /var/lib/$OCTO/
 $MKDIR /var/run/$AAT/
 $MKDIR /var/run/$OCTO/
@@ -53,16 +62,18 @@ $CHOWN /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ || true
 #
 # Copy Files
 #
+$ECHO "Copying directories & files..."
 $CP -r etc/* /etc/
 $CP -r usr/sbin/* /usr/sbin/
 $CP -r usr/share/$AAT/* /usr/share/$AAT/
 $CP -r usr/share/$OCTO/* /usr/share/$OCTO/
-$CP -r usr/share/perl5/AAT* usr/share/perl5/Octo* /usr/share/perl5/
+$CP -r usr/share/perl5/AAT* usr/share/perl5/Octo* $DIR_PERL/
 $CP -r var/lib/$OCTO/* /var/lib/$OCTO/
 
 #
 # Create Octopussy MySQL Database with file 'OCTOPUSSY.sql'
 #
+$ECHO "Preparing MySQL Database..."
 $MYSQL_OCTO
 
 #
@@ -91,6 +102,7 @@ fi
 #
 # Apache2 Configuration
 #
+$ECHO "Configuring Apache..."
 $MKDIR /var/cache/$OCTO/asp/
 $CHOWN /var/cache/$OCTO/asp/
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
@@ -98,6 +110,7 @@ $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
 #
 # Octopussy FIFO creation (for Rsyslog)
 #
+$ECHO "Creating FIFO..."
 $MKDIR $DIR_FIFO
 $MKFIFO $FILE_FIFO
 $CHOWNR $DIR_FIFO
