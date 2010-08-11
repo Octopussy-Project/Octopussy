@@ -8,10 +8,12 @@ ADDGROUP="/usr/sbin/groupadd -r"
 ADDUSER="/usr/sbin/useradd -r -M"
 CAT="/bin/cat"
 CHKCONFIG="/sbin/chkconfig"
+CHMOD_R="/bin/chmod 444"
 CHMOD_X="/bin/chmod 755"
 CHOWN="/bin/chown -R $OCTO:$OCTO"
 CP="/bin/cp -f"
 ECHO="/bin/echo"
+FIND="/usr/bin/find"
 LN="/bin/ln -f -s"
 MKDIR="/bin/mkdir -p"
 MKFIFO="/usr/bin/mkfifo"
@@ -67,8 +69,13 @@ $CP -r etc/* /etc/
 $CP -r usr/sbin/* /usr/sbin/
 $CP -r usr/share/$AAT/* /usr/share/$AAT/
 $CP -r usr/share/$OCTO/* /usr/share/$OCTO/
-$CP -r usr/share/perl5/AAT* usr/share/perl5/Octo* $DIR_PERL/
 $CP -r var/lib/$OCTO/* /var/lib/$OCTO/
+$CP -r usr/share/perl5/AAT* usr/share/perl5/Octo* $DIR_PERL/
+$CHMOD_R $DIR_PERL/AAT.pm $DIR_PERL/Octopussy.pm
+$FIND $DIR_PERL/AAT/ -name *.pm -exec $CHMOD_R {} \;
+$FIND $DIR_PERL/Octopussy/ -name *.pm -exec $CHMOD_R {} \;
+$FIND $DIR_PERL/AAT/ -type d -exec $CHMOD_X {} \;
+$FIND $DIR_PERL/Octopussy/ -type d -exec $CHMOD_X {} \;
 
 #
 # Add octo_logrotate to cron.daily

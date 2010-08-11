@@ -82,7 +82,9 @@ sub Copy_Files
   mkpath("$DIR_TMP/var/lib/$PACKAGE/");
   `svn export ./var/lib/$PACKAGE/conf/ $DIR_TMP/var/lib/$PACKAGE/conf/`;
   `chmod -R 644 $DIR_TMP/etc/$PACKAGE/*`;
-	`chmod -R 644 $DIR_TMP/etc/rsyslog.d/*`; 
+  `mv $DIR_TMP/etc/$PACKAGE/apache2_debian.conf $DIR_TMP/etc/$PACKAGE/apache2.conf`;
+  `mv $DIR_TMP/etc/$PACKAGE/apache2_other.conf LINUX/apache2.conf`;
+  `chmod -R 644 $DIR_TMP/etc/rsyslog.d/*`; 
 
   printf "Copying Program files...\n";
   `svn export ./usr/sbin/ $DIR_TMP/usr/sbin/`;
@@ -160,6 +162,8 @@ Copy_Files();
 rmtree("$DIR_TMP/DEBIAN");
 `mv $DIR_TMP octopussy`;
 `cp ./LINUX/{INSTALL.sh,OCTOPUSSY.sql,README.txt} octopussy/`;
+`mv -f ./LINUX/apache2.conf octopussy/etc/octopussy/apache2.conf`;
+`chmod 755 octopussy/INSTALL.sh`;
 `tar cvfz octopussy-$version.tar.gz octopussy/`;
 
 rmtree($DIR_TMP);
