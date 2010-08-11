@@ -71,12 +71,6 @@ $CP -r usr/share/perl5/AAT* usr/share/perl5/Octo* $DIR_PERL/
 $CP -r var/lib/$OCTO/* /var/lib/$OCTO/
 
 #
-# Create Octopussy MySQL Database with file 'OCTOPUSSY.sql'
-#
-$ECHO "Preparing MySQL Database..."
-$MYSQL_OCTO
-
-#
 # Add octo_logrotate to cron.daily
 #
 $ECHO "#!/bin/sh" > $CRON_FILE
@@ -113,7 +107,7 @@ $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
 $ECHO "Creating FIFO..."
 $MKDIR $DIR_FIFO
 $MKFIFO $FILE_FIFO
-$CHOWNR $DIR_FIFO
+$CHOWN $DIR_FIFO
 
 #
 # Restart Octopussy & Rsyslog
@@ -121,4 +115,8 @@ $CHOWNR $DIR_FIFO
 /etc/init.d/octopussy restart
 /etc/init.d/rsyslog restart
 
-exit 0
+#
+# Create Octopussy MySQL Database with file 'OCTOPUSSY.sql'
+#
+$ECHO "Preparing MySQL Database..."
+$MYSQL_OCTO

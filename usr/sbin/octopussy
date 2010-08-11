@@ -8,6 +8,11 @@
 # Short-Description: Start/Stop Octopussy programs
 ### END INIT INFO
 
+### BEGIN CHKCONFIG INFO
+# chkconfig: 2345 90 50
+# description: Start/Stop Octopussy programs
+### END CHKCONFIG INFO
+
 =head1 NAME
 
 octopussy - Octopussy Main program
