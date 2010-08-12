@@ -48,7 +48,7 @@ fi
 #
 # Create Directories & Change Octopussy permission files
 #
-$ECHO "Creating directories & changing permissions"
+$ECHO "Creating directories..."
 $MKDIR /etc/$AAT/
 $MKDIR /etc/$OCTO/
 $MKDIR /usr/share/$AAT/
@@ -58,18 +58,19 @@ $MKDIR $DIR_PERL/Octopussy/
 $MKDIR /var/lib/$OCTO/
 $MKDIR /var/run/$AAT/
 $MKDIR /var/run/$OCTO/
-$CHOWN /etc/$AAT/ /etc/$OCTO/ /usr/share/$OCTO/ /usr/sbin/octo* || true
-$CHOWN /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ || true
 
 #
 # Copy Files
 #
 $ECHO "Copying directories & files..."
-$CP -r etc/* /etc/
 $CP -r usr/sbin/* /usr/sbin/
+$CHOWN /usr/sbin/octo* || true
+$CP -r etc/* /etc/
 $CP -r usr/share/$AAT/* /usr/share/$AAT/
 $CP -r usr/share/$OCTO/* /usr/share/$OCTO/
+$CHOWN /etc/$AAT/ /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ || true
 $CP -r var/lib/$OCTO/* /var/lib/$OCTO/
+$CHOWN /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ || true
 $CP -r usr/share/perl5/AAT* usr/share/perl5/Octo* $DIR_PERL/
 $CHMOD_R $DIR_PERL/AAT.pm $DIR_PERL/Octopussy.pm
 $FIND $DIR_PERL/AAT/ -name *.pm -exec $CHMOD_R {} \;
