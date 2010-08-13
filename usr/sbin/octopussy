@@ -50,12 +50,11 @@ Readonly my $PARSER          => 'octo_parser';
 Readonly my $PUSHER          => 'octo_pusher';
 Readonly my $RRD             => 'octo_rrd';
 Readonly my $SCHEDULER       => 'octo_scheduler';
-Readonly my $SENDER       	 => 'octo_sender';
+Readonly my $SENDER          => 'octo_sender';
 Readonly my $NICE_PUSHER     => 'nice -n 10';
 Readonly my $NICE_RRD        => 'nice -n 15';
 Readonly my $NICE_SCHEDULER  => 'nice -n 10';
 Readonly my $KILLALL         => '/usr/bin/killall';
-Readonly my $INITD_MYSQL     => '/etc/init.d/mysql';
 Readonly my $INITD_SYSLOG_NG => '/etc/init.d/syslog-ng';
 
 Readonly my $base    => Octopussy::FS::Directory('programs');
@@ -74,8 +73,8 @@ Prints usage for Octopussy program
 
 sub Usage
 {
-  my $version = Octopussy::Version();
-  my $usage   = <<'EOF';
+    my $version = Octopussy::Version();
+    my $usage   = <<'EOF';
 Usage: 
 	octopussy {start|stop|restart}
 	octopussy {dispatcher-start|dispatcher-stop|dispatcher-restart|dispatcher-reload}
@@ -86,9 +85,9 @@ Usage:
 	octopussy {web-start|web-stop}\n";
 EOF
 
-  print "\nOctopussy $version\n\n$usage\n";
+    print "\nOctopussy $version\n\n$usage\n";
 
-  return (1);
+    return (1);
 }
 
 =head2 Commander_Start
@@ -99,10 +98,10 @@ Starts octo_commander
 
 sub Commander_Start
 {
-  system "sudo -u $USER $base$COMMANDER &";
-  printf $MSG_STATUS, 'Commander', 'Started';
+    system "sudo -u $USER $base$COMMANDER &";
+    printf $MSG_STATUS, 'Commander', 'Started';
 
-  return (1);
+    return (1);
 }
 
 =head2 Commander_Stop
@@ -113,10 +112,10 @@ Stops octo_commander
 
 sub Commander_Stop
 {
-  `$KILLALL $COMMANDER`;
-  printf $MSG_STATUS, 'Commander', 'Stopped';
+    `$KILLALL $COMMANDER`;
+    printf $MSG_STATUS, 'Commander', 'Stopped';
 
-  return (1);
+    return (1);
 }
 
 =head2 Dispatcher_Start()
@@ -128,11 +127,11 @@ Starts syslog-ng that launchs octo_dispatcher
 sub Dispatcher_Start
 {
 
-  #`$INITD_SYSLOG_NG start`;
-  system "sudo -u $USER $base$DISPATCHER &";
-  printf $MSG_STATUS, 'Dispatcher', 'Started';
+    #`$INITD_SYSLOG_NG start`;
+    system "sudo -u $USER $base$DISPATCHER &";
+    printf $MSG_STATUS, 'Dispatcher', 'Started';
 
-  return (1);
+    return (1);
 }
 
 =head2 Dispatcher_Stop()
@@ -143,17 +142,17 @@ Stops syslog-ng that stops octo_dispatcher
 
 sub Dispatcher_Stop
 {
-  my $file_pid = "$dir_pid/octo_dispatcher.pid";
-  if (-f $file_pid)
-  {
-    my $pid = Octopussy::PID_Value($file_pid);
-    kill USR1 => $pid;
-  }
+    my $file_pid = "$dir_pid/octo_dispatcher.pid";
+    if (-f $file_pid)
+    {
+        my $pid = Octopussy::PID_Value($file_pid);
+        kill USR1 => $pid;
+    }
 
-  #`$INITD_SYSLOG_NG stop`;
-  printf $MSG_STATUS, 'Dispatcher', 'Stopped';
+    #`$INITD_SYSLOG_NG stop`;
+    printf $MSG_STATUS, 'Dispatcher', 'Stopped';
 
-  return (1);
+    return (1);
 }
 
 =head2 Dispatcher_Reload()
@@ -165,10 +164,10 @@ Restarts syslog-ng and octo_dispatcher
 sub Dispatcher_Reload
 {
 
-  #`$INITD_SYSLOG_NG restart`;
-  printf $MSG_STATUS, 'Dispatcher', 'Reloaded';
+    #`$INITD_SYSLOG_NG restart`;
+    printf $MSG_STATUS, 'Dispatcher', 'Reloaded';
 
-  return (1);
+    return (1);
 }
 
 =head2 Parser_Start($device)
@@ -179,35 +178,35 @@ Starts octo_parser for device '$device' (all devices if no device specified)
 
 sub Parser_Start
 {
-  my $device  = shift;
-  my @devices = ();
+    my $device  = shift;
+    my @devices = ();
 
-  if (defined $device) { push @devices, $device; }
-  else                 { @devices = Octopussy::Device::List(); }
+    if (defined $device) { push @devices, $device; }
+    else                 { @devices = Octopussy::Device::List(); }
 
-  foreach my $d (@devices)
-  {
-    my $parse_status = Octopussy::Device::Parse_Status($d);
-    if (defined $parse_status)
+    foreach my $d (@devices)
     {
-      if (Octopussy::Device::Parse_Status($d) >= 1)
-      {    # Device Status "Started/Paused"
-        system "sudo -u $USER $base$PARSER '$d' &";
-        printf $MSG_PARSING_STATUS, $d, 'Started';
-      }
-      else
-      {
-        print
+        my $parse_status = Octopussy::Device::Parse_Status($d);
+        if (defined $parse_status)
+        {
+            if (Octopussy::Device::Parse_Status($d) >= 1)
+            {    # Device Status "Started/Paused"
+                system "sudo -u $USER $base$PARSER '$d' &";
+                printf $MSG_PARSING_STATUS, $d, 'Started';
+            }
+            else
+            {
+                print
 "$PROG_NAME Parsing status of '$d' is 'Stopped', set status to 'Paused' or 'Started' first !\n";
-      }
+            }
+        }
+        else
+        {
+            print "Device $d Unknown !\n";
+        }
     }
-    else
-    {
-      print "Device $d Unknown !\n";
-    }
-  }
 
-  return (scalar @devices);
+    return (scalar @devices);
 }
 
 =head2 Parser_Stop($device)
@@ -218,27 +217,27 @@ Stops octo_parser for device '$device' (all devices if no device specified)
 
 sub Parser_Stop
 {
-  my $device  = shift;
-  my @devices = ();
+    my $device  = shift;
+    my @devices = ();
 
-  if (defined $device) { push @devices, $device; }
-  else                 { @devices = Octopussy::Device::List(); }
+    if (defined $device) { push @devices, $device; }
+    else                 { @devices = Octopussy::Device::List(); }
 
-  foreach my $d (@devices)
-  {
-    if (Octopussy::Device::Parse_Status($d) >= 1)
+    foreach my $d (@devices)
     {
-      Octopussy::Device::Parse_Pause($d);
-      printf $MSG_PARSING_STATUS, $d, 'Paused';
+        if (Octopussy::Device::Parse_Status($d) >= 1)
+        {
+            Octopussy::Device::Parse_Pause($d);
+            printf $MSG_PARSING_STATUS, $d, 'Paused';
+        }
+        else
+        {
+            Octopussy::Device::Parse_Stop($d);
+            printf $MSG_PARSING_STATUS, $d, 'Stopped';
+        }
     }
-    else
-    {
-      Octopussy::Device::Parse_Stop($d);
-      printf $MSG_PARSING_STATUS, $d, 'Stopped';
-    }
-  }
 
-  return (scalar @devices);
+    return (scalar @devices);
 }
 
 =head2 Pusher_Start
@@ -249,10 +248,10 @@ Starts octo_pusher
 
 sub Pusher_Start
 {
-  system "sudo -u $USER $NICE_PUSHER $base$PUSHER &";
-  printf $MSG_STATUS, 'Pusher', 'Started';
+    system "sudo -u $USER $NICE_PUSHER $base$PUSHER &";
+    printf $MSG_STATUS, 'Pusher', 'Started';
 
-  return (1);
+    return (1);
 }
 
 =head2 Pusher_Stop
@@ -263,10 +262,10 @@ Stops octo_pusher
 
 sub Pusher_Stop
 {
-  `$KILLALL $PUSHER`;
-  printf $MSG_STATUS, 'Pusher', 'Stopped';
+    `$KILLALL $PUSHER`;
+    printf $MSG_STATUS, 'Pusher', 'Stopped';
 
-  return (1);
+    return (1);
 }
 
 =head2 RRD_Start
@@ -277,10 +276,10 @@ Starts octo_rrd
 
 sub RRD_Start
 {
-  system "sudo -u $USER $NICE_RRD $base$RRD &";
-  printf $MSG_STATUS, 'RRD', 'Started';
+    system "sudo -u $USER $NICE_RRD $base$RRD &";
+    printf $MSG_STATUS, 'RRD', 'Started';
 
-  return (1);
+    return (1);
 }
 
 =head2 RRD_Stop
@@ -291,10 +290,10 @@ Stops octo_rrd
 
 sub RRD_Stop
 {
-  `$KILLALL $RRD`;
-  printf $MSG_STATUS, 'RRD', 'Stopped';
+    `$KILLALL $RRD`;
+    printf $MSG_STATUS, 'RRD', 'Stopped';
 
-  return (1);
+    return (1);
 }
 
 =head2 Scheduler_Start
@@ -305,10 +304,10 @@ Starts octo_scheduler
 
 sub Scheduler_Start
 {
-  system "sudo -u $USER $NICE_SCHEDULER $base$SCHEDULER &";
-  printf $MSG_STATUS, 'Scheduler', 'Started';
+    system "sudo -u $USER $NICE_SCHEDULER $base$SCHEDULER &";
+    printf $MSG_STATUS, 'Scheduler', 'Started';
 
-  return (1);
+    return (1);
 }
 
 =head2 Scheduler_Stop
@@ -319,12 +318,11 @@ Stops octo_scheduler
 
 sub Scheduler_Stop
 {
-  `$KILLALL $SCHEDULER`;
-  printf $MSG_STATUS, 'Scheduler', 'Stopped';
+    `$KILLALL $SCHEDULER`;
+    printf $MSG_STATUS, 'Scheduler', 'Stopped';
 
-  return (1);
+    return (1);
 }
-
 
 =head2 Sender_Start
 
@@ -334,12 +332,11 @@ Starts octo_sender
 
 sub Sender_Start
 {
-  system "sudo -u $USER $NICE_SCHEDULER $base$SENDER &";
-  printf $MSG_STATUS, 'Sender', 'Started';
+    system "sudo -u $USER $NICE_SCHEDULER $base$SENDER &";
+    printf $MSG_STATUS, 'Sender', 'Started';
 
-  return (1);
+    return (1);
 }
-
 
 =head2 Sender_Stop
 
@@ -349,12 +346,11 @@ Stops octo_sender
 
 sub Sender_Stop
 {
-  `$KILLALL $SENDER`;
-  printf $MSG_STATUS, 'Sender', 'Stopped';
+    `$KILLALL $SENDER`;
+    printf $MSG_STATUS, 'Sender', 'Stopped';
 
-  return (1);
+    return (1);
 }
-
 
 =head2 Web_Start
 
@@ -364,12 +360,12 @@ Starts Web Octopussy (Launches Apache2 with Octopussy Apache2 configuration file
 
 sub Web_Start
 {
-  my $APACHE2_BIN = Octopussy::Apache2_Binary();
+    my $APACHE2_BIN = Octopussy::Apache2_Binary();
 
-  system "$APACHE2_BIN -f $APACHE2_CONF -k start";
-  printf $MSG_STATUS, 'Web', 'Started';
+    system "$APACHE2_BIN -f $APACHE2_CONF -k start";
+    printf $MSG_STATUS, 'Web', 'Started';
 
-  return (1);
+    return (1);
 }
 
 =head2 Web_Stop
@@ -380,12 +376,12 @@ Stops Web Octopussy (Stops Apache2 with Octopussy Apache2 configuration file)
 
 sub Web_Stop
 {
-  my $APACHE2_BIN = Octopussy::Apache2_Binary();
+    my $APACHE2_BIN = Octopussy::Apache2_Binary();
 
-  system "$APACHE2_BIN -f $APACHE2_CONF -k stop";
-  printf $MSG_STATUS, 'Web', 'Stopped';
+    system "$APACHE2_BIN -f $APACHE2_CONF -k stop";
+    printf $MSG_STATUS, 'Web', 'Stopped';
 
-  return (1);
+    return (1);
 }
 
 =head2 Start()
@@ -396,20 +392,23 @@ Starts all Octopussy programs (dispatcher, mysql, parsers, scheduler & pusher)
 
 sub Start
 {
-  # recreate /var/run/octopussy/ for systems that mount it on tmpfs
-  Octopussy::FS::Create_Directory($dir_pid);
 
-  Dispatcher_Start();
-  `$INITD_MYSQL restart`;
-  Parser_Start();
-  RRD_Start();
-  Scheduler_Start();
-  Sender_Start();
-  Pusher_Start();
-  Commander_Start();
-  Web_Start();
+    # recreate /var/run/octopussy/ for systems that mount it on tmpfs
+    Octopussy::FS::Create_Directory($dir_pid);
 
-  return (1);
+    Dispatcher_Start();
+    my $mysql = (-x '/etc/init.d/mysqld'
+        ? '/etc/init.d/mysqld' : '/etc/init.d/mysql');
+    `$mysql restart`; 
+    Parser_Start();
+    RRD_Start();
+    Scheduler_Start();
+    Sender_Start();
+    Pusher_Start();
+    Commander_Start();
+    Web_Start();
+
+    return (1);
 }
 
 =head2 Stop()
@@ -420,17 +419,17 @@ Stops all Octopussy programs (parsers, scheduler, pusher & dispatcher)
 
 sub Stop
 {
-  Web_Stop();
-  Commander_Stop();
-  Parser_Stop();
-  RRD_Stop();
-  Scheduler_Stop();
-  Sender_Stop();
-  Pusher_Stop();
-  Dispatcher_Stop();
-  `rm -f $dir_pid/*.{err,pid}`;
+    Web_Stop();
+    Commander_Stop();
+    Parser_Stop();
+    RRD_Stop();
+    Scheduler_Stop();
+    Sender_Stop();
+    Pusher_Stop();
+    Dispatcher_Stop();
+    `rm -f $dir_pid/*.{err,pid}`;
 
-  return (1);
+    return (1);
 }
 
 =head2 Status()
@@ -441,50 +440,51 @@ Returns Octopussy programs (dispatcher, rsyslog, scheduler) status
 
 sub Status
 {
-  my %proc = Octopussy::Process_Status();
-  foreach my $k (sort keys %proc)
-  {
-    my $status = ($proc{$k} != 0 ? 'Started' : 'Stopped');
-    print "  $k: $status\n";
-  }
+    my %proc = Octopussy::Process_Status();
+    foreach my $k (sort keys %proc)
+    {
+        my $status = ($proc{$k} != 0 ? 'Started' : 'Stopped');
+        print "  $k: $status\n";
+    }
 
-  return (1);
+    return (1);
 }
 
 my $arg    = $ARGV[0] || '';
 my $device = $ARGV[1] || undef;
 
 my %action = (
-  'start'              => \&Start,
-  'stop'               => \&Stop,
-  'status'             => \&Status,
-  'reload'             => sub { Stop(); Start(); },
-  'restart'            => sub { Stop(); Start(); },
-  'dispatcher-start'   => \&Dispatcher_Start,
-  'dispatcher-stop'    => \&Dispatcher_Stop,
-  'dispatcher-reload'  => \&Dispatcher_Reload,
-  'dispatcher-restart' => sub { Dispatcher_Stop(); Dispatcher_Start(); },
-  'parser-start'       => \&Parser_Start,
-  'parser-stop'        => \&Parser_Stop,
-  'parser-restart' 		 => sub { my $d = shift; Parser_Stop($d); Parser_Start($d); },
-  'pusher-start'   		 => \&Pusher_Start,
-  'pusher-stop'        => \&Pusher_Stop,
-  'pusher-restart'     => sub { Pusher_Stop(); Pusher_Start(); },
-  'scheduler-start'   => \&Scheduler_Start,
-  'scheduler-stop'    => \&Scheduler_Stop,
-  'scheduler-restart' => sub { Scheduler_Stop(); Scheduler_Start(); },
-  'sender-start'   		=> \&Sender_Start,
-  'sender-stop'    		=> \&Sender_Stop,
-  'sender-restart' 		=> sub { Sender_Stop(); Sender_Start(); },
-  'web-start'         => \&Web_Start,
-  'web-stop'          => \&Web_Stop,
+    'start'              => \&Start,
+    'stop'               => \&Stop,
+    'status'             => \&Status,
+    'reload'             => sub { Stop(); Start(); },
+    'restart'            => sub { Stop(); Start(); },
+    'dispatcher-start'   => \&Dispatcher_Start,
+    'dispatcher-stop'    => \&Dispatcher_Stop,
+    'dispatcher-reload'  => \&Dispatcher_Reload,
+    'dispatcher-restart' => sub { Dispatcher_Stop(); Dispatcher_Start(); },
+    'parser-start'       => \&Parser_Start,
+    'parser-stop'        => \&Parser_Stop,
+    'parser-restart' =>
+        sub { my $d = shift; Parser_Stop($d); Parser_Start($d); },
+    'pusher-start'      => \&Pusher_Start,
+    'pusher-stop'       => \&Pusher_Stop,
+    'pusher-restart'    => sub { Pusher_Stop(); Pusher_Start(); },
+    'scheduler-start'   => \&Scheduler_Start,
+    'scheduler-stop'    => \&Scheduler_Stop,
+    'scheduler-restart' => sub { Scheduler_Stop(); Scheduler_Start(); },
+    'sender-start'      => \&Sender_Start,
+    'sender-stop'       => \&Sender_Stop,
+    'sender-restart'    => sub { Sender_Stop(); Sender_Start(); },
+    'web-start'         => \&Web_Start,
+    'web-stop'          => \&Web_Stop,
 
-  #'web-restart' => sub { Web_Stop(); Web_Start(); }, # too fast
+    #'web-restart' => sub { Web_Stop(); Web_Start(); }, # too fast
 );
 
 if (defined $action{$arg})
 {
-  $action{$arg}->($device);
+    $action{$arg}->($device);
 }
 else { Usage(); }
 

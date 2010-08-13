@@ -24,6 +24,7 @@ and these Perl modules (from CPAN):
 - JSON
 - Linux::Inotify2
 - List::MoreUtils
+- Locale::Maketext::Lexicon
 - Locale::Maketext::Simple
 - LWP
 - Mail::Sender
@@ -38,6 +39,7 @@ and these Perl modules (from CPAN):
 - Sys::CPU
 - Unix::Syslog
 - URI
+- version
 - XML::Simple (Take a look http://search.cpan.org/~grantm/XML-Simple-2.18/lib/XML/Simple.pm#ENVIRONMENT for possible performance issues)
 
 Good Luck !

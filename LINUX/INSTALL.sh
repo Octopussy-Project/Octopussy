@@ -17,7 +17,6 @@ FIND="/usr/bin/find"
 LN="/bin/ln -f -s"
 MKDIR="/bin/mkdir -p"
 MKFIFO="/usr/bin/mkfifo"
-MYSQL_OCTO="/usr/bin/mysql -u root -p < OCTOPUSSY.sql"
 RC_UPDATE="rc-update"
 SED="/bin/sed -i"
 USERMOD="/usr/sbin/usermod -g"
@@ -30,7 +29,7 @@ DIR_PERL=`perl -MConfig -e 'print $Config::Config{installsitelib}'`;
 # Display information (requirements, ...)
 #
 $CAT README.txt
-sleep 3
+sleep 2
 
 #
 # Add User & Group Octopussy
@@ -63,7 +62,7 @@ $MKDIR /var/run/$OCTO/
 # Copy Files
 #
 $ECHO "Copying directories & files..."
-$CP -r usr/sbin/* /usr/sbin/
+$CP -r --preserve=mode usr/sbin/* /usr/sbin/
 $CHOWN /usr/sbin/octo* || true
 $CP -r etc/* /etc/
 $CP -r usr/share/$AAT/* /usr/share/$AAT/
@@ -118,13 +117,22 @@ $MKFIFO $FILE_FIFO
 $CHOWN $DIR_FIFO
 
 #
-# Restart Octopussy & Rsyslog
-#
-/etc/init.d/octopussy restart
-/etc/init.d/rsyslog restart
-
-#
 # Create Octopussy MySQL Database with file 'OCTOPUSSY.sql'
 #
 $ECHO "Preparing MySQL Database..."
-$MYSQL_OCTO
+/usr/bin/mysql -u root -p < OCTOPUSSY.sql
+
+#
+# Generates Certificate for Octopussy WebServer
+#
+$ECHO "Generating Certificate for Octopussy WebServer..."
+openssl genrsa > /etc/octopussy/server.key
+openssl req -new -x509 -nodes -sha1 -days 365 -key /etc/octopussy/server.key > /etc/octopussy/server.crt
+$CHOWN /etc/octopussy/
+
+#
+# Restart Octopussy & Rsyslog
+#
+$ECHO "Restarting Octopussy & Rsyslog..."
+/etc/init.d/octopussy restart
+/etc/init.d/rsyslog restart

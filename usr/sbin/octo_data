@@ -40,7 +40,7 @@ Prints Help
 
 sub Help
 {
-  my $help_str = <<"EOF";
+    my $help_str = <<"EOF";
 
 $PROG_NAME (version $PROG_VERSION)
 
@@ -49,8 +49,8 @@ $PROG_NAME (version $PROG_VERSION)
 
 EOF
 
-  print $help_str;
-  exit;
+    print $help_str;
+    exit;
 }
 
 #
@@ -59,18 +59,18 @@ EOF
 exit if (!Octopussy::Valid_User($PROG_NAME));
 
 my $status = GetOptions(
-  'h'       => \$help,
-  'help'    => \$help,
-  'cache=s' => \$opt_cache,
-  'type=s'  => \$opt_type,
-  'key=s'   => \$opt_key
+    'h'       => \$help,
+    'help'    => \$help,
+    'cache=s' => \$opt_cache,
+    'type=s'  => \$opt_type,
+    'key=s'   => \$opt_key
 );
 Help()
-  if ((!$status)
-  || ($help)
-  || (!defined $opt_cache)
-  || (!defined $opt_type)
-  || (!defined $opt_key));
+    if ((!$status)
+    || ($help)
+    || (!defined $opt_cache)
+    || (!defined $opt_type)
+    || (!defined $opt_key));
 
 my $dir_pid = Octopussy::FS::Directory('running');
 my $cache   = Octopussy::Cache::Init("octo_${opt_cache}");

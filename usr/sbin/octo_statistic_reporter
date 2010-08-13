@@ -39,16 +39,16 @@ exit if (!Octopussy::Valid_User($PROG_NAME));
 AAT::Syslog($PROG_NAME, "Report: $report Started !");
 while (!$exit_request)
 {
-  my @events = $inotify->read;
-  foreach my $e (@events) { Inotify_Watch($e->fullname); }
-  while ($file = shift @files)
-  {
-    chomp $file;
-    if   (scalar @services == 0) { Incoming_To_Unknown($file); }
-    else                         { File_Handler($file); }
-    last if ($reload_request || $exit_request);
-  }
-  if (!$exit_request) { sleep 2; }
+    my @events = $inotify->read;
+    foreach my $e (@events) { Inotify_Watch($e->fullname); }
+    while ($file = shift @files)
+    {
+        chomp $file;
+        if   (scalar @services == 0) { Incoming_To_Unknown($file); }
+        else                         { File_Handler($file); }
+        last if ($reload_request || $exit_request);
+    }
+    if (!$exit_request) { sleep 2; }
 }
 unlink $file_pid;
 AAT::Syslog($PROG_NAME, "Report: $report Stopped !");

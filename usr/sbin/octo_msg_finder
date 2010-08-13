@@ -35,56 +35,56 @@ Prints Service, MsgID, Taxonomy & Table of line $line
 
 sub Search_Line
 {
-  my ($line, $n) = @_;
-  $n ||= 1;
-  my $match = 0;
-  foreach my $serv (@services)
-  {
-    my @msg_to_parse = ();
-    my @messages     = Octopussy::Service::Messages($serv);
-    foreach my $m (@messages)
+    my ($line, $n) = @_;
+    $n ||= 1;
+    my $match = 0;
+    foreach my $serv (@services)
     {
-      my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-      if ($line =~ /^$regexp\s*[^\t\n\r\f -~]?$/i)
-      {
-        $match = 1;
-        print "\nLine $n: $line\n";
-        print "  --> Service:  $serv\n";
-        print "  --> MsgID:    $m->{msg_id}\n";
-        print "  --> Taxonomy: $m->{taxonomy}\n";
-        print "  --> Table:    $m->{table}\n";
-      }
+        my @msg_to_parse = ();
+        my @messages     = Octopussy::Service::Messages($serv);
+        foreach my $m (@messages)
+        {
+            my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
+            if ($line =~ /^$regexp\s*[^\t\n\r\f -~]?$/i)
+            {
+                $match = 1;
+                print "\nLine $n: $line\n";
+                print "  --> Service:  $serv\n";
+                print "  --> MsgID:    $m->{msg_id}\n";
+                print "  --> Taxonomy: $m->{taxonomy}\n";
+                print "  --> Table:    $m->{table}\n";
+            }
+        }
     }
-  }
-  if (!$match)
-  {
-    print "\nLine: $line\n";
-    print "  --> MESSAGE UNKNOWN\n";
-  }
+    if (!$match)
+    {
+        print "\nLine: $line\n";
+        print "  --> MESSAGE UNKNOWN\n";
+    }
 
-  return ($match);
+    return ($match);
 }
 
 my $arg = $ARGV[0];
 
 if (NOT_NULL($arg))
 {
-  my $cat = ($arg =~ /.+\.gz$/ ? 'zcat' : 'cat');
-  if ( (-f $arg)
-    && (defined open my $FILE, '-|', "$cat \"$arg\""))
-  {
-    my $i = 1;
-    while (<$FILE>)
+    my $cat = ($arg =~ /.+\.gz$/ ? 'zcat' : 'cat');
+    if (   (-f $arg)
+        && (defined open my $FILE, '-|', "$cat \"$arg\""))
     {
-      Search_Line($_, $i);
-      $i++;
+        my $i = 1;
+        while (<$FILE>)
+        {
+            Search_Line($_, $i);
+            $i++;
+        }
+        close $FILE;
     }
-    close $FILE;
-  }
-  else
-  {
-    Search_Line($arg);
-  }
+    else
+    {
+        Search_Line($arg);
+    }
 }
 
 =head1 AUTHOR

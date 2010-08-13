@@ -28,16 +28,16 @@ exit if (!Octopussy::Valid_User($PROG_NAME));
 my $cache = Octopussy::Cache::Init($PROG_NAME);
 while (1)
 {
-  my $commands = $cache->get('commands');
-  $cache->remove('commands');    # TODO If cache set between get & remove ?
-  foreach my $c (@{$commands})
-  {
-    if (my ($command, $args) = $c =~ /^(\/usr\/sbin\/octo_\S+)(.*)/)
+    my $commands = $cache->get('commands');
+    $cache->remove('commands');    # TODO If cache set between get & remove ?
+    foreach my $c (@{$commands})
     {
-      system "$command $args";
+        if (my ($command, $args) = $c =~ /^(\/usr\/sbin\/octo_\S+)(.*)/)
+        {
+            system "$command $args";
+        }
     }
-  }
-  sleep 1;
+    sleep 1;
 }
 
 =head1 AUTHOR

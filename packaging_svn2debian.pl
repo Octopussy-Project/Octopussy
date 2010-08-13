@@ -88,6 +88,7 @@ sub Copy_Files
 
   printf "Copying Program files...\n";
   `svn export ./usr/sbin/ $DIR_TMP/usr/sbin/`;
+  `chmod 755 $DIR_TMP/usr/sbin/*`;
   
   printf "Copying WebSite files...\n";
   `svn export ./usr/share/aat/ $DIR_TMP/usr/share/aat/`;
