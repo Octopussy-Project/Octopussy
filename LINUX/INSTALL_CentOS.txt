@@ -1,0 +1,37 @@
+* Install software requirements:
+
+> yum install -y httpd perl mod_perl mysql mysql-server nscd rsyslog
+
+(required for CPAN)
+
+> yum install -y gcc make
+
+> vi /etc/yum.repos.d/dag.repo 
+[dag]
+name=Dag RPM Repository for Red Hat Enterprise Linux
+baseurl=http://apt.sw.be/redhat/el$releasever/en/$basearch/dag
+gpgcheck=1
+gpgkey=http://dag.wieers.com/rpm/packages/RPM-GPG-KEY.dag.txt
+enabled=1
+
+> yum install -y rrdtool htmldoc
+
+
+
+* Install Perl modules requirements:
+
+> cpan Apache::ASP App::Info Cache::Cache Crypt::PasswdMD5
+> cpan SBECK/Date-Manip-5.56.tar.gz
+
+> cpan DBD::mysql DBI
+> cpan JSON Linux::Inotify2 List::MoreUtils Locale::Maketext::Lexicon Locale::Maketext::Simple LWP Mail::Sender 
+
+> cpan Net::FTP Net::LDAP Net::SCP Net::Telnet Net::XMPP
+
+> cpan Proc::PID::File Proc::ProcessTable Readonly Sys::CPU Unix::Syslog URI version XML::Simple
+
+
+
+* Change iptables configuration:
+
+iptables -F
