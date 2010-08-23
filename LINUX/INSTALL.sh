@@ -135,4 +135,5 @@ $CHOWN /etc/octopussy/
 #
 $ECHO "Restarting Octopussy & Rsyslog..."
 /etc/init.d/octopussy restart
+/etc/init.d/syslog stop
 /etc/init.d/rsyslog restart

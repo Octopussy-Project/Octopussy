@@ -427,8 +427,9 @@ sub Stop
     Sender_Stop();
     Pusher_Stop();
     Dispatcher_Stop();
-    `rm -f $dir_pid/*.{err,pid}`;
-
+   	`rm -f $dir_pid/*.err`;
+	`rm -f $dir_pid/*.pid`;
+   
     return (1);
 }
 

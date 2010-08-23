@@ -34,11 +34,76 @@ enabled=1
 
 * Change iptables configuration:
 
-iptables -F
+vi /etc/sysconfig/iptables
+
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 8888 -j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 514 -j ACCEPT
+-A RH-Firewall-1-INPUT -m udp -p udp --dport 514 -j ACCEPT
+
+> system-config-securitylevel
+"Customize" -> "Other Ports" -> 8888
+
+> /etc/init.d/octopussy web-stop
+> /etc/init.d/octopussy web-start
 
 
-* Disable SELinux:
-in /etc/selinux/config
-SELINUX=disabled
+* Disabling syslog
 
-> setenforce 0
+> chkconfig --del syslog
+> chkconfig --add octopussy
+> chkconfig --add rsyslog
+
+
+* Disabling RequireTTY in sudoers (/etc/sudoers):
+#Defaults    requiretty
+
+
+
+* rsyslog.conf:
+
+:hostname, !isequal, "your_server_name" ~
+
+
+
+
+#################
+#### MODULES ####
+#################
+
+$ModLoad imuxsock # provides support for local system logging
+$ModLoad imklog   # provides kernel logging support (previously done by rklogd)
+#$ModLoad immark  # provides --MARK-- message capability
+
+# provides UDP syslog reception
+$ModLoad imudp
+$UDPServerRun 514
+
+# provides TCP syslog reception
+$ModLoad imtcp
+$InputTCPServerRun 514
+
+
+###########################
+#### GLOBAL DIRECTIVES ####
+###########################
+
+#
+# Use traditional timestamp format.
+# To enable high precision timestamps, comment out the following line.
+#
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+#
+# Set the default permissions for all log files.
+#
+$FileOwner root
+$FileGroup adm
+$FileCreateMode 0640
+$DirCreateMode 0755
+
+#
+# Include all config files in /etc/rsyslog.d/
+#
+$IncludeConfig /etc/rsyslog.d/*.conf
+
+

@@ -73,6 +73,9 @@ $UPDATERC $OCTO defaults 99 || true
 $MKDIR /var/cache/$OCTO/asp/
 $CHOWNR /var/cache/$OCTO/asp/ 2> /dev/null || true
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
+openssl genrsa > /etc/octopussy/server.key
+openssl req -new -x509 -nodes -sha1 -days 365 -key /etc/octopussy/server.key > /etc/octopussy/server.crt
+$CHOWN /etc/octopussy/
 
 #
 # Octopussy FIFO creation (for Rsyslog)
