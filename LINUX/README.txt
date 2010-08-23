@@ -36,6 +36,7 @@ and these Perl modules (from CPAN):
 - Proc::PID::File
 - Proc::ProcessTable
 - Readonly
+- Regexp::Assemble
 - Sys::CPU
 - Unix::Syslog
 - URI

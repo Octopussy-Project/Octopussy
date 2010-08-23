@@ -28,10 +28,17 @@ enabled=1
 
 > cpan Net::FTP Net::LDAP Net::SCP Net::Telnet Net::XMPP
 
-> cpan Proc::PID::File Proc::ProcessTable Readonly Sys::CPU Unix::Syslog URI version XML::Simple
+> cpan Proc::PID::File Proc::ProcessTable Readonly Regexp::Assemble Sys::CPU Unix::Syslog URI version XML::Simple
 
 
 
 * Change iptables configuration:
 
 iptables -F
+
+
+* Disable SELinux:
+in /etc/selinux/config
+SELINUX=disabled
+
+> setenforce 0

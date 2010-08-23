@@ -49,7 +49,7 @@ function logs_viewer_month(service,month,nb_days)
 	foreach my $m (1..12)
 	{ 
 		my $month_name =  AAT::Datetime::Month_Name($m);
-		my $month = sprintf("%02d", $m)
+		my $month = sprintf("%02d", $m);
 		my $link = "./logs_availability.asp?device=$device"
 			. "&year=$year&month=$month";
 		%><td><AAT:Label value="$month_name" link="$link" size="-2" /></td><%
