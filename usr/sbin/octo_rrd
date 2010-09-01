@@ -62,7 +62,7 @@ while (1)
         }
         foreach my $k (sort $cache_parser->get_keys())
         {    # Update RRDGraph for Octopussy Device Dashboard pages
-            if ($k =~ /^parser_taxo_stats_(\S+?)_(.+)$/)
+            if ($k =~ /^parser_taxo_stats_(\S+?),(.+)$/)
             {
                 my $taxo = $cache_parser->get($k);
                 Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Update(

@@ -533,7 +533,7 @@ sub Cache_Taxonomy_Stats
     }
     my $seconds_to_parse =
         mktime(0, $min, $hour, $day, $month - 1, $year - 1900);
-    $cache->set("parser_taxo_stats_${device}_${service}",
+    $cache->set("parser_taxo_stats_${device},${service}",
         {datetime => $seconds_to_parse, stats => \@taxo_rrd});
 
     return (scalar @taxo_rrd);
