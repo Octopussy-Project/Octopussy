@@ -1,3 +1,20 @@
+octopussy (0.9.9.9.9); urgency=high
+
+  * Bugfix in octo_scheduler
+  * Bugfix on Octopussy::FS::Flie_Ext
+  * Bugfix 3014851 & 3036766: Octopussy::Create_Directory -> Octopussy::FS::Create_Directory
+  * Bugfix 3015810: Problem in 'System Configuration' & 'Updater' page
+  * Bugfix 3018897: chown cannot access '2' problem
+  * Bugfix 3057572: problem with devicename with '_' in octo_rrd
+
+  * Timeout added in AAT::Download::File
+  * You can now modify user configuration and a user can now be enabled/disabled
+  * Test suite hugely updated
+  * Installation of Octopussy on other linux systems has been greatly improved. 
+  * Installation Documentation has been updated. 
+
+  -- Sebastien Thebert <octo.devel@gmail.com> 
+
 octopussy (0.9.9.9.8); urgency=high
 
   * A lot of work has been done to reduce memory usage (-40% for parsers)

@@ -1,0 +1,73 @@
+* Install software requirements:
+
+> yum install -y httpd perl mod_perl mod_ssl mysql mysql-server nscd rsyslog
+
+> yum install -y rrdtool htmldoc
+
+
+* Install Perl modules requirements:
+
+> yum install -y perl-Cache-Cache perl-Crypt-PasswdMD5 perl-Date-Manip 
+> yum install -y perl-DBD-MySQL perl-DBI
+> yum install -y perl-JSON perl-Linux-Inotify2 perl-List-MoreUtils perl-Locale-Maketext-Lexicon perl-Locale-Maketext-Simple perl-Mail-Sender
+> yum install -y perl-LDAP perl-Net-SCP perl-Net-Telnet perl-Net-XMPP
+> yum install -y perl-Proc-PID-File perl-Proc-ProcessTable perl-Readonly-XS perl-Regexp-Assemble perl-Sys-CPU perl-Unix-Syslog perl-URI perl-version perl-XML-Simple
+
+> yum install -y make perl-CPAN
+> cpan Apache::ASP App::Info LWP Net::FTP
+
+
+
+* Change iptables configuration:
+
+vi /etc/sysconfig/iptables
+
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8888 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 514 -j ACCEPT
+-A INPUT -m udp -p udp --dport 514 -j ACCEPT
+
+> /etc/init.d/iptables restart
+
+
+
+rsyslog.conf:
+
+:hostname, !isequal, "your_server_name" ~
+
+
+#### MODULES ####
+
+$ModLoad imuxsock.so    # provides support for local system logging (e.g. via logger command)
+$ModLoad imklog.so      # provides kernel logging support (previously done by rklogd)
+#$ModLoad immark.so     # provides --MARK-- message capability
+
+# Provides UDP syslog reception
+$ModLoad imudp.so
+$UDPServerRun 514
+
+# Provides TCP syslog reception
+$ModLoad imtcp.so 
+$InputTCPServerRun 514
+
+###########################
+#### GLOBAL DIRECTIVES ####
+###########################
+
+#
+# Use traditional timestamp format.
+# To enable high precision timestamps, comment out the following line.
+#
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+#
+# Set the default permissions for all log files.
+#
+$FileOwner root
+$FileGroup adm
+$FileCreateMode 0640
+$DirCreateMode 0755
+
+#
+# Include all config files in /etc/rsyslog.d/
+#
+$IncludeConfig /etc/rsyslog.d/*.conf

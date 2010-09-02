@@ -1,6 +1,6 @@
 * Install software requirements:
 
-> yum install -y httpd perl mod_perl mysql mysql-server nscd rsyslog
+> yum install -y httpd perl mod_perl mod_ssl mysql mysql-server nscd rsyslog
 
 (required for CPAN)
 
@@ -39,9 +39,6 @@ vi /etc/sysconfig/iptables
 -A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 8888 -j ACCEPT
 -A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 514 -j ACCEPT
 -A RH-Firewall-1-INPUT -m udp -p udp --dport 514 -j ACCEPT
-
-> system-config-securitylevel
-"Customize" -> "Other Ports" -> 8888
 
 > /etc/init.d/octopussy web-stop
 > /etc/init.d/octopussy web-start

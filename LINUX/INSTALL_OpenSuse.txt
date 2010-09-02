@@ -1,0 +1,32 @@
+* Install software requirements:
+
+mod_ssl ?
+
+> zypper in apache2 perl apache2-mod_perl mysql unscd rsyslog
+
+> zypper in rrdtool htmldoc
+
+
+* Install Perl modules requirements:
+
+> zypper in perl-Date-Manip
+
+> zypper in perl-DBD-mysql perl-DBI
+
+> zypper in perl-Linux-Inotify2 perl-List-MoreUtils perl-Locale-Maketext-Lexicon
+
+> zypper in perl-Net-Telnet perl-Net-XMPP
+
+> zypper in perl-Unix-Syslog perl-URI perl-XML-Simple
+
+
+> zypper in make perl-YAML
+
+> cpan Apache::ASP App::Info
+> cpan Cache::Cache Crypt::PasswdMD5
+> cpan JSON Locale::Maketext::Simple LWP Mail::Sender 
+> cpan Net::FTP Net::LDAP Net::SCP
+> cpan Proc::PID::File Proc::ProcessTable Readonly Regexp::Assemble Sys::CPU version
+
+
+Problem with Apache mod_dir...

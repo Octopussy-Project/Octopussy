@@ -22,14 +22,18 @@ use AAT::XML;
 use Octopussy::FS;
 
 Readonly my $DIR_PLUGIN         => 'plugins';
-Readonly my $DIR_PLUGIN_MODULES => '/usr/share/perl5/Octopussy/Plugin/';
+Readonly my $DIR_PLUGIN_MODULES => (-d '/usr/share/perl5/Octopussy/Plugin/' 
+	? '/usr/share/perl5/Octopussy/Plugin/' 
+	: $Config::Config{installsitelib} . '/Octopussy/Plugin/');
 
 my $dir_plugins     = undef;
 my %function_source = ();
 
 BEGIN
 {
-  Readonly my $DIR_PLUGIN_MODULES => '/usr/share/perl5/Octopussy/Plugin/';
+	Readonly my $DIR_PLUGIN_MODULES => (-d '/usr/share/perl5/Octopussy/Plugin/' 
+	? '/usr/share/perl5/Octopussy/Plugin/' 
+	: $Config::Config{installsitelib} . '/Octopussy/Plugin/');
   opendir DIR, $DIR_PLUGIN_MODULES;
   my @plugins = grep { /.+\.pm$/ } readdir DIR;
   foreach my $p (@plugins)
