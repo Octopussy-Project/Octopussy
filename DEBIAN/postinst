@@ -11,7 +11,6 @@ AAT="aat"
 OCTO="octopussy"
 CHMOD="/bin/chmod 644"
 CHMOD_X="/bin/chmod 755"
-CHOWN="/bin/chown $OCTO:$OCTO"
 CHOWNR="/bin/chown -R $OCTO:$OCTO"
 CP="/bin/cp -f"
 ECHO="/bin/echo"
@@ -32,8 +31,7 @@ $MKDIR /var/lib/$OCTO/
 $MKDIR /var/run/$AAT/
 $MKDIR /var/run/$OCTO/
 $CHOWNR /etc/$AAT/ /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ /usr/sbin/octo* 2> /dev/null || true
-$CHOWN /var/lib/$OCTO/ /var/lib/$OCTO/logs/ 2> /dev/null || true
-$CHOWNR /var/lib/$OCTO/{conf,reports,rrd} /var/run/$AAT/ /var/run/$OCTO/ 2> /dev/null || true
+$CHOWNR /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ 2> /dev/null || true
 $FIND /usr/share/perl5/AAT* -name "*.pm" |xargs $CHMOD
 $FIND /usr/share/perl5/Octopussy* -name "*.pm" |xargs $CHMOD
 $CHMOD_X /usr/sbin/octo*
