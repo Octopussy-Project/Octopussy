@@ -162,7 +162,6 @@ rmtree("$DIR_TMP/DEBIAN");
 `mv $DIR_TMP octopussy`;
 
 `cp ./LINUX/INSTALL.sh ./LINUX/OCTOPUSSY.sql ./LINUX/README.txt octopussy/`;
-`cp ./LINUX/*.te octopussy/`;
 `mv -f ./LINUX/apache2.conf octopussy/etc/octopussy/apache2.conf`;
 `chmod 755 octopussy/INSTALL.sh`;
 `tar cvfz octopussy-$version.tar.gz octopussy/`;

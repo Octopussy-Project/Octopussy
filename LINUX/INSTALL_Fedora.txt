@@ -29,6 +29,10 @@ vi /etc/sysconfig/iptables
 > /etc/init.d/iptables restart
 
 
+vi /etc/sysconfig/rsyslog
+SYSLOGD_OPTIONS="-c 3"
+
+
 
 rsyslog.conf:
 
@@ -71,3 +75,11 @@ $DirCreateMode 0755
 # Include all config files in /etc/rsyslog.d/
 #
 $IncludeConfig /etc/rsyslog.d/*.conf
+
+
+
+
+Disable SELinux
+
+vi /etc/sysconfig/selinux
+SELINUX=disabled
