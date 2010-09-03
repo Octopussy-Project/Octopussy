@@ -11,9 +11,9 @@ octopussy (0.9.9.9.9); urgency=high
   * You can now modify user configuration and a user can now be enabled/disabled
   * Test suite hugely updated
   * Installation of Octopussy on other linux systems has been greatly improved. 
-  * Installation Documentation has been updated. 
+  * Installation Documentation has been updated (Debian/Ubuntu/CentOS/Fedora). 
 
-  -- Sebastien Thebert <octo.devel@gmail.com> 
+  -- Sebastien Thebert <octo.devel@gmail.com>  Fri, 03 Sep 2010 18:00
 
 octopussy (0.9.9.9.8); urgency=high
 
