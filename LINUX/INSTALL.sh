@@ -94,6 +94,9 @@ $LN /usr/sbin/$OCTO /etc/init.d/$OCTO || true
 # RH Like
 if [ -e "$CHKCONFIG" ]; then
 	$CHKCONFIG --add $OCTO || true
+	$CHKCONFIG --level 2345 $OCTO on
+	$CHKCONFIG --add rsyslog || true
+	$CHKCONFIG --level 2345 rsyslog on
 fi
 # Gentoo Like
 if [ -e "$RC_UPDATE" ]; then
