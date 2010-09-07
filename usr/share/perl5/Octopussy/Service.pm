@@ -50,17 +50,26 @@ Parameters:
 
 \%conf - hashref of the new Service configuration
 
+field 'name' only accepts [-_a-z0-9] characters 
+and 'Incoming' and 'Unknown' are rejected
+
 =cut
 
 sub New
 {
   my $conf = shift;
 
-  $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
-  $conf->{version} = Octopussy::Timestamp_Version(undef);
-  AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, $XML_ROOT);
+	if (($conf->{name} =~ /^[-_a-z0-9]+$/i)
+		&& ($conf->{name} !~ /Incoming/i) && ($conf->{name} !~ /Unknown/i)) 
+	{
+  	$dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
+  	$conf->{version} = Octopussy::Timestamp_Version(undef);
+  	AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, $XML_ROOT);
 
-  return ($conf->{name});
+  	return ($conf->{name});
+	}
+	
+	return (undef);
 }
 
 =head2 Remove($service)

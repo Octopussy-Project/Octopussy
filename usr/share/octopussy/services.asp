@@ -17,11 +17,15 @@ else
 	if ((!-f Octopussy::Service::Filename($service))
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
-		if (($service !~ /^Incoming/i) && ($service !~ /^Unknown/i))
+  		my $svc = Octopussy::Service::New({ name => $service, 
+			description => $f->{description}, website => $f->{website} });
+		if (defined $svc)
 		{
-  		Octopussy::Service::New({ name => $service, 
-				description => $f->{description}, website => $f->{website} });
 			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Service", $service);
+		}
+		else
+		{
+			$Session->{AAT_MSG_ERROR} = "Unable to create Service '$service'";
 		}
 		$Response->Redirect("./services.asp");
  	}

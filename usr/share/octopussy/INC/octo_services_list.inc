@@ -50,7 +50,7 @@ if ($role !~ /ro/i)
 <AAT:Form action="$url">
 <AAT:Box align="C">
 <AAT:BoxRow>
-	<AAT:BoxCol><AAT:Label value="_NAME" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_NAME" style="B" /> (only [-_a-zA-Z0-9] chars)</AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
