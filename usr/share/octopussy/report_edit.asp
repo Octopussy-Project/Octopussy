@@ -28,7 +28,7 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 			graph_title => $f->{graph_title}, graph_ylabel => $f->{graph_ylabel},
      	graph_width => $f->{graph_width}, graph_height => $f->{graph_height} } );
 	}
-	AAT::Syslog::Message("octo_WebUI", "GENERIC_MODIFIED", "Report", $f->{old_report});
+	AAT::Syslog::Message("octo_WebUI", "GENERIC_MODIFIED", "Report", $f->{old_report}, $Session->{AAT_LOGIN});
 	$Response->Redirect("./reports.asp");
 }
 else

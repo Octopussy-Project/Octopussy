@@ -11,22 +11,22 @@
     message="Failed to download '%%ARG1%%'" />
 	
 	<log mid="GENERIC_ADDED_TO"
-    message="%%ARG1%% '%%ARG2%%' has been added to %%ARG3%% '%%ARG4%%' by %%LOGIN%%" />
+    message="%%ARG1%% '%%ARG2%%' has been added to %%ARG3%% '%%ARG4%%' by %%ARG5%%" />
 	<log mid="GENERIC_CREATED"
-    message="%%ARG1%% '%%ARG2%%' has been created by %%LOGIN%%." />
+    message="%%ARG1%% '%%ARG2%%' has been created by %%ARG3%%." />
 	<log mid="GENERIC_DELETED"
-		message="%%ARG1%% '%%ARG2%%' has been deleted by %%LOGIN%%." />
+		message="%%ARG1%% '%%ARG2%%' has been deleted by %%ARG3%%." />
 	<log mid="GENERIC_MODIFIED"
-    message="%%ARG1%% '%%ARG2%%' has been modified by %%LOGIN%%." />
+    message="%%ARG1%% '%%ARG2%%' has been modified by %%ARG3%%." />
 	<log mid="GENERIC_REMOVED_FROM"
-    message="%%ARG1%% '%%ARG2%%' has been removed from %%ARG3%% '%%ARG4%%' by %%LOGIN%%" />
+    message="%%ARG1%% '%%ARG2%%' has been removed from %%ARG3%% '%%ARG4%%' by %%ARG5%%" />
 
   	<log mid="LOAD_CONTACTS_CONFIG" message="Load Contacts Configuration (%%ARG1%% contacts)" />
   	
 	<log mid="LOAD_DEVICES_CONFIG" message="Load Devices Configuration" />
 	
 	<log mid="LOG_SEARCH"
-		message="Logs Search on Device[%%ARG1%%] Service[%%ARG2%%] Period[%%ARG3%%] by %%LOGIN%% takes %%ARG4%% seconds." />
+		message="Logs Search on Device[%%ARG1%%] Service[%%ARG2%%] Period[%%ARG3%%] by %%ARG5%% takes %%ARG4%% seconds." />
 
   <log mid="PARSER_DEVICE_PARSING_DURATION"
     message="Device: %%ARG1%% Date: %%ARG2%% Time: %%ARG3%% seconds" />
@@ -49,37 +49,37 @@
 		message="Invalid SMTP Configuration. Can't send any mail !" />
 	
 	<log mid="STORAGE_DEFAULT_MODIFIED"
-    message="Default Storages have been modified by %%LOGIN%%." />
+    message="Default Storages have been modified by %%ARG1%%." />
 
 	<log mid="SYSTEM_CONFIG_MODIFIED"
-		message="System Configuration has been modified by %%LOGIN%%." />
+		message="System Configuration has been modified by %%ARG1%%." />
 
 	<log mid="UNABLE_OPEN_FILE"
 		message="Unable to open file '%%ARG1%%'" />
 	<log mid="UNABLE_OPEN_FILE_IN"
     message="Unable to open file '%%ARG1%%' in '%%ARG2%%'" />
 
-	<log mid="USER_FAILED_LOGIN" message="User %%LOGIN%% failed to login." />
-	<log mid="USER_LOGGED_IN" message="User %%LOGIN%% succesfully logged in." />
-	<log mid="USER_LOGGED_OUT" message="User %%LOGIN%% logged out." />
+	<log mid="USER_FAILED_LOGIN" message="User %%ARG1%% failed to login." />
+	<log mid="USER_LOGGED_IN" message="User %%ARG1%% succesfully logged in." />
+	<log mid="USER_LOGGED_OUT" message="User %%ARG1%% logged out." />
 
 	<log mid="USER_PREF_MODIFIED"
-		message="User Preferences has been modified by %%LOGIN%%." />
+		message="User Preferences has been modified by %%ARG1%%." />
 
 	<log mid="MESSAGE_MOVED_IN_SERVICE"
-		message="Message '%%ARG1%%' has been moved %%ARG2%% in Service '%%ARG3%%' by %%LOGIN%%." />
+		message="Message '%%ARG1%%' has been moved %%ARG2%% in Service '%%ARG3%%' by %%ARG4%%." />
 	<log mid="PARSING_DEVICE"
-		message="Parsing %%ARG1%% for device '%%ARG2%%' by %%LOGIN%%." />
+		message="Parsing %%ARG1%% for device '%%ARG2%%' by %%ARG3%%." />
 
   <log mid="WIZARD_REMOVE_MINUTE"
-    message="Removing Unknown Logs at '%%ARG2%%' for device '%%ARG1%%' by %%LOGIN%%." />
+    message="Removing Unknown Logs at '%%ARG2%%' for device '%%ARG1%%' by %%ARG3%%." />
   <log mid="WIZARD_REMOVE_PATTERN"
-    message="Removing Unknown Logs with pattern '%%ARG2%%' for device '%%ARG1%%' by %%LOGIN%%." />
+    message="Removing Unknown Logs with pattern '%%ARG2%%' for device '%%ARG1%%' by %%ARG3%%." />
 
   <log mid="WORLD_STATS_SENT"
     message="Octopussy World Statistics have been sent." />
   <log mid="WORLD_STATS_STATUS_CHANGED"
-    message="Octopussy World Statistics have been %%ARG1%% by %%LOGIN%%." />
+    message="Octopussy World Statistics have been %%ARG1%% by %%ARG2%%." />
 
 	<log mid="XML_READ_ERROR" message="XML File Read Error: %%ARG1%%" />
 	<log mid="XML_WRITE_ERROR" message="XML File Write Error: %%ARG1%%" />

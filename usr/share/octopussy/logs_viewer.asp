@@ -70,7 +70,8 @@ if ((NULL($Session->{extractor})) &&
 		begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
 		includes => [$re_include, $re_include2, $re_include3],
 		excludes => [$re_exclude, $re_exclude2, $re_exclude3],
-		pid_param => $output, output => "$run_dir/logs_${login}_$output" } );
+		pid_param => $output, user => $Session->{AAT_LOGIN}, 
+		output => "$run_dir/logs_${login}_$output" } );
 	$Session->{export} = 
 		"logs_" . join("-", @devices) . "_" . join("-", @services)
     	. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";

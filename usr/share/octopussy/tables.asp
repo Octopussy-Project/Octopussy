@@ -16,13 +16,13 @@ else
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Table::New({ name => $table, description => $f->{description} });
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Table", $table);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Table", $table, $Session->{AAT_LOGIN});
 		$Response->Redirect("./table_fields.asp?table=$table");
 	}
 	elsif (($action eq "remove") && ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Table::Remove($table);
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Table", $table);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Table", $table, $Session->{AAT_LOGIN});
 		$Response->Redirect("./tables.asp");
 	}
 	else

@@ -9,7 +9,7 @@ if ((NOT_NULL($action)) && ($action eq "remove")
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
 	Octopussy::Contact::Remove($cid);
-	AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Contact", $cid);
+	AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Contact", $cid, $Session->{AAT_LOGIN});
 	$Response->Redirect("./contacts.asp");
 }
 elsif ((NOT_NULL($action)) && ($action eq "new") 
@@ -20,7 +20,7 @@ elsif ((NOT_NULL($action)) && ($action eq "new")
     firstname => Encode::decode_utf8($f->{firstname}),
   	description => Encode::decode_utf8($f->{description}), 
     email => $Server->HTMLEncode($f->{email}), im => $f->{im} } );
-	AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Contact", $cid)
+	AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Contact", $cid, $Session->{AAT_LOGIN})
 		if (NOT_NULL($Session->{AAT_MSG_ERROR}));
 	$Response->Redirect("./contacts.asp");
 }

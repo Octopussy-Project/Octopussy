@@ -14,13 +14,13 @@ if ((defined $field) && ($field !~ /^\s*$/) && ($Session->{AAT_ROLE} !~ /ro/i))
 	{ 
 		Octopussy::Table::Remove_Field($table, $field); 
 		AAT::Syslog::Message("octo_WebUI", "GENERIC_REMOVED_FROM", 
-			"Table Field", $field, "Table", $table);
+			"Table Field", $field, "Table", $table, $Session->{AAT_LOGIN});
 	}
 	else
 	{ 
 		Octopussy::Table::Add_Field($table, $field, $f->{type}); 
 		AAT::Syslog::Message("octo_WebUI", "GENERIC_ADDED_TO",
-			"Table Field", $field, "Table", $table);
+			"Table Field", $field, "Table", $table, $Session->{AAT_LOGIN});
 	}
 }
 %>

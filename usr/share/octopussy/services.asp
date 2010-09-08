@@ -21,7 +21,7 @@ else
 			description => $f->{description}, website => $f->{website} });
 		if (defined $svc)
 		{
-			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Service", $service);
+			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Service", $service, $Session->{AAT_LOGIN});
 		}
 		else
 		{
@@ -35,12 +35,12 @@ else
 		if (defined $msgid)
 		{
 			Octopussy::Service::Remove_Message($service, $msgid);
-			AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Message", $msgid);
+			AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Message", $msgid, $Session->{AAT_LOGIN});
 		}
 		else
 		{
 			Octopussy::Service::Remove($service);
-			AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Service", $service);
+			AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Service", $service, $Session->{AAT_LOGIN});
 			$Response->Redirect("./services.asp");
 		}
 	}
@@ -49,8 +49,7 @@ else
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 	{
 		Octopussy::Service::Move_Message($service, $msgid, $action);			
-		AAT::Syslog::Message("octo_WebUI", "MESSAGE_MOVED_IN_SERVICE", 
-			$msgid, $action, $service);
+		AAT::Syslog::Message("octo_WebUI", "MESSAGE_MOVED_IN_SERVICE", $msgid, $action, $service, $Session->{AAT_LOGIN});
 	}
 	%><AAT:Inc file="octo_service_messages_list" url="./services.asp"
 			service="$service" sort="$msg_sort" /><%

@@ -66,7 +66,7 @@ $PROG_NAME (version $PROG_VERSION)
         [ --loglevel <loglevel> ] [ --taxonomy <taxonomy> ] [ --msgid <msgid> ]
         --begin YYYYMMDDHHMM --end YYYYMMDDHHMM
         [ --include '<regexp to include>' ] [ --exclude '<regexp to exclude>' ] 
-        [ --pid_param <string> ] [ --output <outputfile> ]
+        [ --pid_param <string> ] [ --user <user> ] [ --output <outputfile> ]
 
 EOF
 
@@ -356,7 +356,7 @@ sub Print_Logs
         'octo_extractor', 'LOG_SEARCH',
         join(',', @opt_devices),
         join(',', @opt_services),
-        "${opt_begin}-${opt_end}", time() - $time
+        "${opt_begin}-${opt_end}", time() - $time, $user
     );
 
     return ($nb_match);
@@ -397,6 +397,7 @@ my $status = GetOptions(
     'include=s'   => \@opt_include,
     'exclude=s'   => \@opt_exclude,
     'pid_param=s' => \$pid_param,
+    'user=s'      => \$user,
     'output=s'    => \$output
 );
 

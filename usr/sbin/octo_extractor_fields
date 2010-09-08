@@ -44,7 +44,7 @@ Readonly my $PROG_VERSION => Octopussy::Version();
 my $help;
 my (@opt_devices, @opt_services) = ((), ());
 my ($opt_table, $opt_loglevel, $opt_taxonomy);
-my ($opt_fields, $opt_begin, $opt_end, $pid_param, $output);
+my ($opt_fields, $opt_begin, $opt_end, $pid_param, $user, $output);
 my $file_pid = undef;
 my $cache    = undef;
 
@@ -91,7 +91,7 @@ $PROG_NAME (version $PROG_VERSION)
         --table <table> [ --loglevel <loglevel> ] [ --taxonomy <taxonomy> ]
         --begin YYYYMMDDHHMM --end YYYYMMDDHHMM"
         --fields <field1,field2,fieldn>
-        [ --pid_param <string> ] [ --output <outputfile> ]
+        [ --pid_param <string> ] [ --user <user> ] [ --output <outputfile> ]
 
 EOF
 
@@ -314,7 +314,7 @@ sub Print_Logs
         'octo_extractor_fields', 'LOG_SEARCH',
         join(',', @opt_devices),
         join(',', @opt_services),
-        "${opt_begin}-${opt_end}", time() - $time
+        "${opt_begin}-${opt_end}", time() - $time, $user
     );
 
     return (scalar @logs);
@@ -350,6 +350,7 @@ my $status = GetOptions(
     'begin=s'     => \$opt_begin,
     'end=s'       => \$opt_end,
     'pid_param=s' => \$pid_param,
+    'user=s'      => \$user,
     'json=s'      => \$output,
 );
 

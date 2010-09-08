@@ -37,13 +37,13 @@ else
       action_service => Encode::decode_utf8($f->{action_service}),
       action_body => Encode::decode_utf8($f->{action_body}),
       });
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Alert", $alert);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Alert", $alert, $Session->{AAT_LOGIN});
   }
 
   if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))
   {
     Octopussy::Alert::Remove($alert);
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Alert", $alert);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Alert", $alert, $Session->{AAT_LOGIN});
   }
 	$Response->Redirect("./alerts.asp");
 }

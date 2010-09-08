@@ -7,7 +7,7 @@ my $sort = $Request->QueryString("users_table_sort");
 if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))
 {
   AAT::User::Remove("Octopussy", $login);
-  AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "User", $login);
+  AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "User", $login, $Session->{AAT_LOGIN});
   $Response->Redirect("./user.asp");
 }
 elsif ((NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
@@ -15,7 +15,7 @@ elsif ((NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
 	$Session->{AAT_MSG_ERROR} =
     AAT::User::Add("Octopussy", $login, $f->{password}, 
 			$f->{certificate}, $f->{user_role}, $f->{AAT_Language}, $f->{status});
-  AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "User", $login)
+  AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "User", $login, $Session->{AAT_LOGIN})
   	if (NOT_NULL($Session->{AAT_MSG_ERROR}));
 	if ($f->{certificate} == 1)
  	{

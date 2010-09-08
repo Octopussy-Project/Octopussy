@@ -15,7 +15,7 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 	if ($action eq "remove")
 	{
 		Octopussy::ServiceGroup::Remove($sg);
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "ServiceGroup", $sg);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "ServiceGroup", $sg, $Session->{AAT_LOGIN});
 		$Response->Redirect("./servicegroups.asp");
 	}
 	else
@@ -30,7 +30,7 @@ elsif ($Session->{AAT_ROLE} !~ /ro/i)
 		}
 		Octopussy::ServiceGroup::Add({ sg_id => $sg, description => $sg_desc,
 			service => \@services });
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "ServiceGroup", $sg);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "ServiceGroup", $sg, $Session->{AAT_LOGIN});
 		$Response->Redirect("./servicegroups.asp");
 	}
 }

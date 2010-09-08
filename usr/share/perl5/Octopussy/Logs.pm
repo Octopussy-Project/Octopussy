@@ -627,19 +627,20 @@ sub Extract_Cmd_Line
   foreach my $inc (ARRAY($conf->{includes}))
   {
     $inc =~ s/"/\\"/g;
-    $incl_str .= "--include \"$inc\" " if (NOT_NULL($inc));
+    $incl_str .= qq[--include "$inc" ] if (NOT_NULL($inc));
   }
   foreach my $exc (ARRAY($conf->{excludes}))
   {
     $exc =~ s/"/\\"/g;
-    $excl_str .= "--exclude \"$exc\" " if (NOT_NULL($exc));
+    $excl_str .= qq[--exclude "$exc" ] if (NOT_NULL($exc));
   }
   my $cmd =
       "/usr/sbin/octo_extractor $dev_str $serv_str"
-    . " --loglevel \"$conf->{loglevel}\" --taxonomy \"$conf->{taxonomy}\""
-    . " --msgid \"$conf->{msgid}\""
-    . " --begin $conf->{begin} --end $conf->{end} $incl_str $excl_str"
-    . " --pid_param \"$conf->{pid_param}\" --output \"$conf->{output}\"";
+    . qq[ --loglevel "$conf->{loglevel}" --taxonomy "$conf->{taxonomy}"]
+    . qq[ --msgid "$conf->{msgid}"]
+    . qq[ --begin $conf->{begin} --end $conf->{end} $incl_str $excl_str]
+    . qq[ --pid_param "$conf->{pid_param}" --user "$conf->{user}"]
+    . qq[ --output "$conf->{output}"];
 
   return ($cmd);
 }

@@ -12,19 +12,19 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 		{
 			Octopussy::Storage::Add(
 				{ s_id => $name, directory => $f->{directory} } );
-			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Storage", $name);
+			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Storage", $name, $Session->{AAT_LOGIN});
 		}
 	}
 	elsif ($action eq "remove")
 	{
 		Octopussy::Storage::Remove($name);
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Storage", $name);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Storage", $name, $Session->{AAT_LOGIN});
 	}
 	elsif ($action eq "default")
 	{
 		Octopussy::Storage::Default_Set( { incoming => $f->{incoming}, 
 			unknown => $f->{unknown}, known => $f->{known} } );
-		AAT::Syslog::Message("octo_WebUI", "STORAGE_DEFAULT_MODIFIED");
+		AAT::Syslog::Message("octo_WebUI", "STORAGE_DEFAULT_MODIFIED", $Session->{AAT_LOGIN});
 	}
 }
 %>

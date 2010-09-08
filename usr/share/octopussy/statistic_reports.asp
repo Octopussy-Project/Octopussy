@@ -4,9 +4,9 @@ my $s_report = $Request->QueryString("statistic_report");
 if ((defined $action) && ($action eq "remove") 
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
 {
-  Octopussy::Statistic_Report::Remove($s_report);
-	AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Statistic Report", $s_report);
-  $Response->Redirect("./statistic_reports.asp");
+  	Octopussy::Statistic_Report::Remove($s_report);
+	AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Statistic Report", $s_report, $Session->{AAT_LOGIN});
+  	$Response->Redirect("./statistic_reports.asp");
 }
 %>
 <WebUI:PageTop title="_STATISTIC_REPORTS" />

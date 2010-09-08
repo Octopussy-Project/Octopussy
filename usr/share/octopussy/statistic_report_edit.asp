@@ -15,8 +15,7 @@ if ((NOT_NULL($modify)) && ($Session->{AAT_ROLE} !~ /ro/i))
 				datasource1 => $f->{datasource1}, datasource2 => $f->{datasource2},
 				datasource3 => $f->{datasource3}, 
 				datasources_value => $f->{datasources_value} } );
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", 
-			"Statistic Report", $f->{name});
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Statistic Report", $f->{name}, $Session->{AAT_LOGIN});
 	}
 	else
 	{
@@ -26,8 +25,7 @@ if ((NOT_NULL($modify)) && ($Session->{AAT_ROLE} !~ /ro/i))
 				datasource1 => $f->{datasource1}, datasource2 => $f->{datasource2},
 				datasource3 => $f->{datasource3}, 
 				datasources_value => $f->{datasources_value} });
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_MODIFIED",
-			"Statistic Report", $f->{old_statistic_report});
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_MODIFIED", "Statistic Report", $f->{old_statistic_report}, $Session->{AAT_LOGIN});
 	}
 	$Response->Redirect("./statistic_reports.asp");
 }

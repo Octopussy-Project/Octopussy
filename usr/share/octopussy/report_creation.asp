@@ -106,7 +106,7 @@ else
       		graph_title => $f->{graph_title}, graph_ylabel => $f->{graph_ylabel},
       		graph_width => $f->{graph_width}, graph_height => $f->{graph_height} }
 				);
-			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Report", $Session->{title});	
+			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Report", $Session->{title}, $Session->{AAT_LOGIN});	
 		}
 		Purge_Session();
 	}
@@ -130,7 +130,7 @@ else
 					columns => join(",", ARRAY($columns)), 
 					columns_name => join(",", @columns_name),
 					x => $x, y => $y });
-			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Report", $Session->{title});
+			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Report", $Session->{title}, $Session->{AAT_LOGIN});
 		}
 		Purge_Session();
 	}

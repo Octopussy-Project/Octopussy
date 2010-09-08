@@ -22,7 +22,7 @@ if (NULL($device))
       {
       	Octopussy::Device::Parse_Pause($dc->{name});
         Octopussy::Device::Parse_Start($dc->{name});
-       	AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "reload", $dc->{name});
+       	AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "reload", $dc->{name}, $Session->{AAT_LOGIN});
       }
     }
 		$Response->Redirect("./devices.asp");
@@ -44,7 +44,7 @@ else
       description => Encode::decode_utf8($f->{description}),
 			logtype => $f->{logtype}, type => $f->{device_type}, 
 			model => $f->{device_model} });
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Device", $device);
+		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Device", $device, $Session->{AAT_LOGIN});
 		$Response->Redirect("./device_services.asp?device=$device");
 	}
 	$Response->Redirect("./device_services.asp?device=$device")
@@ -54,28 +54,28 @@ else
 		if ($action eq "remove")
 		{
 			Octopussy::Device::Remove($device);
-			AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Device", $device);
+			AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Device", $device, $Session->{AAT_LOGIN});
 		}
 		elsif ($action eq "parse_reload")
     {
       Octopussy::Device::Parse_Pause($device);
 			Octopussy::Device::Parse_Start($device);
-      AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "reload", $device);
+      AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "reload", $device, $Session->{AAT_LOGIN});
     }
 		elsif ($action eq "parse_start")
 		{
 			Octopussy::Device::Parse_Start($device);
-			AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "started", $device);
+			AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "started", $device, $Session->{AAT_LOGIN});
 		}
 		elsif ($action eq "parse_pause")
 		{
 			Octopussy::Device::Parse_Pause($device);
-			AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "paused", $device);
+			AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "paused", $device, $Session->{AAT_LOGIN});
 		}
 		elsif ($action eq "parse_stop")
 		{
 			Octopussy::Device::Parse_Stop($device);
-			AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "stopped", $device);
+			AAT::Syslog::Message("octo_WebUI", "PARSING_DEVICE", "stopped", $device, $Session->{AAT_LOGIN});
 		}
 		
 		$Response->Redirect("./devices.asp");
