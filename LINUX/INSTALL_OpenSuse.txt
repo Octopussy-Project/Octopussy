@@ -29,4 +29,113 @@ mod_ssl ?
 > cpan Proc::PID::File Proc::ProcessTable Readonly Regexp::Assemble Sys::CPU version
 
 
+==>
+
+Adding octopussy user & group...
+Creating directories...
+Copying directories & files...
+/bin/chown: invalid group: `octopussy:octopussy'
+/bin/chown: invalid group: `octopussy:octopussy'
+/bin/chown: invalid group: `octopussy:octopussy'
+octopussy                 0:off  1:off  2:on   3:on   4:on   5:on   6:off
+rsyslog: unknown service
+rsyslog: unknown service
+Configuring Apache...
+/bin/chown: invalid group: `octopussy:octopussy'
+Creating FIFO...
+/bin/chown: invalid group: `octopussy:octopussy'
+Preparing MySQL Database...
+Enter password: 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysql/mysql.sock' (2)
+Generating Certificate for Octopussy WebServer...
+Generating RSA private key, 512 bit long modulus
+.++++++++++++
+.......++++++++++++
+e is 65537 (0x10001)
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:
+State or Province Name (full name) [Some-State]:
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (eg, YOUR name) []:
+Email Address []:
+/bin/chown: invalid group: `octopussy:octopussy'
+Restarting Octopussy & Rsyslog...
+Name "AAT::Translation::I18N::pt::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::ru::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::it::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::fr::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::en::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::de::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::es::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+httpd2: Syntax error on line 39 of /etc/octopussy/apache2.conf: Cannot load /etc/httpd/modules/mod_dir.so into server: /etc/httpd/modules/mod_dir.so: cannot open shared object file: No such file or directory
+octopussy Web Stopped.
+octo_commander: no process found
+octopussy Commander Stopped.
+octo_rrd: no process found
+octopussy RRD Stopped.
+octo_scheduler: no process found
+octopussy Scheduler Stopped.
+octo_sender: no process found
+octopussy Sender Stopped.
+octo_pusher: no process found
+octopussy Pusher Stopped.
+octopussy Dispatcher Stopped.
+octopussy Dispatcher Started.
+Name "AAT::Translation::I18N::pt::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::ru::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::it::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::fr::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::en::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::de::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::es::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+mkdir /var/run/octopussy/cache/: Permission denied at /usr/lib/perl5/site_perl/5.10.0/Octopussy/FS.pm line 60
+100903 16:02:30 [Warning] Forcing shutdown of 2 plugins
+100903 16:02:31 [Warning] Forcing shutdown of 2 plugins                                                                
+octopussy RRD Started.                                                                                                 
+octopussy Scheduler Started.
+octopussy Sender Started.
+octopussy Pusher Started.                                                                                              
+octopussy Commander Started.                                                                                           
+httpd2: Syntax error on line 39 of /etc/octopussy/apache2.conf: Cannot load /etc/httpd/modules/mod_dir.so into server: /etc/httpd/modules/mod_dir.so: cannot open shared object file: No such file or directory                               
+octopussy Web Started.
+Shutting down syslog services                                                                               done       
+./INSTALL.sh: line 142: /etc/init.d/rsyslog: No such file or directory
+vm-opensuse:~/octopussy # mkdir /var/run/octopussy/cache/: Permission denied at /usr/lib/perl5/site_perl/5.10.0/Octopussy/FS.pm line 60
+Can't locate Proc/ProcessTable.pm in @INC (@INC contains: /usr/lib/perl5/5.10.0/i586-linux-thread-multi /usr/lib/perl5/5.10.0 /usr/lib/perl5/site_perl/5.10.0/i586-linux-thread-multi /usr/lib/perl5/site_perl/5.10.0 /usr/lib/perl5/vendor_perl/5.10.0/i586-linux-thread-multi /usr/lib/perl5/vendor_perl/5.10.0 /usr/lib/perl5/vendor_perl .) at /usr/lib/perl5/site_perl/5.10.0/Octopussy/Report.pm line 19.
+BEGIN failed--compilation aborted at /usr/lib/perl5/site_perl/5.10.0/Octopussy/Report.pm line 19.
+Compilation failed in require at /usr/sbin/octo_scheduler line 28.
+BEGIN failed--compilation aborted at /usr/sbin/octo_scheduler line 28.
+Name "AAT::Translation::I18N::pt::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::ru::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::it::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::fr::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::en::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::de::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::es::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::pt::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312, <DATA> line 522.
+Name "AAT::Translation::I18N::ru::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312, <DATA> line 522.
+Name "AAT::Translation::I18N::it::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312, <DATA> line 522.
+Name "AAT::Translation::I18N::fr::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312, <DATA> line 522.
+Name "AAT::Translation::I18N::en::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312, <DATA> line 522.
+Name "AAT::Translation::I18N::de::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312, <DATA> line 522.
+Name "AAT::Translation::I18N::es::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312, <DATA> line 522.
+mkdir /var/run/octopussy/cache/: Permission denied at /usr/lib/perl5/site_perl/5.10.0/Octopussy/FS.pm line 60
+Name "AAT::Translation::I18N::pt::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::ru::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::it::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::fr::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::en::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::de::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+Name "AAT::Translation::I18N::es::Lexicon" used only once: possible typo at /usr/lib/perl5/vendor_perl/5.10.0/Locale/Maketext/Lexicon.pm line 312.
+mkdir /var/run/octopussy/cache/: Permission denied at /usr/lib/perl5/site_perl/5.10.0/Octopussy/FS.pm line 60
+
+
 Problem with Apache mod_dir...
