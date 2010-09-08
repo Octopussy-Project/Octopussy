@@ -5,7 +5,7 @@
                    website="">
   <message loglevel="Warning"
            msg_id="DB2:open_log_file_failed"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;DB2&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Open of log file .+ failed .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;DB2&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Open of log file .+ failed .+&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Application.Errors" />

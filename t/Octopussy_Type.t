@@ -23,8 +23,8 @@ Readonly my $DT2 => 'Mon Dec 24 23:55:55 2000';
 Readonly my $DT3 => '2000/12/24 23:55:55';
 Readonly my $DT4 => '24/Dec/2000:23:55:55 +0100';
 
+Readonly my $RE_DT_ISO     => '\d{4\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}.\d{2}:\d{2}';
 Readonly my $RE_DT_SQL     => '\d{4}-\d\d-\d\d \d\d:\d\d:\d\d';
-Readonly my $RE_DT_SYSLOG  => '\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2}';
 Readonly my $RE_IP_ADDR    => '\d+\.\d+\.\d+\.\d+';
 Readonly my $RE_NUMBER     => '[-+]?\d+';
 Readonly my $RE_USER_AGENT => '.+';
@@ -99,9 +99,9 @@ ok(
   'Octopussy::Type::Regexps'
 );
 
-my $re_dt_syslog = Octopussy::Type::Regexp('DATE_TIME_SYSLOG');
+my $re_dt_iso = Octopussy::Type::Regexp('DATE_TIME_ISO');
 my $re_ip_addr   = Octopussy::Type::Regexp('IP_ADDR');
-ok($re_dt_syslog eq $RE_DT_SYSLOG && $re_ip_addr eq $RE_IP_ADDR,
+ok($re_dt_iso eq $RE_DT_ISO && $re_ip_addr eq $RE_IP_ADDR,
   'Octopussy::Type::Regexp(one_type)');
 
 1;

@@ -33,17 +33,6 @@ Readonly my $SAMPLE_MSG => 'User admin succesfully logged in.';
 
 Readonly my $REQUIRED_NB_FIELDS => 4;
 
-=head2 msg
-<message loglevel="Notice"
-           msg_id="Octopussy:user_logged_in"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; oc
-to_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;User .+ succesfully logged in.&quot;
-):msg@&gt;"
-           rank="015"
-           table="Message"
-           taxonomy="Auth.Success" />
-=cut
-
 my $mconf = Octopussy::Message::Configuration($SERVICE, $MSGID);
 ok(NOT_NULL($mconf) && $mconf->{taxonomy} eq 'Auth.Success',
   'Octopussy::Message::Configuration()');
