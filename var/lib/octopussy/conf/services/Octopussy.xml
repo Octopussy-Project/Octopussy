@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="056"
-                   version="201002100001"
+                   version="201008170001"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -371,4 +371,10 @@
            rank="061"
            table="Message"
            taxonomy="Access.Failure" />
+  <message loglevel="Information"
+           msg_id="Octopussy:sender_load_contacts_configuration"
+           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Load Contacts Configuration .+&quot;):msg@&gt;"
+           rank="062"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

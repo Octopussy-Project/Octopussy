@@ -43,6 +43,8 @@ sub New
 {
   my $conf = shift;
 
+  return ("Invalid Contact ID '$conf->{cid}'") if ($conf->{cid} !~ /^[-_a-z0-9]+$/i);
+  
   $dir_contacts ||= Octopussy::FS::Directory('contacts');
   if (NOT_NULL($conf->{cid})
     && (NOT_NULL($conf->{email}) || NOT_NULL($conf->{im})))

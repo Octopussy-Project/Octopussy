@@ -21,7 +21,7 @@ elsif ((NOT_NULL($action)) && ($action eq "new")
   	description => Encode::decode_utf8($f->{description}), 
     email => $Server->HTMLEncode($f->{email}), im => $f->{im} } );
 	AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Contact", $cid, $Session->{AAT_LOGIN})
-		if (NOT_NULL($Session->{AAT_MSG_ERROR}));
+		if (NULL($Session->{AAT_MSG_ERROR}));
 	$Response->Redirect("./contacts.asp");
 }
 %>

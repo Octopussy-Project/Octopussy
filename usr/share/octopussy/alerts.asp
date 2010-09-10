@@ -42,7 +42,7 @@ else
 		}
 		else
 		{
-			$Session->{AAT_MSG_ERROR} = "Unable to create Alert '$alert'";
+			$Session->{AAT_MSG_ERROR} = "Unable to create Alert '$f->{alert}'";
 		}
   	}
 
