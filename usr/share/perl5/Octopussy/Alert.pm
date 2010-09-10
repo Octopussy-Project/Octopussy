@@ -58,6 +58,9 @@ Create a new Alert and then restart parser for Devices concerned
 sub New
 {
   my $conf = shift;
+  
+  return (undef) if ($conf->{name} !~ /^[-_a-z0-9]+$/i);
+  
   $dir_alerts ||= Octopussy::FS::Directory($DIR_ALERT);
   my $file_xml = "$dir_alerts/$conf->{name}.xml";
   $conf->{msgbody}     =~ s/\r\n/ \@\@\@ /g;

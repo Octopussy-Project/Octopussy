@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-packaging_svn2debian.pl - Program to create Debian package from SVN repository
+packaging_from_svn.pl - Program to create packages from SVN repository
 
 =cut
 
@@ -157,14 +157,15 @@ Copy_Files();
 
 `sed -i "s/^Version:.*/Version: $version/" ./$FILE_DEBIAN_CONTROL`;
 `dpkg-deb --build $DIR_TMP $filename_pkg`;
+printf(">>> Package Debian: %s\n", $filename_pkg);
 
 rmtree("$DIR_TMP/DEBIAN");
 `mv $DIR_TMP octopussy`;
-
 `cp ./LINUX/INSTALL.sh ./LINUX/OCTOPUSSY.sql ./LINUX/README.txt octopussy/`;
 `mv -f ./LINUX/apache2.conf octopussy/etc/octopussy/apache2.conf`;
 `chmod 755 octopussy/INSTALL.sh`;
 `tar cvfz octopussy-$version.tar.gz octopussy/`;
+printf(">>> Package generic: %s\n", "octopussy-$version.tar.gz");
 
 rmtree($DIR_TMP);
 rmtree('octopussy');

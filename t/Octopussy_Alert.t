@@ -53,6 +53,11 @@ my %conf = (
 my $file = Octopussy::Alert::New(\%conf);
 ok(NOT_NULL($file) && -f $file, 'Octopussy::Alert::New()');
 
+$conf{name} = $name . " &éèçà£µ§";
+my $file2 = Octopussy::Alert::New(\%conf);
+ok((!defined $file2), 'Octopussy::Alert::New() accepts only /^[-_a-z0-9]+$/i for name')
+$conf{name} = $name;
+
 my @list2 = Octopussy::Alert::List();
 ok(scalar @list + 1 == scalar @list2, 'Octopussy::Alert::List()');
 

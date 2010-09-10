@@ -11,19 +11,18 @@ if (NULL($alert))
 }
 else
 {
-  if ((!-f Octopussy::Alert::Filename($alert)) 
+  	if ((!-f Octopussy::Alert::Filename($alert)) 
 			&& ($Session->{AAT_ROLE} !~ /ro/i))
-  {
+	{
 		my @devices = ARRAY($f->{device});
-  	my @services = ARRAY($f->{service});
-  	my @actions = (ARRAY($f->{action_mailing}), 
-      ARRAY($f->{action_program}));
-  	my @contacts = ARRAY($f->{contact});
+  		my @services = ARRAY($f->{service});
+  		my @actions = (ARRAY($f->{action_mailing}), ARRAY($f->{action_program}));
+  		my @contacts = ARRAY($f->{contact});
 
-    Octopussy::Alert::New({ name => $alert, 
+    	my $alert_file = Octopussy::Alert::New({ name => $alert, 
 			description => Encode::decode_utf8($f->{description}), 
 			level => $f->{level}, type => "Dynamic", loglevel => $f->{loglevel},
-      taxonomy => $f->{taxonomy}, timeperiod => $f->{timeperiod},
+      		taxonomy => $f->{taxonomy}, timeperiod => $f->{timeperiod},
 			status => ($f->{status} || "Enabled"),
 			device => \@devices, service => \@services,
 			regexp_include => $f->{regexp_include},
@@ -32,19 +31,26 @@ else
 			thresold_duration => $f->{thresold_duration},
 			action => \@actions, contact => \@contacts, 
 			msgsubject => Encode::decode_utf8($f->{subject}), 
-      msgbody => Encode::decode_utf8($f->{body}),
-      action_host => Encode::decode_utf8($f->{action_host}),
-      action_service => Encode::decode_utf8($f->{action_service}),
-      action_body => Encode::decode_utf8($f->{action_body}),
-      });
-		AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Alert", $alert, $Session->{AAT_LOGIN});
-  }
+      		msgbody => Encode::decode_utf8($f->{body}),
+      		action_host => Encode::decode_utf8($f->{action_host}),
+      		action_service => Encode::decode_utf8($f->{action_service}),
+      		action_body => Encode::decode_utf8($f->{action_body}),
+      	});
+      	if (defined $alert_file)
+      	{
+			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Alert", $alert, $Session->{AAT_LOGIN});
+		}
+		else
+		{
+			$Session->{AAT_MSG_ERROR} = "Unable to create Alert '$alert'";
+		}
+  	}
 
-  if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))
-  {
-    Octopussy::Alert::Remove($alert);
+  	if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))
+  	{
+    	Octopussy::Alert::Remove($alert);
 		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Alert", $alert, $Session->{AAT_LOGIN});
-  }
+  	}
 	$Response->Redirect("./alerts.asp");
 }
 %>

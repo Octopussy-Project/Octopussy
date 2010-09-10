@@ -9,7 +9,7 @@ my @used_services = Octopussy::Service::List_Used();
 <AAT:Box align="C" title="_MSG_DYNAMIC_ALERT_CREATION" icon="buttons/bt_alert">
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_ALERT_NAME" style="B"/></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_ALERT_NAME" style="B"/> (only [-_a-zA-Z0-9] chars)</AAT:BoxCol>
 	<AAT:BoxCol><AAT:Entry name="alert" size="60" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

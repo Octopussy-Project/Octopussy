@@ -1,3 +1,9 @@
+octopussy (1.0rc1); urgency=high
+
+  * Bugfix 3061992: %LOGIN% missing in Octopussy logs
+
+  -- Sebastien Thebert <octo.devel@gmail.com>  XXX, XX Sep 2010 XX:00
+
 octopussy (0.9.9.9.9); urgency=high
 
   * Bugfix in octo_scheduler
