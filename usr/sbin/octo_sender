@@ -94,9 +94,9 @@ sub Get_Mail_Addresses
 
     foreach my $c (ARRAY($action->{contacts}))
     {
-        push @mails, $contact{$c}->{im}
-            if (defined $contact{$c}->{im});
-    }
+    	push @mails, $contact{$c}->{email}
+			if (defined $contact{$c}->{email});
+ 	}
 
     return (@mails);
 }
