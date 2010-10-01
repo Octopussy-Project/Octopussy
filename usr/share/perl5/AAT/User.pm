@@ -92,7 +92,7 @@ sub Add
     certificate => $certificate,
     role        => $role,
     language    => $lang || $DEFAULT_LANGUAGE,
-    status      => $status || 'enabled',
+    status      => $status || 'Enabled',
     theme       => $DEFAULT_THEME,
     menu_mode   => $DEFAULT_MENU_MODE,
     };
@@ -156,7 +156,7 @@ sub Update
         password     => $pwd,
         role         => $update->{role} || $u->{role},
         language     => $update->{language} || $u->{language},
-        status       => $update->{status} || $u->{status},
+        status       => $update->{status} || $u->{status} || 'Enabled',
         theme        => $update->{theme} || $u->{theme},
         menu_mode    => $update->{menu_mode} || $u->{menu_mode},
         restrictions => $u->{restrictions},
