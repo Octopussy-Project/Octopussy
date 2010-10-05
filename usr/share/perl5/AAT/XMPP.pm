@@ -12,9 +12,11 @@ AAT::XMPP - AAT XMPP module
 =head1 BUGS
 
 Net::XMPP is buggy with OpenFire & TLS
--> comment 3 lines in Net::XMPP::Protocol (~line 1800) & disable TLS:
+-> comment 3 lines in Net::XMPP::Protocol (approx. line 1800) 
+& disable TLS:
 
-#if($self->{STREAM}->GetStreamFeature($self->GetStreamID(),"xmpp-sasl"))
+#if($self->{STREAM}->GetStreamFeature($self->GetStreamID(),
+# "xmpp-sasl"))
 #{
 #    return $self->AuthSASL(%args);
 #}

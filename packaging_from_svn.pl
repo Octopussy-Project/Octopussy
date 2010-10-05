@@ -67,28 +67,21 @@ sub Copy_Files
 
 	printf "Copying Debian packaging files...\n";
 	`svn export ./DEBIAN/ $DIR_TMP/DEBIAN/`;
-	`chmod 755 $DIR_TMP/DEBIAN/`;
-	`chmod 755 $DIR_TMP/DEBIAN/con*`;
-	`chmod 755 $DIR_TMP/DEBIAN/post*`;
-	`chmod 755 $DIR_TMP/DEBIAN/pre*`;
 
 	printf "Copying Perl modules...\n";
 	`svn export ./usr/share/perl5/ $DIR_TMP/usr/share/perl5/`;
-        `find $DIR_TMP/usr/share/perl5/ -type d | xargs chmod 755`;
-        `find $DIR_TMP/usr/share/perl5/ -type f | xargs chmod 644`;
 
 	printf "Copying Configuration files...\n";
 	`svn export ./etc/ $DIR_TMP/etc/`;
+
 	mkpath("$DIR_TMP/var/lib/$PACKAGE/");
 	`svn export ./var/lib/$PACKAGE/conf/ $DIR_TMP/var/lib/$PACKAGE/conf/`;
-	`chmod -R 644 $DIR_TMP/etc/$PACKAGE/*`;
+
 	`mv $DIR_TMP/etc/$PACKAGE/apache2_debian.conf $DIR_TMP/etc/$PACKAGE/apache2.conf`;
 	`mv $DIR_TMP/etc/$PACKAGE/apache2_other.conf LINUX/apache2.conf`;
-	`chmod -R 644 $DIR_TMP/etc/rsyslog.d/*`;
 
 	printf "Copying Program files...\n";
 	`svn export ./usr/sbin/ $DIR_TMP/usr/sbin/`;
-	`chmod 755 $DIR_TMP/usr/sbin/*`;
 
 	printf "Copying WebSite files...\n";
 	`svn export ./usr/share/aat/ $DIR_TMP/usr/share/aat/`;
@@ -98,6 +91,13 @@ sub Copy_Files
 
 	# Removing Catalyst stuff for now...
 	rmtree('./usr/share/octopussy/Octopussy-Web/');
+
+        `find $DIR_TMP/ -type d | xargs chmod 755`;
+        `find $DIR_TMP/ -type f | xargs chmod 644`;
+        `chmod 755 $DIR_TMP/DEBIAN/config $DIR_TMP/DEBIAN/control`;
+        `chmod 755 $DIR_TMP/DEBIAN/post*`;
+        `chmod 755 $DIR_TMP/DEBIAN/pre*`;
+        `chmod 755 $DIR_TMP/usr/sbin/*`;
 }
 
 =head2 Man()
