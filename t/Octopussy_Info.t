@@ -15,6 +15,9 @@ use warnings;
 
 use Test::More tests => 2;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use AAT::Utils qw( NOT_NULL );
 use Octopussy::Info;
 

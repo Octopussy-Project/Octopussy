@@ -15,6 +15,9 @@ use warnings;
 
 use Test::More tests => 3;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Taxonomy;
 
 my @taxo_list     = Octopussy::Taxonomy::List();

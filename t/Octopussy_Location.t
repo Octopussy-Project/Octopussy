@@ -17,6 +17,9 @@ use List::MoreUtils qw(any);
 
 use Test::More tests => 12;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Location;
 
 my ($city, $building, $room, $rack) =

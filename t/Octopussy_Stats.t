@@ -16,6 +16,9 @@ use Readonly;
 
 use Test::More tests => 6;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Stats;
 
 my $cpu_info = Octopussy::Stats::CPU_Info();

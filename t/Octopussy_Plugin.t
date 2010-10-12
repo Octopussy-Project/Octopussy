@@ -18,6 +18,9 @@ use Test::More tests => 10;
 
 use List::MoreUtils qw(any);
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Plugin;
 
 Readonly my $LANG => 'FR';

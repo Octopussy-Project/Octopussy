@@ -16,6 +16,9 @@ use Readonly;
 
 use Test::More tests => 14;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Device;
 use Octopussy::FS;
 use Octopussy::Logs;
@@ -67,6 +70,8 @@ sub Generate_Fake_Logs_Files
     system
       "touch $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/msg_01h${minute}.log.gz";
   }
+  
+  return (undef);
 }
 
 my ($d_incoming, $d_unknown) = Octopussy::Logs::Init_Directories($DEVICE);
@@ -152,6 +157,7 @@ my %conf_extract = (
   end       => $END,
   pid_param => 'pid_param',
   output    => $OUTPUT,
+  user      => 'Octo_Test',
 );
 my $cmd = Octopussy::Logs::Extract_Cmd_Line(\%conf_extract);
 ok($cmd =~ $RE_CMDLINE, 'Octopussy::Logs::Extract_Cmd_Line()');

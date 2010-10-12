@@ -21,6 +21,9 @@ use warnings;
 
 use Test::More tests => 1;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Table;
 
 my $str_error = '';

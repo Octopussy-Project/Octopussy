@@ -17,6 +17,9 @@ use Readonly;
 use List::MoreUtils qw(true);
 use Test::More tests => 15;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::FS;

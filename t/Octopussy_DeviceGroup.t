@@ -16,6 +16,9 @@ use Readonly;
 
 use Test::More tests => 6;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::DeviceGroup;
 
 Readonly my $PREFIX      => 'Octo_TEST_';

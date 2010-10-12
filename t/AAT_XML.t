@@ -17,6 +17,9 @@ use Readonly;
 use List::MoreUtils qw(any);
 use Test::More tests => 5;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use AAT::XML;
 
 Readonly my $DIR_LISTS => '/usr/share/aat/Lists/';
@@ -32,11 +35,11 @@ ok(($filename eq $FILE_PORTS) || ($filename eq $FILE_PORTS2), 'AAT::XML::Filenam
 
 # Name_List
 my @names = AAT::XML::Name_List($DIR_LISTS);
-ok((grep /$NAME_PORTS/, @names), 'AAT::XML::Name_List()');
+ok((grep { /$NAME_PORTS/ } @names), 'AAT::XML::Name_List()');
 
 # File_Array_Values
 my @values = AAT::XML::File_Array_Values($FILE_PORTS, 'item', 'label');
-ok((grep /SYSLOG/, @values), 'AAT::XML::File_Array_Values()');
+ok((grep { /SYSLOG/ } @values), 'AAT::XML::File_Array_Values()');
 
 # Read
 my $conf = AAT::XML::Read($FILE_PORTS);

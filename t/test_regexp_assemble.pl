@@ -5,6 +5,9 @@ use warnings;
 
 use Regexp::Assemble;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy;
 use Octopussy::Message;
 use Octopussy::Service;

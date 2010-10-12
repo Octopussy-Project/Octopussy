@@ -18,6 +18,9 @@ use List::MoreUtils qw(any);
 
 use Test::More tests => 4;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Contact;
 
 Readonly my $PREFIX => 'Octo_TEST_';

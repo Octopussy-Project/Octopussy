@@ -16,6 +16,9 @@ use Readonly;
 
 use Test::More tests => 8;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::FS;
 use Octopussy::ServiceGroup;
 

@@ -16,6 +16,9 @@ use Readonly;
 
 use Test::More tests => 10;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Type;
 
 Readonly my $DT1 => 'Dec 24 23:55:55';

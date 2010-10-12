@@ -20,48 +20,51 @@ use warnings;
 use Readonly;
 
 use Encode;
-use Test::More tests => 11; #14;
+use Test::More tests => 11;    #14;
 
 BEGIN { use_ok('WWW::Mechanize') }
 
-Readonly my $PAGE_ROOT => 'https://127.0.0.1:8888';
-Readonly my $PAGE_HOME => "$PAGE_ROOT/index.asp";
-Readonly my $PAGE_LOGIN => "$PAGE_ROOT/login.asp";
-Readonly my $PAGE_MESSAGES => "$PAGE_ROOT/messages.asp";
-Readonly my $PAGE_SERVICES => "$PAGE_ROOT/services.asp";
-Readonly my $PAGE_STORAGES => "$PAGE_ROOT/storages.asp";
-Readonly my $PAGE_SYSTEM => "$PAGE_ROOT/system.asp";
-Readonly my $PAGE_TABLES => "$PAGE_ROOT/tables.asp";
-Readonly my $PAGE_USER_PREFS => "$PAGE_ROOT/user_pref.asp";
-Readonly my $PAGE_USERS => "$PAGE_ROOT/user.asp";
-Readonly my $LOGIN => 'admin';
-Readonly my $PASSWORD => 'admin';
-Readonly my $DIR_STORAGE_DEFAULT => qr{/var/lib/octopussy/logs/};
-Readonly my $MESSAGE => 'Octopussy:parser_device_seconds';
-Readonly my $SERVICE => 'Octopussy';
-Readonly my $TABLE => 'Message';
+Readonly my $PAGE_ROOT            => 'https://127.0.0.1:8888';
+Readonly my $PAGE_HOME            => "$PAGE_ROOT/index.asp";
+Readonly my $PAGE_LOGIN           => "$PAGE_ROOT/login.asp";
+Readonly my $PAGE_MESSAGES        => "$PAGE_ROOT/messages.asp";
+Readonly my $PAGE_SERVICES        => "$PAGE_ROOT/services.asp";
+Readonly my $PAGE_STORAGES        => "$PAGE_ROOT/storages.asp";
+Readonly my $PAGE_SYSTEM          => "$PAGE_ROOT/system.asp";
+Readonly my $PAGE_TABLES          => "$PAGE_ROOT/tables.asp";
+Readonly my $PAGE_USER_PREFS      => "$PAGE_ROOT/user_pref.asp";
+Readonly my $PAGE_USERS           => "$PAGE_ROOT/user.asp";
+Readonly my $LOGIN                => 'admin';
+Readonly my $PASSWORD             => 'admin';
+Readonly my $DIR_STORAGE_DEFAULT  => qr{/var/lib/octopussy/logs/};
+Readonly my $MESSAGE              => 'Octopussy:parser_device_seconds';
+Readonly my $SERVICE              => 'Octopussy';
+Readonly my $TABLE                => 'Message';
 Readonly my $MSG_DB_CONNECTION_OK => qr{Database Connection is OK !};
 
 my $mech = WWW::Mechanize->new();
-
 
 #
 # Login
 #
 $mech->get($PAGE_LOGIN);
 $mech->submit_form(
-	form_number => 1,
- 	fields    	=> { login  => $LOGIN, password => 'wrong_password' },
- 	button    	=> 'submit');
-like(Encode::decode_utf8($mech->content()), qr/bt_msg_critical\.png/, 
-	"User '$LOGIN' was unable to logged in with wrong password.");
+    form_number => 1,
+    fields      => {login => $LOGIN, password => 'wrong_password'},
+    button      => 'submit'
+);
+like(Encode::decode_utf8($mech->content()),
+    qr/bt_msg_critical\.png/,
+    "User '$LOGIN' was unable to logged in with wrong password.");
 
 $mech->submit_form(
-	form_number => 1,
- 	fields    	=> { login  => $LOGIN, password => $PASSWORD },
- 	button    	=> 'submit');
-like(Encode::decode_utf8($mech->content()), qr/bt_exit\.png/, 
-	"User '$LOGIN' was able to logged in with good password.");
+    form_number => 1,
+    fields      => {login => $LOGIN, password => $PASSWORD},
+    button      => 'submit'
+);
+like(Encode::decode_utf8($mech->content()),
+    qr/bt_exit\.png/,
+    "User '$LOGIN' was able to logged in with good password.");
 
 =head2 TODO Fix utf8 problem: Parsing of undecoded UTF-8 will give garbage when decoding entities
 #
@@ -106,56 +109,56 @@ $mech->get($PAGE_SYSTEM);
 like($mech->content(), $MSG_DB_CONNECTION_OK,
 	"'Database Connection OK' message in System page.");	
 =cut	
-	
+
 #
 # Messages
 #
 $mech->get($PAGE_MESSAGES);
 $mech->submit_form(
-	form_number => 1,
-	fields 			=> { service => $SERVICE, table => $SERVICE },
-	button 			=> 'submit');
-like($mech->content(), qr/$MESSAGE/, 
-	"Message '$MESSAGE' found with filters (svc '$SERVICE'/tbl '$SERVICE') in Messages page.");
-
+    form_number => 1,
+    fields      => {service => $SERVICE, table => $SERVICE},
+    button      => 'submit'
+);
+like($mech->content(), qr/$MESSAGE/,
+"Message '$MESSAGE' found with filters (svc '$SERVICE'/tbl '$SERVICE') in Messages page."
+);
 
 #
 # Services
 #
 $mech->get($PAGE_SERVICES);
-like($mech->content(), qr/services\.asp\?service=$SERVICE/,
-	"Service '$SERVICE' available in Services page.");
+like(
+    $mech->content(),
+    qr/services\.asp\?service=$SERVICE/,
+    "Service '$SERVICE' available in Services page."
+);
 $mech->follow_link(url_regex => qr/services\.asp\?service=$SERVICE$/);
 like($mech->content(), qr/$MESSAGE/,
-	"Message '$MESSAGE' available for Service '$SERVICE' in Services page.");
-
+    "Message '$MESSAGE' available for Service '$SERVICE' in Services page.");
 
 #
 # Storages
 #
 $mech->get($PAGE_STORAGES);
 like($mech->content(), $DIR_STORAGE_DEFAULT,
-	"Default Storage available in Storages page.");
+    "Default Storage available in Storages page.");
 
-		
 #
 # Tables
 #
 $mech->get($PAGE_TABLES);
 like($mech->content(), qr/tables\.asp\?table=$TABLE/,
-	"Table '$TABLE' available in Tables page.");
+    "Table '$TABLE' available in Tables page.");
 $mech->follow_link(url_regex => qr/tables\.asp\?table=$TABLE$/);
 like($mech->content(), qr/daemon/,
-	"Field 'daemon' available for Table '$TABLE' in Tables page.");
+    "Field 'daemon' available for Table '$TABLE' in Tables page.");
 
-		
 #
 # Users
 #
 $mech->get($PAGE_USERS);
 like($mech->content(), qr/Admin/,
-	"At least one user with 'Admin' rights in Users page.");
-	
+    "At least one user with 'Admin' rights in Users page.");
 
 #
 # Logout
@@ -163,8 +166,8 @@ like($mech->content(), qr/Admin/,
 $mech->get($PAGE_HOME);
 $mech->follow_link(url_regex => qr/dialog\.asp\?id=logout$/);
 $mech->follow_link(url_regex => qr/logout\.asp$/);
-like($mech->content(), qr/octo_login1\.png/, 
-	"User '$LOGIN' was able to logged out.");
+like($mech->content(), qr/octo_login1\.png/,
+    "User '$LOGIN' was able to logged out.");
 
 1;
 

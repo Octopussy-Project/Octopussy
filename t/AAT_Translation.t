@@ -17,6 +17,9 @@ use utf8;
 
 use Test::More tests => 7;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use AAT::Translation;
 
 my %trans = 

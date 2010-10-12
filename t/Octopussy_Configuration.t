@@ -18,8 +18,10 @@ use Test::More tests => 3;
 
 use File::Basename;
 
-use AAT::Utils qw( NOT_NULL );
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Utils qw( NOT_NULL );
 use Octopussy::Configuration;
 
 Readonly my $FILE_TEST => '/var/lib/octopussy/conf/contacts/test.test';

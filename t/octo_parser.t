@@ -37,12 +37,14 @@ Octopussy::Device::Add_Service($DEVICE, $SERVICE);
 
 Octopussy::FS::Create_Directory("$DIR_LOGS/$DEVICE/Incoming/2010/06/11/");
 Octopussy::FS::Chown("$DIR_LOGS/$DEVICE");
-open my $file, '>', "$DIR_LOGS/$DEVICE/Incoming/2010/06/11/msg_17h10_10.log";
-foreach my $l (@LINES)
+if (defined open my $file, '>', "$DIR_LOGS/$DEVICE/Incoming/2010/06/11/msg_17h10_10.log")
 {
-	print $file "$l\n";
+	foreach my $l (@LINES)
+	{
+		print $file "$l\n";
+	}
+	close $file;
 }
-close $file;
 Octopussy::FS::Chown("$DIR_LOGS/$DEVICE/Incoming/2010/06/11/msg_17h10_10.log");
 
 # Launch octo_parser for 5 seconds

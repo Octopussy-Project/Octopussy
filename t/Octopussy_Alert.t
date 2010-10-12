@@ -14,7 +14,10 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 5;
+use Test::More tests => 6;
+
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Utils qw( NOT_NULL );
 use Octopussy::Alert;
@@ -45,8 +48,8 @@ my %conf = (
   contact           => undef,
   msgsubject        => Encode::decode_utf8("${PREFIX}alert msg subject"),
   msgbody           => Encode::decode_utf8("${PREFIX}alert msg body"),
-  action_host       => Encode::decode_utf8("${PREFIX}alert_action_host"),
-  action_service    => Encode::decode_utf8("${PREFIX}alert_action_service"),
+  action_host       => Encode::decode_utf8("${PREFIX}alert action host"),
+  action_service    => Encode::decode_utf8("${PREFIX}alert action service"),
   action_body       => Encode::decode_utf8("${PREFIX}alert action body"),
 );
 
@@ -54,8 +57,8 @@ my $file = Octopussy::Alert::New(\%conf);
 ok(NOT_NULL($file) && -f $file, 'Octopussy::Alert::New()');
 
 $conf{name} = $name . " &éèçà£µ§";
-my $file2 = Octopussy::Alert::New(\%conf);
-ok((!defined $file2), 'Octopussy::Alert::New() accepts only /^[-_a-z0-9]+$/i for name')
+my $undef_file = Octopussy::Alert::New(\%conf);
+ok(!defined $undef_file, 'Octopussy::Alert::New() accepts only /^[-_a-z0-9]+$/i for name');
 $conf{name} = $name;
 
 my @list2 = Octopussy::Alert::List();
@@ -64,7 +67,8 @@ ok(scalar @list + 1 == scalar @list2, 'Octopussy::Alert::List()');
 my $old_size = -s $file;
 $conf{description} = $new_desc;
 Octopussy::Alert::Modify($name, \%conf);
-ok($old_size < -s $file, 'Octopussy::Alert::Modify()');
+my $new_size = -s $file;
+ok($old_size < $new_size, 'Octopussy::Alert::Modify()');
 
 my $new_conf = Octopussy::Alert::Configuration($name);
 ok((($new_conf->{description} eq $new_desc) && ($new_conf->{name} eq $name)),
@@ -73,11 +77,8 @@ ok((($new_conf->{description} eq $new_desc) && ($new_conf->{name} eq $name)),
 Octopussy::Alert::Remove($name);
 ok(NOT_NULL($file) && !-f $file, 'Octopussy::Alert::Remove()');
 
-=head2
-my @contacts2 = Octopussy::Contact::List();
-ok((scalar @contacts) == (scalar @contacts2 + 1),
-  'Octopussy::Contact::Remove()');
-=cut
+# Clean stuff
+unlink $file;
 
 1;
 

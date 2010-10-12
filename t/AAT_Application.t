@@ -16,6 +16,9 @@ use Readonly;
 
 use Test::More tests => 4;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use AAT::Application;
 
 Readonly my $APPLICATION => 'Octopussy';

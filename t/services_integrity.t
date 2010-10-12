@@ -21,6 +21,9 @@ use English qw( -no_match_vars );
 use List::MoreUtils qw( apply );
 use Test::More tests => 1;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use AAT::Utils qw( NOT_NULL NULL );
 use Octopussy;
 use Octopussy::Message;

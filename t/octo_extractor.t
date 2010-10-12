@@ -50,6 +50,8 @@ sub Generate_Fake_Logs_Files
     }
   }
   system "chown -R octopussy: $DIR_LOGS/$DEVICE/";
+  
+  return (undef);
 }
 
 # Need to create Device/Service

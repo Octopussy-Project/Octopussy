@@ -23,6 +23,9 @@ use warnings;
 use List::MoreUtils qw(any none);
 use Test::More tests => 1;
 
+use FindBin;
+use lib "$FindBin::Bin/../usr/share/perl5";
+
 use Octopussy::Report;
 use Octopussy::Service;
 use Octopussy::Table;

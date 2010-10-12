@@ -34,16 +34,18 @@ BEGIN
 	Readonly my $DIR_PLUGIN_MODULES => (-d '/usr/share/perl5/Octopussy/Plugin/' 
 	? '/usr/share/perl5/Octopussy/Plugin/' 
 	: $Config::Config{installsitelib} . '/Octopussy/Plugin/');
-  opendir DIR, $DIR_PLUGIN_MODULES;
-  my @plugins = grep { /.+\.pm$/ } readdir DIR;
-  foreach my $p (@plugins)
+  if (defined opendir DIR, $DIR_PLUGIN_MODULES)
   {
-    if ("Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/)
-    {
-      require "$1$2";    ## no critic
-    }
+  	my @plugins = grep { /.+\.pm$/ } readdir DIR;
+  	foreach my $p (@plugins)
+  	{
+    	if ("Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/)
+    	{
+      		require "$1$2";    ## no critic
+    	}
+  	}
+  	closedir DIR;
   }
-  closedir DIR;
 }
 
 =head1 FUNCTIONS
