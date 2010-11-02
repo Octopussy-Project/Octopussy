@@ -17,8 +17,6 @@ use Readonly;
 use bytes;
 use utf8;
 
-#use Date::Manip;
-
 use AAT::DB;
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
@@ -59,7 +57,7 @@ sub New
 {
   my $conf = shift;
   
-  return (undef) if ($conf->{name} !~ /^[-_a-z0-9]+$/i);
+  return (undef)	if ($conf->{name} !~ /^[-_a-z0-9]+$/i);
   
   $dir_alerts ||= Octopussy::FS::Directory($DIR_ALERT);
   my $file_xml = "$dir_alerts/$conf->{name}.xml";
@@ -282,8 +280,6 @@ sub Insert_In_DB
 
 	if ($date =~ /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/)
 	{
-  #my $datestr =
-  #  Date::Manip::UnixDate(Date::Manip::ParseDate($date), '%Y/%m/%d %H:%M:%S');
   	my $datestr = "$1/$2/$3 $4:$5:$6";
   AAT::DB::Insert(
     'Octopussy',
