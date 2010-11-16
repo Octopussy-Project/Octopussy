@@ -35,7 +35,8 @@ sub Octopussy_Version
 	open my $FILE, '<', $FILE_OCTOPUSSY_PM or die @_;
 	while (<$FILE>)
 	{
-		return ($1) if ( $_ =~ /Octopussy::VERSION = qv\('(.+)'\);/ );
+	   return ($1) if ( $_ =~ /^our \$VERSION = '(.+)';/ );	
+		#return ($1) if ( $_ =~ /Octopussy::VERSION = qv\('(.+)'\);/ );
 	}
 	close $FILE;
 
@@ -159,7 +160,8 @@ Man();
 Changelog();
 Copy_Files();
 
-`sed -i "s/^Version:.*/Version: $version/" ./$FILE_DEBIAN_CONTROL`;
+`perl -i -p -e 's/^Version:.*/Version: $version/' ./$FILE_DEBIAN_CONTROL`;
+#`sed -i "s/^Version:.*/Version: $version/" ./$FILE_DEBIAN_CONTROL`;
 `dpkg-deb --build $DIR_TMP $filename_pkg`;
 printf(">>> Package Debian: %s\n", $filename_pkg);
 
