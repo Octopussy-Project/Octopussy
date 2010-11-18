@@ -30,7 +30,7 @@ Readonly my $PROG_NAME    => 'syslog2iso8601.pl';
 Readonly my $PROG_VERSION => Octopussy::Version();
 
 my $help;
-my ($opt_device, $opt_service) = (undef, undef);
+my ($opt_device, $opt_service, $opt_timezone) = (undef, undef, undef);
 
 =head1 FUNCTIONS
 
@@ -46,7 +46,7 @@ sub Help
 
 $PROG_NAME (version $PROG_VERSION)
 
- Usage: $PROG_NAME --device <device> --service <service>
+ Usage: $PROG_NAME --device <device> --service <service> --timezone <+/-HH:MM>
 
 EOF
 
@@ -74,40 +74,43 @@ my $status = GetOptions(
     'help'      => \$help,
     'device=s'  => \$opt_device,
     'service=s' => \$opt_service,
+    'timezone=s' => \$opt_timezone,
 );
 
 Help()
     if ((!$status)
     || ($help)
     || (!defined $opt_device)
-    || (!defined $opt_service));
+    || (!defined $opt_service)
+    || (!defined $opt_timezone));
 
 my ($files, $total) =
     Octopussy::Logs::Get_TimePeriod_Files($opt_device, $opt_service, '197001010000', '202001010000');
 
-my $strp = new DateTime::Format::Strptime( pattern => '%T'); #%h %e %T' );
+my $strp = new DateTime::Format::Strptime(pattern => '%Y %h %e %T');
 
 foreach my $min (sort keys %{$files})
 {
-    #my @logs = ();
+    my @logs = ();
     foreach my $f (@{$files->{$min}})
     {
-    	print "FILE: $f\n";
-        if (defined open my $FILE, '-|', "zcat \"$f\"")
-        {
-            while (<$FILE>)
-            { 
-            	if ($_ =~ /^(\w{3}) \s?(\d{1,2}) (\d\d:\d\d:\d\d) (.*)$/)
-            	{
-                   print "$1 $2 $3\n";
-            	   my $dt = $strp->parse_datetime($3);
-            	   print "DEFINED\n"   if (defined $dt);
-            	   my $str = sprintf("%s.0000 %s", $dt->hms(':'), $4);  	
-            	   print "$str\n";
-            	}
-                #push @logs, $_; 
+    	if ($f =~ /\/(\d{4})\/\d{2}\/\d{2}\/msg_/)
+    	{
+            my $year = $1;
+            if (defined open my $FILE, '-|', "zcat \"$f\"")
+            {
+                while (<$FILE>)
+                { 
+            	   if ($_ =~ /^(\w{3}) \s?(\d{1,2}) (\d\d:\d\d:\d\d) (.*)$/)
+            	   {
+            	       my $dt = $strp->parse_datetime("$year $1 $2 $3");
+            	       my $str = sprintf("%sT%s.000000%s %s", $dt->ymd('-'), $dt->hms(':'), $opt_timezone, $4);  	
+            	       print "$str\n";
+            	       push @logs, $str;
+            	   }
+                }
+                close $FILE;
             }
-            close $FILE;
             #unlink $f;
         }
     }
