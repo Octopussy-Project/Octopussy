@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -17,7 +17,6 @@ use warnings;
 use Readonly;
 
 use Getopt::Long;
-Getopt::Long::Configure('bundling');
 
 use DateTime;
 use DateTime::Format::Strptime;
@@ -105,27 +104,21 @@ foreach my $min (sort keys %{$files})
             	   {
             	       my $dt = $strp->parse_datetime("$year $1 $2 $3");
             	       my $str = sprintf("%sT%s.000000%s %s", $dt->ymd('-'), $dt->hms(':'), $opt_timezone, $4);  	
-            	       print "$str\n";
             	       push @logs, $str;
             	   }
                 }
                 close $FILE;
+                if (defined open my $TMPFILE, '|-', "gzip >> ${f}.tmp")
+                {
+                    foreach my $log (@logs) 
+                        { print {$TMPFILE} "$log\n"; }
+                    close $TMPFILE;
+                    rename "${f}.tmp", $f   if (scalar @logs);
+                    @logs = ();
+                }
             }
-            #unlink $f;
         }
     }
-=head2
-    if ($min =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/)
-    {
-        my $incoming = $dir_incoming . "$1/$2/$3/msg_${4}h${5}_00.log";
-        if (defined open my $INCOMING, '>', $incoming)
-        {
-            foreach my $l (sort @logs) { print {$INCOMING} $l; }
-            close $INCOMING;
-            Octopussy::FS::Chown($incoming);
-        }
-    }
-=cut
 }
 
 =head1 AUTHOR
