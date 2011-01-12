@@ -18,7 +18,7 @@ FIND="/usr/bin/find"
 LN="/bin/ln -f -s"
 MKDIR="/bin/mkdir -p"
 MKFIFO="/usr/bin/mkfifo"
-SED="/bin/sed -i"
+SED="/bin/sed -i -e"
 INVOKERC="/usr/sbin/invoke-rc.d"
 UPDATERC="/usr/sbin/update-rc.d"
 DIR_FIFO="/var/spool/octopussy/"
@@ -82,6 +82,8 @@ $CHOWNR $DIR_FIFO
 #
 # Restart Octopussy & Rsyslog
 #
+$SED 's/^\$ActionFileDefaultTemplate *RSYSLOG_TraditionalFileFormat/#\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/' /etc/rsyslog.conf
+
 $INVOKERC octopussy start 2> /dev/null || true
 $INVOKERC rsyslog restart 2> /dev/null || true
 
