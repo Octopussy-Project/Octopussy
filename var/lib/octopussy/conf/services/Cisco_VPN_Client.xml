@@ -6,13 +6,13 @@
                    website="">
   <message loglevel="Information"
            msg_id="Cisco_VPN_Client:interrupted_system_call"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;vpnc&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;select: Interrupted system call&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;vpnc&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;select: Interrupted system call&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Cisco_VPN_Client:connection_terminated_by_peer"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;vpnc&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection terminated by peer&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;vpnc&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;connection terminated by peer&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="Application" />

@@ -18,7 +18,7 @@ LN="/bin/ln -f -s"
 MKDIR="/bin/mkdir -p"
 MKFIFO="/usr/bin/mkfifo"
 RC_UPDATE="rc-update"
-SED="/bin/sed -i"
+SED="/bin/sed -i -e"
 USERMOD="/usr/sbin/usermod -g"
 DIR_FIFO="/var/spool/octopussy/"
 FILE_FIFO="/var/spool/octopussy/octo_fifo"
@@ -137,6 +137,7 @@ $CHOWN /etc/octopussy/
 # Restart Octopussy & Rsyslog
 #
 $ECHO "Restarting Octopussy & Rsyslog..."
+$SED 's/^\$ActionFileDefaultTemplate *RSYSLOG_TraditionalFileFormat/#\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/' /etc/rsyslog.conf
 /etc/init.d/octopussy restart
 /etc/init.d/syslog stop
 /etc/init.d/rsyslog restart

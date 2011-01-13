@@ -7,19 +7,19 @@
                    website="">
   <message loglevel="Warning"
            msg_id="Linux_HA_Ipfail:no_managed_resources"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ipfail: \[\d+\]: ERROR: No managed resources&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ipfail: \[\d+\]: ERROR: No managed resources&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Config.Errors" />
   <message loglevel="Information"
            msg_id="Linux_HA_Ipfail:signing_in_with_heartbeat"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ipfail: \[\d+\]: debug: Signing in with heartbeat&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ipfail: \[\d+\]: debug: Signing in with heartbeat&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="System" />
   <message loglevel="Debug"
            msg_id="Linux_HA_Ipfail:pid"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ipfail: \[\d+\]: debug: PID=\d+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ipfail: \[\d+\]: debug: PID=\d+&quot;):msg@&gt;"
            rank="003"
            table="Message"
            taxonomy="System" />

@@ -6,13 +6,13 @@
                    website="http://www.intersectalliance.com/projects/SnareWindows/index.html">
   <message loglevel="Information"
            msg_id="Windows_Applications_McAfee_GER:Zugriff_auf_Objekt_blockiert_durch_Regel"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;&lt;@WORD:src@&gt;;&lt;@NUMBER:event_count@&gt;;&lt;@DATE_TIME_APACHE_ERROR:datetime2@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@STRING:source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Information&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;None&quot;):category@&gt;;;&lt;@REGEXP(&quot;.+Zugriff auf Objekt.+wurde blockiert durch Regel.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;&lt;@WORD:src@&gt;;&lt;@NUMBER:event_count@&gt;;&lt;@DATE_TIME_APACHE_ERROR:datetime2@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@STRING:source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Information&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;None&quot;):category@&gt;;;&lt;@REGEXP(&quot;.+Zugriff auf Objekt.+wurde blockiert durch Regel.+&quot;):msg@&gt;"
            rank="001"
            table="Windows_Message"
            taxonomy="Application" />
   <message loglevel="Information"
            msg_id="Windows_Applications_McAfee_GER:Standardschutz_Ausfuehrung_Dateien_Temp_Ordner_verhindern"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;&lt;@WORD:src@&gt;;&lt;@NUMBER:event_count@&gt;;&lt;@DATE_TIME_APACHE_ERROR:datetime2@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@STRING:source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Information&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;None&quot;):category@&gt;;;&lt;@REGEXP(&quot;.+Standardschutz:Ausf�hren von Dateien im Temp-Ordner f�r h�ufig genutzte Programme verhindern.+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; MSWinEventLog;&lt;@NUMBER:criticity@&gt;;&lt;@WORD:src@&gt;;&lt;@NUMBER:event_count@&gt;;&lt;@DATE_TIME_APACHE_ERROR:datetime2@&gt;;&lt;@NUMBER:event_id@&gt;;&lt;@STRING:source@&gt;;&lt;@STRING:user@&gt;;&lt;@WORD:sid_type@&gt;;&lt;@REGEXP(&quot;Information&quot;):event_type@&gt;;&lt;@WORD:computer@&gt;;&lt;@REGEXP(&quot;None&quot;):category@&gt;;;&lt;@REGEXP(&quot;.+Standardschutz:Ausf�hren von Dateien im Temp-Ordner f�r h�ufig genutzte Programme verhindern.+&quot;):msg@&gt;"
            rank="002"
            table="Windows_Message"
            taxonomy="Application" />

@@ -6,7 +6,7 @@
                    website="http://www.ossec.net/">
   <message loglevel="Information"
            msg_id="OSSEC:server_started"
-           pattern="&lt;@DATE_TIME_SYSLOG:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ossec&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Alert Level: \d+;&quot;):level@&gt; &lt;@REGEXP(&quot;Rule: \d+ -&quot;):module@&gt; &lt;@REGEXP(&quot;Ossec server started.; Location: .+ ossec: Ossec started.&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ossec&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Alert Level: \d+;&quot;):level@&gt; &lt;@REGEXP(&quot;Rule: \d+ -&quot;):module@&gt; &lt;@REGEXP(&quot;Ossec server started.; Location: .+ ossec: Ossec started.&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Application.Start" />

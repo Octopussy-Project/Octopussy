@@ -1,8 +1,19 @@
 octopussy (1.0rc1) unstable; urgency=high
 
-  * Bugfix 3061992: %LOGIN% missing in Octopussy logs
+  * WARNING: ISO8601 DateTime format migration ! (see README_ISO8601.txt)
+  * Alerts name are now limited to [-_a-zA-Z0-9] characters
+  * Contacts id are now limited to [-_a-zA-Z0-9] characters
+  * Services name are now limited to [-_a-zA-Z0-9] characters
+  * Better Test Suite
+  * Minor modifications to fix Debian Lintian errors
+  
+  * Bugfix: Fixing file rights problems in Debian installation
+  * Bugfix #3061992: %LOGIN% missing in Octopussy logs
+  * Bugfix #3065906: Bug in Get_Mail_Addresses function in octo_sender
+  * Bugfix #3064879: Authentication problems after user preferences changes
+  * Bugfix #3109566: Rsyslog configuration filename changed from 'octopussy.conf' to '10-octopussy.conf'
 
- -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 6 Sep 2010 20:00:00 +0100
+ -- Sebastien Thebert <octo.devel@gmail.com>  Thu, 13 Jan 2011 23:00:00 +0100
 
 octopussy (0.9.9.9.9) unstable; urgency=high
 
