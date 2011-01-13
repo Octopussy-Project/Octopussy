@@ -35,8 +35,8 @@ sub Octopussy_Version
 	open my $FILE, '<', $FILE_OCTOPUSSY_PM or die @_;
 	while (<$FILE>)
 	{
-	   return ($1) if ( $_ =~ /^our \$VERSION = '(.+)';/ );	
-		#return ($1) if ( $_ =~ /Octopussy::VERSION = qv\('(.+)'\);/ );
+	   #return ($1) if ( $_ =~ /^our \$VERSION = '(.+)';/ );	
+	   return ($1) if ( $_ =~ /Octopussy::VERSION = qv\('(.+)'\);/ );
 	}
 	close $FILE;
 
@@ -90,15 +90,12 @@ sub Copy_Files
 
 	`rm -rf $DIR_TMP/var/lib/$PACKAGE/conf/{devicegroups,locations,schedule,servicegroups}.xml`;
 
-	# Removing Catalyst stuff for now...
-	rmtree('./usr/share/octopussy/Octopussy-Web/');
-
-        `find $DIR_TMP/ -type d | xargs chmod 755`;
-        `find $DIR_TMP/ -type f | xargs chmod 644`;
-        `chmod 755 $DIR_TMP/DEBIAN/config $DIR_TMP/DEBIAN/control`;
-        `chmod 755 $DIR_TMP/DEBIAN/post*`;
-        `chmod 755 $DIR_TMP/DEBIAN/pre*`;
-        `chmod 755 $DIR_TMP/usr/sbin/*`;
+    `find $DIR_TMP/ -type d -print0 | xargs -0 chmod 755`;
+    `find $DIR_TMP/ -type f -print0 | xargs -0 chmod 644`;
+    `chmod 755 $DIR_TMP/DEBIAN/config $DIR_TMP/DEBIAN/control`;
+    `chmod 755 $DIR_TMP/DEBIAN/post*`;
+    `chmod 755 $DIR_TMP/DEBIAN/pre*`;
+    `chmod 755 $DIR_TMP/usr/sbin/*`;
 }
 
 =head2 Man()
