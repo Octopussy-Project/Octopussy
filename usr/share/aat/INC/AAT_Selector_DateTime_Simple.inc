@@ -28,7 +28,7 @@ my @list = ("_CUSTOMIZED", "_CURRENT_HOUR", "_CURRENT_DAY",
   foreach my $e (@list)
   {
     $Response->Include("AAT/INC/AAT_OptionSelector.inc", 
-			label => $e, value => $e, 
+			label => AAT::Translation($e), value => $e, 
 			selected => ($arg{selected} eq $e ? "selected" : undef));
   }
   %>
