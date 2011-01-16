@@ -7,10 +7,12 @@ Before installing Octopussy, be sure to have installed:
 - Apache::ASP
 - Perl
 - Mod_Perl
+- Mod_SSL
 - Mysql
 - Nscd
 - RRDTool & librrd0
 - Rsyslog
+- Sudo
 - htmldoc
 
 and these Perl modules (from CPAN):
@@ -45,5 +47,5 @@ and these Perl modules (from CPAN):
 
 Good Luck !
 
-For more information about Octopussy:
-http://www.8pussy.org
+For more information about Octopussy installation:
+http://www.8pussy.org/dokuwiki/doku.php?id=install
