@@ -23,6 +23,33 @@ Readonly my $FILE_SCHEDULES => 'schedule';
 Readonly my $XML_ROOT       => 'octopussy_schedule';
 Readonly my $HOURS_IN_DAY   => 24;
 
+Readonly my %day => (
+    'Monday'    => 1,
+    'Tuesday'   => 2,
+    'Wednesday' => 3,
+    'Thursday'  => 4,
+    'Friday'    => 5,
+    'Saturday'  => 6,
+    'Sunday'    => 7,
+    'Every Day' => 0,
+);
+
+Readonly my %month => (
+    'January'     => 1,
+    'February'    => 2,
+    'March'       => 3,
+    'April'       => 4,
+    'May'         => 5,
+    'June'        => 6,
+    'July'        => 7,
+    'August'      => 8,
+    'September'   => 9,
+    'October'     => 10,
+    'November'    => 11,
+    'December'    => 12,
+    'Every Month' => 0,
+);
+
 =head1 FUNCTIONS
 
 =head2 Add($add)
@@ -153,6 +180,52 @@ sub Period_Check
     ($end_day * $HOURS_IN_DAY + $end_hour));
 
   return (0);
+}
+
+=head2 Match($sched, $dt)
+
+Checks that the schedule '$sched' matches the datetime '$dt'
+Returns 1 if it maches, 0 if it doesn't
+
+=cut
+
+sub Match
+{
+	my ($sched, $dt) = @_;
+	
+	my $match = 0;
+	
+	return ($match)    if (!defined $sched->{start_time});
+    my ($sched_hour, $sched_min) = split(/:/, $sched->{start_time});
+    if ((defined $sched_hour && defined $sched_min) && ($dt->{hour} == $sched_hour) && ($dt->{min} == $sched_min))
+    {    # time matches
+        my @dow = defined $sched->{dayofweek} ? @{$sched->{dayofweek}} : ();
+        $match = 1  if (! @dow);
+        foreach my $dw (@dow) 
+        { 
+            $match    = 1 if (($day{$dw} == $dt->{wday}) || ($day{$dw} == 0)); 
+        }
+        if ($match)
+        {    # day matches
+            my @dom =
+                defined $sched->{dayofmonth} ? @{$sched->{dayofmonth}} : ();
+            $match = 0 if (@dom);
+            foreach my $dm (@dom) { $match = 1 if ($dm == $dt->{day}); }
+            if ($match)
+            {    # dayofmonth matches
+                my @months = defined $sched->{month} ? @{$sched->{month}} : ();
+                $match = 0  if (@months);
+                foreach my $m (@months)
+                {
+                    $match = 1
+                        if ($month{$m} == $dt->{month});
+                }
+                foreach my $m (@months) { $match = 1 if ($month{$m} == 0); } # 'Every Month'
+            }
+        }
+    }
+
+    return ($match);
 }
 
 1;
