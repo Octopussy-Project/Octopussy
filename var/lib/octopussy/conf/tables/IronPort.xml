@@ -1,5 +1,6 @@
 <octopussy_table name="IronPort"
-                 description="IronPort">
+                 description="IronPort"
+                 version="201101190001">
   <field title="datetime"
          type="DATETIME" />
   <field title="device"
