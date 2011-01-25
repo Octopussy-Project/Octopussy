@@ -83,6 +83,10 @@ $CHOWNR $DIR_FIFO
 # Restart Octopussy & Rsyslog
 #
 $SED 's/^\$ActionFileDefaultTemplate *RSYSLOG_TraditionalFileFormat/#\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/' /etc/rsyslog.conf
+$SED 's/# *\$ModLoad *imudp/\$ModLoad imudp/' /etc/rsyslog.conf
+$SED 's/# *\$UDPServerRun *514/\$UDPServerRun 514/' /etc/rsyslog.conf
+$SED 's/# *\$ModLoad *imtcp/\$ModLoad imtcp/' /etc/rsyslog.conf
+$SED 's/# *\$InputTCPServerRun *514/\$InputTCPServerRun 514/' /etc/rsyslog.conf
 
 $INVOKERC octopussy start 2> /dev/null || true
 $INVOKERC rsyslog restart 2> /dev/null || true

@@ -138,6 +138,11 @@ $CHOWN /etc/octopussy/
 #
 $ECHO "Restarting Octopussy & Rsyslog..."
 $SED 's/^\$ActionFileDefaultTemplate *RSYSLOG_TraditionalFileFormat/#\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/' /etc/rsyslog.conf
+$SED 's/# *\$ModLoad *imudp/\$ModLoad imudp/' /etc/rsyslog.conf
+$SED 's/# *\$UDPServerRun *514/\$UDPServerRun 514/' /etc/rsyslog.conf
+$SED 's/# *\$ModLoad *imtcp/\$ModLoad imtcp/' /etc/rsyslog.conf
+$SED 's/# *\$InputTCPServerRun *514/\$InputTCPServerRun 514/' /etc/rsyslog.conf
+
 /etc/init.d/octopussy restart
 /etc/init.d/syslog stop
 /etc/init.d/rsyslog restart
