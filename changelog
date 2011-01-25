@@ -1,3 +1,14 @@
+octopussy (1.0rc2) unstable; urgency=high
+  
+  * Rsyslog UDP/TCP reception now forced in installation scripts
+  * Now 'export APACHE_RUN_DIR' in /usr/sbin/directory (needed for Apache2 configuration in some distribs)
+
+  * Bugfix SR #3160987: Fixing major issue on ISO8601 DateTime Regexp
+  * Bugfix #3067657: Wrong scheduling matching fixed and Test Suite updated
+  * Minor Bugfixes
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 26 Jan 2011 00:30:00 +0100
+
 octopussy (1.0rc1) unstable; urgency=high
 
   * WARNING: ISO8601 DateTime format migration ! 

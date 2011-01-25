@@ -35,8 +35,7 @@ sub Octopussy_Version
 	open my $FILE, '<', $FILE_OCTOPUSSY_PM or die @_;
 	while (<$FILE>)
 	{
-	   #return ($1) if ( $_ =~ /^our \$VERSION = '(.+)';/ );	
-	   return ($1) if ( $_ =~ /Octopussy::VERSION = qv\('(.+)'\);/ );
+		return ($1) if ( $_ =~ /Octopussy::VERSION\s*=\s*'(.+)';/ );
 	}
 	close $FILE;
 
