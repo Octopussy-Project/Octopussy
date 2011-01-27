@@ -46,6 +46,7 @@ my $QR_DT1 = qr/^(\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2})/m;
 my $QR_DT2 = qr/^\w{3} (\w{3}) \s?(\d{1,2}) (\d{2}):(\d{2}):(\d{2}) (\d{4})/m;
 my $QR_DT3 = qr/^(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2})/m;
 my $QR_DT4 = qr/^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2}) .\d{4}/m;
+my $QR_DT5 = qr/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})(?:\.\d{1,6})?.\d{2}:\d{2}/m;
 
 =head2 Configurations()
 
@@ -279,7 +280,8 @@ sub SQL_Datetime
   elsif ($dt =~ $QR_DT2) { return ("$6-$MONTH{$1}-$2 $3:$4:$5"); }
   elsif ($dt =~ $QR_DT3) { return ("$1-$2-$3 $4:$5:$6"); }
   elsif ($dt =~ $QR_DT4) { return ("$3-$MONTH{$2}-$1 $4:$5:$6"); }
-
+  elsif ($dt =~ $QR_DT5) { return ("$1 $2"); }	
+	
   return ($dt);
 }
 

@@ -33,21 +33,6 @@ Readonly my $PROG_NAME => 'octo_pusher';
 my %conf;
 my %dir_device;
 
-Readonly my %month => (
-    Jan => '01',
-    Feb => '02',
-    Mar => '03',
-    Apr => '04',
-    May => '05',
-    Jun => '06',
-    Jul => '07',
-    Aug => '08',
-    Sep => '09',
-    Oct => '10',
-    Nov => '11',
-    Dec => '12',
-);
-
 Readonly my @months => (
     undef, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
     'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
@@ -236,20 +221,10 @@ while (1)
                         {
                             my $syslog = Convert_To_Syslog($_, $d);
                             if ($syslog =~
-                                /^(\w{3}) \s?(\d{1,2}) (\d\d):(\d\d):\d\d (\S+)/
+                            	/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):\d{2}(?:\.\d{1,6})?.\d{2}:\d{2} (\S+)/
                                )
                             {
-                                $device = $5;
-                                ($n_min, $n_hour, $n_mday, $n_month, $n_year) =
-                                    (
-                                    $4, $3, $2,
-                                    $month{$1},
-                                    (
-                                          $month{$1} > $n_month
-                                        ? $n_year - 1
-                                        : $n_year
-                                    )
-                                    );
+                            	($n_year, $n_month, $n_mday, $n_hour, $n_min, $device) = ($1, $2, $3, $4, $5, $6);
                                 if (   ($n_min ne $min)
                                     || ($n_hour  ne $hour)
                                     || ($n_mday  ne $mday)

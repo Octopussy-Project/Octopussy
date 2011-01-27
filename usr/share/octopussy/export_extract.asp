@@ -18,7 +18,7 @@ elsif (NOT_NULL($Session->{csv}))
  	while (<FILE>)
   {
   	$text .= "$1;$2;$3\n"
-    	if ($_ =~ /^(\w{3} \s?\d{1,2} \d\d:\d\d:\d\d) (\S+) (.+)$/);
+    	if ($_ =~ /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?.\d{2}:\d{2}) (\S+) (.+)$/);
   }
   close(FILE);
   my $output = $Session->{export} . ".csv";

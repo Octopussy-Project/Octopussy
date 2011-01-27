@@ -26,12 +26,12 @@ Readonly my $SERVICE => 'Octopussy';
 Readonly my $MSGID   => 'Octopussy:user_logged_in';
 
 Readonly my $RE =>
-'(\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2}) (\S+) octo_(\S+): (User .+ succesfully logged in.)';
+'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?.\d{2}:\d{2}) (\S+) octo_(\S+): (User .+ succesfully logged in.)';
 Readonly my $RE2 =>
-'\w{3} \s?\d{1,2} \d{2}:\d{2}:\d{2} \S+ octo_\S+: User .+ succesfully logged in.';
+'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?.\d{2}:\d{2} \S+ octo_\S+: User .+ succesfully logged in.';
 
 Readonly my $SAMPLE =>
-  'Feb  1 10:10:00 localhost octo_WebUI: User admin succesfully logged in.';
+  '2011-01-10T10:10:00.123456+01:00 localhost octo_WebUI: User admin succesfully logged in.';
 Readonly my $SAMPLE_MSG => 'User admin succesfully logged in.';
 
 Readonly my $REQUIRED_NB_FIELDS => 4;
