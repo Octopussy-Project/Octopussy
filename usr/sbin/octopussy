@@ -40,6 +40,7 @@ use Readonly;
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::FS;
+use Octopussy::System;
 
 Readonly my $PROG_NAME       => 'octopussy';
 Readonly my $USER            => 'octopussy';
@@ -360,7 +361,7 @@ Starts Web Octopussy (Launches Apache2 with Octopussy Apache2 configuration file
 
 sub Web_Start
 {
-    my $APACHE2_BIN = Octopussy::Apache2_Binary();
+    my $APACHE2_BIN = Octopussy::System::Apache2_Binary();
 
     system "export APACHE_RUN_DIR=$dir_pid && $APACHE2_BIN -f $APACHE2_CONF -k start";
     printf $MSG_STATUS, 'Web', 'Started';
@@ -376,7 +377,7 @@ Stops Web Octopussy (Stops Apache2 with Octopussy Apache2 configuration file)
 
 sub Web_Stop
 {
-    my $APACHE2_BIN = Octopussy::Apache2_Binary();
+    my $APACHE2_BIN = Octopussy::System::Apache2_Binary();
 
     system "$APACHE2_BIN -f $APACHE2_CONF -k stop";
     printf $MSG_STATUS, 'Web', 'Stopped';

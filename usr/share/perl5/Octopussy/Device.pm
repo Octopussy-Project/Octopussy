@@ -138,7 +138,7 @@ sub Remove
   File::Path::rmtree("$dir_rrd/$device/");
   unlink Filename($device);
   $filename{$device} = undef;
-  Octopussy::Dispatcher_Reload();
+  Octopussy::System::Dispatcher_Reload();
 
   return ($device);
 }
@@ -759,7 +759,7 @@ sub Parse_Start
     my $cmd = "$base$PARSER_BIN $device &";
     Octopussy::Commander($cmd);
     $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-    Octopussy::Dispatcher_Reload() if ($conf->{status} eq 'Stopped');
+    Octopussy::System::Dispatcher_Reload() if ($conf->{status} eq 'Stopped');
     $conf->{status}          = 'Started';
     $conf->{reload_required} = undef;
     AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
@@ -785,7 +785,7 @@ sub Parse_Stop
     $conf->{status} = 'Stopped';
     $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
     AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
-    Octopussy::Dispatcher_Reload();
+    Octopussy::System::Dispatcher_Reload();
   }
 
   return ($device);

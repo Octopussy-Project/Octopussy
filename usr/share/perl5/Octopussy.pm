@@ -15,7 +15,6 @@ use strict;
 use warnings;
 use Readonly;
 
-use App::Info::HTTPD::Apache;
 use File::Basename;
 use File::Path;
 use Proc::PID::File;
@@ -69,21 +68,6 @@ Returns Octopussy main module Version
 sub Version
 {
   return ($Octopussy::VERSION);
-}
-
-
-=head2 Apache2_Binary()
-
-Returns Apache2 Binary
-
-=cut
-
-sub Apache2_Binary
-{	
-	my $apache = App::Info::HTTPD::Apache->new();
-  return ($apache->executable)	if (defined $apache->executable);
-      
-  return (undef);
 }
 
 
@@ -320,41 +304,6 @@ sub Dialog
   return (undef);
 }
 
-=head2 Dispatcher_Reload()
-
-Reloads Dispatcher
-
-=cut
-
-sub Dispatcher_Reload
-{
-  my $dir_pid = Octopussy::FS::Directory('running');
-  opendir DIR, $dir_pid;
-  my @files = grep { /octo_dispatcher\.pid$/ } readdir DIR;
-  closedir DIR;
-
-  foreach my $file (@files)
-  {
-    my $pid = `cat $dir_pid$file`;
-    chomp $pid;
-    kill HUP => $pid;
-  }
-
-  return (1);
-}
-
-=head2 Restart()
-
-Restarts Octopussy
-
-=cut
-
-sub Restart
-{
-  `/etc/init.d/octopussy restart`;
-
-  return (1);
-}
 
 =head2 Process_Status()
 
