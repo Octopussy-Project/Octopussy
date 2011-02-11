@@ -19,8 +19,13 @@ use Test::More tests => 4;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use AAT::Utils qw( NOT_NULL );
 use Octopussy::FS;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 ok(NOT_NULL(Octopussy::FS::Directory('main')), 'Octopussy::FS::Directory()');
 my @dirs = Octopussy::FS::Directories('main', 'data_logs');
