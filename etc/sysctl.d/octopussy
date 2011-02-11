@@ -1,0 +1,6 @@
+#
+# octo_parser(s) use inotify a lot
+# fs.inotify.max_user_instances value 
+# has been raised to handle large number of octo_parser(s)
+#
+fs.inotify.max_user_instances=1000
