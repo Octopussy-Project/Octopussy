@@ -32,10 +32,13 @@ my $dir_reports = undef;
 sub Type_List
 {
   $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
-
-  opendir DIR, $dir_reports;
-  my @dirs = grep { !/^\./ } readdir DIR;
-  closedir DIR;
+	my @dirs = ();
+	
+  if (defined opendir my $DH, $dir_reports)
+  {
+  	@dirs = grep { !/^\./ } readdir $DH;
+  	closedir $DH;
+  }
 
   return (@dirs);
 }

@@ -22,9 +22,9 @@ use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::XML;
 
-Readonly my $DIR_LISTS => '/usr/share/aat/Lists/';
-Readonly my $FILE_PORTS => '/usr/share/aat/Lists/AAT_Port.xml';
-Readonly my $FILE_PORTS2 => '/usr/share/aat/Lists//AAT_Port.xml';
+Readonly my $DIR_LISTS => "$FindBin::Bin/../usr/share/aat/Lists/";
+Readonly my $FILE_PORTS => "$FindBin::Bin/../usr/share/aat/Lists/AAT_Port.xml";
+Readonly my $FILE_PORTS2 => "$FindBin::Bin/../usr/share/aat/Lists//AAT_Port.xml";
 Readonly my $NAME_PORTS => 'AAT_Port';
 Readonly my $SELECTED_BY_DEFAULT => 'HTTP';
 Readonly my $OCTO_FILE_TEST => '/tmp/octo_test.xml';
@@ -43,13 +43,13 @@ ok((grep { /SYSLOG/ } @values), 'AAT::XML::File_Array_Values()');
 
 # Read
 my $conf = AAT::XML::Read($FILE_PORTS);
-ok($conf->{selected_by_default} eq $SELECTED_BY_DEFAULT, 'AAT::XML::Read()');
+cmp_ok($conf->{selected_by_default}, 'eq', $SELECTED_BY_DEFAULT, 'AAT::XML::Read()');
 
 # Write
 $conf->{selected_by_default} = 'DEFAULT';
 AAT::XML::Write($OCTO_FILE_TEST, $conf);
 my $conf2 = AAT::XML::Read($OCTO_FILE_TEST);
-ok($conf2->{selected_by_default} eq 'DEFAULT', 'AAT::XML::Write()');
+cmp_ok($conf2->{selected_by_default}, 'eq', 'DEFAULT', 'AAT::XML::Write()');
 unlink $OCTO_FILE_TEST;
 
 1;

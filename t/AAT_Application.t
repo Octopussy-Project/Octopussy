@@ -21,23 +21,27 @@ use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
 
+Readonly my $AAT_CONFIG_FILE => "t/data/etc/aat/aat.xml";
 Readonly my $APPLICATION => 'Octopussy';
 Readonly my $USER => 'octopussy';
-Readonly my $DIR_DEVICES => '/var/lib/octopussy/conf/devices/';
-Readonly my $FILE_STORAGES => '/var/lib/octopussy/conf/storages.xml';
+Readonly my $DIR_DEVICES => 't/data/var/lib/octopussy/conf/devices/';
+Readonly my $FILE_STORAGES => 't/data/var/lib/octopussy/conf/storages.xml';
 Readonly my $PARAMETER_LOGROTATE => 90;
 
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE);
+
 my $info = AAT::Application::Info($APPLICATION);
-ok($info->{user} eq $USER, 'AAT::Application::Info()');
+cmp_ok($info->{user}, 'eq', $USER, 'AAT::Application::Info()');
 
 my $dir_devices = AAT::Application::Directory($APPLICATION, 'devices');
-ok($dir_devices eq $DIR_DEVICES, 'AAT::Application::Directory()');
+cmp_ok($dir_devices, 'eq', $DIR_DEVICES, 'AAT::Application::Directory()');
 
 my $file_storages = AAT::Application::File($APPLICATION, 'storages');
-ok($file_storages eq $FILE_STORAGES, 'AAT::Application::File()');
+cmp_ok($file_storages, 'eq', $FILE_STORAGES, 'AAT::Application::File()');
 
 my $parameter_logrotate = AAT::Application::Parameter($APPLICATION, 'logrotate');
-ok($parameter_logrotate eq $PARAMETER_LOGROTATE, 'AAT::Application::Parameter()');
+cmp_ok($parameter_logrotate, 'eq', $PARAMETER_LOGROTATE, 'AAT::Application::Parameter()');
+
 
 1;
 
