@@ -13,7 +13,6 @@ package Octopussy::Configuration;
 
 use strict;
 use warnings;
-use Readonly;
 
 use POSIX qw(strftime);
 
@@ -21,9 +20,20 @@ use AAT;
 use AAT::FS;
 use Octopussy::FS;
 
-Readonly my $DIR_BACKUP => '/etc/octopussy/';
+my $DIR_BACKUP = '/etc/octopussy/';
 
 =head1 FUNCTIONS
+
+=head2 Set_Backup_Directory($dir)
+
+=cut
+
+sub Set_Backup_Directory
+{
+    my $dir = shift;
+    
+    $DIR_BACKUP = $dir;     	
+}
 
 =head2 Backup()
 
@@ -32,23 +42,23 @@ Readonly my $DIR_BACKUP => '/etc/octopussy/';
 sub Backup
 {
   my $timestamp   = strftime("%Y%m%d%H%M", localtime);
+  Octopussy::FS::Create_Directory($DIR_BACKUP);
   my $file_backup = "${DIR_BACKUP}backup_$timestamp.tgz";
   my $dir_main    = Octopussy::FS::Directory('main');
-  my $conf_sys    = "${dir_main}{db,ldap,nsca,proxy,smtp,xmpp}.xml";
-  my ($dir_alerts, $dir_contacts, $dir_devices, $dir_maps, $dir_plugins) =
-    Octopussy::FS::Directories('alerts', 'contacts', 'devices', 'maps',
-    'plugins');
-  my ($dir_reports, $dir_search_templates, $dir_services, $dir_tables) =
-    Octopussy::FS::Directories('reports', 'search_templates', 'services',
-    'tables');
-  my ($file_devicegroup, $file_locations, $file_schedule) =
-    Octopussy::FS::Files('devicegroups', 'locations', 'schedule');
-  my ($file_servicegroup, $file_storages, $file_timeperiods, $file_users) =
-    Octopussy::FS::Files('servicegroups', 'storages', 'timeperiods', 'users');
-
-  system
-"tar Picfz $file_backup $conf_sys $dir_alerts $dir_contacts $dir_devices $dir_maps $dir_plugins $dir_reports $dir_search_templates $dir_services $dir_tables $file_devicegroup $file_locations $file_schedule $file_servicegroup $file_storages $file_timeperiods $file_users";
-
+  my ($dirs, $files) = ('', '');
+  
+  foreach my $d (Octopussy::FS::Directories('alerts', 'contacts', 'devices', 'maps', 'plugins', 'reports', 'search_templates', 'services', 'tables'))
+  {
+  	$dirs .= "$d " if (-d $d);	
+  }
+  
+  foreach my $f (Octopussy::FS::Files('db', 'devicegroups', 'ldap', 'locations', 'nsca', 'proxy', 'schedule', 'servicegroups', 'smtp', 'storages', 'timeperiods', 'users', 'xmpp'))
+  {
+  	$files .= "$f "	if (-f $f);
+  }
+  
+  system "tar Picfz $file_backup $dirs $files";
+	
   return ($file_backup);
 }
 

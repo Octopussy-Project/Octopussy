@@ -13,14 +13,25 @@ package AAT::Application;
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
-Readonly my $AAT_CONF_FILE => '/etc/aat/aat.xml';
+my $AAT_CONF_FILE = '/etc/aat/aat.xml';
 
 =head1 FUNCTIONS
+
+=head2 Set_Config_File($file)
+
+=cut
+
+sub Set_Config_File
+{
+	my $file = shift;
+	
+    $AAT_CONF_FILE = $file;    	
+}
+
 
 =head2 Info($appli)
 
@@ -50,6 +61,7 @@ Returns Directory for Application '$appli' Name '$name'
 sub Directory
 {
   my ($appli, $name) = @_;
+  
   my $conf = AAT::XML::Read($AAT_CONF_FILE);
   foreach my $a (ARRAY($conf->{application}))
   {

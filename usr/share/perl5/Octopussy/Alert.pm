@@ -60,6 +60,7 @@ sub New
   return (undef)	if ($conf->{name} !~ /^[-_a-z0-9]+$/i);
   
   $dir_alerts ||= Octopussy::FS::Directory($DIR_ALERT);
+  Octopussy::FS::Create_Directory($dir_alerts);
   my $file_xml = "$dir_alerts/$conf->{name}.xml";
   $conf->{msgbody}     =~ s/\r\n/ \@\@\@ /g;
   $conf->{action_body} =~ s/\r\n/ \@\@\@ /g;

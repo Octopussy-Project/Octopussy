@@ -19,10 +19,14 @@ use Test::More tests => 8;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use AAT::Utils qw( NOT_NULL NULL );
 use Octopussy::Cache;
 
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 Readonly my $PREFIX => 'Octo_TEST_';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my $cache = Octopussy::Cache::Init('octo_commander');
 ok(NOT_NULL($cache), 'Octopussy::Cache::Init(octo_commander)');
@@ -41,7 +45,7 @@ ok(NULL($no_cache), 'Octopussy::Cache::Init() only for some namespaces');
 $cache->set("${PREFIX}cache_key", "${PREFIX}cache_value");
 my $cache_value = $cache->get("${PREFIX}cache_key");
 
-ok($cache_value eq "${PREFIX}cache_value", 'cache->get / cache->set');
+cmp_ok($cache_value, 'eq', "${PREFIX}cache_value", 'cache->get / cache->set');
 
 $cache->remove("${PREFIX}cache_key");
 $cache_value = $cache->get("${PREFIX}cache_key");

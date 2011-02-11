@@ -19,10 +19,14 @@ use Test::More tests => 6;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use AAT::Utils qw( NOT_NULL );
 use Octopussy::Alert;
 
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 Readonly my $PREFIX => 'Octo_TEST_';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my ($name, $desc, $new_desc) =
   ("${PREFIX}alert", "${PREFIX}alert_desc", "${PREFIX}alert_new_desc");
