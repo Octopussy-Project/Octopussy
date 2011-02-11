@@ -20,8 +20,13 @@ use Test::More tests => 5;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Data_Report;
 use Octopussy::FS;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $DIR_DATA_REPORTS => Octopussy::FS::Directory('data_reports');
 Readonly my $PREFIX           => 'Octo_TEST_';
@@ -39,11 +44,11 @@ system "touch $dir${DATA_REPORT}-20100130-2000.html";
 system "touch $dir${DATA_REPORT}-20100210-2000.html";
 
 my @list2 = Octopussy::Data_Report::Type_List();
-ok(scalar @list1 + 1 == scalar @list2, 'Octopussy::Data_Report::Type_List()');
+cmp_ok(scalar @list1 + 1, '==', scalar @list2, 'Octopussy::Data_Report::Type_List()');
 
 my $reports1    = Octopussy::Data_Report::List($DATA_REPORT);
 my $nb_reports1 = scalar keys %{$reports1};
-ok($nb_reports1 == 3, 'Octopussy::Data_Report::List()');
+cmp_ok($nb_reports1, '==', 3, 'Octopussy::Data_Report::List()');
 
 my $deleted_file =
   Octopussy::Data_Report::Remove($DATA_REPORT, "${DATA_REPORT}-20100120-2000");

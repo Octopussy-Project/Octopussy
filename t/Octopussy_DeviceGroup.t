@@ -19,12 +19,18 @@ use Test::More tests => 6;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::DeviceGroup;
+use Octopussy::FS;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $PREFIX      => 'Octo_TEST_';
 Readonly my $DG_ID       => "${PREFIX}devicegroup";
 Readonly my $DG_DESC     => "${PREFIX}devicegroup Description";
-Readonly my $DIR_DEVICES => '/var/lib/octopussy/conf/devices/';
+Readonly my $DIR_DEVICES => Octopussy::FS::Directory('devices');;
 
 my %conf = (
   dg_id       => $DG_ID,
@@ -40,8 +46,8 @@ my $error2 = Octopussy::DeviceGroup::Add(\%conf);
 ok(((!defined $error1) && (defined $error2)), 'Octopussy::DeviceGroup::Add()');
 
 my $conf = Octopussy::DeviceGroup::Configuration($DG_ID);
-ok(
-  $conf->{dg_id} eq "${PREFIX}devicegroup",
+cmp_ok(
+  $conf->{dg_id}, 'eq', "${PREFIX}devicegroup",
   'Octopussy::DeviceGroup::Configuration()'
 );
 
@@ -50,11 +56,11 @@ ok((scalar @list1 == scalar @list2 - 1) && (grep { /$DG_ID/ } @list2),
   'Octopussy::DeviceGroup::List()');
 
 my @devices = Octopussy::DeviceGroup::Devices($DG_ID);
-ok(scalar @devices == 2, 'Octopussy::DeviceGroup::Devices()');
+cmp_ok(scalar @devices, '==', 2, 'Octopussy::DeviceGroup::Devices()');
 
 my $nb_dgs = Octopussy::DeviceGroup::Remove_Device("${PREFIX}device1");
 
-ok(scalar @devices == 2, 'Octopussy::DeviceGroup::Devices()');
+cmp_ok(scalar @devices, '==', 2, 'Octopussy::DeviceGroup::Devices()');
 
 Octopussy::DeviceGroup::Remove($DG_ID);
 ok(!-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::DeviceGroup::Remove()');
