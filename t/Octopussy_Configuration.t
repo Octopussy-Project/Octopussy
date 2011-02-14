@@ -34,14 +34,14 @@ my $dir_main = Octopussy::FS::Directory('main');
 Octopussy::FS::Create_Directory("$dir_main/contacts/");
 
 Readonly my $DIR_BACKUP_TEST => 't/data/etc/octopussy/';
-Readonly my $FILE_TEST => "$dir_main/contacts/test.xml";
+Readonly my $FILE_TEST => "${dir_main}contacts/test.xml";
 
 Octopussy::Configuration::Set_Backup_Directory($DIR_BACKUP_TEST);
 
 my @list = Octopussy::Configuration::Backup_List();
 
 # Creates one file to be backuped
-system qq{touch $FILE_TEST};
+system qq{echo "test" > $FILE_TEST};
 
 my $file = Octopussy::Configuration::Backup();
 ok(NOT_NULL($file) && -f $file, 'Octopussy::Configuration::Backup()');
@@ -50,7 +50,7 @@ ok(NOT_NULL($file) && -f $file, 'Octopussy::Configuration::Backup()');
 unlink $FILE_TEST;
 
 my @list2 = Octopussy::Configuration::Backup_List();
-ok(scalar @list + 1 == scalar @list2,
+cmp_ok(scalar @list + 1, '==', scalar @list2,
   'Octopussy::Configuration::Backup_List()');
 
 my $restore = basename($file);
@@ -60,8 +60,8 @@ Octopussy::Configuration::Restore($restore);
 ok(-f $FILE_TEST, 'Octopussy::Configuration::Restore()');
 
 # Removes test file & backup
-unlink $FILE_TEST;
-unlink $file;
+#unlink $FILE_TEST;
+#unlink $file;
 
 1;
 

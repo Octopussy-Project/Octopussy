@@ -20,7 +20,6 @@ use utf8;
 use AAT::DB;
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
-use Octopussy;
 use Octopussy::Device;
 use Octopussy::DeviceGroup;
 use Octopussy::FS;

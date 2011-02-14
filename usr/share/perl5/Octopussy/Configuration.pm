@@ -41,10 +41,10 @@ sub Set_Backup_Directory
 
 sub Backup
 {
-  my $timestamp   = strftime("%Y%m%d%H%M", localtime);
+  my $timestamp   = strftime("%Y%m%d%H%M%S", localtime);
   Octopussy::FS::Create_Directory($DIR_BACKUP);
   my $file_backup = "${DIR_BACKUP}backup_$timestamp.tgz";
-  my $dir_main    = Octopussy::FS::Directory('main');
+  my $dir_main    = Octopussy::FS::Directory('main'); 
   my ($dirs, $files) = ('', '');
   
   foreach my $d (Octopussy::FS::Directories('alerts', 'contacts', 'devices', 'maps', 'plugins', 'reports', 'search_templates', 'services', 'tables'))
@@ -56,7 +56,7 @@ sub Backup
   {
   	$files .= "$f "	if (-f $f);
   }
-  
+
   system "tar Picfz $file_backup $dirs $files";
 	
   return ($file_backup);
@@ -75,8 +75,8 @@ sub Backup_List
   my @list = AAT::FS::Directory_Files($DIR_BACKUP, qr/^backup_.+$/);
   foreach my $e (reverse sort @list)
   {
-    push @backups, {label => "Backup $2/$3/$4 $5:$6", value => $1}
-      if ($e =~ /(backup_(\d{4})(\d{2})(\d{2})(\d{2})(\d{2}))\.tgz/);
+    push @backups, {label => "Backup $2/$3/$4 $5:$6:$7", value => $1}
+      if ($e =~ /(backup_(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2}))\.tgz/);
   }
 
   return (@backups);

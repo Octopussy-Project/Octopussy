@@ -17,7 +17,6 @@ use Readonly;
 
 use Cache::FileCache;
 
-use Octopussy;
 use Octopussy::FS;
 
 Readonly my $EXPIRES_COMMANDER  => '1 hour';
