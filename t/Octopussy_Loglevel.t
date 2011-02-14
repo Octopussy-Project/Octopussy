@@ -19,12 +19,17 @@ use Test::More tests => 3;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Loglevel;
 
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $COLOR_DEBUG => 'gray';
 Readonly my $NB_LOGLEVELS => 7;
 
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+
 my %color = Octopussy::Loglevel::Colors();
-ok((((scalar keys %color) == $NB_LOGLEVELS) && ($color{'Debug'} eq 'gray')),
+ok((((scalar keys %color) == $NB_LOGLEVELS) && ($color{'Debug'} eq $COLOR_DEBUG)),
   'Octopussy::Loglevel::Colors()');
 
 my %level = Octopussy::Loglevel::Levels();

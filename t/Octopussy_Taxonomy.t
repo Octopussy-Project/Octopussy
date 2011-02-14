@@ -12,13 +12,19 @@ Octopussy_Taxonomy.t - Octopussy Source Code Checker for Octopussy::Taxonomy
 
 use strict;
 use warnings;
+use Readonly;
 
 use Test::More tests => 3;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Taxonomy;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my @taxo_list     = Octopussy::Taxonomy::List();
 my @taxo_list_any = Octopussy::Taxonomy::List_And_Any();
