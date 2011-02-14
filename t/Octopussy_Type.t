@@ -19,19 +19,23 @@ use Test::More tests => 10;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Type;
 
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 Readonly my $DT1 => 'Dec 24 23:55:55';
 Readonly my $DT2 => 'Mon Dec 24 23:55:55 2000';
 Readonly my $DT3 => '2000/12/24 23:55:55';
 Readonly my $DT4 => '24/Dec/2000:23:55:55 +0100';
 
-Readonly my $RE_DT_ISO     => '\d{4\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}.\d{2}:\d{2}';
+Readonly my $RE_DT_ISO     => '\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?.\d{2}:\d{2}';
 Readonly my $RE_DT_SQL     => '\d{4}-\d\d-\d\d \d\d:\d\d:\d\d';
 Readonly my $RE_IP_ADDR    => '\d+\.\d+\.\d+\.\d+';
 Readonly my $RE_NUMBER     => '[-+]?\d+';
 Readonly my $RE_USER_AGENT => '.+';
 Readonly my $RE_WORD       => '\S+';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my @confs   = Octopussy::Type::Configurations();
 my $date_ok = 0;
