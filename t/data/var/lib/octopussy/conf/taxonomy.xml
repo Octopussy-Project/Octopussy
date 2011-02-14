@@ -1,0 +1,49 @@
+<octopussy_taxonomy>
+
+	<taxonomy value="Access"            color="#FFF000" desc="Access message" />
+  <taxonomy value="Access.Failure"    color="#FFD000" desc="Access Failure message" />
+  <taxonomy value="Access.Success"    color="#FFB000" desc="Access Success message" />
+
+	<taxonomy value="Application"        	color="#0000FF" desc="Application message" />
+	<taxonomy value="Application.Errors" 	color="#0000FF" desc="Application Errors message" />
+	<taxonomy value="Application.Start"  	color="#0000FF" desc="Application Start message" />
+	<taxonomy value="Application.Stop"   	color="#0000FF" desc="Application Stop message" />
+
+	<taxonomy value="Attack"           	color="#FF0000"	desc="Attack message" />
+
+  <taxonomy value="Auth" 							color="#00FFFF"	desc="Authentication message" />
+	<taxonomy value="Auth.Failure" 			color="#00FFF9"	desc="Authentication Failure message" />
+	<taxonomy value="Auth.Success" 			color="#00FFF0"	desc="Authentication Success message" />
+
+	<taxonomy value="Config" 						color="#FF00FF" desc="Configuration message" />
+	<taxonomy value="Config.Backup"    	color="#FB00FF" desc="Configuration Backup message" />
+	<taxonomy value="Config.Changes" 		color="#F700FF" desc="Configuration Changes message" />
+	<taxonomy value="Config.Errors"    	color="#F000FF" desc="Configuration Errors message" />
+
+	<taxonomy value="Email.Antivirus"   color="#E090E0"	desc="Email Antivirus message" />
+	<taxonomy value="Email.Spam"				color="#E090E0"	desc="Email Spam message" />
+	<taxonomy value="Email.Traffic"			color="#E090E0"	desc="Email Traffic message" />
+
+	<taxonomy value="Hardware"         	color="#AAAAAF" desc="Hardware Errors message" />
+  <taxonomy value="Hardware.Disk"    	color="#AAAAAC" desc="Hardware Disk Errors message" />
+	<taxonomy value="Hardware.Memory"   color="#AAAAA9" desc="Hardware Memory Errors message" />
+  <taxonomy value="Hardware.Network" 	color="#AAAAA5" desc="Hardware Network Errors message" />
+	<taxonomy value="Hardware.Power"  	color="#AAAAA0" desc="Hardware Power Supply Errors message" />
+
+	<taxonomy value="Network" 					color="#303090"	desc="Network message" />
+	<taxonomy value="Network.Errors"  	color="#303090"	desc="Network Errors message" />
+
+	<taxonomy value="Printer"           color="#202090" desc="Printer message" />
+  <taxonomy value="Printer.Errors"    color="#202090" desc="Printer Errors message" />
+
+	<taxonomy value="System" 						color="#0000FF"	desc="System message" />
+	<taxonomy value="System.Boot"      	color="#0000F9"	desc="System Boot message" />
+	<taxonomy value="System.Errors"   	color="#0000F0"	desc="System Errors message" />
+
+	<taxonomy value="Traffic"           color="#00FF00"	desc="Traffic message" />
+  <taxonomy value="Traffic.Denied"    color="#00FF00"	desc="Traffic Denied message" />
+  <taxonomy value="Traffic.Granted"   color="#00FF00"	desc="Traffic Granted message" />
+
+	<taxonomy value="Other" 						desc="Other message" />
+
+</octopussy_taxonomy>
