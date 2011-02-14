@@ -20,9 +20,14 @@ use Test::More tests => 15;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::FS;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $DIR_DEVICES  => Octopussy::FS::Directory('devices');
 Readonly my $PREFIX       => 'Octo_TEST_';
@@ -38,23 +43,23 @@ Octopussy::Device::New({name => "${PREFIX}device", address => '1.2.3.4'});
 ok(-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::Device::New()');
 
 my $conf = Octopussy::Device::Configuration($DEVICE);
-ok($conf->{name} eq $DEVICE, 'Octopussy::Device::Configuration()');
+cmp_ok($conf->{name}, 'eq', $DEVICE, 'Octopussy::Device::Configuration()');
 
 my $nb_services = 0;
 foreach my $s (@SERVICES)
 {
   $nb_services = Octopussy::Device::Add_Service($DEVICE, $s);
 }
-ok($nb_services == scalar @SERVICES, 'Octopussy::Device::Add_Service()');
+cmp_ok($nb_services, '==', scalar @SERVICES, 'Octopussy::Device::Add_Service()');
 
 my @services = Octopussy::Device::Services($DEVICE);
-ok(scalar @services == scalar @SERVICES, 'Octopussy::Device::Services()');
+cmp_ok(scalar @services, '==', scalar @SERVICES, 'Octopussy::Device::Services()');
 
 my @list_with = Octopussy::Device::With_Service('Octopussy');
 ok((grep { /$DEVICE/ } @list_with), 'Octopussy::Device::With_Service()');
 
 $nb_services = Octopussy::Device::Remove_Service($DEVICE, 'Octopussy');
-ok($nb_services == scalar @SERVICES - 1, 'Octopussy::Device::Remove_Service()');
+cmp_ok($nb_services, '==', scalar @SERVICES - 1, 'Octopussy::Device::Remove_Service()');
 
 my $rank1 = Octopussy::Device::Move_Service($DEVICE, 'Linux_Kernel', 'up');
 my $rank2 = Octopussy::Device::Move_Service($DEVICE, 'Linux_Kernel', 'up');
@@ -66,7 +71,7 @@ ok($rank1 eq '03' && !defined $rank2, 'Octopussy::Device::Move_Service(down)');
 
 Octopussy::Device::Modify({name => $DEVICE, description => $DEV_DESC});
 $conf = Octopussy::Device::Configuration($DEVICE);
-ok($conf->{description} eq $DEV_DESC, 'Octopussy::Device::Modify()');
+cmp_ok($conf->{description}, 'eq', $DEV_DESC, 'Octopussy::Device::Modify()');
 
 my @list = Octopussy::Device::List();
 ok((grep { /$DEVICE/ } @list), 'Octopussy::Device::List()');

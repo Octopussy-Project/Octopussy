@@ -21,9 +21,13 @@ use Test::More tests => 4;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Contact;
 
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 Readonly my $PREFIX => 'Octo_TEST_';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my ($id, $lastname, $firstname, $desc, $email, $im) = (
   "${PREFIX}contact_id",    "${PREFIX}contact_last",
@@ -42,7 +46,8 @@ my $error = Octopussy::Contact::New(
   }
 );
 
-ok(!defined $error, 'Octopussy::Contact::New()') or diag($error);
+ok((!defined $error) && (-f "t/data/var/lib/octopussy/conf/contacts/${id}.xml"), 
+	'Octopussy::Contact::New()') or diag($error);
 
 my $c = Octopussy::Contact::Configuration($id);
 

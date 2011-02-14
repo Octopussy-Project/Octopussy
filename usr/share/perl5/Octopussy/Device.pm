@@ -29,6 +29,7 @@ use Octopussy::FS;
 use Octopussy::Logs;
 use Octopussy::Service;
 use Octopussy::ServiceGroup;
+use Octopussy::System;
 
 Readonly my $PAUSED            => 1;
 Readonly my $STARTED           => 2;
@@ -58,6 +59,7 @@ sub New
   if (NOT_NULL($name))
   {
     $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+    Octopussy::FS::Create_Directory($dir_devices);
     $conf->{type}  = $conf->{type}  || Octopussy::Parameter('devicetype');
     $conf->{model} = $conf->{model} || Octopussy::Parameter('devicemodel');
     $conf->{status}    = 'Paused';
