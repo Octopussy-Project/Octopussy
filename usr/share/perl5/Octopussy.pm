@@ -34,7 +34,7 @@ Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
 Readonly my $IDX_STAT_UID => 4;
 Readonly my $IDX_STAT_GID => 5;
 
-$Octopussy::VERSION = '1.0-2';
+$Octopussy::VERSION = '1.0-3';
 
 =head1 FUNCTIONS
 

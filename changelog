@@ -1,3 +1,13 @@
+octopussy (1.0rc3) unstable; urgency=high
+
+  * Better Test Suite
+  * Code cleanning
+
+  * Bugfix #3166138: Fixing major problems with old syslog datetime format
+  * Bugfix #3176376 & #3078102: Specific sysctl conf added to raise 'fs.inotify.max_user_instances'
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 15 Feb 2011 23:30:00 +0100
+
 octopussy (1.0rc2) unstable; urgency=high
   
   * Rsyslog UDP/TCP reception now forced in installation scripts
