@@ -20,7 +20,7 @@
 							 website="http://www.8pussy.org">
 
 		<directory name="alerts" value="t/data/var/lib/octopussy/conf/alerts/" />
-		<directory name="cache" value="/var/run/octopussy/cache/" />
+		<directory name="cache" value="t/data/var/run/octopussy/cache/" />
 		<directory name="certificate_authority" value="/etc/octopussy/CA/" />
 		<directory name="contacts" value="t/data/var/lib/octopussy/conf/contacts/" />
 		<directory name="devices" value="t/data/var/lib/octopussy/conf/devices/" />
@@ -32,12 +32,12 @@
 		<directory name="services" value="t/data/var/lib/octopussy/conf/services/" />
 		<directory name="statistic_reports" value="t/data/var/lib/octopussy/conf/statistic_reports/" />
 		<directory name="tables" value="t/data/var/lib/octopussy/conf/tables/" />
-		<directory name="data_logs" value="/var/lib/octopussy/logs/" />
-		<directory name="data_logs_pusher" value="/var/lib/octopussy/logs/_FTP_/" />
-		<directory name="data_reports" value="/var/lib/octopussy/reports/" />
+		<directory name="data_logs" value="t/data/var/lib/octopussy/logs/" />
+		<directory name="data_logs_pusher" value="t/data/var/lib/octopussy/logs/_FTP_/" />
+		<directory name="data_reports" value="t/data/var/lib/octopussy/reports/" />
 		<directory name="data_rrd" value="/var/lib/octopussy/rrd/" />
 		<directory name="programs" value="/usr/sbin/" />
-		<directory name="running" value="/var/run/octopussy/" />
+		<directory name="running" value="t/data/var/run/octopussy/" />
 		<directory name="web" value="/usr/share/octopussy/" />
 
 		<file name="db" value="t/data/var/lib/octopussy/conf/db.xml" />

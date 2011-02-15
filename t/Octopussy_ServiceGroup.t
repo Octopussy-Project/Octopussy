@@ -19,14 +19,19 @@ use Test::More tests => 8;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::FS;
 use Octopussy::ServiceGroup;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $PREFIX          => 'Octo_TEST_';
 Readonly my $SG_FILE         => Octopussy::FS::File('servicegroups');
 Readonly my $SG_ID           => "${PREFIX}servicegroup";
 Readonly my $SG_DESC         => "${PREFIX}servicegroup Description";
-Readonly my $DIR_SERVICES    => '/var/lib/octopussy/conf/services/';
+Readonly my $DIR_SERVICES    => Octopussy::FS::Directory('services');
 Readonly my @SERVICES_KERNEL => (
   {sid => 'Linux_Kernel', rank => '01'},
   {
@@ -42,9 +47,6 @@ my %conf = (
   description => $SG_DESC,
   service     => \@SERVICES_KERNEL,
 );
-
-# Backup current configuration
-system "cp $SG_FILE ${SG_FILE}.backup";
 
 my @list1 = Octopussy::ServiceGroup::List();
 
@@ -82,8 +84,7 @@ Octopussy::ServiceGroup::Remove($SG_ID);
 my @list4 = Octopussy::ServiceGroup::List();
 ok(scalar @list4 == scalar @list1, 'Octopussy::ServiceGroup::Remove()');
 
-# Restore backuped configuration
-system "mv ${SG_FILE}.backup $SG_FILE";
+unlink $SG_FILE;
 
 1;
 

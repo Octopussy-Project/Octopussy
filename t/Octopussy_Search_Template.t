@@ -14,21 +14,27 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path;
 use List::MoreUtils qw(true);
 use Test::More tests => 5;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Search_Template;
 
-Readonly my $DIR_REPORTS    => Octopussy::FS::Directory('search_templates');
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+
+Readonly my $DIR_TPLS    => Octopussy::FS::Directory('search_templates');
 Readonly my $PREFIX         => 'Octo_TEST_';
 Readonly my $USER           => "${PREFIX}user";
 Readonly my $DEVICE         => "${PREFIX}device";
 Readonly my $SERVICE        => "${PREFIX}service";
 Readonly my $SRCH_TPL_TITLE => "${PREFIX}search_template";
-Readonly my $FILE_TPL       => "${DIR_REPORTS}${USER}/${SRCH_TPL_TITLE}.xml";
+Readonly my $FILE_TPL       => "${DIR_TPLS}${USER}/${SRCH_TPL_TITLE}.xml";
 Readonly my $BEGIN_TPL      => '201001010000';
 Readonly my $END_TPL        => '201001010010';
 
@@ -74,7 +80,7 @@ ok($tconf->{begin} eq $BEGIN_TPL && $tconf->{end} eq $END_TPL,
 Octopussy::Search_Template::Remove($USER, $SRCH_TPL_TITLE);
 ok(!-f $FILE_TPL, 'Octopussy::Search_Template::Remove()');
 
-unlink $FILE_TPL;
+rmtree $DIR_TPLS;
 
 1;
 

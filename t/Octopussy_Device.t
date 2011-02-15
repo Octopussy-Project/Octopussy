@@ -14,6 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path;
 use List::MoreUtils qw(true);
 use Test::More tests => 15;
 
@@ -105,6 +106,8 @@ ok(scalar @models >= $NB_MIN_MODELS && $nb_models >= $NB_MIN_SELECT_MODELS,
 # Filtered_Configurations()
 # Services_Configurations()
 # Type_Configurations()
+
+rmtree $DIR_DEVICES;
 
 1;
 

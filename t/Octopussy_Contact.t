@@ -14,8 +14,8 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path;
 use List::MoreUtils qw(any);
-
 use Test::More tests => 4;
 
 use FindBin;
@@ -28,6 +28,8 @@ Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 Readonly my $PREFIX => 'Octo_TEST_';
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+
+Readonly my $DIR_CONTACTS => Octopussy::FS::Directory('contacts');
 
 my ($id, $lastname, $firstname, $desc, $email, $im) = (
   "${PREFIX}contact_id",    "${PREFIX}contact_last",
@@ -61,6 +63,8 @@ Octopussy::Contact::Remove($id);
 my @contacts2 = Octopussy::Contact::List();
 ok((scalar @contacts) == (scalar @contacts2 + 1),
   'Octopussy::Contact::Remove()');
+
+rmtree $DIR_CONTACTS;
 
 1;
 

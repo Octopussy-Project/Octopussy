@@ -60,6 +60,7 @@ sub New
   my $conf = shift;
 
   $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
+  Octopussy::FS::Create_Directory($dir_reports);
   $conf->{query} =~ s/\r\n//;
   $conf->{version} = Octopussy::Timestamp_Version(undef);
   AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, $XML_ROOT);

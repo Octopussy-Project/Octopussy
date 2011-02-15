@@ -63,6 +63,7 @@ sub New
 		&& ($conf->{name} !~ /Incoming/i) && ($conf->{name} !~ /Unknown/i)) 
 	{
   	$dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
+	Octopussy::FS::Create_Directory($dir_services);
   	$conf->{version} = Octopussy::Timestamp_Version(undef);
   	AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, $XML_ROOT);
 

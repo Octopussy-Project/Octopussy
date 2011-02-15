@@ -21,10 +21,11 @@ use List::MoreUtils qw(any);
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Plugin;
 
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 Readonly my $LANG => 'FR';
-
 Readonly my $REQUIRED_NB_PLUGINS => 3;
 
 Readonly my $TEST_MAIL        => 'octo.devel@gmail.com';
@@ -58,6 +59,8 @@ my @functions = qw(
   Octopussy::Plugin::Unit::KiloBytes
   Octopussy::Plugin::Unit::MegaBytes
   );
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my @list = Octopussy::Plugin::List();
 ok(scalar @plugins >= $REQUIRED_NB_PLUGINS, 'Octopussy::Plugin::List()');

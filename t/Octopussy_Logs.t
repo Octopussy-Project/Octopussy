@@ -19,9 +19,14 @@ use Test::More tests => 14;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Device;
 use Octopussy::FS;
 use Octopussy::Logs;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $PREFIX    => 'Octo_TEST_';
 Readonly my $DEVICE    => "${PREFIX}Device";

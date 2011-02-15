@@ -14,6 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path;
 use List::MoreUtils qw(none);
 use Test::More tests => 6;
 
@@ -55,6 +56,8 @@ cmp_ok(scalar @fields, '==', 1, 'Octopussy::Table::Field_Type_List()');
 Octopussy::Table::Remove($table);
 my @tables = Octopussy::Table::List();
 cmp_ok(scalar @tables, '==', 0, 'Octopussy::Table::Remove()');
+
+rmtree $dir;
 
 1;
 

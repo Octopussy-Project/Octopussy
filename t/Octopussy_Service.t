@@ -14,13 +14,19 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path;
 use Test::More tests => 16;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Service;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $DIR_SERVICES => Octopussy::FS::Directory('services');
 Readonly my $PREFIX       => 'Octo_TEST_';
@@ -122,9 +128,7 @@ my @unknowns = Octopussy::Service::Unknowns('-ANY-', $SERVICE);
 ok(scalar @unknowns == 1, 'Octopussy::Service::Unknowns()');
 
 # Clean stuff
-unlink "${DIR_SERVICES}${SERVICE}.xml";
-unlink "${DIR_SERVICES}${SERVICE2}.xml";
-unlink "${DIR_SERVICES}${SERVICE3}.xml";
+rmtree $DIR_SERVICES;
 
 1;
 

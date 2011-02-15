@@ -20,8 +20,13 @@ use Test::More tests => 5;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::FS;
 use Octopussy::TimePeriod;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $FILE_TIMEPERIOD   => Octopussy::FS::File('timeperiods');
 Readonly my $PREFIX            => 'Octo_TEST_';
@@ -30,19 +35,13 @@ Readonly my $TP_RESULT_PERIODS => 'Mon: 08:00-20:00, Tue: 08:00-20:00';
 
 my @dts = ({'Monday' => '08:00-20:00'}, {'Tuesday' => '08:00-20:00'},);
 
-# Backup current configuration
-system "cp $FILE_TIMEPERIOD ${FILE_TIMEPERIOD}.backup";
-
 my @list = Octopussy::TimePeriod::List();
 
-my $old_size = -s $FILE_TIMEPERIOD;
 my $file = Octopussy::TimePeriod::New({label => $TP_LABEL, dt => \@dts});
-
 my @list2 = Octopussy::TimePeriod::List();
 
 ok(
   $file eq $FILE_TIMEPERIOD
-    && -s $file > $old_size
     && scalar @list + 1 == scalar @list2,
   'Octopussy::TimePeriod::New()'
 );
@@ -59,11 +58,12 @@ my $dont_match2 = Octopussy::TimePeriod::Match($TP_LABEL, 'Saturday 14:00');
 ok($match && !$dont_match1 && !$dont_match2, 'Octopussy::TimePeriod::Match()');
 
 $file = Octopussy::TimePeriod::Remove($TP_LABEL);
-ok($file eq $FILE_TIMEPERIOD && -s $file == $old_size,
+my @list3 = Octopussy::TimePeriod::List();
+
+ok(($file eq $FILE_TIMEPERIOD) &&  (scalar @list == scalar @list3),
   'Octopussy::TimePeriod::Remove()');
 
-# Restore backuped configuration
-system "mv ${FILE_TIMEPERIOD}.backup $FILE_TIMEPERIOD";
+unlink $FILE_TIMEPERIOD;
 
 1;
 

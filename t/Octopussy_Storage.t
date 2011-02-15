@@ -20,16 +20,20 @@ use Test::More tests => 7;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Storage;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $PREFIX       => 'Octo_TEST_';
 Readonly my $FILE_STORAGE => Octopussy::FS::File('storages');
 Readonly my $STORAGE      => "${PREFIX}storage";
 Readonly my $STORAGE_PATH => '/tmp';
 
-# Backup current Configuration
-system "mv $FILE_STORAGE ${FILE_STORAGE}.backup";
+system "mv $FILE_STORAGE $FILE_STORAGE.backup";
 
 my %default = (
   incoming => $STORAGE,
@@ -69,8 +73,7 @@ Octopussy::Storage::Remove($STORAGE);
 my @list3 = Octopussy::Storage::List();
 ok(scalar @list1 == scalar @list3, 'Octopussy::Storage::Remove()');
 
-# Restore backuped Configuration
-system "mv ${FILE_STORAGE}.backup $FILE_STORAGE";
+system "mv $FILE_STORAGE.backup $FILE_STORAGE";
 
 1;
 

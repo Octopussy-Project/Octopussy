@@ -14,13 +14,19 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path;
 use Test::More tests => 6;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Report;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $DIR_REPORTS  => Octopussy::FS::Directory('reports');
 Readonly my $PREFIX       => 'Octo_TEST_';
@@ -73,6 +79,8 @@ ok($conf->{description} eq "${PREFIX}report New Description",
 
 Octopussy::Report::Remove($REPORT_TITLE);
 ok(!-f "${DIR_REPORTS}${REPORT_TITLE}.xml", 'Octopussy::Report::Remove()');
+
+rmtree $DIR_REPORTS;
 
 1;
 

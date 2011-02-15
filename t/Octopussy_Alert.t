@@ -14,6 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
+use File::Path;
 use Test::More tests => 6;
 
 use FindBin;
@@ -27,6 +28,9 @@ Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 Readonly my $PREFIX => 'Octo_TEST_';
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+
+Readonly my $DIR_ALERTS => Octopussy::FS::Directory('alerts');
+
 
 my ($name, $desc, $new_desc) =
   ("${PREFIX}alert", "${PREFIX}alert_desc", "${PREFIX}alert_new_desc");
@@ -82,7 +86,7 @@ Octopussy::Alert::Remove($name);
 ok(NOT_NULL($file) && !-f $file, 'Octopussy::Alert::Remove()');
 
 # Clean stuff
-unlink $file;
+rmtree $DIR_ALERTS;
 
 1;
 

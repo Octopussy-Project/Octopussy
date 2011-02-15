@@ -28,6 +28,7 @@ Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $PREFIX      => 'Octo_TEST_';
+Readonly my $DG_FILE         => Octopussy::FS::File('devicegroups');
 Readonly my $DG_ID       => "${PREFIX}devicegroup";
 Readonly my $DG_DESC     => "${PREFIX}devicegroup Description";
 Readonly my $DIR_DEVICES => Octopussy::FS::Directory('devices');;
@@ -63,7 +64,10 @@ my $nb_dgs = Octopussy::DeviceGroup::Remove_Device("${PREFIX}device1");
 cmp_ok(scalar @devices, '==', 2, 'Octopussy::DeviceGroup::Devices()');
 
 Octopussy::DeviceGroup::Remove($DG_ID);
-ok(!-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::DeviceGroup::Remove()');
+my @list3 = Octopussy::DeviceGroup::List();
+ok((scalar @list1 == scalar @list3) && (!grep { /$DG_ID/ } @list3), 'Octopussy::DeviceGroup::Remove()');
+
+unlink $DG_FILE;
 
 1;
 
