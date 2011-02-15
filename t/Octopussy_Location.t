@@ -12,15 +12,22 @@ Octopussy_Location.t - Octopussy Source Code Checker for Octopussy::Location
 
 use strict;
 use warnings;
+use Readonly;
 
 use List::MoreUtils qw(any);
-
 use Test::More tests => 12;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::Location;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+
+Readonly my $LOCATION_FILE => Octopussy::FS::File('locations');
 
 my ($city, $building, $room, $rack) =
   ('City Test', 'Building Test', 'Room Test', 'Rack Test');
@@ -80,6 +87,8 @@ ok(
   (scalar @cities) == (scalar @cities2 + 1),
   'Octopussy::Location::City_Remove()'
 );
+
+unlink $LOCATION_FILE;
 
 1;
 

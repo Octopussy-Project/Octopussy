@@ -19,8 +19,13 @@ use Test::More tests => 18;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Schedule;
+
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 Readonly my $FILE_SCHEDULES => Octopussy::FS::File('schedule');
 Readonly my $PREFIX         => 'Octo_TEST_';
@@ -112,6 +117,8 @@ ok(! $match, "Octopussy::Schedule::Match('Tuesday 17 / Every Month @ 18:00' shou
 %sched = (start_time => '18:00', dayofweek => ['Monday'], dayofmonth => ['08'], month => ['Every Month'] );
 $match = Octopussy::Schedule::Match(\%sched, \%dt);
 ok(! $match, "Octopussy::Schedule::Match('Tuesday / Every Month @ 18:00' shouldn't match 'Monday 201101071800')");
+
+unlink $FILE_SCHEDULES;
 
 1;
 

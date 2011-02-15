@@ -19,9 +19,11 @@ use Test::More tests => 6;
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
 
+use AAT::Application;
 use AAT::Utils qw( NOT_NULL );
 use Octopussy::Message;
 
+Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 Readonly my $SERVICE => 'Octopussy';
 Readonly my $MSGID   => 'Octopussy:user_logged_in';
 
@@ -35,6 +37,8 @@ Readonly my $SAMPLE =>
 Readonly my $SAMPLE_MSG => 'User admin succesfully logged in.';
 
 Readonly my $REQUIRED_NB_FIELDS => 4;
+
+AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my $mconf = Octopussy::Message::Configuration($SERVICE, $MSGID);
 ok(NOT_NULL($mconf) && $mconf->{taxonomy} eq 'Auth.Success',
