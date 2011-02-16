@@ -102,7 +102,7 @@ while (1)
 
     foreach my $sched (@schedules)
     {
-        Launch_Report($sched)	if (AAT::Schedule::Match($sched, \%dt));
+        Launch_Report($sched)	if (Octopussy::Schedule::Match($sched, \%dt));
     }
     Octopussy::RRDTool::Syslog_By_DeviceType_Hourly_Graph();
     if ($counter % 10 == 0)
