@@ -40,6 +40,7 @@ and these Perl modules (from CPAN):
 - Readonly
 - Regexp::Assemble
 - Sys::CPU
+- Term::ProgressBar
 - Unix::Syslog
 - URI
 - version
