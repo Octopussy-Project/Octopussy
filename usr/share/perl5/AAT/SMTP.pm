@@ -135,7 +135,7 @@ sub Send_Message
         }
         else
         {
-          $sender->MailMsg({to => $dest, subject => $subject, msg => $body});
+          $sender->MailMsg({to => $dest, subject => $subject || 'Your Subject', msg => $body || 'Your Body'});
         }
       }
       $sender->Close();

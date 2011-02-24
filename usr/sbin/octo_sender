@@ -134,7 +134,7 @@ while (1)
         {
             my @mails = Get_Mail_Addresses($action);
             AAT::SMTP::Send_Message('Octopussy',
-                {subject => $subject, body => $body, dests => @mails});
+                {subject => $subject, body => $body, dests => \@mails});
         }
         AAT::NSCA::Send('Octopussy', (($action->{level} =~ /Warning/i) ? 1 : 2),
             $action_body, $action_host, $action_service)
