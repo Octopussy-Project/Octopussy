@@ -20,6 +20,7 @@ and these Perl modules (from CPAN):
 - Cache::Cache
 - Crypt::PasswdMD5
 - Date::Manip
+- DateTime::Format::Strptime
 - DBD
 - DBD::mysql
 - DBI
