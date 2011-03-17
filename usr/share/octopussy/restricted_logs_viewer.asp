@@ -42,7 +42,7 @@ if (NOT_NULL($f->{template}))
 {
 	if (NOT_NULL($f->{template_save}))
   {
-		Octopussy::Search_Template::New($login, { name => $Session->{template}, 
+		Octopussy::Search_Template::New($login, { name => $f->{template}, 
 			device => \@devices, service => \@services, 
       loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
       msgid => $Session->{msgid},
@@ -51,13 +51,13 @@ if (NOT_NULL($f->{template}))
 			re_include3 => $re_include3, re_exclude => $re_exclude, 
 			re_exclude2 => $re_exclude2, re_exclude3 => $re_exclude3 } );
 	}
-	else
+	elsif (NOT_NULL($f->{template_remove}))
 		{ Octopussy::Search_Template::Remove($login, $f->{template}); }
 }
 
 if ((NULL($Session->{extractor})) && 
-		((NOT_NULL($Session->{logs})) || (NOT_NULL($Session->{file})) 
-			|| (NOT_NULL($Session->{csv})) || (NOT_NULL($Session->{zip})))
+		((NOT_NULL($f->{logs})) || (NOT_NULL($f->{file})) 
+			|| (NOT_NULL($f->{csv})) || (NOT_NULL($f->{zip})))
 	&& ((scalar(@devices) > 0) && (scalar(@services) > 0) 
 	&& ($devices[0] ne "") && ($services[0] ne "")))
 {
@@ -95,63 +95,34 @@ if ((NULL($Session->{extractor})) &&
   	$Session->{progress_total} = 0;
   	$Session->{progress_match} = 0;
 		$Session->{page} = 1;
-		$Session->{extracted} = $output;
+		$Session->{progress_running} = $Session->{extracted} = $output;
+		
+		my $cache = Octopussy::Cache::Init('octo_extractor');
+    	$cache->set("status_$output", "Starting... [0/1] [0]");
+    
 		$Response->Redirect("$url?extractor=$output");
 	}
 }
 
 if ($Session->{extractor} eq "done")
 {
-	my $filename = $Session->{extracted};
-	if (NOT_NULL($Session->{file}))
+	if (NOT_NULL($Session->{file}) || NOT_NULL($Session->{csv})
+		|| NOT_NULL($Session->{zip}))
 	{
-		my $output = $Session->{export} . ".txt";
-		($Session->{file}, $Session->{export}, $Session->{extractor}, 
-			$Session->{extracted}) = (undef, undef, undef, undef);
-		AAT::File_Save( { contenttype => "text/txt", 
-			input_file => "${run_dir}/logs_${login}_$filename", 
-			output_file => $output } );
-	}
-	elsif (NOT_NULL($Session->{csv}))
-	{
-		open(FILE, "< $run_dir/logs_${login}_$filename");
-		while (<FILE>)
-		{
-   		$text .= "$1;$2;$3\n" 
-				if ($_ =~ /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?.\d{2}:\d{2}) (\S+) (.+)$/);
-  	}
-		close(FILE);
-		my $output = $Session->{export} . ".csv";
-		($Session->{csv}, $Session->{export}, $Session->{extractor},
-			$Session->{extracted}) = (undef, undef, undef, undef);
-		AAT::File_Save( { contenttype => "text/csv",
-     	input_data => $text, output_file => $output } );
-	}
-	elsif (NOT_NULL($Session->{zip})) 
-	{
-		my $output = $Session->{export} . ".txt.gz";
-		open(ZIP, "|gzip >> $run_dir/logs_${login}_$filename.gz");
-		open(FILE, "< $run_dir/logs_${login}_$filename");
-    while (<FILE>)
-			{ print ZIP $_; }
-		close(FILE);
-		close(ZIP);
-    ($Session->{zip}, $Session->{export}, $Session->{extractor},
-			$Session->{extracted}) = (undef, undef, undef, undef);
-    AAT::File_Save( { contenttype => "archive/gzip",
-      input_file => "$run_dir/logs_${login}_$filename.gz", 
-			output_file => $output } );
+		$Response->Redirect("./export_extract.asp");
 	}
 	else
 	{
+		my $filename = $Session->{extracted};
 		$text = "<table id=\"resultsTable\">";
 		my $page = $Session->{page} || 1;
 		my $hre_inc = $Server->HTMLEncode($re_include);
     my $hre_inc2 = $Server->HTMLEncode($re_include2);
     my $hre_inc3 = $Server->HTMLEncode($re_include3);
-		open(FILE, "< $run_dir/logs_${login}_$filename");
-    while (<FILE>)
-    {
+    if (defined open(my $FILE, '<', "$run_dir/logs_${login}_$filename"))
+	{
+    	while (<$FILE>)
+    	{
 			if (($nb_lines >= ($page-1)*$LINES_BY_PAGE) 
 					&& ($nb_lines <= ($page*$LINES_BY_PAGE)))
 			{
@@ -166,8 +137,9 @@ if ($Session->{extractor} eq "done")
 				$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
 			}
    		$nb_lines++;
-  	}
-		close(FILE);
+  		}
+		close($FILE);
+	}
 		$last_page = int($nb_lines/$LINES_BY_PAGE) + 1;
 		$text .= "</table>"; 
 	}
@@ -177,21 +149,17 @@ if ($Session->{extractor} eq "done")
 
 if ((NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
 {
-%>
-<WebUI:PageTopRestricted title="Logs" onLoad="extract_progress()" />
-<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
-<AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
-<script type="text/javascript" src="INC/octo_restricted_logs_viewer_progressbar.js"> 
-</script>
-<%
+%><WebUI:PageTopRestricted title="_LOGS_VIEWER" onLoad="extract_progress()" />
+	<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
+	<AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
+	<script type="text/javascript" src="INC/octo_restricted_logs_viewer_progressbar.js"> 
+	</script><%
 }
 else
 {
-%>
-<WebUI:PageTopRestricted title="Logs" />
-<script type="text/javascript" src="INC/octo_logs_viewer_quick_search.js">
-</script>
-<%
+%><WebUI:PageTopRestricted title="_LOGS_VIEWER" />
+	<script type="text/javascript" src="INC/octo_logs_viewer_quick_search.js">
+	</script><%
 }
 $Response->Include("INC/octo_logs_viewer_form.inc", url => $url, 
 	devices => \@devices, services => \@services);
@@ -224,8 +192,7 @@ else
 <% 
 $Response->Include("INC/octo_page_navigator.inc", 
 	url => "$url?extractor=done&extracted=" . $Session->{extracted}, 
-	page => $page, page_last => $last_page)	
-	if ($last_page > 1);
+	page => $page, page_last => $last_page)	if ($last_page > 1);
 %>
 	</AAT:BoxCol>
 </AAT:BoxRow>
@@ -235,8 +202,7 @@ $Response->Include("INC/octo_page_navigator.inc",
 <% 
 $Response->Include("INC/octo_page_navigator.inc",
   url => "$url?extractor=done&extracted=" . $Session->{extracted}, 
-	page => $page, page_last => $last_page)
-	if ($last_page > 1);
+	page => $page, page_last => $last_page)	if ($last_page > 1);
 %>
   </AAT:BoxCol>
 </AAT:BoxRow>
