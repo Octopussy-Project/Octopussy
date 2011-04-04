@@ -23,6 +23,7 @@ use File::Path;
 
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY NOT_NULL );
+use DateTime::Format::Strptime;
 use Octopussy;
 use Octopussy::Device;
 use Octopussy::FS;
@@ -37,6 +38,12 @@ Readonly my @months => (
     undef, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
     'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 );
+
+my $TIMEZONE = '+01:00';
+
+my $strp = new DateTime::Format::Strptime(pattern => '%s');
+my $strp2 = new DateTime::Format::Strptime(pattern => '%a %b %d %H:%M:%S %Y');
+my $strp3 = new DateTime::Format::Strptime(pattern => '%d-%b-%Y %H:%M:%S');
 
 =head1 FUNCTIONS
 
@@ -126,14 +133,9 @@ sub Convert_To_Syslog
             {
                 if ($syslog =~ /__localtime\((\d+)\)__/)
                 {
-                    my ($sec, $min, $hour, $mday, $mon, $year) =
-                        localtime $var[$1 - 1];
-                    $hour = ($hour < 10 ? "0$hour" : $hour);
-                    $min  = ($min < 10  ? "0$min"  : $min);
-                    $sec  = ($sec < 10  ? "0$sec"  : $sec);
-                    $mday = ($mday < 10 ? " $mday" : $mday);
-                    my $substitution = "$months[$mon] $mday $hour:$min:$sec";
-                    $syslog =~ s/__localtime\(\d+\)__/$substitution/g;
+                    	my $dt = $strp->parse_datetime($var[$1 - 1]);
+                    	my $substitution = sprintf("%sT%s.000000%s", $dt->ymd('-'), $dt->hms(':'), $TIMEZONE);
+                    	$syslog =~ s/__localtime\(\d+\)__/$substitution/g;
                 }
                 if ($syslog =~ /__d2m2y2hms\((\d+)\)__/)
                 {
@@ -142,6 +144,18 @@ sub Convert_To_Syslog
                         my $substitution = $months[int $2] . " $1 $4:$5:$6";
                         $syslog =~ s/__d2m2y2hms\(\d+\)__/$substitution/g;
                     }
+                }
+                if ($syslog =~ /__d2_m3_y4_h2_m2_s2\((\d+)\)__/)
+                {
+                        my $dt = $strp3->parse_datetime($var[$1 - 1]);
+                        my $substitution = sprintf("%sT%s.000000%s", $dt->ymd('-'), $dt->hms(':'), $TIMEZONE);
+                        $syslog =~ s/__d2_m3_y4_h2_m2_s2\(\d+\)__/$substitution/g;
+                }
+                if ($syslog =~ /__dw3_m3_dm2_h2_m2_s2_y4\((\d+)\)__/)
+                {
+                        my $dt = $strp2->parse_datetime($var[$1 - 1]);
+                       	my $substitution = sprintf("%sT%s.000000%s", $dt->ymd('-'), $dt->hms(':'), $TIMEZONE);
+                        $syslog =~ s/__dw3_m3_dm2_h2_m2_s2_y4\(\d+\)__/$substitution/g;
                 }
                 $syslog =~ s/__(\d+)__/$var[$1-1]/g;
                 $syslog =~ s/__device__/$device/g;
