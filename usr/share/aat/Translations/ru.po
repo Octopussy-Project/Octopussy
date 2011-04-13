@@ -1354,3 +1354,29 @@ msgstr "_YOUR user can only view %d minutes of logs"
 msgid "_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
 msgstr "Список сообщенией мастера ограничен %d по умолчанию."
 
+msgid "_TOOLTIP_ALERT_MSG"
+msgstr "_TOOLTIP_ALERT_MSG"
+
+msgid "_TOOLTIP_DEVICE_STATUS"
+msgstr "_TOOLTIP_DEVICE_STATUS"
+
+msgid "_TOOLTIP_SYSTEM_DB"
+msgstr "_TOOLTIP_SYSTEM_DB"
+
+msgid "_TOOLTIP_SYSTEM_JABBER"
+msgstr "_TOOLTIP_SYSTEM_JABBER"
+
+msgid "_TOOLTIP_SYSTEM_LDAP"
+msgstr "_TOOLTIP_SYSTEM_LDAP"
+
+msgid "_TOOLTIP_SYSTEM_NSCA"
+msgstr "_TOOLTIP_SYSTEM_NSCA"
+
+msgid "_TOOLTIP_SYSTEM_PROXY"
+msgstr "_TOOLTIP_SYSTEM_PROXY"
+
+msgid "_TOOLTIP_SYSTEM_SMTP"
+msgstr "_TOOLTIP_SYSTEM_SMTP"
+
+msgid "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "_TOOLTIP_SYSTEM_ZABBIX"

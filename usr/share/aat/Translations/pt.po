@@ -649,7 +649,7 @@ msgstr "Log"
 msgid "_LOG_LEVEL"
 msgstr "Nível de Log"
 
- "_LOG_REGEXP"
+msgid "_LOG_REGEXP"
 msgstr "_LOG_REGEXP"
 
 msgid "_LOG_TYPE"
@@ -1378,3 +1378,5 @@ msgstr "O proxy é usado para baixar updates através dele.<br> <b>Server:</b> (
 msgid "_TOOLTIP_SYSTEM_SMTP"
 msgstr "O SMTP é usado para enviar Alertas e Relatórios para Contatos ou para contatar os suporte Octopussy.<br> <b>Server:</b> (<i>yoursmtp.yourdomain.com</i>)<br> <b>Sender:</b> (<i>you@yourdomain.com</i>)<br>"
 
+msgid "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "_TOOLTIP_SYSTEM_ZABBIX"

@@ -1378,3 +1378,5 @@ msgstr "Proxy usado para conseguir la actualizaciones a traves de un proxy.<br> 
 msgid "_TOOLTIP_SYSTEM_SMTP"
 msgstr "SMTP es usado para enviar las Alertas e Informes a los Contactos o para contactar con el soporte de Octopussy.<br> <b>Servidor:</b> (<i>tusmtp.tudominio.com</i>)<br><b>Remitente:</b> (<i>tu@tudominio.com</i>)<br>"
 
+msgid "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "_TOOLTIP_SYSTEM_ZABBIX"

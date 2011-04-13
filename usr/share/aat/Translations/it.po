@@ -1378,3 +1378,5 @@ msgstr "Il proxy viene utilizzato per gli aggiornamenti.<br> <b>Server:</b> (<i>
 msgid "_TOOLTIP_SYSTEM_SMTP"
 msgstr "SMTP viene usato per mandare allarmi e report ai contatti o per contattare il supporto Octopyssy.<br> <b>Server:</b> (<i>yoursmtp.yourdomain.com</i>)<br> <b>Mittente:</b> (<i>you@yourdomain.com</i>)<br>"
 
+msgid "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "_TOOLTIP_SYSTEM_ZABBIX"
