@@ -127,10 +127,12 @@ sub List
     }
     push @reports, $conf->{name}
       if (
-      (!defined $category)
+      ((defined $conf->{name}) && ($conf->{name} ne ''))
+      &&
+      ((!defined $category)
       || ( (defined $conf->{category})
         && ($conf->{category} eq $category)
-        && $in_restriction)
+        && $in_restriction))
       );
   }
 

@@ -14,6 +14,7 @@ my $svn_dir = "$SVN_REPO/trunk/var/lib/octopussy/conf";
 
 foreach my $conf ('Reports', 'Services', 'Tables')
 {
+	printf "Updating %s...\n", $conf;
 	my $conf_dir = lc $conf;
     `svn co $svn_dir/$conf_dir/ $dest_dir/$conf/`;
     open my $file_idx, '>', "$dest_dir/$conf/_${conf_dir}.idx";
