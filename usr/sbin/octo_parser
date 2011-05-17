@@ -449,9 +449,9 @@ sub Line_Handler
             ? $msgid_stats{$serv}{$msg->{id}} + 1
             : 1
         );
-        $msgid_stats{$serv}{"$serv:TOTAL"} = (
-            defined $msgid_stats{$serv}{"$serv:TOTAL"}
-            ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+        $msgid_stats{$serv}{"$serv:_TOTAL_"} = (
+            defined $msgid_stats{$serv}{"$serv:_TOTAL_"}
+            ? $msgid_stats{$serv}{"$serv:_TOTAL_"} + 1
             : 1
         );
 
@@ -504,7 +504,7 @@ sub Cache_MsgID_Stats
                 my $count = $msgid_stats{$k1}{$k2};
                 push @parser_msgid_stats,
                     {service => $k1, id => $id, count => $count}
-                    if ($count > 0);
+                    if (($count > 0) && ($id ne '_TOTAL_'));
                 $msgid_stats{$k1}{$k2} = 0;
             }
         }
@@ -633,9 +633,9 @@ sub File_Handler
                             }
                             if (!$match)
                             {
-                                $msgid_stats{$serv}{"$serv:TOTAL"} = (
-                                    defined $msgid_stats{$serv}{"$serv:TOTAL"}
-                                    ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+                                $msgid_stats{$serv}{"$serv:_TOTAL_"} = (
+                                    defined $msgid_stats{$serv}{"$serv:_TOTAL_"}
+                                    ? $msgid_stats{$serv}{"$serv:_TOTAL_"} + 1
                                     : 1
                                 );
                                 push @{$known_msgs{$serv}}, $line;
@@ -643,9 +643,9 @@ sub File_Handler
                         }
                         else
                         { # MsgID Statistics disabled and no Alert for this Service
-                            $msgid_stats{$serv}{"$serv:TOTAL"} = (
-                                defined $msgid_stats{$serv}{"$serv:TOTAL"}
-                                ? $msgid_stats{$serv}{"$serv:TOTAL"} + 1
+                            $msgid_stats{$serv}{"$serv:_TOTAL_"} = (
+                                defined $msgid_stats{$serv}{"$serv:_TOTAL_"}
+                                ? $msgid_stats{$serv}{"$serv:_TOTAL_"} + 1
                                 : 1
                             );
                             push @{$known_msgs{$serv}}, $line;
