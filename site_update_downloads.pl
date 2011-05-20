@@ -20,7 +20,7 @@ foreach my $conf ('Reports', 'Services', 'Tables')
     open my $file_idx, '>', "$dest_dir/$conf/_${conf_dir}.idx";
     opendir my $dir, "$dest_dir/$conf/";
     my @files = grep /\.xml$/, readdir $dir;
-    foreach my $f (@files)
+    foreach my $f (sort @files)
     {
     	#printf("%s - File: %s\n", $conf, "$dest_dir/$conf/$f");
     	my %XML_INPUT_OPTIONS = (KeyAttr => [], ForceArray => 1);
