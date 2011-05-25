@@ -1201,6 +1201,9 @@ msgstr "Информация о контакте требует по крайн�
 msgid "_MSG_CONTACT_ME"
 msgstr "По всем другим вопросам обращайтесь ко мне на octo.devel@gmail.com"
 
+msgid "_MSG_DEVICEGROUP_ALREADY_EXISTS"
+msgstr "_MSG_DEVICEGROUP_ALREADY_EXISTS"
+
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Создание динамической тревоги"
 

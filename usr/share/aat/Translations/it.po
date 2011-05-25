@@ -1201,6 +1201,9 @@ msgstr "Il contatto prevede perlomeno un ID e un Email/IM !"
 msgid "_MSG_CONTACT_ME"
 msgstr "per qualsiasi problema, contattatemi quiç octo.devel@gmail.com"
 
+msgid "_MSG_DEVICEGROUP_ALREADY_EXISTS"
+msgstr "_MSG_DEVICEGROUP_ALREADY_EXISTS"
+
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Creazione allarme dinamico"
 
