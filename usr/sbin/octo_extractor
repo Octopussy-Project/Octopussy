@@ -222,10 +222,13 @@ sub File_Handler_With_Filter
         }
         else
         {    # 'Unknown' Service -> no filter
-            while (<$FILE>)
+            while (my $line = <$FILE>)
             {
-                push @{$logs}, $_;
-                $nb_match++;
+            	if (Line_Match_Regexps($line, $includes, $excludes))
+                {
+                    push @{$logs}, $line;
+                    $nb_match++;
+                }
             }
         }
         close $FILE;
