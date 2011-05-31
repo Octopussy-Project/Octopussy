@@ -250,6 +250,9 @@ msgstr "Beenden"
 msgid "_HELP"
 msgstr "Hilfe"
 
+msgid "_HOMEPAGE"
+msgstr "_HOMEPAGE"
+
 msgid "_HOST"
 msgstr "Host"
 

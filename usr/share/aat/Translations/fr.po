@@ -250,6 +250,9 @@ msgstr "Fin"
 msgid "_HELP"
 msgstr "Aide"
 
+msgid "_HOMEPAGE"
+msgstr "Page Principale"
+
 msgid "_HOST"
 msgstr "Hote"
 

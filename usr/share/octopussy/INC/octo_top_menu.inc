@@ -9,9 +9,12 @@ $lang = (-f "HELP/$lang/${help_lnk}.html" ? $lang : "en");
 %>
 <AAT:Box width="100%">
 <AAT:BoxRow>
+    <AAT:BoxCol>
+    <AAT:Button name="home" tooltip="_HOMEPAGE" link="./index.asp" width="32" height="32" />
+    </AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Button name="user_prefs" tooltip="_USER_PREFS" link="./user_pref.asp" width="32" height="32" />
-  </AAT:BoxCol>
+    </AAT:BoxCol>
 	<AAT:BoxCol width="100%" align="C">
 	<AAT:Label value="$version" style="B" link="./index.asp" /><br>
 	<AAT:Label value="_USER" /><%= ": $login" %>

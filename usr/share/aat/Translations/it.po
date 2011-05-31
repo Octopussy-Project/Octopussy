@@ -250,6 +250,9 @@ msgstr "Termina"
 msgid "_HELP"
 msgstr "Aiuto"
 
+msgid "_HOMEPAGE"
+msgstr "_HOMEPAGE"
+
 msgid "_HOST"
 msgstr "Host"
 
