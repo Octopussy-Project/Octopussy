@@ -10,8 +10,10 @@ UPDATERCD="/usr/sbin/update-rc.d"
 #
 # Delete Octopussy MySQL Database
 #
-db_get octopussy/mysql_root_password
-/usr/bin/mysql -u root --password=$RET --exec="DROP DATABASE IF EXISTS $OCTO" || true
+db_get octopussy/mysql_root_password || true
+if [ -x /usr/bin/mysql ]; then
+	/usr/bin/mysql -u root --password=$RET --exec="DROP DATABASE IF EXISTS $OCTO" || true
+fi
 
 #
 # Remove octo_logrotate from cron.daily
