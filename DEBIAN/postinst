@@ -80,16 +80,27 @@ $MKFIFO $FILE_FIFO 2> /dev/null || true
 $CHOWNR $DIR_FIFO
 
 #
-# Restart Octopussy & Rsyslog
+# Restart Octopussy & (Rsyslog or Syslog-ng)
 #
-$SED 's/^\$ActionFileDefaultTemplate *RSYSLOG_TraditionalFileFormat/#\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/' /etc/rsyslog.conf
-$SED 's/# *\$ModLoad *imudp/\$ModLoad imudp/' /etc/rsyslog.conf
-$SED 's/# *\$UDPServerRun *514/\$UDPServerRun 514/' /etc/rsyslog.conf
-$SED 's/# *\$ModLoad *imtcp/\$ModLoad imtcp/' /etc/rsyslog.conf
-$SED 's/# *\$InputTCPServerRun *514/\$InputTCPServerRun 514/' /etc/rsyslog.conf
 
 $INVOKERC octopussy start 2> /dev/null || true
-$INVOKERC rsyslog restart 2> /dev/null || true
+
+if [ -x /etc/rsyslog.conf ]; then
+	$INVOKERC rsyslog stop 2> /dev/null || true
+	$SED 's/^\$ActionFileDefaultTemplate *RSYSLOG_TraditionalFileFormat/#\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/' /etc/rsyslog.conf
+	$SED 's/# *\$ModLoad *imudp/\$ModLoad imudp/' /etc/rsyslog.conf
+	$SED 's/# *\$UDPServerRun *514/\$UDPServerRun 514/' /etc/rsyslog.conf
+	$SED 's/# *\$ModLoad *imtcp/\$ModLoad imtcp/' /etc/rsyslog.conf
+	$SED 's/# *\$InputTCPServerRun *514/\$InputTCPServerRun 514/' /etc/rsyslog.conf
+	$INVOKERC rsyslog start 2> /dev/null || true
+fi
+
+if [ -x /etc/syslog-ng/syslog-ng.conf ]; then
+	$INVOKERC syslog-ng stop 2> /dev/null || true
+	mv /etc/syslog-ng/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf.old
+	cp /etc/octopussy/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
+	$INVOKERC syslog-ng start 2> /dev/null || true
+fi
 
 db_stop
 
