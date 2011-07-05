@@ -85,7 +85,7 @@ $CHOWNR $DIR_FIFO
 
 $INVOKERC octopussy start 2> /dev/null || true
 
-if [ -x /etc/rsyslog.conf ]; then
+if [ -e /etc/rsyslog.conf ]; then
 	$INVOKERC rsyslog stop 2> /dev/null || true
 	$SED 's/^\$ActionFileDefaultTemplate *RSYSLOG_TraditionalFileFormat/#\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat/' /etc/rsyslog.conf
 	$SED 's/# *\$ModLoad *imudp/\$ModLoad imudp/' /etc/rsyslog.conf
@@ -95,7 +95,7 @@ if [ -x /etc/rsyslog.conf ]; then
 	$INVOKERC rsyslog start 2> /dev/null || true
 fi
 
-if [ -x /etc/syslog-ng/syslog-ng.conf ]; then
+if [ -e /etc/syslog-ng/syslog-ng.conf ]; then
 	$INVOKERC syslog-ng stop 2> /dev/null || true
 	mv /etc/syslog-ng/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf.old
 	cp /etc/octopussy/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
