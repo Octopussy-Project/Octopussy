@@ -315,12 +315,19 @@ sub Process_Status
 {
   my %result = ();
 
-  #my @lines = `ps -edf | grep "syslog-ng" | grep -v grep`;
-  my @lines = `ps -edf | grep "rsyslog" | grep -v grep`;
-
-  #$result{"Syslog-ng"} = scalar(@lines);
-  $result{'Rsyslog'} = scalar @lines;
-  @lines = `ps -edf | grep "/usr/sbin/octo_dispatcher" | grep -v grep`;
+  my @syslogng_lines = `ps -edf | grep "syslog-ng" | grep -v grep`;
+  my @rsyslog_lines = `ps -edf | grep "rsyslog" | grep -v grep`;
+    
+    if (scalar(@syslogng_lines) > scalar(@rsyslog_lines))
+    {
+    	$result{"Syslog-ng"} = scalar(@syslogng_lines);
+    }
+    else
+    {
+        $result{'Rsyslog'} = scalar @rsyslog_lines;
+    }
+    
+  my @lines = `ps -edf | grep "/usr/sbin/octo_dispatcher" | grep -v grep`;
   $result{'Dispatcher'} = scalar @lines;
   @lines = `ps -edf | grep "/usr/sbin/octo_scheduler" | grep -v grep`;
   $result{'Scheduler'} = scalar @lines;
