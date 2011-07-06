@@ -1,3 +1,24 @@
+octopussy (1.0rc4) unstable; urgency=high
+
+  * Now you can choose between Rsyslog and Syslog-ng to receive your logs
+  * DateTime::Format::Strptime & Term::ProgressBar added to Perl Module Requirements
+  * Restricted Logs Viewer display bug fixed
+  * Better octo_pusher
+  * Now, there is also a form to Create a New Service at the top of the services.asp page
+  * Updates on 8pussy.org are now daily updated from Subversion repository
+  * Homepage link added to 'Top Menu' in WebGUI
+  * Fixing Debian 6 installation problem
+  
+  * Bugfix #3184249: prototype.js added for OpenFlashChart
+  * Bugfix #3184259: AAT::Schedule::Match replaced by Octopussy::Schedule::Match
+  * Bugfix #3188874: Sending alerts to multiple recipients or with empty subect/body failed
+  * Bugfix #3285704: Translations issues with undefined msgid in .po files
+  * Bugfix #3303598: Msgid statistics in Service divided by 2 because of total
+  * Bugfix #3087438: Missing _MSG_DEVICEGROUP_ALREADY_EXISTS
+  * Bugfix #3309458: Filtering in logs viewer is not working with 'Unknown'
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 06 Jul 2011 23:30:00 +0100
+
 octopussy (1.0rc3) unstable; urgency=high
 
   * Better Test Suite
