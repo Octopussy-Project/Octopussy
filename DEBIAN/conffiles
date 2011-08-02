@@ -2,6 +2,7 @@
 /etc/aat/openssl.cnf
 /etc/octopussy/apache2.conf
 /etc/rsyslog.d/10-octopussy.conf
+/etc/sysctl.d/octopussy
 /var/lib/octopussy/conf/ldap.xml
 /var/lib/octopussy/conf/proxy.xml
 /var/lib/octopussy/conf/smtp.xml

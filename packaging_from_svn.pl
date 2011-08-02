@@ -53,6 +53,7 @@ sub Changelog
 	printf "Generating changelog file...\n";
 	mkpath("$DIR_TMP/usr/share/doc/$PACKAGE/");
 	`cat ./changelog | gzip -9 > $DIR_TMP/usr/share/doc/$PACKAGE/changelog.gz`;
+	`cat ./changelog | gzip -9 > $DIR_TMP/usr/share/doc/$PACKAGE/changelog.Debian.gz`;
 }
 
 =head2 Copy_Files()
