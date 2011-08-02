@@ -1,17 +1,27 @@
+octopussy (1.0rc5) unstable; urgency=medium
+
+  * Fixing lintian issues
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 02 Aug 2011 23:45:00 +0100
+
 octopussy (1.0rc4) unstable; urgency=high
 
   * Now you can choose between Rsyslog and Syslog-ng to receive your logs
-  * DateTime::Format::Strptime & Term::ProgressBar added to Perl Module Requirements
+  * DateTime::Format::Strptime & Term::ProgressBar 
+    added to Perl Module Requirements
   * Restricted Logs Viewer display bug fixed
   * Better octo_pusher
-  * Now, there is also a form to Create a New Service at the top of the services.asp page
+  * Now, there is also a form to Create a New Service 
+    at the top of the services.asp page
   * Updates on 8pussy.org are now daily updated from Subversion repository
   * Homepage link added to 'Top Menu' in WebGUI
   * Fixing Debian 6 installation problem
   
   * Bugfix #3184249: prototype.js added for OpenFlashChart
-  * Bugfix #3184259: AAT::Schedule::Match replaced by Octopussy::Schedule::Match
-  * Bugfix #3188874: Sending alerts to multiple recipients or with empty subect/body failed
+  * Bugfix #3184259: AAT::Schedule::Match replaced 
+    by Octopussy::Schedule::Match
+  * Bugfix #3188874: Sending alerts to multiple recipients 
+    or with empty subect/body failed
   * Bugfix #3285704: Translations issues with undefined msgid in .po files
   * Bugfix #3303598: Msgid statistics in Service divided by 2 because of total
   * Bugfix #3087438: Missing _MSG_DEVICEGROUP_ALREADY_EXISTS
@@ -25,14 +35,16 @@ octopussy (1.0rc3) unstable; urgency=high
   * Code cleanning
 
   * Bugfix #3166138: Fixing major problems with old syslog datetime format
-  * Bugfix #3176376 & #3078102: Specific sysctl conf added to raise 'fs.inotify.max_user_instances'
+  * Bugfix #3176376 & #3078102: Specific sysctl conf added 
+    to raise 'fs.inotify.max_user_instances'
 
  -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 15 Feb 2011 23:30:00 +0100
 
 octopussy (1.0rc2) unstable; urgency=high
   
   * Rsyslog UDP/TCP reception now forced in installation scripts
-  * Now 'export APACHE_RUN_DIR' in /usr/sbin/directory (needed for Apache2 configuration in some distribs)
+  * Now 'export APACHE_RUN_DIR' in /usr/sbin/directory 
+    (needed for Apache2 configuration in some distribs)
 
   * Bugfix SR #3160987: Fixing major issue on ISO8601 DateTime Regexp
   * Bugfix #3067657: Wrong scheduling matching fixed and Test Suite updated
@@ -43,7 +55,8 @@ octopussy (1.0rc2) unstable; urgency=high
 octopussy (1.0rc1) unstable; urgency=high
 
   * WARNING: ISO8601 DateTime format migration ! 
-    (see 'ISO8601 DateTime Format Migration' of 'Documentation' section of 8pussy.org website)
+    (see 'ISO8601 DateTime Format Migration' of 'Documentation' section 
+    of 8pussy.org website)
   * Alerts name are now limited to [-_a-zA-Z0-9] characters
   * Contacts id are now limited to [-_a-zA-Z0-9] characters
   * Services name are now limited to [-_a-zA-Z0-9] characters
@@ -55,7 +68,8 @@ octopussy (1.0rc1) unstable; urgency=high
   * Bugfix #3061992: %LOGIN% missing in Octopussy logs
   * Bugfix #3065906: Bug in Get_Mail_Addresses function in octo_sender
   * Bugfix #3064879: Authentication problems after user preferences changes
-  * Bugfix #3109566: Rsyslog configuration filename changed from 'octopussy.conf' to '10-octopussy.conf'
+  * Bugfix #3109566: Rsyslog configuration filename changed 
+    from 'octopussy.conf' to '10-octopussy.conf'
 
  -- Sebastien Thebert <octo.devel@gmail.com>  Fri, 14 Jan 2011 02:00:00 +0100
 
@@ -63,7 +77,8 @@ octopussy (0.9.9.9.9) unstable; urgency=high
 
   * Bugfix in octo_scheduler
   * Bugfix on Octopussy::FS::Flie_Ext
-  * Bugfix 3014851 & 3036766: Octopussy::Create_Directory -> Octopussy::FS::Create_Directory
+  * Bugfix 3014851 & 3036766: 
+    Octopussy::Create_Directory -> Octopussy::FS::Create_Directory
   * Bugfix 3015810: Problem in 'System Configuration' & 'Updater' page
   * Bugfix 3018897: chown cannot access '2' problem
   * Bugfix 3057572: problem with devicename with '_' in octo_rrd
@@ -108,10 +123,13 @@ octopussy (0.9.9.9.6) unstable; urgency=high
   * Bugfix: 2 minor changes in Web Interface
   * Bugfix: missing status in Running Reports in Reports Viewer
   * Bugfix 2946434 & 2946818: 'sort uniq' problem
-  * Bugfix: Major fix for XML Caching when reading just after writing in AAT::XML.pm
+  * Bugfix: Major fix for XML Caching when reading just after writing 
+    in AAT::XML.pm
   * Bugfix: Remove verbose tar in Octopussy::Configuration.pm
-  * Bugfix 2948940: Fixes the missing servicename for the 1st message of a service
-  * Bugfix: '\' character problem with DAY, DAY_HOUR, DAY_HOUR_MIN, UNIX_TIMESTAMP in Report SQL functions 
+  * Bugfix 2948940: Fixes the missing servicename for the first message 
+    of a service
+  * Bugfix: '\' character problem with DAY, DAY_HOUR, DAY_HOUR_MIN, 
+    UNIX_TIMESTAMP in Report SQL functions 
  
   * Faster Wizard when there is a lot of 'unknown files'
   * Reduce the memory used by octopussy binaries
@@ -123,7 +141,8 @@ octopussy (0.9.9.9.6) unstable; urgency=high
 
 octopussy (0.9.9.9.2) unstable; urgency=high
 
-  * A lot of bugs have been introduced in the last releases (logs viewer/octo_extractor), this release should fix that !
+  * A lot of bugs have been introduced in the last releases 
+    (logs viewer/octo_extractor), this release should fix that !
 
  -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 19 Jan 2010 20:15:00 +0100
 
@@ -208,7 +227,8 @@ octopussy (0.9.9) unstable; urgency=high
   * Before, you can only set log retention duration by Device,
     now, you can set it by Device/Service
   * Logs Viewer now with Loglevel, Taxonomy & MsgID filtering
-  * Bugfix (ID:2509315) now /usr/sbin/octo_* require to be launched by Octopussy user
+  * Bugfix (ID:2509315) now /usr/sbin/octo_* require to be launched 
+    by Octopussy user
   * So Many Bugfixes...
 
  -- Sebastien Thebert <octo.devel@gmail.com>  Mon, 23 Feb 2009 19:20:00 +0100

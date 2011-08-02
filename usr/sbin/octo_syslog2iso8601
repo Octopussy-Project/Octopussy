@@ -2,11 +2,11 @@
 
 =head1 NAME
 
-syslog2iso8601.pl - Octopussy program to convert 'syslog format' logs to 'iso8601' logs
+syslog2iso8601 - Octopussy program to convert 'syslog format' logs to 'iso8601' logs
 
 =head1 SYNOPSIS
 
-syslog2iso8601.pl --device <device> --service <service> 
+syslog2iso8601 --device <device> --service <service> 
 
 =head1 DESCRIPTION
 
@@ -25,7 +25,7 @@ use AAT::Utils qw( ARRAY );
 use Octopussy;
 use Octopussy::Logs;
 
-Readonly my $PROG_NAME    => 'syslog2iso8601.pl';
+Readonly my $PROG_NAME    => 'syslog2iso8601';
 Readonly my $PROG_VERSION => Octopussy::Version();
 
 my $help;
