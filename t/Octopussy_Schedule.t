@@ -56,6 +56,19 @@ Octopussy::Schedule::Remove($SCHED_TITLE);
 my @list3 = Octopussy::Schedule::List();
 ok(scalar @list == scalar @list3, 'Octopussy::Schedule::Remove()');
 
+my $period_check = 
+	Octopussy::Schedule::Period_Check('Day-1', 'Hour-1', 'Day-0', 'Hour-1');
+cmp_ok($period_check, '==', 1, 
+	"Octopussy::Schedule::Period_Check('Day-1', 'Hour-1', 'Day-0', 'Hour-1')");
+$period_check = 
+	Octopussy::Schedule::Period_Check('Day-1', 'Hour-1', 'Day-2', 'Hour-1');
+cmp_ok($period_check, '==', 0,         
+	"Octopussy::Schedule::Period_Check('Day-1', 'Hour-1', 'Day-2', 'Hour-1')");
+$period_check =         
+	Octopussy::Schedule::Period_Check('Day-0', 'Hour-1', 'Day-0', 'Hour-1');
+cmp_ok($period_check, '==', 0,         
+	"Octopussy::Schedule::Period_Check('Day-0', 'Hour-1', 'Day-0', 'Hour-1')");
+
 my %sched = ();
 
 %sched = (start_time => undef, dayofweek => undef, dayofmonth => undef, month => undef);    
