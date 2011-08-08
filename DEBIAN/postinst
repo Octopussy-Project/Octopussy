@@ -11,7 +11,7 @@ AAT="aat"
 OCTO="octopussy"
 CHMOD="/bin/chmod 644"
 CHMOD_X="/bin/chmod 755"
-CHOWNR="/bin/chown -R $OCTO:$OCTO"
+CHOWN="/bin/chown -R $OCTO:$OCTO"
 CP="/bin/cp -f"
 ECHO="/bin/echo"
 FIND="/usr/bin/find"
@@ -30,8 +30,8 @@ FILE_FIFO="/var/spool/octopussy/octo_fifo"
 $MKDIR /var/lib/$OCTO/
 $MKDIR /var/run/$AAT/
 $MKDIR /var/run/$OCTO/
-$CHOWNR /etc/$AAT/ /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ /usr/sbin/octo* 2> /dev/null || true
-$CHOWNR /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ 2> /dev/null || true
+$CHOWN /etc/$AAT/ /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ /usr/sbin/octo* 2> /dev/null || true
+$CHOWN /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ 2> /dev/null || true
 $FIND /usr/share/perl5/AAT* -name "*.pm" |xargs $CHMOD
 $FIND /usr/share/perl5/Octopussy* -name "*.pm" |xargs $CHMOD
 $CHMOD_X /usr/sbin/octo*
@@ -69,15 +69,18 @@ $UPDATERC $OCTO defaults 99 || true
 # Apache2 Configuration
 #
 $MKDIR /var/cache/$OCTO/asp/
-$CHOWNR /var/cache/$OCTO/asp/ 2> /dev/null || true
+$CHOWN /var/cache/$OCTO/asp/ 2> /dev/null || true
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
+$MKDIR /var/lib/$OCTO/rrd_png/
+$CHOWN /var/lib/$OCTO/rrd_png/
+$LN /var/lib/$OCTO/rrd_png/ /usr/share/$OCTO/rrd 
 
 #
 # Octopussy FIFO creation (for Rsyslog)
 #
 $MKDIR $DIR_FIFO
 $MKFIFO $FILE_FIFO 2> /dev/null || true
-$CHOWNR $DIR_FIFO
+$CHOWN $DIR_FIFO
 
 #
 # Restart Octopussy & (Rsyslog or Syslog-ng)

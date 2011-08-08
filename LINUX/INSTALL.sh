@@ -110,6 +110,9 @@ $ECHO "Configuring Apache..."
 $MKDIR /var/cache/$OCTO/asp/
 $CHOWN /var/cache/$OCTO/asp/
 $LN /usr/share/$AAT/ /usr/share/$OCTO/AAT
+$MKDIR /var/lib/$OCTO/rrd_png/
+$CHOWN /var/lib/$OCTO/rrd_png/
+$LN /var/lib/$OCTO/rrd_png/ /usr/share/$OCTO/rrd 
 
 #
 # Octopussy FIFO creation (for Rsyslog)
