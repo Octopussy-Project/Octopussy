@@ -33,7 +33,7 @@ Readonly my $UPDATE_URL => Octopussy::Parameter('url_world_stats_update');
 exit if (!Octopussy::Valid_User($PROG_NAME));
 
 my $conf = Octopussy::World_Stats::Configuration();
-if ($conf->{status} eq 'enabled')
+if ((defined $conf) && ($conf->{status} eq 'enabled'))
 {
     my ($id, $country) = ($conf->{id}, $conf->{country});
 
