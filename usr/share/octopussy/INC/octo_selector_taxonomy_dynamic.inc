@@ -1,23 +1,21 @@
 <%
 my %arg = @_;
-my $form_number = $arg{form_number} || 0;
 
 my @list = (defined $arg{any} ? ("-ANY-") : ());
 push(@list, Octopussy::Taxonomy::List());
 
-$Response->Include('AAT/INC/AAT_Selector.inc', 
-	name => ($arg{name} || "taxonomy"), list => \@list, 
-	selected => $arg{selected}, onchange => "refresh_selector_msgid();");
+my $str_any = AAT::Translation("-- ANY --");
 %>
-<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
+<select<%= $select_options %> id="taxonomy" name="taxonomy"
+        onchange="refresh_selector_msgid();">
+</select>
 <script type="text/javascript">
-var http_request_taxonomy = false;
 
 function refresh_selector_taxonomy()
 {
-	var selector_device = document.forms[<%= $form_number %>].device;
-  var selector_service = document.forms[<%= $form_number %>].service;
-	var selector_table = document.forms[<%= $form_number %>].table;
+ 	var selector_device = $('#device');
+  	var selector_service = $('#service');
+        var selector_table = $('#table');
 	var devices_str = '';
 	var services_str = '';
 	var table_str = '';
@@ -25,74 +23,55 @@ function refresh_selector_taxonomy()
 
 	if (selector_device || selector_service)
 	{
-		for (i = 0; i < selector_device.options.length; i++)
-    {
-      if (selector_device.options[i].selected == 1)
-        devices_str = devices_str + selector_device.options[i].value + ',';
-    }
-    for (i = 0; i < selector_service.options.length; i++)
-    {
-      if (selector_service.options[i].selected == 1)
-        services_str = services_str + selector_service.options[i].value + ',';
-    }
+	$('#device option:selected').each( function ()
+                { devices_str = devices_str + $(this).text() + ','; } );
+        $('#service option:selected').each( function ()
+                { services_str = services_str + $(this).text() + ','; } );
 	}
 	if (selector_table)
 	{
-		for (i = 0; i < selector_table.options.length; i++)
-    {
-      if (selector_table.options[i].selected == 1)
-        table_str = selector_table.options[i].value;
-    }
+	$('#table option:selected').each( function ()
+                { table_str = table_str + $(this).text() + ','; } );
 	}
-	http_request_taxonomy = HttpRequest();
-  if (!http_request_taxonomy)
-    { return false; }
-  http_request_taxonomy.onreadystatechange = print_selector_taxonomy;
+  
   var params = 'devices=' + encodeURIComponent(devices_str)
     + '&services=' + encodeURIComponent(services_str)
     + '&table=' + encodeURIComponent(table_str)
     + '&selected=' + encodeURIComponent(selected_str);
-  http_request_taxonomy.open('GET', 'ajax_list_taxonomy.asp?' + params, true);
-  http_request_taxonomy.send(null);	
+
+	$.get('ajax_list_taxonomy.asp?' + params, function(xml) { print_selector_taxonomy(xml); } );
 
 	return true;
 }
 
-function print_selector_taxonomy()
+function print_selector_taxonomy(xml)
 {
-	if (http_request_taxonomy.readyState == 4)
-  {
-    if (http_request_taxonomy.status == 200)
-    {
-      var xml =  http_request_taxonomy.responseXML;
-      var root = xml.documentElement;
-      var items = root.getElementsByTagName('item');
-			var selector_taxonomy = document.forms[<%= $form_number %>].taxonomy;
+	var xmldoc = $.parseXML(xml);
+        var items = $(xmldoc).find('item');
 
-			for (i = selector_taxonomy.options.length-1; i > 0; i--)
-        selector_taxonomy.options[i] = null;
-			var taxo = [];
-			var colors = [];
-			var selecteds = [];
-			for (i = 0; i < items.length; i++) 
-			{
-				var label = items[i].getAttribute('label');
-				taxo.push(label);
-				colors[label] = items[i].getAttribute('color');
-				selecteds[label] = items[i].getAttribute('selected');
-			}
-			count = 1;
-			for (e in taxo.sort())
-			{
-				var value = taxo[e];
-				selector_taxonomy.options[count] = new Option(value);
-				selector_taxonomy.options[count].style.color = colors[value];
-				if (selecteds[value] == 1)
-					selector_taxonomy.options[count].selected = 1;
-				count++;
-			}
-    }
-  }	
+	$('#taxonomy option').remove();
+	$('#taxonomy').append($('<option></option>').val('-ANY-').html('<%= $str_any %>'));
+
+	var taxo = [];
+	var colors = [];
+	var selecteds = [];
+
+	$(items).each( function (i)
+		{	
+		var label = items[i].getAttribute('label');
+		taxo.push(label);
+		colors[label] = items[i].getAttribute('color');
+		selecteds[label] = items[i].getAttribute('selected');
+		} );
+			
+	for (e in taxo.sort())
+	{
+		var value = taxo[e];
+		$('#taxonomy').append($('<option></option>').val(value).html(value));
+		$('#taxonomy option[value="' + value + '"]').css('color', colors[value]);
+		if (selecteds[value] == 1)
+			$('#taxonomy option[value="' + value + '"]').attr('selected', 'selected');
+	}
 }
 
 refresh_selector_taxonomy();

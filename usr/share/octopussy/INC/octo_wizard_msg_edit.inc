@@ -51,84 +51,61 @@ foreach my $f ((Octopussy::Table::Fields($table)))
 }%>
   </AAT:Box>
 </AAT:BoxCol>
-<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 <script type="text/javascript">
-var http_request_msgid = false;
-var http_request_pattern = false;
 
 function check_msgid(msgid)
 {
-  http_request_msgid = HttpRequest();
-  if (!http_request_msgid)
-    { return false; }
-  service = document.form.service.value;
- 	http_request_msgid.onreadystatechange = Print_Check_Result;
-  http_request_msgid.open('GET', "ajax_check_msgid.asp?service="
-    + encodeURIComponent(service) + "&msgid="
-    + encodeURIComponent(msgid.value), true);
-  http_request_msgid.send(null);
+  	service = document.form.service.value;
+
+	$.get('ajax_check_msgid.asp?service=' + encodeURIComponent(service) + "&msgid="
+    		+ encodeURIComponent(msgid.value), function(xml) { Print_Check_Result(xml); } );
+
+	return true;
 }
 
 function check_pattern(pattern)
 {
-  http_request_pattern = HttpRequest();
-  if (!http_request_pattern)
-    { return false; }
-  log = document.form.log.value;
-  http_request_pattern.onreadystatechange = Print_Check_Result;
-  http_request_pattern.open('GET', "ajax_check_pattern.asp?pattern="
-    + encodeURIComponent(pattern.value) + "&log=" 
-		+ encodeURIComponent(log), true);
-  http_request_pattern.send(null);
+  	log = document.form.log.value;
+  
+	$.get('ajax_check_pattern.asp?pattern=' + encodeURIComponent(pattern.value) + "&log="
+		+ encodeURIComponent(log), function(xml) { Print_Check_Result(xml); } );
+
+	return true;
 }
 
-function Print_Check_Result()
+function Print_Check_Result(xml)
 {
-	if (http_request_msgid.readyState == 4)
-  {
-    if (http_request_msgid.status == 200)
-    {
-      var xml =  http_request_msgid.responseXML;
-      var root = xml.documentElement;
-      var msgid_status = root.getElementsByTagName('msgid_status')[0].firstChild.data;
-			if (msgid_status == "NOK")
-      {
-        img_status_msgid.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_critical.png\" width=\"24\">";
-      }
-      else
-      {
-        img_status_msgid.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_ok.png\" width=\"24\">";
-      }
-    }
-  }
+	var xmldoc = $.parseXML(xml);
 
-  if (http_request_pattern.readyState == 4)
-  {
-    if (http_request_pattern.status == 200)
-    {
-      var xml =  http_request_pattern.responseXML;
-      var root = xml.documentElement;
-      var pattern_status = root.getElementsByTagName('pattern_status')[0].firstChild.data;
-      if (pattern_status == "NOK")
-      {
-				img_status_pattern.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_critical.png\" width=\"24\">";
-			}
-			else
-			{
-				img_status_pattern.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_ok.png\" width=\"24\">";
-			}
+	var msgid_status = $(xmldoc).find('msgid_status').text();
+	if (msgid_status == "NOK")
+      	{
+        	img_status_msgid.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_critical.png\" width=\"24\">";
+      	}
+      	else
+      	{
+        	img_status_msgid.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_ok.png\" width=\"24\">";
+      	}
 
-      if ((pattern_status == "OK") && (msgid_status == "OK")) 
-				{ document.form.submit.disabled = false; }
-			else
-				{ document.form.submit.disabled = true; }
+      	var pattern_status = $(xmldoc).find('pattern_status').text();
+      	if (pattern_status == "NOK")
+      	{
+		img_status_pattern.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_critical.png\" width=\"24\">";
+	}
+	else
+	{
+		img_status_pattern.innerHTML = "<img src=\"AAT/IMG/buttons/bt_msg_ok.png\" width=\"24\">";
+	}
 
-			var pattern_colored = document.getElementById("pattern_colored");
-      pattern_colored.innerHTML = root.getElementsByTagName('pattern_colored')[0].firstChild.data;
-      var color_match = document.getElementById("color_match");
-      color_match.innerHTML = root.getElementsByTagName('color_match')[0].firstChild.data;
-    }
-  }
+      	if ((pattern_status == "OK") && (msgid_status == "OK")) 
+		{ document.form.submit.disabled = false; }
+	else
+		{ document.form.submit.disabled = true; }
+
+	var pattern_colored = document.getElementById("pattern_colored");
+      	pattern_colored.innerHTML = $(xmldoc).find('pattern_colored').text();
+	var color_match = document.getElementById("color_match");
+      	color_match.innerHTML = $(xmldoc).find('color_match').text();
 }
 </script>
 <AAT:BoxCol>
@@ -167,7 +144,6 @@ function Print_Check_Result()
 	</AAT:BoxRow>
 	</AAT:Box>
 	</AAT:Form>
-
 </AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>

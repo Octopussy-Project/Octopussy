@@ -150,7 +150,6 @@ if ($Session->{extractor} eq "done")
 if ((NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
 {
 %><WebUI:PageTopRestricted title="_LOGS_VIEWER" onLoad="extract_progress()" />
-	<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 	<AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
 	<script type="text/javascript" src="INC/octo_restricted_logs_viewer_progressbar.js"> 
 	</script><%

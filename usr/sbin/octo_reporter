@@ -345,10 +345,8 @@ exit if (!Octopussy::Valid_User($PROG_NAME));
 $SIG{USR2} = \&End;
 
 my $status = GetOptions(
-    'h'                 => \$help,
-    'help'              => \$help,
-    'q'                 => \$quiet,
-    'quiet'             => \$quiet,
+    'h|help'          	=> \$help,
+    'q|quiet'           => \$quiet,
     'report=s'          => \$report,
     'devices=s'         => \@devices,
     'services=s'        => \@services,

@@ -88,8 +88,8 @@ my $url_dt = "./reports.asp?report=$report&query=$query";
 	</AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Selector_DateTime_Simple name="dt" start_year="2000" url="$url"
-    selected1="$arg{d1}/$arg{m1}/$arg{y1}/$arg{hour1}/$arg{min1}"
-    selected2="$arg{d2}/$arg{m2}/$arg{y2}/$arg{hour2}/$arg{min2}" />
+    selected1="$arg{date1} $arg{hour1}:$arg{min1}"
+    selected2="$arg{date2} $arg{hour2}:$arg{min2}" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

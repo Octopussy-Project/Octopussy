@@ -27,12 +27,12 @@ if (NOT_NULL(\@restricted_devices))
 else
 	{ @d_list = Octopussy::Device::List(); }
 %>
-<select<%= $select_options %> name="device"
+<select<%= $select_options %> id="device" name="device"
   onchange="refresh_selector_service();refresh_selector_loglevel();refresh_selector_taxonomy();refresh_selector_msgid();">
 <%
 $Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "-ANY-",
 	selected => ($selected{"-ANY-"} ? "selected" : ""), 
-	label => AAT::Translation("-ANY-"));
+	label => AAT::Translation("-- ANY --"));
 foreach my $dg (sort @dg_list)
 {
 	$Response->Include("AAT/INC/AAT_OptionSelector.inc", value => "group $dg",

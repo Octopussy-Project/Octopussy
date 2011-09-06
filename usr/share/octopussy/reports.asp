@@ -12,14 +12,12 @@ my $taxonomy = $qs->{taxonomy} || $f->{taxonomy};
 my $action = $qs->{action};
 my $sort = $qs->{reports_table_sort} || "name";
 
-my $d1 = $Session->{"dt1_day"}; 
-my $m1 = $Session->{"dt1_month"};
-my $y1 = $Session->{"dt1_year"};
+my $date1 = $Session->{"dt1_date"}; 
 my ($h1, $min1) = ($Session->{"dt1_hour"}, $Session->{"dt1_min"});
-my $d2 = $Session->{"dt2_day"};
-my $m2 = $Session->{"dt2_month"};
-my $y2 = $Session->{"dt2_year"};
+my $date2 = $Session->{"dt2_date"};
 my ($h2, $min2) = ($Session->{"dt2_hour"}, $Session->{"dt2_min"});
+$date1 =~ s/-//g;
+$date2 =~ s/-//g;
 
 if ((NOT_NULL($action)) && ($action eq "remove") 
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
@@ -45,14 +43,14 @@ elsif (NULL($f->{submit}))
 %><AAT:Inc file="octo_report_configuration" report="$report"
 	url="./reports.asp?device=$device&service=$service" 
 	device="$device" service="$service" 
-	d1="$d1" m1="$m1" y1="$y1" h1="$h1" min1="$min1" 
-	d2="$d2" m2="$m2" y2="$y2" h2="$h2" min2="$min2"/><%
+	date1="$date1" h1="$h1" min1="$min1" 
+	date2="$date2" h2="$h2" min2="$min2"/><%
 }
 else
 {
 	my $r = Octopussy::Report::Configuration($report);
-	my $start = "$y1$m1$d1$h1$min1";
-	my $finish = "$y2$m2$d2$h2$min2";
+	my $start = "$date1$h1$min1";
+	my $finish = "$date2$h2$min2";
 	my $recipients = "";
 	foreach my $rec (ARRAY($f->{mail_recipients}))
 	{
@@ -77,7 +75,8 @@ else
 	my $cmd = Octopussy::Report::CmdLine($device, $service, $loglevel, 
 		$taxonomy, $r, $start, $finish, $pid_param, 
 		\%mail_conf, \%ftp_conf, \%scp_conf, $Session->{AAT_LANGUAGE});
-	   
+
+	AAT::DEBUG($cmd);	   
 	my $cache = Octopussy::Cache::Init('octo_reporter');
     $cache->set("status_${pid_param}", "Starting... [0/1]");
     

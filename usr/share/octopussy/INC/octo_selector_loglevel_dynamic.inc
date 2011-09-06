@@ -1,98 +1,80 @@
 <%
 my %arg = @_;
-my $form_number = $arg{form_number} || 0;
 
 my @types = (defined $arg{any} ? Octopussy::Loglevel::List_And_Any(undef, undef)
 	: Octopussy::Loglevel::List(undef, undef));
-$Response->Include('AAT/INC/AAT_Selector.inc', name => ($arg{name} || "loglevel"), 
-	list => \@types, selected => $arg{selected}, onchange => "refresh_selector_msgid();");
+
+my $str_any = AAT::Translation("-- ANY --");
+#$Response->Include('AAT/INC/AAT_Selector.inc', name => ($arg{name} || "loglevel"), 
+#	list => \@types, selected => $arg{selected}, onchange => "refresh_selector_msgid();");
 %>
-<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
+<select<%= $select_options %> id="loglevel" name="loglevel"
+        onchange="refresh_selector_msgid();">
+</select>
 <script type="text/javascript">
-var http_request_loglevel = false;
 
 function refresh_selector_loglevel()
 {
-  var selector_device = document.forms[<%= $form_number %>].device;
-  var selector_service = document.forms[<%= $form_number %>].service;
-	var selector_table = document.forms[<%= $form_number %>].table;
+  var selector_device = $('#device');
+  var selector_service = $('#service');
+  var selector_table = $('#table');
   var devices_str = '';
   var services_str = '';
-	var table_str = '';
+  var table_str = '';
   var selected_str = '<%= $arg{selected} %>';
 
 	if (selector_device || selector_service)
-  {
-  	for (i = 0; i < selector_device.options.length; i++)
   	{
-    	if (selector_device.options[i].selected == 1)
-      	devices_str = devices_str + selector_device.options[i].value + ',';
-  	}
-  	for (i = 0; i < selector_service.options.length; i++)
-  	{
-    	if (selector_service.options[i].selected == 1)
-      	services_str = services_str + selector_service.options[i].value + ',';
-  	}
+	$('#device option:selected').each( function ()
+                { devices_str = devices_str + $(this).text() + ','; } );
+	$('#service option:selected').each( function ()
+                { services_str = services_str + $(this).text() + ','; } );
 	}
 	if (selector_table)
-  {
-    for (i = 0; i < selector_table.options.length; i++)
-    {
-      if (selector_table.options[i].selected == 1)
-        table_str = selector_table.options[i].value;
-    }
-  }
-  http_request_loglevel = HttpRequest();
-  if (!http_request_loglevel)
-    { return false; }
-  http_request_loglevel.onreadystatechange = print_selector_loglevel;
+  	{
+	$('#table option:selected').each( function ()
+                { table_str = table_str + $(this).text() + ','; } );
+  	}
+
   var params = 'devices=' + encodeURIComponent(devices_str) 
     + '&services=' + encodeURIComponent(services_str)
     + '&table=' + encodeURIComponent(table_str) 
     + '&selected=' + encodeURIComponent(selected_str);
-  http_request_loglevel.open('GET', 'ajax_list_loglevel.asp?' + params, true);
-  http_request_loglevel.send(null); 
 
+	$.get('ajax_list_loglevel.asp?' + params, function(xml) { print_selector_loglevel(xml); } );
+	
   return true;
 }
 
-function print_selector_loglevel()
+function print_selector_loglevel(xml)
 {
-  if (http_request_loglevel.readyState == 4)
-  {
-    if (http_request_loglevel.status == 200)
-    {
-      var xml =  http_request_loglevel.responseXML;
-      var root = xml.documentElement;
-      var items = root.getElementsByTagName('item');
-      var selector_loglevel = document.forms[<%= $form_number %>].loglevel;
+	var xmldoc = $.parseXML(xml);
+        var items = $(xmldoc).find('item');
 
-      for (i = selector_loglevel.options.length-1; i > 0; i--)
-        selector_loglevel.options[i] = null;
-			var levels = [];
-			var labels = [];
-      var colors = [];
-      var selecteds = [];
-      for (i = 0; i < items.length; i++) 
-      {
-				var level = items[i].getAttribute('level');
-        levels.push(level);
-				labels[level] = items[i].getAttribute('label');
-        colors[level] = items[i].getAttribute('color');
-        selecteds[level] = items[i].getAttribute('selected');
-      }
-    	count = 1;
-      for (e in levels.sort().reverse())
-      {
-				var value = levels[e];
-        selector_loglevel.options[count] = new Option(labels[value]);
-				selector_loglevel.options[count].style.color = colors[value];
-				if (selecteds[value] == 1)
-					selector_loglevel.options[count].selected = 1;
-        count++;
-			}
-    }
-  } 
+	$('#loglevel option').remove();
+	$('#loglevel').append($('<option></option>').val('-ANY-').html('<%= $str_any %>'));
+	var levels = [];
+	var labels = [];
+      	var colors = [];
+      	var selecteds = [];
+      
+	$(items).each( function (i)
+      		{
+		var level = items[i].getAttribute('level');
+        	levels.push(level);
+		labels[level] = items[i].getAttribute('label');
+        	colors[level] = items[i].getAttribute('color');
+        	selecteds[level] = items[i].getAttribute('selected');
+      		} );
+      
+	for (e in levels.sort().reverse())
+      	{
+		var value = levels[e];
+		$('#loglevel').append($('<option></option>').val(labels[value]).html(labels[value]));
+		$('#loglevel option[value="' + labels[value] + '"]').css('color', colors[value]); 
+		if (selecteds[value] == 1)
+			$('#loglevel option[value="' + labels[value] + '"]').attr('selected', 'selected');
+	}
 }
 
 refresh_selector_loglevel();

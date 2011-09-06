@@ -7,5 +7,5 @@ foreach my $k (keys %arg)
 my $value = $arg{value};
 $value =~ s/"/&quot;/g;
 %>
-<input type="text" name="<%= $arg{name} %>" 
+<input type="text" id="<%= $arg{name} %>" name="<%= $arg{name} %>" 
 <%= (defined $value ? " value=\"$value\"" : "") %> <%= $options %>>

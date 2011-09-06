@@ -4,12 +4,10 @@ my $loglevel = $Session->{loglevel};
 my $taxo = $Session->{taxonomy};
 my $msgid = $Session->{msgid};
 my $dt = $Session->{dt};
-my ($d1, $m1, $y1, $hour1, $min1) =
-  ($Session->{dt1_day}, $Session->{dt1_month}, $Session->{dt1_year},
-  $Session->{dt1_hour}, $Session->{dt1_min});
-my ($d2, $m2, $y2, $hour2, $min2) =
-  ($Session->{dt2_day}, $Session->{dt2_month}, $Session->{dt2_year},
-  $Session->{dt2_hour}, $Session->{dt2_min});
+my ($date1, $hour1, $min1) =
+  	($Session->{dt1_date}, $Session->{dt1_hour}, $Session->{dt1_min});
+my ($date2, $hour2, $min2) = 
+	($Session->{dt2_date}, $Session->{dt2_hour}, $Session->{dt2_min});
 my ($re_include, $re_include2, $re_include3) =
   ($Session->{re_include}, $Session->{re_include2}, $Session->{re_include3});
 my ($re_exclude, $re_exclude2, $re_exclude3) =
@@ -22,7 +20,7 @@ my @services = ARRAY($arg{services});
 #my @restricted_services = ARRAY($arg{restricted_services});
 my $unknown = (NOT_NULL($arg{unknown}) ? 1 : undef);
 %>
-<AAT:Form action="$arg{url}">
+<AAT:Form name="form_logs_viewer" action="$arg{url}">
 <AAT:Box align="C" title="_LOGS_VIEWER" icon="buttons/bt_search">
 <AAT:BoxRow>
   <AAT:BoxCol cspan="2">
@@ -65,9 +63,9 @@ my $unknown = (NOT_NULL($arg{unknown}) ? 1 : undef);
   </AAT:Box>
   </AAT:BoxCol>
   <AAT:BoxCol>
-  <AAT:Selector_DateTime_Simple name="dt" start_year="2000" url="$arg{url}"
+  <AAT:Selector_DateTime_Simple name="dt" url="$arg{url}"
     selected="$dt"
-    selected1="$d1/$m1/$y1/$hour1/$min1" selected2="$d2/$m2/$y2/$hour2/$min2" />
+    selected1="$date1 $hour1:$min1" selected2="$date2 $hour2:$min2" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>

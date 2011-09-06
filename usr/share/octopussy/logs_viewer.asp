@@ -14,16 +14,16 @@ my @services = ARRAY($Session->{service});
 
 my $page = $Session->{page} || 1;
 my $dt = $Session->{dt};
-my ($d1, $m1, $y1, $hour1, $min1) = 
-	($Session->{dt1_day}, $Session->{dt1_month}, $Session->{dt1_year}, 
-	$Session->{dt1_hour}, $Session->{dt1_min});
-my ($d2, $m2, $y2, $hour2, $min2) = 
-	($Session->{dt2_day}, $Session->{dt2_month}, $Session->{dt2_year},
-	$Session->{dt2_hour}, $Session->{dt2_min});
+my ($date1, $hour1, $min1) = 
+	($Session->{dt1_date}, $Session->{dt1_hour}, $Session->{dt1_min});
+my ($date2, $hour2, $min2) = 
+	($Session->{dt2_date}, $Session->{dt2_hour}, $Session->{dt2_min});
 my ($re_include, $re_include2, $re_include3) = 
 	($Session->{re_include}, $Session->{re_include2}, $Session->{re_include3});
 my ($re_exclude, $re_exclude2, $re_exclude3) = 
 	($Session->{re_exclude}, $Session->{re_exclude2}, $Session->{re_exclude3});
+$date1 =~ s/-//g;
+$date2 =~ s/-//g;
 
 if (NOT_NULL($Session->{cancel}))
 {
@@ -43,9 +43,9 @@ if (NOT_NULL($f->{template}))
 	{
   	Octopussy::Search_Template::New($login, { name => $f->{template},
   		device => \@devices, service => \@services,
-      loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
-      msgid => $Session->{msgid},
-      begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2", 
+      		loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
+      		msgid => $Session->{msgid},
+      		begin => "$date1$hour1$min1", end => "$date2$hour2$min2", 
   		re_include => $re_include, re_include2 => $re_include2,
   		re_include3 => $re_include3, re_exclude => $re_exclude,
   		re_exclude2 => $re_exclude2, re_exclude3 => $re_exclude3 } );		
@@ -67,23 +67,23 @@ if ((NULL($Session->{extractor})) &&
 		devices => \@devices, services =>\@services, 
 		loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
 		msgid => $Session->{msgid},
-		begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
+		begin => "$date1$hour1$min1", end => "$date2$hour2$min2",
 		includes => [$re_include, $re_include2, $re_include3],
 		excludes => [$re_exclude, $re_exclude2, $re_exclude3],
 		pid_param => $output, user => $Session->{AAT_LOGIN}, 
 		output => "$run_dir/logs_${login}_$output" } );
 	$Session->{export} = 
 		"logs_" . join("-", @devices) . "_" . join("-", @services)
-    	. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";
+    	. "_$date1$hour1$min1" . "-$date2$hour2$min2";
 	Octopussy::Commander("$cmd &");
 	$Session->{progress_current} = 0;
-  $Session->{progress_total} = 0;
-  $Session->{progress_match} = 0;	
+  	$Session->{progress_total} = 0;
+  	$Session->{progress_match} = 0;	
 	$Session->{page} = 1;
 	$Session->{progress_running} = $Session->{extracted} = $output;
 	
 	my $cache = Octopussy::Cache::Init('octo_extractor');
-    $cache->set("status_$output", "Starting... [0/1] [0]");
+    	$cache->set("status_$output", "Starting... [0/1] [0]");
     
 	$Response->Redirect("$url?extractor=$output");
 }
@@ -134,7 +134,6 @@ if ($Session->{extractor} eq "done")
 if ((NOT_NULL($Session->{extractor})) && ($Session->{extractor} ne "done"))
 {
 %><WebUI:PageTop title="_LOGS_VIEWER" onLoad="extract_progress()" />
-	<AAT:JS_Inc file="AAT/INC/AAT_ajax.js" />
 	<AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
 	<script type="text/javascript" src="INC/octo_logs_viewer_progressbar.js"> 
 	</script><%

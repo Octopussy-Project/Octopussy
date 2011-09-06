@@ -8,7 +8,7 @@ my %exclude = ();
 foreach my $e (ARRAY($arg{exclude}))
 	{ $exclude{$e} = 1; }
 %>
-<select <%= (defined $arg{multiple} ? "multiple " : "") %> <%= (defined $arg{size} ? "size=$arg{size} " : "") %> name="<%= $arg{name} %>"<%= (defined $arg{onchange} ? " onchange=\"$arg{onchange}\"" : "") %>>
+<select <%= (defined $arg{multiple} ? "multiple " : "") %> <%= (defined $arg{size} ? "size=$arg{size} " : "") %> id="<%= $arg{name} %>" name="<%= $arg{name} %>"<%= (defined $arg{onchange} ? " onchange=\"$arg{onchange}\"" : "") %>>
 <%	
 foreach my $e (ARRAY($arg{list}))
 {

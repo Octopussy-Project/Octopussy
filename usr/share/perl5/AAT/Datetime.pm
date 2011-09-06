@@ -183,14 +183,12 @@ Returns an Array of 2 hashrefs with the Begin & End of the Day
 sub Current_Day
 {
   my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
-  $hour =~ s/^0//;
-  $min  =~ s/^0//;
 
   my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
-  ($begin{hour}, $begin{min}) = (0, 0);
+  ($begin{hour}, $begin{min}) = ('00', '00');
   ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, $min);
+  ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -204,12 +202,12 @@ Returns an Array of 2 hashrefs with the Begin & End of the Hour
 sub Current_Hour
 {
   my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
-  $hour =~ s/^0//;
+  
   my (%begin, %end) = ((), ());
   ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
-  ($begin{hour}, $begin{min}) = ($hour, 0);
+  ($begin{hour}, $begin{min}) = (sprintf("%02d", $hour), '00');
   ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, $MAX_MINUTES);
+  ($end{hour}, $end{min}) = (sprintf("%02d", $hour), $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -223,14 +221,12 @@ Returns an Array of 2 hashrefs with the Begin & End of the Month
 sub Current_Month
 {
   my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
-  $hour =~ s/^0//;
-  $min  =~ s/^0//;
 
   my (%begin, %end) = ((), ());
-  ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, 1);
-  ($begin{hour}, $begin{min}) = (0, 0);
+  ($begin{year}, $begin{month}, $begin{day}) = ($year, sprintf("%02d", $month), '01');
+  ($begin{hour}, $begin{min}) = ('00', '00');
   ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, $min);
+  ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -246,16 +242,14 @@ sub Current_Week
   my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
   my $wday = WeekDay($year, $month, $day);
   $wday--;
-  $hour =~ s/^0//;
-  $min  =~ s/^0//;
   my $date = Date::Manip::DateCalc('today', "-${wday}day");
   my (%begin, %end) = ((), ());
-  ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, $min);
+  ($end{year}, $end{month}, $end{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
+  ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
   ($year, $month, $day, $hour, $min) =
     Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
-  ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
-  ($begin{hour}, $begin{min}) = (0, 0);
+  ($begin{year}, $begin{month}, $begin{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
+  ($begin{hour}, $begin{min}) = ('00', '00');
 
   return (\%begin, \%end);
 }
@@ -269,14 +263,12 @@ Returns an Array of 2 hashrefs with the Begin & End of the Year
 sub Current_Year
 {
   my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
-  $hour =~ s/^0//;
-  $min  =~ s/^0//;
 
   my (%begin, %end) = ((), ());
-  ($begin{year}, $begin{month}, $begin{day}) = ($year, 1, 1);
-  ($begin{hour}, $begin{min}) = (0, 0);
-  ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, $min);
+  ($begin{year}, $begin{month}, $begin{day}) = ($year, '01', '01');
+  ($begin{hour}, $begin{min}) = ('00', '00');
+  ($end{year}, $end{month}, $end{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
+  ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -294,9 +286,9 @@ sub Last_Day
     Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
 
   my (%begin, %end) = ((), ());
-  ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
-  ($begin{hour}, $begin{min}) = (0, 0);
-  ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
+  ($begin{year}, $begin{month}, $begin{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
+  ($begin{hour}, $begin{min}) = ('00', '00');
+  ($end{year}, $end{month}, $end{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
   ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
@@ -313,13 +305,12 @@ sub Last_Hour
   my $date = Date::Manip::DateCalc('now', '-1hour');
   my ($year, $month, $day, $hour, $min) =
     Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
-  $hour =~ s/^0//;
 
   my (%begin, %end) = ((), ());
-  ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
-  ($begin{hour}, $begin{min}) = ($hour, 0);
-  ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
-  ($end{hour}, $end{min}) = ($hour, $MAX_MINUTES);
+  ($begin{year}, $begin{month}, $begin{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
+  ($begin{hour}, $begin{min}) = (sprintf("%02d", $hour), '00');
+  ($end{year}, $end{month}, $end{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
+  ($end{hour}, $end{min}) = (sprintf("%02d", $hour), $MAX_MINUTES);
 
   return (\%begin, \%end);
 }
@@ -337,10 +328,10 @@ sub Last_Month
     Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
 
   my (%begin, %end) = ((), ());
-  ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, 1);
-  ($begin{hour}, $begin{min}) = (0, 0);
+  ($begin{year}, $begin{month}, $begin{day}) = ($year, sprintf("%02d", $month), '01');
+  ($begin{hour}, $begin{min}) = ('00', '00');
   ($end{year}, $end{month}, $end{day}) =
-    ($year, $month, Month_Nb_Days($year, $month));
+    ($year, sprintf("%02d", $month), Month_Nb_Days($year, $month));
   ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
@@ -361,12 +352,12 @@ sub Last_Week
   my (%begin, %end) = ((), ());
   ($year, $month, $day, $hour, $min) =
     Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
-  ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
-  ($begin{hour}, $begin{min}) = (0, 0);
+  ($begin{year}, $begin{month}, $begin{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
+  ($begin{hour}, $begin{min}) = ('00', '00');
   $date = Date::Manip::DateCalc($date, '+6days');
   ($year, $month, $day, $hour, $min) =
     Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
-  ($end{year}, $end{month}, $end{day}) = ($year, $month, $day);
+  ($end{year}, $end{month}, $end{day}) = ($year, sprintf("%02d", $month), sprintf("%02d", $day));
   ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
   return (\%begin, \%end);
@@ -383,8 +374,8 @@ sub Last_Year
   my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
 
   my (%begin, %end) = ((), ());
-  ($begin{year}, $begin{month}, $begin{day}) = ($year - 1, 1, 1);
-  ($begin{hour}, $begin{min}) = (0, 0);
+  ($begin{year}, $begin{month}, $begin{day}) = ($year - 1, '01', '01');
+  ($begin{hour}, $begin{min}) = ('00', '00');
   ($end{year}, $end{month}, $end{day}) = ($year - 1, $MAX_MONTH, $MAX_MONTHDAY);
   ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
