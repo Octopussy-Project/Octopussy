@@ -1,8 +1,16 @@
 octopussy (1.0rc5) unstable; urgency=medium
 
+  * Starting JQueryfication of the Web Interface
+  * Modification of Debian/Ubuntu apache2.conf file to use Snakeoil SSL 
+    Certificate in order to simplify Octopussy installation
+  * Bugfix #3402213: Fix error message in octo_world_stats
+  * Bugfix #3391894: Ability to enable/disable 'Automatic Device Creation'
+  * Feature Request #3402215: Option to quiet cron tasks
+  * Minor Bugfixes
+  * Fixing Debian FHS policy
   * Fixing lintian issues
 
- -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 02 Aug 2011 23:45:00 +0100
+ -- Sebastien Thebert <octo.devel@gmail.com>  Sat, 10 Sep 2011 00:00:00 +0100
 
 octopussy (1.0rc4) unstable; urgency=high
 
