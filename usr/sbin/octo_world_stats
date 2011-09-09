@@ -14,6 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
+use Getopt::Long;
 use POSIX qw(strftime);
 use URI::Escape;
 
@@ -30,8 +31,17 @@ Readonly my $APPLI      => 'Octopussy';
 Readonly my $PROG_NAME  => 'octo_world_stats';
 Readonly my $UPDATE_URL => Octopussy::Parameter('url_world_stats_update');
 
+my $quiet;
+
+#
+# MAIN
+#
 exit if (!Octopussy::Valid_User($PROG_NAME));
 
+my $status = GetOptions(
+    'q|quiet'           => \$quiet,
+    );
+    
 my $conf = Octopussy::World_Stats::Configuration();
 if ((defined $conf) && ($conf->{status} eq 'enabled'))
 {
@@ -69,7 +79,7 @@ if ((defined $conf) && ($conf->{status} eq 'enabled'))
 }
 else
 {
-    print "World Statistics are disabled !\n";
+    print "World Statistics are disabled !\n"   if (! $quiet);
 }
 
 =head1 AUTHOR

@@ -83,7 +83,7 @@ $FIND $DIR_PERL/Octopussy/ -type d -exec $CHMOD_X {} \;
 $ECHO "#!/bin/sh" > $CRON_FILE
 $ECHO "" >> $CRON_FILE
 $ECHO "test -x /usr/sbin/octo_logrotate || exit 0" >> $CRON_FILE
-$ECHO "sudo -u octopussy /usr/sbin/octo_logrotate" >> $CRON_FILE
+$ECHO "sudo -u octopussy /usr/sbin/octo_logrotate --quiet" >> $CRON_FILE
 $CHMOD_X $CRON_FILE
 
 #
