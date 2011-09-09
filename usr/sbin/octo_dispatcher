@@ -71,6 +71,12 @@ sub Init
     return (scalar @devices);
 }
 
+=head2 Stop()
+
+Stops octo_dispatcher
+
+=cut
+
 sub Stop
 {
     $exit_request = 1;
@@ -90,18 +96,27 @@ sub Handle_Dir
 
     if (!defined $dir_device{$device})
     {
-        if (!-f Octopussy::Device::Filename($device))
+    	my $param_auto_create = Octopussy::Parameter('automatic_device_creation');
+        if ((defined $param_auto_create) && ($param_auto_create =~ /^Disabled$/i))
         {
-            Octopussy::Device::New(
-                {
-                    name        => $device,
-                    address     => $device,
-                    description => "New Device ($year/$month/$day $hour:$min) !"
-                }
-            );
-            $device_type{$device} = Octopussy::Parameter('devicetype');
-            $dir_device{$device} =
-                Octopussy::Storage::Directory_Incoming($device);
+            AAT::Syslog::Message('octo_dispatcher', 'LOGS_DROPPED_BECAUSE_AUTO_DEVICE_CREATION_DISABLED', $device);
+        	return (undef);
+        }
+        else
+        {
+            if (!-f Octopussy::Device::Filename($device))
+            {
+                Octopussy::Device::New(
+                    {
+                        name        => $device,
+                        address     => $device,
+                        description => "New Device ($year/$month/$day $hour:$min) !"
+                    }
+                );
+                $device_type{$device} = Octopussy::Parameter('devicetype');
+                $dir_device{$device} =
+                    Octopussy::Storage::Directory_Incoming($device);
+            }
         }
     }
     my $dir_incoming =
@@ -124,27 +139,30 @@ sub Write_Logs_10secs
     foreach my $device (keys %logs)
     {
         my $dir  = Handle_Dir($device, $y, $m, $d, $hour, $min);
-        my $file = "$dir/msg_${hour}h${min}_$mod.log";
-        my $i    = 0;
-        if (defined open my $FILE, '>>', $file)
+        if (defined $dir)
         {
-            foreach my $l (@{$logs{$device}})
+        	my $file = "$dir/msg_${hour}h${min}_$mod.log";
+            my $i    = 0;
+            if (defined open my $FILE, '>>', $file)
             {
-                print {$FILE} "$l\n";
-                $i++;
+                foreach my $l (@{$logs{$device}})
+                {
+                    print {$FILE} "$l\n";
+                    $i++;
+                }
+                close $FILE;
+                $nb_events{$device} += $i;
+                $dtype_stats{$device_type{$device}} += $i;
+                Octopussy::FS::Chown($file) if (-f $file);
             }
-            close $FILE;
-            $nb_events{$device} += $i;
-            $dtype_stats{$device_type{$device}} += $i;
-            Octopussy::FS::Chown($file) if (-f $file);
+            else
+            {
+                AAT::Syslog::Message('octo_dispatcher', 'UNABLE_OPEN_FILE', $file);
+            }
+            delete $logs{$device};
         }
-        else
-        {
-            AAT::Syslog::Message('octo_dispatcher', 'UNABLE_OPEN_FILE', $file);
-        }
-        delete $logs{$device};
     }
-
+    
     return (1);
 }
 

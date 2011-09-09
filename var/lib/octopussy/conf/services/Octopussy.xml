@@ -377,4 +377,10 @@
            rank="062"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Octopussy:automatic_device_creation_disabled"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Logs from Device '.+' have been dropped because 'Automatic Device Creation' is disabled.&quot;):msg@&gt;"
+           rank="063"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>

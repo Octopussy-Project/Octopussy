@@ -27,6 +27,9 @@
 	
 	<log mid="LOG_SEARCH"
 		message="Logs Search on Device[%%ARG1%%] Service[%%ARG2%%] Period[%%ARG3%%] by %%ARG5%% takes %%ARG4%% seconds." />
+	
+	<log mid="LOGS_DROPPED_BECAUSE_AUTO_DEVICE_CREATION_DISABLED"
+	   message="Logs from Device '%%ARG1%%' have been dropped because 'Automatic Device Creation' is disabled." /> 
 
   <log mid="PARSER_DEVICE_PARSING_DURATION"
     message="Device: %%ARG1%% Date: %%ARG2%% Time: %%ARG3%% seconds" />
