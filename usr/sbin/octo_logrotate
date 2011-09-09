@@ -39,7 +39,7 @@ sub Get_Directories
 {
     my $dir = shift;
     opendir DIR, $dir;
-    my @dirs = grep { !/^\./ } readdir DIR;
+    my @dirs = grep { !/^Incoming$/} grep { !/^Unknown$/ } grep { !/^\./ } readdir DIR;
     closedir DIR;
 
     return (@dirs);
