@@ -1,12 +1,6 @@
 <%
 my %arg = @_;
-
-my @types = (defined $arg{any} ? Octopussy::Loglevel::List_And_Any(undef, undef)
-	: Octopussy::Loglevel::List(undef, undef));
-
 my $str_any = AAT::Translation("-- ANY --");
-#$Response->Include('AAT/INC/AAT_Selector.inc', name => ($arg{name} || "loglevel"), 
-#	list => \@types, selected => $arg{selected}, onchange => "refresh_selector_msgid();");
 %>
 <select<%= $select_options %> id="loglevel" name="loglevel"
         onchange="refresh_selector_msgid();">
@@ -49,14 +43,14 @@ function refresh_selector_loglevel()
 function print_selector_loglevel(xml)
 {
 	var xmldoc = $.parseXML(xml);
-        var items = $(xmldoc).find('item');
+    var items = $(xmldoc).find('item');
 
 	$('#loglevel option').remove();
 	$('#loglevel').append($('<option></option>').val('-ANY-').html('<%= $str_any %>'));
 	var levels = [];
 	var labels = [];
-      	var colors = [];
-      	var selecteds = [];
+    var colors = [];
+    var selecteds = [];
       
 	$(items).each( function (i)
       		{

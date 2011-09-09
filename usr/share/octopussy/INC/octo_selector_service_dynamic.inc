@@ -51,7 +51,6 @@ if (defined $arg{unknown})
 
 function refresh_selector_service()
 {
-  var selector_device = $('#device');
   var devices_str = '';
   var selected_str = '';
 
