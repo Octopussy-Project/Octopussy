@@ -44,7 +44,7 @@
 		<file name="device_models" value="/var/lib/octopussy/conf/device_models.xml" />
 		<file name="devicegroups" value="/var/lib/octopussy/conf/devicegroups.xml" />
 		<file name="dialogs" value="/var/lib/octopussy/conf/dialogs.xml" />
-    <file name="fifo" value="/var/spool/octopussy/octo_fifo" />
+        <file name="fifo" value="/var/spool/octopussy/octo_fifo" />
 		<file name="ldap" value="/var/lib/octopussy/conf/ldap.xml" />
 		<file name="locations" value="/var/lib/octopussy/conf/locations.xml" />
 		<file name="loglevel" value="/var/lib/octopussy/conf/loglevel.xml" />
@@ -60,12 +60,14 @@
 		<file name="user_roles" value="/var/lib/octopussy/conf/user_roles.xml" />
 		<file name="users" value="/var/lib/octopussy/conf/users.xml" />
 		<file name="webservices" value="/var/lib/octopussy/conf/webservices.xml" />
-    <file name="world_stats" value="/var/lib/octopussy/conf/world_stats.xml" />
+        <file name="world_stats" value="/var/lib/octopussy/conf/world_stats.xml" />
 		<file name="xmpp" value="/var/lib/octopussy/conf/xmpp.xml" />
-    <file name="zabbix" value="/var/lib/octopussy/conf/zabbix.xml" />
+        <file name="zabbix" value="/var/lib/octopussy/conf/zabbix.xml" />
 
+        <parameter name="automatic_device_creation" value="enabled" />
 		<parameter name="devicetype" value="Unknown" />
-    <parameter name="devicemodel" value="Unknown" />
+        <parameter name="devicemodel" value="Unknown" />
+    
     <parameter name="logrotate" value="90" />
     <parameter name="max_alerts" value="100" />
     <parameter name="msgid_history" value="10" />
