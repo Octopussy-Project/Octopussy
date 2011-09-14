@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="NetFlow Network Protocol"
+                   name="NetFlow"
+                   nb_messages="002"
+                   version="201109150002"
+                   website="http://en.wikipedia.org/wiki/Netflow">
+  <message loglevel="Information"
+           msg_id="NetFlow:flow_capture_stat"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; flow-capture[&lt;@PID:pid@&gt;]: STAT: now=&lt;@SECONDS:now@&gt; startup=&lt;@SECONDS:startup@&gt; src_ip=&lt;@IP_ADDR:src_addr@&gt; dst_ip=&lt;@IP_ADDR:dst_addr@&gt; d_ver=&lt;@NUMBER:d_version@&gt; pkts=&lt;@NUMBER:pkts@&gt; flows=&lt;@NUMBER:flows@&gt; lost=&lt;@NUMBER:lost@&gt; reset=&lt;@NUMBER:reset@&gt; filter_drops=&lt;@NUMBER:filter_drops@&gt;"
+           rank="001"
+           table="NetFlow_Traffic"
+           taxonomy="Network" />
+  <message loglevel="Notice"
+           msg_id="NetFlow:flow_capture_stat_ftpdu_seq_check"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; flow-capture[&lt;@PID:pid@&gt;]: ftpdu_seq_check(): src_ip=&lt;@IP_ADDR:src_addr@&gt; dst_ip=&lt;@IP_ADDR:dst_addr@&gt; d_version=&lt;@NUMBER:d_version@&gt; expecting=&lt;@NUMBER:expecting@&gt; received=&lt;@NUMBER:received@&gt; lost=&lt;@NUMBER:lost@&gt;"
+           rank="002"
+           table="NetFlow_Traffic"
+           taxonomy="Network" />
+</octopussy_service>

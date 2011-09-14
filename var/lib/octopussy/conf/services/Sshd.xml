@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="SSH Daemon Service"
                    name="Sshd"
-                   nb_messages="086"
-                   version="201001180001">
+                   nb_messages="087"
+                   version="201109150001">
   <message loglevel="Information"
            msg_id="Sshd:session_for_user"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;ssh\S+&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;.*session .+ for user .+&quot;):msg@&gt;"
@@ -519,4 +519,10 @@
            rank="086"
            table="Message"
            taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Sshd:pam_auth_error"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;sshd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;error: PAM: authentication error for .+ from&quot;):msg@&gt; &lt;@IP_ADDR:client_ip@&gt;"
+           rank="087"
+           table="Message"
+           taxonomy="Auth.Failure" />
 </octopussy_service>

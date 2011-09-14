@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_table description="Generic NetFlow Traffic Table"
+                 name="NetFlow_Traffic"
+                 version="201109010001">
+  <field title="datetime"
+         type="DATETIME" />
+  <field title="device"
+         type="WORD" />
+  <field title="pid"
+         type="PID" />
+  <field title="src_addr"
+         type="IP_ADDR" />
+  <field title="dst_addr"
+         type="IP_ADDR" />
+  <field title="d_version"
+         type="NUMBER" />
+  <field title="pkts"
+         type="NUMBER" />
+  <field title="flows"
+         type="NUMBER" />
+  <field title="lost"
+         type="NUMBER" />
+  <field title="reset"
+         type="NUMBER" />
+  <field title="filter_drops"
+         type="NUMBER" />
+  <field title="now"
+         type="SECONDS" />
+  <field title="startup"
+         type="SECONDS" />
+  <field title="expecting"
+         type="NUMBER" />
+  <field title="received"
+         type="NUMBER" />
+</octopussy_table>
