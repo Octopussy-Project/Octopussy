@@ -1,4 +1,4 @@
-#! /usr/bin/perl -w
+#!/usr/bin/perl
 =head1 NAME
 
 check_octopussy.pl - Nagios Plugin for Octopussy (www.8pussy.org)
@@ -21,9 +21,13 @@ check_octopussy.pl is the Nagios Plugin to check that Octopussy is working well
 =cut
 
 use strict;
+use warnings;
+
 use Getopt::Long;
-Getopt::Long::Configure('bundling');
+
 use Octopussy;
+use Octopussy::Device;
+use Octopussy::Stats;
 
 use constant STATE_OK => 0;
 use constant STATE_WARNING => 1;
@@ -31,9 +35,8 @@ use constant STATE_CRITICAL => 2;
 use constant STATE_UNKNOWN => 3;
 
 my $PROG_NAME = "check_octopussy.pl";
-my $VERSION = "0.3";
+my $VERSION = "0.4";
 
-my ($help, $opt_all, $opt_process, $opt_parser, $opt_partition);
 my $state = STATE_OK;
 my $out = undef;
 
@@ -44,9 +47,10 @@ my $out = undef;
 Prints Help about the program
 
 =cut
+
 sub Help()
 {
-my $help_str = <<EOF;
+	my $help_str = <<EOF;
 
   $PROG_NAME ($VERSION)
 
@@ -62,17 +66,20 @@ my $help_str = <<EOF;
 EOF
 
 	print $help_str;
+
 	exit(STATE_UNKNOWN);
 }
 
 =head2 Check_Process()
 
-Checks that octo_dispatcher,  octo_scheduler & syslog-ng are running
+Checks that octo_dispatcher,  octo_scheduler & syslog backend are running
 
 =cut
+
 sub Check_Process()
 {
 	my $localState = STATE_OK;
+
 	my %proc = Octopussy::Process_Status();
 	my @processNotRunning = ();
 	foreach my $k (sort keys %proc)
@@ -96,9 +103,11 @@ sub Check_Process()
 Checks parsers states
 
 =cut
+
 sub Check_Parsers_States()
 {
 	my $localState = STATE_OK;
+
 	my @dconfs = Octopussy::Device::Configurations();
 	my @parserNotRunning = ();
 	my %parserWrongNumber = ();
@@ -148,6 +157,7 @@ sub Check_Parsers_States()
 Checks partitions space
 
 =cut
+
 sub Check_Partitions()
 {
 	my $localState = STATE_OK;
@@ -186,16 +196,21 @@ sub Check_Partitions()
 
 ###########################################################
 
-my $status = GetOptions(
-  "h" => \$help, "help" => \$help, "all" => \$opt_all,
-	"process" => \$opt_process, "parser" => \$opt_parser, 
-	"partition" => \$opt_partition);
-Help()	if ((! $status) || ($help) || 
-	((! $opt_all) && (! $opt_process) && (! $opt_parser) && (! $opt_partition)));
+my %option = ();
+my $status = GetOptions(\%option, 
+	'h', 'help', 
+	'all', 
+	'process', 
+	'parser', 
+	'partition'
+	);
 
-Check_Process()	if ($opt_process || $opt_all);
-Check_Parsers_States() if ($opt_parser || $opt_all);
-Check_Partitions() if ($opt_partition || $opt_all);
+Help()	if ((! $status) || ($option{h}) || ($option{help}) || 
+	((! $option{all}) && (! $option{process}) && (! $option{parser}) && (! $option{partition})));
+
+Check_Process()	if ($option{process} || $option{all});
+Check_Parsers_States() if ($option{parser} || $option{all});
+Check_Partitions() if ($option{partition} || $option{all});
 
 print "Octopussy $out\n";
 
