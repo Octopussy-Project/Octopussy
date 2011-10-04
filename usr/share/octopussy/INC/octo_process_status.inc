@@ -12,6 +12,8 @@ foreach my $k (sort keys %proc)
 		</AAT:BoxCol>
 	</AAT:BoxRow><%
 }
+if ($Session->{AAT_ROLE} =~ /admin/i)
+{
 %>
   <AAT:BoxRow><AAT:BoxCol><hr></AAT:BoxCol></AAT:BoxRow>
 	<AAT:BoxRow>
@@ -19,5 +21,7 @@ foreach my $k (sort keys %proc)
 			<AAT:Label value="_MSG_RESTART_OCTOPUSSY" style="B" 
 				link="./index.asp?action=restart" />
 		</AAT:BoxCol>
-	</AAT:BoxRow>
+	</AAT:BoxRow><% 
+}
+%>
 </AAT:Box>

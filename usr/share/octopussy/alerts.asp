@@ -12,7 +12,7 @@ if (NULL($alert))
 else
 {
   	if ((!-f Octopussy::Alert::Filename($alert)) 
-			&& ($Session->{AAT_ROLE} !~ /ro/i))
+			&& ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 	{
 		my @devices = ARRAY($f->{device});
   		my @services = ARRAY($f->{service});
@@ -46,7 +46,7 @@ else
 		}
   	}
 
-  	if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /admin/i))
+  	if (($action eq "remove") && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
   	{
     	Octopussy::Alert::Remove($alert);
 		AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Alert", $alert, $Session->{AAT_LOGIN});

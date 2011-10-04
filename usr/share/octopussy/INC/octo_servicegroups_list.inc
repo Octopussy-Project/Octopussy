@@ -20,7 +20,6 @@ foreach my $sg (Octopussy::ServiceGroup::Configurations($sort))
 	foreach my $sgc (ARRAY($sg->{service}))
 		{ $services_list .= "$sgc->{sid}, "; }
 	$services_list =~ s/, $//;
-	$services_list =~ s/^(.{60})(.*)/$1\.\.\./;
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
 	$i++;
 %><AAT:BoxRow class="$class">
@@ -41,7 +40,7 @@ foreach my $sg (Octopussy::ServiceGroup::Configurations($sort))
 	<AAT:BoxCol><AAT:Entry name="servicegroup" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Entry name="sg_description" /></AAT:BoxCol>
 	<AAT:BoxCol align="C">
-	<AAT:Inc file="selector_multi_service" name="services" size="2" />
+	<AAT:Inc file="selector_multi_service" name="services" size="10" />
 	</AAT:BoxCol>
 	<AAT:BoxCol cspan="2" align="C">
 	<AAT:Form_Submit value="_NEW_SERVICEGROUP" /></AAT:BoxCol>

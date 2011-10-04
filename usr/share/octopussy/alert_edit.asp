@@ -3,7 +3,7 @@
 my $alert = $Request->QueryString("alert");
 my $f = $Request->Form();
 
-if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
+if ((defined $f->{modify}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 {
 	my @devices = ARRAY($f->{device});
 	my @services = ARRAY($f->{service});

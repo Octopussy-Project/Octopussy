@@ -35,19 +35,30 @@ foreach my $a (Octopussy::Alert::Configurations($sort))
 	<AAT:BoxCol><AAT:Label value="$level" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$status" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Button name="edit" tooltip="_EDIT"
-    link="./alert_edit.asp?alert=$name_url" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Button name="remove" tooltip="_REMOVE"
-  	popup_link="./dialog.asp?id=delete_alert&arg1=$name_url&action=remove" />
-	</AAT:BoxCol>
+	<% 
+	if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+	{%>
+		<AAT:BoxCol><AAT:Button name="edit" tooltip="_EDIT"
+    		link="./alert_edit.asp?alert=$name_url" /></AAT:BoxCol>
+		<AAT:BoxCol><AAT:Button name="remove" tooltip="_REMOVE"
+  		popup_link="./dialog.asp?id=delete_alert&arg1=$name_url&action=remove" />
+		</AAT:BoxCol><%
+	}
+	else
+	{
+		%><AAT:BoxCol></AAT:BoxCol><AAT:BoxCol></AAT:BoxCol><%
+	}%>
 </AAT:BoxRow><%
 }
 %>
 </AAT:Box>
 <%
-my @items = ( 
+if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+{
+	my @items = ( 
 	{ label => "_MSG_DYNAMIC_ALERT_CREATION", 
 		link => "./alert_dynamic_creation.asp" } ); 
 #	{ label => "_MSG_STATIC_ALERT_CREATION" } );
+	%><AAT:Menu align="C" items=\@items /><%
+}
 %>
-<AAT:Menu align="C" items=\@items />
