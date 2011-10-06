@@ -74,24 +74,40 @@ foreach my $d (@dconfs)
 	<AAT:BoxCol><%= $d->{model} %></AAT:BoxCol>
   <AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$status" color="$status_color" /></AAT:BoxCol>
+	<%
+	if ($role =~ /(admin|rw)/i)
+	{%>
 	<AAT:BoxCol>
 	<AAT:Button name="$bt1" tooltip="$tt1" popup_link="$link1" /></AAT:BoxCol>
-  <AAT:BoxCol>
-	<AAT:Button name="$bt2" tooltip="$tt2" popup_link="$link2" /></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Button name="service" tooltip="_SERVICES"
+  	<AAT:BoxCol>
+	<AAT:Button name="$bt2" tooltip="$tt2" popup_link="$link2" /></AAT:BoxCol><%
+	}
+	else
+	{%>
+	<AAT:BoxCol></AAT:BoxCol><AAT:BoxCol></AAT:BoxCol><%
+	}%>
+  	<AAT:BoxCol><AAT:Button name="service" tooltip="_SERVICES"
 		link="./device_services.asp?device=$name" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Button name="storage" tooltip="_STORAGES"     
 		link="./device_storages.asp?device=$name" /></AAT:BoxCol> 
 	<AAT:BoxCol><AAT:Button name="edit" tooltip="_EDIT"
-    link="./device_edit.asp?device=$name" /></AAT:BoxCol>
+    		link="./device_edit.asp?device=$name" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Button name="report" tooltip="_DASHBOARD"
-    link="./device_dashboard.asp?device=$name" /></AAT:BoxCol>
+    		link="./device_dashboard.asp?device=$name" /></AAT:BoxCol>
+	<%
+        if ($role =~ /(admin|rw)/i)
+        {%>
 	<AAT:BoxCol>
 	<AAT:Button name="remove" tooltip="_REMOVE" popup_link="$remove_link" />
-	</AAT:BoxCol>
+	</AAT:BoxCol><%
+	}
+	else
+        {%>
+        <AAT:BoxCol></AAT:BoxCol><%
+        }%>
 	</AAT:BoxRow><%
 }
-if ($role !~ /ro/i)
+if ($role =~ /(admin|rw)/i)
 {
 	my @log_type = ("asynchronous", "syslog");
 %>

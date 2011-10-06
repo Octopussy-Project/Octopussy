@@ -655,6 +655,7 @@ Returns Device Models List
 sub Models
 {
   my $type = shift;
+	$type ||= 'Unknown';
   my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEMODELS));
   my @list = ();
 

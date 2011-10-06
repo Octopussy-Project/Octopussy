@@ -4,7 +4,7 @@ my $f = $Request->Form();
 my $device = $f->{device} || $Request->QueryString("device");
 my $dtype = $Request->QueryString("device_type");
 
-if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
+if ((defined $f->{modify}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 {
 	my ($city, $building, $room, $rack) = 
     split(/,/, Encode::decode_utf8($f->{"location"}));

@@ -3,7 +3,7 @@
 my $device = $Request->QueryString("device");
 my $f = $Request->Form();
 
-if ($Session->{AAT_ROLE} !~ /ro/)
+if ($Session->{AAT_ROLE} =~ /(admin|rw)/)
 {
 	if ($f->{action} eq "update")
 	{

@@ -42,11 +42,11 @@ my $total_messages = 0;
 foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
 {
 	my $id = $conf->{sid};
-  my $serv_conf = Octopussy::Service::Configuration($id);
-  my $statistics_status = $conf->{statistics};
-  my $s_str = ($statistics_status ? "Enabled" : "Disabled");
-  my $s_action = ($statistics_status ? "disable" : "enable");
-  my $nb_messages = scalar(@{$serv_conf->{message}}); 
+	my $serv_conf = Octopussy::Service::Configuration($id);
+  	my $statistics_status = $conf->{statistics};
+  	my $s_str = ($statistics_status ? "Enabled" : "Disabled");
+  	my $s_action = ($statistics_status ? "disable" : "enable");
+  	my $nb_messages = scalar(@{$serv_conf->{message}}); 
 	my $rank = $conf->{rank};
 	my $serv_str = "$id " . (defined $stats{$id} ? "($stats{$id})" : "(0%)");
 	my $dialog = "./dialog.asp?id=delete_device_service&arg1=$id&arg2=$device"; 
@@ -57,7 +57,7 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
 	<AAT:Label value="$serv_str" link="$url&service=$id&action=show" />
 	</AAT:BoxCol>
   <%
-	if ($role !~ /ro/i)
+	if ($role =~ /(admin|rw)/i)
   {
     %><AAT:BoxCol align="C">
     <AAT:Label value="$s_str" link="$url&service=$id&action=$s_action"/>
@@ -103,7 +103,7 @@ my $msg_str = "$nb_services " . AAT::Translation("_SERVICES")
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
-if ($role !~ /ro/i)
+if ($role =~ /(admin|rw)/i)
 {%>
 <AAT:Form action="$url">
 <AAT:Form_Hidden name="device" value="$device" />

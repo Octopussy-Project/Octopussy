@@ -12,7 +12,7 @@ $Session->{AAT_PAGE_CURRENT} =
 
 if (NULL($device))
 {
-	if ($action eq "parse_reload_all")
+	if (($action eq "parse_reload_all") && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
   {
   	my @dconfs = Octopussy::Device::Configurations();
    	foreach my $dc (@dconfs)
@@ -38,7 +38,7 @@ if (NULL($device))
 else
 {
 	if ((NOT_NULL($device) && (!-f Octopussy::Device::Filename($device)))
-			&& ($Session->{AAT_ROLE} !~ /ro/i))
+			&& ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 	{
 		Octopussy::Device::New({ name => $device, address => $f->{address}, 
       description => Encode::decode_utf8($f->{description}),
@@ -49,7 +49,7 @@ else
 	}
 	$Response->Redirect("./device_services.asp?device=$device")
 		if (NULL($action));
-	if ($Session->{AAT_ROLE} !~ /ro/i)
+	if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
 	{
 		if ($action eq "remove")
 		{
