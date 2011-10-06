@@ -7,7 +7,7 @@ my $status = $f->{status} || $Request->QueryString("status") || "Opened";
 my $comment = $f->{comment};
 my $sort = $Request->QueryString("sort");
 my $sall = $f->{selectall};
-if (defined $f->{edit_status})
+if ((defined $f->{edit_status}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 {
 	my $form_fields = $Request->Form();
 	foreach my $k (keys %{$form_fields})

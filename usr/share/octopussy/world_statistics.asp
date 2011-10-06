@@ -2,7 +2,7 @@
 <%
 my $url = Octopussy::Parameter("url_world_stats_show");
 my $f = $Request->Form();
-if (defined $f->{submit})
+if ((defined $f->{submit}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 {
   my $id = Octopussy::World_Stats::ID();
   my $status = (NOT_NULL($f->{send_data}) ? "enabled" : "disabled" );
@@ -30,6 +30,10 @@ It's only anonymous data:
   <AAT:BoxCol><AAT:Picture file="IMG/octopussy.gif" width="200"/></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$msg" /></AAT:BoxCol>
 </AAT:BoxRow>
+<%
+if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+{
+%>
 <AAT:BoxRow><AAT:BoxCol cspan="2"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol align="R">
@@ -48,6 +52,9 @@ It's only anonymous data:
   <AAT:BoxCol align="C" cspan="2">
   <AAT:Form_Submit name="submit" value="_UPDATE" /></AAT:BoxCol>
 </AAT:BoxRow>
+<%
+}
+%>
 </AAT:Box>
 </AAT:Form>
 

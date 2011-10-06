@@ -16,6 +16,10 @@ my $url_sort = $arg{url} . "?sort";
 <AAT:Form_Hidden name="device" value="$dev" />
 <AAT:Form_Hidden name="status" value="$stat" />
 <AAT:Box>
+<%
+if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+{
+%>
 <AAT:BoxRow>
 	<AAT:BoxCol align="C" cspan="4">
 	<AAT:Label value="_COMMENT" style="B"/></AAT:BoxCol>
@@ -38,6 +42,9 @@ my $url_sort = $arg{url} . "?sort";
 	<AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
+<%
+}
+%>
 <AAT:BoxRow>
   <AAT:BoxCol align="C">
 	<AAT:Label value="_ALERT_NAME" link="$url_sort=alert_id" /></AAT:BoxCol>
@@ -83,7 +90,12 @@ foreach my $a (@alerts)
 		<AAT:BoxCol><%= "$log<br><i><b>$comment</b></i>" %></AAT:BoxCol>
 		<AAT:BoxCol align="C"><AAT:Label value="$status" /></AAT:BoxCol>
 		<AAT:BoxCol align="C">
-		<AAT:CheckBox name="alert_id_$log_id" selected="$arg{selectall}" />
+		<%
+		if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+		{
+			%><AAT:CheckBox name="alert_id_$log_id" selected="$arg{selectall}" /><%
+		}
+		%>
 		</AAT:BoxCol>
 	</AAT:BoxRow>
   <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
