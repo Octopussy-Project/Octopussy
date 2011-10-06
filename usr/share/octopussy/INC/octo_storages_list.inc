@@ -17,11 +17,17 @@ foreach my $s (Octopussy::Storage::Configurations($arg{sort}))
 	%><AAT:BoxRow class="$class">
 	<AAT:BoxCol><AAT:Label value="$name" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$dir" /></AAT:BoxCol>
-	<AAT:BoxCol align="C"><%
-	if ($name !~ /^DEFAULT$/)
-	{ %><AAT:Button name="remove" popup_link="$dialog" tooltip="_REMOVE" /><% }
-	%></AAT:BoxCol></AAT:BoxRow><%
+	<AAT:BoxCol align="C">
+	<%
+	if (($name !~ /^DEFAULT$/) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
+	{ 
+		%><AAT:Button name="remove" popup_link="$dialog" tooltip="_REMOVE" /><% 
+	}
+	%>
+	</AAT:BoxCol></AAT:BoxRow><%
 }
+if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+{
 %>
 <AAT:Form action="$arg{url}">
 <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
@@ -32,4 +38,7 @@ foreach my $s (Octopussy::Storage::Configurations($arg{sort}))
 </AAT:BoxRow>
 <AAT:Form_Hidden name="action" value="add" />
 </AAT:Form>
+<%
+}
+%>
 </AAT:Box>
