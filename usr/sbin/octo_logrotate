@@ -38,11 +38,16 @@ Returns list of Directories from Directory $dir
 sub Get_Directories
 {
     my $dir = shift;
-    opendir DIR, $dir;
-    my @dirs = grep { !/^Incoming$/} grep { !/^Unknown$/ } grep { !/^\./ } readdir DIR;
-    closedir DIR;
 
-    return (@dirs);
+    if ((-d $dir) && (opendir DIR, $dir))
+	{
+    	my @dirs = grep { !/^Incoming$/} grep { !/^Unknown$/ } grep { !/^\./ } readdir DIR;
+    	closedir DIR;
+
+    	return (@dirs);
+	}
+
+	return ();
 }
 
 =head2 Get_Logrotate_Limit($service, $type, $conf)
