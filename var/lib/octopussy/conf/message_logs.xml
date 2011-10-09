@@ -30,6 +30,8 @@
 	
 	<log mid="LOGS_DROPPED_BECAUSE_AUTO_DEVICE_CREATION_DISABLED"
 	   message="Logs from Device '%%ARG1%%' have been dropped because 'Automatic Device Creation' is disabled." /> 
+	<log mid="LOGS_DROPPED_BECAUSE_DEVICE_DIDNT_MATCH_REGEXP"
+       message="Logs from Device '%%ARG1%%' have been dropped because it didn't match the device regexp criteria." />
 
   <log mid="PARSER_DEVICE_PARSING_DURATION"
     message="Device: %%ARG1%% Date: %%ARG2%% Time: %%ARG3%% seconds" />

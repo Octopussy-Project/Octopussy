@@ -97,11 +97,17 @@ sub Handle_Dir
     if (!defined $dir_device{$device})
     {
     	my $param_auto_create = Octopussy::Parameter('automatic_device_creation');
+		my $param_device_regexp = Octopussy::Parameter('device_filtering_regexp');
         if ((defined $param_auto_create) && ($param_auto_create =~ /^Disabled$/i))
         {
             AAT::Syslog::Message('octo_dispatcher', 'LOGS_DROPPED_BECAUSE_AUTO_DEVICE_CREATION_DISABLED', $device);
         	return (undef);
         }
+		elsif ((defined $param_device_regexp) && ($device !~ /$param_device_regexp/))
+		{
+			AAT::Syslog::Message('octo_dispatcher', 'LOGS_DROPPED_BECAUSE_DEVICE_DIDNT_MATCH_REGEXP', $device);
+            return (undef);
+		}
         else
         {
             if (!-f Octopussy::Device::Filename($device))
