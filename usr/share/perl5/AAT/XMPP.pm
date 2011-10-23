@@ -36,6 +36,7 @@ use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 
+Readonly my $XMPP_RESOURCE => 'Octopussy'; 
 Readonly my $XMPP_TIMEOUT => 3;
 
 my %conf_file = ();
@@ -59,7 +60,7 @@ sub Configuration
 }
 
 
-=head2 Configuration($appli)
+=head2 Configured($appli)
 
 Returns '1' if XMPP is configured (server & port) else '0'
 
@@ -84,25 +85,27 @@ Checks the XMPP Connection
 
 sub Connection_Test
 {
-  my $appli  = shift;
-  my $status = 0;
+  	my $appli  = shift;
+  	my $status = 0;
 
-  my $conf_xmpp = Configuration($appli);
-  if (NOT_NULL($conf_xmpp->{server}))
-  {
-    my $client = new Net::XMPP::Client();
-    my @res    = $client->Connect(
-      hostname => $conf_xmpp->{server},
-      port     => $conf_xmpp->{port},
-      tls      => $conf_xmpp->{tls},
-      timeout  => $XMPP_TIMEOUT,
+  	my $conf_xmpp = Configuration($appli);
+  	if (NOT_NULL($conf_xmpp->{server}))
+  	{
+   		my $client = new Net::XMPP::Client();
+    	my @res    = $client->Connect(
+      		hostname 		=> $conf_xmpp->{server},
+      		port     		=> $conf_xmpp->{port},
+			componentname 	=> $conf_xmpp->{component_name},
+    		connectiontype 	=> $conf_xmpp->{connection_type} || 'tcpip',
+      		tls      		=> $conf_xmpp->{tls},
+      		timeout  		=> $XMPP_TIMEOUT,
     );
     if (@res)
     {
       my @res = $client->AuthSend(
         username => $conf_xmpp->{user},
         password => $conf_xmpp->{password},
-        resource => 'resource'
+        resource => $XMPP_RESOURCE
       );
       $status = 1
         if ((\@res == 0)
@@ -121,41 +124,46 @@ Sends message '$msg' to '@dests' through XMPP
 
 sub Send_Message
 {
-  my ($appli, $msg, @dests) = @_;
+  	my ($appli, $msg, @dests) = @_;
 
-  my $conf_xmpp = Configuration($appli);
-  my $client    = new Net::XMPP::Client();
-  my @res       = $client->Connect(
-    hostname => $conf_xmpp->{server},
-    port     => $conf_xmpp->{port},
-    tls      => $conf_xmpp->{tls}
-  );
-  if (@res)
-  {
-    $client->AuthSend(
-      'hostname' => $conf_xmpp->{server},
-      'username' => $conf_xmpp->{user},
-      'password' => $conf_xmpp->{password},
-      resource   => 'resource'
-    );
-    foreach my $dest (@dests)
-    {
-      if (NOT_NULL($dest))
-      {
-        $client->MessageSend('to' => $dest, 'body' => "$msg");
-      }
-    }
-    sleep 1;
-    $client->Disconnect();
+  	my $conf_xmpp = Configuration($appli);
+  	my $client    = new Net::XMPP::Client();
+  	my @res       = $client->Connect(
+    	hostname 		=> $conf_xmpp->{server},
+    	port     		=> $conf_xmpp->{port},
+		componentname   => $conf_xmpp->{component_name},
+        connectiontype 	=> $conf_xmpp->{connection_type} || 'tcpip',
+    	tls      		=> $conf_xmpp->{tls},
+		timeout         => $XMPP_TIMEOUT,
+  	);
+  	if (@res)
+  	{
+		my $sid = $client->{SESSION}->{id};
+    	$client->{STREAM}->{SIDS}->{$sid}->{hostname} = $conf_xmpp->{component_name};
+    	$client->AuthSend(
+      		username => $conf_xmpp->{user},
+      		password => $conf_xmpp->{password},
+      		resource => $XMPP_RESOURCE
+    		);
+    	foreach my $dest (@dests)
+    	{
+      		if (NOT_NULL($dest))
+      		{
+        		$client->MessageSend('to' => $dest, 'body' => "$msg", 
+					resource => $XMPP_RESOURCE);
+      		}
+    	}
+    	sleep 1;
+    	$client->Disconnect();
 
-    return (1);
-  }
-  else
-  {
-    AAT::Syslog::Message('AAT_XMPP', 'XMPP_INVALID_CONFIG');
-  }
+    	return (1);
+  	}
+  	else
+  	{
+    	AAT::Syslog::Message('AAT_XMPP', 'XMPP_INVALID_CONFIG');
+  	}
 
-  return (0);
+	return (0);
 }
 
 1;

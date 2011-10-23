@@ -102,8 +102,10 @@ if (defined $f->{config})
 	elsif ($f->{config} eq "xmpp")
 	{
 		my %xmpp_conf = ( xmpp => { server => $f->{"xmpp_server"}, 
-      port => $f->{"xmpp_port"}, tls => $f->{"xmpp_tls"}, 
-      user => $f->{"xmpp_user"}, password => $f->{"xmpp_password"} } );
+      	port => $f->{"xmpp_port"}, 
+		component_name => $f->{"xmpp_component_name"},
+		connection_type => $f->{xmpp_connection_type}, tls => $f->{"xmpp_tls"}, 
+      	user => $f->{"xmpp_user"}, password => $f->{"xmpp_password"} } );
 		AAT::Update_Configuration("Octopussy", "xmpp", \%xmpp_conf, "aat_xmpp");
 	}
   elsif ($f->{config} eq "zabbix")

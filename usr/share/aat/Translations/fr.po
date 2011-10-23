@@ -517,6 +517,12 @@ msgstr "Batiment"
 msgid "_CITY"
 msgstr "Ville"
 
+msgid "_COMPONENT_NAME"
+msgstr "Nom du Composant"
+
+msgid "_CONNECTION_TYPE"
+msgstr "Type de Connection"
+
 msgid "_CONTACTS"
 msgstr "Contacts"
 
