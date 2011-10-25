@@ -11,7 +11,6 @@ if ($type eq "smtp")
 }
 elsif ($type eq "xmpp")
 {
-  AAT::XMPP::Send_Message("Octopussy", $subject, $dest);
   AAT::XMPP::Send_Message("Octopussy", $body, $dest);
 }
 $Response->Redirect($redirect);
