@@ -3,7 +3,7 @@
 my $f = $Request->Form();
 my $cid = $f->{cid} || $Request->QueryString("cid");
 my $action = $f->{action} || $Request->QueryString("action");
-my $sort = $Request->QueryString("contacts_table_sort") || "lastname";	
+my $sort = $Request->QueryString("contacts_table_sort") || "cid";	
 
 if ((NOT_NULL($action)) && ($action eq "remove") 
 		&& ($Session->{AAT_ROLE} !~ /ro/i))
