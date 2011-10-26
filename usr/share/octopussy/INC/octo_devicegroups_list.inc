@@ -25,13 +25,19 @@ my $i = 0;
 foreach my $dg (Octopussy::DeviceGroup::Configurations($sort))
 {
   my ($id, $desc, $type, $devices) = ($dg->{dg_id}, $dg->{description}, 
-		$dg->{type}, join(", ", @{$dg->{device}}) || $dg->{device});
+		$dg->{type}, ($dg->{device} ? join(", ", @{$dg->{device}}) : $dg->{device}));
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
   $i++;
+	my $tooltip_str = "<b>Configuration:</b><br>";
+	foreach my $crit (@{$dg->{criteria}})
+	{
+		$tooltip_str .= "Device " . ucfirst($crit->{field}) 
+			. ": <i>$crit->{pattern}</i><br>";
+	}
 %><AAT:BoxRow class="$class">
 	<AAT:BoxCol><AAT:Label value="$id" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
-  <AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="$type" tooltip="$tooltip_str" /></AAT:BoxCol>
 	<AAT:BoxCol><i><AAT:Label value="$devices" /></i></AAT:BoxCol>
 	<AAT:BoxCol align="C"><%
 if ($role !~ /ro/i)
