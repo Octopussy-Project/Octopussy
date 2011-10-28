@@ -2,8 +2,9 @@
 <octopussy_service description="Mac OS X Kernel"
                    icon="operating_systems/os_mac"
                    name="Mac_OS_X_Kernel"
-									 website="http://www.apple.com/macosx/"
-                   version="200811170001">
+                   nb_messages="030"
+                   version="201110290001"
+                   website="http://www.apple.com/macosx/">
   <message loglevel="Information"
            msg_id="Mac_OS_X_Kernel:appleacpicpu_enabled"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; kernel[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;AppleACPICPU: ProcessorApicId=\d+ LocalApicId=\d+ Enabled&quot;):msg@&gt;"
@@ -182,6 +183,12 @@
            msg_id="Mac_OS_X_Kernel:ipv6_packet_filtering_initialized"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; kernel[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;IPv6 packet filtering initialized.*&quot;):msg@&gt;"
            rank="030"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Mac_OS_X_Kernel:iosurface_buffer_allocation_zero"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;kernel&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;IOSurface: buffer allocation size is zero&quot;):msg@&gt;"
+           rank="031"
            table="Message"
            taxonomy="System" />
 </octopussy_service>
