@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="Mac OS X Installer Service"
+                   icon="operating_systems/os_mac"
+                   name="Mac_OS_X_Installer"
+                   nb_messages="003"
+                   version="201111010005"
+                   website="">
+  <message loglevel="Information"
+           msg_id="Mac_OS_X_Installer:env"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;Installer&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Env: .+&quot;):msg@&gt;"
+           rank="001"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Mac_OS_X_Installer:hardware"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;Installer&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Hardware: .+&quot;):msg@&gt;"
+           rank="002"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Mac_OS_X_Installer:user_picked_standard_install"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;Installer&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;User picked Standard Install&quot;):msg@&gt;"
+           rank="003"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Mac_OS_X_Installer:running_os_build"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;Installer&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Running OS Build: .+&quot;):msg@&gt;"
+           rank="004"
+           table="Message"
+           taxonomy="Application" />
+</octopussy_service>

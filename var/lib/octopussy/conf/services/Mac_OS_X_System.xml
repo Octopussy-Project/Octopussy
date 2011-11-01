@@ -2,8 +2,8 @@
 <octopussy_service description="Mac OS X System"
                    icon="operating_systems/os_mac"
                    name="Mac_OS_X_System"
-                   nb_messages="030"
-                   version="201110290006"
+                   nb_messages="032"
+                   version="201111010002"
                    website="http://www.apple.com/macosx/">
   <message loglevel="Warning"
            msg_id="Mac_OS_X_System:authinternal_authenticated_user"
@@ -189,6 +189,18 @@
            msg_id="Mac_OS_X_System:usbmuxd_connect_address_port"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;usbmuxd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;_AMDeviceConnectByAddressAndPort .+&quot;):msg@&gt;"
            rank="031"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Mac_OS_X_System:authorizationhost_pam_sm_authenticate"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;authorizationhost&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;in pam_sm_authenticate\(\): .+&quot;):msg@&gt;"
+           rank="032"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Mac_OS_X_System:authorizationhost_pam_sm_setcred"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;authorizationhost&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;in pam_sm_setcred\(\): .+&quot;):msg@&gt;"
+           rank="033"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

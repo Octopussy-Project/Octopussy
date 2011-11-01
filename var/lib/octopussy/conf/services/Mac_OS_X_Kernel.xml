@@ -3,7 +3,7 @@
                    icon="operating_systems/os_mac"
                    name="Mac_OS_X_Kernel"
                    nb_messages="030"
-                   version="201110290001"
+                   version="201111010001"
                    website="http://www.apple.com/macosx/">
   <message loglevel="Information"
            msg_id="Mac_OS_X_Kernel:appleacpicpu_enabled"
@@ -189,6 +189,12 @@
            msg_id="Mac_OS_X_Kernel:iosurface_buffer_allocation_zero"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;kernel&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;IOSurface: buffer allocation size is zero&quot;):msg@&gt;"
            rank="031"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="Mac_OS_X_Kernel:apple_ethernet_msgs"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;kernel&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Apple\S+Ethernet: .+&quot;):msg@&gt;"
+           rank="032"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Mac OS X Steam Service"
+					icon="operating_systems/os_mac"
                    name="Mac_OS_X_Steam"
                    nb_messages="002"
                    version="201110290004"
