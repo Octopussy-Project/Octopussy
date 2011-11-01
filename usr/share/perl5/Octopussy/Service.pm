@@ -191,7 +191,7 @@ sub Configurations
       (NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
     push @configurations, $conf;
   }
-  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
+  foreach my $c (sort { lc($a->{$sort}) cmp lc($b->{$sort}) } @configurations)
   {
     push @sorted_configurations, $c;
   }
