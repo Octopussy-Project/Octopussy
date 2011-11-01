@@ -27,7 +27,7 @@ use File::Path;
 use Regexp::Assemble;
 
 use AAT::Syslog;
-use AAT::Utils qw( NOT_NULL NULL);
+use AAT::Utils qw( NOT_NULL NULL );
 
 use Octopussy;
 use Octopussy::Cache;
@@ -53,18 +53,7 @@ my %dir_data = ();
 my (%known_msgs, @unknown_msgs) = ((), (), ());
 my ($file, $last_file) = (undef, undef);
 
-my $file_pid = Octopussy::PID_File($PROG_NAME . "_$device");
-my $count    = 0;
-while ((!defined $file_pid) && ($count < 10))
-{    # wait 10 secs max that old parser stops
-    sleep 1;
-    $count++;
-}
-if (!defined $file_pid)
-{
-    Octopussy::Die($PROG_NAME,
-        "[CRITICAL] Parsing $device - Process already running !");
-}
+Octopussy::Waiting_For_Process_Already_Running($PROG_NAME, $device);
 
 my $exit_request = 0;
 
@@ -82,6 +71,70 @@ sub Exit
     $exit_request = 1;
 
     return ($exit_request);
+}
+
+
+=head2 Is_Valid_Regexp($message)
+
+Checks if the regexp from message '$message' is valid
+
+=cut
+
+sub Is_Valid_Regexp
+{
+	my $message = shift;
+
+	my $valid_regexp = eval {
+    	use warnings FATAL => qw( regexp );
+      	my $re = Octopussy::Message::Pattern_To_Regexp($message);
+      	qr/$re/;
+     	};
+
+	return ($valid_regexp);
+}
+
+
+=head2 Is_Regexp_Assemble_Working($ra)
+
+Checks if Regexp::Assemble will generate a regexp without failure
+
+=cut
+
+sub Is_Regexp_Assemble_Working
+{
+	my $ra = shift;
+
+	my $regexp_assemble_working = eval
+   	{
+		use warnings FATAL => qw( all );
+    	my $global = $ra->re;
+  	};
+
+	return ($regexp_assemble_working);	
+}
+
+
+=head2 Init_Service_Message($m, $ra)
+
+Inits Message $m if its a valid one
+
+=cut
+
+sub Init_Service_Message
+{
+	my ($m, $ra) = @_;
+
+	if (Is_Valid_Regexp($m))
+  	{
+    	$ra->add(Octopussy::Message::Pattern_To_Regexp_Without_Catching($m));
+   	}
+   	else
+  	{
+    	AAT::Syslog::Message($PROG_NAME,
+       		'SERVICE_MSG_INVALID_REGEXP', $m->{msg_id}, $@);
+     	print
+"Msg $m->{msg_id} dropped because Runtime regexp compilation produced:\n$@\n";
+  	}	
 }
 
 =head2 Init()
@@ -107,7 +160,6 @@ sub Init
                 my $ra = Regexp::Assemble->new;
                 $dir_data{$serv} =
                     Octopussy::Storage::Directory_Service($device, $serv);
-                my @msg_to_parse = ();
                 my @messages     = Octopussy::Service::Messages($serv);
                 AAT::Syslog::Message(
                     $PROG_NAME, 'PARSER_INIT_SERVICE',
@@ -116,26 +168,28 @@ sub Init
 
                 foreach my $m (@messages)
                 {
-
-                    # check if the regexp is valid
-                    my $valid_regexp = eval {
-                        use warnings FATAL => qw( regexp );
-                        my $re = Octopussy::Message::Pattern_To_Regexp($m);
-                        qr/$re/;
-                    };
-                    if ($valid_regexp)
-                    {
-                        my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-                        $ra->add($regexp);
-                    }
+					Init_Service_Message($m, $ra);
                 }
-                $service{$serv}{global_regexp} = $ra->re;
+
+				if (Is_Regexp_Assemble_Working($ra))
+				{
+					$service{$serv}{global_regexp} = $ra->re;
+				}
+				else
+				{
+					$service{$serv}{global_regexp} = undef;
+					foreach my $m (@messages)
+            		{
+                		Init_Service_Message($m, undef);
+            		}
+					printf "RA not working !\n";
+				}
             }
             ($file, $last_file) = (undef, undef);
             (%known_msgs, @unknown_msgs) = ((), ());
         }
     }
-
+	exit;
     return (scalar @services);
 }
 
@@ -217,12 +271,26 @@ sub File_Handler
                 my $match = 0;
                 foreach my $serv (@services)
                 {
-                    if ($line =~ $service{$serv}{global_regexp})
+                    if ((defined $service{$serv}{global_regexp}) 
+						&& ($line =~ $service{$serv}{global_regexp}))
                     {
                         push @{$known_msgs{$serv}}, $line;
                         $match = 1;
                         last;
                     }
+					elsif (!defined $service{$serv}{global_regexp})
+					{
+						foreach my $msg (@{$service{$serv}{msgs}})
+                       	{
+							if ($line =~ $msg->{re})
+							{
+								push @{$known_msgs{$serv}}, $line;
+								$match = 1;
+								last;
+							}
+                       	}
+						last if ($match);
+					}
                 }
                 push @unknown_msgs, $line if (!$match);
                 $total++;

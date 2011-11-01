@@ -18,7 +18,7 @@ use Readonly;
 use File::Basename;
 use File::Path;
 use Proc::PID::File;
-use POSIX qw(mkfifo strftime);
+use POSIX qw( mkfifo strftime );
 
 use AAT::Application;
 use AAT::Download;
@@ -34,7 +34,7 @@ Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
 Readonly my $IDX_STAT_UID => 4;
 Readonly my $IDX_STAT_GID => 5;
 
-$Octopussy::VERSION = '1.0-5';
+$Octopussy::VERSION = '1.0-6';
 
 =head1 FUNCTIONS
 
@@ -376,6 +376,30 @@ sub Updates_Installation
   }
 
   return (1);
+}
+
+=head2 Waiting_For_Process_Already_Running($prog_name, $device)
+
+Waits (max 10 secs) for already running process to stop
+
+=cut
+
+sub Waiting_For_Process_Already_Running
+{
+	my ($prog_name, $device) = @_;
+
+	my $file_pid = PID_File("${prog_name}_${device}");
+	my $count    = 0;
+	while ((!defined $file_pid) && ($count < 10))
+	{    # wait 10 secs max that old parser stops
+    	sleep 1;
+    	$count++;
+	}
+	if (!defined $file_pid)
+	{
+    	Die($prog_name,
+        	"[CRITICAL] Parsing $device - Process already running !");
+	}
 }
 
 1;
