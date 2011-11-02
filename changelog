@@ -1,3 +1,24 @@
+octopussy (1.0rc6) unstable; urgency=medium
+
+  * Many Services added and updated
+  * Feature Request #3391894: You can now add a 'Device Filtering Regexp' 
+    to handle only devices you really want
+  * Feature Request #3428291: Sort Contacts by 'id' by default
+  * Feature Request #3421855: Dynamic DeviceGroup configuration displayed 
+    in tooltip when the mouse is over 'Dynamic' type
+  * Bugfix #3411747: Plugin check-octopussy missing use statement
+  * Bugfix #3418377: Fixing security issues in 'index.asp', 'alerts.asp', 
+    'devices.asp', 'storages.asp', 'alerts_viewer.asp' & 'world_statistics.asp'
+    web pages
+  * Bugfix #3414351: fixing 'invalid dirhandle' messages in octo_logrotate 
+    when directory is missing
+  * Bugfix #3140040: GTalk/XMPP issues
+  * Bugfix: Fixing XMPP test message sent twice
+  * Bugfix #3431929: Wrong order between lower/uppercase in Services list
+  * Bugfix #3412966: Octopussy can now handle Regexp::Assemble failures
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 02 Nov 2011 01:00:00 +0100
+
 octopussy (1.0rc5) unstable; urgency=medium
 
   * Starting JQueryfication of the Web Interface
