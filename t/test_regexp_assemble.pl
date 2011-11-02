@@ -34,9 +34,7 @@ foreach my $serv (@services)
 
     if ($valid_regexp)
     {
-      my $regexp = Octopussy::Message::Pattern_To_Regexp($m);
-	$ra->add(Octopussy::Message::Pattern_To_Regexp_Without_Catching($m));
-#      $ra->add($regexp);
+	$ra->add(Octopussy::Message::Pattern_To_Regexp($m));
     }
   }
   # Regexp::Assemble succeed to assemble ?
