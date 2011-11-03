@@ -19,7 +19,7 @@ if (defined $service)
   	{	 
     		Octopussy::Device::Move_Service($device, $service, $action); 
   	}
-  	elsif (($action =~ /^(en|dis)able$/) && ($Session->{AAT_ROLE} !~ /(admin|rw)/i))
+  	elsif (($action =~ /^(en|dis)able$/) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
   	{
     		Octopussy::Device::Set_Service_Statistics($device, $service, $action);
   	}
