@@ -15,7 +15,7 @@ function refresh_selector_taxonomy()
 {
  	var selector_device = $('#device');
   	var selector_service = $('#service');
-        var selector_table = $('#table');
+  	var selector_table = $('#table');
 	var devices_str = '';
 	var services_str = '';
 	var table_str = '';
@@ -23,21 +23,21 @@ function refresh_selector_taxonomy()
 
 	if (selector_device || selector_service)
 	{
-	$('#device option:selected').each( function ()
-                { devices_str = devices_str + $(this).text() + ','; } );
+		$('#device option:selected').each( function ()
+        	{ devices_str = devices_str + $(this).val() + ','; } );
         $('#service option:selected').each( function ()
-                { services_str = services_str + $(this).text() + ','; } );
+       		{ services_str = services_str + $(this).val() + ','; } );
 	}
 	if (selector_table)
 	{
-	$('#table option:selected').each( function ()
-                { table_str = table_str + $(this).text() + ','; } );
+		$('#table option:selected').each( function ()
+    		{ table_str = table_str + $(this).val() + ','; } );
 	}
   
-  var params = 'devices=' + encodeURIComponent(devices_str)
-    + '&services=' + encodeURIComponent(services_str)
-    + '&table=' + encodeURIComponent(table_str)
-    + '&selected=' + encodeURIComponent(selected_str);
+	var params = 'devices=' + encodeURIComponent(devices_str)
+    	+ '&services=' + encodeURIComponent(services_str)
+    	+ '&table=' + encodeURIComponent(table_str)
+    	+ '&selected=' + encodeURIComponent(selected_str);
 
 	$.get('ajax_list_taxonomy.asp?' + params, function(xml) { print_selector_taxonomy(xml); } );
 

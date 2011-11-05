@@ -1,13 +1,7 @@
 <%
 my %arg = @_;
-
 my @list = (defined $arg{any} ? ("-ANY-") : ());
-
 my $str_any = AAT::Translation("-- ANY --");
-
-#$Response->Include('AAT/INC/AAT_Selector.inc', 
-#	name => ($arg{name} || "msgid"), list => \@list, 
-#	selected => $arg{selected});
 %>
 <select<%= $select_options %> id="msgid" name="msgid">
 </select>
@@ -15,9 +9,9 @@ my $str_any = AAT::Translation("-- ANY --");
 
 function refresh_selector_msgid()
 {
-  var selector_service = $('#service');
-  var selector_loglevel = $('#loglevel');
-  var selector_taxonomy = $('#taxonomy');
+	var selector_service = $('#service');
+  	var selector_loglevel = $('#loglevel');
+  	var selector_taxonomy = $('#taxonomy');
 	var services_str = '';
 	var loglevel_str = '';
 	var taxonomy_str = '';
@@ -25,19 +19,19 @@ function refresh_selector_msgid()
 
 	if (selector_service)
 	{
-	$('#service option:selected').each( function ()
-                { services_str = services_str + $(this).text() + ','; } );
-    	}
+		$('#service option:selected').each( function ()
+        	{ services_str = services_str + $(this).val() + ','; } );
+   	}
 	if (selector_loglevel)
 	{
-	$('#loglevel option:selected').each( function ()
-                { loglevel_str = loglevel_str + $(this).text() + ','; } );
-    	}
+		$('#loglevel option:selected').each( function ()
+        	{ loglevel_str = loglevel_str + $(this).val() + ','; } );
+   	}
 	if (selector_taxonomy)
 	{
-	$('#taxonomy option:selected').each( function ()
-                { taxonomy_str = taxonomy_str + $(this).text() + ','; } );
-    	}
+		$('#taxonomy option:selected').each( function ()
+       		{ taxonomy_str = taxonomy_str + $(this).val() + ','; } );
+   	}
   
   var params = 'services=' + encodeURIComponent(services_str)
     + '&loglevel=' + encodeURIComponent(loglevel_str) 
