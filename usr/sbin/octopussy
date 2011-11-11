@@ -363,7 +363,8 @@ sub Web_Start
 {
     my $APACHE2_BIN = Octopussy::System::Apache2_Binary();
 
-    system "export APACHE_RUN_DIR=$dir_pid && $APACHE2_BIN -f $APACHE2_CONF -k start";
+    system
+"export APACHE_RUN_DIR=$dir_pid && $APACHE2_BIN -f $APACHE2_CONF -k start";
     printf $MSG_STATUS, 'Web', 'Started';
 
     return (1);
@@ -396,11 +397,11 @@ sub Start
 
     # recreate /var/run/octopussy/ for systems that mount it on tmpfs
     Octopussy::FS::Create_Directory($dir_pid);
-
+    Octopussy::FS::Chown(Octopussy::FS::File('fifo'));
     Dispatcher_Start();
-    my $mysql = (-x '/etc/init.d/mysqld'
-        ? '/etc/init.d/mysqld' : '/etc/init.d/mysql');
-    `$mysql restart`; 
+    my $mysql =
+        (-x '/etc/init.d/mysqld' ? '/etc/init.d/mysqld' : '/etc/init.d/mysql');
+    `$mysql restart`;
     Parser_Start();
     RRD_Start();
     Scheduler_Start();
@@ -428,9 +429,10 @@ sub Stop
     Sender_Stop();
     Pusher_Stop();
     Dispatcher_Stop();
-   	`rm -f $dir_pid/*.err`;
-	`rm -f $dir_pid/*.pid`;
-   
+
+    #`rm -f $dir_pid/*.err`;
+    #`rm -f $dir_pid/*.pid`;
+
     return (1);
 }
 
