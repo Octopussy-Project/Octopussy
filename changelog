@@ -1,3 +1,17 @@
+octopussy (1.0) stable; urgency=high
+ 
+  * Mac OS X related Services updates
+  * 'Octopussy restart from Web Interface' feature has been disabled because 
+    it was buggy
+  * Bugfixing '-- ANY --' selection in 'logs_viewer.asp' page
+  * Bugfix #3432668: Unable to enable/disable statistics in 
+    'device_services.asp' page
+  * Bugfix #3434572: Bug in Waiting_For_Process_Already_Running function
+  * Bugfix #3435120: Dispatcher now drops line (and don't create a new 
+    invalid device) if the device name is not valid
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Fri, 11 Nov 2011 11:11:11 +0100
+
 octopussy (1.0rc6) unstable; urgency=medium
 
   * Many Services added and updated
