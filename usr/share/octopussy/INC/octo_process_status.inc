@@ -15,13 +15,14 @@ foreach my $k (sort keys %proc)
 if ($Session->{AAT_ROLE} =~ /admin/i)
 {
 %>
-  <AAT:BoxRow><AAT:BoxCol><hr></AAT:BoxCol></AAT:BoxRow>
+<!--  <AAT:BoxRow><AAT:BoxCol><hr></AAT:BoxCol></AAT:BoxRow>
 	<AAT:BoxRow>
 		<AAT:BoxCol align="C">
 			<AAT:Label value="_MSG_RESTART_OCTOPUSSY" style="B" 
 				link="./index.asp?action=restart" />
 		</AAT:BoxCol>
-	</AAT:BoxRow><% 
+	</AAT:BoxRow>-->
+<% 
 }
 %>
 </AAT:Box>
