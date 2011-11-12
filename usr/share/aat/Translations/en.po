@@ -334,6 +334,9 @@ msgstr "Update"
 msgid "_USER"
 msgstr "User"
 
+msgid "_USER_EDIT"
+msgstr "Edit User Configuration"
+
 msgid "_USERS"
 msgstr "Users"
 

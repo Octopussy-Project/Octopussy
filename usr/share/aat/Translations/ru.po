@@ -334,6 +334,9 @@ msgstr "Обновить"
 msgid "_USER"
 msgstr "Пользователь"
 
+msgid "_USER_EDIT"
+msgstr "_USER_EDIT"
+
 msgid "_USERS"
 msgstr "Пользователи"
 

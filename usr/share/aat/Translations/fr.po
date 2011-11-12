@@ -334,6 +334,9 @@ msgstr "Mise à Jour"
 msgid "_USER"
 msgstr "Utilisateur"
 
+msgid "_USER_EDIT"
+msgstr "Edition de la Configuration Utilisateur"
+
 msgid "_USERS"
 msgstr "Utilisateurs"
 
