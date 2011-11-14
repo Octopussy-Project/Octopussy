@@ -182,15 +182,14 @@ sub Init
             		{
                 		Init_Service_Message($m, undef);
             		}
-					printf "RA not working !\n";
 				}
             }
             ($file, $last_file) = (undef, undef);
             (%known_msgs, @unknown_msgs) = ((), ());
         }
     }
-	exit;
-    return (scalar @services);
+    
+	return (scalar @services);
 }
 
 =head2 Write_Logfile($logfile, $logs)
