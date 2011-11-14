@@ -12,7 +12,7 @@ if ((NULL($Session->{AAT_LOGIN}))
 my $title = "Octopussy " . (AAT::Translation($arg{title}) || "");
 if (defined $arg{refresh})
 {
-  %><AAT:PageTop title="$title" icon="IMG/octopussy.gif" onLoad="$arg{onLoad}"
+  %><AAT:PageTop title="$title" icon="IMG/octo_login1.png" onLoad="$arg{onLoad}"
   refresh="$arg{refresh}" close_popup="y" popup="y" tooltip="y" /><%
 }
 elsif (defined $arg{ofc})

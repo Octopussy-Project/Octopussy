@@ -1,4 +1,4 @@
-<AAT:PageTop title="Octopussy Login" icon="IMG/octopussy.gif" />
+<AAT:PageTop title="Octopussy Login" icon="IMG/octo_login1.png" />
 <AAT:PageTheme />
 <%
 my $f = $Request->Form();
