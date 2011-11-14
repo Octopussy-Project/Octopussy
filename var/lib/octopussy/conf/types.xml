@@ -76,7 +76,7 @@
     sql_type="DATE"
   	color="orange" />
 	<type type_id="TIME" 
-		re="\d{2}:\d{2}:\d{2}" 
+		re="\d{1,2}:\d{2}:\d{2}" 
 		simple_type="TIME"
 		sql_type="TIME"
   	color="orange" />
