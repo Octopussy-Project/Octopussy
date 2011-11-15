@@ -1,3 +1,12 @@
+octopussy (1.0.1) stable; urgency=high
+
+  * Cisco_ASA & MySQL Services updates
+  * Bugfix #3433578: octo_uparser didn't work since release 1.0rc6
+  * Bugfixing Translations issues 
+  * Bugfixing missing 'favicon.ico' in apache logs
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 15 Nov 2011 01:00:00 +0100
+
 octopussy (1.0) stable; urgency=high
  
   * Mac OS X related Services updates
