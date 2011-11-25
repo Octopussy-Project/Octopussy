@@ -93,7 +93,7 @@ sub Delta
   my $diff = Date::Manip::DateCalc(Date::Manip::ParseDate($date1), Date::Manip::ParseDate($date2));
   my $result = Date::Manip::Delta_Format($diff, 0, '%mt');    # delta in minutes
 
-  if ($result =~ /^[-+]?(\d+)\.\d*$/)
+  if ($result =~ /^[-+]?(\d+)/) #\.\d*$/)
   {
     return ($1);
   }

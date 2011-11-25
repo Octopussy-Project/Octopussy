@@ -15,24 +15,23 @@ my @services = ARRAY($Session->{service});
 
 my $page = $Session->{page} || 1;
 my $dt = $Session->{dt};
-my ($d1, $m1, $y1, $hour1, $min1) = 
-	($Session->{dt1_day}, $Session->{dt1_month}, $Session->{dt1_year}, 
-	$Session->{dt1_hour}, $Session->{dt1_min});
-my ($d2, $m2, $y2, $hour2, $min2) = 
-	($Session->{dt2_day}, $Session->{dt2_month}, $Session->{dt2_year},
-	$Session->{dt2_hour}, $Session->{dt2_min});
+my ($date1, $hour1, $min1) = 
+	($Session->{dt1_date}, $Session->{dt1_hour}, $Session->{dt1_min}); 
+my ($date2, $hour2, $min2) = 
+	($Session->{dt2_date}, $Session->{dt2_hour}, $Session->{dt2_min}); 
 my ($re_include, $re_include2, $re_include3) = 
 	($Session->{re_include}, $Session->{re_include2}, $Session->{re_include3});
 my ($re_exclude, $re_exclude2, $re_exclude3) = 
 	($Session->{re_exclude}, $Session->{re_exclude2}, $Session->{re_exclude3});
+$date1 =~ s/-//g;
+$date2 =~ s/-//g;
 
 if (NOT_NULL($Session->{cancel}))
 {
 	my $pid_param = $Session->{extracted};
 	my $pid_file = $run_dir . "octo_extractor_${pid_param}.pid";
-  my $pid = Octopussy::PID_Value($pid_file);
+  	my $pid = Octopussy::PID_Value($pid_file);
 	kill USR2 => $pid;	
-
 	($Session->{extractor}, $Session->{cancel}, $Session->{logs}, 
 	$Session->{file}, $Session->{csv}, $Session->{zip}) =
     (undef, undef, undef, undef, undef, undef);	
@@ -41,12 +40,12 @@ if (NOT_NULL($Session->{cancel}))
 if (NOT_NULL($f->{template}))
 {
 	if (NOT_NULL($f->{template_save}))
-  {
+  	{
 		Octopussy::Search_Template::New($login, { name => $f->{template}, 
 			device => \@devices, service => \@services, 
-      loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
-      msgid => $Session->{msgid},
-      begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2", 
+      		loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
+      		msgid => $Session->{msgid},
+      		begin => "$date1$hour1$min1", end => "$date2$hour2$min2", 
 			re_include => $re_include, re_include2 => $re_include2,
 			re_include3 => $re_include3, re_exclude => $re_exclude, 
 			re_exclude2 => $re_exclude2, re_exclude3 => $re_exclude3 } );
@@ -71,9 +70,9 @@ if ((NULL($Session->{extractor})) &&
 	my @devices_cmd = ($any ? @{$Session->{restricted_devices}} : @devices);
 	$any = 0;
 	foreach my $s (@services)
-    { $any = 1 if ($s =~ /-ANY-/); }	
+    	{ $any = 1 if ($s =~ /-ANY-/); }	
 	my @services_cmd = ($any ? @{$Session->{restricted_services}} : @services);
-	if (AAT::Datetime::Delta("$y1/$m1/$d1 $hour1:$min1:00", "$y2/$m2/$d2 $hour2:$min2:00")
+	if (AAT::Datetime::Delta("$date1 $hour1:$min1:00", "$date2 $hour2:$min2:00")
 				> $Session->{restricted_minutes_search})
 	{
 		$user_limit_reached = 1;
@@ -83,17 +82,20 @@ if ((NULL($Session->{extractor})) &&
 		my $cmd = Octopussy::Logs::Extract_Cmd_Line( { 
 			devices => \@devices_cmd, services =>\@services_cmd, 
 			loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
-			begin => "$y1$m1$d1$hour1$min1", end => "$y2$m2$d2$hour2$min2",
+			msgid => $Session->{msgid},
+			begin => "$date1$hour1$min1", end => "$date2$hour2$min2",
 			includes => [$re_include, $re_include2, $re_include3],
-    	excludes => [$re_exclude, $re_exclude2, $re_exclude3],
-			pid_param => $output, output => "$run_dir/logs_${login}_$output" } );
+    		excludes => [$re_exclude, $re_exclude2, $re_exclude3],
+			pid_param => $output, user => $Session->{AAT_LOGIN},
+			output => "$run_dir/logs_${login}_$output" } );
 		$Session->{export} = 
 			"logs_" . join("-", @devices) . "_" . join("-", @services)
-    		. "_$y1$m1$d1$hour1$min1" . "-$y2$m2$d2$hour2$min2";
+    		. "_$date1$hour1$min1" . "-$date2$hour2$min2";
 		Octopussy::Commander("$cmd &");
+
 		$Session->{progress_current} = 0;
-  	$Session->{progress_total} = 0;
-  	$Session->{progress_match} = 0;
+  		$Session->{progress_total} = 0;
+  		$Session->{progress_match} = 0;
 		$Session->{page} = 1;
 		$Session->{progress_running} = $Session->{extracted} = $output;
 		

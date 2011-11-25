@@ -9,7 +9,7 @@ function extract_progress()
         loop = setTimeout("extract_progress()", 1000);
 }
 
-function Update_Progress()
+function Update_Progress(xml)
 {
 	var xmldoc = $.parseXML(xml);
 
