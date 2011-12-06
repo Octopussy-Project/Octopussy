@@ -218,16 +218,16 @@ msgid "_DASHBOARD"
 msgstr "Dashboard"
 
 msgid "_DATASOURCE"
-msgstr "_DATASOURCE"
+msgstr "§DATASOURCE§"
 
 msgid "_DATASOURCES"
-msgstr "_DATASOURCES"
+msgstr "§DATASOURCES§"
 
 msgid "_DATASOURCE_VALUE"
-msgstr "_DATASOURCE_VALUE"
+msgstr "§DATASOURCE_VALUE§"
 
 msgid "_DATASOURCES_VALUE"
-msgstr "_DATASOURCES_VALUE"
+msgstr "§DATASOURCES_VALUE§"
 
 msgid "_DELETE"
 msgstr "Suprimir"
@@ -251,7 +251,7 @@ msgid "_HELP"
 msgstr "Ayuda"
 
 msgid "_HOMEPAGE"
-msgstr "_HOMEPAGE"
+msgstr "§HOMEPAGE§"
 
 msgid "_HOST"
 msgstr "Host"
@@ -263,13 +263,13 @@ msgid "_ICONS_ONLY"
 msgstr "Solo Iconos"
 
 msgid "_INFORMATION"
-msgstr "_INFORMATION"
+msgstr "§INFORMATION§"
 
 msgid "_KEY"
 msgstr "Llave"
 
 msgid "_LABEL"
-msgstr "_LABEL"
+msgstr "§LABEL§"
 
 msgid "_LOGOUT"
 msgstr "Desconexion"
@@ -278,7 +278,7 @@ msgid "_MENU_DISPLAY"
 msgstr "Mostrar Menu"
 
 msgid "_MODIFICATION"
-msgstr "_MODIFICATION"
+msgstr "§MODIFICATION§"
 
 msgid "_MODIFY"
 msgstr "Modificar"
@@ -335,7 +335,7 @@ msgid "_USER"
 msgstr "Usuario"
 
 msgid "_USER_EDIT"
-msgstr "_USER_EDIT"
+msgstr "§USER_EDIT§"
 
 msgid "_USERS"
 msgstr "Usuarios"
@@ -359,7 +359,7 @@ msgid "_DATE_END"
 msgstr "Fecha de Fin"
 
 msgid "_DATETIME"
-msgstr "_DATETIME"
+msgstr "§DATETIME§"
 
 msgid "_DAY_OF_MONTH"
 msgstr "Dia del Mes"
@@ -416,10 +416,10 @@ msgid "_NAME"
 msgstr "Nombre"
 
 msgid "_NB"
-msgstr "_NB"
+msgstr "§NB§"
 
 msgid "_NB_ITEMS"
-msgstr "_NB_ITEMS"
+msgstr "§NB_ITEMS§"
 
 msgid "_NEW_PASSWORD"
 msgstr "Nueva Contraseña"
@@ -506,10 +506,10 @@ msgid "_ALERTS_VIEWER"
 msgstr "Visor de Alertas"
 
 msgid "_AUTHENTICATION"
-msgstr "_AUTHENTICATION"
+msgstr "§AUTHENTICATION§"
 
 msgid "_BACK"
-msgstr "_BACK"
+msgstr "§BACK§"
 
 msgid "_BASE"
 msgstr "Base"
@@ -521,19 +521,19 @@ msgid "_CITY"
 msgstr "Ciudad"
 
 msgid "_COMPONENT_NAME"
-msgstr "_COMPONENT_NAME"
+msgstr "§COMPONENT_NAME§"
 
 msgid "_CONNECTION_TYPE"
-msgstr "_CONNECTION_TYPE"
+msgstr "§CONNECTION_TYPE§"
 
 msgid "_CONTACTS"
 msgstr "Contactos"
 
 msgid "_CONTACTS_AUTH_DN"
-msgstr "_CONTACTS_AUTH_DN"
+msgstr "§CONTACTS_AUTH_DN§"
 
 msgid "_CONTACTS_AUTH_PASSWORD"
-msgstr "_CONTACTS_AUTH_PASSWORD"
+msgstr "§CONTACTS_AUTH_PASSWORD§"
 
 msgid "_CONTACTS_BASE"
 msgstr "Base de Contactos"
@@ -626,7 +626,7 @@ msgid "_GRAPH_WIDTH"
 msgstr "Ancho del Grafico"
 
 msgid "_GRAPH_Y_LABEL"
-msgstr "_GRAPH_Y_LABEL"
+msgstr "§GRAPH_Y_LABEL§"
 
 msgid "_GROUP_NAME"
 msgstr "Nombre de Grupo"
@@ -662,7 +662,7 @@ msgid "_LOG_LEVEL"
 msgstr "Nivel de Log"
 
 msgid "_LOG_REGEXP"
-msgstr "_LOG_REGEXP"
+msgstr "§LOG_REGEXP§"
 
 msgid "_LOG_TYPE"
 msgstr "Tipo de Log"
@@ -671,7 +671,7 @@ msgid "_LOGROTATE"
 msgstr "Rotado de Logs"
 
 msgid "_LOGS_AVAILABILITY"
-msgstr "_Logs Availability"
+msgstr "§Logs Availability§"
 
 msgid "_LOGS_VIEWER"
 msgstr "Visor de Logs"
@@ -686,7 +686,7 @@ msgid "_MATCH"
 msgstr "Coincidencia"
 
 msgid "_MAX_MINUTES_SEARCH"
-msgstr "_MAX. number of minutes to search"
+msgstr "§MAX. number of minutes to search§"
 
 msgid "_MAX_TIME_WITHOUT_LOG"
 msgstr "Tiempo Maximo sin Logs"
@@ -698,7 +698,7 @@ msgid "_MESSAGES"
 msgstr "Mensajes"
 
 msgid "_MSG_ID"
-msgstr "_MSG_ID"
+msgstr "§MSG_ID§"
 
 msgid "_NAGIOS_HOST_DEFINED"
 msgstr "Equipo definido en Nagios"
@@ -716,7 +716,7 @@ msgid "_NB_REPORTS"
 msgstr "Informes NB"
 
 msgid "_NEGATE"
-msgstr "_NEGATE"
+msgstr "§NEGATE§"
 
 msgid "_NEW_ALERT"
 msgstr "Nueva Alarma"
@@ -743,7 +743,7 @@ msgid "_NEW_DYNAMIC_DEVICEGROUP"
 msgstr "Nuevo Grupo de Dispotivos Dinamico"
 
 msgid "_NEW_FIELD"
-msgstr "_NEW_FIELD"
+msgstr "§NEW_FIELD§"
 
 msgid "_NEW_OCTOPUSSY_VERSION_AVAILABLE"
 msgstr "Nueva Version de Octopussy Disponible"
@@ -764,7 +764,7 @@ msgid "_NEW_SERVICEGROUP"
 msgstr "Nuevo Grupo de Servicio"
 
 msgid "_NEW_STATIC_ALERT"
-msgstr "_NEW_STATIC_ALERT"
+msgstr "§NEW_STATIC_ALERT§"
 
 msgid "_NEW_STATIC_DEVICEGROUP"
 msgstr "Nuevo Grupo Estatico de Disposivos"
@@ -812,7 +812,7 @@ msgid "_PERIODS"
 msgstr "Periodos"
 
 msgid "_PERL_FUNCTION"
-msgstr "_PERL_FUNCTION"
+msgstr "§PERL_FUNCTION§"
 
 msgid "_PROCESSOR"
 msgstr "Procesador"
@@ -827,7 +827,7 @@ msgid "_RANK"
 msgstr "Puesto"
 
 msgid "_REAL_TIME_LOGS_VIEWER"
-msgstr "_REAL_TIME_LOGS_VIEWER"
+msgstr "§REAL_TIME_LOGS_VIEWER§"
 
 msgid "_REGEXP_EXC"
 msgstr "Regexp (Excl.)"
@@ -863,34 +863,34 @@ msgid "_REPORT_CSV"
 msgstr "Informe CSV"
 
 msgid "_REPORT_EDITION"
-msgstr "_REPORT_EDITION"
+msgstr "§REPORT_EDITION§"
 
 msgid "_REPORT_FIELDS_ORDER"
 msgstr "Informe Campos Ordenados"
 
 msgid "_REPORT_FILE_DOESNT_EXIST"
-msgstr "_REPORT_FILE_DOESNT_EXIST"
+msgstr "§REPORT_FILE_DOESNT_EXIST§"
 
 msgid "_REPORT_HTML"
 msgstr "Informe HTML"
 
 msgid "_REPORT_IN_PROGRESS"
-msgstr "_REPORT_IN_PROGRESS"
+msgstr "§REPORT_IN_PROGRESS§"
 
 msgid "_REPORT_NAME"
 msgstr "Informe Nombre"
 
 msgid "_REPORT_OFC"
-msgstr "_REPORT_OFC"
+msgstr "§REPORT_OFC§"
 
 msgid "_REPORT_PDF"
 msgstr "Informe PDF"
 
 msgid "_REPORT_RRD_GRAPH"
-msgstr "_REPORT_RRD_GRAPH"
+msgstr "§REPORT_RRD_GRAPH§"
 
 msgid "_REPORT_RRD_GRAPH_CREATION"
-msgstr "_REPORT_RRD_GRAPH_CREATION"
+msgstr "§REPORT_RRD_GRAPH_CREATION§"
 
 msgid "_REPORT_SCHEDULER"
 msgstr "Planificador de Informes"
@@ -917,10 +917,10 @@ msgid "_ROOM"
 msgstr "Sala"
 
 msgid "_ROTATE_LEFT"
-msgstr "_ROTATE_LEFT"
+msgstr "§ROTATE_LEFT§"
 
 msgid "_ROTATE_RIGHT"
-msgstr "_ROTATE_RIGHT"
+msgstr "§ROTATE_RIGHT§"
 
 msgid "_RUNNING_REPORTS"
 msgstr "Ejecutando informes"
@@ -935,7 +935,7 @@ msgid "_SCHEDULE_REPORT"
 msgstr "Planificar un Informe"
 
 msgid "_SCHEDULE_STATISTIC_REPORT"
-msgstr "_SCHEDULE_STATISTIC_REPORT"
+msgstr "§SCHEDULE_STATISTIC_REPORT§"
 
 msgid "_SCHEDULER"
 msgstr "Planificador"
@@ -971,10 +971,10 @@ msgid "_SERVICES_UPDATES"
 msgstr "Actualizaciones de servicios"
 
 msgid "_SOURCE"
-msgstr "_SOURCE"
+msgstr "§SOURCE§"
 
 msgid "_SHOW_DIFF"
-msgstr "_SHOW_DIFF"
+msgstr "§SHOW_DIFF§"
 
 msgid "_START"
 msgstr "Inicio"
@@ -992,16 +992,16 @@ msgid "_STATIC"
 msgstr "Estatico"
 
 msgid "_STATIC_ALERT_CONFIGURATION"
-msgstr "_STATIC_ALERT_CONFIGURATION"
+msgstr "§STATIC_ALERT_CONFIGURATION§"
 
 msgid "_STATISTICS"
 msgstr "Estadisticos"
 
 msgid "_STATISTIC_REPORT_EDITION"
-msgstr "_STATISTIC_REPORT_EDITION"
+msgstr "§STATISTIC_REPORT_EDITION§"
 
 msgid "_STATISTIC_REPORT_SCHEDULER"
-msgstr "_STATISTIC_REPORT_SCHEDULER"
+msgstr "§STATISTIC_REPORT_SCHEDULER§"
 
 msgid "_STATISTIC_REPORTS"
 msgstr "Informes estadisticos"
@@ -1019,7 +1019,7 @@ msgid "_SWAP_USAGE"
 msgstr "Uso de Swap"
 
 msgid "_SYSLOG_OUTPUT"
-msgstr "_SYSLOG_OUTPUT"
+msgstr "§SYSLOG_OUTPUT§"
 
 msgid "_SYSTEM_CONFIG"
 msgstr "Configuracion de Sistema"
@@ -1052,7 +1052,7 @@ msgid "_TICKET_WORK_PROGRESS"
 msgstr "Trabajo en curso"
 
 msgid "_TIMELINE"
-msgstr "_TIMELINE"
+msgstr "§TIMELINE§"
 
 msgid "_TIMEPERIOD"
 msgstr "Periodo"
@@ -1064,16 +1064,16 @@ msgid "_TIMEPERIODS"
 msgstr "Periodos"
 
 msgid "_TIMESTEP"
-msgstr "_TIMESTEP"
+msgstr "§TIMESTEP§"
 
 msgid "_UNKNOWN_MSGS"
 msgstr "Mensajes Desconocidos"
 
 msgid "_USERS_AUTH_DN"
-msgstr "_USERS_AUTH_DN"
+msgstr "§USERS_AUTH_DN§"
 
 msgid "_USERS_AUTH_PASSWORD"
-msgstr "_USERS_AUTH_PASSWORD"
+msgstr "§USERS_AUTH_PASSWORD§"
 
 msgid "_USERS_BASE"
 msgstr "Base de Usuarios"
@@ -1088,19 +1088,19 @@ msgid "_WORLD_STATISTICS"
 msgstr "Estadisticas mundiales"
 
 msgid "_ZABBIX_HOST_DEFINED"
-msgstr "_ZABBIX_HOST_DEFINED"
+msgstr "§ZABBIX_HOST_DEFINED§"
 
 msgid "_ZABBIX_SERVER"
-msgstr "_ZABBIX_SERVER"
+msgstr "§ZABBIX_SERVER§"
 
 msgid "_ZABBIX_ITEM_DEFINED"
-msgstr "_ZABBIX_ITEM_DEFINED"
+msgstr "§ZABBIX_ITEM_DEFINED§"
 
 msgid "_ZOOM_IN"
-msgstr "_ZOOM_IN"
+msgstr "§ZOOM_IN§"
 
 msgid "_ZOOM_OUT"
-msgstr "_ZOOM_OUT"
+msgstr "§ZOOM_OUT§"
 
 msgid "_DLG_DELETE_ALERT"
 msgstr "Estas seguro de que quieres borrar la Alerta '%%arg1%%' ?"
@@ -1145,7 +1145,7 @@ msgid "_DLG_DELETE_REPORT_DATA"
 msgstr "Estas seguro de que quieres borrar el Informe '%%arg1%%' '%%arg2%%' ?"
 
 msgid "_DLG_DELETE_REPORT_MONTH"
-msgstr "_DLG_DELETE_REPORT_MONTH"
+msgstr "§DLG_DELETE_REPORT_MONTH§"
 
 msgid "_DLG_DELETE_REPORT_SCHEDULE"
 msgstr "Estas seguro de que quieres borrar la planificacion del Informe '%%arg1%%' ?"
@@ -1214,16 +1214,16 @@ msgid "_MSG_CONTACT_ME"
 msgstr "Para cualquier otra cosa, puedes contactar conmigo en octo.devel@gmail.com"
 
 msgid "_MSG_DEVICEGROUP_ALREADY_EXISTS"
-msgstr "_MSG_DEVICEGROUP_ALREADY_EXISTS"
+msgstr "§MSG_DEVICEGROUP_ALREADY_EXISTS§"
 
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Creacion de Alertas Dinamicas"
 
 msgid "_MSG_EXTRACT_PROGRESS_DATA"
-msgstr "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "§MSG_EXTRACT_PROGRESS_DATA§"
 
 msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
-msgstr "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "§MSG_EXTRACT_PROGRESS_LISTING_FILES§"
 
 msgid "_MSG_FIELD_DONT_EXIST"
 msgstr "El campo no existe!"
@@ -1235,7 +1235,7 @@ msgid "_MSG_INVALID_SCHEDULE_PERIOD"
 msgstr "Has introducido un periodo invalido para esta planificación !"
 
 msgid "_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
-msgstr "__LOGS availability for device %s"
+msgstr "§_LOGS availability for device %s§"
 
 msgid "_MSG_MAIL_SENT_TO_SUPPORT"
 msgstr "Correo enviado al soporte de Octopussy."
@@ -1247,7 +1247,7 @@ msgid "_MSG_MSGID_ALREADY_EXISTS"
 msgstr "Message ID ya existe !"
 
 msgid "_MSG_MSGID_CANT_BE_NULL"
-msgstr "_MSG_MSGID_CANT_BE_NULL"
+msgstr "§MSG_MSGID_CANT_BE_NULL§"
 
 msgid "_MSG_MSGS_FOR_SERVICE"
 msgstr "Mensajes para el Servicio %s (version %s)"
@@ -1304,7 +1304,7 @@ msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
 msgstr "Consultando Base de datos..."
 
 msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
-msgstr "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "§MSG_REPORT_PROGRESS_REPORT_CONFIG§"
 
 msgid "_MSG_RESTART_OCTOPUSSY"
 msgstr "Reiniciar Octopussy"
@@ -1364,7 +1364,7 @@ msgid "_MSG_USER_ALREADY_EXISTS"
 msgstr "El usuario ya existe !"
 
 msgid "_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"
-msgstr "_YOUR user can only view %d minutes of logs"
+msgstr "§YOUR user can only view %d minutes of logs§"
 
 msgid "_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
 msgstr "Lista de mensajes del asistente, limitadas a %d por defecto"
@@ -1394,4 +1394,4 @@ msgid "_TOOLTIP_SYSTEM_SMTP"
 msgstr "SMTP es usado para enviar las Alertas e Informes a los Contactos o para contactar con el soporte de Octopussy.<br> <b>Servidor:</b> (<i>tusmtp.tudominio.com</i>)<br><b>Remitente:</b> (<i>tu@tudominio.com</i>)<br>"
 
 msgid "_TOOLTIP_SYSTEM_ZABBIX"
-msgstr "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "§TOOLTIP_SYSTEM_ZABBIX§"

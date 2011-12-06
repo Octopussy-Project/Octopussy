@@ -8,13 +8,13 @@ msgid "_GERMAN"
 msgstr "Немецкий"
 
 msgid "_ITALIAN"
-msgstr "_ITALIAN"
+msgstr "§ITALIAN§"
 
 msgid "_PORTUGUESE"
 msgstr "Португальский"
 
 msgid "_RUSSIAN"
-msgstr "_RUSSIAN"
+msgstr "§RUSSIAN§"
 
 msgid "_SPANISH"
 msgstr "Испанский"
@@ -179,7 +179,7 @@ msgid "_ACTION"
 msgstr "Действие"
 
 msgid "_BACKUP"
-msgstr "_BACKUP"
+msgstr "§BACKUP§"
 
 msgid "_BEGIN"
 msgstr "Начать"
@@ -194,22 +194,22 @@ msgid "_BUG_REPORT"
 msgstr "Отчёт об ошибке"
 
 msgid "_BYTES"
-msgstr "_BYTES"
+msgstr "§BYTES§"
 
 msgid "_CANCEL"
 msgstr "Отменить"
 
 msgid "_CERTIFICATE"
-msgstr "_CERTIFICATE"
+msgstr "§CERTIFICATE§"
 
 msgid "_COLUMNS"
-msgstr "_COLUMNS"
+msgstr "§COLUMNS§"
 
 msgid "_COLUMNS_NAMES"
-msgstr "_COLUMNS_NAMES"
+msgstr "§COLUMNS_NAMES§"
 
 msgid "_COMMON_NAME"
-msgstr "_COMMON_NAME"
+msgstr "§COMMON_NAME§"
 
 msgid "_CONFIG_FILE"
 msgstr "Конфигурационнай файл"
@@ -218,16 +218,16 @@ msgid "_DASHBOARD"
 msgstr "Панель управления"
 
 msgid "_DATASOURCE"
-msgstr "_DATASOURCE"
+msgstr "§DATASOURCE§"
 
 msgid "_DATASOURCES"
-msgstr "_DATASOURCES"
+msgstr "§DATASOURCES§"
 
 msgid "_DATASOURCE_VALUE"
-msgstr "_DATASOURCE_VALUE"
+msgstr "§DATASOURCE_VALUE§"
 
 msgid "_DATASOURCES_VALUE"
-msgstr "_DATASOURCES_VALUE"
+msgstr "§DATASOURCES_VALUE§"
 
 msgid "_DELETE"
 msgstr "Удалить"
@@ -251,34 +251,34 @@ msgid "_HELP"
 msgstr "Помощь"
 
 msgid "_HOMEPAGE"
-msgstr "_HOMEPAGE"
+msgstr "§HOMEPAGE§"
 
 msgid "_HOST"
 msgstr "Хост"
 
 msgid "_ICONS_AND_TEXT"
-msgstr "_ICONS_AND_TEXT"
+msgstr "§ICONS_AND_TEXT§"
 
 msgid "_ICONS_ONLY"
-msgstr "_ICONS_ONLY"
+msgstr "§ICONS_ONLY§"
 
 msgid "_INFORMATION"
-msgstr "_INFORMATION"
+msgstr "§INFORMATION§"
 
 msgid "_KEY"
 msgstr "Ключ"
 
 msgid "_LABEL"
-msgstr "_LABEL"
+msgstr "§LABEL§"
 
 msgid "_LOGOUT"
 msgstr "Выйти"
 
 msgid "_MENU_DISPLAY"
-msgstr "_MENU_DISPLAY"
+msgstr "§MENU_DISPLAY§"
 
 msgid "_MODIFICATION"
-msgstr "_MODIFICATION"
+msgstr "§MODIFICATION§"
 
 msgid "_MODIFY"
 msgstr "Изменить"
@@ -299,10 +299,10 @@ msgid "_REMOVE"
 msgstr "Убрать"
 
 msgid "_RESTORE"
-msgstr "_RESTORE"
+msgstr "§RESTORE§"
 
 msgid "_RESTORE_FROM_FILE"
-msgstr "_RESTORE_FROM_FILE"
+msgstr "§RESTORE_FROM_FILE§"
 
 msgid "_SAVE"
 msgstr "Сохранить"
@@ -326,7 +326,7 @@ msgid "_STOPPED"
 msgstr "Остановлено"
 
 msgid "_TEXT_ONLY"
-msgstr "_TEXT_ONLY"
+msgstr "§TEXT_ONLY§"
 
 msgid "_UPDATE"
 msgstr "Обновить"
@@ -335,7 +335,7 @@ msgid "_USER"
 msgstr "Пользователь"
 
 msgid "_USER_EDIT"
-msgstr "_USER_EDIT"
+msgstr "§USER_EDIT§"
 
 msgid "_USERS"
 msgstr "Пользователи"
@@ -359,7 +359,7 @@ msgid "_DATE_END"
 msgstr "Дата конца"
 
 msgid "_DATETIME"
-msgstr "_DATETIME"
+msgstr "§DATETIME§"
 
 msgid "_DAY_OF_MONTH"
 msgstr "День месяца"
@@ -389,7 +389,7 @@ msgid "_FIELD"
 msgstr "Поле"
 
 msgid "_FIELDS_OF_TABLE"
-msgstr "_FIELDS_OF_TABLE"
+msgstr "§FIELDS_OF_TABLE§"
 
 msgid "_FILE"
 msgstr "Файл"
@@ -416,13 +416,13 @@ msgid "_NAME"
 msgstr "Название"
 
 msgid "_NB"
-msgstr "_NB"
+msgstr "§NB§"
 
 msgid "_NB_ITEMS"
-msgstr "_NB_ITEMS"
+msgstr "§NB_ITEMS§"
 
 msgid "_NEW_PASSWORD"
-msgstr "_NEW_PASSWORD"
+msgstr "§NEW_PASSWORD§"
 
 msgid "_PASSWORD"
 msgstr "Пароль"
@@ -482,7 +482,7 @@ msgid "_ADD_SERVICE_TO_DEVICE"
 msgstr "Добавить сервис устройсву"
 
 msgid "_ADD_SERVICE_TO_SERVICEGROUP"
-msgstr "_ADD_SERVICE_TO_SERVICEGROUP"
+msgstr "§ADD_SERVICE_TO_SERVICEGROUP§"
 
 msgid "_ADD_STORAGE"
 msgstr "Добавить хранилище"
@@ -506,10 +506,10 @@ msgid "_ALERTS_VIEWER"
 msgstr "Просмотр тревог"
 
 msgid "_AUTHENTICATION"
-msgstr "_AUTHENTICATION"
+msgstr "§AUTHENTICATION§"
 
 msgid "_BACK"
-msgstr "_BACK"
+msgstr "§BACK§"
 
 msgid "_BASE"
 msgstr "База"
@@ -521,19 +521,19 @@ msgid "_CITY"
 msgstr "Город"
 
 msgid "_COMPONENT_NAME"
-msgstr "_COMPONENT_NAME"
+msgstr "§COMPONENT_NAME§"
 
 msgid "_CONNECTION_TYPE"
-msgstr "_CONNECTION_TYPE"
+msgstr "§CONNECTION_TYPE§"
 
 msgid "_CONTACTS"
 msgstr "Контакты"
 
 msgid "_CONTACTS_AUTH_DN"
-msgstr "_CONTACTS_AUTH_DN"
+msgstr "§CONTACTS_AUTH_DN§"
 
 msgid "_CONTACTS_AUTH_PASSWORD"
-msgstr "_CONTACTS_AUTH_PASSWORD"
+msgstr "§CONTACTS_AUTH_PASSWORD§"
 
 msgid "_CONTACTS_BASE"
 msgstr "База контактов"
@@ -602,10 +602,10 @@ msgid "_DOWNLOAD_FILE"
 msgstr "Скачать файл"
 
 msgid "_DOWNLOAD_ZIP_FILE"
-msgstr "_DOWNLOAD_ZIP_FILE"
+msgstr "§DOWNLOAD_ZIP_FILE§"
 
 msgid "_DURATION_D"
-msgstr "_DURATION_D"
+msgstr "§DURATION_D§"
 
 msgid "_FINISH_PERIOD"
 msgstr "Окончить период"
@@ -626,7 +626,7 @@ msgid "_GRAPH_WIDTH"
 msgstr "Ширина графика"
 
 msgid "_GRAPH_Y_LABEL"
-msgstr "_GRAPH_Y_LABEL"
+msgstr "§GRAPH_Y_LABEL§"
 
 msgid "_GROUP_NAME"
 msgstr "Название графика"
@@ -662,7 +662,7 @@ msgid "_LOG_LEVEL"
 msgstr "Уровень лога"
 
 msgid "_LOG_REGEXP"
-msgstr "_LOG_REGEXP"
+msgstr "§LOG_REGEXP§"
 
 msgid "_LOG_TYPE"
 msgstr "Тип лога"
@@ -671,7 +671,7 @@ msgid "_LOGROTATE"
 msgstr "Вращение лога"
 
 msgid "_LOGS_AVAILABILITY"
-msgstr "_Logs Availability"
+msgstr "§Logs Availability§"
 
 msgid "_LOGS_VIEWER"
 msgstr "Просмотр логов"
@@ -686,7 +686,7 @@ msgid "_MATCH"
 msgstr "Сопоставить"
 
 msgid "_MAX_MINUTES_SEARCH"
-msgstr "_MAX. number of minutes to search"
+msgstr "§MAX. number of minutes to search§"
 
 msgid "_MAX_TIME_WITHOUT_LOG"
 msgstr "Макс. время без логов"
@@ -716,7 +716,7 @@ msgid "_NB_REPORTS"
 msgstr "Nb-отчёты"
 
 msgid "_NEGATE"
-msgstr "_NEGATE"
+msgstr "§NEGATE§"
 
 msgid "_NEW_ALERT"
 msgstr "Новая тревога"
@@ -746,7 +746,7 @@ msgid "_NEW_FIELD"
 msgstr "Новое поле"
 
 msgid "_NEW_OCTOPUSSY_VERSION_AVAILABLE"
-msgstr "_NEW_OCTOPUSSY_VERSION_AVAILABLE"
+msgstr "§NEW_OCTOPUSSY_VERSION_AVAILABLE§"
 
 msgid "_NEW_RACK"
 msgstr "Новая стойка"
@@ -761,10 +761,10 @@ msgid "_NEW_SERVICE"
 msgstr "Новый сервис"
 
 msgid "_NEW_SERVICEGROUP"
-msgstr "_NEW_SERVICEGROUP"
+msgstr "§NEW_SERVICEGROUP§"
 
 msgid "_NEW_STATIC_ALERT"
-msgstr "_NEW_STATIC_ALERT"
+msgstr "§NEW_STATIC_ALERT§"
 
 msgid "_NEW_STATIC_DEVICEGROUP"
 msgstr "Новая статическая группа устройств"
@@ -782,25 +782,25 @@ msgid "_OFFICIAL_WEBSITE"
 msgstr "Официальный веб-сайт"
 
 msgid "_ORGANIZATION"
-msgstr "_ORGANIZATION"
+msgstr "§ORGANIZATION§"
 
 msgid "_ORGANIZATIONAL_UNIT"
-msgstr "_ORGANIZATIONAL_UNIT"
+msgstr "§ORGANIZATIONAL_UNIT§"
 
 msgid "_PAGE"
-msgstr "_PAGE"
+msgstr "§PAGE§"
 
 msgid "_PAGE_FIRST"
-msgstr "_PAGE_FIRST"
+msgstr "§PAGE_FIRST§"
 
 msgid "_PAGE_LAST"
-msgstr "_PAGE_LAST"
+msgstr "§PAGE_LAST§"
 
 msgid "_PAGE_NEXT"
-msgstr "_PAGE_NEXT"
+msgstr "§PAGE_NEXT§"
 
 msgid "_PAGE_PREVIOUS"
-msgstr "_PAGE_PREVIOUS"
+msgstr "§PAGE_PREVIOUS§"
 
 msgid "_PARTITION_LOGS"
 msgstr "Разграничить логи"
@@ -812,13 +812,13 @@ msgid "_PERIODS"
 msgstr "Периоды"
 
 msgid "_PERL_FUNCTION"
-msgstr "_PERL_FUNCTION"
+msgstr "§PERL_FUNCTION§"
 
 msgid "_PROCESSOR"
 msgstr "Процессор"
 
 msgid "_QUICK_SEARCH_ON_THIS_PAGE"
-msgstr "_QUICK_SEARCH_ON_THIS_PAGE"
+msgstr "§QUICK_SEARCH_ON_THIS_PAGE§"
 
 msgid "_RACK"
 msgstr "Стойка"
@@ -827,7 +827,7 @@ msgid "_RANK"
 msgstr "Ранг"
 
 msgid "_REAL_TIME_LOGS_VIEWER"
-msgstr "_REAL_TIME_LOGS_VIEWER"
+msgstr "§REAL_TIME_LOGS_VIEWER§"
 
 msgid "_REGEXP_EXC"
 msgstr "Регулярное выражение (искл.)"
@@ -836,19 +836,19 @@ msgid "_REGEXP_INC"
 msgstr "Регулярное выражение (вкл.)"
 
 msgid "_RELOAD"
-msgstr "_RELOAD"
+msgstr "§RELOAD§"
 
 msgid "_RELOAD_ALL"
-msgstr "_RELOAD_ALL"
+msgstr "§RELOAD_ALL§"
 
 msgid "_RELOAD_REQUIRED"
-msgstr "_RELOAD_REQUIRED"
+msgstr "§RELOAD_REQUIRED§"
 
 msgid "_REMOVE_LOG_MINUTE"
 msgstr "Убрать минуту лога"
 
 msgid "_REPETITION_N"
-msgstr "_REPETITION_N"
+msgstr "§REPETITION_N§"
 
 msgid "_REPORT"
 msgstr "Отчёт"
@@ -869,28 +869,28 @@ msgid "_REPORT_FIELDS_ORDER"
 msgstr "Порядок полей в отчёте"
 
 msgid "_REPORT_FILE_DOESNT_EXIST"
-msgstr "_REPORT_FILE_DOESNT_EXIST"
+msgstr "§REPORT_FILE_DOESNT_EXIST§"
 
 msgid "_REPORT_HTML"
 msgstr "Отчёт в формате HTML"
 
 msgid "_REPORT_IN_PROGRESS"
-msgstr "_REPORT_IN_PROGRESS"
+msgstr "§REPORT_IN_PROGRESS§"
 
 msgid "_REPORT_NAME"
 msgstr "Название отчёта"
 
 msgid "_REPORT_OFC"
-msgstr "_REPORT_OFC"
+msgstr "§REPORT_OFC§"
 
 msgid "_REPORT_PDF"
 msgstr "Отчёт в формате PDF"
 
 msgid "_REPORT_RRD_GRAPH"
-msgstr "_REPORT_RRD_GRAPH"
+msgstr "§REPORT_RRD_GRAPH§"
 
 msgid "_REPORT_RRD_GRAPH_CREATION"
-msgstr "_REPORT_RRD_GRAPH_CREATION"
+msgstr "§REPORT_RRD_GRAPH_CREATION§"
 
 msgid "_REPORT_SCHEDULER"
 msgstr "Расписание отчёта"
@@ -917,16 +917,16 @@ msgid "_ROOM"
 msgstr "Комната"
 
 msgid "_ROTATE_LEFT"
-msgstr "_ROTATE_LEFT"
+msgstr "§ROTATE_LEFT§"
 
 msgid "_ROTATE_RIGHT"
-msgstr "_ROTATE_RIGHT"
+msgstr "§ROTATE_RIGHT§"
 
 msgid "_RUNNING_REPORTS"
-msgstr "_RUNNING_REPORTS"
+msgstr "§RUNNING_REPORTS§"
 
 msgid "_SAVE_AS_SEARCH_TEMPLATE"
-msgstr "_SAVE_AS_SEARCH_TEMPLATE"
+msgstr "§SAVE_AS_SEARCH_TEMPLATE§"
 
 msgid "_SCHEDULE"
 msgstr "Расписание"
@@ -935,19 +935,19 @@ msgid "_SCHEDULE_REPORT"
 msgstr "Отчёт по планировщику"
 
 msgid "_SCHEDULE_STATISTIC_REPORT"
-msgstr "_SCHEDULE_STATISTIC_REPORT"
+msgstr "§SCHEDULE_STATISTIC_REPORT§"
 
 msgid "_SCHEDULER"
 msgstr "Планировщик"
 
 msgid "_SEARCH_TEMPLATES"
-msgstr "_SEARCH_TEMPLATES"
+msgstr "§SEARCH_TEMPLATES§"
 
 msgid "_SELECT_THIS_MSG"
 msgstr "Выбрать это сообщение"
 
 msgid "_SELECTION"
-msgstr "_SELECTION"
+msgstr "§SELECTION§"
 
 msgid "_SENDER"
 msgstr "Отправитель"
@@ -971,10 +971,10 @@ msgid "_SERVICES_UPDATES"
 msgstr "Обновления сервисов"
 
 msgid "_SOURCE"
-msgstr "_SOURCE"
+msgstr "§SOURCE§"
 
 msgid "_SHOW_DIFF"
-msgstr "_SHOW_DIFF"
+msgstr "§SHOW_DIFF§"
 
 msgid "_START"
 msgstr "Пуск"
@@ -986,22 +986,22 @@ msgid "_START_TIME"
 msgstr "Время пуска"
 
 msgid "_STATE"
-msgstr "_STATE"
+msgstr "§STATE§"
 
 msgid "_STATIC"
 msgstr "Статический"
 
 msgid "_STATIC_ALERT_CONFIGURATION"
-msgstr "_STATIC_ALERT_CONFIGURATION"
+msgstr "§STATIC_ALERT_CONFIGURATION§"
 
 msgid "_STATISTICS"
-msgstr "_STATISTIC"
+msgstr "§STATISTIC§"
 
 msgid "_STATISTIC_REPORT_EDITION"
-msgstr "_STATISTIC_REPORT_EDITION"
+msgstr "§STATISTIC_REPORT_EDITION§"
 
 msgid "_STATISTIC_REPORT_SCHEDULER"
-msgstr "_STATISTIC_REPORT_SCHEDULER"
+msgstr "§STATISTIC_REPORT_SCHEDULER§"
 
 msgid "_STATISTIC_REPORTS"
 msgstr "Статистические отчёты"
@@ -1019,7 +1019,7 @@ msgid "_SWAP_USAGE"
 msgstr "Использование swap"
 
 msgid "_SYSLOG_OUTPUT"
-msgstr "_SYSLOG_OUTPUT"
+msgstr "§SYSLOG_OUTPUT§"
 
 msgid "_SYSTEM_CONFIG"
 msgstr "Системная конфигурация"
@@ -1052,7 +1052,7 @@ msgid "_TICKET_WORK_PROGRESS"
 msgstr "В процессе"
 
 msgid "_TIMELINE"
-msgstr "_TIMELINE"
+msgstr "§TIMELINE§"
 
 msgid "_TIMEPERIOD"
 msgstr "Период времени"
@@ -1064,16 +1064,16 @@ msgid "_TIMEPERIODS"
 msgstr "Периоды времени"
 
 msgid "_TIMESTEP"
-msgstr "_TIMESTEP"
+msgstr "§TIMESTEP§"
 
 msgid "_UNKNOWN_MSGS"
 msgstr "Неизвестные сообщения"
 
 msgid "_USERS_AUTH_DN"
-msgstr "_USERS_AUTH_DN"
+msgstr "§USERS_AUTH_DN§"
 
 msgid "_USERS_AUTH_PASSWORD"
-msgstr "_USERS_AUTH_PASSWORD"
+msgstr "§USERS_AUTH_PASSWORD§"
 
 msgid "_USERS_BASE"
 msgstr "База пользователей"
@@ -1085,115 +1085,115 @@ msgid "_USERS_SERVER"
 msgstr "Сервер пользователей"
 
 msgid "_WORLD_STATISTICS"
-msgstr "_WORLD_STATISTICS"
+msgstr "§WORLD_STATISTICS§"
 
 msgid "_ZABBIX_HOST_DEFINED"
-msgstr "_ZABBIX_HOST_DEFINED"
+msgstr "§ZABBIX_HOST_DEFINED§"
 
 msgid "_ZABBIX_SERVER"
-msgstr "_ZABBIX_SERVER"
+msgstr "§ZABBIX_SERVER§"
 
 msgid "_ZABBIX_ITEM_DEFINED"
-msgstr "_ZABBIX_ITEM_DEFINED"
+msgstr "§ZABBIX_ITEM_DEFINED§"
 
 msgid "_ZOOM_IN"
-msgstr "_ZOOM_IN"
+msgstr "§ZOOM_IN§"
 
 msgid "_ZOOM_OUT"
-msgstr "_ZOOM_OUT"
+msgstr "§ZOOM_OUT§"
 
 msgid "_DLG_DELETE_ALERT"
-msgstr "_Do you really want to delete Alert '%%arg1%%' ?"
+msgstr "§Do you really want to delete Alert '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_CONTACT"
-msgstr "_Do you really want to delete Contact '%%arg1%%' ?"
+msgstr "§Do you really want to delete Contact '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_DEVICE"
-msgstr "_Do you really want to delete Device '%%arg1%%' ?"
+msgstr "§Do you really want to delete Device '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_DEVICEGROUP"
-msgstr "_Do you really want to delete Device Group '%%arg1%%' ?"
+msgstr "§Do you really want to delete Device Group '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_DEVICE_SERVICE"
-msgstr "_Do you really want to delete Service '%%arg1%%' from Device '%%arg2%%' ?"
+msgstr "§Do you really want to delete Service '%%arg1%%' from Device '%%arg2%%' ?§"
 
 msgid "_DLG_DELETE_LOCATION_BUILDING"
-msgstr "_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' ?"
+msgstr "§Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' ?§"
 
 msgid "_DLG_DELETE_LOCATION_CITY"
-msgstr "_Do you really want to delete Location City '%%arg1%%' ?"
+msgstr "§Do you really want to delete Location City '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_LOCATION_RACK"
-msgstr "_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' Rack '%%arg4%%' ?"
+msgstr "§Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' Rack '%%arg4%%' ?§"
 
 msgid "_DLG_DELETE_LOCATION_ROOM"
-msgstr "_Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' ?"
+msgstr "§Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' ?§"
 
 msgid "_DLG_DELETE_LOG"
-msgstr "_Do you really want to delete this Log line #%%log%% ?"
+msgstr "§Do you really want to delete this Log line #%%log%% ?§"
 
 msgid "_DLG_DELETE_LOG_MINUTE"
-msgstr "_Do you really want to delete this Log File %%datetime%% ?"
+msgstr "§Do you really want to delete this Log File %%datetime%% ?§"
 
 msgid "_DLG_DELETE_MESSAGE"
-msgstr "_Do you really want to delete Message '%%msg%%' from Service '%%service%%' ?"
+msgstr "§Do you really want to delete Message '%%msg%%' from Service '%%service%%' ?§"
 
 msgid "_DLG_DELETE_REPORT"
-msgstr "_Do you really want to delete Report '%%arg1%%' ?"
+msgstr "§Do you really want to delete Report '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_REPORT_DATA"
-msgstr "_Do you really want to delete Report '%%arg1%%' '%%arg2%%' ?"
+msgstr "§Do you really want to delete Report '%%arg1%%' '%%arg2%%' ?§"
 
 msgid "_DLG_DELETE_REPORT_MONTH"
-msgstr "_Do you really want to delete Report Month '%%arg1%%' '%%arg2%% %%arg3%%' ?"
+msgstr "§Do you really want to delete Report Month '%%arg1%%' '%%arg2%% %%arg3%%' ?§"
 
 msgid "_DLG_DELETE_REPORT_SCHEDULE"
-msgstr "_Do you really want to delete Report Schedule '%%arg1%%' ?"
+msgstr "§Do you really want to delete Report Schedule '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_SEARCH_TEMPLATE"
-msgstr "_Do you really want to delete Search Template '%%arg1%%' ?"
+msgstr "§Do you really want to delete Search Template '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_SERVICE"
-msgstr "_Do you really want to delete Service '%%arg1%%' ?"
+msgstr "§Do you really want to delete Service '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_SERVICEGROUP"
-msgstr "_Do you really want to delete Service Group '%%arg1%%' ?"
+msgstr "§Do you really want to delete Service Group '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_SERVICEGROUP_SERVICE"
-msgstr "_Do you really want to delete Service '%%arg2%%' from Service Group '%%arg1%%' ?"
+msgstr "§Do you really want to delete Service '%%arg2%%' from Service Group '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_STATISTIC_REPORT"
-msgstr "_Do you really want to delete Statistic Report '%%arg1%%' ?"
+msgstr "§Do you really want to delete Statistic Report '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_STATISTIC_REPORT_SCHEDULE"
-msgstr "_Do you really want to delete Statistic Report Schedule '%%arg1%%' ?"
+msgstr "§Do you really want to delete Statistic Report Schedule '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_STORAGE"
-msgstr "_Do you really want to delete Storage '%%arg1%%' ?"
+msgstr "§Do you really want to delete Storage '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_TABLE"
-msgstr "_Do you really want to delete Table '%%arg1%%' ?"
+msgstr "§Do you really want to delete Table '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_TIMEPERIOD"
-msgstr "_Do you really want to delete TimePeriod '%%arg1%%' ?"
+msgstr "§Do you really want to delete TimePeriod '%%arg1%%' ?§"
 
 msgid "_DLG_DELETE_USER"
-msgstr "_Do you really want to delete User '%%arg1%%' ?"
+msgstr "§Do you really want to delete User '%%arg1%%' ?§"
 
 msgid "_DLG_LOGOUT"
-msgstr "_Do you really want to logout ?"
+msgstr "§Do you really want to logout ?§"
 
 msgid "_DLG_PARSE_PAUSE"
-msgstr "_Do you really want to pause parsing Device '%%arg1%%' ?"
+msgstr "§Do you really want to pause parsing Device '%%arg1%%' ?§"
 
 msgid "_DLG_PARSE_START"
-msgstr "_Do you really want to start parsing Device '%%arg1%%' ?"
+msgstr "§Do you really want to start parsing Device '%%arg1%%' ?§"
 
 msgid "_DLG_PARSE_STOP"
-msgstr "_Do you really want to stop parsing Device '%%arg1%%' ?"
+msgstr "§Do you really want to stop parsing Device '%%arg1%%' ?§"
 
 msgid "_DLG_RESTORE_CONFIG"
-msgstr "_Do you really want to restore configuration from file '%%arg1%%' ?"
+msgstr "§Do you really want to restore configuration from file '%%arg1%%' ?§"
 
 msgid "_MSG_ALERT_RAISED_ONLY"
 msgstr "Тревога будет поднята, только если мы попадём n раз меньше, чем за d секунд на одном устройстве"
@@ -1202,7 +1202,7 @@ msgid "_MSG_CHECK_UPDATES"
 msgstr "Проверить обновления"
 
 msgid "_MSG_CONFIG_RESTORED"
-msgstr "_MSG_CONFIG_RESTORED %s"
+msgstr "§MSG_CONFIG_RESTORED %s§"
 
 msgid "_MSG_CONTACT_ALREADY_EXIST"
 msgstr "Контакт уже существует!"
@@ -1214,16 +1214,16 @@ msgid "_MSG_CONTACT_ME"
 msgstr "По всем другим вопросам обращайтесь ко мне на octo.devel@gmail.com"
 
 msgid "_MSG_DEVICEGROUP_ALREADY_EXISTS"
-msgstr "_MSG_DEVICEGROUP_ALREADY_EXISTS"
+msgstr "§MSG_DEVICEGROUP_ALREADY_EXISTS§"
 
 msgid "_MSG_DYNAMIC_ALERT_CREATION"
 msgstr "Создание динамической тревоги"
 
 msgid "_MSG_EXTRACT_PROGRESS_DATA"
-msgstr "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "§MSG_EXTRACT_PROGRESS_DATA§"
 
 msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
-msgstr "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "§MSG_EXTRACT_PROGRESS_LISTING_FILES§"
 
 msgid "_MSG_FIELD_DONT_EXIST"
 msgstr "Поле не существует!"
@@ -1235,7 +1235,7 @@ msgid "_MSG_INVALID_SCHEDULE_PERIOD"
 msgstr "Вы ввели неправильный период для этого расписания!"
 
 msgid "_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
-msgstr "__LOGS availability for device %s"
+msgstr "§_LOGS availability for device %s§"
 
 msgid "_MSG_MAIL_SENT_TO_SUPPORT"
 msgstr "Письмо отправлено в поддержку Octopussy."
@@ -1247,7 +1247,7 @@ msgid "_MSG_MSGID_ALREADY_EXISTS"
 msgstr "ID сообщения уже существует!"
 
 msgid "_MSG_MSGID_CANT_BE_NULL"
-msgstr "_MSG_MSGID_CANT_BE_NULL"
+msgstr "§MSG_MSGID_CANT_BE_NULL§"
 
 msgid "_MSG_MSGS_FOR_SERVICE"
 msgstr "Сообщения для сервиса %s (версия %s)"
@@ -1274,7 +1274,7 @@ msgid "_MSG_NO_UPDATES_AVAILABLE"
 msgstr "Обновлений нет"
 
 msgid "_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
-msgstr "__I'm OK to send anonymous data to 8pussy.org__"
+msgstr "§_I'm OK to send anonymous data to 8pussy.org__§"
 
 msgid "_MSG_REACH_MAX_LINES"
 msgstr "Максимум %d строк достигнут!"
@@ -1304,7 +1304,7 @@ msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
 msgstr "Опрашивание базы данных..."
 
 msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
-msgstr "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "§MSG_REPORT_PROGRESS_REPORT_CONFIG§"
 
 msgid "_MSG_RESTART_OCTOPUSSY"
 msgstr "Перезагрузить Octopussy"
@@ -1364,34 +1364,34 @@ msgid "_MSG_USER_ALREADY_EXISTS"
 msgstr "Пользователь уже существует!"
 
 msgid "_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"
-msgstr "_YOUR user can only view %d minutes of logs"
+msgstr "§YOUR user can only view %d minutes of logs§"
 
 msgid "_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
 msgstr "Список сообщенией мастера ограничен %d по умолчанию."
 
 msgid "_TOOLTIP_ALERT_MSG"
-msgstr "_TOOLTIP_ALERT_MSG"
+msgstr "§TOOLTIP_ALERT_MSG§"
 
 msgid "_TOOLTIP_DEVICE_STATUS"
-msgstr "_TOOLTIP_DEVICE_STATUS"
+msgstr "§TOOLTIP_DEVICE_STATUS§"
 
 msgid "_TOOLTIP_SYSTEM_DB"
-msgstr "_TOOLTIP_SYSTEM_DB"
+msgstr "§TOOLTIP_SYSTEM_DB§"
 
 msgid "_TOOLTIP_SYSTEM_JABBER"
-msgstr "_TOOLTIP_SYSTEM_JABBER"
+msgstr "§TOOLTIP_SYSTEM_JABBER§"
 
 msgid "_TOOLTIP_SYSTEM_LDAP"
-msgstr "_TOOLTIP_SYSTEM_LDAP"
+msgstr "§TOOLTIP_SYSTEM_LDAP§"
 
 msgid "_TOOLTIP_SYSTEM_NSCA"
-msgstr "_TOOLTIP_SYSTEM_NSCA"
+msgstr "§TOOLTIP_SYSTEM_NSCA§"
 
 msgid "_TOOLTIP_SYSTEM_PROXY"
-msgstr "_TOOLTIP_SYSTEM_PROXY"
+msgstr "§TOOLTIP_SYSTEM_PROXY§"
 
 msgid "_TOOLTIP_SYSTEM_SMTP"
-msgstr "_TOOLTIP_SYSTEM_SMTP"
+msgstr "§TOOLTIP_SYSTEM_SMTP§"
 
 msgid "_TOOLTIP_SYSTEM_ZABBIX"
-msgstr "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "§TOOLTIP_SYSTEM_ZABBIX§"
