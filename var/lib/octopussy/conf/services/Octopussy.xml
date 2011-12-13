@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="063"
-                   version="201110100001"
+                   version="201112130002"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -387,6 +387,12 @@
            msg_id="Octopussy:didnt_match_device_criteria"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Logs from Device '.+' have been dropped because it didn't match the device regexp criteria.&quot;):msg@&gt;"
            rank="064"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Octopussy:delete_empty_logs_directory"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Delete empty logs directory .+&quot;):msg@&gt;"
+           rank="065"
            table="Message"
            taxonomy="Application" />
 </octopussy_service>

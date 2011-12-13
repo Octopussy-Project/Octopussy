@@ -118,25 +118,33 @@ sub Rotate_Logs
                 {
                     foreach my $d (Get_Directories("$dir/$device/$s/$y/$m"))
                     {
-                        if (($t eq 'incoming') || ($t eq 'unknown'))
-                        { # Removes only empty directories for Incoming & Unknown
-                            system
-qq{rmdir "$dir/$device/$s/$y/$m/$d/" 2> /dev/null};
-                            AAT::Syslog::Message($PROG_NAME, 'DELETE_LOGS_DIR',
-                                "$dir/$device/$s/$y/$m/$d/");
-                        }
-                        elsif (($y * 10_000 + $m * 100 + $d) < $limit)
+                        if (($y * 10_000 + $m * 100 + $d) < $limit)
                         {
                             system qq{rm -rf "$dir/$device/$s/$y/$m/$d/"};
                             AAT::Syslog::Message($PROG_NAME, 'DELETE_LOGS_DIR',
                                 "$dir/$device/$s/$y/$m/$d/");
                         }
+						else
+						{	# Removes day directory if empty
+							system 
+							qq{rmdir "$dir/$device/$s/$y/$m/$d" 2> /dev/null};
+                     		AAT::Syslog::Message($PROG_NAME, 
+							'DELETE_EMPTY_LOGS_DIR',
+                         	"$dir/$device/$s/$y/$m/$d")
+							if (!-d "$dir/$device/$s/$y/$m/$d/");
+						}
                     }
                     # Removes month directory if empty
                     system qq{rmdir "$dir/$device/$s/$y/$m" 2> /dev/null};
+					AAT::Syslog::Message($PROG_NAME, 'DELETE_EMPTY_LOGS_DIR',
+						"$dir/$device/$s/$y/$m")
+                   		if (!-d "$dir/$device/$s/$y/$m");
                 }
                 # Removes year directory if empty
                 system qq{rmdir "$dir/$device/$s/$y" 2> /dev/null};
+				AAT::Syslog::Message($PROG_NAME, 'DELETE_EMPTY_LOGS_DIR',
+               		"$dir/$device/$s/$y/")
+					if (!-d "$dir/$device/$s/$y/");
             }
         }
     }

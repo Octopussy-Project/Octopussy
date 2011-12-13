@@ -1,4 +1,6 @@
 <logs>
+	<log mid="DELETE_EMPTY_LOGS_DIR"
+    message="Delete empty logs directory %%ARG1%%" />
 	<log mid="DELETE_LOGS_DIR"
     message="Delete logs directory %%ARG1%%" />
 	<log mid="DELETE_LOGS_OLDER_THAN"
