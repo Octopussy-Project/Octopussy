@@ -5,7 +5,6 @@ my $select_options = (defined $arg{multiple} ? " multiple" : "")
 my %selected = ();
 foreach my $s (ARRAY($arg{selected}))
 	{ $selected{$s} = 1; }
-
 my $str_any = AAT::Translation("-- ANY --");
 my $str_unknown = "-- " . uc(AAT::Translation("_UNKNOWN")) . " --";
 %>
@@ -44,9 +43,16 @@ if (defined $arg{unknown})
     	var value = items[i].getAttribute('label');
 		var selected = items[i].getAttribute('selected');
        	$('#service').append($('<option></option>').val(value).html(value));
+		
 		if (selected == 1)
 			$('#service option[i]').attr('selected', 'selected');
    	} );
+<%
+	foreach my $k (keys %selected)
+	{%>
+	$('#service option[value="<%= $k %>"]').attr('selected', 'selected');
+	<%}
+%>
 }
 
 function refresh_selector_service()
