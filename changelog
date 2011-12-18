@@ -1,3 +1,12 @@
+octopussy (1.0.2) stable; urgency=high
+
+  * Translation updates to fix 'Internal Server Error'
+  * Bugfix #3439106: Many bugs in Restricted Logs Viewer
+  * Bugfix #3455262: Fixing octo_logrotate issues
+  * Bugfix #3452230: Services are now correctly selected in 'user_restrictions.asp' page
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Mon, 19 Dec 2011 00:30:00 +0100
+
 octopussy (1.0.1) stable; urgency=high
 
   * Cisco_ASA & MySQL Services updates
