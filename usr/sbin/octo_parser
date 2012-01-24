@@ -353,11 +353,17 @@ Writes Unknown Logs '$logs' into Logfile '$file'
 sub Write_Unknown_Logfile
 {
     my ($logfile, $logs) = @_;
-    $logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
 
-    Write_Logfile($logfile, $logs);
+	if (scalar(@{$logs}) > 0)
+    {	
+    	$logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
 
-    return (scalar @{$logs});
+    	Write_Logfile($logfile, $logs);
+		AAT::Syslog::Message($PROG_NAME, 'NEW_UNKNOWN_LOGS_FROM_DEVICE', 
+			scalar @{$logs}, $device);
+	}	
+    
+	return (scalar @{$logs});
 }
 
 =head2 Incoming_To_Unknown($incoming)
@@ -401,6 +407,9 @@ sub Incoming_To_Unknown
         print "Unable to open file '$unknown'\n";
         AAT::Syslog::Message($PROG_NAME, 'UNABLE_OPEN_FILE', $unknown);
     }
+
+	AAT::Syslog::Message($PROG_NAME, 'NEW_UNKNOWN_LOGS_FROM_DEVICE',
+    	$count, $device)	if ($count);
 
     return ($count);
 }

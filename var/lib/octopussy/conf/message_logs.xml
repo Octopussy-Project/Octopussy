@@ -35,28 +35,33 @@
 	<log mid="LOGS_DROPPED_BECAUSE_DEVICE_DIDNT_MATCH_REGEXP"
        message="Logs from Device '%%ARG1%%' have been dropped because it didn't match the device regexp criteria." />
 
-  <log mid="PARSER_DEVICE_PARSING_DURATION"
-    message="Device: %%ARG1%% Date: %%ARG2%% Time: %%ARG3%% seconds" />
-  <log mid="PARSER_DEVICE_SERVICE_EVENTS"
-    message="Device: %%ARG1%% - Service: %%ARG2%% Date: %%ARG3%% - Events: %%ARG4%% / %%ARG5%%" />
-  <log mid="PARSER_FILES_TO_PARSE"
-    message="%%ARG2%% files to parse for Device %%ARG1%%" />
-  <log mid="PARSER_INIT_SERVICE"
-    message="Init Service: %%ARG1%% - %%ARG2%% messages" />
-  <log mid="PARSER_START" message="Device: %%ARG1%% Started !" />
-  <log mid="PARSER_STOP" message="Device: %%ARG1%% Stopped !" />
+	<log mid="NEW_UNKNOWN_LOGS_FROM_DEVICE"
+		message="%%ARG1%% new unknown logs received from Device %%ARG2%%" />
+	
+	<log mid="PARSER_DEVICE_PARSING_DURATION"
+    	message="Device: %%ARG1%% Date: %%ARG2%% Time: %%ARG3%% seconds" />
+  	<log mid="PARSER_DEVICE_SERVICE_EVENTS"
+    	message="Device: %%ARG1%% - Service: %%ARG2%% Date: %%ARG3%% - Events: %%ARG4%% / %%ARG5%%" />
+  	<log mid="PARSER_FILES_TO_PARSE"
+    	message="%%ARG2%% files to parse for Device %%ARG1%%" />
+  	<log mid="PARSER_INIT_SERVICE"
+    	message="Init Service: %%ARG1%% - %%ARG2%% messages" />
+  	<log mid="PARSER_START" message="Device: %%ARG1%% Started !" />
+  	<log mid="PARSER_STOP" message="Device: %%ARG1%% Stopped !" />
 
-  <log mid="REPORTER_GENERATION_STATUS" message="Report Generation %%ARG1%% !" />
+  	<log mid="REPORTER_GENERATION_STATUS" 
+		message="Report Generation %%ARG1%% !" />
 
-  <log mid="PROGRAM_START" message="Started !" />
+  	<log mid="PROGRAM_START" message="Started !" />
 
-  <log mid="SERVICE_MSG_INVALID_REGEXP" message="Invalid Regexp for Message %%ARG1%% ! (Error: %%ARG2%%)" />
+  	<log mid="SERVICE_MSG_INVALID_REGEXP" 
+		message="Invalid Regexp for Message %%ARG1%% ! (Error: %%ARG2%%)" />
 
 	<log mid="SMTP_INVALID_CONFIG"
 		message="Invalid SMTP Configuration. Can't send any mail !" />
 	
 	<log mid="STORAGE_DEFAULT_MODIFIED"
-    message="Default Storages have been modified by %%ARG1%%." />
+    	message="Default Storages have been modified by %%ARG1%%." />
 
 	<log mid="SYSTEM_CONFIG_MODIFIED"
 		message="System Configuration has been modified by %%ARG1%%." />
@@ -64,7 +69,7 @@
 	<log mid="UNABLE_OPEN_FILE"
 		message="Unable to open file '%%ARG1%%'" />
 	<log mid="UNABLE_OPEN_FILE_IN"
-    message="Unable to open file '%%ARG1%%' in '%%ARG2%%'" />
+    	message="Unable to open file '%%ARG1%%' in '%%ARG2%%'" />
 
 	<log mid="USER_FAILED_LOGIN" message="User %%ARG1%% failed to login." />
 	<log mid="USER_LOGGED_IN" message="User %%ARG1%% succesfully logged in." />
@@ -78,19 +83,19 @@
 	<log mid="PARSING_DEVICE"
 		message="Parsing %%ARG1%% for device '%%ARG2%%' by %%ARG3%%." />
 
-  <log mid="WIZARD_REMOVE_MINUTE"
-    message="Removing Unknown Logs at '%%ARG2%%' for device '%%ARG1%%' by %%ARG3%%." />
-  <log mid="WIZARD_REMOVE_PATTERN"
-    message="Removing Unknown Logs with pattern '%%ARG2%%' for device '%%ARG1%%' by %%ARG3%%." />
+	<log mid="WIZARD_REMOVE_MINUTE"
+    	message="Removing Unknown Logs at '%%ARG2%%' for device '%%ARG1%%' by %%ARG3%%." />
+  	<log mid="WIZARD_REMOVE_PATTERN"
+    	message="Removing Unknown Logs with pattern '%%ARG2%%' for device '%%ARG1%%' by %%ARG3%%." />
 
-  <log mid="WORLD_STATS_SENT"
-    message="Octopussy World Statistics have been sent." />
-  <log mid="WORLD_STATS_STATUS_CHANGED"
-    message="Octopussy World Statistics have been %%ARG1%% by %%ARG2%%." />
+  	<log mid="WORLD_STATS_SENT"
+    	message="Octopussy World Statistics have been sent." />
+  	<log mid="WORLD_STATS_STATUS_CHANGED"
+    	message="Octopussy World Statistics have been %%ARG1%% by %%ARG2%%." />
 
 	<log mid="XML_READ_ERROR" message="XML File Read Error: %%ARG1%%" />
 	<log mid="XML_WRITE_ERROR" message="XML File Write Error: %%ARG1%%" />
 
 	<log mid="XMPP_INVALID_CONFIG"
-    message="Invalid XMPP Configuration. Can't send any message !" />
+    	message="Invalid XMPP Configuration. Can't send any message !" />
 </logs>
