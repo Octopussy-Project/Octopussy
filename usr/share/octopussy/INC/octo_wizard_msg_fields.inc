@@ -7,6 +7,7 @@ my $html_msg_pattern = $Server->HTMLEncode($pattern);
 my $html_msg_orig = $Server->HTMLEncode($orig);
 %>
 <AAT:Form action="./wizard_msg.asp">
+<AAT:Form_Hidden name="device" value="$arg{device}" />
 <AAT:Form_Hidden name="service" value="$arg{service}" />
 <AAT:Form_Hidden name="loglevel" value="$arg{loglevel}" />
 <AAT:Form_Hidden name="taxonomy" value="$arg{taxonomy}" />

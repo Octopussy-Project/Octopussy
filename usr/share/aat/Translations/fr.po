@@ -928,6 +928,12 @@ msgstr "Rapports en cours"
 msgid "_SAVE_AS_SEARCH_TEMPLATE"
 msgstr "Sauver comme Modèle de Recherche"
 
+msgid "_SAVE_MSG_GO_BACK_TO_WIZARD"
+msgstr "Sauver le Message et retourner a l'Assistant"
+
+msgid "_SAVE_MSG_GO_TO_SERVICE"
+msgstr "Sauver le Message et aller au Service"
+
 msgid "_SCHEDULE"
 msgstr "Planifier"
 

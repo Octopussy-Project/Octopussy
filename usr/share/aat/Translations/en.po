@@ -928,6 +928,12 @@ msgstr "Running Reports"
 msgid "_SAVE_AS_SEARCH_TEMPLATE"
 msgstr "Save as Search Template"
 
+msgid "_SAVE_MSG_GO_BACK_TO_WIZARD"
+msgstr "Save Message and go back to Wizard"
+
+msgid "_SAVE_MSG_GO_TO_SERVICE"
+msgstr "Save Message and go to Service"
+
 msgid "_SCHEDULE"
 msgstr "Schedule"
 

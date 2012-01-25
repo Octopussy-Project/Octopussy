@@ -1,6 +1,7 @@
 <%
 my %arg = @_;
 my $url = $arg{url};
+my $device = $arg{device};
 my $service = $arg{service};
 my $loglevel = $arg{loglevel};
 my $taxonomy = $arg{taxonomy};
@@ -53,6 +54,7 @@ foreach my $f ((Octopussy::Table::Fields($table)))
 </AAT:BoxCol>
 <AAT:BoxCol>
     <AAT:Form name="form" action="./wizard_msg_add.asp">
+	<AAT:Form_Hidden name="device" value="$device" />	
     <AAT:Form_Hidden name="log" value="$msg_orig" />
     <AAT:Form_Hidden name="msgid_begin" value="$m_begin" />
     <AAT:Form_Hidden name="service" value="$service" />
@@ -80,10 +82,12 @@ foreach my $f ((Octopussy::Table::Fields($table)))
         data="$msg_pattern" onFocus="Check_Pattern()"  
         onKeyUp="Check_Pattern()" /></AAT:BoxCol>
     </AAT:BoxRow>
-    <AAT:BoxRow><AAT:BoxCol cspan="3"><hr></AAT:BoxCol></AAT:BoxRow>
+    <AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
     <AAT:BoxRow>
-    <AAT:BoxCol align="C" cspan="4">
-    <AAT:Form_Submit id="submit_msg" name="submit_msg" value="_FINISH" /></AAT:BoxCol>
+	<AAT:BoxCol align="C" cspan="4">
+    <AAT:Form_Submit id="submit_back_to_wizard" name="submit_back_to_wizard" value="_SAVE_MSG_GO_BACK_TO_WIZARD" />
+    <AAT:Form_Submit id="submit_go_to_service" name="submit_go_to_service" value="_SAVE_MSG_GO_TO_SERVICE" />
+	</AAT:BoxCol>
     </AAT:BoxRow>
     </AAT:Box>
     </AAT:Form>

@@ -928,6 +928,12 @@ msgstr "§RUNNING_REPORTS§"
 msgid "_SAVE_AS_SEARCH_TEMPLATE"
 msgstr "§SAVE_AS_SEARCH_TEMPLATE§"
 
+msgid "_SAVE_MSG_GO_BACK_TO_WIZARD"
+msgstr "§SAVE_MSG_GO_BACK_TO_WIZARD§"
+
+msgid "_SAVE_MSG_GO_TO_SERVICE"
+msgstr "§SAVE_MSG_GO_TO_SERVICE§"
+
 msgid "_SCHEDULE"
 msgstr "Расписание"
 

@@ -26,6 +26,15 @@ if (scalar(@errors))
 	%></AAT:Box><% 
 }
 else
-	{ $Response->Redirect("./services.asp?service=" . $f->{service}); }
+{
+	if (defined $f->{submit_go_to_service})
+	{
+		$Response->Redirect("./services.asp?service=" . $f->{service});
+	}
+	else
+	{
+		$Response->Redirect("./wizard.asp?device=" . $f->{device});
+	}
+}
 %>
 <AAT:PageBottom />

@@ -28,6 +28,7 @@ my $html_orig = $Server->HTMLEncode($orig);
 my $modified_color = Octopussy::Message::Color_Without_Field($modified);
 %>
 <AAT:Form action="$url">
+<AAT:Form_Hidden name="device" value="$device" />
 <AAT:Form_Hidden name="msg_orig" value="$html_orig" />
 <AAT:Form_Hidden name="msg_pattern" value="$pattern" />
 <AAT:Box>
