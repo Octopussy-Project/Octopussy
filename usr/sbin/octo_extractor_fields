@@ -226,7 +226,8 @@ sub Print_Logs
         foreach my $f (@{$files->{$min}})
         {
             Progress('_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match);
-            if (defined open my $FILE, '-|', "zcat \"$f\"")
+			my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+			if (defined open my $FILE, '-|', "$cat \"$f\"")
             {
                 while (<$FILE>)
                 {

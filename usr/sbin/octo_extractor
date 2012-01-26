@@ -200,7 +200,8 @@ sub File_Handler_With_Filter
     my ($f, $logs, $includes, $excludes, $msg_to_parse) = @_;
     my $nb_match = 0;
 
-    if (defined open my $FILE, '-|', "zcat \"$f\"")
+	my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+	if (defined open my $FILE, '-|', "$cat \"$f\"")
     {
         if ($f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/)
         {    # 'Known' Service -> filter with msg_to_parse
@@ -251,7 +252,8 @@ sub File_Handler_Without_Filter
     my ($f, $logs, $includes, $excludes) = @_;
     my $nb_match = 0;
 
-    if (defined open my $FILE, '-|', "zcat \"$f\"")
+	my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+	if (defined open my $FILE, '-|', "$cat \"$f\"")
     {
         while (my $line = <$FILE>)
         {

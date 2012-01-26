@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -59,6 +59,7 @@ my (%alert,      %service);
 my (%taxo_stats, %msgid_stats);
 my $minutes_without_logs;
 my %dir_data = ();
+my %log_compression = ();
 my (@files, @taxo_list, %known_msgs, @unknown_msgs) = ((), (), (), ());
 my ($file, $file_last) = (undef, undef);
 
@@ -268,6 +269,7 @@ sub Init
         my $serv = $s_conf->{sid};
         my $ra   = Regexp::Assemble->new;
 
+		$log_compression{$serv} = $s_conf->{compression} || 1;
         $dir_data{$serv} =
             Octopussy::Storage::Directory_Service($device, $serv);
         Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Init($device,
@@ -314,7 +316,7 @@ sub Init
     return (scalar @services);
 }
 
-=head2 Write_Logfile($file, $logs)
+=head2 Write_Logfile($file, $logs, $compression)
 
 Writes Known Logs '$logs' into Logfile '$file'
 
@@ -322,18 +324,24 @@ Writes Known Logs '$logs' into Logfile '$file'
 
 sub Write_Logfile
 {
-    my ($logfile, $logs) = @_;
+    my ($logfile, $logs, $compression) = @_;
 
     if (scalar(@{$logs}) > 0)
     {
         $logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
-        $logfile .= '.gz' if ($logfile !~ /^.+\.gz$/);
+        $logfile .= '.gz' if (($logfile !~ /^.+\.gz$/) && $compression);
         Octopussy::FS::Create_Directory(dirname($logfile));
-        if (defined open my $FILE, '|-', "gzip >> $logfile")
+        if ($compression && 
+			(defined open my $FILEZIP, '|-', "gzip >> $logfile"))
         {
-            foreach my $log (@{$logs}) { print {$FILE} "$log\n"; }
-            close $FILE;
+            foreach my $log (@{$logs}) { print {$FILEZIP} "$log\n"; }
+            close $FILEZIP;
         }
+		elsif (!$compression && (defined open my $FILE, '>>', $logfile))
+		{
+			foreach my $log (@{$logs}) { print {$FILE} "$log\n"; }
+            close $FILE;
+		}
         else
         {
             print "Unable to open file '$logfile'\n";
@@ -358,7 +366,7 @@ sub Write_Unknown_Logfile
     {	
     	$logfile =~ s/^.+\/Incoming\//$dir_data{Unknown}\/$device\/Unknown\//;
 
-    	Write_Logfile($logfile, $logs);
+    	Write_Logfile($logfile, $logs, 1);
 		AAT::Syslog::Message($PROG_NAME, 'NEW_UNKNOWN_LOGS_FROM_DEVICE', 
 			scalar @{$logs}, $device);
 	}	
@@ -550,7 +558,8 @@ sub Service_Handler
     my $dir_service = $serv;
     $dir_service =~ s/ /_/g;
     my $dir = "$dir_data{$serv}/$device/$dir_service/$y/$m/$d/";
-    Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}});
+    Write_Logfile("$dir$file_new", \@{$known_msgs{$serv}}, 
+		$log_compression{$serv});
     $parser_stats{$serv} += scalar @{$known_msgs{$serv}};
 
     return (scalar @{$known_msgs{$serv}});

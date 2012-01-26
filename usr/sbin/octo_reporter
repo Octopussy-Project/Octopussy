@@ -284,7 +284,8 @@ sub Insert_Data
     {
         Progress('_MSG_REPORT_PROGRESS_INSERTING_DATA', $i . "/$total");
         $progressbar->update($i) if (!defined $pid_param);
-        if (defined open my $FILE, '-|', "zcat \"$f\"")
+		my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+		if (defined open my $FILE, '-|', "$cat \"$f\"")
         {
             while (my $line = <$FILE>)
             {
