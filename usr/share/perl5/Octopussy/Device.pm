@@ -794,28 +794,30 @@ sub Parse_Stop
   return ($device);
 }
 
-=head2 Set_Service_Statistics($device, $service, $action)
+=head2 Set_Service_Option($device, $service, $option, $action)
+
+Set Service Option (compression or statistics) to enable or disable
 
 =cut
 
-sub Set_Service_Statistics
+sub Set_Service_Option
 {
-  my ($device, $service, $action) = @_;
+	my ($device, $service, $option, $action) = @_;
 
-  my $status   = ($action eq 'enable' ? 1 : 0);
-  my $conf     = Configuration($device);
-  my @services = ();
-  foreach my $s (ARRAY($conf->{service}))
-  {
-    $s->{statistics} = $status if ($s->{sid} eq $service);
-    push @services, $s;
-  }
-  $conf->{service}         = \@services;
-  $conf->{reload_required} = 1;
-  $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-  AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+  	my $status   = ($action eq 'enable' ? 1 : 0);
+  	my $conf     = Configuration($device);
+  	my @services = ();
+  	foreach my $s (ARRAY($conf->{service}))
+  	{
+    	$s->{$option} = $status if ($s->{sid} eq $service);
+    	push @services, $s;
+  	}
+	$conf->{service}         = \@services;
+  	$conf->{reload_required} = 1;
+  	$dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+  	AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
 
-  return ($status);
+  	return ($status);
 }
 
 1;

@@ -26,8 +26,9 @@ if (NOT_NULL($dconf->{reload_required}))
 	<AAT:BoxCol><AAT:Label value="_RANK" link="$url_sort=rank" /></AAT:BoxCol>
 	<AAT:BoxCol align="C">
 	<AAT:Label value="_SERVICE" link="$url_sort=sid" /></AAT:BoxCol>
-  <AAT:BoxCol align="C"><AAT:Label value="_STATISTICS" /></AAT:BoxCol>
-	<AAT:BoxCol align="C" cspan="5"><%
+	<AAT:BoxCol align="C"><AAT:Label value="_STATISTICS" /></AAT:BoxCol>
+	<AAT:BoxCol align="C"><AAT:Label value="_LOGS_COMPRESSION" /></AAT:BoxCol>
+	<AAT:BoxCol align="C" cspan="6"><%
 	if ($role !~ /ro/i)
   { 
     %><AAT:Label value="_ACTION" style="B" /><% 
@@ -35,7 +36,7 @@ if (NOT_NULL($dconf->{reload_required}))
   %></AAT:BoxCol>
   
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 my $nb_services = 0;
 my $total_messages = 0;
@@ -45,7 +46,12 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
 	my $serv_conf = Octopussy::Service::Configuration($id);
   	my $statistics_status = $conf->{statistics};
   	my $s_str = ($statistics_status ? "Enabled" : "Disabled");
-  	my $s_action = ($statistics_status ? "disable" : "enable");
+  	my $s_action = ($statistics_status 
+		? "statistics_disable" : "statistics_enable");
+	my $compression_status = $conf->{compression};
+	my $c_str = ($compression_status ? "Enabled" : "Disabled");
+	my $c_action = ($compression_status 
+		? "compression_disable" : "compression_enable");
   	my $nb_messages = scalar(@{$serv_conf->{message}}); 
 	my $rank = $conf->{rank};
 	my $serv_str = "$id " . (defined $stats{$id} ? "($stats{$id})" : "(0%)");
@@ -61,6 +67,9 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
   {
     %><AAT:BoxCol align="C">
     <AAT:Label value="$s_str" link="$url&service=$id&action=$s_action"/>
+    </AAT:BoxCol>
+	<AAT:BoxCol align="C">
+    <AAT:Label value="$c_str" link="$url&service=$id&action=$c_action"/>
     </AAT:BoxCol>
 		<AAT:BoxCol align="R"><%
 		if ($conf->{rank} > 2)
@@ -91,7 +100,7 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
 		{ %><AAT:BoxCol cspan="6"></AAT:BoxCol><% } %>
 </AAT:BoxRow><%
 	$nb_services++;
-  $total_messages += $nb_messages;
+  	$total_messages += $nb_messages;
 }
 my $msg_str = "$nb_services " . AAT::Translation("_SERVICES") 
 	. " / $total_messages " . AAT::Translation("_MESSAGES");
@@ -99,9 +108,9 @@ my $msg_str = "$nb_services " . AAT::Translation("_SERVICES")
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Label value="$msg_str" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="6"></AAT:BoxCol>
+	<AAT:BoxCol cspan="7"></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="8"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 if ($role =~ /(admin|rw)/i)
 {%>
@@ -112,7 +121,7 @@ if ($role =~ /(admin|rw)/i)
 	<AAT:BoxCol>
 	<AAT:Inc file="octo_selector_service_and_servicegroup" exclude=\@services />
 	</AAT:BoxCol>
-	<AAT:BoxCol cspan="6" align="C">
+	<AAT:BoxCol cspan="7" align="C">
 	<AAT:Form_Submit value="_ADD_SERVICE_TO_DEVICE" />
 	</AAT:BoxCol>
 </AAT:BoxRow>

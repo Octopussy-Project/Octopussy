@@ -673,6 +673,9 @@ msgstr "Rotado de Logs"
 msgid "_LOGS_AVAILABILITY"
 msgstr "§Logs Availability§"
 
+msgid "_LOGS_COMPRESSION"
+msgstr "§LOGS_COMPRESSION§"
+
 msgid "_LOGS_VIEWER"
 msgstr "Visor de Logs"
 

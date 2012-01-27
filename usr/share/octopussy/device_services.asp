@@ -19,9 +19,11 @@ if (defined $service)
   	{	 
     		Octopussy::Device::Move_Service($device, $service, $action); 
   	}
-  	elsif (($action =~ /^(en|dis)able$/) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
+  	elsif ((my ($option, $status) = $action =~ /^(compression|statistics)_(disable|enable)$/) 
+		&& ($Session->{AAT_ROLE} =~ /(?:admin|rw)/i))
   	{
-    		Octopussy::Device::Set_Service_Statistics($device, $service, $action);
+    	Octopussy::Device::Set_Service_Option($device, $service, 
+			$option, $status);
   	}
 	elsif ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
 		{ Octopussy::Device::Add_Service($device, $service); }
