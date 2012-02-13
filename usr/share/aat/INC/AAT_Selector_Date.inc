@@ -20,6 +20,6 @@ $(function() {
 			showWeek: true, firstDay: 1,
 			showAnim: 'slideDown',
 			} );
-		$("#<%= $arg{name} %>_date").datepicker("option", "currentText", "<%= $value %>");
+		$("#<%= $arg{name} %>_date").val("<%= $value %>");
 	});
 </script>
