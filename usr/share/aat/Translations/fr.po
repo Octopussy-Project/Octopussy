@@ -232,6 +232,9 @@ msgstr "Valeur des Sources de Données"
 msgid "_DELETE"
 msgstr "Supprimer"
 
+msgid "_DELETE_FROM_DB"
+msgstr "Supprimer dans la Base"
+
 msgid "_DIRECTORY"
 msgstr "Répertoire"
 

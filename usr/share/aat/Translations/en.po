@@ -232,6 +232,9 @@ msgstr "Datasources Value"
 msgid "_DELETE"
 msgstr "Delete"
 
+msgid "_DELETE_FROM_DB"
+msgstr "Delete from Database"
+
 msgid "_DIRECTORY"
 msgstr "Directory"
 

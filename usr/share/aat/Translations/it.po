@@ -232,6 +232,9 @@ msgstr "§DATASOURCES_VALUE§"
 msgid "_DELETE"
 msgstr "Elimina"
 
+msgid "_DELETE_FROM_DB"
+msgstr "§DELETE_FROM_DB§"
+
 msgid "_DIRECTORY"
 msgstr "Cartella"
 

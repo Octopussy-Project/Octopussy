@@ -7,7 +7,9 @@ my $status = $f->{status} || $Request->QueryString("status") || "Opened";
 my $comment = $f->{comment};
 my $sort = $Request->QueryString("sort");
 my $sall = $f->{selectall};
-if ((defined $f->{edit_status}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
+
+if ((defined $f->{update}) && (defined $f->{edit_status}) 
+	&& ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 {
 	my $form_fields = $Request->Form();
 	foreach my $k (keys %{$form_fields})
@@ -20,6 +22,17 @@ if ((defined $f->{edit_status}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 			#	if (Octopussy::Alert::Check_All_Closed());
 		}
 	}
+}
+elsif ((defined $f->{delete_from_db}) && ($Session->{AAT_ROLE} =~ /admin/i))
+{
+	my $form_fields = $Request->Form();
+    foreach my $k (keys %{$form_fields})
+    {
+        if ($k =~ /alert_id_(\d+)/)
+        {
+            Octopussy::Alert::Delete_From_Database($1);
+        }
+    }
 }
 %>
 <AAT:Inc file="octo_alerts_filter_box" url="./alerts_viewer.asp" 

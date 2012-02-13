@@ -345,6 +345,22 @@ sub Update_Status
   return (1);
 }
 
+=head2 Delete_From_Database($id)
+
+Deletes Alert with id '$id' from Database
+
+=cut
+
+sub Delete_From_Database
+{
+	my $id = shift;
+
+	AAT::DB::Do('Octopussy', 
+		"DELETE FROM _alerts_ WHERE log_id='" . $id . "'");
+
+  	return (1);
+}
+
 #
 # Function: Add_Message($alert_name, $msg_id, $repeat, $interval)
 #

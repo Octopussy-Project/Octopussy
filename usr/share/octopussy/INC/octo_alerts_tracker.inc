@@ -38,8 +38,17 @@ if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
   <AAT:Form_Submit name="selectall" value="_SELECT_ALL" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol align="C" cspan="2">
-	<AAT:Form_Submit value="_UPDATE" /></AAT:BoxCol>
+	<AAT:BoxCol align="R">
+<%
+if ($Session->{AAT_ROLE} =~ /admin/i)
+{
+%><AAT:Form_Submit name="delete_from_db" value="_DELETE_FROM_DB" /><%
+}
+%>	
+	</AAT:BoxCol>
+	<AAT:BoxCol align="L">
+	<AAT:Form_Submit name="update" value="_UPDATE" />
+	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
