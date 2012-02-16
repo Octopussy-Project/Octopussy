@@ -41,7 +41,17 @@ BEGIN
   	{
     	if ("Octopussy/Plugin/$p" =~ /^(Octopussy\/Plugin\/)(.+\.pm)$/)
     	{
-      		require "$1$2";    ## no critic
+			my $file_module = "$1$2";
+			eval 
+			{
+      			require $file_module;    ## no critic
+				1;
+			}
+			or do 
+			{
+				AAT::Syslog::Message('octopussy', 'UNABLE_LOAD_PLUGIN_MODULE', 
+					$file_module);
+			}
     	}
   	}
   	closedir DIR;

@@ -3,7 +3,7 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="065"
-                   version="201201240001"
+                   version="201202170001"
                    website="http://www.8pussy.org">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
@@ -401,4 +401,10 @@
            rank="066"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Warning"
+           msg_id="Octopussy:unable_to_load_plugin"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@WORD:module@&gt;: &lt;@REGEXP(&quot;Unable to load plugin module '.+'&quot;):msg@&gt;"
+           rank="067"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>

@@ -66,6 +66,8 @@
 	<log mid="SYSTEM_CONFIG_MODIFIED"
 		message="System Configuration has been modified by %%ARG1%%." />
 
+	<log mid="UNABLE_LOAD_PLUGIN_MODULE"
+        message="Unable to load plugin module '%%ARG1%%'" />
 	<log mid="UNABLE_OPEN_FILE"
 		message="Unable to open file '%%ARG1%%'" />
 	<log mid="UNABLE_OPEN_FILE_IN"
