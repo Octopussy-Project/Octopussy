@@ -17,6 +17,7 @@ use warnings;
 use Readonly;
 
 use AAT::FS;
+use AAT::Syslog;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy::FS;
