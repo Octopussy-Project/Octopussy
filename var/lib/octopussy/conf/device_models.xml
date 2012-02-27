@@ -9,9 +9,9 @@
 			icon="operating_systems/os_openbsd" />
 		<device_model dm_id="Linux Debian" 
 			icon="operating_systems/os_linux_debian" />
-  	<device_model dm_id="Linux Mandriva" 
+  		<device_model dm_id="Linux Mandriva" 
 			icon="operating_systems/os_linux_mandriva" />
-  	<device_model dm_id="Linux RedHat" 
+  		<device_model dm_id="Linux RedHat" 
 			icon="operating_systems/os_linux_redhat" />	
 		<device_model dm_id="Linux Suse" 
 			icon="operating_systems/os_linux_suse" />
@@ -20,23 +20,23 @@
 		<device_model dm_id="Other" />
 		<device_model dm_id="Sun Solaris" 
 			icon="operating_systems/os_solaris" />
-  	<device_model dm_id="Unknown" />
-  	<device_model dm_id="Windows 95" 
+  		<device_model dm_id="Unknown" />
+  		<device_model dm_id="Windows 95" 
 			icon="operating_systems/os_windows" />
-  	<device_model dm_id="Windows 98" 
+  		<device_model dm_id="Windows 98" 
 			icon="operating_systems/os_windows"/>
-    <device_model dm_id="Windows ME" 
-      icon="operating_systems/os_windows"/>
-    <device_model dm_id="Windows NT" 
-      icon="operating_systems/os_windows"/>
-  	<device_model dm_id="Windows 2000" 
+    	<device_model dm_id="Windows ME" 
+      		icon="operating_systems/os_windows"/>
+    	<device_model dm_id="Windows NT" 
+      		icon="operating_systems/os_windows"/>
+  		<device_model dm_id="Windows 2000" 
 			icon="operating_systems/os_windows"/>
-  	<device_model dm_id="Windows XP" 
+  		<device_model dm_id="Windows XP" 
 			icon="operating_systems/os_windows"/>
-    <device_model dm_id="Windows Vista" 
-      icon="operating_systems/os_windows"/>
-    <device_model dm_id="Windows 7" 
-      icon="operating_systems/os_windows"/>
+    	<device_model dm_id="Windows Vista" 
+      		icon="operating_systems/os_windows"/>
+    	<device_model dm_id="Windows 7" 
+      		icon="operating_systems/os_windows"/>
 	</device_type>
 	
 	<device_type dt_id="Firewall" color="#FF0000">
@@ -63,10 +63,10 @@
 		
 		<device_model dm_id="Other" />
 
-    <device_model dm_id="Cisco ASA"
-      icon="companies/logo_cisco">
-      <default_service>Cisco_Asa</default_service>
-    </device_model>
+    	<device_model dm_id="Cisco ASA"
+      		icon="companies/logo_cisco">
+      		<default_service>Cisco_Asa</default_service>
+    	</device_model>
 
 		<device_model dm_id="Cisco PIX" 
 			icon="companies/logo_cisco">
@@ -75,7 +75,7 @@
 			<default_service>Cisco_Pix</default_service>
 		</device_model>
 
-    <device_model dm_id="Unknown" />
+    	<device_model dm_id="Unknown" />
 	</device_type>
 	
 	<device_type dt_id="Load Balancer" color="#303090">
@@ -90,7 +90,7 @@
 		</device_model>
 
 		<device_model dm_id="Other" />
-    <device_model dm_id="Unknown" />
+    	<device_model dm_id="Unknown" />
 	</device_type>
 
 	<device_type dt_id="Mail Server" color="#E090E0">
@@ -103,14 +103,14 @@
 	
 	<device_type dt_id="Other">
 		<device_model dm_id="Other" />
-    <device_model dm_id="Unknown" />		
+    	<device_model dm_id="Unknown" />		
 	</device_type>
 	
 	<device_type dt_id="Proxy" color="#FFFF00">
 		<device_model dm_id="NetApp NetCache" 
 			icon="companies/logo_netapp" />
 		<device_model dm_id="Other" />
-    <device_model dm_id="Unknown" />
+    	<device_model dm_id="Unknown" />
 	</device_type>
 
 	<device_type dt_id="Reverse Proxy" color="#FFA000">
@@ -127,9 +127,9 @@
 			icon="companies/logo_denyall"> 
 			<footprint>_RFC: .+ RE [HU]\d+ (denies|grants) access to '</footprint>
 			<default_service>DenyAll_Filtering</default_service>
-      <default_service>DenyAll_System</default_service>
-      <default_service>DenyAll_Traffic</default_service>
-    </device_model>
+      		<default_service>DenyAll_System</default_service>
+      		<default_service>DenyAll_Traffic</default_service>
+    	</device_model>
 
 		<device_model dm_id="Other" />
 		<device_model dm_id="Unknown" />
@@ -139,64 +139,64 @@
 		<device_model dm_id="Cisco" 
 			icon="companies/logo_cisco" />
 		<device_model dm_id="Other" />
-    <device_model dm_id="Unknown" />
-  </device_type>
+    	<device_model dm_id="Unknown" />
+	</device_type>
 
 	<device_type dt_id="Server" color="#208020">
 		<device_model dm_id="BSD - FreeBSD"
-      icon="operating_systems/os_freebsd" />
-    <device_model dm_id="BSD - NetBSD"
-      icon="operating_systems/os_netbsd" />
-    <device_model dm_id="BSD - OpenBSD"
-      icon="operating_systems/os_openbsd" />
-    <device_model dm_id="Linux Debian"
-      icon="operating_systems/os_linux_debian">
+      		icon="operating_systems/os_freebsd" />
+    	<device_model dm_id="BSD - NetBSD"
+      		icon="operating_systems/os_netbsd" />
+    	<device_model dm_id="BSD - OpenBSD"
+      		icon="operating_systems/os_openbsd" />
+    	<device_model dm_id="Linux Debian"
+      		icon="operating_systems/os_linux_debian">
 			<footprint> /etc/mysql/debian-start[\d+]: </footprint>
 			<default_service>Linux_System</default_service>
 			<default_service>Linux_Debian_System</default_service>
 		</device_model>
 
-  	<device_model dm_id="Linux Mandriva"
+  		<device_model dm_id="Linux Mandriva"
 			icon="operating_systems/os_linux_mandriva" />
 
-  	<device_model dm_id="Linux RedHat" 
+  		<device_model dm_id="Linux RedHat" 
 			icon="operating_systems/os_linux_redhat">
 			<footprint> rhnsd\[\d+\]: </footprint>
-      <default_service>Linux_System</default_service>
-      <default_service>Linux_Red_Hat_System</default_service>			
+      		<default_service>Linux_System</default_service>
+      		<default_service>Linux_Red_Hat_System</default_service>			
 		</device_model>
 
 		<device_model dm_id="Linux Suse" 
 			icon="operating_systems/os_linux_suse" />
 		<device_model dm_id="Mac OS X" 
 			icon="operating_systems/os_mac" />
-    <device_model dm_id="Other" />
+    	<device_model dm_id="Other" />
 		<device_model dm_id="Sun Solaris" 
 			icon="operating_systems/os_solaris" />
-    <device_model dm_id="Unknown" />
+    	<device_model dm_id="Unknown" />
 		<device_model dm_id="Windows 95" 
 			icon="operating_systems/os_windows" />
-  	<device_model dm_id="Windows 98" 
+  		<device_model dm_id="Windows 98" 
 			icon="operating_systems/os_windows" />
-    <device_model dm_id="Windows ME" 
-      icon="operating_systems/os_windows" />
-    <device_model dm_id="Windows NT" 
-      icon="operating_systems/os_windows" />
-  	<device_model dm_id="Windows 2000" 
+    	<device_model dm_id="Windows ME" 
+      		icon="operating_systems/os_windows" />
+    	<device_model dm_id="Windows NT" 
+      		icon="operating_systems/os_windows" />
+  		<device_model dm_id="Windows 2000" 
 			icon="operating_systems/os_windows" />
-  	<device_model dm_id="Windows XP" 
+  		<device_model dm_id="Windows XP" 
 			icon="operating_systems/os_windows" />
-    <device_model dm_id="Windows Vista" 
-      icon="operating_systems/os_windows" />
-    <device_model dm_id="Windows 7" 
-      icon="operating_systems/os_windows" />
-    <device_model dm_id="Windows Server 2000" 
-      icon="operating_systems/os_windows" />
-    <device_model dm_id="Windows Server 2003" 
-      icon="operating_systems/os_windows" />
-    <device_model dm_id="Windows Server 2008" 
-      icon="operating_systems/os_windows" />
-  </device_type>
+    	<device_model dm_id="Windows Vista" 
+      		icon="operating_systems/os_windows" />
+    	<device_model dm_id="Windows 7" 
+      		icon="operating_systems/os_windows" />
+    	<device_model dm_id="Windows Server 2000" 
+      		icon="operating_systems/os_windows" />
+    	<device_model dm_id="Windows Server 2003" 
+      		icon="operating_systems/os_windows" />
+    	<device_model dm_id="Windows Server 2008" 
+      		icon="operating_systems/os_windows" />
+  	</device_type>
 
 	<device_type dt_id="Storage System" color="#0000FF">
 		<device_model dm_id="NetApp FAS" 
@@ -210,20 +210,26 @@
 			icon="companies/logo_cisco"/>
 		<device_model dm_id="Dell" 
 			icon="companies/logo_dell"/>
-    <device_model dm_id="Other" />
-    <device_model dm_id="Unknown" />
-  </device_type>
+    	<device_model dm_id="Other" />
+    	<device_model dm_id="Unknown" />
+  	</device_type>
 
 	<device_type dt_id="Unknown">
-    <device_model dm_id="Other" />
-    <device_model dm_id="Unknown" />
-  </device_type>
+    	<device_model dm_id="Other" />
+    	<device_model dm_id="Unknown" />
+  	</device_type>
+
+	<device_type dt_id="Virtual Host">
+		<device_model dm_id="Vmware ESXi" />
+		<device_model dm_id="Vmware ESX" />
+		<device_model dm_id="Other" />
+	</device_type>
 
 	<device_type dt_id="VPN-SSL Gateway" color="#FF70A0">
 		<device_model dm_id="Neoteris" 
 			icon="companies/logo_juniper" />
-    <device_model dm_id="Other" />
-    <device_model dm_id="Unknown" />
+    	<device_model dm_id="Other" />
+    	<device_model dm_id="Unknown" />
   </device_type>
 
 </opt>
