@@ -116,32 +116,41 @@ sub Man
 	{
 	`$BIN_POD2MAN ./usr/sbin/$bin | gzip -9 > $DIR_TMP/usr/share/man/man1/${bin}.1.gz`;
 	}
-        `chmod 644 $DIR_TMP/usr/share/man/man1/*.gz`;
+   	`chmod 644 $DIR_TMP/usr/share/man/man1/*.gz`;
 
 	printf "Generating man(3) pages...\n";
 	mkpath("$DIR_TMP/usr/share/man/man3/");
-	`$BIN_POD2MAN ${DIR_AAT_PM}../AAT.pm | gzip -9 > $DIR_TMP/usr/share/man/man3/AAT.3.gz`;
+	`$BIN_POD2MAN ${DIR_AAT_PM}../AAT.pm | gzip -9 > $DIR_TMP/usr/share/man/man3/AAT.3pm.gz`;
 	opendir $DIR, $DIR_AAT_PM;
 	my @mods = grep /\.pm$/, readdir $DIR;
 	closedir $DIR;
 	foreach my $mod (@mods)
 	{
 		my $dst = $mod;
-		$dst =~ s/\.pm$/\.3/;
-	        `$BIN_POD2MAN $DIR_AAT_PM$mod | gzip -9 > $DIR_TMP/usr/share/man/man3/$dst.gz`;
+		$dst =~ s/\.pm$/\.3pm/;
+	  	`$BIN_POD2MAN $DIR_AAT_PM$mod | gzip -9 > $DIR_TMP/usr/share/man/man3/AAT::$dst.gz`;
 	}
 
-	`$BIN_POD2MAN ${DIR_OCTO_PM}../Octopussy.pm | gzip -9 > $DIR_TMP/usr/share/man/man3/Octopussy.3.gz`;
+	`$BIN_POD2MAN ${DIR_OCTO_PM}../Octopussy.pm | gzip -9 > $DIR_TMP/usr/share/man/man3/Octopussy.3pm.gz`;
 	opendir $DIR, $DIR_OCTO_PM;
 	@mods = grep /\.pm$/, readdir $DIR;
 	closedir $DIR;
 	foreach my $mod (@mods)
 	{
 		my $dst = $mod;
-		$dst =~ s/\.pm$/\.3/;
-		`$BIN_POD2MAN $DIR_OCTO_PM$mod | gzip -9 > $DIR_TMP/usr/share/man/man3/$dst.gz`;
+		$dst =~ s/\.pm$/\.3pm/;
+		`$BIN_POD2MAN $DIR_OCTO_PM$mod | gzip -9 > $DIR_TMP/usr/share/man/man3/Octopussy::$dst.gz`;
 	}
-        `chmod 644 $DIR_TMP/usr/share/man/man3/*.gz`;
+	opendir $DIR, "${DIR_OCTO_PM}Report/";
+    @mods = grep /\.pm$/, readdir $DIR;
+    closedir $DIR;
+    foreach my $mod (@mods)
+    {
+        my $dst = $mod;
+        $dst =~ s/\.pm$/\.3pm/;
+        `$BIN_POD2MAN ${DIR_OCTO_PM}Report/$mod | gzip -9 > $DIR_TMP/usr/share/man/man3/Octopussy::Report::$dst.gz`;
+    }
+ 	`chmod 644 $DIR_TMP/usr/share/man/man3/*.gz`;
 }
 
 # ===== MAIN ===== #
