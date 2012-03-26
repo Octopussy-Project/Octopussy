@@ -73,6 +73,30 @@ sub New
 	return (undef);
 }
 
+=head2 Clone($service_orig, $service_clone)
+
+=cut
+
+sub Clone
+{
+	my ($service_orig, $service_clone) = @_;
+
+	my $conf = Configuration($service_orig);
+    $conf->{name} = $service_clone;
+    $conf->{description} = "$service_clone Service";
+    $conf->{version} = strftime("%Y%m%d", localtime) . '0001';
+    my @messages = ();
+    foreach my $m (@{$conf->{message}})
+    {
+        my $msgid = $m->{msg_id};
+        $msgid =~ s/^\S+?:(\S+)$/$service_clone:$1/;
+        $m->{msg_id} = $msgid;
+        push @messages, $m;
+    }
+    $conf->{message} = \@messages;
+    New($conf);
+}
+
 =head2 Remove($service)
 
 Removes the Service '$service'

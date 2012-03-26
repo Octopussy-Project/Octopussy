@@ -16,6 +16,7 @@ use warnings;
 use Readonly;
 
 use List::MoreUtils qw(any);
+use POSIX qw(strftime);
 
 use AAT::Download;
 use AAT::Utils qw( ARRAY NOT_NULL );
@@ -62,6 +63,21 @@ sub New
   }
 
   return (undef);
+}
+
+=head2 Clone($table, $cloned_table)
+
+=cut
+
+sub Clone
+{
+	my ($table_orig, $table_clone) = @_;
+
+	my $conf = Configuration($table_orig);
+	$conf->{name} = $table_clone;
+	$conf->{description} = "$table_clone Table";
+	$conf->{version} = strftime("%Y%m%d", localtime) . '0001';	
+	New($conf);
 }
 
 =head2 Remove($table)
