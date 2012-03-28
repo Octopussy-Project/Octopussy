@@ -703,6 +703,9 @@ msgstr "Utilisation Mémoire"
 msgid "_MESSAGES"
 msgstr "Messages"
 
+msgid "_MINIMUM_DELAY_BETWEEN_2_ALERTS"
+msgstr "Delai minimum entre 2 Alertes (en secondes)"
+
 msgid "_MSG_ID"
 msgstr "Msg ID"
 

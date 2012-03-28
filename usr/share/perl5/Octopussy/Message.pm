@@ -725,6 +725,7 @@ sub Alerts
             level             => $ac->{level},
             thresold_time     => $ac->{thresold_time},
             thresold_duration => $ac->{thresold_duration},
+			minimum_emit_delay => $ac->{minimum_emit_delay},
             regexp_incl       => $ac->{regexp_include},
             regexp_excl       => $ac->{regexp_exclude},
             timeperiod        => $ac->{timeperiod},

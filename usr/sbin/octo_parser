@@ -447,7 +447,7 @@ sub Alert_Handler
                 && ((NULL($a->{regexp_incl}) || ($line =~ /$a->{regexp_incl}/)))
                 && ((NULL($a->{regexp_excl}) || ($line !~ /$a->{regexp_excl}/)))
                )
-            {
+            {	# log matches timeperiod, include & exclude regexps
                 my $alert_logs = $cache->get($a->{name});
                 if (defined $a->{thresold_time})
                 {
@@ -466,8 +466,16 @@ sub Alert_Handler
                             $match = 0;
                         }
                     }
+					if ((defined $a->{last_emit}) 
+						&& (defined $a->{minimum_emit_delay}) 
+						&& ($secs - $a->{last_emit} < $a->{minimum_emit_delay}))
+					{
+						shift @{$alert_logs};
+						$match = 0;
+					}
                     if ($match)
                     {
+						$a->{last_emit} = $secs;
                         my $data = '';
                         if (defined $a->{thresold_time})
                         {
@@ -496,7 +504,7 @@ sub Alert_Handler
                     }
                 }
                 $cache->set($a->{name}, $alert_logs);
-            }
+            } 
         }
     }
 

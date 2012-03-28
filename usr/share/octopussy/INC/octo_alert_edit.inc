@@ -3,10 +3,11 @@ my %arg = @_;
 
 my $conf = Octopussy::Alert::Configuration($arg{alert});
 my ($a_name, $a_desc, $a_level, $a_status, $a_loglevel, $a_taxo, $a_timeperiod, 
-	$a_thresold_time, $a_thresold_duration) = ($conf->{name}, 
-	$conf->{description}, $conf->{level}, $conf->{status}, $conf->{loglevel}, 
-  $conf->{taxonomy}, $conf->{timeperiod}, 
-  $conf->{thresold_time}, $conf->{thresold_duration});
+	$a_thresold_time, $a_thresold_duration, $a_minimal_emit_delay) = 
+	($conf->{name}, $conf->{description}, $conf->{level}, $conf->{status}, 
+	$conf->{loglevel}, $conf->{taxonomy}, $conf->{timeperiod}, 
+  	$conf->{thresold_time}, $conf->{thresold_duration}, 
+	$conf->{minimal_emit_delay});
 my ($a_re_include, $a_re_exclude) = 
 	($conf->{regexp_include}, $conf->{regexp_exclude});
 my ($a_msg_subject, $a_msg_body) = ($conf->{msgsubject}, $conf->{msgbody});
@@ -108,6 +109,11 @@ my @used_services = Octopussy::Service::List_Used();
   <AAT:BoxCol><AAT:Label value="Duration (d)" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Selector_Number name="thresold_duration" min="0" max="600"
     step="5" selected="$a_thresold_duration" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+    <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="Minimal Delay between 2 alerts" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="minimal_emit_delay" value="$a_minimal_emit_delay" size="6" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol></AAT:BoxCol>

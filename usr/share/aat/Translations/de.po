@@ -703,6 +703,9 @@ msgstr "Speicherauslastung"
 msgid "_MESSAGES"
 msgstr "Meldungen"
 
+msgid "_MINIMUM_DELAY_BETWEEN_2_ALERTS"
+msgstr "§MINIMUM_DELAY_BETWEEN_2_ALERTS§"
+
 msgid "_MSG_ID"
 msgstr "§MSG_ID§"
 

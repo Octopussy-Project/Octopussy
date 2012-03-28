@@ -82,6 +82,11 @@ my @used_services = Octopussy::Service::List_Used();
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
+    <AAT:BoxCol></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Label value="Minimal Delay between 2 alerts" style="B" /></AAT:BoxCol>
+  <AAT:BoxCol><AAT:Entry name="minimal_emit_delay" value="$a_minimal_emit_delay" size="6" /></AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol cspan="2">
 	<AAT:Label value="_MSG_ALERT_RAISED_ONLY" color="blue" /></AAT:BoxCol>
