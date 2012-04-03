@@ -21,9 +21,9 @@ my $lnk = "${url}?contacts_table_sort";
   <AAT:Label value="IM" link="$lnk=im" /></AAT:BoxCol>
 	<AAT:BoxCol>
   <AAT:Label value="_TYPE" link="$lnk=type" /></AAT:BoxCol>
-	<AAT:BoxCol align="C"><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
+	<AAT:BoxCol align="C" cspan="2"><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="10"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="11"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 my $i = 0;
 foreach my $c (Octopussy::Contact::Configurations($sort))
@@ -60,6 +60,10 @@ foreach my $c (Octopussy::Contact::Configurations($sort))
   </AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$im" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+	<AAT:Button name="edit" tooltip="_EDIT"
+    	link="./contacts.asp?cid=$id&action=edit" />
+	</AAT:BoxCol>
 	<AAT:BoxCol align="C"><%
 	if ($type eq "local")
 	{ 
@@ -74,7 +78,7 @@ if ($role !~ /ro/i)
 {
 %>
 <AAT:Form action="$url">
-<AAT:BoxRow><AAT:BoxCol cspan="10"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="11"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Entry name="cid" size="12" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Entry name="lastname" size="16" /></AAT:BoxCol>
@@ -82,7 +86,7 @@ if ($role !~ /ro/i)
   <AAT:BoxCol><AAT:Entry name="description" /></AAT:BoxCol>
   <AAT:BoxCol cspan="2"><AAT:Entry name="email" /></AAT:BoxCol>
   <AAT:BoxCol cspan="2"><AAT:Entry name="im" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="2"><AAT:Form_Submit value="_NEW_CONTACT" /></AAT:BoxCol>
+	<AAT:BoxCol cspan="3"><AAT:Form_Submit value="_NEW_CONTACT" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:Form_Hidden name="action" value="new" />
 </AAT:Form><%
