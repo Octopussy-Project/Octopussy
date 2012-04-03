@@ -22,7 +22,7 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 			regexp_exclude => $f->{regexp_exclude},
 			thresold_time => $f->{thresold_time},
 			thresold_duration => $f->{thresold_duration},
-			minimal_emit_delay => $f->{minimal_emit_delay},
+			minimum_emit_delay => $f->{minimum_emit_delay},
 			action => \@actions, contact => \@contacts, 
 			msgsubject => Encode::decode_utf8($f->{subject}), 
       msgbody => Encode::decode_utf8($f->{body}),
