@@ -1,3 +1,28 @@
+octopussy (1.0.3) stable; urgency=high
+
+  * New program octo_tool added to do simple tasks 
+    (for now, service_clone & table_clone)
+  * Feature Request #3477812: Ability to create an alert when Octopussy 
+    receives new unknown logs
+  * Feature Request #3477752: You can now be redirected to Wizard page 
+    or Service page after Message pattern creation
+  * Feature Request #3428757: You can now enable/disable logs compression 
+    in 'Device Services' web page
+  * Feature Request #3416032 (1/2): Fixing the ordering of the status in 
+    'Alerts Viewer' page
+  * Feature Request #3416032 (2/2): 'Delete from Database' button added 
+    to 'Alerts Viewer' page
+  * Feature Request #3488473: Virtual Hosts added for Device Types/Models
+  * Feature Request #3416018: Now, you can set mimimum delay between 2 alerts
+  * Feature Request #3492003: Edit option for contacts
+  * Bugfix #3485331: Handling invalid Octopussy plugin
+  * Bugfix #3506010: Manual pages for Octopussy Perl modules were generated 
+    with incorrect filename by 'packaging_from_svn.pl' script
+  * Bugfixing the unrefreshed date in 'Selector_date'
+  * Bugfixing the missing 'use AAT::Syslog;' in Octopussy/Plugin.pm
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Wed, 04 Apr 2012 23:50:00 +0100
+
 octopussy (1.0.2) stable; urgency=high
 
   * Translation updates to fix 'Internal Server Error'
