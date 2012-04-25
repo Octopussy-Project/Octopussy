@@ -17,7 +17,12 @@ my $lnk = "${url}?alerts_table_sort";
 	<AAT:BoxCol>
   <AAT:Label value="_STATUS" link="$lnk=status" /></AAT:BoxCol>
 	<AAT:BoxCol align="C" cspan="2">
-	<AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
+<%
+if ( $Session->{AAT_ROLE} =~ /(admin|rw)/i )
+{
+%><AAT:Label value="_ACTION" style="B"/><%
+}
+%>	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="7"><hr></AAT:BoxCol></AAT:BoxRow>
 <%

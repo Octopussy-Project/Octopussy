@@ -21,7 +21,13 @@ my $lnk = "${url}?contacts_table_sort";
   <AAT:Label value="IM" link="$lnk=im" /></AAT:BoxCol>
 	<AAT:BoxCol>
   <AAT:Label value="_TYPE" link="$lnk=type" /></AAT:BoxCol>
-	<AAT:BoxCol align="C" cspan="2"><AAT:Label value="_ACTION" style="B"/></AAT:BoxCol>
+	<AAT:BoxCol align="C" cspan="2">
+<%
+if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+{
+	%><AAT:Label value="_ACTION" style="B"/><%
+}
+%>	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="11"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
@@ -60,12 +66,15 @@ foreach my $c (Octopussy::Contact::Configurations($sort))
   </AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$im" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
-	<AAT:BoxCol align="C">
+	<AAT:BoxCol align="C"><%
+	if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+	{%>
 	<AAT:Button name="edit" tooltip="_EDIT"
-    	link="./contacts.asp?cid=$id&action=edit" />
+    	link="./contacts.asp?cid=$id&action=edit" /><%
+	}%>
 	</AAT:BoxCol>
 	<AAT:BoxCol align="C"><%
-	if ($type eq "local")
+	if (($type eq "local") && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 	{ 
 		%><AAT:Button name="remove" tooltip="_REMOVE"
     popup_link="./dialog.asp?id=delete_contact&arg1=$id_url&action=remove" /><%

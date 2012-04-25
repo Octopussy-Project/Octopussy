@@ -8,7 +8,13 @@ my $sort = $Request->QueryString("servicegroups_table_sort");
 	<AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B" 
 		link="$url?servicegroups_table_sort=description"/></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Label value="_SERVICES" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol align="C" cspan="2"><AAT:Label value="_ACTION" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol align="C" cspan="2">
+<%
+if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+{
+	%><AAT:Label value="_ACTION" style="B" /><%
+}%>
+	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="5"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
@@ -26,13 +32,28 @@ foreach my $sg (Octopussy::ServiceGroup::Configurations($sort))
 	<AAT:BoxCol><AAT:Label value="$id" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$desc" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$services_list" /></AAT:BoxCol>
-	<AAT:BoxCol align="R"><AAT:Button name="edit" tooltip="_EDIT" 
-		link="./servicegroup_edit.asp?servicegroup=$id" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Button name="remove" tooltip="_REMOVE"
-    popup_link="./dialog.asp?id=delete_servicegroup&arg1=$id&action=remove" />
+	<AAT:BoxCol align="R">
+	<%
+	if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+	{
+	%><AAT:Button name="edit" tooltip="_EDIT" 
+		link="./servicegroup_edit.asp?servicegroup=$id" /><%
+	}%>
+	</AAT:BoxCol>
+	<AAT:BoxCol>
+	<%
+	if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+	{
+    %><AAT:Button name="remove" tooltip="_REMOVE"
+    popup_link="./dialog.asp?id=delete_servicegroup&arg1=$id&action=remove" /><%
+	}%>
 	</AAT:BoxCol>
 	</AAT:BoxRow><%
 }
+%>
+<%
+if($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+{
 %>
 <AAT:Form action="$url">
 <AAT:BoxRow><AAT:BoxCol cspan="5"><hr></AAT:BoxCol></AAT:BoxRow>
@@ -46,4 +67,7 @@ foreach my $sg (Octopussy::ServiceGroup::Configurations($sort))
 	<AAT:Form_Submit value="_NEW_SERVICEGROUP" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Form>
+<%
+}
+%>
 </AAT:Box>
