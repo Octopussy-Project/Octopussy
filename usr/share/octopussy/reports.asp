@@ -20,7 +20,7 @@ $date1 =~ s/-//g;
 $date2 =~ s/-//g;
 
 if ((NOT_NULL($action)) && ($action eq "remove") 
-		&& ($Session->{AAT_ROLE} !~ /ro/i))
+	&& ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
 {
 	Octopussy::Report::Remove($report);
 	AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Report", $report, $Session->{AAT_LOGIN});
@@ -75,8 +75,6 @@ else
 	my $cmd = Octopussy::Report::CmdLine($device, $service, $loglevel, 
 		$taxonomy, $r, $start, $finish, $pid_param, 
 		\%mail_conf, \%ftp_conf, \%scp_conf, $Session->{AAT_LANGUAGE});
-
-	AAT::DEBUG($cmd);	   
 	my $cache = Octopussy::Cache::Init('octo_reporter');
     $cache->set("status_${pid_param}", "Starting... [0/1]");
     

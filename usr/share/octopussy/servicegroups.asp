@@ -10,7 +10,7 @@ if (NULL($sg))
 	%><AAT:Inc file="octo_servicegroups_list" url="./servicegroups.asp" 
 		sort="$sort" /><%
 }
-elsif ($Session->{AAT_ROLE} !~ /ro/i)
+elsif ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
 {
 	if ($action eq "remove")
 	{

@@ -4,7 +4,7 @@
   <AAT:BoxCol><AAT:Label value="_NAME" style="B" /></AAT:BoxCol>
   <AAT:BoxCol align="C"><AAT:Label value="_PERIODS" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><%
-if ($role !~ /ro/i)
+if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
   { %><AAT:Label value="_ACTION" style="B" /><% }
 %></AAT:BoxCol>
 </AAT:BoxRow>
@@ -20,7 +20,7 @@ foreach my $t (Octopussy::TimePeriod::Configurations($arg{sort}))
   <AAT:BoxCol><AAT:Label value="$label" style="B" /></AAT:BoxCol>
   <AAT:BoxCol><i><AAT:Label value="$periods" /></i></AAT:BoxCol>
   <AAT:BoxCol align="C"><%
-	if ($role !~ /ro/i)	
+	if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
 	{
 %><AAT:Button name="remove" tooltip="_REMOVE"
     popup_link="./dialog.asp?id=delete_timeperiod&arg1=$label&action=remove" /><%
