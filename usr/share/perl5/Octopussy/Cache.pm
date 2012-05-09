@@ -84,6 +84,38 @@ sub Set
   return ($cache);
 }
 
+=head2 Clear_MsgID_Stats()
+
+Clears 'MsgID Statistics' Cache
+
+=cut
+
+sub Clear_MsgID_Stats
+{
+	my $cache_parser = Init('octo_parser');	
+	
+	foreach my $k ($cache_parser->get_keys())
+   	{
+    	$cache_parser->remove($k)   if ($k =~ /^parser_msgid_stats_.+$/);
+   	}
+}
+
+=head2 Clear_Taxonomy_Stats()
+
+Clears 'Taxonomy Statistics' Cache
+
+=cut
+
+sub Clear_Taxonomy_Stats
+{
+	my $cache_parser = Init('octo_parser'); 
+    
+    foreach my $k ($cache_parser->get_keys())
+    {
+        $cache_parser->remove($k)   if ($k =~ /^parser_taxo_stats_.+$/);
+    }
+}
+
 1;
 
 =head1 AUTHOR

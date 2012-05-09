@@ -6,12 +6,15 @@ octo_tool - Octopussy tool to do simple tasks
 
 =head1 DESCRIPTION
 
+octo_tool cache_clear - Clears Cache (msgid_stats or taxonomy_stats)
 octo_tool service_clone - Clones a Service
 octo_tool table_clone - Clones a Table
 
 =head1 SYNOPSIS
 
 octo_tool <task> [options]
+
+octo_tool cache_clear msgid_stats|taxonomy_stats
 
 octo_tool service_clone <servicename> <cloned_servicename>
 
@@ -40,13 +43,15 @@ use Getopt::Long;
 use Pod::Usage;
 use POSIX qw(strftime);
 
+use Octopussy::Cache;
 use Octopussy::Service;
 use Octopussy::Table;
 
-my $VERSION = '0.2';
+my $VERSION = '0.3';
 
 my %option = ();
 my %task = (
+	cache_clear => \&Cache_Clear,
 	service_clone => \&Service_Clone,
 	table_clone => \&Table_Clone,
 	);
@@ -76,6 +81,28 @@ sub Usage
 	else
 	{
 		pod2usage(-verbose => 99, -sections => [ qw(SYNOPSIS OPTIONS) ]);
+	}
+}
+
+=head2 Cache_Clear($cache_name)
+
+Clears Cache 'msgid_stats' or 'taxonomy_stats'
+
+=cut
+
+sub Cache_Clear
+{
+	my $cache_name = shift;
+
+	Usage('[ERROR] Invalid number of args.')    if (!defined $cache_name);
+
+	if ($cache_name eq 'msgid_stats')
+	{
+		Octopussy::Cache::Clear_MsgID_Stats();
+	}
+	elsif ($cache_name eq 'taxonomy_stats')
+	{
+		Octopussy::Cache::Clear_Taxonomy_Stats();
 	}
 }
 
