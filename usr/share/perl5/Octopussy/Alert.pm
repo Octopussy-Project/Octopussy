@@ -591,6 +591,37 @@ sub Tracker
   return (@alerts);
 }
 
+=head2 Valid_Name($name)
+
+Checks that '$name' is valid for an Alert name
+
+=cut
+
+sub Valid_Name
+{
+	my $name = shift;
+
+	return (1)	if ($name =~ /^[a-z0-9][a-z0-9_-]*$/i);
+
+	return (0);
+}
+
+=head2 Valid_Status_Name($name)
+
+Checks that '$name' is valid for an Alert Status name
+
+=cut
+
+sub Valid_Status_Name
+{
+    my $name = shift;
+    
+	return (1)  
+		if ($name =~ /^(-ANY-|Closed|Opened|Waiting for Info|Work in Progress)$/i);
+
+    return (0);
+}
+
 1;
 
 =head1 AUTHOR

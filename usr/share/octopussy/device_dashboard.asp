@@ -1,6 +1,7 @@
 <WebUI:PageTop title="Device DashBoard" help="devices" />
 <%
 my $device = $Request->Form("device") || $Request->QueryString("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $mode = $Request->QueryString("rrd_mode") || "daily";
 if (!-f "./rrd/taxonomy_${device}_${mode}.png")
 {

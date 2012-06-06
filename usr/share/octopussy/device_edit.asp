@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $device = $f->{device} || $Request->QueryString("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $dtype = $Request->QueryString("device_type");
 
 if ((defined $f->{modify}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))

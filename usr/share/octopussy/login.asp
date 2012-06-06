@@ -5,6 +5,9 @@ my $f = $Request->Form();
 my $page = $Request->QueryString("redirect");
 $page =~ s/^\///;
 
+$Response->Redirect('./index.asp')	
+	if ($page !~ /[a-z_]+\.asp.*/);
+
 if ((defined $f->{login}) && (defined $f->{password}))
 {
 	my $auth = 

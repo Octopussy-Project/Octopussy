@@ -2,8 +2,11 @@
 <%
 my $f = $Request->Form();
 my $alert = $f->{alert} || $Request->QueryString("alert");
+$alert = (Octopussy::Alert::Valid_Name($alert) ? $alert : undef);
 my $device = $f->{device} || $Request->QueryString("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $status = $f->{status} || $Request->QueryString("status") || "Opened";
+$status = (Octopussy::Alert::Valid_Status_Name($status) ? $status : "Opened");
 my $comment = $f->{comment};
 my $sort = $Request->QueryString("sort");
 my $sall = $f->{selectall};
