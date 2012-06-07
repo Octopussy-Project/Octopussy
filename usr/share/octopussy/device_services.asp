@@ -2,8 +2,10 @@
 <%
 my $f = $Request->Form();
 my $device = $f->{device} || $Request->QueryString("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $service = $f->{service} || $Request->QueryString("service");
-my $action = $Request->QueryString("action");
+$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
+$action = $Request->QueryString("action");
 my $sort = $Request->QueryString("device_services_table_sort") || "rank";
 
 if (defined $service)

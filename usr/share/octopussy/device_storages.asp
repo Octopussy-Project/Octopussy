@@ -1,6 +1,7 @@
 <WebUI:PageTop title="Device Storages" help="devices" />
 <%
 my $device = $Request->QueryString("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $f = $Request->Form();
 
 if ($Session->{AAT_ROLE} =~ /(admin|rw)/)

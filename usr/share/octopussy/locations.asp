@@ -2,9 +2,13 @@
 <%
 my $f = $Request->Form();
 my $city = Encode::decode_utf8($f->{city} || $Request->QueryString("city"));
+$city = (($city =~ /^[a-z0-9][a-z0-9 '_-]*$/i) ? $city : undef);
 my $building = Encode::decode_utf8($f->{building} || $Request->QueryString("building"));
+$building = (($building =~ /^[a-z0-9][a-z0-9 '_-]*$/i) ? $building : undef);
 my $room = Encode::decode_utf8($f->{room} || $Request->QueryString("room"));
+$room = (($room =~ /^[a-z0-9][a-z0-9 '_-]*$/i) ? $room : undef);
 my $rack = Encode::decode_utf8($f->{rack} || $Request->QueryString("rack"));
+$rack = (($rack =~ /^[a-z0-9][a-z0-9 '_-]*$/i) ? $rack : undef);
 my $action = $Request->QueryString("action");
 
 if ((NOT_NULL($action)) && ($action eq "remove"))

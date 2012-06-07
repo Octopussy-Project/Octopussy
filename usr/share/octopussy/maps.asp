@@ -3,6 +3,7 @@
 <tr>
 <%
 my $map = $Request->QueryString("map");
+$map = (($map =~ /^[a-z0-9][a-z0-9 _-]*$/i) ? $map : undef);
 my $url = "./maps.asp";
 my $website = Octopussy::Info::WebSite();
 my @maps = Octopussy::Map::List();

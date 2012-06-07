@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $table = $f->{table} || $Request->QueryString("table");
+$table = (Octopussy::Table::Valid_Name($table) ? $table : undef);
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("tables_table_sort");
 $table =~ s/ /_/g;
