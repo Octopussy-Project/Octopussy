@@ -56,7 +56,7 @@ sub New
 {
   my $conf = shift;
   
-  return (undef)	if ($conf->{name} !~ /^[-_a-z0-9]+$/i);
+  return (undef)	if (! Valid_Name($conf->{name}));
   
   $dir_alerts ||= Octopussy::FS::Directory($DIR_ALERT);
   Octopussy::FS::Create_Directory($dir_alerts);

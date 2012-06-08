@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $device = $f->{device} || $Request->QueryString("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $dtype = $f->{device_type} || $Request->QueryString("dtype");
 my $dmodel = $f->{device_model_filter};
 my $action = $Request->QueryString("action");

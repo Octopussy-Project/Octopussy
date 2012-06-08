@@ -3,6 +3,7 @@
 my $f = $Request->Form();
 my $action = $f->{action} || $Request->QueryString("action");
 my $name = $f->{name} || $Request->QueryString("name");
+$name = (Octopussy::Storage::Valid_Name($name) ? $name : undef);
 
 if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
 {

@@ -2,7 +2,10 @@
 <%
 my $f = $Request->Form();
 my $servicegroup = $f->{servicegroup} || $Request->QueryString("servicegroup");
+$servicegroup = (Octopussy::ServiceGroup::Valid_Name($servicegroup) 
+	? $servicegroup : undef);
 my $service = $f->{service} || $Request->QueryString("service");
+$service = (Octopussy::Service::Valid_Name($service)    ? $service : undef);
 my $action = $Request->QueryString("action");
 
 if ((defined $servicegroup) && ($Session->{AAT_ROLE} !~ /ro/i))

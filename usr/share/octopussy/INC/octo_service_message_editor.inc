@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
-my $service = $arg{service};
-my $msgid = $arg{msgid};
+my $service = $Server->HTMLEncode($arg{service});
+my $msgid = $Server->HTMLEncode($arg{msgid});
 my $conf = Octopussy::Message::Configuration($service, $msgid);
 my ($m_begin, $m_end) = split (/:/, $conf->{msg_id});
 my $loglevel = $conf->{loglevel};

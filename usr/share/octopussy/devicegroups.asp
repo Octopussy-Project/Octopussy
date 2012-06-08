@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $dg = $f->{devicegroup} || $Request->QueryString("devicegroup");
+$dg = (Octopussy::DeviceGroup::Valid_Name($dg) ? $dg : undef);
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("devicegroups_table_sort");
 

@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $sg = $f->{servicegroup} || $Request->QueryString("servicegroup");
+$sg = (Octopussy::ServiceGroup::Valid_Name($sg) ? $sg : undef);
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("servicegroups_table_sort");
 

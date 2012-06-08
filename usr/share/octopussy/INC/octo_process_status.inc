@@ -5,6 +5,7 @@ foreach my $k (sort keys %proc)
 {
 	my $status = ($proc{$k} != 0 ? "_STARTED" : "_STOPPED");
   my $color = ($proc{$k} != 0 ? "green" : "red");
+printf "%s: %s\n", $k, $proc{$k};
 %><AAT:BoxRow>
 		<AAT:BoxCol align="C">
 			<AAT:Label value="$k" style="B" color="$color" />

@@ -51,6 +51,18 @@ my $title = sprintf(AAT::Translation("_MSG_STORAGES_FOR_DEVICE"), $arg{device});
 	<AAT:BoxCol cspan="2"></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="5"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow>
+<AAT:BoxCol><AAT:Label value="ALL SERVICES" style="B" /></AAT:BoxCol>
+<AAT:BoxCol></AAT:BoxCol>
+<AAT:BoxCol>
+<AAT:Selector name="storage_ALL" selected="$storage" list=\@storages />
+</AAT:BoxCol>
+<AAT:BoxCol></AAT:BoxCol>
+<AAT:BoxCol>
+<AAT:Inc file="octo_selector_nbdays" name="logrotate_ALL" 
+	min="10" max="600" step="10" selected="$logrotate" />
+</AAT:BoxCol>
+</AAT:BoxRow>
 <%
 foreach my $s (Octopussy::Device::Services_Configurations($arg{device}, "sid"))
 {

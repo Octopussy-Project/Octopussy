@@ -1,6 +1,10 @@
 <WebUI:PageTop title="Alert Edit" help="alerts" />
 <%
 my $alert = $Request->QueryString("alert");
+
+$Response->Redirect("./alerts.asp")	
+	if (! Octopussy::Alert::Valid_Name($alert));
+
 my $f = $Request->Form();
 
 if ((defined $f->{modify}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))

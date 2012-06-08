@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $service = $f->{service} || $Request->QueryString("service");
+$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
 my $action = $Request->QueryString("action");
 my $msgid = $Request->QueryString("msgid");
 my $sort = $Request->QueryString("services_table_sort");
