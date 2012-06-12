@@ -228,6 +228,21 @@ sub Match
     return ($match);
 }
 
+=head2 Valid_Name($name)
+
+Checks that '$name' is valid for a Schedule name
+
+=cut
+
+sub Valid_Name
+{
+    my $name = shift;
+
+    return (1)  if ($name =~ /^[a-z0-9][a-z0-9_-]*$/i);
+
+    return (0);
+}
+
 1;
 
 =head1 AUTHOR

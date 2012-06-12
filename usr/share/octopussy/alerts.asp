@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $alert = Encode::decode_utf8($f->{alert} || $Request->QueryString("alert"));
+$alert = (Octopussy::Alert::Valid_Name($alert) ? $alert : undef);
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("alerts_table_sort") || "name";
 

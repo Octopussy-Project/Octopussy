@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $name = $f->{name} || $Request->QueryString("name");
+$name = (Octopussy::Schedule::Valid_Name($name) ? $name : undef);
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("schedules_table_sort");
 

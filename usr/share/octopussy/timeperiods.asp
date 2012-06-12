@@ -1,7 +1,10 @@
 <WebUI:PageTop title="_TIMEPERIODS" help="#timeperiods_page" />
 <%
 my $timeperiod = $Request->QueryString("timeperiod");
+$timeperiod = 
+	(Octopussy::TimePeriod::Valid_Name($timeperiod) ? $timeperiod : undef);
 my $action = $Request->QueryString("action");
+
 if ((defined $timeperiod) && ($action eq "remove"))
 {
 	Octopussy::TimePeriod::Remove($timeperiod);
@@ -9,7 +12,7 @@ if ((defined $timeperiod) && ($action eq "remove"))
 }
 
 my $f = $Request->Form();
-if (NOT_NULL($f->{name}))
+if (NOT_NULL($f->{name}) && (Octopussy::TimePeriod::Valid_Name($f->{name})))
 {
 	my @dts = ();
 
@@ -19,7 +22,7 @@ if (NOT_NULL($f->{name}))
 		my $start_h = "${d}_start_hour";
 		my $start_m = "${d}_start_min";
 		my $finish_h = "${d}_finish_hour";
-    my $finish_m = "${d}_finish_min";
+   		my $finish_m = "${d}_finish_min";
 		my $negate = "${d}_Negate";
 		push(@dts, { $d => ($f->{$negate} eq "on" ? "!" : "")
 			. "$f->{$start_h}:$f->{$start_m}"

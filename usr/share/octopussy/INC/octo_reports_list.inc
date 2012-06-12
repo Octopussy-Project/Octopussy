@@ -23,7 +23,7 @@ my $i = 0;
 foreach my $r (Octopussy::Report::Configurations($sort, $category))
 {
   my ($name, $desc, $type) = 
-		($r->{name}, $r->{description}, $r->{graph_type});
+		($r->{name}, $Server->HTMLEncode($r->{description}), $r->{graph_type});
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
   $i++;
 %><AAT:BoxRow class="$class">

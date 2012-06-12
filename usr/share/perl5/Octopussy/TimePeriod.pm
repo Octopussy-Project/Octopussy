@@ -180,6 +180,21 @@ sub Match
   return (0);
 }
 
+=head2 Valid_Name($name)
+
+Checks that '$name' is valid for a TimePeriod name
+
+=cut
+
+sub Valid_Name
+{
+    my $name = shift;
+
+    return (1)  if ($name =~ /^[a-z0-9][a-z0-9_-]*$/i);
+
+    return (0);
+}
+
 1;
 
 =head1 AUTHOR

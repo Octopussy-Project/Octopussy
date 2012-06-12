@@ -1,7 +1,9 @@
 <WebUI:PageTop title="Updater" help="Updater" />
 <%
 my $service = $Request->QueryString("service");
+$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
 my $table = $Request->QueryString("table");
+$table = (Octopussy::Table::Valid_Name($table) ? $table : undef);
 
 if (defined $service)
 {

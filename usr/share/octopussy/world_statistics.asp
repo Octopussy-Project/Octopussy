@@ -2,6 +2,8 @@
 <%
 my $url = Octopussy::Parameter("url_world_stats_show");
 my $f = $Request->Form();
+$f->{country} = "US"	if ($f->{country} !~ /^\w\w$/i);
+
 if ((defined $f->{submit}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 {
   my $id = Octopussy::World_Stats::ID();

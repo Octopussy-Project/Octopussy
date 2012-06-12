@@ -1,6 +1,7 @@
 <%
 my $f = $Request->Form();
 my $login = $f->{login} || $Request->QueryString("login");
+$login = (($login =~ /^[a-z][a-z0-9_\.-]*$/i) ? $login : undef);
 my $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("users_table_sort");
 

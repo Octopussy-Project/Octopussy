@@ -6,10 +6,10 @@ foreach my $c (Octopussy::Report::Categories())
   { push(@categories, $c->{category}); }
 
 my $conf = Octopussy::Report::Configuration($report);
-my ($r_name, $r_desc) = ($conf->{name}, $conf->{description});
+my ($r_name, $r_desc) = ($conf->{name}, $Server->HTMLEncode($conf->{description}));
 my ($r_cat, $r_type) = ($conf->{category}, $conf->{graph_type});
 my ($r_table, $r_taxo) = ($conf->{table}, $conf->{taxonomy});
-my $r_query = $conf->{query};
+my $r_query = $Server->HTMLEncode($conf->{query});
 %>
 <AAT:Form action="./report_edit.asp">
 <AAT:Form_Hidden name="old_report" value="$r_name" />

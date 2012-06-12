@@ -2,6 +2,7 @@
 <%
 my $f = $Request->Form();
 my $report = $Request->QueryString("report");
+$report = (Octopussy::Report::Valid_Name($report) ? $report : undef);
 
 if ((defined $f->{modify}) && ($Session->{AAT_ROLE} !~ /ro/i))
 {
