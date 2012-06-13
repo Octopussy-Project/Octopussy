@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 3;
+use Test::More tests => 6;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -35,6 +35,15 @@ ok((scalar @taxo_list_any) == (scalar @taxo_list + 1),
 
 my @unknowns = Octopussy::Taxonomy::Unknowns('-ANY-', 'false_taxonomy');
 ok(scalar @unknowns == 1, 'Octopussy::Taxonomy::Unknowns()');
+
+my $is_valid = Octopussy::Taxonomy::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Taxonomy::Valid_Name(undef)');
+
+$is_valid = Octopussy::Taxonomy::Valid_Name('invalid_taxonomy');
+ok(!$is_valid, "Octopussy::Taxonomy::Valid_Name('invalid_taxonomy')");
+
+$is_valid = Octopussy::Taxonomy::Valid_Name('System');
+ok($is_valid, "Octopussy::Taxonomy::Valid_Name('System')");
 
 1;
 

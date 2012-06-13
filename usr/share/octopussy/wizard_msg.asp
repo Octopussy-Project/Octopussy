@@ -1,12 +1,17 @@
 <WebUI:PageTop title="Wizard Message" />
 <%
 my $device = $Request->Form("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $msg_orig = $Request->Form("msg_orig");
 my $msg_pattern = $Request->Form("msg_pattern");
 my $service = $Request->Form("service");
+$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
 my $loglevel = $Request->Form("loglevel");
+$loglevel = (Octopussy::Loglevel::Valid_Name($loglevel) ? $loglevel : undef);
 my $taxonomy = $Request->Form("taxonomy");
+$taxonomy = (Octopussy::Taxonomy::Valid_Name($taxonomy) ? $taxonomy : undef);
 my $table = $Request->Form("table");
+$table = (Octopussy::Table::Valid_Name($table) ? $table : undef);
 my $table_field = $Request->Form("table_field_1");
 my $orig = $msg_orig;
 

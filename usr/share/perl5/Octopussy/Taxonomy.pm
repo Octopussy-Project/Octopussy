@@ -171,6 +171,23 @@ sub Colors
   return (%color);
 }
 
+=head2 Valid_Name($name)
+
+Checks that '$name' is valid for a Taxonomy name
+
+=cut
+
+sub Valid_Name
+{
+    my $name = shift;
+
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TAXONOMY));
+    my $re_taxonomy = join '|', map{ $_->{value} } ARRAY($conf->{taxonomy});
+    return (1)  if ((NOT_NULL($name)) && ($name =~ /^$re_taxonomy$/i));
+
+    return (0);
+}
+
 1;
 
 =head1 AUTHOR

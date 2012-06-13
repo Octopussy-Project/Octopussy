@@ -12,7 +12,7 @@ else
 		table => $f->{table}, pattern => $f->{msg_pattern} );
 	
 	push(@errors, Octopussy::Service::Add_Message($f->{service}, \%msg_conf))
-		if ($Session->{AAT_ROLE} !~ /ro/i); 
+		if ($Session->{AAT_ROLE} =~ /^(admin|rw)$/i);
 }
 if (scalar(@errors))
 { 

@@ -1,7 +1,8 @@
 <%
 my $f = $Request->Form();
 my $login = $Request->QueryString('user');
-if (defined $f->{update})
+
+if ((defined $f->{update}) && ($Session->{AAT_ROLE} =~ /^admin$/i))
 {
  	AAT::User::Update("Octopussy", $f->{login}, 
  		{ 	password => $f->{password}, 
@@ -9,7 +10,6 @@ if (defined $f->{update})
 			role => $f->{user_role},
 			status => $f->{status}, } 
 		);
- 	print "$f->{password} - $f->{AAT_Language} - $f->{user_role} - $f->{status}"; 
 	$Response->Redirect("./user.asp");
 }
 %>

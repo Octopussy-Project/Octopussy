@@ -1,6 +1,7 @@
 <WebUI:PageTop title="Wizard Search Service" />
 <%
 my $device = $Request->QueryString("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $msg = $Request->QueryString("msg");
 my $url = "./device_services.asp?device=$device";
 my $match = 0;

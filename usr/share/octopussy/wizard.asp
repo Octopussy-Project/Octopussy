@@ -1,5 +1,6 @@
 <%
 my $device = $Request->QueryString("device");
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $sort = $Request->QueryString("wizard_table_sort");
 my $action = $Request->QueryString("action");
 my $msg = $Request->QueryString("log");

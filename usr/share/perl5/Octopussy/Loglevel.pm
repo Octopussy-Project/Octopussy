@@ -194,6 +194,23 @@ sub Levels
   return (%level);
 }
 
+=head2 Valid_Name($name)
+
+Checks that '$name' is valid for an Alert name
+
+=cut
+
+sub Valid_Name
+{
+    my $name = shift;
+
+	my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_LOGLEVEL));
+	my $re_loglevel = join '|', map{ $_->{value} } ARRAY($conf->{loglevel});
+    return (1)  if ((NOT_NULL($name)) && ($name =~ /^$re_loglevel$/i));
+
+    return (0);
+}
+
 1;
 
 =head1 AUTHOR
