@@ -5,9 +5,10 @@ my $q = $Request->QueryString();
 my $url = "./reports_viewer.asp";
 my $url_sort = $url . "?reports_table_sort=";
 my $sort = $q->{sort};
-my ($category, $report) = ($q->{category}, $q->{report});
+my ($category, $report) = ($Server->HTMLEncode($q->{category}), $q->{report});
 my ($month, $year) = ($q->{month}, $q->{year});
 my ($action, $filename) = ($q->{action}, $q->{filename});
+$report = (Octopussy::Report::Valid_Name($report) ? $report : undef);
 
 if ((NULL($report)) && (NULL($category)))
 	{ %><AAT:Inc file="octo_viewer_reportcategory_list" url="$url" /><% }

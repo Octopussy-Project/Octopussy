@@ -2,7 +2,7 @@
 my %args = @_;
 
 my @functions = Octopussy::Plugin::Functions();
-my $plugin = $args{plugin};
+my $plugin = $Server->HTMLEncode($args{plugin});
 %>
 <AAT:Box align="C" title="'$plugin' Plugin Edition">
 <AAT:BoxRow>

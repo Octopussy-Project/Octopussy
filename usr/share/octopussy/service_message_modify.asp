@@ -1,14 +1,25 @@
 <%
 my @errors = ();
 my $f = $Request->Form();
+my ($loglevel, $table, $taxonomy, $service, $rank) = 
+	($f->{loglevel}, $f->{table}, $f->{taxonomy}, $f->{service}, $f->{rank});
+$loglevel = (Octopussy::Loglevel::Valid_Name($loglevel) ? $loglevel : undef);
+$taxonomy = (Octopussy::Taxonomy::Valid_Name($taxonomy) ? $taxonomy : undef);
+$table = (Octopussy::Table::Valid_Name($table) ? $table : undef);
+$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
+$rank = (($rank =~ /^\d+$/) ? $rank : undef);
+
+$Response->Redirect("./services.asp")
+	if (NULL($service) || NULL($table) || NULL($loglevel) || NULL($taxonomy) 
+		|| NULL($rank));
 
 my %mconf = ( msg_id => "$f->{msgid_begin}:$f->{msgid_end}", 
-	loglevel => $f->{loglevel}, rank => $f->{rank}, 
-	taxonomy => $f->{taxonomy}, table => $f->{table}, 
+	loglevel => $loglevel, rank => $rank, 
+	taxonomy => $taxonomy, table => $table, 
 	pattern => $f->{msg_pattern} );
 
-push(@errors, Octopussy::Service::Modify_Message($f->{service}, $f->{old_msgid},
-	\%mconf))	if ($Session->{AAT_ROLE} !~ /ro/i); 
+push(@errors, Octopussy::Service::Modify_Message($service, $f->{old_msgid},
+	\%mconf))	if ($Session->{AAT_ROLE} =~ /^(admin|rw)$/i); 
 
 if (scalar(@errors))
 {
@@ -23,6 +34,6 @@ if (scalar(@errors))
 }
 else
 {
-	$Response->Redirect("./services.asp?service=$f->{service}");
+	$Response->Redirect("./services.asp?service=$service");
 }
 %>
