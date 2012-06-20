@@ -17,9 +17,9 @@ elsif (NULL($report))
 		category="$category" url="$url" /><% }
 else
 {
-	if ((NOT_NULL($month)) && (NOT_NULL($year)) && ($role !~ /ro/i))
+	if ((NOT_NULL($month)) && (NOT_NULL($year)) && ($role =~ /^(admin|rw)$/i))
 		{ Octopussy::Data_Report::Remove_Month($report, $year, $month); }
-	elsif (($action eq "remove") && ($role !~ /ro/i))
+	elsif (($action eq "remove") && ($role =~ /^(admin|rw)$/i))
 		{ Octopussy::Data_Report::Remove($report, $filename); }
 %><AAT:Inc file="octo_viewer_report_list" report="$report" 
 	url="${url}?report=$report" /><%

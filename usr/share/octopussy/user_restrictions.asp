@@ -2,7 +2,7 @@
 <%
 my $url = "./user_restrictions.asp";
 my $f = $Request->Form();
-my $user = $Request->QueryString("user");
+my $user = $Server->HTMLEncode($Request->QueryString("user"));
 
 my $restricts = AAT::User::Restrictions("Octopussy", $user);
 
@@ -21,11 +21,11 @@ my @reports = ("-NONE-", "-ANY-");
 push(@reports, Octopussy::Report::List(undef, undef));
 my @used_services = Octopussy::Service::List_Used();
 
-if ($Session->{AAT_ROLE} =~ /admin/i)
+if ($Session->{AAT_ROLE} =~ /^admin$/i)
 {
 	if (NOT_NULL($f->{submit}))
 	{
-  	my $conf = { device => \@devices_sel, service => \@services_sel,
+  		my $conf = { device => \@devices_sel, service => \@services_sel,
 			alert => \@alerts_sel, report => \@reports_sel, 
 			max_minutes_search => $f->{max_minutes_search} };
 		AAT::User::Update_Restrictions("Octopussy", $user, $conf);

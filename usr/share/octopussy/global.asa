@@ -38,7 +38,6 @@ use Octopussy::Schedule;
 use Octopussy::Search_Template;
 use Octopussy::Service;
 use Octopussy::ServiceGroup;
-use Octopussy::Statistic_Report;
 use Octopussy::Stats;
 use Octopussy::Storage;
 use Octopussy::System;

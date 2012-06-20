@@ -1,5 +1,8 @@
 <%
 my $f = $Request->Form();
+my $template = $f->{template};
+$template = (Octopussy::Search_Template::Valid_Name($template) 
+	? $template : undef);
 my $run_dir = Octopussy::FS::Directory("running");
 my $login = $Session->{AAT_LOGIN};
 my $msg_nb_lines = AAT::Translation("_MSG_NB_LINES");
@@ -28,8 +31,8 @@ $date2 =~ s/-//g;
 if (NOT_NULL($Session->{cancel}))
 {
 	my $pid_param = $Session->{extracted};
-  my $pid_file = $run_dir . "octo_extractor_${pid_param}.pid";
-  my $pid = Octopussy::PID_Value($pid_file);
+  	my $pid_file = $run_dir . "octo_extractor_${pid_param}.pid";
+  	my $pid = Octopussy::PID_Value($pid_file);
 	kill USR2 => $pid;
 	($Session->{extractor}, $Session->{cancel}, $Session->{logs}, 
 	$Session->{file}, $Session->{csv}, $Session->{zip}) =
@@ -37,21 +40,21 @@ if (NOT_NULL($Session->{cancel}))
 }
 
 
-if (NOT_NULL($f->{template}))
+if (NOT_NULL($template))
 {
 	if (NOT_NULL($f->{template_save}))
 	{
-  	Octopussy::Search_Template::New($login, { name => $f->{template},
-  		device => \@devices, service => \@services,
+  		Octopussy::Search_Template::New($login, { name => $template,
+  			device => \@devices, service => \@services,
       		loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy},
       		msgid => $Session->{msgid},
       		begin => "$date1$hour1$min1", end => "$date2$hour2$min2", 
-  		re_include => $re_include, re_include2 => $re_include2,
-  		re_include3 => $re_include3, re_exclude => $re_exclude,
-  		re_exclude2 => $re_exclude2, re_exclude3 => $re_exclude3 } );		
+  			re_include => $re_include, re_include2 => $re_include2,
+  			re_include3 => $re_include3, re_exclude => $re_exclude,
+  			re_exclude2 => $re_exclude2, re_exclude3 => $re_exclude3 } );		
 	}
 	elsif (NOT_NULL($f->{template_remove}))
-		{ Octopussy::Search_Template::Remove($login, $f->{template}); }
+		{ Octopussy::Search_Template::Remove($login, $template); }
 }
 
 if ((NULL($Session->{extractor})) && 
@@ -101,29 +104,29 @@ if ($Session->{extractor} eq "done")
 		$text = "<table id=\"resultsTable\">";
 		my $page = $Session->{page} || 1;
 		my $hre_inc = $Server->HTMLEncode($re_include);
-    my $hre_inc2 = $Server->HTMLEncode($re_include2);
-    my $hre_inc3 = $Server->HTMLEncode($re_include3);
-	if (defined open(my $FILE, '<', "$run_dir/logs_${login}_$filename"))
-	{
-    	while (<$FILE>)
-    	{
-			if (($nb_lines >= ($page-1)*$LINES_BY_PAGE) 
+    	my $hre_inc2 = $Server->HTMLEncode($re_include2);
+    	my $hre_inc3 = $Server->HTMLEncode($re_include3);
+		if (defined open(my $FILE, '<', "$run_dir/logs_${login}_$filename"))
+		{
+    		while (<$FILE>)
+    		{
+				if (($nb_lines >= ($page-1)*$LINES_BY_PAGE) 
 					&& ($nb_lines <= ($page*$LINES_BY_PAGE)))
-			{
-				my $line = $Server->HTMLEncode($_);
-				$line =~ s/($hre_inc)/<font color="red"><b>$1<\/b><\/font>/g
-          if (NOT_NULL($hre_inc));
-        $line =~ s/($hre_inc2)/<font color="green"><b>$1<\/b><\/font>/g
-          if (NOT_NULL($hre_inc2));
-        $line =~ s/($hre_inc3)/<font color="blue"><b>$1<\/b><\/font>/g
-          if (NOT_NULL($hre_inc3));
-				$line =~ s/(\S{120})(\S+?)/$1\n$2/g;
-				$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
-			}
-   		$nb_lines++;
-  		}
-		close($FILE);
-	}
+				{
+					my $line = $Server->HTMLEncode($_);
+					$line =~ s/($hre_inc)/<font color="red"><b>$1<\/b><\/font>/g
+          				if (NOT_NULL($hre_inc));
+        			$line =~ s/($hre_inc2)/<font color="green"><b>$1<\/b><\/font>/g
+          				if (NOT_NULL($hre_inc2));
+        			$line =~ s/($hre_inc3)/<font color="blue"><b>$1<\/b><\/font>/g
+          				if (NOT_NULL($hre_inc3));
+					$line =~ s/(\S{120})(\S+?)/$1\n$2/g;
+					$text .= "<tr class=\"boxcolor" . ($nb_lines%2+1) . "\"><td>$line</td></tr>";
+				}
+   				$nb_lines++;
+  			}
+			close($FILE);
+		}
 		$last_page = int($nb_lines/$LINES_BY_PAGE) + 1;
 		$text .= "</table>"; 
 	}
