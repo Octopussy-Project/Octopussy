@@ -10,8 +10,8 @@ my @res_devs = ();
 foreach my $dg (ARRAY($devicegroups))
 	{ push(@res_devs, "group $dg"); }
 push(@res_devs, @{$devices});
-my $desc = $r->{description};
-my $query = $r->{query};
+my $desc = $Server->HTMLEncode($r->{description});
+my $query = $Server->HTMLEncode($r->{query});
 $query =~ s/(SELECT |FROM |WHERE |GROUP BY |ORDER BY |LIMIT )/<b>$1<\/b>/g;
 $query =~ s/FROM/\<br\>FROM/g;
 my $loglevel = $r->{loglevel};

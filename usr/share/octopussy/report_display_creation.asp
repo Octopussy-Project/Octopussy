@@ -23,7 +23,7 @@ else
 	Octopussy::Report::New(
 		{ name => $f->{title}, description => $f->{description},
 			graph_type => $f->{graph_type}, table => $f->{table}, query => $query })
-		if ($Session->{AAT_ROLE} !~ /ro/i);
+		if ($Session->{AAT_ROLE} =~ /^(admin|rw)$/i);
 }
 %>
 <WebUI:PageBottom />

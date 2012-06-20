@@ -6,6 +6,7 @@ my $reporttype = undef;
 
 ($reportname, $reporttype) = ($1, $2)
 	if ($reportname =~ /.+\/((.+)-\d{8}-\d{4}.+)?"$/);
+$reportname = $Server->HTMLEncode($reportname);
 %>
 <AAT:PageTop title="_REPORT_IN_PROGRESS" onLoad="report_progress()" />
 <AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />

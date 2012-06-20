@@ -4,11 +4,16 @@ my $url = "./reports.asp";
 
 my ($f, $qs) = ($Request->Form(), $Request->QueryString());
 my $report = $f->{report} || $qs->{report};
+$report = (Octopussy::Report::Valid_Name($report) ? $report : undef);
 my $category = Encode::decode_utf8($f->{category} || $qs->{category});
 my $device = $qs->{device} || $f->{device};
+$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $service = $qs->{service} || $f->{service};
+$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
 my $loglevel = $qs->{loglevel} || $f->{loglevel};
+$loglevel = (Octopussy::Loglevel::Valid_Name($loglevel) ? $loglevel : undef);
 my $taxonomy = $qs->{taxonomy} || $f->{taxonomy};
+$taxonomy = (Octopussy::Taxonomy::Valid_Name($taxonomy) ? $taxonomy : undef);
 my $action = $qs->{action};
 my $sort = $qs->{reports_table_sort} || "name";
 
@@ -20,7 +25,7 @@ $date1 =~ s/-//g;
 $date2 =~ s/-//g;
 
 if ((NOT_NULL($action)) && ($action eq "remove") 
-	&& ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
+	&& ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 {
 	Octopussy::Report::Remove($report);
 	AAT::Syslog::Message("octo_WebUI", "GENERIC_DELETED", "Report", $report, $Session->{AAT_LOGIN});

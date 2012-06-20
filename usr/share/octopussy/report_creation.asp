@@ -1,15 +1,16 @@
 <WebUI:PageTop title="_REPORT_CREATION" />
 <%
 my $f = $Request->Form();
-my $category = $Request->QueryString("category");
+my $q = $Request->QueryString();
+my $category = $q->{"category"};
 my $x = $Session->{x};
 my $y = $Session->{y};
 my $url = "./report_creation.asp";
 
-my $group_by_add = $Request->QueryString("group_by_add");
-my $group_by_remove = $Request->QueryString("group_by_remove");
-my $order_by_add = $Request->QueryString("order_by_add");
-my $order_by_remove = $Request->QueryString("order_by_remove");
+my $group_by_add = $Server->HTMLEncode($q->{"group_by_add"});
+my $group_by_remove = $Server->HTMLEncode($q->{"group_by_remove"});
+my $order_by_add = $Server->HTMLEncode($q->{"order_by_add"});
+my $order_by_remove = $Server->HTMLEncode($q->{"order_by_remove"});
 
 if (NOT_NULL($group_by_add))
 {
