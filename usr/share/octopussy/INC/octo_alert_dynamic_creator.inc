@@ -29,13 +29,13 @@ my @used_services = Octopussy::Service::List_Used();
   <AAT:BoxCol><AAT:Label value="_DEVICES" style="B"/></AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Inc file="octo_selector_device_and_devicegroup_dynamic" 
-	multiple="1" size="3" selected=\@devices /></AAT:BoxCol>
+	multiple="1" size="10" selected=\@devices /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol><AAT:Button name="service" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="_SERVICES" style="B"/></AAT:BoxCol>
   <AAT:BoxCol><AAT:Inc file="octo_selector_service_dynamic"
-  multiple="1" size="5" selected=\@services 
+  multiple="1" size="10" selected=\@services 
 	restricted_services=\@used_services /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
