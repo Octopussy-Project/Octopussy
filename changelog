@@ -1,3 +1,13 @@
+octopussy (1.0.4) stable; urgency=high
+
+  * Fixing minor WebUI bugs for ReadOnly users
+  * Cache clearing feature added to octo_tool program
+  * Filtering Web pages entries to avoid XSS attacks
+  * Feature Request #3528557: Bigger Device & Service selector 
+    in Alert Creation/Edition Web pages
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Thu, 21 Jun 2012 23:00:00 +0100
+
 octopussy (1.0.3) stable; urgency=high
 
   * New program octo_tool added to do simple tasks 
