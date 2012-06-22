@@ -16,7 +16,7 @@ use Readonly;
 
 use File::Path;
 use List::MoreUtils qw(true);
-use Test::More tests => 15;
+use Test::More tests => 19;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -101,6 +101,18 @@ my @models = Octopussy::Device::Models('Server');
 my $nb_models = true { $_->{name} =~ /^(Linux|Windows).*$/ } @models;
 ok(scalar @models >= $NB_MIN_MODELS && $nb_models >= $NB_MIN_SELECT_MODELS,
   'Octopussy::Device::Models()');
+
+my $is_valid = Octopussy::Device::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Device::Valid_Name(undef)');
+
+$is_valid = Octopussy::Device::Valid_Name('123invalid_hostname');
+ok(!$is_valid, "Octopussy::Device::Valid_Name('123invalid_hostname')");
+
+$is_valid = Octopussy::Device::Valid_Name('validhostname');
+ok($is_valid, "Octopussy::Device::Valid_Name('validhostname')");
+
+$is_valid = Octopussy::Device::Valid_Name('10.150.1.9');
+ok($is_valid, "Octopussy::Device::Valid_Name('10.150.1.9')");
 
 # TO_DO
 # Filtered_Configurations()
