@@ -1,3 +1,12 @@
+octopussy (1.0.5) stable; urgency=high
+
+  * Bugfix #3537131: Problem with Device with only ip address after 
+    Octopussy 1.0.4 update
+  * Updates on 'Valid_Name' functions and Test Suite
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Mon, 25 Jun 2012 01:00:00 +0100
+
+
 octopussy (1.0.4) stable; urgency=high
 
   * Fixing minor WebUI bugs for ReadOnly users
