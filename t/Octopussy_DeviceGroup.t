@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 6;
+use Test::More tests => 9;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -66,6 +66,15 @@ cmp_ok(scalar @devices, '==', 2, 'Octopussy::DeviceGroup::Devices()');
 Octopussy::DeviceGroup::Remove($DG_ID);
 my @list3 = Octopussy::DeviceGroup::List();
 ok((scalar @list1 == scalar @list3) && (!grep { /$DG_ID/ } @list3), 'Octopussy::DeviceGroup::Remove()');
+
+my $is_valid = Octopussy::DeviceGroup::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::DeviceGroup::Valid_Name(undef)');
+
+$is_valid = Octopussy::DeviceGroup::Valid_Name('devicegroup with space');
+ok(!$is_valid, "Octopussy::DeviceGroup::Valid_Name('devicegroup with space')");
+
+$is_valid = Octopussy::DeviceGroup::Valid_Name('devicegroup-name');
+ok($is_valid, "Octopussy::DeviceGroup::Valid_Name('devicegroup-name')");
 
 unlink $DG_FILE;
 

@@ -15,7 +15,7 @@ use warnings;
 use Readonly;
 
 use File::Path;
-use Test::More tests => 16;
+use Test::More tests => 20;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -126,6 +126,18 @@ ok(!-f "${DIR_SERVICES}${SERVICE}.xml", 'Octopussy::Service::Remove()');
 
 my @unknowns = Octopussy::Service::Unknowns('-ANY-', $SERVICE);
 ok(scalar @unknowns == 1, 'Octopussy::Service::Unknowns()');
+
+my $is_valid = Octopussy::Service::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Service::Valid_Name(undef)');
+
+$is_valid = Octopussy::Service::Valid_Name('service with space');
+ok(!$is_valid, "Octopussy::Service::Valid_Name('service with space')");
+
+$is_valid = Octopussy::Service::Valid_Name('valid-service');
+ok($is_valid, "Octopussy::Service::Valid_Name('valid-service')");
+
+$is_valid = Octopussy::Service::Valid_Name('valid_service');
+ok($is_valid, "Octopussy::Service::Valid_Name('valid_service')");
 
 # Clean stuff
 rmtree $DIR_SERVICES;

@@ -17,7 +17,7 @@ use Readonly;
 
 use List::MoreUtils qw(any uniq);
 
-use AAT::Utils qw( ARRAY );
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy::Device;
 use Octopussy::FS;
@@ -236,7 +236,7 @@ sub Valid_Name
 {
     my $name = shift;
 
-    return (1)  if ($name =~ /^[a-z0-9][a-z0-9_-]*$/i);
+    return (1)  if ((NOT_NULL($name)) && ($name =~ /^[a-z0-9][a-z0-9_-]*$/i));
 
     return (0);
 }

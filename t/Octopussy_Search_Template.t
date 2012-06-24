@@ -16,7 +16,7 @@ use Readonly;
 
 use File::Path;
 use List::MoreUtils qw(true);
-use Test::More tests => 5;
+use Test::More tests => 9;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -79,6 +79,18 @@ ok($tconf->{begin} eq $BEGIN_TPL && $tconf->{end} eq $END_TPL,
 
 Octopussy::Search_Template::Remove($USER, $SRCH_TPL_TITLE);
 ok(!-f $FILE_TPL, 'Octopussy::Search_Template::Remove()');
+
+my $is_valid = Octopussy::Search_Template::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Search_Template::Valid_Name(undef)');
+
+$is_valid = Octopussy::Search_Template::Valid_Name('template with space');
+ok(!$is_valid, "Octopussy::Search_Template::Valid_Name('template with space')");
+
+$is_valid = Octopussy::Search_Template::Valid_Name('valid-template');
+ok($is_valid, "Octopussy::Search_Template::Valid_Name('valid-template')");
+
+$is_valid = Octopussy::Search_Template::Valid_Name('valid_template');
+ok($is_valid, "Octopussy::Search_Template::Valid_Name('valid_template')");
 
 rmtree $DIR_TPLS;
 

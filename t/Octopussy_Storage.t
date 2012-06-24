@@ -15,7 +15,7 @@ use warnings;
 use Readonly;
 
 use List::MoreUtils qw(none);
-use Test::More tests => 7;
+use Test::More tests => 11;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -72,6 +72,18 @@ ok($dir eq $STORAGE_PATH, 'Octopussy::Storage::Directory()');
 Octopussy::Storage::Remove($STORAGE);
 my @list3 = Octopussy::Storage::List();
 ok(scalar @list1 == scalar @list3, 'Octopussy::Storage::Remove()');
+
+my $is_valid = Octopussy::Storage::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Storage::Valid_Name(undef)');
+
+$is_valid = Octopussy::Storage::Valid_Name('storage with space');
+ok(!$is_valid, "Octopussy::Storage::Valid_Name('storage with space')");
+
+$is_valid = Octopussy::Storage::Valid_Name('valid-storage');
+ok($is_valid, "Octopussy::Storage::Valid_Name('valid-storage')");
+
+$is_valid = Octopussy::Storage::Valid_Name('valid_storage');
+ok($is_valid, "Octopussy::Storage::Valid_Name('valid_storage')");
 
 system "mv $FILE_STORAGE.backup $FILE_STORAGE";
 

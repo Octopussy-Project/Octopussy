@@ -15,7 +15,7 @@ use warnings;
 use Readonly;
 
 use File::Path;
-use Test::More tests => 6;
+use Test::More tests => 13;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -84,6 +84,27 @@ ok((($new_conf->{description} eq $new_desc) && ($new_conf->{name} eq $name)),
 
 Octopussy::Alert::Remove($name);
 ok(NOT_NULL($file) && !-f $file, 'Octopussy::Alert::Remove()');
+
+my $is_valid = Octopussy::Alert::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Alert::Valid_Name(undef)');
+
+$is_valid = Octopussy::Alert::Valid_Name('alert with space');
+ok(!$is_valid, "Octopussy::Alert::Valid_Name('alert with space')");
+
+$is_valid = Octopussy::Alert::Valid_Name('valid-alert');
+ok($is_valid, "Octopussy::Alert::Valid_Name('valid-alert')");
+
+$is_valid = Octopussy::Alert::Valid_Name('valid_alert');
+ok($is_valid, "Octopussy::Alert::Valid_Name('valid_alert')");
+
+$is_valid = Octopussy::Alert::Valid_Status_Name(undef);
+ok(!$is_valid, 'Octopussy::Alert::Valid_Status_Name(undef)');
+
+$is_valid = Octopussy::Alert::Valid_Status_Name('invalid_status');
+ok(!$is_valid, "Octopussy::Alert::Valid_Status_Name('invalid_status')");
+
+$is_valid = Octopussy::Alert::Valid_Status_Name('Opened');
+ok($is_valid, "Octopussy::Alert::Valid_Status_Name('Opened')");
 
 # Clean stuff
 rmtree $DIR_ALERTS;

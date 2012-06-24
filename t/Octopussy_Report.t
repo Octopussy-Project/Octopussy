@@ -15,7 +15,7 @@ use warnings;
 use Readonly;
 
 use File::Path;
-use Test::More tests => 6;
+use Test::More tests => 10;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -79,6 +79,18 @@ ok($conf->{description} eq "${PREFIX}report New Description",
 
 Octopussy::Report::Remove($REPORT_TITLE);
 ok(!-f "${DIR_REPORTS}${REPORT_TITLE}.xml", 'Octopussy::Report::Remove()');
+
+my $is_valid = Octopussy::Report::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Report::Valid_Name(undef)');
+
+$is_valid = Octopussy::Report::Valid_Name('report with space');
+ok(!$is_valid, "Octopussy::Report::Valid_Name('report with space')");
+
+$is_valid = Octopussy::Report::Valid_Name('valid-report');
+ok($is_valid, "Octopussy::Report::Valid_Name('valid-report')");
+
+$is_valid = Octopussy::Report::Valid_Name('valid_report');
+ok($is_valid, "Octopussy::Report::Valid_Name('valid_report')");
 
 rmtree $DIR_REPORTS;
 

@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 18;
+use Test::More tests => 25;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -130,6 +130,18 @@ ok(! $match, "Octopussy::Schedule::Match('Tuesday 17 / Every Month @ 18:00' shou
 %sched = (start_time => '18:00', dayofweek => ['Monday'], dayofmonth => ['08'], month => ['Every Month'] );
 $match = Octopussy::Schedule::Match(\%sched, \%dt);
 ok(! $match, "Octopussy::Schedule::Match('Tuesday / Every Month @ 18:00' shouldn't match 'Monday 201101071800')");
+
+my $is_valid = Octopussy::Schedule::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Schedule::Valid_Name(undef)');
+
+$is_valid = Octopussy::Schedule::Valid_Name('schedule with space');
+ok(!$is_valid, "Octopussy::Schedule::Valid_Name('schedule with space')");
+
+$is_valid = Octopussy::Schedule::Valid_Name('valid-schedule');
+ok($is_valid, "Octopussy::Schedule::Valid_Name('valid-schedule')");
+
+$is_valid = Octopussy::Schedule::Valid_Name('valid_schedule');
+ok($is_valid, "Octopussy::Schedule::Valid_Name('valid_schedule')");
 
 unlink $FILE_SCHEDULES;
 

@@ -15,7 +15,7 @@ use warnings;
 use Readonly;
 
 use List::MoreUtils qw(any);
-use Test::More tests => 5;
+use Test::More tests => 9;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -62,6 +62,18 @@ my @list3 = Octopussy::TimePeriod::List();
 
 ok(($file eq $FILE_TIMEPERIOD) &&  (scalar @list == scalar @list3),
   'Octopussy::TimePeriod::Remove()');
+
+my $is_valid = Octopussy::TimePeriod::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::TimePeriod::Valid_Name(undef)');
+
+$is_valid = Octopussy::TimePeriod::Valid_Name('timeperiod with space');
+ok(!$is_valid, "Octopussy::TimePeriod::Valid_Name('timeperiod with space')");
+
+$is_valid = Octopussy::TimePeriod::Valid_Name('valid-timeperiod');
+ok($is_valid, "Octopussy::TimePeriod::Valid_Name('valid-timeperiod')");
+
+$is_valid = Octopussy::TimePeriod::Valid_Name('valid_timeperiod');
+ok($is_valid, "Octopussy::TimePeriod::Valid_Name('valid_timeperiod')");
 
 unlink $FILE_TIMEPERIOD;
 

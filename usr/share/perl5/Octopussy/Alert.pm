@@ -601,7 +601,7 @@ sub Valid_Name
 {
 	my $name = shift;
 
-	return (1)	if ($name =~ /^[a-z0-9][a-z0-9_-]*$/i);
+	return (1)	if ((NOT_NULL($name)) && ($name =~ /^[a-z0-9][a-z0-9_-]*$/i));
 
 	return (0);
 }
@@ -617,7 +617,7 @@ sub Valid_Status_Name
     my $name = shift;
     
 	return (1)  
-		if ($name =~ /^(-ANY-|Closed|Opened|Waiting for Info|Work in Progress)$/i);
+		if ((NOT_NULL($name)) && ($name =~ /^(-ANY-|Closed|Opened|Waiting for Info|Work in Progress)$/i));
 
     return (0);
 }

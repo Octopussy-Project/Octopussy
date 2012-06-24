@@ -15,8 +15,8 @@ use warnings;
 use Readonly;
 
 use File::Path;
-use List::MoreUtils qw(none);
-use Test::More tests => 6;
+use List::MoreUtils;
+use Test::More tests => 10;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -56,6 +56,18 @@ cmp_ok(scalar @fields, '==', 1, 'Octopussy::Table::Field_Type_List()');
 Octopussy::Table::Remove($table);
 my @tables = Octopussy::Table::List();
 cmp_ok(scalar @tables, '==', 0, 'Octopussy::Table::Remove()');
+
+my $is_valid = Octopussy::Table::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::Table::Valid_Name(undef)');
+
+$is_valid = Octopussy::Table::Valid_Name('table with space');
+ok(!$is_valid, "Octopussy::Table::Valid_Name('table with space')");
+
+$is_valid = Octopussy::Table::Valid_Name('valid-table');
+ok($is_valid, "Octopussy::Table::Valid_Name('valid-table')");
+
+$is_valid = Octopussy::Table::Valid_Name('valid_table');
+ok($is_valid, "Octopussy::Table::Valid_Name('valid_table')");
 
 rmtree $dir;
 

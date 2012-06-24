@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 8;
+use Test::More tests => 12;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -83,6 +83,18 @@ ok(
 Octopussy::ServiceGroup::Remove($SG_ID);
 my @list4 = Octopussy::ServiceGroup::List();
 ok(scalar @list4 == scalar @list1, 'Octopussy::ServiceGroup::Remove()');
+
+my $is_valid = Octopussy::ServiceGroup::Valid_Name(undef);
+ok(!$is_valid, 'Octopussy::ServiceGroup::Valid_Name(undef)');
+
+$is_valid = Octopussy::ServiceGroup::Valid_Name('servicegroup with space');
+ok(!$is_valid, "Octopussy::ServiceGroup::Valid_Name('servicegroup with space')");
+
+$is_valid = Octopussy::ServiceGroup::Valid_Name('valid-servicegroup');
+ok($is_valid, "Octopussy::ServiceGroup::Valid_Name('valid-servicegroup')");
+
+$is_valid = Octopussy::ServiceGroup::Valid_Name('valid_servicegroup');
+ok($is_valid, "Octopussy::ServiceGroup::Valid_Name('valid_servicegroup')");
 
 unlink $SG_FILE;
 
