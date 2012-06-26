@@ -269,6 +269,7 @@ sub Init
         my $serv = $s_conf->{sid};
         my $ra   = Regexp::Assemble->new;
 
+		$service{$serv}{statistics_enabled} = $s_conf->{statistics};
 		$log_compression{$serv} = $s_conf->{compression} || 1;
         $dir_data{$serv} =
             Octopussy::Storage::Directory_Service($device, $serv);
@@ -466,8 +467,8 @@ sub Alert_Handler
                             $match = 0;
                         }
                     }
-					if ((defined $a->{last_emit}) 
-						&& (defined $a->{minimum_emit_delay}) 
+					if ((NOT_NULL($a->{last_emit})) 
+						&& (NOT_NULL($a->{minimum_emit_delay})) 
 						&& ($secs - $a->{last_emit} < $a->{minimum_emit_delay}))
 					{
 						shift @{$alert_logs};
@@ -525,23 +526,26 @@ sub Line_Handler
     {
         Alert_Handler($msg, $line) if (scalar(@{$msg->{alerts}}) > 0);
         push @{$known_msgs->{$serv}}, $line;
-        $taxo_stats{$serv}{$msg->{taxo}} = (
-            defined $taxo_stats{$serv}{$msg->{taxo}}
-            ? $taxo_stats{$serv}{$msg->{taxo}} + 1
-            : 1
-        );
 
-        $msgid_stats{$serv}{$msg->{id}} = (
-            defined $msgid_stats{$serv}{$msg->{id}}
-            ? $msgid_stats{$serv}{$msg->{id}} + 1
-            : 1
-        );
-        $msgid_stats{$serv}{"$serv:_TOTAL_"} = (
-            defined $msgid_stats{$serv}{"$serv:_TOTAL_"}
-            ? $msgid_stats{$serv}{"$serv:_TOTAL_"} + 1
-            : 1
-        );
+		if ($service{$serv}{statistics_enabled})
+		{
+        	$taxo_stats{$serv}{$msg->{taxo}} = (
+            	defined $taxo_stats{$serv}{$msg->{taxo}}
+            	? $taxo_stats{$serv}{$msg->{taxo}} + 1
+            	: 1
+        	);
 
+        	$msgid_stats{$serv}{$msg->{id}} = (
+            	defined $msgid_stats{$serv}{$msg->{id}}
+            	? $msgid_stats{$serv}{$msg->{id}} + 1
+            	: 1
+        	);
+        	$msgid_stats{$serv}{"$serv:_TOTAL_"} = (
+            	defined $msgid_stats{$serv}{"$serv:_TOTAL_"}
+            	? $msgid_stats{$serv}{"$serv:_TOTAL_"} + 1
+            	: 1
+        	);
+		}	
         $$match = 1;
     }
     elsif ($line =~ /last message repeated \d+ time/)
@@ -592,7 +596,8 @@ sub Cache_MsgID_Stats
                 my $count = $msgid_stats{$k1}{$k2};
                 push @parser_msgid_stats,
                     {service => $k1, id => $id, count => $count}
-                    if (($count > 0) && ($id ne '_TOTAL_'));
+					if ($count > 0);
+                    #if (($count > 0) && ($id ne '_TOTAL_'));
                 $msgid_stats{$k1}{$k2} = 0;
             }
         }

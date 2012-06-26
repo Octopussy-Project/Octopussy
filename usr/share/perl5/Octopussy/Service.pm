@@ -531,7 +531,7 @@ sub Messages_Statistics
       my $stats = $cache_parser->get($k);
       foreach my $s (@{$stats})
       {
-        if ($s->{service} =~ /^$service$/)
+        if (($s->{service} =~ /^$service$/) && ($s->{id} ne '_TOTAL_'))
         {
           my $scount = $s->{count} || 0;
           my $sid = $s->{service} . ':' . $s->{id};

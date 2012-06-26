@@ -567,7 +567,7 @@ sub Services_Statistics
       my $data = $cache_parser->get($k);
       foreach my $s (@{$data})
       {
-        if ($s->{id} eq 'TOTAL')
+        if ($s->{id} eq '_TOTAL_')
         {
           $stats{$s->{service}} = (
             defined $stats{$s->{service}}
