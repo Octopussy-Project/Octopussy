@@ -64,4 +64,6 @@
          type="WORD" />
   <field title="faddr"
          type="WORD" />
+  <field title="group"
+         type="STRING" />
 </octopussy_table>
