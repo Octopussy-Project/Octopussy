@@ -149,7 +149,8 @@ sub Unknowns
   my %exist = map { $_->{value} => 1 } List();
   foreach my $t (@taxos)
   {
-    push @unknowns, $t if ((!defined $exist{$t}) && ($t ne '-ANY-'));
+    push @unknowns, $t 
+		if (NOT_NULL($t) && (!defined $exist{$t}) && ($t =~ /^-ANY-$/i));
   }
 
   return (@unknowns);

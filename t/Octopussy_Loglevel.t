@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 6;
+use Test::More tests => 7;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -36,8 +36,11 @@ my %level = Octopussy::Loglevel::Levels();
 ok((((scalar keys %level) == $NB_LOGLEVELS) && ($level{'Debug'} == 1)),
   'Octopussy::Loglevel::Levels()');
 
-my @unknowns = Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel');
-ok(scalar @unknowns == 1, 'Octopussy::Loglevel::Unknowns()');
+my @unknowns = Octopussy::Loglevel::Unknowns();
+ok(scalar @unknowns == 0, 'Octopussy::Loglevel::Unknowns()');
+
+@unknowns = Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel');
+ok(scalar @unknowns == 1, "Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel')");
 
 my $is_valid = Octopussy::Loglevel::Valid_Name(undef);
 ok(!$is_valid, 'Octopussy::Loglevel::Valid_Name(undef)');

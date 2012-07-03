@@ -154,7 +154,8 @@ sub Unknowns
   my %exist = map { $_->{label} => 1 } List();
   foreach my $l (@loglevels)
   {
-    push @unknowns, $l if ((!defined $exist{$l}) && ($l ne '-ANY-'));
+    push @unknowns, $l 
+		if (NOT_NULL($l) && (!defined $exist{$l}) && ($l =~ /^-ANY-$/i));
   }
 
   return (@unknowns);
