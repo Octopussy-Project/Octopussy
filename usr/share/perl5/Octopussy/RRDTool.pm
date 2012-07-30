@@ -207,7 +207,7 @@ sub Syslog_By_DeviceType_Graph
         . Graph_Legend($dt) . ' ';
       $first = 0;
     }
-    system "$cmd 2>&1 1>/dev/null";
+    system "$cmd >/dev/null 2>&1";
 
     return ($cmd);
   }
@@ -329,7 +329,7 @@ sub Syslog_By_Device_Service_Taxonomy_Update
   my $file = "$DIR_RRD/$device/taxonomy_$service.rrd";
   my $value_str = join ':', ARRAY($values);
 
-  system qq($RRD_UPDATE "$file" $seconds:$value_str 2>&1 1>/dev/null);
+  system qq($RRD_UPDATE "$file" $seconds:$value_str >/dev/null 2>&1);
 
   return (1);
 }
@@ -363,7 +363,7 @@ sub Syslog_By_Device_Service_Taxonomy_Graph
       . Graph_Legend($t) . ' ';
     $first = 0;
   }
-  system "$cmd 2>&1 1>/dev/null";
+  system "$cmd >/dev/null 2>&1";
 
   return ($cmd);
 }
@@ -453,7 +453,7 @@ sub Syslog_By_Device_Taxonomy_Graph
     $first = 0;
   }
   $cmd .= " $def $cdef $legend";
-  system "$cmd 2>&1 1>/dev/null" if (($cdef ne '') && ($def ne ''));
+  system "$cmd >/dev/null 2>&1" if (($cdef ne '') && ($def ne ''));
 
   return ($cmd);
 }
