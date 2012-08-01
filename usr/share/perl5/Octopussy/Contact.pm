@@ -179,7 +179,7 @@ sub Configuration
   {
     foreach my $c (AAT::LDAP::Contacts('Octopussy'))
     {
-      if (defined $c->{cid})
+		if ((defined $c->{cid}) && ($c->{cid} eq $contact))
       {
         $conf = $c;
         $conf->{type} = 'LDAP';
