@@ -66,21 +66,23 @@ foreach my $c (Octopussy::Contact::Configurations($sort))
   </AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$im" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
-	<AAT:BoxCol align="C"><%
-	if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
-	{%>
-	<AAT:Button name="edit" tooltip="_EDIT"
-    	link="./contacts.asp?cid=$id&action=edit" /><%
-	}%>
-	</AAT:BoxCol>
-	<AAT:BoxCol align="C"><%
+	<%
 	if (($type eq "local") && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
-	{ 
-		%><AAT:Button name="remove" tooltip="_REMOVE"
-    popup_link="./dialog.asp?id=delete_contact&arg1=$id_url&action=remove" /><%
-	}%>
+    {
+	%><AAT:BoxCol align="C">
+	<AAT:Button name="edit" tooltip="_EDIT"
+    	link="./contacts.asp?cid=$id&action=edit" />
 	</AAT:BoxCol>
-</AAT:BoxRow><%
+	<AAT:BoxCol align="C">
+	<AAT:Button name="remove" tooltip="_REMOVE"
+    	popup_link="./dialog.asp?id=delete_contact&arg1=$id_url&action=remove" />
+	</AAT:BoxCol><%
+	}
+	else
+	{
+		%><AAT:BoxCol cspan="2"></AAT:BoxCol><%
+	}
+%></AAT:BoxRow><%
 }
 
 if ($role !~ /ro/i)
