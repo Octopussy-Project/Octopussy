@@ -2,7 +2,7 @@
 <octopussy_service description="ACPI Service"
                    name="ACPI"
                    nb_messages="001"
-                   version="201004090006"
+                   version="201208090003"
                    website="http://sourceforge.net/projects/acpid/">
   <message loglevel="Notice"
            msg_id="ACPI:client_connected"
@@ -17,8 +17,8 @@
            table="Message"
            taxonomy="System" />
   <message loglevel="Information"
-           msg_id="ACPI:client_rule_loaded"
-           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ client rule loaded&quot;):msg@&gt;"
+           msg_id="ACPI:rule_loaded"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ rule loaded&quot;):msg@&gt;"
            rank="003"
            table="Message"
            taxonomy="System" />
@@ -56,6 +56,18 @@
            msg_id="ACPI:action_exited_with_status"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;action exited with status.+&quot;):msg@&gt;"
            rank="009"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="ACPI:starting_up_with"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;starting up with .+&quot;):msg@&gt;"
+           rank="010"
+           table="Message"
+           taxonomy="System" />
+  <message loglevel="Information"
+           msg_id="ACPI:waiting_for_events"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;acpid&quot;):daemon@&gt;: &lt;@REGEXP(&quot;waiting for events: .+&quot;):msg@&gt;"
+           rank="011"
            table="Message"
            taxonomy="System" />
 </octopussy_service>

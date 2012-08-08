@@ -2,7 +2,7 @@
 <octopussy_service description="Rsyslog Service"
                    name="Rsyslog"
                    nb_messages="002"
-                   version="201002010005"
+                   version="201208090001"
                    website="http://www.rsyslog.com/">
   <message loglevel="Information"
            msg_id="Rsyslog:restart"
@@ -94,4 +94,10 @@
            rank="015"
            table="Message"
            taxonomy="Config.Errors" />
+  <message loglevel="Warning"
+           msg_id="Rsyslog:framing_error_tcp_message"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rsyslogd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Framing Error in received TCP message: .+&quot;):msg@&gt;"
+           rank="016"
+           table="Message"
+           taxonomy="Network.Errors" />
 </octopussy_service>

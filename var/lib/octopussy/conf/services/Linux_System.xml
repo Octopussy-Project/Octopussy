@@ -3,7 +3,7 @@
                    icon="operating_systems/os_linux_generic"
                    name="Linux_System"
                    nb_messages="069"
-                   version="201002120004">
+                   version="201208090002">
   <message loglevel="Information"
            msg_id="Linux_System:removing_device_node"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;udev&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;removing device node .+&quot;):msg@&gt;"
@@ -120,7 +120,7 @@
            taxonomy="Auth.Failure" />
   <message loglevel="Notice"
            msg_id="Linux_System:su_pts_something"
-           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S pts\S+ \S+:\S+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;su&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;\S \S*pts\S* \S+:\S+&quot;):msg@&gt;"
            rank="030"
            table="Message"
            taxonomy="Auth.Success" />
@@ -496,4 +496,10 @@
            rank="082"
            table="Message"
            taxonomy="Auth.Failure" />
+  <message loglevel="Warning"
+           msg_id="Linux_System:group_added_to"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;groupadd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;group added to .+&quot;):msg@&gt;"
+           rank="083"
+           table="Message"
+           taxonomy="Config.Changes" />
 </octopussy_service>
