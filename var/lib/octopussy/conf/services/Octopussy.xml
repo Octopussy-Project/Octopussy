@@ -3,8 +3,8 @@
                    icon="software/logo_octopussy"
                    name="Octopussy"
                    nb_messages="065"
-                   version="201202170001"
-                   website="http://www.8pussy.org">
+                   version="201208120001"
+                   website="http://www.octopussy.pm">
   <message loglevel="Information"
            msg_id="Octopussy:parser_service_events"
            pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; octo_&lt;@WORD:module@&gt;: Device: &lt;@WORD:server@&gt; - Service: &lt;@STRING:service@&gt; Date: &lt;@DATE_TIME_STD:filedate@&gt; - Events: &lt;@NUMBER:nb_events@&gt; / &lt;@NUMBER:NULL@&gt;"

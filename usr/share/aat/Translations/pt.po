@@ -1289,7 +1289,7 @@ msgid "_MSG_NO_UPDATES_AVAILABLE"
 msgstr "Nenhuma atualização disponível"
 
 msgid "_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
-msgstr "Eu concordo em enviar dados anonimos para 8pussy.org"
+msgstr "Eu concordo em enviar dados anonimos para octopussy.pm"
 
 msgid "_MSG_REACH_MAX_LINES"
 msgstr "Numero maximo de linhas alcancado: "

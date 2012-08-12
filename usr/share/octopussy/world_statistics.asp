@@ -16,7 +16,7 @@ my $conf = Octopussy::World_Stats::Configuration();
 my $c_country = $conf->{country};
 my $c_selected = ($conf->{status} eq "enabled" ? 1 : 0);
 
-my $msg = "Octopussy can send statistics data to 8pussy.org official website.<br>
+my $msg = "Octopussy can send statistics data to octopussy.pm official website.<br>
 Data is sent only once a day.<br> 
 It's only anonymous data:
 <li>CPU</li>
@@ -64,7 +64,7 @@ if ($Session->{AAT_ROLE} =~ /(admin|rw)/i)
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:IMG name="buttons/bt_web" /></AAT:BoxCol>
   <AAT:BoxCol>
-  <AAT:Label value="Go to 8pussy.org World Statistics" link="$url" />
+  <AAT:Label value="Go to octopussy.pm World Statistics" link="$url" />
   </AAT:BoxCol>
   <AAT:BoxCol><AAT:IMG name="buttons/bt_web" /></AAT:BoxCol>
 </AAT:BoxRow>

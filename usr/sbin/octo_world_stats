@@ -6,7 +6,7 @@ octo_world_stats - Octopussy World Statistics program
 
 =head1 DESCRIPTION
 
-octo_world_stats sends statistics data to 8pussy.org to see Octopussy usage in the world
+octo_world_stats sends statistics data to octopussy.pm to see Octopussy usage in the world
 
 =cut
 

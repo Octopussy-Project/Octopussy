@@ -50,4 +50,4 @@ and these Perl modules (from CPAN):
 Good Luck !
 
 For more information about Octopussy installation:
-http://www.8pussy.org/dokuwiki/doku.php?id=install
+http://www.octopussy.pm/dokuwiki/doku.php?id=install

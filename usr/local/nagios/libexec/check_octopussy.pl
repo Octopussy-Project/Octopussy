@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 =head1 NAME
 
-check_octopussy.pl - Nagios Plugin for Octopussy (www.8pussy.org)
+check_octopussy.pl - Nagios Plugin for Octopussy (www.octopussy.pm)
 
 =head1 SYNOPSIS
 

@@ -38,7 +38,7 @@ Readonly my $SERVICE2_DESC => "${PREFIX}Service2 Description &éèçà£µ§";
 Readonly my $SERVICE2_FILENAME => "${DIR_SERVICES}${SERVICE2}.xml";
 Readonly my $SERVICE3      => "${PREFIX}Service2 &éèçà£µ§";
 Readonly my $SERVICE3_DESC => "${PREFIX}Service2 Description &éèçà£µ§";
-Readonly my $SERVICE_WEB  => 'http://www.8pussy.org';
+Readonly my $SERVICE_WEB  => 'http://www.octopussy.pm';
 
 Readonly my $REQUIRED_NB_MSGS => 3;
 
