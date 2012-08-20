@@ -3,8 +3,8 @@
 my $url = "./user_restrictions.asp";
 my $f = $Request->Form();
 my $user = $Server->HTMLEncode($Request->QueryString("user"));
-
-my $restricts = AAT::User::Restrictions("Octopussy", $user);
+my $type = $Request->QueryString("type");
+my $restricts = AAT::User::Restrictions("Octopussy", $user, $type);
 
 my @devices_sel = ARRAY($f->{device} || $Request->QueryString("device")
   || $restricts->{device} || "-ANY-");
@@ -28,10 +28,10 @@ if ($Session->{AAT_ROLE} =~ /^admin$/i)
   		my $conf = { device => \@devices_sel, service => \@services_sel,
 			alert => \@alerts_sel, report => \@reports_sel, 
 			max_minutes_search => $f->{max_minutes_search} };
-		AAT::User::Update_Restrictions("Octopussy", $user, $conf);
+		AAT::User::Update_Restrictions("Octopussy", $user, $type, $conf);
 	}
 %>
-<AAT:Form action="$url?user=$user">
+<AAT:Form action="$url?user=$user&type=$type">
 <AAT:Box align="C" icon="buttons/bt_users" title="_USER_RESTRICTIONS">
 <AAT:BoxRow>
   <AAT:BoxCol width="200"><AAT:Button name="device" />

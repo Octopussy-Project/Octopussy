@@ -19,7 +19,7 @@ if ((defined $f->{login}) && (defined $f->{password}))
 		$Session->{AAT_ROLE} = $auth->{role};
 		if ($auth->{role} eq 'restricted')
 		{ 	# restricted user -> get devices & services restrictions
-			my $restrictions = AAT::User::Restrictions('Octopussy', $auth->{login});
+			my $restrictions = AAT::User::Restrictions('Octopussy', $auth->{login}, $auth->{type});
   			$Session->{restricted_devices} = $restrictions->{device};
   			$Session->{restricted_services} = $restrictions->{service};
   			$Session->{restricted_minutes_search} = $restrictions->{max_minutes_search};
@@ -27,6 +27,7 @@ if ((defined $f->{login}) && (defined $f->{password}))
 		$Session->{AAT_LANGUAGE} = $auth->{language};
 		$Session->{AAT_THEME} = $auth->{theme};
 		$Session->{AAT_MENU_MODE} = $auth->{menu_mode};
+		$Session->{AAT_USER_TYPE} = $auth->{type};
 		AAT::Translation::Init($Session->{AAT_LANGUAGE});
 		AAT::Syslog::Message("octo_WebUI", "USER_LOGGED_IN", $Session->{AAT_LOGIN});
  	}

@@ -30,7 +30,7 @@ my $i = 0;
 foreach my $c (AAT::User::Configurations("Octopussy", $sort))
 {
 	my ($login, $certif, $r, $type, $status) = 
-		($c->{login}, $c->{certificate}, $c->{role}, $c->{type}, $c->{status} || 'Enabled');
+		($c->{login}, $c->{certificate}, $c->{role} || 'rw', $c->{type}, $c->{status} || 'Enabled');
 	my $role_name = AAT::User::Role_Name("Octopussy", $r);
 	my $flagfile = "AAT/IMG/flags/" . lc($c->{language}) . ".png";
 	my $class = (($i%2) ? "boxcolor1" : "boxcolor2");
@@ -50,31 +50,31 @@ foreach my $c (AAT::User::Configurations("Octopussy", $sort))
 	<AAT:BoxCol><%
 if (($role_name =~ /restricted/i) && ($role =~ /admin/i))
 {
-%><AAT:Label value="$role_name" link="./user_restrictions.asp?user=$login" /><%
+%><AAT:Label value="$role_name" link="./user_restrictions.asp?user=$login&type=$type" /><%
 }
 else
 	{ %><AAT:Label value="$role_name" /><% } %>
 	</AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="$status" /></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol><%
+	<AAT:BoxCol><AAT:Label value="$type" /></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+	<%
+	if ($role =~ /admin/i)
+	{
+		my $edit_link = "./user_edit.asp?user=$login&type=$type";
+		%><AAT:Button name="edit" tooltip="_EDIT" link="$edit_link" /><%
+	}
+	%></AAT:BoxCol>
+	<AAT:BoxCol align="C">
+	<%
 	if ((($role =~ /admin/i) && ($c->{type} =~ /local/))
 		&& (($c->{role} !~ /^admin$/) || ($nb_admin > 1)))
   	{
-  		my $edit_link = "./user_edit.asp?user=$login";
 		my $dialog = "./dialog.asp?id=delete_user&arg1=$login";
-		%>
-		<AAT:BoxCol align="C">
-		<AAT:Button name="edit" tooltip="_EDIT" link="$edit_link" />
-		</AAT:BoxCol>
-		<AAT:BoxCol align="C">
-		<AAT:Button name="remove" tooltip="_REMOVE" popup_link="$dialog" />
-		</AAT:BoxCol><%
+		%><AAT:Button name="remove" tooltip="_REMOVE" popup_link="$dialog" /><%
 	}
-	else
-	{
-		%><AAT:BoxCol cspan="2"></AAT:BoxCol><%
-	}
-	%></AAT:BoxRow><%
+	%></AAT:BoxCol>
+	</AAT:BoxRow><%
 }
 
 if ($role =~ /admin/i)

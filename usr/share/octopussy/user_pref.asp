@@ -28,7 +28,7 @@ if (defined $f->{update})
 	}
 	if ($ok)
 	{
- 		AAT::User::Update("Octopussy", $login, \%conf);
+ 		AAT::User::Update("Octopussy", $login, $Session->{AAT_USER_TYPE}, \%conf);
  		AAT::Language($f->{AAT_Language});
 		AAT::Menu_Mode($f->{AAT_MenuMode});
  		AAT::Theme($f->{AAT_Theme});

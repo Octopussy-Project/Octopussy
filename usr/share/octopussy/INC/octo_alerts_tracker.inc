@@ -69,7 +69,7 @@ if ($Session->{AAT_ROLE} =~ /admin/i)
 </AAT:BoxRow>	
 <AAT:BoxRow><AAT:BoxCol cspan="6"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
-my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
+my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN}, $Session->{AAT_USER_TYPE});
 my @res_alerts = ARRAY($restricts->{alert});
 my $limit = ((scalar(@res_alerts) > 0) ? undef : $nb_alerts_max);
 my @alerts = Octopussy::Alert::Tracker($al, $dev, $stat, $sort, $limit);

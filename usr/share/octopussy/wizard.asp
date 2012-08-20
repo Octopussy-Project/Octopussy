@@ -20,7 +20,7 @@ if ($Session->{AAT_ROLE} !~ /ro/)
 	}
 	else
 	{
-		my @messages = Octopussy::Message::Wizard($device);
+		my @messages = Octopussy::Message::Wizard($device, $timestamp);
 		if ($action eq "remove")
 		{
 			Octopussy::Logs::Remove($device, $messages[$msg-1]->{re});

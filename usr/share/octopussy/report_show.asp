@@ -6,7 +6,7 @@ my $dir_reports = Octopussy::FS::Directory("data_reports");
 
 if ($role =~ /^restricted$/i)
 {
-	my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN});
+	my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN}, $Session->{AAT_USER_TYPE});
 	my @res_reports = ARRAY($restricts->{report});
 	my $in_restriction = (scalar(@res_reports) > 0 ? 0 : 1);
 	foreach my $res (@res_reports)

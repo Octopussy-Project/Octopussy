@@ -5,7 +5,10 @@ my $login = $Session->{AAT_LOGIN};
 my $ok = 1;
 if (defined $f->{update})
 {
-  my %conf = ();
+  	my %conf = ();
+	$conf{language} = $f->{AAT_Language};
+    $conf{theme} = $f->{AAT_Theme};
+    $conf{menu_mode} = $f->{AAT_MenuMode};	
   if (NOT_NULL($f->{old_pwd}) || NOT_NULL($f->{new_pwd1})
     || NOT_NULL($f->{new_pwd2}))
   {
@@ -23,16 +26,11 @@ if (defined $f->{update})
     else
       { $conf{password} = $f->{new_pwd1}; }
   }
-  else
-  {
-    $conf{language} = $f->{AAT_Language};
-    $conf{theme} = $f->{AAT_Theme};
-  }
   if ($ok)
   {
-		AAT::User::Update("Octopussy", $login, \%conf);
+	AAT::User::Update("Octopussy", $login, $Session->{AAT_USER_TYPE}, \%conf);
     AAT::Language($f->{AAT_Language});
-		AAT::Menu_Mode($f->{AAT_MenuMode});
+	AAT::Menu_Mode($f->{AAT_MenuMode});
     AAT::Theme($f->{AAT_Theme});
     AAT::Syslog::Message("octo_WebUI", "USER_PREF_MODIFIED", $Session->{AAT_LOGIN});
     $Response->Redirect("./restricted_user_pref.asp");

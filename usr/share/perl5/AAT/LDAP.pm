@@ -17,11 +17,13 @@ use Readonly;
 
 use Net::LDAP;
 
-use AAT::Utils qw( NOT_NULL );
+use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::Application;
 use AAT::XML;
 
+Readonly my $DEFAULT_LANGUAGE  => 'EN';
 Readonly my $DEFAULT_ROLE => 'rw';
+Readonly my $DEFAULT_STATUS => 'Enabled';
 
 my %conf_file = ();
 
@@ -212,13 +214,16 @@ sub Users
       base   => $ldap->{users_base},
       filter => $ldap->{users_filter}
     );
-
+	#my $local_conf = User_Local_Configurations($appli);
     foreach my $entry ($msg->entries)
     {
+		my $login = $entry->get_value('uid');
       push @users,
         {
-        login => $entry->get_value('uid'),
-        role  => $DEFAULT_ROLE,
+        login => $login,
+#		language => $local_conf->{$login}->{language} || $DEFAULT_LANGUAGE,
+ #       role  => $local_conf->{$login}->{role} || $DEFAULT_ROLE,
+#		status => $local_conf->{$login}->{status} || $DEFAULT_STATUS,
         type  => 'LDAP'
         };
     }

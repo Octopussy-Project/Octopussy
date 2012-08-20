@@ -2,9 +2,11 @@
 my %arg = @_;
 my $url = $arg{url};
 my $login = $arg{user};
-my $conf = AAT::User::Configuration('Octopussy', $login);
+my $type = $arg{type};
+my $conf = AAT::User::Configuration('Octopussy', $login, $type);
 my ($pwd, $language, $role, $status) = 
-	($conf->{password}, $conf->{language}, $conf->{role}, $conf->{status});
+	($conf->{password}, $conf->{language} || 'en', $conf->{role} || 'rw', 
+	$conf->{status} || 'Enabled');
 %>
 <AAT:Form method="POST" action="$url">
 <AAT:Box icon="buttons/bt_user" title="_USER_EDIT" align="center">
@@ -13,13 +15,18 @@ my ($pwd, $language, $role, $status) =
     	<AAT:BoxCol align="left"><AAT:Label value="_USER" /></AAT:BoxCol>
 		<AAT:BoxCol><AAT:Label value="$login" /></AAT:BoxCol>
 		<AAT:Form_Hidden name="login" value="$login" />
+		<AAT:Form_Hidden name="type" value="$type" />
   	</AAT:BoxRow>
-  	<AAT:BoxRow>
+<%
+if ($type eq 'local')
+{
+	%><AAT:BoxRow>
 		<AAT:BoxCol><AAT:Button name="locked" /></AAT:BoxCol>
     	<AAT:BoxCol><AAT:Label value="_PASSWORD" /></AAT:BoxCol>
     	<AAT:BoxCol><AAT:Password name="password" size="12" value="" /></AAT:BoxCol>
-  	</AAT:BoxRow>
-  	<AAT:BoxRow>
+  	</AAT:BoxRow><% 
+} 
+	%><AAT:BoxRow>
     	<AAT:BoxCol><AAT:Button name="keyboard_layout" /></AAT:BoxCol>
 		<AAT:BoxCol><AAT:Label value="_LANGUAGE" /></AAT:BoxCol>
     	<AAT:BoxCol><AAT:Selector_Language selected="$language" /></AAT:BoxCol>
