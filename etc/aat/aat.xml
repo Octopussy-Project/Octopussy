@@ -2,8 +2,8 @@
 <aat>
 
 	<application name="AAT" version="0.7.2"
-							 email="octo.devel@gmail.com"
-               website="http://www.octopussy.pm/dokuwiki/doku.php?id=aat">
+							email="octo.devel@gmail.com"
+							website="http://www.octopussy.pm/dokuwiki/doku.php?id=aat">
 
 		<directory name="lists" value="/usr/share/aat/Lists/" />
 		<directory name="objects" value="/usr/share/aat/Objects/" />
@@ -12,12 +12,12 @@
 
 		<file name="message_logs" value="/var/lib/octopussy/conf/message_logs.xml" />
 
-  </application>
+  	</application>
 
 	<application name="Octopussy"
-							 email="octo.devel@gmail.com"
-							 user="octopussy"
-							 website="http://www.octopussy.pm">
+					email="octo.devel@gmail.com"
+					user="octopussy"
+					website="http://www.octopussy.pm">
 
 		<directory name="alerts" value="/var/lib/octopussy/conf/alerts/" />
 		<directory name="cache" value="/var/run/octopussy/cache/" />
@@ -67,19 +67,20 @@
         <parameter name="automatic_device_creation" value="enabled" />
 		<parameter name="devicetype" value="Unknown" />
         <parameter name="devicemodel" value="Unknown" />
-    
-    <parameter name="logrotate" value="90" />
-    <parameter name="max_alerts" value="100" />
-    <parameter name="msgid_history" value="10" />
+   		<parameter name="logo_page_login1" value="IMG/octo_login1.png" />
+    	<parameter name="logo_page_login2" value="IMG/octo_login2.png" /> 
+    	<parameter name="logrotate" value="90" />
+    	<parameter name="max_alerts" value="100" />
+    	<parameter name="msgid_history" value="10" />
 		<parameter name="msgid_history_max" value="120" />
-    <parameter name="ofc_width" value="800" />
-    <parameter name="ofc_height" value="600" />
-    <parameter name="octo_pusher_timezone" value="+01:00" />
-    <parameter name="url_world_stats_show" 
-      value="http://www.octopussy.pm/stats/show.asp" />
-    <parameter name="url_world_stats_update"
-      value="http://www.octopussy.pm/stats/update.asp" />
-    <parameter name="wizard_max_msgs" value="100" />
+    	<parameter name="ofc_width" value="800" />
+    	<parameter name="ofc_height" value="600" />
+    	<parameter name="octo_pusher_timezone" value="+01:00" />
+    	<parameter name="url_world_stats_show" 
+      		value="http://www.octopussy.pm/stats/show.asp" />
+    	<parameter name="url_world_stats_update"
+      		value="http://www.octopussy.pm/stats/update.asp" />
+    	<parameter name="wizard_max_msgs" value="100" />
 
 	</application>
 

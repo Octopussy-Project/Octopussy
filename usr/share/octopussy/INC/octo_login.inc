@@ -3,14 +3,16 @@ my %arg = @_;
 my $version = "Octopussy " . Octopussy::Version();
 my $website = Octopussy::Info::WebSite(); 
 my $redirect = $arg{redirect};
+my $logo1 = Octopussy::Parameter("logo_page_login1");
+my $logo2 = Octopussy::Parameter("logo_page_login2");
 %>
 <AAT:Form method="POST" action="./login.asp?redirect=$redirect">
 <AAT:Box align="C" cellpadding="0">
 <AAT:BoxRow valign="top">
 	<AAT:BoxCol valign="top" rspan="4">
-	<AAT:Picture file="IMG/octo_login1.png" alt="Octopussy Logo" /></AAT:BoxCol>
+	<AAT:Picture file="$logo1" alt="Octopussy Logo" /></AAT:BoxCol>
 	<AAT:BoxCol valign="top">
-	<AAT:Picture file="IMG/octo_login2.png" alt="Octopussy Logo" /></AAT:BoxCol>
+	<AAT:Picture file="$logo2" alt="Octopussy Logo" /></AAT:BoxCol>
 	<AAT:BoxCol valign="middle" align="R">
 	<AAT:Help page="HELP/en/login.html" />
 	</AAT:BoxCol>

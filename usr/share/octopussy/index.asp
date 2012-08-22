@@ -16,18 +16,14 @@ Octopussy::System::Restart()
 	<tr><td align="center"><AAT:Inc file="octo_process_status" /></td></tr>
 	</table>	
 	</AAT:BoxCol>
-	<AAT:BoxCol rspan="2" valign="top">
-  <table>
+	<AAT:BoxCol valign="top">
+  	<table>
 	<tr><td>
 	<AAT:RRD_Graph url="./index.asp" name="syslog_dtype" mode="$rrd_mode" />
 	</td></tr>	
-  <tr><td><AAT:Inc file="octo_events_last_minute" /></td></tr>
+  	<tr><td><AAT:Inc file="octo_events_last_minute" /></td></tr>
 	</table>
 	</AAT:BoxCol>
-</AAT:BoxRow>
-<AAT:BoxRow valign="top">
-	<AAT:BoxCol align="C" valign="top">
-	<AAT:Picture file="IMG/octopussy.gif" width="340" /></AAT:BoxCol>
 </AAT:BoxRow>
 </AAT:Box>
 <WebUI:PageBottom />
