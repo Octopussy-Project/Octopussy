@@ -313,6 +313,28 @@ sub Add_Message
   return (@errors);
 }
 
+sub Copy_Message
+{
+	my ($src, $dst) = @_;
+
+	my ($serv_src, $msgid_src) = $src =~ /^(.+):(.+)$/;
+	my ($serv_dst, $msgid_dst) = $dst =~ /^(.+):(.+)$/;
+	my @errors = ();
+
+	my $conf = Configuration($serv_src);
+	foreach my $m (ARRAY($conf->{message}))
+    {
+    	if ($m->{msg_id} eq "$serv_src:$msgid_src")
+		{
+			my %new_msg = %{$m};
+			$new_msg{msg_id} = "$serv_dst:$msgid_dst";
+			my @errors = Add_Message($serv_dst, \%new_msg);
+		}
+    }
+
+	return (scalar @errors);
+}
+
 =head2 Remove_Message($service, $msgid)
 
 Removes Message with id '$msgid' from Service '$service'

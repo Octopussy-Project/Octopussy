@@ -7,6 +7,8 @@ octo_tool - Octopussy tool to do simple tasks
 =head1 DESCRIPTION
 
 octo_tool cache_clear - Clears Cache (msgid_stats or taxonomy_stats)
+octo_tool message_copy - Copies Message from a Service to another Service
+octo_tool message_move - Moves Message from a Service to another Service
 octo_tool service_clone - Clones a Service
 octo_tool table_clone - Clones a Table
 
@@ -15,6 +17,10 @@ octo_tool table_clone - Clones a Table
 octo_tool <task> [options]
 
 octo_tool cache_clear msgid_stats|taxonomy_stats
+
+octo_tool message_copy <msgid_src> <msg_dst>
+
+octo_tool message_move <msgid_src> <msg_dst>
 
 octo_tool service_clone <servicename> <cloned_servicename>
 
@@ -47,11 +53,13 @@ use Octopussy::Cache;
 use Octopussy::Service;
 use Octopussy::Table;
 
-my $VERSION = '0.3';
+my $VERSION = '0.4';
 
 my %option = ();
 my %task = (
 	cache_clear => \&Cache_Clear,
+	message_copy => \&Message_Copy,
+	message_move => \&Message_Move,
 	service_clone => \&Service_Clone,
 	table_clone => \&Table_Clone,
 	);
@@ -103,6 +111,41 @@ sub Cache_Clear
 	elsif ($cache_name eq 'taxonomy_stats')
 	{
 		Octopussy::Cache::Clear_Taxonomy_Stats();
+	}
+}
+
+=head2 Message_Copy($msgid_src, $msgid_dst)
+
+Copies Message 'msgid_src' to Message 'msgid_dst'
+
+=cut
+
+sub Message_Copy
+{
+	my ($msgid_src, $msgid_dst) = @_;
+
+	Usage('[ERROR] Invalid number of args.')    if (!defined $msgid_dst);
+
+	Octopussy::Service::Copy_Message($msgid_src, $msgid_dst);
+}
+
+=head2 Message_Move($msgid_src, $msgid_dst)
+
+Moves Message 'msgid_src' to Message 'msgid_dst'
+
+=cut
+
+sub Message_Move
+{
+    my ($msgid_src, $msgid_dst) = @_;
+
+    Usage('[ERROR] Invalid number of args.')    if (!defined $msgid_dst);
+
+    my $nb_errors = Octopussy::Service::Copy_Message($msgid_src, $msgid_dst);
+	if ($nb_errors == 0)
+	{
+		my ($serv_src) = $msgid_src =~ /^(.+):.+$/;
+		Octopussy::Service::Remove_Message($serv_src, $msgid_src);
 	}
 }
 
