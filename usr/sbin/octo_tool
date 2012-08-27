@@ -6,6 +6,7 @@ octo_tool - Octopussy tool to do simple tasks
 
 =head1 DESCRIPTION
 
+octo_tool backup - Backups Octopussy configuration
 octo_tool cache_clear - Clears Cache (msgid_stats or taxonomy_stats)
 octo_tool message_copy - Copies Message from a Service to another Service
 octo_tool message_move - Moves Message from a Service to another Service
@@ -15,6 +16,8 @@ octo_tool table_clone - Clones a Table
 =head1 SYNOPSIS
 
 octo_tool <task> [options]
+
+octo_tool backup <filename>
 
 octo_tool cache_clear msgid_stats|taxonomy_stats
 
@@ -50,13 +53,15 @@ use Pod::Usage;
 use POSIX qw(strftime);
 
 use Octopussy::Cache;
+use Octopussy::Configuration;
 use Octopussy::Service;
 use Octopussy::Table;
 
-my $VERSION = '0.4';
+my $VERSION = '0.6';
 
 my %option = ();
 my %task = (
+	backup => \&Backup,
 	cache_clear => \&Cache_Clear,
 	message_copy => \&Message_Copy,
 	message_move => \&Message_Move,
@@ -90,6 +95,21 @@ sub Usage
 	{
 		pod2usage(-verbose => 99, -sections => [ qw(SYNOPSIS OPTIONS) ]);
 	}
+}
+
+=head2 Backup($filename)
+
+Backups Octopussy configuration
+
+=cut
+
+sub Backup
+{
+	my $filename = shift;
+
+	my $timestamp   = strftime("%Y%m%d%H%M%S", localtime);
+	$filename .= ($filename !~ /\.tgz$/ ? "_${timestamp}.tgz" : '');
+	Octopussy::Configuration::Backup($filename);
 }
 
 =head2 Cache_Clear($cache_name)

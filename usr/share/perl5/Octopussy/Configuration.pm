@@ -35,31 +35,34 @@ sub Set_Backup_Directory
     $DIR_BACKUP = $dir;     	
 }
 
-=head2 Backup()
+=head2 Backup($filename)
 
 =cut
 
 sub Backup
 {
-  my $timestamp   = strftime("%Y%m%d%H%M%S", localtime);
-  Octopussy::FS::Create_Directory($DIR_BACKUP);
-  my $file_backup = "${DIR_BACKUP}backup_$timestamp.tgz";
-  my $dir_main    = Octopussy::FS::Directory('main'); 
-  my ($dirs, $files) = ('', '');
-  
-  foreach my $d (Octopussy::FS::Directories('alerts', 'contacts', 'devices', 'maps', 'plugins', 'reports', 'search_templates', 'services', 'tables'))
-  {
-  	$dirs .= "$d " if (-d $d);	
-  }
-  
-  foreach my $f (Octopussy::FS::Files('db', 'devicegroups', 'ldap', 'locations', 'nsca', 'proxy', 'schedule', 'servicegroups', 'smtp', 'storages', 'timeperiods', 'users', 'xmpp'))
-  {
-  	$files .= "$f "	if (-f $f);
-  }
+	my $filename = shift;
 
-  system "tar Picfz $file_backup $dirs $files";
+  	my $timestamp   = strftime("%Y%m%d%H%M%S", localtime);
+  	Octopussy::FS::Create_Directory($DIR_BACKUP);
+  	my $file_backup = $filename || "${DIR_BACKUP}backup_$timestamp.tgz";
+
+  	my $dir_main    = Octopussy::FS::Directory('main'); 
+  	my ($dirs, $files) = ('', '');
+  
+  	foreach my $d (Octopussy::FS::Directories('alerts', 'contacts', 'devices', 'maps', 'plugins', 'reports', 'search_templates', 'services', 'tables'))
+  	{
+  		$dirs .= "$d " if (-d $d);	
+  	}
+  
+  	foreach my $f (Octopussy::FS::Files('db', 'devicegroups', 'ldap', 'locations', 'nsca', 'proxy', 'schedule', 'servicegroups', 'smtp', 'storages', 'timeperiods', 'users', 'xmpp'))
+  	{
+  		$files .= "$f "	if (-f $f);
+  	}
+
+  	system "tar Picfz $file_backup $dirs $files";
 	
-  return ($file_backup);
+  	return ($file_backup);
 }
 
 =head2 Backup_List()
