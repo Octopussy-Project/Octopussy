@@ -1,18 +1,39 @@
 #!/bin/sh -e
 
-OCTO="octopussy"
-ADDGROUP="/usr/sbin/addgroup --system"
-ADDUSER="/usr/sbin/adduser --system --disabled-password --no-create-home"
-USERMOD="/usr/sbin/usermod -g"
+# Source debconf library.
+. /usr/share/debconf/confmodule
 
 #
-# Add User & Group Octopussy
+# Adds Octopussy user & group only on install
 #
-if id $OCTO >/dev/null 2>&1 ; then
-  if [ `id $OCTO -g -n` != "$OCTO" ] ; then
-    $ADDGROUP $OCTO || true
-    $USERMOD $OCTO $OCTO
-  fi
-else
-  $ADDUSER --group --quiet $OCTO
+if [ "$1" = "install" ]; then
+	
+	OCTO="octopussy"
+	ADDGROUP="/usr/sbin/addgroup --system"
+	ADDUSER="/usr/sbin/adduser --system --disabled-password --no-create-home"
+	USERMOD="/usr/sbin/usermod -g"
+
+	if id $OCTO >/dev/null 2>&1 ; then
+  		if [ `id $OCTO -g -n` != "$OCTO" ]; then
+    		$ADDGROUP $OCTO || true
+    		$USERMOD $OCTO $OCTO
+  		fi
+	else
+  		$ADDUSER --group --quiet $OCTO
+	fi
+
+fi
+
+#
+# Backups Octopussy configuration on upgrade
+#
+if [ "$1" = "upgrade" ]; then
+
+	CHOWN="/bin/chown octopussy:octopussy"
+	OCTO_TOOL="/usr/sbin/octo_tool"
+	if [ -x $OCTO_TOOL ]; then
+		$OCTO_TOOL backup '/etc/octopussy/octopussy_ugrade_backup'
+		$CHOWN /etc/octopussy/octopussy_ugrade_backup*.tgz
+	fi
+
 fi
