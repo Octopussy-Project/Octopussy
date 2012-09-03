@@ -16,7 +16,7 @@ use Readonly;
 
 use File::Path;
 use List::MoreUtils qw(true);
-use Test::More tests => 19;
+use Test::More tests => 20;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -113,6 +113,9 @@ ok($is_valid, "Octopussy::Device::Valid_Name('validhostname')");
 
 $is_valid = Octopussy::Device::Valid_Name('10.150.1.9');
 ok($is_valid, "Octopussy::Device::Valid_Name('10.150.1.9')");
+
+$is_valid = Octopussy::Device::Valid_Name('host.domain.com');
+ok($is_valid, "Octopussy::Device::Valid_Name('host.domain.com')");
 
 # TO_DO
 # Filtered_Configurations()

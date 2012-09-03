@@ -14,7 +14,7 @@ use strict;
 use warnings;
 use Readonly;
 
-use Test::More tests => 9;
+use Test::More tests => 10;
 
 use FindBin;
 use lib "$FindBin::Bin/../usr/share/perl5";
@@ -75,6 +75,9 @@ ok(!$is_valid, "Octopussy::DeviceGroup::Valid_Name('devicegroup with space')");
 
 $is_valid = Octopussy::DeviceGroup::Valid_Name('devicegroup-name');
 ok($is_valid, "Octopussy::DeviceGroup::Valid_Name('devicegroup-name')");
+
+$is_valid = Octopussy::DeviceGroup::Valid_Name('devicegroup.with.dot');
+ok($is_valid, "Octopussy::DeviceGroup::Valid_Name('devicegroup.with.dot')");
 
 unlink $DG_FILE;
 

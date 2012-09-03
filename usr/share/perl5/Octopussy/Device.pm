@@ -831,7 +831,7 @@ sub Valid_Name
     my $name = shift;
 
     return (1)  
-		if ((NOT_NULL($name)) && (($name =~ /^[a-z][a-z0-9_-]*$/i) 
+		if ((NOT_NULL($name)) && (($name =~ /^[a-z][a-z0-9_\.-]*$/i) 
 			|| ($name =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)));
 
     return (0);
