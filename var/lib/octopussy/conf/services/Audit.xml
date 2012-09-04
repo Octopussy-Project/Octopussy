@@ -2,7 +2,7 @@
 <octopussy_service description="Linux Kernel Audit Service"
                    name="Audit"
                    nb_messages="004"
-                   version="201004280001"
+                   version="201208290005"
                    website="">
   <message loglevel="Information"
            msg_id="Audit:started_dispatcher"
@@ -34,4 +34,28 @@
            rank="005"
            table="Message"
            taxonomy="Application" />
+  <message loglevel="Information"
+           msg_id="Audit:rotating_log_files"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;auditd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;Audit daemon rotating log files&quot;):msg@&gt;"
+           rank="006"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Notice"
+           msg_id="Audit:client_socket_closed_unexpectedly"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;auditd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;client .+ socket closed unexpectedly&quot;):msg@&gt;"
+           rank="007"
+           table="Message"
+           taxonomy="Network.Errors" />
+  <message loglevel="Warning"
+           msg_id="Audit:permissions_should_be"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;auditd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ permissions should be .+&quot;):msg@&gt;"
+           rank="008"
+           table="Message"
+           taxonomy="Config.Errors" />
+  <message loglevel="Information"
+           msg_id="Audit:exiting2"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;auditd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;The audit daemon is exiting.&quot;):msg@&gt;"
+           rank="009"
+           table="Message"
+           taxonomy="Application.Stop" />
 </octopussy_service>

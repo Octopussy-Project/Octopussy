@@ -3,7 +3,7 @@
                    icon="software/logo_sendmail"
                    name="Sendmail"
                    nb_messages="018"
-                   version="200911200002"
+                   version="201208290002"
                    website="http://www.sendmail.org/">
   <message loglevel="Information"
            msg_id="Sendmail:from"
@@ -155,4 +155,16 @@
            rank="025"
            table="Mail_Traffic"
            taxonomy="Email.Traffic" />
+  <message loglevel="Warning"
+           msg_id="Sendmail:unable_qualify_own_domain"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;sendmail&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;unable to qualify my own domain name .+&quot;):msg@&gt;"
+           rank="026"
+           table="Message"
+           taxonomy="System.Errors" />
+  <message loglevel="Warning"
+           msg_id="Sendmail:my_unqualified_host_name"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;sendmail&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;My unqualified host name .+ unknown; sleeping for retry&quot;):msg@&gt;"
+           rank="027"
+           table="Message"
+           taxonomy="System.Errors" />
 </octopussy_service>

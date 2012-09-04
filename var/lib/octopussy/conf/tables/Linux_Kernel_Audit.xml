@@ -32,4 +32,14 @@
          type="STRING" />
   <field title="key"
          type="STRING" />
+  <field title="auid"
+         type="NUMBER" />
+  <field title="subject"
+         type="WORD" />
+  <field title="msg"
+         type="STRING" />
+  <field title="operation"
+         type="STRING" />
+  <field title="list"
+         type="NUMBER" />
 </octopussy_table>
