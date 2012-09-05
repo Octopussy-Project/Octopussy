@@ -50,14 +50,11 @@ then
   	$RM -rf /var/run/aat/ || true
   	$RM -rf /var/run/$OCTO/ || true
   	$RM -rf /var/spool/$OCTO/ || true
+	# Removes Octopussy user & group 
+	$GROUPDEL $OCTO || true
+	$USERDEL $OCTO || true
 	# Remove my changes to the db.
   	db_purge
 fi
-
-#
-# Removes Octopussy user & group 
-#
-$GROUPDEL $OCTO || true
-$USERDEL $OCTO || true
 
 exit 0

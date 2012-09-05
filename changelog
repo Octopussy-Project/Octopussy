@@ -7,13 +7,15 @@ octopussy (1.0.6) stable; urgency=high
   * Feature Request #3560370: Move and copy of patterns between Services
   * Feature Request #3510112: Now LDAP Users have the same preferences/roles 
     than local users
+  * Bugfixes on Debian packaging update
   * Bugfixes for LDAP Contacts & Users
   * Bugfix Loglevel/Taxonomy unknown parameter for octo_extractor
   * Bugfix #3541753: Removes RRD error messages
   * Bugfix #3519341: msgid & taxo stats not in cache anymore when stats 
     are disabled
+  * Bugfix #3555337: Allow dots in devicename and devicegroupname
 
- -- Sebastien Thebert <octo.devel@gmail.com>  Mon, 25 Jun 2012 01:00:00 +0100
+ -- Sebastien Thebert <octo.devel@gmail.com>  Thu, 06 Sep 2012 01:00:00 +0100
 
 octopussy (1.0.5) stable; urgency=high
 
