@@ -81,7 +81,7 @@
 		sql_type="TIME"
   	color="orange" />
 	<type type_id="NET_INTERFACE"
-  	re="eth\d+"
+  	re="(?:br|eth|tun|vlan|wlan)\d+"
 		simple_type="NET_INTERFACE"
    	sql_type="VARCHAR(16)"
    	color="brown" />
