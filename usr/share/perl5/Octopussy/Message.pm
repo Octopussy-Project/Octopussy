@@ -18,7 +18,7 @@ use Readonly;
 use utf8;
 
 use AAT::Syslog;
-use AAT::Utils qw( ARRAY NOT_NULL );
+use AAT::Utils qw( ARRAY NOT_NULL NULL );
 use Octopussy;
 use Octopussy::Loglevel;
 use Octopussy::Logs;
@@ -909,30 +909,33 @@ sub Wizard_File
   return (scalar @{$messages});
 }
 
-=head2 Wizard($device)
+=head2 Wizard($device, $timestamp_start)
 
 =cut
 
 sub Wizard
 {
-  my $device   = shift;
-  my @types    = Octopussy::Type::Configurations();
-  my @messages = ();
-  my @files    = Octopussy::Logs::Unknown_Files($device);
-  my $nb_max   = Octopussy::Parameter('wizard_max_msgs');
+ 	my ($device, $timestamp_start) = @_;
+	$timestamp_start = ((NULL($timestamp_start) 
+	|| $timestamp_start !~ /^\d{12}$/) ? '0' x 12 : $timestamp_start);
+  	my @types    = Octopussy::Type::Configurations();
+  	my @messages = ();
+ 	my @files    = Octopussy::Logs::Unknown_Files($device);
+  	my $nb_max   = Octopussy::Parameter('wizard_max_msgs');
 
-  foreach my $f (sort @files)
-  {
-    chomp $f;
-    if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
-    {
-      my $timestamp = "$1$2$3$4$5";
-      Wizard_File($f, $timestamp, $nb_max, \@messages, \@types);
-    }
-    last if (scalar(@messages) >= $nb_max);
-  }
+  	foreach my $f (sort @files)
+  	{
+    	chomp $f;
+    	if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
+    	{
+      	my $timestamp = "$1$2$3$4$5";
+      	Wizard_File($f, $timestamp, $nb_max, \@messages, \@types)
+			if ($timestamp >= $timestamp_start);
+    	}
+    	last if (scalar(@messages) >= $nb_max);
+  	}
 
-  return (@messages);
+  	return (@messages);
 }
 
 1;
