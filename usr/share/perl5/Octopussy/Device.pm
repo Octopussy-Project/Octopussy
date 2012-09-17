@@ -494,7 +494,7 @@ sub Services
 
   foreach my $d (@devices)
   {
-    return (Octopussy::Service::List()) if ($d eq '-ANY-');
+	return (Octopussy::Service::List_Used()) if ($d eq '-ANY-');	
     my $conf = AAT::XML::Read(Filename($d));
     foreach my $s (sort { $a->{rank} cmp $b->{rank} } ARRAY($conf->{service}))
     {
