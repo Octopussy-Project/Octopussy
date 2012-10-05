@@ -695,7 +695,7 @@ sub Parse_Status
   {
     $dir_pid ||= Octopussy::FS::Directory('running');
     my @files =
-      AAT::FS::Directory_Files($dir_pid, qr/^octo_parser_$device\.pid$/);
+      AAT::FS::Directory_Files($dir_pid, qr/^octo_parser_\Q$device\E\.pid$/);
 
     return (
       scalar(@files) > 0 ? 2
