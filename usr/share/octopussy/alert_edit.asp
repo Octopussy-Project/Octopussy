@@ -1,14 +1,12 @@
 <WebUI:PageTop title="Alert Edit" help="alerts" />
 <%
-my $alert = $Request->QueryString("alert");
-
-$Response->Redirect("./alerts.asp")	
-	if (! Octopussy::Alert::Valid_Name($alert));
-
 my $f = $Request->Form();
 
 if ((defined $f->{modify}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 {
+	$Response->Redirect("./alerts.asp")
+    	if (! Octopussy::Alert::Valid_Name($f->{name}));
+
 	my @devices = ARRAY($f->{device});
 	my @services = ARRAY($f->{service});
   my @actions = (ARRAY($f->{action_mailing}),
@@ -40,6 +38,7 @@ if ((defined $f->{modify}) && ($Session->{AAT_ROLE} =~ /(admin|rw)/i))
 }
 else
 {
+	my $alert = $Request->QueryString("alert");
 	%><AAT:Inc file="octo_alert_edit" alert="$alert" /><%
 }
 %>
