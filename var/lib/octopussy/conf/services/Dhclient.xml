@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <octopussy_service description="Dhclient Service"
                    name="Dhclient"
-                   version="201208290004"
+                   version="201211060004"
                    website="">
   <message loglevel="Information"
            msg_id="Dhclient:dhcprequest"
-           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dhclient&quot;):daemon@&gt;: &lt;@REGEXP(&quot;DHCPREQUEST on .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dhclient&quot;):daemon@&gt;: &lt;@REGEXP(&quot;DHCPREQUEST .+&quot;):msg@&gt;"
            rank="001"
            table="Message"
            taxonomy="Network" />
   <message loglevel="Information"
            msg_id="Dhclient:dhcpack"
-           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dhclient&quot;):daemon@&gt;: &lt;@REGEXP(&quot;DHCPACK from .+&quot;):msg@&gt;"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dhclient&quot;):daemon@&gt;: &lt;@REGEXP(&quot;DHCPACK .+&quot;):msg@&gt;"
            rank="002"
            table="Message"
            taxonomy="Network" />

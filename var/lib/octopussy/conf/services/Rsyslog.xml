@@ -2,7 +2,7 @@
 <octopussy_service description="Rsyslog Service"
                    name="Rsyslog"
                    nb_messages="002"
-                   version="201208090001"
+                   version="201211060006"
                    website="http://www.rsyslog.com/">
   <message loglevel="Information"
            msg_id="Rsyslog:restart"
@@ -100,4 +100,34 @@
            rank="016"
            table="Message"
            taxonomy="Network.Errors" />
+  <message loglevel="Notice"
+           msg_id="Rsyslog:userid_changed"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rsyslogd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;rsyslogd's userid changed to .+&quot;):msg@&gt;"
+           rank="017"
+           table="Message"
+           taxonomy="Config.Changes" />
+  <message loglevel="Notice"
+           msg_id="Rsyslog:goupid_changed"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rsyslogd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;rsyslogd's groupid changed to .+&quot;):msg@&gt;"
+           rank="018"
+           table="Message"
+           taxonomy="Config.Changes" />
+  <message loglevel="Information"
+           msg_id="Rsyslog:swversion_start"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rsyslogd&quot;):daemon@&gt;: &lt;@REGEXP(&quot;.+ swVersion=.+ start&quot;):msg@&gt;"
+           rank="019"
+           table="Message"
+           taxonomy="Application.Start" />
+  <message loglevel="Warning"
+           msg_id="Rsyslog:could_not_create_listener"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rsyslogd.*&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Could not create \S+ listener, .+&quot;):msg@&gt;"
+           rank="020"
+           table="Message"
+           taxonomy="Application.Errors" />
+  <message loglevel="Warning"
+           msg_id="Rsyslog:could_not_open_output"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;rsyslogd.*&quot;):daemon@&gt;: &lt;@REGEXP(&quot;Could not open output .+&quot;):msg@&gt;"
+           rank="021"
+           table="Message"
+           taxonomy="Application.Errors" />
 </octopussy_service>
