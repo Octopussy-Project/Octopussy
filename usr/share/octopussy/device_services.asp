@@ -4,7 +4,16 @@ my $f = $Request->Form();
 my $device = $f->{device} || $Request->QueryString("device");
 $device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $service = $f->{service} || $Request->QueryString("service");
-$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
+if ($service =~ /^group (\S+)$/)
+{
+	my $sg = $service;
+	$sg =~ s/^group //; 
+	$service = (Octopussy::ServiceGroup::Valid_Name($sg) ? $service : undef);
+}
+else
+{
+	$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
+}
 $action = $Request->QueryString("action");
 my $sort = $Request->QueryString("device_services_table_sort") || "rank";
 
