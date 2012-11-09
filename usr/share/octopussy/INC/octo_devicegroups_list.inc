@@ -7,12 +7,13 @@ my $lnk = "${url}?devicegroups_table_sort";
 %>
 <AAT:Box align="C" title="_DEVICEGROUPS" icon="buttons/bt_devicegroup">
 <AAT:BoxRow>
-  <AAT:BoxCol>
-  <AAT:Label value="_GROUP_NAME" link="$lnk=dg_id" /></AAT:BoxCol>
+  	<AAT:BoxCol>
+  	<AAT:Label value="_GROUP_NAME" link="$lnk=dg_id" /></AAT:BoxCol>
 	<AAT:BoxCol>
-	<AAT:Label value="_DESCRIPTION" link="$lnk=description" /></AAT:BoxCol>
-  <AAT:BoxCol>
-  <AAT:Label value="_TYPE" link="$lnk=type" /></AAT:BoxCol>
+	<AAT:Label value="_DESCRIPTION" link="$lnk=description" />
+	</AAT:BoxCol>
+  	<AAT:BoxCol>
+  	<AAT:Label value="_TYPE" link="$lnk=type" /></AAT:BoxCol>
 	<AAT:BoxCol><AAT:Label value="_DEVICES" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol><%
 if ($role !~ /ro/i)
@@ -36,7 +37,7 @@ foreach my $dg (Octopussy::DeviceGroup::Configurations($sort))
 	}
 %><AAT:BoxRow class="$class">
 	<AAT:BoxCol><AAT:Label value="$id" style="B" /></AAT:BoxCol>
-	<AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
+	<AAT:BoxCol><i><AAT:Label value="$desc" no_trans="1" /></i></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="$type" tooltip="$tooltip_str" /></AAT:BoxCol>
 	<AAT:BoxCol><i><AAT:Label value="$devices" /></i></AAT:BoxCol>
 	<AAT:BoxCol align="C"><%

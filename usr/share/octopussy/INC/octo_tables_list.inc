@@ -26,7 +26,7 @@ foreach my $t (@tcs)
   $i++;
 %><AAT:BoxRow class="$class">
   <AAT:BoxCol><AAT:Label value="$name" link="$url?table=$name" /></AAT:BoxCol>
-  <AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
+  <AAT:BoxCol><i><AAT:Label value="$desc" no_trans="1" /></i></AAT:BoxCol>
 	<AAT:BoxCol align="C"><%
 if ($role !~ /ro/i)
 {

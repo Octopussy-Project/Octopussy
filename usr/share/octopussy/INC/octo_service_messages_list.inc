@@ -134,14 +134,14 @@ foreach my $m (@messages)
   if ($valid_regexp)
   {
 	  %><AAT:BoxCol cspan="6">
-	  <AAT:Label value="$msg_color" size="-2" /></AAT:BoxCol><%
+	  <AAT:Label value="$msg_color" size="-2" no_trans="1" /></AAT:BoxCol><%
   }
   else
   {
     %><AAT:BoxCol>
     <AAT:Button name="alert" tooltip="$idtooltip" /></AAT:BoxCol>
     <AAT:BoxCol cspan="5">
-    <AAT:Label value="$msg_color" size="-2" /></AAT:BoxCol><%
+    <AAT:Label value="$msg_color" size="-2" no_trans="1" /></AAT:BoxCol><%
   }
   if ($role !~ /ro/i)
   {

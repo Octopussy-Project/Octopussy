@@ -58,7 +58,7 @@ foreach my $s (Octopussy::Service::Configurations($sort))
 %><AAT:BoxRow class="$class">
 	<AAT:BoxCol><AAT:IMG name="$icon" width="32" /></AAT:BoxCol>
   <AAT:BoxCol><AAT:Label value="$name" link="$url?service=$name" /></AAT:BoxCol>
-  <AAT:BoxCol><i><AAT:Label value="$desc" /></i></AAT:BoxCol>
+  <AAT:BoxCol><i><AAT:Label value="$desc" no_trans="1" /></i></AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="$nb" /></AAT:BoxCol>
 <AAT:BoxCol align="C"><%
 if ($role !~ /ro/i)

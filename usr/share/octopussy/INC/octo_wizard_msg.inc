@@ -20,10 +20,12 @@ my $msg_pattern = Octopussy::Message::Color_Without_Field($arg{msg_pattern});
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol cspan="4"><AAT:Label value="$msg_orig" /></AAT:BoxCol>
+  	<AAT:BoxCol cspan="4">
+	<AAT:Label value="$msg_orig" no_trans="1" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow><AAT:BoxCol cspan="4"><hr></AAT:BoxCol></AAT:BoxRow>
 <AAT:BoxRow>
-  <AAT:BoxCol cspan="4"><AAT:Label value="$msg_pattern" /></AAT:BoxCol> 
+  	<AAT:BoxCol cspan="4">
+	<AAT:Label value="$msg_pattern" no_trans="1" /></AAT:BoxCol> 
 </AAT:BoxRow>
 </AAT:Box>

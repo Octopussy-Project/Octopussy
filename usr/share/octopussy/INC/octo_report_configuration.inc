@@ -31,11 +31,11 @@ my $url_dt = "./reports.asp?report=$report&query=$query";
 	</AAT:BoxRow>
 	<AAT:BoxRow>
   	<AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B" /></AAT:BoxCol>
-  	<AAT:BoxCol><AAT:Label value="$desc" /></AAT:BoxCol>
+  	<AAT:BoxCol><AAT:Label value="$desc" no_trans="1" /></AAT:BoxCol>
 	</AAT:BoxRow>
 	<AAT:BoxRow>
   	<AAT:BoxCol><AAT:Label value="_QUERY" style="B" /></AAT:BoxCol>
-  	<AAT:BoxCol><AAT:Label value="$query" /></AAT:BoxCol>
+  	<AAT:BoxCol><AAT:Label value="$query" no_trans="1" /></AAT:BoxCol>
 	</AAT:BoxRow>
 	</AAT:Box>
 	</AAT:BoxCol>
