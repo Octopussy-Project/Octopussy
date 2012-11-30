@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<octopussy_report name="Bind Top 50 Queries"
+<octopussy_report name="Bind_Top_50_Queries"
                   category="DNS"
                   columns="query,COUNT_client"
                   columns_name="DNS Query,Nb Queries"
@@ -8,6 +8,6 @@
                   query="SELECT COUNT(client) as COUNT_client, query FROM Bind_query GROUP BY query ORDER BY COUNT_client desc LIMIT 50"
                   table="Bind_query"
                   taxonomy="-ANY-"
-                  version="200710030001"
+                  version="201211300001"
                   x="query"
                   y="" />
