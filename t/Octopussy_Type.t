@@ -41,7 +41,7 @@ foreach my $conf (@confs)
   $date_ok = 1
     if (($conf->{type_id} eq 'DATE') && ($conf->{re} eq '\d{4}\/\d{2}\/\d{2}'));
   $time_ok = 1
-    if (($conf->{type_id} eq 'TIME') && ($conf->{re} eq '\d{1,2}:\d{2}:\d{2}'));
+    if (($conf->{type_id} eq 'TIME') && ($conf->{re} eq '\d{1,3}:\d{2}:\d{2}'));
 }
 ok($date_ok && $time_ok, 'Octopussy::Type::Configurations()');
 
