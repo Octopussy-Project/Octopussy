@@ -73,8 +73,6 @@ foreach my $name ('valid-table', 'valid_table')
 		'Octopussy::Table::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-rmtree $dir;
-
 done_testing(6 + 3 + 2);
 
 =head1 AUTHOR

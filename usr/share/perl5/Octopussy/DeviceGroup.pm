@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::DeviceGroup - Octopussy DeviceGroup Module
@@ -13,9 +8,9 @@ package Octopussy::DeviceGroup;
 
 use strict;
 use warnings;
-use Readonly;
 
 use List::MoreUtils qw(any uniq);
+use Readonly;
 
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;

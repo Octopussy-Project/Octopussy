@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::FS - Octopussy FileSystem (FS) module
@@ -13,9 +8,9 @@ package Octopussy::FS;
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
+use Readonly;
 
 use AAT::Application;
 use Octopussy::Info;

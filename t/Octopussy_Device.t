@@ -1,24 +1,20 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Device.t - Octopussy Source Code Checker for Octopussy::Device
+Octopussy_Device.t - Test Suite for Octopussy::Device
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
-use List::MoreUtils qw(true);
-use Test::More tests => 20;
-
 use FindBin;
+use List::MoreUtils qw(true);
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -102,20 +98,25 @@ my $nb_models = true { $_->{name} =~ /^(Linux|Windows).*$/ } @models;
 ok(scalar @models >= $NB_MIN_MODELS && $nb_models >= $NB_MIN_SELECT_MODELS,
   'Octopussy::Device::Models()');
 
-my $is_valid = Octopussy::Device::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Device::Valid_Name(undef)');
+# 3 Tests for invalid device name
+foreach my $name (undef, '', '123invalid_hostname')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Device::Valid_Name('123invalid_hostname');
-ok(!$is_valid, "Octopussy::Device::Valid_Name('123invalid_hostname')");
+    my $is_valid = Octopussy::Device::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::Device::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Device::Valid_Name('validhostname');
-ok($is_valid, "Octopussy::Device::Valid_Name('validhostname')");
+# 3 Tests for valid device name
+foreach my $name ('validhostname', '10.150.1.9', 'host.domain.com')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Device::Valid_Name('10.150.1.9');
-ok($is_valid, "Octopussy::Device::Valid_Name('10.150.1.9')");
-
-$is_valid = Octopussy::Device::Valid_Name('host.domain.com');
-ok($is_valid, "Octopussy::Device::Valid_Name('host.domain.com')");
+    my $is_valid = Octopussy::Device::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::Device::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
 # TO_DO
 # Filtered_Configurations()
@@ -124,7 +125,7 @@ ok($is_valid, "Octopussy::Device::Valid_Name('host.domain.com')");
 
 rmtree $DIR_DEVICES;
 
-1;
+done_testing(15 + 3 + 3);
 
 =head1 AUTHOR
 

@@ -1,23 +1,19 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Location.t - Octopussy Source Code Checker for Octopussy::Location
+Octopussy_Location.t - Test Suite for Octopussy::Location
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use List::MoreUtils qw(any);
-use Test::More tests => 12;
 
 use FindBin;
+use List::MoreUtils qw(any);
+use Readonly;
+use Test::More tests => 12;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;

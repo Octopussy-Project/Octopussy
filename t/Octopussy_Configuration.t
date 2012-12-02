@@ -1,31 +1,25 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Configuration.t - Octopussy Source Code Checker for Octopussy::Configuration
+Octopussy_Configuration.t - Test Suite for Octopussy::Configuration
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 3;
 
 use File::Basename;
-
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
 use AAT::Utils qw( NOT_NULL );
 use Octopussy::Configuration;
 use Octopussy::FS;
-
 
 Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 
@@ -36,7 +30,9 @@ Octopussy::FS::Create_Directory("$dir_main/contacts/");
 Readonly my $DIR_BACKUP_TEST => 't/data/etc/octopussy/';
 Readonly my $FILE_TEST => "${dir_main}contacts/test.xml";
 
-Octopussy::Configuration::Set_Backup_Directory($DIR_BACKUP_TEST);
+my $dir_backup = Octopussy::Configuration::Set_Backup_Directory($DIR_BACKUP_TEST);
+is($dir_backup, $DIR_BACKUP_TEST, 
+	"Octopussy::Configuration::Set_Backup_Directory('$DIR_BACKUP_TEST')");
 
 my @list = Octopussy::Configuration::Backup_List();
 
@@ -44,7 +40,8 @@ my @list = Octopussy::Configuration::Backup_List();
 system qq{echo "test" > $FILE_TEST};
 
 my $file = Octopussy::Configuration::Backup();
-ok(NOT_NULL($file) && -f $file, 'Octopussy::Configuration::Backup()');
+ok(NOT_NULL($file) && -f $file, 
+	"Octopussy::Configuration::Backup() => $file");
 
 # Removes the file which should be restored
 unlink $FILE_TEST;
@@ -57,13 +54,13 @@ my $restore = basename($file);
 $restore =~ s/\.tgz$//;
 
 Octopussy::Configuration::Restore($restore);
-ok(-f $FILE_TEST, 'Octopussy::Configuration::Restore()');
+ok(-f $FILE_TEST, "Octopussy::Configuration::Restore($restore)");
 
 # Removes test file & backup
-#unlink $FILE_TEST;
-#unlink $file;
+unlink $FILE_TEST;
+unlink $file;
 
-1;
+done_testing(4);
 
 =head1 AUTHOR
 

@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Loglevel.t - Octopussy Source Code Checker for Octopussy::Loglevel
+Octopussy_Loglevel.t - Test Suite for Octopussy::Loglevel
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 7;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -42,16 +38,27 @@ ok(scalar @unknowns == 0, 'Octopussy::Loglevel::Unknowns()');
 @unknowns = Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel');
 ok(scalar @unknowns == 1, "Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel')");
 
-my $is_valid = Octopussy::Loglevel::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Loglevel::Valid_Name(undef)');
+# 3 Tests for invalid loglevel name
+foreach my $name (undef, '', 'invalid_loglevel')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Loglevel::Valid_Name('invalid_loglevel');
-ok(!$is_valid, "Octopussy::Loglevel::Valid_Name('invalid_loglevel')");
+    my $is_valid = Octopussy::Loglevel::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::Loglevel::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Loglevel::Valid_Name('Warning');
-ok($is_valid, "Octopussy::Loglevel::Valid_Name('Warning')");
+# 3 Tests for valid loglevel name
+foreach my $name ('Debug', 'Information', 'Warning', 'Critical')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-1;
+    my $is_valid = Octopussy::Loglevel::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::Loglevel::Valid_Name(' . $param_str . ") => $is_valid");
+}
+
+done_testing(4 + 3 + 4);
 
 =head1 AUTHOR
 

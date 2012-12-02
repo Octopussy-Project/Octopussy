@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy.t - Octopussy Source Code Checker for Octopussy
+Octopussy.t - Test Suite for Octopussy::FS
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 4;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -27,15 +23,17 @@ Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
-ok(NOT_NULL(Octopussy::FS::Directory('main')), 'Octopussy::FS::Directory()');
+my $dir = Octopussy::FS::Directory('main');
+ok(NOT_NULL($dir), "Octopussy::FS::Directory('main') => $dir");
 my @dirs = Octopussy::FS::Directories('main', 'data_logs');
 ok(scalar @dirs == 2, 'Octopussy::FS::Directories()');
 
-ok(NOT_NULL(Octopussy::FS::File('db')), 'Octopussy::FS::File()');
+my $file = Octopussy::FS::File('db');
+ok(NOT_NULL($file), "Octopussy::FS::File('db') => $file");
 my @files = Octopussy::FS::Files('db', 'proxy');
 ok(scalar @files == 2, 'Octopussy::FS::Files()');
 
-1;
+done_testing(4);
 
 =head1 AUTHOR
 

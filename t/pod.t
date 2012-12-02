@@ -15,8 +15,8 @@ use warnings;
 
 use Test::Pod;
    
-my @files = all_pod_files( '/usr/share/perl5/AAT.pm', '/usr/share/perl5/AAT/', 
-	'/usr/share/perl5/Octopussy.pm', '/usr/share/perl5/Octopussy/'  );
+my @files = all_pod_files( 'usr/share/perl5/AAT.pm', 'usr/share/perl5/AAT/', 
+	'usr/share/perl5/Octopussy.pm', 'usr/share/perl5/Octopussy/'  );
 all_pod_files_ok( @files );
     
 1;

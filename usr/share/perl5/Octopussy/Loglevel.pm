@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Loglevel - Octopussy Loglevel module
@@ -13,9 +8,9 @@ package Octopussy::Loglevel;
 
 use strict;
 use warnings;
-use Readonly;
 
 use List::MoreUtils qw(uniq);
+use Readonly;
 
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;

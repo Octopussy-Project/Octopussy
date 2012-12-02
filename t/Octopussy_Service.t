@@ -143,9 +143,6 @@ foreach my $name ('valid-service', 'valid_service')
         'Octopussy::Service::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-# Clean stuff
-rmtree $DIR_SERVICES;
-
 done_testing(16 + 5);
 
 =head1 AUTHOR

@@ -1,0 +1,12 @@
+<octopussy_plugin name="Email">
+	<function label="DOMAIN"
+            perl="Octopussy::Plugin::Email::Domain"
+            source="INPUT">
+    <field_type>EMAIL</field_type>
+  </function>
+	<function label="USER"
+	         	perl="Octopussy::Plugin::Email::User"
+						source="INPUT">
+		<field_type>EMAIL</field_type>
+	</function>
+</octopussy_plugin>

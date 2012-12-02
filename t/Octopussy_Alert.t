@@ -1,23 +1,19 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Alert.t - Octopussy Source Code Checker for Octopussy::Alert
+Octopussy_Alert.t - Test Suite for Octopussy::Alert
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
-use Test::More tests => 13;
-
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -85,19 +81,27 @@ ok((($new_conf->{description} eq $new_desc) && ($new_conf->{name} eq $name)),
 Octopussy::Alert::Remove($name);
 ok(NOT_NULL($file) && !-f $file, 'Octopussy::Alert::Remove()');
 
-my $is_valid = Octopussy::Alert::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Alert::Valid_Name(undef)');
+# 3 Tests for invalid alert name
+foreach my $name (undef, '', 'alert with space')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Alert::Valid_Name('alert with space');
-ok(!$is_valid, "Octopussy::Alert::Valid_Name('alert with space')");
+    my $is_valid = Octopussy::Alert::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::Alert::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Alert::Valid_Name('valid-alert');
-ok($is_valid, "Octopussy::Alert::Valid_Name('valid-alert')");
+# 2 Tests for valid alert name
+foreach my $name ('valid-alert', 'valid_alert')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Alert::Valid_Name('valid_alert');
-ok($is_valid, "Octopussy::Alert::Valid_Name('valid_alert')");
+    my $is_valid = Octopussy::Alert::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::Alert::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Alert::Valid_Status_Name(undef);
+my $is_valid = Octopussy::Alert::Valid_Status_Name(undef);
 ok(!$is_valid, 'Octopussy::Alert::Valid_Status_Name(undef)');
 
 $is_valid = Octopussy::Alert::Valid_Status_Name('invalid_status');
@@ -109,7 +113,7 @@ ok($is_valid, "Octopussy::Alert::Valid_Status_Name('Opened')");
 # Clean stuff
 rmtree $DIR_ALERTS;
 
-1;
+done_testing(6 + 3 + 2 + 3);
 
 =head1 AUTHOR
 

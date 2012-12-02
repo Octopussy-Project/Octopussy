@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Message.t - Octopussy Source Code Checker for Octopussy::Message
+Octopussy_Message.t - Test Suite for Octopussy::Message
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 6;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -66,7 +62,7 @@ my %field = Octopussy::Message::Fields_Values($mconf, $SAMPLE);
 ok(scalar(keys %field) == $REQUIRED_NB_FIELDS && $field{msg} eq $SAMPLE_MSG,
   'Octopussy::Message::Fields_Values()');
 
-1;
+done_testing(6);
 
 =head1 AUTHOR
 

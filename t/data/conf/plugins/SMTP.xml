@@ -1,0 +1,17 @@
+<octopussy_plugin name="SMTP">
+	<function label="BOUNCE_TYPE"
+	         	perl="Octopussy::Plugin::SMTP::Bounce_Type"
+						source="INPUT">
+		<field>IronPort:bounce_reason</field>
+	</function>
+	<function label="RESPONSE_TYPE"
+						perl="Octopussy::Plugin::SMTP::Response_Type"
+						source="INPUT">
+		<field>IronPort:response</field>
+	</function>
+	<function label="RECIPIENTS_COUNT"
+	         	perl="Octopussy::Plugin::SMTP::Recipients_Count"
+						source="INPUT">
+		<field>IronPort:rid</field>
+	</function>
+</octopussy_plugin>

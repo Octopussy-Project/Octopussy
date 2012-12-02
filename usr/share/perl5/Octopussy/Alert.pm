@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Alert - Octopussy Alert module
@@ -13,9 +8,10 @@ package Octopussy::Alert;
 
 use strict;
 use warnings;
-use Readonly;
 use bytes;
 use utf8;
+
+use Readonly;
 
 use AAT::DB;
 use AAT::Utils qw( ARRAY NOT_NULL );

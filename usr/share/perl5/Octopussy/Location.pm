@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Location - Octopussy Location module
@@ -13,9 +8,9 @@ package Octopussy::Location;
 
 use strict;
 use warnings;
-use Readonly;
 
 use List::MoreUtils qw(apply none);
+use Readonly;
 
 use AAT::Utils qw( ARRAY );
 use AAT::XML;

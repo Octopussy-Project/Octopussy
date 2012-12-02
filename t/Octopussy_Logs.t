@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Logs.t - Octopussy Source Code Checker for Octopussy::Logs
+Octopussy_Logs.t - Test Suite for Octopussy::Logs
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 14;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -57,12 +53,13 @@ sub Generate_Fake_Logs_Files
   system "mkdir -p $DIR_LOGS/$DEVICE/Incoming/$YEAR/01/01/";
   system "mkdir -p $DIR_LOGS/$DEVICE/Unknown/$YEAR/01/01/";
   system "mkdir -p $DIR_LOGS/$DEVICE/$SERVICE/$YEAR/01/01/";
-  for (my $i = 0 ; $i <= 59 ; $i++)
+  foreach my $i (0..59)
   {
     my $minute = sprintf '%02d', $i;
     system "touch $DIR_LOGS/$DEVICE/Incoming/2010/01/01/msg_00h${minute}.log";
     my $data = '';
-    for (my $i2 = 0 ; $i2 <= 99 ; $i2++) { $data .= "line $i2\n"; }
+    foreach my $i2 (0..19) 
+		{ $data .= sprintf "line %02d\n", $i2; }
     if (defined open my $FILE,
       '|-',
       "gzip >> $DIR_LOGS/$DEVICE/Unknown/2010/01/01/msg_00h${minute}.log.gz")
@@ -141,9 +138,9 @@ my @files_unknown = Octopussy::Logs::Unknown_Files($DEVICE);
 ok(scalar @files_unknown == 60, 'Octopussy::Logs::Unknown_Files');
 
 my $nb_lines_unknown = Octopussy::Logs::Unknown_Number($DEVICE);
-ok($nb_lines_unknown == 100, 'Octopussy::Logs::Unknown_Number');
+ok($nb_lines_unknown == 120, 'Octopussy::Logs::Unknown_Number');
 
-my $nb_removed = Octopussy::Logs::Remove($DEVICE, 'line 9\d+');
+my $nb_removed = Octopussy::Logs::Remove($DEVICE, 'line 0\d+');
 ok($nb_removed == 600, 'Octopussy::Logs::Remove()');
 
 Octopussy::Logs::Remove_Minute($DEVICE, $YEAR, $MONTH, $DAY, '00', '00');
@@ -171,7 +168,7 @@ ok($cmd =~ $RE_CMDLINE, 'Octopussy::Logs::Extract_Cmd_Line()');
 Octopussy::Device::Remove($DEVICE);
 system "rm -rf $DIR_LOGS/$DEVICE/";
 
-1;
+done_testing(14);
 
 =head1 AUTHOR
 

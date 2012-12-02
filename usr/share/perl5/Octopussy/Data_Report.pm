@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Data_Report - Octopussy Data_Report module
@@ -13,9 +8,9 @@ package Octopussy::Data_Report;
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path qw(rmtree);
+use Readonly;
 
 use Octopussy::FS;
 

@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Configuration - Octopussy Configuration module
@@ -32,7 +27,9 @@ sub Set_Backup_Directory
 {
     my $dir = shift;
     
-    $DIR_BACKUP = $dir;     	
+    $DIR_BACKUP = $dir;
+	
+	return ($DIR_BACKUP);
 }
 
 =head2 Backup($filename)

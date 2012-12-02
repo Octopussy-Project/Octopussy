@@ -1,23 +1,19 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-AAT_XML.t - Octopussy Source Code Checker for AAT::XML
+AAT_XML.t - Test Suite for AAT::XML
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use List::MoreUtils qw(any);
-use Test::More tests => 5;
 
 use FindBin;
+use List::MoreUtils qw(any);
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::XML;
@@ -52,7 +48,7 @@ my $conf2 = AAT::XML::Read($OCTO_FILE_TEST);
 cmp_ok($conf2->{selected_by_default}, 'eq', 'DEFAULT', 'AAT::XML::Write()');
 unlink $OCTO_FILE_TEST;
 
-1;
+done_testing(5);
 
 =head1 AUTHOR
 

@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Message - Octopussy Message module
@@ -14,8 +9,9 @@ package Octopussy::Message;
 use strict;
 use warnings;
 use bytes;
-use Readonly;
 use utf8;
+
+use Readonly;
 
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY NOT_NULL NULL );

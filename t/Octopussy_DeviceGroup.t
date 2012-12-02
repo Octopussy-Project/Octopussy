@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_DeviceGroup.t - Octopussy Source Code Checker for Octopussy::DeviceGroup
+Octopussy_DeviceGroup.t - Test Suite for Octopussy::DeviceGroup
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 10;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -67,21 +63,29 @@ Octopussy::DeviceGroup::Remove($DG_ID);
 my @list3 = Octopussy::DeviceGroup::List();
 ok((scalar @list1 == scalar @list3) && (!grep { /$DG_ID/ } @list3), 'Octopussy::DeviceGroup::Remove()');
 
-my $is_valid = Octopussy::DeviceGroup::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::DeviceGroup::Valid_Name(undef)');
+# 3 Tests for invalid devicegroup name
+foreach my $name (undef, '', 'devicegroup with space')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::DeviceGroup::Valid_Name('devicegroup with space');
-ok(!$is_valid, "Octopussy::DeviceGroup::Valid_Name('devicegroup with space')");
+    my $is_valid = Octopussy::DeviceGroup::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::DeviceGroup::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::DeviceGroup::Valid_Name('devicegroup-name');
-ok($is_valid, "Octopussy::DeviceGroup::Valid_Name('devicegroup-name')");
+# 2 Tests for valid service name
+foreach my $name ('devicegroup-name', 'devicegroup.with.dot')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::DeviceGroup::Valid_Name('devicegroup.with.dot');
-ok($is_valid, "Octopussy::DeviceGroup::Valid_Name('devicegroup.with.dot')");
+    my $is_valid = Octopussy::DeviceGroup::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::DeviceGroup::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
 unlink $DG_FILE;
 
-1;
+done_testing(4 + 3 + 2 + 2);
 
 =head1 AUTHOR
 

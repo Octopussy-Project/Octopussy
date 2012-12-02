@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Logs - Octopussy Logs module
@@ -13,9 +8,9 @@ package Octopussy::Logs;
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path qw(rmtree);
+use Readonly;
 
 use AAT::FS;
 use AAT::Syslog;

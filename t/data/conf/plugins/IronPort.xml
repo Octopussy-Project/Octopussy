@@ -1,0 +1,17 @@
+<octopussy_plugin name="IRONPORT">
+	<function label="ANTISPAM_STATUS"
+            perl="Octopussy::Plugin::IronPort::AntiSpam_Status"
+            source="INPUT">
+    <field>IronPort:msg</field>
+  </function>	
+	<function label="ANTIVIRUS_STATUS"
+						perl="Octopussy::Plugin::IronPort::AntiVirus_Status"
+						source="INPUT">
+		<field>IronPort:msg</field>
+	</function>
+	<function label="VIRUS_NAME"
+            perl="Octopussy::Plugin::IronPort::Virus_Name"
+						source="INPUT">
+		<field>IronPort:msg</field>
+  </function>
+</octopussy_plugin>

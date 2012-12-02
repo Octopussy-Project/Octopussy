@@ -1,26 +1,21 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-AAT_Utils.t - Octopussy Source Code Checker for AAT::Utils
+AAT_Utils.t - Test Suite for AAT::Utils
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 13;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Utils;
-
 
 my $value_scalar = "item";
 my @value_array = ("item1", "item2");
@@ -69,8 +64,7 @@ ok($not_null == 0, 'AAT::Utils::NOT_NULL(\'\') false');
 my $now_str = AAT::Utils::Now_String();
 ok($now_str =~ m{\d{4}/\d{2}/\d{2} \d{2}:\d{2}}, 'AAT::Utils::Now_String()');
 
-1;
-
+done_testing(13);
 
 =head1 AUTHOR
 

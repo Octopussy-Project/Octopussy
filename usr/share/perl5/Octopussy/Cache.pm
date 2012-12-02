@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Cache - Octopussy Cache module
@@ -13,9 +8,9 @@ package Octopussy::Cache;
 
 use strict;
 use warnings;
-use Readonly;
 
 use Cache::FileCache;
+use Readonly;
 
 use Octopussy::FS;
 

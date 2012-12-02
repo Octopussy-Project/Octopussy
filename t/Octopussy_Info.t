@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Info.t - Octopussy Source Code Checker for Octopussy::Info
+Octopussy_Info.t - Test Suite for Octopussy::Info
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 3;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -28,15 +24,18 @@ Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my $email = Octopussy::Info::Email();
-ok(NOT_NULL($email) && $email =~ /^\S+\@\S+$/, 'Octopussy::Info::Email()');
+ok(NOT_NULL($email) && $email =~ /^\S+\@\S+$/, 
+	"Octopussy::Info::Email() => $email");
 
 my $user = Octopussy::Info::User();
-ok(NOT_NULL($user) && $user =~ /^\w+$/, 'Octopussy::Info::User()');
+ok(NOT_NULL($user) && $user =~ /^\w+$/,
+	"Octopussy::Info::User() => $user");
 
 my $website = Octopussy::Info::WebSite();
-ok(NOT_NULL($website) && $website =~ /^http.+$/, 'Octopussy::Info::WebSite()');
+ok(NOT_NULL($website) && $website =~ /^http.+$/, 
+	"Octopussy::Info::WebSite() => $website");
 
-1;
+done_testing(3);
 
 =head1 AUTHOR
 

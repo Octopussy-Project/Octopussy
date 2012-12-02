@@ -1,23 +1,19 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Data_Report.t - Octopussy Source Code Checker for Octopussy::Data_Report
+Octopussy_Data_Report.t - Test Suite for Octopussy::Data_Report
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
-use Test::More tests => 5;
-
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -73,7 +69,7 @@ ok($pattern eq $dir && !-f "$dir${DATA_REPORT}-20100210-2000.html",
 # Make sure we destroy all the stuff we created with these tests
 rmtree($dir);
 
-1;
+done_testing(5);
 
 =head1 AUTHOR
 

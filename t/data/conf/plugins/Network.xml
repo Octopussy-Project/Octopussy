@@ -1,0 +1,27 @@
+<octopussy_plugin name="NETWORK">
+	<function label="MASK_8"
+						perl="Octopussy::Plugin::Network::Mask_8"
+						source="INPUT">
+		<field_type>IP_ADDR</field_type>
+	</function>
+	<function label="MASK_16"
+            perl="Octopussy::Plugin::Network::Mask_16"
+						source="INPUT">
+		<field_type>IP_ADDR</field_type>
+  </function>
+	<function label="MASK_24"
+            perl="Octopussy::Plugin::Network::Mask_24"
+						source="INPUT">
+		<field_type>IP_ADDR</field_type>
+  </function>
+	<function label="RIPE_INFO"
+            perl="Octopussy::Plugin::Network::Ripe_Info"
+						source="INPUT">
+    <field_type>IP_ADDR</field_type>
+  </function>
+	<function label="SERVICE"
+            perl="Octopussy::Plugin::Network::Service"
+            source="OUTPUT">
+    <field>Firewall_Traffic:dst_port</field>
+  </function>
+</octopussy_plugin>

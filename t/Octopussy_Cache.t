@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Cache.t - Octopussy Source Code Checker for Octopussy::Cache
+Octopussy_Cache.t - Test Suite for Octopussy::Cache
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 8;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -52,7 +48,7 @@ $cache_value = $cache->get("${PREFIX}cache_key");
 
 ok(NULL($cache_value), 'cache->remove');
 
-1;
+done_testing(8);
 
 =head1 AUTHOR
 

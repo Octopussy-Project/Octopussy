@@ -1,12 +1,8 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-AAT_Translation.t - Octopussy Source Code Checker for AAT::Translation
+AAT_Translation.t - Test Suite for AAT::Translation
 
 =cut
 
@@ -15,9 +11,9 @@ use warnings;
 use bytes;
 use utf8;
 
-use Test::More tests => 7;
-
 use FindBin;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Translation;
@@ -40,8 +36,7 @@ foreach my $lang (sort keys %trans)
 	or diag("Translation $lang of '_USER' get '$trans{$lang}{get}' but should be '$trans{$lang}{good}'");
 }
 
-1;
-
+done_testing(7);
 
 =head1 AUTHOR
 

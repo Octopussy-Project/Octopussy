@@ -1,0 +1,14 @@
+<octopussy_plugin name="NSM_IDP">
+	<function label="DESC"
+						perl="Octopussy::Plugin::NSM_IDP::Description">
+		<field>Netscreen_NSM:subcategory</field>
+	</function>
+	<function label="NAME"
+            perl="Octopussy::Plugin::NSM_IDP::Long_Name">
+    <field>Netscreen_NSM:subcategory</field>
+  </function>
+	<function label="REFS"
+            perl="Octopussy::Plugin::NSM_IDP::Refs">
+    <field>Netscreen_NSM:subcategory</field>
+  </function>
+</octopussy_plugin>

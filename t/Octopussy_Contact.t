@@ -1,24 +1,20 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Contact.t - Octopussy Source Code Checker for Octopussy::Contact
+Octopussy_Contact.t - Test Suite for Octopussy::Contact
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
-use List::MoreUtils qw(any);
-use Test::More tests => 4;
-
 use FindBin;
+use List::MoreUtils qw(any);
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -48,7 +44,7 @@ my $error = Octopussy::Contact::New(
   }
 );
 
-ok((!defined $error) && (-f "t/data/var/lib/octopussy/conf/contacts/${id}.xml"), 
+ok((!defined $error) && (-f "t/data/conf/contacts/${id}.xml"), 
 	'Octopussy::Contact::New()') or diag($error);
 
 my $c = Octopussy::Contact::Configuration($id);
@@ -66,7 +62,7 @@ ok((scalar @contacts) == (scalar @contacts2 + 1),
 
 rmtree $DIR_CONTACTS;
 
-1;
+done_testing(4);
 
 =head1 AUTHOR
 

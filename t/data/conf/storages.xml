@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_storages default_incoming="Octo_TEST_storage"
+                    default_known="Octo_TEST_storage"
+                    default_unknown="Octo_TEST_storage">
+  <storage directory="./t/data/logs/"
+           s_id="Octo_TEST_storage" />
+</octopussy_storages>

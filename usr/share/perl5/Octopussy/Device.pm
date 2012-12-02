@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Device - Octopussy Device module
@@ -13,11 +8,11 @@ package Octopussy::Device;
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path qw(rmtree);
 use List::MoreUtils qw(uniq);
 use POSIX qw(strftime);
+use Readonly;
 
 use AAT::FS;
 use AAT::Utils qw( ARRAY NOT_NULL NULL );

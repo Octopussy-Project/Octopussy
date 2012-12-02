@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-AAT_Application.t - Octopussy Source Code Checker for AAT::Application
+AAT_Application.t - Test Suite for AAT::Application
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 4;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -24,8 +20,8 @@ use AAT::Application;
 Readonly my $AAT_CONFIG_FILE => "t/data/etc/aat/aat.xml";
 Readonly my $APPLICATION => 'Octopussy';
 Readonly my $USER => 'octopussy';
-Readonly my $DIR_DEVICES => 't/data/var/lib/octopussy/conf/devices/';
-Readonly my $FILE_STORAGES => 't/data/var/lib/octopussy/conf/storages.xml';
+Readonly my $DIR_DEVICES => './t/data/conf/devices/';
+Readonly my $FILE_STORAGES => './t/data/conf/storages.xml';
 Readonly my $PARAMETER_LOGROTATE => 90;
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE);
@@ -42,9 +38,7 @@ cmp_ok($file_storages, 'eq', $FILE_STORAGES, 'AAT::Application::File()');
 my $parameter_logrotate = AAT::Application::Parameter($APPLICATION, 'logrotate');
 cmp_ok($parameter_logrotate, 'eq', $PARAMETER_LOGROTATE, 'AAT::Application::Parameter()');
 
-
-1;
-
+done_testing(4);
 
 =head1 AUTHOR
 
