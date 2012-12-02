@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::Translation - AAT Translation module
@@ -19,10 +14,23 @@ use AAT::Utils qw( NULL );
 
 my %AAT_Translation = ();
 
-use Locale::Maketext::Simple(
-  Path => '/usr/share/aat/Translations/'
-  ,    # can't use AAT::Application::Directory('AAT', 'translations') :(
-);
+#
+# Fixing 'Name "Win32::Locale::Lexicon" used only once' error messages
+#
+# It will silence ALL (not only Locale::Maketext) 'used only once' warnings
+# More info on http://stackoverflow.com/q/6983173/24820
+#
+BEGIN 
+{
+	$SIG{__WARN__} = sub {
+        warn @_ unless "@_" =~ /used only once/;
+    };
+    require Locale::Maketext::Simple;
+    Locale::Maketext::Simple->import(
+        Path => '/usr/share/aat/Translations/'
+		# can't use AAT::Application::Directory('AAT', 'translations') :(
+    );
+}
 
 =head1 FUNCTIONS
 
