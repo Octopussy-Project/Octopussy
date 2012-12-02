@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Search_Template - Octopussy Search Template module
@@ -13,9 +8,10 @@ package Octopussy::Search_Template;
 
 use strict;
 use warnings;
-use Readonly;
 use bytes;
 use utf8;
+
+use Readonly;
 
 use AAT::FS;
 use AAT::Utils qw( NOT_NULL );

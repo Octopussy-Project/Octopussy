@@ -1,30 +1,26 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Service.t - Octopussy Source Code Checker for Octopussy::Service
+Octopussy_Service.t - Test Suite for Octopussy::Service
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
-use Test::More tests => 20;
-
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Service;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
@@ -127,22 +123,30 @@ ok(!-f "${DIR_SERVICES}${SERVICE}.xml", 'Octopussy::Service::Remove()');
 my @unknowns = Octopussy::Service::Unknowns('-ANY-', $SERVICE);
 ok(scalar @unknowns == 1, 'Octopussy::Service::Unknowns()');
 
-my $is_valid = Octopussy::Service::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Service::Valid_Name(undef)');
+# 3 Tests for invalid service name
+foreach my $name (undef, '', 'service with space')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Service::Valid_Name('service with space');
-ok(!$is_valid, "Octopussy::Service::Valid_Name('service with space')");
+    my $is_valid = Octopussy::Service::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::Service::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Service::Valid_Name('valid-service');
-ok($is_valid, "Octopussy::Service::Valid_Name('valid-service')");
+# 2 Tests for valid service name
+foreach my $name ('valid-service', 'valid_service')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Service::Valid_Name('valid_service');
-ok($is_valid, "Octopussy::Service::Valid_Name('valid_service')");
+    my $is_valid = Octopussy::Service::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::Service::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
 # Clean stuff
 rmtree $DIR_SERVICES;
 
-1;
+done_testing(16 + 5);
 
 =head1 AUTHOR
 

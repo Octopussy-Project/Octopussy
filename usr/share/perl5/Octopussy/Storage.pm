@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Storage - Octopussy Storage module
@@ -214,58 +209,73 @@ sub Directory
 
 =head2 Directory_Service($device, $service)
 
-Returns directory for Device '$device' Service '$service' Logs
+Returns Logs directory for Device '$device' Service '$service'
 
 =cut
 
 sub Directory_Service
 {
-  my ($device, $service) = @_;
+	my ($device, $service) = @_;
+	
+	return (undef)  if (!defined $device || $device eq '');
+	return (undef)  if (!defined $service || $service eq '');
+  
+	my $storage = Default();
+  	my $dconf   = Octopussy::Device::Configuration($device);
 
-  my $storage = Default();
-  my $dconf   = Octopussy::Device::Configuration($device);
-  my $dir =
-       Directory($dconf->{"storage_$service"})
-    || Directory($dconf->{'storage_known'})
-    || Directory($storage->{known});
+	return (undef)  if (!defined $dconf);
 
-  return ($dir);
+  	my $dir = Directory($dconf->{"storage_$service"})
+    	|| Directory($dconf->{'storage_known'})
+    	|| Directory($storage->{known});
+
+  	return ($dir);
 }
 
 =head2 Directory_Incoming($device)
 
-Returns directory for Device '$device' Incoming Logs
+Returns Incoming Logs directory for Device '$device'
 
 =cut
 
 sub Directory_Incoming
 {
-  my $device = shift;
+	my $device = shift;
 
-  my $storage = Default();
-  my $dconf   = Octopussy::Device::Configuration($device);
-  my $dir     = Directory($dconf->{storage_incoming})
-    || Directory($storage->{incoming});
+	return (undef)	if (!defined $device || $device eq '');
 
-  return ($dir);
+  	my $storage = Default();
+  	my $dconf   = Octopussy::Device::Configuration($device);
+	
+	return (undef)  if (!defined $dconf);
+
+  	my $dir     = Directory($dconf->{storage_incoming})
+    	|| Directory($storage->{incoming});
+
+  	return ($dir);
 }
 
 =head2 Directory_Unknown($device)
 
-Returns directory for Device '$device' Unknown Logs
+Returns Unknown Logs directory for Device '$device'
 
 =cut
 
 sub Directory_Unknown
 {
-  my $device = shift;
+	my $device = shift;
 
-  my $storage = Default();
-  my $dconf   = Octopussy::Device::Configuration($device);
-  my $dir     = Directory($dconf->{storage_unknown})
-    || Directory($storage->{unknown});
+	return (undef)  if (!defined $device || $device eq '');
 
-  return ($dir);
+	my $storage = Default();
+  	my $dconf   = Octopussy::Device::Configuration($device);
+
+	return (undef)  if (!defined $dconf);
+
+  	my $dir     = Directory($dconf->{storage_unknown})
+    	|| Directory($storage->{unknown});
+
+  	return ($dir);
 }
 
 =head2 Valid_Name($name)

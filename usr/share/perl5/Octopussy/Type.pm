@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Type - Octopussy Type module
@@ -13,11 +8,11 @@ package Octopussy::Type;
 
 use strict;
 use warnings;
+
 use Readonly;
 
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
-
 use Octopussy::FS;
 
 Readonly my $FILE_TYPES        => 'types';

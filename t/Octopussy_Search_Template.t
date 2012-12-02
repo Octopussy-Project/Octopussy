@@ -1,24 +1,20 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Search_Template.t - Octopussy Source Code Checker for Octopussy::Search_Template
+Octopussy_Search_Template.t - Test Suite for Octopussy::Search_Template
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
-use List::MoreUtils qw(true);
-use Test::More tests => 9;
-
 use FindBin;
+use List::MoreUtils qw(true);
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -80,21 +76,31 @@ ok($tconf->{begin} eq $BEGIN_TPL && $tconf->{end} eq $END_TPL,
 Octopussy::Search_Template::Remove($USER, $SRCH_TPL_TITLE);
 ok(!-f $FILE_TPL, 'Octopussy::Search_Template::Remove()');
 
-my $is_valid = Octopussy::Search_Template::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Search_Template::Valid_Name(undef)');
+# 3 Tests for invalid search_template name
+foreach my $name (undef, '', 'template with space')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Search_Template::Valid_Name('template with space');
-ok(!$is_valid, "Octopussy::Search_Template::Valid_Name('template with space')");
+    my $is_valid = Octopussy::Search_Template::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::Search_Template::Valid_Name(' 
+		. $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Search_Template::Valid_Name('valid-template');
-ok($is_valid, "Octopussy::Search_Template::Valid_Name('valid-template')");
+# 2 Tests for valid search_template name
+foreach my $name ('valid-template', 'valid_template')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Search_Template::Valid_Name('valid_template');
-ok($is_valid, "Octopussy::Search_Template::Valid_Name('valid_template')");
+    my $is_valid = Octopussy::Search_Template::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::Search_Template::Valid_Name(' 
+		. $param_str . ") => $is_valid");
+}
 
 rmtree $DIR_TPLS;
 
-1;
+done_testing(5 + 3 + 2);
 
 =head1 AUTHOR
 

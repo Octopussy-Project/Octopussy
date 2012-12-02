@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_ServiceGroup.t - Octopussy Source Code Checker for Octopussy::ServiceGroup
+Octopussy_ServiceGroup.t - Test Suite for Octopussy::ServiceGroup
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 12;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -84,21 +80,29 @@ Octopussy::ServiceGroup::Remove($SG_ID);
 my @list4 = Octopussy::ServiceGroup::List();
 ok(scalar @list4 == scalar @list1, 'Octopussy::ServiceGroup::Remove()');
 
-my $is_valid = Octopussy::ServiceGroup::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::ServiceGroup::Valid_Name(undef)');
+# 3 Tests for invalid servicegroup name
+foreach my $name (undef, '', 'servicegroup with space')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::ServiceGroup::Valid_Name('servicegroup with space');
-ok(!$is_valid, "Octopussy::ServiceGroup::Valid_Name('servicegroup with space')");
+    my $is_valid = Octopussy::ServiceGroup::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::ServiceGroup::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::ServiceGroup::Valid_Name('valid-servicegroup');
-ok($is_valid, "Octopussy::ServiceGroup::Valid_Name('valid-servicegroup')");
+# 2 Tests for valid servicegroup name
+foreach my $name ('valid-servicegroup', 'valid_servicegroup')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::ServiceGroup::Valid_Name('valid_servicegroup');
-ok($is_valid, "Octopussy::ServiceGroup::Valid_Name('valid_servicegroup')");
+    my $is_valid = Octopussy::ServiceGroup::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::ServiceGroup::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
 unlink $SG_FILE;
 
-1;
+done_testing(8 + 3 + 2);
 
 =head1 AUTHOR
 

@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy - Octopussy main module
@@ -13,12 +8,12 @@ package Octopussy;
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Basename;
 use File::Path;
 use Proc::PID::File;
 use POSIX qw( mkfifo strftime );
+use Readonly;
 
 use AAT::Application;
 use AAT::Download;

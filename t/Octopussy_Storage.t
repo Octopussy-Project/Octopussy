@@ -1,30 +1,26 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Storage.t - Octopussy Source Code Checker for Octopussy::Storage
+Octopussy_Storage.t - Test Suite for Octopussy::Storage
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use List::MoreUtils qw(none);
-use Test::More tests => 11;
 
 use FindBin;
+use List::MoreUtils qw(none);
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Storage;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
@@ -36,9 +32,9 @@ Readonly my $STORAGE_PATH => '/tmp';
 system "mv $FILE_STORAGE $FILE_STORAGE.backup";
 
 my %default = (
-  incoming => $STORAGE,
-  unknown  => $STORAGE,
-  known    => $STORAGE,
+	incoming => $STORAGE,
+  	unknown  => $STORAGE,
+  	known    => $STORAGE,
 );
 
 my $file = Octopussy::Storage::Default_Set(\%default);
@@ -65,29 +61,50 @@ ok($conf2->{directory} eq $STORAGE_PATH, 'Octopussy::Storage::Configuration()');
 my $dir = Octopussy::Storage::Directory($STORAGE);
 ok($dir eq $STORAGE_PATH, 'Octopussy::Storage::Directory()');
 
-#my $dir_service = Directory_Service($device, $service);
-#my $dir_incoming = Directory_Incoming($device);
-#my $dir_unknown = Directory_Unknown($device);
+foreach my $dev (undef, '', 'DOESNTEXIST')
+{
+	my $param_str = (defined $dev ? "'$dev'" : 'undef');
+
+	my $dir_incoming = Octopussy::Storage::Directory_Incoming($dev);
+	ok(!defined $dir_incoming, 
+		'Octopussy::Storage::Directory_Incoming(' . $param_str . ') => undef');
+
+	my $dir_unknown = Octopussy::Storage::Directory_Unknown($dev);
+	ok(!defined $dir_unknown,
+        'Octopussy::Storage::Directory_Unknown(' . $param_str . ') => undef');
+
+	my $dir_service = Octopussy::Storage::Directory_Service($dev, 'Octopussy');
+	ok(!defined $dir_service,
+        'Octopussy::Storage::Directory_Service(' . $param_str . ", 'Octopussy') => undef");
+}
 
 Octopussy::Storage::Remove($STORAGE);
 my @list3 = Octopussy::Storage::List();
 ok(scalar @list1 == scalar @list3, 'Octopussy::Storage::Remove()');
 
-my $is_valid = Octopussy::Storage::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Storage::Valid_Name(undef)');
+# 3 Tests for invalid storage name
+foreach my $name (undef, '', 'storage with space')
+{
+	my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Storage::Valid_Name('storage with space');
-ok(!$is_valid, "Octopussy::Storage::Valid_Name('storage with space')");
+	my $is_valid = Octopussy::Storage::Valid_Name($name);
+	ok(!$is_valid, 
+		'Octopussy::Storage::Valid_Name(' . $param_str .  ") => $is_valid");
+}
 
-$is_valid = Octopussy::Storage::Valid_Name('valid-storage');
-ok($is_valid, "Octopussy::Storage::Valid_Name('valid-storage')");
+# 2 Tests for valid storage name
+foreach my $name ('valid-storage', 'valid_storage')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Storage::Valid_Name('valid_storage');
-ok($is_valid, "Octopussy::Storage::Valid_Name('valid_storage')");
+    my $is_valid = Octopussy::Storage::Valid_Name($name);
+    ok($is_valid, 
+        'Octopussy::Storage::Valid_Name(' . $param_str .  ") => $is_valid");
+}
 
 system "mv $FILE_STORAGE.backup $FILE_STORAGE";
 
-1;
+done_testing(6 + 3*3 + 1 + 3 + 2);
 
 =head1 AUTHOR
 

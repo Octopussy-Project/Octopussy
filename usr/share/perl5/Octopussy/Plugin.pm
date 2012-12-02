@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Plugin - Octopussy Plugin module
@@ -14,6 +9,7 @@ package Octopussy::Plugin;
 use strict;
 no strict 'refs';
 use warnings;
+
 use Readonly;
 
 use AAT::FS;

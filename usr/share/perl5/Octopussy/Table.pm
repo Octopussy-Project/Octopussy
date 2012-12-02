@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Table - Octopussy Table module
@@ -13,10 +8,10 @@ package Octopussy::Table;
 
 use strict;
 use warnings;
-use Readonly;
 
 use List::MoreUtils qw(any);
 use POSIX qw(strftime);
+use Readonly;
 
 use AAT::Download;
 use AAT::Utils qw( ARRAY NOT_NULL );

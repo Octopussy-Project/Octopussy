@@ -1,24 +1,19 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Plugin.t - Octopussy Source Code Checker for Octopussy::Plugin
+Octopussy_Plugin.t - Test Suite for Octopussy::Plugin
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 10;
-
-use List::MoreUtils qw(any);
 
 use FindBin;
+use List::MoreUtils qw(any);
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -80,23 +75,30 @@ foreach my $pf (@p_functions)
 ok($match == scalar @functions, 'Octopussy::Plugin::Functions()');
 
 my $mail_domain = Octopussy::Plugin::Email::Domain($TEST_MAIL);
-ok($mail_domain eq $TEST_MAIL_DOMAIN, 'Octopussy::Plugin::Email::Domain()');
+ok($mail_domain eq $TEST_MAIL_DOMAIN, 
+	"Octopussy::Plugin::Email::Domain('$TEST_MAIL') => $mail_domain");
 my $mail_user = Octopussy::Plugin::Email::User($TEST_MAIL);
-ok($mail_user eq $TEST_MAIL_USER, 'Octopussy::Plugin::Email::User()');
+ok($mail_user eq $TEST_MAIL_USER, 
+	"Octopussy::Plugin::Email::User('$TEST_MAIL') => $mail_user");
 
 my $mask8 = Octopussy::Plugin::Network::Mask_8($TEST_NETWORK);
-ok($mask8 eq $TEST_NETWORK_MASK8, 'Octopussy::Plugin::Network::Mask_8()');
+ok($mask8 eq $TEST_NETWORK_MASK8, 
+	"Octopussy::Plugin::Network::Mask_8('$TEST_NETWORK') => $mask8");
 my $mask16 = Octopussy::Plugin::Network::Mask_16($TEST_NETWORK);
-ok($mask16 eq $TEST_NETWORK_MASK16, 'Octopussy::Plugin::Network::Mask_16()');
+ok($mask16 eq $TEST_NETWORK_MASK16, 
+	"Octopussy::Plugin::Network::Mask_16('$TEST_NETWORK') => $mask16");
 my $mask24 = Octopussy::Plugin::Network::Mask_24($TEST_NETWORK);
-ok($mask24 eq $TEST_NETWORK_MASK24, 'Octopussy::Plugin::Network::Mask_24()');
+ok($mask24 eq $TEST_NETWORK_MASK24, 
+	"Octopussy::Plugin::Network::Mask_24('$TEST_NETWORK') => $mask24");
 
 my $kbytes = Octopussy::Plugin::Unit::KiloBytes($TEST_BYTES);
-ok($kbytes eq $TEST_BYTES_K_FR, 'Octopussy::Plugin::Unit::KiloBytes()');
+ok($kbytes eq $TEST_BYTES_K_FR, 
+	"Octopussy::Plugin::Unit::KiloBytes('$TEST_BYTES') => $kbytes");
 my $mbytes = Octopussy::Plugin::Unit::MegaBytes($TEST_BYTES);
-ok($mbytes eq $TEST_BYTES_M_FR, 'Octopussy::Plugin::Unit::MegaBytes()');
+ok($mbytes eq $TEST_BYTES_M_FR, 
+	"Octopussy::Plugin::Unit::MegaBytes('$TEST_BYTES') => $mbytes");
 
-1;
+done_testing(10);
 
 =head1 AUTHOR
 

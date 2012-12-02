@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Type.t - Octopussy Source Code Checker for Octopussy::Type
+Octopussy_Type.t - Test Suite for Octopussy::Type
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 10;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -45,7 +41,7 @@ foreach my $conf (@confs)
   $date_ok = 1
     if (($conf->{type_id} eq 'DATE') && ($conf->{re} eq '\d{4}\/\d{2}\/\d{2}'));
   $time_ok = 1
-    if (($conf->{type_id} eq 'TIME') && ($conf->{re} eq '\d{2}:\d{2}:\d{2}'));
+    if (($conf->{type_id} eq 'TIME') && ($conf->{re} eq '\d{1,2}:\d{2}:\d{2}'));
 }
 ok($date_ok && $time_ok, 'Octopussy::Type::Configurations()');
 
@@ -111,7 +107,7 @@ my $re_ip_addr   = Octopussy::Type::Regexp('IP_ADDR');
 ok($re_dt_iso eq $RE_DT_ISO && $re_ip_addr eq $RE_IP_ADDR,
   'Octopussy::Type::Regexp(one_type)');
 
-1;
+done_testing(10);
 
 =head1 AUTHOR
 

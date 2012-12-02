@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::TimePeriod - Octopussy TimePeriod module
@@ -13,6 +8,7 @@ package Octopussy::TimePeriod;
 
 use strict;
 use warnings;
+
 use Readonly;
 
 use AAT::Utils qw( ARRAY HASH_KEYS NOT_NULL );

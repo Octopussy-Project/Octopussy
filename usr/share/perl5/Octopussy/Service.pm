@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Service - Octopussy Service module
@@ -13,12 +8,12 @@ package Octopussy::Service;
 
 use strict;
 use warnings;
-use Readonly;
 use utf8;
-use Encode;
 
+use Encode;
 use List::MoreUtils qw(any none uniq);
 use POSIX qw(strftime);
+use Readonly;
 
 use AAT::Download;
 use AAT::Syslog;

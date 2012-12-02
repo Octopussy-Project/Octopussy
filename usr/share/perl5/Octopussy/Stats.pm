@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Stats - Octopussy System Stats module
@@ -13,9 +8,10 @@ package Octopussy::Stats;
 
 use strict;
 use warnings;
-use Readonly;
 
+use Readonly;
 use Sys::CPU;
+
 use Octopussy::Cache;
 use Octopussy::Storage;
 

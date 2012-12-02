@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Taxonomy - Octopussy Taxonomy module
@@ -13,9 +8,9 @@ package Octopussy::Taxonomy;
 
 use strict;
 use warnings;
-use Readonly;
 
 use List::MoreUtils qw(uniq);
+use Readonly;
 
 use AAT::Utils qw( ARRAY NOT_NULL);
 use AAT::XML;

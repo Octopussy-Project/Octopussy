@@ -1,31 +1,27 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Table.t - Octopussy Source Code Checker for Octopussy::Table
+Octopussy_Table.t - Test Suite for Octopussy::Table
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
-use List::MoreUtils;
-use Test::More tests => 10;
-
 use FindBin;
+use List::MoreUtils;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Table;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
 Readonly my $PREFIX            => 'Octo_TEST_';
 Readonly my $DEFAULT_NB_FIELDS => 2;
 
@@ -57,21 +53,29 @@ Octopussy::Table::Remove($table);
 my @tables = Octopussy::Table::List();
 cmp_ok(scalar @tables, '==', 0, 'Octopussy::Table::Remove()');
 
-my $is_valid = Octopussy::Table::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Table::Valid_Name(undef)');
+# 3 Tests for invalid table name
+foreach my $name (undef, '', 'table with space')
+{
+	my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Table::Valid_Name('table with space');
-ok(!$is_valid, "Octopussy::Table::Valid_Name('table with space')");
+	my $is_valid = Octopussy::Table::Valid_Name($name);
+	ok(!$is_valid, 
+		'Octopussy::Table::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Table::Valid_Name('valid-table');
-ok($is_valid, "Octopussy::Table::Valid_Name('valid-table')");
+# 2 Tests for valid table name
+foreach my $name ('valid-table', 'valid_table')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Table::Valid_Name('valid_table');
-ok($is_valid, "Octopussy::Table::Valid_Name('valid_table')");
+	my $is_valid = Octopussy::Table::Valid_Name($name);
+	ok($is_valid, 
+		'Octopussy::Table::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
 rmtree $dir;
 
-1;
+done_testing(6 + 3 + 2);
 
 =head1 AUTHOR
 

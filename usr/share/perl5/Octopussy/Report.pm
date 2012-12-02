@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Report - Octopussy Report module
@@ -13,10 +8,10 @@ package Octopussy::Report;
 
 use strict;
 use warnings;
-use Readonly;
 
 use POSIX qw(strftime);
 use Proc::ProcessTable;
+use Readonly;
 
 use AAT::Download;
 use AAT::FS;

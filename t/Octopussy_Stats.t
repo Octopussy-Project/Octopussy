@@ -1,22 +1,18 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Stats.t - Octopussy Source Code Checker for Octopussy::Stats
+Octopussy_Stats.t - Test Suite for Octopussy::Stats
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 6;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use Octopussy::Stats;
@@ -59,7 +55,7 @@ ok(
   'Octopussy::Stats::Partition_Logs()'
 );
 
-1;
+done_testing(6);
 
 =head1 AUTHOR
 

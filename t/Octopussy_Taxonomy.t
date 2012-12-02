@@ -1,28 +1,24 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Taxonomy.t - Octopussy Source Code Checker for Octopussy::Taxonomy
+Octopussy_Taxonomy.t - Test Suite for Octopussy::Taxonomy
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use Test::More tests => 7;
 
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::Taxonomy;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
@@ -39,16 +35,27 @@ ok(scalar @unknowns == 0, 'Octopussy::Taxonomy::Unknowns()');
 @unknowns = Octopussy::Taxonomy::Unknowns('-any-', 'false_taxonomy');
 ok(scalar @unknowns == 1, "Octopussy::Taxonomy::Unknowns('-ANY-', 'false_taxonomy')");
 
-my $is_valid = Octopussy::Taxonomy::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Taxonomy::Valid_Name(undef)');
+# 3 Tests for invalid taxonomy name
+foreach my $name (undef, '', 'invalid_taxonomy')
+{
+	my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Taxonomy::Valid_Name('invalid_taxonomy');
-ok(!$is_valid, "Octopussy::Taxonomy::Valid_Name('invalid_taxonomy')");
+	my $is_valid = Octopussy::Taxonomy::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::Taxonomy::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Taxonomy::Valid_Name('System');
-ok($is_valid, "Octopussy::Taxonomy::Valid_Name('System')");
+# 4 Tests for valid taxonomy name
+foreach my $name ('Config', 'Hardware', 'Network', 'System')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-1;
+    my $is_valid = Octopussy::Taxonomy::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::Taxonomy::Valid_Name(' . $param_str .  ") => $is_valid");
+}
+
+done_testing(4 + 3 + 4);
 
 =head1 AUTHOR
 

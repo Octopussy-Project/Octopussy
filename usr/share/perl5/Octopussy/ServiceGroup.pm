@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::ServiceGroup - Octopussy ServiceGroup Module
@@ -13,9 +8,9 @@ package Octopussy::ServiceGroup;
 
 use strict;
 use warnings;
-use Readonly;
 
 use List::MoreUtils qw(any);
+use Readonly;
 
 use AAT;
 use AAT::Utils qw( ARRAY NOT_NULL );

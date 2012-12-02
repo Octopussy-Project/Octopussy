@@ -1,23 +1,19 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Report.t - Octopussy Source Code Checker for Octopussy::Report
+Octopussy_Report.t - Test Suite for Octopussy::Report
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
 use File::Path;
-use Test::More tests => 10;
-
 use FindBin;
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
@@ -80,21 +76,29 @@ ok($conf->{description} eq "${PREFIX}report New Description",
 Octopussy::Report::Remove($REPORT_TITLE);
 ok(!-f "${DIR_REPORTS}${REPORT_TITLE}.xml", 'Octopussy::Report::Remove()');
 
-my $is_valid = Octopussy::Report::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::Report::Valid_Name(undef)');
+# 3 Tests for invalid report name
+foreach my $name (undef, '', 'report with space')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Report::Valid_Name('report with space');
-ok(!$is_valid, "Octopussy::Report::Valid_Name('report with space')");
+    my $is_valid = Octopussy::Report::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::Report::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::Report::Valid_Name('valid-report');
-ok($is_valid, "Octopussy::Report::Valid_Name('valid-report')");
+# 2 Tests for valid report name
+foreach my $name ('valid-report', 'valid_report')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::Report::Valid_Name('valid_report');
-ok($is_valid, "Octopussy::Report::Valid_Name('valid_report')");
+    my $is_valid = Octopussy::Report::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::Report::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
 rmtree $DIR_REPORTS;
 
-1;
+done_testing(6 + 3 + 2);
 
 =head1 AUTHOR
 

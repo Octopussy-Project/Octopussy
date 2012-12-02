@@ -1,30 +1,26 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_TimePeriod.t - Octopussy Source Code Checker for Octopussy::TimePeriod
+Octopussy_TimePeriod.t - Test Suite for Octopussy::TimePeriod
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
-
-use List::MoreUtils qw(any);
-use Test::More tests => 9;
 
 use FindBin;
+use List::MoreUtils qw(any);
+use Readonly;
+use Test::More;
+
 use lib "$FindBin::Bin/../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::FS;
 use Octopussy::TimePeriod;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
@@ -50,7 +46,7 @@ ok((any { $_ eq $TP_LABEL } @list2), 'Octopussy::TimePeriod::List()');
 
 my $conf = Octopussy::TimePeriod::Configuration($TP_LABEL);
 ok($conf->{label} eq $TP_LABEL && $conf->{periods} eq $TP_RESULT_PERIODS,
-  'Octopussy::TimePeriod::Configuration()');
+	'Octopussy::TimePeriod::Configuration()');
 
 my $match       = Octopussy::TimePeriod::Match($TP_LABEL, 'Tuesday 14:00');
 my $dont_match1 = Octopussy::TimePeriod::Match($TP_LABEL, 'Tuesday 21:30');
@@ -61,23 +57,31 @@ $file = Octopussy::TimePeriod::Remove($TP_LABEL);
 my @list3 = Octopussy::TimePeriod::List();
 
 ok(($file eq $FILE_TIMEPERIOD) &&  (scalar @list == scalar @list3),
-  'Octopussy::TimePeriod::Remove()');
+	'Octopussy::TimePeriod::Remove()');
 
-my $is_valid = Octopussy::TimePeriod::Valid_Name(undef);
-ok(!$is_valid, 'Octopussy::TimePeriod::Valid_Name(undef)');
+# 3 Tests for invalid timeperiod name
+foreach my $name (undef, '', 'timeperiod with space')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
 
-$is_valid = Octopussy::TimePeriod::Valid_Name('timeperiod with space');
-ok(!$is_valid, "Octopussy::TimePeriod::Valid_Name('timeperiod with space')");
+	my $is_valid = Octopussy::TimePeriod::Valid_Name($name);
+    ok(!$is_valid,
+        'Octopussy::TimePeriod::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
-$is_valid = Octopussy::TimePeriod::Valid_Name('valid-timeperiod');
-ok($is_valid, "Octopussy::TimePeriod::Valid_Name('valid-timeperiod')");
-
-$is_valid = Octopussy::TimePeriod::Valid_Name('valid_timeperiod');
-ok($is_valid, "Octopussy::TimePeriod::Valid_Name('valid_timeperiod')");
+# 2 Tests for valid timeperiod name
+foreach my $name ('valid-timeperiod', 'valid_timeperiod')
+{
+    my $param_str = (defined $name ? "'$name'" : 'undef');
+	
+	my $is_valid = Octopussy::TimePeriod::Valid_Name($name);
+    ok($is_valid,
+        'Octopussy::TimePeriod::Valid_Name(' . $param_str . ") => $is_valid");
+}
 
 unlink $FILE_TIMEPERIOD;
 
-1;
+done_testing(5 + 3 + 2);
 
 =head1 AUTHOR
 
