@@ -132,6 +132,9 @@ sub Handle_Dir
             }
         }
     }
+
+	return (undef)	if (!defined $dir_device{$device});
+
     my $dir_incoming =
         "$dir_device{$device}/$device/Incoming/$year/$month/$day";
     Octopussy::FS::Create_Directory($dir_incoming);
