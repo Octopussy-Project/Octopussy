@@ -384,7 +384,7 @@ $cache = Octopussy::Cache::Init('octo_reporter');
 
 Progress('_MSG_REPORT_PROGRESS_REPORT_CONFIG', '1/1');
 $rc = (defined $report ? Octopussy::Report::Configuration($report) : undef);
-print "Error: Unable to get configuration for Report [$report]\n"
+die "Error: Unable to get configuration for Report [$report]\n"
     if (!defined $rc);
 
 $lang ||= 'EN';

@@ -62,19 +62,24 @@ sub Launch_Report
     print "$start - $finish\n";
 
     my $report = Octopussy::Report::Configuration($sched->{report});
-    print "Launch Report: $sched->{device} $sched->{service}\n";
-    print "               $start $finish\n";
+	if (defined $report)
+	{
+    	print "Launch Report: $sched->{device} $sched->{service}\n";
+    	print "               $start $finish\n";
 
-    Octopussy::Report::CmdLine(
-        $sched->{device}, $sched->{service},
-        ($report->{loglevel} || '-ANY-'), ($report->{taxonomy} || '-ANY-'),
-        $report,           $start,
-        $finish,           'sched_' . $report->{name} . "_$$",
-        $sched->{mail}[0], $sched->{ftp}[0],
-        $sched->{scp}[0],  'EN'
-    );
+    	Octopussy::Report::CmdLine(
+        	$sched->{device}, $sched->{service},
+        	($report->{loglevel} || '-ANY-'), ($report->{taxonomy} || '-ANY-'),
+        	$report,           $start,
+        	$finish,           'sched_' . $report->{name} . "_$$",
+        	$sched->{mail}[0], $sched->{ftp}[0],
+        	$sched->{scp}[0],  'EN'
+    	);
 
-    return (1);
+    	return (1);
+	}
+
+	return (0);
 }
 
 
