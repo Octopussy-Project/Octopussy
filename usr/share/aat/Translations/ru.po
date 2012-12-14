@@ -541,6 +541,9 @@ msgstr "§CONTACTS_AUTH_PASSWORD§"
 msgid "_CONTACTS_BASE"
 msgstr "База контактов"
 
+msgid "_CONTACTS_FIELDS"
+msgstr "§CONTACTS_FIELDS§"
+
 msgid "_CONTACTS_FILTER"
 msgstr "Фильтр контактов"
 
@@ -1289,7 +1292,7 @@ msgid "_MSG_NO_UPDATES_AVAILABLE"
 msgstr "Обновлений нет"
 
 msgid "_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
-msgstr "§_I'm OK to send anonymous data to octopussy.pm__§"
+msgstr "§_I'm OK to send anonymous data to 8pussy.org__§"
 
 msgid "_MSG_REACH_MAX_LINES"
 msgstr "Максимум %d строк достигнут!"

@@ -539,13 +539,16 @@ msgid "_CONTACTS_AUTH_PASSWORD"
 msgstr "Contacts Auth. Password"
 
 msgid "_CONTACTS_BASE"
-msgstr "Base de Contacts"
+msgstr "Base des Contacts"
+
+msgid "_CONTACTS_FIELDS"
+msgstr "Champs des Contacts"
 
 msgid "_CONTACTS_FILTER"
-msgstr "Filtre de Contacts"
+msgstr "Filtre des Contacts"
 
 msgid "_CONTACTS_SERVER"
-msgstr "Serveur de Contacts"
+msgstr "Serveur des Contacts"
 
 msgid "_COUNTRY"
 msgstr "Pays"
@@ -1289,7 +1292,7 @@ msgid "_MSG_NO_UPDATES_AVAILABLE"
 msgstr "Pas de Mise à Jour Disponible"
 
 msgid "_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
-msgstr "Je suis d'accord pour envoyer des données anonymes à octopussy.pm"
+msgstr "Je suis d'accord pour envoyer des données anonymes à 8pussy.org"
 
 msgid "_MSG_REACH_MAX_LINES"
 msgstr "Maximum de %d lignes atteint!"

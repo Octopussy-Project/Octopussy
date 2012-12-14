@@ -47,38 +47,58 @@ if (defined $f->{config})
 		my $c = AAT::LDAP::Configuration("Octopussy");
 		my ($u_server, $u_auth_dn, $u_auth_pwd, $u_base, $u_filter) =
   		($c->{users_server}, $c->{users_auth_dn}, $c->{users_auth_password},
-      $c->{users_base}, $c->{users_filter});
-		my %ldap_conf = ( ldap => { contacts_base => $f->{"ldap_contacts_base"},
-      contacts_auth_dn => $f->{"ldap_contacts_auth_dn"},
-      contacts_auth_password => $f->{"ldap_contacts_auth_password"},
-      contacts_filter => $f->{"ldap_contacts_filter"}, 
+      		$c->{users_base}, $c->{users_filter});
+		my %ldap_conf = ( ldap => { 
+			contacts_base => $f->{"ldap_contacts_base"},
+      		contacts_auth_dn => $f->{"ldap_contacts_auth_dn"},
+      		contacts_auth_password => $f->{"ldap_contacts_auth_password"},
+      		contacts_filter => $f->{"ldap_contacts_filter"}, 
 			contacts_server => $f->{"ldap_contacts_server"},
-      users_base => $u_base, users_auth_dn => $u_auth_dn, 
-      users_auth_password => $u_auth_pwd,
-      users_filter => $u_filter, users_server => $u_server } );
+			contacts_field_uid => $f->{"ldap_contacts_field_uid"},
+			contacts_field_lastname => $f->{"ldap_contacts_field_lastname"},
+			contacts_field_firstname => $f->{"ldap_contacts_field_firstname"},
+			contacts_field_description => $f->{"ldap_contacts_field_description"},
+			contacts_field_email => $f->{"ldap_contacts_field_email"},
+			contacts_field_im => $f->{"ldap_contacts_field_im"},
+      		users_base => $u_base, users_auth_dn => $u_auth_dn, 
+      		users_auth_password => $u_auth_pwd,
+      		users_filter => $u_filter, users_server => $u_server } );
 		AAT::Update_Configuration("Octopussy", "ldap", \%ldap_conf, "aat_ldap");
 	}
 	elsif ($f->{config} eq "ldap_users")
   {
 		my $c = AAT::LDAP::Configuration("Octopussy");
-    my ($c_server, $c_auth_dn, $c_auth_pwd, $c_base, $c_filter) =
-      ($c->{contacts_server}, $c->{contacts_auth_dn}, 
-      $c->{contacts_auth_password}, $c->{contacts_base}, $c->{contacts_filter});
-		my %ldap_conf = ( ldap => { contacts_base => $c_base,
-      contacts_auth_dn => $c_auth_dn, contacts_auth_password => $c_auth_pwd,
-      contacts_filter => $c_filter, contacts_server => $c_server,
-      users_base => $f->{"ldap_users_base"},
-      users_auth_dn => $f->{"ldap_users_auth_dn"},
-      users_auth_password => $f->{"ldap_users_auth_password"},
-      users_filter => $f->{"ldap_users_filter"},
-      users_server => $f->{"ldap_users_server"} } );
-    AAT::Update_Configuration("Octopussy", "ldap", \%ldap_conf, "aat_ldap");
+    	my ($c_server, $c_auth_dn, $c_auth_pwd, $c_base, $c_filter, 
+			$c_field_uid, $c_field_lastname, $c_field_firstname, 
+			$c_field_description, $c_field_email, $c_field_im) =
+      		($c->{contacts_server}, $c->{contacts_auth_dn}, 
+      		$c->{contacts_auth_password}, $c->{contacts_base}, 
+			$c->{contacts_filter}, $c->{contacts_field_uid}, 
+    		$c->{contacts_field_lastname}, $c->{contacts_field_firstname}, 
+    		$c->{contacts_field_description}, $c->{contacts_field_email}, 
+    		$c->{contacts_field_im});
+		my %ldap_conf = ( ldap => { 
+			contacts_base => $c_base,contacts_auth_dn => $c_auth_dn, 
+			contacts_auth_password => $c_auth_pwd, 
+			contacts_filter => $c_filter, contacts_server => $c_server,
+			contacts_field_uid => $c_field_uid,
+            contacts_field_lastname => $c_field_lastname,
+            contacts_field_firstname => $c_field_firstname,
+            contacts_field_description => $c_field_description,
+            contacts_field_email => $c_field_email,
+            contacts_field_im => $c_field_im,	
+      		users_base => $f->{"ldap_users_base"},
+      		users_auth_dn => $f->{"ldap_users_auth_dn"},
+      		users_auth_password => $f->{"ldap_users_auth_password"},
+      		users_filter => $f->{"ldap_users_filter"},
+      		users_server => $f->{"ldap_users_server"} } );
+    	AAT::Update_Configuration("Octopussy", "ldap", \%ldap_conf, "aat_ldap");
 	}
 	elsif ($f->{config} eq "nsca")
 	{
 		my %nsca_conf = ( nsca => { bin => $f->{"nsca_bin"}, 
 			conf => $f->{"nsca_conf"}, nagios_server => $f->{"nsca_nagios_server"},
-      nagios_host => $f->{"nsca_nagios_host"}, 
+      	nagios_host => $f->{"nsca_nagios_host"}, 
 			nagios_service => $f->{"nsca_nagios_service"} } );
 		AAT::Update_Configuration("Octopussy", "nsca", \%nsca_conf, "aat_nsca");
 	}

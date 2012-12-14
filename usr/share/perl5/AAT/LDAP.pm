@@ -167,17 +167,22 @@ sub Contacts
 
     foreach my $entry ($msg->entries)
     {
-      my $uid       = $entry->get_value('cn');
-      my $mail      = $entry->get_value('mail');
-      my $firstname = $entry->get_value('givenName');
-      my $lastname  = $entry->get_value('sn');
-      push @contacts,
+      	my $uid = $entry->get_value($ldap->{contacts_field_uid});
+      	my $firstname = $entry->get_value($ldap->{contacts_field_firstname});
+      	my $lastname = $entry->get_value($ldap->{contacts_field_lastname});
+		my $description = $entry->get_value($ldap->{contacts_field_description});
+		my $mail = $entry->get_value($ldap->{contacts_field_email});
+		my $im = $entry->get_value($ldap->{contacts_field_im});
+
+      	push @contacts,
         {
-        cid       => $mail,
-        firstname => $firstname,
-        lastname  => $lastname,
-        email     => $mail,
-        type      => 'LDAP'
+        	cid       	=> $mail,
+        	firstname 	=> $firstname,
+        	lastname  	=> $lastname,
+			description => $description,
+        	email     	=> $mail,
+			im			=> $im,
+        	type      	=> 'LDAP'
         }
         if ((defined $uid) && (defined $mail));
     }
