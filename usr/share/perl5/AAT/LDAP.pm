@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::LDAP - AAT LDAP module
@@ -112,29 +107,29 @@ Checks User/Password from LDAP
 
 sub Check_Password
 {
-  my ($appli, $user, $pwd) = @_;
+	my ($appli, $user, $pwd) = @_;
 
-  my $ldap = Configuration($appli);
-  if (defined $ldap)
-  {
-    my $l = Net::LDAP->new($ldap->{users_server});
-    return (0) if (!defined $l);
+  	my $ldap = Configuration($appli);
+  	if (defined $ldap)
+  	{
+    	my $l = Net::LDAP->new($ldap->{users_server});
+    	return (0) if (!defined $l);
 
-    my $msg = $l->bind("uid=$user,$ldap->{users_base}", password => $pwd);
-    my $msg2 = $l->search(
-      base   => $ldap->{users_base},
-      filter => $ldap->{users_filter}
-    );
-    my $valid_user = 0;
-    foreach my $entry ($msg2->entries)
-    {
-      $valid_user = 1 if ($entry->get_value('uid') eq $user);
-    }
+    	my $msg = $l->bind("uid=$user,$ldap->{users_base}", password => $pwd);
+    	my $msg2 = $l->search(
+      		base   => $ldap->{users_base},
+      		filter => $ldap->{users_filter}
+    		);
+    	my $valid_user = 0;
+    	foreach my $entry ($msg2->entries)
+    	{
+      		$valid_user = 1 if ($entry->get_value($ldap->{users_attribute_login}) eq $user);
+    	}
 
-    return (1) if (($pwd ne '' && $msg->code == 0) && ($valid_user));
-  }
+    	return (1) if (($pwd ne '' && $msg->code == 0) && ($valid_user));
+  	}
 
-  return (0);
+  	return (0);
 }
 
 =head2 Contacts($appli)
@@ -147,6 +142,9 @@ sub Contacts
 {
   my $appli    = shift;
   my @contacts = ();
+
+	my ($pkg, $filename, $line) = caller;
+	AAT::DEBUG("AAT::LDAP::Contacts => $pkg, $filename, $line");
 
   my $ldap = Configuration($appli);
   if (defined $ldap)
@@ -200,42 +198,42 @@ Returns Users List from LDAP
 
 sub Users
 {
-  my $appli = shift;
-  my @users = ();
+	my $appli = shift;
+  	my @users = ();
 
-  my $ldap = Configuration($appli);
-  if (defined $ldap)
-  {
-    my $l = Net::LDAP->new($ldap->{users_server});
-    return () if (!defined $l);
-    my $msg = (
-      NOT_NULL($ldap->{users_auth_dn})
-      ? $l->bind($ldap->{users_auth_dn},
-        password => $ldap->{users_auth_password})
-      : $l->bind()
-    );
-    return () if ($msg->code);
-    $msg = $l->search(
-      base   => $ldap->{users_base},
-      filter => $ldap->{users_filter}
-    );
-	#my $local_conf = User_Local_Configurations($appli);
-    foreach my $entry ($msg->entries)
-    {
-		my $login = $entry->get_value('uid');
-      push @users,
-        {
-        login => $login,
+  	my $ldap = Configuration($appli);
+  	if (defined $ldap)
+  	{
+    	my $l = Net::LDAP->new($ldap->{users_server});
+    	return () if (!defined $l);
+    	my $msg = (
+      		NOT_NULL($ldap->{users_auth_dn})
+      		? $l->bind($ldap->{users_auth_dn},
+        	password => $ldap->{users_auth_password})
+      		: $l->bind()
+    		);
+    	return () if ($msg->code);
+    	$msg = $l->search(
+      		base   => $ldap->{users_base},
+      		filter => $ldap->{users_filter}
+    		);
+		#my $local_conf = User_Local_Configurations($appli);
+    	foreach my $entry ($msg->entries)
+    	{
+			my $login = $entry->get_value($ldap->{users_attribute_login});
+      		push @users,
+        		{
+        		login => $login,
 #		language => $local_conf->{$login}->{language} || $DEFAULT_LANGUAGE,
  #       role  => $local_conf->{$login}->{role} || $DEFAULT_ROLE,
 #		status => $local_conf->{$login}->{status} || $DEFAULT_STATUS,
-        type  => 'LDAP'
-        };
-    }
-    $msg = $l->unbind();
-  }
+        		type  => 'LDAP'
+        		};
+    	}
+    	$msg = $l->unbind();
+  	}
 
-  return (@users);
+  	return (@users);
 }
 
 1;

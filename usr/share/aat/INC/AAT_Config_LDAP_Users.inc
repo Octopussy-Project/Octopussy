@@ -2,10 +2,10 @@
 my %arg = @_;
 my $tt = $arg{tooltip};
 my $ldap = AAT::LDAP::Configuration($arg{appli});
-my ($server, $auth_dn, $auth_password, $base, $filter) =
+my ($server, $auth_dn, $auth_password, $base, $filter, $attribute_login) =
   ($ldap->{users_server}, $ldap->{users_auth_dn},
   $ldap->{users_auth_password}, $ldap->{users_base}, 
-  $ldap->{users_filter});
+  $ldap->{users_filter}, $ldap->{users_attribute_login});
 %>
 <AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
@@ -19,7 +19,7 @@ my ($server, $auth_dn, $auth_password, $base, $filter) =
 	</AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
-	<AAT:BoxCol rspan="4">
+	<AAT:BoxCol rspan="5">
 	<AAT:IMG name="generic_users" tooltip="$tt" width="64" height="64" /></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Label value="_USERS_AUTH_DN" style="B" tooltip="$tt" /></AAT:BoxCol>
@@ -47,6 +47,12 @@ my ($server, $auth_dn, $auth_password, $base, $filter) =
   <AAT:BoxCol cspan="2">
   <AAT:Entry name="ldap_users_filter" value="$filter" size="50" />
 	</AAT:BoxCol>
+</AAT:BoxRow>
+<AAT:BoxRow>
+	<AAT:BoxCol></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_LOGIN" tooltip="$tt" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Entry name="ldap_users_attribute_login" value="$attribute_login" size="30" />
+    </AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
 	<AAT:BoxCol cspan="2"></AAT:BoxCol>

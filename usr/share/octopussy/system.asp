@@ -45,9 +45,10 @@ if (defined $f->{config})
 	elsif ($f->{config} eq "ldap_contacts")
 	{
 		my $c = AAT::LDAP::Configuration("Octopussy");
-		my ($u_server, $u_auth_dn, $u_auth_pwd, $u_base, $u_filter) =
-  		($c->{users_server}, $c->{users_auth_dn}, $c->{users_auth_password},
-      		$c->{users_base}, $c->{users_filter});
+		my ($u_server, $u_auth_dn, $u_auth_pwd, $u_base, $u_attribute_login, 
+			$u_filter) =
+  			($c->{users_server}, $c->{users_auth_dn}, $c->{users_auth_password},
+			$c->{users_base}, $c->{users_attribute_login}, $c->{users_filter});
 		my %ldap_conf = ( ldap => { 
 			contacts_base => $f->{"ldap_contacts_base"},
       		contacts_auth_dn => $f->{"ldap_contacts_auth_dn"},
@@ -62,11 +63,13 @@ if (defined $f->{config})
 			contacts_field_im => $f->{"ldap_contacts_field_im"},
       		users_base => $u_base, users_auth_dn => $u_auth_dn, 
       		users_auth_password => $u_auth_pwd,
-      		users_filter => $u_filter, users_server => $u_server } );
+      		users_attribute_login => $u_attribute_login,
+			users_filter => $u_filter, 
+			users_server => $u_server } );
 		AAT::Update_Configuration("Octopussy", "ldap", \%ldap_conf, "aat_ldap");
 	}
 	elsif ($f->{config} eq "ldap_users")
-  {
+	{
 		my $c = AAT::LDAP::Configuration("Octopussy");
     	my ($c_server, $c_auth_dn, $c_auth_pwd, $c_base, $c_filter, 
 			$c_field_uid, $c_field_lastname, $c_field_firstname, 
@@ -90,6 +93,7 @@ if (defined $f->{config})
       		users_base => $f->{"ldap_users_base"},
       		users_auth_dn => $f->{"ldap_users_auth_dn"},
       		users_auth_password => $f->{"ldap_users_auth_password"},
+			users_attribute_login => $f->{"ldap_users_attribute_login"},
       		users_filter => $f->{"ldap_users_filter"},
       		users_server => $f->{"ldap_users_server"} } );
     	AAT::Update_Configuration("Octopussy", "ldap", \%ldap_conf, "aat_ldap");

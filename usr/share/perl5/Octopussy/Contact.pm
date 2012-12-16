@@ -8,7 +8,6 @@ package Octopussy::Contact;
 
 use strict;
 use warnings;
-
 use Readonly;
 
 use AAT::FS;
@@ -175,7 +174,7 @@ sub Configuration
   {
     foreach my $c (AAT::LDAP::Contacts('Octopussy'))
     {
-		if ((defined $c->{cid}) && ($c->{cid} eq $contact))
+      if ((defined $c->{cid}) && ($c->{cid} eq $contact))
       {
         $conf = $c;
         $conf->{type} = 'LDAP';
@@ -203,24 +202,29 @@ Returns:
 
 sub Configurations
 {
-  my $sort = shift || 'cid';
-  my (@configurations, @sorted_configurations) = ((), ());
-  my @contacts = List();
+ 	my $sort = shift || 'cid';
+  	my (@configurations, @sorted_configurations) = ((), ());
+ 
+	$dir_contacts ||= Octopussy::FS::Directory('contacts');
+  	my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
+  	foreach my $f (@files)
+  	{
+    	my $conf = AAT::XML::Read("$dir_contacts/$f");
+		$conf->{type} = 'local';
+    	push @configurations, $conf	if (defined $conf->{cid});
+  	}
 
-  foreach my $c (@contacts)
-  {
-    my $conf = Configuration($c);
-    if (defined $conf->{cid})
-    {
-      push @configurations, $conf;
-    }
-  }
-  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
-  {
-    push @sorted_configurations, $c;
-  }
+  	foreach my $c (AAT::LDAP::Contacts('Octopussy'))
+  	{
+    	push @configurations, $c	if (defined $c->{cid});
+  	}
 
-  return (@sorted_configurations);
+  	foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
+  	{
+    	push @sorted_configurations, $c;
+  	}
+
+	return (@sorted_configurations);
 }
 
 
