@@ -12,8 +12,7 @@ if ((defined $arg{name}) && (-f $src))
 	  "<div onMouseover=\"tooltip('" . $tooltip . "', " . $twidth . ")\"; onMouseout=\"hidetooltip()\">" : "");
 	my $str_tooltip_end = (NOT_NULL($tooltip) ? "</div>" : "");
   %>
-	<%= $str_tooltip %><input type="image" src="<%= $src %>"
-  value="<%= $value %>" alt="[<%= $value %>]" name="<%= $value %>">
+	<%= $str_tooltip %><button name="<%= $value %>" value="<%= $value %>"><img src="<%= $src %>" alt="[<%= $value %>]" /></button>
 	<%= $str_tooltip_end %><%
 }
 %>
