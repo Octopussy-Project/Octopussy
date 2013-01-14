@@ -36,7 +36,7 @@ if (NOT_NULL($dconf->{reload_required}))
   %></AAT:BoxCol>
   
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="10"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 my $nb_services = 0;
 my $total_messages = 0;
@@ -108,9 +108,9 @@ my $msg_str = "$nb_services " . AAT::Translation("_SERVICES")
 <AAT:BoxRow>
 	<AAT:BoxCol></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Label value="$msg_str" /></AAT:BoxCol>
-	<AAT:BoxCol cspan="7"></AAT:BoxCol>
+	<AAT:BoxCol cspan="8"></AAT:BoxCol>
 </AAT:BoxRow>
-<AAT:BoxRow><AAT:BoxCol cspan="9"><hr></AAT:BoxCol></AAT:BoxRow>
+<AAT:BoxRow><AAT:BoxCol cspan="10"><hr></AAT:BoxCol></AAT:BoxRow>
 <%
 if ($role =~ /(admin|rw)/i)
 {%>
@@ -121,7 +121,7 @@ if ($role =~ /(admin|rw)/i)
 	<AAT:BoxCol>
 	<AAT:Inc file="octo_selector_service_and_servicegroup" exclude=\@services />
 	</AAT:BoxCol>
-	<AAT:BoxCol cspan="7" align="C">
+	<AAT:BoxCol cspan="8" align="C">
 	<AAT:Form_Submit value="_ADD_SERVICE_TO_DEVICE" />
 	</AAT:BoxCol>
 </AAT:BoxRow>
