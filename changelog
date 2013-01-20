@@ -1,3 +1,32 @@
+octopussy (1.0.7) stable; urgency=high
+  
+  * 4 Services updated
+  * New Service 'IBM_Cognos' created
+  * Adding no_trans parameter to AAT:Label (1/2)
+  * Working on Testing Suite
+  * Now, you can set Contacts fields from LDAP Contacts fields
+  * Bugfix #3574577: 500 Internal server error because of unknown translation
+  * Bugfix #3574616: '500 Internal server error' because of invalid devicename 
+    in Device::Parse_Status
+  * Bugfix #3580468: Alert edition broken
+  * Bugfix #3584230: Alerts are not sent by XMPP anymore
+  * Bugfix #328 Report can not be deleted
+  * Bugfix #179: types.xml updated
+  * Bugfix #267: Name 'Win32::Locale::Lexicon' used only once error messages
+  * Bugfix #332: Dispatcher stopped
+  * Bugfix #314: Fixing various LDAP problems
+  * Bugfix #275: Can't Save Search Templates
+  * Bugfixing Servicegroup adding in device_services.asp page
+  * Fixing minor issues in octo_reporter & octo_scheduler
+  * Fixing 'white column' when there wasn't Service in device_services.asp page
+  * Feature Request #1831840: Hide unused Services in Services selector
+  * Feature Request #3513127: Now you can specify timestamp to start from a 
+    specific date in Logs Wizard and also add a new pattern to a service by 
+    copy/pasting it
+  * Feature Request #3517497: Better NET_INTERFACE type
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Sun, 20 Jan 2013 23:00:00 +0100
+
 octopussy (1.0.6) stable; urgency=high
 
   * octo_tool program updated to handle backups
