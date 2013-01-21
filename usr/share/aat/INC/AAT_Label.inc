@@ -29,7 +29,7 @@ my $str_link = (defined $lnk ? "<a href=\"$lnk\">" :
 	""))));
 my $str_link_end = ((defined $lnk || defined $lnk_new || defined $popup || defined $close) ? "</a>" : ""); 
 my $str_tooltip = (defined $tooltip ? 
-	"<div onMouseover=\"tooltip('" . $tooltip . "', 400)\"; onMouseout=\"hidetooltip()\">" : "");
+	"<div onMouseover=\"tooltip('" . $tooltip . "', 400)\" onMouseout=\"hidetooltip()\">" : "");
 my $str_tooltip_end = (defined $tooltip ? "</div>" : "");
 
 print $s_style . $s_color . $s_size . $str_link . $str_tooltip . $str_label . 

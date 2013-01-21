@@ -18,7 +18,7 @@ $(function() {
 			changeMonth: true, changeYear: true, 
 			showOtherMonths: true, selectOtherMonths: true,
 			showWeek: true, firstDay: 1,
-			showAnim: 'slideDown',
+			showAnim: 'slideDown'
 			} );
 		$("#<%= $arg{name} %>_date").val("<%= $value %>");
 	});

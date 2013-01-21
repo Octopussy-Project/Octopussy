@@ -7,7 +7,7 @@ if ((defined $arg{file}) && (-f $arg{file}))
 	$tooltip =~ s/'/\\'/g if (defined $tooltip);
 	my $twidth = (defined $tooltip ? ((length($tooltip) < 50) ? length($tooltip)*8 : 400) : 0);
 	my $str_tooltip = (NOT_NULL($tooltip) ?
-	  "<div onMouseover=\"tooltip('" . $tooltip . "', " . $twidth . ")\"; onMouseout=\"hidetooltip()\">" : "");
+	  "<div onMouseover=\"tooltip('" . $tooltip . "', " . $twidth . ")\" onMouseout=\"hidetooltip()\">" : "");
 	my $str_tooltip_end = (NOT_NULL($tooltip) ? "</div>" : "");
   my $width = (defined $arg{width} ? " width='$arg{width}'" : "");
   my $height = (defined $arg{height} ? " height='$arg{height}'" : "");
@@ -20,6 +20,6 @@ if ((defined $arg{file}) && (-f $arg{file}))
     : (defined $arg{close_popup_link} ? "<a href=\"$arg{close_popup_link}\" onClick=\"return targetopener(this,true)\">"
     : "" ))));
   %>
-	<%= $str_tooltip . $href %><img border="0" src="<%= $arg{file} %>"<%= $width %><%= $height %><%= $alt %>><%= ($href ne "" ? "</a>" : "") . $str_tooltip_end %><%
+	<%= $str_tooltip . $href %><img border="0" src="<%= $arg{file} %>"<%= $width %><%= $height %><%= $alt %> /><%= ($href ne "" ? "</a>" : "") . $str_tooltip_end %><%
 }
 %>

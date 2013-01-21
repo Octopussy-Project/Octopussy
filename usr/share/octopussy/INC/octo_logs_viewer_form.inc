@@ -19,14 +19,11 @@ my @services = ARRAY($arg{services});
 #my @restricted_devices = ARRAY($arg{restricted_devices});
 #my @restricted_services = ARRAY($arg{restricted_services});
 my $unknown = (NOT_NULL($arg{unknown}) ? 1 : undef);
+
+$Response->Include("INC/octo_box_search_template.inc");
 %>
 <AAT:Form name="form_logs_viewer" action="$arg{url}">
 <AAT:Box align="C" title="_LOGS_VIEWER" icon="buttons/bt_search">
-<AAT:BoxRow>
-  <AAT:BoxCol cspan="2">
-  <%= $Response->Include("INC/octo_box_search_template.inc") %>
-  </AAT:BoxCol>
-</AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol>
   <AAT:Box align="C">
