@@ -14,7 +14,7 @@ foreach my $m (@maps)
 }
 if (scalar(@maps) == 0)
 {
-	%><td><a href="<%= $website %>?id=config#maps" target="_blank">
+	%><td><a href="<%= $website %>/documentation/howtos/map" target="_blank">
 	<%= AAT::Translation("_MSG_MAP_CREATION_INFO") %>
 	</a></td><%
 }
