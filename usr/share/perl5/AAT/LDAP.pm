@@ -20,6 +20,9 @@ Readonly my $DEFAULT_LANGUAGE  => 'EN';
 Readonly my $DEFAULT_ROLE => 'rw';
 Readonly my $DEFAULT_STATUS => 'Enabled';
 
+Readonly my @CONTACT_FIELDS => 
+	(qw/ uid firstname lastname description email im /);
+
 my %conf_file = ();
 
 =head1 FUNCTIONS
@@ -48,25 +51,25 @@ Checks LDAP Contacts connectivity
 
 sub Contacts_Connection_Test
 {
-  my $appli = shift;
+	my $appli = shift;
 
-  my $ldap = Configuration($appli);
-  my $l    = Net::LDAP->new($ldap->{contacts_server});
-  return (0) if (!defined $l);
-  my $msg = (
-    NOT_NULL($ldap->{contacts_auth_dn})
-    ? $l->bind($ldap->{contacts_auth_dn},
-      password => $ldap->{contacts_auth_password})
-    : $l->bind()
-  );
-  return (0) if ($msg->code);
-  $msg = $l->search(
-    base   => $ldap->{contacts_base},
-    filter => $ldap->{contacts_filter}
-  );
-  return (0) if ($msg->code);
+  	my $ldap = Configuration($appli);
+  	my $l    = Net::LDAP->new($ldap->{contacts_server});
+  	return (0) if (!defined $l);
+  	my $msg = (
+    	NOT_NULL($ldap->{contacts_auth_dn})
+    	? $l->bind($ldap->{contacts_auth_dn},
+      	password => $ldap->{contacts_auth_password})
+    	: $l->bind()
+  		);
+  	return (0) if ($msg->code);
+  	$msg = $l->search(
+    	base   => $ldap->{contacts_base},
+    	filter => $ldap->{contacts_filter}
+  	);
+  	return (0) if ($msg->code);
 
-  return (1);
+  	return (1);
 }
 
 =head2 Users_Connection_Test($appli)
@@ -140,54 +143,56 @@ Returns Contacts List from LDAP
 
 sub Contacts
 {
-  my $appli    = shift;
-  my @contacts = ();
+	my $appli    = shift;
+  	my @contacts = ();
 
 	my ($pkg, $filename, $line) = caller;
-	AAT::DEBUG("AAT::LDAP::Contacts => $pkg, $filename, $line");
 
-  my $ldap = Configuration($appli);
-  if (defined $ldap)
-  {
-    my $l = Net::LDAP->new($ldap->{contacts_server});
-    return () if (!defined $l);
-    my $msg = (
-      NOT_NULL($ldap->{contacts_auth_dn})
-      ? $l->bind($ldap->{contacts_auth_dn},
-        password => $ldap->{contacts_auth_password})
-      : $l->bind()
-    );
-    return () if ($msg->code);
-    $msg = $l->search(
-      base   => $ldap->{contacts_base},
-      filter => $ldap->{contacts_filter}
-    );
+  	my $ldap = Configuration($appli);
+  	if (defined $ldap)
+  	{
+    	my $l = Net::LDAP->new($ldap->{contacts_server});
+    	return () if (!defined $l);
+    	my $msg = (
+      		NOT_NULL($ldap->{contacts_auth_dn})
+      		? $l->bind($ldap->{contacts_auth_dn},
+        	password => $ldap->{contacts_auth_password})
+      		: $l->bind()
+    		);
+    	return () if ($msg->code);
 
-    foreach my $entry ($msg->entries)
-    {
-      	my $uid = $entry->get_value($ldap->{contacts_field_uid});
-      	my $firstname = $entry->get_value($ldap->{contacts_field_firstname});
-      	my $lastname = $entry->get_value($ldap->{contacts_field_lastname});
-		my $description = $entry->get_value($ldap->{contacts_field_description});
-		my $mail = $entry->get_value($ldap->{contacts_field_email});
-		my $im = $entry->get_value($ldap->{contacts_field_im});
+		# Gets LDAP Search Attributes from from contacts_filed_* config
+		my %attr = ();
+		foreach my $attr (@CONTACT_FIELDS)
+		{ 
+			$attr{$ldap->{"contacts_field_$attr"}} = 1
+				if (AAT::NOT_NULL($ldap->{"contacts_field_$attr"})); 
+		}
+		my @ldap_attrs = keys %attr;
+		
+    	$msg = $l->search(
+     		base   => $ldap->{contacts_base},
+			filter => $ldap->{contacts_filter},
+			attrs  => \@ldap_attrs 
+    		);
 
-      	push @contacts,
-        {
-        	cid       	=> $mail,
-        	firstname 	=> $firstname,
-        	lastname  	=> $lastname,
-			description => $description,
-        	email     	=> $mail,
-			im			=> $im,
-        	type      	=> 'LDAP'
-        }
-        if ((defined $uid) && (defined $mail));
-    }
-    $msg = $l->unbind();
-  }
+    	foreach my $entry ($msg->entries)
+    	{
+			my %fields = ();
+			foreach my $attr (@CONTACT_FIELDS)
+        	{
+				my $value = $entry->get_value($ldap->{"contacts_field_$attr"});
+				my $f = ($attr eq 'uid' ? 'cid' : $attr);
+            	$fields{$f} = $value;
+			}
+			$fields{type} = 'LDAP';
+			push @contacts, \%fields	
+				if ((defined $fields{cid}) && (defined $fields{email}));
+    	}
+    	$msg = $l->unbind();
+  	}
 
-  return (@contacts);
+  	return (@contacts);
 }
 
 =head2 Users($appli)

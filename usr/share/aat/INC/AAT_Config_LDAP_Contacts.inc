@@ -8,9 +8,9 @@ my ($server, $auth_dn, $auth_password, $base, $filter, $field_uid,
   	($ldap->{contacts_server}, $ldap->{contacts_auth_dn}, 
   	$ldap->{contacts_auth_password}, $ldap->{contacts_base}, 
   	$ldap->{contacts_filter}, $ldap->{contacts_field_uid}, 
-	$ldap->{contacts_field_uid}, $ldap->{contacts_field_lastname},
-	$ldap->{contacts_field_firstname}, $ldap->{contacts_field_description},
-	$ldap->{contacts_field_email}, $ldap->{contacts_field_im});
+	$ldap->{contacts_field_lastname}, $ldap->{contacts_field_firstname}, 
+	$ldap->{contacts_field_description}, $ldap->{contacts_field_email}, 
+	$ldap->{contacts_field_im});
 %>
 <AAT:Box width="100%">
 <AAT:Form method="POST" action="$arg{action}">
