@@ -66,7 +66,7 @@ sub Contacts_Connection_Test
   	$msg = $l->search(
     	base   => $ldap->{contacts_base},
     	filter => $ldap->{contacts_filter}
-  	);
+  		);
   	return (0) if ($msg->code);
 
   	return (1);
@@ -80,26 +80,26 @@ Checks LDAP Users connectivity
 
 sub Users_Connection_Test
 {
-  my $appli = shift;
+  	my $appli = shift;
 
-  my $ldap = Configuration($appli);
-  my $l    = Net::LDAP->new($ldap->{users_server});
-  return (0) if (!defined $l);
-  my $msg = (
-    NOT_NULL($ldap->{users_auth_dn})
-    ? $l->bind(
-      $ldap->{users_auth_dn}, password => $ldap->{users_auth_password}
-      )
-    : $l->bind()
-  );
-  return (0) if ($msg->code);
-  $msg = $l->search(
-    base   => $ldap->{users_base},
-    filter => $ldap->{users_filter}
-  );
-  return (0) if ($msg->code);
+  	my $ldap = Configuration($appli);
+  	my $l    = Net::LDAP->new($ldap->{users_server});
+  	return (0) if (!defined $l);
+  	my $msg = (
+    	NOT_NULL($ldap->{users_auth_dn})
+    	? $l->bind(
+      	$ldap->{users_auth_dn}, password => $ldap->{users_auth_password}
+      	)
+    	: $l->bind()
+  		);
+  	return (0) if ($msg->code);
+  	$msg = $l->search(
+    	base   => $ldap->{users_base},
+    	filter => $ldap->{users_filter}
+  		);
+  	return (0) if ($msg->code);
 
-  return (1);
+  	return (1);
 }
 
 =head2 Check_Password($appli, $user, $pwd)
@@ -118,17 +118,25 @@ sub Check_Password
     	my $l = Net::LDAP->new($ldap->{users_server});
     	return (0) if (!defined $l);
 
-    	my $msg = $l->bind("uid=$user,$ldap->{users_base}", password => $pwd);
+    	my $msg = $l->bind($ldap->{users_auth_dn}, 
+			password => $ldap->{users_auth_password});
     	my $msg2 = $l->search(
       		base   => $ldap->{users_base},
       		filter => $ldap->{users_filter}
     		);
-    	my $valid_user = 0;
+		my $valid_user = 0;
+		my $dn = undef;
     	foreach my $entry ($msg2->entries)
     	{
-      		$valid_user = 1 if ($entry->get_value($ldap->{users_attribute_login}) eq $user);
+			if ($entry->get_value($ldap->{users_attribute_login}) eq $user)
+			{
+      			$dn = $entry->dn();
+				$valid_user = 1;
+			}
     	}
-
+		return (0)	if (! $valid_user);
+		$msg = $l->bind($dn, password => $pwd);
+		
     	return (1) if (($pwd ne '' && $msg->code == 0) && ($valid_user));
   	}
 
@@ -222,16 +230,12 @@ sub Users
       		base   => $ldap->{users_base},
       		filter => $ldap->{users_filter}
     		);
-		#my $local_conf = User_Local_Configurations($appli);
     	foreach my $entry ($msg->entries)
     	{
 			my $login = $entry->get_value($ldap->{users_attribute_login});
       		push @users,
         		{
         		login => $login,
-#		language => $local_conf->{$login}->{language} || $DEFAULT_LANGUAGE,
- #       role  => $local_conf->{$login}->{role} || $DEFAULT_ROLE,
-#		status => $local_conf->{$login}->{status} || $DEFAULT_STATUS,
         		type  => 'LDAP'
         		};
     	}
