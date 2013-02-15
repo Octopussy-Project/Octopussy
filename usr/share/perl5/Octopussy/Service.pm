@@ -1,3 +1,8 @@
+# $HeadURL$
+# $Revision$
+# $Date$
+# $Author$
+
 =head1 NAME
 
 Octopussy::Service - Octopussy Service module
@@ -8,12 +13,12 @@ package Octopussy::Service;
 
 use strict;
 use warnings;
+use Readonly;
 use utf8;
-
 use Encode;
+
 use List::MoreUtils qw(any none uniq);
 use POSIX qw(strftime);
-use Readonly;
 
 use AAT::Download;
 use AAT::Syslog;
@@ -250,23 +255,23 @@ sub Msg_ID
 
 =head2 Msg_ID_unique($service, $msgid)
 
-Checks if $msgid is valid & unique for Service $service
+Checks if $msgid is valid, has no space & unique for Service $service
 
 =cut
 
 sub Msg_ID_unique
 {
-  my ($service, $msgid) = @_;
+  	my ($service, $msgid) = @_;
 
-  return (0) if ($msgid eq "$service:");
-  my $qr_msgid = qr/^$msgid$/;
-  my $conf     = Configuration($service);
-  if (any { $_->{msg_id} =~ $qr_msgid } ARRAY($conf->{message}))
-  {
-    return (0);
-  }
+  	return (0) if (($msgid eq "$service:") || ($msgid =~ /\s+/));
+  	my $qr_msgid = qr/^$msgid$/;
+  	my $conf     = Configuration($service);
+  	if (any { $_->{msg_id} =~ $qr_msgid } ARRAY($conf->{message}))
+  	{
+		return (0);
+  	}
 
-  return (1);
+  	return (1);
 }
 
 =head2 Add_Message($service, $mconf)
