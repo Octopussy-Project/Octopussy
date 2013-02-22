@@ -20,7 +20,9 @@ foreach my $k (sort keys %{$device_events})
 {
 	my $events = $device_events->{$k};
 	%><AAT:BoxRow>
-	<AAT:BoxCol><AAT:Label value="$k" /></AAT:BoxCol>
+	<AAT:BoxCol>
+	<a href="./device_dashboard.asp?device=<%= $k %>"><%= $k %></a>
+	</AAT:BoxCol>
 	<AAT:BoxCol align="R"><AAT:Label value="$events" size="-1" /></AAT:BoxCol>
 </AAT:BoxRow><%
 }%>
