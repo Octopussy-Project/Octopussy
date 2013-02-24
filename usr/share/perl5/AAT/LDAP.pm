@@ -174,7 +174,7 @@ sub Contacts
 		foreach my $attr (@CONTACT_FIELDS)
 		{ 
 			$attr{$ldap->{"contacts_field_$attr"}} = 1
-				if (AAT::NOT_NULL($ldap->{"contacts_field_$attr"})); 
+				if (NOT_NULL($ldap->{"contacts_field_$attr"})); 
 		}
 		my @ldap_attrs = keys %attr;
 		
