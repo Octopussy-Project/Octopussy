@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy.t - Test Suite for Octopussy
+Octopussy.t - Test Suite for Octopussy module
 
 =cut
 
@@ -24,13 +24,17 @@ my $version = Octopussy::Version();
 ok(NOT_NULL($version) && $version =~ /^\d+\.\d+.*$/,
   "Octopussy::Version() => $version");
 
+my $sf_version = Octopussy::Sourceforge_Version();
+ok(NOT_NULL($sf_version) && $sf_version =~ /^\d+\.\d+.*$/,
+	"Octopussy::Sourceforge_Version() => $sf_version");
+
 ok(Octopussy::Parameter('logrotate') =~ /^\d+$/, 'Octopussy::Parameter()');
 
 my $ts_version = Octopussy::Timestamp_Version();
 like($ts_version, qr/^\d{12}$/, 
 	"Octopussy::Timestamp_Version() => $ts_version");
 
-done_testing(3);
+done_testing(4);
 
 =head1 AUTHOR
 

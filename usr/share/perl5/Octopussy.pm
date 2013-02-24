@@ -25,7 +25,7 @@ use Octopussy::FS;
 use Octopussy::Info;
 
 Readonly my $APPLICATION_NAME => 'Octopussy';
-Readonly my $SF_SITE => 'http://sf.net/project/showfiles.php?group_id=154314';
+Readonly my $SF_SITE => 'http://sourceforge.net/projects/syslog-analyzer/files/';
 Readonly my $IDX_STAT_UID => 4;
 Readonly my $IDX_STAT_GID => 5;
 
@@ -165,9 +165,7 @@ sub Sourceforge_Version
         while (<$UPDATE>)
         {
             $version = $1
-                if ($_ =~
-/showfiles.php\?group_id=154314&amp;package_id=\d+&amp;release_id=\d+">Octopussy (\S+)<\/a>/
-                );
+                if ($_ =~ /<span>Download octopussy-(\S+)\.tar\.gz/);
         }
         close $UPDATE;
         unlink "${dir_running}octopussy.sf_version";

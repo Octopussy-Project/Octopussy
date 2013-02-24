@@ -1,7 +1,7 @@
 <%
 my %arg = @_;
 
-my $sf_link = "http://sourceforge.net/project/showfiles.php?group_id=154314";
+my $sf_link = "http://sourceforge.net/projects/syslog-analyzer/files/";
 my $version = Octopussy::Version();
 my $sf_version = Octopussy::Sourceforge_Version();
 
