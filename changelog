@@ -1,3 +1,17 @@
+octopussy (1.0.8) stable; urgency=high
+
+  * Bugfix #314: Fixing the LDAP Users authentication
+  * Bugfix #320: Logs Viewer issues
+  * Feature Request #119: No space in msgid
+  * Feature Request #120: You can click on devicename in 'Last minute messages 
+    box' to go to 'Device Dashboard' page
+  * Support Request #70: Fixing Maps plugin documentation link
+  * Bugfixing new Octopussy version checker
+  * Bugfixing AAT::LDAP minor issue
+  * LDAP Request now only on user defined fields
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Tue, 26 Feb 2013 00:30:00 +0100
+
 octopussy (1.0.7) stable; urgency=high
   
   * 4 Services updated
