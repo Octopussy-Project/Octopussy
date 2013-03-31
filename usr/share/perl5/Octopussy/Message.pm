@@ -249,7 +249,9 @@ sub Color
 
   my %color = Octopussy::Type::Colors();
   my $re    = $pattern;
-  $re =~ s/<(\w)/&lt;$1/g;
+  
+	$re =~ s/<(\w)/&lt;$1/g;
+	$re =~ s/(\w)>/$1&gt;/g;
   $re =~
 s/(<\@REGEXP\(".+?"\):\S+?\@>)/<b><font color="$color{REGEXP}">$1<\/font><\/b>/gi;
   $re =~ s/(<\@(\w+?):\w+?\@>)/&Color_Reserved_Word(\%color, $2, $1)/egi;
@@ -302,6 +304,9 @@ sub Minimal_Match
     $re = substr $re, 0, -1;
     $re = Longest_Valid_Regexp($re);
   }
+
+	#$re =~ s/<(\w)/&lt;$1/g;
+    #$re =~ s/(\w)>/$1&gt;/g;
 
   if ($re eq '')
   {
