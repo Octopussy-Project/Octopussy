@@ -1358,7 +1358,7 @@ msgid "_MSG_THIS_IS_MY_NEW"
 msgstr "This is my new/updated Service/Table"
 
 msgid "_MSG_TOTAL_EVENTS_LAST_MINUTE"
-msgstr "Total Events on Last Minute"
+msgstr "Total Events in Last Minute"
 
 msgid "_MSG_TOTAL_REPORTS"
 msgstr "Total: %d Reports"
