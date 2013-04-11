@@ -1,3 +1,4 @@
+<WebUI:PageTop title="_USERS" help="users" />
 <%
 my $f = $Request->Form();
 my $login = $f->{login} || $Request->QueryString("login");
@@ -37,6 +38,5 @@ elsif ((NOT_NULL($login)) && ($Session->{AAT_ROLE} !~ /ro/i))
 	$Response->Redirect("./user.asp");
 }
 %>
-<WebUI:PageTop title="_USERS" help="users" />
 <AAT:Inc file="octo_users_list" url="./user.asp" sort="$sort" />
 <WebUI:PageBottom />

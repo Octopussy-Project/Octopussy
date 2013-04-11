@@ -4,7 +4,7 @@ my $report_type = $Request->QueryString("report_type");
 my $filename = $Request->QueryString("filename");
 my $dir_reports = Octopussy::FS::Directory("data_reports");
 
-if ($role =~ /^restricted$/i)
+if ((NOT_NULL($Session->{AAT_LOGIN})) && ($role =~ /^restricted$/i))
 {
 	my $restricts = AAT::User::Restrictions("Octopussy", $Session->{AAT_LOGIN}, $Session->{AAT_USER_TYPE});
 	my @res_reports = ARRAY($restricts->{report});
@@ -15,7 +15,7 @@ if ($role =~ /^restricted$/i)
 		if (! $in_restriction);
 }
 
-if ($filename =~ /\.json$/)
+if ((NOT_NULL($Session->{AAT_LOGIN})) && ($filename =~ /\.json$/))
 {
   	$Session->{ofc_file} = "$dir_reports/$report_type/$filename";
   	%><WebUI:PageTop title="Report Show" ofc="report_ofc.asp" />
@@ -26,7 +26,8 @@ if ($filename =~ /\.json$/)
   	</AAT:Box>
   	<WebUI:PageBottom /><% 
 }
-elsif (($filename !~ /\.html$/) && ($filename !~ /\.png$/))
+elsif ((NOT_NULL($Session->{AAT_LOGIN})) 
+	&& (($filename !~ /\.html$/) && ($filename !~ /\.png$/)))
 {
 	my $ext = $1	if ($filename =~ /\.(\w+)$/);	
 	$Response->{ContentType} = "text/$ext";
@@ -39,7 +40,7 @@ elsif (($filename !~ /\.html$/) && ($filename !~ /\.png$/))
 	}
   	$Response->End();
 }
-else
+elsif (NOT_NULL($Session->{AAT_LOGIN}))
 {
 	if ($role =~ /restricted/i)
   		{ %><WebUI:PageTopRestricted title="Report Show" /><% }

@@ -1,3 +1,4 @@
+<AAT:PageTop title="_REPORT_IN_PROGRESS" onLoad="report_progress()" />
 <%
 my $cmd = $Request->QueryString("cmd");
 my $url_cmd = $Server->URLEncode($cmd);
@@ -8,7 +9,6 @@ my $reporttype = undef;
 	if ($reportname =~ /.+\/((.+)-\d{8}-\d{4}.+)?"$/);
 $reportname = $Server->HTMLEncode($reportname);
 %>
-<AAT:PageTop title="_REPORT_IN_PROGRESS" onLoad="report_progress()" />
 <AAT:JS_Inc file="AAT/INC/AAT_progressbar.js" />
 <script type="text/javascript">
 var href = window.location.href;

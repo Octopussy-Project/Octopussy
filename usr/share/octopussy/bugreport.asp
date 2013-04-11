@@ -1,7 +1,7 @@
+<WebUI:PageTop title="_BUG_REPORT" />
 <%
 my $url = "http://sourceforge.net/tracker/?func=add&group_id=154314";
 %>
-<WebUI:PageTop title="_BUG_REPORT" />
 <AAT:Box align="C">
 <AAT:BoxRow>
 	<AAT:BoxCol rspan="3"><AAT:IMG name="generic_bug" /></AAT:BoxCol>
