@@ -1,4 +1,7 @@
 <%
+$Response->Redirect("./index.asp")
+    if (NULL($Session->{AAT_LOGIN}));
+
 my %button = 
 	( info => "info", warning => "msg_warning", critical => "msg_critical" );
 my $arg = $Request->QueryString();

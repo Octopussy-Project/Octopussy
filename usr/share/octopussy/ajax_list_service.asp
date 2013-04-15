@@ -19,6 +19,9 @@ push(@list, ((NOT_NULL(@device_list))
 	? sort(Octopussy::Device::Services(@device_list)) 
 	: Octopussy::Service::List_Used()));
 @list = sort keys %{{ map { $_ => 1 } @list }}; # sort unique @list
+
+if (NOT_NULL($Session->{AAT_LOGIN}))
+{
 %>
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
@@ -38,3 +41,6 @@ foreach my $item (@list)
 }
 %>
 </root>
+<%
+}
+%>

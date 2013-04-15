@@ -1,4 +1,13 @@
-<WebUI:PageTop>
+<%
+if (NULL($Session->{AAT_LOGIN}))
+{
+	my $page = "./login.asp?redirect="
+        . $Request->ServerVariables("REQUEST_URI");
+    $Response->Redirect($page);
+}
+%>
+<html>
+<body>
 <table align="center">
 <tr>
 <%
@@ -53,4 +62,5 @@ if (defined $map)
 	}
 }
 %>
-</AAT:Page>
+</body>
+</html>

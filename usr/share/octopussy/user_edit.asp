@@ -1,4 +1,7 @@
 <%
+$Response->Redirect("./login.asp?redirect=/user.asp")
+    if ((NULL($Session->{AAT_LOGIN})) 
+		|| ($Session->{AAT_ROLE} eq "restricted"));
 my $f = $Request->Form();
 my $login = $Request->QueryString('user');
 my $type = $Request->QueryString('type');

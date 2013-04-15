@@ -17,6 +17,9 @@ my $color_match =
 #. qq(</font>);
 
 no bytes;
+
+if (NOT_NULL($Session->{AAT_LOGIN}))
+{
 %>
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
@@ -24,3 +27,6 @@ no bytes;
 	<pattern_status><%= $pattern_status %></pattern_status>
 	<pattern_colored><![CDATA[<%= $pattern_colored %>]]></pattern_colored>
 </root>
+<%
+}
+%>

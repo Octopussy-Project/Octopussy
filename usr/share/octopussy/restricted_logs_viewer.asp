@@ -26,6 +26,9 @@ my ($re_exclude, $re_exclude2, $re_exclude3) =
 $date1 =~ s/-//g;
 $date2 =~ s/-//g;
 
+$Response->Redirect("./login.asp?redirect=/restricted_logs_viewer.asp")
+    if (NULL($Session->{AAT_LOGIN}));
+
 if (NOT_NULL($Session->{cancel}))
 {
 	my $pid_param = $Session->{extracted};

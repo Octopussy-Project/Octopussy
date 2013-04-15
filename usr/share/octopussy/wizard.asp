@@ -1,4 +1,10 @@
 <%
+my $title = (NULL($device) 
+  ? AAT::Translation("_LOGS_WIZARD") 
+  : sprintf("%s (%s)", AAT::Translation("_LOGS_WIZARD"), $device));
+%>
+<WebUI:PageTop title="$title" />
+<%
 my $device = $Request->QueryString("device");
 $device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
 my $sort = $Request->QueryString("wizard_table_sort");
@@ -6,12 +12,6 @@ my $action = $Request->QueryString("action");
 my $msg = $Request->QueryString("log");
 my $timestamp = $Request->QueryString("timestamp");
 
-my $title = (NULL($device) 
-  ? AAT::Translation("_LOGS_WIZARD") 
-  : sprintf("%s (%s)", AAT::Translation("_LOGS_WIZARD"), $device));
-%>
-<WebUI:PageTop title="$title" />
-<%
 if ($Session->{AAT_ROLE} !~ /ro/)
 {
 	if (NULL($device))

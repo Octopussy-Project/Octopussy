@@ -16,6 +16,9 @@ else
 	my @services = (NOT_NULL($servs) ? split(/,/, $servs) : undef);
 	push(@list, sort(Octopussy::Taxonomy::List(\@devices, \@services)));
 }
+
+if (NOT_NULL($Session->{AAT_LOGIN}))
+{
 %>
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
@@ -28,3 +31,6 @@ foreach my $item (@list)
 }
 %>
 </root>
+<%
+}
+%>

@@ -5,6 +5,9 @@ my $tpl = $Request->QueryString("template");
 my $conf = Octopussy::Search_Template::Configuration($login, $tpl);
 my $dev_str = join(",", ARRAY($conf->{device}));
 my $serv_str = join(",", ARRAY($conf->{service}));
+
+if (NOT_NULL($Session->{AAT_LOGIN}))
+{
 %>
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
@@ -23,3 +26,6 @@ my $serv_str = join(",", ARRAY($conf->{service}));
   <re_exclude2><%= $conf->{re_exclude2} %></re_exclude2>
   <re_exclude3><%= $conf->{re_exclude3} %></re_exclude3>
 </root>
+<%
+}
+%>

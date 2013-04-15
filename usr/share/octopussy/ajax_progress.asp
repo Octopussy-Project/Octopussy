@@ -15,6 +15,9 @@ elsif (($bin eq "octo_extractor") && ($status =~ /.+\[(\d+)\/(\d+)\] \[(\d+)\]$/
 		$Session->{progress_total}, $Session->{progress_match}) 
 		= ("extracting", $1, $2, $3);
 }
+
+if (NOT_NULL($Session->{AAT_LOGIN}))
+{
 %>
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
@@ -23,3 +26,6 @@ elsif (($bin eq "octo_extractor") && ($status =~ /.+\[(\d+)\/(\d+)\] \[(\d+)\]$/
 	<total><%= $Session->{progress_total} %></total>
 	<match><%= $Session->{progress_match} %></match>
 </root>
+<%
+}
+%>

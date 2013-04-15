@@ -1,4 +1,6 @@
 <%
+$Response->Redirect("./login.asp?redirect=/services.asp")
+	if (NULL($Session->{AAT_LOGIN}));
 my @errors = ();
 my $f = $Request->Form();
 my ($loglevel, $table, $taxonomy, $service, $rank) = 
