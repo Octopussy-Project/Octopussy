@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -96,6 +96,13 @@ sub Handle_Dir
 
     if (!defined $dir_device{$device})
     {
+		if (! Octopussy::Device::Valid_Name($device))
+    	{
+			AAT::Syslog::Message($PROG_NAME,
+                'LOGS_DROPPED_BECAUSE_INVALID_DEVICE_NAME', $device);
+			return (undef);
+    	}
+
         my $param_auto_create =
             Octopussy::Parameter('automatic_device_creation');
         my $param_device_regexp =
@@ -103,14 +110,14 @@ sub Handle_Dir
         if (   (defined $param_auto_create)
             && ($param_auto_create =~ /^Disabled$/i))
         {
-            AAT::Syslog::Message('octo_dispatcher',
+            AAT::Syslog::Message($PROG_NAME,
                 'LOGS_DROPPED_BECAUSE_AUTO_DEVICE_CREATION_DISABLED', $device);
             return (undef);
         }
         elsif ((defined $param_device_regexp)
             && ($device !~ /$param_device_regexp/))
         {
-            AAT::Syslog::Message('octo_dispatcher',
+            AAT::Syslog::Message($PROG_NAME,
                 'LOGS_DROPPED_BECAUSE_DEVICE_DIDNT_MATCH_REGEXP', $device);
             return (undef);
         }
@@ -173,7 +180,7 @@ sub Write_Logs_10secs
             }
             else
             {
-                AAT::Syslog::Message('octo_dispatcher', 'UNABLE_OPEN_FILE',
+                AAT::Syslog::Message($PROG_NAME, 'UNABLE_OPEN_FILE',
                     $file);
             }
             delete $logs{$device};
@@ -246,7 +253,12 @@ while (!$exit_request)
             $device = $1;
 
             # Line dropped if devicename is 'not valid'
-            next if ($device !~ /[a-z0-9][a-z0-9\-\.]*/i);
+			if (! Octopussy::Device::Valid_Name($device))
+			{
+				AAT::Syslog::Message($PROG_NAME,
+                'LOGS_DROPPED_BECAUSE_INVALID_DEVICE_NAME', $device);
+            	next;
+			}
 
             ($n_year, $n_month, $n_mday, $n_hour, $n_min, $n_sec) =
                 AAT::Utils::Now();

@@ -48,12 +48,13 @@ Creates a new Device
 
 sub New
 {
-  my $conf = shift;
-  my $name = $conf->{name};
+  	my $conf = shift;
+  	my $name = $conf->{name};
 
-  if (NOT_NULL($name))
-  {
-    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+	return (undef)
+		if (! Valid_Name($name));
+    
+	$dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
     Octopussy::FS::Create_Directory($dir_devices);
     $conf->{type}  = $conf->{type}  || Octopussy::Parameter('devicetype');
     $conf->{model} = $conf->{model} || Octopussy::Parameter('devicemodel');
@@ -62,9 +63,8 @@ sub New
     AAT::XML::Write("$dir_devices/$name.xml", $conf, $XML_ROOT);
     Octopussy::FS::Chown("$dir_devices/$name.xml");
     Octopussy::Logs::Init_Directories($name);
-  }
 
-  return ($name);
+	return ($name);
 }
 
 =head2 Modify($conf_new)
@@ -196,13 +196,15 @@ Gets the XML filename for the device '$device_name'
 
 sub Filename
 {
-  my $device_name = shift;
+	my $device_name = shift;
 
-  return ($filename{"$device_name"}) if (defined $filename{"$device_name"});
-  $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-  $filename{"$device_name"} = "$dir_devices/$device_name.xml";
+	return (undef)	if (!defined $device_name);
 
-  return ($filename{"$device_name"});
+  	return ($filename{"$device_name"}) if (defined $filename{"$device_name"});
+  	$dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+  	$filename{"$device_name"} = "$dir_devices/$device_name.xml";
+
+  	return ($filename{"$device_name"});
 }
 
 =head2 Configuration($device_name)
@@ -239,7 +241,9 @@ sub Configurations
   foreach my $d (@devices)
   {
     my $conf   = Configuration($d);
+	next	if ((!defined $conf) || (!defined $conf->{name}));
     my $status = Octopussy::Device::Parse_Status($conf->{name});
+	next	if (!defined $status);
     $conf->{status} = (
       $status == $STARTED
       ? 'Started'

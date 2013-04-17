@@ -34,6 +34,8 @@
 	   message="Logs from Device '%%ARG1%%' have been dropped because 'Automatic Device Creation' is disabled." /> 
 	<log mid="LOGS_DROPPED_BECAUSE_DEVICE_DIDNT_MATCH_REGEXP"
        message="Logs from Device '%%ARG1%%' have been dropped because it didn't match the device regexp criteria." />
+	<log mid="LOGS_DROPPED_BECAUSE_INVALID_DEVICE_NAME"
+       message="Logs from Device '%%ARG1%%' have been dropped because of invalid devicename." />
 
 	<log mid="NEW_UNKNOWN_LOGS_FROM_DEVICE"
 		message="%%ARG1%% new unknown logs received from Device %%ARG2%%" />
