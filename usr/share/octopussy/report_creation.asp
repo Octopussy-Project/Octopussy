@@ -120,7 +120,8 @@ else
 		foreach my $i (0..$last_select)
 			{ push(@columns_name, $Session->{"column_name_$i"}); }
 	
-		if ($Session->{AAT_ROLE} !~ /ro/i)
+		if (($Session->{AAT_ROLE} !~ /ro/i) 
+			&& (Octopussy::Report::Valid_Name($Session->{title})))
 		{
 			Octopussy::Report::New(
 				{ name => $Session->{title}, description => $Session->{description},

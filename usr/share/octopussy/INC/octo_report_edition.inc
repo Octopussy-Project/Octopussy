@@ -17,7 +17,7 @@ my $r_query = $Server->HTMLEncode($conf->{query});
 <AAT:Form_Hidden name="modify" value="yes" />
 <AAT:Box align="C" icon="buttons/bt_report" title="_REPORT_EDITION">
 <AAT:BoxRow>
-	<AAT:BoxCol><AAT:Label value="_NAME" style="B"/></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_NAME" style="B"/> (only [-_a-zA-Z0-9] chars)</AAT:BoxCol>
 	<AAT:BoxCol>
 	<AAT:Entry name="name" value="$r_name" size="50" /></AAT:BoxCol>
 </AAT:BoxRow>

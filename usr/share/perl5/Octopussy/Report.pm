@@ -54,13 +54,18 @@ sub New
 {
   my $conf = shift;
 
-  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
-  Octopussy::FS::Create_Directory($dir_reports);
-  $conf->{query} =~ s/\r\n//;
-  $conf->{version} = Octopussy::Timestamp_Version(undef);
-  AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, $XML_ROOT);
+	if (Valid_Name($conf->{name}))
+	{
+  		$dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
+  		Octopussy::FS::Create_Directory($dir_reports);
+  		$conf->{query} =~ s/\r\n//;
+  		$conf->{version} = Octopussy::Timestamp_Version(undef);
+  		AAT::XML::Write("$dir_reports/$conf->{name}.xml", $conf, $XML_ROOT);
 
-  return ($conf->{name});
+  		return ($conf->{name});
+	}
+
+	return (undef)
 }
 
 =head2 Remove($report)

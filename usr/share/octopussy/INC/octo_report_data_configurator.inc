@@ -10,7 +10,7 @@ push(@categories, "base")	if (scalar(@categories) == 0);
 <AAT:Box align="C" 
 	icon="buttons/bt_report" title="_REPORT_CREATION">
 <AAT:BoxRow>
-	<AAT:BoxCol><AAT:Label value="_TITLE" style="B" /></AAT:BoxCol>
+	<AAT:BoxCol><AAT:Label value="_TITLE" style="B" /> (only [-_a-zA-Z0-9] chars)</AAT:BoxCol>
 	<AAT:BoxCol cspan="2"><AAT:Entry name="title" size="40" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
