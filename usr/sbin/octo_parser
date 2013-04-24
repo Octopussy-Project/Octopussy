@@ -394,7 +394,8 @@ sub Incoming_To_Unknown
     if (defined open my $FILE, '|-', "gzip >> $unknown")
     {
         my $cat = ($incoming =~ /.+\.gz$/ ? 'zcat' : 'cat');
-        if (defined open my $INCOMING, '-|', "$cat \"$incoming\"")
+        if (   (-f "$incoming")
+			&& (defined open my $INCOMING, '-|', "$cat \"$incoming\""))
         {
             while (<$INCOMING>)
             {

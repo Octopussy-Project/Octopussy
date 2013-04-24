@@ -517,17 +517,24 @@ sub From_Device
   return (@alerts);
 }
 
+
+=head2 Message_Replace($str, $alert, $device, $line, $field)
+
+Substitute reserved words __device__, __alert__, __level__, __log__ and __field_<name>__ by its field value
+
+=cut
+
 sub Message_Replace
 {
-  my ($str, $alert, $device, $line, $field) = @_;
+	my ($str, $alert, $device, $line, $field) = @_;
 
-  $str =~ s/__device__/$device/gi;
-  $str =~ s/__alert__/$alert->{name}/gi;
-  $str =~ s/__level__/$alert->{level}/gi;
-  $str =~ s/__log__/$line/gi;
-  $str =~ s/__field_(\w+)__/$field->{$1}/gi;
+  	$str =~ s/__device__/$device/gi				if (defined $device);
+  	$str =~ s/__alert__/$alert->{name}/gi		if (defined $alert);
+  	$str =~ s/__level__/$alert->{level}/gi		if (defined $alert);
+  	$str =~ s/__log__/$line/gi					if (defined $line);
+  	$str =~ s/__field_(\w+)__/$field->{$1}/gi	if (defined $field);
 
-  return ($str);
+  	return ($str);
 }
 
 =head2 Message_Building($alert, $device, $line, $msg)
