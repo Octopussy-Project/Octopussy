@@ -6,11 +6,14 @@ my @restricted_alerts = ARRAY($restrictions->{alert});
 
 my $f = $Request->Form();
 my $alert = $f->{alert} || $Request->QueryString("alert");
-$alert = (Octopussy::Alert::Valid_Name($alert) ? $alert : undef);
+$alert = ((Octopussy::Alert::Valid_Name($alert) || $alert eq "-ANY-") 
+	? $alert : undef);
 my $device = $f->{device} || $Request->QueryString("device");
-$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
+$device = ((Octopussy::Device::Valid_Name($device) || $device eq "-ANY-") 
+	? $device : undef);
 my $status = $f->{status} || $Request->QueryString("status") || "Opened";
-$status = (Octopussy::Alert::Valid_Status_Name($status) ? $status : "Opened");
+$status = ((Octopussy::Alert::Valid_Status_Name($status) || $status eq "-ANY-")
+	? $status : "Opened");
 
 if (defined $f->{edit_status})
 {

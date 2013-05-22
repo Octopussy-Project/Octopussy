@@ -797,6 +797,15 @@ sub Valid_Name
 {
     my $name = shift;
 
+	if (ref($name) eq 'ARRAY')
+    {
+        foreach my $n (@{$name})
+        {
+            return (0)  if (! Valid_Name($n));
+        }
+        return (1);
+    }
+
     return (1)  if ((NOT_NULL($name)) && ($name =~ /^[a-z][a-z0-9_-]*$/i));
 
     return (0);

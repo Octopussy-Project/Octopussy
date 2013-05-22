@@ -7,13 +7,17 @@ my $report = $f->{report} || $qs->{report};
 $report = (Octopussy::Report::Valid_Name($report) ? $report : undef);
 my $category = Encode::decode_utf8($f->{category} || $qs->{category});
 my $device = $qs->{device} || $f->{device};
-$device = (Octopussy::Device::Valid_Name($device) ? $device : undef);
+$device = ((Octopussy::Device::Valid_Name($device) || $device eq "-ANY-") 
+	? $device : undef);
 my $service = $qs->{service} || $f->{service};
-$service = (Octopussy::Service::Valid_Name($service) ? $service : undef);
+$service = ((Octopussy::Service::Valid_Name($service) || $service eq "-ANY-")
+	? $service : undef);
 my $loglevel = $qs->{loglevel} || $f->{loglevel};
-$loglevel = (Octopussy::Loglevel::Valid_Name($loglevel) ? $loglevel : undef);
+$loglevel = ((Octopussy::Loglevel::Valid_Name($loglevel) || $loglevel eq "-ANY-")
+	? $loglevel : undef);
 my $taxonomy = $qs->{taxonomy} || $f->{taxonomy};
-$taxonomy = (Octopussy::Taxonomy::Valid_Name($taxonomy) ? $taxonomy : undef);
+$taxonomy = ((Octopussy::Taxonomy::Valid_Name($taxonomy) || $taxonomy eq "-ANY-")
+	? $taxonomy : undef);
 my $action = $qs->{action};
 my $sort = $qs->{reports_table_sort} || "name";
 
