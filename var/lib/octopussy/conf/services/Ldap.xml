@@ -3,7 +3,7 @@
                    icon="software/logo_openldap"
                    name="Ldap"
                    nb_messages="069"
-                   version="201208090004"
+                   version="201304040007"
                    website="http://www.openldap.org">
   <message loglevel="Information"
            msg_id="Ldap:daemon_activity_on_descriptors"
@@ -425,4 +425,40 @@
            rank="070"
            table="Message"
            taxonomy="Application.Errors" />
+  <message loglevel="Debug"
+           msg_id="Ldap:root_access_granted"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;slapd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;&lt;= root access granted&quot;):msg@&gt;"
+           rank="071"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Debug"
+           msg_id="Ldap:access_allowed"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;slapd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;=&gt; access_allowed:.+&quot;):msg@&gt;"
+           rank="072"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Debug"
+           msg_id="Ldap:bdb_candidates"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;slapd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;&lt;= bdb_\w+_candidates:.+&quot;):msg@&gt;"
+           rank="073"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Debug"
+           msg_id="Ldap:daemon_activity_on_descriptor"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;slapd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: activity on \d+ descriptor.*&quot;):msg@&gt;"
+           rank="074"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Debug"
+           msg_id="Ldap:empty_line"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;slapd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]:"
+           rank="075"
+           table="Message"
+           taxonomy="Application" />
+  <message loglevel="Debug"
+           msg_id="Ldap:daemon_epoll"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;slapd&quot;):daemon@&gt;[&lt;@PID:pid@&gt;]: &lt;@REGEXP(&quot;daemon: epoll: .+&quot;):msg@&gt;"
+           rank="076"
+           table="Message"
+           taxonomy="Application" />
 </octopussy_service>
