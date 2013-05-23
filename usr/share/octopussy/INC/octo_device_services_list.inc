@@ -49,7 +49,8 @@ foreach my $conf (Octopussy::Device::Services_Configurations($device, $sort))
   	my $s_action = ($statistics_status 
 		? "statistics_disable" : "statistics_enable");
 	my $compression_status = $conf->{compression};
-	my $c_str = ($compression_status ? "Enabled" : "Disabled");
+	my $c_str = ((!defined $compression_status || $compression_status) 
+		? "Enabled" : "Disabled");
 	my $c_action = ($compression_status 
 		? "compression_disable" : "compression_enable");
   	my $nb_messages = scalar(@{$serv_conf->{message}}); 

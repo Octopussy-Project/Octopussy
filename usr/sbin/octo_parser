@@ -270,7 +270,8 @@ sub Init
         my $ra   = Regexp::Assemble->new;
 
 		$service{$serv}{statistics_enabled} = $s_conf->{statistics};
-		$log_compression{$serv} = $s_conf->{compression} || 1;
+		$log_compression{$serv} = (defined $s_conf->{compression} 
+			? $s_conf->{compression} : 1);
         $dir_data{$serv} =
             Octopussy::Storage::Directory_Service($device, $serv);
         Octopussy::RRDTool::Syslog_By_Device_Service_Taxonomy_Init($device,
