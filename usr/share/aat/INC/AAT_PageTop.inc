@@ -3,11 +3,12 @@
 <head>
 <meta http-equiv="Pragma" content="no-cache" charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<AAT:PageTheme />
+<link rel="stylesheet" href="CSS/smoothness/jquery-ui-1.8.16.custom.css"
+type="text/css" media="all" />
 <script type="text/javascript" src="JS/jquery.js"></script>
 <script type="text/javascript" src="JS/jquery-ui.js"></script>
 <script type="text/javascript" src="JS/jquery-ui-i18n.js"></script>
-<link rel="stylesheet" href="CSS/smoothness/jquery-ui-1.8.16.custom.css" 
-type="text/css" media="all" />
 <% 
 my %arg = @_; 
 use utf8;
@@ -64,7 +65,6 @@ function save_image() { Control.OFC.popup('open_flash_chart') }
 <title><%= $arg{title} %></title>
 </head>
 <body <%= (defined $arg{onLoad} ? "onLoad=\"$arg{onLoad}\"" : "") %>>
-<AAT:PageTheme />
 <% 
 if ((defined $arg{tooltip}) && ($arg{tooltip} =~ /y/i))
 	{ %><AAT:JS_Inc file="AAT/INC/AAT_tooltip.js" /><% }
