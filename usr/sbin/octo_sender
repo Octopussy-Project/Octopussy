@@ -116,6 +116,9 @@ while (1)
     {
         my $msg    = $cache->get($k);
         my $action = $msg->{action};
+
+		#AAT::DEBUG("Octopussy::Alert::Message_Building data: [" . $msg->{data} . "] msg: [" . $msg->{msg}->{pattern} . "]");
+
         my ($subject, $body, $action_host, $action_service, $action_body) =
             Octopussy::Alert::Message_Building($action, $msg->{device},
             $msg->{data}, $msg->{msg});
@@ -124,11 +127,7 @@ while (1)
             && AAT::XMPP::Configured('Octopussy'))
         {
             my @ims = Get_IM_Addresses($action);
-            AAT::XMPP::Send_Message('Octopussy', $subject, @ims);
-            foreach my $line (split(/\n/, $body))
-            {
-                AAT::XMPP::Send_Message('Octopussy', $line, @ims);
-            }
+			AAT::XMPP::Send_Message('Octopussy', "$subject\n\n$body\n", @ims);
         }
         if (defined $action->{action_mail})
         {
