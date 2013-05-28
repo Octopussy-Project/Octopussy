@@ -98,8 +98,9 @@ my $nb_models = true { $_->{name} =~ /^(Linux|Windows).*$/ } @models;
 ok(scalar @models >= $NB_MIN_MODELS && $nb_models >= $NB_MIN_SELECT_MODELS,
   'Octopussy::Device::Models()');
 
-# 3 Tests for invalid device name
-foreach my $name (undef, '', '123invalid_hostname')
+# 5 Tests for invalid device name
+foreach my $name (undef, '', '.invalid_hostname',  '-invalid_hostname', 
+	'^invalid_hostname')
 {
     my $param_str = (defined $name ? "'$name'" : 'undef');
 
@@ -108,8 +109,10 @@ foreach my $name (undef, '', '123invalid_hostname')
         'Octopussy::Device::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-# 3 Tests for valid device name
-foreach my $name ('validhostname', '10.150.1.9', 'host.domain.com')
+# 5 Tests for valid device name
+foreach my $name ('validhostname', '10.150.1.9', '10.150.1.9-1',
+	'host.domain.com', 
+	'9_new_valid_hostname_since_rfc1123')
 {
     my $param_str = (defined $name ? "'$name'" : 'undef');
 
@@ -125,7 +128,7 @@ foreach my $name ('validhostname', '10.150.1.9', 'host.domain.com')
 
 rmtree $DIR_DEVICES;
 
-done_testing(15 + 3 + 3);
+done_testing(15 + 5 + 5);
 
 =head1 AUTHOR
 
