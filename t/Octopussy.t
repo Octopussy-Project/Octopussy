@@ -21,11 +21,13 @@ use AAT::Utils qw( NOT_NULL );
 use Octopussy;
 
 my $version = Octopussy::Version();
-ok(NOT_NULL($version) && $version =~ /^\d+\.\d+.*$/,
+ok(defined $version, "Octopussy::Version() returned something");
+
+ok(defined $version && $version =~ /^\d+\.\d+.*$/,
   "Octopussy::Version() => $version");
 
 my $sf_version = Octopussy::Sourceforge_Version();
-ok(NOT_NULL($sf_version) && $sf_version =~ /^\d+\.\d+.*$/,
+ok(defined $sf_version && $sf_version =~ /^\d+\.\d+.*$/,
 	"Octopussy::Sourceforge_Version() => $sf_version");
 
 ok(Octopussy::Parameter('logrotate') =~ /^\d+$/, 'Octopussy::Parameter()');

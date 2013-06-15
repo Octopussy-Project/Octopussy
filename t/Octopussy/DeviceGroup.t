@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_DeviceGroup.t - Test Suite for Octopussy::DeviceGroup
+t/Octopussy/DeviceGroup.t - Test Suite for Octopussy::DeviceGroup module
 
 =cut
 
@@ -13,7 +13,7 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::DeviceGroup;

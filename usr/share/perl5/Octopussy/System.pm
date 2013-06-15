@@ -36,19 +36,24 @@ Reloads Dispatcher
 
 sub Dispatcher_Reload
 {
-  my $dir_pid = Octopussy::FS::Directory('running');
-  opendir DIR, $dir_pid;
-  my @files = grep { /octo_dispatcher\.pid$/ } readdir DIR;
-  closedir DIR;
+  	my $dir_pid = Octopussy::FS::Directory('running');
+  
+	if (defined opendir DIR, $dir_pid)
+	{
+  		my @files = grep { /octo_dispatcher\.pid$/ } readdir DIR;
+  		closedir DIR;
 
-  foreach my $file (@files)
-  {
-    my $pid = `cat $dir_pid$file`;
-    chomp $pid;
-    kill HUP => $pid;
-  }
+  		foreach my $file (@files)
+  		{
+    		my $pid = `cat $dir_pid$file`;
+    		chomp $pid;
+    		kill HUP => $pid;
+  		}
 
-  return (1);
+  	return (1);
+	}
+
+	return (undef);
 }
 
 

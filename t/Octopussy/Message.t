@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Message.t - Test Suite for Octopussy::Message
+t/Octopussy/Message.t - Test Suite for Octopussy::Message module
 
 =cut
 
@@ -13,7 +13,7 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use AAT::Utils qw( NOT_NULL );

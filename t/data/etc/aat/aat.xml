@@ -41,7 +41,7 @@
 		<directory name="web" value="/usr/share/octopussy/" />
 
 		<file name="db" value="./t/data/conf/db.xml" />
-		<file name="device_models" value="/var/lib/octopussy/conf/device_models.xml" />
+		<file name="device_models" value="./t/data/conf/device_models.xml" />
 		<file name="devicegroups" value="./t/data/conf/devicegroups.xml" />
 		<file name="dialogs" value="/var/lib/octopussy/conf/dialogs.xml" />
         <file name="fifo" value="/var/spool/octopussy/octo_fifo" />

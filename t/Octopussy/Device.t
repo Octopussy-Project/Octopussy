@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Device.t - Test Suite for Octopussy::Device
+t/Octopussy/Device.t - Test Suite for Octopussy::Device module
 
 =cut
 
@@ -15,7 +15,7 @@ use List::MoreUtils qw(true);
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy;
@@ -41,6 +41,10 @@ ok(-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::Device::New()');
 
 my $conf = Octopussy::Device::Configuration($DEVICE);
 cmp_ok($conf->{name}, 'eq', $DEVICE, 'Octopussy::Device::Configuration()');
+
+Octopussy::Device::Reload_Required("${PREFIX}device");
+$conf = Octopussy::Device::Configuration($DEVICE);
+cmp_ok($conf->{reload_required}, '==', 1, 'Octopussy::Device::Reload_Required()');
 
 my $nb_services = 0;
 foreach my $s (@SERVICES)
@@ -128,7 +132,7 @@ foreach my $name ('validhostname', '10.150.1.9', '10.150.1.9-1',
 
 rmtree $DIR_DEVICES;
 
-done_testing(15 + 5 + 5);
+done_testing(16 + 5 + 5);
 
 =head1 AUTHOR
 

@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Alert.t - Test Suite for Octopussy::Alert
+t/Octopussy/Alert.t - Test Suite for Octopussy::Alert module
 
 =cut
 
@@ -14,7 +14,7 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use AAT::Utils qw( NOT_NULL );
@@ -94,11 +94,9 @@ foreach my $name (undef, '', 'alert with space')
 # 2 Tests for valid alert name
 foreach my $name ('valid-alert', 'valid_alert')
 {
-    my $param_str = (defined $name ? "'$name'" : 'undef');
-
     my $is_valid = Octopussy::Alert::Valid_Name($name);
     ok($is_valid,
-        'Octopussy::Alert::Valid_Name(' . $param_str . ") => $is_valid");
+        "Octopussy::Alert::Valid_Name('$name') => $is_valid");
 }
 
 my $is_valid = Octopussy::Alert::Valid_Status_Name(undef);

@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy.t - Test Suite for Octopussy::FS
+t/Octopussy/FS.t - Test Suite for Octopussy::FS module
 
 =cut
 
@@ -13,7 +13,7 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use AAT::Utils qw( NOT_NULL );
@@ -33,7 +33,10 @@ ok(NOT_NULL($file), "Octopussy::FS::File('db') => $file");
 my @files = Octopussy::FS::Files('db', 'proxy');
 ok(scalar @files == 2, 'Octopussy::FS::Files()');
 
-done_testing(4);
+cmp_ok(Octopussy::FS::File_Ext('file.extension', 'xml') , 'eq', 'file.xml',
+	"Octopussy::FS::File_Ext('file.extension', 'xml')");
+
+done_testing(5);
 
 =head1 AUTHOR
 
