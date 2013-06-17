@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Search_Template.t - Test Suite for Octopussy::Search_Template
+t/Octopussy/Search_Template.t - Test Suite for Octopussy::Search_Template module
 
 =cut
 
@@ -15,12 +15,12 @@ use List::MoreUtils qw(true);
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::Search_Template;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 

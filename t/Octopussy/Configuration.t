@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Configuration.t - Test Suite for Octopussy::Configuration
+t/Octopussy/Configuration.t - Test Suite for Octopussy::Configuration module
 
 =cut
 
@@ -14,7 +14,7 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use AAT::Utils qw( NOT_NULL );

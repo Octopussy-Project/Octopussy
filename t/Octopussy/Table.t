@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Table.t - Test Suite for Octopussy::Table
+t/Octopussy/Table.t - Test Suite for Octopussy::Table module
 
 =cut
 
@@ -15,13 +15,13 @@ use List::MoreUtils;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Table;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 Readonly my $PREFIX            => 'Octo_TEST_';
 Readonly my $DEFAULT_NB_FIELDS => 2;
 

@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-AAT_Utils.t - Test Suite for AAT::Utils
+t/AAT/Utils.t - Test Suite for AAT::Utils module
 
 =cut
 
@@ -13,7 +13,7 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Utils;
 

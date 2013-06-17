@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Plugin.t - Test Suite for Octopussy::Plugin
+t/Octopussy/Plugin.t - Test Suite for Octopussy::Plugin module
 
 =cut
 
@@ -14,12 +14,12 @@ use List::MoreUtils qw(any);
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::Plugin;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 Readonly my $LANG => 'FR';
 Readonly my $REQUIRED_NB_PLUGINS => 3;
 

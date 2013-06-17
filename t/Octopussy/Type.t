@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Type.t - Test Suite for Octopussy::Type
+t/Octopussy/Type.t - Test Suite for Octopussy::Type module
 
 =cut
 
@@ -13,12 +13,12 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::Type;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 Readonly my $DT1 => 'Dec 24 23:55:55';
 Readonly my $DT2 => 'Mon Dec 24 23:55:55 2000';
 Readonly my $DT3 => '2000/12/24 23:55:55';

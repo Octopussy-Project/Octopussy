@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Taxonomy.t - Test Suite for Octopussy::Taxonomy
+t/Octopussy/Taxonomy.t - Test Suite for Octopussy::Taxonomy module
 
 =cut
 
@@ -13,12 +13,12 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::Taxonomy;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 

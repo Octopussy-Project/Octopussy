@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Logs.t - Test Suite for Octopussy::Logs
+t/Octopussy/Logs.t - Test Suite for Octopussy::Logs module
 
 =cut
 
@@ -13,14 +13,14 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::Device;
 use Octopussy::FS;
 use Octopussy::Logs;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 

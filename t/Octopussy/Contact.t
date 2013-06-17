@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Contact.t - Test Suite for Octopussy::Contact
+t/Octopussy/Contact.t - Test Suite for Octopussy::Contact module
 
 =cut
 
@@ -15,7 +15,7 @@ use List::MoreUtils qw(any);
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::Contact;

@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_TimePeriod.t - Test Suite for Octopussy::TimePeriod
+t/Octopussy/TimePeriod.t - Test Suite for Octopussy::TimePeriod module
 
 =cut
 
@@ -14,13 +14,13 @@ use List::MoreUtils qw(any);
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::FS;
 use Octopussy::TimePeriod;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 

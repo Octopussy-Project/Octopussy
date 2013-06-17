@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-AAT_Translation.t - Test Suite for AAT::Translation
+t/AAT/Translation.t - Test Suite for AAT::Translation module
 
 =cut
 
@@ -14,7 +14,7 @@ use utf8;
 use FindBin;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Translation;
 

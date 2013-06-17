@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Cache.t - Test Suite for Octopussy::Cache
+t/Octopussy/Cache.t - Test Suite for Octopussy::Cache module
 
 =cut
 
@@ -13,7 +13,7 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use AAT::Utils qw( NOT_NULL NULL );

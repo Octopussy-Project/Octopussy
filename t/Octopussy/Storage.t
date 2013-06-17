@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Storage.t - Test Suite for Octopussy::Storage
+t/Octopussy/Storage.t - Test Suite for Octopussy::Storage module
 
 =cut
 
@@ -14,13 +14,13 @@ use List::MoreUtils qw(none);
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Storage;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../t/data/etc/aat/aat.xml";
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 

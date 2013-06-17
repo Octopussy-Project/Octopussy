@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-AAT_XML.t - Test Suite for AAT::XML
+t/AAT/XML.t - Test Suite for AAT::XML module
 
 =cut
 
@@ -14,13 +14,13 @@ use List::MoreUtils qw(any);
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::XML;
 
-Readonly my $DIR_LISTS => "$FindBin::Bin/../usr/share/aat/Lists/";
-Readonly my $FILE_PORTS => "$FindBin::Bin/../usr/share/aat/Lists/AAT_Port.xml";
-Readonly my $FILE_PORTS2 => "$FindBin::Bin/../usr/share/aat/Lists//AAT_Port.xml";
+Readonly my $DIR_LISTS => "$FindBin::Bin/../../usr/share/aat/Lists/";
+Readonly my $FILE_PORTS => "$FindBin::Bin/../../usr/share/aat/Lists/AAT_Port.xml";
+Readonly my $FILE_PORTS2 => "$FindBin::Bin/../../usr/share/aat/Lists//AAT_Port.xml";
 Readonly my $NAME_PORTS => 'AAT_Port';
 Readonly my $SELECTED_BY_DEFAULT => 'HTTP';
 Readonly my $OCTO_FILE_TEST => '/tmp/octo_test.xml';

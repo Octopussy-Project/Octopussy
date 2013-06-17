@@ -1,29 +1,25 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
-Octopussy_Schedule.t - Octopussy Source Code Checker for Octopussy::Schedule
+t/Octopussy/Schedule.t - Test Suite for Octopussy::Schedule module
 
 =cut
 
 use strict;
 use warnings;
-use Readonly;
 
-use Test::More tests => 25;
+use Readonly;
+use Test::More;
 
 use FindBin;
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::FS;
 use Octopussy::Schedule;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
@@ -145,7 +141,7 @@ ok($is_valid, "Octopussy::Schedule::Valid_Name('valid_schedule')");
 
 unlink $FILE_SCHEDULES;
 
-1;
+done_testing(25);
 
 =head1 AUTHOR
 

@@ -36,7 +36,7 @@ my $ts_version = Octopussy::Timestamp_Version();
 like($ts_version, qr/^\d{12}$/, 
 	"Octopussy::Timestamp_Version() => $ts_version");
 
-done_testing(4);
+done_testing(5);
 
 =head1 AUTHOR
 

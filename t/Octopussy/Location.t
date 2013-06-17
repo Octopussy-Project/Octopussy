@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Location.t - Test Suite for Octopussy::Location
+t/Octopussy/Location.t - Test Suite for Octopussy::Location module
 
 =cut
 
@@ -14,7 +14,7 @@ use List::MoreUtils qw(any);
 use Readonly;
 use Test::More tests => 12;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 use Octopussy::Location;

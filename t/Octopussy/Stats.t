@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Stats.t - Test Suite for Octopussy::Stats
+t/Octopussy/Stats.t - Test Suite for Octopussy::Stats module
 
 =cut
 
@@ -13,7 +13,7 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use Octopussy::Stats;
 

@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Octopussy_Data_Report.t - Test Suite for Octopussy::Data_Report
+t/Octopussy/Data_Report.t - Test Suite for Octopussy::Data_Report module
 
 =cut
 
@@ -20,7 +20,7 @@ use AAT::Application;
 use Octopussy::Data_Report;
 use Octopussy::FS;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 

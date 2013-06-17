@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-AAT_Application.t - Test Suite for AAT::Application
+t/AAT/Application.t - Test Suite for AAT::Application module
 
 =cut
 
@@ -13,11 +13,11 @@ use FindBin;
 use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::Application;
 
-Readonly my $AAT_CONFIG_FILE => "t/data/etc/aat/aat.xml";
+Readonly my $AAT_CONFIG_FILE => "$FindBin::Bin/../data/etc/aat/aat.xml";
 Readonly my $APPLICATION => 'Octopussy';
 Readonly my $USER => 'octopussy';
 Readonly my $DIR_DEVICES => './t/data/conf/devices/';
