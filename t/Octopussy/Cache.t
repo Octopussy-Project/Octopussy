@@ -48,7 +48,12 @@ $cache_value = $cache->get("${PREFIX}cache_key");
 
 ok(NULL($cache_value), 'cache->remove');
 
-done_testing(8);
+my $count_msgid_cleared = Octopussy::Cache::Clear_MsgID_Stats();
+ok(defined $count_msgid_cleared, 'Octopussy::Cache::Clear_MsgID_Stats()');
+my $count_taxonomy_cleared = Octopussy::Cache::Clear_Taxonomy_Stats();
+ok(defined $count_taxonomy_cleared, 'Octopussy::Cache::Clear_Taxonomy_Stats()');
+
+done_testing(8 + 2);
 
 =head1 AUTHOR
 

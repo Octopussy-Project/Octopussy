@@ -89,10 +89,19 @@ sub Clear_MsgID_Stats
 {
 	my $cache_parser = Init('octo_parser');	
 	
+	return (undef)	if (!defined $cache_parser);
+
+	my $count_cleared = 0;	
 	foreach my $k ($cache_parser->get_keys())
    	{
-    	$cache_parser->remove($k)   if ($k =~ /^parser_msgid_stats_.+$/);
+		if ($k =~ /^parser_msgid_stats_.+$/)
+		{
+    		$cache_parser->remove($k);
+			$count_cleared++;
+		}   
    	}
+
+	return ($count_cleared);
 }
 
 =head2 Clear_Taxonomy_Stats()
@@ -105,10 +114,19 @@ sub Clear_Taxonomy_Stats
 {
 	my $cache_parser = Init('octo_parser'); 
     
+	return (undef)  if (!defined $cache_parser);
+
+	my $count_cleared = 0;
     foreach my $k ($cache_parser->get_keys())
     {
-        $cache_parser->remove($k)   if ($k =~ /^parser_taxo_stats_.+$/);
+		if ($k =~ /^parser_taxo_stats_.+$/)
+		{
+        	$cache_parser->remove($k);
+			$count_cleared++;
+		}   
     }
+
+	return ($count_cleared);
 }
 
 1;
