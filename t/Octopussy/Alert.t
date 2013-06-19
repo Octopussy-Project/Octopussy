@@ -43,15 +43,15 @@ my %conf = (
   timeperiod        => '-ANY-',
   status            => 'Disabled',
   device            => ['device1', 'device2'],
-  service           => ['service1', 'service2'],
+  service           => '-ANY-', #['service1', 'service2'],
   regexp_include    => undef,
   regexp_exclude    => undef,
   thresold_time     => 1,
   thresold_duration => 1,
   action            => undef,
   contact           => undef,
-  msgsubject        => Encode::decode_utf8("${PREFIX}alert msg subject"),
-  msgbody           => Encode::decode_utf8("${PREFIX}alert msg body"),
+  msgsubject        => Encode::decode_utf8("msg subject for __alert__ with device __device__"),
+  msgbody           => Encode::decode_utf8("msg body for __alert__ with level __level__"),
   action_host       => Encode::decode_utf8("${PREFIX}alert action host"),
   action_service    => Encode::decode_utf8("${PREFIX}alert action service"),
   action_body       => Encode::decode_utf8("${PREFIX}alert action body"),
@@ -67,6 +67,19 @@ $conf{name} = $name;
 
 my @list2 = Octopussy::Alert::List();
 ok(scalar @list + 1 == scalar @list2, 'Octopussy::Alert::List()');
+
+my @configs = Octopussy::Alert::Configurations();
+ok(scalar @configs == scalar @list2, 'Octopussy::Alert::Configurations()');
+
+#my @alerts_for_device = Octopussy::Alert::For_Device('device1');
+#cmp_ok(scalar @alerts_for_device, "eq", 1, "Octopussy::Alert::For_Device('device1')");
+# Return 0 because 'device1' doesn't exist
+
+my ($subject, $body) = Octopussy::Alert::Message_Building(\%conf, 'device1',
+undef, undef);
+ok(($subject eq "msg subject for $name with device device1") 
+	&& ("$body eq msg body for $name with level Warning"),
+	"Octopussy::Alert::Message_Building()");
 
 my $old_size = -s $file;
 $conf{description} = $new_desc;
@@ -108,10 +121,12 @@ ok(!$is_valid, "Octopussy::Alert::Valid_Status_Name('invalid_status')");
 $is_valid = Octopussy::Alert::Valid_Status_Name('Opened');
 ok($is_valid, "Octopussy::Alert::Valid_Status_Name('Opened')");
 
+my @alert_levels = Octopussy::Alert::Levels();
+cmp_ok(scalar @alert_levels, "eq", 2, "Octopussy::Alert::Levels()");
 # Clean stuff
 rmtree $DIR_ALERTS;
 
-done_testing(6 + 3 + 2 + 3);
+done_testing(8 + 3 + 2 + 3 + 1);
 
 =head1 AUTHOR
 

@@ -574,21 +574,23 @@ sub Pattern_To_Regexp_Fields
 
 sub Fields_Values
 {
-  my ($msg, $line) = @_;
-  my @fields  = ();
-  my %field   = ();
-  my $pattern = $msg->{pattern};
+  	my ($msg, $line) = @_;
 
-  while ($pattern =~ /<\@.+?:(\S+?)\@>/)
-  {
-    push @fields, $1 if ($1 !~ /NULL/i);
-    $pattern =~ s/.*?(<\@([^\@]+?)\@>)//;
-  }
-  my @data = $line =~ /$msg->{re}/;
-  my $last_data = scalar(@data) - 1;
-  foreach my $i (0 .. $last_data) { $field{$fields[$i]} = $data[$i]; }
+	return ()	if ((!defined $msg) || (!defined $line));	
+  	my @fields  = ();
+  	my %field   = ();
+  	my $pattern = $msg->{pattern};
 
-  return (%field);
+  	while ($pattern =~ /<\@.+?:(\S+?)\@>/)
+  	{
+    	push @fields, $1 if ($1 !~ /NULL/i);
+    	$pattern =~ s/.*?(<\@([^\@]+?)\@>)//;
+  	}
+  	my @data = $line =~ /$msg->{re}/;
+  	my $last_data = scalar(@data) - 1;
+  	foreach my $i (0 .. $last_data) { $field{$fields[$i]} = $data[$i]; }
+
+  	return (%field);
 }
 
 =head2 Regexped_Fields($query)
