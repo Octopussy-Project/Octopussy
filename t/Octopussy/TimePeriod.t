@@ -44,9 +44,20 @@ ok(
 
 ok((any { $_ eq $TP_LABEL } @list2), 'Octopussy::TimePeriod::List()');
 
+my $conf_undef = Octopussy::TimePeriod::Configuration(undef);
+ok(!defined $conf_undef, 
+	'Octopussy::TimePeriod::Configuration(undef) => undef');
+my $conf_invalid_name = Octopussy::TimePeriod::Configuration('invalidname');
+ok(!defined $conf_invalid_name, 
+    'Octopussy::TimePeriod::Configuration(invalidname) => undef');
+
 my $conf = Octopussy::TimePeriod::Configuration($TP_LABEL);
 ok($conf->{label} eq $TP_LABEL && $conf->{periods} eq $TP_RESULT_PERIODS,
 	'Octopussy::TimePeriod::Configuration()');
+
+my @confs = Octopussy::TimePeriod::Configurations();
+ok((scalar @confs == 1) && ($confs[0]->{label} eq $TP_LABEL), 
+	'Octopussy::TimePeriod::Configurations()');
 
 my $match       = Octopussy::TimePeriod::Match($TP_LABEL, 'Tuesday 14:00');
 my $dont_match1 = Octopussy::TimePeriod::Match($TP_LABEL, 'Tuesday 21:30');
@@ -81,7 +92,7 @@ foreach my $name ('valid-timeperiod', 'valid_timeperiod')
 
 unlink $FILE_TIMEPERIOD;
 
-done_testing(5 + 3 + 2);
+done_testing(8 + 3 + 2);
 
 =head1 AUTHOR
 

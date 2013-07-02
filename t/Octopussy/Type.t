@@ -23,6 +23,7 @@ Readonly my $DT1 => 'Dec 24 23:55:55';
 Readonly my $DT2 => 'Mon Dec 24 23:55:55 2000';
 Readonly my $DT3 => '2000/12/24 23:55:55';
 Readonly my $DT4 => '24/Dec/2000:23:55:55 +0100';
+Readonly my $DT5 => '2000-12-24T23:55:55.100000+01:00';
 
 Readonly my $RE_DT_ISO     => '\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?.\d{2}:\d{2}';
 Readonly my $RE_DT_SQL     => '\d{4}-\d\d-\d\d \d\d:\d\d:\d\d';
@@ -75,21 +76,34 @@ my @sql_list = Octopussy::Type::SQL_List();
 ok(scalar @sql_list, 'Octopussy::Type::SQL_List()');
 
 my $sqltype_pid   = Octopussy::Type::SQL_Type('PID');
+cmp_ok($sqltype_pid, 'eq', 'BIGINT', 
+	'Octopussy::Type::SQL_Type(PID) => BIGINT');
+
 my $sqltype_email = Octopussy::Type::SQL_Type('EMAIL');
-ok($sqltype_email eq 'VARCHAR(250)' && $sqltype_pid eq 'BIGINT',
-  'Octopussy::Type::SQL_Type(one_type)');
+cmp_ok($sqltype_email, 'eq', 'VARCHAR(250)',
+	'Octopussy::Type::SQL_Type(EMAIL) => VARCHAR(250)');
+
+my $sqltype_long_string = Octopussy::Type::SQL_Type('LONG_STRING');
+cmp_ok($sqltype_long_string, 'eq', 'TEXT', 
+    'Octopussy::Type::SQL_Type(LONG_STRING) => TEXT');
+
+my $sqltype_invalid = Octopussy::Type::SQL_Type('INVALID_TYPE');
+ok(!defined $sqltype_invalid,        
+    'Octopussy::Type::SQL_Type(INVALID_TYPE) => undef');
 
 my $sql_dt1 = Octopussy::Type::SQL_Datetime($DT1);
+ok($sql_dt1 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT1)');
 my $sql_dt2 = Octopussy::Type::SQL_Datetime($DT2);
+ok($sql_dt2 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT2)');
 my $sql_dt3 = Octopussy::Type::SQL_Datetime($DT3);
+ok($sql_dt3 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT3)');
 my $sql_dt4 = Octopussy::Type::SQL_Datetime($DT4);
-ok(
-  $sql_dt1      =~ /^$RE_DT_SQL$/
-    && $sql_dt2 =~ /^$RE_DT_SQL$/
-    && $sql_dt3 =~ /^$RE_DT_SQL$/
-    && $sql_dt4 =~ /^$RE_DT_SQL$/,
-  'Octopussy::Type::SQL_Datetime()'
-);
+ok($sql_dt4 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT4)');
+my $sql_dt5 = Octopussy::Type::SQL_Datetime($DT5);
+ok($sql_dt5 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT5)');
+my $sql_dt_none = Octopussy::Type::SQL_Datetime('no sql datetime');
+ok($sql_dt_none eq 'no sql datetime', 
+	'Octopussy::Type::SQL_Datetime(no sql datetime) => no sql datetime');
 
 # Regexps
 
@@ -103,11 +117,16 @@ ok(
 );
 
 my $re_dt_iso = Octopussy::Type::Regexp('DATE_TIME_ISO');
+cmp_ok($re_dt_iso, 'eq', $RE_DT_ISO,
+	"Octopussy::Type::Regexp('DATE_TIME_ISO') => $RE_DT_ISO");
 my $re_ip_addr   = Octopussy::Type::Regexp('IP_ADDR');
-ok($re_dt_iso eq $RE_DT_ISO && $re_ip_addr eq $RE_IP_ADDR,
-  'Octopussy::Type::Regexp(one_type)');
+cmp_ok($re_ip_addr, 'eq', $RE_IP_ADDR,
+	"Octopussy::Type::Regexp('IP_ADDR') => $RE_IP_ADDR");
+my $re_undef = Octopussy::Type::Regexp('INVALID_TYPE');
+ok(!defined $re_undef,
+    "Octopussy::Type::Regexp('INVALID_TYPE') => undef");
 
-done_testing(10);
+done_testing(5+1+4+6+1+3);
 
 =head1 AUTHOR
 

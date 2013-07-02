@@ -79,30 +79,33 @@ sub List
 
 sub Configuration
 {
-  my $tp_name = shift;
+  	my $tp_name = shift;
 
-  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TIMEPERIODS));
-  foreach my $tp (ARRAY($conf->{timeperiod}))
-  {
-    if ($tp->{label} eq $tp_name)
-    {
-      my $str = '';
-      foreach my $dt (ARRAY($tp->{dt}))
-      {
-        foreach my $k (HASH_KEYS($dt))
-        {
-          if ($k =~ /^(\S{3})\S+/)
-          {
-            $str .= "$1: $dt->{$k}, ";
-          }
-        }
-      }
-      $str =~ s/, $//;
-      return ({label => $tp->{label}, periods => $str});
-    }
-  }
+	return (undef)	if (!defined $tp_name);
 
-  return (undef);
+  	my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TIMEPERIODS));
+  	foreach my $tp (ARRAY($conf->{timeperiod}))
+  	{
+    	if ($tp->{label} eq $tp_name)
+    	{
+      		my $str = '';
+      		foreach my $dt (ARRAY($tp->{dt}))
+      		{
+        		foreach my $k (HASH_KEYS($dt))
+        		{
+          			if ($k =~ /^(\S{3})\S+/)
+          			{
+            			$str .= "$1: $dt->{$k}, ";
+          			}
+        		}
+      		}
+      		$str =~ s/, $//;
+
+      		return ({label => $tp->{label}, periods => $str});
+    	}
+  	}
+
+  	return (undef);
 }
 
 =head2 Configurations($sort)

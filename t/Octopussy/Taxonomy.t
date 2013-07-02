@@ -20,6 +20,9 @@ use Octopussy::Taxonomy;
 
 Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
+Readonly my $COLOR_AUTH_FAILURE => "#00FFF9";
+Readonly my $COLOR_HARDWARE => "#AAAAAF";
+
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my @taxo_list     = Octopussy::Taxonomy::List();
@@ -27,13 +30,17 @@ my @taxo_list_any = Octopussy::Taxonomy::List_And_Any();
 
 ok((scalar @taxo_list) > 0, 'Octopussy::Taxonomy::List()');
 ok((scalar @taxo_list_any) == (scalar @taxo_list + 1),
-  'Octopussy::Taxonomy::List_And_Any()');
+	'Octopussy::Taxonomy::List_And_Any()');
 
+my %color = Octopussy::Taxonomy::Colors();
+ok($color{'Auth.Failure'} eq $COLOR_AUTH_FAILURE && $color{'Hardware'} eq $COLOR_HARDWARE, 'Octopussy::Taxonomy::Colors()');
+ 
 my @unknowns = Octopussy::Taxonomy::Unknowns();
 ok(scalar @unknowns == 0, 'Octopussy::Taxonomy::Unknowns()');
 
 @unknowns = Octopussy::Taxonomy::Unknowns('-any-', 'false_taxonomy');
-ok(scalar @unknowns == 1, "Octopussy::Taxonomy::Unknowns('-ANY-', 'false_taxonomy')");
+ok(scalar @unknowns == 1, 
+	"Octopussy::Taxonomy::Unknowns('-ANY-', 'false_taxonomy')");
 
 # 3 Tests for invalid taxonomy name
 foreach my $name (undef, '', 'invalid_taxonomy')
@@ -55,7 +62,7 @@ foreach my $name ('Config', 'Hardware', 'Network', 'System')
         'Octopussy::Taxonomy::Valid_Name(' . $param_str .  ") => $is_valid");
 }
 
-done_testing(4 + 3 + 4);
+done_testing(5 + 3 + 4);
 
 =head1 AUTHOR
 
