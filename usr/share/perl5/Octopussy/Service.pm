@@ -82,9 +82,12 @@ sub Clone
 	my ($service_orig, $service_clone) = @_;
 
 	my $conf = Configuration($service_orig);
-    $conf->{name} = $service_clone;
-    $conf->{description} = "$service_clone Service";
-    $conf->{version} = strftime("%Y%m%d", localtime) . '0001';
+
+	# we need to copy hash and not just reference to this hash
+	my %conf_clone = %{$conf};	
+    $conf_clone{name} = $service_clone;
+    $conf_clone{description} = "$service_clone Service";
+    $conf_clone{version} = strftime("%Y%m%d", localtime) . '0001';
     my @messages = ();
     foreach my $m (@{$conf->{message}})
     {
@@ -93,8 +96,8 @@ sub Clone
         $m->{msg_id} = $msgid;
         push @messages, $m;
     }
-    $conf->{message} = \@messages;
-    New($conf);
+    $conf_clone{message} = \@messages;
+    New(\%conf_clone);
 }
 
 =head2 Remove($service)

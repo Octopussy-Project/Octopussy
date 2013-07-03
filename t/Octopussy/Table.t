@@ -42,6 +42,16 @@ Octopussy::Table::Add_Field($table, $table_field, 'DATETIME');
 @fields = Octopussy::Table::Fields($table);
 cmp_ok(scalar @fields, '==', $DEFAULT_NB_FIELDS + 1, 'Octopussy::Table::Add_Field()');
 
+my @fields_confs0 = Octopussy::Table::Fields_Configurations();
+ok(! @fields_confs0,
+    'Octopussy::Table:Fields_Configurations(with no table)');
+my @fields_confs1 = Octopussy::Table::Fields_Configurations($table);
+cmp_ok(scalar @fields_confs1, '==', $DEFAULT_NB_FIELDS + 1, 
+	'Octopussy::Table:Fields_Configurations($table)');
+my @fields_confs2 = Octopussy::Table::Fields_Configurations($table, 'invalid');
+cmp_ok(scalar @fields_confs2, '==', $DEFAULT_NB_FIELDS + 1,
+    'Octopussy::Table:Fields_Configurations($table, invalid_field_sort)');
+
 Octopussy::Table::Remove_Field($table, $table_field);
 @fields = Octopussy::Table::Fields($table);
 cmp_ok(scalar @fields, '==', $DEFAULT_NB_FIELDS, 'Octopussy::Table::Remove_Field()');
@@ -49,8 +59,23 @@ cmp_ok(scalar @fields, '==', $DEFAULT_NB_FIELDS, 'Octopussy::Table::Remove_Field
 @fields = Octopussy::Table::Field_Type_List($table, "datetime");
 cmp_ok(scalar @fields, '==', 1, 'Octopussy::Table::Field_Type_List()');
 
-Octopussy::Table::Remove($table);
+my $sql = Octopussy::Table::SQL($table, [ 'datetime', 'device' ], undef);
+cmp_ok($sql, 'eq', "CREATE TABLE `Octo_TEST_table` (`datetime` DATETIME, `device` VARCHAR(250))",
+	'Octopussy::Table::SQL()');
+
+Octopussy::Table::Clone($table, $table . "_cloned");
 my @tables = Octopussy::Table::List();
+cmp_ok(scalar @tables, '==', 2, 'Octopussy::Table::Clone()');
+
+my @confs = Octopussy::Table::Configurations();
+ok($confs[0]->{name} eq $table && $confs[1]->{name} eq $table . "_cloned",
+	'Octopussy::Table::Configurations()');
+
+Octopussy::Table::Remove($table);
+Octopussy::Table::Remove($table . "_cloned");
+@tables = Octopussy::Table::List();
+#ok((scalar @tables == 1) && (!defined $tables[0]), 
+#	'Octopussy::Table::Remove()');
 cmp_ok(scalar @tables, '==', 0, 'Octopussy::Table::Remove()');
 
 # 3 Tests for invalid table name
@@ -73,7 +98,7 @@ foreach my $name ('valid-table', 'valid_table')
 		'Octopussy::Table::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-done_testing(6 + 3 + 2);
+done_testing(12 + 3 + 2);
 
 =head1 AUTHOR
 

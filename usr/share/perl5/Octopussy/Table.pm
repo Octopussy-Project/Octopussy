@@ -44,20 +44,20 @@ Parameters:
 
 sub New
 {
-  my $conf = shift;
+  	my $conf = shift;
 
-  if (NOT_NULL($conf->{name}))
-  {
-    $dir_tables ||= Octopussy::FS::Directory($DIR_TABLE);
-    $conf->{version} = Octopussy::Timestamp_Version(undef);
-    AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, $XML_ROOT);
-    Add_Field($conf->{name}, 'datetime', 'DATETIME');
-    Add_Field($conf->{name}, 'device',   'WORD');
+  	if (NOT_NULL($conf->{name}))
+  	{
+    	$dir_tables ||= Octopussy::FS::Directory($DIR_TABLE);
+    	$conf->{version} = Octopussy::Timestamp_Version(undef);
+    	AAT::XML::Write("$dir_tables/$conf->{name}.xml", $conf, $XML_ROOT);
+    	Add_Field($conf->{name}, 'datetime', 'DATETIME');
+    	Add_Field($conf->{name}, 'device',   'WORD');
 
-    return ($conf->{name});
-  }
+    	return ($conf->{name});
+  	}
 
-  return (undef);
+  	return (undef);
 }
 
 =head2 Clone($table, $cloned_table)
@@ -69,10 +69,13 @@ sub Clone
 	my ($table_orig, $table_clone) = @_;
 
 	my $conf = Configuration($table_orig);
-	$conf->{name} = $table_clone;
-	$conf->{description} = "$table_clone Table";
-	$conf->{version} = strftime("%Y%m%d", localtime) . '0001';	
-	New($conf);
+
+	# we need to copy hash and not just reference to this hash
+	my %conf_clone = %{$conf};
+	$conf_clone{name} = $table_clone;
+	$conf_clone{description} = "$table_clone Table";
+	$conf_clone{version} = strftime("%Y%m%d", localtime) . '0001';	
+	New(\%conf_clone);
 }
 
 =head2 Remove($table)
@@ -81,18 +84,23 @@ Removes the Table '$table'
 
 Parameters:
 
-$service - Name of the Table to remove
+$table - Name of the Table to remove
 
 =cut
 
 sub Remove
 {
-  my $table = shift;
+  	my $table = shift;
+	my $nb = 0;
 
-  my $nb = unlink Filename($table);
-  $filename{$table} = undef;
+	my $filename = Filename($table);
+	if ((defined $filename) && (-f $filename))
+	{
+  		$nb = unlink $filename;
+  		$filename{$table} = undef;
+	}
 
-  return ($nb);
+  	return ($nb);
 }
 
 =head2 List()
@@ -116,13 +124,14 @@ Get the XML filename for the Table '$table'
 
 sub Filename
 {
-  my $table = shift;
+  	my $table = shift;
 
-  return ($filename{$table}) if (defined $filename{$table});
-  $dir_tables ||= Octopussy::FS::Directory($DIR_TABLE);
-  $filename{$table} = AAT::XML::Filename($dir_tables, $table);
+  	return ($filename{$table}) if (defined $filename{$table});
+  	
+	$dir_tables ||= Octopussy::FS::Directory($DIR_TABLE);
+  	$filename{$table} = AAT::XML::Filename($dir_tables, $table);
 
-  return ($filename{$table});
+  	return ($filename{$table});
 }
 
 =head2 Configuration($table)
@@ -226,16 +235,20 @@ Gets the configuration for all Fields
 
 sub Fields_Configurations
 {
-  my ($table, $sort) = @_;
-  my @sorted_configurations = ();
-  my @fields                = Fields($table);
+	my ($table, $sort) = @_;
 
-  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @fields)
-  {
-    push @sorted_configurations, $c;
-  }
+	return ()	if (!defined $table);
+	$sort = 'title'	
+		if ((!defined $sort) || ($sort ne 'title' or $sort ne 'type'));
+	my @sorted_configurations = ();
+	my @fields                = Fields($table);
 
-  return (@sorted_configurations);
+	foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @fields)
+	{
+		push @sorted_configurations, $c;
+	}
+
+	return (@sorted_configurations);
 }
 
 =head2 SQL($table, $fields, $indexes)

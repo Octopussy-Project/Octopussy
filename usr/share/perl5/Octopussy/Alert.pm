@@ -100,28 +100,33 @@ Modify the configuration for the Alert '$old_alert'
 
 sub Modify
 {
-  my ($old_alert, $conf_new) = @_;
+  	my ($old_alert, $conf_new) = @_;
 
-  Remove($old_alert);
-  New($conf_new);
+  	Remove($old_alert);
+  	New($conf_new);
 
-  return (undef);
+  	return (undef);
 }
 
 =head2 Remove($alert)
 
-Removes the alert '$alert'
+Removes the Alert '$alert'
 
 =cut
 
 sub Remove
 {
-  my $alert = shift;
+  	my $alert = shift;
+	my $nb = 0;
 
-  my $nb = unlink Filename($alert);
-  $filename{$alert} = undef;
+	my $filename = Filename($alert);
+	if ((defined $filename) && (-f $filename))
+    {
+  		$nb = unlink $filename;
+  		$filename{$alert} = undef;
+	}
 
-  return ($nb);
+  	return ($nb);
 }
 
 =head2 List()

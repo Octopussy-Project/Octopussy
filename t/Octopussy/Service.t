@@ -48,6 +48,7 @@ my %msg_conf = (
 
 unlink "${DIR_SERVICES}${SERVICE}.xml";
 unlink "${DIR_SERVICES}${SERVICE2}.xml";
+unlink "${DIR_SERVICES}${SERVICE}_cloned.xml";
 my @list = Octopussy::Service::List();
 
 my $svc = Octopussy::Service::New(
@@ -76,6 +77,10 @@ ok((!defined $svc),
 		
 my @list2 = Octopussy::Service::List();
 ok(scalar @list + 2 == scalar @list2, 'Octopussy::Service::List()');
+
+Octopussy::Service::Clone($SERVICE, $SERVICE . '_cloned');
+my @list3 = Octopussy::Service::List();
+ok(scalar @list3 == scalar @list2 + 1, 'Octopussy::Service::Clone()');
 
 my $conf = Octopussy::Service::Configuration($SERVICE);
 ok($conf->{name} eq $SERVICE && $conf->{description} eq $SERVICE_DESC,
@@ -143,7 +148,7 @@ foreach my $name ('valid-service', 'valid_service')
         'Octopussy::Service::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-done_testing(16 + 5);
+done_testing(17 + 3 + 2);
 
 =head1 AUTHOR
 
