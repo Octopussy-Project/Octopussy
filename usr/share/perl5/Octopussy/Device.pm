@@ -512,16 +512,16 @@ Returns Service List as a string like 'Service list: <service_list>'
 
 sub String_Services
 {
-  my @devices = @_;
+  	my @devices = @_;
 
-  my @unknowns = Unknowns(@devices);
-  if (scalar @unknowns)
-  {
-    return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @unknowns);
-  }
-  my @services = sort(uniq(Services(@devices)));
+  	my @unknowns = Unknowns(@devices);
+  	if (scalar @unknowns)
+  	{
+    	return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @unknowns);
+  	}
+  	my @services = sort(uniq(Services(@devices)));
 
-  return ('Service list: -ANY-, ' . join ', ', @services);
+  	return ('Service list: -ANY-, ' . join ', ', @services);
 }
 
 =head2 Services_Configurations($device, $sort)
@@ -532,16 +532,19 @@ Returns Services Configurations sorted by '$sort' field for Device '$device'
 
 sub Services_Configurations
 {
-  my ($device, $sort) = @_;
-  my @configurations = ();
-  my $conf           = AAT::XML::Read(Filename($device));
+  	my ($device, $sort) = @_;
+  	my @configurations = ();
 
-  foreach my $s (sort { $a->{rank} cmp $b->{rank} } ARRAY($conf->{service}))
-  {
-    push @configurations, $s;
-  }
+	$sort = 'rank'
+        if ((!defined $sort) || ($sort ne 'rank' && $sort ne 'sid'));
+  	my $conf           = AAT::XML::Read(Filename($device));
 
-  return (@configurations);
+  	foreach my $s (sort { $a->{$sort} cmp $b->{$sort} } ARRAY($conf->{service}))
+  	{
+    	push @configurations, $s;
+  	}
+
+  	return (@configurations);
 }
 
 =head2 Services_Statistics($device)

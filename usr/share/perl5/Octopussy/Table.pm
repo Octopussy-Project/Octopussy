@@ -239,7 +239,7 @@ sub Fields_Configurations
 
 	return ()	if (!defined $table);
 	$sort = 'title'	
-		if ((!defined $sort) || ($sort ne 'title' or $sort ne 'type'));
+		if ((!defined $sort) || ($sort ne 'title' && $sort ne 'type'));
 	my @sorted_configurations = ();
 	my @fields                = Fields($table);
 
