@@ -19,7 +19,7 @@ use AAT::Application;
 use AAT::Utils qw( NOT_NULL NULL );
 use Octopussy::Cache;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 Readonly my $PREFIX => 'Octo_TEST_';
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);

@@ -21,13 +21,13 @@ use AAT::Utils qw( NOT_NULL );
 use Octopussy::Configuration;
 use Octopussy::FS;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 my $dir_main = Octopussy::FS::Directory('main');
 Octopussy::FS::Create_Directory("$dir_main/contacts/");
 
-Readonly my $DIR_BACKUP_TEST => 't/data/etc/octopussy/';
+Readonly my $DIR_BACKUP_TEST => "$FindBin::Bin/../data/etc/octopussy/";
 Readonly my $FILE_TEST => "${dir_main}contacts/test.xml";
 
 my $dir_backup = Octopussy::Configuration::Set_Backup_Directory($DIR_BACKUP_TEST);

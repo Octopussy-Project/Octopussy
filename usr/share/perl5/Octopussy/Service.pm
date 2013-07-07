@@ -234,26 +234,27 @@ Returns the next available message id for Service '$service'
 
 sub Msg_ID
 {
-  my $service = shift;
+  	my $service = shift;
 
-  my $conf   = Configuration($service);
-  my $msg_id = '';
-  my $i      = 1;
+  	my $conf   = Configuration($service);
+  	my $msg_id = '';
+  	my $i      = 1;
 
-  return ($conf->{name} . ':' . sprintf("%03d", $i))
-    if ((!defined $conf->{message})
-    || (scalar ARRAY($conf->{message}) == 0));
-  while ($i <= $MAX_NB_MSGS_IN_SERVICE)
-  {
-    $msg_id = $conf->{name} . ':' . sprintf("%03d", $i);
-    if (none { $_->{msg_id} =~ /^$msg_id$/i } ARRAY($conf->{message}))
-    {
-      return ($msg_id);
-    }
-    $i++;
-  }
+  	return ($conf->{name} . ':' . sprintf("%03d", $i))
+  		if ((!defined $conf->{message}) || (!defined ARRAY($conf->{message}))
+    		|| (scalar ARRAY($conf->{message}) == 0));
+  
+	while ($i <= $MAX_NB_MSGS_IN_SERVICE)
+  	{
+    	$msg_id = $conf->{name} . ':' . sprintf("%03d", $i);
+    	if (none { $_->{msg_id} =~ /^$msg_id$/i } ARRAY($conf->{message}))
+    	{
+      		return ($msg_id);
+    	}
+    	$i++;
+  	}
 
-  return (undef);
+  	return (undef);
 }
 
 =head2 Msg_ID_unique($service, $msgid)

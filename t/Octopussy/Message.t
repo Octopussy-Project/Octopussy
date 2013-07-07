@@ -19,7 +19,7 @@ use AAT::Application;
 use AAT::Utils qw( NOT_NULL );
 use Octopussy::Message;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 Readonly my $SERVICE => 'Octopussy';
 Readonly my $MSGID   => 'Octopussy:user_logged_in';
 

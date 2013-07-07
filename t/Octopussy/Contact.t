@@ -20,7 +20,7 @@ use lib "$FindBin::Bin/../../usr/share/perl5";
 use AAT::Application;
 use Octopussy::Contact;
 
-Readonly my $AAT_CONFIG_FILE_TEST => 't/data/etc/aat/aat.xml';
+Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
 Readonly my $PREFIX => 'Octo_TEST_';
 
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
