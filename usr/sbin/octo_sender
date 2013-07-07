@@ -31,6 +31,7 @@ use Octopussy::Cache;
 use Octopussy::Contact;
 
 Readonly my $PROG_NAME => 'octo_sender';
+Readonly my $LOOP_SLEEP_SECONDS => 5;
 
 exit if (!Octopussy::Valid_User($PROG_NAME));
 
@@ -117,8 +118,6 @@ while (1)
         my $msg    = $cache->get($k);
         my $action = $msg->{action};
 
-		#AAT::DEBUG("Octopussy::Alert::Message_Building data: [" . $msg->{data} . "] msg: [" . $msg->{msg}->{pattern} . "]");
-
         my ($subject, $body, $action_host, $action_service, $action_body) =
             Octopussy::Alert::Message_Building($action, $msg->{device},
             $msg->{data}, $msg->{msg});
@@ -144,7 +143,7 @@ while (1)
 
         $cache->remove($k);
     }
-    sleep 1;
+    sleep $LOOP_SLEEP_SECONDS;
 }
 
 1;
