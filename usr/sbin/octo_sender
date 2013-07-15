@@ -29,6 +29,7 @@ use Octopussy;
 use Octopussy::Alert;
 use Octopussy::Cache;
 use Octopussy::Contact;
+use Octopussy::Message;
 
 Readonly my $PROG_NAME => 'octo_sender';
 Readonly my $LOOP_SLEEP_SECONDS => 5;
@@ -115,12 +116,17 @@ while (1)
     my @keys = $cache->get_keys();
     foreach my $k (sort @keys)
     {
-        my $msg    = $cache->get($k);
-        my $action = $msg->{action};
-
-        my ($subject, $body, $action_host, $action_service, $action_body) =
-            Octopussy::Alert::Message_Building($action, $msg->{device},
-            $msg->{data}, $msg->{msg});
+		my $c_item    = $cache->get($k);
+		my $action = $c_item->{action};
+ 	
+		my ($svc) = split(/:/, $c_item->{msg_id});
+		my $msg = Octopussy::Message::Configuration($svc, $c_item->{msg_id});
+		my $re = Octopussy::Message::Pattern_To_Regexp($msg);
+		$msg->{re} = qr/^$re\s*[^\t\n\r\f -~]?$/i;
+        
+		my ($subject, $body, $action_host, $action_service, $action_body) =
+            Octopussy::Alert::Message_Building($action, $c_item->{device},
+            $c_item->{data}, $msg);
 
         if (defined $action->{action_jabber}
             && AAT::XMPP::Configured('Octopussy'))

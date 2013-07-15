@@ -497,10 +497,10 @@ sub Alert_Handler
                         $cache_sender->set(
                             $sender_id,
                             {
-                                action => $a,
-                                device => $device,
-                                data   => $data,
-                                msg    => $msg
+                                action 	=> $a,
+                                device 	=> $device,
+                                data   	=> $data,
+                                msg_id	=> $msg->{id}
                             }
                         );
                         $count_sender++;
