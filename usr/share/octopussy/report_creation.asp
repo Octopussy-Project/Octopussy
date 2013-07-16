@@ -79,11 +79,11 @@ elsif (($Session->{graph_type} !~ /^rrd_/) && (NULL($x)))
 else
 {
 	if ($Session->{graph_type} =~ /^rrd_/)
-	{
+	{ 	# RRD Graph
 		my @datasources = ();
 		for my $i (1..3)
 		{
-  		push(@datasources, $f->{"datasource$i"})
+  			push(@datasources, $f->{"datasource$i"})
 				if ($f->{"datasource$i"} ne "");
 		}
 		my ($query, $columns) =
@@ -95,24 +95,31 @@ else
 		my $dsv = $f->{datasources_value};
 		if (($f->{datasource1} ne "") && ($Session->{AAT_ROLE} !~ /ro/i))
 		{
-  		Octopussy::Report::New(
-    		{ name => $Session->{title}, description => $Session->{description},
-      		category => ($Session->{new_category} || $Session->{category}),
-					datasource1 => $f->{datasource1}, datasource2 => $f->{datasource2}, 
-					datasource3 => $f->{datasource3}, datasources_value => $dsv, 
-					timeline => $dhm, graph_type => $Session->{graph_type}, 
-					rrd_step => $Session->{rrd_step}, table => $Session->{table}, 
-					loglevel => $Session->{loglevel},  taxonomy => $Session->{taxonomy}, 
-					query => $query,
-      		graph_title => $f->{graph_title}, graph_ylabel => $f->{graph_ylabel},
-      		graph_width => $f->{graph_width}, graph_height => $f->{graph_height} }
-				);
+  			Octopussy::Report::New( { 
+				name => $Session->{title}, 
+				description => $Session->{description},
+      			category => ($Session->{new_category} || $Session->{category}),
+				datasource1 => $f->{datasource1}, 
+				datasource2 => $f->{datasource2}, 
+				datasource3 => $f->{datasource3}, 
+				datasources_value => $dsv, 
+				timeline => $dhm, 
+				graph_type => $Session->{graph_type}, 
+				rrd_step => $Session->{rrd_step}, 
+				table => $Session->{table}, 
+				loglevel => $Session->{loglevel}, 
+				taxonomy => $Session->{taxonomy}, 
+				query => $query,
+      			graph_title => $f->{graph_title}, 
+				graph_ylabel => $f->{graph_ylabel},
+      			graph_width => $f->{graph_width}, 
+				graph_height => $f->{graph_height} } );
 			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Report", $Session->{title}, $Session->{AAT_LOGIN});	
 		}
 		Purge_Session();
 	}
 	else
-	{
+	{ 	# Not an RRD GRaph
 		my @columns_name = ();
 		my ($query, $columns) = 
 			Octopussy::DB::SQL_Select_Function(ARRAY($Session->{select}));
@@ -123,15 +130,19 @@ else
 		if (($Session->{AAT_ROLE} !~ /ro/i) 
 			&& (Octopussy::Report::Valid_Name($Session->{title})))
 		{
-			Octopussy::Report::New(
-				{ name => $Session->{title}, description => $Session->{description},
-					category => ($Session->{new_category} || $Session->{category}), 
-					graph_type => $Session->{graph_type}, table => $Session->{table}, 
-					loglevel => $Session->{loglevel}, taxonomy => $Session->{taxonomy}, 
-					query => $Session->{query}, 
-					columns => join(",", ARRAY($columns)), 
-					columns_name => join(",", @columns_name),
-					x => $x, y => $y });
+			Octopussy::Report::New({ 
+				name => $Session->{title}, 
+				description => $Session->{description},
+				category => ($Session->{new_category} || $Session->{category}), 
+				graph_type => $Session->{graph_type}, 
+				table => $Session->{table}, 
+				loglevel => $Session->{loglevel}, 
+				taxonomy => $Session->{taxonomy}, 
+				query => $Session->{query}, 
+				columns => join(",", ARRAY($columns)), 
+				columns_name => join(",", @columns_name),
+				x => $x, 
+				y => $y });
 			AAT::Syslog::Message("octo_WebUI", "GENERIC_CREATED", "Report", $Session->{title}, $Session->{AAT_LOGIN});
 		}
 		Purge_Session();

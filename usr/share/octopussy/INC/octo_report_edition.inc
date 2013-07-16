@@ -8,12 +8,18 @@ foreach my $c (Octopussy::Report::Categories())
 my $conf = Octopussy::Report::Configuration($report);
 my ($r_name, $r_desc) = ($conf->{name}, $Server->HTMLEncode($conf->{description}));
 my ($r_cat, $r_type) = ($conf->{category}, $conf->{graph_type});
-my ($r_table, $r_taxo) = ($conf->{table}, $conf->{taxonomy});
+my ($r_table, $r_taxo, $r_loglevel) = ($conf->{table}, $conf->{taxonomy}, $conf->{loglevel});
 my $r_query = $Server->HTMLEncode($conf->{query});
+my ($r_cols, $r_colnames) = ($conf->{columns}, $conf->{columns_name});
+my ($r_x, $r_y) = ($conf->{x}, $conf->{y});
 %>
 <AAT:Form action="./report_edit.asp">
 <AAT:Form_Hidden name="old_report" value="$r_name" />
 <AAT:Form_Hidden name="graph_type" value="$r_type" />
+<AAT:Form_Hidden name="columns" value="$r_cols" />
+<AAT:Form_Hidden name="columns_name" value="$r_colnames" />
+<AAT:Form_Hidden name="x" value="$r_x" />
+<AAT:Form_Hidden name="y" value="$r_y" />
 <AAT:Form_Hidden name="modify" value="yes" />
 <AAT:Box align="C" icon="buttons/bt_report" title="_REPORT_EDITION">
 <AAT:BoxRow>
@@ -47,7 +53,7 @@ my $r_query = $Server->HTMLEncode($conf->{query});
   <AAT:BoxCol><AAT:Label value="_LOG_LEVEL" style="B"/></AAT:BoxCol>
   <AAT:BoxCol>
   <AAT:Inc file="octo_selector_loglevel_dynamic" name="loglevel" 
-    selected="$r_taxo" any="1" /></AAT:BoxCol>
+    selected="$r_loglevel" any="1" /></AAT:BoxCol>
 </AAT:BoxRow>
 <AAT:BoxRow>
   <AAT:BoxCol><AAT:Label value="_TAXONOMY" style="B"/></AAT:BoxCol>
