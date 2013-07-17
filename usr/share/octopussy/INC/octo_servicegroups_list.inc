@@ -3,9 +3,9 @@ my $sort = $Request->QueryString("servicegroups_table_sort");
 %>
 <AAT:Box align="C" title="_SERVICEGROUPS" icon="buttons/bt_servicegroup">
 <AAT:BoxRow>
-	<AAT:BoxCol><AAT:Label value="_GROUP_NAME" style="B" 
+	<AAT:BoxCol><AAT:Label value="_GROUP_NAME" style="B"
 		link="$url?servicegroups_table_sort=sg_id"/></AAT:BoxCol>
-	<AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B" no_trans="1"
+	<AAT:BoxCol><AAT:Label value="_DESCRIPTION" style="B"
 		link="$url?servicegroups_table_sort=description"/></AAT:BoxCol>
 	<AAT:BoxCol align="C"><AAT:Label value="_SERVICES" style="B" /></AAT:BoxCol>
 	<AAT:BoxCol align="C" cspan="2">
