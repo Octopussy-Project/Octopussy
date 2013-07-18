@@ -1,3 +1,16 @@
+octopussy (1.0.10) stable; urgency=high
+
+  * Bugfix #358: no NSCA alerts and octo_parser crash (Can't store REGEXP bug)
+  * Bugfix #359: Report Edition is not working with 'ofc type' report
+  * FeatureRequest #128: One message only for every Jabber alert
+  * SupportRequest #77: Fixing Device::Valid_Name function to handle hostname 
+    starting with digit(s) (RFC 1123)
+  * Minor improvement in octo_sender
+  * octo_tool backup before installation also for INSTALL.sh now
+  * Start using Devel::Cover reporting to improve test suite
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Thu, 18 Jul 2013 23:00:00 +0100
+
 octopussy (1.0.9) stable; urgency=high
 
   * Bugfix #347: Cannot create messages for logs with bad mail dir
