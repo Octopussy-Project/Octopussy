@@ -10,7 +10,11 @@ my $type = $arg{type} || $conf->{type};
 my $model = $conf->{model};
 my $desc = $conf->{description};
 my $logtype = $conf->{logtype} || "syslog";
-my $location = "$conf->{city},$conf->{building},$conf->{room},$conf->{rack}";
+my $location = (NOT_NULL($conf->{rack}) ? 
+    "$conf->{city},$conf->{building},$conf->{room},$conf->{rack}"
+    : (NOT_NULL($conf->{room}) ? "$conf->{city},$conf->{building},$conf->{room}"
+    : (NOT_NULL($conf->{building}) ? "$conf->{city},$conf->{building}"
+    : "$conf->{city}")));
 my $logrotate = $conf->{logrotate};
 my $minutes_without_logs = $conf->{minutes_without_logs};
 my @logtype_list = ("asynchronous", "syslog");
