@@ -64,7 +64,11 @@ my @d_confs0 = Octopussy::Device::Filtered_Configurations('Firewall', '-ANY-');
 cmp_ok(scalar @d_confs0, '==', 0,
     "Octopussy::Device::Filtered_Configurations(Firewall', '-ANY-')");
 
-my $nb_services = 0;
+my $nb_services = Octopussy::Device::Add_Service('wrong_dev', 'wrong_svc');
+ok(!defined $nb_services, 
+	"Octopussy::Device::Add_Service('wrong_dev', 'wrong_svc') => undef");
+
+$nb_services = 0;
 foreach my $s (@SERVICES)
 {
   $nb_services = Octopussy::Device::Add_Service($DEVICE, $s);
@@ -77,6 +81,9 @@ cmp_ok(scalar @services, '==', scalar @SERVICES, 'Octopussy::Device::Services()'
 my @list_with = Octopussy::Device::With_Service('Octopussy');
 ok((grep { /$DEVICE/ } @list_with), 'Octopussy::Device::With_Service()');
 
+$nb_services = Octopussy::Device::Remove_Service('wrong_dev', 'Octopussy');
+ok(!defined $nb_services, 
+	"Octopussy::Device::Remove_Service('wrong_dev, 'wrong_svc')");
 $nb_services = Octopussy::Device::Remove_Service($DEVICE, 'Octopussy');
 cmp_ok($nb_services, '==', scalar @SERVICES - 1, 'Octopussy::Device::Remove_Service()');
 
@@ -97,7 +104,11 @@ cmp_ok($rank1, 'eq', '01', 'Octopussy::Device::Move_Service(top)');
 $rank1 = Octopussy::Device::Move_Service($DEVICE, 'Sshd', 'bottom');
 cmp_ok($rank1, 'eq', '03', 'Octopussy::Device::Move_Service(bottom)');
 
+my $modified_name = Octopussy::Device::Modify({name => "modified_$DEVICE", description => $DEV_DESC});
+ok(!defined $modified_name, 
+	"Octopussy::Device::Modify(changed_device_name) => undef");
 Octopussy::Device::Modify({name => $DEVICE, description => $DEV_DESC});
+Octopussy::Device::Modify({name => "modified_$DEVICE", description => $DEV_DESC});
 $conf = Octopussy::Device::Configuration($DEVICE);
 cmp_ok($conf->{description}, 'eq', $DEV_DESC, 'Octopussy::Device::Modify()');
 
@@ -183,7 +194,7 @@ foreach my $name ('validhostname', '10.150.1.9', '10.150.1.9-1',
 
 rmtree $DIR_DEVICES;
 
-done_testing(24 + 5 + 5 + 5);
+done_testing(27 + 5 + 5 + 5);
 
 =head1 AUTHOR
 
