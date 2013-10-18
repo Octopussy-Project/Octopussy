@@ -391,7 +391,6 @@ sub Remove_Service
 
   	my @services = ();
   	my $rank     = undef;
-  	my $conf     = AAT::XML::Read(Filename($device_name));
   	foreach my $s (ARRAY($conf->{service}))
   	{
     	if ($s->{sid} ne $service_name) { push @services, $s; }
