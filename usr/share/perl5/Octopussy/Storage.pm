@@ -196,15 +196,15 @@ Returns directory for Storage '$storage'
 
 sub Directory
 {
-  my $storage = shift;
+  	my $storage = shift;
 
-  return (undef) if (!defined $storage);
-  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_STORAGES));
-  return (Octopussy::FS::Directory('data_logs')) if ($storage eq 'DEFAULT');
+  	return (undef) if (!defined $storage);
+	return (Octopussy::FS::Directory('data_logs')) if ($storage eq 'DEFAULT');
 
-  my $dir = firstval { $_->{s_id} eq $storage } ARRAY($conf->{storage});
+  	my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_STORAGES));
+  	my $dir = firstval { $_->{s_id} eq $storage } ARRAY($conf->{storage});
 
-  return ($dir->{directory});
+  	return ($dir->{directory});
 }
 
 =head2 Directory_Service($device, $service)

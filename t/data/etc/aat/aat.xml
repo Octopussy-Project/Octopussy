@@ -10,7 +10,7 @@
 		<directory name="themes" value="/usr/share/aat/THEMES/" />
 		<directory name="translations" value="/usr/share/aat/Translations/" />
 
-		<file name="message_logs" value="/var/lib/octopussy/conf/message_logs.xml" />
+		<file name="message_logs" value="./t/data/conf/message_logs.xml" />
 
   	</application>
 
@@ -25,17 +25,17 @@
 		<directory name="contacts" value="./t/data/conf/contacts/" />
 		<directory name="devices" value="./t/data/conf/devices/" />
 		<directory name="main" value="./t/data/conf/" />
-		<directory name="maps" value="/var/lib/octopussy/conf/maps/" />
+		<directory name="maps" value="./t/data/conf/maps/" />
 		<directory name="plugins" value="./t/data/conf/plugins/" />
 		<directory name="reports" value="./t/data/conf/reports/" />
 		<directory name="search_templates" value="./t/data/conf/search_templates/" />
 		<directory name="services" value="./t/data/conf/services/" />
-		<directory name="statistic_reports" value="/var/lib/octopussy/conf/statistic_reports/" />
+		<directory name="statistic_reports" value="./t/data/conf/statistic_reports/" />
 		<directory name="tables" value="./t/data/conf/tables/" />
 		<directory name="data_logs" value="./t/data/logs/" />
-		<directory name="data_logs_pusher" value="/var/lib/octopussy/logs/_FTP_/" />
+		<directory name="data_logs_pusher" value="./t/data/logs/_FTP_/" />
 		<directory name="data_reports" value="./t/data/reports/" />
-		<directory name="data_rrd" value="/var/lib/octopussy/rrd/" />
+		<directory name="data_rrd" value="./t/data/rrd/" />
 		<directory name="programs" value="/usr/sbin/" />
 		<directory name="running" value="/var/run/octopussy/" />
 		<directory name="web" value="/usr/share/octopussy/" />
@@ -43,26 +43,26 @@
 		<file name="db" value="./t/data/conf/db.xml" />
 		<file name="device_models" value="./t/data/conf/device_models.xml" />
 		<file name="devicegroups" value="./t/data/conf/devicegroups.xml" />
-		<file name="dialogs" value="/var/lib/octopussy/conf/dialogs.xml" />
-        <file name="fifo" value="/var/spool/octopussy/octo_fifo" />
-		<file name="ldap" value="/var/lib/octopussy/conf/ldap.xml" />
+		<file name="dialogs" value="./t/data/conf/dialogs.xml" />
+        <file name="fifo" value="./t/data/spool/octopussy/octo_fifo" />
+		<file name="ldap" value="./t/data/conf/ldap.xml" />
 		<file name="locations" value="./t/data/conf/locations.xml" />
 		<file name="loglevel" value="./t/data/conf/loglevel.xml" />
-		<file name="nsca" value="/var/lib/octopussy/conf/nsca.xml" />
-		<file name="proxy" value="/var/lib/octopussy/conf/proxy.xml" />
-		<file name="schedule" value="/var/lib/octopussy/conf/schedule.xml" />
+		<file name="nsca" value="./t/data/conf/nsca.xml" />
+		<file name="proxy" value="./t/data/conf/proxy.xml" />
+		<file name="schedule" value="./t/data/conf/schedule.xml" />
 		<file name="servicegroups" value="./t/data/conf/servicegroups.xml" />
-		<file name="smtp" value="/var/lib/octopussy/conf/smtp.xml" />
+		<file name="smtp" value="./t/data/conf/smtp.xml" />
 		<file name="storages" value="./t/data/conf/storages.xml" />
 		<file name="taxonomy" value="./t/data/conf/taxonomy.xml" />
 		<file name="timeperiods" value="./t/data/conf/timeperiods.xml" />
 		<file name="types" value="./t/data/conf/types.xml" />
-		<file name="user_roles" value="/var/lib/octopussy/conf/user_roles.xml" />
-		<file name="users" value="/var/lib/octopussy/conf/users.xml" />
-		<file name="webservices" value="/var/lib/octopussy/conf/webservices.xml" />
-        <file name="world_stats" value="/var/lib/octopussy/conf/world_stats.xml" />
-		<file name="xmpp" value="/var/lib/octopussy/conf/xmpp.xml" />
-        <file name="zabbix" value="/var/lib/octopussy/conf/zabbix.xml" />
+		<file name="user_roles" value="./t/data/conf/user_roles.xml" />
+		<file name="users" value="./t/data/conf/users.xml" />
+		<file name="webservices" value="./t/data/conf/webservices.xml" />
+        <file name="world_stats" value="./t/data/conf/world_stats.xml" />
+		<file name="xmpp" value="./t/data/conf/xmpp.xml" />
+        <file name="zabbix" value="./t/data/conf/zabbix.xml" />
 
         <parameter name="automatic_device_creation" value="enabled" />
 		<parameter name="devicetype" value="Unknown" />

@@ -45,7 +45,7 @@ ok(
   $default->{incoming}     eq $STORAGE
     && $default->{unknown} eq $STORAGE
     && $default->{known}   eq $STORAGE,
-  'Octopussy::Storage::Default()'
+  "Octopussy::Storage::Default() => incoming, unknown, known == $STORAGE"
 );
 
 my @list1 = Octopussy::Storage::List();
@@ -59,7 +59,8 @@ my $conf2 = Octopussy::Storage::Configuration($STORAGE);
 ok($conf2->{directory} eq $STORAGE_PATH, 'Octopussy::Storage::Configuration()');
 
 my $dir = Octopussy::Storage::Directory($STORAGE);
-ok($dir eq $STORAGE_PATH, 'Octopussy::Storage::Directory()');
+ok($dir eq $STORAGE_PATH, 
+	"Octopussy::Storage::Directory('$STORAGE') => $STORAGE_PATH");
 
 foreach my $dev (undef, '', 'DOESNTEXIST')
 {
