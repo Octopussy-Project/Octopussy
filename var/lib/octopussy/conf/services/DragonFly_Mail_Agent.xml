@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<octopussy_service description="A small Mail Transport Agent (MTA), designed for home and office use"
+                   name="DragonFly_Mail_Agent"
+                   nb_messages="004"
+                   version="201312070006"
+                   website="https://gitorious.org/dma">
+  <message loglevel="Information"
+           msg_id="dma:mail_queued"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dma&quot;):daemon@&gt;[&lt;@WORD:mail_id@&gt;]: mail to=&lt;&lt;@EMAIL:recipient@&gt;&gt; &lt;@WORD:status@&gt; as &lt;@STRING:msg_id@&gt;"
+           rank="001"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="dma:delivery_status_1"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dma&quot;):daemon@&gt;[&lt;@WORD:msg_id@&gt;]: &lt;@REGEXP(&quot;.+ delivery&quot;):status@&gt;"
+           rank="002"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="dma:delivery_status_2"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dma&quot;):daemon@&gt;[&lt;@WORD:msg_id@&gt;]: &lt;@REGEXP(&quot;delivery .+&quot;):status@&gt;"
+           rank="003"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="dma:relay"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dma&quot;):daemon@&gt;[&lt;@WORD:msg_id@&gt;]: using smarthost (&lt;@STRING:relay@&gt;)"
+           rank="004"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="dma:new_mail"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dma&quot;):daemon@&gt;[&lt;@WORD:mail_id@&gt;]: &lt;@REGEXP(&quot;new mail from user=.+ uid=.+&quot;):status@&gt; envelope_from=&lt;@STRING:sender@&gt;"
+           rank="005"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+  <message loglevel="Information"
+           msg_id="dma:trying_remote_delivery"
+           pattern="&lt;@DATE_TIME_ISO:datetime@&gt; &lt;@WORD:device@&gt; &lt;@REGEXP(&quot;dma&quot;):daemon@&gt;[&lt;@WORD:msg_id@&gt;]: &lt;@REGEXP(&quot;trying remote delivery to smtpserver&quot;):status@&gt; [&lt;@WORD:relay@&gt;] &lt;@REGEXP(&quot;pref \d+&quot;):NULL@&gt;"
+           rank="006"
+           table="Mail_Traffic"
+           taxonomy="Email.Traffic" />
+</octopussy_service>
