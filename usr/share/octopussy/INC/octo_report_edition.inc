@@ -16,8 +16,6 @@ my ($r_x, $r_y) = ($conf->{x}, $conf->{y});
 <AAT:Form action="./report_edit.asp">
 <AAT:Form_Hidden name="old_report" value="$r_name" />
 <AAT:Form_Hidden name="graph_type" value="$r_type" />
-<AAT:Form_Hidden name="columns" value="$r_cols" />
-<AAT:Form_Hidden name="columns_name" value="$r_colnames" />
 <AAT:Form_Hidden name="x" value="$r_x" />
 <AAT:Form_Hidden name="y" value="$r_y" />
 <AAT:Form_Hidden name="modify" value="yes" />
