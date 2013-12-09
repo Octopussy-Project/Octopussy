@@ -14,7 +14,7 @@ USERDEL="/usr/sbin/userdel"
 #
 db_get octopussy/mysql_root_password || RET=""
 if [ "$RET" != "" ] && [ -x /usr/bin/mysql ]; then
-        /usr/bin/mysql -u root --password=$RET --exec="DROP DATABASE IF EXISTS $OCTO" || true
+        /usr/bin/mysql -u root --password=$RET --execute="DROP DATABASE IF EXISTS $OCTO" || true
 fi
 
 #
