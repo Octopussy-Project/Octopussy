@@ -77,7 +77,7 @@ sub Usage
     my $version = Octopussy::Version();
     my $usage   = <<'EOF';
 Usage: 
-	octopussy {start|stop|restart}
+	octopussy {start|stop|restart|status}
 	octopussy {dispatcher-start|dispatcher-stop|dispatcher-restart|dispatcher-reload}
 	octopussy {parser-start|parser-stop|parser-restart} <device>
 	octopussy {pusher-start|pusher-stop|pusher-restart}
@@ -86,7 +86,7 @@ Usage:
 	octopussy {web-start|web-stop}\n";
 EOF
 
-    print "\nOctopussy $version\n\n$usage\n";
+    printf "\nOctopussy %s\n\n%s\n", $version, $usage;
 
     return (1);
 }
@@ -185,6 +185,12 @@ sub Parser_Start
     if (defined $device) { push @devices, $device; }
     else                 { @devices = Octopussy::Device::List(); }
 
+	my $count = 0;
+	my $parser_delay_devices = 
+		Octopussy::Parameter('octo_parser_delay_devices') || 5;
+	my $parser_delay_seconds = 
+		Octopussy::Parameter('octo_parser_delay_seconds') || 5;
+	
     foreach my $d (@devices)
     {
         my $parse_status = Octopussy::Device::Parse_Status($d);
@@ -197,14 +203,21 @@ sub Parser_Start
             }
             else
             {
-                print
-"$PROG_NAME Parsing status of '$d' is 'Stopped', set status to 'Paused' or 'Started' first !\n";
+                printf
+"%s Parsing status of '%s' is 'Stopped', set status to 'Paused' or 'Started' first !\n", $PROG_NAME, $d;
             }
         }
         else
         {
-            print "Device $d Unknown !\n";
+            printf "Device '%s' Unknown !\n", $d;
         }
+		$count++;
+		if ($count % $parser_delay_devices == 0)
+		{
+			printf "Waits %d seconds every %d devices...\n", 
+				$parser_delay_seconds, $parser_delay_devices;
+			sleep $parser_delay_seconds;	
+		}
     }
 
     return (scalar @devices);
@@ -448,7 +461,7 @@ sub Status
     foreach my $k (sort keys %proc)
     {
         my $status = ($proc{$k} != 0 ? 'Started' : 'Stopped');
-        print "  $k: $status\n";
+        printf "  %s: %s\n", $k, $status;
     }
 
     return (1);
