@@ -57,20 +57,21 @@ and 'Incoming' and 'Unknown' are rejected
 
 sub New
 {
-  my $conf = shift;
+    my $conf = shift;
 
-	if (($conf->{name} =~ /^[-_a-z0-9]+$/i)
-		&& ($conf->{name} !~ /Incoming/i) && ($conf->{name} !~ /Unknown/i)) 
-	{
-  	$dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
-	Octopussy::FS::Create_Directory($dir_services);
-  	$conf->{version} = Octopussy::Timestamp_Version(undef);
-  	AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, $XML_ROOT);
+    if (   ($conf->{name} =~ /^[-_a-z0-9]+$/i)
+        && ($conf->{name} !~ /Incoming/i)
+        && ($conf->{name} !~ /Unknown/i))
+    {
+        $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
+        Octopussy::FS::Create_Directory($dir_services);
+        $conf->{version} = Octopussy::Timestamp_Version(undef);
+        AAT::XML::Write("$dir_services/$conf->{name}.xml", $conf, $XML_ROOT);
 
-  	return ($conf->{name});
-	}
-	
-	return (undef);
+        return ($conf->{name});
+    }
+
+    return (undef);
 }
 
 =head2 Clone($service_orig, $service_clone)
@@ -79,15 +80,15 @@ sub New
 
 sub Clone
 {
-	my ($service_orig, $service_clone) = @_;
+    my ($service_orig, $service_clone) = @_;
 
-	my $conf = Configuration($service_orig);
+    my $conf = Configuration($service_orig);
 
-	# we need to copy hash and not just reference to this hash
-	my %conf_clone = %{$conf};	
-    $conf_clone{name} = $service_clone;
+    # we need to copy hash and not just reference to this hash
+    my %conf_clone = %{$conf};
+    $conf_clone{name}        = $service_clone;
     $conf_clone{description} = "$service_clone Service";
-    $conf_clone{version} = strftime("%Y%m%d", localtime) . '0001';
+    $conf_clone{version}     = strftime("%Y%m%d", localtime) . '0001';
     my @messages = ();
     foreach my $m (@{$conf->{message}})
     {
@@ -112,12 +113,12 @@ $service - Name of the Service to remove
 
 sub Remove
 {
-  my $service = shift;
+    my $service = shift;
 
-  my $nb = unlink Filename($service);
-  $filename{$service} = undef;
+    my $nb = unlink Filename($service);
+    $filename{$service} = undef;
 
-  return ($nb);
+    return ($nb);
 }
 
 =head2 List()
@@ -128,9 +129,9 @@ Returns List of Services
 
 sub List
 {
-  $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
+    $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
 
-  return (AAT::XML::Name_List($dir_services));
+    return (AAT::XML::Name_List($dir_services));
 }
 
 =head2 List_Used()
@@ -141,10 +142,10 @@ Returns List of Services used
 
 sub List_Used
 {
-  my @services = Octopussy::Device::Services(Octopussy::Device::List());
-  @services = sort(uniq(@services));
+    my @services = Octopussy::Device::Services(Octopussy::Device::List());
+    @services = sort(uniq(@services));
 
-  return (@services);
+    return (@services);
 }
 
 =head2 Unknowns(@services)
@@ -155,16 +156,16 @@ Returns list of Unknown Services in @services list
 
 sub Unknowns
 {
-  my @services = @_;
-  my @unknowns = ();
+    my @services = @_;
+    my @unknowns = ();
 
-  my %exist = map { $_ => 1 } List();
-  foreach my $s (@services)
-  {
-    push @unknowns, $s if ((!defined $exist{$s}) && ($s ne '-ANY-'));
-  }
+    my %exist = map { $_ => 1 } List();
+    foreach my $s (@services)
+    {
+        push @unknowns, $s if ((!defined $exist{$s}) && ($s ne '-ANY-'));
+    }
 
-  return (@unknowns);
+    return (@unknowns);
 }
 
 =head2 Filename($service)
@@ -175,13 +176,13 @@ Returns the XML filename for the service '$service'
 
 sub Filename
 {
-  my $service = shift;
+    my $service = shift;
 
-  return ($filename{$service}) if (defined $filename{$service});
-  $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
-  $filename{$service} = "$dir_services/$service.xml";
+    return ($filename{$service}) if (defined $filename{$service});
+    $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
+    $filename{$service} = "$dir_services/$service.xml";
 
-  return ($filename{$service});
+    return ($filename{$service});
 }
 
 =head2 Configuration($service)
@@ -192,11 +193,11 @@ Returns the configuration for the Service '$service'
 
 sub Configuration
 {
-  my $service = shift;
+    my $service = shift;
 
-  my $conf = AAT::XML::Read(Filename($service));
+    my $conf = AAT::XML::Read(Filename($service));
 
-  return ($conf);
+    return ($conf);
 }
 
 =head2 Configurations($sort)
@@ -207,23 +208,23 @@ Returns the configuration for all Services sorted by '$sort' (default: 'name')
 
 sub Configurations
 {
-  my $sort = shift || 'name';
-  my (@configurations, @sorted_configurations) = ((), ());
-  my @services = List();
+    my $sort = shift || 'name';
+    my (@configurations, @sorted_configurations) = ((), ());
+    my @services = List();
 
-  foreach my $s (@services)
-  {
-    my $conf = Configuration($s);
-    $conf->{nb_messages} = sprintf '%03d',
-      (NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
-    push @configurations, $conf;
-  }
-  foreach my $c (sort { lc($a->{$sort}) cmp lc($b->{$sort}) } @configurations)
-  {
-    push @sorted_configurations, $c;
-  }
+    foreach my $s (@services)
+    {
+        my $conf = Configuration($s);
+        $conf->{nb_messages} = sprintf '%03d',
+            (NOT_NULL($conf->{message}) ? scalar(@{$conf->{message}}) : 0);
+        push @configurations, $conf;
+    }
+    foreach my $c (sort { lc($a->{$sort}) cmp lc($b->{$sort}) } @configurations)
+    {
+        push @sorted_configurations, $c;
+    }
 
-  return (@sorted_configurations);
+    return (@sorted_configurations);
 }
 
 =head2 Msg_ID($service)
@@ -234,27 +235,28 @@ Returns the next available message id for Service '$service'
 
 sub Msg_ID
 {
-  	my $service = shift;
+    my $service = shift;
 
-  	my $conf   = Configuration($service);
-  	my $msg_id = '';
-  	my $i      = 1;
+    my $conf   = Configuration($service);
+    my $msg_id = '';
+    my $i      = 1;
 
-  	return ($conf->{name} . ':' . sprintf("%03d", $i))
-  		if ((!defined $conf->{message}) || (!defined ARRAY($conf->{message}))
-    		|| (scalar ARRAY($conf->{message}) == 0));
-  
-	while ($i <= $MAX_NB_MSGS_IN_SERVICE)
-  	{
-    	$msg_id = $conf->{name} . ':' . sprintf("%03d", $i);
-    	if (none { $_->{msg_id} =~ /^$msg_id$/i } ARRAY($conf->{message}))
-    	{
-      		return ($msg_id);
-    	}
-    	$i++;
-  	}
+    return ($conf->{name} . ':' . sprintf("%03d", $i))
+        if ((!defined $conf->{message})
+        || (!defined ARRAY($conf->{message}))
+        || (scalar ARRAY($conf->{message}) == 0));
 
-  	return (undef);
+    while ($i <= $MAX_NB_MSGS_IN_SERVICE)
+    {
+        $msg_id = $conf->{name} . ':' . sprintf("%03d", $i);
+        if (none { $_->{msg_id} =~ /^$msg_id$/i } ARRAY($conf->{message}))
+        {
+            return ($msg_id);
+        }
+        $i++;
+    }
+
+    return (undef);
 }
 
 =head2 Msg_ID_unique($service, $msgid)
@@ -265,17 +267,17 @@ Checks if $msgid is valid, has no space & unique for Service $service
 
 sub Msg_ID_unique
 {
-  	my ($service, $msgid) = @_;
+    my ($service, $msgid) = @_;
 
-  	return (0) if (($msgid eq "$service:") || ($msgid =~ /\s+/));
-  	my $qr_msgid = qr/^$msgid$/;
-  	my $conf     = Configuration($service);
-  	if (any { $_->{msg_id} =~ $qr_msgid } ARRAY($conf->{message}))
-  	{
-		return (0);
-  	}
+    return (0) if (($msgid eq "$service:") || ($msgid =~ /\s+/));
+    my $qr_msgid = qr/^$msgid$/;
+    my $conf     = Configuration($service);
+    if (any { $_->{msg_id} =~ $qr_msgid } ARRAY($conf->{message}))
+    {
+        return (0);
+    }
 
-  	return (1);
+    return (1);
 }
 
 =head2 Add_Message($service, $mconf)
@@ -286,57 +288,57 @@ Adds Message '$mconf' to Service '$service'
 
 sub Add_Message
 {
-  my ($service, $mconf) = @_;
-  my $conf = Configuration($service);
-  $conf->{version} = Octopussy::Timestamp_Version($conf);
-  my $rank = (
-    NOT_NULL($conf->{message})
-    ? scalar(@{$conf->{message}}) + 1
-    : 1
-  );
-  $mconf->{rank} = sprintf("%03d", $rank);
-  my @errors = ();
+    my ($service, $mconf) = @_;
+    my $conf = Configuration($service);
+    $conf->{version} = Octopussy::Timestamp_Version($conf);
+    my $rank = (
+        NOT_NULL($conf->{message})
+        ? scalar(@{$conf->{message}}) + 1
+        : 1
+    );
+    $mconf->{rank} = sprintf("%03d", $rank);
+    my @errors = ();
 
-  if (!Msg_ID_unique($service, $mconf->{msg_id}))
-  {
-    push @errors, '_MSG_MSGID_ALREADY_EXIST';
-  }
-  push @errors,
-    Octopussy::Table::Valid_Pattern($mconf->{table}, $mconf->{pattern});
+    if (!Msg_ID_unique($service, $mconf->{msg_id}))
+    {
+        push @errors, '_MSG_MSGID_ALREADY_EXIST';
+    }
+    push @errors,
+        Octopussy::Table::Valid_Pattern($mconf->{table}, $mconf->{pattern});
 
-  if (!scalar @errors)
-  {
-    $mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
-    $mconf->{pattern} =~ s/\r\n//g;
-    $mconf->{pattern} =~ s/\s+$//g;
-    push @{$conf->{message}}, $mconf;
-    AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
-    Parse_Restart($service);
-  }
+    if (!scalar @errors)
+    {
+        $mconf->{pattern} = Encode::decode_utf8($mconf->{pattern});
+        $mconf->{pattern} =~ s/\r\n//g;
+        $mconf->{pattern} =~ s/\s+$//g;
+        push @{$conf->{message}}, $mconf;
+        AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
+        Parse_Restart($service);
+    }
 
-  return (@errors);
+    return (@errors);
 }
 
 sub Copy_Message
 {
-	my ($src, $dst) = @_;
+    my ($src, $dst) = @_;
 
-	my ($serv_src, $msgid_src) = $src =~ /^(.+):(.+)$/;
-	my ($serv_dst, $msgid_dst) = $dst =~ /^(.+):(.+)$/;
-	my @errors = ();
+    my ($serv_src, $msgid_src) = $src =~ /^(.+):(.+)$/;
+    my ($serv_dst, $msgid_dst) = $dst =~ /^(.+):(.+)$/;
+    my @errors = ();
 
-	my $conf = Configuration($serv_src);
-	foreach my $m (ARRAY($conf->{message}))
+    my $conf = Configuration($serv_src);
+    foreach my $m (ARRAY($conf->{message}))
     {
-    	if ($m->{msg_id} eq "$serv_src:$msgid_src")
-		{
-			my %new_msg = %{$m};
-			$new_msg{msg_id} = "$serv_dst:$msgid_dst";
-			my @errors = Add_Message($serv_dst, \%new_msg);
-		}
+        if ($m->{msg_id} eq "$serv_src:$msgid_src")
+        {
+            my %new_msg = %{$m};
+            $new_msg{msg_id} = "$serv_dst:$msgid_dst";
+            my @errors = Add_Message($serv_dst, \%new_msg);
+        }
     }
 
-	return (scalar @errors);
+    return (scalar @errors);
 }
 
 =head2 Remove_Message($service, $msgid)
@@ -347,31 +349,31 @@ Removes Message with id '$msgid' from Service '$service'
 
 sub Remove_Message
 {
-  my ($service, $msgid) = @_;
+    my ($service, $msgid) = @_;
 
-  my @messages = ();
-  my $rank     = undef;
-  my $conf     = Configuration($service);
-  $conf->{version} = Octopussy::Timestamp_Version($conf);
-  foreach my $m (ARRAY($conf->{message}))
-  {
-    if ($m->{msg_id} ne $msgid) { push @messages, $m; }
-    else                        { $rank = $m->{rank}; }
-  }
-  foreach my $m (@messages)
-  {
-    if ($m->{rank} > $rank)
+    my @messages = ();
+    my $rank     = undef;
+    my $conf     = Configuration($service);
+    $conf->{version} = Octopussy::Timestamp_Version($conf);
+    foreach my $m (ARRAY($conf->{message}))
     {
-      $m->{rank} -= 1;
-      $m->{rank} = sprintf("%03d", $m->{rank});
+        if ($m->{msg_id} ne $msgid) { push @messages, $m; }
+        else                        { $rank = $m->{rank}; }
     }
-  }
+    foreach my $m (@messages)
+    {
+        if ($m->{rank} > $rank)
+        {
+            $m->{rank} -= 1;
+            $m->{rank} = sprintf("%03d", $m->{rank});
+        }
+    }
 
-  $conf->{message} = \@messages;
-  AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
-  Parse_Restart($service);
+    $conf->{message} = \@messages;
+    AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
+    Parse_Restart($service);
 
-  return (scalar @messages);
+    return (scalar @messages);
 }
 
 =head2 Modify_Message($service, $msgid, $conf_modified)
@@ -382,35 +384,35 @@ Modifies Message with id '$msgid' from Service '$service'
 
 sub Modify_Message
 {
-  my ($service, $msgid, $conf_modified) = @_;
-  $conf_modified->{pattern} = Encode::decode_utf8($conf_modified->{pattern});
-  $conf_modified->{pattern} =~ s/\r\n//g;
-  $conf_modified->{pattern} =~ s/\s+$//g;
+    my ($service, $msgid, $conf_modified) = @_;
+    $conf_modified->{pattern} = Encode::decode_utf8($conf_modified->{pattern});
+    $conf_modified->{pattern} =~ s/\r\n//g;
+    $conf_modified->{pattern} =~ s/\s+$//g;
 
-  my @errors = ();
-  if ( ($conf_modified->{msg_id} ne $msgid)
-    && (!Msg_ID_unique($service, $conf_modified->{msg_id})))
-  {
-    push @errors, '_MSG_MSGID_ALREADY_EXIST';
-  }
-  push @errors,
-    Octopussy::Table::Valid_Pattern($conf_modified->{table},
-    $conf_modified->{pattern});
-  return (@errors) if (scalar @errors);
+    my @errors = ();
+    if (   ($conf_modified->{msg_id} ne $msgid)
+        && (!Msg_ID_unique($service, $conf_modified->{msg_id})))
+    {
+        push @errors, '_MSG_MSGID_ALREADY_EXIST';
+    }
+    push @errors,
+        Octopussy::Table::Valid_Pattern($conf_modified->{table},
+        $conf_modified->{pattern});
+    return (@errors) if (scalar @errors);
 
-  my $conf = Configuration($service);
-  $conf->{version} = Octopussy::Timestamp_Version($conf);
-  my @messages = ();
-  foreach my $m (ARRAY($conf->{message}))
-  {
-    if   ($m->{msg_id} ne $msgid) { push @messages, $m; }
-    else                          { push @messages, $conf_modified; }
-  }
-  $conf->{message} = \@messages;
-  AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
-  Parse_Restart($service);
+    my $conf = Configuration($service);
+    $conf->{version} = Octopussy::Timestamp_Version($conf);
+    my @messages = ();
+    foreach my $m (ARRAY($conf->{message}))
+    {
+        if   ($m->{msg_id} ne $msgid) { push @messages, $m; }
+        else                          { push @messages, $conf_modified; }
+    }
+    $conf->{message} = \@messages;
+    AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
+    Parse_Restart($service);
 
-  return (@errors);
+    return (@errors);
 }
 
 =head2 Move_Message($service, $msgid, $direction)
@@ -421,60 +423,61 @@ Moves Message '$msgid' up/down ('$direction') inside Service '$service'
 
 sub Move_Message
 {
-  my ($service, $msgid, $direction) = @_;
-  my ($rank, $old_rank) = (undef, undef);
-  my $conf = Configuration($service);
-  $conf->{version} = Octopussy::Timestamp_Version($conf);
-  my @messages = ();
-  my $max = (defined $conf->{message} ? scalar(@{$conf->{message}}) : 0);
-  $max = sprintf("%03d", $max);
-  foreach my $m (ARRAY($conf->{message}))
-  {
-
-    if ($m->{msg_id} eq $msgid)
+    my ($service, $msgid, $direction) = @_;
+    my ($rank, $old_rank) = (undef, undef);
+    my $conf = Configuration($service);
+    $conf->{version} = Octopussy::Timestamp_Version($conf);
+    my @messages = ();
+    my $max = (defined $conf->{message} ? scalar(@{$conf->{message}}) : 0);
+    $max = sprintf("%03d", $max);
+    foreach my $m (ARRAY($conf->{message}))
     {
-      return () if (($m->{rank} eq '001') && ($direction eq 'up'));
-      return () if (($m->{rank} eq $max)  && ($direction eq 'down'));
-      $old_rank = $m->{rank};
-      $m->{rank} = (
-        $direction eq 'top' ? 1
-        : (
-          $direction eq 'up' ? $m->{rank} - 1
-          : ($direction eq 'down' ? $m->{rank} + 1 : $max)
-        )
-      );
-      $m->{rank} = sprintf("%03d", $m->{rank});
-      $rank = $m->{rank};
-    }
-    push @messages, $m;
-  }
-  $conf->{message} = \@messages;
-  my @messages2 = ();
-  foreach my $m (ARRAY($conf->{message}))
-  {
-    if ($m->{msg_id} ne $msgid)
-    {
-      if (($direction eq 'top') && ($m->{rank} < $old_rank))
-      {
-        $m->{rank} += 1;
-      }
-      elsif (($direction eq 'bottom') && ($m->{rank} > $old_rank))
-      {
-        $m->{rank} -= 1;
-      }
-      elsif ($m->{rank} eq $rank)
-      {
-        $m->{rank} = ($direction eq 'up' ? $m->{rank} + 1 : $m->{rank} - 1);
-      }
-    }
-    $m->{rank} = sprintf("%03d", $m->{rank});
-    push @messages2, $m;
-  }
-  $conf->{message} = \@messages2;
-  AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
-  Parse_Restart_Required($service);
 
-  return ($rank);
+        if ($m->{msg_id} eq $msgid)
+        {
+            return () if (($m->{rank} eq '001') && ($direction eq 'up'));
+            return () if (($m->{rank} eq $max)  && ($direction eq 'down'));
+            $old_rank = $m->{rank};
+            $m->{rank} = (
+                $direction eq 'top' ? 1
+                : (
+                    $direction eq 'up' ? $m->{rank} - 1
+                    : ($direction eq 'down' ? $m->{rank} + 1 : $max)
+                  )
+            );
+            $m->{rank} = sprintf("%03d", $m->{rank});
+            $rank = $m->{rank};
+        }
+        push @messages, $m;
+    }
+    $conf->{message} = \@messages;
+    my @messages2 = ();
+    foreach my $m (ARRAY($conf->{message}))
+    {
+        if ($m->{msg_id} ne $msgid)
+        {
+            if (($direction eq 'top') && ($m->{rank} < $old_rank))
+            {
+                $m->{rank} += 1;
+            }
+            elsif (($direction eq 'bottom') && ($m->{rank} > $old_rank))
+            {
+                $m->{rank} -= 1;
+            }
+            elsif ($m->{rank} eq $rank)
+            {
+                $m->{rank} =
+                    ($direction eq 'up' ? $m->{rank} + 1 : $m->{rank} - 1);
+            }
+        }
+        $m->{rank} = sprintf("%03d", $m->{rank});
+        push @messages2, $m;
+    }
+    $conf->{message} = \@messages2;
+    AAT::XML::Write(Filename($service), $conf, $XML_ROOT);
+    Parse_Restart_Required($service);
+
+    return ($rank);
 }
 
 =head2 Messages(@services)
@@ -485,28 +488,28 @@ Get messages from Service list '@services' sorted by 'rank'
 
 sub Messages
 {
-  my @services = @_;
-  my (@messages, @conf_messages) = ((), ());
+    my @services = @_;
+    my (@messages, @conf_messages) = ((), ());
 
-  foreach my $s (@services)
-  {
-    if ($s eq '-ANY-')
+    foreach my $s (@services)
     {
-      @services = Octopussy::Service::List();
-      last;
+        if ($s eq '-ANY-')
+        {
+            @services = Octopussy::Service::List();
+            last;
+        }
     }
-  }
-  foreach my $s (@services)
-  {
-    my $conf = Configuration($s);
-    push @conf_messages, ARRAY($conf->{message});
-  }
-  foreach my $m (sort { $a->{rank} cmp $b->{rank} } @conf_messages)
-  {
-    push @messages, $m;
-  }
+    foreach my $s (@services)
+    {
+        my $conf = Configuration($s);
+        push @conf_messages, ARRAY($conf->{message});
+    }
+    foreach my $m (sort { $a->{rank} cmp $b->{rank} } @conf_messages)
+    {
+        push @messages, $m;
+    }
 
-  return (@messages);
+    return (@messages);
 }
 
 =head2 Messages_Configurations($service, $sort)
@@ -517,22 +520,22 @@ Get the configuration for all messages from '$service' sorted by '$sort'
 
 sub Messages_Configurations
 {
-  my ($service, $sort) = @_;
-  my (@configurations, @sorted_configurations) = ((), ());
-  my @services = ();
-  push @services, (defined $service ? $service : List());
+    my ($service, $sort) = @_;
+    my (@configurations, @sorted_configurations) = ((), ());
+    my @services = ();
+    push @services, (defined $service ? $service : List());
 
-  foreach my $s (@services)
-  {
-    my @messages = Messages($s);
-    foreach my $conf (@messages) { push @configurations, $conf; }
-  }
-  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
-  {
-    push @sorted_configurations, $c;
-  }
+    foreach my $s (@services)
+    {
+        my @messages = Messages($s);
+        foreach my $conf (@messages) { push @configurations, $conf; }
+    }
+    foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
+    {
+        push @sorted_configurations, $c;
+    }
 
-  return (@sorted_configurations);
+    return (@sorted_configurations);
 }
 
 =head2 Messages_Statistics($service)
@@ -543,36 +546,37 @@ Returns Messages statistics for Service $service
 
 sub Messages_Statistics
 {
-  my $service      = shift;
-  my $cache_parser = Octopussy::Cache::Init('octo_parser');
+    my $service      = shift;
+    my $cache_parser = Octopussy::Cache::Init('octo_parser');
 
-  my (%percent, %stat) = ((), ());
-  my $timestamp = strftime("%Y%m%d%H%M", localtime);
-  my $limit     = int($timestamp) - Octopussy::Parameter('msgid_history');
-  my $total     = 0;
-  foreach my $k (sort $cache_parser->get_keys())
-  {
-    if (($k =~ /^parser_msgid_stats_(\d{12})_(\S+)$/) && ($1 >= $limit))
+    my (%percent, %stat) = ((), ());
+    my $timestamp = strftime("%Y%m%d%H%M", localtime);
+    my $limit     = int($timestamp) - Octopussy::Parameter('msgid_history');
+    my $total     = 0;
+    foreach my $k (sort $cache_parser->get_keys())
     {
-      my $stats = $cache_parser->get($k);
-      foreach my $s (@{$stats})
-      {
-        if (($s->{service} =~ /^$service$/) && ($s->{id} ne '_TOTAL_'))
+        if (($k =~ /^parser_msgid_stats_(\d{12})_(\S+)$/) && ($1 >= $limit))
         {
-          my $scount = $s->{count} || 0;
-          my $sid = $s->{service} . ':' . $s->{id};
-          $stat{$sid} = (defined $stat{$sid} ? $stat{$sid} + $scount : $scount);
-          $total += $scount;
+            my $stats = $cache_parser->get($k);
+            foreach my $s (@{$stats})
+            {
+                if (($s->{service} =~ /^$service$/) && ($s->{id} ne '_TOTAL_'))
+                {
+                    my $scount = $s->{count} || 0;
+                    my $sid = $s->{service} . ':' . $s->{id};
+                    $stat{$sid} =
+                        (defined $stat{$sid} ? $stat{$sid} + $scount : $scount);
+                    $total += $scount;
+                }
+            }
         }
-      }
     }
-  }
-  foreach my $k (keys %stat)
-  {
-    $percent{$k} = sprintf('%.1f', $stat{$k} / $total * 100) + 0;
-  }
+    foreach my $k (keys %stat)
+    {
+        $percent{$k} = sprintf('%.1f', $stat{$k} / $total * 100) + 0;
+    }
 
-  return (%percent);
+    return (%percent);
 }
 
 =head2
@@ -581,30 +585,30 @@ sub Messages_Statistics
 
 sub Sort_Messages_By_Statistics
 {
-  my $service = shift;
+    my $service = shift;
 
-  my %percent       = Messages_Statistics($service);
-  my $conf          = Configuration($service);
-  my @conf_messages = ARRAY($conf->{message});
-  my @messages      = ();
-  my %values        = map { $_ => 1 } values %percent;
-  foreach my $p (keys %values)
-  {
-    print "Percent $p\n";
-    foreach my $m (ARRAY($conf->{message}))
+    my %percent       = Messages_Statistics($service);
+    my $conf          = Configuration($service);
+    my @conf_messages = ARRAY($conf->{message});
+    my @messages      = ();
+    my %values        = map { $_ => 1 } values %percent;
+    foreach my $p (keys %values)
     {
-      my $mid = $m->{msg_id};
-      push @messages, $m
-        if (defined $percent{$mid} && ($percent{$mid} == $p));
+        print "Percent $p\n";
+        foreach my $m (ARRAY($conf->{message}))
+        {
+            my $mid = $m->{msg_id};
+            push @messages, $m
+                if (defined $percent{$mid} && ($percent{$mid} == $p));
+        }
     }
-  }
 
-  foreach my $m (@messages)
-  {
-    print ' -> ' . $m->{msg_id} . "\n";
-  }
+    foreach my $m (@messages)
+    {
+        print ' -> ' . $m->{msg_id} . "\n";
+    }
 
-  return (@messages);
+    return (@messages);
 }
 
 =head2 Tables($service)
@@ -615,15 +619,15 @@ Get tables from service '$service'
 
 sub Tables
 {
-  my $service  = shift;
-  my @messages = Messages($service);
-  my @tables   = ();
-  my %tmp;
+    my $service  = shift;
+    my @messages = Messages($service);
+    my @tables   = ();
+    my %tmp;
 
-  foreach my $m (@messages) { $tmp{$m->{table}} = 1; }
-  foreach my $k (sort keys %tmp) { push @tables, $k; }
+    foreach my $m (@messages) { $tmp{$m->{table}} = 1; }
+    foreach my $k (sort keys %tmp) { push @tables, $k; }
 
-  return (@tables);
+    return (@tables);
 }
 
 =head2 Parse_Restart($service)
@@ -634,19 +638,19 @@ Restart Device parsing for device with service '$service'
 
 sub Parse_Restart
 {
-  my $service = shift;
+    my $service = shift;
 
-  my @devices = Octopussy::Device::With_Service($service);
-  foreach my $d (@devices)
-  {
-    if (Octopussy::Device::Parse_Status($d))
+    my @devices = Octopussy::Device::With_Service($service);
+    foreach my $d (@devices)
     {
-      Octopussy::Device::Parse_Pause($d);
-      Octopussy::Device::Parse_Start($d);
+        if (Octopussy::Device::Parse_Status($d))
+        {
+            Octopussy::Device::Parse_Pause($d);
+            Octopussy::Device::Parse_Start($d);
+        }
     }
-  }
 
-  return (scalar @devices);
+    return (scalar @devices);
 }
 
 =head2 Parse_Restart_Required($service)
@@ -657,16 +661,16 @@ Set 'reload_required' for device with service '$service'
 
 sub Parse_Restart_Required
 {
-  my $service = shift;
+    my $service = shift;
 
-  my @devices = Octopussy::Device::With_Service($service);
-  foreach my $d (@devices)
-  {
-    Octopussy::Device::Reload_Required($d)
-      if (Octopussy::Device::Parse_Status($d));
-  }
+    my @devices = Octopussy::Device::With_Service($service);
+    foreach my $d (@devices)
+    {
+        Octopussy::Device::Reload_Required($d)
+            if (Octopussy::Device::Parse_Status($d));
+    }
 
-  return (scalar @devices);
+    return (scalar @devices);
 }
 
 =head2 Updates()
@@ -677,27 +681,27 @@ Gets Services Updates from Internet
 
 sub Updates
 {
-  my %update;
-  my $web         = Octopussy::Info::WebSite();
-  my $dir_running = Octopussy::FS::Directory('running');
-  my $file        = "$dir_running/_services.idx";
+    my %update;
+    my $web         = Octopussy::Info::WebSite();
+    my $dir_running = Octopussy::FS::Directory('running');
+    my $file        = "$dir_running/_services.idx";
 
-  AAT::Download::File('Octopussy', "$web/Download/Services/_services.idx",
-    $file);
-  if (defined open my $UPDATE, '<', $file)
-  {
-    while (<$UPDATE>) { $update{$1} = $2 if ($_ =~ /^(.+):(\d+)$/); }
-    close $UPDATE;
-  }
-  else
-  {
-    my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog::Message('Octopussy_Service', 'UNABLE_OPEN_FILE_IN', $file,
-      $sub);
-  }
-  unlink $file;
+    AAT::Download::File('Octopussy', "$web/Download/Services/_services.idx",
+        $file);
+    if (defined open my $UPDATE, '<', $file)
+    {
+        while (<$UPDATE>) { $update{$1} = $2 if ($_ =~ /^(.+):(\d+)$/); }
+        close $UPDATE;
+    }
+    else
+    {
+        my ($pack, $file_pack, $line, $sub) = caller 0;
+        AAT::Syslog::Message('Octopussy_Service', 'UNABLE_OPEN_FILE_IN', $file,
+            $sub);
+    }
+    unlink $file;
 
-  return (\%update);
+    return (\%update);
 }
 
 =head2 Updates_Installation(@services)
@@ -708,18 +712,18 @@ Installs Services Updates
 
 sub Updates_Installation
 {
-  my @services = @_;
-  my $web      = Octopussy::Info::WebSite();
-  $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
+    my @services = @_;
+    my $web      = Octopussy::Info::WebSite();
+    $dir_services ||= Octopussy::FS::Directory($DIR_SERVICE);
 
-  foreach my $s (@services)
-  {
-    AAT::Download::File('Octopussy', "$web/Download/Services/$s.xml",
-      "$dir_services/$s.xml");
-    Parse_Restart($s);
-  }
+    foreach my $s (@services)
+    {
+        AAT::Download::File('Octopussy', "$web/Download/Services/$s.xml",
+            "$dir_services/$s.xml");
+        Parse_Restart($s);
+    }
 
-  return (scalar @services);
+    return (scalar @services);
 }
 
 =head2 Update_Get_Messages($service)
@@ -730,15 +734,15 @@ Returns Service Updates Messages
 
 sub Update_Get_Messages
 {
-  my $service     = shift;
-  my $web         = Octopussy::Info::WebSite();
-  my $dir_running = Octopussy::FS::Directory('running');
+    my $service     = shift;
+    my $web         = Octopussy::Info::WebSite();
+    my $dir_running = Octopussy::FS::Directory('running');
 
-  AAT::Download::File('Octopussy', "$web/Download/Services/$service.xml",
-    "$dir_running$service.xml");
-  my $conf_new = AAT::XML::Read("$dir_running$service.xml");
+    AAT::Download::File('Octopussy', "$web/Download/Services/$service.xml",
+        "$dir_running$service.xml");
+    my $conf_new = AAT::XML::Read("$dir_running$service.xml");
 
-  return (ARRAY($conf_new->{message}));
+    return (ARRAY($conf_new->{message}));
 }
 
 =head2 Updates_Diff($service)
@@ -749,46 +753,46 @@ Returns Service Updates differences
 
 sub Updates_Diff
 {
-  my $service       = shift;
-  my $conf          = Configuration($service);
-  my @messages      = ();
-  my @serv_property = qw(rank taxonomy table loglevel pattern);
-  my @new_messages  = Update_Get_Messages($service);
-  foreach my $m (ARRAY($conf->{message}))
-  {
-    my @list  = ();
-    my $match = 0;
-    foreach my $m2 (@new_messages)
+    my $service       = shift;
+    my $conf          = Configuration($service);
+    my @messages      = ();
+    my @serv_property = qw(rank taxonomy table loglevel pattern);
+    my @new_messages  = Update_Get_Messages($service);
+    foreach my $m (ARRAY($conf->{message}))
     {
-      if ($m2->{msg_id} eq $m->{msg_id})
-      {
-        $match = 1;
-        foreach my $sp (@serv_property)
+        my @list  = ();
+        my $match = 0;
+        foreach my $m2 (@new_messages)
         {
-          if ($m2->{$sp} ne $m->{$sp})
-          {
-            $m->{$sp} = "$m->{$sp} --> $m2->{$sp}";
-            push @messages, $m;
-            last;
-          }
+            if ($m2->{msg_id} eq $m->{msg_id})
+            {
+                $match = 1;
+                foreach my $sp (@serv_property)
+                {
+                    if ($m2->{$sp} ne $m->{$sp})
+                    {
+                        $m->{$sp} = "$m->{$sp} --> $m2->{$sp}";
+                        push @messages, $m;
+                        last;
+                    }
+                }
+            }
+            else { push @list, $m2; }
         }
-      }
-      else { push @list, $m2; }
+        if (!$match)
+        {
+            $m->{status} = 'deleted';
+            push @messages, $m;
+        }
+        @new_messages = @list;
     }
-    if (!$match)
+    foreach my $m (@new_messages)
     {
-      $m->{status} = 'deleted';
-      push @messages, $m;
+        $m->{status} = 'added';
+        push @messages, $m;
     }
-    @new_messages = @list;
-  }
-  foreach my $m (@new_messages)
-  {
-    $m->{status} = 'added';
-    push @messages, $m;
-  }
 
-  return (@messages);
+    return (@messages);
 }
 
 =head2 Valid_Name($name)
@@ -801,16 +805,16 @@ sub Valid_Name
 {
     my $name = shift;
 
-	if (ref($name) eq 'ARRAY')
+    if (ref($name) eq 'ARRAY')
     {
         foreach my $n (@{$name})
         {
-            return (0)  if (! Valid_Name($n));
+            return (0) if (!Valid_Name($n));
         }
         return (1);
     }
 
-    return (1)  if ((NOT_NULL($name)) && ($name =~ /^[a-z][a-z0-9_-]*$/i));
+    return (1) if ((NOT_NULL($name)) && ($name =~ /^[a-z][a-z0-9_-]*$/i));
 
     return (0);
 }

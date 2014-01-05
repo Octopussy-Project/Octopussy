@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::Search_Template - Octopussy Search Template module
@@ -40,13 +41,14 @@ $user - user who create this template
 
 sub New
 {
-  my ($user, $conf) = @_;
+    my ($user, $conf) = @_;
 
-  $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-  Octopussy::FS::Create_Directory("$dir_search_tpl/$user");
-  AAT::XML::Write("$dir_search_tpl/$user/$conf->{name}.xml", $conf, $XML_ROOT);
+    $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
+    Octopussy::FS::Create_Directory("$dir_search_tpl/$user");
+    AAT::XML::Write("$dir_search_tpl/$user/$conf->{name}.xml", $conf,
+        $XML_ROOT);
 
-  return ($conf->{name});
+    return ($conf->{name});
 }
 
 =head2 Remove($user, $search_tpl)
@@ -62,12 +64,12 @@ $search_tpl - Name of the Search Template to remove
 
 sub Remove
 {
-  my ($user, $search_tpl) = @_;
+    my ($user, $search_tpl) = @_;
 
-  my $nb = unlink Filename($user, $search_tpl);
-  $filename{$user}{$search_tpl} = undef;
+    my $nb = unlink Filename($user, $search_tpl);
+    $filename{$user}{$search_tpl} = undef;
 
-  return ($nb);
+    return ($nb);
 }
 
 =head2 List($user)
@@ -86,18 +88,19 @@ Returns:
 
 sub List
 {
-  my $user = shift;
+    my $user = shift;
 
-  $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-  my @files = AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
-  my @tpls = ();
-  foreach my $f (@files)
-  {
-    my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
-    push @tpls, $conf->{name} if (defined $conf->{name});
-  }
+    $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
+    my @files =
+        AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
+    my @tpls = ();
+    foreach my $f (@files)
+    {
+        my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
+        push @tpls, $conf->{name} if (defined $conf->{name});
+    }
 
-  return (sort @tpls);
+    return (sort @tpls);
 }
 
 =head2 List_Any_User($sort)
@@ -116,27 +119,28 @@ Returns:
 
 sub List_Any_User
 {
-  my $sort = shift || 'name';
-  my (@list, @sorted_list) = ((), ());
+    my $sort = shift || 'name';
+    my (@list, @sorted_list) = ((), ());
 
-  $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-  my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
-  foreach my $d (@dirs)
-  {
-    my @files = AAT::FS::Directory_Files("$dir_search_tpl/$d/", qr/.+\.xml$/);
-    foreach my $f (@files)
+    $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
+    my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
+    foreach my $d (@dirs)
     {
-      my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
-      push @list, {name => $conf->{name}, user => $d}
-        if (defined $conf->{name});
+        my @files =
+            AAT::FS::Directory_Files("$dir_search_tpl/$d/", qr/.+\.xml$/);
+        foreach my $f (@files)
+        {
+            my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
+            push @list, {name => $conf->{name}, user => $d}
+                if (defined $conf->{name});
+        }
     }
-  }
-  foreach my $i (sort { $a->{$sort} cmp $b->{$sort} } @list)
-  {
-    push @sorted_list, $i;
-  }
+    foreach my $i (sort { $a->{$sort} cmp $b->{$sort} } @list)
+    {
+        push @sorted_list, $i;
+    }
 
-  return (@sorted_list);
+    return (@sorted_list);
 }
 
 =head2 Filename($user, $search_tpl)
@@ -156,27 +160,27 @@ $filename - Filename of the XML file for Search Template '$search_tpl'
 
 sub Filename
 {
-  my ($user, $search_tpl) = @_;
+    my ($user, $search_tpl) = @_;
 
-  return ($filename{$user}{$search_tpl})
-    if (defined $filename{$user}{$search_tpl});
-  if (NOT_NULL($search_tpl))
-  {
-    $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-    my @files =
-      AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
-    foreach my $f (@files)
+    return ($filename{$user}{$search_tpl})
+        if (defined $filename{$user}{$search_tpl});
+    if (NOT_NULL($search_tpl))
     {
-      my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
-      if ((defined $conf) && ($conf->{name} =~ /^$search_tpl$/))
-      {
-        $filename{$user}{$search_tpl} = "$dir_search_tpl/$user/$f";
-        return ("$dir_search_tpl/$user/$f");
-      }
+        $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
+        my @files =
+            AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
+        foreach my $f (@files)
+        {
+            my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
+            if ((defined $conf) && ($conf->{name} =~ /^$search_tpl$/))
+            {
+                $filename{$user}{$search_tpl} = "$dir_search_tpl/$user/$f";
+                return ("$dir_search_tpl/$user/$f");
+            }
+        }
     }
-  }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 Configuration($user, $search_tpl)
@@ -196,9 +200,9 @@ Returns:
 
 sub Configuration
 {
-  my ($user, $search_tpl) = @_;
+    my ($user, $search_tpl) = @_;
 
-  return (AAT::XML::Read(Filename($user, $search_tpl)));
+    return (AAT::XML::Read(Filename($user, $search_tpl)));
 }
 
 =head2 Configurations($user, $sort)
@@ -218,24 +222,24 @@ Returns:
 
 sub Configurations
 {
-  my ($user, $sort) = @_;
-  my (@configurations, @sorted_configurations) = ((), ());
-  my @tpls = List($user);
+    my ($user, $sort) = @_;
+    my (@configurations, @sorted_configurations) = ((), ());
+    my @tpls = List($user);
 
-  foreach my $t (@tpls)
-  {
-    my $conf = Configuration($user, $t);
-    if (defined $conf->{name})
+    foreach my $t (@tpls)
     {
-      push @configurations, $conf;
+        my $conf = Configuration($user, $t);
+        if (defined $conf->{name})
+        {
+            push @configurations, $conf;
+        }
     }
-  }
-  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
-  {
-    push @sorted_configurations, $c;
-  }
+    foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
+    {
+        push @sorted_configurations, $c;
+    }
 
-  return (@sorted_configurations);
+    return (@sorted_configurations);
 }
 
 =head2 Valid_Name($name)
@@ -248,7 +252,7 @@ sub Valid_Name
 {
     my $name = shift;
 
-    return (1)  if ((NOT_NULL($name)) && ($name =~ /^[a-z0-9][a-z0-9_-]*$/i));
+    return (1) if ((NOT_NULL($name)) && ($name =~ /^[a-z0-9][a-z0-9_-]*$/i));
 
     return (0);
 }

@@ -1,0 +1,15 @@
+-i=4    # 4 columns indentation
+-ci=4   # 4 columns continuation identation
+-bl     # opening brace on new line ('{' & '}' aligned)
+
+-cti=1  # closing token indentation 
+		# (1 = extra indentation such that the closing token aligns with its opening token)
+
+-pt=2   # parentheses tightness
+		# (2 = no space) 
+
+-bt=2   # curly braces tightness
+		# (2 = no space)
+
+-sbt=2  # block braces tightness
+		# (2 = no space)

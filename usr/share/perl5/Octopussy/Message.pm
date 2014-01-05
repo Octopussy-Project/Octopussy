@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::Message - Octopussy Message module
@@ -34,18 +35,18 @@ Get message '$msg_id' from service '$service' configuration
 
 sub Configuration
 {
-  my ($service, $msg_id) = @_;
+    my ($service, $msg_id) = @_;
 
-  foreach my $s (ARRAY($service))
-  {
-    my $conf = Octopussy::Service::Configuration($s);
-    foreach my $m (ARRAY($conf->{message}))
+    foreach my $s (ARRAY($service))
     {
-      return ($m) if ($m->{msg_id} eq $msg_id);
+        my $conf = Octopussy::Service::Configuration($s);
+        foreach my $m (ARRAY($conf->{message}))
+        {
+            return ($m) if ($m->{msg_id} eq $msg_id);
+        }
     }
-  }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 List($ref_serv, $loglevel, $taxonomy)
@@ -54,34 +55,34 @@ sub Configuration
 
 sub List
 {
-  my ($ref_serv, $loglevel, $taxonomy) = @_;
-  my %log_level = Octopussy::Loglevel::Levels();
-  my $level     = (
-    (NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
-    ? $log_level{$loglevel}
-    : 0
-  );
-  my $qr_taxo = (
-    (NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
-    ? qr/^$taxonomy(\..+)?/
-    : qr/.+/
-  );
-  my @list = ();
+    my ($ref_serv, $loglevel, $taxonomy) = @_;
+    my %log_level = Octopussy::Loglevel::Levels();
+    my $level     = (
+        (NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
+        ? $log_level{$loglevel}
+        : 0
+    );
+    my $qr_taxo = (
+        (NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
+        ? qr/^$taxonomy(\..+)?/
+        : qr/.+/
+    );
+    my @list = ();
 
-  foreach my $serv (ARRAY($ref_serv))
-  {
-    my $conf = Octopussy::Service::Configuration($serv);
-    foreach my $m (ARRAY($conf->{message}))
+    foreach my $serv (ARRAY($ref_serv))
     {
-      if ( ($log_level{$m->{loglevel}} >= $level)
-        && ($m->{taxonomy} =~ $qr_taxo))
-      {
-        push @list, $m->{msg_id};
-      }
+        my $conf = Octopussy::Service::Configuration($serv);
+        foreach my $m (ARRAY($conf->{message}))
+        {
+            if (   ($log_level{$m->{loglevel}} >= $level)
+                && ($m->{taxonomy} =~ $qr_taxo))
+            {
+                push @list, $m->{msg_id};
+            }
+        }
     }
-  }
 
-  return (@list);
+    return (@list);
 }
 
 =head2 Fields($service, $msg_id)
@@ -92,22 +93,22 @@ Returns Message Fields from Message '$msg_id' in Service '$service'
 
 sub Fields
 {
-  my ($service, $msg_id) = @_;
-  my @fields = ();
-  my $conf   = Octopussy::Service::Configuration($service);
-  my $msg    = undef;
-  foreach my $m (ARRAY($conf->{message}))
-  {
-    $msg = $m if ($m->{msg_id} eq "$msg_id");
-  }
-  my $pattern = $msg->{pattern};
-  while (($pattern =~ s/<\@(REGEXP\(".+?"\)):(\S+?)\@>//)
-    || ($pattern =~ s/<\@(.+?):(\S+?)\@>//))
-  {
-    push @fields, {name => $2, type => $1} if ($2 !~ /NULL/i);
-  }
+    my ($service, $msg_id) = @_;
+    my @fields = ();
+    my $conf   = Octopussy::Service::Configuration($service);
+    my $msg    = undef;
+    foreach my $m (ARRAY($conf->{message}))
+    {
+        $msg = $m if ($m->{msg_id} eq "$msg_id");
+    }
+    my $pattern = $msg->{pattern};
+    while (($pattern =~ s/<\@(REGEXP\(".+?"\)):(\S+?)\@>//)
+        || ($pattern =~ s/<\@(.+?):(\S+?)\@>//))
+    {
+        push @fields, {name => $2, type => $1} if ($2 !~ /NULL/i);
+    }
 
-  return (@fields);
+    return (@fields);
 }
 
 =head2 Table($service, $msg_id)
@@ -118,16 +119,16 @@ Get table associated with message '$msg_id' in service '$service'
 
 sub Table
 {
-  my ($service, $msg_id) = @_;
+    my ($service, $msg_id) = @_;
 
-  my $conf = Octopussy::Service::Configuration($service);
+    my $conf = Octopussy::Service::Configuration($service);
 
-  foreach my $m (ARRAY($conf->{message}))
-  {
-    return ($m->{table}) if ($m->{msg_id} eq "$msg_id");
-  }
+    foreach my $m (ARRAY($conf->{message}))
+    {
+        return ($m->{table}) if ($m->{msg_id} eq "$msg_id");
+    }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 Pattern_To_SQL($msg, $id, @fields)
@@ -138,40 +139,40 @@ Convert message pattern from message '$msg' into SQL with fields '@fields'
 
 sub Pattern_To_SQL
 {
-  my ($msg, $id, @fields) = @_;
+    my ($msg, $id, @fields) = @_;
 
-  my $sql     = 'INSERT INTO ' . $msg->{table} . "_$id (";
-  my $i       = 0;
-  my $pattern = $msg->{pattern};
-  while ($pattern =~ s/<\@.+?:(\S+)\@>//)
-  {
-    my $pattern_field = $1;
-    if ($pattern_field !~ /NULL/i)
+    my $sql     = 'INSERT INTO ' . $msg->{table} . "_$id (";
+    my $i       = 0;
+    my $pattern = $msg->{pattern};
+    while ($pattern =~ s/<\@.+?:(\S+)\@>//)
     {
-      if (scalar(@fields) == 0)
-      {
-        $sql .= "$1, ";
-        $i++;
-      }
-      else
-      {
-        foreach my $f (@fields)
+        my $pattern_field = $1;
+        if ($pattern_field !~ /NULL/i)
         {
-          if ($pattern_field =~ /^$f$/i)
-          {
-            $sql .= "$f, ";
-            $i++;
-            last;
-          }
+            if (scalar(@fields) == 0)
+            {
+                $sql .= "$1, ";
+                $i++;
+            }
+            else
+            {
+                foreach my $f (@fields)
+                {
+                    if ($pattern_field =~ /^$f$/i)
+                    {
+                        $sql .= "$f, ";
+                        $i++;
+                        last;
+                    }
+                }
+            }
         }
-      }
     }
-  }
-  $sql =~ s/, $/\)/;
-  $sql .= ' VALUES (' . (q('\%s', ) x $i);
-  $sql =~ s/, $/\);/;
+    $sql =~ s/, $/\)/;
+    $sql .= ' VALUES (' . (q('\%s', ) x $i);
+    $sql =~ s/, $/\);/;
 
-  return ($sql);
+    return ($sql);
 }
 
 =head2 Escape_Characters($regexp)
@@ -182,19 +183,19 @@ Escape (adding '\') characters from regexp '$regexp'
 
 sub Escape_Characters
 {
-  my $regexp = shift;
+    my $regexp = shift;
 
-  $regexp =~ s/\//\\\//gi;
-  $regexp =~ s/\\(\d+)/\\\\$1/gi;
-  $regexp =~ s/\^/\\^/gi;
-  $regexp =~ s/\$/\\\$/gi;
-  $regexp =~ s/\(/\\(/gi;
-  $regexp =~ s/\)/\\)/gi;
-  $regexp =~ s/\[/\\[/gi;
-  $regexp =~ s/\]/\\]/gi;
-  $regexp =~ s/\|/\\|/gi;
+    $regexp =~ s/\//\\\//gi;
+    $regexp =~ s/\\(\d+)/\\\\$1/gi;
+    $regexp =~ s/\^/\\^/gi;
+    $regexp =~ s/\$/\\\$/gi;
+    $regexp =~ s/\(/\\(/gi;
+    $regexp =~ s/\)/\\)/gi;
+    $regexp =~ s/\[/\\[/gi;
+    $regexp =~ s/\]/\\]/gi;
+    $regexp =~ s/\|/\\|/gi;
 
-  return ($regexp);
+    return ($regexp);
 }
 
 =head2 Escape_Message($msg)
@@ -205,18 +206,18 @@ Escape (adding '\') characters from message '$msg' without escaping <@REGEXP@>
 
 sub Escape_Message
 {
-  my $msg     = shift;
-  my $escaped = '';
+    my $msg     = shift;
+    my $escaped = '';
 
-  while ($msg =~ /^(.*?)(<\@REGEXP\(\".+?\"\):\S+?\@>)(.*)$/i)
-  {
-    my ($before, $re, $after) = ($1, $2, $3);
-    $escaped .= (Escape_Characters($before) . $re);
-    $msg = $after;
-  }
-  $escaped .= Escape_Characters($msg);
+    while ($msg =~ /^(.*?)(<\@REGEXP\(\".+?\"\):\S+?\@>)(.*)$/i)
+    {
+        my ($before, $re, $after) = ($1, $2, $3);
+        $escaped .= (Escape_Characters($before) . $re);
+        $msg = $after;
+    }
+    $escaped .= Escape_Characters($msg);
 
-  return ($escaped);
+    return ($escaped);
 }
 
 =head2 Color_Reserved_Word(\%color, $word, $str)
@@ -227,14 +228,14 @@ Colors pattern '$pattern'
 
 sub Color_Reserved_Word
 {
-  my ($color, $word, $str) = @_;
+    my ($color, $word, $str) = @_;
 
-  if (defined $color->{$word})
-  {
-    return (qq(<b><font color="$color->{$2}">$str</font></b>));
-  }
+    if (defined $color->{$word})
+    {
+        return (qq(<b><font color="$color->{$2}">$str</font></b>));
+    }
 
-  return ($str);
+    return ($str);
 }
 
 =head2 Color($pattern)
@@ -245,18 +246,18 @@ Colors pattern '$pattern'
 
 sub Color
 {
-  my $pattern = shift;
+    my $pattern = shift;
 
-  my %color = Octopussy::Type::Colors();
-  my $re    = $pattern;
-  
-	$re =~ s/<(\w)/&lt;$1/g;
-	$re =~ s/(\w)>/$1&gt;/g;
-  $re =~
+    my %color = Octopussy::Type::Colors();
+    my $re    = $pattern;
+
+    $re =~ s/<(\w)/&lt;$1/g;
+    $re =~ s/(\w)>/$1&gt;/g;
+    $re =~
 s/(<\@REGEXP\(".+?"\):\S+?\@>)/<b><font color="$color{REGEXP}">$1<\/font><\/b>/gi;
-  $re =~ s/(<\@(\w+?):\w+?\@>)/&Color_Reserved_Word(\%color, $2, $1)/egi;
+    $re =~ s/(<\@(\w+?):\w+?\@>)/&Color_Reserved_Word(\%color, $2, $1)/egi;
 
-  return ($re);
+    return ($re);
 }
 
 =head2 Color_Without_Field($pattern)
@@ -265,13 +266,13 @@ s/(<\@REGEXP\(".+?"\):\S+?\@>)/<b><font color="$color{REGEXP}">$1<\/font><\/b>/g
 
 sub Color_Without_Field
 {
-  my $pattern = shift;
+    my $pattern = shift;
 
-  my %color = Octopussy::Type::Colors();
-  my $re    = $pattern;
-  $re =~ s/(<\@([^\@]+?)\@>)/<b><font color="$color{$2}">$1<\/font><\/b>/gi;
+    my %color = Octopussy::Type::Colors();
+    my $re    = $pattern;
+    $re =~ s/(<\@([^\@]+?)\@>)/<b><font color="$color{$2}">$1<\/font><\/b>/gi;
 
-  return ($re);
+    return ($re);
 }
 
 =head2 Longest_Valid_Regexp
@@ -280,14 +281,15 @@ sub Color_Without_Field
 
 sub Longest_Valid_Regexp
 {
-  my $re = shift;
+    my $re = shift;
 
-  while ((!eval { use warnings FATAL => qw(regexp); qr/^$re/; }) && ($re ne ''))
-  {    # reduce regexp length until it becomes a valid regexp
-    $re = substr $re, 0, -1;
-  }
+    while ((!eval { use warnings FATAL => qw(regexp); qr/^$re/; })
+        && ($re ne ''))
+    {    # reduce regexp length until it becomes a valid regexp
+        $re = substr $re, 0, -1;
+    }
 
-  return ($re);
+    return ($re);
 }
 
 =head2 Minimal_Match($log, $re)
@@ -296,29 +298,29 @@ sub Longest_Valid_Regexp
 
 sub Minimal_Match
 {
-  my ($log, $re) = @_;
+    my ($log, $re) = @_;
 
-  $re = Longest_Valid_Regexp($re);
-  while (($log !~ qr/^$re/) && ($re ne ''))
-  {
-    $re = substr $re, 0, -1;
     $re = Longest_Valid_Regexp($re);
-  }
+    while (($log !~ qr/^$re/) && ($re ne ''))
+    {
+        $re = substr $re, 0, -1;
+        $re = Longest_Valid_Regexp($re);
+    }
 
-	#$re =~ s/<(\w)/&lt;$1/g;
+    #$re =~ s/<(\w)/&lt;$1/g;
     #$re =~ s/(\w)>/$1&gt;/g;
 
-  if ($re eq '')
-  {
-    return ('', $log);
-  }
-  elsif ($log =~ /^($re)/)
-  {
-    my $match = $1;
-    my $unmatch = substr $log, length $match;
+    if ($re eq '')
+    {
+        return ('', $log);
+    }
+    elsif ($log =~ /^($re)/)
+    {
+        my $match = $1;
+        my $unmatch = substr $log, length $match;
 
-    return ($match, $unmatch);
-  }
+        return ($match, $unmatch);
+    }
 }
 
 =head2 Reserved_Word_To_Regexp(\%re_types, $type, $field, $str)
@@ -329,17 +331,17 @@ Converts Reserved Word expression (<@$type:$field@>) into Regexp
 
 sub Reserved_Word_To_Regexp
 {
-  my ($re_types, $type, $field, $str) = @_;
+    my ($re_types, $type, $field, $str) = @_;
 
-  if (defined $re_types->{$type})
-  {
-    $str =
-      ($field =~ /NULL/i)
-      ? $re_types->{$type}
-      : '(' . $re_types->{$type} . ')';
-  }
+    if (defined $re_types->{$type})
+    {
+        $str =
+            ($field =~ /NULL/i)
+            ? $re_types->{$type}
+            : '(' . $re_types->{$type} . ')';
+    }
 
-  return ($str);
+    return ($str);
 }
 
 =head2 Pattern_To_Regexp($msg)
@@ -350,27 +352,27 @@ Converts message pattern from message '$msg' into Regexp
 
 sub Pattern_To_Regexp
 {
-  my $msg = shift;
+    my $msg = shift;
 
-  my %re_types = Octopussy::Type::Regexps();
-  my $regexp   = '';
-  my $tmp      = $msg->{pattern};
-  while ((NOT_NULL($tmp))
-    && ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i))
-  {
-    my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
-    my $subs = ($field =~ /NULL/i) ? $re_value : '(' . $re_value . ')';
-    $regexp .= (Escape_Characters($before) . $subs);
-    $tmp = $after;
-  }
-  $tmp = $regexp . (NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
-  $regexp = '';
-  $tmp =~
+    my %re_types = Octopussy::Type::Regexps();
+    my $regexp   = '';
+    my $tmp      = $msg->{pattern};
+    while ((NOT_NULL($tmp))
+        && ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i))
+    {
+        my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
+        my $subs = ($field =~ /NULL/i) ? $re_value : '(' . $re_value . ')';
+        $regexp .= (Escape_Characters($before) . $subs);
+        $tmp = $after;
+    }
+    $tmp = $regexp . (NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
+    $regexp = '';
+    $tmp =~
 s/(<\@([^\@]+?):(\S+?)\@>)/&Reserved_Word_To_Regexp(\%re_types, $2, $3, $1)/egi;
-  $regexp .= $tmp;
-  $regexp =~ s/\s+$//g;
+    $regexp .= $tmp;
+    $regexp =~ s/\s+$//g;
 
-  return ($regexp);
+    return ($regexp);
 }
 
 =head2 Pattern_To_Regexp_Without_Catching($msg)
@@ -382,30 +384,30 @@ Converts message pattern from message '$msg' into Regexp without catching
 
 sub Pattern_To_Regexp_Without_Catching
 {
-  my $msg = shift;
+    my $msg = shift;
 
-  my %re_types = Octopussy::Type::Regexps();
-  my $regexp   = '';
-  my $tmp      = $msg->{pattern};
-  while ((NOT_NULL($tmp))
-    && ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i))
-  {
-    my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
-    $regexp .= (Escape_Characters($before) . $re_value);
-    $tmp = $after;
-  }
-  $tmp = $regexp . (NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
-  $regexp = '';
-  while ($tmp =~ /^(.*?)<\@([^\@]+?):(\S+?)\@>(.*)$/i)
-  {
-    my ($before, $type, $field, $after) = ($1, $2, $3, $4);
-    $regexp .= $before . $re_types{$type};
-    $tmp = $after;
-  }
-  $regexp .= $tmp;
-  $regexp =~ s/\s+$//g;
+    my %re_types = Octopussy::Type::Regexps();
+    my $regexp   = '';
+    my $tmp      = $msg->{pattern};
+    while ((NOT_NULL($tmp))
+        && ($tmp =~ /^(.*?)<\@(REGEXP)\(\"(.+?)\"\):(\S+?)\@>(.*)$/i))
+    {
+        my ($before, $type, $re_value, $field, $after) = ($1, $2, $3, $4, $5);
+        $regexp .= (Escape_Characters($before) . $re_value);
+        $tmp = $after;
+    }
+    $tmp = $regexp . (NOT_NULL($tmp) ? Escape_Characters($tmp) : '');
+    $regexp = '';
+    while ($tmp =~ /^(.*?)<\@([^\@]+?):(\S+?)\@>(.*)$/i)
+    {
+        my ($before, $type, $field, $after) = ($1, $2, $3, $4);
+        $regexp .= $before . $re_types{$type};
+        $tmp = $after;
+    }
+    $regexp .= $tmp;
+    $regexp =~ s/\s+$//g;
 
-  return ($regexp);
+    return ($regexp);
 }
 
 =head2 Short_Pattern_To_Regexp($msg)
@@ -414,14 +416,14 @@ sub Pattern_To_Regexp_Without_Catching
 
 sub Short_Pattern_To_Regexp
 {
-  my $msg = shift;
+    my $msg = shift;
 
-  my %re_types = Octopussy::Type::Regexps();
-  my $regexp   = Escape_Characters($msg->{pattern});
-  $regexp =~ s/<\@([^\@]+?)\@>/\($re_types{$1}\)/gi;
-  $regexp =~ s/\s+$//g;
+    my %re_types = Octopussy::Type::Regexps();
+    my $regexp   = Escape_Characters($msg->{pattern});
+    $regexp =~ s/<\@([^\@]+?)\@>/\($re_types{$1}\)/gi;
+    $regexp =~ s/\s+$//g;
 
-  return ($regexp);
+    return ($regexp);
 }
 
 =head2 Pattern_Field_Substitution
@@ -430,45 +432,45 @@ sub Short_Pattern_To_Regexp
 
 sub Pattern_Field_Substitution
 {
-  my ($regexp, $f, $type, $field_regexp, $field_list, $re_types) = @_;
-  my %subs = (
-    'NUMBER' => {match => '<\@NUMBER:\S+?\@>', re => '[-+]?\\d+'},  ## no critic
-    'STRING' => {match => '<\@STRING:\S+?\@>', re => '.+'},         ## no critic
-    'WORD'   => {match => '<\@WORD:\S+?\@>',   re => '\\S+'},       ## no critic
-  );
-  my $long_f = $f;
-  $f =~ s/Plugin_\S+__//;
-  my $function = undef;
-  foreach my $fl (ARRAY($field_list))
-  {
-    if ( ($fl =~ /^(\S+::\S+)\($f\)$/)
-      && (Octopussy::Plugin::Function_Source($1) eq 'INPUT'))
-    {
-      my $perl_fct  = $1;
-      my $sql_field = Octopussy::Plugin::SQL_Convert($fl);
-      $function = $perl_fct if ($long_f =~ /^$sql_field$/);
-    }
-  }
-
-  if ($type =~ /^REGEXP/)
-  {
-    $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/\($1\)/i;
-  }
-  elsif (defined $subs{$type})
-  {
-    my $substitution = (
-      defined $field_regexp
-      ? $field_regexp->{$f} || $subs{$type}{re}
-      : $subs{$type}{re}
+    my ($regexp, $f, $type, $field_regexp, $field_list, $re_types) = @_;
+    my %subs = (
+        'NUMBER' => {match => '<\@NUMBER:\S+?\@>', re => '[-+]?\\d+'},
+        'STRING' => {match => '<\@STRING:\S+?\@>', re => '.+'},
+        'WORD'   => {match => '<\@WORD:\S+?\@>',   re => '\\S+'},   
     );
-    $regexp =~ s/$subs{$type}{match}/\($substitution\)/i;
-  }
-  else
-  {
-    $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/\($re_types->{$1}\)/i;
-  }
+    my $long_f = $f;
+    $f =~ s/Plugin_\S+__//;
+    my $function = undef;
+    foreach my $fl (ARRAY($field_list))
+    {
+        if (   ($fl =~ /^(\S+::\S+)\($f\)$/)
+            && (Octopussy::Plugin::Function_Source($1) eq 'INPUT'))
+        {
+            my $perl_fct  = $1;
+            my $sql_field = Octopussy::Plugin::SQL_Convert($fl);
+            $function = $perl_fct if ($long_f =~ /^$sql_field$/);
+        }
+    }
 
-  return ($regexp, $function);
+    if ($type =~ /^REGEXP/)
+    {
+        $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/\($1\)/i;
+    }
+    elsif (defined $subs{$type})
+    {
+        my $substitution = (
+            defined $field_regexp
+            ? $field_regexp->{$f} || $subs{$type}{re}
+            : $subs{$type}{re}
+        );
+        $regexp =~ s/$subs{$type}{match}/\($substitution\)/i;
+    }
+    else
+    {
+        $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/\($re_types->{$1}\)/i;
+    }
+
+    return ($regexp, $function);
 }
 
 =head2 Pattern_Field_Unmatched_Substitution($regexp, $type, $field_regexp, $re_types)
@@ -477,42 +479,44 @@ sub Pattern_Field_Substitution
 
 sub Pattern_Field_Unmatched_Substitution
 {
-  my ($regexp, $type, $field_regexp, $re_types) = @_;
+    my ($regexp, $type, $field_regexp, $re_types) = @_;
 
-  my %subs = (
-    'NUMBER' => {
-      match => qr/^(.*?)<\@NUMBER:(\S+?)\@>(.*)$/,
-      re    => '[-+]?\\d+'
-    },
-    'STRING' => {
-      match => qr/^(.*?)<\@STRING:(\S+?)\@>(.*)$/,
-      re    => '.+'
-    },
-    'WORD' => {
-      match => qr/^(.*?)<\@WORD:(\S+?)\@>(.*)$/,
-      re    => '\\S+'
-    },
-  );
+    my %subs = (
+        'NUMBER' => {
+            match => qr/^(.*?)<\@NUMBER:(\S+?)\@>(.*)$/,
+            re    => '[-+]?\\d+'
+        },
+        'STRING' => {
+            match => qr/^(.*?)<\@STRING:(\S+?)\@>(.*)$/,
+            re    => '.+'
+        },
+        'WORD' => {
+            match => qr/^(.*?)<\@WORD:(\S+?)\@>(.*)$/,
+            re    => '\\S+'
+        },
+    );
 
-  if ($type =~ /^REGEXP/) { $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i; }
-  elsif (defined $subs{$type})
-  {
-    if ($regexp =~ $subs{$type}{match})
-    {
-      $regexp = $1
-        . (
-        defined $field_regexp
-        ? $field_regexp->{$2} || $subs{$type}{re}
-        : $subs{$type}{re}
-        ) . $3;
+    if ($type =~ /^REGEXP/) {
+        $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i;
     }
-  }
-  else
-  {
-    $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/$re_types->{$1}/;
-  }
+    elsif (defined $subs{$type})
+    {
+        if ($regexp =~ $subs{$type}{match})
+        {
+            $regexp = $1
+                . (
+                defined $field_regexp
+                ? $field_regexp->{$2} || $subs{$type}{re}
+                : $subs{$type}{re}
+                ) . $3;
+        }
+    }
+    else
+    {
+        $regexp =~ s/<\@([^\@]+?):(\S+?)\@>/$re_types->{$1}/;
+    }
 
-  return ($regexp);
+    return ($regexp);
 }
 
 =head2 Pattern_To_Regexp_Fields($msg, $field_regexp, $ref_fields, $field_list)
@@ -521,51 +525,50 @@ sub Pattern_Field_Unmatched_Substitution
 
 sub Pattern_To_Regexp_Fields
 {
-  my ($msg, $field_regexp, $ref_fields, $field_list) = @_;
-  my (@fields_position, @fields_function) = ((), ());
-  my %re_types         = Octopussy::Type::Regexps();
-  my $regexp           = Escape_Message($msg->{pattern});
-  my $function         = undef;
-  my $pos              = 0;
-  my %plugin_field_pos = ();
+    my ($msg, $field_regexp, $ref_fields, $field_list) = @_;
+    my (@fields_position, @fields_function) = ((), ());
+    my %re_types         = Octopussy::Type::Regexps();
+    my $regexp           = Escape_Message($msg->{pattern});
+    my $function         = undef;
+    my $pos              = 0;
+    my %plugin_field_pos = ();
 
-  while ($regexp =~ /<\@(.+?):([^:\s]+?)\@>/i)
-  {
-    my ($type, $pattern_field) = ($1, $2);
-    my $matched = 0;
-    my $i       = 0;
-    foreach my $f (ARRAY($ref_fields))
+    while ($regexp =~ /<\@(.+?):([^:\s]+?)\@>/i)
     {
-      if ( ($pattern_field =~ /^$f$/)
-        || ($f =~ /^Plugin_\S+__$pattern_field$/))
-      {
-        ($regexp, $function) =
-          Pattern_Field_Substitution($regexp, $f, $type, $field_regexp,
-          $field_list, \%re_types);
-        $matched = 1;
-        $fields_position[$i] = {
-          pos => (
-            defined $plugin_field_pos{$pattern_field}
-            ? $plugin_field_pos{$pattern_field}
-            : $pos
-          ),
-          function => $function
-        };
-        $plugin_field_pos{$pattern_field} = $pos;
-        $pos++;
-      }
-      $i++;
+        my ($type, $pattern_field) = ($1, $2);
+        my $matched = 0;
+        my $i       = 0;
+        foreach my $f (ARRAY($ref_fields))
+        {
+            if (   ($pattern_field =~ /^$f$/)
+                || ($f =~ /^Plugin_\S+__$pattern_field$/))
+            {
+                ($regexp, $function) =
+                    Pattern_Field_Substitution($regexp, $f, $type,
+                    $field_regexp, $field_list, \%re_types);
+                $matched = 1;
+                $fields_position[$i] = {
+                    pos => (
+                        defined $plugin_field_pos{$pattern_field}
+                        ? $plugin_field_pos{$pattern_field}
+                        : $pos
+                    ),
+                    function => $function
+                };
+                $plugin_field_pos{$pattern_field} = $pos;
+                $pos++;
+            }
+            $i++;
+        }
+        if (!$matched)
+        {
+            $regexp = Pattern_Field_Unmatched_Substitution($regexp, $type,
+                $field_regexp, \%re_types);
+        }
     }
-    if (!$matched)
-    {
-      $regexp =
-        Pattern_Field_Unmatched_Substitution($regexp, $type, $field_regexp,
-        \%re_types);
-    }
-  }
-  $regexp =~ s/\s+$//g;
+    $regexp =~ s/\s+$//g;
 
-  return ($regexp, \@fields_position);
+    return ($regexp, \@fields_position);
 }
 
 =head2 Fields_Values($msg, $line)
@@ -574,23 +577,23 @@ sub Pattern_To_Regexp_Fields
 
 sub Fields_Values
 {
-  	my ($msg, $line) = @_;
+    my ($msg, $line) = @_;
 
-	return ()	if ((!defined $msg) || (!defined $line));	
-  	my @fields  = ();
-  	my %field   = ();
-  	my $pattern = $msg->{pattern};
+    return () if ((!defined $msg) || (!defined $line));
+    my @fields  = ();
+    my %field   = ();
+    my $pattern = $msg->{pattern};
 
-  	while ($pattern =~ /<\@.+?:(\S+?)\@>/)
-  	{
-    	push @fields, $1 if ($1 !~ /NULL/i);
-    	$pattern =~ s/.*?(<\@([^\@]+?)\@>)//;
-  	}
-  	my @data = $line =~ /$msg->{re}/;
-  	my $last_data = scalar(@data) - 1;
-  	foreach my $i (0 .. $last_data) { $field{$fields[$i]} = $data[$i]; }
+    while ($pattern =~ /<\@.+?:(\S+?)\@>/)
+    {
+        push @fields, $1 if ($1 !~ /NULL/i);
+        $pattern =~ s/.*?(<\@([^\@]+?)\@>)//;
+    }
+    my @data = $line =~ /$msg->{re}/;
+    my $last_data = scalar(@data) - 1;
+    foreach my $i (0 .. $last_data) { $field{$fields[$i]} = $data[$i]; }
 
-  	return (%field);
+    return (%field);
 }
 
 =head2 Regexped_Fields($query)
@@ -599,34 +602,34 @@ sub Fields_Values
 
 sub Regexped_Fields
 {
-  my $query        = shift;
-  my %field_regexp = ();
-  if ($query =~ /WHERE (.+)/)
-  {
-    my $where = $1;
-    return (undef)
-      if (($where =~ /.+ AND .+/i) || ($where =~ /.+ OR .+/i));
-    while ($where =~ /(.*?)(\w+) LIKE '(.+?)'(.*)/i)
+    my $query        = shift;
+    my %field_regexp = ();
+    if ($query =~ /WHERE (.+)/)
     {
-      $where = "$1 $4";
-      my $field = $2;
-      my $like  = $3;
-      $like =~ s/%/.*/g;
-      $field_regexp{$field} = $like;
+        my $where = $1;
+        return (undef)
+            if (($where =~ /.+ AND .+/i) || ($where =~ /.+ OR .+/i));
+        while ($where =~ /(.*?)(\w+) LIKE '(.+?)'(.*)/i)
+        {
+            $where = "$1 $4";
+            my $field = $2;
+            my $like  = $3;
+            $like =~ s/%/.*/g;
+            $field_regexp{$field} = $like;
+        }
+        while ($where =~ /(.*?)(\w+)=(\d+)(.*)/i)
+        {
+            $where = "$1 $4";
+            $field_regexp{$2} = $3;
+        }
+        while ($where =~ /(.*?)(\w+)='(.+?)'(.*)/i)
+        {
+            $where = "$1 $4";
+            $field_regexp{$2} = $3;
+        }
     }
-    while ($where =~ /(.*?)(\w+)=(\d+)(.*)/i)
-    {
-      $where = "$1 $4";
-      $field_regexp{$2} = $3;
-    }
-    while ($where =~ /(.*?)(\w+)='(.+?)'(.*)/i)
-    {
-      $where = "$1 $4";
-      $field_regexp{$2} = $3;
-    }
-  }
 
-  return (\%field_regexp);
+    return (\%field_regexp);
 }
 
 =head2 Parse_List($services, $loglevel, $taxonomy, $table, $fields, $fields_regexp, $fields_list)
@@ -635,49 +638,50 @@ sub Regexped_Fields
 
 sub Parse_List
 {
-  my ($services, $loglevel, $taxonomy, $table, $fields, $fields_regexp,
-    $fields_list)
-    = @_;
+    my ($services, $loglevel, $taxonomy, $table, $fields, $fields_regexp,
+        $fields_list)
+        = @_;
 
-  my @servs = (
-    (defined $services) && (@{$services}[0] ne '-ANY-')
-    ? @{$services}
-    : Octopussy::Service::List()
-  );
-  my %log_level = Octopussy::Loglevel::Levels();
-  my $level     = (
-    (NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
-    ? $log_level{$loglevel}
-    : 0
-  );
-  my $qr_taxo = (
-    (NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
-    ? qr/^$taxonomy(\..+)?/
-    : qr/.+/
-  );
-  my @msg_to_parse = ();
+    my @servs = (
+        (defined $services) && (@{$services}[0] ne '-ANY-')
+        ? @{$services}
+        : Octopussy::Service::List()
+    );
+    my %log_level = Octopussy::Loglevel::Levels();
+    my $level     = (
+        (NOT_NULL($loglevel) && ($loglevel ne '-ANY-'))
+        ? $log_level{$loglevel}
+        : 0
+    );
+    my $qr_taxo = (
+        (NOT_NULL($taxonomy) && ($taxonomy ne '-ANY-'))
+        ? qr/^$taxonomy(\..+)?/
+        : qr/.+/
+    );
+    my @msg_to_parse = ();
 
-  foreach my $s (@servs)
-  {
-    my @messages = Octopussy::Service::Messages($s);
-    foreach my $m (@messages)
+    foreach my $s (@servs)
     {
-      if ( ((!defined $table) || ($m->{table} eq $table))
-        && ($log_level{$m->{loglevel}} >= $level)
-        && ($m->{taxonomy} =~ $qr_taxo))
-      {
-        my ($regexp, $fields_position) =
-          Pattern_To_Regexp_Fields($m, $fields_regexp, $fields, $fields_list);
-        if (defined $regexp)
+        my @messages = Octopussy::Service::Messages($s);
+        foreach my $m (@messages)
         {
-          push @msg_to_parse,
-            {re => qr/$regexp/, positions => $fields_position};
+            if (   ((!defined $table) || ($m->{table} eq $table))
+                && ($log_level{$m->{loglevel}} >= $level)
+                && ($m->{taxonomy} =~ $qr_taxo))
+            {
+                my ($regexp, $fields_position) =
+                    Pattern_To_Regexp_Fields($m, $fields_regexp, $fields,
+                    $fields_list);
+                if (defined $regexp)
+                {
+                    push @msg_to_parse,
+                        {re => qr/$regexp/, positions => $fields_position};
+                }
+            }
         }
-      }
     }
-  }
 
-  return (@msg_to_parse);
+    return (@msg_to_parse);
 }
 
 =head2 Alerts($device, $service, $message, \@dev_alerts)
@@ -686,12 +690,12 @@ sub Parse_List
 
 sub Alerts
 {
-  my ($device, $service, $message, $dev_alerts) = @_;    #, $contact) = @_;
-  my @alerts    = ();
-  my %log_level = Octopussy::Loglevel::Levels();
+    my ($device, $service, $message, $dev_alerts) = @_;    #, $contact) = @_;
+    my @alerts    = ();
+    my %log_level = Octopussy::Loglevel::Levels();
 
-  foreach my $ac (ARRAY($dev_alerts))
-  {
+    foreach my $ac (ARRAY($dev_alerts))
+    {
 
 =head2 comment  	
     my @mails = ();
@@ -705,93 +709,95 @@ sub Alerts
     }
 =cut    
 
-    if ($ac->{type} =~ /Dynamic/i)
-    {
-      my $ac_level = (
-        (NOT_NULL($ac->{loglevel}) && ($ac->{loglevel} ne '-ANY-'))
-        ? $log_level{$ac->{loglevel}}
-        : 0
-      );
-
-      foreach my $s (ARRAY($ac->{service}))
-      {
-        if (
-          (($s eq $service) || ($s eq '-ANY-'))
-          && ( (!defined $ac->{taxonomy})
-            || ($ac->{taxonomy} eq '-ANY-')
-            || ($message->{taxonomy} =~ /^$ac->{taxonomy}.*/))
-          && ($log_level{$message->{loglevel}} >= $ac_level)
-          )
+        if ($ac->{type} =~ /Dynamic/i)
         {
-          push @alerts, {
-            name              => $ac->{name},
-            level             => $ac->{level},
-            thresold_time     => $ac->{thresold_time},
-            thresold_duration => $ac->{thresold_duration},
-			minimum_emit_delay => $ac->{minimum_emit_delay},
-            regexp_incl       => $ac->{regexp_include},
-            regexp_excl       => $ac->{regexp_exclude},
-            timeperiod        => $ac->{timeperiod},
-            action            => $ac->{action},
-            msgsubject        => $ac->{msgsubject},
-            msgbody           => $ac->{msgbody},
-            nagios_host       => $ac->{nagios_host},       # only for NSCA
-            nagios_service    => $ac->{nagios_service},    # only for NSCA
-            action_host       => $ac->{action_host},       # for Nagios & Zabbix
-            action_service    => $ac->{action_service},    # for Nagios & Zabbix
-            action_body       => $ac->{action_body},       # for Nagios & Zabbix
-            contacts          => $ac->{contact},
+            my $ac_level = (
+                (NOT_NULL($ac->{loglevel}) && ($ac->{loglevel} ne '-ANY-'))
+                ? $log_level{$ac->{loglevel}}
+                : 0
+            );
 
-            #imdest            => \@ims,
-            #maildest          => \@mails
-          };
+            foreach my $s (ARRAY($ac->{service}))
+            {
+                if (
+                    (($s eq $service) || ($s eq '-ANY-'))
+                    && (   (!defined $ac->{taxonomy})
+                        || ($ac->{taxonomy} eq '-ANY-')
+                        || ($message->{taxonomy} =~ /^$ac->{taxonomy}.*/))
+                    && ($log_level{$message->{loglevel}} >= $ac_level)
+                   )
+                {
+                    push @alerts, {
+                        name               => $ac->{name},
+                        level              => $ac->{level},
+                        thresold_time      => $ac->{thresold_time},
+                        thresold_duration  => $ac->{thresold_duration},
+                        minimum_emit_delay => $ac->{minimum_emit_delay},
+                        regexp_incl        => $ac->{regexp_include},
+                        regexp_excl        => $ac->{regexp_exclude},
+                        timeperiod         => $ac->{timeperiod},
+                        action             => $ac->{action},
+                        msgsubject         => $ac->{msgsubject},
+                        msgbody            => $ac->{msgbody},
+                        nagios_host    => $ac->{nagios_host},    # only for NSCA
+                        nagios_service => $ac->{nagios_service}, # only for NSCA
+                        action_host => $ac->{action_host}, # for Nagios & Zabbix
+                        action_service =>
+                            $ac->{action_service},         # for Nagios & Zabbix
+                        action_body => $ac->{action_body}, # for Nagios & Zabbix
+                        contacts    => $ac->{contact},
+
+                        #imdest            => \@ims,
+                        #maildest          => \@mails
+                    };
+                }
+            }
         }
-      }
-    }
-    elsif ($ac->{type} =~ /Static/i)
-    {
-      foreach my $m (ARRAY($ac->{message}))
-      {
-        if ($message->{msg_id} =~ /^$m->{mid}$/)
+        elsif ($ac->{type} =~ /Static/i)
         {
-          my @fields = ();
-          foreach my $f (ARRAY($m->{field}))
-          {
-            push @fields,
-              {
-              name   => $f->{fid},
-              value  => $f->{value},
-              negate => $f->{negate}
-              };
-          }
-          push @alerts, {
-            name              => $ac->{name},
-            level             => $ac->{level},
-            fields            => \@fields,
-            thresold_time     => $ac->{thresold_time},
-            thresold_duration => $ac->{thresold_duration},
-            regexp_include    => $ac->{regexp_include},
-            regexp_exclude    => $ac->{regexp_exclude},
-            timeperiod        => $ac->{timeperiod},
-            action            => $ac->{action},
-            msgsubject        => $ac->{msgsubject},
-            msgbody           => $ac->{msgbody},
-            nagios_host       => $ac->{nagios_host},       # only for NSCA
-            nagios_service    => $ac->{nagios_service},    # only for NSCA
-            action_host       => $ac->{action_host},       # for Nagios & Zabbix
-            action_service    => $ac->{action_service},    # for Nagios & Zabbix
-            action_body       => $ac->{action_body},       # for Nagios & Zabbix
-            contacts          => $ac->{contact},
+            foreach my $m (ARRAY($ac->{message}))
+            {
+                if ($message->{msg_id} =~ /^$m->{mid}$/)
+                {
+                    my @fields = ();
+                    foreach my $f (ARRAY($m->{field}))
+                    {
+                        push @fields,
+                            {
+                            name   => $f->{fid},
+                            value  => $f->{value},
+                            negate => $f->{negate}
+                            };
+                    }
+                    push @alerts, {
+                        name              => $ac->{name},
+                        level             => $ac->{level},
+                        fields            => \@fields,
+                        thresold_time     => $ac->{thresold_time},
+                        thresold_duration => $ac->{thresold_duration},
+                        regexp_include    => $ac->{regexp_include},
+                        regexp_exclude    => $ac->{regexp_exclude},
+                        timeperiod        => $ac->{timeperiod},
+                        action            => $ac->{action},
+                        msgsubject        => $ac->{msgsubject},
+                        msgbody           => $ac->{msgbody},
+                        nagios_host    => $ac->{nagios_host},    # only for NSCA
+                        nagios_service => $ac->{nagios_service}, # only for NSCA
+                        action_host => $ac->{action_host}, # for Nagios & Zabbix
+                        action_service =>
+                            $ac->{action_service},         # for Nagios & Zabbix
+                        action_body => $ac->{action_body}, # for Nagios & Zabbix
+                        contacts    => $ac->{contact},
 
-            #imdest            => \@ims,
-            #maildest          => \@mails
-          };
+                        #imdest            => \@ims,
+                        #maildest          => \@mails
+                    };
+                }
+            }
         }
-      }
     }
-  }
 
-  return (@alerts);
+    return (@alerts);
 }
 
 =head2 Wizard_Msg_Modified($line, $types)
@@ -800,30 +806,30 @@ sub Alerts
 
 sub Wizard_Msg_Modified
 {
-  my ($line, $types) = @_;
+    my ($line, $types) = @_;
 
-  use bytes;
+    use bytes;
 
-  $line =~ s/</&lt;/g;
-  $line =~ s/>/&gt;/g;
+    $line =~ s/</&lt;/g;
+    $line =~ s/>/&gt;/g;
 
-  $line =~
+    $line =~
 s/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}.\d{2}:\d{2} \S+ /<\@DATE_TIME_ISO\@> <\@WORD\@> /mgi;
-  foreach my $t (ARRAY($types))
-  {
-    my $re   = $t->{re};
-    my $type = $t->{type_id};
-    $line =~ s/$re/<\@$type\@>/mgi;
-  }
-  $line =~ s/([^\w\\]+)[-+]?\d+(\W+)/$1<\@NUMBER\@>$2/mgi;
-  $line =~ s/([=:;"])[\w\d_-]+/$1<\@WORD\@>/gi;
-  $line =~ s/\+/\\+/gi;
-  $line =~ s/\?/\\?/gi;
-  $line =~ s/\*/\\*/gi;
+    foreach my $t (ARRAY($types))
+    {
+        my $re   = $t->{re};
+        my $type = $t->{type_id};
+        $line =~ s/$re/<\@$type\@>/mgi;
+    }
+    $line =~ s/([^\w\\]+)[-+]?\d+(\W+)/$1<\@NUMBER\@>$2/mgi;
+    $line =~ s/([=:;"])[\w\d_-]+/$1<\@WORD\@>/gi;
+    $line =~ s/\+/\\+/gi;
+    $line =~ s/\?/\\?/gi;
+    $line =~ s/\*/\\*/gi;
 
-  no bytes;
+    no bytes;
 
-  return ($line);
+    return ($line);
 }
 
 =head2 Wizard_Msg_Regexp($re, $types)
@@ -832,16 +838,16 @@ s/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}.\d{2}:\d{2} \S+ /<\@DATE_TIME_ISO\
 
 sub Wizard_Msg_Regexp
 {
-  my ($re, $types) = @_;
+    my ($re, $types) = @_;
 
-  foreach my $t (ARRAY($types))
-  {
-    $re =~ s/<\@$t->{type_id}\@>/$t->{re}/mgi;
-  }
-  $re =~ s/<\@NUMBER\@>/[-+]?\\d+/mgi;
-  $re =~ s/<\@WORD\@>/\\S+/gi;
+    foreach my $t (ARRAY($types))
+    {
+        $re =~ s/<\@$t->{type_id}\@>/$t->{re}/mgi;
+    }
+    $re =~ s/<\@NUMBER\@>/[-+]?\\d+/mgi;
+    $re =~ s/<\@WORD\@>/\\S+/gi;
 
-  return ($re);
+    return ($re);
 }
 
 =head2 Wizard_Add_Message($timestamp, $line, $types)
@@ -850,26 +856,26 @@ sub Wizard_Msg_Regexp
 
 sub Wizard_Add_Message
 {
-  my ($timestamp, $line, $types) = @_;
-  my $sample = $line;
-  $line =~ s/\\/\\\\/g;
-  my $pattern = $line = Wizard_Msg_Modified($line, $types);
-  $line =~ s/\[/\\\[/g;
-  $line =~ s/\]/\\\]/g;
-  $line =~ s/\(/\\\(/g;
-  $line =~ s/\)/\\\)/g;
-  $line =~ s/\//\\\//g;
-  my $re = Wizard_Msg_Regexp($line, $types);
+    my ($timestamp, $line, $types) = @_;
+    my $sample = $line;
+    $line =~ s/\\/\\\\/g;
+    my $pattern = $line = Wizard_Msg_Modified($line, $types);
+    $line =~ s/\[/\\\[/g;
+    $line =~ s/\]/\\\]/g;
+    $line =~ s/\(/\\\(/g;
+    $line =~ s/\)/\\\)/g;
+    $line =~ s/\//\\\//g;
+    my $re = Wizard_Msg_Regexp($line, $types);
 
-  return (
-    {
-      re        => qr/$re/,
-      modified  => $pattern,
-      orig      => $sample,
-      timestamp => $timestamp,
-      nb        => 1
-    }
-  );
+    return (
+        {
+            re        => qr/$re/,
+            modified  => $pattern,
+            orig      => $sample,
+            timestamp => $timestamp,
+            nb        => 1
+        }
+    );
 }
 
 =head2 Wizard_File($f, $timestamp, $nb_max, $messages, $types)
@@ -878,38 +884,39 @@ sub Wizard_Add_Message
 
 sub Wizard_File
 {
-  my ($f, $timestamp, $nb_max, $messages, $types) = @_;
+    my ($f, $timestamp, $nb_max, $messages, $types) = @_;
 
-  if ((-f $f) && (defined open my $FILE, '-|', "zcat $f"))
-  {
-    while (my $line = <$FILE>)
+    if ((-f $f) && (defined open my $FILE, '-|', "zcat $f"))
     {
-      chomp $line;
-      my $match = 0;
-      foreach my $m (grep { $line =~ $_->{re} } @{$messages})
-      {
-        $m->{nb} = $m->{nb} + 1;
-        $match = 1;
-        if ($m->{nb} > $WIZARD_MAX_SAME_MSG)
+        while (my $line = <$FILE>)
         {
-          close $FILE;
-          return ($WIZARD_MAX_SAME_MSG);
+            chomp $line;
+            my $match = 0;
+            foreach my $m (grep { $line =~ $_->{re} } @{$messages})
+            {
+                $m->{nb} = $m->{nb} + 1;
+                $match = 1;
+                if ($m->{nb} > $WIZARD_MAX_SAME_MSG)
+                {
+                    close $FILE;
+                    return ($WIZARD_MAX_SAME_MSG);
+                }
+                last if (scalar(@{$messages}) >= $nb_max);
+            }
+            push @{$messages}, Wizard_Add_Message($timestamp, $line, $types)
+                if (!$match);
+            last if (scalar(@{$messages}) >= $nb_max);
         }
-        last if (scalar(@{$messages}) >= $nb_max);
-      }
-      push @{$messages}, Wizard_Add_Message($timestamp, $line, $types)
-        if (!$match);
-      last if (scalar(@{$messages}) >= $nb_max);
+        close $FILE;
     }
-    close $FILE;
-  }
-  else
-  {
-    my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog::Message('Octopussy_Message', 'UNABLE_OPEN_FILE_IN', $f, $sub);
-  }
+    else
+    {
+        my ($pack, $file_pack, $line, $sub) = caller 0;
+        AAT::Syslog::Message('Octopussy_Message', 'UNABLE_OPEN_FILE_IN', $f,
+            $sub);
+    }
 
-  return (scalar @{$messages});
+    return (scalar @{$messages});
 }
 
 =head2 Wizard($device, $timestamp_start)
@@ -918,27 +925,29 @@ sub Wizard_File
 
 sub Wizard
 {
- 	my ($device, $timestamp_start) = @_;
-	$timestamp_start = ((NULL($timestamp_start) 
-	|| $timestamp_start !~ /^\d{12}$/) ? '0' x 12 : $timestamp_start);
-  	my @types    = Octopussy::Type::Configurations();
-  	my @messages = ();
- 	my @files    = Octopussy::Logs::Unknown_Files($device);
-  	my $nb_max   = Octopussy::Parameter('wizard_max_msgs');
+    my ($device, $timestamp_start) = @_;
+    $timestamp_start =
+        ((NULL($timestamp_start) || $timestamp_start !~ /^\d{12}$/)
+        ? '0' x 12
+        : $timestamp_start);
+    my @types    = Octopussy::Type::Configurations();
+    my @messages = ();
+    my @files    = Octopussy::Logs::Unknown_Files($device);
+    my $nb_max   = Octopussy::Parameter('wizard_max_msgs');
 
-  	foreach my $f (sort @files)
-  	{
-    	chomp $f;
-    	if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
-    	{
-      	my $timestamp = "$1$2$3$4$5";
-      	Wizard_File($f, $timestamp, $nb_max, \@messages, \@types)
-			if ($timestamp >= $timestamp_start);
-    	}
-    	last if (scalar(@messages) >= $nb_max);
-  	}
+    foreach my $f (sort @files)
+    {
+        chomp $f;
+        if ($f =~ /\/(\d{4})\/(\d{2})\/(\d{2})\/msg_(\d{2})h(\d{2})/)
+        {
+            my $timestamp = "$1$2$3$4$5";
+            Wizard_File($f, $timestamp, $nb_max, \@messages, \@types)
+                if ($timestamp >= $timestamp_start);
+        }
+        last if (scalar(@messages) >= $nb_max);
+    }
 
-  	return (@messages);
+    return (@messages);
 }
 
 1;

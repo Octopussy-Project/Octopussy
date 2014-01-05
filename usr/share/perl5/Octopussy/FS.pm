@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::FS - Octopussy FileSystem (FS) module
@@ -27,17 +28,17 @@ Changes Owner (user & group) for the files '@files'
 
 sub Chown
 {
-  my @files = @_;
+    my @files = @_;
 
-  my $user = Octopussy::Info::User();
-  my $list = '';
-  foreach my $f (@files)
-  {
-    $list .= "\"$f\" ";
-  }
-  system "chown -R $user:$user $list 2> /dev/null";
+    my $user = Octopussy::Info::User();
+    my $list = '';
+    foreach my $f (@files)
+    {
+        $list .= "\"$f\" ";
+    }
+    system "chown -R $user:$user $list 2> /dev/null";
 
-  return (1);
+    return (1);
 }
 
 =head2 Create_Directory($dir)
@@ -48,15 +49,15 @@ Creates Directory '$dir'
 
 sub Create_Directory
 {
-  my $dir = shift;
+    my $dir = shift;
 
-  if (!-d $dir)
-  {
-    mkpath($dir);
-    Chown($dir);
-  }
+    if (!-d $dir)
+    {
+        mkpath($dir);
+        Chown($dir);
+    }
 
-  return ($dir);
+    return ($dir);
 }
 
 =head2 Directory($dir)
@@ -67,9 +68,9 @@ Returns Octopussy Directory '$dir' Value
 
 sub Directory
 {
-  my $dir = shift;
+    my $dir = shift;
 
-  return (AAT::Application::Directory($APPLICATION_NAME, $dir));
+    return (AAT::Application::Directory($APPLICATION_NAME, $dir));
 }
 
 =head2 Directories(@dirs)
@@ -80,16 +81,15 @@ Returns Octopussy Directories from '@dirs' List
 
 sub Directories
 {
-  my @dirs = @_;
-  my @list = ();
-  foreach my $d (@dirs)
-  {
-    push @list, AAT::Application::Directory($APPLICATION_NAME, $d);
-  }
+    my @dirs = @_;
+    my @list = ();
+    foreach my $d (@dirs)
+    {
+        push @list, AAT::Application::Directory($APPLICATION_NAME, $d);
+    }
 
-  return (@list);
+    return (@list);
 }
-
 
 =head2 File($file)
 
@@ -99,11 +99,10 @@ Returns Octopussy File '$file' Value
 
 sub File
 {
-  my $file = shift;
+    my $file = shift;
 
-  return (AAT::Application::File($APPLICATION_NAME, $file));
+    return (AAT::Application::File($APPLICATION_NAME, $file));
 }
-
 
 =head2 Files(@files)
 
@@ -113,16 +112,15 @@ Returns Octopussy Files from '@files' List
 
 sub Files
 {
-  my @files = @_;
-  my @list  = ();
-  foreach my $f (@files)
-  {
-    push @list, AAT::Application::File($APPLICATION_NAME, $f);
-  }
+    my @files = @_;
+    my @list  = ();
+    foreach my $f (@files)
+    {
+        push @list, AAT::Application::File($APPLICATION_NAME, $f);
+    }
 
-  return (@list);
+    return (@list);
 }
-
 
 =head2 File_Ext($file, $extension)
 
@@ -132,11 +130,11 @@ Returns File Extension
 
 sub File_Ext
 {
-  my ($file, $extension) = @_;
+    my ($file, $extension) = @_;
 
-  $file =~ s/(\.\w+)$/\.$extension/;
+    $file =~ s/(\.\w+)$/\.$extension/;
 
-  return ($file);
+    return ($file);
 }
 
 1;

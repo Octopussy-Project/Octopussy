@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::Data_Report - Octopussy Data_Report module
@@ -26,16 +27,16 @@ my $dir_reports = undef;
 
 sub Type_List
 {
-  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
-	my @dirs = ();
-	
-  if (defined opendir my $DH, $dir_reports)
-  {
-  	@dirs = grep { !/^\./ } readdir $DH;
-  	closedir $DH;
-  }
+    $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
+    my @dirs = ();
 
-  return (@dirs);
+    if (defined opendir my $DH, $dir_reports)
+    {
+        @dirs = grep { !/^\./ } readdir $DH;
+        closedir $DH;
+    }
+
+    return (@dirs);
 }
 
 =head2 List($report)
@@ -46,22 +47,22 @@ Returns List of Data Reports
 
 sub List
 {
-  my $report = shift;
+    my $report = shift;
 
-  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
-  my $dir = $dir_reports . $report;
-  opendir DIR, $dir;
-  my @dirs = grep { !/^\./ } readdir DIR;
-  closedir DIR;
+    $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
+    my $dir = $dir_reports . $report;
+    opendir DIR, $dir;
+    my @dirs = grep { !/^\./ } readdir DIR;
+    closedir DIR;
 
-  my %reports = ();
-  foreach my $d (@dirs)
-  {
-    push @{$reports{$1}}, $2
-      if ($d =~ /^(.+)\.(\w+)$/);
-  }
+    my %reports = ();
+    foreach my $d (@dirs)
+    {
+        push @{$reports{$1}}, $2
+            if ($d =~ /^(.+)\.(\w+)$/);
+    }
 
-  return (\%reports);
+    return (\%reports);
 }
 
 =head2 Remove($report, $filename)
@@ -72,12 +73,12 @@ Removes Report '$report' with Filename '$filename'
 
 sub Remove
 {
-  my ($report, $filename) = @_;
+    my ($report, $filename) = @_;
 
-  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
-  system "rm -f \"$dir_reports$report/$filename\".*";
+    $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
+    system "rm -f \"$dir_reports$report/$filename\".*";
 
-  return ("$dir_reports$report/${filename}.*");
+    return ("$dir_reports$report/${filename}.*");
 }
 
 =head2 Remove_All($report)
@@ -88,12 +89,12 @@ Removes All Reports '$report'
 
 sub Remove_All
 {
-  my $report = shift;
+    my $report = shift;
 
-  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
-  File::Path::rmtree("$dir_reports$report/");
+    $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
+    File::Path::rmtree("$dir_reports$report/");
 
-  return ("$dir_reports$report/");
+    return ("$dir_reports$report/");
 }
 
 =head2 Remove_Month($report, $year, $month)
@@ -104,12 +105,12 @@ Removes All Reports '$report' in Month '$year/month'
 
 sub Remove_Month
 {
-  my ($report, $year, $month) = @_;
+    my ($report, $year, $month) = @_;
 
-  $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
-  system "rm -f \"$dir_reports$report/$report-$year$month\"*";
+    $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT_DATA);
+    system "rm -f \"$dir_reports$report/$report-$year$month\"*";
 
-  return ("$dir_reports$report/$report-$year$month*");
+    return ("$dir_reports$report/$report-$year$month*");
 }
 
 1;

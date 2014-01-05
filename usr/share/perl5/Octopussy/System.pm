@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::System - Octopussy System module
@@ -20,13 +21,12 @@ Returns Apache2 Binary
 =cut
 
 sub Apache2_Binary
-{	
-	my $apache = App::Info::HTTPD::Apache->new();
-  	return ($apache->executable)	if (defined $apache->executable);
-      
-  	return (undef);
-}
+{
+    my $apache = App::Info::HTTPD::Apache->new();
+    return ($apache->executable) if (defined $apache->executable);
 
+    return (undef);
+}
 
 =head2 Dispatcher_Reload()
 
@@ -36,26 +36,25 @@ Reloads Dispatcher
 
 sub Dispatcher_Reload
 {
-  	my $dir_pid = Octopussy::FS::Directory('running');
-  
-	if (defined opendir DIR, $dir_pid)
-	{
-  		my @files = grep { /octo_dispatcher\.pid$/ } readdir DIR;
-  		closedir DIR;
+    my $dir_pid = Octopussy::FS::Directory('running');
 
-  		foreach my $file (@files)
-  		{
-    		my $pid = `cat $dir_pid$file`;
-    		chomp $pid;
-    		kill HUP => $pid;
-  		}
+    if (defined opendir DIR, $dir_pid)
+    {
+        my @files = grep { /octo_dispatcher\.pid$/ } readdir DIR;
+        closedir DIR;
 
-  	return (1);
-	}
+        foreach my $file (@files)
+        {
+            my $pid = `cat $dir_pid$file`;
+            chomp $pid;
+            kill HUP => $pid;
+        }
 
-	return (undef);
+        return (1);
+    }
+
+    return (undef);
 }
-
 
 =head2 Restart()
 
@@ -65,9 +64,9 @@ Restarts Octopussy
 
 sub Restart
 {
-  `/etc/init.d/octopussy restart`;
+    `/etc/init.d/octopussy restart`;
 
-  return (1);
+    return (1);
 }
 
 1;

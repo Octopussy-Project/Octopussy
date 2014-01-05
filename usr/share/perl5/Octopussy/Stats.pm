@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::Stats - Octopussy System Stats module
@@ -27,10 +28,10 @@ Returns the CPU Information
 
 sub CPU_Info
 {
-  my $cnt = Sys::CPU::cpu_count();
-  my $info = ($cnt > 1 ? "$cnt X " : '') . Sys::CPU::cpu_type();
+    my $cnt = Sys::CPU::cpu_count();
+    my $info = ($cnt > 1 ? "$cnt X " : '') . Sys::CPU::cpu_type();
 
-  return ($info);
+    return ($info);
 }
 
 =head2 CPU_Usage()
@@ -41,14 +42,14 @@ Returns the CPU Usage (user/system/idle/wait in percent)
 
 sub CPU_Usage
 {
-  my $line = `vmstat 1 2 | tail -1`;
+    my $line = `vmstat 1 2 | tail -1`;
 
-  if ($line =~ /.+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)$/)
-  {
-    return ({user => $1, system => $2, idle => $3, wait => $4});
-  }
+    if ($line =~ /.+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)$/)
+    {
+        return ({user => $1, system => $2, idle => $3, wait => $4});
+    }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 Load()
@@ -59,16 +60,16 @@ Returns System Load (information from /proc/loadavg)
 
 sub Load
 {
-  if (defined open my $PROC, '<', '/proc/loadavg')
-  {
-    my $line = <$PROC>;
-    close $PROC;
+    if (defined open my $PROC, '<', '/proc/loadavg')
+    {
+        my $line = <$PROC>;
+        close $PROC;
 
-    return ($1)
-      if ($line =~ /^(\S+)/);
-  }
+        return ($1)
+            if ($line =~ /^(\S+)/);
+    }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 Mem_Total()
@@ -79,18 +80,18 @@ Returns the Total of Memory in MegaBytes (information from /proc/meminfo)
 
 sub Mem_Total
 {
-  if (defined open my $PROC, '<', '/proc/meminfo')
-  {
-    my @lines = <$PROC>;
-    close $PROC;
-    while (my $line = shift @lines)
+    if (defined open my $PROC, '<', '/proc/meminfo')
     {
-      return (int($1 / $KBYTE))    ## no critic
-        if ($line =~ /^MemTotal:\s+(\d+)/);
+        my @lines = <$PROC>;
+        close $PROC;
+        while (my $line = shift @lines)
+        {
+            return (int($1 / $KBYTE))    ## no critic
+                if ($line =~ /^MemTotal:\s+(\d+)/);
+        }
     }
-  }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 Mem_Usage()
@@ -101,29 +102,29 @@ Returns the Memory usage in this format: "$used M / $total M ($percent%)"
 
 sub Mem_Usage
 {
-  if (defined open my $PROC, '<', '/proc/meminfo')
-  {
-    my @lines = <$PROC>;
-    close $PROC;
-    my ($free, $total) = (0, 0);
-    while (my $line = shift @lines)
+    if (defined open my $PROC, '<', '/proc/meminfo')
     {
-      if ($line =~ /^MemTotal:\s+(\d+)/)
-      {
-        $total = int($1 / $KBYTE);    ## no critic
-      }
-      if ($line =~ /^MemFree:\s+(\d+)/)
-      {
-        $free = int($1 / $KBYTE);     ## no critic
-      }
+        my @lines = <$PROC>;
+        close $PROC;
+        my ($free, $total) = (0, 0);
+        while (my $line = shift @lines)
+        {
+            if ($line =~ /^MemTotal:\s+(\d+)/)
+            {
+                $total = int($1 / $KBYTE);    ## no critic
+            }
+            if ($line =~ /^MemFree:\s+(\d+)/)
+            {
+                $free = int($1 / $KBYTE);     ## no critic
+            }
+        }
+        return ('No Memory Detected') if ($total == 0);
+        my $percent = int(($total - $free) / $total * 100);    ## no critic
+
+        return (($total - $free) . " used M / $total M ($percent%)");
     }
-    return ('No Memory Detected') if ($total == 0);
-    my $percent = int(($total - $free) / $total * 100);    ## no critic
 
-    return (($total - $free) . " used M / $total M ($percent%)");
-  }
-
-  return (undef);
+    return (undef);
 }
 
 =head2 Swap_Usage()
@@ -134,29 +135,29 @@ Returns the Swap usage in this format: "$used M / $total M ($percent%)"
 
 sub Swap_Usage
 {
-  if (defined open my $PROC, '<', '/proc/meminfo')
-  {
-    my @lines = <$PROC>;
-    close $PROC;
-    my ($free, $total) = (0, 0);
-    while (my $line = shift @lines)
+    if (defined open my $PROC, '<', '/proc/meminfo')
     {
-      if ($line =~ /^SwapTotal:\s+(\d+)/)
-      {
-        $total = int($1 / 1024);    ## no critic
-      }
-      if ($line =~ /^SwapFree:\s+(\d+)/)
-      {
-        $free = int($1 / 1024);     ## no critic
-      }
+        my @lines = <$PROC>;
+        close $PROC;
+        my ($free, $total) = (0, 0);
+        while (my $line = shift @lines)
+        {
+            if ($line =~ /^SwapTotal:\s+(\d+)/)
+            {
+                $total = int($1 / 1024);    ## no critic
+            }
+            if ($line =~ /^SwapFree:\s+(\d+)/)
+            {
+                $free = int($1 / 1024);     ## no critic
+            }
+        }
+        return ('No Swap Detected') if ($total == 0);
+        my $percent = int(($total - $free) / $total * 100);    ## no critic
+
+        return (($total - $free) . " used M / $total M ($percent%)");
     }
-    return ('No Swap Detected') if ($total == 0);
-    my $percent = int(($total - $free) / $total * 100);    ## no critic
 
-    return (($total - $free) . " used M / $total M ($percent%)");
-  }
-
-  return (undef);
+    return (undef);
 }
 
 =head2 Partition_Logs
@@ -165,40 +166,40 @@ sub Swap_Usage
 
 sub Partition_Logs
 {
-  my @storages = Octopussy::Storage::Configurations();
-  my @result   = ();
-  my %dir;
-  my @lines = `df -k`;
-  foreach my $l (@lines)
-  {
-    $dir{"$2"} = $1
-      if ($l =~ /^(?:\S+)?\s+\S+\s+\S+\s+\S+\s+(\d+\%)\s+(\S+)/);
-  }
-  foreach my $s (@storages)
-  {
-    my $d     = $s->{directory};
-    my $match = 0;
-    while (($d =~ /^(.*)\//) && (!$match))
+    my @storages = Octopussy::Storage::Configurations();
+    my @result   = ();
+    my %dir;
+    my @lines = `df -k`;
+    foreach my $l (@lines)
     {
-      if (defined $dir{$d})
-      {
-        push @result, {directory => $s->{s_id}, usage => $dir{$d}};
-        $match = 1;
-      }
-      else
-      {
-        $d =~ s/^(.*)\/(.+)*$/$1/g;
-        $d = ($d eq '' ? '/' : $d);
-        if ($d =~ /^\/$/)
-        {
-          push @result, {directory => $s->{s_id}, usage => $dir{$d}};
-          $match = 1;
-        }
-      }
+        $dir{"$2"} = $1
+            if ($l =~ /^(?:\S+)?\s+\S+\s+\S+\s+\S+\s+(\d+\%)\s+(\S+)/);
     }
-  }
+    foreach my $s (@storages)
+    {
+        my $d     = $s->{directory};
+        my $match = 0;
+        while (($d =~ /^(.*)\//) && (!$match))
+        {
+            if (defined $dir{$d})
+            {
+                push @result, {directory => $s->{s_id}, usage => $dir{$d}};
+                $match = 1;
+            }
+            else
+            {
+                $d =~ s/^(.*)\/(.+)*$/$1/g;
+                $d = ($d eq '' ? '/' : $d);
+                if ($d =~ /^\/$/)
+                {
+                    push @result, {directory => $s->{s_id}, usage => $dir{$d}};
+                    $match = 1;
+                }
+            }
+        }
+    }
 
-  return (@result);
+    return (@result);
 }
 
 =head2 Events()
@@ -209,14 +210,14 @@ Returns Stats Events
 
 sub Events
 {
-  my %device;
+    my %device;
 
-  my $cache = Octopussy::Cache::Init('octo_dispatcher');
-  my $time  = $cache->get('dispatcher_stats_datetime');
-  my $stats = $cache->get('dispatcher_stats_devices');
-  foreach my $k (keys %{$stats}) { $device{$k} = $stats->{$k}; }
+    my $cache = Octopussy::Cache::Init('octo_dispatcher');
+    my $time  = $cache->get('dispatcher_stats_datetime');
+    my $stats = $cache->get('dispatcher_stats_devices');
+    foreach my $k (keys %{$stats}) { $device{$k} = $stats->{$k}; }
 
-  return ($time, \%device);
+    return ($time, \%device);
 }
 
 1;

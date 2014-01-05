@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::Device - Octopussy Device module
@@ -48,13 +49,13 @@ Creates a new Device
 
 sub New
 {
-  	my $conf = shift;
-  	my $name = $conf->{name};
+    my $conf = shift;
+    my $name = $conf->{name};
 
-	return (undef)
-		if (! Valid_Name($name));
-    
-	$dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+    return (undef)
+        if (!Valid_Name($name));
+
+    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
     Octopussy::FS::Create_Directory($dir_devices);
     $conf->{type}  = $conf->{type}  || Octopussy::Parameter('devicetype');
     $conf->{model} = $conf->{model} || Octopussy::Parameter('devicemodel');
@@ -64,7 +65,7 @@ sub New
     Octopussy::FS::Chown("$dir_devices/$name.xml");
     Octopussy::Logs::Init_Directories($name);
 
-	return ($name);
+    return ($name);
 }
 
 =head2 Modify($conf_new)
@@ -75,35 +76,35 @@ Modifies the configuration of a Device
 
 sub Modify
 {
-  	my $conf_new   = shift;
-  	my $status     = Parse_Status($conf_new->{name});
-  	my $conf       = AAT::XML::Read(Filename($conf_new->{name}));
- 
-	return (undef)	if (!defined $conf);
- 
-	my $old_status = $conf->{status};
+    my $conf_new = shift;
+    my $status   = Parse_Status($conf_new->{name});
+    my $conf     = AAT::XML::Read(Filename($conf_new->{name}));
 
-	Parse_Pause($conf_new->{name}) 
-		if ((defined $status) && ($status == $STARTED));
+    return (undef) if (!defined $conf);
 
-  	$dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-  	$conf->{logtype} = $conf_new->{logtype} || 'syslog';
-  	$conf->{type}    = $conf_new->{type}    || Octopussy::Parameter('devicetype');
-  	$conf->{async}   = $conf_new->{async}   || '';
-  	$conf->{model} = $conf_new->{model} || Octopussy::Parameter('devicemodel');
-  	$conf->{description} = $conf_new->{description} || '';
-  	$conf->{status}      = $conf_new->{status}      || $old_status || 'Paused';
-  	$conf->{city}        = $conf_new->{city}        || '';
-  	$conf->{building}    = $conf_new->{building}    || '';
-  	$conf->{room}        = $conf_new->{room}        || '';
-  	$conf->{rack}        = $conf_new->{rack}        || '';
-  	$conf->{logrotate}   = $conf_new->{logrotate}   || '';
-  	$conf->{minutes_without_logs} = $conf_new->{minutes_without_logs} || '';
-  	AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
-  	Parse_Start($conf_new->{name}) 
-		if ((defined $status) && ($status == $STARTED));
+    my $old_status = $conf->{status};
 
-  	return ($conf_new->{name});
+    Parse_Pause($conf_new->{name})
+        if ((defined $status) && ($status == $STARTED));
+
+    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+    $conf->{logtype} = $conf_new->{logtype} || 'syslog';
+    $conf->{type}  = $conf_new->{type}  || Octopussy::Parameter('devicetype');
+    $conf->{async} = $conf_new->{async} || '';
+    $conf->{model} = $conf_new->{model} || Octopussy::Parameter('devicemodel');
+    $conf->{description} = $conf_new->{description} || '';
+    $conf->{status}      = $conf_new->{status}      || $old_status || 'Paused';
+    $conf->{city}        = $conf_new->{city}        || '';
+    $conf->{building}    = $conf_new->{building}    || '';
+    $conf->{room}        = $conf_new->{room}        || '';
+    $conf->{rack}        = $conf_new->{rack}        || '';
+    $conf->{logrotate}   = $conf_new->{logrotate}   || '';
+    $conf->{minutes_without_logs} = $conf_new->{minutes_without_logs} || '';
+    AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+    Parse_Start($conf_new->{name})
+        if ((defined $status) && ($status == $STARTED));
+
+    return ($conf_new->{name});
 }
 
 =head2 Reload_Required($device)
@@ -114,13 +115,13 @@ Sets 'reload_required' to Device '$device'
 
 sub Reload_Required
 {
-  my $device = shift;
+    my $device = shift;
 
-  my $conf = AAT::XML::Read(Filename($device));
-  $conf->{reload_required} = 1;
-  AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+    my $conf = AAT::XML::Read(Filename($device));
+    $conf->{reload_required} = 1;
+    AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
 
-  return ($device);
+    return ($device);
 }
 
 =head2 Remove($device)
@@ -131,20 +132,20 @@ Removes device '$device'
 
 sub Remove
 {
-  my $device = shift;
+    my $device = shift;
 
-  Octopussy::Device::Parse_Pause($device);
-  Octopussy::DeviceGroup::Remove_Device($device);
-  Octopussy::Logs::Remove_Directories($device);
-  my $dir_web = Octopussy::FS::Directory('web');
-  system "rm -f $dir_web/rrd/taxonomy_${device}_*ly.png";
-  my $dir_rrd = Octopussy::FS::Directory('data_rrd');
-  File::Path::rmtree("$dir_rrd/$device/");
-  unlink Filename($device);
-  $filename{$device} = undef;
-  Octopussy::System::Dispatcher_Reload();
+    Octopussy::Device::Parse_Pause($device);
+    Octopussy::DeviceGroup::Remove_Device($device);
+    Octopussy::Logs::Remove_Directories($device);
+    my $dir_web = Octopussy::FS::Directory('web');
+    system "rm -f $dir_web/rrd/taxonomy_${device}_*ly.png";
+    my $dir_rrd = Octopussy::FS::Directory('data_rrd');
+    File::Path::rmtree("$dir_rrd/$device/");
+    unlink Filename($device);
+    $filename{$device} = undef;
+    Octopussy::System::Dispatcher_Reload();
 
-  return ($device);
+    return ($device);
 }
 
 =head2 List()
@@ -155,9 +156,9 @@ Gets List of Devices
 
 sub List
 {
-  $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
 
-  return (AAT::XML::Name_List($dir_devices));
+    return (AAT::XML::Name_List($dir_devices));
 }
 
 =head2 String_List
@@ -168,11 +169,11 @@ Returns Device List as a string like 'Device list: <device_list>'
 
 sub String_List
 {
-  my $any     = shift;
-  my @list    = List();
-  my $str_any = (NOT_NULL($any) ? '-ANY-, ' : '');
+    my $any     = shift;
+    my @list    = List();
+    my $str_any = (NOT_NULL($any) ? '-ANY-, ' : '');
 
-  return ("Device list: $str_any" . (join ', ', sort @list));
+    return ("Device list: $str_any" . (join ', ', sort @list));
 }
 
 =head2 Unknowns(@devices)
@@ -183,16 +184,16 @@ Returns list of Unknown Devices in @devices list
 
 sub Unknowns
 {
-  my @devices  = @_;
-  my @unknowns = ();
+    my @devices  = @_;
+    my @unknowns = ();
 
-  my %exist = map { $_ => 1 } List();
-  foreach my $d (@devices)
-  {
-    push @unknowns, $d if ((!defined $exist{$d}) && ($d ne '-ANY-'));
-  }
+    my %exist = map { $_ => 1 } List();
+    foreach my $d (@devices)
+    {
+        push @unknowns, $d if ((!defined $exist{$d}) && ($d ne '-ANY-'));
+    }
 
-  return (@unknowns);
+    return (@unknowns);
 }
 
 =head2 Filename($device_name)
@@ -203,15 +204,15 @@ Gets the XML filename for the device '$device_name'
 
 sub Filename
 {
-	my $device_name = shift;
+    my $device_name = shift;
 
-	return (undef)	if (!defined $device_name);
+    return (undef) if (!defined $device_name);
 
-  	return ($filename{"$device_name"}) if (defined $filename{"$device_name"});
-  	$dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-  	$filename{"$device_name"} = "$dir_devices/$device_name.xml";
+    return ($filename{"$device_name"}) if (defined $filename{"$device_name"});
+    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+    $filename{"$device_name"} = "$dir_devices/$device_name.xml";
 
-  	return ($filename{"$device_name"});
+    return ($filename{"$device_name"});
 }
 
 =head2 Configuration($device_name)
@@ -222,15 +223,15 @@ Gets the configuration for the device '$device_name'
 
 sub Configuration
 {
-  my $device_name = shift;
+    my $device_name = shift;
 
-  my $conf = AAT::XML::Read(Filename($device_name));
-  if ((defined $conf) && (!defined $conf->{type}))
-  {
-    $conf->{type} = Octopussy::Parameter('devicetype');
-  }
+    my $conf = AAT::XML::Read(Filename($device_name));
+    if ((defined $conf) && (!defined $conf->{type}))
+    {
+        $conf->{type} = Octopussy::Parameter('devicetype');
+    }
 
-  return ($conf);
+    return ($conf);
 }
 
 =head2 Configurations($sort)
@@ -241,34 +242,34 @@ Gets the configuration for all devices
 
 sub Configurations
 {
-  my $sort = shift || 'name';
-  my (@configurations, @sorted_configurations) = ((), ());
-  my @devices = List();
+    my $sort = shift || 'name';
+    my (@configurations, @sorted_configurations) = ((), ());
+    my @devices = List();
 
-  foreach my $d (@devices)
-  {
-    my $conf   = Configuration($d);
-	next	if ((!defined $conf) || (!defined $conf->{name}));
-    my $status = Octopussy::Device::Parse_Status($conf->{name});
-	next	if (!defined $status);
-    $conf->{status} = (
-      $status == $STARTED
-      ? 'Started'
-      : ($status == $PAUSED ? 'Paused' : 'Stopped')
-    );
-    $conf->{action1} =
-      ($conf->{status} eq 'Stopped' ? 'parse_pause' : 'parse_stop');
-    $conf->{action2} =
-      ($conf->{status} eq 'Started' ? 'parse_pause' : 'parse_start');
-    $conf->{logtype} ||= 'syslog';
-    push @configurations, $conf;
-  }
-  foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
-  {
-    push @sorted_configurations, $c;
-  }
+    foreach my $d (@devices)
+    {
+        my $conf = Configuration($d);
+        next if ((!defined $conf) || (!defined $conf->{name}));
+        my $status = Octopussy::Device::Parse_Status($conf->{name});
+        next if (!defined $status);
+        $conf->{status} = (
+            $status == $STARTED
+            ? 'Started'
+            : ($status == $PAUSED ? 'Paused' : 'Stopped')
+        );
+        $conf->{action1} =
+            ($conf->{status} eq 'Stopped' ? 'parse_pause' : 'parse_stop');
+        $conf->{action2} =
+            ($conf->{status} eq 'Started' ? 'parse_pause' : 'parse_start');
+        $conf->{logtype} ||= 'syslog';
+        push @configurations, $conf;
+    }
+    foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
+    {
+        push @sorted_configurations, $c;
+    }
 
-  return (@sorted_configurations);
+    return (@sorted_configurations);
 }
 
 =head2 Filtered_Configurations($type, $model, $sort)
@@ -279,42 +280,42 @@ Gets the configuration for devices filtered by DeviceType/Model
 
 sub Filtered_Configurations
 {
-	my ($type, $model, $sort) = @_;
-  	my (@configurations, @sorted_configurations) = ((), ());
-  	my @devices = List();
+    my ($type, $model, $sort) = @_;
+    my (@configurations, @sorted_configurations) = ((), ());
+    my @devices = List();
 
-  	foreach my $d (@devices)
-  	{
-    	my $conf = Configuration($d);
-    	if (
-      		((NULL($type)) || ($type eq '-ANY-') || ($type eq $conf->{type}))
-      		&& ( (NULL($model))
-        	|| ($model eq '-ANY-')
-        	|| ($model eq $conf->{model}))
-       		)
-    	{
-      		my $status = Octopussy::Device::Parse_Status($conf->{name});
-			next    if (!defined $status);
-      		$conf->{status} = (
-        		$status == $STARTED
-        		? 'Started'
-        		: ($status == $PAUSED ? 'Paused' : 'Stopped')
-      			);
-      		$conf->{action1} =
-        		($conf->{status} eq 'Stopped' ? 'parse_pause' : 'parse_stop');
-      		$conf->{action2} =
-        		($conf->{status} eq 'Started' ? 'parse_pause' : 'parse_start');
-      		$conf->{logtype} ||= 'syslog';
-      		push @configurations, $conf;
-    	}
-  	}
+    foreach my $d (@devices)
+    {
+        my $conf = Configuration($d);
+        if (
+            ((NULL($type)) || ($type eq '-ANY-') || ($type eq $conf->{type}))
+            && (   (NULL($model))
+                || ($model eq '-ANY-')
+                || ($model eq $conf->{model}))
+           )
+        {
+            my $status = Octopussy::Device::Parse_Status($conf->{name});
+            next if (!defined $status);
+            $conf->{status} = (
+                $status == $STARTED
+                ? 'Started'
+                : ($status == $PAUSED ? 'Paused' : 'Stopped')
+            );
+            $conf->{action1} =
+                ($conf->{status} eq 'Stopped' ? 'parse_pause' : 'parse_stop');
+            $conf->{action2} =
+                ($conf->{status} eq 'Started' ? 'parse_pause' : 'parse_start');
+            $conf->{logtype} ||= 'syslog';
+            push @configurations, $conf;
+        }
+    }
 
-  	foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
-  	{
-    	push @sorted_configurations, $c;
-  	}
+    foreach my $c (sort { $a->{$sort} cmp $b->{$sort} } @configurations)
+    {
+        push @sorted_configurations, $c;
+    }
 
-  	return (@sorted_configurations);
+    return (@sorted_configurations);
 }
 
 =head2 Add_Service($device, $service)
@@ -325,51 +326,50 @@ Adds Service or Servicegroup '$service' to Device '$device'
 
 sub Add_Service
 {
-  	my ($device, $service) = @_;
+    my ($device, $service) = @_;
 
-  	my $conf = AAT::XML::Read(Filename($device));
-	
-	return (undef)	if (!defined $conf);
+    my $conf = AAT::XML::Read(Filename($device));
 
-  	foreach my $dev_serv (ARRAY($conf->{service}))
-  	{
-    	return () if ($dev_serv->{sid} =~ /^$service$/);
-  	}
+    return (undef) if (!defined $conf);
 
-  	my $old_status = Parse_Status($device);
-  	Parse_Pause($device) 
-		if ((defined $old_status) && ($old_status == $STARTED));
-  	my $rank = sprintf(
-    	"%02d",
-    	(
-      		NOT_NULL($conf->{service})
-      		? (scalar(@{$conf->{service}}) + 1)
-      		: 1
-    	)
-  		);
-  	if ($service =~ /^group (.+)$/)
-  	{
-    	foreach my $s (Octopussy::ServiceGroup::Services($1))
-    	{
-      		my $exists = 0;
-      		foreach my $dev_serv (ARRAY($conf->{service}))
-      		{
-        		$exists = 1 if ($dev_serv->{sid} =~ /^$s->{sid}$/);
-      		}
-      		if (!$exists)
-      		{
-        		push @{$conf->{service}}, {sid => $s->{sid}, rank => $rank};
-        		$rank++;
-      		}
-    	}
-  	}
-  	else 
-		{ push @{$conf->{service}}, {sid => $service, rank => $rank}; }
-  	AAT::XML::Write(Filename($device), $conf, $XML_ROOT);
-  	Parse_Start($device)
-		if ((defined $old_status) && ($old_status == $STARTED));
+    foreach my $dev_serv (ARRAY($conf->{service}))
+    {
+        return () if ($dev_serv->{sid} =~ /^$service$/);
+    }
 
-  	return (scalar @{$conf->{service}});
+    my $old_status = Parse_Status($device);
+    Parse_Pause($device)
+        if ((defined $old_status) && ($old_status == $STARTED));
+    my $rank = sprintf(
+        "%02d",
+        (
+            NOT_NULL($conf->{service})
+            ? (scalar(@{$conf->{service}}) + 1)
+            : 1
+        )
+    );
+    if ($service =~ /^group (.+)$/)
+    {
+        foreach my $s (Octopussy::ServiceGroup::Services($1))
+        {
+            my $exists = 0;
+            foreach my $dev_serv (ARRAY($conf->{service}))
+            {
+                $exists = 1 if ($dev_serv->{sid} =~ /^$s->{sid}$/);
+            }
+            if (!$exists)
+            {
+                push @{$conf->{service}}, {sid => $s->{sid}, rank => $rank};
+                $rank++;
+            }
+        }
+    }
+    else { push @{$conf->{service}}, {sid => $service, rank => $rank}; }
+    AAT::XML::Write(Filename($device), $conf, $XML_ROOT);
+    Parse_Start($device)
+        if ((defined $old_status) && ($old_status == $STARTED));
+
+    return (scalar @{$conf->{service}});
 }
 
 =head2 Remove_Service($device_name, $service_name)
@@ -380,39 +380,39 @@ Removes a service '$service_name' from device '$device_name'
 
 sub Remove_Service
 {
-  	my ($device_name, $service_name) = @_;
-	my $conf     = AAT::XML::Read(Filename($device_name));
+    my ($device_name, $service_name) = @_;
+    my $conf = AAT::XML::Read(Filename($device_name));
 
-	return (undef)  if (!defined $conf);
+    return (undef) if (!defined $conf);
 
-  	my $old_status = Parse_Status($device_name);
-  	Parse_Pause($device_name) 
-		if ((defined $old_status) && ($old_status == $STARTED));
+    my $old_status = Parse_Status($device_name);
+    Parse_Pause($device_name)
+        if ((defined $old_status) && ($old_status == $STARTED));
 
-  	my @services = ();
-  	my $rank     = undef;
-  	foreach my $s (ARRAY($conf->{service}))
-  	{
-    	if ($s->{sid} ne $service_name) { push @services, $s; }
-    	else                            { $rank = $s->{rank}; }
-  	}
-  	foreach my $s (@services)
-  	{
-    	if ($s->{rank} > $rank)
-    	{
-      		$s->{rank} -= 1;
-      		$s->{rank} = sprintf("%02d", $s->{rank});
-    	}
-  	}
-  	$service_name =~ s/ /_/g;
-  	my $dir_rrd = Octopussy::FS::Directory('data_rrd');
-  	unlink "$dir_rrd/$device_name/taxonomy_$service_name.rrd";
-  	$conf->{service} = \@services;
-  	AAT::XML::Write(Filename($device_name), $conf, $XML_ROOT);
-  	Parse_Start($device_name) 
-		if ((defined $old_status) && ($old_status == $STARTED));
+    my @services = ();
+    my $rank     = undef;
+    foreach my $s (ARRAY($conf->{service}))
+    {
+        if ($s->{sid} ne $service_name) { push @services, $s; }
+        else                            { $rank = $s->{rank}; }
+    }
+    foreach my $s (@services)
+    {
+        if ($s->{rank} > $rank)
+        {
+            $s->{rank} -= 1;
+            $s->{rank} = sprintf("%02d", $s->{rank});
+        }
+    }
+    $service_name =~ s/ /_/g;
+    my $dir_rrd = Octopussy::FS::Directory('data_rrd');
+    unlink "$dir_rrd/$device_name/taxonomy_$service_name.rrd";
+    $conf->{service} = \@services;
+    AAT::XML::Write(Filename($device_name), $conf, $XML_ROOT);
+    Parse_Start($device_name)
+        if ((defined $old_status) && ($old_status == $STARTED));
 
-  	return (scalar @services);
+    return (scalar @services);
 }
 
 =head2 Update_Services_Rank($conf, $service, $direction, $rank, $old_rank)
@@ -423,34 +423,35 @@ Updates Services Rank
 
 sub Update_Services_Rank
 {
-  my ($conf, $service, $direction, $rank, $old_rank) = @_;
+    my ($conf, $service, $direction, $rank, $old_rank) = @_;
 
-  my @services = ();
-  foreach my $s (ARRAY($conf->{service}))
-  {
-    if ($s->{sid} ne $service)
+    my @services = ();
+    foreach my $s (ARRAY($conf->{service}))
     {
-      if (($direction eq 'top') || ($direction eq 'bottom'))
-      {
-        if (($direction eq 'top') && ($s->{rank} < $old_rank))
+        if ($s->{sid} ne $service)
         {
-          $s->{rank} += 1;
+            if (($direction eq 'top') || ($direction eq 'bottom'))
+            {
+                if (($direction eq 'top') && ($s->{rank} < $old_rank))
+                {
+                    $s->{rank} += 1;
+                }
+                elsif (($direction eq 'bottom') && ($s->{rank} > $old_rank))
+                {
+                    $s->{rank} -= 1;
+                }
+            }
+            elsif ($s->{rank} eq $rank)
+            {
+                $s->{rank} =
+                    ($direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1);
+            }
         }
-        elsif (($direction eq 'bottom') && ($s->{rank} > $old_rank))
-        {
-          $s->{rank} -= 1;
-        }
-      }
-      elsif ($s->{rank} eq $rank)
-      {
-        $s->{rank} = ($direction eq 'up' ? $s->{rank} + 1 : $s->{rank} - 1);
-      }
+        $s->{rank} = sprintf("%02d", $s->{rank});
+        push @services, $s;
     }
-    $s->{rank} = sprintf("%02d", $s->{rank});
-    push @services, $s;
-  }
 
-  return (@services);
+    return (@services);
 }
 
 =head2 Move_Service($device, $service, $direction)
@@ -462,41 +463,41 @@ in Direction Top, Bottom, Up or Down ('$direction')
 
 sub Move_Service
 {
-  my ($device, $service, $direction) = @_;
-  my ($rank, $old_rank) = (undef, undef);
-  my $conf     = AAT::XML::Read(Filename($device));
-  my @services = ();
-  my $max      = (defined $conf->{service} ? scalar(@{$conf->{service}}) : 0);
-  $max = sprintf("%02d", $max);
-  foreach my $s (ARRAY($conf->{service}))
-  {
-
-    if ($s->{sid} eq $service)
+    my ($device, $service, $direction) = @_;
+    my ($rank, $old_rank) = (undef, undef);
+    my $conf     = AAT::XML::Read(Filename($device));
+    my @services = ();
+    my $max      = (defined $conf->{service} ? scalar(@{$conf->{service}}) : 0);
+    $max = sprintf("%02d", $max);
+    foreach my $s (ARRAY($conf->{service}))
     {
-      return () if (($s->{rank} eq '01') && ($direction eq 'up'));
-      return () if (($s->{rank} eq $max) && ($direction eq 'down'));
-      $old_rank = $s->{rank};
-      $s->{rank} = (
-        $direction eq 'top' ? 1
-        : (
-          $direction eq 'up' ? $s->{rank} - 1
-          : ($direction eq 'down' ? $s->{rank} + 1 : $max)
-        )
-      );
-      $s->{rank} = sprintf("%02d", $s->{rank});
-      $rank = $s->{rank};
+
+        if ($s->{sid} eq $service)
+        {
+            return () if (($s->{rank} eq '01') && ($direction eq 'up'));
+            return () if (($s->{rank} eq $max) && ($direction eq 'down'));
+            $old_rank = $s->{rank};
+            $s->{rank} = (
+                $direction eq 'top' ? 1
+                : (
+                    $direction eq 'up' ? $s->{rank} - 1
+                    : ($direction eq 'down' ? $s->{rank} + 1 : $max)
+                  )
+            );
+            $s->{rank} = sprintf("%02d", $s->{rank});
+            $rank = $s->{rank};
+        }
+        push @services, $s;
     }
-    push @services, $s;
-  }
-  $conf->{service} = \@services;
+    $conf->{service} = \@services;
 
-  my @services2 =
-    Update_Services_Rank($conf, $service, $direction, $rank, $old_rank);
-  $conf->{service}         = \@services2;
-  $conf->{reload_required} = 1;
-  AAT::XML::Write(Filename($device), $conf, $XML_ROOT);
+    my @services2 =
+        Update_Services_Rank($conf, $service, $direction, $rank, $old_rank);
+    $conf->{service}         = \@services2;
+    $conf->{reload_required} = 1;
+    AAT::XML::Write(Filename($device), $conf, $XML_ROOT);
 
-  return ($rank);
+    return ($rank);
 }
 
 =head2 Services(@devices)
@@ -507,20 +508,21 @@ Gets Service list (sorted by rank) from Device list '@devices'
 
 sub Services
 {
-  my @devices  = @_;
-  my @services = ();
+    my @devices  = @_;
+    my @services = ();
 
-  foreach my $d (@devices)
-  {
-	return (Octopussy::Service::List_Used()) if ($d eq '-ANY-');	
-    my $conf = AAT::XML::Read(Filename($d));
-    foreach my $s (sort { $a->{rank} cmp $b->{rank} } ARRAY($conf->{service}))
+    foreach my $d (@devices)
     {
-      push @services, $s->{sid};
+        return (Octopussy::Service::List_Used()) if ($d eq '-ANY-');
+        my $conf = AAT::XML::Read(Filename($d));
+        foreach
+            my $s (sort { $a->{rank} cmp $b->{rank} } ARRAY($conf->{service}))
+        {
+            push @services, $s->{sid};
+        }
     }
-  }
 
-  return (@services);
+    return (@services);
 }
 
 =head2 String_Services
@@ -531,16 +533,16 @@ Returns Service List as a string like 'Service list: <service_list>'
 
 sub String_Services
 {
-  	my @devices = @_;
+    my @devices = @_;
 
-  	my @unknowns = Unknowns(@devices);
-  	if (scalar @unknowns)
-  	{
-    	return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @unknowns);
-  	}
-  	my @services = sort(uniq(Services(@devices)));
+    my @unknowns = Unknowns(@devices);
+    if (scalar @unknowns)
+    {
+        return (sprintf '[ERROR] Unknown Device(s): %s', join ', ', @unknowns);
+    }
+    my @services = sort(uniq(Services(@devices)));
 
-  	return ('Service list: -ANY-, ' . join ', ', @services);
+    return ('Service list: -ANY-, ' . join ', ', @services);
 }
 
 =head2 Services_Configurations($device, $sort)
@@ -551,19 +553,19 @@ Returns Services Configurations sorted by '$sort' field for Device '$device'
 
 sub Services_Configurations
 {
-  	my ($device, $sort) = @_;
-  	my @configurations = ();
+    my ($device, $sort) = @_;
+    my @configurations = ();
 
-	$sort = 'rank'
+    $sort = 'rank'
         if ((!defined $sort) || ($sort ne 'rank' && $sort ne 'sid'));
-  	my $conf           = AAT::XML::Read(Filename($device));
+    my $conf = AAT::XML::Read(Filename($device));
 
-  	foreach my $s (sort { $a->{$sort} cmp $b->{$sort} } ARRAY($conf->{service}))
-  	{
-    	push @configurations, $s;
-  	}
+    foreach my $s (sort { $a->{$sort} cmp $b->{$sort} } ARRAY($conf->{service}))
+    {
+        push @configurations, $s;
+    }
 
-  	return (@configurations);
+    return (@configurations);
 }
 
 =head2 Services_Statistics($device)
@@ -572,41 +574,43 @@ sub Services_Configurations
 
 sub Services_Statistics
 {
-  my $device = shift;
-  my %stats;
+    my $device = shift;
+    my %stats;
 
-  my $timestamp    = strftime("%Y%m%d%H%M", localtime);
-  my $limit        = int($timestamp) - Octopussy::Parameter('msgid_history');
-  my $cache_parser = Octopussy::Cache::Init('octo_parser');
-  my $total        = 0;
-  foreach my $k (sort $cache_parser->get_keys())
-  {
-    if ( ($k =~ /^parser_msgid_stats_(\d{12})_(\S+)$/)
-      && ($1 >= $limit)
-      && ($2 eq $device))
+    my $timestamp    = strftime("%Y%m%d%H%M", localtime);
+    my $limit        = int($timestamp) - Octopussy::Parameter('msgid_history');
+    my $cache_parser = Octopussy::Cache::Init('octo_parser');
+    my $total        = 0;
+    foreach my $k (sort $cache_parser->get_keys())
     {
-      my $data = $cache_parser->get($k);
-      foreach my $s (@{$data})
-      {
-        if ($s->{id} eq '_TOTAL_')
+        if (   ($k =~ /^parser_msgid_stats_(\d{12})_(\S+)$/)
+            && ($1 >= $limit)
+            && ($2 eq $device))
         {
-          $stats{$s->{service}} = (
-            defined $stats{$s->{service}}
-            ? $stats{$s->{service}} + $s->{count}
-            : $s->{count}
-          );
-          $total += $s->{count};
+            my $data = $cache_parser->get($k);
+            foreach my $s (@{$data})
+            {
+                if ($s->{id} eq '_TOTAL_')
+                {
+                    $stats{$s->{service}} = (
+                        defined $stats{$s->{service}}
+                        ? $stats{$s->{service}} + $s->{count}
+                        : $s->{count}
+                    );
+                    $total += $s->{count};
+                }
+            }
         }
-      }
     }
-  }
-  foreach my $k (keys %stats)
-  {
-    $stats{$k} =
-      ($total == 0 ? 0 : sprintf '%.1f%%', ($stats{$k} * $PERCENT / $total));
-  }
+    foreach my $k (keys %stats)
+    {
+        $stats{$k} = (
+            $total == 0 ? 0 : sprintf '%.1f%%',
+            ($stats{$k} * $PERCENT / $total)
+        );
+    }
 
-  return (%stats);
+    return (%stats);
 }
 
 =head2 With_Service($service)
@@ -617,19 +621,19 @@ Returns List of Device which have Service '$service' in its Services List
 
 sub With_Service
 {
-  my $service        = shift;
-  my @configurations = Configurations('name');
-  my @devices        = ();
+    my $service        = shift;
+    my @configurations = Configurations('name');
+    my @devices        = ();
 
-  foreach my $c (@configurations)
-  {
-    foreach my $s (ARRAY($c->{service}))
+    foreach my $c (@configurations)
     {
-      push @devices, $c->{name} if ($s->{sid} eq $service);
+        foreach my $s (ARRAY($c->{service}))
+        {
+            push @devices, $c->{name} if ($s->{sid} eq $service);
+        }
     }
-  }
 
-  return (@devices);
+    return (@devices);
 }
 
 =head2 Types()
@@ -640,15 +644,15 @@ Returns Device Types List
 
 sub Types
 {
-  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEMODELS));
-  my @list = ();
-  foreach
-    my $t (sort { $a->{dt_id} cmp $b->{dt_id} } ARRAY($conf->{device_type}))
-  {
-    push @list, $t->{dt_id};
-  }
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEMODELS));
+    my @list = ();
+    foreach
+        my $t (sort { $a->{dt_id} cmp $b->{dt_id} } ARRAY($conf->{device_type}))
+    {
+        push @list, $t->{dt_id};
+    }
 
-  return (@list);
+    return (@list);
 }
 
 =head2 Type_Configurations()
@@ -657,14 +661,14 @@ sub Types
 
 sub Type_Configurations
 {
-  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEMODELS));
-  my %type = ();
-  foreach my $t (ARRAY($conf->{device_type}))
-  {
-    $type{$t->{dt_id}} = $t;
-  }
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEMODELS));
+    my %type = ();
+    foreach my $t (ARRAY($conf->{device_type}))
+    {
+        $type{$t->{dt_id}} = $t;
+    }
 
-  return (%type);
+    return (%type);
 }
 
 =head2 Models($type)
@@ -675,30 +679,30 @@ Returns Device Models List
 
 sub Models
 {
-  my $type = shift;
-	$type ||= 'Unknown';
-  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEMODELS));
-  my @list = ();
+    my $type = shift;
+    $type ||= 'Unknown';
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_DEVICEMODELS));
+    my @list = ();
 
-  foreach
-    my $t (sort { $a->{dt_id} cmp $b->{dt_id} } ARRAY($conf->{device_type}))
-  {
-    if ($t->{dt_id} eq $type)
+    foreach
+        my $t (sort { $a->{dt_id} cmp $b->{dt_id} } ARRAY($conf->{device_type}))
     {
-      foreach
-        my $m (sort { $a->{dm_id} cmp $b->{dm_id} } ARRAY($t->{device_model}))
-      {
-        push @list,
-          {
-          name      => $m->{dm_id},
-          icon      => $m->{icon},
-          footprint => $m->{footprint}
-          };
-      }
+        if ($t->{dt_id} eq $type)
+        {
+            foreach my $m (sort { $a->{dm_id} cmp $b->{dm_id} }
+                ARRAY($t->{device_model}))
+            {
+                push @list,
+                    {
+                    name      => $m->{dm_id},
+                    icon      => $m->{icon},
+                    footprint => $m->{footprint}
+                    };
+            }
+        }
     }
-  }
 
-  return (@list);
+    return (@list);
 }
 
 =head2 Parse_Status($device)
@@ -709,25 +713,26 @@ Returns Parsing status of the Device '$device'
 
 sub Parse_Status
 {
-  my $device = shift;
+    my $device = shift;
 
-  my $conf = Configuration($device);
-  if (defined $conf)
-  {
-    $dir_pid ||= Octopussy::FS::Directory('running');
-    my @files =
-      AAT::FS::Directory_Files($dir_pid, qr/^octo_parser_\Q$device\E\.pid$/);
+    my $conf = Configuration($device);
+    if (defined $conf)
+    {
+        $dir_pid ||= Octopussy::FS::Directory('running');
+        my @files = AAT::FS::Directory_Files($dir_pid,
+            qr/^octo_parser_\Q$device\E\.pid$/);
 
-    return (
-      scalar(@files) > 0 ? 2
-      : (
-        ((defined $conf->{status}) && ($conf->{status} eq 'Stopped')) ? 0
-        : 1
-      )
-    );
-  }
+        return (
+            scalar(@files) > 0 ? 2
+            : (
+                ((defined $conf->{status}) && ($conf->{status} eq 'Stopped'))
+                ? 0
+                : 1
+              )
+        );
+    }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 Parse_Pause($device)
@@ -738,32 +743,32 @@ Pauses Parsing for Device '$device'
 
 sub Parse_Pause
 {
-  my $device = shift;
+    my $device = shift;
 
-  $dir_pid ||= Octopussy::FS::Directory('running');
-  my $file_pid = "$dir_pid/${PARSER_BIN}_${device}.pid";
-  if (-f $file_pid)
-  {
-    my $pid = Octopussy::PID_Value($file_pid);
-    kill USR1 => $pid;
-  }
+    $dir_pid ||= Octopussy::FS::Directory('running');
+    my $file_pid = "$dir_pid/${PARSER_BIN}_${device}.pid";
+    if (-f $file_pid)
+    {
+        my $pid = Octopussy::PID_Value($file_pid);
+        kill USR1 => $pid;
+    }
 
-  $file_pid = "$dir_pid/${UPARSER_BIN}_${device}.pid";
-  if (-f $file_pid)
-  {
-    my $pid = Octopussy::PID_Value($file_pid);
-    kill USR1 => $pid;
-  }
+    $file_pid = "$dir_pid/${UPARSER_BIN}_${device}.pid";
+    if (-f $file_pid)
+    {
+        my $pid = Octopussy::PID_Value($file_pid);
+        kill USR1 => $pid;
+    }
 
-  $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-  my $conf = Configuration($device);
-  if (defined $conf)
-  {
-    $conf->{status} = 'Paused';
-    AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
-  }
+    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+    my $conf = Configuration($device);
+    if (defined $conf)
+    {
+        $conf->{status} = 'Paused';
+        AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+    }
 
-  return ($device);
+    return ($device);
 }
 
 =head2 Parse_Start($device)
@@ -774,22 +779,23 @@ Starts Parsing for Device '$device'
 
 sub Parse_Start
 {
-  my $device = shift;
-  my $base   = Octopussy::FS::Directory('programs');
-  my $conf   = Configuration($device);
+    my $device = shift;
+    my $base   = Octopussy::FS::Directory('programs');
+    my $conf   = Configuration($device);
 
-  if (defined $conf)
-  {
-    my $cmd = "$base$PARSER_BIN $device &";
-    Octopussy::Commander($cmd);
-    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-    Octopussy::System::Dispatcher_Reload() if ($conf->{status} eq 'Stopped');
-    $conf->{status}          = 'Started';
-    $conf->{reload_required} = undef;
-    AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
-  }
+    if (defined $conf)
+    {
+        my $cmd = "$base$PARSER_BIN $device &";
+        Octopussy::Commander($cmd);
+        $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+        Octopussy::System::Dispatcher_Reload()
+            if ($conf->{status} eq 'Stopped');
+        $conf->{status}          = 'Started';
+        $conf->{reload_required} = undef;
+        AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+    }
 
-  return ($device);
+    return ($device);
 }
 
 =head2 Parse_Stop($device)
@@ -800,19 +806,19 @@ Stops Parsing for Device '$device'
 
 sub Parse_Stop
 {
-  my $device = shift;
+    my $device = shift;
 
-  Parse_Pause($device);
-  my $conf = Configuration($device);
-  if (defined $conf)
-  {
-    $conf->{status} = 'Stopped';
-    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-    AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
-    Octopussy::System::Dispatcher_Reload();
-  }
+    Parse_Pause($device);
+    my $conf = Configuration($device);
+    if (defined $conf)
+    {
+        $conf->{status} = 'Stopped';
+        $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+        AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+        Octopussy::System::Dispatcher_Reload();
+    }
 
-  return ($device);
+    return ($device);
 }
 
 =head2 Set_Service_Option($device, $service, $option, $action)
@@ -823,22 +829,22 @@ Set Service Option (compression or statistics) to enable or disable
 
 sub Set_Service_Option
 {
-	my ($device, $service, $option, $action) = @_;
+    my ($device, $service, $option, $action) = @_;
 
-  	my $status   = ($action eq 'enable' ? 1 : 0);
-  	my $conf     = Configuration($device);
-  	my @services = ();
-  	foreach my $s (ARRAY($conf->{service}))
-  	{
-    	$s->{$option} = $status if ($s->{sid} eq $service);
-    	push @services, $s;
-  	}
-	$conf->{service}         = \@services;
-  	$conf->{reload_required} = 1;
-  	$dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
-  	AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
+    my $status   = ($action eq 'enable' ? 1 : 0);
+    my $conf     = Configuration($device);
+    my @services = ();
+    foreach my $s (ARRAY($conf->{service}))
+    {
+        $s->{$option} = $status if ($s->{sid} eq $service);
+        push @services, $s;
+    }
+    $conf->{service}         = \@services;
+    $conf->{reload_required} = 1;
+    $dir_devices ||= Octopussy::FS::Directory($DIR_DEVICE);
+    AAT::XML::Write("$dir_devices/$conf->{name}.xml", $conf, $XML_ROOT);
 
-  	return ($status);
+    return ($status);
 }
 
 =head2 Valid_Name($name)
@@ -851,18 +857,21 @@ sub Valid_Name
 {
     my $name = shift;
 
-	if (ref($name) eq 'ARRAY')
-	{
-		foreach my $n (@{$name})
-		{
-			return (0)	if (! Valid_Name($n)); 
-		}
-		return (1);
-	}
-    
-	return (1)  
-		if ((NOT_NULL($name)) && (($name =~ /^[a-z0-9][a-z0-9_\.-]*$/i) 
-			|| ($name =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)));
+    if (ref($name) eq 'ARRAY')
+    {
+        foreach my $n (@{$name})
+        {
+            return (0) if (!Valid_Name($n));
+        }
+        return (1);
+    }
+
+    return (1)
+        if (
+        (NOT_NULL($name))
+        && (   ($name =~ /^[a-z0-9][a-z0-9_\.-]*$/i)
+            || ($name =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/))
+           );
 
     return (0);
 }

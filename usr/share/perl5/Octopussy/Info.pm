@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::Info - Octopussy Information module
@@ -25,9 +26,9 @@ Returns Octopussy Support Email
 
 sub Email
 {
-  my $info = AAT::Application::Info($APPLICATION_NAME);
+    my $info = AAT::Application::Info($APPLICATION_NAME);
 
-  return ($info->{email});
+    return ($info->{email});
 }
 
 =head2 User()
@@ -38,9 +39,9 @@ Returns Octopussy System User
 
 sub User
 {
-  my $info = AAT::Application::Info($APPLICATION_NAME);
+    my $info = AAT::Application::Info($APPLICATION_NAME);
 
-  return ($info->{user});
+    return ($info->{user});
 }
 
 =head2 WebSite()
@@ -51,9 +52,9 @@ Returns Octopussy WebSite
 
 sub WebSite
 {
-  my $info = AAT::Application::Info($APPLICATION_NAME);
+    my $info = AAT::Application::Info($APPLICATION_NAME);
 
-  return ($info->{website});
+    return ($info->{website});
 }
 
 1;

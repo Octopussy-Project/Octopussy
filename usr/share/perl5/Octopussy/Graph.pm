@@ -45,53 +45,53 @@ Generate graph
 
 sub Generate
 {
-  my ($g, $output) = @_;
+    my ($g, $output) = @_;
 
-  $output = $output || 'graph.png';
-  my $fct = 'GD::Graph::' . ($g->{type} || $TYPE);
-  my $graph = $fct->new($g->{width} || $WIDTH, $g->{height} || $HEIGHT);
+    $output = $output || 'graph.png';
+    my $fct = 'GD::Graph::' . ($g->{type} || $TYPE);
+    my $graph = $fct->new($g->{width} || $WIDTH, $g->{height} || $HEIGHT);
 
-  $graph->set(bar_spacing => $BAR_SPACING) if ($g->{type} =~ /bars$/);
-  $graph->set(start_angle => $START_ANGLE) if ($g->{type} eq 'pie');
-  my @colors = GD::Graph::colour::colour_list($NB_COLORS);
+    $graph->set(bar_spacing => $BAR_SPACING) if ($g->{type} =~ /bars$/);
+    $graph->set(start_angle => $START_ANGLE) if ($g->{type} eq 'pie');
+    my @colors = GD::Graph::colour::colour_list($NB_COLORS);
 
-  #read_rgb("/etc/X11/rgb.txt");
-  $graph->set(
+    #read_rgb("/etc/X11/rgb.txt");
+    $graph->set(
 
-    #x_label => ($g->{x_label} || "X Label"),
-    #y_label => ($g->{y_label} || "Y Label"),
-    title         => $g->{title}         || '',
-    logo          => $g->{logo}          || $LOGO,
-    logo_position => $g->{logo_position} || $LOGO_POSITION,
+        #x_label => ($g->{x_label} || "X Label"),
+        #y_label => ($g->{y_label} || "Y Label"),
+        title         => $g->{title}         || '',
+        logo          => $g->{logo}          || $LOGO,
+        logo_position => $g->{logo_position} || $LOGO_POSITION,
 
-    #x_labels_vertical => 1,
-    t_margin => $g->{margin} || $MARGIN,
-    b_margin => $g->{margin} || $MARGIN,
-    l_margin => $g->{margin} || $MARGIN,
-    r_margin => $g->{margin} || $MARGIN,
+        #x_labels_vertical => 1,
+        t_margin => $g->{margin} || $MARGIN,
+        b_margin => $g->{margin} || $MARGIN,
+        l_margin => $g->{margin} || $MARGIN,
+        r_margin => $g->{margin} || $MARGIN,
 
-    #      y_max_value       => 8,
-    #      y_tick_number     => 8,
-    #      y_label_skip      => 2
-    dclrs => \@colors
-  ) or croak $graph->error;
+        #      y_max_value       => 8,
+        #      y_tick_number     => 8,
+        #      y_label_skip      => 2
+        dclrs => \@colors
+    ) or croak $graph->error;
 
-  #$graph->set_legend($g->{data});
-  my $gd = $graph->plot($g->{data}) or croak $graph->error;
-  if (defined open my $IMG, '>', $output)
-  {
-    binmode $IMG;
-    print {$IMG} $gd->png;
-    close $IMG;
-  }
-  else
-  {
-    my ($pack, $file_pack, $line, $sub) = caller 0;
-    AAT::Syslog::Message('Octopussy_Graph', 'UNABLE_OPEN_FILE_IN', $output,
-      $sub);
-  }
+    #$graph->set_legend($g->{data});
+    my $gd = $graph->plot($g->{data}) or croak $graph->error;
+    if (defined open my $IMG, '>', $output)
+    {
+        binmode $IMG;
+        print {$IMG} $gd->png;
+        close $IMG;
+    }
+    else
+    {
+        my ($pack, $file_pack, $line, $sub) = caller 0;
+        AAT::Syslog::Message('Octopussy_Graph', 'UNABLE_OPEN_FILE_IN', $output,
+            $sub);
+    }
 
-  return ($output);
+    return ($output);
 }
 
 1;

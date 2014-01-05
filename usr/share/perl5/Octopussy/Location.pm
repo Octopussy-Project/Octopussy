@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::Location - Octopussy Location module
@@ -29,10 +30,10 @@ Returns Location Cities List
 
 sub Cities
 {
-  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_LOCATIONS));
-  my @list = apply { $_ = $_->{c_name}; } ARRAY($conf->{city});
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_LOCATIONS));
+    my @list = apply { $_ = $_->{c_name}; } ARRAY($conf->{city});
 
-  return (sort @list);
+    return (sort @list);
 }
 
 =head2 City_Add($city)
@@ -43,21 +44,21 @@ Add City '$city' to Locations
 
 sub City_Add
 {
-  my $city = shift;
+    my $city = shift;
 
-  return () if ((!defined $city) || ($city eq ''));
-  my $file = Octopussy::FS::File($FILE_LOCATIONS);
-  my $conf = AAT::XML::Read($file);
-  if ( (!defined $conf)
-    || (!defined $conf->{city})
-    || (none { $_ eq $city } Cities()))
-  {
-    push @{$conf->{city}}, {c_name => $city};
-    AAT::XML::Write($file, $conf, $XML_ROOT);
-    return ($city);
-  }
+    return () if ((!defined $city) || ($city eq ''));
+    my $file = Octopussy::FS::File($FILE_LOCATIONS);
+    my $conf = AAT::XML::Read($file);
+    if (   (!defined $conf)
+        || (!defined $conf->{city})
+        || (none { $_ eq $city } Cities()))
+    {
+        push @{$conf->{city}}, {c_name => $city};
+        AAT::XML::Write($file, $conf, $XML_ROOT);
+        return ($city);
+    }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 City_Remove($city)
@@ -68,15 +69,15 @@ Removes City '$city' from Locations
 
 sub City_Remove
 {
-  my $city   = shift;
-  my $file   = Octopussy::FS::File($FILE_LOCATIONS);
-  my $conf   = AAT::XML::Read($file);
-  my @cities = grep { $_->{c_name} ne $city } ARRAY($conf->{city});
+    my $city   = shift;
+    my $file   = Octopussy::FS::File($FILE_LOCATIONS);
+    my $conf   = AAT::XML::Read($file);
+    my @cities = grep { $_->{c_name} ne $city } ARRAY($conf->{city});
 
-  $conf->{city} = \@cities;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+    $conf->{city} = \@cities;
+    AAT::XML::Write($file, $conf, $XML_ROOT);
 
-  return (scalar @cities);
+    return (scalar @cities);
 }
 
 =head2 City_Matched
@@ -87,9 +88,9 @@ Returns City that matches '$city' from Cities '$cities' list
 
 sub City_Matched
 {
-  my ($cities, $city) = @_;
+    my ($cities, $city) = @_;
 
-  return (grep { $_->{c_name} eq $city } ARRAY($cities));
+    return (grep { $_->{c_name} eq $city } ARRAY($cities));
 }
 
 =head2 Buildings($city)
@@ -100,18 +101,18 @@ Returns Buildings List
 
 sub Buildings
 {
-  my $city   = shift;
-  my $conf   = AAT::XML::Read(Octopussy::FS::File($FILE_LOCATIONS));
-  my @list   = ();
-  my @cities = Cities();
-  $city ||= $cities[0];
+    my $city   = shift;
+    my $conf   = AAT::XML::Read(Octopussy::FS::File($FILE_LOCATIONS));
+    my @list   = ();
+    my @cities = Cities();
+    $city ||= $cities[0];
 
-  foreach my $c (City_Matched($conf->{city}, $city))
-  {
-    @list = apply { $_ = $_->{b_name}; } ARRAY($c->{building});
-  }
+    foreach my $c (City_Matched($conf->{city}, $city))
+    {
+        @list = apply { $_ = $_->{b_name}; } ARRAY($c->{building});
+    }
 
-  return (sort @list);
+    return (sort @list);
 }
 
 =head2 Building_Add
@@ -122,31 +123,31 @@ Adds Building '$building' to City '$city' Location
 
 sub Building_Add
 {
-  my ($city, $building) = @_;
+    my ($city, $building) = @_;
 
-  return () if ((!defined $building) || ($building eq ''));
-  my $file   = Octopussy::FS::File($FILE_LOCATIONS);
-  my $conf   = AAT::XML::Read($file);
-  my @cities = ();
-  my $result = undef;
+    return () if ((!defined $building) || ($building eq ''));
+    my $file   = Octopussy::FS::File($FILE_LOCATIONS);
+    my $conf   = AAT::XML::Read($file);
+    my @cities = ();
+    my $result = undef;
 
-  foreach my $c (ARRAY($conf->{city}))
-  {
-    if ($c->{c_name} eq $city)
+    foreach my $c (ARRAY($conf->{city}))
     {
-      my @buildings = Buildings($city);
-      if ((!scalar @buildings) || (none { $_ eq $building } @buildings))
-      {
-        push @{$c->{building}}, {b_name => $building};
-        $result = $building;
-      }
+        if ($c->{c_name} eq $city)
+        {
+            my @buildings = Buildings($city);
+            if ((!scalar @buildings) || (none { $_ eq $building } @buildings))
+            {
+                push @{$c->{building}}, {b_name => $building};
+                $result = $building;
+            }
+        }
+        push @cities, $c;
     }
-    push @cities, $c;
-  }
 
-  $conf->{city} = \@cities;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
-  return ($result);
+    $conf->{city} = \@cities;
+    AAT::XML::Write($file, $conf, $XML_ROOT);
+    return ($result);
 }
 
 =head2 Building_Remove
@@ -157,26 +158,26 @@ Removes Building '$building' from City '$city' Location
 
 sub Building_Remove
 {
-  my ($city, $building) = @_;
-  my $file      = Octopussy::FS::File($FILE_LOCATIONS);
-  my $conf      = AAT::XML::Read($file);
-  my @cities    = ();
-  my @buildings = ();
+    my ($city, $building) = @_;
+    my $file      = Octopussy::FS::File($FILE_LOCATIONS);
+    my $conf      = AAT::XML::Read($file);
+    my @cities    = ();
+    my @buildings = ();
 
-  foreach my $c (ARRAY($conf->{city}))
-  {
-    if ($c->{c_name} eq $city)
+    foreach my $c (ARRAY($conf->{city}))
     {
-      @buildings =
-        grep { $_->{b_name} ne $building } ARRAY($c->{building});
-      $c->{building} = \@buildings;
+        if ($c->{c_name} eq $city)
+        {
+            @buildings =
+                grep { $_->{b_name} ne $building } ARRAY($c->{building});
+            $c->{building} = \@buildings;
+        }
+        push @cities, $c;
     }
-    push @cities, $c;
-  }
-  $conf->{city} = \@cities;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+    $conf->{city} = \@cities;
+    AAT::XML::Write($file, $conf, $XML_ROOT);
 
-  return (scalar @buildings);
+    return (scalar @buildings);
 }
 
 =head2 Building_Matched
@@ -187,9 +188,9 @@ Returns Building that matches '$building' from Buildings '$buildings' list
 
 sub Building_Matched
 {
-  my ($buildings, $building) = @_;
+    my ($buildings, $building) = @_;
 
-  return (grep { $_->{b_name} eq $building } ARRAY($buildings));
+    return (grep { $_->{b_name} eq $building } ARRAY($buildings));
 }
 
 =head2 Rooms($city, $building)
@@ -200,23 +201,23 @@ Returns Rooms List
 
 sub Rooms
 {
-  my ($city, $building) = @_;
-  my $conf   = AAT::XML::Read(Octopussy::FS::File($FILE_LOCATIONS));
-  my @list   = ();
-  my @cities = Cities();
-  $city ||= $cities[0];
-  my @buildings = Buildings($city);
-  $building ||= $buildings[0];
+    my ($city, $building) = @_;
+    my $conf   = AAT::XML::Read(Octopussy::FS::File($FILE_LOCATIONS));
+    my @list   = ();
+    my @cities = Cities();
+    $city ||= $cities[0];
+    my @buildings = Buildings($city);
+    $building ||= $buildings[0];
 
-  foreach my $c (City_Matched($conf->{city}, $city))
-  {
-    foreach my $b (Building_Matched($c->{building}, $building))
+    foreach my $c (City_Matched($conf->{city}, $city))
     {
-      @list = apply { $_ = $_->{r_name}; } ARRAY($b->{room});
+        foreach my $b (Building_Matched($c->{building}, $building))
+        {
+            @list = apply { $_ = $_->{r_name}; } ARRAY($b->{room});
+        }
     }
-  }
 
-  return (sort @list);
+    return (sort @list);
 }
 
 =head2 Room_Add($city, $building, $room)
@@ -227,41 +228,40 @@ Adds Room '$room' to City '$city' Building '$building' Location
 
 sub Room_Add
 {
-  my ($city, $building, $room) = @_;
+    my ($city, $building, $room) = @_;
 
-  return () if ((!defined $room) || ($room eq ''));
-  my $file      = Octopussy::FS::File($FILE_LOCATIONS);
-  my $conf      = AAT::XML::Read($file);
-  my @cities    = ();
-  my @buildings = ();
-  my @rooms     = ();
-  my $result    = undef;
+    return () if ((!defined $room) || ($room eq ''));
+    my $file      = Octopussy::FS::File($FILE_LOCATIONS);
+    my $conf      = AAT::XML::Read($file);
+    my @cities    = ();
+    my @buildings = ();
+    my $result    = undef;
 
-  foreach my $c (ARRAY($conf->{city}))
-  {
-    if ($c->{c_name} eq $city)
+    foreach my $c (ARRAY($conf->{city}))
     {
-      foreach my $b (ARRAY($c->{building}))
-      {
-        if ($b->{b_name} eq $building)
+        if ($c->{c_name} eq $city)
         {
-          my @rooms = Rooms($city, $building);
-          if ((!scalar @rooms) || (none { $_ eq $room } @rooms))
-          {
-            push @{$b->{room}}, {r_name => $room};
-            $result = $room;
-          }
+            foreach my $b (ARRAY($c->{building}))
+            {
+                if ($b->{b_name} eq $building)
+                {
+                    my @rooms = Rooms($city, $building);
+                    if ((!scalar @rooms) || (none { $_ eq $room } @rooms))
+                    {
+                        push @{$b->{room}}, {r_name => $room};
+                        $result = $room;
+                    }
+                }
+                push @buildings, $b;
+            }
+            $c->{building} = \@buildings;
         }
-        push @buildings, $b;
-      }
-      $c->{building} = \@buildings;
+        push @cities, $c;
     }
-    push @cities, $c;
-  }
 
-  $conf->{city} = \@cities;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
-  return ($result);
+    $conf->{city} = \@cities;
+    AAT::XML::Write($file, $conf, $XML_ROOT);
+    return ($result);
 }
 
 =head2 Room_Remove($city, $building, $room)
@@ -272,34 +272,34 @@ Removes Room '$room' from City '$city' Building '$building' Location
 
 sub Room_Remove
 {
-  my ($city, $building, $room) = @_;
-  my $file      = Octopussy::FS::File($FILE_LOCATIONS);
-  my $conf      = AAT::XML::Read($file);
-  my @cities    = ();
-  my @buildings = ();
-  my @rooms     = ();
+    my ($city, $building, $room) = @_;
+    my $file      = Octopussy::FS::File($FILE_LOCATIONS);
+    my $conf      = AAT::XML::Read($file);
+    my @cities    = ();
+    my @buildings = ();
+    my @rooms     = ();
 
-  foreach my $c (ARRAY($conf->{city}))
-  {
-    if ($c->{c_name} eq $city)
+    foreach my $c (ARRAY($conf->{city}))
     {
-      foreach my $b (ARRAY($c->{building}))
-      {
-        if ($b->{b_name} eq $building)
+        if ($c->{c_name} eq $city)
         {
-          @rooms = grep { $_->{r_name} ne $room } ARRAY($b->{room});
-          $b->{room} = \@rooms;
+            foreach my $b (ARRAY($c->{building}))
+            {
+                if ($b->{b_name} eq $building)
+                {
+                    @rooms = grep { $_->{r_name} ne $room } ARRAY($b->{room});
+                    $b->{room} = \@rooms;
+                }
+                push @buildings, $b;
+            }
+            $c->{building} = \@buildings;
         }
-        push @buildings, $b;
-      }
-      $c->{building} = \@buildings;
+        push @cities, $c;
     }
-    push @cities, $c;
-  }
-  $conf->{city} = \@cities;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+    $conf->{city} = \@cities;
+    AAT::XML::Write($file, $conf, $XML_ROOT);
 
-  return (scalar @rooms);
+    return (scalar @rooms);
 }
 
 =head2 Room_Matched
@@ -310,9 +310,9 @@ Returns Room that matches '$room' from Rooms '$rooms' list
 
 sub Room_Matched
 {
-  my ($rooms, $room) = @_;
+    my ($rooms, $room) = @_;
 
-  return (grep { $_->{r_name} eq $room } ARRAY($rooms));
+    return (grep { $_->{r_name} eq $room } ARRAY($rooms));
 }
 
 =head2 Racks($city, $building, $room)
@@ -323,28 +323,28 @@ Returns Racks List
 
 sub Racks
 {
-  my ($city, $building, $room) = @_;
-  my $conf   = AAT::XML::Read(Octopussy::FS::File($FILE_LOCATIONS));
-  my @list   = ();
-  my @cities = Cities();
-  $city ||= $cities[0];
-  my @buildings = Buildings($city);
-  $building ||= $buildings[0];
-  my @rooms = Rooms($city, $building);
-  $room ||= $rooms[0];
+    my ($city, $building, $room) = @_;
+    my $conf   = AAT::XML::Read(Octopussy::FS::File($FILE_LOCATIONS));
+    my @list   = ();
+    my @cities = Cities();
+    $city ||= $cities[0];
+    my @buildings = Buildings($city);
+    $building ||= $buildings[0];
+    my @rooms = Rooms($city, $building);
+    $room ||= $rooms[0];
 
-  foreach my $c (City_Matched($conf->{city}, $city))
-  {
-    foreach my $b (Building_Matched($c->{building}, $building))
+    foreach my $c (City_Matched($conf->{city}, $city))
     {
-      foreach my $r (Room_Matched($b->{room}, $room))
-      {
-        @list = apply { $_ = $_->{r_name}; } ARRAY($r->{rack});
-      }
+        foreach my $b (Building_Matched($c->{building}, $building))
+        {
+            foreach my $r (Room_Matched($b->{room}, $room))
+            {
+                @list = apply { $_ = $_->{r_name}; } ARRAY($r->{rack});
+            }
+        }
     }
-  }
 
-  return (sort @list);
+    return (sort @list);
 }
 
 =head2 Rack_Add($city, $building, $room, $rack)
@@ -355,46 +355,47 @@ Adds Rack '$rack' to City '$city' Building '$building' Room '$room' Location
 
 sub Rack_Add
 {
-  my ($city, $building, $room, $rack) = @_;
+    my ($city, $building, $room, $rack) = @_;
 
-  return () if ((!defined $rack) || ($rack eq ''));
-  my $file = Octopussy::FS::File($FILE_LOCATIONS);
-  my $conf = AAT::XML::Read($file);
-  my (@cities, @buildings, @rooms) = ((), (), ());
-  my $result = undef;
+    return () if ((!defined $rack) || ($rack eq ''));
+    my $file = Octopussy::FS::File($FILE_LOCATIONS);
+    my $conf = AAT::XML::Read($file);
+    my (@cities, @buildings, @rooms) = ((), (), ());
+    my $result = undef;
 
-  foreach my $c (ARRAY($conf->{city}))
-  {
-    if ($c->{c_name} eq $city)
+    foreach my $c (ARRAY($conf->{city}))
     {
-      foreach my $b (ARRAY($c->{building}))
-      {
-        if ($b->{b_name} eq $building)
+        if ($c->{c_name} eq $city)
         {
-          foreach my $r (ARRAY($b->{room}))
-          {
-            if ($r->{r_name} eq $room)
+            foreach my $b (ARRAY($c->{building}))
             {
-              my @racks = Racks($city, $building, $room);
-              if ((!scalar @racks) || (none { $_ eq $rack } @racks))
-              {
-                push @{$r->{rack}}, {r_name => $rack};
-                $result = $rack;
-              }
+                if ($b->{b_name} eq $building)
+                {
+                    foreach my $r (ARRAY($b->{room}))
+                    {
+                        if ($r->{r_name} eq $room)
+                        {
+                            my @racks = Racks($city, $building, $room);
+                            if (   (!scalar @racks)
+                                || (none { $_ eq $rack } @racks))
+                            {
+                                push @{$r->{rack}}, {r_name => $rack};
+                                $result = $rack;
+                            }
+                        }
+                        push @rooms, $r;
+                    }
+                    $b->{room} = \@rooms;
+                }
+                push @buildings, $b;
             }
-            push @rooms, $r;
-          }
-          $b->{room} = \@rooms;
+            $c->{building} = \@buildings;
         }
-        push @buildings, $b;
-      }
-      $c->{building} = \@buildings;
+        push @cities, $c;
     }
-    push @cities, $c;
-  }
-  $conf->{city} = \@cities;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
-  return ($result);
+    $conf->{city} = \@cities;
+    AAT::XML::Write($file, $conf, $XML_ROOT);
+    return ($result);
 }
 
 =head2 Rack_Remove 
@@ -405,43 +406,45 @@ Removes Rack '$rack' from City '$city' Building '$building' Room '$room' Locatio
 
 sub Rack_Remove
 {
-  my ($city, $building, $room, $rack) = @_;
-  my $file      = Octopussy::FS::File($FILE_LOCATIONS);
-  my $conf      = AAT::XML::Read($file);
-  my @cities    = ();
-  my @buildings = ();
-  my @rooms     = ();
-  my @racks     = ();
+    my ($city, $building, $room, $rack) = @_;
+    my $file      = Octopussy::FS::File($FILE_LOCATIONS);
+    my $conf      = AAT::XML::Read($file);
+    my @cities    = ();
+    my @buildings = ();
+    my @rooms     = ();
+    my @racks     = ();
 
-  foreach my $c (ARRAY($conf->{city}))
-  {
-    if ($c->{c_name} eq $city)
+    foreach my $c (ARRAY($conf->{city}))
     {
-      foreach my $b (ARRAY($c->{building}))
-      {
-        if ($b->{b_name} eq $building)
+        if ($c->{c_name} eq $city)
         {
-          foreach my $r (ARRAY($b->{room}))
-          {
-            if ($r->{r_name} eq $room)
+            foreach my $b (ARRAY($c->{building}))
             {
-              @racks = grep { $_->{r_name} ne $rack } ARRAY($r->{rack});
-              $r->{rack} = \@racks;
+                if ($b->{b_name} eq $building)
+                {
+                    foreach my $r (ARRAY($b->{room}))
+                    {
+                        if ($r->{r_name} eq $room)
+                        {
+                            @racks =
+                                grep { $_->{r_name} ne $rack }
+                                ARRAY($r->{rack});
+                            $r->{rack} = \@racks;
+                        }
+                        push @rooms, $r;
+                    }
+                    $b->{room} = \@rooms;
+                }
+                push @buildings, $b;
             }
-            push @rooms, $r;
-          }
-          $b->{room} = \@rooms;
+            $c->{building} = \@buildings;
         }
-        push @buildings, $b;
-      }
-      $c->{building} = \@buildings;
+        push @cities, $c;
     }
-    push @cities, $c;
-  }
-  $conf->{city} = \@cities;
-  AAT::XML::Write($file, $conf, $XML_ROOT);
+    $conf->{city} = \@cities;
+    AAT::XML::Write($file, $conf, $XML_ROOT);
 
-  return (scalar @racks);
+    return (scalar @racks);
 }
 
 1;

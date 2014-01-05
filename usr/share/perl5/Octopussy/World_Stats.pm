@@ -32,21 +32,21 @@ Get/Generates World Statistics ID
 
 sub ID
 {
-  Readonly my $RANDOM_NUMBER => 999;
-  my $conf = Configuration();
+    Readonly my $RANDOM_NUMBER => 999;
+    my $conf = Configuration();
 
-  if (NOT_NULL($conf) && NOT_NULL($conf->{id}))
-  {
-    return ($conf->{id});
-  }
-  else
-  {
-    my $str = time() * rand $RANDOM_NUMBER;
-    $str = `echo "$str" | md5sum`;
-    chomp $str;
-    $str =~ s/^(\S+).+$/$1/;
-    return ($str);
-  }
+    if (NOT_NULL($conf) && NOT_NULL($conf->{id}))
+    {
+        return ($conf->{id});
+    }
+    else
+    {
+        my $str = time() * rand $RANDOM_NUMBER;
+        $str = `echo "$str" | md5sum`;
+        chomp $str;
+        $str =~ s/^(\S+).+$/$1/;
+        return ($str);
+    }
 }
 
 =head2 Modify(\%conf)
@@ -57,11 +57,11 @@ Modifies World Statistics configuration
 
 sub Modify
 {
-  my $conf = shift;
+    my $conf = shift;
 
-  AAT::XML::Write(Octopussy::FS::File($FILE_WORLD_STATS), $conf, $XML_ROOT);
+    AAT::XML::Write(Octopussy::FS::File($FILE_WORLD_STATS), $conf, $XML_ROOT);
 
-  return (undef);
+    return (undef);
 }
 
 =head2 Configuration()
@@ -72,9 +72,9 @@ Returns World Statistics Configuration
 
 sub Configuration
 {
-  my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_WORLD_STATS));
+    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_WORLD_STATS));
 
-  return ($conf);
+    return ($conf);
 }
 
 1;
