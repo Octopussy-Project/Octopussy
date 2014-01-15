@@ -14,8 +14,9 @@ use strict;
 use warnings;
 use Readonly;
 
-use Date::Manip;
 use Getopt::Long;
+use Time::Piece;
+use Time::Seconds;
 
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY NULL );
@@ -73,9 +74,11 @@ sub Get_Logrotate_Limit
             }
         }
     }
-    my $limit = Date::Manip::DateCalc('today', "-$logrotate days");
-    $limit =~ s/^(\d{8}).+$/$1/;
-
+	
+	my $today = Time::Piece->new;
+	my $calc = $today - ($logrotate * ONE_DAY);  
+	my $limit = $calc->strftime("%Y%m%d");
+	
     return ($logrotate, $limit);
 }
 
