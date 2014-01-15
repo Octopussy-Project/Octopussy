@@ -26,8 +26,6 @@ octo_reporter is the program used by the Octopussy Project to generate Reports
 
 =cut
 
-sub grep_heap { print @_, "\n"; system "grep -A1 heap /proc/$$/smaps" }
-
 use strict;
 use warnings;
 use Readonly;
@@ -51,8 +49,6 @@ use Octopussy::Report;
 use Octopussy::Table;
 use Octopussy::Taxonomy;
 use Octopussy::Type;
-
-BEGIN { grep_heap "+ATSTART" }
 
 Readonly my $APPLI         => 'Octopussy';
 Readonly my $PROG_NAME     => 'octo_reporter';
