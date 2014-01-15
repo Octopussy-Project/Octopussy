@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -26,14 +26,16 @@ octo_reporter is the program used by the Octopussy Project to generate Reports
 
 =cut
 
+sub grep_heap { print @_, "\n"; system "grep -A1 heap /proc/$$/smaps" }
+
 use strict;
 use warnings;
 use Readonly;
 
-use Date::Manip;
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 use Term::ProgressBar 2.00;
+use Time::Piece;
 
 use AAT::DB;
 use AAT::Syslog;
@@ -49,6 +51,8 @@ use Octopussy::Report;
 use Octopussy::Table;
 use Octopussy::Taxonomy;
 use Octopussy::Type;
+
+BEGIN { grep_heap "+ATSTART" }
 
 Readonly my $APPLI         => 'Octopussy';
 Readonly my $PROG_NAME     => 'octo_reporter';
@@ -390,6 +394,7 @@ die "Error: Unable to get configuration for Report [$report]\n"
 $lang ||= 'EN';
 
 my $time = time;
+my $tp = Time::Piece->new;
 if (!$quiet)
 {
     print "Report: $rc->{name}\n";
@@ -397,10 +402,10 @@ if (!$quiet)
 }
 my $pid_name = $PROG_NAME . (defined $pid_param ? "_$pid_param" : '');
 $file_pid = Octopussy::PID_File($pid_name);
-my $started = Date::Manip::ParseDateString("epoch $time");
+
 my %info    = (
     report    => $rc->{name},
-    started   => Date::Manip::UnixDate($started, '%Y/%m/%d %H:%M'),
+    started   => $tp->strftime("%Y/%m/%d %H:%M"),
     devices   => \@devices,
     services  => \@services,
     pid_param => $pid_param,
