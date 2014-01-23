@@ -20,8 +20,9 @@ use strict;
 use warnings;
 use Readonly;
 
-use Date::Manip;
 use POSIX qw( strftime );
+use Time::Piece;
+use Time::Seconds;
 
 use AAT::Utils;
 use Octopussy;
@@ -47,18 +48,18 @@ sub Launch_Report
     my $start_hour  = $sched->{start_hour};
     my $finish_day  = $sched->{finish_day};
     my $finish_hour = $sched->{finish_hour};
-    $start_day   =~ s/Day-(\d+)/$1 days/i;
-    $start_hour  =~ s/Hour-(\d+)/$1 hours/i;
-    $finish_day  =~ s/Day-(\d+)/$1 days/i;
-    $finish_hour =~ s/Hour-(\d+)/$1 hours/i;
+    $start_day   =~ s/Day-(\d+)/$1/i;
+    $start_hour  =~ s/Hour-(\d+)/$1/i;
+    $finish_day  =~ s/Day-(\d+)/$1/i;
+    $finish_hour =~ s/Hour-(\d+)/$1/i;
 
-    my $start =
-        Date::Manip::UnixDate(
-        Date::Manip::DateCalc('now', "- $start_day $start_hour"), '%Y%m%d%H%M');
-    my $finish =
-        Date::Manip::UnixDate(
-        Date::Manip::DateCalc('now', "- $finish_day $finish_hour"),
-        '%Y%m%d%H%M');
+	my $dt = Time::Piece->new;
+	my $dt_start = $dt - ($start_day * ONE_DAY) - ($start_hour * ONE_HOUR);
+	my $dt_finish = $dt - ($finish_day * ONE_DAY) - ($finish_hour * ONE_HOUR);
+
+	my $start = $dt_start->strftime('%Y%m%d%H%M');
+	my $finish = $dt_finish->strftime('%Y%m%d%H%M');
+
     print "$start - $finish\n";
 
     my $report = Octopussy::Report::Configuration($sched->{report});
