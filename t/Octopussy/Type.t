@@ -76,7 +76,7 @@ my @sql_list = Octopussy::Type::SQL_List();
 ok(scalar @sql_list, 'Octopussy::Type::SQL_List()');
 
 my $sqltype_pid   = Octopussy::Type::SQL_Type('PID');
-cmp_ok($sqltype_pid, 'eq', 'BIGINT', 
+cmp_ok($sqltype_pid, 'eq', 'BIGINT',
 	'Octopussy::Type::SQL_Type(PID) => BIGINT');
 
 my $sqltype_email = Octopussy::Type::SQL_Type('EMAIL');
@@ -84,25 +84,25 @@ cmp_ok($sqltype_email, 'eq', 'VARCHAR(250)',
 	'Octopussy::Type::SQL_Type(EMAIL) => VARCHAR(250)');
 
 my $sqltype_long_string = Octopussy::Type::SQL_Type('LONG_STRING');
-cmp_ok($sqltype_long_string, 'eq', 'TEXT', 
+cmp_ok($sqltype_long_string, 'eq', 'TEXT',
     'Octopussy::Type::SQL_Type(LONG_STRING) => TEXT');
 
 my $sqltype_invalid = Octopussy::Type::SQL_Type('INVALID_TYPE');
-ok(!defined $sqltype_invalid,        
+ok(!defined $sqltype_invalid,
     'Octopussy::Type::SQL_Type(INVALID_TYPE) => undef');
 
 my $sql_dt1 = Octopussy::Type::SQL_Datetime($DT1);
-ok($sql_dt1 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT1)');
+like($sql_dt1, qr/^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT1)');
 my $sql_dt2 = Octopussy::Type::SQL_Datetime($DT2);
-ok($sql_dt2 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT2)');
+like($sql_dt2, qr/^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT2)');
 my $sql_dt3 = Octopussy::Type::SQL_Datetime($DT3);
-ok($sql_dt3 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT3)');
+like($sql_dt3, qr/^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT3)');
 my $sql_dt4 = Octopussy::Type::SQL_Datetime($DT4);
-ok($sql_dt4 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT4)');
+like($sql_dt4, qr/^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT4)');
 my $sql_dt5 = Octopussy::Type::SQL_Datetime($DT5);
-ok($sql_dt5 =~ /^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT5)');
+like($sql_dt5, qr/^$RE_DT_SQL$/, 'Octopussy::Type::SQL_Datetime(DT5)');
 my $sql_dt_none = Octopussy::Type::SQL_Datetime('no sql datetime');
-ok($sql_dt_none eq 'no sql datetime', 
+cmp_ok($sql_dt_none, 'eq', 'no sql datetime',
 	'Octopussy::Type::SQL_Datetime(no sql datetime) => no sql datetime');
 
 # Regexps

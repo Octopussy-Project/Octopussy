@@ -44,7 +44,7 @@ my $error = Octopussy::Contact::New(
   }
 );
 
-ok((!defined $error) && (-f "t/data/conf/contacts/${id}.xml"), 
+ok((!defined $error) && (-f "t/data/conf/contacts/${id}.xml"),
 	'Octopussy::Contact::New()') or diag($error);
 
 my $error2 = Octopussy::Contact::New(
@@ -57,8 +57,8 @@ my $error2 = Octopussy::Contact::New(
     im          => $im
   }
 );
-ok($error2 eq "_MSG_CONTACT_ALREADY_EXISTS",
-    'Octopussy::Contact::New() fails when contact already exists') 
+cmp_ok($error2, 'eq', '_MSG_CONTACT_ALREADY_EXISTS',
+    'Octopussy::Contact::New() fails when contact already exists')
 	or diag($error);
 
 my $c = Octopussy::Contact::Configuration($id);

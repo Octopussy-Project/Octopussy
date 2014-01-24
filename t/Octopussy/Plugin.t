@@ -58,10 +58,10 @@ my @functions = qw(
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
 my @list = Octopussy::Plugin::List();
-ok(scalar @plugins >= $REQUIRED_NB_PLUGINS, 'Octopussy::Plugin::List()');
+cmp_ok(scalar @plugins, '>=', $REQUIRED_NB_PLUGINS, 'Octopussy::Plugin::List()');
 
 my $nb_plugins_init = Octopussy::Plugin::Init({lang => $LANG}, @functions);
-ok($nb_plugins_init == $REQUIRED_NB_PLUGINS, 'Octopussy::Plugin::Init()');
+cmp_ok($nb_plugins_init, '==', $REQUIRED_NB_PLUGINS, 'Octopussy::Plugin::Init()');
 
 my @p_functions = Octopussy::Plugin::Functions();
 my $match       = 0;
@@ -72,30 +72,30 @@ foreach my $pf (@p_functions)
     $match++ if (any { $f->{perl} eq $_ } @functions);
   }
 }
-ok($match == scalar @functions, 'Octopussy::Plugin::Functions()');
+cmp_ok($match, '==', scalar @functions, 'Octopussy::Plugin::Functions()');
 
 my $mail_domain = Octopussy::Plugin::Email::Domain($TEST_MAIL);
-ok($mail_domain eq $TEST_MAIL_DOMAIN, 
+cmp_ok($mail_domain, 'eq', $TEST_MAIL_DOMAIN,
 	"Octopussy::Plugin::Email::Domain('$TEST_MAIL') => $mail_domain");
 my $mail_user = Octopussy::Plugin::Email::User($TEST_MAIL);
-ok($mail_user eq $TEST_MAIL_USER, 
+cmp_ok($mail_user, 'eq', $TEST_MAIL_USER,
 	"Octopussy::Plugin::Email::User('$TEST_MAIL') => $mail_user");
 
 my $mask8 = Octopussy::Plugin::Network::Mask_8($TEST_NETWORK);
-ok($mask8 eq $TEST_NETWORK_MASK8, 
+cmp_ok($mask8, 'eq', $TEST_NETWORK_MASK8,
 	"Octopussy::Plugin::Network::Mask_8('$TEST_NETWORK') => $mask8");
 my $mask16 = Octopussy::Plugin::Network::Mask_16($TEST_NETWORK);
-ok($mask16 eq $TEST_NETWORK_MASK16, 
+cmp_ok($mask16, 'eq', $TEST_NETWORK_MASK16,
 	"Octopussy::Plugin::Network::Mask_16('$TEST_NETWORK') => $mask16");
 my $mask24 = Octopussy::Plugin::Network::Mask_24($TEST_NETWORK);
-ok($mask24 eq $TEST_NETWORK_MASK24, 
+cmp_ok($mask24, 'eq', $TEST_NETWORK_MASK24,
 	"Octopussy::Plugin::Network::Mask_24('$TEST_NETWORK') => $mask24");
 
 my $kbytes = Octopussy::Plugin::Unit::KiloBytes($TEST_BYTES);
-ok($kbytes eq $TEST_BYTES_K_FR, 
+cmp_ok($kbytes, 'eq', $TEST_BYTES_K_FR,
 	"Octopussy::Plugin::Unit::KiloBytes('$TEST_BYTES') => $kbytes");
 my $mbytes = Octopussy::Plugin::Unit::MegaBytes($TEST_BYTES);
-ok($mbytes eq $TEST_BYTES_M_FR, 
+cmp_ok($mbytes, 'eq', $TEST_BYTES_M_FR,
 	"Octopussy::Plugin::Unit::MegaBytes('$TEST_BYTES') => $mbytes");
 
 done_testing(10);

@@ -37,7 +37,7 @@ Readonly my $NB_MIN_MODELS        => 20;
 Readonly my $NB_MIN_SELECT_MODELS => 14;
 
 Octopussy::Device::New({
-	name => "${PREFIX}device", 
+	name => "${PREFIX}device",
 	address => '1.2.3.4',
 	type => 'Server',
 	model => 'Linux Debian'
@@ -52,20 +52,20 @@ $conf = Octopussy::Device::Configuration($DEVICE);
 cmp_ok($conf->{reload_required}, '==', 1, 'Octopussy::Device::Reload_Required()');
 
 my @d_confs_undef = Octopussy::Device::Filtered_Configurations();
-cmp_ok(scalar @d_confs_undef, '==', 1, 
+cmp_ok(scalar @d_confs_undef, '==', 1,
 	'Octopussy::Device::Filtered_Configurations()');
 my @d_confs_any = Octopussy::Device::Filtered_Configurations('-ANY-', '-ANY-');
 cmp_ok(scalar @d_confs_any, '==', 1,
     "Octopussy::Device::Filtered_Configurations('-ANY-', '-ANY-')");
 my @d_confs1 = Octopussy::Device::Filtered_Configurations('Server', 'Linux Debian');
-cmp_ok(scalar @d_confs1, '==', 1, 
+cmp_ok(scalar @d_confs1, '==', 1,
     "Octopussy::Device::Filtered_Configurations('Server', 'Linux Debian')");
 my @d_confs0 = Octopussy::Device::Filtered_Configurations('Firewall', '-ANY-');
 cmp_ok(scalar @d_confs0, '==', 0,
     "Octopussy::Device::Filtered_Configurations(Firewall', '-ANY-')");
 
 my $nb_services = Octopussy::Device::Add_Service('wrong_dev', 'wrong_svc');
-ok(!defined $nb_services, 
+ok(!defined $nb_services,
 	"Octopussy::Device::Add_Service('wrong_dev', 'wrong_svc') => undef");
 
 $nb_services = 0;
@@ -82,7 +82,7 @@ my @list_with = Octopussy::Device::With_Service('Octopussy');
 ok((grep { /$DEVICE/ } @list_with), 'Octopussy::Device::With_Service()');
 
 $nb_services = Octopussy::Device::Remove_Service('wrong_dev', 'Octopussy');
-ok(!defined $nb_services, 
+ok(!defined $nb_services,
 	"Octopussy::Device::Remove_Service('wrong_dev, 'wrong_svc')");
 $nb_services = Octopussy::Device::Remove_Service($DEVICE, 'Octopussy');
 cmp_ok($nb_services, '==', scalar @SERVICES - 1, 'Octopussy::Device::Remove_Service()');
@@ -92,11 +92,11 @@ cmp_ok($nb_services, '==', scalar @SERVICES - 1, 'Octopussy::Device::Remove_Serv
 #
 my $rank1 = Octopussy::Device::Move_Service($DEVICE, 'Linux_Kernel', 'up');
 my $rank2 = Octopussy::Device::Move_Service($DEVICE, 'Linux_Kernel', 'up');
-ok($rank1 eq '01' && !defined $rank2, 'Octopussy::Device::Move_Service(up)');
+ok(($rank1 eq '01') && !defined $rank2, 'Octopussy::Device::Move_Service(up)');
 
 $rank1 = Octopussy::Device::Move_Service($DEVICE, 'Sshd', 'down');
 $rank2 = Octopussy::Device::Move_Service($DEVICE, 'Sshd', 'down');
-ok($rank1 eq '03' && !defined $rank2, 'Octopussy::Device::Move_Service(down)');
+ok(($rank1 eq '03') && !defined $rank2, 'Octopussy::Device::Move_Service(down)');
 
 $rank1 = Octopussy::Device::Move_Service($DEVICE, 'Sshd', 'top');
 cmp_ok($rank1, 'eq', '01', 'Octopussy::Device::Move_Service(top)');
@@ -106,7 +106,7 @@ cmp_ok($rank1, 'eq', '03', 'Octopussy::Device::Move_Service(bottom)');
 
 my $modified_name = Octopussy::Device::Modify({name => "modified_$DEVICE", description => $DEV_DESC});
 ok(!defined $modified_name, 
-	"Octopussy::Device::Modify(changed_device_name) => undef");
+	'Octopussy::Device::Modify(changed_device_name) => undef');
 Octopussy::Device::Modify({name => $DEVICE, description => $DEV_DESC});
 Octopussy::Device::Modify({name => "modified_$DEVICE", description => $DEV_DESC});
 $conf = Octopussy::Device::Configuration($DEVICE);
@@ -124,16 +124,16 @@ ok(
 );
 
 my $s_str1 = Octopussy::Device::String_Services();
-ok($s_str1 =~ /^Service list: -ANY-, $/,
+like($s_str1, qr/^Service list: -ANY-, $/,
     "Octopussy::Device::String_Services($DEVICE) => $s_str1");
 
 my $s_str2 = Octopussy::Device::String_Services($DEVICE);
 my $services_list = join(', ', sort grep !/Octopussy/, @SERVICES);
-ok($s_str2 =~ /^Service list: -ANY-, $services_list$/,
+like($s_str2, qr/^Service list: -ANY-, $services_list$/,
 	"Octopussy::Device::String_Services($DEVICE) => $s_str2");
 
 my $s_str3 = Octopussy::Device::String_Services('unknown_device');
-ok($s_str3 =~ /^\[ERROR\] Unknown Device\(s\):.+$/,
+like($s_str3, qr/^\[ERROR\] Unknown Device\(s\):.+$/,
     "Octopussy::Device::String_Services('unknown_device') => error msg");
 
 my @s_confs = Octopussy::Device::Services_Configurations();
@@ -149,11 +149,10 @@ Octopussy::Device::Remove($DEVICE);
 ok(!-f "${DIR_DEVICES}${PREFIX}device.xml", 'Octopussy::Device::Remove()');
 
 my @unknowns = Octopussy::Device::Unknowns('-ANY-', $DEVICE);
-ok(scalar @unknowns == 1, 'Octopussy::Device::Unknowns()');
+cmp_ok(scalar @unknowns, '==', 1, 'Octopussy::Device::Unknowns()');
 
 my @types = Octopussy::Device::Types();
-my $nb_types = scalar grep { /^(Desktop PC|Firewall|Router|Server|Switch)$/ }
-  @types;    ## no critic
+my $nb_types = scalar grep { /^(Desktop PC|Firewall|Router|Server|Switch)$/ } @types;
 ok(scalar @types >= $NB_MIN_TYPES && $nb_types == $NB_MIN_SELECT_TYPES,
   'Octopussy::Device::Types()');
 
@@ -169,7 +168,7 @@ ok(defined $type{Firewall} && defined $type{Router} && defined $type{Server},
 #
 # 5 tests for Octopussy::Device::Valid_Name() with invalid device names
 # 
-foreach my $name (undef, '', '.invalid_hostname',  '-invalid_hostname', 
+foreach my $name (undef, '', '.invalid_hostname',  '-invalid_hostname',
 	'^invalid_hostname')
 {
     my $param_str = (defined $name ? "'$name'" : 'undef');

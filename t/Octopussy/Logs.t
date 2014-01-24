@@ -58,7 +58,7 @@ sub Generate_Fake_Logs_Files
     my $minute = sprintf '%02d', $i;
     system "touch $DIR_LOGS/$DEVICE/Incoming/2010/01/01/msg_00h${minute}.log";
     my $data = '';
-    foreach my $i2 (0..19) 
+    foreach my $i2 (0..19)
 		{ $data .= sprintf "line %02d\n", $i2; }
     if (defined open my $FILE,
       '|-',
@@ -72,7 +72,7 @@ sub Generate_Fake_Logs_Files
     system
       "touch $DIR_LOGS/$DEVICE/$SERVICE/2010/01/01/msg_01h${minute}.log.gz";
   }
-  
+
   return (undef);
 }
 
@@ -100,11 +100,11 @@ my $finish_num = sprintf '%04d%02d%02d%02d%02d',
 
 my @files_ymd = Octopussy::Logs::Files_Year_Month_Day(\%start, \%finish,
   "$DIR_LOGS/$DEVICE/$SERVICE", $YEAR);
-ok(scalar @files_ymd == 120, 'Octopussy::Logs::Files_Year_Month_Day()');
+cmp_ok(scalar @files_ymd, '==', 120, 'Octopussy::Logs::Files_Year_Month_Day()');
 my @files_ymdhm =
   Octopussy::Logs::Files_Year_Month_Day_Hour_Min("$DIR_LOGS/$DEVICE/$SERVICE",
   $start_num, $finish_num, \@files_ymd);
-ok(scalar @files_ymdhm == 30,
+cmp_ok(scalar @files_ymdhm, '==', 30,
   'Octopussy::Logs::Files_Year_Month_Day_Hour_Min()');
 
 # Need to create Device/Service
@@ -113,7 +113,7 @@ Octopussy::Device::Add_Service($DEVICE, $SERVICE);
 
 my $list_files =
   Octopussy::Logs::Files([$DEVICE], [$SERVICE], \%start, \%finish);
-ok(scalar @{$list_files} == 30, 'Octopussy::Logs::Files()');
+cmp_ok(scalar @{$list_files}, '==', 30, 'Octopussy::Logs::Files()');
 
 my $avail = Octopussy::Logs::Availability($DEVICE, \%start, \%finish);
 ok(
@@ -124,28 +124,28 @@ ok(
 
 my ($hash_files, $nb_files) =
   Octopussy::Logs::Minutes_Hash([$DEVICE], [$SERVICE], \%start, \%finish);
-ok($nb_files == 30 && defined $hash_files->{201001010029},
+ok($nb_files == 30 && defined $hash_files->{'201001010029'},
   'Octopussy::Logs::Minutes_Hash()');
 
 ($list_files, $nb_files) =
   Octopussy::Logs::Get_TimePeriod_Files([$DEVICE], [$SERVICE], $BEGIN, $END);
-ok($nb_files == 30, 'Octopussy::Logs::Get_TimePeriod_Files()');
+cmp_ok($nb_files, '==', 30, 'Octopussy::Logs::Get_TimePeriod_Files()');
 
 my @files_incoming = Octopussy::Logs::Incoming_Files($DEVICE);
-ok(scalar @files_incoming == 60, 'Octopussy::Logs::Incoming_Files');
+cmp_ok(scalar @files_incoming, '==', 60, 'Octopussy::Logs::Incoming_Files');
 
 my @files_unknown = Octopussy::Logs::Unknown_Files($DEVICE);
-ok(scalar @files_unknown == 60, 'Octopussy::Logs::Unknown_Files');
+cmp_ok(scalar @files_unknown, '==', 60, 'Octopussy::Logs::Unknown_Files');
 
 my $nb_lines_unknown = Octopussy::Logs::Unknown_Number($DEVICE);
-ok($nb_lines_unknown == 120, 'Octopussy::Logs::Unknown_Number');
+cmp_ok($nb_lines_unknown, '==', 120, 'Octopussy::Logs::Unknown_Number');
 
 my $nb_removed = Octopussy::Logs::Remove($DEVICE, 'line 0\d+');
-ok($nb_removed == 600, 'Octopussy::Logs::Remove()');
+cmp_ok($nb_removed, '==', 600, 'Octopussy::Logs::Remove()');
 
 Octopussy::Logs::Remove_Minute($DEVICE, $YEAR, $MONTH, $DAY, '00', '00');
 @files_unknown = Octopussy::Logs::Unknown_Files($DEVICE);
-ok(scalar @files_unknown == 59, 'Octopussy::Logs::Remove_Minute()');
+cmp_ok(scalar @files_unknown, '==', 59, 'Octopussy::Logs::Remove_Minute()');
 
 my %conf_extract = (
   devices   => ["${DEVICE}_1",  "${DEVICE}_2"],
@@ -162,7 +162,7 @@ my %conf_extract = (
   user      => 'Octo_Test',
 );
 my $cmd = Octopussy::Logs::Extract_Cmd_Line(\%conf_extract);
-ok($cmd =~ $RE_CMDLINE, 'Octopussy::Logs::Extract_Cmd_Line()');
+like($cmd, $RE_CMDLINE, 'Octopussy::Logs::Extract_Cmd_Line()');
 
 # Clean stuff
 Octopussy::Device::Remove($DEVICE);

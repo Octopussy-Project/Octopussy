@@ -45,10 +45,10 @@ ok(
 ok((any { $_ eq $TP_LABEL } @list2), 'Octopussy::TimePeriod::List()');
 
 my $conf_undef = Octopussy::TimePeriod::Configuration(undef);
-ok(!defined $conf_undef, 
+ok(!defined $conf_undef,
 	'Octopussy::TimePeriod::Configuration(undef) => undef');
 my $conf_invalid_name = Octopussy::TimePeriod::Configuration('invalidname');
-ok(!defined $conf_invalid_name, 
+ok(!defined $conf_invalid_name,
     'Octopussy::TimePeriod::Configuration(invalidname) => undef');
 
 my $conf = Octopussy::TimePeriod::Configuration($TP_LABEL);
@@ -56,7 +56,7 @@ ok($conf->{label} eq $TP_LABEL && $conf->{periods} eq $TP_RESULT_PERIODS,
 	'Octopussy::TimePeriod::Configuration()');
 
 my @confs = Octopussy::TimePeriod::Configurations();
-ok((scalar @confs == 1) && ($confs[0]->{label} eq $TP_LABEL), 
+ok((scalar @confs == 1) && ($confs[0]->{label} eq $TP_LABEL),
 	'Octopussy::TimePeriod::Configurations()');
 
 my $match       = Octopussy::TimePeriod::Match($TP_LABEL, 'Tuesday 14:00');
@@ -84,7 +84,7 @@ foreach my $name (undef, '', 'timeperiod with space')
 foreach my $name ('valid-timeperiod', 'valid_timeperiod')
 {
     my $param_str = (defined $name ? "'$name'" : 'undef');
-	
+
 	my $is_valid = Octopussy::TimePeriod::Valid_Name($name);
     ok($is_valid,
         'Octopussy::TimePeriod::Valid_Name(' . $param_str . ") => $is_valid");

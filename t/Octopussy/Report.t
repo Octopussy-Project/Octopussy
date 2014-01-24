@@ -59,18 +59,18 @@ ok(-f "${DIR_REPORTS}${REPORT_TITLE}.xml",
 
 my @list2       = Octopussy::Report::List();
 my @categories2 = Octopussy::Report::Categories();
-ok(scalar @list + 1 == scalar @list2, 'Octopussy::Report::List()');
-ok(scalar @categories + 1 == scalar @categories2,
+cmp_ok(scalar @list + 1, '==', scalar @list2, 'Octopussy::Report::List()');
+cmp_ok(scalar @categories + 1, '==', scalar @categories2,
   'Octopussy::Report::Categories()');
 
 my $conf = Octopussy::Report::Configuration($REPORT_TITLE);
-ok($conf->{description} eq "${PREFIX}report Description",
+cmp_ok($conf->{description}, 'eq', "${PREFIX}report Description",
   'Octopussy::Report::Configuration()');
 
 $conf{description} = "${PREFIX}report New Description";
 Octopussy::Report::Modify($REPORT_TITLE, \%conf);
 $conf = Octopussy::Report::Configuration($REPORT_TITLE);
-ok($conf->{description} eq "${PREFIX}report New Description",
+cmp_ok($conf->{description}, 'eq', "${PREFIX}report New Description",
   'Octopussy::Report::Modify()');
 
 Octopussy::Report::Remove($REPORT_TITLE);

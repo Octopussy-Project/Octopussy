@@ -31,7 +31,7 @@ Readonly my $DIR_BACKUP_TEST => "$FindBin::Bin/../data/etc/octopussy/";
 Readonly my $FILE_TEST => "${dir_main}contacts/test.xml";
 
 my $dir_backup = Octopussy::Configuration::Set_Backup_Directory($DIR_BACKUP_TEST);
-is($dir_backup, $DIR_BACKUP_TEST, 
+is($dir_backup, $DIR_BACKUP_TEST,
 	"Octopussy::Configuration::Set_Backup_Directory('$DIR_BACKUP_TEST')");
 
 my @list = Octopussy::Configuration::Backup_List();
@@ -40,7 +40,7 @@ my @list = Octopussy::Configuration::Backup_List();
 system qq{echo "test" > $FILE_TEST};
 
 my $file = Octopussy::Configuration::Backup();
-ok(NOT_NULL($file) && -f $file, 
+ok(NOT_NULL($file) && -f $file,
 	"Octopussy::Configuration::Backup() => $file");
 
 # Removes the file which should be restored

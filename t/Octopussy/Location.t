@@ -52,8 +52,7 @@ my @racks = Octopussy::Location::Racks($city, $building, $room);
 ok((any { $_ eq $rack } @racks), 'Octopussy::Location::Racks()');
 Octopussy::Location::Rack_Remove($city, $building, $room, $rack);
 my @racks2 = Octopussy::Location::Racks($city, $building, $room);
-ok(
-  (scalar @racks) == (scalar @racks2 + 1),
+cmp_ok(scalar @racks, '==', scalar @racks2 + 1,
   'Octopussy::Location::Rack_Remove()'
 );
 
@@ -61,8 +60,7 @@ my @rooms = Octopussy::Location::Rooms($city, $building);
 ok((any { $_ eq $room } @rooms), 'Octopussy::Location::Rooms()');
 Octopussy::Location::Room_Remove($city, $building, $room);
 my @rooms2 = Octopussy::Location::Rooms($city, $building);
-ok(
-  (scalar @rooms) == (scalar @rooms2 + 1),
+cmp_ok(scalar @rooms, '==',  scalar @rooms2 + 1,
   'Octopussy::Location::Room_Remove()'
 );
 
@@ -70,8 +68,7 @@ my @buildings = Octopussy::Location::Buildings($city);
 ok((any { $_ eq $building } @buildings), 'Octopussy::Location::Buildings()');
 Octopussy::Location::Building_Remove($city, $building);
 my @buildings2 = Octopussy::Location::Buildings($city);
-ok(
-  (scalar @buildings) == (scalar @buildings2 + 1),
+cmp_ok(scalar @buildings, '==', scalar @buildings2 + 1,
   'Octopussy::Location::Building_Remove()'
 );
 
@@ -79,8 +76,7 @@ my @cities = Octopussy::Location::Cities();
 ok((any { $_ eq $city } @cities), 'Octopussy::Location::Cities()');
 Octopussy::Location::City_Remove($city);
 my @cities2 = Octopussy::Location::Cities();
-ok(
-  (scalar @cities) == (scalar @cities2 + 1),
+cmp_ok(scalar @cities, '==', scalar @cities2 + 1,
   'Octopussy::Location::City_Remove()'
 );
 

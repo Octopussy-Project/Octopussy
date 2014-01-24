@@ -52,14 +52,14 @@ my @list1 = Octopussy::Storage::List();
 my %conf = (s_id => $STORAGE, directory => $STORAGE_PATH);
 Octopussy::Storage::Add(\%conf);
 my @list2 = Octopussy::Storage::List();
-ok(scalar @list2 == 1,                 'Octopussy::Storage::Add()');
-ok(scalar @list1 + 1 == scalar @list2, 'Octopussy::Storage::List()');
+cmp_ok(scalar @list2, '==', 1,                 'Octopussy::Storage::Add()');
+cmp_ok(scalar @list1 + 1, '==', scalar @list2, 'Octopussy::Storage::List()');
 
 my $conf2 = Octopussy::Storage::Configuration($STORAGE);
-ok($conf2->{directory} eq $STORAGE_PATH, 'Octopussy::Storage::Configuration()');
+cmp_ok($conf2->{directory}, 'eq', $STORAGE_PATH, 'Octopussy::Storage::Configuration()');
 
 my $dir = Octopussy::Storage::Directory($STORAGE);
-ok($dir eq $STORAGE_PATH, 
+cmp_ok($dir, 'eq', $STORAGE_PATH, 
 	"Octopussy::Storage::Directory('$STORAGE') => $STORAGE_PATH");
 
 foreach my $dev (undef, '', 'DOESNTEXIST')
@@ -81,7 +81,7 @@ foreach my $dev (undef, '', 'DOESNTEXIST')
 
 Octopussy::Storage::Remove($STORAGE);
 my @list3 = Octopussy::Storage::List();
-ok(scalar @list1 == scalar @list3, 'Octopussy::Storage::Remove()');
+cmp_ok(scalar @list1, '==', scalar @list3, 'Octopussy::Storage::Remove()');
 
 # 3 Tests for invalid storage name
 foreach my $name (undef, '', 'storage with space')

@@ -33,10 +33,10 @@ ok((((scalar keys %level) == $NB_LOGLEVELS) && ($level{'Debug'} == 1)),
   'Octopussy::Loglevel::Levels()');
 
 my @unknowns = Octopussy::Loglevel::Unknowns();
-ok(scalar @unknowns == 0, 'Octopussy::Loglevel::Unknowns()');
+cmp_ok(scalar @unknowns, '==', 0, 'Octopussy::Loglevel::Unknowns()');
 
 @unknowns = Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel');
-ok(scalar @unknowns == 1, "Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel')");
+cmp_ok(scalar @unknowns, '==', 1, "Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel')");
 
 # 3 Tests for invalid loglevel name
 foreach my $name (undef, '', 'invalid_loglevel')

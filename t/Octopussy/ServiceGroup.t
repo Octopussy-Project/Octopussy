@@ -51,34 +51,33 @@ my $error2 = Octopussy::ServiceGroup::Add(\%conf);
 ok(((!defined $error1) && (defined $error2)), 'Octopussy::ServiceGroup::Add()');
 
 my $new_conf = Octopussy::ServiceGroup::Configuration($SG_ID);
-ok($new_conf->{sg_id} eq $SG_ID, 'Octopussy::ServiceGroup::Configuration()');
+cmp_ok($new_conf->{sg_id}, 'eq', $SG_ID, 'Octopussy::ServiceGroup::Configuration()');
 
 my @list2 = Octopussy::ServiceGroup::List();
-ok(scalar @list1 + 1 == scalar @list2, 'Octopussy::ServiceGroup::List()');
+cmp_ok(scalar @list1 + 1, '==', scalar @list2, 'Octopussy::ServiceGroup::List()');
 
 my @services = Octopussy::ServiceGroup::Services($SG_ID);
-ok(
-  scalar @SERVICES_KERNEL == scalar @services,
+cmp_ok(
+  scalar @SERVICES_KERNEL, '==', scalar @services,
   'Octopussy::ServiceGroup::Services()'
 );
 
 my $service_added =
   Octopussy::ServiceGroup::Add_Service($SG_ID, $SERVICE_TO_ADD);
-ok($service_added eq $SERVICE_TO_ADD, 'Octopussy::ServiceGroup::Add_Service()');
+cmp_ok($service_added, 'eq', $SERVICE_TO_ADD, 'Octopussy::ServiceGroup::Add_Service()');
 
 my $rank = Octopussy::ServiceGroup::Move_Service($SG_ID, $service_added, 'up');
-ok($rank eq '03', 'Octopussy::ServiceGroup::Move_Service()');
+cmp_ok($rank, 'eq', '03', 'Octopussy::ServiceGroup::Move_Service()');
 
 Octopussy::ServiceGroup::Remove_Service($SG_ID, $service_added);
 my @services2 = Octopussy::ServiceGroup::Services($SG_ID);
-ok(
-  scalar @services == scalar @services2,
+cmp_ok(scalar @services, '==', scalar @services2,
   'Octopussy::ServiceGroup::Remove_Service()'
 );
 
 Octopussy::ServiceGroup::Remove($SG_ID);
 my @list4 = Octopussy::ServiceGroup::List();
-ok(scalar @list4 == scalar @list1, 'Octopussy::ServiceGroup::Remove()');
+cmp_ok(scalar @list4, '==', scalar @list1, 'Octopussy::ServiceGroup::Remove()');
 
 # 3 Tests for invalid servicegroup name
 foreach my $name (undef, '', 'servicegroup with space')

@@ -39,18 +39,18 @@ my %dt = (
         day      => '07',
         wday     => '1',
         hour     => '18',
-        min      => '00'
+        min      => '00',
     );
 
 my @list = Octopussy::Schedule::List();
 Octopussy::Schedule::Add(\%conf);
 my @list2 = Octopussy::Schedule::List();
-ok(scalar @list + 1 == scalar @list2, 'Octopussy::Schedule::Add()');
-ok(scalar @list + 1 == scalar @list2, 'Octopussy::Schedule::List()');
+cmp_ok(scalar @list + 1, '==', scalar @list2, 'Octopussy::Schedule::Add()');
+cmp_ok(scalar @list + 1, '==', scalar @list2, 'Octopussy::Schedule::List()');
 
 Octopussy::Schedule::Remove($SCHED_TITLE);
 my @list3 = Octopussy::Schedule::List();
-ok(scalar @list == scalar @list3, 'Octopussy::Schedule::Remove()');
+cmp_ok(scalar @list, '==', scalar @list3, 'Octopussy::Schedule::Remove()');
 
 my $period_check = 
 	Octopussy::Schedule::Period_Check('Day-1', 'Hour-1', 'Day-0', 'Hour-1');
@@ -67,27 +67,27 @@ cmp_ok($period_check, '==', 0,
 
 my %sched = ();
 
-%sched = (start_time => undef, dayofweek => undef, dayofmonth => undef, month => undef);    
+%sched = (start_time => undef, dayofweek => undef, dayofmonth => undef, month => undef);  
 my $match = Octopussy::Schedule::Match(\%sched, \%dt);
 ok(!$match, "Octopussy::Schedule::Match('everything undef' shouldnt match 'Monday 201101071800')");
 
-%sched = (start_time => '18:00', dayofweek => undef, dayofmonth => undef, month => undef);    
+%sched = (start_time => '18:00', dayofweek => undef, dayofmonth => undef, month => undef);
 $match = Octopussy::Schedule::Match(\%sched, \%dt);
 ok($match, "Octopussy::Schedule::Match('Only 18:00' should match 'Monday 201101071800')");
 
-%sched = (start_time => '18:00', dayofweek => ['Every Day'], dayofmonth => undef, month => undef );    
+%sched = (start_time => '18:00', dayofweek => ['Every Day'], dayofmonth => undef, month => undef );
 $match = Octopussy::Schedule::Match(\%sched, \%dt);
 ok($match, "Octopussy::Schedule::Match('Every Day @ 18:00' should match 'Monday 201101071800')");
 
-%sched = (start_time => '18:00', dayofweek => ['Every Day'], dayofmonth => undef, month => ['Every Month'] );    
+%sched = (start_time => '18:00', dayofweek => ['Every Day'], dayofmonth => undef, month => ['Every Month'] );
 $match = Octopussy::Schedule::Match(\%sched, \%dt);
 ok($match, "Octopussy::Schedule::Match('Every Day / Every Month @ 18:00' should match 'Monday 201101071800')");
 
-%sched = (start_time => '18:00', dayofweek => ['Every Day'], dayofmonth => ['07'], month => undef );    
+%sched = (start_time => '18:00', dayofweek => ['Every Day'], dayofmonth => ['07'], month => undef );
 $match = Octopussy::Schedule::Match(\%sched, \%dt);
 ok($match, "Octopussy::Schedule::Match('Every Day the 7th @ 18:00' should match 'Monday 201101071800')");
 
-%sched = (start_time => '18:00', dayofweek => ['Every Day'], dayofmonth => ['07'], month => ['Every Month'] );    
+%sched = (start_time => '18:00', dayofweek => ['Every Day'], dayofmonth => ['07'], month => ['Every Month'] );
 $match = Octopussy::Schedule::Match(\%sched, \%dt);
 ok($match, "Octopussy::Schedule::Match('Every Day / Every Month @ 18:00' should match 'Monday 201101071800')");
 

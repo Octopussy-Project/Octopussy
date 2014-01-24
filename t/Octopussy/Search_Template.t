@@ -83,7 +83,7 @@ foreach my $name (undef, '', 'template with space')
 
     my $is_valid = Octopussy::Search_Template::Valid_Name($name);
     ok(!$is_valid,
-        'Octopussy::Search_Template::Valid_Name(' 
+        'Octopussy::Search_Template::Valid_Name('
 		. $param_str . ") => $is_valid");
 }
 
@@ -94,7 +94,7 @@ foreach my $name ('valid-template', 'valid_template')
 
     my $is_valid = Octopussy::Search_Template::Valid_Name($name);
     ok($is_valid,
-        'Octopussy::Search_Template::Valid_Name(' 
+        'Octopussy::Search_Template::Valid_Name('
 		. $param_str . ") => $is_valid");
 }
 

@@ -76,11 +76,11 @@ ok((!defined $svc),
 	"Octopussy::Service::New() rejects 'Unknown' for name");
 		
 my @list2 = Octopussy::Service::List();
-ok(scalar @list + 2 == scalar @list2, 'Octopussy::Service::List()');
+cmp_ok(scalar @list + 2, '==', scalar @list2, 'Octopussy::Service::List()');
 
 Octopussy::Service::Clone($SERVICE, $SERVICE . '_cloned');
 my @list3 = Octopussy::Service::List();
-ok(scalar @list3 == scalar @list2 + 1, 'Octopussy::Service::Clone()');
+cmp_ok(scalar @list3, '==', scalar @list2 + 1, 'Octopussy::Service::Clone()');
 
 my $conf = Octopussy::Service::Configuration($SERVICE);
 ok($conf->{name} eq $SERVICE && $conf->{description} eq $SERVICE_DESC,
@@ -100,20 +100,20 @@ $msg_conf{msg_id} = "${SERVICE}:third";
 Octopussy::Service::Add_Message($SERVICE, \%msg_conf);
 
 my @messages = Octopussy::Service::Messages($SERVICE);
-ok(scalar @messages == $REQUIRED_NB_MSGS, 'Octopussy::Service::Messages()');
+cmp_ok(scalar @messages, '==', $REQUIRED_NB_MSGS, 'Octopussy::Service::Messages()');
 
 my $rank =
   Octopussy::Service::Move_Message($SERVICE, "${SERVICE}:first", 'bottom');
-ok($rank eq '003', 'Octopussy::Service::Move_Message(bottom)');
+cmp_ok($rank, 'eq', '003', 'Octopussy::Service::Move_Message(bottom)');
 
 $rank = Octopussy::Service::Move_Message($SERVICE, "${SERVICE}:second", 'down');
-ok($rank eq '002', 'Octopussy::Service::Move_Message(down)');
+cmp_ok($rank, 'eq', '002', 'Octopussy::Service::Move_Message(down)');
 
 $rank = Octopussy::Service::Move_Message($SERVICE, "${SERVICE}:first", 'top');
-ok($rank eq '001', 'Octopussy::Service::Move_Message(top)');
+cmp_ok($rank, 'eq', '001', 'Octopussy::Service::Move_Message(top)');
 
 $rank = Octopussy::Service::Move_Message($SERVICE, "${SERVICE}:second", 'up');
-ok($rank eq '002', 'Octopussy::Service::Move_Message(up)');
+cmp_ok($rank, 'eq', '002', 'Octopussy::Service::Move_Message(up)');
 
 $msg_conf{msg_id} = "${SERVICE}:001";
 Octopussy::Service::Add_Message($SERVICE, \%msg_conf);
@@ -126,7 +126,7 @@ Octopussy::Service::Remove($SERVICE);
 ok(!-f "${DIR_SERVICES}${SERVICE}.xml", 'Octopussy::Service::Remove()');
 
 my @unknowns = Octopussy::Service::Unknowns('-ANY-', $SERVICE);
-ok(scalar @unknowns == 1, 'Octopussy::Service::Unknowns()');
+cmp_ok(scalar @unknowns, '==', 1, 'Octopussy::Service::Unknowns()');
 
 # 3 Tests for invalid service name
 foreach my $name (undef, '', 'service with space')
