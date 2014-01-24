@@ -30,7 +30,7 @@ use Octopussy::Storage;
 
 Readonly my $PROG_NAME => 'octo_dispatcher';
 Readonly my $QR_ISO8601_SYSLOG =>
-    qr/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?.\d{2}:\d{2} (\S+)/;
+    qr/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|(?:.\d{2}:\d{2})) (\S+)/i;
 
 exit if (!Octopussy::Valid_User($PROG_NAME));
 

@@ -25,7 +25,7 @@ Readonly my $DT3 => '2000/12/24 23:55:55';
 Readonly my $DT4 => '24/Dec/2000:23:55:55 +0100';
 Readonly my $DT5 => '2000-12-24T23:55:55.100000+01:00';
 
-Readonly my $RE_DT_ISO     => '\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?.\d{2}:\d{2}';
+Readonly my $RE_DT_ISO     => '\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|(?:.\d{2}:\d{2}))';
 Readonly my $RE_DT_SQL     => '\d{4}-\d\d-\d\d \d\d:\d\d:\d\d';
 Readonly my $RE_IP_ADDR    => '\d+\.\d+\.\d+\.\d+';
 Readonly my $RE_NUMBER     => '[-+]?\d+';

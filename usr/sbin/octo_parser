@@ -435,7 +435,7 @@ sub Alert_Handler
 {
     my ($msg, $line) = @_;
 
-    if ($line =~ /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:(\d{2})(?:\.\d{1,6})?.\d{2}:\d{2} \S+/)
+    if ($line =~ /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:(\d{2})(?:\.\d{1,6})?(?:Z|(?:.\d{2}:\d{2})) \S+/i)
     {
         my $sec     = $1;
         my $date_tp = strftime("%A %H:%M", $sec, $min, $hour, $day, $month - 1,
