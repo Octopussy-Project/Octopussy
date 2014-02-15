@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::Application - AAT Application module
@@ -17,9 +12,27 @@ use warnings;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
+my @AAT_APPLICATIONS = ();
 my $AAT_CONF_FILE = '/etc/aat/aat.xml';
 
 =head1 FUNCTIONS
+
+=head2 Applications()
+
+Gets AAT Applications
+
+=cut
+
+sub Applications
+{
+	if (!scalar @AAT_APPLICATIONS)
+    {
+    	my $conf = AAT::XML::Read($AAT_CONF_FILE);
+		@AAT_APPLICATIONS = ARRAY($conf->{application})
+    }
+
+    return (@AAT_APPLICATIONS);
+}
 
 =head2 Set_Config_File($file)
 
@@ -43,8 +56,7 @@ sub Info
 {
   my $appli = shift;
 
-  my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (ARRAY($conf->{application}))
+  foreach my $a (Applications())
   {
     return ($a) if ($a->{name} eq $appli);
   }
@@ -62,8 +74,7 @@ sub Directory
 {
   my ($appli, $name) = @_;
   
-  my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (ARRAY($conf->{application}))
+  foreach my $a (Applications())
   {
     if ($a->{name} eq $appli)
     {
@@ -85,20 +96,20 @@ Returns File for Application '$appli' Name '$name'
 
 sub File
 {
-  my ($appli, $name) = @_;
-  my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (ARRAY($conf->{application}))
-  {
-    if ($a->{name} eq $appli)
-    {
-      foreach my $f (ARRAY($a->{file}))
-      {
-        return ($f->{value}) if ($f->{name} eq $name);
-      }
-    }
-  }
+  	my ($appli, $name) = @_;
+  
+	foreach my $a (Applications())
+  	{
+    	if ($a->{name} eq $appli)
+    	{
+      		foreach my $f (ARRAY($a->{file}))
+      		{
+        		return ($f->{value}) if ($f->{name} eq $name);
+      		}
+    	}
+  	}
 
-  return (undef);
+  	return (undef);
 }
 
 =head2 Parameter($appli, $param)
@@ -109,20 +120,20 @@ Returns Parameter Default Value for Application '$appli' Parameter '$param'
 
 sub Parameter
 {
-  my ($appli, $param) = @_;
-  my $conf = AAT::XML::Read($AAT_CONF_FILE);
-  foreach my $a (ARRAY($conf->{application}))
-  {
-    if ($a->{name} eq $appli)
-    {
-      foreach my $p (ARRAY($a->{parameter}))
-      {
-        return ($p->{value}) if ($p->{name} eq $param);
-      }
-    }
-  }
+  	my ($appli, $param) = @_;
+  
+	foreach my $a (Applications())
+  	{
+    	if ($a->{name} eq $appli)
+    	{
+      		foreach my $p (ARRAY($a->{parameter}))
+      		{
+        		return ($p->{value}) if ($p->{name} eq $param);
+      		}
+    	}
+  	}
 
-  return (undef);
+  	return (undef);
 }
 
 1;
