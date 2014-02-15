@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Plugin::Unit - Octopussy Plugin Unit
@@ -13,10 +8,8 @@ package Octopussy::Plugin::Unit;
 
 use strict;
 use warnings;
-use Readonly;
 
-use AAT::Translation;
-use Octopussy;
+use Readonly;
 
 Readonly my $KBYTES  => 1024;
 Readonly my $MBYTES  => 1024 * $KBYTES;
@@ -35,13 +28,15 @@ my ($str_bytes, $str_minutes, $str_hours) = (undef, undef, undef);
 
 sub Init
 {
-  my $conf = shift;
+  	my $conf = shift;
 
-  $str_bytes   = lc AAT::Translation::Get($conf->{lang} || 'EN', '_BYTES');
-  $str_minutes = lc AAT::Translation::Get($conf->{lang} || 'EN', '_MINUTES');
-  $str_hours   = lc AAT::Translation::Get($conf->{lang} || 'EN', '_HOURS');
+	require AAT::Translation;
+  
+	$str_bytes   = lc AAT::Translation::Get($conf->{lang} || 'EN', '_BYTES');
+  	$str_minutes = lc AAT::Translation::Get($conf->{lang} || 'EN', '_MINUTES');
+  	$str_hours   = lc AAT::Translation::Get($conf->{lang} || 'EN', '_HOURS');
 
-  return (1);
+  	return (1);
 }
 
 =head2 KiloBytes($bytes)
