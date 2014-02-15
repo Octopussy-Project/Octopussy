@@ -1,4 +1,3 @@
-
 =head1 NAME
 
 Octopussy::Taxonomy - Octopussy Taxonomy module
@@ -11,7 +10,6 @@ use strict;
 use warnings;
 
 use List::MoreUtils qw(uniq);
-use Readonly;
 
 use AAT::Utils qw( ARRAY NOT_NULL);
 use AAT::XML;
@@ -19,9 +17,27 @@ use Octopussy::Device;
 use Octopussy::FS;
 use Octopussy::Service;
 
-Readonly my $FILE_TAXONOMY => 'taxonomy';
+my $FILE_TAXONOMY = Octopussy::FS::File('taxonomy');
+my @TAXONOMY_CONFIGURATIONS = ();
 
 =head1 FUNCTIONS
+
+=head2 Configurations()
+
+Get list of taxonomy configurations
+
+=cut
+
+sub Configurations
+{
+    if (!scalar @TAXONOMY_CONFIGURATIONS)
+    {
+        my $conf = AAT::XML::Read($FILE_TAXONOMY);
+        @TAXONOMY_CONFIGURATIONS = ARRAY($conf->{taxonomy});
+    }
+
+    return (@TAXONOMY_CONFIGURATIONS);
+}
 
 =head2 List(\@dev_list, \@serv_list)
 
@@ -64,14 +80,13 @@ sub List
     else
     {
         my %field;
-        my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TAXONOMY));
-        foreach my $t (ARRAY($conf->{taxonomy}))
+        foreach my $t (Octopussy::Taxonomy::Configurations())
         {
             $field{$t->{value}} = 1;
         }
         foreach my $f (sort keys %field)
         {
-            foreach my $t (ARRAY($conf->{taxonomy}))
+            foreach my $t (Octopussy::Taxonomy::Configurations())
             {
                 $t->{label} = $t->{value};
                 if ($t->{value} eq $f)
@@ -160,9 +175,9 @@ sub Unknowns
 
 sub Colors
 {
-    my $conf  = AAT::XML::Read(Octopussy::FS::File($FILE_TAXONOMY));
     my %color = ();
-    foreach my $t (ARRAY($conf->{taxonomy}))
+    
+	foreach my $t (Octopussy::Taxonomy::Configurations())
     {
         $color{"$t->{value}"} = $t->{color};
     }
@@ -180,8 +195,7 @@ sub Valid_Name
 {
     my $name = shift;
 
-    my $conf = AAT::XML::Read(Octopussy::FS::File($FILE_TAXONOMY));
-    my $re_taxonomy = join '|', map { $_->{value} } ARRAY($conf->{taxonomy});
+    my $re_taxonomy = join '|', map { $_->{value} } Octopussy::Taxonomy::Configurations();
     return (1) if ((NOT_NULL($name)) && ($name =~ /^$re_taxonomy$/i));
 
     return (0);
