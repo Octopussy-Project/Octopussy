@@ -29,7 +29,7 @@ Readonly my $SF_SITE => 'http://sourceforge.net/projects/syslog-analyzer/files/'
 Readonly my $IDX_STAT_UID => 4;
 Readonly my $IDX_STAT_GID => 5;
 
-$Octopussy::VERSION = '1.0.10';
+$Octopussy::VERSION = '1.0.11';
 
 =head1 FUNCTIONS
 

@@ -1,3 +1,21 @@
+octopussy (1.0.11) stable; urgency=high
+
+  * Bugfix #554: Problem with the 'mysql --exec' in postinstall scripts 
+  * Bugfix #557: Fixing the Report Editing issues with columns & columns_name 
+  * Bugfix #565: Add Zulu Time Zone in ISO8601 Datetime regex
+  * Feature Request #558: Ability to configure a delay between octo_parser 
+    starts 
+  * Feature Request #134: Possibility to set only City in Device Location
+  * Feature Request #576: Big work on reducing IO usage when octo_parser starts
+  * Turkish translation added
+  * Work to migrate from Date::Manip to Time::Piece reducing memory usage of 
+    octo_logrotate, octo_reporter & octo_scheduler of 3.5 MBytes
+  * Code cleaning
+  * Services 'Ansible', 'DragonFly_Mail_Agent' added
+  * Services 'Cisco_Switch' & 'Keepalived updated
+
+ -- Sebastien Thebert <octo.devel@gmail.com>  Sun, 16 Feb 2014 23:30:00 +0100
+
 octopussy (1.0.10) stable; urgency=high
 
   * Bugfix #358: no NSCA alerts and octo_parser crash (Can't store REGEXP bug)
