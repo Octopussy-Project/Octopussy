@@ -1,7 +1,7 @@
 # $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
+# $Revision: 369 $
+# $Date: 2010-06-16 16:31:37 +0200 (Wed, 16 Jun 2010) $
+# $Author: sebthebert $
 
 =head1 NAME
 
@@ -959,6 +959,7 @@ sub Selector_Language
     {label => '_PORTUGUESE', value => 'PT'},
     {label => '_RUSSIAN',    value => 'RU'},
     {label => '_SPANISH',    value => 'ES'},
+	{label => '_TURKISH',    value => 'TR'},
   );
 
   $main::Response->Include(

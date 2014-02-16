@@ -19,6 +19,9 @@ msgstr "Russe"
 msgid "_SPANISH"
 msgstr "Espagnol"
 
+msgid "_TURKISH"
+msgstr "Turc"
+
 msgid "_DISABLED"
 msgstr "Désactivé"
 
