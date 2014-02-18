@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::World_Stats - Octopussy World Statistics module
@@ -13,14 +8,13 @@ package Octopussy::World_Stats;
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 use Octopussy::FS;
 
-Readonly my $FILE_WORLD_STATS => 'world_stats';
-Readonly my $XML_ROOT         => 'octopussy_world_stats';
+my $FILE_WORLD_STATS = 'world_stats';
+my $XML_ROOT         = 'octopussy_world_stats';
 
 =head1 FUNCTIONS
 
@@ -32,7 +26,7 @@ Get/Generates World Statistics ID
 
 sub ID
 {
-    Readonly my $RANDOM_NUMBER => 999;
+    my $RANDOM_NUMBER = 999;
     my $conf = Configuration();
 
     if (NOT_NULL($conf) && NOT_NULL($conf->{id}))

@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision: 369 $
-# $Date: 2010-06-16 16:31:37 +0200 (Wed, 16 Jun 2010) $
-# $Author: sebthebert $
-
 =head1 NAME
 
 AAT - Apache::ASP Toolkit module

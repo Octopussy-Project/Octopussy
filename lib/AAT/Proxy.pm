@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::Proxy - AAT Proxy module
@@ -13,14 +8,13 @@ package AAT::Proxy;
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::Application;
 use AAT::Download;
 use AAT::XML;
 
-Readonly my $FILE_TEST => '/tmp/test.html';
-Readonly my $URL_TEST  => 'http://www.google.com';
+my $FILE_TEST = '/tmp/test.html';
+my $URL_TEST  = 'http://www.google.com';
 
 my %conf_file = ();
 

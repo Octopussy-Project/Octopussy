@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Map - Octopussy Map module
@@ -13,12 +8,11 @@ package Octopussy::Map;
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::XML;
 use Octopussy::FS;
 
-Readonly my $DIR_MAP => 'maps';
+my $DIR_MAP = 'maps';
 
 my $dir_maps = undef;
 

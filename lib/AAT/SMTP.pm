@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::SMTP - AAT SMTP module
@@ -13,7 +8,6 @@ package AAT::SMTP;
 
 use strict;
 use warnings;
-use Readonly;
 
 use Mail::Sender;
 use Net::Telnet;
@@ -23,8 +17,8 @@ use AAT::Syslog;
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 
-Readonly my $SMTP_PORT    => 25;
-Readonly my $SMTP_TIMEOUT => 3;
+my $SMTP_PORT    = 25;
+my $SMTP_TIMEOUT = 3;
 
 my %conf_file = ();
 

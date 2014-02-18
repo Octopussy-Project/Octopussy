@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Plugin::IronPort - Octopussy Plugin IronPort
@@ -13,13 +8,12 @@ package Octopussy::Plugin::IronPort;
 
 use strict;
 use warnings;
-use Readonly;
 
 use Octopussy;
 
-Readonly my $RE_ANTISPAM_STATUS  => qr/^using engine: CASE (spam \w+)$/;
-Readonly my $RE_ANTIVIRUS_NAME   => qr/^antivirus (\w+) '(.+?)'.*$/;
-Readonly my $RE_ANTIVIRUS_STATUS => qr/^antivirus (\w+).*$/;
+my $RE_ANTISPAM_STATUS  = qr/^using engine: CASE (spam \w+)$/;
+my $RE_ANTIVIRUS_NAME   = qr/^antivirus (\w+) '(.+?)'.*$/;
+my $RE_ANTIVIRUS_STATUS = qr/^antivirus (\w+).*$/;
 
 =head1 FUNCTIONS
 

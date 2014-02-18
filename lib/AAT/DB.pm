@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::DB - AAT Database module
@@ -196,7 +191,7 @@ sub Query
   return (undef);
 }
 
-=head2 Load_File($appli, $table, $file, $lines)
+=head2 Load_Infile($appli, $table, $file, $lines)
 
 Loads Data File '$file' with lines '$lines' 
 into table '$table' in application '$appli'

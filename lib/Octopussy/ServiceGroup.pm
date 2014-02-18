@@ -43,7 +43,7 @@ sub Add
   return (undef);
 }
 
-=head1 Remove($servicegroup)
+=head2 Remove($servicegroup)
 
 Removes ServiceGroup '$servicegroup'
 

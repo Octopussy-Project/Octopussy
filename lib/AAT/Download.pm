@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::Download - AAT Download module
@@ -13,7 +8,6 @@ package AAT::Download;
 
 use strict;
 use warnings;
-use Readonly;
 
 use LWP;
 
@@ -21,7 +15,7 @@ use AAT::Proxy;
 use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL );
 
-Readonly my $TIMEOUT => 5; # 5 seconds before timeout
+my $TIMEOUT = 5; # 5 seconds before timeout
 
 
 =head1 FUNCTIONS

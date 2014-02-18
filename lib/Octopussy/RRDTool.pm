@@ -532,7 +532,7 @@ sub Syslog_By_Device_Taxonomy_Yearly_Graph
   return ($return);
 }
 
-=head2 Watermark($stats, $lang)
+=head2 Report_Graph_Watermark($stats, $lang)
 
 Watermarks Octopussy Report
 
@@ -555,6 +555,12 @@ sub Report_Graph_Watermark
 
   	return ($watermark);
 }
+
+=head2 Report_Graph_Set_DS
+
+Sets DataSource (DS) for Report Graph
+
+=cut
 
 sub Report_Graph_Set_DS
 {
@@ -587,7 +593,9 @@ sub Report_Graph_Set_DS
   return ($dsv, $ds1, $ds2, $ds3);
 }
 
-=head2
+=head2 Report_Graph_RRD_Create_Update($file_rrd, $start, $rrd_step_mins, $diff, $ds, $dataline)
+
+Creates & updates RRD Report Graph
 
 =cut
 

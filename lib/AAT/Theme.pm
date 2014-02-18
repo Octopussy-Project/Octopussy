@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::Theme - AAT Theme module
@@ -13,11 +8,10 @@ package AAT::Theme;
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::Utils qw( NULL );
 
-Readonly my $DIR_THEME => 'AAT/THEMES/';
+my $DIR_THEME = 'AAT/THEMES/';
 
 =head1 FUNCTIONS
 

@@ -1,18 +1,13 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::OFC - Octopussy Open Flash Chart (OFC) module
+
 =cut
 
 package Octopussy::OFC;
 
 use strict;
 use warnings;
-use Readonly;
 
 use JSON;
 
@@ -20,11 +15,11 @@ use AAT::Utils qw( ARRAY );
 use Octopussy::DB;
 use Octopussy::FS;
 
-Readonly my $STEP_HBAR => 10;
-Readonly my $STYLE_TITLE =>
+my $STEP_HBAR = 10;
+my $STYLE_TITLE =
 '{font-size: 20px; color:#0000ff; font-family: Verdana; text-align: center;}';
-Readonly my $SIZE_3D     => 5;
-Readonly my $TICK_HEIGHT => 4;
+my $SIZE_3D     = 5;
+my $TICK_HEIGHT = 4;
 
 =head1 FUNCTIONS
 

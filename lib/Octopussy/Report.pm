@@ -1,4 +1,3 @@
-
 =head1 NAME
 
 Octopussy::Report - Octopussy Report module
@@ -12,7 +11,6 @@ use warnings;
 
 use POSIX qw(strftime);
 use Proc::ProcessTable;
-use Readonly;
 
 use AAT::Download;
 use AAT::FS;
@@ -35,10 +33,10 @@ use Octopussy::Report::PDF;
 use Octopussy::Report::XML;
 use Octopussy::RRDTool;
 
-Readonly my $DIR_REPORT   => 'reports';
-Readonly my $REPORTER_BIN => 'octo_reporter';
-Readonly my $XML_ROOT     => 'octopussy_report';
-Readonly my $MINUTE       => 60;
+my $DIR_REPORT   = 'reports';
+my $REPORTER_BIN = 'octo_reporter';
+my $XML_ROOT     = 'octopussy_report';
+my $MINUTE       = 60;
 
 my $dir_reports = undef;
 my %filename;
@@ -247,9 +245,9 @@ sub Categories
     return (@categories);
 }
 
-=head2 Request($table, $query)
+=head2 Table_Creation($table, $query)
 
-Data Request with query '$query' from table '$table'
+Create Table '$table' from query '$query'
 
 =cut
 

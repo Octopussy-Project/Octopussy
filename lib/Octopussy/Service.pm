@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Service - Octopussy Service module
@@ -13,7 +8,6 @@ package Octopussy::Service;
 
 use strict;
 use warnings;
-use Readonly;
 use utf8;
 use Encode;
 
@@ -32,10 +26,10 @@ use Octopussy::Info;
 use Octopussy::Service;
 use Octopussy::Table;
 
-Readonly my $DIR_SERVICE            => 'services';
-Readonly my $XML_ROOT               => 'octopussy_service';
-Readonly my $PADDING                => 3;
-Readonly my $MAX_NB_MSGS_IN_SERVICE => 999;
+my $DIR_SERVICE            = 'services';
+my $XML_ROOT               = 'octopussy_service';
+my $PADDING                = 3;
+my $MAX_NB_MSGS_IN_SERVICE = 999;
 
 my $dir_services = undef;
 my %filename;
@@ -319,6 +313,12 @@ sub Add_Message
     return (@errors);
 }
 
+=head2 Copy_Message($src, $dst)
+
+Copies Message '$src' to '$dst'
+ 
+=cut
+
 sub Copy_Message
 {
     my ($src, $dst) = @_;
@@ -579,7 +579,9 @@ sub Messages_Statistics
     return (%percent);
 }
 
-=head2
+=head2 Sort_Messages_By_Statistics($service)
+
+Sorts Messages from Service '$service' by statistics
 
 =cut
 

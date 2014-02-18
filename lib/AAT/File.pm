@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::File - AAT File module
@@ -13,12 +8,11 @@ package AAT::File;
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::Utils qw( NOT_NULL );
 
-Readonly my $DIR_MIME_SMALL => 'THEMES/DEFAULT/mime/22x22';
-Readonly my $DIR_MIME_BIG   => 'THEMES/DEFAULT/mime/128x128';
+my $DIR_MIME_SMALL = 'THEMES/DEFAULT/mime/22x22';
+my $DIR_MIME_BIG   = 'THEMES/DEFAULT/mime/128x128';
 
 =head1 FUNCTIONS
 

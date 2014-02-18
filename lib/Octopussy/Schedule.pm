@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Schedule - Octopussy Schedule module
@@ -13,17 +8,16 @@ package Octopussy::Schedule;
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
 use Octopussy::FS;
 
-Readonly my $FILE_SCHEDULES => 'schedule';
-Readonly my $XML_ROOT       => 'octopussy_schedule';
-Readonly my $HOURS_IN_DAY   => 24;
+my $FILE_SCHEDULES = 'schedule';
+my $XML_ROOT       = 'octopussy_schedule';
+my $HOURS_IN_DAY   = 24;
 
-Readonly my %day => (
+my %day = (
     'Monday'    => 1,
     'Tuesday'   => 2,
     'Wednesday' => 3,
@@ -34,7 +28,7 @@ Readonly my %day => (
     'Every Day' => 0,
 );
 
-Readonly my %month => (
+my %month = (
     'January'     => 1,
     'February'    => 2,
     'March'       => 3,

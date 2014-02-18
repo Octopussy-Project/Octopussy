@@ -1,7 +1,6 @@
-
 =head1 NAME
 
-Octopussy::App::Dispatcher - Module handling everything for octo_dispatcher program
+Octopussy::App::Dispatcher
 
 =head1 DESCRIPTION
 

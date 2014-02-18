@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 AAT::XMPP - AAT XMPP module
@@ -27,7 +22,6 @@ package AAT::XMPP;
 
 use strict;
 use warnings;
-use Readonly;
 
 use Net::XMPP;
 
@@ -36,8 +30,8 @@ use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 
-Readonly my $XMPP_RESOURCE => 'Octopussy'; 
-Readonly my $XMPP_TIMEOUT => 3;
+my $XMPP_RESOURCE = 'Octopussy'; 
+my $XMPP_TIMEOUT = 3;
 
 my %conf_file = ();
 

@@ -1,8 +1,3 @@
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
-
 =head1 NAME
 
 Octopussy::Plugin::Proxy - Octopussy Plugin Proxy
@@ -13,13 +8,12 @@ package Octopussy::Plugin::Proxy;
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::List;
 use AAT::Utils qw( ARRAY NOT_NULL);
 use Octopussy;
 
-Readonly my $RE_HIT => qr/^.+_HIT.*$/;
+my $RE_HIT = qr/^.+_HIT.*$/;
 
 my @mimes = ();
 
