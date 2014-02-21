@@ -17,7 +17,7 @@ to parse Logs for each Device
 
 use strict;
 use warnings;
-use Readonly;
+
 use bytes;    # Fix the 'Malformed UTF-8 character' warning
 use utf8;
 
@@ -43,8 +43,8 @@ use Octopussy::Storage;
 use Octopussy::Taxonomy;
 use Octopussy::TimePeriod;
 
-Readonly my $PROG_NAME    => 'octo_parser';
-Readonly my $NICE_UPARSER => 'nice -n 20';
+my $PROG_NAME    = 'octo_parser';
+my $NICE_UPARSER = 'nice -n 20';
 
 my $dir_program = Octopussy::FS::Directory('programs');
 my $dir_pid     = Octopussy::FS::Directory('running');
@@ -263,6 +263,7 @@ sub Init
         or Octopussy::Die($PROG_NAME,
         '[CRITICAL] Unable to get Taxonomy configuration]');
     $dir_data{'Unknown'} = Octopussy::Storage::Directory_Unknown($device);
+	my @dev_alerts = Octopussy::Alert::For_Device($device);
 
     foreach my $s_conf (@services)
     {
@@ -279,7 +280,6 @@ sub Init
         my @messages     = Octopussy::Service::Messages($serv);
         AAT::Syslog::Message($PROG_NAME, 'PARSER_INIT_SERVICE', $serv,
             scalar @messages);
-        my @dev_alerts = Octopussy::Alert::For_Device($device);
 
         foreach my $m (@messages)
         {
@@ -783,6 +783,7 @@ $SIG{USR1} = \&Exit;
 
 AAT::Syslog::Message($PROG_NAME, 'PARSER_START', $device);
 Init();
+
 AAT::Syslog::Message($PROG_NAME, 'PARSER_FILES_TO_PARSE', $device,
     scalar @files);
 my $last_logs_time = time;
