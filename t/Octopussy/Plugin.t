@@ -102,6 +102,6 @@ done_testing(10);
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =cut

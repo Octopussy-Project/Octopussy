@@ -75,6 +75,6 @@ ok($str_error eq '', 'Tables Integrity') or diag($str_error);
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =cut

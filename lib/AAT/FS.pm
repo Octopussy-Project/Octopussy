@@ -55,6 +55,6 @@ AAT(3), AAT::DB(3), AAT::Syslog(3), AAT::Theme(3), AAT::Translation(3), AAT::Use
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =cut

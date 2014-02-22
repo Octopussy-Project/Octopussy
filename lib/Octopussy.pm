@@ -375,6 +375,6 @@ sub Waiting_For_Process_Already_Running
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =cut

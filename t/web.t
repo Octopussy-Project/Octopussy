@@ -173,6 +173,6 @@ like($mech->content(), qr/octo_login1\.png/,
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =cut
