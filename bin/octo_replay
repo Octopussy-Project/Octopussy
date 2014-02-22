@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -18,20 +18,20 @@ to replay Logs for some Device / Service
 
 use strict;
 use warnings;
-use Readonly;
 
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 
 use AAT::Utils qw( ARRAY );
 use Octopussy;
+use Octopussy::App;
 use Octopussy::Device;
 use Octopussy::FS;
 use Octopussy::Logs;
 use Octopussy::Storage;
 
-Readonly my $PROG_NAME    => 'octo_replay';
-Readonly my $PROG_VERSION => Octopussy::Version();
+my $PROG_NAME    = 'octo_replay';
+my $PROG_VERSION = Octopussy::Version();
 
 my $help;
 my ($opt_device, $opt_service, $opt_begin, $opt_end) =
@@ -76,7 +76,7 @@ EOF
 #
 # MAIN
 #
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::App::Valid_User($PROG_NAME));
 
 my $status = GetOptions(
     'h'         => \$help,
@@ -105,8 +105,8 @@ foreach my $min (sort keys %{$files})
     my @logs = ();
     foreach my $f (@{$files->{$min}})
     {
-		my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
-		if (defined open my $FILE, '-|', "$cat \"$f\"")
+        my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+        if (defined open my $FILE, '-|', "$cat \"$f\"")
         {
             while (<$FILE>) { push @logs, $_; }
             close $FILE;
@@ -128,7 +128,7 @@ foreach my $min (sort keys %{$files})
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 

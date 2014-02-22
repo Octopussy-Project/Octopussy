@@ -12,8 +12,6 @@ use warnings;
 use bytes;
 use utf8;
 
-use Readonly;
-
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY NOT_NULL NULL );
 use Octopussy;
@@ -23,7 +21,7 @@ use Octopussy::Plugin;
 use Octopussy::Service;
 use Octopussy::Type;
 
-Readonly my $WIZARD_MAX_SAME_MSG => 100;
+my $WIZARD_MAX_SAME_MSG = 100;
 
 =head1 FUNCTIONS
 
@@ -113,7 +111,7 @@ sub Fields
 
 =head2 Table($service, $msg_id)
 
-Get table associated with message '$msg_id' in service '$service'
+Gets Table associated with Message '$msg_id' in Service '$service'
 
 =cut 
 
@@ -133,7 +131,7 @@ sub Table
 
 =head2 Pattern_To_SQL($msg, $id, @fields)
 
-Convert message pattern from message '$msg' into SQL with fields '@fields'
+Converts message pattern from Message '$msg' into SQL with fields '@fields'
 
 =cut 
 
@@ -177,7 +175,7 @@ sub Pattern_To_SQL
 
 =head2 Escape_Characters($regexp)
 
-Escape (adding '\') characters from regexp '$regexp'
+Escapes (adding '\') characters from regexp '$regexp'
 
 =cut
 
@@ -200,7 +198,7 @@ sub Escape_Characters
 
 =head2 Escape_Message($msg)
 
-Escape (adding '\') characters from message '$msg' without escaping <@REGEXP@>
+Escapes (adding '\') characters from message '$msg' without escaping <@REGEXP@>
 
 =cut
 
@@ -222,7 +220,7 @@ sub Escape_Message
 
 =head2 Color_Reserved_Word(\%color, $word, $str)
 
-Colors pattern '$pattern'
+Colors reserved word
 
 =cut
 
@@ -276,6 +274,8 @@ sub Color_Without_Field
 }
 
 =head2 Longest_Valid_Regexp
+
+Matches the longest valid regexp
 
 =cut
 
@@ -690,25 +690,12 @@ sub Parse_List
 
 sub Alerts
 {
-    my ($device, $service, $message, $dev_alerts) = @_;    #, $contact) = @_;
+    my ($device, $service, $message, $dev_alerts) = @_;
     my @alerts    = ();
     my %log_level = Octopussy::Loglevel::Levels();
 
     foreach my $ac (ARRAY($dev_alerts))
     {
-
-=head2 comment  	
-    my @mails = ();
-    my @ims   = ();
-    foreach my $c (ARRAY($ac->{contact}))
-    {
-      push @mails, $contact->{$c}->{email}
-        if (defined $contact->{$c}->{email});
-      push @ims, $contact->{$c}->{im}
-        if (defined $contact->{$c}->{im});
-    }
-=cut    
-
         if ($ac->{type} =~ /Dynamic/i)
         {
             my $ac_level = (
@@ -746,9 +733,6 @@ sub Alerts
                             $ac->{action_service},         # for Nagios & Zabbix
                         action_body => $ac->{action_body}, # for Nagios & Zabbix
                         contacts    => $ac->{contact},
-
-                        #imdest            => \@ims,
-                        #maildest          => \@mails
                     };
                 }
             }
@@ -788,9 +772,6 @@ sub Alerts
                             $ac->{action_service},         # for Nagios & Zabbix
                         action_body => $ac->{action_body}, # for Nagios & Zabbix
                         contacts    => $ac->{contact},
-
-                        #imdest            => \@ims,
-                        #maildest          => \@mails
                     };
                 }
             }

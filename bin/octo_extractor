@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -20,7 +20,6 @@ octo_extractor is the program used by the Octopussy Project to extract Logs
 
 use strict;
 use warnings;
-use Readonly;
 
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
@@ -29,6 +28,7 @@ use AAT::Syslog;
 use AAT::Translation;
 use AAT::Utils qw( ARRAY NOT_NULL NULL );
 use Octopussy;
+use Octopussy::App;
 use Octopussy::Cache;
 use Octopussy::Device;
 use Octopussy::Loglevel;
@@ -37,8 +37,8 @@ use Octopussy::Message;
 use Octopussy::Service;
 use Octopussy::Taxonomy;
 
-Readonly my $PROG_NAME    => 'octo_extractor';
-Readonly my $PROG_VERSION => Octopussy::Version();
+my $PROG_NAME    = 'octo_extractor';
+my $PROG_VERSION = Octopussy::Version();
 
 my $help;
 my (@opt_devices, @opt_services) = ((), ());
@@ -48,7 +48,7 @@ my (@opt_include, @opt_exclude);
 my $file_pid = undef;
 my $cache    = undef;
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Help()
 
@@ -200,8 +200,8 @@ sub File_Handler_With_Filter
     my ($f, $logs, $includes, $excludes, $msg_to_parse) = @_;
     my $nb_match = 0;
 
-	my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
-	if (defined open my $FILE, '-|', "$cat \"$f\"")
+    my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+    if (defined open my $FILE, '-|', "$cat \"$f\"")
     {
         if ($f !~ /Unknown\/\d{4}\/\d{2}\/\d{2}/)
         {    # 'Known' Service -> filter with msg_to_parse
@@ -225,7 +225,7 @@ sub File_Handler_With_Filter
         {    # 'Unknown' Service -> no filter
             while (my $line = <$FILE>)
             {
-            	if (Line_Match_Regexps($line, $includes, $excludes))
+                if (Line_Match_Regexps($line, $includes, $excludes))
                 {
                     push @{$logs}, $line;
                     $nb_match++;
@@ -252,8 +252,8 @@ sub File_Handler_Without_Filter
     my ($f, $logs, $includes, $excludes) = @_;
     my $nb_match = 0;
 
-	my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
-	if (defined open my $FILE, '-|', "$cat \"$f\"")
+    my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+    if (defined open my $FILE, '-|', "$cat \"$f\"")
     {
         while (my $line = <$FILE>)
         {
@@ -358,10 +358,13 @@ sub Print_Logs
     }
 
     AAT::Syslog::Message(
-        'octo_extractor', 'LOG_SEARCH',
+        'octo_extractor',
+        'LOG_SEARCH',
         join(',', @opt_devices),
         join(',', @opt_services),
-        "${opt_begin}-${opt_end}", time() - $time, $user || 'UNKNOWN'
+        "${opt_begin}-${opt_end}",
+        time() - $time,
+        $user || 'UNKNOWN'
     );
 
     return ($nb_match);
@@ -385,7 +388,7 @@ sub End
 #
 # MAIN
 #
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::App::Valid_User($PROG_NAME));
 
 $SIG{USR2} = \&End;
 
@@ -429,7 +432,7 @@ $cache->remove("status_${pid_param}") if (defined $pid_param);
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 

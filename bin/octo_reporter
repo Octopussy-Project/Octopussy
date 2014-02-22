@@ -28,7 +28,6 @@ octo_reporter is the program used by the Octopussy Project to generate Reports
 
 use strict;
 use warnings;
-use Readonly;
 
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
@@ -40,6 +39,7 @@ use AAT::Syslog;
 use AAT::Translation;
 use AAT::Utils qw( NOT_NULL );
 use Octopussy;
+use Octopussy::App;
 use Octopussy::Cache;
 use Octopussy::Loglevel;
 use Octopussy::Logs;
@@ -50,11 +50,11 @@ use Octopussy::Table;
 use Octopussy::Taxonomy;
 use Octopussy::Type;
 
-Readonly my $APPLI         => 'Octopussy';
-Readonly my $PROG_NAME     => 'octo_reporter';
-Readonly my $VERSION       => Octopussy::Version();
-Readonly my $FILE_DB       => '/var/run/octopussy/file.db';
-Readonly my $MIN_DB_INSERT => 10_000;
+my $APPLI         = 'Octopussy';
+my $PROG_NAME     = 'octo_reporter';
+my $VERSION       = Octopussy::Version();
+my $FILE_DB       = '/var/run/octopussy/file.db';
+my $MIN_DB_INSERT = 10_000;
 
 my $file_pid = undef;
 
@@ -284,8 +284,8 @@ sub Insert_Data
     {
         Progress('_MSG_REPORT_PROGRESS_INSERTING_DATA', $i . "/$total");
         $progressbar->update($i) if (!defined $pid_param);
-		my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
-		if (defined open my $FILE, '-|', "$cat \"$f\"")
+        my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+        if (defined open my $FILE, '-|', "$cat \"$f\"")
         {
             while (my $line = <$FILE>)
             {
@@ -341,12 +341,12 @@ sub End
 #
 # MAIN
 #
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::App::Valid_User($PROG_NAME));
 
 $SIG{USR2} = \&End;
 
 my $status = GetOptions(
-    'h|help'          	=> \$help,
+    'h|help'            => \$help,
     'q|quiet'           => \$quiet,
     'report=s'          => \$report,
     'devices=s'         => \@devices,
@@ -390,7 +390,7 @@ die "Error: Unable to get configuration for Report [$report]\n"
 $lang ||= 'EN';
 
 my $time = time;
-my $tp = Time::Piece->new;
+my $tp   = Time::Piece->new;
 if (!$quiet)
 {
     print "Report: $rc->{name}\n";
@@ -399,7 +399,7 @@ if (!$quiet)
 my $pid_name = $PROG_NAME . (defined $pid_param ? "_$pid_param" : '');
 $file_pid = Octopussy::PID_File($pid_name);
 
-my %info    = (
+my %info = (
     report    => $rc->{name},
     started   => $tp->strftime("%Y/%m/%d %H:%M"),
     devices   => \@devices,
@@ -484,7 +484,7 @@ $cache->remove("status_${pid_param}") if (defined $pid_param);
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 

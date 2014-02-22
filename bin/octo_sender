@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -16,7 +16,6 @@ octo_sender is the program used by the Octopussy Project to send messages
 
 use strict;
 use warnings;
-use Readonly;
 
 use AAT::NSCA;
 use AAT::SMTP;
@@ -27,14 +26,15 @@ use AAT::Zabbix;
 
 use Octopussy;
 use Octopussy::Alert;
+use Octopussy::App;
 use Octopussy::Cache;
 use Octopussy::Contact;
 use Octopussy::Message;
 
-Readonly my $PROG_NAME => 'octo_sender';
-Readonly my $LOOP_SLEEP_SECONDS => 5;
+my $PROG_NAME          = 'octo_sender';
+my $LOOP_SLEEP_SECONDS = 5;
 
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::App::Valid_User($PROG_NAME));
 
 my %contact  = ();
 my $file_pid = Octopussy::PID_File($PROG_NAME);
@@ -96,9 +96,9 @@ sub Get_Mail_Addresses
 
     foreach my $c (ARRAY($action->{contacts}))
     {
-    	push @mails, $contact{$c}->{email}
-			if (defined $contact{$c}->{email});
- 	}
+        push @mails, $contact{$c}->{email}
+            if (defined $contact{$c}->{email});
+    }
 
     return (@mails);
 }
@@ -116,15 +116,15 @@ while (1)
     my @keys = $cache->get_keys();
     foreach my $k (sort @keys)
     {
-		my $c_item    = $cache->get($k);
-		my $action = $c_item->{action};
- 	
-		my ($svc) = split(/:/, $c_item->{msg_id});
-		my $msg = Octopussy::Message::Configuration($svc, $c_item->{msg_id});
-		my $re = Octopussy::Message::Pattern_To_Regexp($msg);
-		$msg->{re} = qr/^$re\s*[^\t\n\r\f -~]?$/i;
-        
-		my ($subject, $body, $action_host, $action_service, $action_body) =
+        my $c_item = $cache->get($k);
+        my $action = $c_item->{action};
+
+        my ($svc) = split(/:/, $c_item->{msg_id});
+        my $msg = Octopussy::Message::Configuration($svc, $c_item->{msg_id});
+        my $re = Octopussy::Message::Pattern_To_Regexp($msg);
+        $msg->{re} = qr/^$re\s*[^\t\n\r\f -~]?$/i;
+
+        my ($subject, $body, $action_host, $action_service, $action_body) =
             Octopussy::Alert::Message_Building($action, $c_item->{device},
             $c_item->{data}, $msg);
 
@@ -132,7 +132,7 @@ while (1)
             && AAT::XMPP::Configured('Octopussy'))
         {
             my @ims = Get_IM_Addresses($action);
-			AAT::XMPP::Send_Message('Octopussy', "$subject\n\n$body\n", @ims);
+            AAT::XMPP::Send_Message('Octopussy', "$subject\n\n$body\n", @ims);
         }
         if (defined $action->{action_mail})
         {
@@ -156,7 +156,7 @@ while (1)
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 

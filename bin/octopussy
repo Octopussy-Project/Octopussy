@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 ### BEGIN INIT INFO
 # Provides:          octopussy
 # Required-Start:    $local_fs $remote_fs $network $syslog
@@ -185,12 +185,12 @@ sub Parser_Start
     if (defined $device) { push @devices, $device; }
     else                 { @devices = Octopussy::Device::List(); }
 
-	my $count = 0;
-	my $parser_delay_devices = 
-		Octopussy::Parameter('octo_parser_delay_devices') || 5;
-	my $parser_delay_seconds = 
-		Octopussy::Parameter('octo_parser_delay_seconds') || 5;
-	
+    my $count                = 0;
+    my $parser_delay_devices = Octopussy::Parameter('octo_parser_delay_devices')
+        || 5;
+    my $parser_delay_seconds = Octopussy::Parameter('octo_parser_delay_seconds')
+        || 5;
+
     foreach my $d (@devices)
     {
         my $parse_status = Octopussy::Device::Parse_Status($d);
@@ -204,20 +204,21 @@ sub Parser_Start
             else
             {
                 printf
-"%s Parsing status of '%s' is 'Stopped', set status to 'Paused' or 'Started' first !\n", $PROG_NAME, $d;
+"%s Parsing status of '%s' is 'Stopped', set status to 'Paused' or 'Started' first !\n",
+                    $PROG_NAME, $d;
             }
         }
         else
         {
             printf "Device '%s' Unknown !\n", $d;
         }
-		$count++;
-		if ($count % $parser_delay_devices == 0)
-		{
-			printf "Waits %d seconds every %d devices...\n", 
-				$parser_delay_seconds, $parser_delay_devices;
-			sleep $parser_delay_seconds;	
-		}
+        $count++;
+        if ($count % $parser_delay_devices == 0)
+        {
+            printf "Waits %d seconds every %d devices...\n",
+                $parser_delay_seconds, $parser_delay_devices;
+            sleep $parser_delay_seconds;
+        }
     }
 
     return (scalar @devices);
@@ -509,7 +510,7 @@ exit 0;
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 

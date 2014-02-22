@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -18,7 +18,6 @@ and generate Syslog Activity RRD Graphs
 
 use strict;
 use warnings;
-use Readonly;
 
 use POSIX qw( strftime );
 use Time::Piece;
@@ -26,12 +25,12 @@ use Time::Seconds;
 
 use AAT::Utils;
 use Octopussy;
+use Octopussy::App;
 use Octopussy::Report;
 use Octopussy::RRDTool;
 use Octopussy::Schedule;
 
-Readonly my $PROG_NAME => 'octo_scheduler';
-
+my $PROG_NAME = 'octo_scheduler';
 
 =head1 FUNCTIONS
 
@@ -53,43 +52,48 @@ sub Launch_Report
     $finish_day  =~ s/Day-(\d+)/$1/i;
     $finish_hour =~ s/Hour-(\d+)/$1/i;
 
-	my $dt = Time::Piece->new;
-	my $dt_start = $dt - ($start_day * ONE_DAY) - ($start_hour * ONE_HOUR);
-	my $dt_finish = $dt - ($finish_day * ONE_DAY) - ($finish_hour * ONE_HOUR);
+    my $dt        = Time::Piece->new;
+    my $dt_start  = $dt - ($start_day * ONE_DAY) - ($start_hour * ONE_HOUR);
+    my $dt_finish = $dt - ($finish_day * ONE_DAY) - ($finish_hour * ONE_HOUR);
 
-	my $start = $dt_start->strftime('%Y%m%d%H%M');
-	my $finish = $dt_finish->strftime('%Y%m%d%H%M');
+    my $start  = $dt_start->strftime('%Y%m%d%H%M');
+    my $finish = $dt_finish->strftime('%Y%m%d%H%M');
 
     print "$start - $finish\n";
 
     my $report = Octopussy::Report::Configuration($sched->{report});
-	if (defined $report)
-	{
-    	print "Launch Report: $sched->{device} $sched->{service}\n";
-    	print "               $start $finish\n";
+    if (defined $report)
+    {
+        print "Launch Report: $sched->{device} $sched->{service}\n";
+        print "               $start $finish\n";
 
-    	Octopussy::Report::CmdLine(
-        	$sched->{device}, $sched->{service},
-        	($report->{loglevel} || '-ANY-'), ($report->{taxonomy} || '-ANY-'),
-        	$report,           $start,
-        	$finish,           'sched_' . $report->{name} . "_$$",
-        	$sched->{mail}[0], $sched->{ftp}[0],
-        	$sched->{scp}[0],  'EN'
-    	);
+        Octopussy::Report::CmdLine(
+            $sched->{device},
+            $sched->{service},
+            ($report->{loglevel} || '-ANY-'),
+            ($report->{taxonomy} || '-ANY-'),
+            $report,
+            $start,
+            $finish,
+            'sched_' . $report->{name} . "_$$",
+            $sched->{mail}[0],
+            $sched->{ftp}[0],
+            $sched->{scp}[0],
+            'EN'
+        );
 
-    	return (1);
-	}
+        return (1);
+    }
 
-	return (0);
+    return (0);
 }
-
 
 #
 # MAIN
 #
 my $counter = 0;
 
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::App::Valid_User($PROG_NAME));
 
 while (1)
 {
@@ -97,18 +101,18 @@ while (1)
     my $wday = strftime("%w", 0, 0, 0, $mday, $mon - 1, $year - 1900);
     $wday = ($wday == 0 ? $wday = 7 : $wday); # on sunday we want 7 instead of 0
     my %dt = (
-        year     => $year,
-        month    => $mon,
-        day      => $mday,
-        wday     => $wday,
-        hour     => $hour,
-        min      => $min
+        year  => $year,
+        month => $mon,
+        day   => $mday,
+        wday  => $wday,
+        hour  => $hour,
+        min   => $min
     );
     my @schedules = Octopussy::Schedule::Configurations('title');
 
     foreach my $sched (@schedules)
     {
-        Launch_Report($sched)	if (Octopussy::Schedule::Match($sched, \%dt));
+        Launch_Report($sched) if (Octopussy::Schedule::Match($sched, \%dt));
     }
     Octopussy::RRDTool::Syslog_By_DeviceType_Hourly_Graph();
     if ($counter % 10 == 0)
@@ -134,7 +138,7 @@ while (1)
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 

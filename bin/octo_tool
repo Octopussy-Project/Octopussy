@@ -60,19 +60,19 @@ use Octopussy::Table;
 my $VERSION = '0.6';
 
 my %option = ();
-my %task = (
-	backup => \&Backup,
-	cache_clear => \&Cache_Clear,
-	message_copy => \&Message_Copy,
-	message_move => \&Message_Move,
-	service_clone => \&Service_Clone,
-	table_clone => \&Table_Clone,
-	);
+my %task   = (
+    backup        => \&Backup,
+    cache_clear   => \&Cache_Clear,
+    message_copy  => \&Message_Copy,
+    message_move  => \&Message_Move,
+    service_clone => \&Service_Clone,
+    table_clone   => \&Table_Clone,
+);
 
 my $status = GetOptions(
-	'h|help|?'	=> \$option{help},
-	'v|version' => sub { printf "octo_tool $VERSION\n"; exit; }
-	);
+    'h|help|?'  => \$option{help},
+    'v|version' => sub { printf "octo_tool $VERSION\n"; exit; }
+);
 
 =head1 FUNCTIONS
 
@@ -84,17 +84,20 @@ Prints Script Usage
 
 sub Usage
 {
-	my $msg = shift;
+    my $msg = shift;
 
-	if (defined $msg)
-	{
-		pod2usage(-verbose => 99, -sections => [ qw(SYNOPSIS OPTIONS) ], 
-			-message => "\n$msg\n");
-	}
-	else
-	{
-		pod2usage(-verbose => 99, -sections => [ qw(SYNOPSIS OPTIONS) ]);
-	}
+    if (defined $msg)
+    {
+        pod2usage(
+            -verbose  => 99,
+            -sections => [qw(SYNOPSIS OPTIONS)],
+            -message  => "\n$msg\n"
+        );
+    }
+    else
+    {
+        pod2usage(-verbose => 99, -sections => [qw(SYNOPSIS OPTIONS)]);
+    }
 }
 
 =head2 Backup($filename)
@@ -105,11 +108,11 @@ Backups Octopussy configuration
 
 sub Backup
 {
-	my $filename = shift;
+    my $filename = shift;
 
-	my $timestamp   = strftime("%Y%m%d%H%M%S", localtime);
-	$filename .= ($filename !~ /\.tgz$/ ? "_${timestamp}.tgz" : '');
-	Octopussy::Configuration::Backup($filename);
+    my $timestamp = strftime("%Y%m%d%H%M%S", localtime);
+    $filename .= ($filename !~ /\.tgz$/ ? "_${timestamp}.tgz" : '');
+    Octopussy::Configuration::Backup($filename);
 }
 
 =head2 Cache_Clear($cache_name)
@@ -120,18 +123,18 @@ Clears Cache 'msgid_stats' or 'taxonomy_stats'
 
 sub Cache_Clear
 {
-	my $cache_name = shift;
+    my $cache_name = shift;
 
-	Usage('[ERROR] Invalid number of args.')    if (!defined $cache_name);
+    Usage('[ERROR] Invalid number of args.') if (!defined $cache_name);
 
-	if ($cache_name eq 'msgid_stats')
-	{
-		Octopussy::Cache::Clear_MsgID_Stats();
-	}
-	elsif ($cache_name eq 'taxonomy_stats')
-	{
-		Octopussy::Cache::Clear_Taxonomy_Stats();
-	}
+    if ($cache_name eq 'msgid_stats')
+    {
+        Octopussy::Cache::Clear_MsgID_Stats();
+    }
+    elsif ($cache_name eq 'taxonomy_stats')
+    {
+        Octopussy::Cache::Clear_Taxonomy_Stats();
+    }
 }
 
 =head2 Message_Copy($msgid_src, $msgid_dst)
@@ -142,11 +145,11 @@ Copies Message 'msgid_src' to Message 'msgid_dst'
 
 sub Message_Copy
 {
-	my ($msgid_src, $msgid_dst) = @_;
+    my ($msgid_src, $msgid_dst) = @_;
 
-	Usage('[ERROR] Invalid number of args.')    if (!defined $msgid_dst);
+    Usage('[ERROR] Invalid number of args.') if (!defined $msgid_dst);
 
-	Octopussy::Service::Copy_Message($msgid_src, $msgid_dst);
+    Octopussy::Service::Copy_Message($msgid_src, $msgid_dst);
 }
 
 =head2 Message_Move($msgid_src, $msgid_dst)
@@ -159,14 +162,14 @@ sub Message_Move
 {
     my ($msgid_src, $msgid_dst) = @_;
 
-    Usage('[ERROR] Invalid number of args.')    if (!defined $msgid_dst);
+    Usage('[ERROR] Invalid number of args.') if (!defined $msgid_dst);
 
     my $nb_errors = Octopussy::Service::Copy_Message($msgid_src, $msgid_dst);
-	if ($nb_errors == 0)
-	{
-		my ($serv_src) = $msgid_src =~ /^(.+):.+$/;
-		Octopussy::Service::Remove_Message($serv_src, $msgid_src);
-	}
+    if ($nb_errors == 0)
+    {
+        my ($serv_src) = $msgid_src =~ /^(.+):.+$/;
+        Octopussy::Service::Remove_Message($serv_src, $msgid_src);
+    }
 }
 
 =head2 Service_Clone($service_orig, $service_clone)
@@ -177,18 +180,18 @@ Clones Service '$service_orig' in '$service_clone'
 
 sub Service_Clone
 {
-	my ($service_orig, $service_clone) = @_;
+    my ($service_orig, $service_clone) = @_;
 
-	Usage('[ERROR] Invalid number of args.')	if (!defined $service_clone);
+    Usage('[ERROR] Invalid number of args.') if (!defined $service_clone);
 
-	my $service_orig_filename = Octopussy::Service::Filename($service_orig);
-	my $service_clone_filename = Octopussy::Service::Filename($service_clone);
-	Usage("[ERROR] Service '$service_orig' doesn't exist !")
-		if (!-f $service_orig_filename);
-	Usage("[ERROR] Service '$service_clone' already exists !")
+    my $service_orig_filename  = Octopussy::Service::Filename($service_orig);
+    my $service_clone_filename = Octopussy::Service::Filename($service_clone);
+    Usage("[ERROR] Service '$service_orig' doesn't exist !")
+        if (!-f $service_orig_filename);
+    Usage("[ERROR] Service '$service_clone' already exists !")
         if ((defined $service_clone_filename) && (-f $service_clone_filename));
 
-	Octopussy::Service::Clone($service_orig, $service_clone);
+    Octopussy::Service::Clone($service_orig, $service_clone);
 }
 
 =head2 Table_Clone($table_orig, $table_clone)
@@ -199,25 +202,24 @@ Clones Table '$table_orig' in '$table_clone'
 
 sub Table_Clone
 {
-	my ($table_orig, $table_clone) = @_;
+    my ($table_orig, $table_clone) = @_;
 
-    Usage('[ERROR] Invalid number of args.')    if (!defined $table_clone);
+    Usage('[ERROR] Invalid number of args.') if (!defined $table_clone);
 
-    my $table_orig_filename = Octopussy::Table::Filename($table_orig);
+    my $table_orig_filename  = Octopussy::Table::Filename($table_orig);
     my $table_clone_filename = Octopussy::Table::Filename($table_clone);
     Usage("[ERROR] Table '$table_orig' doesn't exist !")
         if (!-f $table_orig_filename);
     Usage("[ERROR] Table '$table_clone' already exists !")
         if ((defined $table_clone_filename) && (-f $table_clone_filename));
-	Octopussy::Table::Clone($table_orig, $table_clone);
+    Octopussy::Table::Clone($table_orig, $table_clone);
 }
 
+Usage() if ($option{help});
+Usage('[ERROR] No task specified.') if (@ARGV < 1);
 
-Usage()	if ($option{help});
-Usage('[ERROR] No task specified.')	if (@ARGV < 1);
-
-my $t = $ARGV[0];
+my $t    = $ARGV[0];
 my @args = @ARGV;
 shift @args;
 
-$task{$t}(@args)	if (defined $task{$t}); 
+$task{$t}(@args) if (defined $task{$t});

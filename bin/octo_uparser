@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -17,7 +17,6 @@ to parse Unknown Logs for each Device
 
 use strict;
 use warnings;
-use Readonly;
 use bytes;    # Fix the 'Malformed UTF-8 character' warning
 use utf8;
 
@@ -30,6 +29,7 @@ use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL NULL );
 
 use Octopussy;
+use Octopussy::App;
 use Octopussy::Cache;
 use Octopussy::Device;
 use Octopussy::FS;
@@ -38,9 +38,9 @@ use Octopussy::Message;
 use Octopussy::Service;
 use Octopussy::Storage;
 
-Readonly my $PROG_NAME => 'octo_uparser';
+my $PROG_NAME = 'octo_uparser';
 
-exit if (!Octopussy::Valid_User($PROG_NAME));
+exit if (!Octopussy::App::Valid_User($PROG_NAME));
 
 my $device = $ARGV[0];
 
@@ -73,7 +73,6 @@ sub Exit
     return ($exit_request);
 }
 
-
 =head2 Is_Valid_Regexp($message)
 
 Checks if the regexp from message '$message' is valid
@@ -82,17 +81,16 @@ Checks if the regexp from message '$message' is valid
 
 sub Is_Valid_Regexp
 {
-	my $message = shift;
+    my $message = shift;
 
-	my $valid_regexp = eval {
-    	use warnings FATAL => qw( regexp );
-      	my $re = Octopussy::Message::Pattern_To_Regexp($message);
-      	qr/$re/;
-     	};
+    my $valid_regexp = eval {
+        use warnings FATAL => qw( regexp );
+        my $re = Octopussy::Message::Pattern_To_Regexp($message);
+        qr/$re/;
+    };
 
-	return ($valid_regexp);
+    return ($valid_regexp);
 }
-
 
 =head2 Is_Regexp_Assemble_Working($ra)
 
@@ -102,17 +100,15 @@ Checks if Regexp::Assemble will generate a regexp without failure
 
 sub Is_Regexp_Assemble_Working
 {
-	my $ra = shift;
+    my $ra = shift;
 
-	my $regexp_assemble_working = eval
-   	{
-		use warnings FATAL => qw( all );
-    	my $global = $ra->re;
-  	};
+    my $regexp_assemble_working = eval {
+        use warnings FATAL => qw( all );
+        my $global = $ra->re;
+    };
 
-	return ($regexp_assemble_working);	
+    return ($regexp_assemble_working);
 }
-
 
 =head2 Init_Service_Message($m, $ra)
 
@@ -122,19 +118,19 @@ Inits Message $m if its a valid one
 
 sub Init_Service_Message
 {
-	my ($m, $ra) = @_;
+    my ($m, $ra) = @_;
 
-	if (Is_Valid_Regexp($m))
-  	{
-    	$ra->add(Octopussy::Message::Pattern_To_Regexp_Without_Catching($m));
-   	}
-   	else
-  	{
-    	AAT::Syslog::Message($PROG_NAME,
-       		'SERVICE_MSG_INVALID_REGEXP', $m->{msg_id}, $@);
-     	print
+    if (Is_Valid_Regexp($m))
+    {
+        $ra->add(Octopussy::Message::Pattern_To_Regexp_Without_Catching($m));
+    }
+    else
+    {
+        AAT::Syslog::Message($PROG_NAME, 'SERVICE_MSG_INVALID_REGEXP',
+            $m->{msg_id}, $@);
+        print
 "Msg $m->{msg_id} dropped because Runtime regexp compilation produced:\n$@\n";
-  	}	
+    }
 }
 
 =head2 Init()
@@ -160,7 +156,7 @@ sub Init
                 my $ra = Regexp::Assemble->new;
                 $dir_data{$serv} =
                     Octopussy::Storage::Directory_Service($device, $serv);
-                my @messages     = Octopussy::Service::Messages($serv);
+                my @messages = Octopussy::Service::Messages($serv);
                 AAT::Syslog::Message(
                     $PROG_NAME, 'PARSER_INIT_SERVICE',
                     $serv,      scalar @messages
@@ -168,28 +164,28 @@ sub Init
 
                 foreach my $m (@messages)
                 {
-					Init_Service_Message($m, $ra);
+                    Init_Service_Message($m, $ra);
                 }
 
-				if (Is_Regexp_Assemble_Working($ra))
-				{
-					$service{$serv}{global_regexp} = $ra->re;
-				}
-				else
-				{
-					$service{$serv}{global_regexp} = undef;
-					foreach my $m (@messages)
-            		{
-                		Init_Service_Message($m, undef);
-            		}
-				}
+                if (Is_Regexp_Assemble_Working($ra))
+                {
+                    $service{$serv}{global_regexp} = $ra->re;
+                }
+                else
+                {
+                    $service{$serv}{global_regexp} = undef;
+                    foreach my $m (@messages)
+                    {
+                        Init_Service_Message($m, undef);
+                    }
+                }
             }
             ($file, $last_file) = (undef, undef);
             (%known_msgs, @unknown_msgs) = ((), ());
         }
     }
-    
-	return (scalar @services);
+
+    return (scalar @services);
 }
 
 =head2 Write_Logfile($logfile, $logs)
@@ -270,26 +266,26 @@ sub File_Handler
                 my $match = 0;
                 foreach my $serv (@services)
                 {
-                    if ((defined $service{$serv}{global_regexp}) 
-						&& ($line =~ $service{$serv}{global_regexp}))
+                    if (   (defined $service{$serv}{global_regexp})
+                        && ($line =~ $service{$serv}{global_regexp}))
                     {
                         push @{$known_msgs{$serv}}, $line;
                         $match = 1;
                         last;
                     }
-					elsif (!defined $service{$serv}{global_regexp})
-					{
-						foreach my $msg (@{$service{$serv}{msgs}})
-                       	{
-							if ($line =~ $msg->{re})
-							{
-								push @{$known_msgs{$serv}}, $line;
-								$match = 1;
-								last;
-							}
-                       	}
-						last if ($match);
-					}
+                    elsif (!defined $service{$serv}{global_regexp})
+                    {
+                        foreach my $msg (@{$service{$serv}{msgs}})
+                        {
+                            if ($line =~ $msg->{re})
+                            {
+                                push @{$known_msgs{$serv}}, $line;
+                                $match = 1;
+                                last;
+                            }
+                        }
+                        last if ($match);
+                    }
                 }
                 push @unknown_msgs, $line if (!$match);
                 $total++;
@@ -334,7 +330,7 @@ $cache->remove("uparser_$device");
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 

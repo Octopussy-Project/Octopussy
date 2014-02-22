@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -20,7 +20,6 @@ octo_extractor_fields is the program used by the Octopussy Project to extract Lo
 
 use strict;
 use warnings;
-use Readonly;
 
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
@@ -38,8 +37,8 @@ use Octopussy::Message;
 use Octopussy::Table;
 use Octopussy::Taxonomy;
 
-Readonly my $PROG_NAME    => 'octo_extractor_fields';
-Readonly my $PROG_VERSION => Octopussy::Version();
+my $PROG_NAME    = 'octo_extractor_fields';
+my $PROG_VERSION = Octopussy::Version();
 
 my $help;
 my (@opt_devices, @opt_services) = ((), ());
@@ -226,8 +225,8 @@ sub Print_Logs
         foreach my $f (@{$files->{$min}})
         {
             Progress('_MSG_EXTRACT_PROGRESS_DATA', $i . "/$total", $nb_match);
-			my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
-			if (defined open my $FILE, '-|', "$cat \"$f\"")
+            my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+            if (defined open my $FILE, '-|', "$cat \"$f\"")
             {
                 while (<$FILE>)
                 {
@@ -379,7 +378,7 @@ $cache->remove("status_$$");
 
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 

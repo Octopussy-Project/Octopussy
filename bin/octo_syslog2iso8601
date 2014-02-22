@@ -14,7 +14,6 @@ syslog2iso8601 --device <device> --service <service>
 
 use strict;
 use warnings;
-use Readonly;
 
 use Getopt::Long;
 
@@ -25,8 +24,8 @@ use AAT::Utils qw( ARRAY );
 use Octopussy;
 use Octopussy::Logs;
 
-Readonly my $PROG_NAME    => 'syslog2iso8601';
-Readonly my $PROG_VERSION => Octopussy::Version();
+my $PROG_NAME    = 'syslog2iso8601';
+my $PROG_VERSION = Octopussy::Version();
 
 my $help;
 my ($opt_device, $opt_service, $opt_timezone) = (undef, undef, undef);
@@ -69,10 +68,10 @@ EOF
 #
 
 my $status = GetOptions(
-    'h'         => \$help,
-    'help'      => \$help,
-    'device=s'  => \$opt_device,
-    'service=s' => \$opt_service,
+    'h'          => \$help,
+    'help'       => \$help,
+    'device=s'   => \$opt_device,
+    'service=s'  => \$opt_service,
     'timezone=s' => \$opt_timezone,
 );
 
@@ -84,37 +83,38 @@ Help()
     || (!defined $opt_timezone));
 
 my ($files, $total) =
-    Octopussy::Logs::Get_TimePeriod_Files($opt_device, $opt_service, '197001010000', '202001010000');
+    Octopussy::Logs::Get_TimePeriod_Files($opt_device, $opt_service,
+    '197001010000', '202001010000');
 
-my $strp = new DateTime::Format::Strptime(pattern => '%Y %h %e %T');
+my $strp = DateTime::Format::Strptime->new(pattern => '%Y %h %e %T');
 
 foreach my $min (sort keys %{$files})
 {
     my @logs = ();
     foreach my $f (@{$files->{$min}})
     {
-    	if ($f =~ /\/(\d{4})\/\d{2}\/\d{2}\/msg_/)
-    	{
+        if ($f =~ /\/(\d{4})\/\d{2}\/\d{2}\/msg_/)
+        {
             my $year = $1;
-			my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
+            my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
             if (defined open my $FILE, '-|', "$cat \"$f\"")
             {
                 while (<$FILE>)
-                { 
-            	   if ($_ =~ /^(\w{3}) \s?(\d{1,2}) (\d\d:\d\d:\d\d) (.*)$/)
-            	   {
-            	       my $dt = $strp->parse_datetime("$year $1 $2 $3");
-            	       my $str = sprintf("%sT%s.000000%s %s", $dt->ymd('-'), $dt->hms(':'), $opt_timezone, $4);  	
-            	       push @logs, $str;
-            	   }
+                {
+                    if ($_ =~ /^(\w{3}) \s?(\d{1,2}) (\d\d:\d\d:\d\d) (.*)$/)
+                    {
+                        my $dt  = $strp->parse_datetime("$year $1 $2 $3");
+                        my $str = sprintf("%sT%s.000000%s %s",
+                            $dt->ymd('-'), $dt->hms(':'), $opt_timezone, $4);
+                        push @logs, $str;
+                    }
                 }
                 close $FILE;
                 if (defined open my $TMPFILE, '|-', "gzip >> ${f}.tmp")
                 {
-                    foreach my $log (@logs) 
-                        { print {$TMPFILE} "$log\n"; }
+                    foreach my $log (@logs) { print {$TMPFILE} "$log\n"; }
                     close $TMPFILE;
-                    rename "${f}.tmp", $f   if (scalar @logs);
+                    rename "${f}.tmp", $f if (scalar @logs);
                     @logs = ();
                 }
             }
@@ -122,10 +122,10 @@ foreach my $min (sort keys %{$files})
     }
 }
 
+1;
+
 =head1 AUTHOR
 
-Sebastien Thebert <octo.devel@gmail.com>
+Sebastien Thebert <octopussy@onetool.pm>
 
 =cut
-
-1;
