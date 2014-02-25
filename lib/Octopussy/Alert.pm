@@ -229,69 +229,56 @@ Get Alerts related to Device '$device'
 
 sub For_Device
 {
-  my $device = shift;
-  my @alerts = ();
+  	my $device = shift;
+  	my @alerts = ();
 
-  foreach my $ac (Octopussy::Alert::Configurations())
-  {
-    my $match   = 0;
-    my %devices = ();
-    foreach my $d (ARRAY($ac->{device}))
-    {
-      if ($d =~ /group (.+)/)
-      {
-        foreach my $dev (Octopussy::DeviceGroup::Devices($1))
-        {
-          $devices{$dev} = 1;
-        }
-      }
-      else { $devices{$d} = 1; }
-    }
-    foreach my $d (sort keys %devices)
-    {
-      if (($d eq $device) || ($d eq '-ANY-'))
-      {
-        my @services = Octopussy::Device::Services($d);
-        foreach my $s (@services)
-        {
-          foreach my $acs (ARRAY($ac->{service}))
-          {
-            $match = 1 if (($s eq $acs) || ($acs eq '-ANY-'));
-          }
-        }
-      }
-    }
-    push @alerts, $ac
-      if (($ac->{status} eq 'Enabled')
-      && (($ac->{type} =~ 'Static') || ($match)));
-  }
-
-  return (@alerts);
-}
-
-=head2 MsgIds_For_Device($device)
-
-Gets MsgId list for Device '$device' matching Alerts
-
-=cut
-
-sub MsgIds_For_Device
-{
-	my $device = shift;
-
-	my $dev_conf = Octopussy::Device::Configuration($device);
 	my %dg = Octopussy::DeviceGroup::With_Device($device);
-
-	my %alert_msgid = ();
-	foreach my $ac (Octopussy::Alert::Configurations())
+	my @dev_services = Octopussy::Device::Services($device);
+	my @any_services = Octopussy::Device::Services('-ANY-');
+  	foreach my $ac (Octopussy::Alert::Configurations())
   	{
     	my $match   = 0;
     	my %devices = ();
     	foreach my $d (ARRAY($ac->{device}))
     	{
-			
-		}
-	}
+      		if (($d =~ /group (.+)/) && (defined $dg{$1}))
+        	{
+          		$devices{$dev} = 1;
+        	}
+      		else 
+			{ 
+				$devices{$d} = 1; 
+			}
+    	}
+    	foreach my $d (sort keys %devices)
+    	{
+      		if ($d eq $device)
+      		{
+        		foreach my $s (@dev_services)
+        		{
+          			foreach my $acs (ARRAY($ac->{service}))
+          			{
+            			$match = 1 if (($s eq $acs) || ($acs eq '-ANY-'));
+          			}
+        		}
+      		}
+			elsif ($d eq '-ANY-')
+			{
+				foreach my $s (@any_services)
+                {
+                    foreach my $acs (ARRAY($ac->{service}))
+                    {
+                        $match = 1 if (($s eq $acs) || ($acs eq '-ANY-'));
+                    }
+                }
+			}
+    	}
+    	push @alerts, $ac
+      		if (($ac->{status} eq 'Enabled')
+      			&& (($ac->{type} =~ 'Static') || ($match)));
+  	}
+
+  	return (@alerts);
 }
 
 =head2 Insert_In_DB($device, $alert, $line, $date)
