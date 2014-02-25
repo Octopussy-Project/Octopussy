@@ -176,6 +176,45 @@ sub Devices
   	return (@devices);
 }
 
+=head2 With_Device($device)
+
+Returns hashref of DeviceGroups matching the Device '$device'
+
+=cut
+
+sub With_Device
+{
+	my $device = shift;
+
+	my %devicegroup = ();	
+
+	my $dc   = Octopussy::Device::Configuration($device);
+	my $conf = AAT::XML::Read($FILE_DEVICEGROUPS);
+	foreach my $dg (ARRAY($conf->{devicegroup}))
+    {
+    	if ($dg->{type} eq 'dynamic')
+       	{
+        	my $match = 1;
+          	foreach my $c (ARRAY($dg->{criteria}))
+           	{
+            	$match = 0
+               	if ((!defined $dc->{$c->{field}})
+                	|| ($dc->{$c->{field}} !~ $c->{pattern}));
+           	}
+           	$devicegroup{$dg->{dg_id}} = 1 if ($match);
+     	}
+      	else 
+		{
+			foreach my $d (ARRAY($dg->{device}))
+            {
+				$devicegroup{$dg->{dg_id}} = 1	if ($d eq $device);
+			} 
+		}
+    }
+	
+	return (%devicegroup);
+}
+
 =head2 Remove_Device($device)
 
 Removes Device '$device' from all DeviceGroups

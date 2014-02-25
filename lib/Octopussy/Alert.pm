@@ -269,6 +269,31 @@ sub For_Device
   return (@alerts);
 }
 
+=head2 MsgIds_For_Device($device)
+
+Gets MsgId list for Device '$device' matching Alerts
+
+=cut
+
+sub MsgIds_For_Device
+{
+	my $device = shift;
+
+	my $dev_conf = Octopussy::Device::Configuration($device);
+	my %dg = Octopussy::DeviceGroup::With_Device($device);
+
+	my %alert_msgid = ();
+	foreach my $ac (Octopussy::Alert::Configurations())
+  	{
+    	my $match   = 0;
+    	my %devices = ();
+    	foreach my $d (ARRAY($ac->{device}))
+    	{
+			
+		}
+	}
+}
+
 =head2 Insert_In_DB($device, $alert, $line, $date)
 
 =cut
