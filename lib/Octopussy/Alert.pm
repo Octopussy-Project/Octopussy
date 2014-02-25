@@ -243,12 +243,12 @@ sub For_Device
     	{
       		if (($d =~ /group (.+)/) && (defined $dg{$1}))
         	{
-          		$devices{$dev} = 1;
+          		$devices{$device} = 1;
         	}
       		else 
-			{ 
-				$devices{$d} = 1; 
-			}
+		{ 
+			$devices{$d} = 1; 
+		}
     	}
     	foreach my $d (sort keys %devices)
     	{
