@@ -1,8 +1,10 @@
 <% 
+use URI::Escape;
+
 my %arg = @_;
 my $version = "Octopussy " . Octopussy::Version();
 my $website = Octopussy::Info::WebSite(); 
-my $redirect = $arg{redirect};
+my $redirect = uri_escape($arg{redirect});
 my $logo1 = Octopussy::Parameter("logo_page_login1");
 my $logo2 = Octopussy::Parameter("logo_page_login2");
 %>
