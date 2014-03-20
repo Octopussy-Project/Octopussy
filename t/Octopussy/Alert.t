@@ -9,29 +9,27 @@ t/Octopussy/Alert.t - Test Suite for Octopussy::Alert module
 use strict;
 use warnings;
 
+use Encode;
 use File::Path;
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use AAT::Utils qw( NOT_NULL );
-use Octopussy::Alert;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-Readonly my $PREFIX => 'Octo_TEST_';
-
+my $AAT_CONFIG_FILE_TEST = "$FindBin::Bin/../data/etc/aat/aat.xml";
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
-Readonly my $DIR_ALERTS => Octopussy::FS::Directory('alerts');
+use AAT::Utils qw( NOT_NULL );
+use Octopussy::FS;
+
+my $PREFIX = 'Octo_TEST_';
+my $DIR_ALERTS = Octopussy::FS::Directory('alerts');
 
 
 my ($name, $desc, $new_desc) =
   ("${PREFIX}alert", "${PREFIX}alert_desc", "${PREFIX}alert_new_desc");
-
-my @list = Octopussy::Alert::List();
 
 my %conf = (
   name              => $name,
@@ -56,6 +54,10 @@ my %conf = (
   action_service    => Encode::decode_utf8("${PREFIX}alert action service"),
   action_body       => Encode::decode_utf8("${PREFIX}alert action body"),
 );
+
+require_ok('Octopussy::Alert');
+
+my @list = Octopussy::Alert::List();
 
 my $file = Octopussy::Alert::New(\%conf);
 ok(NOT_NULL($file) && -f $file, 'Octopussy::Alert::New()');
@@ -126,7 +128,7 @@ cmp_ok(scalar @alert_levels, 'eq', 2, 'Octopussy::Alert::Levels()');
 # Clean stuff
 rmtree $DIR_ALERTS;
 
-done_testing(8 + 3 + 2 + 3 + 1);
+done_testing(1 + 8 + 3 + 2 + 3 + 1);
 
 =head1 AUTHOR
 

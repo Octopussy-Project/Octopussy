@@ -12,29 +12,30 @@ use warnings;
 use File::Path;
 use FindBin;
 use List::MoreUtils qw(true);
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+
 use Octopussy;
-use Octopussy::Device;
 use Octopussy::FS;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
+my $DIR_DEVICES  = Octopussy::FS::Directory('devices');
 
-AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+my $PREFIX               = 'Octo_TEST_';
+my $DEVICE               = "${PREFIX}device";
+my $DEV_DESC             = "${PREFIX}device Description";
+my @SERVICES             = qw(Octopussy Sshd Linux_Kernel Linux_System);
+my $NB_MIN_TYPES         = 10;
+my $NB_MIN_SELECT_TYPES  = 5;
+my $NB_MIN_MODELS        = 20;
+my $NB_MIN_SELECT_MODELS = 14;
 
-Readonly my $DIR_DEVICES  => Octopussy::FS::Directory('devices');
-Readonly my $PREFIX       => 'Octo_TEST_';
-Readonly my $DEVICE       => "${PREFIX}device";
-Readonly my $DEV_DESC     => "${PREFIX}device Description";
-Readonly my @SERVICES     => qw(Octopussy Sshd Linux_Kernel Linux_System);
-Readonly my $NB_MIN_TYPES => 10;
-Readonly my $NB_MIN_SELECT_TYPES  => 5;
-Readonly my $NB_MIN_MODELS        => 20;
-Readonly my $NB_MIN_SELECT_MODELS => 14;
+
+require_ok('Octopussy::Device');
 
 Octopussy::Device::New({
 	name => "${PREFIX}device",
@@ -193,7 +194,7 @@ foreach my $name ('validhostname', '10.150.1.9', '10.150.1.9-1',
 
 rmtree $DIR_DEVICES;
 
-done_testing(27 + 5 + 5 + 5);
+done_testing(1 + 27 + 5 + 5 + 5);
 
 =head1 AUTHOR
 

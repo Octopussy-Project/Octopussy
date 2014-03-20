@@ -12,26 +12,27 @@ use warnings;
 use File::Path;
 use FindBin;
 use List::MoreUtils qw(any);
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use Octopussy::Contact;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-Readonly my $PREFIX => 'Octo_TEST_';
-
+my $AAT_CONFIG_FILE_TEST = "$FindBin::Bin/../data/etc/aat/aat.xml";
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
-Readonly my $DIR_CONTACTS => Octopussy::FS::Directory('contacts');
+use Octopussy::FS;
+
+my $DIR_CONTACTS = Octopussy::FS::Directory('contacts');
+my $PREFIX       = 'Octo_TEST_';
 
 my ($id, $lastname, $firstname, $desc, $email, $im) = (
   "${PREFIX}contact_id",    "${PREFIX}contact_last",
   "${PREFIX}contact_first", "${PREFIX}contact_desc",
   'c@gmail.com',            'c@gmail.com',
 );
+
+require_ok('Octopussy::Contact');
 
 my $error = Octopussy::Contact::New(
   {
@@ -76,7 +77,7 @@ ok((scalar @contacts) == (scalar @contacts2 + 1),
 
 rmtree $DIR_CONTACTS;
 
-done_testing(5);
+done_testing(1 + 5);
 
 =head1 AUTHOR
 

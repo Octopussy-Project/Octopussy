@@ -11,19 +11,18 @@ use warnings;
 
 use FindBin;
 use List::MoreUtils qw(any);
-use Readonly;
 use Test::More;
 
 use lib "$FindBin::Bin/../../usr/share/perl5";
 
 use AAT::XML;
 
-Readonly my $DIR_LISTS => "$FindBin::Bin/../../usr/share/aat/Lists/";
-Readonly my $FILE_PORTS => "$FindBin::Bin/../../usr/share/aat/Lists/AAT_Port.xml";
-Readonly my $FILE_PORTS2 => "$FindBin::Bin/../../usr/share/aat/Lists//AAT_Port.xml";
-Readonly my $NAME_PORTS => 'AAT_Port';
-Readonly my $SELECTED_BY_DEFAULT => 'HTTP';
-Readonly my $OCTO_FILE_TEST => '/tmp/octo_test.xml';
+my $DIR_LISTS = "$FindBin::Bin/../../usr/share/aat/Lists/";
+my $FILE_PORTS = "$FindBin::Bin/../../usr/share/aat/Lists/AAT_Port.xml";
+my $FILE_PORTS2 = "$FindBin::Bin/../../usr/share/aat/Lists//AAT_Port.xml";
+my $NAME_PORTS = 'AAT_Port';
+my $SELECTED_BY_DEFAULT = 'HTTP';
+my $OCTO_FILE_TEST = '/tmp/octo_test.xml';
 
 # Filename
 my $filename = AAT::XML::Filename($DIR_LISTS, $NAME_PORTS);

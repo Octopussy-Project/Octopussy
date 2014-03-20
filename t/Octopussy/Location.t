@@ -11,19 +11,18 @@ use warnings;
 
 use FindBin;
 use List::MoreUtils qw(any);
-use Readonly;
-use Test::More tests => 12;
+use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use Octopussy::Location;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-
+my $AAT_CONFIG_FILE_TEST = "$FindBin::Bin/../data/etc/aat/aat.xml";
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
-Readonly my $LOCATION_FILE => Octopussy::FS::File('locations');
+require_ok('Octopussy::Location');
+
+my $LOCATION_FILE = Octopussy::FS::File('locations');
 
 my ($city, $building, $room, $rack) =
   ('City Test', 'Building Test', 'Room Test', 'Rack Test');
@@ -82,7 +81,7 @@ cmp_ok(scalar @cities, '==', scalar @cities2 + 1,
 
 unlink $LOCATION_FILE;
 
-1;
+done_testing(1 + 12);
 
 =head1 AUTHOR
 

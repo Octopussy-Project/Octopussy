@@ -10,39 +10,38 @@ use strict;
 use warnings;
 
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use Octopussy::Device;
-use Octopussy::FS;
-use Octopussy::Logs;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-
+my $AAT_CONFIG_FILE_TEST = "$FindBin::Bin/../data/etc/aat/aat.xml";
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
-Readonly my $PREFIX    => 'Octo_TEST_';
-Readonly my $DEVICE    => "${PREFIX}Device";
-Readonly my $SERVICE   => "${PREFIX}Service";
-Readonly my $EXTRACTOR => '/usr/sbin/octo_extractor';
-Readonly my $DIR_LOGS  => Octopussy::FS::Directory('data_logs');
-Readonly my $BEGIN     => '201001010000';
-Readonly my $END       => '201001010029';
-Readonly my $YEAR      => '2010';
-Readonly my $MONTH     => '01';
-Readonly my $DAY       => '01';
-Readonly my $OUTPUT    => 'output_file.txt';
-Readonly my $CMD_DEV_SVC =>
+use Octopussy::FS;
+
+my $PREFIX    = 'Octo_TEST_';
+my $DEVICE    = "${PREFIX}Device";
+my $SERVICE   = "${PREFIX}Service";
+my $EXTRACTOR = '/usr/sbin/octo_extractor';
+my $DIR_LOGS  = Octopussy::FS::Directory('data_logs');
+my $BEGIN     = '201001010000';
+my $END       = '201001010029';
+my $YEAR      = '2010';
+my $MONTH     = '01';
+my $DAY       = '01';
+my $OUTPUT    = 'output_file.txt';
+my $CMD_DEV_SVC =
 qq(--device "${DEVICE}_1" --device "${DEVICE}_2" --service "${SERVICE}_1" --service "${SERVICE}_2");
-Readonly my $CMD_LEVEL_TAXO_ID =>
+my $CMD_LEVEL_TAXO_ID =
   qq(--loglevel "-ANY-" --taxonomy "-ANY-" --msgid "-ANY-");
-Readonly my $CMD_PERIOD => qq(--begin $BEGIN --end $END);
-Readonly my $RE_CMDLINE =>
+my $CMD_PERIOD = qq(--begin $BEGIN --end $END);
+my $RE_CMDLINE =
 qr{^$EXTRACTOR $CMD_DEV_SVC $CMD_LEVEL_TAXO_ID $CMD_PERIOD.*--output "$OUTPUT"};
 
+require_ok('Octopussy::Device');
+require_ok('Octopussy::Logs');
 
 =head2 Generate_Fake_Logs_Files()
 
@@ -168,7 +167,7 @@ like($cmd, $RE_CMDLINE, 'Octopussy::Logs::Extract_Cmd_Line()');
 Octopussy::Device::Remove($DEVICE);
 system "rm -rf $DIR_LOGS/$DEVICE/";
 
-done_testing(14);
+done_testing(2 + 14);
 
 =head1 AUTHOR
 

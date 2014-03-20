@@ -10,19 +10,19 @@ use strict;
 use warnings;
 
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use Octopussy::Loglevel;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-Readonly my $COLOR_DEBUG => 'gray';
-Readonly my $NB_LOGLEVELS => 7;
-
+my $AAT_CONFIG_FILE_TEST = "$FindBin::Bin/../data/etc/aat/aat.xml";
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+
+my $COLOR_DEBUG  = 'gray';
+my $NB_LOGLEVELS = 7;
+
+require_ok('Octopussy::Loglevel');
 
 my %color = Octopussy::Loglevel::Colors();
 ok((((scalar keys %color) == $NB_LOGLEVELS) && ($color{'Debug'} eq $COLOR_DEBUG)),
@@ -58,7 +58,7 @@ foreach my $name ('Debug', 'Information', 'Warning', 'Critical')
         'Octopussy::Loglevel::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-done_testing(4 + 3 + 4);
+done_testing(1 + 4 + 3 + 4);
 
 =head1 AUTHOR
 

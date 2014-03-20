@@ -10,19 +10,20 @@ use strict;
 use warnings;
 
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use AAT::Utils qw( NOT_NULL NULL );
-use Octopussy::Cache;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-Readonly my $PREFIX => 'Octo_TEST_';
-
+my $AAT_CONFIG_FILE_TEST = "$FindBin::Bin/../data/etc/aat/aat.xml";
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+
+use AAT::Utils qw( NOT_NULL NULL );
+
+my $PREFIX = 'Octo_TEST_';
+
+require_ok('Octopussy::Cache');
 
 my $cache = Octopussy::Cache::Init('octo_commander');
 ok(NOT_NULL($cache), 'Octopussy::Cache::Init(octo_commander)');
@@ -53,7 +54,7 @@ ok(defined $count_msgid_cleared, 'Octopussy::Cache::Clear_MsgID_Stats()');
 my $count_taxonomy_cleared = Octopussy::Cache::Clear_Taxonomy_Stats();
 ok(defined $count_taxonomy_cleared, 'Octopussy::Cache::Clear_Taxonomy_Stats()');
 
-done_testing(8 + 2);
+done_testing(1 + 8 + 2);
 
 =head1 AUTHOR
 

@@ -15,12 +15,11 @@ use Test::More;
 use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use Octopussy::DeviceGroup;
-use Octopussy::FS;
 
 my $AAT_CONFIG_FILE_TEST = "$FindBin::Bin/../data/etc/aat/aat.xml";
-
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+
+use Octopussy::FS;
 
 my $PREFIX      = 'Octo_TEST_';
 my $DG_FILE     = Octopussy::FS::File('devicegroups');
@@ -34,6 +33,8 @@ my %conf = (
   type        => 'static',
   device      => ["${PREFIX}device1", "${PREFIX}device2"],
 );
+
+require_ok('Octopussy::DeviceGroup');
 
 my @list1 = Octopussy::DeviceGroup::List();
 
@@ -90,7 +91,7 @@ foreach my $name ('devicegroup-name', 'devicegroup.with.dot')
 
 unlink $DG_FILE;
 
-done_testing(4 + 3 + 3 + 2);
+done_testing(1 + 4 + 3 + 3 + 2);
 
 =head1 AUTHOR
 

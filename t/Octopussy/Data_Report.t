@@ -11,26 +11,26 @@ use warnings;
 
 use File::Path;
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use Octopussy::Data_Report;
-use Octopussy::FS;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-
+my $AAT_CONFIG_FILE_TEST = "$FindBin::Bin/../data/etc/aat/aat.xml";
 AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
 
-Readonly my $DIR_DATA_REPORTS => Octopussy::FS::Directory('data_reports');
-Readonly my $PREFIX           => 'Octo_TEST_';
-Readonly my $DATA_REPORT      => "${PREFIX}Data_Report";
+use Octopussy::FS;
+
+my $DIR_DATA_REPORTS = Octopussy::FS::Directory('data_reports');
+my $PREFIX           = 'Octo_TEST_';
+my $DATA_REPORT      = "${PREFIX}Data_Report";
 
 # create fake Data Reports
 my $dir = "$DIR_DATA_REPORTS$DATA_REPORT/";
 rmtree($dir);
+
+require_ok('Octopussy::Data_Report');
 
 my @list1 = Octopussy::Data_Report::Type_List();
 
@@ -69,7 +69,7 @@ ok($pattern eq $dir && !-f "$dir${DATA_REPORT}-20100210-2000.html",
 # Make sure we destroy all the stuff we created with these tests
 rmtree($dir);
 
-done_testing(5);
+done_testing(1 + 5);
 
 =head1 AUTHOR
 
