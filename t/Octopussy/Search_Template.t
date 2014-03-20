@@ -12,27 +12,25 @@ use warnings;
 use File::Path;
 use FindBin;
 use List::MoreUtils qw(true);
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
-use Octopussy::Search_Template;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
 
-AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
+use Octopussy::FS;
 
-Readonly my $DIR_TPLS    => Octopussy::FS::Directory('search_templates');
-Readonly my $PREFIX         => 'Octo_TEST_';
-Readonly my $USER           => "${PREFIX}user";
-Readonly my $DEVICE         => "${PREFIX}device";
-Readonly my $SERVICE        => "${PREFIX}service";
-Readonly my $SRCH_TPL_TITLE => "${PREFIX}search_template";
-Readonly my $FILE_TPL       => "${DIR_TPLS}${USER}/${SRCH_TPL_TITLE}.xml";
-Readonly my $BEGIN_TPL      => '201001010000';
-Readonly my $END_TPL        => '201001010010';
+my $DIR_TPLS       = Octopussy::FS::Directory('search_templates');
+my $PREFIX         = 'Octo_TEST_';
+my $USER           = "${PREFIX}user";
+my $DEVICE         = "${PREFIX}device";
+my $SERVICE        = "${PREFIX}service";
+my $SRCH_TPL_TITLE = "${PREFIX}search_template";
+my $FILE_TPL       = "${DIR_TPLS}${USER}/${SRCH_TPL_TITLE}.xml";
+my $BEGIN_TPL      = '201001010000';
+my $END_TPL        = '201001010010';
 
 my %conf = (
   name        => $SRCH_TPL_TITLE,
@@ -52,6 +50,8 @@ my %conf = (
 );
 
 unlink $FILE_TPL;
+
+require_ok('Octopussy::Search_Template');
 
 my @list1 = Octopussy::Search_Template::List($USER);
 
@@ -100,7 +100,7 @@ foreach my $name ('valid-template', 'valid_template')
 
 rmtree $DIR_TPLS;
 
-done_testing(5 + 3 + 2);
+done_testing(1 + 5 + 3 + 2);
 
 =head1 AUTHOR
 

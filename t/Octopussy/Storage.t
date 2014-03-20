@@ -11,31 +11,30 @@ use warnings;
 
 use FindBin;
 use List::MoreUtils qw(none);
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+
 use Octopussy::FS;
-use Octopussy::Storage;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
+my $PREFIX       = 'Octo_TEST_';
+my $FILE_STORAGE = Octopussy::FS::File('storages');
+my $STORAGE      = "${PREFIX}storage";
+my $STORAGE_PATH = '/tmp';
 
-AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
-
-Readonly my $PREFIX       => 'Octo_TEST_';
-Readonly my $FILE_STORAGE => Octopussy::FS::File('storages');
-Readonly my $STORAGE      => "${PREFIX}storage";
-Readonly my $STORAGE_PATH => '/tmp';
-
-system "mv $FILE_STORAGE $FILE_STORAGE.backup";
+rename $FILE_STORAGE, "${FILE_STORAGE}.backup";
 
 my %default = (
 	incoming => $STORAGE,
   	unknown  => $STORAGE,
   	known    => $STORAGE,
 );
+
+require_ok('Octopussy::Storage');
 
 my $file = Octopussy::Storage::Default_Set(\%default);
 ok(-f $file, 'Octopussy::Storage::Default_Set()');
@@ -103,9 +102,9 @@ foreach my $name ('valid-storage', 'valid_storage')
         'Octopussy::Storage::Valid_Name(' . $param_str .  ") => $is_valid");
 }
 
-system "mv $FILE_STORAGE.backup $FILE_STORAGE";
+rename "${FILE_STORAGE}.backup", $FILE_STORAGE;
 
-done_testing(6 + 3*3 + 1 + 3 + 2);
+done_testing(1 + 6 + 3*3 + 1 + 3 + 2);
 
 =head1 AUTHOR
 

@@ -11,27 +11,24 @@ use warnings;
 
 use File::Path;
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+
 use Octopussy::FS;
-use Octopussy::Report;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-
-AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
-
-Readonly my $DIR_REPORTS  => Octopussy::FS::Directory('reports');
-Readonly my $PREFIX       => 'Octo_TEST_';
-Readonly my $REPORT_TITLE => "${PREFIX}report";
-Readonly my $REPORT_TABLE => 'Message';
-Readonly my $REPORT_QUERY =>
+my $DIR_REPORTS  = Octopussy::FS::Directory('reports');
+my $PREFIX       = 'Octo_TEST_';
+my $REPORT_TITLE = "${PREFIX}report";
+my $REPORT_TABLE = 'Message';
+my $REPORT_QUERY =
   'SELECT datetime, device, msg FROM Message ORDER BY datetime, device asc';
-Readonly my @REPORT_COLUMNS       => qw( datetime device msg);
-Readonly my @REPORT_COLUMNS_NAMES => qw( Datetime Device Message );
+my @REPORT_COLUMNS       = qw( datetime device msg);
+my @REPORT_COLUMNS_NAMES = qw( Datetime Device Message );
 
 my %conf = (
   name         => $REPORT_TITLE,
@@ -47,6 +44,8 @@ my %conf = (
   x            => undef,
   y            => undef,
 );
+
+require_ok('Octopussy::Report');
 
 unlink "${DIR_REPORTS}${REPORT_TITLE}.xml";
 
@@ -98,7 +97,7 @@ foreach my $name ('valid-report', 'valid_report')
 
 rmtree $DIR_REPORTS;
 
-done_testing(6 + 3 + 2);
+done_testing(1 + 6 + 3 + 2);
 
 =head1 AUTHOR
 

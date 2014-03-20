@@ -10,12 +10,11 @@ use strict;
 use warnings;
 
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
-use Octopussy::Stats;
+require_ok('Octopussy::Stats');
 
 my $cpu_info = Octopussy::Stats::CPU_Info();
 ok(defined $cpu_info && $cpu_info ne '', 'Octopussy::Stats::CPU_Info()');
@@ -55,7 +54,7 @@ ok(
   'Octopussy::Stats::Partition_Logs()'
 );
 
-done_testing(6);
+done_testing(1 + 6);
 
 =head1 AUTHOR
 

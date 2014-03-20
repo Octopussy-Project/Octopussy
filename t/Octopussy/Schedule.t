@@ -9,24 +9,21 @@ t/Octopussy/Schedule.t - Test Suite for Octopussy::Schedule module
 use strict;
 use warnings;
 
-use Readonly;
 use Test::More;
 
 use FindBin;
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+
 use Octopussy::FS;
-use Octopussy::Schedule;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-
-AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
-
-Readonly my $FILE_SCHEDULES => Octopussy::FS::File('schedule');
-Readonly my $PREFIX         => 'Octo_TEST_';
-Readonly my $SCHED_TITLE    => "${PREFIX}schedule";
-Readonly my $SCHED_REPORT   => "${PREFIX}sched_report";
+my $FILE_SCHEDULES = Octopussy::FS::File('schedule');
+my $PREFIX         = 'Octo_TEST_';
+my $SCHED_TITLE    = "${PREFIX}schedule";
+my $SCHED_REPORT   = "${PREFIX}sched_report";
 
 my %conf = (
   title  => $SCHED_TITLE,
@@ -41,6 +38,8 @@ my %dt = (
         hour     => '18',
         min      => '00',
     );
+
+require_ok('Octopussy::Schedule');
 
 my @list = Octopussy::Schedule::List();
 Octopussy::Schedule::Add(\%conf);
@@ -141,7 +140,7 @@ ok($is_valid, "Octopussy::Schedule::Valid_Name('valid_schedule')");
 
 unlink $FILE_SCHEDULES;
 
-done_testing(25);
+done_testing(1 + 25);
 
 =head1 AUTHOR
 

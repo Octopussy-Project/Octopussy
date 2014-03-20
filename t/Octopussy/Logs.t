@@ -9,6 +9,7 @@ t/Octopussy/Logs.t - Test Suite for Octopussy::Logs module
 use strict;
 use warnings;
 
+use File::Path;
 use FindBin;
 use Test::More;
 
@@ -49,9 +50,9 @@ require_ok('Octopussy::Logs');
 
 sub Generate_Fake_Logs_Files
 {
-  system "mkdir -p $DIR_LOGS/$DEVICE/Incoming/$YEAR/01/01/";
-  system "mkdir -p $DIR_LOGS/$DEVICE/Unknown/$YEAR/01/01/";
-  system "mkdir -p $DIR_LOGS/$DEVICE/$SERVICE/$YEAR/01/01/";
+  mkpath("$DIR_LOGS/$DEVICE/Incoming/$YEAR/01/01/");
+  mkpath("$DIR_LOGS/$DEVICE/Unknown/$YEAR/01/01/");
+  mkpath("$DIR_LOGS/$DEVICE/$SERVICE/$YEAR/01/01/");
   foreach my $i (0..59)
   {
     my $minute = sprintf '%02d', $i;
@@ -165,7 +166,7 @@ like($cmd, $RE_CMDLINE, 'Octopussy::Logs::Extract_Cmd_Line()');
 
 # Clean stuff
 Octopussy::Device::Remove($DEVICE);
-system "rm -rf $DIR_LOGS/$DEVICE/";
+rmtree("$DIR_LOGS/$DEVICE/");
 
 done_testing(2 + 14);
 

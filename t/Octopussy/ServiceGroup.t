@@ -10,25 +10,22 @@ use strict;
 use warnings;
 
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+
 use Octopussy::FS;
-use Octopussy::ServiceGroup;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
-
-AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
-
-Readonly my $PREFIX          => 'Octo_TEST_';
-Readonly my $SG_FILE         => Octopussy::FS::File('servicegroups');
-Readonly my $SG_ID           => "${PREFIX}servicegroup";
-Readonly my $SG_DESC         => "${PREFIX}servicegroup Description";
-Readonly my $DIR_SERVICES    => Octopussy::FS::Directory('services');
-Readonly my @SERVICES_KERNEL => (
+my $PREFIX          = 'Octo_TEST_';
+my $SG_FILE         = Octopussy::FS::File('servicegroups');
+my $SG_ID           = "${PREFIX}servicegroup";
+my $SG_DESC         = "${PREFIX}servicegroup Description";
+my $DIR_SERVICES    = Octopussy::FS::Directory('services');
+my @SERVICES_KERNEL = (
   {sid => 'Linux_Kernel', rank => '01'},
   {
     sid  => 'Linux_Kernel_Bluetooth',
@@ -36,13 +33,15 @@ Readonly my @SERVICES_KERNEL => (
   },
   {sid => 'Linux_Kernel_USB', rank => '03'},
 );
-Readonly my $SERVICE_TO_ADD => 'Linux_Kernel_FS_Ext3';
+my $SERVICE_TO_ADD = 'Linux_Kernel_FS_Ext3';
 
 my %conf = (
   sg_id       => $SG_ID,
   description => $SG_DESC,
   service     => \@SERVICES_KERNEL,
 );
+
+require_ok('Octopussy::ServiceGroup');
 
 my @list1 = Octopussy::ServiceGroup::List();
 
@@ -101,7 +100,7 @@ foreach my $name ('valid-servicegroup', 'valid_servicegroup')
 
 unlink $SG_FILE;
 
-done_testing(8 + 3 + 2);
+done_testing(1 + 8 + 3 + 2);
 
 =head1 AUTHOR
 

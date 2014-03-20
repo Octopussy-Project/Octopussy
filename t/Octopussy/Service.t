@@ -11,32 +11,29 @@ use warnings;
 
 use File::Path;
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+
 use Octopussy::FS;
-use Octopussy::Service;
 
-Readonly my $AAT_CONFIG_FILE_TEST => "$FindBin::Bin/../data/etc/aat/aat.xml";
+my $DIR_SERVICES = Octopussy::FS::Directory('services');
+my $PREFIX       = 'Octo_TEST_';
+my $SERVICE      = "${PREFIX}Service";
+my $SERVICE_DESC = "${PREFIX}Service Description";
+my $SERVICE_FILENAME = "${DIR_SERVICES}${SERVICE}.xml";
+my $SERVICE2      = "${PREFIX}Service2";
+my $SERVICE2_DESC = "${PREFIX}Service2 Description &éèçà£µ§";
+my $SERVICE2_FILENAME = "${DIR_SERVICES}${SERVICE2}.xml";
+my $SERVICE3      = "${PREFIX}Service2 &éèçà£µ§";
+my $SERVICE3_DESC = "${PREFIX}Service2 Description &éèçà£µ§";
+my $SERVICE_WEB   = 'http://www.octopussy.pm';
 
-AAT::Application::Set_Config_File($AAT_CONFIG_FILE_TEST);
-
-Readonly my $DIR_SERVICES => Octopussy::FS::Directory('services');
-Readonly my $PREFIX       => 'Octo_TEST_';
-Readonly my $SERVICE      => "${PREFIX}Service";
-Readonly my $SERVICE_DESC => "${PREFIX}Service Description";
-Readonly my $SERVICE_FILENAME => "${DIR_SERVICES}${SERVICE}.xml";
-Readonly my $SERVICE2      => "${PREFIX}Service2";
-Readonly my $SERVICE2_DESC => "${PREFIX}Service2 Description &éèçà£µ§";
-Readonly my $SERVICE2_FILENAME => "${DIR_SERVICES}${SERVICE2}.xml";
-Readonly my $SERVICE3      => "${PREFIX}Service2 &éèçà£µ§";
-Readonly my $SERVICE3_DESC => "${PREFIX}Service2 Description &éèçà£µ§";
-Readonly my $SERVICE_WEB  => 'http://www.octopussy.pm';
-
-Readonly my $REQUIRED_NB_MSGS => 3;
+my $REQUIRED_NB_MSGS = 3;
 
 my %msg_conf = (
   msg_id   => "${SERVICE}:undef",
@@ -45,6 +42,8 @@ my %msg_conf = (
   table    => 'Message',
   pattern  => 'Pattern',
 );
+
+require_ok('Octopussy::Service');
 
 unlink "${DIR_SERVICES}${SERVICE}.xml";
 unlink "${DIR_SERVICES}${SERVICE2}.xml";
@@ -148,7 +147,7 @@ foreach my $name ('valid-service', 'valid_service')
         'Octopussy::Service::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-done_testing(17 + 3 + 2);
+done_testing(1 + 17 + 3 + 2);
 
 =head1 AUTHOR
 
