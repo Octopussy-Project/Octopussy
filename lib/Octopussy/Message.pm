@@ -436,7 +436,7 @@ sub Pattern_Field_Substitution
     my %subs = (
         'NUMBER' => {match => '<\@NUMBER:\S+?\@>', re => '[-+]?\\d+'},
         'STRING' => {match => '<\@STRING:\S+?\@>', re => '.+'},
-        'WORD'   => {match => '<\@WORD:\S+?\@>',   re => '\\S+'},   
+        'WORD'   => {match => '<\@WORD:\S+?\@>',   re => '\\S+'},
     );
     my $long_f = $f;
     $f =~ s/Plugin_\S+__//;
@@ -496,7 +496,8 @@ sub Pattern_Field_Unmatched_Substitution
         },
     );
 
-    if ($type =~ /^REGEXP/) {
+    if ($type =~ /^REGEXP/)
+    {
         $regexp =~ s/<\@REGEXP\(\"(.+?)\"\):\S+?\@>/$1/i;
     }
     elsif (defined $subs{$type})
@@ -907,10 +908,11 @@ sub Wizard_File
 sub Wizard
 {
     my ($device, $timestamp_start) = @_;
-    $timestamp_start =
-        ((NULL($timestamp_start) || $timestamp_start !~ /^\d{12}$/)
+    $timestamp_start = (
+        (NULL($timestamp_start) || $timestamp_start !~ /^\d{12}$/)
         ? '0' x 12
-        : $timestamp_start);
+        : $timestamp_start
+    );
     my @types    = Octopussy::Type::Configurations();
     my @messages = ();
     my @files    = Octopussy::Logs::Unknown_Files($device);

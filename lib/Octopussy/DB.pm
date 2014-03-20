@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::DB - Octopussy Database module
@@ -165,7 +166,8 @@ sub SQL_Select_Function
                 my $cfield = (
                     defined $func
                     ? "$func($s->{value}$param)"
-                    : "$s->{value}$param");
+                    : "$s->{value}$param"
+                );
                 push @new_fields, $cfield;
                 $match = 1;
                 last;

@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::World_Stats - Octopussy World Statistics module
@@ -27,7 +28,7 @@ Get/Generates World Statistics ID
 sub ID
 {
     my $RANDOM_NUMBER = 999;
-    my $conf = Configuration();
+    my $conf          = Configuration();
 
     if (NOT_NULL($conf) && NOT_NULL($conf->{id}))
     {

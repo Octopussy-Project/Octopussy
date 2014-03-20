@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 AAT::File - AAT File module
@@ -22,21 +23,21 @@ my $DIR_MIME_BIG   = 'THEMES/DEFAULT/mime/128x128';
 
 sub Mime_Icon
 {
-  my ($file, $type) = @_;
+    my ($file, $type) = @_;
 
-  my $dir = (
-    ((NOT_NULL($type)) && ($type =~ /BIG/i))
-    ? $DIR_MIME_BIG
-    : $DIR_MIME_SMALL
-  );
-  if ($file =~ /.+\.(\w+)$/)
-  {
-    my $ext = $1;
-    return ("$dir/$ext.png")
-      if ((defined $ext) && (-f "$dir/$ext.png"));
-  }
-  return ("$dir/DIRECTORY.png") if (-d $file);
-  return ("$dir/FILE.png");
+    my $dir = (
+        ((NOT_NULL($type)) && ($type =~ /BIG/i))
+        ? $DIR_MIME_BIG
+        : $DIR_MIME_SMALL
+    );
+    if ($file =~ /.+\.(\w+)$/)
+    {
+        my $ext = $1;
+        return ("$dir/$ext.png")
+            if ((defined $ext) && (-f "$dir/$ext.png"));
+    }
+    return ("$dir/DIRECTORY.png") if (-d $file);
+    return ("$dir/FILE.png");
 }
 
 1;

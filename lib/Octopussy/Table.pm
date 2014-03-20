@@ -78,8 +78,8 @@ sub Clone
     $conf_clone{name}        = $table_clone;
     $conf_clone{description} = "$table_clone Table";
     $conf_clone{version}     = strftime("%Y%m%d", localtime) . '0001';
-    
-	return (New(\%conf_clone));
+
+    return (New(\%conf_clone));
 }
 
 =head2 Remove($table)

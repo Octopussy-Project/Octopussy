@@ -1,10 +1,10 @@
+package AAT::Utils;
+
 =head1 NAME
 
 AAT::Utils - AAT Utils module
 
 =cut
-
-package AAT::Utils;
 
 use strict;
 use warnings;
@@ -25,15 +25,15 @@ Converts $value to an array ( @{$value) )
 
 sub ARRAY
 {
-  my $value = shift;
+    my $value = shift;
 
-  return (
-    (
-      NOT_NULL($value)
-      ? ((ref $value eq 'ARRAY') ? @{$value} : ("$value"))
-      : ()
-    )
-  );
+    return (
+        (
+            NOT_NULL($value)
+            ? ((ref $value eq 'ARRAY') ? @{$value} : ("$value"))
+            : ()
+        )
+    );
 }
 
 =head2 ARRAY_REF($value)
@@ -44,15 +44,15 @@ Converts $value to an array reference ( \@{$value} )
 
 sub ARRAY_REF
 {
-  my $value = shift;
+    my $value = shift;
 
-  return (
-    (
-      NOT_NULL($value)
-      ? ((ref $value eq 'ARRAY') ? \@{$value} : ["$value"])
-      : []
-    )
-  );
+    return (
+        (
+            NOT_NULL($value)
+            ? ((ref $value eq 'ARRAY') ? \@{$value} : ["$value"])
+            : []
+        )
+    );
 }
 
 =head2 HASH($value)
@@ -63,9 +63,9 @@ Converts $value to an hash ( %{$value} )
 
 sub HASH
 {
-  my $value = shift;
+    my $value = shift;
 
-  return ((NOT_NULL($value)) ? %{$value} : ());
+    return ((NOT_NULL($value)) ? %{$value} : ());
 }
 
 =head2 HASH_KEYS($value)
@@ -76,9 +76,9 @@ Returns keys for the converted hash $value ( keys %{$value} )
 
 sub HASH_KEYS
 {
-  my $value = shift;
+    my $value = shift;
 
-  return ((NOT_NULL($value)) ? keys %{$value} : ());
+    return ((NOT_NULL($value)) ? keys %{$value} : ());
 }
 
 =head2 NOT_NULL($value)
@@ -89,18 +89,18 @@ Checks that value '$value' is not null (undef or '')
 
 sub NOT_NULL
 {
-  my $value = shift;
+    my $value = shift;
 
-  if (ref $value eq 'ARRAY')
-  {
-    return (
-      scalar(@{$value}) > 1
-      ? 1
-      : (((scalar(@{$value}) == 1) && (NOT_NULL(${$value}[0]))) ? 1 : 0)
-    );
-  }
+    if (ref $value eq 'ARRAY')
+    {
+        return (
+            scalar(@{$value}) > 1
+            ? 1
+            : (((scalar(@{$value}) == 1) && (NOT_NULL(${$value}[0]))) ? 1 : 0)
+        );
+    }
 
-  return (((defined $value) && ($value ne '')) ? 1 : 0);
+    return (((defined $value) && ($value ne '')) ? 1 : 0);
 }
 
 =head2 NULL($value)
@@ -111,20 +111,19 @@ Checks that value '$value' is null (undef or '')
 
 sub NULL
 {
-  my $value = shift;
+    my $value = shift;
 
-  if (ref $value eq 'ARRAY')
-  {
-    return (
-      scalar(@{$value}) > 1
-      ? 0
-      : (((scalar(@{$value}) == 1) && (NOT_NULL(${$value}[0]))) ? 0 : 1)
-    );
-  }
+    if (ref $value eq 'ARRAY')
+    {
+        return (
+            scalar(@{$value}) > 1
+            ? 0
+            : (((scalar(@{$value}) == 1) && (NOT_NULL(${$value}[0]))) ? 0 : 1)
+        );
+    }
 
-  return (((defined $value) && ($value ne '')) ? 0 : 1);
+    return (((defined $value) && ($value ne '')) ? 0 : 1);
 }
-
 
 =head2 Now()
 
@@ -134,19 +133,18 @@ Returns current date (now!) in an Array (YYYY, MM, DD, HH, MM, SS)
 
 sub Now
 {
-	my ($sec, $min, $hour, $mday, $mon, $year) = localtime time;
-	
-  $year += $START_YEAR;
-  $mon++;
-  $mon  = ($mon < 10  ? '0' . $mon  : $mon);
-  $mday = ($mday < 10 ? '0' . $mday : $mday);
-  $hour = ($hour < 10 ? '0' . $hour : $hour);
-  $min  = ($min < 10  ? '0' . $min  : $min);
-  $sec  = ($sec < 10  ? '0' . $sec  : $sec);
+    my ($sec, $min, $hour, $mday, $mon, $year) = localtime time;
 
-  return ($year, $mon, $mday, $hour, $min, $sec);
+    $year += $START_YEAR;
+    $mon++;
+    $mon  = ($mon < 10  ? '0' . $mon  : $mon);
+    $mday = ($mday < 10 ? '0' . $mday : $mday);
+    $hour = ($hour < 10 ? '0' . $hour : $hour);
+    $min  = ($min < 10  ? '0' . $min  : $min);
+    $sec  = ($sec < 10  ? '0' . $sec  : $sec);
+
+    return ($year, $mon, $mday, $hour, $min, $sec);
 }
-
 
 =head2 Now_String()
 
@@ -159,11 +157,10 @@ Returns:
 
 sub Now_String
 {
-  my ($year, $month, $mday, $hour, $min) = Now();
+    my ($year, $month, $mday, $hour, $min) = Now();
 
-  return ("$year/$month/$mday $hour:$min");
+    return ("$year/$month/$mday $hour:$min");
 }
-
 
 1;
 

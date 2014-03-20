@@ -197,8 +197,7 @@ sub Files_Year_Month_Day
                     my $num_day = $num_month + $d * $DIGIT_DAY;
                     if (($start_day <= $num_day) && ($num_day <= $finish_day))
                     {
-                        push @files, map
-                        {
+                        push @files, map {
                             {file => "$y/$m/$d/" . $_, numday => $num_day}
                             } AAT::FS::Directory_Files("$dir_service/$y/$m/$d",
                             qr/^msg_/);

@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 AAT::List - AAT List module
@@ -23,12 +24,12 @@ Returns List configuration
 
 sub Configuration
 {
-  my $list = shift;
+    my $list = shift;
 
-  my $dir  = AAT::Application::Directory('AAT', 'lists');
-  my $conf = AAT::XML::Read("$dir${list}.xml");
+    my $dir = AAT::Application::Directory('AAT', 'lists');
+    my $conf = AAT::XML::Read("$dir${list}.xml");
 
-  return ($conf);
+    return ($conf);
 }
 
 =head2 Items($list)
@@ -39,11 +40,11 @@ Returns List items
 
 sub Items
 {
-  my $list = shift;
+    my $list = shift;
 
-  my $conf = Configuration($list);
+    my $conf = Configuration($list);
 
-  return (ARRAY($conf->{item}));
+    return (ARRAY($conf->{item}));
 }
 
 1;

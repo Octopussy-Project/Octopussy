@@ -1,3 +1,5 @@
+use AAT::Application;
+
 =head1 NAME
 
 AAT::FS - AAT FileSystem module
@@ -9,8 +11,6 @@ package AAT::FS;
 use strict;
 use warnings;
 
-use AAT::Application;
-
 =head1 FUNCTIONS
 
 =head2 Directory_Files($dir, $pattern)
@@ -21,18 +21,17 @@ Returns Files List from Directory '$dir' that match '$pattern'
 
 sub Directory_Files
 {
-  my ($dir, $pattern) = @_;
-  my @files = ();
+    my ($dir, $pattern) = @_;
+    my @files = ();
 
-  if (opendir DIR, $dir)
-  {
-    @files = grep { /$pattern/ } readdir DIR;
-    closedir DIR;
-  }
+    if (opendir DIR, $dir)
+    {
+        @files = grep { /$pattern/ } readdir DIR;
+        closedir DIR;
+    }
 
-  return (sort @files);
+    return (sort @files);
 }
-
 
 =head2 File($file)
 
@@ -42,9 +41,9 @@ Returns Configuration filename for file '$file'
 
 sub File
 {
-  my $file = shift;
+    my $file = shift;
 
-  return (AAT::Application::File('AAT', $file));
+    return (AAT::Application::File('AAT', $file));
 }
 
 1;

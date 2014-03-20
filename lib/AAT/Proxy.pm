@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 AAT::Proxy - AAT Proxy module
@@ -28,12 +29,12 @@ Returns Proxy Configuration
 
 sub Configuration
 {
-  my $appli = shift;
+    my $appli = shift;
 
-  $conf_file{$appli} ||= AAT::Application::File($appli, 'proxy');
-  my $conf = AAT::XML::Read($conf_file{$appli}, 1);
+    $conf_file{$appli} ||= AAT::Application::File($appli, 'proxy');
+    my $conf = AAT::XML::Read($conf_file{$appli}, 1);
 
-  return ($conf->{proxy});
+    return ($conf->{proxy});
 }
 
 =head2 Connection_Test($appli)
@@ -44,13 +45,13 @@ Check the Proxy Connection
 
 sub Connection_Test
 {
-  my $appli = shift;
+    my $appli = shift;
 
-  AAT::Download::File($appli, $URL_TEST, $FILE_TEST);
-  my $status = ((-s $FILE_TEST > 0) ? 1 : 0);
-  unlink $FILE_TEST if (-f $FILE_TEST);
+    AAT::Download::File($appli, $URL_TEST, $FILE_TEST);
+    my $status = ((-s $FILE_TEST > 0) ? 1 : 0);
+    unlink $FILE_TEST if (-f $FILE_TEST);
 
-  return ($status);
+    return ($status);
 }
 
 1;

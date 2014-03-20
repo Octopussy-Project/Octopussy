@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy - Octopussy main module
@@ -28,7 +29,7 @@ my $SF_SITE          = 'http://sourceforge.net/projects/syslog-analyzer/files/';
 my $IDX_STAT_UID     = 4;
 my $IDX_STAT_GID     = 5;
 
-our $VERSION = '1.0.11';
+our $VERSION = '1.0.12';
 
 =head1 FUNCTIONS
 
@@ -217,9 +218,11 @@ sub PID_File
         my ($uid, $gid) = ($1, $2);
         my @attr = stat $file_pid;
 
-        if ((-f $file_pid)
+        if (
+            (-f $file_pid)
             && (   ($uid != $attr[$IDX_STAT_UID])
-                || ($gid != $attr[$IDX_STAT_GID])))
+                || ($gid != $attr[$IDX_STAT_GID]))
+           )
         {
             AAT::Syslog::Message('octopussy',
                 "ERROR: pid file '$file_pid' doesn't match octopussy uid/gid !"

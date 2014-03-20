@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 AAT::Translation - AAT Translation module
@@ -20,15 +21,16 @@ my %AAT_Translation = ();
 # It will silence ALL (not only Locale::Maketext) 'used only once' warnings
 # More info on http://stackoverflow.com/q/6983173/24820
 #
-BEGIN 
+BEGIN
 {
-	$SIG{__WARN__} = sub {
+    $SIG{__WARN__} = sub {
         warn @_ unless "@_" =~ /used only once/;
     };
     require Locale::Maketext::Simple;
     Locale::Maketext::Simple->import(
         Path => '/usr/share/aat/Translations/'
-		# can't use AAT::Application::Directory('AAT', 'translations') :(
+
+            # can't use AAT::Application::Directory('AAT', 'translations') :(
     );
 }
 
@@ -42,12 +44,12 @@ Inits Translation Data for language '$lang'
 
 sub Init
 {
-  my $lang = shift;
+    my $lang = shift;
 
-  loc_lang($lang);
-  $AAT_Translation{$lang}{'_USER'} = loc("_USER");
+    loc_lang($lang);
+    $AAT_Translation{$lang}{'_USER'} = loc("_USER");
 
-  return (1);
+    return (1);
 }
 
 =head2 Get($lang, $str)
@@ -58,14 +60,14 @@ Gets Translation for string '$str' in language '$lang'
 
 sub Get
 {
-  my ($lang, $str) = @_;
+    my ($lang, $str) = @_;
 
-  return (undef) if (NULL($str));
-  Init($lang) if (!defined $AAT_Translation{$lang}{'_USER'});
-  $AAT_Translation{$lang}{$str} = (loc($str) || $str)
-    if (!defined $AAT_Translation{$lang}{$str});
+    return (undef) if (NULL($str));
+    Init($lang) if (!defined $AAT_Translation{$lang}{'_USER'});
+    $AAT_Translation{$lang}{$str} = (loc($str) || $str)
+        if (!defined $AAT_Translation{$lang}{$str});
 
-  return ($AAT_Translation{$lang}{$str});
+    return ($AAT_Translation{$lang}{$str});
 }
 
 1;

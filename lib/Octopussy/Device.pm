@@ -1,3 +1,4 @@
+package Octopussy::Device;
 
 =head1 NAME
 
@@ -5,15 +6,12 @@ Octopussy::Device - Octopussy Device module
 
 =cut
 
-package Octopussy::Device;
-
 use strict;
 use warnings;
 
 use File::Path qw(rmtree);
 use List::MoreUtils qw(uniq);
 use POSIX qw(strftime);
-use Readonly;
 
 use AAT::FS;
 use AAT::Utils qw( ARRAY NOT_NULL NULL );
@@ -27,19 +25,19 @@ use Octopussy::Service;
 use Octopussy::ServiceGroup;
 use Octopussy::System;
 
-Readonly my $PAUSED            => 1;
-Readonly my $STARTED           => 2;
-Readonly my $PERCENT           => 100;
-Readonly my $DIR_DEVICE        => 'devices';
-Readonly my $PARSER_BIN        => 'octo_parser';
-Readonly my $UPARSER_BIN       => 'octo_uparser';
-Readonly my $FILE_DEVICEMODELS => 'device_models';
-Readonly my $XML_ROOT          => 'octopussy_device';
+my $PAUSED            = 1;
+my $STARTED           = 2;
+my $PERCENT           = 100;
+my $DIR_DEVICE        = 'devices';
+my $PARSER_BIN        = 'octo_parser';
+my $UPARSER_BIN       = 'octo_uparser';
+my $FILE_DEVICEMODELS = 'device_models';
+my $XML_ROOT          = 'octopussy_device';
 
 my ($dir_devices, $dir_pid) = (undef, undef);
 my %filename;
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 New($conf)
 

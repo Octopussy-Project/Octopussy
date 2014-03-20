@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Octopussy::Taxonomy - Octopussy Taxonomy module
@@ -17,7 +18,7 @@ use Octopussy::Device;
 use Octopussy::FS;
 use Octopussy::Service;
 
-my $FILE_TAXONOMY = Octopussy::FS::File('taxonomy');
+my $FILE_TAXONOMY           = Octopussy::FS::File('taxonomy');
 my @TAXONOMY_CONFIGURATIONS = ();
 
 =head1 FUNCTIONS
@@ -176,8 +177,8 @@ sub Unknowns
 sub Colors
 {
     my %color = ();
-    
-	foreach my $t (Octopussy::Taxonomy::Configurations())
+
+    foreach my $t (Octopussy::Taxonomy::Configurations())
     {
         $color{"$t->{value}"} = $t->{color};
     }
@@ -195,7 +196,8 @@ sub Valid_Name
 {
     my $name = shift;
 
-    my $re_taxonomy = join '|', map { $_->{value} } Octopussy::Taxonomy::Configurations();
+    my $re_taxonomy = join '|',
+        map { $_->{value} } Octopussy::Taxonomy::Configurations();
     return (1) if ((NOT_NULL($name)) && ($name =~ /^$re_taxonomy$/i));
 
     return (0);

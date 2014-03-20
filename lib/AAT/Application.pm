@@ -1,10 +1,10 @@
+package AAT::Application;
+
 =head1 NAME
 
 AAT::Application - AAT Application module
 
 =cut
-
-package AAT::Application;
 
 use strict;
 use warnings;
@@ -13,9 +13,9 @@ use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
 my @AAT_APPLICATIONS = ();
-my $AAT_CONF_FILE = '/etc/aat/aat.xml';
+my $AAT_CONF_FILE    = '/etc/aat/aat.xml';
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Applications()
 
@@ -25,10 +25,10 @@ Gets AAT Applications
 
 sub Applications
 {
-	if (!scalar @AAT_APPLICATIONS)
+    if (!scalar @AAT_APPLICATIONS)
     {
-    	my $conf = AAT::XML::Read($AAT_CONF_FILE);
-		@AAT_APPLICATIONS = ARRAY($conf->{application})
+        my $conf = AAT::XML::Read($AAT_CONF_FILE);
+        @AAT_APPLICATIONS = ARRAY($conf->{application});
     }
 
     return (@AAT_APPLICATIONS);
@@ -40,11 +40,12 @@ sub Applications
 
 sub Set_Config_File
 {
-	my $file = shift;
-	
-    $AAT_CONF_FILE = $file;    	
-}
+    my $file = shift;
 
+    $AAT_CONF_FILE = $file;
+
+	return ($AAT_CONF_FILE);
+}
 
 =head2 Info($appli)
 
@@ -54,14 +55,14 @@ Returns Application Information
 
 sub Info
 {
-  my $appli = shift;
+    my $appli = shift;
 
-  foreach my $a (Applications())
-  {
-    return ($a) if ($a->{name} eq $appli);
-  }
+    foreach my $a (Applications())
+    {
+        return ($a) if ($a->{name} eq $appli);
+    }
 
-  return (undef);
+    return (undef);
 }
 
 =head2 Directory($appli, $name)
@@ -72,20 +73,20 @@ Returns Directory for Application '$appli' Name '$name'
 
 sub Directory
 {
-  my ($appli, $name) = @_;
-  
-  foreach my $a (Applications())
-  {
-    if ($a->{name} eq $appli)
-    {
-      foreach my $d (ARRAY($a->{directory}))
-      {
-        return ($d->{value}) if ($d->{name} eq $name);
-      }
-    }
-  }
+    my ($appli, $name) = @_;
 
-  return (undef);
+    foreach my $a (Applications())
+    {
+        if ($a->{name} eq $appli)
+        {
+            foreach my $d (ARRAY($a->{directory}))
+            {
+                return ($d->{value}) if ($d->{name} eq $name);
+            }
+        }
+    }
+
+    return (undef);
 }
 
 =head2 File($appli, $name)
@@ -96,20 +97,20 @@ Returns File for Application '$appli' Name '$name'
 
 sub File
 {
-  	my ($appli, $name) = @_;
-  
-	foreach my $a (Applications())
-  	{
-    	if ($a->{name} eq $appli)
-    	{
-      		foreach my $f (ARRAY($a->{file}))
-      		{
-        		return ($f->{value}) if ($f->{name} eq $name);
-      		}
-    	}
-  	}
+    my ($appli, $name) = @_;
 
-  	return (undef);
+    foreach my $a (Applications())
+    {
+        if ($a->{name} eq $appli)
+        {
+            foreach my $f (ARRAY($a->{file}))
+            {
+                return ($f->{value}) if ($f->{name} eq $name);
+            }
+        }
+    }
+
+    return (undef);
 }
 
 =head2 Parameter($appli, $param)
@@ -120,20 +121,20 @@ Returns Parameter Default Value for Application '$appli' Parameter '$param'
 
 sub Parameter
 {
-  	my ($appli, $param) = @_;
-  
-	foreach my $a (Applications())
-  	{
-    	if ($a->{name} eq $appli)
-    	{
-      		foreach my $p (ARRAY($a->{parameter}))
-      		{
-        		return ($p->{value}) if ($p->{name} eq $param);
-      		}
-    	}
-  	}
+    my ($appli, $param) = @_;
 
-  	return (undef);
+    foreach my $a (Applications())
+    {
+        if ($a->{name} eq $appli)
+        {
+            foreach my $p (ARRAY($a->{parameter}))
+            {
+                return ($p->{value}) if ($p->{name} eq $param);
+            }
+        }
+    }
+
+    return (undef);
 }
 
 1;

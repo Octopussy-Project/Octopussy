@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 AAT - Apache::ASP Toolkit module
@@ -59,20 +60,19 @@ Prints Debug Message $text in AAT Debug file
 
 sub DEBUG
 {
-  my $text = shift;
-  $text =~ s/"//g;
+    my $text = shift;
+    $text =~ s/"//g;
 
-  my ($sec, $min, $hour) = localtime();
+    my ($sec, $min, $hour) = localtime();
 
-  if (defined open(my $FILE, '>>', $FILE_DEBUG))
-  {
-    print $FILE "$hour:$min:$sec > $text\n";
-    close($FILE);
-  }
+    if (defined open(my $FILE, '>>', $FILE_DEBUG))
+    {
+        print $FILE "$hour:$min:$sec > $text\n";
+        close($FILE);
+    }
 
-  return ("$hour:$min:$sec > $text");
+    return ("$hour:$min:$sec > $text");
 }
-
 
 =head2 Update_Configuration($appli, $file, $conf, $rootname)
 
@@ -80,13 +80,13 @@ sub DEBUG
 
 sub Update_Configuration
 {
-  my ($appli, $file, $conf, $rootname) = @_;
+    my ($appli, $file, $conf, $rootname) = @_;
 
-  my $file_xml = AAT::Application::File($appli, $file);
-  if (NOT_NULL($file_xml))
-  {
-    AAT::XML::Write($file_xml, $conf, $rootname);
-  }
+    my $file_xml = AAT::Application::File($appli, $file);
+    if (NOT_NULL($file_xml))
+    {
+        AAT::XML::Write($file_xml, $conf, $rootname);
+    }
 }
 
 =head2 Version()
@@ -97,9 +97,9 @@ Returns AAT Version
 
 sub Version
 {
-  my $info = AAT::Application::Info('AAT');
+    my $info = AAT::Application::Info('AAT');
 
-  return ($info->{version});
+    return ($info->{version});
 }
 
 =head2 WebSite()
@@ -110,9 +110,9 @@ Returns AAT WebSite
 
 sub WebSite
 {
-  my $info = AAT::Application::Info('AAT');
+    my $info = AAT::Application::Info('AAT');
 
-  return ($info->{website});
+    return ($info->{website});
 }
 
 =head2 Language($lang)
@@ -123,11 +123,11 @@ Get/Set AAT Language
 
 sub Language
 {
-  my $lang = shift;
+    my $lang = shift;
 
-  $main::Session->{AAT_LANGUAGE} = $lang  if (NOT_NULL($lang)); # Set Language
+    $main::Session->{AAT_LANGUAGE} = $lang if (NOT_NULL($lang));  # Set Language
 
-  return ($main::Session->{AAT_LANGUAGE} || 'EN'); # Get Language
+    return ($main::Session->{AAT_LANGUAGE} || 'EN');              # Get Language
 }
 
 =head2 Menu_Mode($mode)
@@ -138,11 +138,13 @@ Get/Set AAT Menu Mode (Icons&Text, IconsOnly, TextOnly)
 
 sub Menu_Mode
 {
-  my $mode = shift;
+    my $mode = shift;
 
-  $main::Session->{AAT_MENU_MODE} = $mode if (NOT_NULL($mode)); # Set Menu_Mode
+    $main::Session->{AAT_MENU_MODE} = $mode
+        if (NOT_NULL($mode));    # Set Menu_Mode
 
-  return ($main::Session->{AAT_MENU_MODE} || 'ICONS_AND_TEXT'); # Get Menu_Mode
+    return ($main::Session->{AAT_MENU_MODE} || 'ICONS_AND_TEXT')
+        ;                        # Get Menu_Mode
 }
 
 =head2 Theme($theme)
@@ -153,11 +155,11 @@ Get/Set AAT Theme
 
 sub Theme
 {
-  my $theme = shift;
+    my $theme = shift;
 
-  $main::Session->{AAT_THEME} = $theme if (NOT_NULL($theme)); # Set Theme
+    $main::Session->{AAT_THEME} = $theme if (NOT_NULL($theme));    # Set Theme
 
-  return ($main::Session->{AAT_THEME} || 'DEFAULT'); # Get Theme
+    return ($main::Session->{AAT_THEME} || 'DEFAULT');             # Get Theme
 }
 
 =head2 Translation($str)
@@ -168,13 +170,12 @@ Translates $str with language $main::Session->{AAT_LANGUAGE}
 
 sub Translation
 {
-  my $str       = shift;
-  my $sess_lang = $main::Session->{AAT_LANGUAGE};
-  my $lang      = (NOT_NULL($sess_lang) ? $sess_lang : 'EN');
+    my $str       = shift;
+    my $sess_lang = $main::Session->{AAT_LANGUAGE};
+    my $lang      = (NOT_NULL($sess_lang) ? $sess_lang : 'EN');
 
-  return (AAT::Translation::Get($lang, $str));
+    return (AAT::Translation::Get($lang, $str));
 }
-
 
 ##################################################
 
@@ -186,9 +187,9 @@ Usage: <AAT:PageTop title="Octopussy Login" icon="IMG/octopussy.gif" />
 
 sub PageTop
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_PageTop.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_PageTop.inc', %{$args});
 }
 
 =head2 PageBottom($args, $body)
@@ -199,9 +200,9 @@ Usage: <AAT:PageBottom credits="1" />
 
 sub PageBottom
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_PageBottom.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_PageBottom.inc', %{$args});
 }
 
 =head2 PageTheme($args, $body)
@@ -212,13 +213,13 @@ Usage: <AAT:PageTheme />
 
 sub PageTheme
 {
-  my ($args, $body) = @_;
-  my $theme = Theme();
-  my $style = AAT::Theme::CSS_File($theme);
-  if (defined $style)
-  {
-    $main::Response->Include('AAT/INC/AAT_CSS_Inc.inc', file => $style);
-  }
+    my ($args, $body) = @_;
+    my $theme = Theme();
+    my $style = AAT::Theme::CSS_File($theme);
+    if (defined $style)
+    {
+        $main::Response->Include('AAT/INC/AAT_CSS_Inc.inc', file => $style);
+    }
 }
 
 =head2 Inc($args, $body)
@@ -230,9 +231,9 @@ Usage: <AAT:Inc file="octo_selector_taxonomy" name="taxonomy"
 
 sub Inc
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include("INC/$args->{file}.inc", %{$args});
+    $main::Response->Include("INC/$args->{file}.inc", %{$args});
 }
 
 =head2 CSS_Inc($args, $body)
@@ -243,9 +244,9 @@ Usage:
 
 sub CSS_Inc
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_CSS_Inc.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_CSS_Inc.inc', %{$args});
 }
 
 =head2 JS_Inc($args, $body)
@@ -256,11 +257,10 @@ Usage: <AAT:JS_Inc file="INC/AAT_tooltip.js" />
 
 sub JS_Inc
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_JS_Inc.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_JS_Inc.inc', %{$args});
 }
-
 
 =head2 File_Save($conf)
 
@@ -268,24 +268,24 @@ sub JS_Inc
 
 sub File_Save
 {
-  my $conf = shift;
+    my $conf = shift;
 
-  $main::Response->{ContentType} = $conf->{contenttype};
-  $main::Response->AddHeader('Content-Disposition',
-    "filename=\"$conf->{output_file}\"");
-  if (NOT_NULL($conf->{input_file}))
-  {
-    if (defined open(my $FILE, '<', $conf->{input_file}))
+    $main::Response->{ContentType} = $conf->{contenttype};
+    $main::Response->AddHeader('Content-Disposition',
+        "filename=\"$conf->{output_file}\"");
+    if (NOT_NULL($conf->{input_file}))
     {
-      while (<$FILE>) { $main::Response->BinaryWrite($_); }
-      close($FILE);
+        if (defined open(my $FILE, '<', $conf->{input_file}))
+        {
+            while (<$FILE>) { $main::Response->BinaryWrite($_); }
+            close($FILE);
+        }
     }
-  }
-  elsif (NOT_NULL($conf->{input_data}))
-  {
-    $main::Response->BinaryWrite($conf->{input_data});
-  }
-  $main::Response->End();
+    elsif (NOT_NULL($conf->{input_data}))
+    {
+        $main::Response->BinaryWrite($conf->{input_data});
+    }
+    $main::Response->End();
 }
 
 =head2 Button($args, $body)
@@ -296,9 +296,9 @@ Usage: <AAT:Button name="remove" popup_link="$remove_link" />
 
 sub Button
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Button.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Button.inc', %{$args});
 }
 
 =head2 Box($args, $body)
@@ -313,10 +313,10 @@ Usage: <AAT:Box icon="buttons/bt_report" title="_REPORTS_VIEWER">
 
 sub Box
 {
-  my ($args, $body) = @_;
-  $main::Response->Include('AAT/INC/AAT_BoxTop.inc', %{$args});
-  print $body;
-  $main::Response->Include('AAT/INC/AAT_BoxBottom.inc');
+    my ($args, $body) = @_;
+    $main::Response->Include('AAT/INC/AAT_BoxTop.inc', %{$args});
+    print $body;
+    $main::Response->Include('AAT/INC/AAT_BoxBottom.inc');
 }
 
 =head2 BoxCol($args, $body)
@@ -329,11 +329,11 @@ Usage: <AAT:BoxRow><AAT:BoxCol>
 
 sub BoxCol
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_BoxColBegin.inc', %{$args});
-  print $body;
-  $main::Response->Include('AAT/INC/AAT_BoxColEnd.inc');
+    $main::Response->Include('AAT/INC/AAT_BoxColBegin.inc', %{$args});
+    print $body;
+    $main::Response->Include('AAT/INC/AAT_BoxColEnd.inc');
 }
 
 =head2 BoxRow($args, $body)
@@ -346,11 +346,11 @@ Usage: <AAT:BoxRow><AAT:BoxCol>
 
 sub BoxRow
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_BoxRowBegin.inc', %{$args});
-  print $body;
-  $main::Response->Include('AAT/INC/AAT_BoxRowEnd.inc');
+    $main::Response->Include('AAT/INC/AAT_BoxRowBegin.inc', %{$args});
+    print $body;
+    $main::Response->Include('AAT/INC/AAT_BoxRowEnd.inc');
 }
 
 =head2 BoxRowMenu($args, $body)
@@ -363,11 +363,11 @@ Usage: <AAT:BoxRowMenu><AAT:BoxCol>
 
 sub BoxRowMenu
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_BoxRowMenu.inc', %{$args});
-  print $body;
-  $main::Response->Include('AAT/INC/AAT_BoxRowEnd.inc');
+    $main::Response->Include('AAT/INC/AAT_BoxRowMenu.inc', %{$args});
+    print $body;
+    $main::Response->Include('AAT/INC/AAT_BoxRowEnd.inc');
 }
 
 =head2 DD_Box($args, $body)
@@ -378,11 +378,11 @@ Usage:
 
 sub DD_Box
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_DD_BoxTop.inc', %{$args});
-  print $body;
-  $main::Response->Include('AAT/INC/AAT_DD_BoxBottom.inc');
+    $main::Response->Include('AAT/INC/AAT_DD_BoxTop.inc', %{$args});
+    print $body;
+    $main::Response->Include('AAT/INC/AAT_DD_BoxBottom.inc');
 }
 
 =head2 DD_BoxRow($args, $body)
@@ -393,11 +393,11 @@ Usage:
 
 sub DD_BoxRow
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_DD_BoxRowBegin.inc', %{$args});
-  print $body;
-  $main::Response->Include('AAT/INC/AAT_DD_BoxRowEnd.inc');
+    $main::Response->Include('AAT/INC/AAT_DD_BoxRowBegin.inc', %{$args});
+    print $body;
+    $main::Response->Include('AAT/INC/AAT_DD_BoxRowEnd.inc');
 }
 
 =head2 CheckBox($args, $body)
@@ -408,9 +408,9 @@ Usage: <AAT:CheckBox name="$value" />
 
 sub CheckBox
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_CheckBox.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_CheckBox.inc', %{$args});
 }
 
 =head2 CheckBox_DayOfMonth($args, $body)
@@ -421,9 +421,9 @@ Usage: <AAT:CheckBox_DayOfMonth name="$value" />
 
 sub CheckBox_DayOfMonth
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_CheckBox_DayOfMonth.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_CheckBox_DayOfMonth.inc', %{$args});
 }
 
 =head2 CheckBox_DayOfWeek($args, $body)
@@ -434,9 +434,9 @@ Usage: <AAT:CheckBox_DayOfWeek name="$value" />
 
 sub CheckBox_DayOfWeek
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_CheckBox_DayOfWeek.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_CheckBox_DayOfWeek.inc', %{$args});
 }
 
 =head2 CheckBox_Month($args, $body)
@@ -447,9 +447,9 @@ Usage: <AAT:CheckBox_Month name="$value" />
 
 sub CheckBox_Month
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_CheckBox_Month.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_CheckBox_Month.inc', %{$args});
 }
 
 =head2 Config_Certificate($args, $body)
@@ -460,9 +460,9 @@ Usage: <AAT:Config_Certificate tooltip="_TOOLTIP_SYSTEM_CERTIFICATE" />
 
 sub Config_Certificate
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_Certificate.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_Certificate.inc', %{$args});
 }
 
 =head2 Config_Database($args, $body)
@@ -473,9 +473,9 @@ Usage: <AAT:Config_Database tooltip="_TOOLTIP_SYSTEM_DB" />
 
 sub Config_Database
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_Database.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_Database.inc', %{$args});
 }
 
 =head2 Config_LDAP_Contacts($args, $body)
@@ -486,9 +486,9 @@ Usage: <AAT:Config_LDAP_Contacts tooltip="_TOOLTIP_SYSTEM_LDAP" />
 
 sub Config_LDAP_Contacts
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_LDAP_Contacts.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_LDAP_Contacts.inc', %{$args});
 }
 
 =head2 Config_LDAP_Users($args, $body)
@@ -499,9 +499,9 @@ Usage: <AAT:Config_LDAP_Users tooltip="_TOOLTIP_SYSTEM_LDAP" />
 
 sub Config_LDAP_Users
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_LDAP_Users.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_LDAP_Users.inc', %{$args});
 }
 
 =head2 Config_NSCA($args, $body)
@@ -512,9 +512,9 @@ Usage: <AAT:Config_NSCA tooltip="_TOOLTIP_SYSTEM_NSCA" />
 
 sub Config_NSCA
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_NSCA.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_NSCA.inc', %{$args});
 }
 
 =head2 Config_Proxy($args, $body)
@@ -525,9 +525,9 @@ Usage: <AAT:Config_Proxy tooltip="_TOOLTIP_SYSTEM_PROXY" />
 
 sub Config_Proxy
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_Proxy.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_Proxy.inc', %{$args});
 }
 
 =head2 Config_SMTP($args, $body)
@@ -538,9 +538,9 @@ Usage: <AAT:Config_SMTP tooltip="_TOOLTIP_SYSTEM_SMTP" />
 
 sub Config_SMTP
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_SMTP.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_SMTP.inc', %{$args});
 }
 
 =head2 Config_XMPP($args, $body)
@@ -551,9 +551,9 @@ Usage: <AAT:Config_XMPP tooltip="_TOOLTIP_SYSTEM_JABBER" />
 
 sub Config_XMPP
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_XMPP.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_XMPP.inc', %{$args});
 }
 
 =head2 Config_Zabbix($args, $body)
@@ -564,9 +564,9 @@ Usage: <AAT:Config_Zabbix tooltip="_TOOLTIP_SYSTEM_ZABBIX" />
 
 sub Config_Zabbix
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Config_Zabbix.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Config_Zabbix.inc', %{$args});
 }
 
 =head2 Entry($args, $body)
@@ -577,9 +577,9 @@ Usage: <AAT:Entry name="directory" size="40" />
 
 sub Entry
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Entry.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Entry.inc', %{$args});
 }
 
 =head2 Export_FTP($args, $body)
@@ -590,9 +590,9 @@ Usage: <AAT:Export_FTP width="100%" />
 
 sub Export_FTP
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Export_FTP.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Export_FTP.inc', %{$args});
 }
 
 =head2 Export_SCP($args, $body)
@@ -603,9 +603,9 @@ Usage: <AAT:Export_SCP width="100%" />
 
 sub Export_SCP
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Export_SCP.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Export_SCP.inc', %{$args});
 }
 
 =head2 Form($args, $body)
@@ -616,11 +616,11 @@ Usage: <AAT:Form method="POST" action="$action">
 
 sub Form
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Form_Begin.inc', %{$args});
-  print $body;
-  $main::Response->Include('AAT/INC/AAT_Form_End.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Form_Begin.inc', %{$args});
+    print $body;
+    $main::Response->Include('AAT/INC/AAT_Form_End.inc', %{$args});
 }
 
 =head2 Form_Button($args, $body)
@@ -631,9 +631,9 @@ Usage: <AAT:Form_Button name="remove" value="remove_template" />
 
 sub Form_Button
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Form_Button.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Form_Button.inc', %{$args});
 }
 
 =head2 Form_Hidden($args, $body)
@@ -644,9 +644,9 @@ Usage: <AAT:Form_Hidden name="msg_pattern" value="$pattern" />
 
 sub Form_Hidden
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Form_Hidden.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Form_Hidden.inc', %{$args});
 }
 
 =head2 Form_Submit($args, $body)
@@ -657,9 +657,9 @@ Usage: <AAT:Form_Submit value="_EDIT" />
 
 sub Form_Submit
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Form_Submit.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Form_Submit.inc', %{$args});
 }
 
 =head2 Help($args, $body)
@@ -670,9 +670,9 @@ Usage: <AAT:Help page="login" />
 
 sub Help
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Help.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Help.inc', %{$args});
 }
 
 =head2 IMG($args, $body)
@@ -684,9 +684,9 @@ Usage: <AAT:IMG name="mime/pdf" tooltip="_REPORT_PDF"
 
 sub IMG
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_IMG.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_IMG.inc', %{$args});
 }
 
 =head2 Label($args, $body)
@@ -697,9 +697,9 @@ Usage: <AAT:Label value="_MODIFICATION" style="B" />
 
 sub Label
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Label.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Label.inc', %{$args});
 }
 
 =head2 Logo($args, $body)
@@ -712,9 +712,9 @@ Print Logo of the item $args{name} from the List $args{list}
 
 sub Logo
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Logo.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Logo.inc', %{$args});
 }
 
 =head2 Menu($args, $body)
@@ -725,9 +725,9 @@ Usage: <AAT:Menu align="C" items=\@items />
 
 sub Menu
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Menu.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Menu.inc', %{$args});
 }
 
 =head2 Message($args, $body)
@@ -738,9 +738,9 @@ Usage: <AAT:Message level="$level" msg="$msg" />
 
 sub Message
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Message.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Message.inc', %{$args});
 }
 
 =head2 Msg_Error()
@@ -751,17 +751,17 @@ Usage:
 
 sub Msg_Error
 {
-  if (NOT_NULL($main::Session->{AAT_MSG_ERROR}))
-  {
-    print "<div align=\"center\">\n";
-    $main::Response->Include(
-      'AAT/INC/AAT_Message.inc',
-      level => 2,
-      msg   => $main::Session->{AAT_MSG_ERROR}
-    );
-    print "</div>\n";
-  }
-  $main::Session->{AAT_MSG_ERROR} = undef;
+    if (NOT_NULL($main::Session->{AAT_MSG_ERROR}))
+    {
+        print "<div align=\"center\">\n";
+        $main::Response->Include(
+            'AAT/INC/AAT_Message.inc',
+            level => 2,
+            msg   => $main::Session->{AAT_MSG_ERROR}
+        );
+        print "</div>\n";
+    }
+    $main::Session->{AAT_MSG_ERROR} = undef;
 }
 
 =head2 Password($args, $body)
@@ -772,15 +772,15 @@ Usage: <AAT:Password name="pword" value="$pwd" size="12" />
 
 sub Password
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include(
-    'AAT/INC/AAT_Password.inc',
-    name      => $args->{name},
-    value     => $args->{value},
-    size      => $args->{size},
-    maxlength => $args->{maxlength}
-  );
+    $main::Response->Include(
+        'AAT/INC/AAT_Password.inc',
+        name      => $args->{name},
+        value     => $args->{value},
+        size      => $args->{size},
+        maxlength => $args->{maxlength}
+    );
 }
 
 =head2 Picture($args, $body)
@@ -792,9 +792,9 @@ Usage: <AAT:Picture file="IMG/octopussy.gif" width="200"
 
 sub Picture
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Picture.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Picture.inc', %{$args});
 }
 
 =head2 ProgressBar($args, $body)
@@ -808,9 +808,9 @@ Usage: <AAT:ProgressBar title="Report Generation $reportname"
 
 sub ProgressBar
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_ProgressBar.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_ProgressBar.inc', %{$args});
 }
 
 =head2 RRD_Graph($args, $body)
@@ -821,9 +821,9 @@ Usage: <AAT:RRD_Graph url="./index.asp" name="syslog_dtype" mode="$rrd_mode" />
 
 sub RRD_Graph
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_RRD_Graph.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_RRD_Graph.inc', %{$args});
 }
 
 =head2 Selector($args, $body)
@@ -834,9 +834,9 @@ Usage: <AAT:Selector name="report" list=\@report_list />
 
 sub Selector
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector.inc', %{$args});
 }
 
 =head2 Selector_Color($args, $body)
@@ -847,9 +847,9 @@ Usage: <AAT:Selector_Color name="color" selected="red" />
 
 sub Selector_Color
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_Color.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_Color.inc', %{$args});
 }
 
 =head2 Selector_Country_Code($args, $body)
@@ -860,9 +860,9 @@ Usage: <AAT:Selector Country_Code name="country" selected="fr" />
 
 sub Selector_Country_Code
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_Country_Code.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_Country_Code.inc', %{$args});
 }
 
 =head2 Selector_Database($args, $body)
@@ -873,9 +873,9 @@ Usage: <AAT:Selector_Database name="db_type" selected="$type" />
 
 sub Selector_Database
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_Database.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_Database.inc', %{$args});
 }
 
 =head2 Selector_Date($args, $body)
@@ -886,9 +886,9 @@ Usage: <AAT:Selector_Date name="$name" start_year="1920" />
 
 sub Selector_Date
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_Date.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_Date.inc', %{$args});
 }
 
 =head2 Selector_DateTime($args, $body)
@@ -900,9 +900,9 @@ Usage: <AAT:Selector_DateTime name="dt" start_year="2000"
 
 sub Selector_DateTime
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_DateTime.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_DateTime.inc', %{$args});
 }
 
 =head2 Selector_DateTime_Simple($args, $body)
@@ -916,10 +916,10 @@ Usage: <AAT:Selector_DateTime_Simple name="dt"
 
 sub Selector_DateTime_Simple
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_DateTime_Simple.inc',
-    %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_DateTime_Simple.inc',
+        %{$args});
 }
 
 =head2 Selector_EnabledDisabled($args, $body)
@@ -930,10 +930,10 @@ Usage: <AAT:Selector_EnabledDisabled name="status" selected="$status" />
 
 sub Selector_EnabledDisabled
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_EnabledDisabled.inc',
-    %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_EnabledDisabled.inc',
+        %{$args});
 }
 
 =head2 Selector_Language($args, $body)
@@ -944,25 +944,25 @@ Usage: <AAT:Selector_Language />
 
 sub Selector_Language
 {
-  my ($args, $body) = @_;
-  my $language = $args->{selected} || Language();
-  my @list     = (
-    {label => '_ENGLISH',    value => 'EN'},
-    {label => '_FRENCH',     value => 'FR'},
-    {label => '_GERMAN',     value => 'DE'},
-    {label => '_ITALIAN',    value => 'IT'},
-    {label => '_PORTUGUESE', value => 'PT'},
-    {label => '_RUSSIAN',    value => 'RU'},
-    {label => '_SPANISH',    value => 'ES'},
-	{label => '_TURKISH',    value => 'TR'},
-  );
+    my ($args, $body) = @_;
+    my $language = $args->{selected} || Language();
+    my @list = (
+        {label => '_ENGLISH',    value => 'EN'},
+        {label => '_FRENCH',     value => 'FR'},
+        {label => '_GERMAN',     value => 'DE'},
+        {label => '_ITALIAN',    value => 'IT'},
+        {label => '_PORTUGUESE', value => 'PT'},
+        {label => '_RUSSIAN',    value => 'RU'},
+        {label => '_SPANISH',    value => 'ES'},
+        {label => '_TURKISH',    value => 'TR'},
+    );
 
-  $main::Response->Include(
-    'AAT/INC/AAT_Selector.inc',
-    name     => 'AAT_Language',
-    list     => \@list,
-    selected => $language
-  );
+    $main::Response->Include(
+        'AAT/INC/AAT_Selector.inc',
+        name     => 'AAT_Language',
+        list     => \@list,
+        selected => $language
+    );
 }
 
 =head2 Selector_List($args, $body)
@@ -973,9 +973,9 @@ Usage:
 
 sub Selector_List
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_List.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_List.inc', %{$args});
 }
 
 =head2 Selector_MenuMode($args, $body)
@@ -984,20 +984,20 @@ sub Selector_List
 
 sub Selector_MenuMode
 {
-  my ($args, $body) = @_;
-  my $mode = Menu_Mode();
-  my @list = (
-    {label => '_ICONS_AND_TEXT', value => 'ICONS_AND_TEXT'},
-    {label => '_ICONS_ONLY',     value => 'ICONS_ONLY'},
-    {label => '_TEXT_ONLY',      value => 'TEXT_ONLY'},
-  );
+    my ($args, $body) = @_;
+    my $mode = Menu_Mode();
+    my @list = (
+        {label => '_ICONS_AND_TEXT', value => 'ICONS_AND_TEXT'},
+        {label => '_ICONS_ONLY',     value => 'ICONS_ONLY'},
+        {label => '_TEXT_ONLY',      value => 'TEXT_ONLY'},
+    );
 
-  $main::Response->Include(
-    'AAT/INC/AAT_Selector.inc',
-    name     => 'AAT_MenuMode',
-    list     => \@list,
-    selected => $mode
-  );
+    $main::Response->Include(
+        'AAT/INC/AAT_Selector.inc',
+        name     => 'AAT_MenuMode',
+        list     => \@list,
+        selected => $mode
+    );
 }
 
 =head2 Selector_Number($args, $body)
@@ -1009,9 +1009,9 @@ Usage: <AAT:Selector_Number name="graph_width"
 
 sub Selector_Number
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_Number.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_Number.inc', %{$args});
 }
 
 =head2 Selector_Theme($args, $body)
@@ -1022,16 +1022,16 @@ Usage: <AAT:Selector_Theme />
 
 sub Selector_Theme
 {
-  my ($args, $body) = @_;
-  my $theme  = Theme();
-  my @themes = AAT::Theme::List();
+    my ($args, $body) = @_;
+    my $theme  = Theme();
+    my @themes = AAT::Theme::List();
 
-  $main::Response->Include(
-    'AAT/INC/AAT_Selector.inc',
-    name     => 'AAT_Theme',
-    list     => \@themes,
-    selected => $theme
-  );
+    $main::Response->Include(
+        'AAT/INC/AAT_Selector.inc',
+        name     => 'AAT_Theme',
+        list     => \@themes,
+        selected => $theme
+    );
 }
 
 =head2 Selector_Time($args, $body)
@@ -1042,9 +1042,9 @@ Usage: <AAT:Selector_Time name="time_start" step="5" selected="0/0"/>
 
 sub Selector_Time
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_Time.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_Time.inc', %{$args});
 }
 
 =head2 Selector_User_Role($args, $body)
@@ -1055,9 +1055,9 @@ Usage: <AAT:Selector_User_Role />
 
 sub Selector_User_Role
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_User_Role.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_User_Role.inc', %{$args});
 }
 
 =head2 Selector_YesNo($args, $body)
@@ -1068,9 +1068,9 @@ Usage: <AAT:Selector_YesNo name="xmpp_tls" selected="$tls" />
 
 sub Selector_YesNo
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_Selector_YesNo.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_Selector_YesNo.inc', %{$args});
 }
 
 =head2 TextArea($args, $body)
@@ -1081,9 +1081,9 @@ Usage: <AAT:TextArea name="comment" cols="80" rows="10" />
 
 sub TextArea
 {
-  my ($args, $body) = @_;
+    my ($args, $body) = @_;
 
-  $main::Response->Include('AAT/INC/AAT_TextArea.inc', %{$args});
+    $main::Response->Include('AAT/INC/AAT_TextArea.inc', %{$args});
 }
 
 1;

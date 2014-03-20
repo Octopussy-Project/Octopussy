@@ -1,5 +1,14 @@
 package Octopussy::App;
 
+=head1 NAME
+
+Octopussy::App
+
+=cut
+
+use strict;
+use warnings;
+
 use AAT::Syslog;
 use Octopussy::Info;
 

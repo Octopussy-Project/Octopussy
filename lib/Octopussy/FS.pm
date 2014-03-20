@@ -1,3 +1,4 @@
+package Octopussy::FS;
 
 =head1 NAME
 
@@ -5,18 +6,15 @@ Octopussy::FS - Octopussy FileSystem (FS) module
 
 =cut
 
-package Octopussy::FS;
-
 use strict;
 use warnings;
 
 use File::Path;
-use Readonly;
 
 use AAT::Application;
 use Octopussy::Info;
 
-Readonly my $APPLICATION_NAME => 'Octopussy';
+my $APPLICATION_NAME = 'Octopussy';
 
 =head1 FUNCTIONS
 

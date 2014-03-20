@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 AAT::Syslog - AAT Syslog module
@@ -30,25 +31,25 @@ Syslog Message $msg from $module
 
 sub Message
 {
-  my ($module, $msg, @args) = @_;
+    my ($module, $msg, @args) = @_;
 
-  $MSG_LOGS_FILE ||= AAT::FS::File('message_logs');
-  if (!defined $AAT_Syslog{GENERIC_CREATED})
-  {
-    my $conf = AAT::XML::Read($MSG_LOGS_FILE);
-    foreach my $m (ARRAY($conf->{log}))
+    $MSG_LOGS_FILE ||= AAT::FS::File('message_logs');
+    if (!defined $AAT_Syslog{GENERIC_CREATED})
     {
-      $AAT_Syslog{$m->{mid}} = $m->{message};
+        my $conf = AAT::XML::Read($MSG_LOGS_FILE);
+        foreach my $m (ARRAY($conf->{log}))
+        {
+            $AAT_Syslog{$m->{mid}} = $m->{message};
+        }
     }
-  }
-  my $message = $AAT_Syslog{$msg} || $msg;
-  $message =~ s/\%\%ARG(\d+)\%\%/$args[$1-1]/g if (scalar(@args) > 0);
+    my $message = $AAT_Syslog{$msg} || $msg;
+    $message =~ s/\%\%ARG(\d+)\%\%/$args[$1-1]/g if (scalar(@args) > 0);
 
-  openlog($module, LOG_INFO, LOG_LOCAL5);
-  syslog(LOG_INFO, $message);
-  closelog();
+    openlog($module, LOG_INFO, LOG_LOCAL5);
+    syslog(LOG_INFO, $message);
+    closelog();
 
-  return ($message);
+    return ($message);
 }
 
 =head2 Messages($module, \@messages)
@@ -59,13 +60,13 @@ Syslog many messages from $module in one shot
 
 sub Messages
 {
-  my ($module, $msgs) = @_;
+    my ($module, $msgs) = @_;
 
-  openlog($module, LOG_INFO, LOG_LOCAL5);
-  foreach my $msg (ARRAY($msgs)) { syslog(LOG_INFO, $msg); }
-  closelog();
+    openlog($module, LOG_INFO, LOG_LOCAL5);
+    foreach my $msg (ARRAY($msgs)) { syslog(LOG_INFO, $msg); }
+    closelog();
 
-  return (scalar ARRAY($msgs));
+    return (scalar ARRAY($msgs));
 }
 
 1;

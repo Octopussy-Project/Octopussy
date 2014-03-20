@@ -1,10 +1,10 @@
+package AAT::SMTP;
+
 =head1 NAME
 
 AAT::SMTP - AAT SMTP module
 
 =cut
-
-package AAT::SMTP;
 
 use strict;
 use warnings;
@@ -22,8 +22,7 @@ my $SMTP_TIMEOUT = 3;
 
 my %conf_file = ();
 
-=head1 FUNCTIONS
-
+=head1 SUBROUTINES/METHODS
 
 =head2 Configuration($appli)
 
@@ -33,12 +32,12 @@ Returns SMTP configuration
 
 sub Configuration
 {
-  my $appli = shift;
+    my $appli = shift;
 
-  $conf_file{$appli} ||= AAT::Application::File($appli, 'smtp');
-  my $conf = AAT::XML::Read($conf_file{$appli}, 1);
+    $conf_file{$appli} ||= AAT::Application::File($appli, 'smtp');
+    my $conf = AAT::XML::Read($conf_file{$appli}, 1);
 
-  return ($conf->{smtp});
+    return ($conf->{smtp});
 }
 
 =head2 Connection_Test($appli)
@@ -49,38 +48,42 @@ Checks the SMTP connection
 
 sub Connection_Test
 {
-  my $appli  = shift;
-  my $status = 0;
-  my $conf   = Configuration($appli);
-  if ( NOT_NULL($conf->{server})
-    && NOT_NULL($conf->{sender}))
-  {
-    my $con = new Net::Telnet(
-      Host    => $conf->{server},
-      Port    => $SMTP_PORT,
-      Errmode => 'return',
-      Timeout => $SMTP_TIMEOUT
-    );
-    my $sender = (
-      NOT_NULL($conf->{auth_type})
-      ? new Mail::Sender {
-        smtp    => $conf->{server},
-        from    => $conf->{sender},
-        auth    => $conf->{auth_type},
-        authid  => $conf->{auth_login},
-        authpwd => $conf->{auth_password}
-        }
-      : new Mail::Sender {smtp => $conf->{server}, from => $conf->{sender}}
-    );
-
-    if ((defined $con) && (defined $sender) && (ref $sender))
+    my $appli  = shift;
+    my $status = 0;
+    my $conf   = Configuration($appli);
+    if (   NOT_NULL($conf->{server})
+        && NOT_NULL($conf->{sender}))
     {
-      $status = 1;
-      $con->close();
-    }
-  }
+        my $con = Net::Telnet->new(
+            Host    => $conf->{server},
+            Port    => $SMTP_PORT,
+            Errmode => 'return',
+            Timeout => $SMTP_TIMEOUT
+        );
+        my $sender = (
+            NOT_NULL($conf->{auth_type})
+            ? Mail::Sender->new(
+                {
+                    smtp    => $conf->{server},
+                    from    => $conf->{sender},
+                    auth    => $conf->{auth_type},
+                    authid  => $conf->{auth_login},
+                    authpwd => $conf->{auth_password}
+                }
+                )
+            : Mail::Sender->new(
+                {smtp => $conf->{server}, from => $conf->{sender}}
+            )
+        );
 
-  return ($status);
+        if ((defined $con) && (defined $sender) && (ref $sender))
+        {
+            $status = 1;
+            $con->close();
+        }
+    }
+
+    return ($status);
 }
 
 =head2 Send_Message($appli, $msg_data)
@@ -91,58 +94,66 @@ Send message to @dests
 
 sub Send_Message
 {
-  my ($appli, $msg_data) = @_;
+    my ($appli, $msg_data) = @_;
 
-  my $conf = Configuration($appli);
-  if (NOT_NULL($conf->{server}) && NOT_NULL($conf->{sender}))
-  {
-    my $from    = $msg_data->{from} || $conf->{sender};
-    my $subject = $msg_data->{subject};
-    my $body    = $msg_data->{body};
-
-    my $sender = (
-      NOT_NULL($conf->{auth_type})
-      ? new Mail::Sender {
-        smtp    => $conf->{server},
-        from    => $from,
-        auth    => $conf->{auth_type},
-        authid  => $conf->{auth_login},
-        authpwd => $conf->{auth_password}
-        }
-      : new Mail::Sender {smtp => $conf->{server}, from => $from}
-    );
-
-    if ((defined $sender) && (ref $sender))
+    my $conf = Configuration($appli);
+    if (NOT_NULL($conf->{server}) && NOT_NULL($conf->{sender}))
     {
-      foreach my $dest (ARRAY($msg_data->{dests}))
-      {
-        if (defined $msg_data->{file})
+        my $from    = $msg_data->{from} || $conf->{sender};
+        my $subject = $msg_data->{subject};
+        my $body    = $msg_data->{body};
+
+        my $sender = (
+            NOT_NULL($conf->{auth_type})
+            ? Mail::Sender->new(
+                {
+                    smtp    => $conf->{server},
+                    from    => $from,
+                    auth    => $conf->{auth_type},
+                    authid  => $conf->{auth_login},
+                    authpwd => $conf->{auth_password}
+                }
+                )
+            : Mail::Sender->new({smtp => $conf->{server}, from => $from})
+        );
+
+        if ((defined $sender) && (ref $sender))
         {
-          $sender->MailFile(
+            foreach my $dest (ARRAY($msg_data->{dests}))
             {
-              to      => $dest,
-              subject => $subject,
-              msg     => $body,
-              file    => $msg_data->{file}
+                if (defined $msg_data->{file})
+                {
+                    $sender->MailFile(
+                        {
+                            to      => $dest,
+                            subject => $subject,
+                            msg     => $body,
+                            file    => $msg_data->{file}
+                        }
+                    );
+                }
+                else
+                {
+                    $sender->MailMsg(
+                        {
+                            to      => $dest,
+                            subject => $subject || 'Your Subject',
+                            msg     => $body || 'Your Body'
+                        }
+                    );
+                }
             }
-          );
-        }
-        else
-        {
-          $sender->MailMsg({to => $dest, subject => $subject || 'Your Subject', msg => $body || 'Your Body'});
-        }
-      }
-      $sender->Close();
+            $sender->Close();
 
-      return (1);
+            return (1);
+        }
     }
-  }
-  else
-  {
-    AAT::Syslog::Message('AAT_SMTP', 'SMTP_INVALID_CONFIG');
-  }
+    else
+    {
+        AAT::Syslog::Message('AAT_SMTP', 'SMTP_INVALID_CONFIG');
+    }
 
-  return (0);
+    return (0);
 }
 
 1;
