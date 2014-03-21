@@ -33,20 +33,20 @@ my $BEGIN_TPL      = '201001010000';
 my $END_TPL        = '201001010010';
 
 my %conf = (
-  name        => $SRCH_TPL_TITLE,
-  device      => [$DEVICE],
-  service     => [$SERVICE],
-  loglevel    => '-ANY-',
-  taxonomy    => '-ANY-',
-  msgid       => '-ANY-',
-  begin       => $BEGIN_TPL,
-  end         => $END_TPL,
-  re_include  => 'incl1',
-  re_include2 => 'incl2',
-  re_include3 => 'incl3',
-  re_exclude  => 'excl1',
-  re_exclude2 => 'excl2',
-  re_exclude3 => 'excl3',
+    name        => $SRCH_TPL_TITLE,
+    device      => [$DEVICE],
+    service     => [$SERVICE],
+    loglevel    => '-ANY-',
+    taxonomy    => '-ANY-',
+    msgid       => '-ANY-',
+    begin       => $BEGIN_TPL,
+    end         => $END_TPL,
+    re_include  => 'incl1',
+    re_include2 => 'incl2',
+    re_include3 => 'incl3',
+    re_exclude  => 'excl1',
+    re_exclude2 => 'excl2',
+    re_exclude3 => 'excl3',
 );
 
 unlink $FILE_TPL;
@@ -60,18 +60,18 @@ ok(-f $FILE_TPL, 'Octopussy::Search_Template::New()');
 
 my @list2 = Octopussy::Search_Template::List($USER);
 ok((scalar @list1 == scalar @list2 - 1) && (grep { /$SRCH_TPL_TITLE/ } @list2),
-  'Octopussy::Search_Template::List()');
+    'Octopussy::Search_Template::List()');
 
 my @list3 = Octopussy::Search_Template::List_Any_User();
 ok(
-  (scalar @list3 >= scalar @list2)
-    && (true { $_->{name} =~ /^$SRCH_TPL_TITLE$/ } @list3),
-  'Octopussy::Search_Template::List_Any_User()'
-);
+    (scalar @list3 >= scalar @list2)
+        && (true { $_->{name} =~ /^$SRCH_TPL_TITLE$/ } @list3),
+    'Octopussy::Search_Template::List_Any_User()'
+  );
 
 my $tconf = Octopussy::Search_Template::Configuration($USER, $SRCH_TPL_TITLE);
 ok($tconf->{begin} eq $BEGIN_TPL && $tconf->{end} eq $END_TPL,
-  'Octopussy::Search_Template::Configuration()');
+    'Octopussy::Search_Template::Configuration()');
 
 Octopussy::Search_Template::Remove($USER, $SRCH_TPL_TITLE);
 ok(!-f $FILE_TPL, 'Octopussy::Search_Template::Remove()');
@@ -83,8 +83,9 @@ foreach my $name (undef, '', 'template with space')
 
     my $is_valid = Octopussy::Search_Template::Valid_Name($name);
     ok(!$is_valid,
-        'Octopussy::Search_Template::Valid_Name('
-		. $param_str . ") => $is_valid");
+              'Octopussy::Search_Template::Valid_Name('
+            . $param_str
+            . ") => $is_valid");
 }
 
 # 2 Tests for valid search_template name
@@ -94,8 +95,9 @@ foreach my $name ('valid-template', 'valid_template')
 
     my $is_valid = Octopussy::Search_Template::Valid_Name($name);
     ok($is_valid,
-        'Octopussy::Search_Template::Valid_Name('
-		. $param_str . ") => $is_valid");
+              'Octopussy::Search_Template::Valid_Name('
+            . $param_str
+            . ") => $is_valid");
 }
 
 rmtree $DIR_TPLS;

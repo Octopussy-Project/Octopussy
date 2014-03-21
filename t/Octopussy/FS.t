@@ -33,8 +33,8 @@ ok(NOT_NULL($file), "Octopussy::FS::File('db') => $file");
 my @files = Octopussy::FS::Files('db', 'proxy');
 cmp_ok(scalar @files, '==', 2, 'Octopussy::FS::Files()');
 
-cmp_ok(Octopussy::FS::File_Ext('file.extension', 'xml') , 'eq', 'file.xml',
-	"Octopussy::FS::File_Ext('file.extension', 'xml')");
+cmp_ok(Octopussy::FS::File_Ext('file.extension', 'xml'),
+    'eq', 'file.xml', "Octopussy::FS::File_Ext('file.extension', 'xml')");
 
 done_testing(1 + 5);
 

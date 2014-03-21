@@ -25,13 +25,13 @@ my $PREFIX      = 'Octo_TEST_';
 my $DG_FILE     = Octopussy::FS::File('devicegroups');
 my $DG_ID       = "${PREFIX}devicegroup";
 my $DG_DESC     = "${PREFIX}devicegroup Description";
-my $DIR_DEVICES = Octopussy::FS::Directory('devices');;
+my $DIR_DEVICES = Octopussy::FS::Directory('devices');
 
 my %conf = (
-  dg_id       => $DG_ID,
-  description => $DG_DESC,
-  type        => 'static',
-  device      => ["${PREFIX}device1", "${PREFIX}device2"],
+    dg_id       => $DG_ID,
+    description => $DG_DESC,
+    type        => 'static',
+    device      => ["${PREFIX}device1", "${PREFIX}device2"],
 );
 
 require_ok('Octopussy::DeviceGroup');
@@ -43,22 +43,22 @@ my $error2 = Octopussy::DeviceGroup::Add(\%conf);
 ok(((!defined $error1) && (defined $error2)), 'Octopussy::DeviceGroup::Add()');
 
 my $conf = Octopussy::DeviceGroup::Configuration($DG_ID);
-cmp_ok(
-  $conf->{dg_id}, 'eq', "${PREFIX}devicegroup",
-  'Octopussy::DeviceGroup::Configuration()'
-);
+cmp_ok($conf->{dg_id}, 'eq', "${PREFIX}devicegroup",
+    'Octopussy::DeviceGroup::Configuration()');
 
 my @list2 = Octopussy::DeviceGroup::List();
 ok((scalar @list1 == scalar @list2 - 1) && (grep { /$DG_ID/ } @list2),
-  'Octopussy::DeviceGroup::List()');
+    'Octopussy::DeviceGroup::List()');
 
 my @devices = Octopussy::DeviceGroup::Devices($DG_ID);
 cmp_ok(scalar @devices, '==', 2, 'Octopussy::DeviceGroup::Devices()');
 
 my %dg = Octopussy::DeviceGroup::With_Device("${PREFIX}device1");
-ok(defined $dg{"${PREFIX}devicegroup"}, 
-	"Octopussy::DeviceGroup::With_Device('${PREFIX}device1')" 
-	. " => '${PREFIX}devicegroup'");
+ok(
+    defined $dg{"${PREFIX}devicegroup"},
+    "Octopussy::DeviceGroup::With_Device('${PREFIX}device1')"
+        . " => '${PREFIX}devicegroup'"
+  );
 
 my $nb_dgs = Octopussy::DeviceGroup::Remove_Device("${PREFIX}device1");
 
@@ -66,8 +66,8 @@ cmp_ok(scalar @devices, '==', 2, 'Octopussy::DeviceGroup::Devices()');
 
 Octopussy::DeviceGroup::Remove($DG_ID);
 my @list3 = Octopussy::DeviceGroup::List();
-ok((scalar @list1 == scalar @list3) && (!grep { /$DG_ID/ } @list3), 
-	'Octopussy::DeviceGroup::Remove()');
+ok((scalar @list1 == scalar @list3) && (!grep { /$DG_ID/ } @list3),
+    'Octopussy::DeviceGroup::Remove()');
 
 # 3 Tests for invalid devicegroup name
 foreach my $name (undef, '', 'devicegroup with space')

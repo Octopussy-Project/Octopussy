@@ -13,20 +13,21 @@ use FindBin;
 use List::MoreUtils qw(any);
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::XML;
 
-my $DIR_LISTS = "$FindBin::Bin/../../usr/share/aat/Lists/";
-my $FILE_PORTS = "$FindBin::Bin/../../usr/share/aat/Lists/AAT_Port.xml";
+my $DIR_LISTS   = "$FindBin::Bin/../../usr/share/aat/Lists/";
+my $FILE_PORTS  = "$FindBin::Bin/../../usr/share/aat/Lists/AAT_Port.xml";
 my $FILE_PORTS2 = "$FindBin::Bin/../../usr/share/aat/Lists//AAT_Port.xml";
-my $NAME_PORTS = 'AAT_Port';
+my $NAME_PORTS  = 'AAT_Port';
 my $SELECTED_BY_DEFAULT = 'HTTP';
-my $OCTO_FILE_TEST = '/tmp/octo_test.xml';
+my $OCTO_FILE_TEST      = '/tmp/octo_test.xml';
 
 # Filename
 my $filename = AAT::XML::Filename($DIR_LISTS, $NAME_PORTS);
-ok(($filename eq $FILE_PORTS) || ($filename eq $FILE_PORTS2), 'AAT::XML::Filename()');
+ok(($filename eq $FILE_PORTS) || ($filename eq $FILE_PORTS2),
+    'AAT::XML::Filename()');
 
 # Name_List
 my @names = AAT::XML::Name_List($DIR_LISTS);
@@ -38,7 +39,8 @@ ok((grep { /SYSLOG/ } @values), 'AAT::XML::File_Array_Values()');
 
 # Read
 my $conf = AAT::XML::Read($FILE_PORTS);
-cmp_ok($conf->{selected_by_default}, 'eq', $SELECTED_BY_DEFAULT, 'AAT::XML::Read()');
+cmp_ok($conf->{selected_by_default},
+    'eq', $SELECTED_BY_DEFAULT, 'AAT::XML::Read()');
 
 # Write
 $conf->{selected_by_default} = 'DEFAULT';

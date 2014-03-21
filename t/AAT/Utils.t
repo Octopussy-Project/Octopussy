@@ -10,18 +10,17 @@ use strict;
 use warnings;
 
 use FindBin;
-use Readonly;
 use Test::More;
 
-use lib "$FindBin::Bin/../../usr/share/perl5";
+use lib "$FindBin::Bin/../../lib";
 
 use AAT::Utils;
 
-my $value_scalar = "item";
-my @value_array = ("item1", "item2");
+my $value_scalar    = "item";
+my @value_array     = ("item1", "item2");
 my $value_array_ref = \@value_array;
 
-my %value_hash = ( hkey => 'hvalue' );
+my %value_hash = (hkey => 'hvalue');
 my $value_hash_ref = \%value_hash;
 
 # ARRAY

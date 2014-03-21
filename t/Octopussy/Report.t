@@ -26,23 +26,23 @@ my $PREFIX       = 'Octo_TEST_';
 my $REPORT_TITLE = "${PREFIX}report";
 my $REPORT_TABLE = 'Message';
 my $REPORT_QUERY =
-  'SELECT datetime, device, msg FROM Message ORDER BY datetime, device asc';
+    'SELECT datetime, device, msg FROM Message ORDER BY datetime, device asc';
 my @REPORT_COLUMNS       = qw( datetime device msg);
 my @REPORT_COLUMNS_NAMES = qw( Datetime Device Message );
 
 my %conf = (
-  name         => $REPORT_TITLE,
-  description  => "${PREFIX}report Description",
-  category     => "${PREFIX}report_category",
-  graph_type   => 'array',
-  table        => $REPORT_TABLE,
-  loglevel     => '-ANY-',
-  taxonomy     => '-ANY-',
-  query        => $REPORT_QUERY,
-  columns      => join(',', @REPORT_COLUMNS),
-  columns_name => join(',', @REPORT_COLUMNS_NAMES),
-  x            => undef,
-  y            => undef,
+    name         => $REPORT_TITLE,
+    description  => "${PREFIX}report Description",
+    category     => "${PREFIX}report_category",
+    graph_type   => 'array',
+    table        => $REPORT_TABLE,
+    loglevel     => '-ANY-',
+    taxonomy     => '-ANY-',
+    query        => $REPORT_QUERY,
+    columns      => join(',', @REPORT_COLUMNS),
+    columns_name => join(',', @REPORT_COLUMNS_NAMES),
+    x            => undef,
+    y            => undef,
 );
 
 require_ok('Octopussy::Report');
@@ -54,23 +54,30 @@ my @categories = Octopussy::Report::Categories();
 
 Octopussy::Report::New(\%conf);
 ok(-f "${DIR_REPORTS}${REPORT_TITLE}.xml",
-  'Octopussy::Report::New(array_type)');
+    'Octopussy::Report::New(array_type)');
 
 my @list2       = Octopussy::Report::List();
 my @categories2 = Octopussy::Report::Categories();
 cmp_ok(scalar @list + 1, '==', scalar @list2, 'Octopussy::Report::List()');
-cmp_ok(scalar @categories + 1, '==', scalar @categories2,
-  'Octopussy::Report::Categories()');
+cmp_ok(
+    scalar @categories + 1,
+    '==',
+    scalar @categories2,
+    'Octopussy::Report::Categories()'
+);
 
 my $conf = Octopussy::Report::Configuration($REPORT_TITLE);
-cmp_ok($conf->{description}, 'eq', "${PREFIX}report Description",
-  'Octopussy::Report::Configuration()');
+cmp_ok(
+    $conf->{description}, 'eq',
+    "${PREFIX}report Description",
+    'Octopussy::Report::Configuration()'
+);
 
 $conf{description} = "${PREFIX}report New Description";
 Octopussy::Report::Modify($REPORT_TITLE, \%conf);
 $conf = Octopussy::Report::Configuration($REPORT_TITLE);
 cmp_ok($conf->{description}, 'eq', "${PREFIX}report New Description",
-  'Octopussy::Report::Modify()');
+    'Octopussy::Report::Modify()');
 
 Octopussy::Report::Remove($REPORT_TITLE);
 ok(!-f "${DIR_REPORTS}${REPORT_TITLE}.xml", 'Octopussy::Report::Remove()');

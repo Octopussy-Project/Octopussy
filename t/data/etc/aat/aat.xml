@@ -37,7 +37,7 @@
 		<directory name="data_reports" value="./t/data/reports/" />
 		<directory name="data_rrd" value="./t/data/rrd/" />
 		<directory name="programs" value="/usr/sbin/" />
-		<directory name="running" value="/var/run/octopussy/" />
+		<directory name="running" value="./t/data/run/octopussy/" />
 		<directory name="web" value="/usr/share/octopussy/" />
 
 		<file name="db" value="./t/data/conf/db.xml" />

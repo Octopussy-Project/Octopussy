@@ -27,53 +27,55 @@ my $DIR_CONTACTS = Octopussy::FS::Directory('contacts');
 my $PREFIX       = 'Octo_TEST_';
 
 my ($id, $lastname, $firstname, $desc, $email, $im) = (
-  "${PREFIX}contact_id",    "${PREFIX}contact_last",
-  "${PREFIX}contact_first", "${PREFIX}contact_desc",
-  'c@gmail.com',            'c@gmail.com',
+    "${PREFIX}contact_id",    "${PREFIX}contact_last",
+    "${PREFIX}contact_first", "${PREFIX}contact_desc",
+    'c@gmail.com',            'c@gmail.com',
 );
 
 require_ok('Octopussy::Contact');
 
 my $error = Octopussy::Contact::New(
-  {
-    cid         => $id,
-    lastname    => $lastname,
-    firstname   => $firstname,
-    description => $desc,
-    email       => $email,
-    im          => $im
-  }
+    {
+        cid         => $id,
+        lastname    => $lastname,
+        firstname   => $firstname,
+        description => $desc,
+        email       => $email,
+        im          => $im
+    }
 );
 
 ok((!defined $error) && (-f "t/data/conf/contacts/${id}.xml"),
-	'Octopussy::Contact::New()') or diag($error);
+    'Octopussy::Contact::New()')
+    or diag($error);
 
 my $error2 = Octopussy::Contact::New(
-  {
-    cid         => $id,
-    lastname    => $lastname,
-    firstname   => $firstname,
-    description => $desc,
-    email       => $email,
-    im          => $im
-  }
+    {
+        cid         => $id,
+        lastname    => $lastname,
+        firstname   => $firstname,
+        description => $desc,
+        email       => $email,
+        im          => $im
+    }
 );
 cmp_ok($error2, 'eq', '_MSG_CONTACT_ALREADY_EXISTS',
     'Octopussy::Contact::New() fails when contact already exists')
-	or diag($error);
+    or diag($error);
 
 my $c = Octopussy::Contact::Configuration($id);
 
 ok((($c->{lastname} eq $lastname) && ($c->{email} eq $email)),
-  'Octopussy::Contact::Configuration()');
+    'Octopussy::Contact::Configuration()');
 
 my @contacts = Octopussy::Contact::Configurations('lastname');
-ok((any { $_->{cid} eq $id } @contacts), 'Octopussy::Contact::Configurations()');
+ok((any { $_->{cid} eq $id } @contacts),
+    'Octopussy::Contact::Configurations()');
 
 Octopussy::Contact::Remove($id);
 my @contacts2 = Octopussy::Contact::List();
 ok((scalar @contacts) == (scalar @contacts2 + 1),
-  'Octopussy::Contact::Remove()');
+    'Octopussy::Contact::Remove()');
 
 rmtree $DIR_CONTACTS;
 

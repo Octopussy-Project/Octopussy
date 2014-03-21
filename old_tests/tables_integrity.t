@@ -1,8 +1,4 @@
-#!/usr/bin/perl -w
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
+#!/usr/bin/perl
 
 =head1 NAME
 
@@ -22,13 +18,14 @@ use warnings;
 use Test::More tests => 1;
 
 use FindBin;
-use lib "$FindBin::Bin/../usr/share/perl5";
+
+use lib "$FindBin::Bin/../lib";
 
 use Octopussy::Table;
 
 my $str_error = '';
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Error
 
@@ -70,8 +67,6 @@ foreach my $table (@tables)
 }
 
 ok($str_error eq '', 'Tables Integrity') or diag($str_error);
-
-1;
 
 =head1 AUTHOR
 

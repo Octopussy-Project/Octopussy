@@ -1,16 +1,8 @@
 #!/usr/bin/perl -w
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
 services_integrity.t - Octopussy Services integrity Test
-
-=head1 DESCRIPTION
-
-It checks that:
 
 =cut
 
@@ -22,7 +14,12 @@ use List::MoreUtils qw( apply );
 use Test::More tests => 1;
 
 use FindBin;
-use lib "$FindBin::Bin/../usr/share/perl5";
+
+use lib "$FindBin::Bin/../lib";
+
+use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/data/etc/aat/aat.xml");
 
 use AAT::Utils qw( NOT_NULL NULL );
 use Octopussy;
@@ -238,8 +235,6 @@ print "  Errors: $error{ERROR}{service} Warnings: $error{WARNING}{service}\n";
 ok($error{ERROR}{service} == 0 && $error{WARNING}{service} == 0,
   'Services Integrity')
   or diag($str_error);
-
-1;
 
 =head1 AUTHOR
 

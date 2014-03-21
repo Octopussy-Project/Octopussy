@@ -24,16 +24,19 @@ use AAT::Utils qw( NOT_NULL );
 require_ok('Octopussy::Info');
 
 my $email = Octopussy::Info::Email();
-ok(NOT_NULL($email) && $email =~ /^\S+\@\S+$/,
-	"Octopussy::Info::Email() => $email");
+ok(
+    NOT_NULL($email) && $email =~ /^\S+\@\S+$/,
+    "Octopussy::Info::Email() => $email"
+  );
 
 my $user = Octopussy::Info::User();
-ok(NOT_NULL($user) && $user =~ /^\w+$/,
-	"Octopussy::Info::User() => $user");
+ok(NOT_NULL($user) && $user =~ /^\w+$/, "Octopussy::Info::User() => $user");
 
 my $website = Octopussy::Info::WebSite();
-ok(NOT_NULL($website) && $website =~ /^http.+$/,
-	"Octopussy::Info::WebSite() => $website");
+ok(
+    NOT_NULL($website) && $website =~ /^http.+$/,
+    "Octopussy::Info::WebSite() => $website"
+  );
 
 done_testing(1 + 3);
 

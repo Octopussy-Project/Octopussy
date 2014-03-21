@@ -26,19 +26,19 @@ my $SG_ID           = "${PREFIX}servicegroup";
 my $SG_DESC         = "${PREFIX}servicegroup Description";
 my $DIR_SERVICES    = Octopussy::FS::Directory('services');
 my @SERVICES_KERNEL = (
-  {sid => 'Linux_Kernel', rank => '01'},
-  {
-    sid  => 'Linux_Kernel_Bluetooth',
-    rank => '02'
-  },
-  {sid => 'Linux_Kernel_USB', rank => '03'},
+    {sid => 'Linux_Kernel', rank => '01'},
+    {
+        sid  => 'Linux_Kernel_Bluetooth',
+        rank => '02'
+    },
+    {sid => 'Linux_Kernel_USB', rank => '03'},
 );
 my $SERVICE_TO_ADD = 'Linux_Kernel_FS_Ext3';
 
 my %conf = (
-  sg_id       => $SG_ID,
-  description => $SG_DESC,
-  service     => \@SERVICES_KERNEL,
+    sg_id       => $SG_ID,
+    description => $SG_DESC,
+    service     => \@SERVICES_KERNEL,
 );
 
 require_ok('Octopussy::ServiceGroup');
@@ -50,28 +50,40 @@ my $error2 = Octopussy::ServiceGroup::Add(\%conf);
 ok(((!defined $error1) && (defined $error2)), 'Octopussy::ServiceGroup::Add()');
 
 my $new_conf = Octopussy::ServiceGroup::Configuration($SG_ID);
-cmp_ok($new_conf->{sg_id}, 'eq', $SG_ID, 'Octopussy::ServiceGroup::Configuration()');
+cmp_ok($new_conf->{sg_id}, 'eq', $SG_ID,
+    'Octopussy::ServiceGroup::Configuration()');
 
 my @list2 = Octopussy::ServiceGroup::List();
-cmp_ok(scalar @list1 + 1, '==', scalar @list2, 'Octopussy::ServiceGroup::List()');
+cmp_ok(
+    scalar @list1 + 1,
+    '==',
+    scalar @list2,
+    'Octopussy::ServiceGroup::List()'
+);
 
 my @services = Octopussy::ServiceGroup::Services($SG_ID);
 cmp_ok(
-  scalar @SERVICES_KERNEL, '==', scalar @services,
-  'Octopussy::ServiceGroup::Services()'
+    scalar @SERVICES_KERNEL,
+    '==',
+    scalar @services,
+    'Octopussy::ServiceGroup::Services()'
 );
 
 my $service_added =
-  Octopussy::ServiceGroup::Add_Service($SG_ID, $SERVICE_TO_ADD);
-cmp_ok($service_added, 'eq', $SERVICE_TO_ADD, 'Octopussy::ServiceGroup::Add_Service()');
+    Octopussy::ServiceGroup::Add_Service($SG_ID, $SERVICE_TO_ADD);
+cmp_ok($service_added, 'eq', $SERVICE_TO_ADD,
+    'Octopussy::ServiceGroup::Add_Service()');
 
 my $rank = Octopussy::ServiceGroup::Move_Service($SG_ID, $service_added, 'up');
 cmp_ok($rank, 'eq', '03', 'Octopussy::ServiceGroup::Move_Service()');
 
 Octopussy::ServiceGroup::Remove_Service($SG_ID, $service_added);
 my @services2 = Octopussy::ServiceGroup::Services($SG_ID);
-cmp_ok(scalar @services, '==', scalar @services2,
-  'Octopussy::ServiceGroup::Remove_Service()'
+cmp_ok(
+    scalar @services,
+    '==',
+    scalar @services2,
+    'Octopussy::ServiceGroup::Remove_Service()'
 );
 
 Octopussy::ServiceGroup::Remove($SG_ID);

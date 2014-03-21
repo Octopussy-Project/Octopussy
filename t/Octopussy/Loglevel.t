@@ -25,18 +25,24 @@ my $NB_LOGLEVELS = 7;
 require_ok('Octopussy::Loglevel');
 
 my %color = Octopussy::Loglevel::Colors();
-ok((((scalar keys %color) == $NB_LOGLEVELS) && ($color{'Debug'} eq $COLOR_DEBUG)),
-  'Octopussy::Loglevel::Colors()');
+ok(
+    (
+               ((scalar keys %color) == $NB_LOGLEVELS)
+            && ($color{'Debug'} eq $COLOR_DEBUG)
+    ),
+    'Octopussy::Loglevel::Colors()'
+  );
 
 my %level = Octopussy::Loglevel::Levels();
 ok((((scalar keys %level) == $NB_LOGLEVELS) && ($level{'Debug'} == 1)),
-  'Octopussy::Loglevel::Levels()');
+    'Octopussy::Loglevel::Levels()');
 
 my @unknowns = Octopussy::Loglevel::Unknowns();
 cmp_ok(scalar @unknowns, '==', 0, 'Octopussy::Loglevel::Unknowns()');
 
 @unknowns = Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel');
-cmp_ok(scalar @unknowns, '==', 1, "Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel')");
+cmp_ok(scalar @unknowns,
+    '==', 1, "Octopussy::Loglevel::Unknowns('-ANY-', 'false_loglevel')");
 
 # 3 Tests for invalid loglevel name
 foreach my $name (undef, '', 'invalid_loglevel')

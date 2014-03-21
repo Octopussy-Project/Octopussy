@@ -1,8 +1,4 @@
 #!/usr/bin/perl
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
@@ -12,21 +8,28 @@ octo_extractor.t - Octopussy Source Code Checker for octo_extractor
 
 use strict;
 use warnings;
-use Readonly;
+
+use FindBin;
 
 use Test::More tests => 6;
 
-use Octopussy::Device;
+use lib "$FindBin::Bin/../lib";
+
+use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/data/etc/aat/aat.xml");
+
 use Octopussy::FS;
 
-Readonly my $BIN => 'sudo -u octopussy  /usr/sbin/octo_extractor';
-Readonly my $DIR_LOGS  => Octopussy::FS::Directory('data_logs');
-Readonly my $PREFIX    => 'Octo_TEST_';
-Readonly my $DEVICE    => "${PREFIX}Device";
-Readonly my $SERVICE   => "Octopussy";
-Readonly my $EXTRACT_DEV_SVC => "$BIN --device $DEVICE --service $SERVICE";
-Readonly my $PERIOD => '--begin 201001010000 --end 201001010030';
+my $BIN = "sudo -u octopussy $FindBin::Bin/../bin/octo_extractor";
+my $DIR_LOGS  = Octopussy::FS::Directory('data_logs');
+my $PREFIX    = 'Octo_TEST_';
+my $DEVICE    = "${PREFIX}Device";
+my $SERVICE   = "Octopussy";
+my $EXTRACT_DEV_SVC = "$BIN --device $DEVICE --service $SERVICE";
+my $PERIOD = '--begin 201001010000 --end 201001010030';
 
+require_ok('Octopussy::Device');
 
 =head2 Generate_Fake_Logs_Files()
 
@@ -49,7 +52,7 @@ sub Generate_Fake_Logs_Files
       close $FILE;
     }
   }
-  system "chown -R octopussy: $DIR_LOGS/$DEVICE/";
+  #system "chown -R octopussy: $DIR_LOGS/$DEVICE/";
   
   return (undef);
 }
@@ -87,8 +90,6 @@ ok(scalar @lines_exclude == (10*31), 'octo_extractor (with --exclude)');
 # Clean stuff
 Octopussy::Device::Remove($DEVICE);
 system "rm -rf $DIR_LOGS/$DEVICE/";
-
-1;
 
 =head1 AUTHOR
 

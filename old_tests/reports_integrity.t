@@ -1,8 +1,4 @@
 #!/usr/bin/perl -w
-# $HeadURL$
-# $Revision$
-# $Date$
-# $Author$
 
 =head1 NAME
 
@@ -24,7 +20,12 @@ use List::MoreUtils qw(any none);
 use Test::More tests => 1;
 
 use FindBin;
-use lib "$FindBin::Bin/../usr/share/perl5";
+
+use lib "$FindBin::Bin/../lib";
+
+use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/data/etc/aat/aat.xml");
 
 use Octopussy::Report;
 use Octopussy::Service;
@@ -33,7 +34,7 @@ use Octopussy::Taxonomy;
 
 my $str_error = '';
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Error
 
@@ -88,8 +89,6 @@ foreach my $report (@reports)
 }
 
 ok($str_error eq '', 'Reports Integrity') or diag($str_error);
-
-1;
 
 =head1 AUTHOR
 
