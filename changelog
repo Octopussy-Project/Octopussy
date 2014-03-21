@@ -1,3 +1,12 @@
+octopussy (1.0.12) stable; urgency=high
+
+  * Major performance improvement when a lot of octo_parser start at the same time (Issue #576)
+  * Small security fix on login page
+  * Huge code cleaning & rebuilding to prepare CPAN integration
+  * Service 'Nagios' updated to handle Nagios3 logs
+ 
+ -- Sebastien Thebert <octopussy@onetool.pm>  Sat 22 Mar 2014 00:10:00 +0100
+
 octopussy (1.0.11) stable; urgency=high
 
   * Bugfix #554: Problem with the 'mysql --exec' in postinstall scripts 

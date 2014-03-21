@@ -20,9 +20,9 @@ use File::Spec::Functions qw( catfile );
 my $PACKAGE             = 'octopussy';
 my $BIN_POD2MAN         = '/usr/bin/pod2man';
 my $DIR_TMP             = 'tmp_debian_pkg';
-my $DIR_AAT_PM          = 'usr/share/perl5/AAT/';
-my $DIR_OCTO_PM         = 'usr/share/perl5/Octopussy/';
-my $FILE_OCTOPUSSY_PM   = './usr/share/perl5/Octopussy.pm';
+my $DIR_AAT_PM          = 'lib/AAT/'; #'usr/share/perl5/AAT/';
+my $DIR_OCTO_PM         = 'lib/Octopussy/'; #'usr/share/perl5/Octopussy/';
+my $FILE_OCTOPUSSY_PM   = './lib/Octopussy.pm'; #'./usr/share/perl5/Octopussy.pm';
 my $FILE_DEBIAN_CONTROL = "DEBIAN/control";
 
 =head1 SUBROUTINES/METHODS
@@ -35,10 +35,10 @@ Returns Octopussy version from Octopussy.pm source file
 
 sub Octopussy_Version
 {
-	open my $FILE, '<', $FILE_OCTOPUSSY_PM or die @_;
+	open my $FILE, '<', $FILE_OCTOPUSSY_PM or die "$! @_";
 	while (<$FILE>)
 	{
-		return ($1) if ( $_ =~ /Octopussy::VERSION\s*=\s*'(.+)';/ );
+		return ($1) if ( $_ =~ /^our \$VERSION\s*=\s*'(.+)';/ );
 	}
 	close $FILE;
 
@@ -67,8 +67,12 @@ Copy files from SVN to temporary Debian packaging directory
 
 sub Copy_Files
 {
- 	`git archive master DEBIAN/ usr/share/perl5/ etc/ var/lib/octopussy/conf/ usr/sbin/ usr/share/ | tar -x -C $DIR_TMP/`;
-
+ 	#`git archive master DEBIAN/ usr/share/perl5/ etc/ var/lib/octopussy/conf/ usr/sbin/ usr/share/ | tar -x -C $DIR_TMP/`;
+	`git archive master DEBIAN/ lib/ etc/ var/lib/octopussy/conf/ bin/ usr/share/ | tar -x -C $DIR_TMP/`;
+	make_path("$DIR_TMP/usr/share/");
+	`mv $DIR_TMP/bin $DIR_TMP/usr/sbin`;
+	`mv $DIR_TMP/lib $DIR_TMP/usr/share/perl5`;
+	
 	foreach my $d ('alerts', 'contacts', 'devices', 'maps', 'search_templates')
 	{
 		make_path("$DIR_TMP/var/lib/octopussy/conf/$d/");
@@ -98,13 +102,13 @@ sub Man
 {
 	printf "Generating man(1) pages...\n";
 	make_path("$DIR_TMP/usr/share/man/man1/");
-	`$BIN_POD2MAN ./usr/sbin/$PACKAGE | gzip -9 > $DIR_TMP/usr/share/man/man1/$PACKAGE.1.gz`;
-	opendir my $DIR, './usr/sbin/';
+	`$BIN_POD2MAN ./bin/$PACKAGE | gzip -9 > $DIR_TMP/usr/share/man/man1/$PACKAGE.1.gz`;
+	opendir my $DIR, './bin/';
 	my @octo_bins = grep /^octo_/, readdir $DIR;
 	closedir $DIR;
 	foreach my $bin (@octo_bins)
 	{
-	`$BIN_POD2MAN ./usr/sbin/$bin | gzip -9 > $DIR_TMP/usr/share/man/man1/${bin}.1.gz`;
+	`$BIN_POD2MAN ./bin/$bin | gzip -9 > $DIR_TMP/usr/share/man/man1/${bin}.1.gz`;
 	}
    	`chmod 644 $DIR_TMP/usr/share/man/man1/*.gz`;
 

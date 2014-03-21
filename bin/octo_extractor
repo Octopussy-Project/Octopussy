@@ -21,8 +21,11 @@ octo_extractor is the program used by the Octopussy Project to extract Logs
 use strict;
 use warnings;
 
+use FindBin;
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
+
+use lib "$FindBin::Bin/../lib";
 
 use AAT::Syslog;
 use AAT::Translation;

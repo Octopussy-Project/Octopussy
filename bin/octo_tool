@@ -74,7 +74,7 @@ my $status = GetOptions(
     'v|version' => sub { printf "octo_tool $VERSION\n"; exit; }
 );
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Usage($msg)
 
@@ -98,6 +98,8 @@ sub Usage
     {
         pod2usage(-verbose => 99, -sections => [qw(SYNOPSIS OPTIONS)]);
     }
+
+	return (0);
 }
 
 =head2 Backup($filename)
@@ -113,6 +115,8 @@ sub Backup
     my $timestamp = strftime("%Y%m%d%H%M%S", localtime);
     $filename .= ($filename !~ /\.tgz$/ ? "_${timestamp}.tgz" : '');
     Octopussy::Configuration::Backup($filename);
+
+	return ($filename);
 }
 
 =head2 Cache_Clear($cache_name)
@@ -150,6 +154,8 @@ sub Message_Copy
     Usage('[ERROR] Invalid number of args.') if (!defined $msgid_dst);
 
     Octopussy::Service::Copy_Message($msgid_src, $msgid_dst);
+
+	return ($msgid_dst);
 }
 
 =head2 Message_Move($msgid_src, $msgid_dst)
@@ -170,6 +176,8 @@ sub Message_Move
         my ($serv_src) = $msgid_src =~ /^(.+):.+$/;
         Octopussy::Service::Remove_Message($serv_src, $msgid_src);
     }
+
+	return ($msgid_dst);
 }
 
 =head2 Service_Clone($service_orig, $service_clone)
@@ -192,6 +200,8 @@ sub Service_Clone
         if ((defined $service_clone_filename) && (-f $service_clone_filename));
 
     Octopussy::Service::Clone($service_orig, $service_clone);
+
+	return ($service_clone);
 }
 
 =head2 Table_Clone($table_orig, $table_clone)
@@ -213,6 +223,8 @@ sub Table_Clone
     Usage("[ERROR] Table '$table_clone' already exists !")
         if ((defined $table_clone_filename) && (-f $table_clone_filename));
     Octopussy::Table::Clone($table_orig, $table_clone);
+
+	return ($table_clone);
 }
 
 Usage() if ($option{help});
@@ -223,3 +235,9 @@ my @args = @ARGV;
 shift @args;
 
 $task{$t}(@args) if (defined $task{$t});
+
+=head1 AUTHOR
+
+Sebastien Thebert <octopussy@onetool.pm>
+
+=cut
