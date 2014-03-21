@@ -1,3 +1,4 @@
+package Octopussy::Plugin;
 
 =head1 NAME
 
@@ -5,13 +6,11 @@ Octopussy::Plugin - Octopussy Plugin module
 
 =cut
 
-package Octopussy::Plugin;
-
 use strict;
 no strict 'refs';
 use warnings;
 
-use Readonly;
+use FindBin;
 
 use AAT::FS;
 use AAT::Syslog;
@@ -19,23 +18,23 @@ use AAT::Utils qw( ARRAY );
 use AAT::XML;
 use Octopussy::FS;
 
-Readonly my $DIR_PLUGIN         => 'plugins';
-Readonly my $DIR_PLUGIN_MODULES => (
-    -d '/usr/share/perl5/Octopussy/Plugin/'
-    ? '/usr/share/perl5/Octopussy/Plugin/'
-    : $Config::Config{installsitelib} . '/Octopussy/Plugin/'
-);
+my $DIR_PLUGIN         = 'plugins';
+my $DIR_PLUGIN_MODULES = undef;
 
 my $dir_plugins     = undef;
 my %function_source = ();
 
 BEGIN
 {
-    Readonly my $DIR_PLUGIN_MODULES => (
+    my $DIR_PLUGIN_MODULES = (
         -d '/usr/share/perl5/Octopussy/Plugin/'
         ? '/usr/share/perl5/Octopussy/Plugin/'
-        : $Config::Config{installsitelib} . '/Octopussy/Plugin/'
+		: 	( -d "$FindBin::Bin/../../lib/Octopussy/Plugin/" # for test suite
+			? "$FindBin::Bin/../../lib/Octopussy/Plugin/"
+        	: $Config::Config{installsitelib} . '/Octopussy/Plugin/'
+			)
     );
+
     if (defined opendir DIR, $DIR_PLUGIN_MODULES)
     {
         my @plugins = grep { /.+\.pm$/ } readdir DIR;
@@ -59,9 +58,11 @@ BEGIN
     }
 }
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Init_All(\%conf)
+
+Launches 'Init' subroutine for all pluins in plugins directory
 
 =cut
 
@@ -81,6 +82,8 @@ sub Init_All
 }
 
 =head2 Init(\%conf, @plugins)
+
+Launches 'Init' subroutine for plugins listed in @plugins
 
 =cut
 
