@@ -10,10 +10,10 @@ use strict;
 use warnings;
 
 use File::Path qw(rmtree);
+use File::Slurp;
 use List::MoreUtils qw(uniq);
 use POSIX qw(strftime);
 
-use AAT::FS;
 use AAT::Utils qw( ARRAY NOT_NULL NULL );
 use AAT::XML;
 use Octopussy;
@@ -717,8 +717,7 @@ sub Parse_Status
     if (defined $conf)
     {
         $dir_pid ||= Octopussy::FS::Directory('running');
-        my @files = AAT::FS::Directory_Files($dir_pid,
-            qr/^octo_parser_\Q$device\E\.pid$/);
+        my @files = grep { /^octo_parser_\Q$device\E\.pid$/ } read_dir($dir_pid);
 
         return (
             scalar(@files) > 0 ? 2

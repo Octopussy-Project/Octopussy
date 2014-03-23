@@ -1,3 +1,4 @@
+package AAT::Syslog;
 
 =head1 NAME
 
@@ -5,15 +6,12 @@ AAT::Syslog - AAT Syslog module
 
 =cut
 
-package AAT::Syslog;
-
 use strict;
 use warnings;
 
 use Unix::Syslog qw(:macros);
 use Unix::Syslog qw(:subs);
 
-use AAT::FS;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
 
@@ -21,7 +19,7 @@ my $MSG_LOGS_FILE = undef;
 
 my %AAT_Syslog = ();
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Message($module, $msg, @args)
 
@@ -33,7 +31,7 @@ sub Message
 {
     my ($module, $msg, @args) = @_;
 
-    $MSG_LOGS_FILE ||= AAT::FS::File('message_logs');
+    $MSG_LOGS_FILE ||= AAT::Application::File('AAT', 'message_logs');
     if (!defined $AAT_Syslog{GENERIC_CREATED})
     {
         my $conf = AAT::XML::Read($MSG_LOGS_FILE);

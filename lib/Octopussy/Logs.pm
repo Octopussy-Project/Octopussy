@@ -1,3 +1,4 @@
+package Octopussy::Logs;
 
 =head1 NAME
 
@@ -5,15 +6,12 @@ Octopussy::Logs - Octopussy Logs module
 
 =cut
 
-package Octopussy::Logs;
-
 use strict;
 use warnings;
 
 use File::Path qw(rmtree);
-use Readonly;
+use File::Slurp;
 
-use AAT::FS;
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY NOT_NULL );
 use Octopussy;
@@ -25,10 +23,10 @@ use Octopussy::Service;
 use Octopussy::Storage;
 
 # Multipliers to get Date Number (YYYYMMDDHHMM)
-Readonly my $DIGIT_YEAR  => 100_000_000;
-Readonly my $DIGIT_MONTH => 1_000_000;
-Readonly my $DIGIT_DAY   => 10_000;
-Readonly my $DIGIT_HOUR  => 100;
+my $DIGIT_YEAR  = 100_000_000;
+my $DIGIT_MONTH = 1_000_000;
+my $DIGIT_DAY   = 10_000;
+my $DIGIT_HOUR  = 100;
 
 =head2 Device_List($devices)
 
@@ -199,8 +197,8 @@ sub Files_Year_Month_Day
                     {
                         push @files, map {
                             {file => "$y/$m/$d/" . $_, numday => $num_day}
-                            } AAT::FS::Directory_Files("$dir_service/$y/$m/$d",
-                            qr/^msg_/);
+                            } 
+							grep { /^msg_/ } read_dir("$dir_service/$y/$m/$d");
                     }
                 }
             }

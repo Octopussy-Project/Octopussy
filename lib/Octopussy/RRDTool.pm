@@ -654,14 +654,10 @@ sub Report_Graph
     if ($begin =~ /(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)/)
     {
         $start = mktime(0, $5, $4, $3, $2 - 1, $1 - 1900);
-
-        #AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
     }
     if ($end =~ /(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)/)
     {
         $finish = mktime(0, $5, $4, $3, $2 - 1, $1 - 1900);
-
-        #AAT::Datetime::Seconds_Since_1970($1, $2, $3, $4, $5);
     }
 
     if ((defined $start) && (defined $finish))

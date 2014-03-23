@@ -10,9 +10,9 @@ use strict;
 no strict 'refs';
 use warnings;
 
+use File::Slurp;
 use FindBin;
 
-use AAT::FS;
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY );
 use AAT::XML;
@@ -70,7 +70,7 @@ sub Init_All
 {
     my $conf = shift;
 
-    my @plugins = AAT::FS::Directory_Files($DIR_PLUGIN_MODULES, qr/.+\.pm$/);
+    my @plugins = grep { /.+\.pm$/ } read_dir($DIR_PLUGIN_MODULES);
     foreach my $p (@plugins)
     {
         $p =~ s/\.pm$//;
@@ -129,7 +129,7 @@ sub Functions
     my @functions = ();
 
     $dir_plugins ||= Octopussy::FS::Directory($DIR_PLUGIN);
-    my @files = AAT::FS::Directory_Files($dir_plugins, qr/.+\.xml$/);
+    my @files = grep { /.+\.xml$/ } read_dir($dir_plugins);
     foreach my $f (@files)
     {
         my $conf = AAT::XML::Read("$dir_plugins/$f");

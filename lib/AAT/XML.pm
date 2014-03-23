@@ -11,9 +11,9 @@ use warnings;
 use open ':utf8';
 use English qw( -no_match_vars );
 
+use File::Slurp;
 use XML::Simple;
 
-use AAT::FS;
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY );
 
@@ -22,7 +22,7 @@ my $STAT_MODIF_TIME = 9;
 my %XML_CACHE = ();
 my %filename  = ();
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Filename($dir, $name)
 
@@ -36,7 +36,7 @@ sub Filename
     my ($dir, $name) = @_;
 
     return ($filename{$dir}{$name}) if (defined $filename{$dir}{$name});
-    my @files = AAT::FS::Directory_Files($dir, qr/.+\.xml$/);
+    my @files = grep { /.+\.xml$/ } read_dir($dir);
     foreach my $f (@files)
     {
         my $conf = AAT::XML::Read("$dir/$f");
@@ -57,7 +57,7 @@ sub Name_List
 {
     my $dir   = shift;
     my @list  = ();
-    my @files = AAT::FS::Directory_Files($dir, qr/.+\.xml$/);
+    my @files = grep { /.+\.xml$/ } read_dir($dir);
     foreach my $f (@files)
     {
         my $conf = AAT::XML::Read("$dir/$f");

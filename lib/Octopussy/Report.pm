@@ -1,3 +1,4 @@
+package Octopussy::Report;
 
 =head1 NAME
 
@@ -5,16 +6,14 @@ Octopussy::Report - Octopussy Report module
 
 =cut
 
-package Octopussy::Report;
-
 use strict;
 use warnings;
 
+use File::Slurp;
 use POSIX qw(strftime);
 use Proc::ProcessTable;
 
 use AAT::Download;
-use AAT::FS;
 use AAT::Translation;
 use AAT::Utils qw( ARRAY NOT_NULL );
 use AAT::XML;
@@ -115,7 +114,7 @@ sub List
     my ($category, $report_restriction_list) = @_;
     my @res_list = ARRAY($report_restriction_list);
     $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
-    my @files = AAT::FS::Directory_Files($dir_reports, qr/.+\.xml$/);
+    my @files = grep { /.+\.xml$/ } read_dir($dir_reports);
     my @reports = ();
     foreach my $f (@files)
     {

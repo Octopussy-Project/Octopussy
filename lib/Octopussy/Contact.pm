@@ -9,16 +9,15 @@ package Octopussy::Contact;
 
 use strict;
 use warnings;
-use Readonly;
+use File::Slurp;
 
-use AAT::FS;
 use AAT::LDAP;
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::FS;
 
-Readonly my $XML_ROOT => 'octopussy_contact';
+my $XML_ROOT = 'octopussy_contact';
 
 my ($dir_contacts, $dir_pid) = (undef, undef);
 my %filename;
@@ -96,7 +95,7 @@ Returns:
 sub List
 {
     $dir_contacts ||= Octopussy::FS::Directory('contacts');
-    my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
+    my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
     my @contacts = ();
     foreach my $f (@files)
     {
@@ -133,7 +132,7 @@ sub Filename
     if (NOT_NULL($contact))
     {
         $dir_contacts ||= Octopussy::FS::Directory('contacts');
-        my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
+        my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
         foreach my $f (@files)
         {
             my $conf = AAT::XML::Read("$dir_contacts/$f");
@@ -207,7 +206,7 @@ sub Configurations
     my (@configurations, @sorted_configurations) = ((), ());
 
     $dir_contacts ||= Octopussy::FS::Directory('contacts');
-    my @files = AAT::FS::Directory_Files($dir_contacts, qr/.+\.xml$/);
+    my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
     foreach my $f (@files)
     {
         my $conf = AAT::XML::Read("$dir_contacts/$f");

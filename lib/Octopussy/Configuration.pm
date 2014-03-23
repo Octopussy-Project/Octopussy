@@ -1,3 +1,4 @@
+package Octopussy::Configuration;
 
 =head1 NAME
 
@@ -5,15 +6,13 @@ Octopussy::Configuration - Octopussy Configuration module
 
 =cut
 
-package Octopussy::Configuration;
-
 use strict;
 use warnings;
 
+use File::Slurp;
 use POSIX qw(strftime);
 
 use AAT;
-use AAT::FS;
 use Octopussy::FS;
 
 my $DIR_BACKUP = '/etc/octopussy/';
@@ -86,7 +85,7 @@ sub Backup_List
 {
     my @backups = ();
 
-    my @list = AAT::FS::Directory_Files($DIR_BACKUP, qr/^backup_.+$/);
+    my @list = grep { /^backup_.+$/ } read_dir($DIR_BACKUP);
     foreach my $e (reverse sort @list)
     {
         push @backups, {label => "Backup $2/$3/$4 $5:$6:$7", value => $1}

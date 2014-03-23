@@ -1,3 +1,4 @@
+package Octopussy::Search_Template;
 
 =head1 NAME
 
@@ -5,23 +6,20 @@ Octopussy::Search_Template - Octopussy Search Template module
 
 =cut
 
-package Octopussy::Search_Template;
-
 use strict;
 use warnings;
 use bytes;
 use utf8;
 
-use Readonly;
+use File::Slurp;
 
-use AAT::FS;
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
 use Octopussy;
 use Octopussy::FS;
 
-Readonly my $DIR_SEARCH_TPL => 'search_templates';
-Readonly my $XML_ROOT       => 'octopussy_search_template';
+my $DIR_SEARCH_TPL = 'search_templates';
+my $XML_ROOT       = 'octopussy_search_template';
 
 my $dir_search_tpl = undef;
 my %filename;
@@ -91,8 +89,7 @@ sub List
     my $user = shift;
 
     $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-    my @files =
-        AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
+    my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$user/");
     my @tpls = ();
     foreach my $f (@files)
     {
@@ -123,11 +120,10 @@ sub List_Any_User
     my (@list, @sorted_list) = ((), ());
 
     $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-    my @dirs = AAT::FS::Directory_Files("$dir_search_tpl/", qr/\w+$/);
+    my @dirs = grep { /\w+$/ } read_dir($dir_search_tpl); 
     foreach my $d (@dirs)
     {
-        my @files =
-            AAT::FS::Directory_Files("$dir_search_tpl/$d/", qr/.+\.xml$/);
+        my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$d/");
         foreach my $f (@files)
         {
             my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
@@ -167,8 +163,7 @@ sub Filename
     if (NOT_NULL($search_tpl))
     {
         $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-        my @files =
-            AAT::FS::Directory_Files("$dir_search_tpl/$user/", qr/.+\.xml$/);
+        my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$user/"); 
         foreach my $f (@files)
         {
             my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
