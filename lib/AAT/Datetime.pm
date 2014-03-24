@@ -1,3 +1,4 @@
+package AAT::Datetime;
 
 =head1 NAME
 
@@ -5,34 +6,33 @@ AAT::Datetime - AAT Datetime module
 
 =cut
 
-package AAT::Datetime;
-
 use strict;
 use warnings;
-use Readonly;
 
 use Date::Manip;
 use POSIX qw( strftime );
+use Time::Piece;
+use Time::Seconds;
 
 use AAT::Utils;
 
-Readonly my @MONTH_NAME => (
+my @MONTH_NAME = (
     '',        '_JANUARY',   '_FEBRUARY', '_MARCH',
     '_APRIL',  '_MAY',       '_JUNE',     '_JULY',
     '_AUGUST', '_SEPTEMBER', '_OCTOBER',  '_NOVEMBER',
     '_DECEMBER',
 );
 
-Readonly my @WEEKDAY_NAME => (
+my @WEEKDAY_NAME = (
     '',          '_MONDAY', '_TUESDAY',  '_WEDNESDAY',
     '_THURSDAY', '_FRIDAY', '_SATURDAY', '_SUNDAY',
 );
 
-Readonly my $MAX_HOURS    => 23;
-Readonly my $MAX_MINUTES  => 59;
-Readonly my $MAX_MONTH    => 12;
-Readonly my $MAX_MONTHDAY => 31;
-Readonly my $START_YEAR   => 1900;
+my $MAX_HOURS    = 23;
+my $MAX_MINUTES  = 59;
+my $MAX_MONTH    = 12;
+my $MAX_MONTHDAY = 31;
+my $START_YEAR   = 1900;
 
 =head1 FUNCTIONS
 
@@ -72,24 +72,26 @@ sub Month_Nb_Days
 {
     my ($year, $month) = @_;
 
-    return (Date::Manip::Date_DaysInMonth($month, $year));
+	my $tp = Time::Piece->strptime("${year}-${month}-01", "%Y-%m-%d");
+
+    return ($tp->month_last_day);
 }
 
 =head2 Delta
 
-Returns Delta in minutes between 2 dates
+Returns Delta in minutes between 2 dates (YYYYMMDD HH:MM:00)
 
 =cut
 
 sub Delta
 {
     my ($date1, $date2) = @_;
+	
+	my $tp1 = Time::Piece->strptime($date1, "%Y%m%d %H:%M:%S");
+	my $tp2 = Time::Piece->strptime($date2, "%Y%m%d %H:%M:%S");
+	my $result = ($tp1 - $tp2) / 60; 
 
-    my $diff = Date::Manip::DateCalc(Date::Manip::ParseDate($date1),
-        Date::Manip::ParseDate($date2));
-    my $result = Date::Manip::Delta_Format($diff, 0, '%mt');  # delta in minutes
-
-    if ($result =~ /^[-+]?(\d+)/)                             #\.\d*$/)
+    if ($result =~ /^[-+]?(\d+)/)
     {
         return ($1);
     }
@@ -110,8 +112,6 @@ sub Seconds_Since_1970
     return (
         Date::Manip::Date_SecsSince1970GMT($month, $day, $year, $hour, $min, 0)
     );
-
-#return (Date::Manip::Date_SecsSince1970($month,$day,$year,$hour,$min, 0)) # GMT+3 fix
 }
 
 =head2 WeekDay($year, $month, $day)
@@ -167,7 +167,9 @@ sub YearWeek
 {
     my ($year, $month, $day) = @_;
 
-    return (Date::Manip::Date_WeekOfYear($month, $day, $year, 1));
+	my $tp = Time::Piece->strptime("${year}-${month}-${day}", "%Y-%m-%d");
+
+    return ($tp->week);
 }
 
 =head2 Current_Day()
@@ -304,17 +306,16 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Hour
 
 sub Last_Hour
 {
-    my $date = Date::Manip::DateCalc('now', '-1hour');
-    my ($year, $month, $day, $hour, $min) =
-        Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
-
+	my $tp = Time::Piece->new();
+	$tp -= ONE_HOUR;
+	
     my (%begin, %end) = ((), ());
     ($begin{year}, $begin{month}, $begin{day}) =
-        ($year, sprintf("%02d", $month), sprintf("%02d", $day));
-    ($begin{hour}, $begin{min}) = (sprintf("%02d", $hour), '00');
+        ($tp->year, sprintf("%02d", $tp->mon), sprintf("%02d", $tp->mday));
+    ($begin{hour}, $begin{min}) = (sprintf("%02d", $tp->hour), '00');
     ($end{year}, $end{month}, $end{day}) =
-        ($year, sprintf("%02d", $month), sprintf("%02d", $day));
-    ($end{hour}, $end{min}) = (sprintf("%02d", $hour), $MAX_MINUTES);
+        ($tp->year, sprintf("%02d", $tp->mon), sprintf("%02d", $tp->mday));
+    ($end{hour}, $end{min}) = (sprintf("%02d", $tp->hour), $MAX_MINUTES);
 
     return (\%begin, \%end);
 }
@@ -327,16 +328,15 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Month
 
 sub Last_Month
 {
-    my $date = Date::Manip::DateCalc('today', '-1month');
-    my ($year, $month, $day, $hour, $min) =
-        Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
+	my $tp = Time::Piece->new();
+    $tp -= ONE_MONTH;
 
     my (%begin, %end) = ((), ());
     ($begin{year}, $begin{month}, $begin{day}) =
-        ($year, sprintf("%02d", $month), '01');
+        ($tp->year, sprintf("%02d", $tp->mon), '01');
     ($begin{hour}, $begin{min}) = ('00', '00');
     ($end{year}, $end{month}, $end{day}) =
-        ($year, sprintf("%02d", $month), Month_Nb_Days($year, $month));
+        ($tp->year, sprintf("%02d", $tp->mon), Month_Nb_Days($tp->year, $tp->mon));
     ($end{hour}, $end{min}) = ($MAX_HOURS, $MAX_MINUTES);
 
     return (\%begin, \%end);
