@@ -16,13 +16,42 @@ use warnings;
 use File::Basename;
 use File::Slurp;
 
+use AAT::Syslog;
 use Octopussy::App;
+use Octopussy::FS;
 
 our $PROG_NAME = 'octo_parser';
 
-exit if (!Octopussy::App::Valid_User($PROG_NAME));
-
 =head1 SUBROUTINE/METHODS
+
+=head2 Init()
+
+Init with primary checks
+
+=cut
+
+sub Init
+{
+	my $device = $ARGV[0];
+	
+	exit 1	if (!Octopussy::App::Valid_User($PROG_NAME));
+	Usage()	if (!defined $device);
+
+	return ($device);
+}
+
+=head2 Usage()
+
+Prints octo_parser command usage and exits
+
+=cut
+
+sub Usage
+{
+	printf "Usage:\n\t$PROG_NAME <device> (run as 'octopussy' user)\n\n";
+
+	exit 1;
+}
 
 =head2 Write_Logfile($file, $logs, $compression)
 

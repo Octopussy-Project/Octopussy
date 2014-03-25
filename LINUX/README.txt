@@ -24,6 +24,7 @@ and these Perl modules (from CPAN):
 - DBD
 - DBD::mysql
 - DBI
+- File::Slurp
 - JSON
 - Linux::Inotify2
 - List::MoreUtils

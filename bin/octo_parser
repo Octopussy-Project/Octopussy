@@ -21,20 +21,22 @@ use warnings;
 use bytes;    # Fix the 'Malformed UTF-8 character' warning
 use utf8;
 
+use File::Basename;
 use File::Copy;
 use File::Path;
+use FindBin;
 use Linux::Inotify2;
 use POSIX qw( mktime strftime );
 use Regexp::Assemble;
+
+use lib "$FindBin::Bin/../lib";
 
 use AAT::Syslog;
 use AAT::Utils qw( NOT_NULL NULL );
 
 use Octopussy;
-
-use Octopussy::App::Parser;
-
 use Octopussy::Alert;
+use Octopussy::App::Parser;
 use Octopussy::Cache;
 use Octopussy::Device;
 use Octopussy::FS;
@@ -48,9 +50,8 @@ use Octopussy::TimePeriod;
 my $PROG_NAME    = $Octopussy::App::Parser::PROG_NAME;
 my $NICE_UPARSER = 'nice -n 20';
 
-my $dir_program = Octopussy::FS::Directory('programs');
-my $dir_pid     = Octopussy::FS::Directory('running');
-my $device      = $ARGV[0];
+my $device = Octopussy::App::Parser::Init();
+
 my ($reload_request, $exit_request) = (0, 0);
 my $cache = Octopussy::Cache::Init($PROG_NAME);
 
@@ -301,7 +302,11 @@ sub Init
     {
         $cache->set("uparser_$device", 'reload');
     }
-    else { system "$NICE_UPARSER ${dir_program}octo_uparser $device &"; }
+    else 
+	{
+		my $dir_program = Octopussy::FS::Directory('programs'); 
+		system "$NICE_UPARSER ${dir_program}octo_uparser $device &"; 
+	}
     ($file, $file_last) = (undef, undef);
     (@files, %known_msgs, @unknown_msgs) = ((), (), ());
 

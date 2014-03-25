@@ -1,3 +1,9 @@
+octopussy (1.0.13) stable; urgency=high
+
+  * Bugfix #583: Fixing octo_parser bugs introduced in Octopussy 1.0.12
+
+ -- Sebastien Thebert <octopussy@onetool.pm>  Wed 26 Mar 2014 00:20:00 +0100
+ 
 octopussy (1.0.12) stable; urgency=high
 
   * Major performance improvement when a lot of octo_parser start at the same time (Issue #576)
