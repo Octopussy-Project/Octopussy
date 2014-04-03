@@ -70,7 +70,7 @@ sub Init_All
 {
     my $conf = shift;
 
-    my @plugins = grep { /.+\.pm$/ } read_dir($DIR_PLUGIN_MODULES);
+    my @plugins = grep { /.+\.pm$/ } read_dir($DIR_PLUGIN_MODULES, err_mode => 'quiet');
     foreach my $p (@plugins)
     {
         $p =~ s/\.pm$//;
@@ -129,6 +129,9 @@ sub Functions
     my @functions = ();
 
     $dir_plugins ||= Octopussy::FS::Directory($DIR_PLUGIN);
+
+	return ()	if (! -r $dir_plugins);
+
     my @files = grep { /.+\.xml$/ } read_dir($dir_plugins);
     foreach my $f (@files)
     {

@@ -1,11 +1,10 @@
+package Octopussy::Contact;
 
 =head1 NAME
 
 Octopussy::Contact - Octopussy Contact module
 
 =cut
-
-package Octopussy::Contact;
 
 use strict;
 use warnings;
@@ -22,7 +21,7 @@ my $XML_ROOT = 'octopussy_contact';
 my ($dir_contacts, $dir_pid) = (undef, undef);
 my %filename;
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 New(\%conf)
 
@@ -95,6 +94,9 @@ Returns:
 sub List
 {
     $dir_contacts ||= Octopussy::FS::Directory('contacts');
+
+	return ()	if (! -r $dir_contacts);
+
     my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
     my @contacts = ();
     foreach my $f (@files)
@@ -129,9 +131,13 @@ sub Filename
     my $contact = shift;
 
     return ($filename{$contact}) if (defined $filename{$contact});
+
     if (NOT_NULL($contact))
     {
         $dir_contacts ||= Octopussy::FS::Directory('contacts');
+
+		return (undef)   if (! -r $dir_contacts);
+
         my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
         foreach my $f (@files)
         {
@@ -206,6 +212,9 @@ sub Configurations
     my (@configurations, @sorted_configurations) = ((), ());
 
     $dir_contacts ||= Octopussy::FS::Directory('contacts');
+
+	return ()	if (! -r $dir_contacts);
+
     my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
     foreach my $f (@files)
     {

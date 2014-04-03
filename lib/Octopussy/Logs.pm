@@ -198,7 +198,7 @@ sub Files_Year_Month_Day
                         push @files, map {
                             {file => "$y/$m/$d/" . $_, numday => $num_day}
                             } 
-							grep { /^msg_/ } read_dir("$dir_service/$y/$m/$d");
+							grep { /^msg_/ } read_dir("$dir_service/$y/$m/$d", err_mode => 'quiet');
                     }
                 }
             }

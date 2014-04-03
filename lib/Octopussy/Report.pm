@@ -41,7 +41,7 @@ my $MINUTE       = 60;
 my $dir_reports = undef;
 my %filename;
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 New($conf)
 
@@ -114,6 +114,9 @@ sub List
     my ($category, $report_restriction_list) = @_;
     my @res_list = ARRAY($report_restriction_list);
     $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
+
+	return ()	if (! -r $dir_reports);
+
     my @files = grep { /.+\.xml$/ } read_dir($dir_reports);
     my @reports = ();
     foreach my $f (@files)

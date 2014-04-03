@@ -36,6 +36,9 @@ sub Filename
     my ($dir, $name) = @_;
 
     return ($filename{$dir}{$name}) if (defined $filename{$dir}{$name});
+	
+	return (undef)	if (! -r $dir);
+
     my @files = grep { /.+\.xml$/ } read_dir($dir);
     foreach my $f (@files)
     {
@@ -57,6 +60,9 @@ sub Name_List
 {
     my $dir   = shift;
     my @list  = ();
+
+	return ()  if (! -r $dir);
+
     my @files = grep { /.+\.xml$/ } read_dir($dir);
     foreach my $f (@files)
     {

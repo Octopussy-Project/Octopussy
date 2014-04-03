@@ -717,7 +717,8 @@ sub Parse_Status
     if (defined $conf)
     {
         $dir_pid ||= Octopussy::FS::Directory('running');
-        my @files = grep { /^octo_parser_\Q$device\E\.pid$/ } read_dir($dir_pid);
+        my @files = grep { /^octo_parser_\Q$device\E\.pid$/ } 
+			read_dir($dir_pid, , err_mode => 'quiet');
 
         return (
             scalar(@files) > 0 ? 2

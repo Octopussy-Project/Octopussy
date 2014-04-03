@@ -89,7 +89,10 @@ sub List
     my $user = shift;
 
     $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-    my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$user/");
+
+    return ()	if (! -r "$dir_search_tpl/$user/");
+
+	my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$user/");
     my @tpls = ();
     foreach my $f (@files)
     {
@@ -120,10 +123,13 @@ sub List_Any_User
     my (@list, @sorted_list) = ((), ());
 
     $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
+
+	return ()   if (! -r $dir_search_tpl);
+
     my @dirs = grep { /\w+$/ } read_dir($dir_search_tpl); 
     foreach my $d (@dirs)
     {
-        my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$d/");
+        my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$d/", err_mode => 'quiet');
         foreach my $f (@files)
         {
             my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
@@ -163,7 +169,7 @@ sub Filename
     if (NOT_NULL($search_tpl))
     {
         $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-        my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$user/"); 
+        my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$user/", err_mode => 'quiet'); 
         foreach my $f (@files)
         {
             my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");

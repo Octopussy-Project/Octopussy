@@ -16,10 +16,38 @@ use AAT;
 use Octopussy::FS;
 
 my $DIR_BACKUP = '/etc/octopussy/';
+my @DIRECTORIES_TO_BACKUP = qw/ 
+	alerts
+	contacts
+	devices          
+	maps
+    plugins
+	reports
+	search_templates
+	services
+	tables
+	/;
+my @FILES_TO_BACKUP = qw/
+	db
+	devicegroups
+	ldap
+	locations
+	nsca
+	proxy
+	schedule
+	servicegroups
+    smtp
+	storages
+	timeperiods
+	users
+	xmpp	
+	/;
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Set_Backup_Directory($dir)
+
+Sets Backup directory
 
 =cut
 
@@ -34,6 +62,8 @@ sub Set_Backup_Directory
 
 =head2 Backup($filename)
 
+Creates Backup file '$filename'
+
 =cut
 
 sub Backup
@@ -47,25 +77,12 @@ sub Backup
     my $dir_main = Octopussy::FS::Directory('main');
     my ($dirs, $files) = ('', '');
 
-    foreach my $d (
-        Octopussy::FS::Directories(
-            'alerts',  'contacts', 'devices',          'maps',
-            'plugins', 'reports',  'search_templates', 'services',
-            'tables'
-        )
-        )
+    foreach my $d (Octopussy::FS::Directories(@DIRECTORIES_TO_BACKUP))
     {
         $dirs .= "$d " if (-d $d);
     }
 
-    foreach my $f (
-        Octopussy::FS::Files(
-            'db',   'devicegroups', 'ldap',        'locations',
-            'nsca', 'proxy',        'schedule',    'servicegroups',
-            'smtp', 'storages',     'timeperiods', 'users',
-            'xmpp'
-        )
-        )
+    foreach my $f (Octopussy::FS::Files(@FILES_TO_BACKUP))
     {
         $files .= "$f " if (-f $f);
     }
@@ -84,6 +101,8 @@ Returns List of Backup Files
 sub Backup_List
 {
     my @backups = ();
+
+	return ()	if (! -r $DIR_BACKUP);
 
     my @list = grep { /^backup_.+$/ } read_dir($DIR_BACKUP);
     foreach my $e (reverse sort @list)
