@@ -1,3 +1,11 @@
+octopussy (1.0.14) stable; urgency=high
+
+  * Bugfix #586, #587 & #588: Fixing read_dir issues
+  * Code cleaning
+  * Services 'ARPWatch' & 'Ntp' updated
+
+ -- Sebastien Thebert <octopussy@onetool.pm>  Tue 15 Apr 2014 00:15:00 +0100
+
 octopussy (1.0.13) stable; urgency=high
 
   * Bugfix #583: Fixing octo_parser bugs introduced in Octopussy 1.0.12
