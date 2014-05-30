@@ -48,9 +48,9 @@ my %conf = (
     action            => undef,
     contact           => undef,
     msgsubject =>
-        Encode::decode_utf8('msg subject for __alert__ with device __device__'),
+        Encode::decode_utf8('msg subject for __alert.name__ with device __device.name__ (__device.type__>__device.model__)'),
     msgbody =>
-        Encode::decode_utf8('msg body for __alert__ with level __level__'),
+        Encode::decode_utf8("msg body for __alert.name__ with level __alert.level__ Device located in city '__device.location.city__', building '__device.location.building__', room '__device.location.room__', rack '__device.location.rack__'"),
     action_host    => Encode::decode_utf8("${PREFIX}alert action host"),
     action_service => Encode::decode_utf8("${PREFIX}alert action service"),
     action_body    => Encode::decode_utf8("${PREFIX}alert action body"),
@@ -84,11 +84,27 @@ cmp_ok(
 #cmp_ok(scalar @alerts_for_device, "eq", 1, "Octopussy::Alert::For_Device('device1')");
 # Return 0 because 'device1' doesn't exist
 
+Octopussy::Device::New(
+    {
+        name    => 'device1',
+        address => '1.2.3.4',
+        type    => 'Server',
+        model   => 'Linux Debian',
+		city	=> 'Paris',
+		building => 'Building A',
+		room	=> 'A1',
+		rack	=> 42,
+    }
+);
+
 my ($subject, $body) =
     Octopussy::Alert::Message_Building(\%conf, 'device1', undef, undef);
+
+printf "Subject: $subject\nBody: $body\n";
+
 ok(
-    ($subject eq "msg subject for $name with device device1")
-        && ("$body eq msg body for $name with level Warning"),
+    ($subject eq "msg subject for $name with device device1 (Server>Linux Debian)")
+        && ($body eq "msg body for $name with level Warning Device located in city 'Paris', building 'Building A', room 'A1', rack '42'"),
     'Octopussy::Alert::Message_Building()'
   );
 
