@@ -12,6 +12,12 @@ If you created an **Octopussy Alert** and you don't understand why your Alert is
   * a sample of your logs
   * the alert configuration file (`/var/lib/octopussy/conf/alerts/<your_alert>.xml`)
 
+### Issues about Octopussy Reports
+
+If you created or updated an **Octopussy Report** and you don't understand why it doesn't generate a good report, please also provide:
+  * a sample of your logs
+  * the report configuration file (`/var/lib/octopussy/conf/reports/<your_report>.xml`)
+
 ### Issues about Octopussy Services
 
 If you created or updated an **Octopussy Service** and you don't understand why it doesn't match your logs, please also provide:
