@@ -5,6 +5,7 @@
 When reporting [issues on GitHub](https://github.com/sebthebert/Octopussy/issues), please provide at least: 
   * your Operating System version
   * your Octopussy version
+  * your Perl version (`perl -v`)
 
 ### Issues about Octopussy Alerts
 
