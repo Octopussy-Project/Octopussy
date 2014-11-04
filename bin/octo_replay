@@ -19,112 +19,16 @@ to replay Logs for some Device / Service
 use strict;
 use warnings;
 
-use Getopt::Long;
-Getopt::Long::Configure('bundling');
+use FindBin;
 
-use AAT::Utils qw( ARRAY );
-use Octopussy;
+use lib "$FindBin::Bin/../lib";
+
 use Octopussy::App;
-use Octopussy::Device;
-use Octopussy::FS;
-use Octopussy::Logs;
-use Octopussy::Storage;
+use Octopussy::App::Replay;
 
-my $PROG_NAME    = 'octo_replay';
-my $PROG_VERSION = Octopussy::Version();
+exit(-1)	if (!Octopussy::App::Valid_User('octo_replay'));
 
-my $help;
-my ($opt_device, $opt_service, $opt_begin, $opt_end) =
-    (undef, undef, undef, undef);
-my $file_pid = undef;
-my $cache    = undef;
-
-=head1 FUNCTIONS
-
-=head2 Help()
-
-Prints Help
-
-=cut
-
-sub Help
-{
-    my $help_str = <<"EOF";
-
-$PROG_NAME (version $PROG_VERSION)
-
- Usage: $PROG_NAME --device <device> --service <service> 
-        --begin YYYYMMDDHHMM --end YYYYMMDDHHMM
-
-EOF
-
-    print $help_str;
-    if (!defined $opt_device)
-    {
-        print ' ' . Octopussy::Device::String_List(undef) . "\n";
-    }
-    elsif (!defined $opt_service)
-    {
-        print ' '
-            . Octopussy::Device::String_Services(ARRAY($opt_device)) . "\n";
-    }
-    print "\n";
-
-    exit;
-}
-
-#
-# MAIN
-#
-exit if (!Octopussy::App::Valid_User($PROG_NAME));
-
-my $status = GetOptions(
-    'h'         => \$help,
-    'help'      => \$help,
-    'device=s'  => \$opt_device,
-    'service=s' => \$opt_service,
-    'begin=s'   => \$opt_begin,
-    'end=s'     => \$opt_end,
-);
-
-Help()
-    if ((!$status)
-    || ($help)
-    || (!defined $opt_device)
-    || (!defined $opt_service)
-    || (!defined $opt_begin)
-    || (!defined $opt_end));
-
-my $dir_incoming = Octopussy::Storage::Directory_Incoming($opt_device)
-    . "$opt_device/Incoming/";
-my ($files, $total) =
-    Octopussy::Logs::Get_TimePeriod_Files($opt_device, $opt_service, $opt_begin,
-    $opt_end);
-foreach my $min (sort keys %{$files})
-{
-    my @logs = ();
-    foreach my $f (@{$files->{$min}})
-    {
-        my $cat = ($f =~ /.+\.gz$/ ? 'zcat' : 'cat');
-        if (defined open my $FILE, '-|', "$cat \"$f\"")
-        {
-            while (<$FILE>) { push @logs, $_; }
-            close $FILE;
-            unlink $f;
-        }
-    }
-
-    if ($min =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})$/)
-    {
-        my $incoming = $dir_incoming . "$1/$2/$3/msg_${4}h${5}_00.log";
-        if (defined open my $INCOMING, '>', $incoming)
-        {
-            foreach my $l (sort @logs) { print {$INCOMING} $l; }
-            close $INCOMING;
-            Octopussy::FS::Chown($incoming);
-        }
-    }
-}
+Octopussy::App::Replay->run(@ARGV);
 
 =head1 AUTHOR
 
@@ -132,6 +36,6 @@ Sebastien Thebert <octopussy@onetool.pm>
 
 =head1 SEE ALSO
 
-octo_dispatcher, octo_extractor, octo_parser, octo_uparser, octo_reporter, octo_scheduler
+Octopussy::App::Replay, octo_dispatcher, octo_extractor, octo_parser, octo_uparser, octo_reporter, octo_scheduler
 
 =cut
