@@ -9,7 +9,9 @@ Octopussy 2.0
 # TODO List
 
 ## Moving configuration files from XML to JSON
-  
+
+See [Issue #610](https://github.com/sebthebert/Octopussy/issues/610)
+
 ## Server Daemon publishing API
 
 ## Mojolicious Web Interface connected with many Server Daemon publishing API
