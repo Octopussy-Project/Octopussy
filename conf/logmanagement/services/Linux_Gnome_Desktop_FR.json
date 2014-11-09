@@ -1,0 +1,22 @@
+{
+   "icon" : "linux_desktops/linux_desktop_gnome",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> (<@WORD:user@>-<@NUMBER:NULL@>): <@REGEXP(\"Adresse .+ résolue vers une source de configuration en lecture seule .+\"):msg@>",
+         "msg_id" : "Linux_Gnome_Desktop_FR:source_configuration_lecture_seule",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> (<@WORD:user@>-<@NUMBER:NULL@>): <@REGEXP(\"Adresse .+ résolue vers une source de configuration accessible en écriture .+\"):msg@>",
+         "msg_id" : "Linux_Gnome_Desktop_FR:source_configuration_ecriture",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "version" : "200805130001",
+   "name" : "Linux_Gnome_Desktop_FR",
+   "description" : "Linux Gnome Desktop Service (FR version)"
+}

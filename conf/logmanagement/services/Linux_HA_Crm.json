@@ -1,0 +1,58 @@
+{
+   "icon" : "software/logo_linux_ha",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"crm_verify\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"WARN: \\S+: Resource \\S+ cannot run anywhere\"):msg@>",
+         "msg_id" : "Linux_HA_Crm:resource_cannot_run_anywhere",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"crm_\\S+\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: Invoked: .+\"):msg@>",
+         "msg_id" : "Linux_HA_Crm:invoked",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"crm_attribute\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"ERROR: crm_abort: read_attr: .+\"):msg@>",
+         "msg_id" : "Linux_HA_Crm:crm_attribute_read_error",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"crm_resource\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"debug: .+\"):msg@>",
+         "msg_id" : "Linux_HA_Crm:crm_resource_debug",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"crm_resource\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: determine_online_status: .+\"):msg@>",
+         "msg_id" : "Linux_HA_Crm:determine_online_status",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"crm_resource\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"WARN: .+\"):msg@>",
+         "msg_id" : "Linux_HA_Crm:crm_resource_warning",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"crm_resource\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"ERROR: .+: Remapping .+ on \\S+ to an ERROR\"):msg@>",
+         "msg_id" : "Linux_HA_Crm:crm_resource_remapping_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "",
+   "version" : "200905270001",
+   "name" : "Linux_HA_Crm",
+   "description" : "Linux High Availability Crm"
+}

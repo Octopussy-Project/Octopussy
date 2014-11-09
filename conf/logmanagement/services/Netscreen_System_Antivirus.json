@@ -1,0 +1,72 @@
+{
+   "icon" : "companies/logo_juniper",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCAN-MGR: Internal error occurred .+\"):msg@>",
+         "msg_id" : "Netscreen_System_Antivirus:scanmgr_internal_error_occured",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV: Content from .+ was not scanned .+\"):msg@>",
+         "msg_id" : "Netscreen_System_Antivirus:content_was_not_scanned",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCAN-MGR: New AV pattern file has been updated.+\"):msg@>",
+         "msg_id" : "Netscreen_System_Antivirus:scanmgr_pattern_file_updated",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV .+ has been set to .+\"):msg@>",
+         "msg_id" : "Netscreen_System_Antivirus:av_parameter_been_set",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCAN-MGR: URL for AV pattern update server has been .+\"):msg@>",
+         "msg_id" : "Netscreen_System_Antivirus:scanmgr_update_server_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCAN-MGR: .+ has been set to .+\"):msg@>",
+         "msg_id" : "Netscreen_System_Antivirus:scanmgr_parameter_been_set",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV: Content from .+ is passed due to scan-engine error or constraint with code 5 for exceeding max decompress layer limit.+\"):msg@> (<@DATE_TIME_NS:NULL@>)",
+         "msg_id" : "Netscreen_System_Antivirus:exceeding_max_decompress_layer",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV: Content from .+ is passed because maximum content size is exceeded.+\"):msg@> (<@DATE_TIME_NS:NULL@>)",
+         "msg_id" : "Netscreen_System_Antivirus:max_size_exceeded",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV: VIRUS FOUND:.+\"):msg@>(<@DATE_TIME_NS:NULL@>)",
+         "msg_id" : "Netscreen_System_Antivirus:virus_found",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/",
+   "version" : "201002250006",
+   "name" : "Netscreen_System_Antivirus",
+   "description" : "Netscreen System Antivirus Service"
+}

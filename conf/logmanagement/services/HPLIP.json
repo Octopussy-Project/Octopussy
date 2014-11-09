@@ -1,0 +1,16 @@
+{
+   "icon" : "",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"python: hp-systray.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"warning: No hp.+devices found in any installed.+queue. Exiting.\"):msg@>",
+         "msg_id" : "HPLIP:no_devices_found_in_any_queue",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://hplipopensource.com",
+   "version" : "201006040001",
+   "name" : "HPLIP",
+   "description" : "HP Linux Imaging and Printing Service"
+}

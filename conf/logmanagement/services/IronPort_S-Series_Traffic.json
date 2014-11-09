@@ -1,0 +1,79 @@
+{
+   "icon" : "companies/logo_ironport",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@REGEXP(\"TCP_MISS\"):action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@WORD:url@> - <@WORD:NULL@> <@WORD:content_type@> <@STRING:acl@>",
+         "msg_id" : "IronPort_S-Series_Traffic:tcp_miss",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@REGEXP(\"TCP_CLIENT_REFRESH_MISS\"):action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@WORD:url@> - <@STRING:acl@>",
+         "msg_id" : "IronPort_S-Series_Traffic:tcp_client_refresh_miss",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@REGEXP(\"TCP_REFRESH_HIT\"):action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@WORD:url@> - <@STRING:acl@>",
+         "msg_id" : "IronPort_S-Series_Traffic:tcp_refresh_hit",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@REGEXP(\"TCP_DENIED\"):action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@WORD:url@> - <@STRING:acl@>",
+         "msg_id" : "IronPort_S-Series_Traffic:tcp_denied",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic.Denied",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@REGEXP(\"TCP_IMS_HIT\"):action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@WORD:url@> - <@STRING:acl@>",
+         "msg_id" : "IronPort_S-Series_Traffic:tcp_ims_hit",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@REGEXP(\"TCP_MEM_HIT\"):action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@WORD:url@> - <@STRING:acl@>",
+         "msg_id" : "IronPort_S-Series_Traffic:tcp_mem_hit",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@REGEXP(\"NONE\"):action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@WORD:url@> - <@STRING:acl@>",
+         "msg_id" : "IronPort_S-Series_Traffic:transaction_error",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@REGEXP(\"TCP_DENIED\"):action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@STRING:url@>",
+         "msg_id" : "IronPort_S-Series_Traffic:tcp_denied2",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic.Denied",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>.<@NUMBER:NULL@> <@NUMBER:elapsed_time@> <@IP_ADDR:client_ip@> <@WORD:action@>/<@NUMBER:http_response@> <@BYTES:total_bytes@> <@WORD:http_method@> <@WORD:url@> <@WORD:user@> <@STRING:acl@>",
+         "msg_id" : "IronPort_S-Series_Traffic:authenticated_user_traffic",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: req:<@IP_ADDR:client_ip@> user:<@WORD:user@> id:<@WORD:NULL@> <@NUMBER:http_response@> <@WORD:http_method@> <@STRING:url@> HTTP/<@WORD:NULL@> <@STRING:NULL@>",
+         "msg_id" : "IronPort_S-Series_Traffic:traffic",
+         "table" : "IronPort_S_Series_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.ironport.com/products/web_security_appliances.html",
+   "version" : "200703080001",
+   "name" : "IronPort_S-Series_Traffic",
+   "description" : "IronPort S-Series Traffic Service"
+}

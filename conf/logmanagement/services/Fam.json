@@ -1,0 +1,15 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"famd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"stat on \".+\" failed: No such file or directory\"):msg@>",
+         "msg_id" : "Fam:stat_failed",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://oss.sgi.com/projects/fam/",
+   "version" : "201002180001",
+   "name" : "Fam",
+   "description" : "File Alteration Monitor Service"
+}

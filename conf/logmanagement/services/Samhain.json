@@ -1,0 +1,226 @@
+{
+   "icon" : "software/logo_samhain",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"File check completed.\"):msg@>\" <@STRING:NULL@> />",
+         "msg_id" : "Samhain:file_check_completed",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" <@REGEXP(\".+No such group.+\"):msg@>\" />",
+         "msg_id" : "Samhain:no_such_group",
+         "table" : "Samhain",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" <@REGEXP(\".+No such user.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:no_such_user",
+         "table" : "Samhain",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"POLICY [<@WORD:policy@>] <@REGEXP(\".+\"):msg@>\"  /> ",
+         "msg_id" : "Samhain:policy",
+         "table" : "Samhain",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"---- TIMESTAMP ----\"):msg@>\" /> ",
+         "msg_id" : "Samhain:timestamp",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"EXIT.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:exit",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"START.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:start",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"POLICY <@WORD:policy@>\" <@REGEXP(\"path=.+\"):msg@>\"  /> ",
+         "msg_id" : "Samhain:policy_added",
+         "table" : "Samhain",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"samhain\"):daemon@>: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" <@REGEXP(\"interface=.+No such file or directory.+\"):msg@>\" />",
+         "msg_id" : "Samhain:no_such_file",
+         "table" : "Samhain",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Service failure.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:service_failure",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Connection error: .+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:connection_error",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Unexpected reply\"):msg@>\" /> ",
+         "msg_id" : "Samhain:unexpected_reply",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Invalid connection state.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:invalid_connection_state",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Checking.+\"):msg@>\" />",
+         "msg_id" : "Samhain:checking",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Connection refused.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:connection_refused",
+         "table" : "Samhain",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"d: .+\"):msg@>\" />",
+         "msg_id" : "Samhain:UNKNOWN",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Check failed.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:check_failed",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Queue full, messages may get lost.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:queue_full",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Session key negotiated\"):msg@>\" />",
+         "msg_id" : "Samhain:session_key_negotiated",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Connection timed out.+\"):msg@>\" />",
+         "msg_id" : "Samhain:connection_timed_out",
+         "table" : "Samhain",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"samhain\"):daemon@>: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" interface=\"glob\" msg=\"<@REGEXP(\"No matches found.+\"):msg@>\" /> ",
+         "msg_id" : "Samhain:no_matches_found",
+         "table" : "Samhain",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"samhain\"):daemon@>: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"File download completed\"):msg@>\" /> ",
+         "msg_id" : "Samhain:file_download_complete",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"samhain\"):daemon@>: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Session key negotiated\"):msg@>\" />",
+         "msg_id" : "Samhain:session_key_negotiated2",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"samhain\"):daemon@>: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Downloading configuration file\"):msg@>\" /> ",
+         "msg_id" : "Samhain:downloading_configuration_file",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"PANIC Error initializing the application\"):msg@>\" program=\"Samhain\" />",
+         "msg_id" : "Samhain:error_initializing_application",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"File download failed\"):msg@>\" /> ",
+         "msg_id" : "Samhain:file_download_failed",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Signature database exists.+\"):msg@>\" />",
+         "msg_id" : "Samhain:signature_database_exists",
+         "table" : "Samhain",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Message delivery not confirmed\"):msg@>\" /> ",
+         "msg_id" : "Samhain:message_delivery_not_confirmed",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"No route to host,.+\"):msg@>\" />",
+         "msg_id" : "Samhain:no_route_to_host",
+         "table" : "Samhain",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" msg=\"<@REGEXP(\"Session key negotiation failed\"):msg@>\" />",
+         "msg_id" : "Samhain:session_key_negotiation_failed",
+         "table" : "Samhain",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Samhain\"):daemon@>[<@NUMBER:NULL@>]: <log sev=\"<@WORD:level@>\" tstamp=\"<@WORD:NULL@>\" <@REGEXP(\"interface=.+No such file or directory.+\"):msg@>\" />",
+         "msg_id" : "Samhain:no_such_file2",
+         "table" : "Samhain",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.la-samhna.de/samhain/",
+   "version" : "200703060001",
+   "name" : "Samhain",
+   "description" : "Samhain Service"
+}

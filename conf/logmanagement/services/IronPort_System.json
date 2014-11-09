@@ -1,0 +1,177 @@
+{
+   "icon" : "companies/logo_ironport",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Received an invalid DNS Response: .+\"):msg@>",
+         "msg_id" : "IronPort_System:received_invalid_dns_response",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"DNS Error .+\"):msg@>",
+         "msg_id" : "IronPort_System:dns_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"DNS Temporary Failure .+\"):msg@>",
+         "msg_id" : "IronPort_System:dns_temporary_failure",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Status: .+\"):msg@>",
+         "msg_id" : "IronPort_System:status",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"case cache status: .+\"):msg@>",
+         "msg_id" : "IronPort_System:case_cache_status",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Begin Logfile\"):msg@>",
+         "msg_id" : "IronPort_System:begin_logfile",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: nameserver resolution path points to .+\"):msg@>",
+         "msg_id" : "IronPort_System:nameserver_resolution_path_points",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Maximum DNS recursion .+\"):msg@>",
+         "msg_id" : "IronPort_System:maximum_dns_recursion",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Log .+ pushed to remote host .+\"):msg@>",
+         "msg_id" : "IronPort_System:log_pushed_remote_host",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Time offset from UTC: \\d+ seconds\"):msg@>",
+         "msg_id" : "IronPort_System:time_offset_from_utc",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: Log Error: Push error for subscription .+: SCP failed to transfer to .+\"):msg@>",
+         "msg_id" : "IronPort_System:scp_push_log_failed",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Version: .+ SN: .+\"):msg@>",
+         "msg_id" : "IronPort_System:version",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Logfile rolled over\"):msg@>",
+         "msg_id" : "IronPort_System:logfile_rolled_over",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"End Logfile\"):msg@>",
+         "msg_id" : "IronPort_System:end_logfile",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: DNS query network error .+\"):msg@>",
+         "msg_id" : "IronPort_System:dns_query_network_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: Error while sending alert: .+\"):msg@>",
+         "msg_id" : "IronPort_System:error_while_sending_alert",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: SMTP listener .+ shut down\"):msg@>",
+         "msg_id" : "IronPort_System:smtp_listener_shut_down",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: SMTP connection killed .+\"):msg@>",
+         "msg_id" : "IronPort_System:smtp_connection_killed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: SMTP listener .+ starting\"):msg@>",
+         "msg_id" : "IronPort_System:smtp_listener_starting",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Deliveries are currently suspended .+\"):msg@>",
+         "msg_id" : "IronPort_System:deliveries_currently_suspended",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: System is shutting down.\"):msg@>",
+         "msg_id" : "IronPort_System:system_shutting_down",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: System is coming up.\"):msg@>",
+         "msg_id" : "IronPort_System:system_coming_up",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Filter \".+\" committed as invalid:.+\"):msg@>",
+         "msg_id" : "IronPort_System:filter_commited_as_invalid",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: An application fault occurred: Invalid Filter: .+\"):msg@>",
+         "msg_id" : "IronPort_System:application_fault_invalid_filter",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www.ironport.com/products/email_security_appliances.html",
+   "version" : "200706060002",
+   "name" : "IronPort_System",
+   "description" : "IronPort System Service"
+}

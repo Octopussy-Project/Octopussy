@@ -1,0 +1,177 @@
+{
+   "icon" : "software/logo_monit",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'.+' process PID changed to \\d+\"):msg@>",
+         "msg_id" : "Monit:process_pid_changed_to",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'.+' PID has not changed\"):msg@> ",
+         "msg_id" : "Monit:pid_has_not_changed",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Starting monit daemon\"):msg@>",
+         "msg_id" : "Monit:starting_daemon",
+         "table" : "Message",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Monit started\"):msg@> ",
+         "msg_id" : "Monit:started",
+         "table" : "Message",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Monit has not changed\"):msg@> ",
+         "msg_id" : "Monit:has_not_changed",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"monit daemon with pid .+ killed\"):msg@> ",
+         "msg_id" : "Monit:monit_daemon_killed",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Monit stopped\"):msg@>",
+         "msg_id" : "Monit:stopped",
+         "table" : "Message",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'.+' process is not running\"):msg@> ",
+         "msg_id" : "Monit:process_is_not_running",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'.+' trying to restart\"):msg@> ",
+         "msg_id" : "Monit:trying_to_restart",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'.+' failed to start\"):msg@> ",
+         "msg_id" : "Monit:failed_to_start",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'.+' process is running with pid \\d+\"):msg@>",
+         "msg_id" : "Monit:process_running_with_pid",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'\\S+' start: .+\"):msg@>",
+         "msg_id" : "Monit:start",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ service timed out and will not be checked anymore\"):msg@>",
+         "msg_id" : "Monit:service_not_checked_anymore",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"monit: pidfile .+ does not contain a valid pidnumber\"):msg@>",
+         "msg_id" : "Monit:doesnt_contain_valid_pidnumber",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* started\"):msg@>",
+         "msg_id" : "Monit:application_started",
+         "table" : "Message",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>: <@REGEXP(\".+Error: the executable does not exist .+\"):msg@>",
+         "msg_id" : "Monit:executable_doesnt_exist",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'.+' process PPID changed to .+\"):msg@>",
+         "msg_id" : "Monit:process_ppid_changed_to",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"'.+' PPID has not changed\"):msg@>",
+         "msg_id" : "Monit:ppid_has_not_changed",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"monit: pidfile .+ is not a regular file\"):msg@>",
+         "msg_id" : "Monit:pidfile_not_regular_file",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"monit: Error opening the pidfile .+\"):msg@>",
+         "msg_id" : "Monit:error_opening_pidfile",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Aborting event\"):msg@>",
+         "msg_id" : "Monit:aborting_event",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"No mail servers are available\"):msg@>",
+         "msg_id" : "Monit:no_mail_servers_available",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Cannot open a connection to the mailserver .+\"):msg@>",
+         "msg_id" : "Monit:cannot_open_connection_mailserver",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"monit\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Cannot fork a new process\"):msg@>",
+         "msg_id" : "Monit:cannot_fork_new_process",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www.tildeslash.com/monit/",
+   "version" : "200907020001",
+   "name" : "Monit",
+   "description" : "Monit Service"
+}

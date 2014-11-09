@@ -1,0 +1,233 @@
+{
+   "icon" : "operating_systems/os_mac",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"AppleACPICPU: ProcessorApicId=\\d+ LocalApicId=\\d+ Enabled\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:appleacpicpu_enabled",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\".+auditing.* present\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:auditing_present",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"USB caused wake event.+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:usb_caused_wake_event",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"FireWire .+ now active.+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:firewire_now_active",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"BSD root: .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:bsd_root",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"Got boot device = .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:got_boot_device",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"IOAPIC: Version .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:ioapic_version",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"AppleIntelCPUPowerManagement: ready\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:cpu_power_management_ready",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"CSRHIDTransitionDriver:.+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:csrhid_transition_driver_msg",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"HFS: Removed \\d+ orphaned unlinked files\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:hfs_removed_orphaned_unlinked",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"Matching service count = \\d+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:matching_service_count",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\".+: family specific matching fails\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:family_specific_matching_fails",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"ath_descdma_setup: .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:ath_descdma_setup",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"\\d+ bit mode enabled\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:nb_bit_mode_enabled",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"yukonosx: Ethernet address .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:yukonosx_ethernet_address",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"AirPort_\\S+: Ethernet address .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:airport_ethernet_address",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"hibernate_page_list_\\w+ .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:hibernate_page_list_msg",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"sleep\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:sleep",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"System SafeSleep\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:system_safesleep",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"System Wake\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:system_wake",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"hibernate image .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:hibernate_image_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"standard timeslicing quantum is \\d+ us\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:standard_timeslicing_quantum_is",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"writing \\d+ pages\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:writing_pages",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"pages \\d+, wire \\d+, act \\d+, inact \\d+, .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:pages_wire_act_inact",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"Enabling XMM register .+ opcodes\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:enabling_xmm_register_opcodes",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"\\d+ prelinked modules\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:prelinked_modules",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"image1Size \\d+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:image1_size",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"image \\d+, uncompressed \\d+ \\(\\d+\\), compressed \\d+ \\(\\d+%\\), sum1 \\S+, sum2 \\S+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:image_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"Started CPU \\d+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:started_cpu",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"IPv6 packet filtering initialized.*\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:ipv6_packet_filtering_initialized",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"kernel\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"IOSurface: buffer allocation size is zero\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:iosurface_buffer_allocation_zero",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"kernel\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Apple\\S+Ethernet: .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Kernel:apple_ethernet_msgs",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.apple.com/macosx/",
+   "version" : "201111010001",
+   "name" : "Mac_OS_X_Kernel",
+   "description" : "Mac OS X Kernel"
+}

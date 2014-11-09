@@ -1,0 +1,51 @@
+{
+   "icon" : "operating_systems/os_windows",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Citrix Presentation Server has successfully contacted the license server.+\"):msg@>",
+         "msg_id" : "Windows_Applications_Citrix_Presentation_Server:contacted_license_server_successfully",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Warning\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Citrix Presentation Server has entered the grace period.+\"):msg@>",
+         "msg_id" : "Windows_Applications_Citrix_Presentation_Server:entered_grace_period",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+Citrix License Error.+\"):msg@>",
+         "msg_id" : "Windows_Applications_Citrix_Presentation_Server:license_error",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"The server running Citrix Presentation Server failed to connect to the data store.+\"):msg@>",
+         "msg_id" : "Windows_Applications_Citrix_Presentation_Server:failed_to_connect_to_data_store",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Warning\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Error 0 received while obtaining a license for a Citrix Presentation Server client connection. A grace license has been granted.+\"):msg@>",
+         "msg_id" : "Windows_Applications_Citrix_Presentation_Server:error_0_client_connection",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+ Citrix Presentation Server cannot contact the license server.+\"):msg@>",
+         "msg_id" : "Windows_Applications_Citrix_Presentation_Server:cannot_contact_license_server",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.intersectalliance.com/projects/SnareWindows/index.html",
+   "version" : "201005190018",
+   "name" : "Windows_Applications_Citrix_Presentation_Server",
+   "description" : "Windows Applications Citrix Presentation Server"
+}

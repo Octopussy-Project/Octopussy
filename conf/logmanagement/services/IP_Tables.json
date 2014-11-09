@@ -1,0 +1,142 @@
+{
+   "icon" : "software/logo_netfilter",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN=<@WORD:src_interface@> OUT= SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> <@WORD:fragment_flag@> PROTO=<@REGEXP(\"TCP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> WINDOW=<@NUMBER:NULL@> RES=<@HEXA_NUMBER:NULL@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_tcp_fragmented_input",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN= OUT=<@WORD:dst_interface@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> <@WORD:fragment_flag@> PROTO=<@REGEXP(\"TCP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> WINDOW=<@NUMBER:NULL@> RES=<@HEXA_NUMBER:NULL@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_tcp_fragmented_output",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN=<@WORD:src_interface@> OUT= SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> PROTO=<@REGEXP(\"TCP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> WINDOW=<@NUMBER:NULL@> RES=<@HEXA_NUMBER:NULL@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_tcp_input",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN= OUT=<@WORD:dst_interface@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> PROTO=<@REGEXP(\"TCP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> WINDOW=<@NUMBER:NULL@> RES=<@HEXA_NUMBER:NULL@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_tcp_output",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN=<@WORD:src_interface@> OUT= SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> <@WORD:fragment_flag@> PROTO=<@REGEXP(\"UDP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_udp_fragmented_input",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN= OUT=<@WORD:dst_interface@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> <@WORD:fragment_flag@> PROTO=<@REGEXP(\"UDP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_udp_fragmented_output",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN=<@WORD:src_interface@> OUT= SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> PROTO=<@REGEXP(\"UDP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_udp_input",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN= OUT=<@WORD:dst_interface@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> PROTO=<@REGEXP(\"UDP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_udp_output",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN=<@WORD:src_interface@> OUT= MAC=<@WORD:mac_addr@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> <@WORD:fragment_flag@> PROTO=<@REGEXP(\"TCP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> WINDOW=<@NUMBER:NULL@> RES=<@HEXA_NUMBER:NULL@> <@STRING:null@>",
+         "msg_id" : "IP_Tables:traffic_tcp_mac_input",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN= OUT=<@WORD:dst_interface@> MAC=<@WORD:mac_addr@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> <@WORD:fragment_flag@> PROTO=<@WORD:ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> WINDOW=<@NUMBER:NULL@> RES=<@HEXA_NUMBER:NULL@> <@STRING:null@>",
+         "msg_id" : "IP_Tables:traffic_tcp_mac_output",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN=<@WORD:src_interface@> OUT= MAC=<@WORD:mac_addr@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> PROTO=<@REGEXP(\"UDP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_udp_mac_input",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN= OUT=<@WORD:dst_interface@> MAC=<@WORD:mac_addr@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> PROTO=<@REGEXP(\"UDP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_udp_mac_output",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN=<@WORD:src_interface@> OUT= MAC=<@WORD:mac_addr@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> <@WORD:fragment_flag@> PROTO=<@REGEXP(\"UDP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_udp_mac_fragmented_input",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN= OUT=<@WORD:dst_interface@> MAC=<@WORD:mac_addr@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> <@WORD:fragment_flag@> PROTO=<@REGEXP(\"UDP\"):ip_protocol@> SPT=<@NUMBER:src_port@> DPT=<@NUMBER:dst_port@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_udp_mac_fragmented_output",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN=<@WORD:src_interface@> OUT= SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> PROTO=<@REGEXP(\"ICMP TYPE=\\d+\"):ip_protocol@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_icmp_input",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: RULE <@NUMBER:policy_id@> -- <@WORD:status@> IN= OUT=<@WORD:dst_interface@> SRC=<@IP_ADDR:src_addr@> DST=<@IP_ADDR:dst_addr@> LEN=<@NUMBER:length@> TOS=<@HEXA_NUMBER:NULL@> PREC=<@HEXA_NUMBER:NULL@> TTL=<@NUMBER:ttl@> ID=<@NUMBER:id@> PROTO=<@REGEXP(\"ICMP TYPE=\\d+\"):ip_protocol@> <@STRING:NULL@>",
+         "msg_id" : "IP_Tables:traffic_icmp_output",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ip_tables: .+ Netfilter Core Team\"):msg@>",
+         "msg_id" : "IP_Tables:netfilter_core_team",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Netfilter messages via .+\"):msg@>",
+         "msg_id" : "IP_Tables:netfilter_messages_via",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ ip_tables: .+ Netfilter Core Team\"):msg@>",
+         "msg_id" : "IP_Tables:copyright_information",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.netfilter.org/",
+   "version" : "201004300001",
+   "name" : "IP_Tables",
+   "description" : "IP Tables Service"
+}

@@ -1,0 +1,170 @@
+{
+   "icon" : "companies/logo_juniper",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][LSTN] <@STRING:object@> <@REGEXP(\"Up\"):status@> (VIP:<@WORD:vip@>)",
+         "msg_id" : "Juniper_DX_System:lstn_up",
+         "table" : "Juniper_DX_Monitor",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@>  Juniper Networks: [<@STRING:NULL@>][ALERT][LSTN] <@STRING:object@> <@REGEXP(\"Down\"):status@> (VIP:<@WORD:vip@>)",
+         "msg_id" : "Juniper_DX_System:lstn_down",
+         "table" : "Juniper_DX_Monitor",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][TSSN] <@REGEXP(\"Cannot contact\"):status@> <@REGEXP(\"Target Host\"):object@> <@REGEXP(\"\\S+:\\d+\"):vip@>.",
+         "msg_id" : "Juniper_DX_System:cannot_contact_target_host",
+         "table" : "Juniper_DX_Monitor",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][TSSN] <@REGEXP(\"Target Host\"):object@> <@REGEXP(\"\\S+:\\d+\"):vip@> <@REGEXP(\"has been contacted\"):status@>.",
+         "msg_id" : "Juniper_DX_System:target_host_been_contacted",
+         "table" : "Juniper_DX_Monitor",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][LOG_] SLB HealthCheck: <@REGEXP(\"Target \\S+\"):object@> (<@REGEXP(\"Group \\S+\"):vip@>) is <@REGEXP(\"UP\"):status@>",
+         "msg_id" : "Juniper_DX_System:slb_healthcheck_up",
+         "table" : "Juniper_DX_Monitor",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][LOG_] SLB HealthCheck: <@REGEXP(\"Target \\S+\"):object@> (<@REGEXP(\"Group \\S+\"):vip@>) is <@REGEXP(\"DOWN\"):status@>",
+         "msg_id" : "Juniper_DX_System:slb_healthcheck_down",
+         "table" : "Juniper_DX_Monitor",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][HEALTH] <@REGEXP(\"Target Server \\S+ passed layer 4 health check.\"):msg@>",
+         "msg_id" : "Juniper_DX_System:passed_layer4_healthcheck",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][LSTN] <@REGEXP(\"forwarder .+ - No target available.\"):msg@>  ",
+         "msg_id" : "Juniper_DX_System:forwarder_no_target_available",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][HEALTH] <@REGEXP(\"Target Server \\S+ failed layer 4 health check.\"):msg@>",
+         "msg_id" : "Juniper_DX_System:failed_layer4_healthcheck",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][<@WORD:NULL@>] <@REGEXP(\"User \\S+ failed to \\S+ valid username and password combination\"):msg@>",
+         "msg_id" : "Juniper_DX_System:failed_username_password",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][RLSH] <@REGEXP(\"Cannot contact TFTP server .+\"):msg@>",
+         "msg_id" : "Juniper_DX_System:cannot_contact_tftp_server",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][MAIN] <@REGEXP(\"Rebooted from CLI.\"):msg@>",
+         "msg_id" : "Juniper_DX_System:rebooted_from_cli",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][LSTN] <@REGEXP(\"cluster .+ - No target available.\"):msg@>",
+         "msg_id" : "Juniper_DX_System:cluster_no_target_available",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][LOG_] <@REGEXP(\"\\S+: Link is Down\"):msg@>",
+         "msg_id" : "Juniper_DX_System:link_is_down",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][LOG_] <@REGEXP(\"\\S+: Link is up.+\"):msg@>",
+         "msg_id" : "Juniper_DX_System:link_is_up",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][WEBUI] <@REGEXP(\"WebUI: unable to connect with target stats.+\"):msg@>",
+         "msg_id" : "Juniper_DX_System:unable_connect_target_stats",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][HEALTH] <@REGEXP(\"Health : Target Server \\S+ TCP connect health check succeeded.\"):msg@>",
+         "msg_id" : "Juniper_DX_System:tcp_connect_healthcheck_succeeded",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][LOG_] <@REGEXP(\"arp: \\S+ is using my IP address \\S+!\"):msg@>",
+         "msg_id" : "Juniper_DX_System:arp_using_address",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][HEALTH] <@REGEXP(\"Health : Target Server \\S+ connect failed.+\"):msg@>",
+         "msg_id" : "Juniper_DX_System:target_server_connect_failed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][HTTP] <@REGEXP(\"DX received insufficient bytes from target .+\"):msg@>",
+         "msg_id" : "Juniper_DX_System:received_insufficient_bytes",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][HTTP] <@REGEXP(\"cluster \\S+: Bad HTTP request:.+\"):msg@>",
+         "msg_id" : "Juniper_DX_System:bad_http_request",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][STKY] <@REGEXP(\"Client IP sticky on cluster .+ Assign new target .+\"):msg@>",
+         "msg_id" : "Juniper_DX_System:client_ip_sticky_new",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Juniper Networks: [<@STRING:NULL@>][ALERT][HTTP] <@REGEXP(\"redirector \\S+ Up .+\"):msg@>",
+         "msg_id" : "Juniper_DX_System:redirector_up",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.juniper.net/products_and_services/application_acceleration/data_center_acceleration/dx_application_acceleration/",
+   "version" : "200902050009",
+   "name" : "Juniper_DX_System",
+   "description" : "Juniper DX System Service"
+}

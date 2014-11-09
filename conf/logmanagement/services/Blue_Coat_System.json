@@ -1,0 +1,443 @@
+{
+   "icon" : "companies/logo_bluecoat",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, enabled syslog.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:enabled_syslog",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, started packet capture.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:started_packet_capture",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, stopped packet capture.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:stopped_packet_capture",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, \\w+ed ICAP service .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:icap_service_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Administrator login from \\S+, user .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:administrator_login_from",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Read/write mode entered from \\S+ for user .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:entered_read_write_mode",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, changed config:Access_log:.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:config_accesslog_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, installed new VPM \\S+ File.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:installed_vpm_file",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Service .+ send-client-IP is disabled.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:service_sendclientip_disabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, unable to start user requested \\S+ upload.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:unable_start_requested_upload",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Cannot establish connection to service .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:cannot_establish_connection_to_service",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Access Log.+: Unable to connect to remote server for log uploading.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:unable_remote_log_uploading",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Access Log Custom.+: Couldn't connect socket to server.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:log_couldnt_connect_socket",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Snapshot \\S+ has fetched .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:snapshot_has_fetched",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Access Log Custom.+: Connecting to primary server .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:log_connecting_primary_server",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+NTP: Periodic query of server.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:ntp_periodic_query",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Access log.+: Log uploading failed.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:log_uploading_failed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, added service-group entry .+ to service-group.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:added_entry_to_servicegroup",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, set service .+ to .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:set_service_config_to",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Health check: Entry .+ health has changed. Functioning properly..+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:health_check_functioning_properly",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Health check: Entry .+ health has changed. Health check failed..+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:health_check_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ISTag for .+ changed from .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:istag_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Initiating download of .+ database.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:initiating_download_database",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Download of .+ database complete.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:download_database_complete",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Management Console .+, performed health check for external service .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:performed_healthcheck_external_service",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Download of .+ database failed.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:download_database_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Access Log.+: Closing TCP/IP connection.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:closing_tcpip_connection",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Category list retrieved and mapped: .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:category_list_retrieved_mapped",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Access Log .+: Socket error occured while sending data.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:socket_error_while_sending",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Access Log.+: error in sending log data.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:error_sending_log_data",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Console user password authentication from .+ failed for user .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:password_authentication_failed",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console .+, initiated .+ database download.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:initiated_database_download",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+DNS lookup .+ rejected by server.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:dns_lookup_rejected",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Health check error: .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:health_check_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+Health check: Entry .+ health has changed.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:health_check_health_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console .+, changed .+ download .+ CONFIGURATION_EVENT .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:changed_download_configuration",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Offbox Communication Error .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:offbox_communication_error",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Receive failed. Using service .+ on local port .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:receive_failed_using_service",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Dynamic categorization error: .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:dynamic_categorization_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Config admin services: .+ listener .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:config_admin_services_listener",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Config admin \\w+ed .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:config_admin_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Config admin set .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:config_admin_set",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Config admin access log.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:config_admin_access_log",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ DNS service restored after \\d+ timeouts.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:dns_service_restored",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ DNS lookup to .+ timed out.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:dns_timed_out",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console admin .+, requested NTP update .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:requested_ntp_update",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console admin .+, registerd external service .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:registerd_external_service",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ HTTP Listening on port .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:http_listening_on_port",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ CFSSL:SSL_\\w+ error:.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:ssl_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ NULL character found in the request .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:null_found_in_request",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ The websense server returned an invalid response.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:websense_returned_invalid_response",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ NTP: Receive timeout, retrying NTP Server: .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:ntp_receive_timeout",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Access Log .+: Upload request completed.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:upload_request_completed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ NTP: Tried all configured servers.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:ntp_tried_all_servers",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console admin .+, changed .+ license key .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:changed_license_key",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console admin .+, changed config:.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:changed_config",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Network interface \\w+: Interface.+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:network_interface_changed_state",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console admin .+, changed offbox .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:changed_offbox_setting",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console admin .+, removed health check .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:removed_health_check",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Management Console admin .+, set .+ for .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:modification_set_for",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ CONFIGURATION_EVENT .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:configuration_event",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ProxySG\"):daemon@>: <@REGEXP(\".+ Stats Worker: .+ SEVERE_ERROR .+\"):msg@>",
+         "msg_id" : "Blue_Coat_System:stats_worker_severe_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.bluecoat.com",
+   "version" : "201002180001",
+   "name" : "Blue_Coat_System",
+   "description" : "Blue Coat System Service"
+}

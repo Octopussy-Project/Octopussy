@@ -1,0 +1,1486 @@
+{
+   "icon" : "companies/logo_juniper",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SYN flood! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:syn_flood",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"IP spoofing! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ip_spoofing",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SNMP: NetScreen device has responded successfully to the SNMP request from .+\"):msg@>",
+         "msg_id" : "Netscreen_System:responded_successfully_snmp_request",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin user \\S+ has been accepted via the Radius server at .+\"):msg@>",
+         "msg_id" : "Netscreen_System:admin_accepted_via_radius",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Address .+ in zone \\S+ has been \\S+ed by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:address_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin user \\S+ logged in for Web.+ management .+ from .+\"):msg@>",
+         "msg_id" : "Netscreen_System:admin_logged_in_web",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin user \\S+ logged out for Web.+ management .+ from .+\"):msg@>",
+         "msg_id" : "Netscreen_System:admin_logged_out_web",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Management session via .+ for .+ has timed out .+\"):msg@>",
+         "msg_id" : "Netscreen_System:session_timed_out",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"System configuration saved .+\"):msg@>",
+         "msg_id" : "Netscreen_System:system_config_saved",
+         "table" : "Message",
+         "taxonomy" : "Config.Backup",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Policy .+ was \\S+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:policy_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Address group .+ has \\S+ member .+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:address_group_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: Admin \\S+ at host \\S+ attempted to be authenticated with no authentication methods enabled.+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_no_authentication_methods",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: Password authentication successful for \\S+ user \\S+ at host .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_authent_successful",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin user \\S+ has logged on via .+\"):msg@>",
+         "msg_id" : "Netscreen_System:user_logged_on",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin user \\S+ has logged out via .+\"):msg@>",
+         "msg_id" : "Netscreen_System:user_logged_out",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Teardrop attack! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:teardrop_attack",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"FIN but no ACK bit! From \\S+ to .+. Occurred \\d+ times.+\"):msg@>",
+         "msg_id" : "Netscreen_System:fin_but_no_ack",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"ICMP flood! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:icmp_flood",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Port scan! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:port_scan",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Address sweep! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:address_sweep",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"System clock was changed manually.+\"):msg@>",
+         "msg_id" : "Netscreen_System:system_clock_changed_manually",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Service .+ has been \\S+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:service_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Service group .+ has \\w+ed member .+\"):msg@>",
+         "msg_id" : "Netscreen_System:service_group_member_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Policy \\d+ has been moved \\S+ \\d+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:policy_been_moved",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin .+ has been forced to log out of the .+ session.+\"):msg@>",
+         "msg_id" : "Netscreen_System:forced_log_out",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"System clock configurations have been changed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:system_clock_configurations_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Address group .+ ha\\w+ been \\w+ed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:address_group_been_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ \\w+abled on interface .+\"):msg@>",
+         "msg_id" : "Netscreen_System:en_disabled_on_interface",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface .+ operational mode has been changed to .+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_operational_mode_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Multiple login failures occurred for user \\S+ from IP address .+\"):msg@>",
+         "msg_id" : "Netscreen_System:multiple_login_failures",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: Password authentication failed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_authent_failed",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: PKA authentication successful for .+ at host .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_pka_authentication_successful",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The local device .+ in the Virtual Security Device group .+ changed state from .+\"):msg@>",
+         "msg_id" : "Netscreen_System:local_device_changed_state",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Emergency"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"A route in virtual router .+ that has IP address .+ through interface .+ and gateway .+ with metric \\d+ has been created.+\"):msg@>",
+         "msg_id" : "Netscreen_System:route_has_been_created",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Peer device .+ changed state from .+\"):msg@>",
+         "msg_id" : "Netscreen_System:peer_device_changed_state",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Emergency"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Save configuration to IP address .+ under filename .+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:save_configuration_under_filename",
+         "table" : "Message",
+         "taxonomy" : "Config.Backup",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM has been \\w+abled.+\"):msg@>  ",
+         "msg_id" : "Netscreen_System:nsm_has_been_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The physical state of interface \\S+ has changed to \\S+.+\"):msg@>",
+         "msg_id" : "Netscreen_System:physical_state_interface_changed",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin user .+ has been rejected via the Radius server at .+\"):msg@>",
+         "msg_id" : "Netscreen_System:admin_rejected_via_radius",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface .+ has been changed from \\S+ to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_has_been_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"No NTP server could be contacted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:ntp_couldnot_be_contacted",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Environment variable .+ changed to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:environment_variable_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Trying \\S+ server.+\"):msg@>",
+         "msg_id" : "Netscreen_System:trying_server",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Peer device \\d+ disappeared.+\"):msg@>",
+         "msg_id" : "Netscreen_System:peer_device_disappeared",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin user .+ login attempt for Web.+ management .+ from .+ failed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:login_attempt_web",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"UDP flood! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:udp_flood",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Address .+ for ip address \\S+ in zone .+ has been deleted by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:address_has_been_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SYN and FIN bits! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:syn_fin_bits",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"No TCP flag! From \\S+ to \\S+, proto TCP.+\"):msg@>",
+         "msg_id" : "Netscreen_System:no_tcp_flag",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Syslog has been \\w+abled.+\"):msg@>",
+         "msg_id" : "Netscreen_System:syslog_been_dis_enabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ was added to policy .+\"):msg@>",
+         "msg_id" : "Netscreen_System:added_to_policy",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Lock configuration ended by task .+\"):msg@>",
+         "msg_id" : "Netscreen_System:lock_config_ended",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Lock configuration started by task .+\"):msg@>",
+         "msg_id" : "Netscreen_System:lock_config_started",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Saved CA configuration.+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_saved_ca_configuration",
+         "table" : "Message",
+         "taxonomy" : "Config.Backup",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: OTHER PKI OBJECT has been deleted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_object_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Saved \\w+ PUBLIC KEY .+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_saved_public_key",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ was deleted from policy .+\"):msg@>",
+         "msg_id" : "Netscreen_System:was_deleted_from_policy",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Auth server .+ has been deleted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:auth_server_been_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Ping of Death! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ping_of_death",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The \\S+ power supply is not functioning properly.+\"):msg@>",
+         "msg_id" : "Netscreen_System:power_supply_functioning_unproperly",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface \\S+ was unbound from zone .+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_unbound_from_zone",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"802.1Q VLAN tag \\d+ has been \\S+ed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:8021q_vlan_tag_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"An optional ScreenOS feature has been activated via a software key.+\"):msg@>",
+         "msg_id" : "Netscreen_System:optional_feature_activated",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface \\S+ 802.1Q tag has been \\S+ed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_8021q_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: Failed to retreive PKA key bound to SSH user .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_failed_retreive_pka",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface \\S+ was bound to zone .+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_bound_to_zone",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface \\S+ in .+ was \\S+ed by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Peer device \\d+ was discovered.+\"):msg@>",
+         "msg_id" : "Netscreen_System:peer_device_discovered",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"primary NTP server  could not be contacted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:ntp_couldnt_be_contacted",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Network Time Protocol settings changed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:ntp_settings_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"ICMP fragment! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:icmp_fragment",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SIP parser error Message: Cannot find CRLF.+\"):msg@>",
+         "msg_id" : "Netscreen_System:sip_parser_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Large ICMP packet! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:large_icmp_packet",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Source Route IP option! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:source_route_ip_option",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Administrator \\S+ issued command .+\"):msg@> ",
+         "msg_id" : "Netscreen_System:administrator_issued_command",
+         "table" : "Message",
+         "taxonomy" : "Config",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The console page size changed from \\d+ to \\d+.*\"):msg@>",
+         "msg_id" : "Netscreen_System:console_pagesize_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Log setting was modified to \\S+able \\S+ level by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:log_setting_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface \\S+ IP address can be used to manage .+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_can_manage",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface \\S+ IP address cannot be used to manage .+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_cannot_manage",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Rejected an IKE packet .+\"):msg@>",
+         "msg_id" : "Netscreen_System:rejected_ike_packet",
+         "table" : "Message",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SNMP request from an unknown SNMP community \\S+ at \\S+ has been received.+\"):msg@>",
+         "msg_id" : "Netscreen_System:snmp_request_unknown_community",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: Device failed to send initialization string to client at .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_failed_initialization_string",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ protection has been disabled on zone .+\"):msg@>",
+         "msg_id" : "Netscreen_System:protection_disabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The system configuration was not saved by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:system_config_not_saved",
+         "table" : "Message",
+         "taxonomy" : "Config",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface .+ was added/updated to the monitoring list of NSRP.+\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_monitoring_list",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The system configuration was loaded from IP address \\S+ under filename \\S+ by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:system_config_loaded",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: \\w+ PUBLIC KEY .+ has been deleted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_public_key_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"A route has been created in virtual router \\S+with an IP address \\S+ and next-hop as virtual router .+\"):msg@>",
+         "msg_id" : "Netscreen_System:route_created_vr",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Completed NSRP cold start sync after \\d+ attempts.+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsrp_completed_sync",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Route\\(s\\) in virtual router .+ with an IP address \\S+ and gateway \\S+ has been deleted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:routes_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCP: Admin .+ executed invalid \\S+ command:.+\"):msg@>",
+         "msg_id" : "Netscreen_System:executed_invalid",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Generating alarms without dropping pkts has been \\S+abled on zone .+\"):msg@>",
+         "msg_id" : "Netscreen_System:alarms_dropping_pkts",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: Admin user .+ at host \\S+ requested unsupported PKA algorithm .+\"):msg@>",
+         "msg_id" : "Netscreen_System:unsupported_pka_algorithm",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"All power supplies are now functioning properly.+\"):msg@>",
+         "msg_id" : "Netscreen_System:power_functioning_properly",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Bad IP option! From \\S+ to \\S+, .+\"):msg@>",
+         "msg_id" : "Netscreen_System:bad_ip_option",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Fragmented traffic! .+\"):msg@>",
+         "msg_id" : "Netscreen_System:fragmented_traffic",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Request to retrieve license key failed to reach server by manual retrieval.+\"):msg@> ",
+         "msg_id" : "Netscreen_System:failed_retrieve_license_key",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The virtual router .+ has been made default virtual router for virtual system .+\"):msg@>",
+         "msg_id" : "Netscreen_System:vr_made_default",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ servers failed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:servers_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Zone .+ was bound to virtual router .+\"):msg@>",
+         "msg_id" : "Netscreen_System:zone_bound_to_vr",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"All traffic logs were cleared by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:all_traffic_logs_cleared",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"New zone .+ was created.+\"):msg@>",
+         "msg_id" : "Netscreen_System:new_zone_created",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"arp \\w+, detect IP conflict .+\"):msg@>",
+         "msg_id" : "Netscreen_System:detect_ip_conflict",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"HA: Synchronization file.+ sent to backup device in cluster.+\"):msg@>",
+         "msg_id" : "Netscreen_System:synchronization_file_cluster_sent",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Source-based routing \\S+ed in .+\"):msg@>",
+         "msg_id" : "Netscreen_System:source_based_routing_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Source route\\S+ in virtual router .+ with route addresses of .+ \\S+ed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:source_route_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Secondary IP address .+ has been added to interface .+\"):msg@>",
+         "msg_id" : "Netscreen_System:secondary_ip_added",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"DIP IP pool .+ has been \\S+ed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:dip_ip_pool_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM Device ID was \\w+set.+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_device_id_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM \\S+ server with name .+ was \\w*set.+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_server_set_unset",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: Client .+ attempted to connect with invalid version string.+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_invalid_version_string",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: CA CERT has been deleted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_ca_cert_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Saved CA CERT with .+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_saved_ca_cert",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Saved REFERENCES OF CA CERT with.+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_saved_ca_references",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Saved CA config.+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_saved_ca_config",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"IKE.*: .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ike_any_message",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Syslog server .+ was \\w+ed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:syslog_server_added_removed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Logging of dropped traffic to self.* has been \\w+bled.+\"):msg@>",
+         "msg_id" : "Netscreen_System:logging_dropped_traffic_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Cannot load certificate file.+\"):msg@>",
+         "msg_id" : "Netscreen_System:cannot_load_certificate_file",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"web SSL certificate changed to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:web_ssl_certificate_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSRP: HA .+ channel change to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsrp_ha_channel_change",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Network Time Protocol adjustment .+ from NTP server .+ exceeds the allowed adjustment .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ntp_exceeds_allowed_adjustment",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"No acceptable time could be obtained from any NTP server.+\"):msg@>",
+         "msg_id" : "Netscreen_System:no_acceptable_time_ntp",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Gateway .+ has been \\w+ed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:gateway_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"IPSec tunnel on interface .+ received a packet with a bad SPI.+\"):msg@>",
+         "msg_id" : "Netscreen_System:ipsec_tunnel_bad_spi",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"VPN .+ has been \\w+ed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:vpn_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Route.+ \\w+ted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:route_created_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"ADM: Local admin authentication failed for login name .+\"):msg@>",
+         "msg_id" : "Netscreen_System:local_admin_authentication_failed",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Session utilization has reached .+ of the system capacity!.+\"):msg@>",
+         "msg_id" : "Netscreen_System:session_utilization_reached_capacity",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Traffic log was reviewed by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:traffic_log_reviewed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Auth server .+ has been \\w+ed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:auth_server_been_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Auth server .+ .*set to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:auth_server_set_unset",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Route-lookup preference changed to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:route_lookup_preference_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Subnetwork conflict checking for interfaces .+ has been \\w+abled.+\"):msg@>",
+         "msg_id" : "Netscreen_System:subnetwork_conflict_checking_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Auth server .+ name is unset.+\"):msg@>",
+         "msg_id" : "Netscreen_System:auth_server_name_unset",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Auth server .+ is \\w+ed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:auth_server_is_modified_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Replay packet detected on IPSec tunnel.+\"):msg@>",
+         "msg_id" : "Netscreen_System:ipsec_replay_packet_detected",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Source route\\(s\\) .+ created.+\"):msg@>",
+         "msg_id" : "Netscreen_System:source_routes_created",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Number of .+ retries for auth server .+ is set to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:set_authserver_number_retries",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Forced timeout for Auth server .+ is unset to its default value.+\"):msg@>",
+         "msg_id" : "Netscreen_System:timeoutauthserver_unset_default",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ protection has been enabled on .+\"):msg@>",
+         "msg_id" : "Netscreen_System:protection_enabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ detection has been enabled on .+\"):msg@>",
+         "msg_id" : "Netscreen_System:detection_enabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ flood threshold has been set to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:flood_threshold_set",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"DHCP server .+ is changed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:dhcp_server_conf_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Management restriction .+ has been added.+\"):msg@>",
+         "msg_id" : "Netscreen_System:management_restriction_added",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Reporting .+ to NSM has been enabled.+\"):msg@>",
+         "msg_id" : "Netscreen_System:reporting_to_nsm_enabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"All logged events or alarms were cleared by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:all_logged_events_cleared",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Daylight Saving Time ended.+\"):msg@>",
+         "msg_id" : "Netscreen_System:daylight_saving_time_ended",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Administrator .+ changed the Network Time Protocol.+\"):msg@>",
+         "msg_id" : "Netscreen_System:administrator_changed_ntp_config",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ filtering has been enabled on .+\"):msg@>",
+         "msg_id" : "Netscreen_System:filtering_enabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Intra-zone block for .+ was set .+\"):msg@>",
+         "msg_id" : "Netscreen_System:intrazone_block_set",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"VPN .+ has been bound to tunnel .+\"):msg@>",
+         "msg_id" : "Netscreen_System:vpn_bound_to_tunnel",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"MTU for interface.*has been changed to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:mtu_interface_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Zone .+ was deleted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:zone_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM: Connection to NSM server at .+ is down.+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_server_connection_down",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM: Cannot connect to NSM server at .+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_cannot_connect_server",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM: Connected to NSM server at .+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_connected_to_server",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM: Sent \\S+ message.+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_sent_message",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The NSRP configuration is out of synchronization between the local device and the peer device.+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsrp_config_outof_synchronization",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Extraneous exit is issued by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:extraneous_exit_issued",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Security Board \\d+ CPU \\d+ Packet Drop Counter .+\"):msg@>",
+         "msg_id" : "Netscreen_System:security_board_packet_drop",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Emergency"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"VPN .+ is up.+\"):msg@>",
+         "msg_id" : "Netscreen_System:vpn_is_up",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Transport protocol for syslog server .+ was changed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:syslog_transport_protocol_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Event log was reviewed by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:event_log_reviewed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Syslog .+ has been changed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:syslog_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Traffic logging .+ has been \\w+abled.+\"):msg@>",
+         "msg_id" : "Netscreen_System:traffic_logging_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Cannot build certificate .+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_cannot_build_certificate",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"All syslog servers were removed.+\"):msg@>",
+         "msg_id" : "Netscreen_System:all_syslog_servers_removed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Cannot save .+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_cannot_save",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The system clock was updated from .+ NTP server type .+ with .+ adjustment of .+ ms. Authentication was .+. Update mode was .+\"):msg@>",
+         "msg_id" : "Netscreen_System:clock_updated_from_ntp",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: PKA authentication failed for .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_pka_authentication_failed",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@> <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Multiple login failures occurred for .+\"):msg@>",
+         "msg_id" : "Netscreen_System:multiples_login_failures_occured",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"System log was reviewed by .+\"):msg@>",
+         "msg_id" : "Netscreen_System:system_log_was_reviewed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM Device ID was set to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_deviceid_was_set",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM .+ \\w*set. .+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_configuration_set_unset",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Service group .+ has been changed to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:service_group_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"NSM keys were deleted.+\"):msg@>",
+         "msg_id" : "Netscreen_System:nsm_keys_were_deleted",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Daylight Saving Time has started.+\"):msg@>",
+         "msg_id" : "Netscreen_System:daylight_saving_time_started",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Vsys profile .+ has been set to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:vsys_profile_been_set",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Trial keys are available to download to enable advanced features.+\"):msg@>",
+         "msg_id" : "Netscreen_System:trial_keys_available",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface .+ was removed from the monitoring list for NSRP.*\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_removed_from_monitoring",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: A configurable item .+ field has changed from.+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_configurable_item_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Reporting of .+ has been .+\"):msg@>",
+         "msg_id" : "Netscreen_System:reporting_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"An administrator set the SIP .+\"):msg@>",
+         "msg_id" : "Netscreen_System:administrator_set_sip_parameter",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PIMSM Error in initializing .+\"):msg@>",
+         "msg_id" : "Netscreen_System:pimsm_error_initializing",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: Failed to negotiate .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_failed_to_negotiate",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Web filtering .+ has been changed.*\"):msg@>",
+         "msg_id" : "Netscreen_System:web_filtering_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"DHCP client .*has been .+\"):msg@>",
+         "msg_id" : "Netscreen_System:dhcp_client_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"CLI logging has been .+\"):msg@>",
+         "msg_id" : "Netscreen_System:cli_logging_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"IGMP .+ was changed to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:igmp_parameter_was_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Track IP .+ changed from .+\"):msg@>",
+         "msg_id" : "Netscreen_System:track_ip_parameter_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"L2TP default .+ changed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:l2tp_default_parameter_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The NetScreen device was unable to upgrade .+\"):msg@>",
+         "msg_id" : "Netscreen_System:netscreen_device_unable_upgrade",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"web SSL .+ has been changed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:web_ssl_parameter_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SNMP .+ has been changed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:snmp_parameter_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"ADSL line failed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:adsl_line_failed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"ADSL Line UP .+\"):msg@>",
+         "msg_id" : "Netscreen_System:adsl_line_up",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"License key .+ is due to expire .+\"):msg@>",
+         "msg_id" : "Netscreen_System:licence_key_expire",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"\\w+ watermark for early aging has been changed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:watermark_been_changed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Admin account \\w+ed for .+\"):msg@>",
+         "msg_id" : "Netscreen_System:admin_account_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Attack group \\w+ was \\w+ed .+\"):msg@>",
+         "msg_id" : "Netscreen_System:attack_group_modified",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SSH: SSH user .+ has been authenticated using .+\"):msg@>",
+         "msg_id" : "Netscreen_System:ssh_user_authenticated_using",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCP: Admin user .+ transferred file .+\"):msg@>",
+         "msg_id" : "Netscreen_System:scp_admin_transferred_file",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"VPN monitoring .+ has been \\w*set.*\"):msg@>",
+         "msg_id" : "Netscreen_System:vpn_monitoring_modification",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PPPoE session shut\\w* down.+\"):msg@>",
+         "msg_id" : "Netscreen_System:pppoe_session_shut_down",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PPPoA .+ failed to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:pppoa_failed_to",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"Interface .+ switching to .+ mode.\"):msg@>",
+         "msg_id" : "Netscreen_System:interface_switching_to_mode",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"The NetScreen device is attempting to contact the .+ NTP server .+\"):msg@>",
+         "msg_id" : "Netscreen_System:attempting_contact_ntp_server",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Unable to decrypt .+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_unable_to_decrypt",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\".+ blocked! From .+ to .+\"):msg@>",
+         "msg_id" : "Netscreen_System:content_blocked",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"PKI: Cannot generate .+\"):msg@>",
+         "msg_id" : "Netscreen_System:pki_cannot_generate",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/",
+   "version" : "200902160002",
+   "name" : "Netscreen_System",
+   "description" : "Netscreen System Service"
+}

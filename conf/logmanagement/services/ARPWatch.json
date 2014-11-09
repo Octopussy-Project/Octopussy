@@ -1,0 +1,92 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"new station\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> <@NET_INTERFACE:interface@>",
+         "msg_id" : "ARPWatch:new_station",
+         "table" : "ARPWatch",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"Running as uid=\\d+ gid=\\d+\"):msg@>",
+         "msg_id" : "ARPWatch:running_as",
+         "table" : "ARPWatch",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"listening on\"):msg@> <@NET_INTERFACE:interface@>",
+         "msg_id" : "ARPWatch:listening_on",
+         "table" : "ARPWatch",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"exiting\"):msg@>",
+         "msg_id" : "ARPWatch:exiting",
+         "table" : "ARPWatch",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"changed ethernet address\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> (<@MAC_ADDR:NULL@>) <@NET_INTERFACE:interface@>",
+         "msg_id" : "ARPWatch:changed_ethernet_address",
+         "table" : "ARPWatch",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"0-source\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@>",
+         "msg_id" : "ARPWatch:zero_source",
+         "table" : "ARPWatch",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"bogon\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@>",
+         "msg_id" : "ARPWatch:bogon",
+         "table" : "ARPWatch",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"changed MAC address\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> (<@MAC_ADDR:NULL@>)",
+         "msg_id" : "ARPWatch:changed_mac_address",
+         "table" : "ARPWatch",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"last message repeated .+ times\"):msg@>",
+         "msg_id" : "ARPWatch:last_message_repeated",
+         "table" : "ARPWatch",
+         "taxonomy" : "Other",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"reused old MAC address\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> (<@MAC_ADDR:NULL@>)",
+         "msg_id" : "ARPWatch:reused_old_mac_address",
+         "table" : "ARPWatch",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"flip flop\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> (<@MAC_ADDR:NULL@>)",
+         "msg_id" : "ARPWatch:flip_flop",
+         "table" : "ARPWatch",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"new activity\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@>",
+         "msg_id" : "ARPWatch:new_activity",
+         "table" : "ARPWatch",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201404110008",
+   "name" : "ARPWatch",
+   "description" : "ARPWatch Service"
+}

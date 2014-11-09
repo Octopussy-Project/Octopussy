@@ -1,0 +1,37 @@
+{
+   "icon" : "companies/logo_fortinet",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@WORD:NULL@> time=<@WORD:NULL@> devname=<@WORD:NULL@> device_id=<@WORD:NULL@> log_id=<@WORD:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> SN=<@WORD:NULL@> duration=<@WORD:NULL@> user=<@WORD:NULL@> group=<@WORD:NULL@> policyid=<@NUMBER:policy_id@> proto=<@WORD:NULL@> service=<@WORD:NULL@> status=<@STRING:status@> src=<@IP_ADDR:src_addr@> srcname=<@WORD:NULL@> dst=<@IP_ADDR:dst_addr@> dstname=<@WORD:NULL@> src_int=<@STRING:src_interface@> dst_int=<@STRING:dst_interface@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> sent_pkt=<@NUMBER:sent_pkt@> rcvd_pkt=<@NUMBER:rcvd_pkt@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@> vpn=<@WORD:NULL@> tran_ip=<@IP_ADDR:translated_ip@> tran_port=<@NUMBER:translated_port@> dir_disp=<@WORD:NULL@> tran_disp=<@WORD:NULL@>",
+         "msg_id" : "Fortigate_Traffic:devname_with_pkt",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@WORD:NULL@> time=<@WORD:NULL@> devname=<@WORD:NULL@> device_id=<@WORD:NULL@> log_id=<@WORD:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> SN=<@WORD:NULL@> duration=<@WORD:NULL@> user=<@WORD:NULL@> group=<@WORD:NULL@> policyid=<@NUMBER:policy_id@> proto=<@WORD:NULL@> service=<@WORD:NULL@> status=<@STRING:status@> src=<@IP_ADDR:src_addr@> srcname=<@WORD:NULL@> dst=<@IP_ADDR:dst_addr@> dstname=<@WORD:NULL@> src_int=<@STRING:src_interface@> dst_int=<@STRING:dst_interface@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@> vpn=<@WORD:NULL@> tran_ip=<@IP_ADDR:translated_ip@> tran_port=<@NUMBER:translated_port@>",
+         "msg_id" : "Fortigate_Traffic:devname_without_pkt",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@WORD:NULL@> time=<@WORD:NULL@> device_id=<@WORD:NULL@> log_id=<@WORD:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> SN=<@WORD:NULL@> duration=<@WORD:NULL@> policyid=<@NUMBER:policy_id@> proto=<@WORD:NULL@> service=<@WORD:NULL@> status=<@STRING:status@> src=<@IP_ADDR:src_addr@> srcname=<@WORD:NULL@> dst=<@IP_ADDR:dst_addr@> dstname=<@WORD:NULL@> src_int=<@STRING:src_interface@> dst_int=<@STRING:dst_interface@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> sent_pkt=<@NUMBER:sent_pkt@> rcvd_pkt=<@NUMBER:rcvd_pkt@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@> vpn=<@WORD:NULL@> tran_ip=<@IP_ADDR:translated_ip@> tran_port=<@NUMBER:translated_port@> dir_disp=<@WORD:NULL@> tran_disp=<@WORD:NULL@>",
+         "msg_id" : "Fortigate_Traffic:no_devname_with_pkt",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@WORD:NULL@> time=<@WORD:NULL@> device_id=<@WORD:NULL@> log_id=<@WORD:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> SN=<@WORD:NULL@> duration=<@WORD:NULL@> policyid=<@NUMBER:policy_id@> proto=<@WORD:NULL@> service=<@WORD:NULL@> status=<@STRING:status@> src=<@IP_ADDR:src_addr@> srcname=<@WORD:NULL@> dst=<@IP_ADDR:dst_addr@> dstname=<@WORD:NULL@> src_int=<@STRING:src_interface@> dst_int=<@STRING:dst_interface@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@> vpn=<@WORD:NULL@> tran_ip=<@IP_ADDR:translated_ip@> tran_port=<@NUMBER:translated_port@>",
+         "msg_id" : "Fortigate_Traffic:no_devname_without_pkt",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.fortinet.com/products/fortigate_overview.html",
+   "version" : "200902050005",
+   "name" : "Fortigate_Traffic",
+   "description" : "Fortigate Traffic Service"
+}

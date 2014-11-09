@@ -1,0 +1,15 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> ansible-<@WORD:module@>: Invoked with <@STRING:arguments@>",
+         "msg_id" : "Ansible:001",
+         "table" : "Ansible",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.ansibleworks.com",
+   "version" : "201311220002",
+   "name" : "Ansible",
+   "description" : "Ansible is a powerful automation engine that makes systems and apps simple to deploy."
+}

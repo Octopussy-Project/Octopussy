@@ -1,0 +1,99 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: paper out\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:out_of_paper",
+         "table" : "Message",
+         "taxonomy" : "Printer.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: error cleared\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:error_cleared",
+         "table" : "Message",
+         "taxonomy" : "Printer",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: peripheral low-power state\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:peripheral_low_power_state",
+         "table" : "Message",
+         "taxonomy" : "Printer",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: offline or intervention needed\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:offline_or_intervention_needed",
+         "table" : "Message",
+         "taxonomy" : "Printer.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: powered up\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:powered_up",
+         "table" : "Message",
+         "taxonomy" : "Printer",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: ready to print\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:ready_to_print",
+         "table" : "Message",
+         "taxonomy" : "Printer",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: registered system name .+ with WINS server .+\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:register_system_name",
+         "table" : "Message",
+         "taxonomy" : "Printer",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: peripheral is disconnected\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:peripheral_disconnected",
+         "table" : "Message",
+         "taxonomy" : "Printer.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: connection with .+ aborted\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:connection_aborted",
+         "table" : "Message",
+         "taxonomy" : "Printer.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: paper jam\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:paper_jam",
+         "table" : "Message",
+         "taxonomy" : "Printer.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: cover\\/door open\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:cover_open",
+         "table" : "Message",
+         "taxonomy" : "Printer.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: paper problem\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:paper_problem",
+         "table" : "Message",
+         "taxonomy" : "Printer.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: toner\\/ink low\"):msg@>",
+         "msg_id" : "Printer_HP_LaserJet:toner_low",
+         "table" : "Message",
+         "taxonomy" : "Printer.Errors",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "www.hp.com",
+   "version" : "200901080016",
+   "name" : "Printer_HP_LaserJet",
+   "description" : "HP LaserJet Printer Service"
+}

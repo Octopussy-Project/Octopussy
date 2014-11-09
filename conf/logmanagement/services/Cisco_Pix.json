@@ -1,0 +1,43 @@
+{
+   "icon" : "companies/logo_cisco",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@DATE_TIME_ISO:datetime_long@>: <@REGEXP(\".*\\%PIX-.+\"):msg_id@>: <@WORD:pix_addr@> <@REGEXP(\"Accessed\"):status@> URL <@WORD:url@>",
+         "msg_id" : "Cisco_Pix:url_access",
+         "table" : "Cisco_Pix_url_access",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@DATE_TIME_ISO:datetime_long@>: <@REGEXP(\".*\\%PIX-.+\"):msg_id@>: Deny <@WORD:type@> src <@WORD:src@> dst <@STRING:dst@> by access-group \"<@WORD:acl@>\"",
+         "msg_id" : "Cisco_Pix:deny_by_accessgroup",
+         "table" : "Cisco_Pix_traffic",
+         "taxonomy" : "Traffic.Denied",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*\\%PIX-.+\"):msg_id@>: <@WORD:pix_addr@> <@REGEXP(\"Accessed\"):status@> URL <@WORD:url@>",
+         "msg_id" : "Cisco_Pix:url_access2",
+         "table" : "Cisco_Pix_url_access",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*\\%PIX-.+\"):msg_id@>: Deny <@WORD:type@> src <@WORD:src@> dst <@STRING:dst@> by access-group \"<@WORD:acl@>\"",
+         "msg_id" : "Cisco_Pix:deny_by_accessgroup2",
+         "table" : "Cisco_Pix_traffic",
+         "taxonomy" : "Traffic.Denied",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*\\%PIX-.+\"):msg_id@>: Denied <@REGEXP(\"ICMP type=\\d+\"):type@>, <@STRING:NULL@> from <@WORD:src@> on interface <@NUMBER:NULL@>",
+         "msg_id" : "Cisco_Pix:denied_icmp",
+         "table" : "Cisco_Pix_traffic",
+         "taxonomy" : "Traffic.Denied",
+         "loglevel" : "Information"
+      }
+   ],
+   "version" : "201110310002",
+   "name" : "Cisco_Pix",
+   "description" : "Cisco Pix Service"
+}

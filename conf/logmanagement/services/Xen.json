@@ -1,0 +1,618 @@
+{
+   "icon" : "software/logo_xen",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"Nothing to flush.\"):msg@> ",
+         "msg_id" : "Xen:nothing_to_flush",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\".*not setting .+\"):msg@>",
+         "msg_id" : "Xen:not_setting",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ is missing. recreate is confused, trying our best to recover\"):msg@> ",
+         "msg_id" : "Xen:xend_domain_is_missing",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Storing \\w+ details: .+\"):msg@>",
+         "msg_id" : "Xen:xend_storing_details",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Opening Unix domain socket .+\"):msg@>",
+         "msg_id" : "Xen:opening_domain_socket",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ XendDomainInfo.create\\(.+\\)\"):msg@> ",
+         "msg_id" : "Xen:xend_domaininfo_create",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Recreating domain .+\"):msg@>",
+         "msg_id" : "Xen:xend_recreating_domain",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ XendDomainInfo.recreate\\(.+\\)\"):msg@> ",
+         "msg_id" : "Xen:xend_domaininfo_recreate",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"elf_\\S+: .+\"):msg@>",
+         "msg_id" : "Xen:elf",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"xc_dom_\\S+ .+\"):msg@>",
+         "msg_id" : "Xen:xc_dom",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"\\s*File .+, line \\d+, in .+\"):msg@>",
+         "msg_id" : "Xen:error_file_line_in",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\".*virt_\\S+ .+\"):msg@>",
+         "msg_id" : "Xen:virt",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"nr_page_tables: .+\"):msg@>",
+         "msg_id" : "Xen:nr_page_tables",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"clear_page: .+\"):msg@>",
+         "msg_id" : "Xen:clear_page",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"IOError: \\[Errno \\d+\\] No such file or directory: .+\"):msg@>",
+         "msg_id" : "Xen:no_such_file_directory",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"Cannot .+: Operation not supported\"):msg@> ",
+         "msg_id" : "Xen:operation_not_supported",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"\\s*\\S+\\s*mmap\\s*:\\s*.+\"):msg@>",
+         "msg_id" : "Xen:mmap",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"arch_\\S+: .+\"):msg@>",
+         "msg_id" : "Xen:arch",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"vcpu_\\S+: .+\"):msg@>",
+         "msg_id" : "Xen:vcpu",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"shared_info_\\S+: .+\"):msg@>",
+         "msg_id" : "Xen:shared_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"launch_vm: .+\"):msg@>",
+         "msg_id" : "Xen:launch_vm",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ XendDomainInfo.constructDomain\"):msg@> ",
+         "msg_id" : "Xen:xend_domaininfo_construct",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ XendDomainInfo.initDomain:.+\"):msg@>",
+         "msg_id" : "Xen:xend_domaininfo_init",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"IndexError: string index out of range\"):msg@> ",
+         "msg_id" : "Xen:string_index_out_range",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"\\s*response = .+\"):msg@>",
+         "msg_id" : "Xen:response",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"\\s*info = .+\"):msg@>",
+         "msg_id" : "Xen:info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"\\s*dominfo = .+\"):msg@>",
+         "msg_id" : "Xen:dominfo",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@REGEXP(\"DEBUG\"):level@> <@REGEXP(\"\\(__init__:\\d+\\) \\S+\\s+=.*\"):msg@>  ",
+         "msg_id" : "Xen:xend_debug_init",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ createDevice: vif : .+\"):msg@> ",
+         "msg_id" : "Xen:xend_domaininfo_createdevice_vif",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ createDevice: vbd : .+\"):msg@>",
+         "msg_id" : "Xen:xend_domaininfo_createdevice_vbd",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ DevController: writing {.+} to .+\"):msg@>",
+         "msg_id" : "Xen:xend_devcontroller_writing",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\"\\(__init__:\\d+\\) hotplugStatusCallback.*\"):msg@>",
+         "msg_id" : "Xen:xend_debug_init_hotplugstatuscallback",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\"\\(__init__:\\d+\\) Waiting for .+\"):msg@>",
+         "msg_id" : "Xen:xend_debug_init_waitingfor",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Domain .+ unpaused.\"):msg@> ",
+         "msg_id" : "Xen:xend_domain_unpaused",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Setting memory \\w+ of domain .+ to .+\"):msg@>",
+         "msg_id" : "Xen:xend_domaininfo_setting_memory",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\"\\(__init__:\\d+\\) Balloon: .+\"):msg@>",
+         "msg_id" : "Xen:xend_debug_init_balloon",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\"\\(__init__:\\d+\\) buildDomain os=.+\"):msg@>",
+         "msg_id" : "Xen:xend_info_init_builddomain",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ XendDomainInfo.handleShutdownWatch\"):msg@> ",
+         "msg_id" : "Xen:xend_domaininfo_handleshutdownwatch",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ XendDomainInfo.destroy.+\"):msg@>",
+         "msg_id" : "Xen:xend_domaininfo_destroy",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\"\\(__init__:\\d+\\) Unconverted key: .+\"):msg@>",
+         "msg_id" : "Xen:xend_config_unconverted_key",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Adding Domain: .+\"):msg@>",
+         "msg_id" : "Xen:xend_adding_domain",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ XendDomainInfo.shutdown\"):msg@> ",
+         "msg_id" : "Xen:xend_domaininfo_shutdown",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Domain has shutdown: .+\"):msg@>",
+         "msg_id" : "Xen:xend_domaininfo_has_shutdown",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"Xend\"):module@> <@REGEXP(\"started at .+\"):msg@>",
+         "msg_id" : "Xen:xend_started",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ python-pam is required for XenAPI support.\"):msg@> ",
+         "msg_id" : "Xen:xend_python_pam_required",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"x86_compat: .+\"):msg@>",
+         "msg_id" : "Xen:x86_compat",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ API call: .+ not found\"):msg@> ",
+         "msg_id" : "Xen:api_call_not_found",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\"\\(__init__:\\d+\\) .+.cleanup\\(\\)\"):msg@> ",
+         "msg_id" : "Xen:init_cleanup",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"\\s*malloc\\s*:.+\"):msg@>",
+         "msg_id" : "Xen:malloc",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Xend Daemon started\"):msg@> ",
+         "msg_id" : "Xen:xend_daemon_started",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"\\s*mapped\"):msg@> ",
+         "msg_id" : "Xen:mapped",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"setup_hypercall_page: .+\"):msg@>",
+         "msg_id" : "Xen:setup_hypercall_page",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Xend changeset: unavailable.\"):msg@> ",
+         "msg_id" : "Xen:xend_changeset_unavailable",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"domain builder memory footprint\"):msg@> ",
+         "msg_id" : "Xen:domain_builder_memory_footprint",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"start_info_x86_32: called\"):msg@> ",
+         "msg_id" : "Xen:start_info_x86_called",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Xend version: Unknown.\"):msg@> ",
+         "msg_id" : "Xen:xend_version_unknown",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>:<@REGEXP(\"\\s*allocated\"):msg@>",
+         "msg_id" : "Xen:allocated",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ number of vcpus to use is .+\"):msg@>",
+         "msg_id" : "Xen:number_vcpus_is",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Set VCPU count on domain .+ to .+\"):msg@>",
+         "msg_id" : "Xen:number_vcpus_count",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Xend exited with status \\d+.\"):msg@>",
+         "msg_id" : "Xen:xend_exited",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ cleanup_domains\"):msg@>",
+         "msg_id" : "Xen:cleanup_domains",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ Failed to determine SR UUID\"):msg@>",
+         "msg_id" : "Xen:xend_failed_determine_sr_uuid",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+ string index out of range\"):msg@>",
+         "msg_id" : "Xen:xend_string_index_out_of_range",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: [<@STRING:NULL@>] <@WORD:level@> <@REGEXP(\".+shadow_memory.+memory_static.+\"):msg@> ",
+         "msg_id" : "Xen:memory_shadow_static",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> BLKTAPCTRL<@STRING:NULL@>",
+         "msg_id" : "Xen:blktapctrl",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"\\s+return func\\(.+\"):msg@>",
+         "msg_id" : "Xen:return_func",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xen\"):daemon@>: <@REGEXP(\"postconf: fatal: open .+: No such file or directory\"):msg@>",
+         "msg_id" : "Xen:postconf_fatal_open",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*xenbr\\d+: topology change detected, propagating\"):msg@>",
+         "msg_id" : "Xen:topology_change_detected",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*xenbr\\d+: port .+ entering \\w+ state\"):msg@>",
+         "msg_id" : "Xen:port_entering_state",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/.+: remove XENBUS_PATH=.+\"):msg@>",
+         "msg_id" : "Xen:remove_xenbus_path",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/.+: add XENBUS_PATH=.+\"):msg@>",
+         "msg_id" : "Xen:add_xenbus_path",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/.+: Writing .+ to xenstore.\"):msg@> ",
+         "msg_id" : "Xen:writing_to_xenstore",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/xen-hotplug-cleanup: XENBUS_PATH=.+\"):msg@>",
+         "msg_id" : "Xen:hotplug_cleanup_xenbus_path",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/vif-bridge: Successful vif-bridge online for .+\"):msg@>",
+         "msg_id" : "Xen:successful_vif_bridge_online",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/vif-bridge: offline XENBUS_PATH=.+\"):msg@>",
+         "msg_id" : "Xen:offline_xenbus_path",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/vif-bridge: ifconfig .+ down failed\"):msg@> ",
+         "msg_id" : "Xen:ifconfig_down_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/vif-bridge: online XENBUS_PATH=.+\"):msg@>",
+         "msg_id" : "Xen:vif_bridge_online",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/vif-bridge: Successful vif-bridge offline for .+\"):msg@>",
+         "msg_id" : "Xen:successful_vif_bridge_offline",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"blkfront: \\w+: barriers enabled\"):msg@> ",
+         "msg_id" : "Xen:blkfront_barriers_enabled",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Xen virtual console successfully installed as .+\"):msg@>",
+         "msg_id" : "Xen:virtual_console_successfully_installed",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Xen reported: .+ MHz processor.\"):msg@> ",
+         "msg_id" : "Xen:reported_processor",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"xen_mem: Initialising balloon driver.\"):msg@> ",
+         "msg_id" : "Xen:mem_initialising_balloon_driver",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"netfront: Initialising virtual ethernet driver.\"):msg@> ",
+         "msg_id" : "Xen:netfront_initialising_virtual_ethernet",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"netfront: device \\w+ has copying receive path.\"):msg@> ",
+         "msg_id" : "Xen:netfront_copying_receive_path",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xenstored: Checking store.*\"):msg@>",
+         "msg_id" : "Xen:xenstored_checking_store",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/vif-bridge: .+ failed\"):msg@>",
+         "msg_id" : "Xen:vif_bridge_failed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logger: /etc/xen/scripts/.+: Forced to steal lock on .+\"):msg@>",
+         "msg_id" : "Xen:forced_to_steal_lock",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.xensource.com/",
+   "version" : "200901280003",
+   "name" : "Xen",
+   "description" : "Xen Service"
+}

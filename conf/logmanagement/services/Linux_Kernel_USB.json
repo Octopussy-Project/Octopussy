@@ -1,0 +1,170 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*usb-storage: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:storage_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*USB Mass Storage support registered.*\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:support_registered",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: new .+ USB device using .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:new_device_using",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: Cannot enable port \\d+.  Maybe the USB cable is bad.+\"):msg@> ",
+         "msg_id" : "Linux_Kernel_USB:maybe_usb_cable_bad",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: USB disconnect, address \\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel_USB:disconnect",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*usb .+: configuration #\\d+ chosen from \\d+ choice.*\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:configuration_chosen",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*usbcore: registered new driver .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:usbcore_registered_new_driver",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*scsi\\d+ : SCSI emulation for USB Mass Storage devices\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:scsi_emulation_mass_storage",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: New USB device .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:new_usb_device",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*hub .+: USB hub found\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:usb_hub_found",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*hub .+: \\d+ ports detected\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:ports_detected",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Product: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:product",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Manufacturer: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:manufacturer",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ SerialNumber: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:serialnumber",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ scsi .+ Direct-Access.+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:scsi_direct_access",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Attached scsi .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:attached_scsi",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+byte logical blocks.+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:logical_blocks",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Write Protect is .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:write_protect_status",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Mode Sense: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:mode_sense",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Assuming drive cache: write through\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:assuming_drive_cache_write_through",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Attached .+ removable disk\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:attached_removable_disk",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ bread failed in .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:bread_failed",
+         "table" : "Message",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+sd.: sd.+\"):msg@>",
+         "msg_id" : "Linux_Kernel_USB:sd",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201004300006",
+   "name" : "Linux_Kernel_USB",
+   "description" : "Linux Kernel USB Service"
+}

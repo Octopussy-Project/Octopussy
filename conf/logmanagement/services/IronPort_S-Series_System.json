@@ -1,0 +1,912 @@
+{
+   "icon" : "companies/logo_ironport",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: User \\S+ entered '.*'; prompt was .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:user_entered_to_prompt",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Listening for connections on .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:listening_for_connections",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Time offset from UTC: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:time_offset_from_utc",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Process '.+' healthy\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:process_healthy",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Network Participation: failed to connect to host: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:failed_connect_to_host",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Version: .+ SN: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:version_sn",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"\\S+ service listening on .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:service_listening_on",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Debug: Network Participation: Attempting to connect to host: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:attempting_connect_to_host",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: Failed to bootstrap the DNS resolver. Unable to contact root servers.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:unable_contact_dns_servers",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Active .+ db opened.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:active_db_opened",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Begin Logfile\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:begin_logfile",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"End Logfile\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:end_logfile",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"message: shutting down .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:shutting_down",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+ service shutting down on .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:service_shutting_down",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: User \\S+ login from \\S+ on \\S+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:user_login_from",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"DB environment opened at .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:db_environment_opened",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"lame DNS referral:.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:lame_dns_referral",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: DNS query network error .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:dns_query_network_error",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: Skipping, not opted in.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:skipping_not_opted_in",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started processing .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_processing",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished processing .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:finished_processing",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Debug: Network Participation: Successfully connected to host:.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:succesfully_connected_to_host",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Debug: Network Participation: Closed connection to host:.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:closed_connection_to_host",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Queued for update:.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:queued_for_update",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started downloading .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_downloading",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished downloading .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:finished_downloading",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started update.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_update",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started downloads.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_downloads",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started applying .*update.*\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_applying_update",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished applying .*update.*\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:finished_applying_update",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started manifest acquisition.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_manifest_acquisition",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished manifest acquisition.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:finished_manifest_acquisition",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Network Participation: Uploaded \\d+ bytes to .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:uploaded_bytes_to",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished downloads.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:finished_downloads",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Decrypted file .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:decrypted_file",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Restarting engine.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:restarting_engine",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Updating version info.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:updating_version_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Accepted connection on .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:accepted_connection_on",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Closing scoring socket.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:closing_scoring_socket",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started updating version info.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_updating_version_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"\\S+ db closed.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:db_closed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Switched \\S+ db.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:switched_db",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+User \\S+ commit changes:.*\"):msg@> ",
+         "msg_id" : "IronPort_S-Series_System:user_commit_changes",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"log\\S+:.+ user:.+ session:.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:user_session",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Session \\S+ .*\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:session_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"PERIODIC REPORTS: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:periodic_reports",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Cannot open .+, non-existent.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:cannot_open_non_existent",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: A RAID-event has occurred: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:raid_event_occured",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Internal SMTP system attempting to send a message to .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:smtp_attempting_send_message",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"bootstrapping DNS cache\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:bootstrapping_dns_cache",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Error while sending alert: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:error_while_sending_alert",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Internal SMTP Error: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:internal_smtp_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Network Participation: Timed out after \\d+ seconds.  Retrying in \\d+ seconds.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:network_timed_out",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .+Failed to \\S+ server manifest.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:failed_server_manifest",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: Internal SMTP giving up on message to .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:critical_smtp_giving_up",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+\\w+ed decryption.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_finished_decryption",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: \\w+ed preparing full \\w+ db update.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:preparing_full_db_update",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Signalling switch of \\w+ db.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:signalling_switch_of_db",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Received an invalid DNS Response:.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:received_invalid_dns_response",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Closing management socket.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:closing_management_socket",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished update.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:finished_update",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Can't query nameserver .+ for its own IP without knowing its IP.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:cant_query_nameserver",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Internal SMTP system successfully sent a message to .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:smtp_successfully_sent_message",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started update handler thread.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_update_handler_thread",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Process .+ deemed unhealthy or slow.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:process_deemed_unhealthy",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Process .+ not running so skipping health check\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:skipping_health_check",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: \\w+ed preparing diff \\w+ db update .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:preparing_diff_db",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished updating version info.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:finished_updating_version_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .+Failed to download .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:failed_to_download",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .+Download timed out for .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:download_timed_out_for",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .+Failed to acquire manifest.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:failed_acquire_manifest",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"System is coming up.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:system_coming_up",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Table \\S+ has \\d+ unique keys\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:table_unique_keys",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+ \\w+ed decompression.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:started_finished_decompression",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+Error in https connection from .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:error_in_https_connection",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Period \\w+ using .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:period_using",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Signalling switch of blacklist.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:signalling_switch_of_blacklist",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"\\w+ service on .+ redirecting to .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:service_redirecting",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Pages found in cache: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:pages_found_in_cache",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Journal coeuslog.reporting .+ percent full using .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:journal_percent_full",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"HELPER checkpointed in .+ seconds\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:helper_checkpointed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Address .+ discovered for .+ added to firewall blacklist.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:address_added_to_blacklist",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Address .+ for .+ removed from firewall blacklist.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:address_removed_from_blacklist",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Log .+ pushed to remote host .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:log_pushed_to_remote",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Logfile rolled over\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:logfile_rolled_over",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Firewall blocked data from .+ to .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:firewall_blocked_data",
+         "table" : "Message",
+         "taxonomy" : "Traffic.Denied",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Firewall noted data from .+ to .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:firewall_noted_data",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"A .+ alert was sent to .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:alert_was_sent_to",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"System is shutting down.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:system_shutting_down",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: SSL error with client .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:ssl_error_with_client",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"DNS cache bootstrapped\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:dns_cache_bootstrapped",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+User \\w+ logged out of CLI session\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:user_logged_out_cli",
+         "table" : "Message",
+         "taxonomy" : "Access",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .*General exception.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:general_exception",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Warning: <@REGEXP(\".+ Unable to apply update file .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:unable_apply_update_file",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Warning: <@REGEXP(\"Network Participation: Error sending data: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:network_participation_error_sending",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Critical: <@REGEXP(\"Log Error: Push error for subscription .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:push_error_for_subscription",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+ feature key not enabled.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:feature_key_not_enabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"System Health Daemon started.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:system_health_daemon_started",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+User .+ executed batch command: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:user_executed_batch_command",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: \\d+: wbrs: Signaling switch of \\w+ db.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:wbrs_signaling_switch_db",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: \\d+: wbrs: Switch of \\w+ db succeeded.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:wbrs_switch_db_succeeded",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: \\d+: wbrs: Switch of \\w+ db failed.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:wbrs_switch_db_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: \\d+: \\S+: Skipping, not enabled.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:service_skipping_not_enabled",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\w+: Process .+ failed health checks.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:process_failed_health_checks",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Network Participation error: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:network_participation_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Report Query Failed\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:report_query_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Query: The maximum number of concurrent queries has been exceeded.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:maximum_concurrent_queries_exceeded",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Query: Closing \\S+ handle \\d+.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:query_closing_handle",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: An application fault occurred:.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:application_fault_occured",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: .+ has been disabled\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:service_has_been_disabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: .+ is currently not enabled\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:service_currently_not_enabled",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Query: Merge query with handle .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:merge_query_with_handle",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: .+ has been enabled\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:service_has_been_enabled",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Wrote .+ interval with time .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:wrote_interval_with_time",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Query: Interval query with handle .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:interval_query_with_handle",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Space management removed .+ interval with time .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:space_management_removed_interval",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"HELPER has joined the database\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:helper_joined_database",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"HELPER RPC server has been started\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:helper_rpc_started",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: The reporting system has encountered a critical error while opening the database.+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:reporting_encountered_critical_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Replacing current .+ with new .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:replacing_current_with_new",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Requests: total \\d+ current \\d+ Maxrss .+ Cpu: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:system_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Got an info query\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:got_info_query",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Webroot\\s+spy found \\d+ scanned \\d+ avg scan time .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:webroot_spy_found_scanned",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> CRITICAL : <@REGEXP(\"Unable to connect to proxy .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:unable_connect_proxy",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Webroot versions: .+\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:webroot_versions",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Webroot process ready to process events\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:webroot_ready_process_events",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Webroot initialized.\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:webroot_initialized",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"WARNING : EOF on querySocket\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:eof_on_querysocket",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"WARNING : .+ is pending\"):msg@>",
+         "msg_id" : "IronPort_S-Series_System:is_pending",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.ironport.com/products/web_security_appliances.html",
+   "version" : "200702200010",
+   "name" : "IronPort_S-Series_System",
+   "description" : "IronPort S-Series System Service"
+}

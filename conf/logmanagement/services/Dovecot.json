@@ -1,0 +1,282 @@
+{
+   "icon" : "software/logo_dovecot",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-login\"):daemon@>: <@REGEXP(\"Login\"):status@>: <@WORD:user@> [<@IP_ADDR:client_ip@>] ",
+         "msg_id" : "Dovecot:pop_imap_login",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"nss_ldap: reconnecting to LDAP server...\"):msg@>",
+         "msg_id" : "Dovecot:reconnecting_ldap_server",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"nss_ldap: reconnected to LDAP server after \\d+ attempt\\(s\\)\"):msg@>",
+         "msg_id" : "Dovecot:reconnected_ldap_server",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@>: <@REGEXP(\"child .+ killed with signal \\d+\"):msg@>",
+         "msg_id" : "Dovecot:child_killed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"pam_ldap: \\S+ Can't contact LDAP server\"):msg@>",
+         "msg_id" : "Dovecot:cant_contact_ldap_server",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: \\S+ Can't contact LDAP server\"):msg@>",
+         "msg_id" : "Dovecot:cant_contact_ldap_server2",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-login\"):daemon@>: <@REGEXP(\"Aborted login\"):status@> [<@IP_ADDR:client_ip@>] ",
+         "msg_id" : "Dovecot:pop_imap_login_aborted",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-login\"):daemon@>: <@REGEXP(\"fd_send\\(-1\\) failed: Broken pipe\"):msg@> ",
+         "msg_id" : "Dovecot:fdsend_broken_pipe",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@> <@REGEXP(\"Killed with signal \\d+\"):msg@> ",
+         "msg_id" : "Dovecot:killed_with_signal",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@> <@REGEXP(\"Dovecot starting up\"):msg@> ",
+         "msg_id" : "Dovecot:starting_up",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@> <@REGEXP(\"Auth process died too early - shutting down\"):msg@> ",
+         "msg_id" : "Dovecot:auth_died_too_early",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@> <@REGEXP(\"child .+ returned error \\d+\"):msg@> ",
+         "msg_id" : "Dovecot:child_returned_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-login\"):daemon@>: <@REGEXP(\"Disconnected\"):status@> [<@IP_ADDR:client_ip@>] ",
+         "msg_id" : "Dovecot:pop_imap_disconnected",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"Passdb pam doesn't support .+ method\"):msg@> ",
+         "msg_id" : "Dovecot:pam_doesnt_support_method",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pop3\\(\\S+\\): mbox: Can't create root IMAP folder .+\"):msg@>",
+         "msg_id" : "Dovecot:cant_create_imap_folder",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@> <@REGEXP(\"Warning: Corrected permissions for login directory .+\"):msg@>",
+         "msg_id" : "Dovecot:corrected_permissions_login_directory",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"imap-login: opendir.+ failed when trying to get list of authentication servers.+\"):msg@>",
+         "msg_id" : "Dovecot:opendir_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@> <@REGEXP(\"Can't open passwd-file.+\"):msg@>",
+         "msg_id" : "Dovecot:cant_open_pwd_file",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pop3\\(\\S+\\): MAIL environment missing and autodetection failed.+\"):msg@>",
+         "msg_id" : "Dovecot:mail_environment_missing",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@> <@REGEXP(\".+: unknown user\"):msg@>",
+         "msg_id" : "Dovecot:unknown_user",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"imap\\(\\S+\\): file .+: line \\d+ .+\"):msg@>",
+         "msg_id" : "Dovecot:debug_code_error",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@>: <@REGEXP(\"chdir\\(.+\\) failed .+\"):msg@>",
+         "msg_id" : "Dovecot:chdir_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"PAM: .+ User account has expired\"):msg@>",
+         "msg_id" : "Dovecot:pam_user_account_expired",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@> <@REGEXP(\"Unknown passdb type .+\"):msg@>",
+         "msg_id" : "Dovecot:unknown_passdb",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"PAM: pam_authenticate\\S+ failed: .+\"):msg@>",
+         "msg_id" : "Dovecot:pam_authenticate_failed",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"PAM .+ illegal module type:.+\"):msg@>",
+         "msg_id" : "Dovecot:pam_illegal_module_type",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"PAM: .+ Authentication service cannot retrieve authentication info.\"):msg@> ",
+         "msg_id" : "Dovecot:cannot_retrieve_authentication_info",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\".+ No password in reply\"):msg@> ",
+         "msg_id" : "Dovecot:no_password_reply",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"pam_ldap: \\S+ Timed out\"):msg@> ",
+         "msg_id" : "Dovecot:pam_ldap_timed_out",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: error trying to bind as user .+ \\(Invalid credentials\\)\"):msg@>",
+         "msg_id" : "Dovecot:pam_ldap_invalid_credentials",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot-auth\"):daemon@>: <@REGEXP(\"Login process has too old .+ requests, killing it.\"):msg@>",
+         "msg_id" : "Dovecot:login_process_too_old",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"imap\\(\\S+\\): Corrupted index data file .+\"):msg@>",
+         "msg_id" : "Dovecot:imap_corrupted_data_file",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+: Disconnected: Inactivity.+\"):msg@>",
+         "msg_id" : "Dovecot:disconnected_inactivity",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@>: <@REGEXP(\"dovecot shutdown failed\"):msg@>",
+         "msg_id" : "Dovecot:shutdown_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@> <@REGEXP(\"\\(\\S+\\): Error indexing mbox file.+\"):msg@>",
+         "msg_id" : "Dovecot:error_indexing_mbox_file",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@>(<@WORD:NULL@>): <@REGEXP(\"file_wait_lock.+ failed with modify log file .+: Resource temporarily unavailable\"):msg@>",
+         "msg_id" : "Dovecot:file_wait_lock_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@>(<@WORD:NULL@>): <@REGEXP(\"Corrupted index data file .+\"):msg@>",
+         "msg_id" : "Dovecot:corrupted_index_data_file",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@>(<@WORD:NULL@>): <@REGEXP(\"fsck .+\"):msg@>",
+         "msg_id" : "Dovecot:fsck",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dovecot\"):daemon@>: <@REGEXP(\"Fatal: Can't use SSL certificate .+\"):msg@>",
+         "msg_id" : "Dovecot:cant_use_ssl_certificate",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.dovecot.org/",
+   "version" : "201002180017",
+   "name" : "Dovecot",
+   "description" : "Dovecot IMAP Server Service"
+}

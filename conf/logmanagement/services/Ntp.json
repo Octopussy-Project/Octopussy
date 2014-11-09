@@ -1,0 +1,287 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpdate\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"step time server \\S+ offset \\S+ sec\"):msg@>",
+         "msg_id" : "Ntp:step_time_server",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"kernel time discipline status .+\"):msg@> ",
+         "msg_id" : "Ntp:kernel_time_discipline_status",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"frequency initialized .+ from .+\"):msg@>",
+         "msg_id" : "Ntp:frequency_initialized_from",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"signal_no_reset:.+\"):NULL@>",
+         "msg_id" : "Ntp:signal_no_reset",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"synchronisation lost\"):msg@> ",
+         "msg_id" : "Ntp:synchronisation_lost",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"precision = .+\"):msg@>",
+         "msg_id" : "Ntp:precision",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>: <@REGEXP(\"^I^I.+\"):msg@> ",
+         "msg_id" : "Ntp:usage2",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>: <@REGEXP(\"usage: ntpd.+\"):NULL@>",
+         "msg_id" : "Ntp:usage1",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"getnetnum: .+ invalid host number, line ignored\"):msg@> ",
+         "msg_id" : "Ntp:invalid_host_number",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ntpd exiting on signal \\d+\"):msg@>",
+         "msg_id" : "Ntp:exiting_on_signal",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ntpd \\S+@\\S+ .+\"):msg@>",
+         "msg_id" : "Ntp:info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"time reset .+\"):msg@> ",
+         "msg_id" : "Ntp:time_reset",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"running as .+\"):msg@>",
+         "msg_id" : "Ntp:running_as",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Listening on interface .+\"):msg@> ",
+         "msg_id" : "Ntp:listening_on_interface",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"kernel time sync status .+\"):msg@>",
+         "msg_id" : "Ntp:kernel_time_sync_status",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Address already in use\"):msg@> ",
+         "msg_id" : "Ntp:address_already_in_use",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"configure: keyword .+ unknown, line ignored\"):msg@> ",
+         "msg_id" : "Ntp:configure_unknown_line_ignored",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Connection re-established to .+\"):msg@>",
+         "msg_id" : "Ntp:connection_reestablished",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"process_private: INFO_ERR_FMT: .+\"):msg@>",
+         "msg_id" : "Ntp:process_private_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"sendto\\(.+\\): Invalid argument\"):msg@> ",
+         "msg_id" : "Ntp:sendto_invalid_argument",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"kernel time sync \\S+abled.+\"):msg@>",
+         "msg_id" : "Ntp:kernel_time_sync_modified",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"synchronized to .+\"):msg@>",
+         "msg_id" : "Ntp:synchronized_to",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"no servers reachable\"):msg@>",
+         "msg_id" : "Ntp:no_servers_reachable",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd_initres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"parent died before we finished, exiting\"):msg@> ",
+         "msg_id" : "Ntp:parent_died_before_finished",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"getaddrinfo: .+ invalid host address, ignored\"):msg@> ",
+         "msg_id" : "Ntp:invalid_host_address_ignored",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpdate\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"no server suitable for synchronization found\"):msg@> ",
+         "msg_id" : "Ntp:no_server_synchronization_found",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: Operation not permitted\"):msg@>",
+         "msg_id" : "Ntp:operation_not_permitted",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"can't open .+peerstats.+: Permission denied\"):msg@> ",
+         "msg_id" : "Ntp:cant_open_peerstats",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"can't open .+: Permission denied\"):msg@>",
+         "msg_id" : "Ntp:cant_open_permission_denied",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"logging to file .+\"):msg@>",
+         "msg_id" : "Ntp:logging_file",
+         "table" : "Message",
+         "taxonomy" : "Config",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"kernel time sync error.*\"):msg@>",
+         "msg_id" : "Ntp:kernel_time_sync_error",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpdate\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"the NTP socket is in use, exiting\"):msg@>",
+         "msg_id" : "Ntp:ntp_socket_in_use",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Deleting interface .+\"):msg@>",
+         "msg_id" : "Ntp:deleting_interface",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpdate\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"no servers can be used, exiting\"):msg@>",
+         "msg_id" : "Ntp:no_servers_be_used",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"failed to initialize interface for address .+\"):msg@>",
+         "msg_id" : "Ntp:failed_initialize_interface",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"unable to create socket on .+\"):msg@>",
+         "msg_id" : "Ntp:unable_create_socket",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ntp_io:.+ max descriptors:.+ initial socket boundary:.+\"):msg@>",
+         "msg_id" : "Ntp:max_descriptors_initial_socket_boundary",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"new interface.+ found: waking up resolver\"):msg@>",
+         "msg_id" : "Ntp:new_interface_resolver_wake_up",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"unable to bind to wildcard socket address .+ EXITING\"):msg@>",
+         "msg_id" : "Ntp:unable_bin_wildcard_socket_address",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"frequency file .+: Permission denied\"):msg@>",
+         "msg_id" : "Ntp:frequecy_file_permission_denied",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "version" : "201404110001",
+   "name" : "Ntp",
+   "description" : "Ntp Service"
+}

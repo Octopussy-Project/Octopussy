@@ -1,0 +1,91 @@
+#!/usr/bin/perl
+
+=head1 NAME
+
+xml2json.pl - Script to migrate Octopussy XML configuration files to JSON
+
+=head1 SYNOPSIS
+
+xml2json.pl <filename.xml>
+find /var/lib/octopussy/conf -iname *.xml | xml2json.pl
+
+=cut
+
+use strict;
+use warnings;
+
+use English qw( -no_match_vars );
+use File::Slurp;
+use JSON;
+use XML::Simple;
+
+my %action = (
+	octopussy_device => \&json_device,
+	octopussy_service => \&json_service,
+	);
+
+sub json_device
+{
+	printf "Device\n";
+}
+
+sub json_service
+{
+	my $conf = shift;
+
+	my @messages = ();
+    foreach my $m (sort { $a->{rank} cmp $b->{rank} } @{$conf->{message}})
+    {
+        delete $m->{rank};
+        push @messages, $m;
+    }
+    delete $conf->{message};
+    delete $conf->{nb_messages};
+    $conf->{messages} = \@messages;
+
+    return (to_json($conf, {pretty => 1}));
+}
+
+=head2 xml_read($filename)
+
+Read XML file '$filename'
+
+=cut
+
+sub xml_read
+{
+	my $filename = shift;
+
+    my %XML_INPUT_OPTIONS = (KeepRoot => 1, KeyAttr => [], ForceArray => 1);
+
+    if ((defined $filename) && (-f $filename))
+    {
+    	my $conf = eval { XMLin($filename, %XML_INPUT_OPTIONS); };
+        die "[ERROR] Unable to read XML file $filename"	if ($EVAL_ERROR);
+
+		return ($conf)
+	}
+	die "[ERROR] XML file $filename doesn't exist";
+}
+
+# loop on each file from command line
+my @files = (@ARGV ? @ARGV : <STDIN>);
+my $count = 0;
+foreach my $filename (@files)
+{
+	chomp $filename;
+	my $conf = xml_read($filename);
+	my $type = (keys %{$conf})[0];
+	my $str_json = $action{$type}($conf->{$type}->[0]);
+	my $filename_json = $filename;
+	$filename_json =~ s/\.xml$/\.json/i;
+	$count++;
+	printf "[%03d] %s: %s => %s\n", $count, $type, $filename, $filename_json;
+	write_file($filename_json, { binmode => ':utf8' }, $str_json);
+}
+
+=head1 AUTHOR
+
+Sebastien Thebert <octopussy@onetool.pm>
+
+=cut

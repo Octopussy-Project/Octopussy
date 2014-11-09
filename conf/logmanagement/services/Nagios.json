@@ -1,0 +1,240 @@
+{
+   "icon" : "software/logo_nagios",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:nagios_server@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: EXTERNAL COMMAND: PROCESS_SERVICE_CHECK_RESULT;<@WORD:host@>;<@WORD:service@>;<@NUMBER:status@>;<@STRING:result@>",
+         "msg_id" : "Nagios:service_check_result",
+         "table" : "Nagios_Service_Check",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: SERVICE ALERT: <@WORD:host@>;<@WORD:service@>;<@WORD:status@>;<@WORD:criticity@>;<@NUMBER:nb_check@>;<@STRING:msg@>",
+         "msg_id" : "Nagios:service_alert",
+         "table" : "Nagios_service",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"EXTERNAL COMMAND: .+\"):msg@>",
+         "msg_id" : "Nagios:external_command",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@WORD:type@> NOTIFICATION: <@WORD:dest@>;<@WORD:host@>;<@WORD:service@>;<@WORD:status@>;<@WORD:notify_by@>;<@STRING:msg@>",
+         "msg_id" : "Nagios:service_notification",
+         "table" : "Nagios_notification",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@WORD:type@> NOTIFICATION: <@WORD:dest@>;<@WORD:host@>;<@STRING:status@>;<@WORD:notify_by@>;<@STRING:msg@>",
+         "msg_id" : "Nagios:host_notification",
+         "table" : "Nagios_notification",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning\"):criticity@>:  <@REGEXP(\"Message queue contained results for service .+ on host .+.  The service could not be found!\"):msg@>",
+         "msg_id" : "Nagios:message_queue_results",
+         "table" : "Nagios_service",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Auto-save of retention data completed successfully.\"):msg@>  ",
+         "msg_id" : "Nagios:retention_data_saved",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning: Attempting to execute the command .+ resulted in a return code of 127.+\"):msg@>",
+         "msg_id" : "Nagios:warning_execute_command",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning: Host .+ has no services associated with it!\"):msg@> ",
+         "msg_id" : "Nagios:warning_host_services",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning: Host .+ is not a member of any host groups!\"):msg@>",
+         "msg_id" : "Nagios:warning_host_member",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning: Contact .+ is not a member of any contact groups!\"):msg@>",
+         "msg_id" : "Nagios:warning_contact_member",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: HOST ALERT: <@WORD:host@>;<@WORD:status@>;<@WORD:criticity@>;<@NUMBER:nb_check@>;<@STRING:msg@>",
+         "msg_id" : "Nagios:host_alert",
+         "table" : "Nagios_service",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"LOG ROTATION: \\S+\"):msg@>",
+         "msg_id" : "Nagios:log_rotation",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Nagios \\S+ starting... \\(PID=\\d+\\)\"):msg@>  ",
+         "msg_id" : "Nagios:nagios_starting",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Caught SIGTERM, shutting down...\"):msg@>  ",
+         "msg_id" : "Nagios:shutting_down",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Caught SIGHUP, restarting...\"):msg@>  ",
+         "msg_id" : "Nagios:caught_sighup_restarting",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning: .+ is not used in any .+ definitions or .+ escalations!\"):msg@> ",
+         "msg_id" : "Nagios:not_used_in_any",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning: A system time change of \\d+ seconds .+ has been detected.+\"):msg@>",
+         "msg_id" : "Nagios:time_change_detected",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Successfully shutdown.+\"):msg@>",
+         "msg_id" : "Nagios:successfully_shutdown",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Failed to grab configuration information for retention data\"):msg@>  ",
+         "msg_id" : "Nagios:failed_grab_configuration_information",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Unable to update status data file .+\"):msg@>",
+         "msg_id" : "Nagios:unable_update_status_data",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Cannot open main configuration file .+\"):msg@>",
+         "msg_id" : "Nagios:cannot_open_main_configuration",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Invalid .+\"):msg@>",
+         "msg_id" : "Nagios:invalid_param_configuration",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Could not add object property in file .+\"):msg@>",
+         "msg_id" : "Nagios:couldnt_add_object_property",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Bailing out due to .+\"):msg@>",
+         "msg_id" : "Nagios:bailing_out_due_to",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Could not create external command file .+\"):msg@>",
+         "msg_id" : "Nagios:couldnt_create_external_command",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning: Host check command .+ for host .+ timed out after \\d+ seconds\"):msg@>  ",
+         "msg_id" : "Nagios:hostcheck_command_timed_out",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Template .+ specified in service definition could not be not found.+\"):msg@>",
+         "msg_id" : "Nagios:template_couldnt_be_found",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Could not register .+\"):msg@>",
+         "msg_id" : "Nagios:couldnt_register_object_configuration",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: .+ is NULL\"):msg@>  ",
+         "msg_id" : "Nagios:object_configuration_is_null",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"nss_ldap: could not connect to any LDAP server .+\"):msg@>",
+         "msg_id" : "Nagios:couldnt_connect_ldap_server",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Warning: Return code .+ for check of service .+ was out of bounds.+\"):msg@>",
+         "msg_id" : "Nagios:returncode_out_of_bounds",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nagios(?:\\d)*\"):daemon@>: <@REGEXP(\"Error: Cannot open .+ file .+ for reading!\"):msg@>",
+         "msg_id" : "Nagios:cannot_open_file_reading",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www.nagios.org",
+   "version" : "201002180009",
+   "name" : "Nagios",
+   "description" : "Nagios Service"
+}

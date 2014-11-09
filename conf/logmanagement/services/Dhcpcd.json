@@ -1,0 +1,50 @@
+{
+   "icon" : "",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+renewing lease of.+\"):msg@>",
+         "msg_id" : "Dhcpcd:renewing_lease",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+leased.+for \\d+ seconds\"):msg@>",
+         "msg_id" : "Dhcpcd:lease_time_seconds",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+adding IP address.+\"):msg@>",
+         "msg_id" : "Dhcpcd:adding_ip_address",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+adding default route via.+\"):msg@>",
+         "msg_id" : "Dhcpcd:adding_default_route",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+lost lease, attemping to rebind\"):msg@>",
+         "msg_id" : "Dhcpcd:lost_lease_attemping_rebind",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"automount\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Federated Naming service not supported\"):msg@>",
+         "msg_id" : "Dhcpcd:federated_naming_service_not_supported",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      }
+   ],
+   "version" : "201006040001",
+   "name" : "Dhcpcd",
+   "description" : "DHCP Client Daemon Service"
+}

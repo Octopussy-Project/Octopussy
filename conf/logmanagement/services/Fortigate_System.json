@@ -1,0 +1,408 @@
+{
+   "icon" : "companies/logo_fortinet",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@WORD:NULL@> status=<@WORD:NULL@> reason=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ login successfully from .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_login_successfully",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> <@STRING:NULL@> msg=\"<@REGEXP(\"User .+ login failed .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_login_failed",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@WORD:NULL@> status=<@WORD:NULL@> reason=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ Logs out from .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_logs_out",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Access",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@>  msg=\"<@REGEXP(\"HA member.*move to .+\"):msg@>\" ",
+         "msg_id" : "Fortigate_System:ha_member_move_to",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> module=<@WORD:NULL@> submodule=<@WORD:NULL@> msg=\"<@REGEXP(\".+ made a change from .+ settings have been changed\"):msg@>\"",
+         "msg_id" : "Fortigate_System:settings_changed",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> module=<@WORD:NULL@> submodule=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ made a change via .+ setting has been changed\"):msg@>\"",
+         "msg_id" : "Fortigate_System:setting_been_changed",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ added .+ user .+ from .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:added_user",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ deleted .+ user .+ from .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_user",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@>  msg=\"<@REGEXP(\"Delete HA heartbeat device .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:delete_ha_heartbeat_device",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@>  msg=\"<@REGEXP(\"Add HA heartbeat device .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:add_ha_heartbeat_device",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> seq=<@NUMBER:NULL@> sintf=<@STRING:NULL@> dintf=<@STRING:NULL@> saddr=<@STRING:NULL@> daddr=<@STRING:NULL@> schd=<@WORD:NULL@> svr=<@STRING:NULL@> act=<@WORD:NULL@> nat=<@WORD:NULL@> log=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ deleted firewall policy .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_firewall_policy",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted a virtual ip entry .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_virtualip_entry",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted a firewall service .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_firewall_service",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted a IP pool entry .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_ip_pool_entry",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted a service group .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_service_group",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted an address group .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_address_group",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted an address .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_address",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted radius server .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_radius_server",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted an ipsec .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_ipsec",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@STRING:NULL@> msg=\"<@REGEXP(\"Admin user .+ changed password of .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_changed_password",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> seq=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ changed firewall policy .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:changed_firewall_policy",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> intf=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ changed the ip setting of interface .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:changed_ip_setting_interface",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> intf=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added new interface .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:added_new_interface",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> seq=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added new firewall policy .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:added_firewall_policy",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@WORD:NULL@> status=<@WORD:NULL@> reason=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ terminates the session from .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_terminates_session",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Access",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> status=<@STRING:NULL@> msg=\"<@REGEXP(\"Fortigate scheduled update failed\"):msg@>\"",
+         "msg_id" : "Fortigate_System:scheduled_update_failed",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added an address .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:added_address",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> seq=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added new static routing entry .+\"):msg@>",
+         "msg_id" : "Fortigate_System:added_static_routing_entry",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ rebooted the device from .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:rebooted_the_device",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted a recurring schedule .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:delete_recurring_schedule",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added a virtual ip entry .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:added_virtualip_entry",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> intf=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ changed the access setting of interface .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:changed_interface_access_setting",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@WORD:NULL@> status=<@WORD:NULL@> reason=<@WORD:NULL@> msg=\"<@REGEXP(\"GUI session timeout .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:gui_session_timeout",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added ldap server .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:added_ldap_server",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@STRING:NULL@> msg=\"<@REGEXP(\"weblog file has been downloaded by .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:weblog_file_downloaded",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> status=<@STRING:NULL@> msg=\"<@REGEXP(\"Fortigate updated .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:fortigate_updated",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@STRING:NULL@> msg=\"<@REGEXP(\".+ has been updated successfully by .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:updated_successfully",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@STRING:NULL@> msg=\"<@REGEXP(\"Update .+ failed by .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:update_failed",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ backuped the configuration from .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_backuped_configuration",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Backup",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> status=<@STRING:NULL@> msg=\"<@REGEXP(\"Fortigate update now failed\"):msg@>\"",
+         "msg_id" : "Fortigate_System:fortigate_update_now_failed",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> <@STRING:NULL@> msg=\"<@REGEXP(\"Negotiate SA Error:.+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:negotiate_sa_error",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@>  msg=\"<@REGEXP(\"Virtual cluster .+ HA master became slave\"):msg@>\"",
+         "msg_id" : "Fortigate_System:ha_master_became_slave",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added a service group .+\"):msg@> ",
+         "msg_id" : "Fortigate_System:added_service_group",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added a firewall service .+\"):msg@>\" ",
+         "msg_id" : "Fortigate_System:added_firewall_service",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> name=<@STRING:NULL@> msg=\"<@REGEXP(\"User .+ added a IP pool entry .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:added_ip_pool_entry",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> <@STRING:NULL@> msg=\"<@REGEXP(\"User .+ changed the setting of static routing entry .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:changed_static_routing_entry",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> action=<@WORD:NULL@> status=<@WORD:NULL@> reason=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ login accepted from .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_login_accepted",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> <@STRING:NULL@> msg=\"<@REGEXP(\"User .+ deleted static routing entry .+\"):msg@>",
+         "msg_id" : "Fortigate_System:deleted_static_routing_entry",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> intf=<@WORD:NULL@> msg=\"<@REGEXP(\"User .+ deleted interface .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:deleted_interface",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> msg=\"<@REGEXP(\"Disk logs exceed \\S+ of disk size.Deleted rolled log file name .+\"):msg@>",
+         "msg_id" : "Fortigate_System:disk_logs_exceed_size",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> <@STRING:NULL@> msg=\"<@REGEXP(\"User .+ changed timeout global setting to .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:changed_timeout_global_setting",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> <@STRING:NULL@> msg=\"<@REGEXP(\"User .+ changed the status of interface .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:changed_status_interface",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> msg=\"<@REGEXP(\"User .+ deleted a local certificate .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_deleted_local_certificate",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> msg=\"<@REGEXP(\"User .+ loaded local certificate .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_loaded_local_certificate",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> ui=<@STRING:ui@> <@STRING:NULL@> msg=\"<@REGEXP(\"System config file has been downloaded by.+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:system_config_file_downloaded",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> <@STRING:NULL@> reason=<@WORD:NULL@> msg=\"<@REGEXP(\"User.*login failed .+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:user_login_failed3",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> date=<@DATE_SQL:NULL@> time=<@TIME:NULL@> devname=<@WORD:device_name@> device_id=<@WORD:NULL@> log_id=<@NUMBER:NULL@> type=<@WORD:NULL@> subtype=<@WORD:NULL@> pri=<@WORD:NULL@> vd=<@WORD:NULL@> user=<@WORD:user@> <@STRING:NULL@> msg=\"<@REGEXP(\"IDS database has been updated.+\"):msg@>\"",
+         "msg_id" : "Fortigate_System:ids_database_been_updated",
+         "table" : "Fortigate_Event",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.fortinet.com/products/fortigate_overview.html",
+   "version" : "200709070001",
+   "name" : "Fortigate_System",
+   "description" : "Fortigate System Service"
+}

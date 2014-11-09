@@ -1,0 +1,107 @@
+{
+   "icon" : "companies/logo_denyall",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@WORD:instance@>: <@STRING:proxy@> <@IP_ADDR:src_addr@> \"-\" [<@DATE_TIME_APACHE_ACCESS:NULL@>] RE <@WORD:rule@> <@WORD:action@> access to '<@WORD:http_method@> <@STRING:url@>",
+         "msg_id" : "DenyAll_Filtering:access_to1",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Other",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:instance@>: - <@IP_ADDR:src_addr@> \"-\" [<@DATE_TIME_APACHE_ACCESS:NULL@>] RE <@WORD:rule@> <@WORD:action@> access to '<@WORD:http_method@> <@STRING:url@>",
+         "msg_id" : "DenyAll_Filtering:access_to2",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Other",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:instance@>: <@STRING:proxy@> <@IP_ADDR:src_addr@> \"-\" [<@DATE_TIME_APACHE_ACCESS:NULL@>] RE <@WORD:rule@> <@WORD:action@> access to '<@WORD:http_method@> <@STRING:url@>",
+         "msg_id" : "DenyAll_Filtering:access_to3",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Other",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\"\\s*<\\w+ value=.+/>\\s*\"):NULL@>",
+         "msg_id" : "DenyAll_Filtering:soap_value",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\"<.*SOAP-ENV:.+>\"):NULL@> ",
+         "msg_id" : "DenyAll_Filtering:soap_env",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ xmlns:.+\"):NULL@>",
+         "msg_id" : "DenyAll_Filtering:xmlns",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\"<.+>\"):NULL@>",
+         "msg_id" : "DenyAll_Filtering:xml",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@WORD:instance@>: <@REGEXP(\"\\S*'\"):NULL@> ",
+         "msg_id" : "DenyAll_Filtering:single_quote",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@WORD:instance@>: <@REGEXP(\".*^M\"):NULL@> ",
+         "msg_id" : "DenyAll_Filtering:control_m",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@WORD:instance@>: <@REGEXP(\".+\\\\n'\"):NULL@>",
+         "msg_id" : "DenyAll_Filtering:new_line",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Other",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@WORD:instance@>: - <@IP_ADDR:src_addr@> \"-\" [<@DATE_TIME_APACHE_ACCESS:NULL@>] RE <@WORD:rule@> <@WORD:action@> access to '<@WORD:http_method@> <@STRING:url@>",
+         "msg_id" : "DenyAll_Filtering:access_to4",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Other",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\"\\S{200}.*\"):NULL@> ",
+         "msg_id" : "DenyAll_Filtering:big_word",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Other",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".{300}.*\"):NULL@>",
+         "msg_id" : "DenyAll_Filtering:big_string",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Other",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>:",
+         "msg_id" : "DenyAll_Filtering:empty",
+         "table" : "DenyAll_Filtering",
+         "taxonomy" : "Other",
+         "loglevel" : "Debug"
+      }
+   ],
+   "website" : "http://www.deny-all.com",
+   "version" : "201002120004",
+   "name" : "DenyAll_Filtering",
+   "description" : "DenyAll Filtering (eaccess.log) Service"
+}

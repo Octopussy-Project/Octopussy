@@ -1,0 +1,114 @@
+{
+   "icon" : "operating_systems/os_mac",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Env: .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:env",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Hardware: .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:hardware",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"User picked Standard Install\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:user_picked_standard_install",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Running OS Build: .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:running_os_build",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*Install: \\\".+\\\"\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:install",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"It took \\S+ seconds to summarize the package selections.\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:took_seconds_summarize_package_selections",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\@\\(#\\)PROGRAM:Install .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:program_install",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*\\S+\\.pkg#\\S+\\.pkg .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:pkg",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"-\\[IFDInstallController\\(Private\\) _buildInstallPlan\\]: .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:ifdinstallcontroller_buildinstallplan",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Free space on .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:free_space_on",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Create temporary directory .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:create_temporary_directory",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Configuring volume .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:configuring_volume",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Installer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Set authorization level .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:set_authorization_level",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"installd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PackageKit: .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:installd_packagekit_msgs",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"installd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"./pre(?:flight|install): .+\"):msg@>",
+         "msg_id" : "Mac_OS_X_Installer:installd_preinstall_preflight_msgs",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201111040006",
+   "name" : "Mac_OS_X_Installer",
+   "description" : "Mac OS X Installer Service"
+}

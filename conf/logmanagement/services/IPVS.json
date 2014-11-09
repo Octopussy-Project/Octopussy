@@ -1,0 +1,51 @@
+{
+   "icon" : "software/logo_lvs",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: sync thread stopped!\"):msg@> ",
+         "msg_id" : "IPVS:sync_thread_stopped",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: sync thread started: .+\"):msg@>",
+         "msg_id" : "IPVS:sync_thread_started",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: stopping sync thread .+\"):msg@>",
+         "msg_id" : "IPVS:stopping_sync_thread",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: Registered protocols .+\"):msg@>",
+         "msg_id" : "IPVS:registered_protocols",
+         "table" : "Message",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: Connection hash table configured.*\"):msg@>",
+         "msg_id" : "IPVS:connection_hash_table_configured",
+         "table" : "Message",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: ipvs loaded.\"):msg@>",
+         "msg_id" : "IPVS:ipvs_loaded",
+         "table" : "Message",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.linuxvirtualserver.org/software/ipvs.html",
+   "version" : "200812120003",
+   "name" : "IPVS",
+   "description" : "IP Virtual Server Service"
+}

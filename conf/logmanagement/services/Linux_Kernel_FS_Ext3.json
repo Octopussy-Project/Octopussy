@@ -1,0 +1,58 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: recovery complete.\"):msg@>",
+         "msg_id" : "Linux_Kernel_FS_Ext3:recovery_complete",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3 FS on \\S+, internal journal\"):msg@>",
+         "msg_id" : "Linux_Kernel_FS_Ext3:internal_journal",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ext3_orphan_cleanup: deleting unreferenced inode \\d+\"):msg@>",
+         "msg_id" : "Linux_Kernel_FS_Ext3:deleting_unreferenced_inode",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: .*\\d+ orphan inode deleted\"):msg@>",
+         "msg_id" : "Linux_Kernel_FS_Ext3:orphan_inode_deleted",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: mounted filesystem with ordered data mode.\"):msg@>",
+         "msg_id" : "Linux_Kernel_FS_Ext3:mounted_ordered_data_mode",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs warning: checktime reached.*\"):msg@>",
+         "msg_id" : "Linux_Kernel_FS_Ext3:checktime_reached",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs error .+\"):msg@>",
+         "msg_id" : "Linux_Kernel_FS_Ext3:error",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "",
+   "version" : "200901290003",
+   "name" : "Linux_Kernel_FS_Ext3",
+   "description" : "Linux Kernel FileSystem Ext3"
+}

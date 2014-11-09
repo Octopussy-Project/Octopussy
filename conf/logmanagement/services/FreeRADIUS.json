@@ -1,0 +1,51 @@
+{
+   "icon" : "software/logo_freeradius",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freeradius\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Login OK: .+\"):msg@>",
+         "msg_id" : "FreeRADIUS:login_ok",
+         "table" : "Message",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freeradius\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Login incorrect: .+\"):msg@>",
+         "msg_id" : "FreeRADIUS:login_incorrect",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freeradius\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Ready to process requests.\"):msg@>",
+         "msg_id" : "FreeRADIUS:ready_to_process_requests",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freeradius\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Errors initializing modules\"):msg@>",
+         "msg_id" : "FreeRADIUS:errors_initializing_modules",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freeradius\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Errors reading .+\"):msg@>",
+         "msg_id" : "FreeRADIUS:errors_reading",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freeradius\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*Instantiation failed for module .+\"):msg@>",
+         "msg_id" : "FreeRADIUS:instantiation_failed_for_module",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://freeradius.org",
+   "version" : "201001220003",
+   "name" : "FreeRADIUS",
+   "description" : "FreeRADIUS service"
+}

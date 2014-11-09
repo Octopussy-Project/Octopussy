@@ -1,0 +1,23 @@
+{
+   "icon" : "companies/logo_juniper",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@IP_ADDR:src_addr@> - - [<@DATE_TIME_APACHE_ACCESS:apachetime@>] \"<@WORD:http_method@> <@WORD:url@> <@WORD:http_version@>\" <@NUMBER:status@> <@BYTES:rec_bytes@> <@STRING:NULL@>",
+         "msg_id" : "Juniper_DX_Traffic:traffic1",
+         "table" : "Web_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@IP_ADDR:src_addr@> [<@DATE_TIME_APACHE_ACCESS:apachetime@>] <@WORD:http_method@> <@WORD:url@> <@WORD:http_version@> <@NUMBER:status@> <@BYTES:rec_bytes@> <@STRING:NULL@>",
+         "msg_id" : "Juniper_DX_Traffic:miss",
+         "table" : "Web_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.juniper.net/products_and_services/application_acceleration/data_center_acceleration/dx_application_acceleration/",
+   "version" : "201003080002",
+   "name" : "Juniper_DX_Traffic",
+   "description" : "Juniper DX Traffic Service"
+}

@@ -1,0 +1,57 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Job .+ started\"):msg@>",
+         "msg_id" : "Anacron:job_started",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Job .+ terminated.*\"):msg@>",
+         "msg_id" : "Anacron:job_terminated",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Updated timestamp for job `\\S+' to \\S+\"):msg@>",
+         "msg_id" : "Anacron:updated_timestamp_for_job",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Normal exit .+\"):msg@>",
+         "msg_id" : "Anacron:normal_exit",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Jobs will be executed sequentially\"):msg@>",
+         "msg_id" : "Anacron:jobs_executed_sequentially",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Will run job .+ in .+\"):msg@>",
+         "msg_id" : "Anacron:will_run_job",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Anacron .+ started on .+\"):msg@>",
+         "msg_id" : "Anacron:started_on",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "version" : "200905180003",
+   "name" : "Anacron",
+   "description" : "Anacron Service"
+}

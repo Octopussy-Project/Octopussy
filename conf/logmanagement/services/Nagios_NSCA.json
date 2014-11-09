@@ -1,0 +1,93 @@
+{
+   "icon" : "software/logo_nagios",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@NUMBER:NULL@>]: SERVICE CHECK -> Host Name: <@SINGLE_QUOTED_STRING:host@>, Service Description: <@SINGLE_QUOTED_STRING:service@>, Return Code: <@SINGLE_QUOTED_STRING:status@>, Output: <@SINGLE_QUOTED_STRING:msg@> ",
+         "msg_id" : "Nagios_NSCA:service_check",
+         "table" : "Nagios_service",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Connection from .+ port \\d+\"):msg@>",
+         "msg_id" : "Nagios_NSCA:connection_from",
+         "table" : "Message",
+         "taxonomy" : "Access",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connect from .+\"):msg@>",
+         "msg_id" : "Nagios_NSCA:connect_from",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Host address checks out ok\"):msg@>",
+         "msg_id" : "Nagios_NSCA:host_address_ok",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Handling the connection...\"):msg@> ",
+         "msg_id" : "Nagios_NSCA:handling_the_connection",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"End of connection...\"):msg@> ",
+         "msg_id" : "Nagios_NSCA:end_of_connection",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Host \\S+ is not allowed to talk to us!\"):msg@> ",
+         "msg_id" : "Nagios_NSCA:not_allowed_talk",
+         "table" : "Message",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Command file .+ does not exist, attempting to use alternate dump file .+ for output\"):msg@>",
+         "msg_id" : "Nagios_NSCA:command_file_doesnot_exist",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Starting up daemon\"):msg@> ",
+         "msg_id" : "Nagios_NSCA:starting_up_daemon",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Dropping packet with stale timestamp - packet was \\d+ seconds old.\"):msg@> ",
+         "msg_id" : "Nagios_NSCA:dropping_packet_stale_timestamp",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Network server bind failure.+\"):msg@>",
+         "msg_id" : "Nagios_NSCA:network_server_bind_failure",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Unknown option specified in config file .+\"):msg@>",
+         "msg_id" : "Nagios_NSCA:unknown_option_in_file",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www.nagios.org",
+   "version" : "201002180001",
+   "name" : "Nagios_NSCA",
+   "description" : "Nagios NSCA Service"
+}

@@ -1,0 +1,1710 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"OEM ID: .+ Product ID: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:oem_id",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"per-CPU timeslice cutoff: .+ usecs.\"):msg@>",
+         "msg_id" : "Linux_Kernel:percpu_timeslice_cutoff",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\d+MB \\S+MEM available.\"):msg@>",
+         "msg_id" : "Linux_Kernel:mem_available",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ESR value \\S+ enabling vector: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:esr_enabling_vector",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Booting processor .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:booting_processor",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+ed ExtINT on CPU#\\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:extint_on_cpu",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ENABLING IO-APIC IRQs\"):msg@>",
+         "msg_id" : "Linux_Kernel:enabling_ioapic_irqs",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Detected .+ MHz processor.\"):msg@>",
+         "msg_id" : "Linux_Kernel:detected_mhz_processor",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Enabling fast FPU save and restore.+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:enabling_fast_fpu",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Total of \\d+ processors activated \\(.+ BogoMIPS\\).\"):msg@>",
+         "msg_id" : "Linux_Kernel:total_processors_activated",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"number of MP IRQ sources: \\d+.\"):msg@>",
+         "msg_id" : "Linux_Kernel:number_mp_irq_sources",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"LAPIC \\(.+\\)\"):msg@>",
+         "msg_id" : "Linux_Kernel:lapic",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"init IO_APIC IRQs\"):msg@>",
+         "msg_id" : "Linux_Kernel:init_ioapic_irqs",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Enabling unmasked SIMD FPU exception support.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:enabling_simd_fpu_exception",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"number of IO-APIC #\\d+ registers: \\d+.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:number_ioapic_registers",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".... register #\\d+: \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:register",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"POSIX conformance testing by UNIFIX\"):msg@>",
+         "msg_id" : "Linux_Kernel:posix_conformance_testing",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IO-APIC \\(apicid-pin\\) .+ not connected.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:ioapic_not_connected",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Local APIC address \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:local_apic_address",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Kernel command line: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:kernel_command_line",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*martian source \\S+ from .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:martian_source",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Intel machine check .+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:intel_machine_check",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"found SMP MP-table at \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:found_smp_mptable",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"NET: \\d+ messages suppressed.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:net_messages_suppressed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"sending pkt_too_big .+ to self\"):msg@> ",
+         "msg_id" : "Linux_Kernel:pkt_too_big",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"UDP: short packet: .+ to .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:udp_short_packet",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"cpu \\d+ \\S+: low \\d+, high \\d+, batch \\d+\"):msg@>",
+         "msg_id" : "Linux_Kernel:cpu_stats",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Free pages: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:free_pages",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Out of Memory: Killed process .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:out_of_memory",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+ free:\\d+kB min:\\d+kB low:\\d+kB high:\\d+kB .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:mem_stats",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+ per-cpu:\"):msg@>",
+         "msg_id" : "Linux_Kernel:per_cpu",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"protections\\[\\]: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:protections",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+: \\d+\\*\\d+kB \\d+\\*\\d+kB.+ = \\d+kB\"):msg@>",
+         "msg_id" : "Linux_Kernel:not_interesting3",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Swap cache: add \\d+, delete \\d+, find .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:swap_cache_info",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Active:\\d+ inactive:\\d+ dirty:.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:active_inactive_dirty",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"oom-killer: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:oom_killer",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"__va_range\\(.+\\): idx=\\d+ mapped at \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:va_range",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ACPI table found: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:acpi_table_found",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ll header: \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:header",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"BIOS-provided physical RAM map:\"):msg@>",
+         "msg_id" : "Linux_Kernel:bios_provided_physical_ram",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel:<@REGEXP(\".*BIOS-e820:.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:bios_e820",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"hm, page .+ reserved twice.\"):msg@>",
+         "msg_id" : "Linux_Kernel:page_reserved_twice",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"I/O APIC .+ at \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:io_apic_at",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ hash table entries: \\d+ .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:hash_table_entries",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*device \\S+ \\S+ promiscuous mode\"):msg@>",
+         "msg_id" : "Linux_Kernel:promiscuous_mode",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"icmp v4 hw csum failure\"):msg@> ",
+         "msg_id" : "Linux_Kernel:icmp_csum_failure",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"klogd \\S+, log source = .+ started.\"):msg@>",
+         "msg_id" : "Linux_Kernel:klogd_started",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"printk: \\d+ messages suppressed.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:printk_messages_suppressed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"NET: Registered protocol family \\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:registered_protocol_family",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ide-floppy driver \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:floppy_driver",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Uniform CD-ROM driver.+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:cdrom_driver",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Loaded \\d+ symbols from .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:loaded_symbols",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Intel MultiProcessor Specification \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:intel_multiproc_spec",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dd: \\S+ records \\S+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:dd_records",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sysctl: \\S+ = \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:sysctl",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rc.sysinit: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:rc_sysinit",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"random: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:random",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"keytable: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:keytable",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"init: Switching to runlevel: \\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:switching_runlevel",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"init: Entering runlevel: \\d+\"):msg@>  ",
+         "msg_id" : "Linux_Kernel:entering_runlevel",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"hpasm: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:hpasm",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rc: Starting \\S+:  succeeded\"):msg@>",
+         "msg_id" : "Linux_Kernel:rc_starting_succeeded",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rc: Starting \\S+:  failed\"):msg@> ",
+         "msg_id" : "Linux_Kernel:rc_starting_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sysstat:.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:sysstat",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IOAPIC .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:ioapic",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"LAPIC_NMI .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:lapic_nmi",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*IO-APIC .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:io_apic",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\d+ CPUs total\"):msg@> ",
+         "msg_id" : "Linux_Kernel:cpus_total",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Scanning bios .+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:scanning_bios",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Calibrating delay .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:calibrating_delay",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU .+ enabledProcessor .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:cpu_enabledprocessor",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"RSD PTR.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:rsd_ptr",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"On node \\d+ totalpages: \\d+\"):msg@>",
+         "msg_id" : "Linux_Kernel:node_totalpages",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\.\\.\\.\\.\\.\\.\\.    : .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:not_interesting1",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*\\S\\S \\S\\S\\S \\S\\S\\s+\\d\\s+\\d\\s+\\d\\s+\\d\\s+\\d\\s+\\d\\s+\\d\\s+\\S\\S\"):msg@>",
+         "msg_id" : "Linux_Kernel:not_interesting2",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*NR Log Phy Mask Trig IRR Pol Stat Dest Deli Vect:\"):msg@>",
+         "msg_id" : "Linux_Kernel:not_interesting4",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+CPU clock speed is \\S+ MHz.\"):msg@>",
+         "msg_id" : "Linux_Kernel:cpu_clock_speed",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+host bus clock speed is \\S+ MHz.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:bus_clock_spped",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"PCI BIOS .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:pci_bios_msg",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ APIC timer .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:apic_timer",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Inspecting \\S+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:inspecting_boot_map",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Enabling the CPU's according to the ACPI table\"):msg@> ",
+         "msg_id" : "Linux_Kernel:enabling_cpu_acpi",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Virtual Wire compatibility mode.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:virtual_wire_compatibility",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Serial driver version.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:serial_driver_version",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Initializing RT netlink socket\"):msg@> ",
+         "msg_id" : "Linux_Kernel:initializing_rt_netlink",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Real Time Clock Driver.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:rtclock_driver",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"RAMDISK driver initialized:.+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:ramdisk_driver_initialized",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"allocated \\d+ pages and \\d+ bhs reserved for the highmem bounces\"):msg@>",
+         "msg_id" : "Linux_Kernel:allocated_highmem_bounces",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Uniform Multi-Platform E-IDE driver Revision: \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:e_ide_driver",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ServerWorks CSB5: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:serverworks_csb5",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"tty\\S+ at 0x\\S+ .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:tty_at",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ide\\d+ at 0x\\S+ .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:ide_at",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"bigpage subsystem: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:bigpage_subsystem",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IP Protocols: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:ip_protocols",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Linux IP multicast router .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:linux_ip_multicast",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Symbols match kernel version .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:symbols_match_kernel",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SCSI subsystem driver Revision:.+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:scsi_driver",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"exiting on signal \\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:exiting_on_signal",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*heads= \\d+, sectors= \\d+, cylinders= \\d+.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:heads_sectors_cylinders",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*blocks= \\d+ block_size= \\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:blocks_block_size",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"INT_SRC_OVR .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:int_src_ovr",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Journalled Block Device driver loaded\"):msg@> ",
+         "msg_id" : "Linux_Kernel:journalled_block_device",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Initializing CPU#\\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:initializing_cpu",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"insmod: Module \\S+ loaded, with warnings\"):msg@> ",
+         "msg_id" : "Linux_Kernel:insmod_loaded_warnings",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"insmod:.+See \\S+ for information about tainted modules\"):msg@>",
+         "msg_id" : "Linux_Kernel:insmod_tainted_modules",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Enabling APIC mode: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:enabling_apic_mode",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IRQ \\d+, Control Regs at \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:irq_control_regs",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Rainbow Technologies CryptoSwift Linux Driver \\S+\"):msg@>",
+         "msg_id" : "Linux_Kernel:rainbow_crypto_driver",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Kernel logging \\(proc\\) stopped.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:logging_stopped",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Kernel log daemon terminating.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:log_daemon_terminating",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: ",
+         "msg_id" : "Linux_Kernel:empty_line",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"TCP: drop open request from \\S+/\\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:tcp_drop_open_request",
+         "table" : "Message",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"TCP: Treason uncloaked! Peer \\S+ shrinks window \\S+ Repaired.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:tcp_treason_uncloaked",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"FIFO write timed out\"):msg@> ",
+         "msg_id" : "Linux_Kernel:fifo_write_timed_out",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"parport\\d+: FIFO is stuck\"):msg@>",
+         "msg_id" : "Linux_Kernel:parport_fifo_stuck",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"parport\\d+: BUSY timeout.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:parport_busy_timeout",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ENOMEM in journal_alloc_journal_head, retrying.\"):msg@>",
+         "msg_id" : "Linux_Kernel:enomem_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*__ratelimit: \\d+ messages suppressed\"):msg@>",
+         "msg_id" : "Linux_Kernel:ratelimit_messages_suppressed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"\\[<\\S+>\\]\"):NULL@> <@STRING:NULL@>",
+         "msg_id" : "Linux_Kernel:UNKNOWN",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: page allocation failure.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:page_allocation_failure",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"atkbd.c: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:keyboard_msg",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"smb_lookup: find .+ failed, error=.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:smb_lookup_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"zone\\(\\d+\\): \\d+ pages.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:zone_pages",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IRQ\\d+ -> .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:irq",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ISO 9660 Extensions:.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:iso_9660_extensions",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"smb_add_request: request .+ timed out!\"):msg@>",
+         "msg_id" : "Linux_Kernel:smb_request_timed_out",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SMB connection re-established.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:smb_connection_reestablished",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"modprobe: modprobe: Can't locate module \\S+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:modprobe_cant_locate_module",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"smb_proc_readdir_long: .+ breaking\"):msg@> ",
+         "msg_id" : "Linux_Kernel:smbproc_readdir_breaking",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Clock: inserting leap second .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:clock_inserting_leap_second",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU\\d+<.+>\"):msg@> ",
+         "msg_id" : "Linux_Kernel:cpu",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"cpu_sibling_map\\[\\d+\\].+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:cpu_sibling_map",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: eth\\d+: transmit timed out\"):msg@> ",
+         "msg_id" : "Linux_Kernel:interface_transmit_timed_out",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SCSI disk error : .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:scsi_disk_error",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ACPI: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:acpi_info",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU\\d*: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:cpu_info",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IOAPIC\\[\\d+\\]: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:ioapic_info",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\w+ window: \\S{8}-\\S{8}\"):msg@>",
+         "msg_id" : "Linux_Kernel:window_address",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\s+I/O error: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:io_error",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"md: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:md_messages",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+NIC .*Link is Up.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:nic_link_is_up",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+NIC .*Link is Down.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:nic_link_is_down",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"icmpv6_send: addr_any/mcast source\"):msg@> ",
+         "msg_id" : "Linux_Kernel:icmpv6_send",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"FAT: Directory bread.+ failed\"):msg@> ",
+         "msg_id" : "Linux_Kernel:fat_directory_bread_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ rejecting I/O to dead device\"):msg@> ",
+         "msg_id" : "Linux_Kernel:rejecting_io_dead_device",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*kjournald starting.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:kjournald_starting",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"VM: killing process .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:vm_killing_process",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Emergency"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"No module symbols loaded - kernel modules not enabled.\"):msg@>  ",
+         "msg_id" : "Linux_Kernel:no_module_symbols_loaded",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ default_wake_function.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:default_wake_function",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ syscall_call.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:syscall_call",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ \\w+_futex.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:futex",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ wake_up_process.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:wake_up_process",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ futex_wait.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:futex_wait",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ warning: maximal mount count reached, running e2fsck is recommended\"):msg@> ",
+         "msg_id" : "Linux_Kernel:maximal_mount_count",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: Link is up at .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:link_is_up",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Buffer I/O error on device .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:buffer_io_error",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ allocation failed .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:allocation_failed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\w+ window: disabled.\"):msg@>",
+         "msg_id" : "Linux_Kernel:window_disabled",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Attached scsi generic .+ type .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:attached_scsi_generic",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: the driver '.+' has been registered\"):msg@>",
+         "msg_id" : "Linux_Kernel:pnp_driver_been_registered",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"portmap: server .+ not responding.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:portmap_server_not_responding",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"kernel: RPC: failed to contact portmap .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:rpc_failed_contact_portmap",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ zone: \\d+ pages.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:zone_pages2",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: .+ ioport range \\S+ could not be reserved\"):msg@>",
+         "msg_id" : "Linux_Kernel:pnp_ioport_not_reserved",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: .+ ioport range \\S+ has been reserved\"):msg@>",
+         "msg_id" : "Linux_Kernel:pnp_ioport_been_reserved",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"PCI: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:pci_boot_info",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SCSI device \\S+: .+ hdwr sectors.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:scsi_device_hdwr_sectors",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"process .+ is using obsolete setsockopt SO_BSDCOMPAT\"):msg@> ",
+         "msg_id" : "Linux_Kernel:using_obsolete_setsockopt",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ip_conntrack: table full, dropping packet.\"):msg@> ",
+         "msg_id" : "Linux_Kernel:ip_conntrack_table_full",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Processor #\\d+.*APIC version .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:processor_apic_version",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Vendor: .+ Model: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:vendor_model",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"BUG: unable to handle kernel NULL pointer dereference at virtual address .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:bug_null_pointer_dereference",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Bad page state in process '.+'\"):msg@> ",
+         "msg_id" : "Linux_Kernel:bad_page_state_process",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"sys_write\\+.+\"):NULL@>",
+         "msg_id" : "Linux_Kernel:debug_sys_write",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"sysenter_past_esp\\+.+\"):NULL@>",
+         "msg_id" : "Linux_Kernel:debug_sysenter_past_esp",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"__alloc_pages\\+.+\"):NULL@>",
+         "msg_id" : "Linux_Kernel:debug_alloc_pages",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"file_update_time\\+.+\"):NULL@>",
+         "msg_id" : "Linux_Kernel:debug_file_update_time",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Trying to fix it up, but a reboot is needed\"):msg@> ",
+         "msg_id" : "Linux_Kernel:trying_fix_reboot_needed",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SMP alternatives: switching to \\w+ code\"):msg@> ",
+         "msg_id" : "Linux_Kernel:smp_alternatives_switching_code",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"io scheduler \\w+ registered.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:io_scheduler_registered",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"page:\\S+ flags:\\S+ mapping:\\S+ mapcount:\\d+ count:\\d+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:page_flags_mapping",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"Backtrace:\"):NULL@> ",
+         "msg_id" : "Linux_Kernel:backtrace",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"error_code\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:error_code",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"bad_page\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:bad_page",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"get_page_from_freelist\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:get_page_from_freelist",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"vma_adjust\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:vma_adjust",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"vma_merge\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:vma_merge",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"__handle_mm_fault\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:handle_mm_fault",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"do_sync_read\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:do_sync_read",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"autoremove_wake_function\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:autoremove_wake_function",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"copy_process\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:copy_process",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"do_page_fault\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:do_page_fault",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"do_mmap_pgoff\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:do_mmap_pgoff",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"__activate_task\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:activate_task",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"sys_gettimeofday\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:sys_gettimeofday",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"__pagevec_lru_add_active\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:pagevec_lru_add_active",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"split_vma\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:split_vma",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"do_wp_page\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:do_wp_page",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"cache_alloc_refill\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:cache_alloc_refill",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"dnotify_parent\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:dnotify_parent",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"wake_up_new_task\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:wake_up_new_task",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"sys_open\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:sys_open",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"open_namei\\+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:open_namei",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"BUG: soft lockup detected on .+\"):msg@> ",
+         "msg_id" : "Linux_Kernel:bug_soft_lockup_detected",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\w+: received packet with  own address as source address\"):msg@> ",
+         "msg_id" : "Linux_Kernel:own_address_source_address",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*\\w+: no IPv6 routers present\"):msg@>",
+         "msg_id" : "Linux_Kernel:no_ipv6_routers_present",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"TCP \\w+ registered\"):msg@>",
+         "msg_id" : "Linux_Kernel:tcp_module_registered",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Found MSI capability\"):msg@>",
+         "msg_id" : "Linux_Kernel:found_msi_capability",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Allocating PCI resources starting at .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:allocating_pci_resources",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Brought up \\d+ CPUs\"):msg@> ",
+         "msg_id" : "Linux_Kernel:brought_up_cpus",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"GSI \\d+ sharing vector .+ and IRQ .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:gsi_sharing_vector",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Link is .own.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:network_link_down",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Allocate Port Service.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:allocate_port_service",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: match found with the PnP device '.+' and the driver '.+'\"):msg@>",
+         "msg_id" : "Linux_Kernel:pnp_match_found",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: ACPI device : .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:pnp_acpi_device",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU \\d+: Syncing TSC to CPU \\d+.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:syncing_tsc_to_cpu",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU \\d+: synchronized TSC with CPU \\d+ .*\"):msg@>",
+         "msg_id" : "Linux_Kernel:synchronized_tsc_with_cpu",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+:.+: Flow control .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:Network_Link_up",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Linux version .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:linux_version",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*mapped \\w*APIC to .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:mapped_apic",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ACPI.*: Dynamic SSDT Load - .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:acpi_dynamic_ssdt_load",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Cannot allocate resource for EISA slot \\d+\"):msg@>",
+         "msg_id" : "Linux_Kernel:cannot_allocate_resource_eisa",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"AMD8111: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:amd8111_info",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"EISA: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:eisa_info",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Entering add_active_range.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:entering_add_active_range",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*PM: Registered nosave memory:.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:pm_registered_nosave_memory",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*early res: \\d+ .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:early_res",
+         "table" : "Message",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ioctl32\\(\\S+\\): Unknown cmd .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:ioctl32_unknown_cmd",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ethtool operation .+ not supported\"):msg@>",
+         "msg_id" : "Linux_Kernel:ethtool_operation_not_supported",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"hd\\S+: drive_cmd: status=.+ \\{ DriveReady SeekComplete Error \\}\"):msg@>",
+         "msg_id" : "Linux_Kernel:driveready_seekcomplete_error",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"hd\\S+: drive_cmd: error=.+ \\{ AbortedCommand \\}\"):msg@>",
+         "msg_id" : "Linux_Kernel:drive_cmd_aborted_command",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ide: failed opcode was: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:ide_failed_opcode",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"host .+ ignores redirects for .+ to .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:host_ignores_redirects_for",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*CE: hpet increasing min_delta_ns to .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:hpet_increasing",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*TCP: too many of orphaned sockets.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:too_many_orphaned_sockets",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*BUG: soft lockup - CPU.+ stuck for .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:bug_soft_lockup",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"setitimer: .+ provided invalid timeval it_value: .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:setitimer_provided_invalid_timeval",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*process .+ is using deprecated sysctl .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:process_using_deprecated_sysctl",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Orphaned socket dropped.+\"):msg@>",
+         "msg_id" : "Linux_Kernel:orphaned_socket_dropped",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ACPI handle has no context!\"):msg@>",
+         "msg_id" : "Linux_Kernel:acpi_handle_no_context",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*TCP: time wait bucket table overflow.*\"):msg@>",
+         "msg_id" : "Linux_Kernel:tcp_bucket_table_overflow",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*possible SYN flooding on port .+\"):msg@>",
+         "msg_id" : "Linux_Kernel:possible_syn_flooding",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"RPC: Registered .+ transport module.\"):msg@>",
+         "msg_id" : "Linux_Kernel:registered_transport_module",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.kernel.org/",
+   "version" : "201002120016",
+   "name" : "Linux_Kernel",
+   "description" : "Linux Kernel Service"
+}

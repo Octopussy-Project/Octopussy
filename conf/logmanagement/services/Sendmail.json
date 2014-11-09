@@ -1,0 +1,198 @@
+{
+   "icon" : "software/logo_sendmail",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: from=<@EMAIL:sender@>, size=<@NUMBER:size@>, class=<@NUMBER:NULL@>, nrcpts=<@NUMBER:NULL@>, msgid=<@WORD:msg_id@>, relay=<@STRING:relay@> ",
+         "msg_id" : "Sendmail:from",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: from=<@EMAIL:sender@>, size=<@NUMBER:size@>, class=<@NUMBER:NULL@>, nrcpts=<@NUMBER:NULL@>, msgid=<@WORD:msg_id@>, proto=<@WORD:NULL@>, daemon=<@WORD:NULL@>, relay=<@STRING:relay@>",
+         "msg_id" : "Sendmail:from_proto",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: to=<@EMAIL:recipient@> ctladdr=<@STRING:NULL@>, delay=<@WORD:NULL@> xdelay=<@WORD:NULL@> mailer=<@WORD:NULL@> pri=<@WORD:NULL@> relay=<@STRING:relay@>, dsn=<@WORD:NULL@> stat=<@STRING:status@>",
+         "msg_id" : "Sendmail:to_relay",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: to=<@EMAIL:recipient@> ctladdr=<@STRING:NULL@>, delay=<@WORD:NULL@> xdelay=<@WORD:NULL@> mailer=<@WORD:NULL@> pri=<@WORD:NULL@>, dsn=<@WORD:NULL@> stat=<@STRING:status@> ",
+         "msg_id" : "Sendmail:to",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"NOQUEUE: SYSERR\\(\\S+\\): can not chdir\\(.+\\): Permission denied\"):msg@>",
+         "msg_id" : "Sendmail:can_not_chdir",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"alias database .+ rebuilt by .+\"):msg@>",
+         "msg_id" : "Sendmail:alias_database_rebuilt_by",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"starting daemon.+\"):msg@>",
+         "msg_id" : "Sendmail:starting_daemon",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sm-msp-queue\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"starting daemon .+\"):msg@>",
+         "msg_id" : "Sendmail:msp_queue_starting_daemon",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sm-msp-queue\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: to=<@EMAIL:recipient@> ctladdr=<@STRING:NULL@>, delay=<@WORD:NULL@> xdelay=<@WORD:NULL@> mailer=<@WORD:NULL@> pri=<@WORD:NULL@> relay=<@STRING:relay@>, dsn=<@WORD:NULL@> stat=<@STRING:status@>",
+         "msg_id" : "Sendmail:msp_queue_relay",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sm-msp-queue\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"grew WorkList for .+\"):msg@>",
+         "msg_id" : "Sendmail:grew_worklist",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: sender notify: Warning: could not send message for past \\d+ hours\"):msg@> ",
+         "msg_id" : "Sendmail:couldnt_send_past_hours",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: to=<@EMAIL:recipient@>, delay=<@STRING:NULL@>, xdelay=<@STRING:NULL@>, mailer=<@WORD:NULL@>, pri=<@WORD:NULL@>, dsn=<@WORD:NULL@>, stat=<@STRING:status@>",
+         "msg_id" : "Sendmail:to2",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: sender notify: Cannot send message for .+\"):msg@>",
+         "msg_id" : "Sendmail:cannot_send_message_for",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: from=<@WORD:sender@>, size=<@NUMBER:size@>, class=<@NUMBER:NULL@>, nrcpts=<@NUMBER:NULL@>, msgid=<@WORD:msg_id@>, relay=<@STRING:relay@>",
+         "msg_id" : "Sendmail:from_user",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:sendmail|sm-msp-queue)\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: to=<@WORD:recipient@> ctladdr=<@STRING:NULL@>, delay=<@WORD:NULL@> xdelay=<@WORD:NULL@> mailer=<@WORD:NULL@> pri=<@WORD:NULL@>, relay=<@STRING:relay@>, dsn=<@WORD:NULL@> stat=<@STRING:status@>",
+         "msg_id" : "Sendmail:to_user",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:sendmail|sm-msp-queue)\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: to=<@WORD:recipient@>, delay=<@WORD:NULL@> xdelay=<@WORD:NULL@> mailer=<@WORD:NULL@> pri=<@WORD:NULL@> relay=<@STRING:relay@>, dsn=<@WORD:NULL@> stat=<@STRING:status@>",
+         "msg_id" : "Sendmail:to_user2",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"alias .+ out of date\"):msg@>",
+         "msg_id" : "Sendmail:alias_out_of_date",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S+: \\S+: DSN: Host unknown .*\"):msg@>",
+         "msg_id" : "Sendmail:dsn_host_unknown",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S+: \\S+: return to sender: Host unknown .*\"):msg@>",
+         "msg_id" : "Sendmail:return_sender_host_unknown",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:sendmail|sm-msp-queue)\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: to=<@WORD:recipient@>, delay=<@WORD:NULL@> xdelay=<@WORD:NULL@> mailer=<@WORD:NULL@> pri=<@WORD:NULL@> dsn=<@WORD:NULL@> stat=<@STRING:status@>",
+         "msg_id" : "Sendmail:to_user3",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: from=<@WORD:sender@>, size=<@NUMBER:size@>, class=<@NUMBER:NULL@>, nrcpts=<@NUMBER:nrcpt@>, msgid=<@WORD:msg_id@>, <@REGEXP(\"bodytype=\\S+, proto=\\S+, daemon=\\S+\"):status@>, relay=<@STRING:relay@>",
+         "msg_id" : "Sendmail:bodytype_proto_daemon",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: from=<@WORD:sender@>, size=<@NUMBER:size@>, class=<@NUMBER:NULL@>, nrcpts=<@NUMBER:nrcpt@>, msgid=<@WORD:msg_id@>, <@REGEXP(\"proto=\\S+, daemon=\\S+\"):status@>, relay=<@STRING:relay@>",
+         "msg_id" : "Sendmail:proto_daemon",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@WORD:mail_id@>: <@REGEXP(\".*User unknown\"):status@>",
+         "msg_id" : "Sendmail:user_unknown",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>] <@WORD:mail_id@>: to=<@EMAIL:recipient@>, ctladdr=<@STRING:NULL@>, delay=<@WORD:NULL@>, xdelay=<@WORD:NULL@>, mailer=<@WORD:NULL@>, pri=<@WORD:NULL@>, relay=<@STRING:relay@>, dsn=<@WORD:NULL@>, stat=<@STRING:status@>",
+         "msg_id" : "Sendmail:to_relay2",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>] <@WORD:mail_id@>: to=<@WORD:recipient@> ctladdr=<@STRING:NULL@>, delay=<@WORD:NULL@>, xdelay=<@WORD:NULL@>, mailer=<@WORD:NULL@>, pri=<@WORD:NULL@>, relay=<@STRING:relay@>, dsn=<@WORD:NULL@> stat=<@STRING:status@>",
+         "msg_id" : "Sendmail:to_user4",
+         "table" : "Mail_Traffic",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"unable to qualify my own domain name .+\"):msg@>",
+         "msg_id" : "Sendmail:unable_qualify_own_domain",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sendmail\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"My unqualified host name .+ unknown; sleeping for retry\"):msg@>",
+         "msg_id" : "Sendmail:my_unqualified_host_name",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.sendmail.org/",
+   "version" : "201208290002",
+   "name" : "Sendmail",
+   "description" : "Sendmail Service"
+}

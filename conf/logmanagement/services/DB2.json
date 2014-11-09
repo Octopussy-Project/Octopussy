@@ -1,0 +1,15 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"DB2\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Open of log file .+ failed .+\"):msg@>",
+         "msg_id" : "DB2:open_log_file_failed",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "",
+   "version" : "200905250002",
+   "name" : "DB2",
+   "description" : "DB2 Database Service"
+}

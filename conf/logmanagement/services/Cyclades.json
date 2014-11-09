@@ -1,0 +1,85 @@
+{
+   "icon" : "companies/logo_avocent",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[2\\]: A user logged into the appliance.\"):msg@> User: <@WORD:user@>. Session type: <@NUMBER:session_type@>. ",
+         "msg_id" : "Cyclades:user_logged_in",
+         "table" : "Cyclades",
+         "taxonomy" : "Access.Success",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[3\\]: A user logged out of the appliance.\"):msg@> User: <@WORD:user@>. Session type: <@NUMBER:session_type@>. ",
+         "msg_id" : "Cyclades:user_logged_out",
+         "table" : "Cyclades",
+         "taxonomy" : "Access",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[5\\]: KVM session started.\"):msg@> User: <@WORD:user@>. Port name: <@WORD:port_name@>. Port number: <@NUMBER:port_number@> Session Type: <@NUMBER:session_type@>. ",
+         "msg_id" : "Cyclades:KVM_session_started",
+         "table" : "Cyclades",
+         "taxonomy" : "Access.Success",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[6\\]: KVM session stopped.\"):msg@> User: <@WORD:user@>. Port name: <@WORD:port_name@>. Port number: <@NUMBER:port_number@> Session Type: <@NUMBER:session_type@>. ",
+         "msg_id" : "Cyclades:KVM_session_stopped",
+         "table" : "Cyclades",
+         "taxonomy" : "Access",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[4\\]: User authentication failed.\"):msg@> User: <@WORD:user@>. ",
+         "msg_id" : "Cyclades:User_authentication_failed",
+         "table" : "Cyclades",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[16\\]: New configuration activated by user\"):msg@>: <@WORD:user@>. ",
+         "msg_id" : "Cyclades:New_configuration_activated",
+         "table" : "Cyclades",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[11\\]: A daemon stopped.\"):msg@> User: <@WORD:user@>. Daemon name: <@WORD:daemon_name@>. ",
+         "msg_id" : "Cyclades:A_daemon_stopped",
+         "table" : "Cyclades",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[10\\]: A daemon started.\"):msg@> User: <@WORD:user@>. Daemon name: <@WORD:daemon_name@>.",
+         "msg_id" : "Cyclades:A_daemon_started",
+         "table" : "Cyclades",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[15\\]: Configuration saved to flash by user\"):msg@>: <@WORD:user@>. ",
+         "msg_id" : "Cyclades:Configuration_saved_to_flash",
+         "table" : "Cyclades",
+         "taxonomy" : "Config",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[12\\]: Admin session terminated. Command issued by user: \\S+. Terminated user\"):msg@>: <@WORD:user@>. ",
+         "msg_id" : "Cyclades:Admin_session_terminated",
+         "table" : "Cyclades",
+         "taxonomy" : "Access",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+\"):NULL@> <@IP_ADDR:NULL@> <@REGEXP(\"EVT\\[17\\]: A user was added to the local user database. Command issued by user: \\S+. New user\"):msg@>: <@WORD:user@>. ",
+         "msg_id" : "Cyclades:A_user_was_added",
+         "table" : "Cyclades",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      }
+   ],
+   "version" : "200709260023",
+   "name" : "Cyclades",
+   "description" : "Cyclades KVM"
+}

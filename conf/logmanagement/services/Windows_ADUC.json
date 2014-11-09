@@ -1,0 +1,107 @@
+{
+   "icon" : "operating_systems/os_windows",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>;;<@REGEXP(\"Domain Policy Changed:.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:domain_policy_changed",
+         "table" : "Windows_Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Policy Change\"):category@>;;<@REGEXP(\"Kerberos Policy Changed:.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:kerberos_policy_changed",
+         "table" : "Windows_Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Security policy in the Group policy objects are applied successfully.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:policy_objects_applied_successfully",
+         "table" : "Windows_Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>;;<@REGEXP(\"User Account Deleted:.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:User_Account_Deleted",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>;;<@REGEXP(\"User Account Created:.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:User_Account_Created",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>;;<@REGEXP(\"Security Enabled .+ Group Created:.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:Group_Created",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>  ;;<@REGEXP(\"Security Enabled .+ Group Deleted: .+\"):msg@>",
+         "msg_id" : "Windows_ADUC:Group_Deleted",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>;;<@REGEXP(\"Security Enabled .+ Group Member Added:.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:Group_Member_Added",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>  ;;<@REGEXP(\"Security Enabled .+ Group Member Removed: .+\"):msg@>",
+         "msg_id" : "Windows_ADUC:Group_Member_Removed",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>  ;;<@REGEXP(\"Computer Account Created: .+\"):msg@>",
+         "msg_id" : "Windows_ADUC:Computer_Account_Created",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>  ;;<@REGEXP(\"Computer Account Deleted: .*\"):msg@>",
+         "msg_id" : "Windows_ADUC:Computer_Account_Deleted",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Security policy in the Group policy objects has been applied successfully.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:security_policy_in_group_policy_objects_applied_successfully",
+         "table" : "Windows_Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>;;<@REGEXP(\"User Account Changed.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:User_Account_Changed",
+         "table" : "Windows_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Management\"):category@>;;<@REGEXP(\"User Account password set.+\"):msg@>",
+         "msg_id" : "Windows_ADUC:User_Account_password_set",
+         "table" : "Windows_Message",
+         "taxonomy" : "Auth",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.intersectalliance.com/projects/SnareWindows/index.html",
+   "version" : "201005190018",
+   "name" : "Windows_ADUC",
+   "description" : "Windows Active Directory Users and Computers"
+}

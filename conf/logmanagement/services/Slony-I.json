@@ -1,0 +1,79 @@
+{
+   "icon" : "software/logo_slony-i",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  Slony-I: Logswitch to .+ initiated\"):msg@> ",
+         "msg_id" : "Slony-I:logswitch_initiated",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  Slony-I: log switch to .+ still in progress.*\"):msg@>",
+         "msg_id" : "Slony-I:logswitch_still_in_progress",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  Slony-I: log switch to .+ complete.*\"):msg@>",
+         "msg_id" : "Slony-I:logswitch_complete",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"CONTEXT:  SQL statement \\\"SELECT  \\\".+\\\".logswitch_start\\(\\)\\\"\"):msg@> ",
+         "msg_id" : "Slony-I:context_logswitch_start",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  Consider adding partial index .+\"):msg@>",
+         "msg_id" : "Slony-I:consider_adding_partial_index",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"CONTEXT:  SQL statement \\\"SELECT  \\\".*\\\".addPartialLogIndices\\(\\)\\\"\"):msg@> ",
+         "msg_id" : "Slony-I:context_add_partial_index",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  Index .+ already present - skipping\"):msg@> ",
+         "msg_id" : "Slony-I:index_already_present",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  schema: .+ tablename:.+\"):msg@>",
+         "msg_id" : "Slony-I:schema_tablename",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  Slony-I: Table \\S+ is replicated and cannot be modified .+\"):msg@>",
+         "msg_id" : "Slony-I:table_replicated_cant_modified",
+         "table" : "Database_Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> postgres[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  Slony-I: cleanup stale .+\"):msg@>",
+         "msg_id" : "Slony-I:cleanup_stale_entry",
+         "table" : "Database_Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://slony.info/",
+   "version" : "200811170001",
+   "name" : "Slony-I",
+   "description" : "Slony-I replication system Service"
+}

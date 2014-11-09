@@ -1,0 +1,393 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: .+ connected from .+\"):msg@>",
+         "msg_id" : "Stunnel:connected_from",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: Connection reset: -?\\d+ bytes sent to SSL, \\d+ bytes sent to socket\"):msg@>",
+         "msg_id" : "Stunnel:connection_reset",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: Connection closed: -?\\d+ bytes sent to SSL, \\d+ bytes sent to socket\"):msg@>",
+         "msg_id" : "Stunnel:connection_closed",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: \\d+ clients allowed\"):msg@>",
+         "msg_id" : "Stunnel:nb_clients_allowed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: VERIFY OK: .+\"):msg@>",
+         "msg_id" : "Stunnel:verify_ok",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: Threading:PTHREAD SSL:ENGINE .+\"):msg@>",
+         "msg_id" : "Stunnel:threading_pthread_ssl_engine",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: stunnel \\S+ on \\S+ with OpenSSL .+\"):msg@>",
+         "msg_id" : "Stunnel:on_with_openssl",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG3\\[\\S+\\]: SSL_read: Connection reset by peer .*\"):msg@>",
+         "msg_id" : "Stunnel:ssl_connection_reset_by_peer",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG3\\[\\S+\\]: .*Connection refused.*\"):msg@>",
+         "msg_id" : "Stunnel:connection_refused",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: Received signal 15; terminating\"):msg@>",
+         "msg_id" : "Stunnel:terminating_signal_15",
+         "table" : "Message",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG3\\[\\S+\\]: connect_wait: getsockopt: No route to host.*\"):msg@>",
+         "msg_id" : "Stunnel:no_route_to_host",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG3\\[\\S+\\]: SSL socket closed with \\d+ byte\\(s\\) in buffer\"):msg@>",
+         "msg_id" : "Stunnel:SSL_socket_closed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: Connection closed: .+ bytes sent to SSL, .+ bytes sent to socket\"):msg@>",
+         "msg_id" : "Stunnel:Connection_closed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: .+ connected remote server from .+\"):msg@>",
+         "msg_id" : "Stunnel:connected_remote_server_from",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: .+ accepted connection from .+\"):msg@>",
+         "msg_id" : "Stunnel:accepted_connection_from",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG5\\[\\S+\\]: CRL: verification passed\"):msg@>",
+         "msg_id" : "Stunnel:crl_verification_passed",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"warning: can't get client address:.+\"):msg@>",
+         "msg_id" : "Stunnel:cant_het_client_address",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG3\\[\\S+\\]: remote connect .+: Network is unreachable.+\"):msg@>",
+         "msg_id" : "Stunnel:remote_connect_network_unreachable",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG3\\[\\S+\\]: SSL_read: Connection timed out.*\"):msg@>",
+         "msg_id" : "Stunnel:sslread_connection_timed_out",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: SSL state .+\"):msg@>",
+         "msg_id" : "Stunnel:ssl_state",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: .+ libwrap process.*\"):msg@>",
+         "msg_id" : "Stunnel:libwrap_process_msgs",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG6\\[\\S+\\]: SSL accepted: .+\"):msg@>",
+         "msg_id" : "Stunnel:ssl_accepted",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG6\\[\\S+\\]: Negotiated ciphers: .+\"):msg@>",
+         "msg_id" : "Stunnel:negotiated_ciphers",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: connect_wait: .+\"):msg@>",
+         "msg_id" : "Stunnel:connect_wait_msgs",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]:\\s+\\d+ server connects .+\"):msg@>",
+         "msg_id" : "Stunnel:server_connects_msgs",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: SSL alert.+\"):msg@>",
+         "msg_id" : "Stunnel:ssl_alert",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]:\\s+\\d+ session cache \\w+\"):msg@>",
+         "msg_id" : "Stunnel:session_cache_msgs",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]:\\s+\\d+ \\w+ renegotiations requested\"):msg@>",
+         "msg_id" : "Stunnel:client_server_renegotiations_requested",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]:\\s+\\d+ items in the session cache\"):msg@>",
+         "msg_id" : "Stunnel:items_in_session_cache",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\S+ option set on \\w+ socket\"):msg@>",
+         "msg_id" : "Stunnel:option_set_on_socket",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]:\\s+\\d+ client connects .+\"):msg@>",
+         "msg_id" : "Stunnel:client_connects_msgs",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: FD \\d+ in non-blocking mode\"):msg@>",
+         "msg_id" : "Stunnel:fd_non_blocking_mode",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\w+ pid file .+\"):msg@>",
+         "msg_id" : "Stunnel:pid_file_msgs",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\w+ write shutdown\"):msg@>",
+         "msg_id" : "Stunnel:write_shutdown",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\S+ permitted by libwrap from .+\"):msg@>",
+         "msg_id" : "Stunnel:permitted_by_libwrap_from",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\S+ accepted FD=\\d+ from .+\"):msg@>",
+         "msg_id" : "Stunnel:accepted_fd",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG6\\[\\S+\\]: Compression enabled using \\S+ method\"):msg@>",
+         "msg_id" : "Stunnel:compression_enabled",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Private key loaded\"):msg@>",
+         "msg_id" : "Stunnel:private_key_loaded",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\S+ started\"):msg@>",
+         "msg_id" : "Stunnel:something_started",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\S+ finished.*\"):msg@>",
+         "msg_id" : "Stunnel:something_finished",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\S+ connecting \\S+\"):msg@>",
+         "msg_id" : "Stunnel:something_connecting",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: PRNG seeded successfully\"):msg@>",
+         "msg_id" : "Stunnel:prng_seeded_successfully",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\S+ bound to \\S+\"):msg@>",
+         "msg_id" : "Stunnel:something_bound_to",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Certificate loaded\"):msg@>",
+         "msg_id" : "Stunnel:certificate_loaded",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: SSL .*closed on SSL_read\"):msg@>",
+         "msg_id" : "Stunnel:ssl_closed_on_sslread",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG6\\[\\S+\\]: SSL_shutdown successfully sent close_notify\"):msg@>",
+         "msg_id" : "Stunnel:sslshutdown_successfully_sent_closenotify",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Remote FD=\\d+ initialized\"):msg@>",
+         "msg_id" : "Stunnel:remote_fd_initialized",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Loaded verify certificates from .+\"):msg@>",
+         "msg_id" : "Stunnel:loaded_verify_certificates_from",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Loaded .+ revocation lookup file\"):msg@>",
+         "msg_id" : "Stunnel:loaded_revocation_lookup_file",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Snagged \\d+ random bytes from .+\"):msg@>",
+         "msg_id" : "Stunnel:snagged_random_bytes_from",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Wrote \\d+ new random bytes to .+\"):msg@>",
+         "msg_id" : "Stunnel:wrote_new_random_bytes_to",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Certificate: .+\"):msg@>",
+         "msg_id" : "Stunnel:certificate",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: Key file: .+\"):msg@>",
+         "msg_id" : "Stunnel:key_file",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: SSL context initialized for service .+\"):msg@>",
+         "msg_id" : "Stunnel:sslcontext_initialized_for_service",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stunnel\"):daemon@>: <@REGEXP(\"LOG7\\[\\S+\\]: \\S+ claims sufficient entropy for the \\S+\"):msg@>",
+         "msg_id" : "Stunnel:claims_sufficient_entropy",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      }
+   ],
+   "website" : "http://www.stunnel.org/",
+   "version" : "201002240012",
+   "name" : "Stunnel",
+   "description" : "Stunnel Service"
+}

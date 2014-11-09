@@ -1,0 +1,100 @@
+{
+   "icon" : "companies/logo_juniper",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@IP_ADDR:dst_addr@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@>",
+         "msg_id" : "Netscreen_Traffic:traffic",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@STRING:dst_addr@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@> session_id=<@NUMBER:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_session",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@WORD:sent_bytes@> rcvd=<@WORD:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@STRING:dst_addr@> src_port=<@NUMBER:NULL@> dst_port=<@NUMBER:NULL@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@> dst-xlated ip=<@IP_ADDR:NULL@> port=<@NUMBER:NULL@> session_id=<@WORD:NULL@> reason=<@STRING:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_age_out",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@IP_ADDR:dst_addr@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@> src-xlated ip=<@IP_ADDR:NULL@> port=<@NUMBER:NULL@> session_id=<@NUMBER:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_src_xlated",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@IP_ADDR:dst_addr@> src_port=<@NUMBER:src_port@> dst_port=<@NUMBER:dst_port@> src-xlated ip=<@IP_ADDR:NULL@> port=<@NUMBER:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_src_xlated2",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@IP_ADDR:dst_addr@> icmp type=<@NUMBER:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_icmp",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@STRING:dst_addr@> icmp type=<@NUMBER:NULL@> session_id=<@NUMBER:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_icmp_session",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@STRING:src_addr@> dst=<@STRING:dst_addr@> icmp type=<@NUMBER:NULL@> session_id=<@WORD:NULL@> reason=<@STRING:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_close_resp",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@STRING:dst_addr@> session_id=<@NUMBER:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_without_port_session",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@IP_ADDR:dst_addr@>",
+         "msg_id" : "Netscreen_Traffic:traffic_without_port",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@REGEXP(\"gre\"):service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@WORD:sent_bytes@> rcvd=<@WORD:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@STRING:dst_addr@> session_id=<@WORD:NULL@> reason=<@STRING:NULL@>",
+         "msg_id" : "Netscreen_Traffic:gre_traffic",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@WORD:sent_bytes@> rcvd=<@WORD:rcvd_bytes@> src=<@IP_ADDR:src_addr@> dst=<@STRING:dst_addr@> src_port=<@NUMBER:NULL@> dst_port=<@NUMBER:NULL@> src-xlated ip=<@IP_ADDR:NULL@> port=<@NUMBER:dst_port@> dst-xlated ip=<@IP_ADDR:NULL@> port=<@NUMBER:NULL@> session_id=<@WORD:NULL@> reason=<@STRING:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_close_resp2",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:vrouter@><@WORD:NULL@>: start_time=<@STRING:NULL@> duration=<@NUMBER:duration@> policy_id=<@NUMBER:policy_id@> service=<@STRING:service@> proto=<@NUMBER:ip_protocol@> src zone=<@STRING:src_zone@> dst zone=<@STRING:dst_zone@> action=<@STRING:status@> sent=<@BYTES:sent_bytes@> rcvd=<@BYTES:rcvd_bytes@> src=<@STRING:src_addr@> dst=<@STRING:dst_addr@> icmp type=<@NUMBER:NULL@> src-xlated ip=<@IP_ADDR:NULL@> dst-xlated ip=<@IP_ADDR:NULL@> session_id=<@WORD:NULL@> reason=<@STRING:NULL@>",
+         "msg_id" : "Netscreen_Traffic:traffic_icmp_session2",
+         "table" : "Firewall_Traffic",
+         "taxonomy" : "Traffic",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/",
+   "version" : "200902050001",
+   "name" : "Netscreen_Traffic",
+   "description" : "Netscreen Firewall Traffic Service"
+}

@@ -1,0 +1,64 @@
+{
+   "icon" : "software/logo_apache",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] ap_proxy_connect_backend disabling worker for .+\"):msg@>",
+         "msg_id" : "Apache_Mod_Proxy:connect_backend_disabling_worker",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] proxy: got bad response .*from .+\"):msg@>",
+         "msg_id" : "Apache_Mod_Proxy:got_bad_response",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] \\[client .+\\] proxy: error processing body.*\"):msg@>",
+         "msg_id" : "Apache_Mod_Proxy:error_processing_body",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] .*APR does not understand this error code: proxy: read response failed from .+\"):msg@>",
+         "msg_id" : "Apache_Mod_Proxy:apr_doesnt_understand_error",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] ajp_read_header: .+\"):msg@>",
+         "msg_id" : "Apache_Mod_Proxy:ajp_read_error",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] proxy: AJP: disabled connection for .+\"):msg@>",
+         "msg_id" : "Apache_Mod_Proxy:ajp_disabled_connection_for",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] proxy: AJP: failed to make connection to backend.+\"):msg@>",
+         "msg_id" : "Apache_Mod_Proxy:ajp_failed_backend",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] .*The timeout specified has expired: proxy: .*\"):msg@>",
+         "msg_id" : "Apache_Mod_Proxy:timeout_specified_expired",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "version" : "201002180008",
+   "name" : "Apache_Mod_Proxy",
+   "description" : "Apache mod_proxy Service"
+}

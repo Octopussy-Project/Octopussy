@@ -1,0 +1,219 @@
+{
+   "icon" : "software/logo_syslog-ng",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"syslog-ng version \\S+ going down\"):msg@> ",
+         "msg_id" : "Syslog-ng:going_down",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"AF_INET client connected from .+\"):msg@>",
+         "msg_id" : "Syslog-ng:client_connected_from",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"AF_INET client dropped connection from .+\"):msg@>",
+         "msg_id" : "Syslog-ng:client_dropped_connection",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Connection broken.+\"):msg@>",
+         "msg_id" : "Syslog-ng:connection_broken",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"new configuration initialized\"):msg@> ",
+         "msg_id" : "Syslog-ng:new_configuration_initialized",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"STATS: dropped \\d+\"):msg@>",
+         "msg_id" : "Syslog-ng:stats_dropped",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"SIGHUP received, restarting syslog-ng\"):msg@> ",
+         "msg_id" : "Syslog-ng:sighup_received_restarting",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ No space left on device\"):msg@> ",
+         "msg_id" : "Syslog-ng:no_space_left",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"syslog-ng version \\S+ starting\"):msg@>",
+         "msg_id" : "Syslog-ng:starting",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Error flushing data\"):msg@> ",
+         "msg_id" : "Syslog-ng:error_flushing_data",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+, Connection refused\"):msg@> ",
+         "msg_id" : "Syslog-ng:connection_refused",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Broken pipe\"):msg@>",
+         "msg_id" : "Syslog-ng:broken_pipe",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"SIGHUP received, reloading configuration;\"):msg@>  ",
+         "msg_id" : "Syslog-ng:sighup_received_reloading_configuration",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"syslog-ng starting up.+\"):msg@>",
+         "msg_id" : "Syslog-ng:starting_up",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Log statistics; .+\"):msg@>",
+         "msg_id" : "Syslog-ng:log_statistics",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ error occurred while writing; .+\"):msg@>",
+         "msg_id" : "Syslog-ng:io_error_while_writing",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Cannot open file .+\"):msg@>",
+         "msg_id" : "Syslog-ng:cannot_open_file",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error resolving .+\"):msg@>",
+         "msg_id" : "Syslog-ng:error_resolving",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"SIGTERM received, terminating;\"):msg@>   ",
+         "msg_id" : "Syslog-ng:sigterm_received_terminating",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"syslog-ng shutting down.+\"):msg@>",
+         "msg_id" : "Syslog-ng:shutting_down",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Connection failed;.+\"):msg@>",
+         "msg_id" : "Syslog-ng:connection_failed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"EOF occurred while idle;.*\"):msg@> ",
+         "msg_id" : "Syslog-ng:eof_occured_while_idle",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"EOF occurred while idle; fd=.*\"):msg@>",
+         "msg_id" : "Syslog-ng:cannot_connect_to_stunnel",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"I/O error occurred while reading.*\"):msg@>",
+         "msg_id" : "Syslog-ng:io_error_while_reading",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Configuration reload request received, reloading configuration;\"):msg@>  ",
+         "msg_id" : "Syslog-ng:configuration_reload_request_received",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Termination requested via signal, terminating;\"):msg@>",
+         "msg_id" : "Syslog-ng:termination_request_via_signal",
+         "table" : "Message",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error accepting new connection.*\"):msg@>",
+         "msg_id" : "Syslog-ng:error_accepting_new_connection",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Initiating connection failed, reconnecting.*\"):msg@>",
+         "msg_id" : "Syslog-ng:initiating_connection_failed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error creating socket.*\"):msg@>",
+         "msg_id" : "Syslog-ng:error_creating_socket",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog-ng\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Number of allowed concurrent connections exceeded.*\"):msg@>",
+         "msg_id" : "Syslog-ng:allowed_concurrent_connections_exceeded",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.balabit.com/network-security/syslog-ng/",
+   "version" : "201001190001",
+   "name" : "Syslog-ng",
+   "description" : "Syslog-ng Service"
+}

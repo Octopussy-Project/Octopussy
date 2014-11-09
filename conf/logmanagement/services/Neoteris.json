@@ -1,0 +1,233 @@
+{
+   "icon" : "companies/logo_juniper",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Statistics Archive - \\S+ - \\S+ - .+\"):msg@>",
+         "msg_id" : "Neoteris:statistics_archive",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Connection from IP \\S+ not authenticated yet.+\"):msg@>",
+         "msg_id" : "Neoteris:not_authenticated_yet",
+         "table" : "Message",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - \\S+ NIC down.\"):msg@>",
+         "msg_id" : "Neoteris:nic_down",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - VIP \\S+ deactivated on .+\"):msg@>",
+         "msg_id" : "Neoteris:vip_deactivated",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - \\S+ gateway '\\S+' unreachable.\"):msg@>",
+         "msg_id" : "Neoteris:gateway_unreachable",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node '\\S+' activated in cluster '.+'.\"):msg@>",
+         "msg_id" : "Neoteris:node_activated",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Started syncing state\"):msg@>",
+         "msg_id" : "Neoteris:started_syncing_state",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - \\S+ gateway '\\S+' up.\"):msg@>",
+         "msg_id" : "Neoteris:gateway_up",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node '\\S+' is now reachable from node '\\S+'\"):msg@>",
+         "msg_id" : "Neoteris:node_reachable",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - VIP \\S+ activated on .+\"):msg@>",
+         "msg_id" : "Neoteris:vip_activated",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - VIP \\S+ failed over to \\S+\"):msg@>",
+         "msg_id" : "Neoteris:vip_failed_over",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Detected duplicate IP address .+\"):msg@>",
+         "msg_id" : "Neoteris:detected_duplicate_ip",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node '\\S+' is now unreachable from node '\\S+'\"):msg@>",
+         "msg_id" : "Neoteris:node_unreachable",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - \\S+ NIC up.\"):msg@>",
+         "msg_id" : "Neoteris:nic_up",
+         "table" : "Message",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Starting services: .+\"):msg@>",
+         "msg_id" : "Neoteris:starting_services",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Started system software version .+ successfully\"):msg@>",
+         "msg_id" : "Neoteris:started_system_successfully",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ Allow all users to sign in\"):msg@>",
+         "msg_id" : "Neoteris:allow_all_sign_in",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - SiteMinder server: Caches flushed.\"):msg@>",
+         "msg_id" : "Neoteris:siteminder_caches_flushed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Forming cluster: .+\"):msg@>",
+         "msg_id" : "Neoteris:forming_cluster",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Completed syncing state.+\"):msg@>",
+         "msg_id" : "Neoteris:completed_syncing_state",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Activated in cluster: .+\"):msg@>",
+         "msg_id" : "Neoteris:activated_in_cluster",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Number of concurrent .+\"):msg@>",
+         "msg_id" : "Neoteris:info_number_concurrent",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Caught signal 11 \\(Segmentation fault\\)\"):msg@>",
+         "msg_id" : "Neoteris:segmentation_fault",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - License for .+ activated\"):msg@>",
+         "msg_id" : "Neoteris:license_activated",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node '.+' deactivated in cluster '.+'.\"):msg@>",
+         "msg_id" : "Neoteris:node_deactivated_in_cluster",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Server restart\"):msg@>",
+         "msg_id" : "Neoteris:server_restart",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Server reboot\"):msg@>",
+         "msg_id" : "Neoteris:server_reboot",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Server reboot requested.+\"):msg@>",
+         "msg_id" : "Neoteris:server_reboot_requested",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Trace Info : .+\"):msg@>",
+         "msg_id" : "Neoteris:trace_info",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Created statistics file.\"):msg@>",
+         "msg_id" : "Neoteris:created_statistics_file",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Server restart requested.+\"):msg@>",
+         "msg_id" : "Neoteris:server_restart_requested",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node .+ is now unreachable from node .+\"):msg@>",
+         "msg_id" : "Neoteris:node_is_now_unreachable",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www.juniper.net/products_and_services/ssl_vpn_secure_access/index.html",
+   "version" : "201002180001",
+   "name" : "Neoteris",
+   "description" : "Neoteris Service"
+}

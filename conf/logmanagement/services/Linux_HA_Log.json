@@ -1,0 +1,93 @@
+{
+   "icon" : "software/logo_linux_ha",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd: \\[\\d+\\]: WARN: Consider setting .+ for maximum supportability\"):msg@>",
+         "msg_id" : "Linux_HA_Log:consider_setting_maximum_supportability",
+         "table" : "Message",
+         "taxonomy" : "Config",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd: \\[\\d+\\]: info: G_main_add_SignalHandler: Added signal handler for signal .+\"):msg@>",
+         "msg_id" : "Linux_HA_Log:added_signal_handler",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd: \\[\\d+\\]: WARN: Core dumps could be lost if multiple dumps occur.\"):msg@>",
+         "msg_id" : "Linux_HA_Log:dumps_could_be_lost",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd: \\[\\d+\\]: info: logd started with default configuration.\"):msg@>",
+         "msg_id" : "Linux_HA_Log:started_with_default_configuration",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd: \\[\\d+\\]: debug: Stopping ha_logd with pid \\d+\"):msg@>",
+         "msg_id" : "Linux_HA_Log:stopping_halogd_with_pid",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd: \\[\\d+\\]: debug: logd_term_action: .+\"):msg@>",
+         "msg_id" : "Linux_HA_Log:logd_term_action",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd\"):daemon@>: <@REGEXP(\"\\[\\d+\\]: info: Waiting for pid=\\d+ to exit\"):msg@>",
+         "msg_id" : "Linux_HA_Log:waiting_for_pid",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd\"):daemon@>: <@REGEXP(\"\\[\\d+\\]: info: Exiting write process\"):msg@>",
+         "msg_id" : "Linux_HA_Log:exiting_write_process",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: logd_term_write_action: received SIGTERM\"):msg@>",
+         "msg_id" : "Linux_HA_Log:received_sigterm",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"debug: Writing out \\d+ messages then quitting\"):msg@>",
+         "msg_id" : "Linux_HA_Log:writing_out_messages_quitting",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: Pid \\d+ exited\"):msg@>",
+         "msg_id" : "Linux_HA_Log:pid_exited",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"WARN: \\S+: working on IPC channel took \\d+ ms.*\"):msg@>",
+         "msg_id" : "Linux_HA_Log:working_on_ipc_channel",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "200906230001",
+   "name" : "Linux_HA_Log",
+   "description" : "Linux High Availability Log"
+}

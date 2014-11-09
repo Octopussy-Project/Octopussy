@@ -1,0 +1,520 @@
+{
+   "icon" : "software/logo_drbd",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Connection lost.\"):msg@> ",
+         "msg_id" : "Drbd:connection_lost",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: \\w+ terminated\"):msg@> ",
+         "msg_id" : "Drbd:module_terminated",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: \\S+ \\[\\d+\\]: cstate .+ --> .+\"):msg@>",
+         "msg_id" : "Drbd:cstate",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: PingAck did not arrive in time.\"):msg@> ",
+         "msg_id" : "Drbd:pingack_timeout",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: short read expecting header on sock.+\"):msg@>",
+         "msg_id" : "Drbd:short_read_expecting_header",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Connection established.\"):msg@> ",
+         "msg_id" : "Drbd:connection_established",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Handshake successful: .+\"):msg@>",
+         "msg_id" : "Drbd:handshake_successful",
+         "table" : "Message",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: \\S+/\\S+ --> \\S+/\\S+\"):msg@> ",
+         "msg_id" : "Drbd:changed_state",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Peer\\(S\\): .+\"):msg@>",
+         "msg_id" : "Drbd:peers",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: I am\\(\\w+\\):.+\"):msg@>",
+         "msg_id" : "Drbd:i_am",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Resync started as .+\"):msg@>",
+         "msg_id" : "Drbd:resync_started",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Discarding network configuration.\"):msg@>",
+         "msg_id" : "Drbd:discarding_network_configuration",
+         "table" : "Message",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: .+ shut down by peer.\"):msg@> ",
+         "msg_id" : "Drbd:shut_down_by_peer",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: .+ sock_sendmsg time expired.+\"):msg@>",
+         "msg_id" : "Drbd:sock_sendmsg_time_expired",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Found \\d+ transactions .+ in activity log.\"):msg@> ",
+         "msg_id" : "Drbd:found_transactions_activity_log",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: error receiving .+\"):msg@>",
+         "msg_id" : "Drbd:error_receiving",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Syncer continues.\"):msg@> ",
+         "msg_id" : "Drbd:syncer_continues",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Syncer waits for .+\"):msg@>",
+         "msg_id" : "Drbd:syncer_waits_for",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd: module cleanup done.\"):msg@>",
+         "msg_id" : "Drbd:module_cleanup_done",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: incompatible states .+\"):msg@> ",
+         "msg_id" : "Drbd:incompatible_states",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Peer\\(P\\):.+\"):msg@>",
+         "msg_id" : "Drbd:peer",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: sock was reset by peer\"):msg@> ",
+         "msg_id" : "Drbd:sock_reset_by_peer",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3 FS on drbd\\d+, internal journal\"):msg@>",
+         "msg_id" : "Drbd:ext3_fs_internal_journal",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: sock_\\S+msg returned -\\d+\"):msg@>",
+         "msg_id" : "Drbd:sock_msg_returned",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Not in Primary state, no IO requests allowed\"):msg@> ",
+         "msg_id" : "Drbd:not_in_primary_state",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Avoided requeue of resync_work\"):msg@> ",
+         "msg_id" : "Drbd:avoided_requeue_resync_work",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Current Primary shall become sync TARGET! Aborting to prevent data corruption.\"):msg@> ",
+         "msg_id" : "Drbd:primary_shall_become_target",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: resync bitmap: .+\"):msg@>",
+         "msg_id" : "Drbd:resync_bitmap",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: size = \\d+ GB .+\"):msg@> ",
+         "msg_id" : "Drbd:size",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: .+ marked out-of-sync .+\"):msg@>",
+         "msg_id" : "Drbd:marked_out_of_sync",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: \\d+ messages suppressed .+\"):msg@>",
+         "msg_id" : "Drbd:messages_suppressed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: conn\\( \\w+ -> \\w+ \\) disk\\( \\w+ -> \\w+ \\)\"):msg@>",
+         "msg_id" : "Drbd:connection_disk_state_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: peer\\( \\w+ -> \\w+ \\) conn\\( \\w+ -> \\w+ \\) pdsk\\( \\w+ -> \\w+ \\)\"):msg@>",
+         "msg_id" : "Drbd:peer_conn_pdsk_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: No usable activity log found.\"):msg@> ",
+         "msg_id" : "Drbd:no_usable_activity_log",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: receiver \\(re\\)started\"):msg@>",
+         "msg_id" : "Drbd:receiver_restarted",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: reading of bitmap took \\d+ jiffies\"):msg@> ",
+         "msg_id" : "Drbd:reading_bitmap_took_jiffies",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: \\w*size.* = \\d+.*\"):msg@> ",
+         "msg_id" : "Drbd:size_equal",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: conn\\( \\w+ -> \\w+ \\) pdsk\\( \\w+ -> \\w+ \\)\"):msg@>  ",
+         "msg_id" : "Drbd:connection_pdsk_state_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: recounting of set bits took additional \\d+ jiffies\"):msg@> ",
+         "msg_id" : "Drbd:recounting_took_additional_jiffies",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Peer authenticated using .+\"):msg@>",
+         "msg_id" : "Drbd:peer_authenticated_using",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Writing meta data super block now.\"):msg@> ",
+         "msg_id" : "Drbd:writing_meta_data",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Began resync as .+\"):msg@>",
+         "msg_id" : "Drbd:began_resync_as",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: conn\\( \\w+ -> \\w+ \\)\"):msg@>",
+         "msg_id" : "Drbd:connection_state_changed",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Creating new current UUID\"):msg@> ",
+         "msg_id" : "Drbd:creating_new_current_uuid",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: tl_clear\\(\\)\"):msg@>",
+         "msg_id" : "Drbd:tl_clear",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Connection closed\"):msg@>",
+         "msg_id" : "Drbd:connection_closed",
+         "table" : "Message",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: _drbd_send_page: .+\"):msg@>",
+         "msg_id" : "Drbd:send_page",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: BUG! md_sync_timer expired! Worker calls drbd_md_sync\\(\\).\"):msg@> ",
+         "msg_id" : "Drbd:bug_sync_timer_expired",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: sock was shut down by peer\"):msg@>",
+         "msg_id" : "Drbd:sock_was_shut_down",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: peer\\( \\w+ -> \\w+ \\)\"):msg@> ",
+         "msg_id" : "Drbd:peer_state_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: pdsk\\( \\w+ -> \\w+ \\)\"):msg@>",
+         "msg_id" : "Drbd:pdsk_state_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: role\\( \\w+ -> \\w+ \\)\"):msg@> ",
+         "msg_id" : "Drbd:role_state_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: disk\\( \\w+ -> \\w+ \\)\"):msg@>",
+         "msg_id" : "Drbd:disk_state_changed",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: drbd_bm_resize called with capacity.+\"):msg@>",
+         "msg_id" : "Drbd:bm_resize_called",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: State change failed.+\"):msg@>",
+         "msg_id" : "Drbd:state_change_failed",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+:.*state = .+\"):msg@>",
+         "msg_id" : "Drbd:state",
+         "table" : "Message",
+         "taxonomy" : "Config",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+:.*wanted = .+\"):msg@>",
+         "msg_id" : "Drbd:state_wanted",
+         "table" : "Message",
+         "taxonomy" : "Config",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+:.*role.+ disk.+\"):msg@>",
+         "msg_id" : "Drbd:state_role_disk",
+         "table" : "Message",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+:.*\"):msg@>",
+         "msg_id" : "Drbd:resource_msg",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Resync done.+\"):msg@>",
+         "msg_id" : "Drbd:resync_done",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd: initialised. Version: .+\"):msg@>",
+         "msg_id" : "Drbd:initialised",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd: minor_table @ .+\"):msg@>",
+         "msg_id" : "Drbd:minor_table",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd: registered as block device major .+\"):msg@>",
+         "msg_id" : "Drbd:registered_block_device_major",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd: GIT-hash: .+\"):msg@>",
+         "msg_id" : "Drbd:git_hash",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+: drbd\\d+: \\d+ orphan inodes deleted\"):msg@>",
+         "msg_id" : "Drbd:orphan_inodes_deleted",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*drbd: \\[split-brain\\] Split Brain\"):msg@>",
+         "msg_id" : "Drbd:split_brain",
+         "table" : "Message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Starting worker thread.*\"):msg@>",
+         "msg_id" : "Drbd:starting_worker_thread",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Starting receiver thread.*\"):msg@>",
+         "msg_id" : "Drbd:starting_receiver_thread",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: receiver terminated\"):msg@>",
+         "msg_id" : "Drbd:receiver_terminated",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Terminating receiver thread\"):msg@>",
+         "msg_id" : "Drbd:terminating_receiver_thread",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: Terminating worker thread\"):msg@>",
+         "msg_id" : "Drbd:terminating_worker_thread",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*drbd\\d+: worker terminated\"):msg@>",
+         "msg_id" : "Drbd:worker_terminated",
+         "table" : "Message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"drbd-peer-outdater\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"debug: .+\"):msg@>",
+         "msg_id" : "Drbd:drbd_peer_outdater_debug",
+         "table" : "Message",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      }
+   ],
+   "website" : "http://www.drbd.org/",
+   "version" : "200905270003",
+   "name" : "Drbd",
+   "description" : "Drbd Service"
+}

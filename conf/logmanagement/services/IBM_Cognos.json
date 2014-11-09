@@ -1,0 +1,64 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"COGNOS\"):daemon@>:<@REGEXP(\".+Gateway stopped successfully\"):msg@>.",
+         "msg_id" : "IBM_Cognos:gateway_stopped_successfully",
+         "table" : "Message",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"COGNOS\"):daemon@>:<@REGEXP(\".+Cognos stopped successfully.\"):msg@>",
+         "msg_id" : "IBM_Cognos:cognos_stopped_successfully",
+         "table" : "Message",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"COGNOS\"):daemon@>:<@REGEXP(\".+Gateway started successfully\"):msg@>",
+         "msg_id" : "IBM_Cognos:gateway_started_successfully",
+         "table" : "Message",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"COGNOS\"):daemon@>:<@REGEXP(\".+Cognos started successfully.\"):msg@>",
+         "msg_id" : "IBM_Cognos:cognos_started_successfully",
+         "table" : "Message",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"Error while stopping gateway\"):msg@>",
+         "msg_id" : "IBM_Cognos:error_while_stopping_gateway",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"Error while stopping cognos\"):msg@>",
+         "msg_id" : "IBM_Cognos:error_while_stopping_cognos",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"Error while starting gateway\"):msg@>",
+         "msg_id" : "IBM_Cognos:error_while_starting_gateway",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"Error while starting cognos\"):msg@>",
+         "msg_id" : "IBM_Cognos:error_while_starting_cognos",
+         "table" : "Message",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www-01.ibm.com/software/analytics/cognos/",
+   "version" : "201211220004",
+   "name" : "IBM_Cognos",
+   "description" : "ibm cognos BI"
+}
