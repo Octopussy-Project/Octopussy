@@ -1,8 +1,17 @@
-Octopussy
-=========
+Octopussy 2.0
+=============
 
-Octopussy - Open Source Log Management Solution
+# What's new ?
 
-**Official Web Site:** www.octopussy.pm
+  * Complete rewriting of the Web Interface, moving from Apache::ASP to Mojolicious.
+  * API in order to have many Octopussy servers managed with the same web interface.
 
-**Official Documentation:** also [on GitHub](https://github.com/sebthebert/Octopussy_Documentation/blob/master/00_Documentation.md)
+# TODO List
+
+## Moving configuration files from XML to JSON
+
+## Server Daemon publishing API
+
+## Mojolicious Web Interface connected with many Server Daemon publishing API
+
+
