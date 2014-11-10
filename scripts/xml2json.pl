@@ -68,7 +68,7 @@ sub json_table
 	my @fields = ();
 	foreach my $f (sort { $a->{title} cmp $b->{title} } @{$conf->{field}})
     {
-    	push @fields, $f;
+    	push @fields, { name => $f->{title}, type => $f->{type} };
     }
     delete $conf->{field};
     $conf->{fields} = \@fields;
