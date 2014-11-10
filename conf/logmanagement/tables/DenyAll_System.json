@@ -1,0 +1,31 @@
+{
+   "fields" : [
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "denyall_product",
+         "type" : "STRING"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "instance",
+         "type" : "STRING"
+      },
+      {
+         "name" : "module",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "DenyAll_System",
+   "description" : "DenyAll System Table"
+}

@@ -1,0 +1,67 @@
+{
+   "fields" : [
+      {
+         "name" : "client",
+         "type" : "STRING"
+      },
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "delay",
+         "type" : "FLOAT_NUMBER"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "mail_id",
+         "type" : "WORD"
+      },
+      {
+         "name" : "msg_id",
+         "type" : "WORD"
+      },
+      {
+         "name" : "nrcpt",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "pid",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "recipient",
+         "type" : "EMAIL"
+      },
+      {
+         "name" : "relay",
+         "type" : "STRING"
+      },
+      {
+         "name" : "sender",
+         "type" : "EMAIL"
+      },
+      {
+         "name" : "size",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      },
+      {
+         "name" : "subject",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200801280001",
+   "name" : "Mail_Traffic",
+   "description" : "Generic Mail Traffic Table"
+}

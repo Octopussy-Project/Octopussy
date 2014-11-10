@@ -1,0 +1,47 @@
+{
+   "fields" : [
+      {
+         "name" : "client",
+         "type" : "STRING"
+      },
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "db",
+         "type" : "WORD"
+      },
+      {
+         "name" : "db_type",
+         "type" : "WORD"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "table",
+         "type" : "WORD"
+      },
+      {
+         "name" : "user",
+         "type" : "WORD"
+      }
+   ],
+   "version" : "200801310001",
+   "name" : "Database_Message",
+   "description" : "Database Messages Table"
+}

@@ -1,0 +1,47 @@
+{
+   "fields" : [
+      {
+         "name" : "action",
+         "type" : "STRING"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "denyall_product",
+         "type" : "STRING"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "http_method",
+         "type" : "STRING"
+      },
+      {
+         "name" : "instance",
+         "type" : "STRING"
+      },
+      {
+         "name" : "proxy",
+         "type" : "STRING"
+      },
+      {
+         "name" : "rule",
+         "type" : "STRING"
+      },
+      {
+         "name" : "src_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "url",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "DenyAll_Filtering",
+   "description" : "DenyAll Filtering Table"
+}

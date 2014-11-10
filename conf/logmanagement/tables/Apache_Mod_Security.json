@@ -1,0 +1,51 @@
+{
+   "fields" : [
+      {
+         "name" : "apachetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "client",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "hostname",
+         "type" : "WORD"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg_category",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg_id",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "severity",
+         "type" : "WORD"
+      },
+      {
+         "name" : "unique_id",
+         "type" : "WORD"
+      },
+      {
+         "name" : "uri",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200711130001",
+   "name" : "Apache_Mod_Security",
+   "description" : "Apache ModSecurity Table"
+}

@@ -1,0 +1,35 @@
+{
+   "fields" : [
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "level",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "policy",
+         "type" : "WORD"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Samhain",
+   "description" : "Samhain Messages Table"
+}

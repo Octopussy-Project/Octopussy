@@ -1,0 +1,35 @@
+{
+   "fields" : [
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "datetime_long",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg_id",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pix_addr",
+         "type" : "STRING"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      },
+      {
+         "name" : "url",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Cisco_Pix_url_access",
+   "description" : "Cisco Pix url access Table"
+}

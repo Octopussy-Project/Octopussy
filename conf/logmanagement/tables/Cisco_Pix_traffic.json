@@ -1,0 +1,39 @@
+{
+   "fields" : [
+      {
+         "name" : "acl",
+         "type" : "STRING"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "datetime_long",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg_id",
+         "type" : "STRING"
+      },
+      {
+         "name" : "src",
+         "type" : "STRING"
+      },
+      {
+         "name" : "type",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Cisco_Pix_traffic",
+   "description" : "Cisco Pix traffic Table"
+}

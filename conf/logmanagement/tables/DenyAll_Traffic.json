@@ -1,0 +1,79 @@
+{
+   "fields" : [
+      {
+         "name" : "browser",
+         "type" : "STRING"
+      },
+      {
+         "name" : "cache_status",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "denyall_product",
+         "type" : "STRING"
+      },
+      {
+         "name" : "denyall_time",
+         "type" : "FLOAT_NUMBER"
+      },
+      {
+         "name" : "device",
+         "type" : "STRING"
+      },
+      {
+         "name" : "http_method",
+         "type" : "STRING"
+      },
+      {
+         "name" : "http_version",
+         "type" : "STRING"
+      },
+      {
+         "name" : "instance",
+         "type" : "STRING"
+      },
+      {
+         "name" : "rec_bytes",
+         "type" : "BYTES"
+      },
+      {
+         "name" : "referer",
+         "type" : "STRING"
+      },
+      {
+         "name" : "server_time",
+         "type" : "FLOAT_NUMBER"
+      },
+      {
+         "name" : "src_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "ssl_bits",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "ssl_version",
+         "type" : "WORD"
+      },
+      {
+         "name" : "status",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "total_time",
+         "type" : "FLOAT_NUMBER"
+      },
+      {
+         "name" : "url",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "DenyAll_Traffic",
+   "description" : "DenyAll Traffic Table"
+}

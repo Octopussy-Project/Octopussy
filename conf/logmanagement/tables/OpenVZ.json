@@ -1,0 +1,23 @@
+{
+   "fields" : [
+      {
+         "name" : "action",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "id",
+         "type" : "WORD"
+      }
+   ],
+   "version" : "200806190001",
+   "name" : "OpenVZ",
+   "description" : "OPenVZ"
+}

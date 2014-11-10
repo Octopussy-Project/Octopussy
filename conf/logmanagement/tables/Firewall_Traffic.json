@@ -1,0 +1,127 @@
+{
+   "fields" : [
+      {
+         "name" : "application",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "dst_interface",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "dst_zone",
+         "type" : "STRING"
+      },
+      {
+         "name" : "duration",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "fragment_flag",
+         "type" : "WORD"
+      },
+      {
+         "name" : "group",
+         "type" : "WORD"
+      },
+      {
+         "name" : "id",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "ip_protocol",
+         "type" : "STRING"
+      },
+      {
+         "name" : "length",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "mac_addr",
+         "type" : "WORD"
+      },
+      {
+         "name" : "policy_id",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "rcvd_bytes",
+         "type" : "BYTES"
+      },
+      {
+         "name" : "rcvd_pkt",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "sent_bytes",
+         "type" : "BYTES"
+      },
+      {
+         "name" : "sent_pkt",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "service",
+         "type" : "STRING"
+      },
+      {
+         "name" : "src_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "src_interface",
+         "type" : "WORD"
+      },
+      {
+         "name" : "src_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "src_zone",
+         "type" : "STRING"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      },
+      {
+         "name" : "translated_ip",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "translated_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "ttl",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "user",
+         "type" : "WORD"
+      },
+      {
+         "name" : "vrouter",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200801250001",
+   "name" : "Firewall_Traffic",
+   "description" : "Generic Firewall Traffic Table"
+}

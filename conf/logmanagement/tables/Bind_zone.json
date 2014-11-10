@@ -1,0 +1,39 @@
+{
+   "fields" : [
+      {
+         "name" : "action",
+         "type" : "STRING"
+      },
+      {
+         "name" : "client",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      },
+      {
+         "name" : "zone",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Bind_zone",
+   "description" : "Bind zone Table"
+}

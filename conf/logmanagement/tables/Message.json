@@ -1,0 +1,63 @@
+{
+   "fields" : [
+      {
+         "name" : "apachetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "client_ip",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "interface",
+         "type" : "NET_INTERFACE"
+      },
+      {
+         "name" : "level",
+         "type" : "WORD"
+      },
+      {
+         "name" : "module",
+         "type" : "WORD"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg_id",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "server",
+         "type" : "WORD"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      },
+      {
+         "name" : "user",
+         "type" : "WORD"
+      }
+   ],
+   "version" : "201006030001",
+   "name" : "Message",
+   "description" : "Generic Message Table"
+}

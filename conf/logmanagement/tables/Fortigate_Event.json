@@ -1,0 +1,31 @@
+{
+   "fields" : [
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "device_name",
+         "type" : "WORD"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "ui",
+         "type" : "STRING"
+      },
+      {
+         "name" : "user",
+         "type" : "WORD"
+      }
+   ],
+   "version" : "200709070001",
+   "name" : "Fortigate_Event",
+   "description" : "Fortigate Event Table"
+}

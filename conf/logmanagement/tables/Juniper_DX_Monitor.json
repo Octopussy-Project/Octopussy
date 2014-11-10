@@ -1,0 +1,27 @@
+{
+   "fields" : [
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "object",
+         "type" : "STRING"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      },
+      {
+         "name" : "vip",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Juniper_DX_Monitor",
+   "description" : "Juniper DX Monitor Table"
+}

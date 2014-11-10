@@ -1,0 +1,135 @@
+{
+   "fields" : [
+      {
+         "name" : "acl",
+         "type" : "STRING"
+      },
+      {
+         "name" : "acl_id",
+         "type" : "STRING"
+      },
+      {
+         "name" : "bytes",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "connection_id",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst_addr",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst_addr_2",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "dst_port_2",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "duration",
+         "type" : "TIME"
+      },
+      {
+         "name" : "faddr",
+         "type" : "WORD"
+      },
+      {
+         "name" : "faddr_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "flags",
+         "type" : "STRING"
+      },
+      {
+         "name" : "gaddr",
+         "type" : "WORD"
+      },
+      {
+         "name" : "gaddr_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "group",
+         "type" : "STRING"
+      },
+      {
+         "name" : "interface",
+         "type" : "STRING"
+      },
+      {
+         "name" : "laddr",
+         "type" : "WORD"
+      },
+      {
+         "name" : "laddr_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg_id",
+         "type" : "STRING"
+      },
+      {
+         "name" : "protocol",
+         "type" : "WORD"
+      },
+      {
+         "name" : "src",
+         "type" : "STRING"
+      },
+      {
+         "name" : "src_addr",
+         "type" : "WORD"
+      },
+      {
+         "name" : "src_addr_2",
+         "type" : "WORD"
+      },
+      {
+         "name" : "src_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "src_port_2",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      },
+      {
+         "name" : "type",
+         "type" : "WORD"
+      },
+      {
+         "name" : "user",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "201002170001",
+   "name" : "Cisco_ASA",
+   "description" : "Cisco Asa Table"
+}

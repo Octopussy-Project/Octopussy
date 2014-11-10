@@ -1,0 +1,43 @@
+{
+   "fields" : [
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "host",
+         "type" : "STRING"
+      },
+      {
+         "name" : "nagios_server",
+         "type" : "STRING"
+      },
+      {
+         "name" : "result",
+         "type" : "STRING"
+      },
+      {
+         "name" : "service",
+         "type" : "STRING"
+      },
+      {
+         "name" : "status",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "timestamp",
+         "type" : "DATETIME"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Nagios_Service_Check",
+   "description" : "Nagios Service Check Table"
+}

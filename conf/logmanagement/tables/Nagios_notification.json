@@ -1,0 +1,51 @@
+{
+   "fields" : [
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "dest",
+         "type" : "STRING"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "host",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "notify-by",
+         "type" : "STRING"
+      },
+      {
+         "name" : "notify_by",
+         "type" : "WORD"
+      },
+      {
+         "name" : "service",
+         "type" : "STRING"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      },
+      {
+         "name" : "type",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "201002220001",
+   "name" : "Nagios_notification",
+   "description" : "Nagios Notification Table"
+}

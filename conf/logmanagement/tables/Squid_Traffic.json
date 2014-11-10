@@ -1,0 +1,59 @@
+{
+   "fields" : [
+      {
+         "name" : "bytes",
+         "type" : "BYTES"
+      },
+      {
+         "name" : "client_ip",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "duration",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "hierarchy_code",
+         "type" : "STRING"
+      },
+      {
+         "name" : "http_code",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "http_method",
+         "type" : "WORD"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "squid_code",
+         "type" : "WORD"
+      },
+      {
+         "name" : "type",
+         "type" : "STRING"
+      },
+      {
+         "name" : "url",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200702220001",
+   "name" : "Squid_Traffic",
+   "description" : "Squid Traffic Table"
+}

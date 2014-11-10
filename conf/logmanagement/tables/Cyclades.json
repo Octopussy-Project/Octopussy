@@ -1,0 +1,39 @@
+{
+   "fields" : [
+      {
+         "name" : "daemon_name",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "port_name",
+         "type" : "WORD"
+      },
+      {
+         "name" : "port_number",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "session_type",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "user",
+         "type" : "WORD"
+      }
+   ],
+   "version" : "201002120001",
+   "name" : "Cyclades",
+   "description" : "Cyclades Service Table"
+}

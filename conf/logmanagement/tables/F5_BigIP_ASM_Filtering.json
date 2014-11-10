@@ -1,0 +1,35 @@
+{
+   "fields" : [
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "http_classifier",
+         "type" : "STRING"
+      },
+      {
+         "name" : "request",
+         "type" : "STRING"
+      },
+      {
+         "name" : "request_violations",
+         "type" : "STRING"
+      },
+      {
+         "name" : "src_ip",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "support_id",
+         "type" : "NUMBER"
+      }
+   ],
+   "version" : "200703080001",
+   "name" : "F5_BigIP_ASM_Filtering",
+   "description" : "F5 BigIP ASM Filtering Table"
+}
