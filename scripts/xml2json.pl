@@ -21,8 +21,10 @@ use XML::Simple;
 
 my %action = (
 	octopussy_device => \&json_device,
+	octopussy_loglevel => \&json_loglevel,
 	octopussy_service => \&json_service,
 	octopussy_table => \&json_table,
+	octopussy_taxonomy => \&json_taxonomy,
 	);
 
 =head1 SUBROUTINES
@@ -34,6 +36,23 @@ my %action = (
 sub json_device
 {
 	printf "Device\n";
+}
+
+=head2 json_loglevel($conf)
+
+=cut
+
+sub json_loglevel
+{
+    my $conf = shift;
+
+    my @loglevel = ();
+    foreach my $l (reverse sort { $a->{level} <=> $b->{level} } @{$conf->{loglevel}})
+    {
+        push @loglevel, $l;
+    }
+
+    return (to_json(\@loglevel, {pretty => 1}));
 }
 
 =head2 json_service($conf)
@@ -74,6 +93,23 @@ sub json_table
     $conf->{fields} = \@fields;
 
     return (to_json($conf, {pretty => 1}));
+}
+
+=head2 json_taxonomy($conf)
+
+=cut
+
+sub json_taxonomy
+{
+    my $conf = shift;
+
+    my @taxonomy = ();
+    foreach my $t (sort { $a->{value} cmp $b->{value} } @{$conf->{taxonomy}})
+    {
+        push @taxonomy, $t;
+    }
+
+    return (to_json(\@taxonomy, {pretty => 1}));
 }
 
 =head2 xml_read($filename)

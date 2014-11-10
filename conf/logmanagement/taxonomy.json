@@ -1,0 +1,171 @@
+[
+   {
+      "color" : "#FFF000",
+      "desc" : "Access message",
+      "value" : "Access"
+   },
+   {
+      "color" : "#FFD000",
+      "desc" : "Access Failure message",
+      "value" : "Access.Failure"
+   },
+   {
+      "color" : "#FFB000",
+      "desc" : "Access Success message",
+      "value" : "Access.Success"
+   },
+   {
+      "color" : "#0000FF",
+      "desc" : "Application message",
+      "value" : "Application"
+   },
+   {
+      "color" : "#0000FF",
+      "desc" : "Application Errors message",
+      "value" : "Application.Errors"
+   },
+   {
+      "color" : "#0000FF",
+      "desc" : "Application Start message",
+      "value" : "Application.Start"
+   },
+   {
+      "color" : "#0000FF",
+      "desc" : "Application Stop message",
+      "value" : "Application.Stop"
+   },
+   {
+      "color" : "#FF0000",
+      "desc" : "Attack message",
+      "value" : "Attack"
+   },
+   {
+      "color" : "#00FFFF",
+      "desc" : "Authentication message",
+      "value" : "Auth"
+   },
+   {
+      "color" : "#00FFF9",
+      "desc" : "Authentication Failure message",
+      "value" : "Auth.Failure"
+   },
+   {
+      "color" : "#00FFF0",
+      "desc" : "Authentication Success message",
+      "value" : "Auth.Success"
+   },
+   {
+      "color" : "#FF00FF",
+      "desc" : "Configuration message",
+      "value" : "Config"
+   },
+   {
+      "color" : "#FB00FF",
+      "desc" : "Configuration Backup message",
+      "value" : "Config.Backup"
+   },
+   {
+      "color" : "#F700FF",
+      "desc" : "Configuration Changes message",
+      "value" : "Config.Changes"
+   },
+   {
+      "color" : "#F000FF",
+      "desc" : "Configuration Errors message",
+      "value" : "Config.Errors"
+   },
+   {
+      "color" : "#E090E0",
+      "desc" : "Email Antivirus message",
+      "value" : "Email.Antivirus"
+   },
+   {
+      "color" : "#E090E0",
+      "desc" : "Email Spam message",
+      "value" : "Email.Spam"
+   },
+   {
+      "color" : "#E090E0",
+      "desc" : "Email Traffic message",
+      "value" : "Email.Traffic"
+   },
+   {
+      "color" : "#AAAAAF",
+      "desc" : "Hardware Errors message",
+      "value" : "Hardware"
+   },
+   {
+      "color" : "#AAAAAC",
+      "desc" : "Hardware Disk Errors message",
+      "value" : "Hardware.Disk"
+   },
+   {
+      "color" : "#AAAAA9",
+      "desc" : "Hardware Memory Errors message",
+      "value" : "Hardware.Memory"
+   },
+   {
+      "color" : "#AAAAA5",
+      "desc" : "Hardware Network Errors message",
+      "value" : "Hardware.Network"
+   },
+   {
+      "color" : "#AAAAA0",
+      "desc" : "Hardware Power Supply Errors message",
+      "value" : "Hardware.Power"
+   },
+   {
+      "color" : "#303090",
+      "desc" : "Network message",
+      "value" : "Network"
+   },
+   {
+      "color" : "#303090",
+      "desc" : "Network Errors message",
+      "value" : "Network.Errors"
+   },
+   {
+      "desc" : "Other message",
+      "value" : "Other"
+   },
+   {
+      "color" : "#202090",
+      "desc" : "Printer message",
+      "value" : "Printer"
+   },
+   {
+      "color" : "#202090",
+      "desc" : "Printer Errors message",
+      "value" : "Printer.Errors"
+   },
+   {
+      "color" : "#0000FF",
+      "desc" : "System message",
+      "value" : "System"
+   },
+   {
+      "color" : "#0000F9",
+      "desc" : "System Boot message",
+      "value" : "System.Boot"
+   },
+   {
+      "color" : "#0000F0",
+      "desc" : "System Errors message",
+      "value" : "System.Errors"
+   },
+   {
+      "color" : "#00FF00",
+      "desc" : "Traffic message",
+      "value" : "Traffic"
+   },
+   {
+      "color" : "#00FF00",
+      "desc" : "Traffic Denied message",
+      "value" : "Traffic.Denied"
+   },
+   {
+      "color" : "#00FF00",
+      "desc" : "Traffic Granted message",
+      "value" : "Traffic.Granted"
+   }
+]

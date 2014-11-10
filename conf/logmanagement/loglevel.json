@@ -1,0 +1,37 @@
+[
+   {
+      "color" : "red",
+      "level" : "7",
+      "value" : "Emergency"
+   },
+   {
+      "color" : "darkred",
+      "level" : "6",
+      "value" : "Alert"
+   },
+   {
+      "color" : "maroon",
+      "level" : "5",
+      "value" : "Critical"
+   },
+   {
+      "color" : "orange",
+      "level" : "4",
+      "value" : "Warning"
+   },
+   {
+      "color" : "green",
+      "level" : "3",
+      "value" : "Notice"
+   },
+   {
+      "color" : "blue",
+      "level" : "2",
+      "value" : "Information"
+   },
+   {
+      "color" : "gray",
+      "level" : "1",
+      "value" : "Debug"
+   }
+]
