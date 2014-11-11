@@ -33,6 +33,8 @@ sub startup
 	# Routes /logs
 	#$r->get('/logs/:begin/:end/:device_selection/:service_selection')->to('logs#extraction');
 
+    $r->get('/loglevel')->to('loglevel#configuration');
+    
 	# Routes /service(s)
 	$r->get('/service/:service_name')->to('service#configuration');
 	$r->get('/services')->to('service#list');
@@ -40,6 +42,8 @@ sub startup
 	# Routes /table(s)
     $r->get('/table/:table_name')->to('table#configuration');
     $r->get('/tables')->to('table#list');
+    
+    $r->get('/taxonomy')->to('taxonomy#configuration');
 }
 
 1;
