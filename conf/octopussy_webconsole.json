@@ -1,0 +1,8 @@
+{
+    "applications": {
+        "LogManagement":{
+            "icon":"fa-list",
+            "servers":["http://127.0.0.1:2000"]
+            }
+        }
+}

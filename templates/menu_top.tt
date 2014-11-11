@@ -1,0 +1,19 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+        <a class="navbar-brand" href="/">Octopussy</a>
+		<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+		</ul>
+        <ul class="nav pull-right">
+        	<li id="fat-menu" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          	<i class="fa fa-user"></i> [% session.user %]<span class="fa fa-caret-down"></span></a>
+      	<ul class="dropdown-menu dropdown-menu-right" role="menu">
+        	<li><a href="/user/preferences"><i class="fa fa-wrench"></i> [% c.l('_USER_PREFS') %]</a></li>
+           	<li class="divider"></li>
+           	<li><a href="/user/logout"><i class="fa fa-power-off"></i> [% c.l('_LOGOUT') %]</a></li>
+      	</ul>
+		</ul>
+		</div>
+	</div>
+</div>
