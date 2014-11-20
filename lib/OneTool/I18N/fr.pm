@@ -23,6 +23,8 @@ our %Lexicon = (
 	'_IP_ADDRESS'	=> 'Adresse IP',
 	'_FILTER'		=> 'Filtrer',
 	'_LOG_TYPE' 	=> 'Type de Log',
+	'_LOGLEVEL'     => 'Niveau de Log',
+	'_LOGOUT'       => 'Déconnexion',
 	'_NAME'    		=> 'Nom',
 	'_NEW_DEVICE'	=> 'Nouvel Equipement',
 	'_REMOVE'		=> 'Supprimer',
@@ -33,6 +35,10 @@ our %Lexicon = (
 	'_SHOW_REVISIONS'  => 'Voir les revisions',
 	'_STATUS'		=> 'Statut',
 	'_STORAGES'   	=> 'Stockages',
+	'_TABLE'        => 'Table',
+	'_TABLES'        => 'Tables',
+	'_TAXONOMY'     => 'Taxonomie',
+	'_USER_PREFS'   => 'Préférences Utilisateur',
 );
 
 1;
