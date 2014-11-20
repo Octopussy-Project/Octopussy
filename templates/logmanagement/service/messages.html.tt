@@ -1,0 +1,82 @@
+[% USE LogManagement.LogLevel(config) %]
+[% USE LogManagement.Service(config) %]
+[% USE LogManagement.Taxonomy(config) %]
+
+[% service_config = LogManagement.Service.configuration(service_name) %]
+
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    jQuery(function($) {
+        var panelList = $('#draggablePanelList');
+
+        panelList.sortable({
+            axis: "y",
+            opacity: 0.5,
+            
+            start: function(e, ui) {
+                // creates a temporary attribute on the element with the old index
+                $(this).attr('data-previndex', ui.item.index());
+                },
+            update: function(e, ui) {
+                // gets the new and old index then removes the temporary attribute
+                var newIndex = ui.item.index();
+                var oldIndex = $(this).attr('data-previndex');
+                alert('old:' + oldIndex + ' - new:' + newIndex);
+                $(this).removeAttr('data-previndex');
+                },
+    
+            // Only make the .panel-heading child elements support dragging.
+            // Omit this to make then entire <li>...</li> draggable.
+            handle: '.panel-heading', 
+//        update: function() {
+//                $('.panel', panelList).each(function(index, elem) {
+//                     var $listItem = $(elem),
+//                         newIndex = $listItem.index();
+//                     // Persist the new indices.
+ //               });
+//            }
+        });
+    });
+</script>
+
+<style type="text/css">
+    /* show the move cursor as the user moves the mouse over the panel header.*/
+    #draggablePanelList .panel-heading {
+        cursor: move;
+    }
+</style>
+<ul id="draggablePanelList" class="list-unstyled">
+[% FOREACH msg IN service_config.messages %]
+    <li class="panel panel-info">
+        <div class="panel-heading">
+        <div>[% msg.msg_id %]</div>
+        <div>[% LogManagement.LogLevel.label_color(msg.loglevel) %]</div>
+        <div>[% LogManagement.Taxonomy.label_color(msg.taxonomy) %]</div>
+        <div>[% msg.table %]</div>
+        </div>
+        <div class="panel-body">[% msg.pattern %]</div>
+    </li>
+[% END %]    
+</ul>
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+<thead>
+<tr>
+    <th>[% c.l("_NAME") %]</th>
+    <th>[% c.l("_LOGLEVEL") %]</th>
+    <th>[% c.l("_TAXONOMY") %]</th>
+    <th>[% c.l("_TABLE") %]</th>
+</tr>
+</thead>
+<tbody>
+[% FOREACH msg IN service_config.messages %]
+<tr>
+<td>[% msg.msg_id %]</td>
+<td>[% LogManagement.LogLevel.label_color(msg.loglevel) %]</td>
+<td>[% LogManagement.Taxonomy.label_color(msg.taxonomy) %]</td>
+<td>[% msg.table %]</td>
+</tr>
+<tr><td colspan="4">[% msg.pattern %]</td></tr>
+[% END %]
+</tbody>
+</table>

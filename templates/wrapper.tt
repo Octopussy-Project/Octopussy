@@ -15,7 +15,13 @@
 </head>
 <body>
 [% INCLUDE 'menu_top.tt' %]
+
 <div class="container">
+<div class="row">
+<div class="col-xs-3  bs-docs-sidebar">
+    [% INCLUDE 'menu_left.tt' %]
+</div>
+<div class="col-xs-9">
 
 <script type="text/javascript">
     $(function(){
@@ -29,14 +35,18 @@
 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     [% m.msg %]
 </div>
-
 [% END %]
+
 [% content %]
 </div>
+</row>
+</div>
+
 <hr>
+
 <div id="footer" align="center">
 Powered by <a href="http://mojolicio.us/">Mojolicious</a> - Designed with <a href="http://getbootstrap.com/">Bootstrap</a> & <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.
 </div>
-<script src="[% request.uri_base %]/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
