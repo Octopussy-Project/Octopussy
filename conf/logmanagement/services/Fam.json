@@ -2,8 +2,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"famd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"stat on \".+\" failed: No such file or directory\"):msg@>",
-         "msg_id" : "Fam:stat_failed",
          "table" : "Message",
+         "id" : "stat_failed",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       }

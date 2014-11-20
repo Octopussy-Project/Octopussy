@@ -2,78 +2,78 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*THREADMGMT\\[\\S+\\]: RRD: Throughput data collection: Thread starting .+\"):msg@>",
-         "msg_id" : "Ntop:rrd_data_collection_starting",
          "table" : "Message",
+         "id" : "rrd_data_collection_starting",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*THREADMGMT\\[\\S+\\]: RRD: Started thread for throughput data collection\"):msg@>",
-         "msg_id" : "Ntop:rrd_data_collection_started",
          "table" : "Message",
+         "id" : "rrd_data_collection_started",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*THREADMGMT\\[\\S+\\]: RRD: .+ata collection.+hread running.+\"):msg@>",
-         "msg_id" : "Ntop:rrd_data_collection_running",
          "table" : "Message",
+         "id" : "rrd_data_collection_running",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*\\*\\*WARNING\\*\\* RRD: rrd_update\\(.+\\) error: illegal attempt to update using time .+\"):msg@>",
-         "msg_id" : "Ntop:rrd_illegal_attempt_update",
          "table" : "Message",
+         "id" : "rrd_illegal_attempt_update",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*THREADMGMT\\[\\S+\\]: ntop RUNSTATE:.+\"):msg@>",
-         "msg_id" : "Ntop:runstate",
          "table" : "Message",
+         "id" : "runstate",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*ASN: .+\"):msg@>",
-         "msg_id" : "Ntop:asn",
          "table" : "Message",
+         "id" : "asn",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*INITWEB: .+\"):msg@>",
-         "msg_id" : "Ntop:initweb",
          "table" : "Message",
+         "id" : "initweb",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*I18N: .+\"):msg@>",
-         "msg_id" : "Ntop:i18n",
          "table" : "Message",
+         "id" : "i18n",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*IP2CC: .+\"):msg@>",
-         "msg_id" : "Ntop:ip2cc",
          "table" : "Message",
+         "id" : "ip2cc",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*VENDOR: Checking for MAC address table file\"):msg@>",
-         "msg_id" : "Ntop:checking_mac_address_file",
          "table" : "Message",
+         "id" : "checking_mac_address_file",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*\\w+: Welcome to .+\"):msg@>",
-         "msg_id" : "Ntop:welcome_to",
          "table" : "Message",
+         "id" : "welcome_to",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       }

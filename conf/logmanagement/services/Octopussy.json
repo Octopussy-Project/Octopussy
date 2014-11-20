@@ -3,477 +3,477 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: Device: <@WORD:server@> - Service: <@STRING:service@> Date: <@DATE_TIME_STD:filedate@> - Events: <@NUMBER:nb_events@> / <@NUMBER:NULL@>",
-         "msg_id" : "Octopussy:parser_service_events",
          "table" : "Octopussy",
+         "id" : "parser_service_events",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"\\d+ files to parse for Device \\S+\"):msg@>",
-         "msg_id" : "Octopussy:parser_device_files",
          "table" : "Message",
+         "id" : "parser_device_files",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: Device: <@WORD:server@> Date: <@DATE_TIME_STD:filedate@> Time: <@NUMBER:seconds@> seconds",
-         "msg_id" : "Octopussy:parser_device_seconds",
          "table" : "Octopussy",
+         "id" : "parser_device_seconds",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: Device: <@WORD:server@> - Events: <@NUMBER:nb_events@>",
-         "msg_id" : "Octopussy:dispatcher_device_events",
          "table" : "Octopussy",
+         "id" : "dispatcher_device_events",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Init Service: .+ - \\d+ messages\"):msg@>",
-         "msg_id" : "Octopussy:init_service",
          "table" : "Message",
+         "id" : "init_service",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Device: \\S+ Started !\"):msg@>",
-         "msg_id" : "Octopussy:module_device_started",
          "table" : "Message",
+         "id" : "module_device_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Report Generation: D=\\[.+\\] S=\\[.+\\] T=\\[\\S+\\]\"):msg@>",
-         "msg_id" : "Octopussy:report_device_service_taxonomy",
          "table" : "Message",
+         "id" : "report_device_service_taxonomy",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Report Generation: B=\\[\\d+\\] E=\\[\\d+\\]\"):msg@>",
-         "msg_id" : "Octopussy:report_generation_datetime",
          "table" : "Message",
+         "id" : "report_generation_datetime",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Report Generation: type=\\[.+\\] title=\\[.+\\]\"):msg@>",
-         "msg_id" : "Octopussy:report_generation_type",
          "table" : "Message",
+         "id" : "report_generation_type",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Report Generation Completed !\"):msg@>",
-         "msg_id" : "Octopussy:report_gen_completed",
          "table" : "Message",
+         "id" : "report_gen_completed",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"\\d+ file\\(s\\) to parse with \\d+ message\\(s\\).\"):msg@>",
-         "msg_id" : "Octopussy:files_to_parse",
          "table" : "Message",
+         "id" : "files_to_parse",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Load Devices Configuration\"):msg@>",
-         "msg_id" : "Octopussy:dispatcher_load_devices_configuration",
          "table" : "Message",
+         "id" : "dispatcher_load_devices_configuration",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Delete \\d+ logfiles for device .+\"):msg@>",
-         "msg_id" : "Octopussy:logrotate_delete_device_logfiles",
          "table" : "Message",
+         "id" : "logrotate_delete_device_logfiles",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Report Generation Aborted !\"):msg@>",
-         "msg_id" : "Octopussy:report_generation_aborted",
          "table" : "Message",
+         "id" : "report_generation_aborted",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"User .+ succesfully logged in.\"):msg@>",
-         "msg_id" : "Octopussy:user_logged_in",
          "table" : "Message",
+         "id" : "user_logged_in",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"User Preferences has been modified by .+\"):msg@>",
-         "msg_id" : "Octopussy:user_preferences_modification",
          "table" : "Message",
+         "id" : "user_preferences_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"System Configuration has been modified by .+\"):msg@>",
-         "msg_id" : "Octopussy:system_configuration_modification",
          "table" : "Message",
+         "id" : "system_configuration_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Alert '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:alert_modification",
          "table" : "Message",
+         "id" : "alert_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Contact .+ has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:contact_modification",
          "table" : "Message",
+         "id" : "contact_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"DeviceGroup '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:devicegroup_modification",
          "table" : "Message",
+         "id" : "devicegroup_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Location .+ '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:location_modification",
          "table" : "Message",
+         "id" : "location_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Timeperiod '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:timeperiod_modification",
          "table" : "Message",
+         "id" : "timeperiod_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"User '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:user_modification",
          "table" : "Message",
+         "id" : "user_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Table '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:table_modification",
          "table" : "Message",
+         "id" : "table_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Schedule '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:schedule_modification",
          "table" : "Message",
+         "id" : "schedule_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Report '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:report_modification",
          "table" : "Message",
+         "id" : "report_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Table Field '.+' has been \\S+ed \\S+ Table '.+' by .+\"):msg@>",
-         "msg_id" : "Octopussy:tablefield_modification",
          "table" : "Message",
+         "id" : "tablefield_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Device '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:device_modification",
          "table" : "Message",
+         "id" : "device_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Parsing \\S+d for device '.+' by .+\"):msg@>",
-         "msg_id" : "Octopussy:parsing_device_modification",
          "table" : "Message",
+         "id" : "parsing_device_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Message .+ has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:message_modification",
          "table" : "Message",
+         "id" : "message_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"User .+ logged out.\"):msg@>",
-         "msg_id" : "Octopussy:user_logged_out",
          "table" : "Message",
+         "id" : "user_logged_out",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"User .+ failed to login.\"):msg@>",
-         "msg_id" : "Octopussy:user_failed_to_login",
          "table" : "Message",
+         "id" : "user_failed_to_login",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Message '.*' has been moved \\S+ in Service '.*' by .+\"):msg@>",
-         "msg_id" : "Octopussy:message_moved",
          "table" : "Message",
+         "id" : "message_moved",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Service '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:service_modification",
          "table" : "Message",
+         "id" : "service_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Statistic Report '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:statistic_report_modification",
          "table" : "Message",
+         "id" : "statistic_report_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Device: \\S+ Stopped !\"):msg@>",
-         "msg_id" : "Octopussy:module_stopped",
          "table" : "Message",
+         "id" : "module_stopped",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@REGEXP(\"DBI\"):module@>: <@REGEXP(\".+ Access denied for user .+\"):msg@>",
-         "msg_id" : "Octopussy:dbi_access_denied",
          "table" : "Message",
+         "id" : "dbi_access_denied",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"octopussy\"):module@>: <@REGEXP(\"ERROR: pid file '.+' doesn't match octopussy uid/gid !\"):msg@>",
-         "msg_id" : "Octopussy:error_pid_file",
          "table" : "Message",
+         "id" : "error_pid_file",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Started !\"):msg@>",
-         "msg_id" : "Octopussy:module_started",
          "table" : "Message",
+         "id" : "module_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"ServiceGroup '.+' has been \\S+ed by .+\"):msg@>",
-         "msg_id" : "Octopussy:servicegroup_modification",
          "table" : "Message",
+         "id" : "servicegroup_modification",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Storage '.+' has been created by .+.\"):msg@>",
-         "msg_id" : "Octopussy:storage_created",
          "table" : "Message",
+         "id" : "storage_created",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Storage '.+' has been deleted by .+.\"):msg@>",
-         "msg_id" : "Octopussy:storage_deleted",
          "table" : "Message",
+         "id" : "storage_deleted",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Default Storages have been modified by .+.\"):msg@>",
-         "msg_id" : "Octopussy:default_storages_modified",
          "table" : "Message",
+         "id" : "default_storages_modified",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Device .+ hasn't sent any logs for \\d+ minutes !\"):msg@>",
-         "msg_id" : "Octopussy:hasnt_sent_logs_for",
          "table" : "Message",
+         "id" : "hasnt_sent_logs_for",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"AAT_SMTP\"):module@>: <@REGEXP(\"Invalid SMTP Configuration. Can't send any mail !\"):msg@>",
-         "msg_id" : "Octopussy:invalid_smtp_configuration",
          "table" : "Message",
+         "id" : "invalid_smtp_configuration",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"AAT_XMPP\"):module@>: <@REGEXP(\"Invalid XMPP Configuration. Can't send any message !\"):msg@>",
-         "msg_id" : "Octopussy:invalid_xmpp_configuration",
          "table" : "Message",
+         "id" : "invalid_xmpp_configuration",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"AAT_XML\"):module@>: <@REGEXP(\"XML File Read Error: .+\"):msg@>",
-         "msg_id" : "Octopussy:xml_file_read_error",
          "table" : "Message",
+         "id" : "xml_file_read_error",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"AAT_XML\"):module@>: <@REGEXP(\"XML File Write Error: .+\"):msg@>",
-         "msg_id" : "Octopussy:xml_file_write_error",
          "table" : "Message",
+         "id" : "xml_file_write_error",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Logs Search on Device\\[.*\\] Service\\[.*\\] Period\\[.+\\] by \\S+ takes \\d+ seconds.\"):msg@>",
-         "msg_id" : "Octopussy:logs_search",
          "table" : "Message",
+         "id" : "logs_search",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@REGEXP(\"extractor\"):module@>: <@REGEXP(\"Logs Extraction Aborted !\"):msg@>",
-         "msg_id" : "Octopussy:logs_extraction_aborted",
          "table" : "Message",
+         "id" : "logs_extraction_aborted",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:module@>: <@REGEXP(\"Unable to open file .+\"):msg@>",
-         "msg_id" : "Octopussy:unable_to_open_file",
          "table" : "Message",
+         "id" : "unable_to_open_file",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Octopussy World Statistics have been \\S+ed by \\S+.\"):msg@>",
-         "msg_id" : "Octopussy:world_statistics_status_changed",
          "table" : "Message",
+         "id" : "world_statistics_status_changed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@REGEXP(\"world_stats\"):module@>: <@REGEXP(\"Octopussy World Statistics have been sent.\"):msg@>",
-         "msg_id" : "Octopussy:world_statistics_sent",
          "table" : "Message",
+         "id" : "world_statistics_sent",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@REGEXP(\"logrotate\"):module@>: <@REGEXP(\"Delete logs from device \\S+ service .+ older than \\d+ days\"):msg@>",
-         "msg_id" : "Octopussy:delete_logs_older_than",
          "table" : "Message",
+         "id" : "delete_logs_older_than",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Delete logs directory .+\"):msg@>",
-         "msg_id" : "Octopussy:delete_logs_directory",
          "table" : "Message",
+         "id" : "delete_logs_directory",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:module@>: <@REGEXP(\"Failed to download '.+'\"):msg@>",
-         "msg_id" : "Octopussy:failed_to_download",
          "table" : "Message",
+         "id" : "failed_to_download",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Removing Unknown Logs at '.+' for device '.+' by \\S+.\"):msg@>",
-         "msg_id" : "Octopussy:removing_unknown_logs_minute",
          "table" : "Message",
+         "id" : "removing_unknown_logs_minute",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Removing Unknown Logs with pattern '.+' for device '.+' by \\S+.\"):msg@>",
-         "msg_id" : "Octopussy:removing_unknown_logs_pattern",
          "table" : "Message",
+         "id" : "removing_unknown_logs_pattern",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Invalid Regexp for Message \\S+ ! \\(Error: .+\\)\"):msg@>",
-         "msg_id" : "Octopussy:invalid_regexp_for_message",
          "table" : "Message",
+         "id" : "invalid_regexp_for_message",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"\\[CRITICAL\\] .+\"):msg@>",
-         "msg_id" : "Octopussy:msg_critical",
          "table" : "Message",
+         "id" : "msg_critical",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"You have to be Octopussy user to use .+\"):msg@>",
-         "msg_id" : "Octopussy:to_be_octopussy_user",
          "table" : "Message",
+         "id" : "to_be_octopussy_user",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Load Contacts Configuration .+\"):msg@>",
-         "msg_id" : "Octopussy:sender_load_contacts_configuration",
          "table" : "Message",
+         "id" : "sender_load_contacts_configuration",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Logs from Device '.+' have been dropped because 'Automatic Device Creation' is disabled.\"):msg@>",
-         "msg_id" : "Octopussy:automatic_device_creation_disabled",
          "table" : "Message",
+         "id" : "automatic_device_creation_disabled",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Logs from Device '.+' have been dropped because it didn't match the device regexp criteria.\"):msg@>",
-         "msg_id" : "Octopussy:didnt_match_device_criteria",
          "table" : "Message",
+         "id" : "didnt_match_device_criteria",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Delete empty logs directory .+\"):msg@>",
-         "msg_id" : "Octopussy:delete_empty_logs_directory",
          "table" : "Message",
+         "id" : "delete_empty_logs_directory",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"\\d+ new unknown logs received from Device \\S+\"):msg@>",
-         "msg_id" : "Octopussy:new_unknown_logs_received",
          "table" : "Message",
+         "id" : "new_unknown_logs_received",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:module@>: <@REGEXP(\"Unable to load plugin module '.+'\"):msg@>",
-         "msg_id" : "Octopussy:unable_to_load_plugin",
          "table" : "Message",
+         "id" : "unable_to_load_plugin",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> octo_<@WORD:module@>: <@REGEXP(\"Logs from Device '.+' have been dropped because of invalid devicename.\"):msg@>",
-         "msg_id" : "Octopussy:dropped_because_invalid_devicename",
          "table" : "Message",
+         "id" : "dropped_because_invalid_devicename",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       }

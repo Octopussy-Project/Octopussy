@@ -3,232 +3,232 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: (<@STRING:user@>) CMD (<@STRING:msg@>)",
-         "msg_id" : "Cron:cmd",
          "table" : "Message",
+         "id" : "cmd",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*session closed for user .+\"):msg@>",
-         "msg_id" : "Cron:session_closed_for_user",
          "table" : "Message",
+         "id" : "session_closed_for_user",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*session opened for user .+\"):msg@>",
-         "msg_id" : "Cron:session_opened_for_user",
          "table" : "Message",
+         "id" : "session_opened_for_user",
          "taxonomy" : "Access.Success",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*crontab.*\"):daemon@>[<@PID:pid@>]: (<@STRING:user@>) <@REGEXP(\"BEGIN EDIT.+\"):msg@>",
-         "msg_id" : "Cron:crontab_begin_edit",
          "table" : "Message",
+         "id" : "crontab_begin_edit",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*crontab.*\"):daemon@>[<@PID:pid@>]: (<@STRING:user@>) <@REGEXP(\"END EDIT.+\"):msg@>",
-         "msg_id" : "Cron:crontab_end_edit",
          "table" : "Message",
+         "id" : "crontab_end_edit",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*crontab.*\"):daemon@>[<@PID:pid@>]: (<@STRING:user@>) <@REGEXP(\"LIST.+\"):msg@>",
-         "msg_id" : "Cron:crontab_list",
          "table" : "Message",
+         "id" : "crontab_list",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):daemon@>[<@PID:pid@>]: (<@WORD:user@>) <@REGEXP(\"MAIL .+\"):msg@>",
-         "msg_id" : "Cron:mail",
          "table" : "Message",
+         "id" : "mail",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):daemon@>[<@PID:pid@>]: (<@STRING:user@>) <@REGEXP(\"STARTUP .+\"):msg@>",
-         "msg_id" : "Cron:startup",
          "table" : "Message",
+         "id" : "startup",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*crond.*\"):daemon@>[<@PID:pid@>]: (<@WORD:user@>) <@REGEXP(\"ORPHAN .+\"):msg@>  ",
-         "msg_id" : "Cron:orphan",
          "table" : "Message",
+         "id" : "orphan",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: reconnected to LDAP server after \\d+ attempt\\(s\\)\"):msg@> ",
-         "msg_id" : "Cron:reconnected_ldap_after",
          "table" : "Message",
+         "id" : "reconnected_ldap_after",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: reconnecting to LDAP server...\"):msg@>",
-         "msg_id" : "Cron:reconnecting_ldap_server",
          "table" : "Message",
+         "id" : "reconnecting_ldap_server",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):daemon@>[<@PID:pid@>]: (<@WORD:user@>) <@REGEXP(\"INFO \\(.+ing @reboot jobs.+\"):msg@>",
-         "msg_id" : "Cron:reboot_jobs",
          "table" : "Message",
+         "id" : "reboot_jobs",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):daemon@>[<@PID:pid@>]: (<@WORD:user@>) <@REGEXP(\"INFO \\(pidfile fd = \\d+\\)\"):msg@> ",
-         "msg_id" : "Cron:pidfile_fd",
          "table" : "Message",
+         "id" : "pidfile_fd",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*crontab.*\"):daemon@>[<@PID:pid@>]: (<@WORD:user@>) <@REGEXP(\"REPLACE .+\"):msg@>",
-         "msg_id" : "Cron:crontab_replace",
          "table" : "Message",
+         "id" : "crontab_replace",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: could not search LDAP server.+\"):msg@>",
-         "msg_id" : "Cron:couldnt_search_ldap",
          "table" : "Message",
+         "id" : "couldnt_search_ldap",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Permission denied\"):msg@> ",
-         "msg_id" : "Cron:permission_denied",
          "table" : "Message",
+         "id" : "permission_denied",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: .+ Timed out\"):msg@> ",
-         "msg_id" : "Cron:pam_ldap_timed_out",
          "table" : "Message",
+         "id" : "pam_ldap_timed_out",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):NULL@>[<@PID:pid@>]: (<@STRING:user@>) <@REGEXP(\"RELOAD .+\"):msg@>",
-         "msg_id" : "Cron:reload",
          "table" : "Message",
+         "id" : "reload",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: failed to bind to LDAP server .+\"):msg@>",
-         "msg_id" : "Cron:failed_bind_ldap_server",
          "table" : "Message",
+         "id" : "failed_bind_ldap_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: reconnected to LDAP server .+\"):msg@>",
-         "msg_id" : "Cron:reconnected_to_ldap_server",
          "table" : "Message",
+         "id" : "reconnected_to_ldap_server",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: could not connect to any LDAP server .+\"):msg@>",
-         "msg_id" : "Cron:couldnt_connect_ldap_server",
          "table" : "Message",
+         "id" : "couldnt_connect_ldap_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM unable to dlopen.+\"):msg@>",
-         "msg_id" : "Cron:pam_unable_dlopen",
          "table" : "Message",
+         "id" : "pam_unable_dlopen",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM adding faulty module: .+\"):msg@>",
-         "msg_id" : "Cron:pam_adding_faulty_module",
          "table" : "Message",
+         "id" : "pam_adding_faulty_module",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM \\[dlerror: .+: cannot open shared object file: No such file or directory\\]\"):msg@> ",
-         "msg_id" : "Cron:cannot_open_shared_object",
          "table" : "Message",
+         "id" : "cannot_open_shared_object",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*crond.*\"):daemon@>[<@PID:pid@>]: (<@STRING:user@>) MAIL (<@STRING:msg@>) ",
-         "msg_id" : "Cron:mail2",
          "table" : "Message",
+         "id" : "mail2",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: could not soft reconnect to LDAP server.+\"):msg@>",
-         "msg_id" : "Cron:couldnt_soft_reconnect_ldap",
          "table" : "Message",
+         "id" : "couldnt_soft_reconnect_ldap",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\(CRON\\) DEATH .+\"):msg@>",
-         "msg_id" : "Cron:death",
          "table" : "Message",
+         "id" : "death",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: could not get LDAP result.+\"):msg@>",
-         "msg_id" : "Cron:couldnt_get_ldap_result",
          "table" : "Message",
+         "id" : "couldnt_get_ldap_result",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error: bad hour; .+\"):msg@>",
-         "msg_id" : "Cron:error_bad_hour",
          "table" : "Message",
+         "id" : "error_bad_hour",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error: bad command;.+\"):msg@>",
-         "msg_id" : "Cron:error_bad_command",
          "table" : "Message",
+         "id" : "error_bad_command",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*cron.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error: bad username; while reading .+\"):msg@>",
-         "msg_id" : "Cron:error_bad_username",
          "table" : "Message",
+         "id" : "error_bad_username",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Authentication service cannot retrieve authentication info\"):msg@>",
-         "msg_id" : "Cron:cannot_retrieve_authentication_info",
          "table" : "Message",
+         "id" : "cannot_retrieve_authentication_info",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*CRON.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\(CRON\\) info \\(No MTA installed, discarding output\\)\"):msg@>",
-         "msg_id" : "Cron:no_mta_installed",
          "table" : "Message",
+         "id" : "no_mta_installed",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

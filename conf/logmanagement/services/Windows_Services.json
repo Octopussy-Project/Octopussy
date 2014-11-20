@@ -3,92 +3,92 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@STRING:event_type@>;<@WORD:computer@>;<@STRING:category@>;;<@REGEXP(\"(s|S)ervic.+stopped.+|.+(s|S)ervic.+stopped.+|(s|S)ervice stopped.+\"):msg@>",
-         "msg_id" : "Windows_Services:service_stopped",
          "table" : "Windows_Message",
+         "id" : "service_stopped",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@STRING:event_type@>;<@WORD:computer@>;<@STRING:category@>;;<@REGEXP(\"(s|S)ervic.+started.+|.+(s|S)ervic.+started.+|(s|S)ervice started.+\"):msg@>",
-         "msg_id" : "Windows_Services:service_started",
          "table" : "Windows_Message",
+         "id" : "service_started",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@STRING:NULL@>;<@REGEXP(\"Performance counters for the .+ service were \\w+ed successfully.+\"):msg@>",
-         "msg_id" : "Windows_Services:performance_counters_modified",
          "table" : "Windows_Message",
+         "id" : "performance_counters_modified",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"The .+ service reported a change of status to.+\"):msg@>",
-         "msg_id" : "Windows_Services:reported_change_of_status",
          "table" : "Windows_Message",
+         "id" : "reported_change_of_status",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+service was successfully sent a stop control.+\"):msg@>",
-         "msg_id" : "Windows_Services:service_successfully_sent_stop_control",
          "table" : "Windows_Message",
+         "id" : "service_successfully_sent_stop_control",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+service was successfully sent a start control.+\"):msg@>",
-         "msg_id" : "Windows_Services:service_successfully_sent_start_control",
          "table" : "Windows_Message",
+         "id" : "service_successfully_sent_start_control",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+service entered the stopped state.+\"):msg@>",
-         "msg_id" : "Windows_Services:service_entered_stopped_state",
          "table" : "Windows_Message",
+         "id" : "service_entered_stopped_state",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+service entered the running state.+\"):msg@>",
-         "msg_id" : "Windows_Services:service_entered_running_state",
          "table" : "Windows_Message",
+         "id" : "service_entered_running_state",
          "taxonomy" : "Application.Start",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Service\"):category@>;;<@REGEXP(\"(The.+Agent.+has started.+|Started the.+Agent.+)\"):msg@>",
-         "msg_id" : "Windows_Services:agent_started",
          "table" : "Windows_Message",
+         "id" : "agent_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@STRING:event_type@>;<@WORD:computer@>;<@STRING:category@>;;<@REGEXP(\"Servic.+start.+successfully.+|.+Servic.+start.+successfully.+|servic.+start.+successfully|.+servic.+start.+successfully\"):msg@>",
-         "msg_id" : "Windows_Services:service_started_successfully",
          "table" : "Windows_Message",
+         "id" : "service_started_successfully",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+Servic.+idle for.+it will be shut down.+\"):msg@>",
-         "msg_id" : "Windows_Services:idle_service_will_shut_down",
          "table" : "Windows_Message",
+         "id" : "idle_service_will_shut_down",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+Servic.+suspended operation.+\"):msg@>",
-         "msg_id" : "Windows_Services:service_suspended_operation",
          "table" : "Windows_Message",
+         "id" : "service_suspended_operation",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+start type of the.+service was changed.+\"):msg@>",
-         "msg_id" : "Windows_Services:service_start_type_changed",
          "table" : "Windows_Message",
+         "id" : "service_start_type_changed",
          "taxonomy" : "System",
          "loglevel" : "Information"
       }

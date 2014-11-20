@@ -66,6 +66,8 @@ sub json_service
 	my @messages = ();
 	foreach my $m (sort { $a->{rank} cmp $b->{rank} } @{$conf->{message}})
 	{
+		$m->{id} = (split(/:/, $m->{msg_id}))[1];
+		delete $m->{msg_id};
     	delete $m->{rank};
     	push @messages, $m;
     }

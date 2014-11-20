@@ -2,57 +2,57 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dhcpd: <@REGEXP(\"DHCPREQUEST\"):action@> for <@IP_ADDR:client_ip@> from <@MAC_ADDR:client_mac@> (<@WORD:NULL@>) via <@NET_INTERFACE:server_nic@>",
-         "msg_id" : "DHCP:request",
          "table" : "DHCP_Event",
+         "id" : "request",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dhcpd: <@REGEXP(\"DHCPACK\"):action@> on <@IP_ADDR:client_ip@> to <@MAC_ADDR:client_mac@> (<@WORD:NULL@>) via <@NET_INTERFACE:server_nic@>",
-         "msg_id" : "DHCP:pack",
          "table" : "DHCP_Event",
+         "id" : "pack",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dhcpd: <@REGEXP(\"Wrote \\d+ deleted host decls to leases file.\"):msg@>",
-         "msg_id" : "DHCP:writedeleted",
          "table" : "DHCP_Event",
+         "id" : "writedeleted",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dhcpd: <@REGEXP(\"Wrote \\d+ new dynamic host decls to leases file.\"):msg@>",
-         "msg_id" : "DHCP:writedynamic",
          "table" : "DHCP_Event",
+         "id" : "writedynamic",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dhcpd: <@REGEXP(\"Wrote \\d+ leases to leases file.\"):msg@>",
-         "msg_id" : "DHCP:writelease",
          "table" : "DHCP_Event",
+         "id" : "writelease",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dhcpd: <@REGEXP(\"DHCPDISCOVER\"):action@> from <@MAC_ADDR:client_mac@> (<@STRING:NULL@>) via <@NET_INTERFACE:server_nic@>",
-         "msg_id" : "DHCP:discover",
          "table" : "DHCP_Event",
+         "id" : "discover",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dhcpd: <@REGEXP(\"DHCPOFFER\"):action@> on <@IP_ADDR:client_ip@> to <@MAC_ADDR:client_mac@> (<@STRING:NULL@>) via <@NET_INTERFACE:server_nic@>",
-         "msg_id" : "DHCP:offer",
          "table" : "DHCP_Event",
+         "id" : "offer",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dhcpd: <@REGEXP(\"DHCPREQUEST\"):action@> for <@IP_ADDR:client_ip@> (<@STRING:NULL@>) from <@MAC_ADDR:client_mac@> via <@NET_INTERFACE:server_nic@>: <@REGEXP(\"unknown lease.+\"):msg@>",
-         "msg_id" : "DHCP:unknown_lease",
          "table" : "DHCP_Event",
+         "id" : "unknown_lease",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       }

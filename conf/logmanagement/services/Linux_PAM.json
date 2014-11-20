@@ -3,134 +3,134 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:login|su)\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\(pam_unix\\) session closed for user .+\"):msg@>",
-         "msg_id" : "Linux_PAM:session_closed_for_user2",
          "table" : "Message",
+         "id" : "session_closed_for_user2",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pam_access\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"access denied for user .+\"):msg@> ",
-         "msg_id" : "Linux_PAM:user_access_denied",
          "table" : "Message",
+         "id" : "user_access_denied",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pam_group\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"no day specified\"):msg@> ",
-         "msg_id" : "Linux_PAM:no_day_specified",
          "table" : "Message",
+         "id" : "no_day_specified",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pam_access\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: line \\d+: bad field count\"):msg@> ",
-         "msg_id" : "Linux_PAM:bad_field_count",
          "table" : "Message",
+         "id" : "bad_field_count",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pam_pwdfile\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"password too short or NULL\"):msg@> ",
-         "msg_id" : "Linux_PAM:password_too_short",
          "table" : "Message",
+         "id" : "password_too_short",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pam_pwdfile\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"wrong password for user .+\"):msg@>",
-         "msg_id" : "Linux_PAM:wrong_password",
          "table" : "Message",
+         "id" : "wrong_password",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pam_console\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"getpwnam failed for .+\"):msg@>",
-         "msg_id" : "Linux_PAM:console_getpwnam_failed",
          "table" : "Message",
+         "id" : "console_getpwnam_failed",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"PAM-mkhomedir\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"unable to create directory .+\"):msg@>",
-         "msg_id" : "Linux_PAM:unable_create_directory",
          "table" : "Message",
+         "id" : "unable_create_directory",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"login\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\(pam_securetty\\) access denied: tty .+ is not secure !\"):msg@>",
-         "msg_id" : "Linux_PAM:tty_not_secure",
          "table" : "Message",
+         "id" : "tty_not_secure",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*pam_unix.* expired password for user .+\"):msg@>",
-         "msg_id" : "Linux_PAM:password_expired",
          "table" : "Message",
+         "id" : "password_expired",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pam_limits\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"setrlimit limit .+ to .+ failed: .*\"):msg@>",
-         "msg_id" : "Linux_PAM:setrlimit_failed",
          "table" : "Message",
+         "id" : "setrlimit_failed",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_unix\\(su:session\\): session closed for user .+\"):msg@>",
-         "msg_id" : "Linux_PAM:session_closed_for_user",
          "table" : "Message",
+         "id" : "session_closed_for_user",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\(pam_unix\\) authentication failure; .+\"):msg@>",
-         "msg_id" : "Linux_PAM:authentication_failure",
          "table" : "Message",
+         "id" : "authentication_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_unix\\(\\S+\\): authentication failure; .+\"):msg@>",
-         "msg_id" : "Linux_PAM:authentication_failure2",
          "table" : "Message",
+         "id" : "authentication_failure2",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"login\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\(pam_unix\\) \\d+ more authentication failures; .+\"):msg@>",
-         "msg_id" : "Linux_PAM:more_authentication_failures",
          "table" : "Message",
+         "id" : "more_authentication_failures",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\(pam_unix\\) could not recover authentication token\"):msg@>",
-         "msg_id" : "Linux_PAM:couldnt_recover_authentication_token",
          "table" : "Message",
+         "id" : "couldnt_recover_authentication_token",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>: <@REGEXP(\"pam_unix\\(\\S+\\): authentication failure; .+\"):msg@>",
-         "msg_id" : "Linux_PAM:authentication_failure3",
          "table" : "Message",
+         "id" : "authentication_failure3",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"pam_env\\(\\S+\\): non-alphanumeric key .+ ignoring\"):msg@>",
-         "msg_id" : "Linux_PAM:non_alphanumeric_key",
          "table" : "Message",
+         "id" : "non_alphanumeric_key",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\".+ pam_env\\(\\S+\\): non-alphanumeric key .+ ignoring\"):msg@>",
-         "msg_id" : "Linux_PAM:non_alphanumeric_key2",
          "table" : "Message",
+         "id" : "non_alphanumeric_key2",
          "taxonomy" : "System",
          "loglevel" : "Information"
       }

@@ -3,43 +3,43 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: sync thread stopped!\"):msg@> ",
-         "msg_id" : "IPVS:sync_thread_stopped",
          "table" : "Message",
+         "id" : "sync_thread_stopped",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: sync thread started: .+\"):msg@>",
-         "msg_id" : "IPVS:sync_thread_started",
          "table" : "Message",
+         "id" : "sync_thread_started",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: stopping sync thread .+\"):msg@>",
-         "msg_id" : "IPVS:stopping_sync_thread",
          "table" : "Message",
+         "id" : "stopping_sync_thread",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: Registered protocols .+\"):msg@>",
-         "msg_id" : "IPVS:registered_protocols",
          "table" : "Message",
+         "id" : "registered_protocols",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: Connection hash table configured.*\"):msg@>",
-         "msg_id" : "IPVS:connection_hash_table_configured",
          "table" : "Message",
+         "id" : "connection_hash_table_configured",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: ipvs loaded.\"):msg@>",
-         "msg_id" : "IPVS:ipvs_loaded",
          "table" : "Message",
+         "id" : "ipvs_loaded",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       }

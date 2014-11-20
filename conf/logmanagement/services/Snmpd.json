@@ -2,141 +2,141 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Connection from .+\"):msg@>",
-         "msg_id" : "Snmpd:connection_from",
          "table" : "Message",
+         "id" : "connection_from",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received SNMP packet\\(s\\) from .+\"):msg@>",
-         "msg_id" : "Snmpd:received_snmp_packets_from",
          "table" : "Message",
+         "id" : "received_snmp_packets_from",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>: <@REGEXP(\"snmpd shutdown failed\"):msg@> ",
-         "msg_id" : "Snmpd:shutdown_failed",
          "table" : "Message",
+         "id" : "shutdown_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S+-SNMP version .+\"):msg@>",
-         "msg_id" : "Snmpd:version",
          "table" : "Message",
+         "id" : "version",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received TERM or STOP signal.+\"):msg@>",
-         "msg_id" : "Snmpd:receiving_stop_signal",
          "table" : "Message",
+         "id" : "receiving_stop_signal",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error opening specified endpoint .+\"):msg@>",
-         "msg_id" : "Snmpd:error_opening_endpoint",
          "table" : "Message",
+         "id" : "error_opening_endpoint",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"cache has existing timer id.\"):msg@>  ",
-         "msg_id" : "Snmpd:cache_has_timer_id",
          "table" : "Message",
+         "id" : "cache_has_timer_id",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"/proc/stat buffer increased to \\d+\"):msg@>",
-         "msg_id" : "Snmpd:proc_stat_buffer_increased",
          "table" : "Message",
+         "id" : "proc_stat_buffer_increased",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Creating directory: .+\"):msg@>",
-         "msg_id" : "Snmpd:creating_directory",
          "table" : "Message",
+         "id" : "creating_directory",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received .+ signal...  shutting down...\"):msg@>  ",
-         "msg_id" : "Snmpd:received_signal_shutting_down",
          "table" : "Message",
+         "id" : "received_signal_shutting_down",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ bind failed: Address already in use\"):msg@>  ",
-         "msg_id" : "Snmpd:address_already_in_use",
          "table" : "Message",
+         "id" : "address_already_in_use",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Turning on AgentX master support.+\"):msg@>  ",
-         "msg_id" : "Snmpd:turning_on_agentx",
          "table" : "Message",
+         "id" : "turning_on_agentx",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Note this is still experimental and shouldn't be used on critical systems.\"):msg@>  ",
-         "msg_id" : "Snmpd:agentx_shouldnt_be_used",
          "table" : "Message",
+         "id" : "agentx_shouldnt_be_used",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ accepted fd \\d+ from .+\"):msg@>",
-         "msg_id" : "Snmpd:accepted_fd_from",
          "table" : "Message",
+         "id" : "accepted_fd_from",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received broken packet. Closing session.\"):msg@> ",
-         "msg_id" : "Snmpd:received_broken_packet",
          "table" : "Message",
+         "id" : "received_broken_packet",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: line \\d+: Error: .+\"):msg@>",
-         "msg_id" : "Snmpd:configuration_error",
          "table" : "Message",
+         "id" : "configuration_error",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Reconfiguring daemon\"):msg@> ",
-         "msg_id" : "Snmpd:reconfiguring_daemon",
          "table" : "Message",
+         "id" : "reconfiguring_daemon",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: line \\d+: Warning: Unknown token: .+\"):msg@>",
-         "msg_id" : "Snmpd:config_unknown_token",
          "table" : "Message",
+         "id" : "config_unknown_token",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error getting netmask for interface .+\"):msg@>",
-         "msg_id" : "Snmpd:error_getting_netmask_interface",
          "table" : "Message",
+         "id" : "error_getting_netmask_interface",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S*snmp\\w*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"cannot open .+\"):msg@>",
-         "msg_id" : "Snmpd:cannot_open",
          "table" : "Message",
+         "id" : "cannot_open",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       }

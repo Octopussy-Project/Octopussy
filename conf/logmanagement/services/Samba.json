@@ -3,85 +3,85 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: reconnecting to LDAP server.+\"):msg@>",
-         "msg_id" : "Samba:reconnecting_ldap_server",
          "table" : "Message",
+         "id" : "reconnecting_ldap_server",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: reconnected to LDAP server after \\d+ attempt\\(s\\)\"):msg@>",
-         "msg_id" : "Samba:reconnected_ldap_server",
          "table" : "Message",
+         "id" : "reconnected_ldap_server",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smb: \\S+ shutdown failed\"):msg@> ",
-         "msg_id" : "Samba:shutdown_failed",
          "table" : "Message",
+         "id" : "shutdown_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: could not hard reconnect to LDAP server.+\"):msg@>",
-         "msg_id" : "Samba:couldnt_hard_reconnect_ldap",
          "table" : "Message",
+         "id" : "couldnt_hard_reconnect_ldap",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nmbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ current master browser = .+\"):msg@>",
-         "msg_id" : "Samba:current_master_browser",
          "table" : "Message",
+         "id" : "current_master_browser",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nmbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*dump workgroup on subnet .+\"):msg@>",
-         "msg_id" : "Samba:dump_workgroup_on_subnet",
          "table" : "Message",
+         "id" : "dump_workgroup_on_subnet",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nmbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\(Samba Server Version \\S+\\)\"):msg@>",
-         "msg_id" : "Samba:nmbd_samba_server_version",
          "table" : "Message",
+         "id" : "nmbd_samba_server_version",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@>  <@REGEXP(\"smbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*Unable to connect to CUPS server .+\"):msg@>",
-         "msg_id" : "Samba:unable_connect_cups_server",
          "table" : "Message",
+         "id" : "unable_connect_cups_server",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nmbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*Samba name server .+ has stopped being a local master browser for .+\"):msg@>",
-         "msg_id" : "Samba:stopped_being_local_master",
          "table" : "Message",
+         "id" : "stopped_being_local_master",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nmbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*Samba name server .+ is now a local master browser for .+\"):msg@>",
-         "msg_id" : "Samba:now_local_master",
          "table" : "Message",
+         "id" : "now_local_master",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nmbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*nmbd\\/nmbd_\\S+.c:\\S+\"):msg@>",
-         "msg_id" : "Samba:nmbd_debug_c_file",
          "table" : "Message",
+         "id" : "nmbd_debug_c_file",
          "taxonomy" : "Application",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nmbd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* [Ff]ailed to register\\S* name .+ on subnet .+\"):msg@>",
-         "msg_id" : "Samba:failed_to_register_name",
          "table" : "Message",
+         "id" : "failed_to_register_name",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       }

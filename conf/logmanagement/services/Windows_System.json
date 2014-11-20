@@ -3,463 +3,463 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"The product Windows Server is out of licenses.+\"):msg@>",
-         "msg_id" : "Windows_System:out_of_licenses",
          "table" : "Windows_Message",
+         "id" : "out_of_licenses",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Devices\"):category@>;;<@REGEXP(\"Master merge has completed on .+\"):msg@>",
-         "msg_id" : "Windows_System:master_merge_has_completed",
          "table" : "Windows_Message",
+         "id" : "master_merge_has_completed",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Detailed Tracking\"):category@>;;<@REGEXP(\"A new process has been created:.+\"):msg@>",
-         "msg_id" : "Windows_System:new_process_created",
          "table" : "Windows_Message",
+         "id" : "new_process_created",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Warning\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Error reading log event record.+\"):msg@>",
-         "msg_id" : "Windows_System:error_reading_event_record",
          "table" : "Windows_Message",
+         "id" : "error_reading_event_record",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Warning\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Illegal format used for commands received from .+\"):msg@>",
-         "msg_id" : "Windows_System:illegal_format_used",
          "table" : "Windows_Message",
+         "id" : "illegal_format_used",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Product: .+ -- Installation operation completed successfully.+\"):msg@>",
-         "msg_id" : "Windows_System:installation_operation_completed_successfully",
          "table" : "Windows_Message",
+         "id" : "installation_operation_completed_successfully",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Product: .+ -- Removal completed successfully.+\"):msg@>",
-         "msg_id" : "Windows_System:removal_completed_successfully",
          "table" : "Windows_Message",
+         "id" : "removal_completed_successfully",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"System Event\"):category@>;;<@REGEXP(\"Windows NT is starting up.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_nt_starting_up",
          "table" : "Windows_Message",
+         "id" : "windows_nt_starting_up",
          "taxonomy" : "System.Boot",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Disk\"):category@>;;<@REGEXP(\"Internal error: .+ Description: Overlapped I/O operation is in progress.+\"):msg@>",
-         "msg_id" : "Windows_System:overlapped_io_operation",
          "table" : "Windows_Message",
+         "id" : "overlapped_io_operation",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Failure Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Detailed Tracking\"):category@>;;<@REGEXP(\".+ Windows Firewall.+ detected an application listening for incoming traffic.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_firewall_application_listening_incoming_traffic",
          "table" : "Windows_Message",
+         "id" : "windows_firewall_application_listening_incoming_traffic",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Detailed Tracking\"):category@>;;<@REGEXP(\"A process has exited:.+\"):msg@>",
-         "msg_id" : "Windows_System:process_exited",
          "table" : "Windows_Message",
+         "id" : "process_exited",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"General\"):category@>;;<@REGEXP(\"wuau.+The database engine.+started.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_update_client_database_engine_started",
          "table" : "Windows_Message",
+         "id" : "windows_update_client_database_engine_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"General\"):category@>;;<@REGEXP(\"wuau.+The database engine.+stopped.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_update_client_database_engine_stopped",
          "table" : "Windows_Message",
+         "id" : "windows_update_client_database_engine_stopped",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Software Sync\"):category@>;<@REGEXP(\".+Unable to Connect: Windows is unable to connect to the automatic updates service and therefore cannot download and install updates according to the set schedule. Windows will continue to try to establish a connection.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_update_client_unable_to_connect_to_automatic_updates_service",
          "table" : "Windows_Message",
+         "id" : "windows_update_client_unable_to_connect_to_automatic_updates_service",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Detailed Tracking\"):category@>;;<@REGEXP(\"A process was assigned a primary token.+\"):msg@>",
-         "msg_id" : "Windows_System:process_assigned_primary_token",
          "table" : "Windows_Message",
+         "id" : "process_assigned_primary_token",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+The process.+has initiated the restart of computer.+on behalf of user.+for the following reason:.+\"):msg@>",
-         "msg_id" : "Windows_System:computer_restart_by_user_for_reason",
          "table" : "Windows_Message",
+         "id" : "computer_restart_by_user_for_reason",
          "taxonomy" : "System.Boot",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+The system is shutting down.+\"):msg@>",
-         "msg_id" : "Windows_System:system_shutdown",
          "table" : "Windows_Message",
+         "id" : "system_shutdown",
          "taxonomy" : "System.Boot",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+The Event log service was stopped.+\"):msg@>",
-         "msg_id" : "Windows_System:eventlog_service_was_stopped",
          "table" : "Windows_Message",
+         "id" : "eventlog_service_was_stopped",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Microsoft.+Windows.+\"):msg@>",
-         "msg_id" : "Windows_System:Windows_Version_Information",
          "table" : "Windows_Message",
+         "id" : "Windows_Version_Information",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+The Event log service was started.+\"):msg@>",
-         "msg_id" : "Windows_System:eventlog_service_was_started",
          "table" : "Windows_Message",
+         "id" : "eventlog_service_was_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+Driver initialized successfully.+\"):msg@>",
-         "msg_id" : "Windows_System:driver_initialized_successfully",
          "table" : "Windows_Message",
+         "id" : "driver_initialized_successfully",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+The.+driver.+has started.+\"):msg@>",
-         "msg_id" : "Windows_System:driver_started",
          "table" : "Windows_Message",
+         "id" : "driver_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+The.+Driver.+is starting.+\"):msg@>",
-         "msg_id" : "Windows_System:driver_starting",
          "table" : "Windows_Message",
+         "id" : "driver_starting",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+driver.+entered.+mode.+\"):msg@>",
-         "msg_id" : "Windows_System:driver_entered_mode",
          "table" : "Windows_Message",
+         "id" : "driver_entered_mode",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"The.+sub system is suppressing duplicate event log entries.+\"):msg@>",
-         "msg_id" : "Windows_System:suppressing_duplicate_eventlog_entries",
          "table" : "Windows_Message",
+         "id" : "suppressing_duplicate_eventlog_entries",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"The time provider NtpClient is currently receiving valid time data from.+\"):msg@>",
-         "msg_id" : "Windows_System:ntp_receiving_data",
          "table" : "Windows_Message",
+         "id" : "ntp_receiving_data",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+The CPUs in this multiprocessor system are not all the same revision level.+\"):msg@>",
-         "msg_id" : "Windows_System:CPUs_are_not_all_the_same_revision_level",
          "table" : "Windows_Message",
+         "id" : "CPUs_are_not_all_the_same_revision_level",
          "taxonomy" : "Hardware",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"The time service is now synchronizing the system time with.+\"):msg@>",
-         "msg_id" : "Windows_System:ntp_synchronizing",
          "table" : "Windows_Message",
+         "id" : "ntp_synchronizing",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"TM\"):category@>;;<@REGEXP(\"MS DTC started with the following settings.+\"):msg@>",
-         "msg_id" : "Windows_System:MS_DTC_started",
          "table" : "Windows_Message",
+         "id" : "MS_DTC_started",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Warning\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Alerter\"):category@>;<@REGEXP(\".+The Host Remote Alerter detected an error while attempting.+to retrieve data from key.+\"):msg@>",
-         "msg_id" : "Windows_System:host_remote_alerter_error_detected",
          "table" : "Windows_Message",
+         "id" : "host_remote_alerter_error_detected",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"General\"):category@>;;<@REGEXP(\"svchost.+The database engine.+started.+\"):msg@>",
-         "msg_id" : "Windows_System:svchost_database_engine_started",
          "table" : "Windows_Message",
+         "id" : "svchost_database_engine_started",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"General\"):category@>;;<@REGEXP(\"svchost.+The database engine.+stopped.+\"):msg@>",
-         "msg_id" : "Windows_System:svchost_database_engine_stopped",
          "table" : "Windows_Message",
+         "id" : "svchost_database_engine_stopped",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+The system uptime is \\d+ seconds.+\"):msg@>",
-         "msg_id" : "Windows_System:system_uptime_seconds",
          "table" : "Windows_Message",
+         "id" : "system_uptime_seconds",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"System Event\"):category@>;;<@REGEXP(\"Windows is shutting down.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_shutting_down",
          "table" : "Windows_Message",
+         "id" : "windows_shutting_down",
          "taxonomy" : "System.Boot",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"DNS signature failed to verify.+\"):msg@>",
-         "msg_id" : "Windows_System:DNS_signature_failed_to_verify",
          "table" : "Windows_Message",
+         "id" : "DNS_signature_failed_to_verify",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+Network controller configured for.+\"):msg@>",
-         "msg_id" : "Windows_System:network_controller_configuration",
          "table" : "Windows_Message",
+         "id" : "network_controller_configuration",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Failed to load the.+library.+\"):msg@>",
-         "msg_id" : "Windows_System:library_load_failed",
          "table" : "Windows_Message",
+         "id" : "library_load_failed",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"System Event\"):category@>;;<@REGEXP(\"Windows is starting up.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_starting_up",
          "table" : "Windows_Message",
+         "id" : "windows_starting_up",
          "taxonomy" : "System.Boot",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"DNS signature validity expired.+\"):msg@>",
-         "msg_id" : "Windows_System:DNS_signature_validity_expired",
          "table" : "Windows_Message",
+         "id" : "DNS_signature_validity_expired",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Successful auto update retrieval of third-party root list sequence number from:.+\"):msg@>",
-         "msg_id" : "Windows_System:successful_auto_update_third_party_root_list_sequence_number",
          "table" : "Windows_Message",
+         "id" : "successful_auto_update_third_party_root_list_sequence_number",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@STRING:category@>;<@REGEXP(\".+Hanging application.+\"):msg@>",
-         "msg_id" : "Windows_System:hanging_application",
          "table" : "Windows_Message",
+         "id" : "hanging_application",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"about:blank.+\"):msg@>",
-         "msg_id" : "Windows_System:about_blank",
          "table" : "Windows_Message",
+         "id" : "about_blank",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"DCOM got error.+\"):msg@>",
-         "msg_id" : "Windows_System:DCOM_got_error",
          "table" : "Windows_Message",
+         "id" : "DCOM_got_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Failed extract of third-party root list from auto update cab.+\"):msg@>",
-         "msg_id" : "Windows_System:failed_extract_of_third_party_root_list_from_auto_update_cab",
          "table" : "Windows_Message",
+         "id" : "failed_extract_of_third_party_root_list_from_auto_update_cab",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Successful auto update retrieval of third-party root list cab.+\"):msg@>",
-         "msg_id" : "Windows_System:successful_auto_update_retrieval_of_third_party_root_list_cab",
          "table" : "Windows_Message",
+         "id" : "successful_auto_update_retrieval_of_third_party_root_list_cab",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+ At least one service or driver failed during system startup. .+\"):msg@>",
-         "msg_id" : "Windows_System:service_or_driver_failed_during_system_startup",
          "table" : "Windows_Message",
+         "id" : "service_or_driver_failed_during_system_startup",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Warning\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Windows saved user .+ registry while an application or service was still using the registry during log off. The memory used by the user's registry has not been freed. The registry will be unloaded when it is no longer in use.+\"):msg@>",
-         "msg_id" : "Windows_System:registry_used_during_log_off",
          "table" : "Windows_Message",
+         "id" : "registry_used_during_log_off",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Beginning a Windows Installer transaction.+\"):msg@>",
-         "msg_id" : "Windows_System:beginning_windows_installer_transaction",
          "table" : "Windows_Message",
+         "id" : "beginning_windows_installer_transaction",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Ending a Windows Installer transaction.+\"):msg@>",
-         "msg_id" : "Windows_System:ending_windows_installer_transaction",
          "table" : "Windows_Message",
+         "id" : "ending_windows_installer_transaction",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+Windows Installer reconfigured the product. Product Name:.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_installer_reconfigured_product",
          "table" : "Windows_Message",
+         "id" : "windows_installer_reconfigured_product",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Generic\"):category@>;;<@REGEXP(\"Soap error: Host not found.+\"):msg@>",
-         "msg_id" : "Windows_System:soap_error_host_not_found",
          "table" : "Windows_Message",
+         "id" : "soap_error_host_not_found",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Client\"):category@>;;<@REGEXP(\"Soap error: An unanticipated error occurred during the processing of this request.+\"):msg@>",
-         "msg_id" : "Windows_System:soap_error_unanticipated_error_during_request_processing",
          "table" : "Windows_Message",
+         "id" : "soap_error_unanticipated_error_during_request_processing",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Client\"):category@>;;<@REGEXP(\"Soap error: Sending the Soap message failed or no recognizable response was received.+\"):msg@>",
-         "msg_id" : "Windows_System:soap_error_sending_soap_message_failed_or_no_response",
          "table" : "Windows_Message",
+         "id" : "soap_error_sending_soap_message_failed_or_no_response",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Client\"):category@>;;<@REGEXP(\"Soap error: Unspecified client error.+\"):msg@>",
-         "msg_id" : "Windows_System:soap_error_unspecified_client_error",
          "table" : "Windows_Message",
+         "id" : "soap_error_unspecified_client_error",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+Product:.+ Configuration failed.+\"):msg@>",
-         "msg_id" : "Windows_System:product_configuration_failed",
          "table" : "Windows_Message",
+         "id" : "product_configuration_failed",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Windows unloaded user .+ registry when it received a notification that no other applications or services were using the profile.+\"):msg@>",
-         "msg_id" : "Windows_System:windows_unloaded_user_registry",
          "table" : "Windows_Message",
+         "id" : "windows_unloaded_user_registry",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+You are about to install a certificate from a certification authority \\(CA\\) claiming to represent:.+\"):msg@>",
-         "msg_id" : "Windows_System:certificate_installation",
          "table" : "Windows_Message",
+         "id" : "certificate_installation",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+Other people are logged on to this computer.+ Do you want to continue restarting?.+\"):msg@>",
-         "msg_id" : "Windows_System:restarting_windows",
          "table" : "Windows_Message",
+         "id" : "restarting_windows",
          "taxonomy" : "System.Boot",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"A fatal error occurred when attempting to access the SSL client credential private key.+\"):msg@>",
-         "msg_id" : "Windows_System:error_accessing_ssl_client_credential_private_key",
          "table" : "Windows_Message",
+         "id" : "error_accessing_ssl_client_credential_private_key",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+Product:.+ Configuration completed successfully.+\"):msg@>",
-         "msg_id" : "Windows_System:product_configuration_completed_successfully",
          "table" : "Windows_Message",
+         "id" : "product_configuration_completed_successfully",
          "taxonomy" : "Config",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Warning\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Windows cannot unload your classes registry file .+\"):msg@>",
-         "msg_id" : "Windows_System:windows_cannot_unload_classes_registry_file",
          "table" : "Windows_Message",
+         "id" : "windows_cannot_unload_classes_registry_file",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@STRING:category@>;<@REGEXP(\".+Faulting application.+\"):msg@>",
-         "msg_id" : "Windows_System:faulting_application",
          "table" : "Windows_Message",
+         "id" : "faulting_application",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Kernel Rule\"):category@>;;<@REGEXP(\"The current application .+ attempted to execute the new application .+\"):msg@>",
-         "msg_id" : "Windows_System:current_application_attempted_to_execute_new_application",
          "table" : "Windows_Message",
+         "id" : "current_application_attempted_to_execute_new_application",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Successful auto update of third-party root certificate.+\"):msg@>",
-         "msg_id" : "Windows_System:successful_auto_update_of_third_party_root_certificate",
          "table" : "Windows_Message",
+         "id" : "successful_auto_update_of_third_party_root_certificate",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+The application failed to initialize because the window station is shutting down.+\"):msg@>",
-         "msg_id" : "Windows_System:application_failed_to_initialize_because_window_station_is_shutting_down",
          "table" : "Windows_Message",
+         "id" : "application_failed_to_initialize_because_window_station_is_shutting_down",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\"Rejected Safe Mode action.+\"):msg@>",
-         "msg_id" : "Windows_System:application_rejected_safe_mode_action",
          "table" : "Windows_Message",
+         "id" : "application_rejected_safe_mode_action",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       }

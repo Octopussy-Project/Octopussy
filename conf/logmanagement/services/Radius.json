@@ -2,8 +2,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"radiusd: .+ : Info: Starting - reading configuration files ...\"):msg@>",
-         "msg_id" : "Radius:starting",
          "table" : "Message",
+         "id" : "starting",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       }

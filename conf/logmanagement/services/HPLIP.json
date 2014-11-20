@@ -3,8 +3,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"python: hp-systray.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"warning: No hp.+devices found in any installed.+queue. Exiting.\"):msg@>",
-         "msg_id" : "HPLIP:no_devices_found_in_any_queue",
          "table" : "Message",
+         "id" : "no_devices_found_in_any_queue",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       }

@@ -3,1198 +3,1198 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: access-list <@STRING:acl@> denied <@WORD:protocol@> <@STRING:src@>/<@IP_ADDR:src_addr@>(<@NUMBER:src_port@>) -> <@STRING:dst@>/<@IP_ADDR:dst_addr@>(<@NUMBER:dst_port@>) <@REGEXP(\"hit-cnt \\d+ \\(first hit\\)\"):msg@> [<@STRING:acl_id@>]",
-         "msg_id" : "Cisco_ASA:accesslist_denied_first_hit",
          "table" : "Cisco_ASA",
+         "id" : "accesslist_denied_first_hit",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Built inbound <@WORD:protocol@> connection <@NUMBER:connection_id@> for <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> (<@IP_ADDR:src_addr_2@>/<@NUMBER:src_port_2@>) to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> (<@IP_ADDR:dst_addr_2@>/<@NUMBER:dst_port_2@>)",
-         "msg_id" : "Cisco_ASA:built_inbound_connection",
          "table" : "Cisco_ASA",
+         "id" : "built_inbound_connection",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Built inbound <@WORD:protocol@> connection for faddr <@IP_ADDR:faddr@>/<@NUMBER:faddr_port@> gaddr <@IP_ADDR:gaddr@>/<@NUMBER:gaddr_port@> laddr <@IP_ADDR:laddr@>/<@NUMBER:laddr_port@>",
-         "msg_id" : "Cisco_ASA:built_inbound_connection_faddr_gaddr_laddr",
          "table" : "Cisco_ASA",
+         "id" : "built_inbound_connection_faddr_gaddr_laddr",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Built outbound <@WORD:protocol@> connection <@NUMBER:connection_id@> for <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> (<@IP_ADDR:src_addr_2@>/<@NUMBER:src_port_2@>) to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> (<@IP_ADDR:dst_addr_2@>/<@NUMBER:dst_port_2@>)",
-         "msg_id" : "Cisco_ASA:built_outbound_connection",
          "table" : "Cisco_ASA",
+         "id" : "built_outbound_connection",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Built outbound <@WORD:protocol@> connection for faddr <@IP_ADDR:faddr@>/<@NUMBER:faddr_port@> gaddr <@IP_ADDR:gaddr@>/<@NUMBER:gaddr_port@> laddr <@IP_ADDR:laddr@>/<@NUMBER:laddr_port@>",
-         "msg_id" : "Cisco_ASA:built_outbound_connection_faddr_gaddr_laddr",
          "table" : "Cisco_ASA",
+         "id" : "built_outbound_connection_faddr_gaddr_laddr",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Teardown <@WORD:protocol@> connection <@NUMBER:connection_id@> for <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> duration <@TIME:duration@> bytes <@NUMBER:bytes@>",
-         "msg_id" : "Cisco_ASA:teardown_connection_OLD",
          "table" : "Cisco_ASA",
+         "id" : "teardown_connection_OLD",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Teardown <@WORD:protocol@> connection for faddr <@IP_ADDR:faddr@>/<@NUMBER:faddr_port@> gaddr <@IP_ADDR:gaddr@>/<@NUMBER:gaddr_port@> laddr <@IP_ADDR:laddr@>/<@NUMBER:laddr_port@>",
-         "msg_id" : "Cisco_ASA:teardown_connection_faddr_gaddr_laddr",
          "table" : "Cisco_ASA",
+         "id" : "teardown_connection_faddr_gaddr_laddr",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny <@WORD:protocol@> (no connection) from <@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> flags <@STRING:flags@> on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:deny_connection",
          "table" : "Cisco_ASA",
+         "id" : "deny_connection",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> by access-group \"<@STRING:acl@>\" [<@STRING:acl_id@>]",
-         "msg_id" : "Cisco_ASA:deny_by_accessgroup_long",
          "table" : "Cisco_ASA",
+         "id" : "deny_by_accessgroup_long",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Teardown static <@WORD:protocol@> translation from <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> duration <@TIME:duration@>",
-         "msg_id" : "Cisco_ASA:teardown_static_translation_long",
          "table" : "Cisco_ASA",
+         "id" : "teardown_static_translation_long",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Teardown static translation from <@STRING:src@>:<@IP_ADDR:src_addr@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@> duration <@TIME:duration@>",
-         "msg_id" : "Cisco_ASA:teardown_static_translation_short",
          "table" : "Cisco_ASA",
+         "id" : "teardown_static_translation_short",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Built static <@WORD:protocol@> translation from <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:built_static_translation_long",
          "table" : "Cisco_ASA",
+         "id" : "built_static_translation_long",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Built static translation from <@STRING:src@>:<@IP_ADDR:src_addr@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>",
-         "msg_id" : "Cisco_ASA:built_static_translation_short",
          "table" : "Cisco_ASA",
+         "id" : "built_static_translation_short",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Built dynamic translation from <@STRING:src@>:<@IP_ADDR:src_addr@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>",
-         "msg_id" : "Cisco_ASA:built_dynamic_translation_short",
          "table" : "Cisco_ASA",
+         "id" : "built_dynamic_translation_short",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Teardown dynamic translation from <@STRING:src@>:<@IP_ADDR:src_addr@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@> duration <@TIME:duration@>",
-         "msg_id" : "Cisco_ASA:teardown_dynamic_translation_short",
          "table" : "Cisco_ASA",
+         "id" : "teardown_dynamic_translation_short",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny inbound (No xlate) <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:deny_inbound_no_xlate",
          "table" : "Cisco_ASA",
+         "id" : "deny_inbound_no_xlate",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@> <@IP_ADDR:src_addr@> Retrieved <@IP_ADDR:dst_addr@>:<@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:retrieved_file",
          "table" : "Cisco_ASA",
+         "id" : "retrieved_file",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny <@WORD:protocol@> (Connection marked for Deletion) from <@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> flags <@STRING:flags@> on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:deny_connection_marked_for_deletion",
          "table" : "Cisco_ASA",
+         "id" : "deny_connection_marked_for_deletion",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@WORD:protocol@> access denied by <@STRING:acl@> from <@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:access_denied_by_acl",
          "table" : "Cisco_ASA",
+         "id" : "access_denied_by_acl",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny inbound <@WORD:protocol@> from <@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> due to DNS Response",
-         "msg_id" : "Cisco_ASA:deny_inbound_due_to_dns_response",
          "table" : "Cisco_ASA",
+         "id" : "deny_inbound_due_to_dns_response",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@> dst <@STRING:dst@><@IP_ADDR:dst_addr@> (<@STRING:status@>) by access-group \"<@STRING:acl@> [<@STRING:acl_id@>]",
-         "msg_id" : "Cisco_ASA:deny_by_accessgroup_short",
          "table" : "Cisco_ASA",
+         "id" : "deny_by_accessgroup_short",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Teardown <@WORD:protocol@> connection <@NUMBER:connection_id@> for <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@> duration <@TIME:duration@> bytes <@NUMBER:bytes@> <@WORD:NULL@> <@STRING:flags@>",
-         "msg_id" : "Cisco_ASA:teardown_connection_with_protocol_flags",
          "table" : "Cisco_ASA",
+         "id" : "teardown_connection_with_protocol_flags",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@REGEXP(\"\\d+ in use, \\d+ most used\"):msg@>",
-         "msg_id" : "Cisco_ASA:connection_usage",
          "table" : "Cisco_ASA",
+         "id" : "connection_usage",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny inbound <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:deny_inbound",
          "table" : "Cisco_ASA",
+         "id" : "deny_inbound",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Dropped <@WORD:protocol@> DNS reply from <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>; <@REGEXP(\"packet length \\d+ bytes exceeds configured limit of \\d+ bytes\"):msg@>",
-         "msg_id" : "Cisco_ASA:dropped_dns_reply_packet_length_exceeds_configured_limit",
          "table" : "Cisco_ASA",
+         "id" : "dropped_dns_reply_packet_length_exceeds_configured_limit",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@> <@IP_ADDR:src_addr@> Stored <@IP_ADDR:dst_addr@>:<@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:stored_file",
          "table" : "Cisco_ASA",
+         "id" : "stored_file",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny inbound (No xlate) <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@> (<@STRING:status@>)",
-         "msg_id" : "Cisco_ASA:deny_inbound_no_xlate_with_status",
          "table" : "Cisco_ASA",
+         "id" : "deny_inbound_no_xlate_with_status",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny inbound <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@> (<@STRING:status@>)",
-         "msg_id" : "Cisco_ASA:deny_inbound_with_status",
          "table" : "Cisco_ASA",
+         "id" : "deny_inbound_with_status",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Denied <@WORD:protocol@> type=<@WORD:type@>, from laddr <@IP_ADDR:laddr@> on interface <@STRING:interface@> to <@IP_ADDR:dst_addr@>: no matching session",
-         "msg_id" : "Cisco_ASA:denied_laddr_no_matching_session",
          "table" : "Cisco_ASA",
+         "id" : "denied_laddr_no_matching_session",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: regular translation creation failed for protocol <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@>",
-         "msg_id" : "Cisco_ASA:regular_translation_creation_failed",
          "table" : "Cisco_ASA",
+         "id" : "regular_translation_creation_failed",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Begin configuration: <@STRING:src@> writing to <@STRING:dst@>",
-         "msg_id" : "Cisco_ASA:writing_configuration",
          "table" : "Cisco_ASA",
+         "id" : "writing_configuration",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@STRING:src@> end configuration: OK",
-         "msg_id" : "Cisco_ASA:writing_configuration_ok",
          "table" : "Cisco_ASA",
+         "id" : "writing_configuration_ok",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: User <@STRING:user@> executed the <@STRING:msg@> command.",
-         "msg_id" : "Cisco_ASA:user_executed_command",
          "table" : "Cisco_ASA",
+         "id" : "user_executed_command",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: access-list <@STRING:acl@> denied <@WORD:protocol@> <@STRING:src@>/<@IP_ADDR:src_addr@>(<@NUMBER:src_port@>) -> <@STRING:dst@>/<@IP_ADDR:dst_addr@>(<@NUMBER:dst_port@>) <@REGEXP(\"hit-cnt \\d+ \\(\\d+-second interval\\)\"):msg@> [<@STRING:acl_id@>]",
-         "msg_id" : "Cisco_ASA:accesslist_denied_interval",
          "table" : "Cisco_ASA",
+         "id" : "accesslist_denied_interval",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Dropped <@WORD:protocol@> DNS request from <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>; <@REGEXP(\"label length \\d+ bytes exceeds remaining packet length limit of \\d+ bytes\"):msg@>",
-         "msg_id" : "Cisco_ASA:dropped_dns_request_label_length_exceeds_remaining_packet_length_limit",
          "table" : "Cisco_ASA",
+         "id" : "dropped_dns_request_label_length_exceeds_remaining_packet_length_limit",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Dropped <@WORD:protocol@> DNS request from <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>; <@REGEXP(\"label length \\d+ bytes exceeds protocol limit of \\d+ bytes\"):msg@>",
-         "msg_id" : "Cisco_ASA:dropped_dns_request_label_length_exceeds_protocol_limit",
          "table" : "Cisco_ASA",
+         "id" : "dropped_dns_request_label_length_exceeds_protocol_limit",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: No translation group found for <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@> (<@STRING:status@>)",
-         "msg_id" : "Cisco_ASA:no_translation_group_found_status",
          "table" : "Cisco_ASA",
+         "id" : "no_translation_group_found_status",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@> Too many <@WORD:protocol@> connections on xlate <@IP_ADDR:gaddr@>! <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:too_many_connections_on_xlate",
          "table" : "Cisco_ASA",
+         "id" : "too_many_connections_on_xlate",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Begin configuration: <@STRING:dst@> reading from <@STRING:src@>",
-         "msg_id" : "Cisco_ASA:reading_configuration",
          "table" : "Cisco_ASA",
+         "id" : "reading_configuration",
          "taxonomy" : "Config",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@REGEXP(\"User logged out: Uname:\"):msg@> <@STRING:user@>",
-         "msg_id" : "Cisco_ASA:user_logged_out",
          "table" : "Cisco_ASA",
+         "id" : "user_logged_out",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Dropped <@WORD:protocol@> DNS reply from <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>; <@REGEXP(\"label length \\d+ bytes exceeds protocol limit of \\d+ bytes\"):msg@>",
-         "msg_id" : "Cisco_ASA:Dropped_DNS_reply_label_length_exceeds_protocol_limit",
          "table" : "Cisco_ASA",
+         "id" : "Dropped_DNS_reply_label_length_exceeds_protocol_limit",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@REGEXP(\"No route to .+ from .+\"):msg@>",
-         "msg_id" : "Cisco_ASA:no_route",
          "table" : "Cisco_ASA",
+         "id" : "no_route",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: No translation group found for <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@>/<@NUMBER:src_port@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:no_translation_group_found",
          "table" : "Cisco_ASA",
+         "id" : "no_translation_group_found",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Invalid transport field for protocol=<@WORD:protocol@> from <@IP_ADDR:src_addr@>/<@NUMBER:src_port@> to <@IP_ADDR:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:invalid_transport_field",
          "table" : "Cisco_ASA",
+         "id" : "invalid_transport_field",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Received <@WORD:protocol@> request collision from <@IP_ADDR:src_addr@>/<@STRING:src@> on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:received_request_collision",
          "table" : "Cisco_ASA",
+         "id" : "received_request_collision",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@REGEXP(\".+ Testing on interface\"):msg@> <@STRING:interface@> <@STRING:status@>",
-         "msg_id" : "Cisco_ASA:testing_on_interface",
          "table" : "Cisco_ASA",
+         "id" : "testing_on_interface",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@REGEXP(\".+ Testing Interface\"):msg@> <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:testing_interface",
          "table" : "Cisco_ASA",
+         "id" : "testing_interface",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@REGEXP(\".+ Lost Failover communications with mate on interface\"):msg@> <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:lost_failover_communications_with_mate",
          "table" : "Cisco_ASA",
+         "id" : "lost_failover_communications_with_mate",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: <@REGEXP(\".+ Monitoring on interface\"):msg@> <@STRING:interface@> <@STRING:status@>",
-         "msg_id" : "Cisco_ASA:monitoring_on_interface",
          "table" : "Cisco_ASA",
+         "id" : "monitoring_on_interface",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> : <@REGEXP(\"\\%FWSM.+\"):msg_id@>: Deny protocol <@WORD:protocol@> src <@STRING:src@>:<@IP_ADDR:src_addr@> dst <@STRING:dst@>:<@IP_ADDR:dst_addr@> by access-group \"<@STRING:acl@>\" [<@STRING:acl_id@>]",
-         "msg_id" : "Cisco_ASA:Deny_by_access_group_short_2",
          "table" : "Cisco_ASA",
+         "id" : "Deny_by_access_group_short_2",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Teardown dynamic \\S+ translation from\"):msg@> <@WORD:src@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@WORD:dst@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@> duration <@TIME:duration@>",
-         "msg_id" : "Cisco_ASA:teardown_dynamic_translation",
          "table" : "Cisco_ASA",
+         "id" : "teardown_dynamic_translation",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Teardown \\S+ connection \\d+ for\"):msg@> <@WORD:src@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@WORD:dst@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@> duration <@TIME:duration@> bytes <@NUMBER:bytes@><@STRING:NULL@>",
-         "msg_id" : "Cisco_ASA:teardown_connection",
          "table" : "Cisco_ASA",
+         "id" : "teardown_connection",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Built dynamic \\S+ translation from\"):msg@> <@WORD:src@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@WORD:dst@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:built_dynamic_translation",
          "table" : "Cisco_ASA",
+         "id" : "built_dynamic_translation",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Built \\w+bound \\S+ connection \\d+ f\\w+\"):msg@> <@WORD:src@>:<@WORD:src_addr@>/<@NUMBER:src_port@> (<@WORD:src_addr_2@>/<@NUMBER:src_port_2@>) to <@WORD:dst@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@> (<@WORD:dst_addr_2@>/<@NUMBER:dst_port_2@><@STRING:NULL@>",
-         "msg_id" : "Cisco_ASA:built_connection",
          "table" : "Cisco_ASA",
+         "id" : "built_connection",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Deny \\w+ src\"):msg@> <@WORD:src@>:<@WORD:src_addr@> dst <@WORD:dst@>:<@WORD:dst_addr@> <@STRING:NULL@> by access-group \"<@STRING:acl@>\" <@STRING:NULL@>",
-         "msg_id" : "Cisco_ASA:deny_by_accessgroup",
          "table" : "Cisco_ASA",
+         "id" : "deny_by_accessgroup",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Built \\w+bound ICMP connection for\"):msg@> faddr <@WORD:faddr@>/<@NUMBER:faddr_port@> gaddr <@WORD:gaddr@>/<@NUMBER:gaddr_port@> laddr <@WORD:laddr@>/<@NUMBER:laddr_port@>",
-         "msg_id" : "Cisco_ASA:built_icmp_connection",
          "table" : "Cisco_ASA",
+         "id" : "built_icmp_connection",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Teardown ICMP connection for\"):msg@> faddr <@WORD:faddr@>/<@NUMBER:faddr_port@> gaddr <@WORD:gaddr@>/<@NUMBER:gaddr_port@> laddr <@WORD:laddr@>/<@NUMBER:laddr_port@>",
-         "msg_id" : "Cisco_ASA:teardown_icmp_connection",
          "table" : "Cisco_ASA",
+         "id" : "teardown_icmp_connection",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"\\w+ request discarded from\"):msg@> <@WORD:src_addr@>/<@NUMBER:src_port@> to <@WORD:dst@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:request_discarded",
          "table" : "Cisco_ASA",
+         "id" : "request_discarded",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Asymmetric NAT rules matched for forward and reverse flows; Connection for .+ denied due to NAT reverse path failure\"):msg@>",
-         "msg_id" : "Cisco_ASA:asymmetric_nat_rules_matched",
          "table" : "Cisco_ASA",
+         "id" : "asymmetric_nat_rules_matched",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Deny TCP \\(no connection\\) from\"):msg@> <@WORD:src_addr@>/<@NUMBER:src_port@> to <@WORD:dst_addr@>/<@NUMBER:dst_port@> flags <@STRING:flags@> on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:deny_tcp_from",
          "table" : "Cisco_ASA",
+         "id" : "deny_tcp_from",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@REGEXP(\"Failed to locate \\w+ interface for .+\"):msg@>",
-         "msg_id" : "Cisco_ASA:failed_to_locate_interface",
          "table" : "Cisco_ASA",
+         "id" : "failed_to_locate_interface",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@> (<@STRING:msg@>) Lost Failover communications with mate on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:001",
          "table" : "Cisco_ASA",
+         "id" : "001",
          "taxonomy" : "System.Errors",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@> (<@STRING:msg@>) Testing Interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:002",
          "table" : "Cisco_ASA",
+         "id" : "002",
          "taxonomy" : "Hardware.Network",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:msg@>) Testing on interface <@STRING:interface@> <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:003",
          "table" : "Cisco_ASA",
+         "id" : "003",
          "taxonomy" : "Hardware.Network",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:interface@>) Beginning configuration replication: <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:004",
          "table" : "Cisco_ASA",
+         "id" : "004",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:interface@>) No response from other firewall (reason code = <@STRING:msg@>).",
-         "msg_id" : "Cisco_ASA:005",
          "table" : "Cisco_ASA",
+         "id" : "005",
          "taxonomy" : "Network",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@STRING:status@> <@WORD:protocol@> src <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> dst <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@> by access-group \"<@STRING:interface@>\" [<@STRING:msg@>]",
-         "msg_id" : "Cisco_ASA:006",
          "table" : "Cisco_ASA",
+         "id" : "006",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:interface@>) End Configuration Replication (<@STRING:msg@>)",
-         "msg_id" : "Cisco_ASA:007",
          "table" : "Cisco_ASA",
+         "id" : "007",
          "taxonomy" : "Config",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Deny <@WORD:protocol@> reverse path check from <@WORD:src_addr@> to <@WORD:dst_addr@> on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:008",
          "table" : "Cisco_ASA",
+         "id" : "008",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: access-list <@STRING:acl@> denied <@WORD:protocol@> for user <@STRING:user@> <@STRING:interface@>/<@WORD:src_addr@>(<@NUMBER:src_port@>) -> <@STRING:interface@>/<@WORD:dst_addr@>(<@NUMBER:dst_port@>) hit-cnt <@NUMBER:bytes@> first hit <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:009",
          "table" : "Cisco_ASA",
+         "id" : "009",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:interface@>) Mate version <@STRING:msg@> is not identical with ours <@STRING:msg@>.",
-         "msg_id" : "Cisco_ASA:010",
          "table" : "Cisco_ASA",
+         "id" : "010",
          "taxonomy" : "System.Errors",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: [    Port-<@NUMBER:src_port@>-<@NUMBER:src_port@>] drop rate-<@STRING:msg@> exceeded. Current burst rate is <@STRING:msg@> per second, max configured rate is <@STRING:msg@>; Current average rate is <@STRING:msg@> per second, max configured rate is <@STRING:msg@>; Cumulative total count is <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:011",
          "table" : "Cisco_ASA",
+         "id" : "011",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:status@>) Link status '<@STRING:msg@>' on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:012",
          "table" : "Cisco_ASA",
+         "id" : "012",
          "taxonomy" : "Hardware.Network",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Line protocol on Interface <@STRING:interface@>, changed state to <@STRING:status@>",
-         "msg_id" : "Cisco_ASA:013",
          "table" : "Cisco_ASA",
+         "id" : "013",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:msg@>, Username = <@WORD:user@>, IP = <@WORD:src_addr@>, Session <@STRING:status@>. Session Type: <@WORD:protocol@>, Duration: <@STRING:msg@>, Bytes xmt: <@NUMBER:bytes@>, Bytes rcv: <@NUMBER:bytes@>, Reason: <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:014",
          "table" : "Cisco_ASA",
+         "id" : "014",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: No translation group found for <@WORD:protocol@> src <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> dst <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:015",
          "table" : "Cisco_ASA",
+         "id" : "015",
          "taxonomy" : "Network",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: [   <@WORD:src_addr@>] drop rate-<@STRING:msg@> exceeded. Current burst rate is <@STRING:msg@> per second, max configured rate is <@STRING:msg@>; Current average rate is <@STRING:msg@> per second, max configured rate is <@STRING:msg@>; Cumulative total count is <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:016",
          "table" : "Cisco_ASA",
+         "id" : "016",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: [ <@STRING:msg@>] drop rate-<@STRING:msg@> exceeded. Current burst rate is <@STRING:msg@> per second, max configured rate is <@STRING:msg@>; Current average rate is <@STRING:msg@> per second, max configured rate is <@STRING:msg@>; Cumulative total count is <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:017",
          "table" : "Cisco_ASA",
+         "id" : "017",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IKE reserved <@WORD:protocol@> <@WORD:protocol@> port <@NUMBER:src_port@> on interface <@STRING:interface@> successfully",
-         "msg_id" : "Cisco_ASA:018",
          "table" : "Cisco_ASA",
+         "id" : "018",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> 10.251.8.8 %ASA-4-737033: IPAA: Unable to assign AAA provided IP address (<@WORD:src_addr@>) to Client. This IP address has already been assigned by AAA",
-         "msg_id" : "Cisco_ASA:019",
          "table" : "Cisco_ASA",
+         "id" : "019",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@WORD:protocol@> flow from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@> terminated by inspection engine, reason - inspector reset unconditionally.",
-         "msg_id" : "Cisco_ASA:020",
          "table" : "Cisco_ASA",
+         "id" : "020",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> reply from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; packet length <@NUMBER:bytes@> bytes exceeds configured limit of <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:021",
          "table" : "Cisco_ASA",
+         "id" : "021",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Duplicate <@WORD:protocol@> <@WORD:protocol@> from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@> with different initial sequence number",
-         "msg_id" : "Cisco_ASA:022",
          "table" : "Cisco_ASA",
+         "id" : "022",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: URL Server <@WORD:src_addr@> not responding",
-         "msg_id" : "Cisco_ASA:023",
          "table" : "Cisco_ASA",
+         "id" : "023",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@WORD:protocol@> access denied by ACL from <@WORD:src_addr@>/<@NUMBER:src_port@> to <@WORD:src_addr@>/<@NUMBER:src_port@>",
-         "msg_id" : "Cisco_ASA:024",
          "table" : "Cisco_ASA",
+         "id" : "024",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IPS requested to reset <@WORD:protocol@> connection from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:025",
          "table" : "Cisco_ASA",
+         "id" : "025",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@WORD:protocol@> flow from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@> terminated by inspection engine,<@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:026",
          "table" : "Cisco_ASA",
+         "id" : "026",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group <@STRING:user@> User <@STRING:user@> IP <@WORD:src_addr@> Address <@WORD:dst_addr@> assigned to session",
-         "msg_id" : "Cisco_ASA:027",
          "table" : "Cisco_ASA",
+         "id" : "027",
          "taxonomy" : "Auth",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: No matching connection for <@WORD:protocol@> error message: <@WORD:protocol@> src <@STRING:interface@>:<@WORD:src_addr@> dst <@STRING:interface@>:<@WORD:dst_addr@> (<@STRING:msg@>) on <@STRING:interface@> interface.  Original IP payload: <@WORD:protocol@> src <@WORD:src_addr@>/<@NUMBER:src_port@> dst <@WORD:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:028",
          "table" : "Cisco_ASA",
+         "id" : "028",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: TunnelGroup <@STRING:user@> GroupPolicy <@STRING:user@> User<@STRING:user@> IP <@WORD:src_addr@> No <@WORD:protocol@> address available for <@WORD:protocol@> connection",
-         "msg_id" : "Cisco_ASA:029",
          "table" : "Cisco_ASA",
+         "id" : "029",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Invalid transport field for protocol=<@WORD:protocol@>, from <@WORD:src_addr@>/<@NUMBER:src_port@> to <@WORD:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:030",
          "table" : "Cisco_ASA",
+         "id" : "030",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Tunnel group search using certificate maps failed for peer certificate:<@WORD:user@>",
-         "msg_id" : "Cisco_ASA:031",
          "table" : "Cisco_ASA",
+         "id" : "031",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> 1<@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IPS requested to drop <@WORD:protocol@> packet from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:032",
          "table" : "Cisco_ASA",
+         "id" : "032",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Failed to insert CRL for trustpoint <@STRING:msg@>. Reason:<@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:033",
          "table" : "Cisco_ASA",
+         "id" : "033",
          "taxonomy" : "Auth",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Denied <@WORD:protocol@> <@STRING:msg@> from <@WORD:src_addr@> on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:034",
          "table" : "Cisco_ASA",
+         "id" : "034",
          "taxonomy" : "Traffic",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Task ran for <@STRING:msg@>, <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:035",
          "table" : "Cisco_ASA",
+         "id" : "035",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Deny protocol <@WORD:protocol@> src <@STRING:interface@>:<@WORD:src_addr@> dst <@STRING:interface@>:<@WORD:dst_addr@> by access-group <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:036",
          "table" : "Cisco_ASA",
+         "id" : "036",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Tunnel group search using certificate maps failed for peer certificate: serial number: <@WORD:user@>, subject name: <@WORD:user@>, issuer_name: <@WORD:user@>",
-         "msg_id" : "Cisco_ASA:037",
          "table" : "Cisco_ASA",
+         "id" : "037",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Deny IP spoof from (<@WORD:src_addr@>) to <@WORD:dst_addr@> on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:038",
          "table" : "Cisco_ASA",
+         "id" : "038",
          "taxonomy" : "Attack",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Certificate validation failed. No suitable trustpoints found to validate certificate serial number: <@STRING:user@>, subject name: <@STRING:user@>, issuer name: <@STRING:user@>",
-         "msg_id" : "Cisco_ASA:039",
          "table" : "Cisco_ASA",
+         "id" : "039",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Certificate chain failed validation. No suitable trustpoint was found to validate chain.",
-         "msg_id" : "Cisco_ASA:040",
          "table" : "Cisco_ASA",
+         "id" : "040",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: No matching connection for <@WORD:protocol@> error message: <@WORD:protocol@> src <@STRING:interface@>:<@WORD:src_addr@> dst <@STRING:interface@>:<@WORD:dst_addr@> (<@STRING:msg@>) on <@STRING:interface@> interface.  Original IP payload: <@STRING:msg@>.",
-         "msg_id" : "Cisco_ASA:041",
          "table" : "Cisco_ASA",
+         "id" : "041",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: TunnelGroup <@STRING:user@> GroupPolicy <@STRING:user@> User <@STRING:user@> IP <<@WORD:src_addr@>> No address available for SVC connection",
-         "msg_id" : "Cisco_ASA:042",
          "table" : "Cisco_ASA",
+         "id" : "042",
          "taxonomy" : "Auth",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IP <<@WORD:src_addr@>> Error parsing SVC connect request.",
-         "msg_id" : "Cisco_ASA:043",
          "table" : "Cisco_ASA",
+         "id" : "043",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IP <<@WORD:src_addr@>> Error authenticating SVC connect request.",
-         "msg_id" : "Cisco_ASA:044",
          "table" : "Cisco_ASA",
+         "id" : "044",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:status@>) Monitoring on interface <@STRING:interface@> waiting",
-         "msg_id" : "Cisco_ASA:045",
          "table" : "Cisco_ASA",
+         "id" : "045",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:status@>) Monitoring on interface <@STRING:interface@> normal",
-         "msg_id" : "Cisco_ASA:046",
          "table" : "Cisco_ASA",
+         "id" : "046",
          "taxonomy" : "Network",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group <<@STRING:user@>> User <<@STRING:user@>> IP <<@WORD:src_addr@>> Received large packet <@NUMBER:bytes@> (threshold <@NUMBER:bytes@>).",
-         "msg_id" : "Cisco_ASA:047",
          "table" : "Cisco_ASA",
+         "id" : "047",
          "taxonomy" : "Traffic",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> request from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; label length <@NUMBER:bytes@> bytes exceeds protocol limit of <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:048",
          "table" : "Cisco_ASA",
+         "id" : "048",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Denied <@WORD:protocol@> type=<@WORD:type@>, from laddr <@WORD:laddr@> on interface <@STRING:interface@> to <@WORD:dst_addr@>: <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:049",
          "table" : "Cisco_ASA",
+         "id" : "049",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Tunnel group search using certificate maps failed for peer certificate: serial number: <@STRING:user@>, subject name:<@STRING:user@>, issuer_name:<@STRING:user@>.",
-         "msg_id" : "Cisco_ASA:050",
          "table" : "Cisco_ASA",
+         "id" : "050",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: portmap translation creation failed for <@WORD:protocol@> src <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> dst <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>",
-         "msg_id" : "Cisco_ASA:051",
          "table" : "Cisco_ASA",
+         "id" : "051",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IPAA: Unable to get address from group-policy or tunnel-group local pools",
-         "msg_id" : "Cisco_ASA:052",
          "table" : "Cisco_ASA",
+         "id" : "052",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IPAA: Address assignment failed",
-         "msg_id" : "Cisco_ASA:053",
          "table" : "Cisco_ASA",
+         "id" : "053",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> reply from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; label length <@NUMBER:bytes@> bytes exceeds remaining packet length limit of <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:054",
          "table" : "Cisco_ASA",
+         "id" : "054",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> reply from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; label length <@NUMBER:bytes@> bytes exceeds protocol limit of <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:055",
          "table" : "Cisco_ASA",
+         "id" : "055",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Deny <@WORD:protocol@> teardrop fragment (size = <@NUMBER:bytes@>, offset = <@NUMBER:bytes@>) from <@WORD:src_addr@> to <@WORD:dst_addr@>",
-         "msg_id" : "Cisco_ASA:056",
          "table" : "Cisco_ASA",
+         "id" : "056",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: CRYPTO: The ASA hardware accelerator encountered an error (<@STRING:msg@>) while executing the command<@STRING:msg@>.",
-         "msg_id" : "Cisco_ASA:057",
          "table" : "Cisco_ASA",
+         "id" : "057",
          "taxonomy" : "Hardware",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: AAA Marking RADIUS server <@WORD:src_addr@> in aaa-server group RADIUS as <@STRING:status@>",
-         "msg_id" : "Cisco_ASA:058",
          "table" : "Cisco_ASA",
+         "id" : "058",
          "taxonomy" : "Application",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> request from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; label length <@NUMBER:bytes@> bytes exceeds remaining packet length limit of <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:059",
          "table" : "Cisco_ASA",
+         "id" : "059",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:status@>) Switching to <@STRING:status@> - Other unit wants me <@STRING:status@>. <@STRING:status@> unit switch reason: <@STRING:msg@>.",
-         "msg_id" : "Cisco_ASA:060",
          "table" : "Cisco_ASA",
+         "id" : "060",
          "taxonomy" : "System",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@WORD:protocol@>: Error freeing address <@WORD:src_addr@>, <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:061",
          "table" : "Cisco_ASA",
+         "id" : "061",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:status@>) Switching to <@STRING:status@> - <@STRING:msg@>.",
-         "msg_id" : "Cisco_ASA:062",
          "table" : "Cisco_ASA",
+         "id" : "062",
          "taxonomy" : "System",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: regular translation creation failed for protocol <@WORD:protocol@> src <@STRING:interface@>:<@WORD:src_addr@> dst <@STRING:interface@>:<@WORD:dst_addr@>",
-         "msg_id" : "Cisco_ASA:063",
          "table" : "Cisco_ASA",
+         "id" : "063",
          "taxonomy" : "Traffic",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> reply from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; <@STRING:msg@> <@NUMBER:bytes@> bytes exceeds protocol limit of <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:064",
          "table" : "Cisco_ASA",
+         "id" : "064",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> request from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; <@STRING:msg@> <@NUMBER:bytes@> bytes exceeds configured limit of <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:065",
          "table" : "Cisco_ASA",
+         "id" : "065",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:status@>) Other firewall reporting failure.",
-         "msg_id" : "Cisco_ASA:066",
          "table" : "Cisco_ASA",
+         "id" : "066",
          "taxonomy" : "System.Errors",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@WORD:protocol@>: Unable to remove <@WORD:src_addr@> from standby: <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:067",
          "table" : "Cisco_ASA",
+         "id" : "067",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: LU allocate xlate failed",
-         "msg_id" : "Cisco_ASA:068",
          "table" : "Cisco_ASA",
+         "id" : "068",
          "taxonomy" : "Application",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:status@>) Switching to <@STRING:status@>.",
-         "msg_id" : "Cisco_ASA:069",
          "table" : "Cisco_ASA",
+         "id" : "069",
          "taxonomy" : "System.Errors",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@STRING:status@>: <@STRING:msg@> Module in slot <@STRING:msg@>, application up <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:070",
          "table" : "Cisco_ASA",
+         "id" : "070",
          "taxonomy" : "Hardware.Network",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@WORD:protocol@> port command different address: <@WORD:src_addr@>(<@WORD:src_addr@>) to <@WORD:dst_addr@> on interface <@STRING:interface@>",
-         "msg_id" : "Cisco_ASA:071",
          "table" : "Cisco_ASA",
+         "id" : "071",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: URL Server <@WORD:src_addr@> timed out URL <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:072",
          "table" : "Cisco_ASA",
+         "id" : "072",
          "taxonomy" : "Traffic",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Received ARP request collision from <@WORD:src_addr@>/<@WORD:src_addr@> on interface <@STRING:interface@> with existing ARP entry <@WORD:dst_addr@>/<@WORD:dst_addr@>",
-         "msg_id" : "Cisco_ASA:073",
          "table" : "Cisco_ASA",
+         "id" : "073",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> reply from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; compression pointer length <@NUMBER:bytes@> bytes exceeds packet length limit of <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:074",
          "table" : "Cisco_ASA",
+         "id" : "074",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: User <@STRING:user@> executed the '<@STRING:msg@>' command.",
-         "msg_id" : "Cisco_ASA:075",
          "table" : "Cisco_ASA",
+         "id" : "075",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: User <@STRING:user@>, running '<@STRING:msg@>' from IP <@WORD:src_addr@>, executed '<@STRING:msg@>'",
-         "msg_id" : "Cisco_ASA:076",
          "table" : "Cisco_ASA",
+         "id" : "076",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: <@WORD:src_addr@> end configuration: <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:077",
          "table" : "Cisco_ASA",
+         "id" : "077",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Begin configuration: <@WORD:src_addr@> <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:078",
          "table" : "Cisco_ASA",
+         "id" : "078",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: User logged out: Uname: <@STRING:user@>",
-         "msg_id" : "Cisco_ASA:079",
          "table" : "Cisco_ASA",
+         "id" : "079",
          "taxonomy" : "Auth",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: User priv level changed: Uname: <@STRING:user@> <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:080",
          "table" : "Cisco_ASA",
+         "id" : "080",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>, Session is being torn down. Reason: <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:081",
          "table" : "Cisco_ASA",
+         "id" : "081",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>, Connection terminated for peer <@STRING:group@>.  Reason: <@STRING:msg@>  Remote Proxy <@WORD:src_addr@>, Local Proxy <@WORD:src_addr@>",
-         "msg_id" : "Cisco_ASA:082",
          "table" : "Cisco_ASA",
+         "id" : "082",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IP = <@WORD:src_addr@>,<@REGEXP(\".+Received encrypted packet with no matching SA, dropping\"):msg@>",
-         "msg_id" : "Cisco_ASA:083",
          "table" : "Cisco_ASA",
+         "id" : "083",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Phase 1 failure:  Mismatched attribute types for class Group Description:  Rcv'd: <@STRING:msg@>  Cfg'd: <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:084",
          "table" : "Cisco_ASA",
+         "id" : "084",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> 10.12.13.10 %ASA-5-713119: Group = <@STRING:group@>, IP = <@WORD:src_addr@>, PHASE 1 COMPLETED",
-         "msg_id" : "Cisco_ASA:085",
          "table" : "Cisco_ASA",
+         "id" : "085",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Security negotiation complete for\"):msg@> <@STRING:group@> Group (<@STRING:group@>)  <@STRING:msg@>, Inbound SPI = <@STRING:msg@>, Outbound SPI = <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:086",
          "table" : "Cisco_ASA",
+         "id" : "086",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>, PHASE 2 COMPLETED (<@STRING:msg@>)",
-         "msg_id" : "Cisco_ASA:087",
          "table" : "Cisco_ASA",
+         "id" : "087",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IP = <@WORD:src_addr@>, IKE Initiator: Rekeying Phase <@STRING:msg@>, Intf <@STRING:interface@>, IKE Peer <@WORD:src_addr@>  local Proxy Address <@WORD:dst_addr@>, remote Proxy Address <@WORD:dst_addr@>,  Crypto map (<@STRING:msg@>)",
-         "msg_id" : "Cisco_ASA:088",
          "table" : "Cisco_ASA",
+         "id" : "088",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>, IKE Initiator: Rekeying Phase <@STRING:msg@>, Intf <@STRING:interface@>, IKE Peer <@WORD:src_addr@>  local Proxy Address <@WORD:src_addr@>, remote Proxy Address <@WORD:src_addr@>,  Crypto map (<@STRING:msg@>)",
-         "msg_id" : "Cisco_ASA:089",
          "table" : "Cisco_ASA",
+         "id" : "089",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Received encrypted Oakley Main Mode packet with invalid payloads\"):msg@>, MessID = <@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:090",
          "table" : "Cisco_ASA",
+         "id" : "090",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>, ERROR,<@REGEXP(\".+had problems decrypting packet, probably due to mismatched pre-shared key.  Aborting\"):msg@>",
-         "msg_id" : "Cisco_ASA:091",
          "table" : "Cisco_ASA",
+         "id" : "091",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Duplicate Phase 1 packet detected.  Retransmitting last packet.\"):msg@>",
-         "msg_id" : "Cisco_ASA:092",
          "table" : "Cisco_ASA",
+         "id" : "092",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Received an un-encrypted PAYLOAD_MALFORMED notify message, dropping\"):msg@>",
-         "msg_id" : "Cisco_ASA:093",
          "table" : "Cisco_ASA",
+         "id" : "093",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Error, peer has indicated that something is wrong with our message.  This could indicate a pre-shared key mismatch.\"):msg@>",
-         "msg_id" : "Cisco_ASA:094",
          "table" : "Cisco_ASA",
+         "id" : "094",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Information Exchange processing failed\"):msg@>",
-         "msg_id" : "Cisco_ASA:095",
          "table" : "Cisco_ASA",
+         "id" : "095",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IP = <@WORD:src_addr@>,<@REGEXP(\".+Header invalid, missing SA payload!\"):msg@> (next payload = <@STRING:msg@>)",
-         "msg_id" : "Cisco_ASA:096",
          "table" : "Cisco_ASA",
+         "id" : "096",
          "taxonomy" : "Traffic",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Failure during phase 1 rekeying attempt due to collision\"):msg@>",
-         "msg_id" : "Cisco_ASA:097",
          "table" : "Cisco_ASA",
+         "id" : "097",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+PHASE 1 COMPLETED\"):msg@>",
-         "msg_id" : "Cisco_ASA:098",
          "table" : "Cisco_ASA",
+         "id" : "098",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Stale PeerTblEntry found, removing!\"):msg@>",
-         "msg_id" : "Cisco_ASA:099",
          "table" : "Cisco_ASA",
+         "id" : "099",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Removing TunnelTbl from tunnel table failed, no match!\"):msg@>",
-         "msg_id" : "Cisco_ASA:100",
          "table" : "Cisco_ASA",
+         "id" : "100",
          "taxonomy" : "Network",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+IKE lost contact with remote peer, deleting connection\"):msg@> (keepalive type: <@STRING:msg@>)",
-         "msg_id" : "Cisco_ASA:101",
          "table" : "Cisco_ASA",
+         "id" : "101",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>:<@REGEXP(\".+Received ARP response collision from\"):msg@> <@WORD:src_addr@>/<@STRING:msg@> on interface <@STRING:interface@><@REGEXP(\".+with existing ARP entry\"):msg@> <@WORD:dst_addr@>/<@STRING:msg@>",
-         "msg_id" : "Cisco_ASA:102",
          "table" : "Cisco_ASA",
+         "id" : "102",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>:<@REGEXP(\".+Discard IP fragment set with more than 24 elements\"):msg@>:  src = <@WORD:src_addr@>, dest = <@WORD:dst_addr@>, proto = <@WORD:protocol@>, id = <@STRING:msg_id@>",
-         "msg_id" : "Cisco_ASA:103",
          "table" : "Cisco_ASA",
+         "id" : "103",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: (<@STRING:status@>)<@REGEXP(\".+Failed to update IPSec failover runtime data on the\"):msg@> <@STRING:status@> unit.",
-         "msg_id" : "Cisco_ASA:104",
          "table" : "Cisco_ASA",
+         "id" : "104",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Unexpected cleanup of tunnel table entry during SA delete.\"):msg@>",
-         "msg_id" : "Cisco_ASA:105",
          "table" : "Cisco_ASA",
+         "id" : "105",
          "taxonomy" : "System.Errors",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Group = <@STRING:group@>, IP = <@WORD:src_addr@>,<@REGEXP(\".+Received an unencrypted packet when crypto active!! Dropping packet.\"):msg@>",
-         "msg_id" : "Cisco_ASA:106",
          "table" : "Cisco_ASA",
+         "id" : "106",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: IPSEC:<@REGEXP(\".+Received an ESP packet\"):msg@> (<@STRING:msg@>) from <@WORD:src_addr@> (user= <@WORD:user@>) to <@WORD:dst_addr@><@REGEXP(\".+that failed authentication.\"):msg@>",
-         "msg_id" : "Cisco_ASA:107",
          "table" : "Cisco_ASA",
+         "id" : "107",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>:<@REGEXP(\".+CRYPTO: The ASA hardware accelerator encountered an error \"):msg@>(<@STRING:msg@>)",
-         "msg_id" : "Cisco_ASA:108",
          "table" : "Cisco_ASA",
+         "id" : "108",
          "taxonomy" : "Hardware",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>:<@REGEXP(\".+CRYPTO: The ASA created Crypto Archive File\"):msg@> < <@STRING:msg@> ><@REGEXP(\".+as a Soft Reset was necessary. Please forward this archived information to Cisco\"):msg@>",
-         "msg_id" : "Cisco_ASA:109",
          "table" : "Cisco_ASA",
+         "id" : "109",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\%ASA-.+\"):msg_id@>: Dropped <@WORD:protocol@> <@WORD:protocol@> request from <@STRING:interface@>:<@WORD:src_addr@>/<@NUMBER:src_port@> to <@STRING:interface@>:<@WORD:dst_addr@>/<@NUMBER:dst_port@>; domain-name length <@NUMBER:bytes@> bytes<@REGEXP(\".+exceeds protocol limit of\"):msg@> <@NUMBER:bytes@> bytes",
-         "msg_id" : "Cisco_ASA:110",
          "table" : "Cisco_ASA",
+         "id" : "110",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Warning"
       }

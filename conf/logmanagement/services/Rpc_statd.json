@@ -3,29 +3,29 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rpc.statd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"statd running as.+chown.+to choose different user\"):msg@>",
-         "msg_id" : "Rpc_statd:running_as_chown_to_choose_different_user",
          "table" : "Message",
+         "id" : "running_as_chown_to_choose_different_user",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rpc.statd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Flags:.+\"):msg@>",
-         "msg_id" : "Rpc_statd:flags",
          "table" : "Message",
+         "id" : "flags",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rpc.statd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Version.+Starting\"):msg@>",
-         "msg_id" : "Rpc_statd:version_starting",
          "table" : "Message",
+         "id" : "version_starting",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rpc.statd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Caught signal \\d+, un-registering and exiting.\"):msg@>",
-         "msg_id" : "Rpc_statd:unregistering_exiting",
          "table" : "Message",
+         "id" : "unregistering_exiting",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       }

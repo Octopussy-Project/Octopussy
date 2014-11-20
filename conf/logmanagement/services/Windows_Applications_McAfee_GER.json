@@ -3,15 +3,15 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+Zugriff auf Objekt.+wurde blockiert durch Regel.+\"):msg@>",
-         "msg_id" : "Windows_Applications_McAfee_GER:Zugriff_auf_Objekt_blockiert_durch_Regel",
          "table" : "Windows_Message",
+         "id" : "Zugriff_auf_Objekt_blockiert_durch_Regel",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;;<@REGEXP(\".+Standardschutz:Ausf�hren von Dateien im Temp-Ordner f�r h�ufig genutzte Programme verhindern.+\"):msg@>",
-         "msg_id" : "Windows_Applications_McAfee_GER:Standardschutz_Ausfuehrung_Dateien_Temp_Ordner_verhindern",
          "table" : "Windows_Message",
+         "id" : "Standardschutz_Ausfuehrung_Dateien_Temp_Ordner_verhindern",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

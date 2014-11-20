@@ -3,582 +3,582 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*LOG:\\s+automatic vacuum of table\"):msg@> \"<@WORD:db@>.<@WORD:table@>\": index scans: \\d+",
-         "msg_id" : "PostgreSQL:autovacuum_start",
          "table" : "Database_Message",
+         "id" : "autovacuum_start",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:  autovacuum: processing database\"):msg@> \"<@WORD:db@>\"",
-         "msg_id" : "PostgreSQL:autovacuum_processing_database",
          "table" : "Database_Message",
+         "id" : "autovacuum_processing_database",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"LOG:  unexpected EOF on client connection\"):msg@> ",
-         "msg_id" : "PostgreSQL:unexpected_eof_client_connection",
          "table" : "Database_Message",
+         "id" : "unexpected_eof_client_connection",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"LOG:  could not receive data from client: .+\"):msg@>",
-         "msg_id" : "PostgreSQL:couldnt_receive_data_client",
          "table" : "Database_Message",
+         "id" : "couldnt_receive_data_client",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  invalid byte sequence for encoding .+\"):msg@>",
-         "msg_id" : "PostgreSQL:invalid_byte_sequence_encoding",
          "table" : "Database_Message",
+         "id" : "invalid_byte_sequence_encoding",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"HINT:  This error can also happen if the byte sequence .+\"):msg@> ",
-         "msg_id" : "PostgreSQL:invalid_byte_sequence_encoding2",
          "table" : "Database_Message",
+         "id" : "invalid_byte_sequence_encoding2",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*expected by the server, which is controlled by .+\"):msg@>",
-         "msg_id" : "PostgreSQL:invalid_byte_sequence_encoding3",
          "table" : "Message",
+         "id" : "invalid_byte_sequence_encoding3",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  column .+ does not exist\"):msg@> ",
-         "msg_id" : "PostgreSQL:column_does_not_exist",
          "table" : "Database_Message",
+         "id" : "column_does_not_exist",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"reset by peer\"):msg@>",
-         "msg_id" : "PostgreSQL:reset_by_peer",
          "table" : "Message",
+         "id" : "reset_by_peer",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULLL@> <@REGEXP(\"LOG:  received SIGHUP, reloading configuration files\"):msg@> ",
-         "msg_id" : "PostgreSQL:sighup_reloading_configuration_files",
          "table" : "Message",
+         "id" : "sighup_reloading_configuration_files",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\".*pgSQL function .+ line \\d+ at perform\"):msg@> ",
-         "msg_id" : "PostgreSQL:function_at_perform",
          "table" : "Message",
+         "id" : "function_at_perform",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  duplicate key .*violates unique constraint .+\"):msg@>",
-         "msg_id" : "PostgreSQL:duplicate_key_unique_constraint",
          "table" : "Database_Message",
+         "id" : "duplicate_key_unique_constraint",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  checkpoints are occurring too frequently .+\"):msg@>",
-         "msg_id" : "PostgreSQL:checkpoints_occuring_too_frequently",
          "table" : "Message",
+         "id" : "checkpoints_occuring_too_frequently",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* HINT:  Consider increasing the configuration parameter \\\"checkpoint_segments\\\".\"):msg@> ",
-         "msg_id" : "PostgreSQL:checkpoints_occuring_too_frequently2",
          "table" : "Message",
+         "id" : "checkpoints_occuring_too_frequently2",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"FATAL:  terminating connection due to administrator command\"):msg@>",
-         "msg_id" : "PostgreSQL:terminating_connection_administrator_command",
          "table" : "Database_Message",
+         "id" : "terminating_connection_administrator_command",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  checkpoint record is at .+\"):msg@>",
-         "msg_id" : "PostgreSQL:checkpoint_record_is_at",
          "table" : "Message",
+         "id" : "checkpoint_record_is_at",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  database system is ready\"):msg@> ",
-         "msg_id" : "PostgreSQL:database_system_is_ready",
          "table" : "Message",
+         "id" : "database_system_is_ready",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  database system was shut down at .+\"):msg@>",
-         "msg_id" : "PostgreSQL:database_system_was_shut",
          "table" : "Message",
+         "id" : "database_system_was_shut",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  redo record is at .+ undo record is at .+\"):msg@>",
-         "msg_id" : "PostgreSQL:redo_record_undo_record",
          "table" : "Message",
+         "id" : "redo_record_undo_record",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  next transaction ID: \\d+; next OID: \\d+\"):msg@>",
-         "msg_id" : "PostgreSQL:next_transaction_id",
          "table" : "Message",
+         "id" : "next_transaction_id",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  transaction ID wrap limit is \\d+, limited by database .+\"):msg@>",
-         "msg_id" : "PostgreSQL:transaction_id_wrap_limit",
          "table" : "Message",
+         "id" : "transaction_id_wrap_limit",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  received fast shutdown request\"):msg@> ",
-         "msg_id" : "PostgreSQL:received_fast_shutdown_request",
          "table" : "Message",
+         "id" : "received_fast_shutdown_request",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  aborting any active transactions\"):msg@> ",
-         "msg_id" : "PostgreSQL:aborting_any_active_transactions",
          "table" : "Message",
+         "id" : "aborting_any_active_transactions",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  shutting down\"):msg@> ",
-         "msg_id" : "PostgreSQL:shutting_down",
          "table" : "Message",
+         "id" : "shutting_down",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  database system is shut down\"):msg@> ",
-         "msg_id" : "PostgreSQL:database_system_shut_down",
          "table" : "Message",
+         "id" : "database_system_shut_down",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  value too long for type .+\"):msg@>",
-         "msg_id" : "PostgreSQL:value_too_long",
          "table" : "Database_Message",
+         "id" : "value_too_long",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"CONTEXT:  SQL statement .+\"):msg@>",
-         "msg_id" : "PostgreSQL:sql_statement",
          "table" : "Database_Message",
+         "id" : "sql_statement",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"FATAL:  the database system is shutting down\"):msg@> ",
-         "msg_id" : "PostgreSQL:fatal_database_shutting_down",
          "table" : "Database_Message",
+         "id" : "fatal_database_shutting_down",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"LOG:  could not send data to client: No route to host\"):msg@> ",
-         "msg_id" : "PostgreSQL:no_route_to_host",
          "table" : "Database_Message",
+         "id" : "no_route_to_host",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"LOG:  incomplete message from client\"):msg@> ",
-         "msg_id" : "PostgreSQL:incomplete_message_from_client",
          "table" : "Database_Message",
+         "id" : "incomplete_message_from_client",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:  next MultiXactId: \\d+; next MultiXactOffset: \\d+\"):msg@>",
-         "msg_id" : "PostgreSQL:next_multixactid_next_multixactoffset",
          "table" : "Message",
+         "id" : "next_multixactid_next_multixactoffset",
          "taxonomy" : "Application",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"WARNING:  there is already a transaction in progress\"):msg@> ",
-         "msg_id" : "PostgreSQL:already_transaction_in_progress",
          "table" : "Database_Message",
+         "id" : "already_transaction_in_progress",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"WARNING:  there is no transaction in progress\"):msg@> ",
-         "msg_id" : "PostgreSQL:no_transaction_in_progress",
          "table" : "Database_Message",
+         "id" : "no_transaction_in_progress",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  operator does not exist: .+\"):msg@>",
-         "msg_id" : "PostgreSQL:operator_does_not_exist",
          "table" : "Database_Message",
+         "id" : "operator_does_not_exist",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"HINT:  No operator matches the given name and argument .+\"):msg@>",
-         "msg_id" : "PostgreSQL:operator_does_not_exist2",
          "table" : "Database_Message",
+         "id" : "operator_does_not_exist2",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\" explicit type casts.\"):msg@>",
-         "msg_id" : "PostgreSQL:operator_does_not_exist3",
          "table" : "Database_Message",
+         "id" : "operator_does_not_exist3",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  syntax error at .+\"):msg@>",
-         "msg_id" : "PostgreSQL:syntax_error",
          "table" : "Database_Message",
+         "id" : "syntax_error",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  invalid input syntax for .+\"):msg@>",
-         "msg_id" : "PostgreSQL:invalid_input_syntax_for",
          "table" : "Database_Message",
+         "id" : "invalid_input_syntax_for",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  column reference .+ is ambiguous\"):msg@>",
-         "msg_id" : "PostgreSQL:column_reference_is_ambiguous",
          "table" : "Database_Message",
+         "id" : "column_reference_is_ambiguous",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  relation .+ does not exist\"):msg@>",
-         "msg_id" : "PostgreSQL:relation_does_not_exist",
          "table" : "Database_Message",
+         "id" : "relation_does_not_exist",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"(?:ERROR|FATAL):  database .+ does not exist\"):msg@>",
-         "msg_id" : "PostgreSQL:database_does_not_exist",
          "table" : "Database_Message",
+         "id" : "database_does_not_exist",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  unterminated quoted identifier .+\"):msg@>",
-         "msg_id" : "PostgreSQL:unterminated_quoted_identifier",
          "table" : "Database_Message",
+         "id" : "unterminated_quoted_identifier",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  logger shutting down\"):msg@> ",
-         "msg_id" : "PostgreSQL:logger_shutting_down",
          "table" : "Message",
+         "id" : "logger_shutting_down",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  could not create IPv6 socket: Address family not supported by protocol\"):msg@> ",
-         "msg_id" : "PostgreSQL:couldnt_create_ipv6_socket",
          "table" : "Message",
+         "id" : "couldnt_create_ipv6_socket",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"FATAL:  no pg_hba.conf entry for .+\"):msg@>",
-         "msg_id" : "PostgreSQL:no_conf_entry",
          "table" : "Database_Message",
+         "id" : "no_conf_entry",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*subscriber node\"):msg@>",
-         "msg_id" : "PostgreSQL:subscriber_node",
          "table" : "Message",
+         "id" : "subscriber_node",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  Slony-I: cleanup stale .+\"):msg@>",
-         "msg_id" : "PostgreSQL:cleanup_stale_entry",
          "table" : "Database_Message",
+         "id" : "cleanup_stale_entry",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"FATAL:  \\w+ authentication failed for .+\"):msg@>",
-         "msg_id" : "PostgreSQL:authentication_failed",
          "table" : "Database_Message",
+         "id" : "authentication_failed",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  canceling statement due to user request\"):msg@>",
-         "msg_id" : "PostgreSQL:canceling_statement",
          "table" : "Database_Message",
+         "id" : "canceling_statement",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"LOG:  could not send data to client: Broken pipe\"):msg@>",
-         "msg_id" : "PostgreSQL:broken_pipe",
          "table" : "Database_Message",
+         "id" : "broken_pipe",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  schema .+ does not exist\"):msg@>",
-         "msg_id" : "PostgreSQL:schema_does_not_exist",
          "table" : "Database_Message",
+         "id" : "schema_does_not_exist",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ number of page slots needed \\(\\d+\\) exceeds max_fsm_pages \\(\\d+\\)\"):msg@>",
-         "msg_id" : "PostgreSQL:number_page_slots_exceeds",
          "table" : "Message",
+         "id" : "number_page_slots_exceeds",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Consider \\w+ing the configuration parameter .+\"):msg@>",
-         "msg_id" : "PostgreSQL:consider_changing_configuration_parameter",
          "table" : "Message",
+         "id" : "consider_changing_configuration_parameter",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  function .+ does not exist\"):msg@>",
-         "msg_id" : "PostgreSQL:function_does_not_exist",
          "table" : "Database_Message",
+         "id" : "function_does_not_exist",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  Previous logswitch still in progress\"):msg@>",
-         "msg_id" : "PostgreSQL:logswitch_still_in_progress",
          "table" : "Database_Message",
+         "id" : "logswitch_still_in_progress",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+could not write temporary statistics file .+: No space left on device\"):msg@>",
-         "msg_id" : "PostgreSQL:couldnt_write_temporary_statistics",
          "table" : "Message",
+         "id" : "couldnt_write_temporary_statistics",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+could not write to file .+: No space left on device\"):msg@>",
-         "msg_id" : "PostgreSQL:couldnt_write_to_file",
          "table" : "Message",
+         "id" : "couldnt_write_to_file",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+could not access status of transaction .+\"):msg@>",
-         "msg_id" : "PostgreSQL:couldnt_access_status_transaction",
          "table" : "Message",
+         "id" : "couldnt_access_status_transaction",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"ERROR:  current transaction is aborted, commands ignored until end of transaction block\"):msg@>",
-         "msg_id" : "PostgreSQL:current_transaction_aborted",
          "table" : "Database_Message",
+         "id" : "current_transaction_aborted",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"HINT:  Check free disk space.\"):msg@>",
-         "msg_id" : "PostgreSQL:check_free_disk_space",
          "table" : "Database_Message",
+         "id" : "check_free_disk_space",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"FATAL:  the database system is starting up\"):msg@>",
-         "msg_id" : "PostgreSQL:database_system_starting_up",
          "table" : "Database_Message",
+         "id" : "database_system_starting_up",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  truncate of .+ succeeded\"):msg@>",
-         "msg_id" : "PostgreSQL:truncate_succeeded",
          "table" : "Database_Message",
+         "id" : "truncate_succeeded",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:\\s+drop cascades to .+\"):msg@>",
-         "msg_id" : "PostgreSQL:drop_cascades_to",
          "table" : "Database_Message",
+         "id" : "drop_cascades_to",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"FATAL:  could not write init file\"):msg@>",
-         "msg_id" : "PostgreSQL:couldnt_write_init_file",
          "table" : "Database_Message",
+         "id" : "couldnt_write_init_file",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"LOG:  incomplete startup packet\"):msg@> ",
-         "msg_id" : "PostgreSQL:incomplete_startup_packet",
          "table" : "Database_Message",
+         "id" : "incomplete_startup_packet",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"NOTICE:  truncate of .+ failed - doing delete\"):msg@>",
-         "msg_id" : "PostgreSQL:truncate_failed_doing_delete",
          "table" : "Database_Message",
+         "id" : "truncate_failed_doing_delete",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:\\s*autovacuum launcher started\"):msg@>",
-         "msg_id" : "PostgreSQL:autovacuum_launcher_started",
          "table" : "Message",
+         "id" : "autovacuum_launcher_started",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:\\s*checkpoint complete: .+\"):msg@>",
-         "msg_id" : "PostgreSQL:checkpoint_complete",
          "table" : "Message",
+         "id" : "checkpoint_complete",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:\\s*checkpoint starting: .+\"):msg@>",
-         "msg_id" : "PostgreSQL:checkpoint_starting",
          "table" : "Message",
+         "id" : "checkpoint_starting",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@>  <@REGEXP(\"LOG:\\s*automatic analyze of table .+\"):msg@>",
-         "msg_id" : "PostgreSQL:automatic_analyze_of_table",
          "table" : "Message",
+         "id" : "automatic_analyze_of_table",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"FATAL:\\s+connection limit exceeded for non-superusers\"):msg@>",
-         "msg_id" : "PostgreSQL:connection_limit_exceeded",
          "table" : "Database_Message",
+         "id" : "connection_limit_exceeded",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:\\s+database system was interrupted at .+\"):msg@>",
-         "msg_id" : "PostgreSQL:database_system_was_interrupted",
          "table" : "Message",
+         "id" : "database_system_was_interrupted",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:\\s+database system was not properly shut down.*\"):msg@>",
-         "msg_id" : "PostgreSQL:database_not_properly_shut",
          "table" : "Message",
+         "id" : "database_not_properly_shut",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:\\s+redo starts at .+\"):msg@>",
-         "msg_id" : "PostgreSQL:redo_starts",
          "table" : "Message",
+         "id" : "redo_starts",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@REGEXP(\"LOG:\\s+redo done at .+\"):msg@>",
-         "msg_id" : "PostgreSQL:redo_done",
          "table" : "Message",
+         "id" : "redo_done",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"FATAL:\\s+sorry, too many clients already\"):msg@>",
-         "msg_id" : "PostgreSQL:too_many_clients_already",
          "table" : "Database_Message",
+         "id" : "too_many_clients_already",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*pages: \\d+ removed, \\d+ remain\"):msg@>",
-         "msg_id" : "PostgreSQL:autovacuum_pages_removed",
          "table" : "Database_Message",
+         "id" : "autovacuum_pages_removed",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*tuples: \\d+ removed, \\d+ remain\"):msg@>",
-         "msg_id" : "PostgreSQL:autovacuum_tuples_removed",
          "table" : "Database_Message",
+         "id" : "autovacuum_tuples_removed",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*system usage: CPU .*\"):msg@>",
-         "msg_id" : "PostgreSQL:autovacuum_system_usage",
          "table" : "Database_Message",
+         "id" : "autovacuum_system_usage",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: [.*] <@REGEXP(\"\\d+\\.\\d+\\.\\d+\\.\\d+\\(\\d+\\)\"):client@> webcomptes <@WORD:db@> <@REGEXP(\".*process .* acquired ShareLock on transaction.*\"):msg@>",
-         "msg_id" : "PostgreSQL:acquired_sharelock",
          "table" : "Database_Message",
+         "id" : "acquired_sharelock",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: [.*] <@REGEXP(\"\\d+\\.\\d+\\.\\d+\\.\\d+\\(\\d+\\)\"):client@> webcomptes <@WORD:db@> <@REGEXP(\".*process .* still waiting for ShareLock on transaction.*\"):msg@>",
-         "msg_id" : "PostgreSQL:waiting_acquired_sharelock",
          "table" : "Database_Message",
+         "id" : "waiting_acquired_sharelock",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"STATEMENT:\\s*INSERT .+\"):msg@>",
-         "msg_id" : "PostgreSQL:statement_insert",
          "table" : "Database_Message",
+         "id" : "statement_insert",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@STRING:NULL@> <@WORD:client@> <@WORD:user@> <@WORD:db@> <@REGEXP(\"STATEMENT:\\s*UPDATE .+\"):msg@>",
-         "msg_id" : "PostgreSQL:statement_update",
          "table" : "Database_Message",
+         "id" : "statement_update",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

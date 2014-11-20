@@ -2,134 +2,134 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"unexpected EOF encountered during authentication\"):msg@> ",
-         "msg_id" : "CVS:unexpected_eof_during_authentication",
          "table" : "Message",
+         "id" : "unexpected_eof_during_authentication",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvsd[<@PID:pid@>]: <@REGEXP(\"caught signal .+\"):msg@>",
-         "msg_id" : "CVS:caught_signal",
          "table" : "Message",
+         "id" : "caught_signal",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvsd[<@PID:pid@>]: <@REGEXP(\"version .+ bailing out \"):msg@>",
-         "msg_id" : "CVS:version_bailing_out",
          "table" : "Message",
+         "id" : "version_bailing_out",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"password mismatch for .+\"):msg@>",
-         "msg_id" : "CVS:password_mismatch",
          "table" : "Message",
+         "id" : "password_mismatch",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"login failure .+\"):msg@>",
-         "msg_id" : "CVS:login_failure",
          "table" : "Message",
+         "id" : "login_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"error .* called recursively.  \\w+ message was:\"):msg@> ",
-         "msg_id" : "CVS:called_recursively_message_was",
          "table" : "Message",
+         "id" : "called_recursively_message_was",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"Aborting.\"):msg@> ",
-         "msg_id" : "CVS:aborting",
          "table" : "Message",
+         "id" : "aborting",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"cvs checkout: cannot open .+: No such file or directory\"):msg@> ",
-         "msg_id" : "CVS:cvs_checkout_cannot_open",
          "table" : "Message",
+         "id" : "cvs_checkout_cannot_open",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"cvs \\[checkout aborted\\]: .+\"):msg@> ",
-         "msg_id" : "CVS:checkout_aborted",
          "table" : "Message",
+         "id" : "checkout_aborted",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"Dying gasps received from client.\"):msg@> ",
-         "msg_id" : "CVS:dying_gasps_from_client",
          "table" : "Message",
+         "id" : "dying_gasps_from_client",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"cvs \\[update aborted\\]: .+\"):msg@> ",
-         "msg_id" : "CVS:update_aborted",
          "table" : "Message",
+         "id" : "update_aborted",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"cvs update: cannot open directory .+\"):msg@>",
-         "msg_id" : "CVS:update_cannot_open_directory",
          "table" : "Message",
+         "id" : "update_cannot_open_directory",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"login refused for \\w+: user has no password\"):msg@> ",
-         "msg_id" : "CVS:login_refused_no_password",
          "table" : "Message",
+         "id" : "login_refused_no_password",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\".*authentication failure; .+\"):msg@>",
-         "msg_id" : "CVS:authentication_failure",
          "table" : "Message",
+         "id" : "authentication_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"cvs update: Updating .+\"):msg@>",
-         "msg_id" : "CVS:updating",
          "table" : "Message",
+         "id" : "updating",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"cvs update: cannot open CVS/Entries.Log.*\"):msg@>",
-         "msg_id" : "CVS:cant_open_entries_log",
          "table" : "Message",
+         "id" : "cant_open_entries_log",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cvs: <@REGEXP(\"cvs \\[status aborted\\]:.*\"):msg@>",
-         "msg_id" : "CVS:cvs_status_aborted",
          "table" : "Message",
+         "id" : "cvs_status_aborted",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cvs\"):daemon@>: <@REGEXP(\"cvs rtag: Tagging .+\"):msg@>",
-         "msg_id" : "CVS:rtag_tagging",
          "table" : "Message",
+         "id" : "rtag_tagging",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cvs\"):daemon@>: <@REGEXP(\"cvs \\[rtag aborted\\]: .+\"):msg@>",
-         "msg_id" : "CVS:rtag_aborted",
          "table" : "Message",
+         "id" : "rtag_aborted",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       }

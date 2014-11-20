@@ -2,29 +2,29 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"audispd\"):daemon@>: <@REGEXP(\"max_restarts_parser called with: \\d+\"):msg@>",
-         "msg_id" : "Audispd:max_restarts_parser_called_with",
          "table" : "Message",
+         "id" : "max_restarts_parser_called_with",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"audispd\"):daemon@>: <@REGEXP(\"priority_boost_parser called with: \\d+\"):msg@>",
-         "msg_id" : "Audispd:priority_boost_parser_called_with",
          "table" : "Message",
+         "id" : "priority_boost_parser_called_with",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"audispd\"):daemon@>: <@REGEXP(\".+ plugin initialized\"):msg@>",
-         "msg_id" : "Audispd:plugin_initialized",
          "table" : "Message",
+         "id" : "plugin_initialized",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"audispd\"):daemon@>: <@REGEXP(\"audispd initialized with q_depth=\\d+ and \\d+ active plugins\"):msg@>",
-         "msg_id" : "Audispd:audispd_initialized_with_q_depth_and_active_plugins",
          "table" : "Message",
+         "id" : "audispd_initialized_with_q_depth_and_active_plugins",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

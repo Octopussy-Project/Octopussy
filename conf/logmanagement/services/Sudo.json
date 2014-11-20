@@ -2,155 +2,155 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".+: TTY=\\S+ ; PWD=.+ ; USER=\\S+ ; COMMAND=.+\"):msg@>",
-         "msg_id" : "Sudo:user_command",
          "table" : "Message",
+         "id" : "user_command",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*check pass; user unknown\"):msg@>",
-         "msg_id" : "Sudo:check_pass_user_unknown",
          "table" : "Message",
+         "id" : "check_pass_user_unknown",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@STRING:NULL@><@WORD:user@> : <@REGEXP(\"\\d+ incorrect password attempt.+\"):msg@>",
-         "msg_id" : "Sudo:incorrect_password_attempt",
          "table" : "Message",
+         "id" : "incorrect_password_attempt",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*authentication failure; logname=.+\"):msg@>",
-         "msg_id" : "Sudo:authentication_failure",
          "table" : "Message",
+         "id" : "authentication_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".+ /etc/sudoers is mode \\d+, should be \\d+ ;.+; COMMAND=.+\"):msg@>",
-         "msg_id" : "Sudo:sudoers_wrong_mode",
          "table" : "Message",
+         "id" : "sudoers_wrong_mode",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".+: no passwd entry for \\S+!\"):msg@>",
-         "msg_id" : "Sudo:no_password_entry_for",
          "table" : "Message",
+         "id" : "no_password_entry_for",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".+ : can't stat /etc/sudoers: No such file or directory ; .+\"):msg@>",
-         "msg_id" : "Sudo:cant_stat_sudoers",
          "table" : "Message",
+         "id" : "cant_stat_sudoers",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@STRING:user@> : <@REGEXP(\"user NOT in sudoers ;.+\"):msg@>",
-         "msg_id" : "Sudo:user_not_in_sudoers",
          "table" : "Message",
+         "id" : "user_not_in_sudoers",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".+ : uid \\d+ does not exist in the passwd file!.+\"):msg@>",
-         "msg_id" : "Sudo:doesnt_exist_in_pwdfile",
          "table" : "Message",
+         "id" : "doesnt_exist_in_pwdfile",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: error trying to bind as user .+\"):msg@>",
-         "msg_id" : "Sudo:error_trying_bind",
          "table" : "Message",
+         "id" : "error_trying_bind",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\"pam_ldap: error trying to bind as user.+\"):msg@>",
-         "msg_id" : "Sudo:error_trying_bind2",
          "table" : "Message",
+         "id" : "error_trying_bind2",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@WORD:user@> : <@REGEXP(\"pam_authenticate: Authentication service cannot retrieve authentication info.+\"):msg@>",
-         "msg_id" : "Sudo:cannot_retrieve_authent_info",
          "table" : "Message",
+         "id" : "cannot_retrieve_authent_info",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: .+ Can't contact LDAP server\"):msg@>",
-         "msg_id" : "Sudo:cant_contact_ldap_server",
          "table" : "Message",
+         "id" : "cant_contact_ldap_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".* command not allowed .*\"):msg@>",
-         "msg_id" : "Sudo:command_not_allowed",
          "table" : "Message",
+         "id" : "command_not_allowed",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".+: conversation failed\"):msg@>",
-         "msg_id" : "Sudo:converstion_failed",
          "table" : "Message",
+         "id" : "converstion_failed",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".+: auth could not identify password for .+\"):msg@>",
-         "msg_id" : "Sudo:auth_couldnt_identify_password",
          "table" : "Message",
+         "id" : "auth_couldnt_identify_password",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo.*\"):daemon@>: <@REGEXP(\".*: Conversation error.+\"):msg@>",
-         "msg_id" : "Sudo:conversation_error",
          "table" : "Message",
+         "id" : "conversation_error",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".*authentication failure; logname=.+\"):msg@>",
-         "msg_id" : "Sudo:authentication_failure2",
          "table" : "Message",
+         "id" : "authentication_failure2",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".*session opened for user .+\"):msg@>",
-         "msg_id" : "Sudo:session_opened_for_user",
          "table" : "Message",
+         "id" : "session_opened_for_user",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".*session closed for user .+\"):msg@>",
-         "msg_id" : "Sudo:session_closed_for_user",
          "table" : "Message",
+         "id" : "session_closed_for_user",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".*Too many open files in system.*\"):msg@>",
-         "msg_id" : "Sudo:too_many_open_files",
          "table" : "Message",
+         "id" : "too_many_open_files",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sudo\"):daemon@>: <@REGEXP(\".+: unable to resolve host .+\"):msg@>",
-         "msg_id" : "Sudo:unable_to_resolve_host",
          "table" : "Message",
+         "id" : "unable_to_resolve_host",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       }

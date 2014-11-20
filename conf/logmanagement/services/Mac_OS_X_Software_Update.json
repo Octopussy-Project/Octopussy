@@ -3,22 +3,22 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Software Update\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Distribution: .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_Software_Update:distribution",
          "table" : "Message",
+         "id" : "distribution",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Software Update\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"run (?:pre|post)flight script for .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_Software_Update:run_postflight_script",
          "table" : "Message",
+         "id" : "run_postflight_script",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Software Update\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"(?:Configu|Prepa)ring volume .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_Software_Update:configuring_preparing_volume",
          "table" : "Message",
+         "id" : "configuring_preparing_volume",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

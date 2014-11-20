@@ -2,50 +2,50 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nscd shutdown succeeded\"):msg@>",
-         "msg_id" : "Nscd:shutdown_succeeded",
          "table" : "Message",
+         "id" : "shutdown_succeeded",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nss_ldap: reconnecting to LDAP server.+\"):msg@>",
-         "msg_id" : "Nscd:reconnecting_ldap_server",
          "table" : "Message",
+         "id" : "reconnecting_ldap_server",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nss_ldap: reconnected to LDAP server.*\"):msg@>",
-         "msg_id" : "Nscd:reconnected_ldap_server",
          "table" : "Message",
+         "id" : "reconnected_ldap_server",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nscd shutdown failed\"):msg@>",
-         "msg_id" : "Nscd:shutdown_failed",
          "table" : "Message",
+         "id" : "shutdown_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nss_ldap: .+ Can't contact LDAP server\"):msg@>",
-         "msg_id" : "Nscd:cant_contact_ldap_server",
          "table" : "Message",
+         "id" : "cant_contact_ldap_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nss_ldap: could not search LDAP server - Server is unavailable\"):msg@>",
-         "msg_id" : "Nscd:could_not_search_ldap",
          "table" : "Message",
+         "id" : "could_not_search_ldap",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nscd startup succeeded\"):msg@>",
-         "msg_id" : "Nscd:startup_succeeded",
          "table" : "Message",
+         "id" : "startup_succeeded",
          "taxonomy" : "System",
          "loglevel" : "Information"
       }

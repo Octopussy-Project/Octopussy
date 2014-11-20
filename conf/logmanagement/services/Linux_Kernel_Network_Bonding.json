@@ -3,78 +3,78 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Ethernet Channel Bonding Driver:.+\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:ethernet_channel_bonding_driver",
          "table" : "Message",
+         "id" : "ethernet_channel_bonding_driver",
          "taxonomy" : "System.Boot",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ADDRCONF\\(NETDEV_UP\\): .+: link is not ready\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:link_is_not_ready",
          "table" : "Message",
+         "id" : "link_is_not_ready",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ADDRCONF\\(NETDEV_CHANGE\\): .+: link becomes ready\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:link_becomes_ready",
          "table" : "Message",
+         "id" : "link_becomes_ready",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*bonding: MII link monitoring set to \\d+ ms\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:mii_link_monitoring_set",
          "table" : "Message",
+         "id" : "mii_link_monitoring_set",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*bonding: \\S+: enslaving \\S+ as a backup interface with a down link.\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:enslaving_as_backup_interface",
          "table" : "Message",
+         "id" : "enslaving_as_backup_interface",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*bonding: \\S+: link status definitely up for interface .+\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:link_status_definitely_up",
          "table" : "Message",
+         "id" : "link_status_definitely_up",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*bonding: \\S+: making interface \\S+ the new active one.\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:making_interface_active",
          "table" : "Message",
+         "id" : "making_interface_active",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*bonding: \\S+: first active interface up!\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:first_active_interface_up",
          "table" : "Message",
+         "id" : "first_active_interface_up",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*bonding: \\S+ param is irrelevant in mode .+\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:param_irrelevant_in_mode",
          "table" : "Message",
+         "id" : "param_irrelevant_in_mode",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*bonding: \\S+: link status definitely down for interface .+, disabling it\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:link_status_definitely_down",
          "table" : "Message",
+         "id" : "link_status_definitely_down",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*bonding: \\S+: now running without any active interface !\"):msg@>",
-         "msg_id" : "Linux_Kernel_Network_Bonding:without_any_active_interface",
          "table" : "Message",
+         "id" : "without_any_active_interface",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       }

@@ -2,379 +2,379 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"debug: .+\"):msg@>",
-         "msg_id" : "Heartbeat:debug_msg",
          "table" : "Message",
+         "id" : "debug_msg",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: <@REGEXP(\"debug: .+\"):msg@>",
-         "msg_id" : "Heartbeat:debug_msg2",
          "table" : "Message",
+         "id" : "debug_msg2",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: <@REGEXP(\"ERROR: .+\"):msg@>",
-         "msg_id" : "Heartbeat:error_msg",
          "table" : "Message",
+         "id" : "error_msg",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: <@REGEXP(\"WARN: .+\"):msg@>",
-         "msg_id" : "Heartbeat:warning_msg2",
          "table" : "Message",
+         "id" : "warning_msg2",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"WARN: .+\"):msg@>",
-         "msg_id" : "Heartbeat:warning_msg",
          "table" : "Message",
+         "id" : "warning_msg",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: <@REGEXP(\"/usr/lib/heartbeat/send_arp .+\"):msg@>",
-         "msg_id" : "Heartbeat:send_arp",
          "table" : "Message",
+         "id" : "send_arp",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: <@REGEXP(\"CRIT: .+\"):msg@>",
-         "msg_id" : "Heartbeat:critical_msg",
          "table" : "Message",
+         "id" : "critical_msg",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cl_status\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ERROR: .+ is not a correct sub-command.\"):msg@>",
-         "msg_id" : "Heartbeat:not_correct_subcommand",
          "table" : "Message",
+         "id" : "not_correct_subcommand",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cl_status\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"info: .+\"):msg@>",
-         "msg_id" : "Heartbeat:msg_cl_status",
          "table" : "Message",
+         "id" : "msg_cl_status",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cl_status\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ERROR: return value:\\d+\"):msg@>",
-         "msg_id" : "Heartbeat:error_return_value",
          "table" : "Message",
+         "id" : "error_return_value",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cl_status\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ERROR: Cannot sign off from heartbeat.\"):msg@>",
-         "msg_id" : "Heartbeat:cannot_signoff_from_heartbeat",
          "table" : "Message",
+         "id" : "cannot_signoff_from_heartbeat",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: <@REGEXP(\"Going standby .+\"):msg@>",
-         "msg_id" : "Heartbeat:going_standby",
          "table" : "Message",
+         "id" : "going_standby",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ERROR: .+\"):msg@>",
-         "msg_id" : "Heartbeat:heartbeat_error",
          "table" : "Message",
+         "id" : "heartbeat_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cl_status\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ERROR: .+\"):msg@>",
-         "msg_id" : "Heartbeat:cl_status_error",
          "table" : "Message",
+         "id" : "cl_status_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: <@REGEXP(\"received ip-request-resp .+ OK yes\"):msg@>",
-         "msg_id" : "Heartbeat:received_iprequest_resp",
          "table" : "Message",
+         "id" : "received_iprequest_resp",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: <@REGEXP(\"WARNING: Filesystem .+ not mounted\\?\"):msg@>",
-         "msg_id" : "Heartbeat:filesystem_not_mounted",
          "table" : "Message",
+         "id" : "filesystem_not_mounted",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@WORD:level@>: Daily informational memory statistics",
-         "msg_id" : "Heartbeat:daily_informational_memory_statistics",
          "table" : "Message",
+         "id" : "daily_informational_memory_statistics",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@WORD:level@>: <@REGEXP(\"MSG stats: .*\"):msg@>",
-         "msg_id" : "Heartbeat:DIMS_MSG_stats",
          "table" : "Message",
+         "id" : "DIMS_MSG_stats",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@WORD:level@>: <@REGEXP(\"cl_malloc stats:.*\"):msg@>",
-         "msg_id" : "Heartbeat:DIMS_cl_malloc_stats",
          "table" : "Message",
+         "id" : "DIMS_cl_malloc_stats",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@WORD:level@>: <@REGEXP(\"RealMalloc stats:.*\"):msg@>",
-         "msg_id" : "Heartbeat:DIMS_RealMalloc_stats",
          "table" : "Message",
+         "id" : "DIMS_RealMalloc_stats",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@WORD:level@>: <@REGEXP(\"Current arena value:.*\"):msg@>",
-         "msg_id" : "Heartbeat:current_arena_value",
          "table" : "Message",
+         "id" : "current_arena_value",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@WORD:level@>: <@REGEXP(\"These are nothing to worry about.\"):msg@>",
-         "msg_id" : "Heartbeat:DIMS_nothing_worry",
          "table" : "Message",
+         "id" : "DIMS_nothing_worry",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmtd\"):daemon@>: <@REGEXP(\".*authentication failure.*\"):msg@>",
-         "msg_id" : "Heartbeat:mgmtd_authentication_failure",
          "table" : "Message",
+         "id" : "mgmtd_authentication_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmtd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"ERROR: on_listen pam auth failed\"):msg@>",
-         "msg_id" : "Heartbeat:mgmtd_error_pam_auth",
          "table" : "Message",
+         "id" : "mgmtd_error_pam_auth",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pengine\"):daemon@>: [<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Heartbeat:pengine_msg",
          "table" : "Message",
+         "id" : "pengine_msg",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"crmd\"):daemon@>: [<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Heartbeat:crmd_msg",
          "table" : "Message",
+         "id" : "crmd_msg",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cib\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\".*cib_stats.*\"):msg@>",
-         "msg_id" : "Heartbeat:cib_stats",
          "table" : "Message",
+         "id" : "cib_stats",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"lrmd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"WARN: stonithRA plugin: .+\"):msg@>",
-         "msg_id" : "Heartbeat:lrmd_stonithRA_warning",
          "table" : "Message",
+         "id" : "lrmd_stonithRA_warning",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmtd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\".*on_add_rsc:.*\"):msg@>",
-         "msg_id" : "Heartbeat:mgmtd_add_resource",
          "table" : "Message",
+         "id" : "mgmtd_add_resource",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"lrmd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\".*: monitor\"):msg@>",
-         "msg_id" : "Heartbeat:lrmd_monitor",
          "table" : "Message",
+         "id" : "lrmd_monitor",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cib\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: retrieveCib: Reading cluster configuration from: .*\"):msg@>",
-         "msg_id" : "Heartbeat:cib_read_cluster_configuration",
          "table" : "Message",
+         "id" : "cib_read_cluster_configuration",
          "taxonomy" : "Config",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cib\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: write_cib_contents: Wrote version .+ of the CIB to disk .+\"):msg@>",
-         "msg_id" : "Heartbeat:cib_write_to_disk",
          "table" : "Message",
+         "id" : "cib_write_to_disk",
          "taxonomy" : "Config",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmtd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: on_update_rsc_metaattrs:.*\"):msg@>",
-         "msg_id" : "Heartbeat:mgmtd_update_resource_meta_attributes",
          "table" : "Message",
+         "id" : "mgmtd_update_resource_meta_attributes",
          "taxonomy" : "Config",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmtd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: on_update_rsc_params:.*\"):msg@>",
-         "msg_id" : "Heartbeat:mgmtd_update_resource_params",
          "table" : "Message",
+         "id" : "mgmtd_update_resource_params",
          "taxonomy" : "Config",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmtd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: on_set_target_role:.+\"):msg@>",
-         "msg_id" : "Heartbeat:mgmtd_set_target_role",
          "table" : "Message",
+         "id" : "mgmtd_set_target_role",
          "taxonomy" : "Config",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"lrmd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: rsc:.+: start\"):msg@>",
-         "msg_id" : "Heartbeat:lrmd_resource_start",
          "table" : "Message",
+         "id" : "lrmd_resource_start",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"lrmd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: rsc:.+: stop\"):msg@>",
-         "msg_id" : "Heartbeat:lrmd_resource_stop",
          "table" : "Message",
+         "id" : "lrmd_resource_stop",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cib\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: apply_xml_diff: Digest mis-match: expected \\w+, calculated \\w+\"):msg@>",
-         "msg_id" : "Heartbeat:cib_apply_xml_diff_mismatch",
          "table" : "Message",
+         "id" : "cib_apply_xml_diff_mismatch",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cib\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: cib_process_diff: .+  Requesting full refresh.\"):msg@>",
-         "msg_id" : "Heartbeat:cib_process_diff_request_full_refresh",
          "table" : "Message",
+         "id" : "cib_process_diff_request_full_refresh",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"WARN: node .+ is dead\"):msg@>",
-         "msg_id" : "Heartbeat:heartbeat_node_dead",
          "table" : "Message",
+         "id" : "heartbeat_node_dead",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: Link .+ dead.\"):msg@>",
-         "msg_id" : "Heartbeat:heartbeat_link_dead",
          "table" : "Message",
+         "id" : "heartbeat_link_dead",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"tengine\"):daemon@>: [<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Heartbeat:tengine_several_messages",
          "table" : "Message",
+         "id" : "tengine_several_messages",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cib\"):daemon@>: [<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Heartbeat:cib_several_messages",
          "table" : "Message",
+         "id" : "cib_several_messages",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ccm\"):daemon@>: [<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Heartbeat:ccm_several_messages",
          "table" : "Message",
+         "id" : "ccm_several_messages",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"lrmd\"):daemon@>: [<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Heartbeat:lrmd_several_messages",
          "table" : "Message",
+         "id" : "lrmd_several_messages",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"CRIT: Cluster node .+ returning after partition.\"):msg@>",
-         "msg_id" : "Heartbeat:heartbeat_cluster_node_returning_after_partition",
          "table" : "Message",
+         "id" : "heartbeat_cluster_node_returning_after_partition",
          "taxonomy" : "System",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"WARN: Deadtime value may be too small.\"):msg@>",
-         "msg_id" : "Heartbeat:heratbeat_deadtime_too_small",
          "table" : "Message",
+         "id" : "heratbeat_deadtime_too_small",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: Link .+ \"):msg@>up.",
-         "msg_id" : "Heartbeat:heartbeat_link_up",
          "table" : "Message",
+         "id" : "heartbeat_link_up",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: Status update for node .+: status active\"):msg@>",
-         "msg_id" : "Heartbeat:heartbeat_node_active",
          "table" : "Message",
+         "id" : "heartbeat_node_active",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: Status update for node .+: status ping\"):msg@>",
-         "msg_id" : "Heartbeat:heartbeat_node_ping",
          "table" : "Message",
+         "id" : "heartbeat_node_ping",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"heartbeat\"):daemon@>: [<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Heartbeat:heartbeat_several_messages",
          "table" : "Message",
+         "id" : "heartbeat_several_messages",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmtd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"ERROR: crm_abort:.+\"):msg@>",
-         "msg_id" : "Heartbeat:mgmtd_crm_abort",
          "table" : "Message",
+         "id" : "mgmtd_crm_abort",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmtd\"):daemon@>: [<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Heartbeat:mgmtd_several_messages",
          "table" : "Message",
+         "id" : "mgmtd_several_messages",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*dopd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"debug: .+\"):msg@>",
-         "msg_id" : "Heartbeat:dopd_debug",
          "table" : "Message",
+         "id" : "dopd_debug",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       }

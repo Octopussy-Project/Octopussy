@@ -2,15 +2,15 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cracklib:.+updated dictionary.+\"):msg@>",
-         "msg_id" : "Cracklib:updated_dictionary",
          "table" : "Message",
+         "id" : "updated_dictionary",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cracklib: no dictionary update necessary.\"):msg@>",
-         "msg_id" : "Cracklib:no_dictionary_update_necessary",
          "table" : "Message",
+         "id" : "no_dictionary_update_necessary",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

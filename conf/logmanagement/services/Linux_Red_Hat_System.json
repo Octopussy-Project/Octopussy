@@ -3,8 +3,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rhnsd\"):daemon@>[<@PID:pid@>]: <@STRING:msg@>",
-         "msg_id" : "Linux_Red_Hat_System:rhnsd",
          "table" : "Message",
+         "id" : "rhnsd",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       }

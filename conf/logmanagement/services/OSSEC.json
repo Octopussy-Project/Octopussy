@@ -3,8 +3,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ossec\"):daemon@>: <@REGEXP(\"Alert Level: \\d+;\"):level@> <@REGEXP(\"Rule: \\d+ -\"):module@> <@REGEXP(\"Ossec server started.; Location: .+ ossec: Ossec started.\"):msg@>",
-         "msg_id" : "OSSEC:server_started",
          "table" : "Message",
+         "id" : "server_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       }

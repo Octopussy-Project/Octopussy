@@ -2,15 +2,15 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"lomoco\"):daemon@>:",
-         "msg_id" : "Logitech_Mouse_Control:empty",
          "table" : "Message",
+         "id" : "empty",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"lomoco\"):daemon@>: <@REGEXP(\".+: .+ Wheel Mouse Optical .+ Caps: .+\"):msg@>",
-         "msg_id" : "Logitech_Mouse_Control:wheel_mouse_optical_caps",
          "table" : "Message",
+         "id" : "wheel_mouse_optical_caps",
          "taxonomy" : "Hardware",
          "loglevel" : "Information"
       }

@@ -2,176 +2,176 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Parameter .+ is not supported by agent on host .+\"):msg@>",
-         "msg_id" : "Zabbix:parameter_not_supported",
          "table" : "Message",
+         "id" : "parameter_not_supported",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Parameter .+ will be checked after \\d+ seconds on host .+\"):msg@>",
-         "msg_id" : "Zabbix:parameter_will_be_checked",
          "table" : "Message",
+         "id" : "parameter_will_be_checked",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Get value from agent failed. Error: .+\"):msg@>",
-         "msg_id" : "Zabbix:get_agent_value_failed",
          "table" : "Message",
+         "id" : "get_agent_value_failed",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Host .+ will be checked after \\d+ seconds\"):msg@> ",
-         "msg_id" : "Zabbix:host_will_be_checked",
          "table" : "Message",
+         "id" : "host_will_be_checked",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Expression .+ cannot be evaluated .+\"):msg@>",
-         "msg_id" : "Zabbix:expression_cannot_be_evaluated",
          "table" : "Message",
+         "id" : "expression_cannot_be_evaluated",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Host .+: \\w+ network error, wait for \\d+ seconds\"):msg@>",
-         "msg_id" : "Zabbix:network_error_wait_for",
          "table" : "Message",
+         "id" : "network_error_wait_for",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*server #\\d+ started.*\"):msg@>",
-         "msg_id" : "Zabbix:server_started",
          "table" : "Message",
+         "id" : "server_started",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Error doing .+\"):msg@>",
-         "msg_id" : "Zabbix:error_doing_something",
          "table" : "Message",
+         "id" : "error_doing_something",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Parameter .+ became supported by agent on host .+\"):msg@>",
-         "msg_id" : "Zabbix:parameter_became_supported",
          "table" : "Message",
+         "id" : "parameter_became_supported",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Deleted \\d+ records from history and trends\"):msg@> ",
-         "msg_id" : "Zabbix:delete_records_history_trends",
          "table" : "Message",
+         "id" : "delete_records_history_trends",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Starting zabbix_server. ZABBIX .+\"):msg@>",
-         "msg_id" : "Zabbix:starting_zabbix_server",
          "table" : "Message",
+         "id" : "starting_zabbix_server",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*ZABBIX Server stopped\"):msg@> ",
-         "msg_id" : "Zabbix:zabbix_server_stopped",
          "table" : "Message",
+         "id" : "zabbix_server_stopped",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Executing housekeeper\"):msg@> ",
-         "msg_id" : "Zabbix:executing_housekeeper",
          "table" : "Message",
+         "id" : "executing_housekeeper",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Enabling host .+\"):msg@>",
-         "msg_id" : "Zabbix:enabling_host",
          "table" : "Message",
+         "id" : "enabling_host",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Failed to connect to database:.+\"):msg@>",
-         "msg_id" : "Zabbix:failed_connect_database",
          "table" : "Message",
+         "id" : "failed_connect_database",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*\\w+ monitoring: .+\"):msg@>",
-         "msg_id" : "Zabbix:feature_monitoring_status",
          "table" : "Message",
+         "id" : "feature_monitoring_status",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Jabber notifications: .+\"):msg@> ",
-         "msg_id" : "Zabbix:feature_jabber_notifications_status",
          "table" : "Message",
+         "id" : "feature_jabber_notifications_status",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*IPv6 support: .+\"):msg@> ",
-         "msg_id" : "Zabbix:feature_ipv6_support_status",
          "table" : "Message",
+         "id" : "feature_ipv6_support_status",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Type of received value .+ is not sutable for .+\"):msg@>",
-         "msg_id" : "Zabbix:received_value_not_sutable",
          "table" : "Message",
+         "id" : "received_value_not_sutable",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Query [select .+]\"):msg@> ",
-         "msg_id" : "Zabbix:query_select",
          "table" : "Message",
+         "id" : "query_select",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Query [update .+]\"):msg@> ",
-         "msg_id" : "Zabbix:query_update",
          "table" : "Message",
+         "id" : "query_update",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Query [delete .+]\"):msg@> ",
-         "msg_id" : "Zabbix:query_delete",
          "table" : "Message",
+         "id" : "query_delete",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*One child process died. Exiting ...\"):msg@> ",
-         "msg_id" : "Zabbix:one_child_process_died",
          "table" : "Message",
+         "id" : "one_child_process_died",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Returning NOTSUPPORTED\"):msg@>",
-         "msg_id" : "Zabbix:returning_notsupported",
          "table" : "Message",
+         "id" : "returning_notsupported",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"zabbix\"):daemon@>: <@REGEXP(\".*Timeout while answering request\"):msg@>",
-         "msg_id" : "Zabbix:timeout_while_answering_request",
          "table" : "Message",
+         "id" : "timeout_while_answering_request",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       }

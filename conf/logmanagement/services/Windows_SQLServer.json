@@ -3,50 +3,50 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;Application;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@REGEXP(\"MSSQLServer\"):source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Devices\"):category@>;<@STRING:NULL@>;<@REGEXP(\"\\d+ :  Microsoft SQL Server .*\"):msg@>;<@NUMBER:NULL@>",
-         "msg_id" : "Windows_SQLServer:microsoft_sql_server",
          "table" : "Windows_Message",
+         "id" : "microsoft_sql_server",
          "taxonomy" : "Application.Start",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;Application;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@REGEXP(\"MSSQLServer\"):source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Devices\"):category@>;<@STRING:NULL@>;<@REGEXP(\"\\d+ :  SQL Server is starting at priority class .+\"):msg@>;<@NUMBER:NULL@>",
-         "msg_id" : "Windows_SQLServer:sql_server_is_starting",
          "table" : "Windows_Message",
+         "id" : "sql_server_is_starting",
          "taxonomy" : "Application.Start",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;Application;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@REGEXP(\"MSSQLServer\"):source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Network\"):category@>;;<@REGEXP(\"MS SQL SNMP Extension Agent starting.+\"):msg@>;<@NUMBER:NULL@>",
-         "msg_id" : "Windows_SQLServer:sql_snmp_agent_starting",
          "table" : "Windows_Message",
+         "id" : "sql_snmp_agent_starting",
          "taxonomy" : "Application.Start",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;Application;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@REGEXP(\"MSSQLServer\"):source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Not enough storage is available to process this command.\"):category@>;;<@REGEXP(\"RPC Net-Library listening on: .+\"):msg@>;<@NUMBER:NULL@>",
-         "msg_id" : "Windows_SQLServer:rpc_listening_on",
          "table" : "Windows_Message",
+         "id" : "rpc_listening_on",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;Application;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@REGEXP(\"MSSQLServer\"):source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@WORD:category@>;<@STRING:NULL@>;<@REGEXP(\".*Using '.+.DLL'.+\"):msg@>;<@NUMBER:NULL@>",
-         "msg_id" : "Windows_SQLServer:using_dll",
          "table" : "Windows_Message",
+         "id" : "using_dll",
          "taxonomy" : "Application.Start",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;Application;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@REGEXP(\"MSSQLServer\"):source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Disk\"):category@>;<@STRING:NULL@>;<@REGEXP(\".*\\d+ transactions rolled \\w+ in database .+\"):msg@>;<@NUMBER:NULL@>",
-         "msg_id" : "Windows_SQLServer:transactions_rolled_in_database",
          "table" : "Windows_Message",
+         "id" : "transactions_rolled_in_database",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;Application;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@REGEXP(\"MSSQLServer\"):source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Information\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Devices\"):category@>;<@STRING:NULL@>;<@REGEXP(\"\\d+ :.*SQL Server is terminating due to 'stop' request from Service Control Manager.*\"):msg@>;<@NUMBER:NULL@>",
-         "msg_id" : "Windows_SQLServer:terminating_due_to_request",
          "table" : "Windows_Message",
+         "id" : "terminating_due_to_request",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Warning"
       }

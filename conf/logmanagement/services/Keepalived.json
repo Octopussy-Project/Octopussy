@@ -3,386 +3,386 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Netlink reflector reports IP .+ added\"):msg@> ",
-         "msg_id" : "Keepalived:ip_added",
          "table" : "Message",
+         "id" : "ip_added",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Activating healtchecker for service .+\"):msg@>",
-         "msg_id" : "Keepalived:activating_healtchecker_for_service",
          "table" : "Message",
+         "id" : "activating_healtchecker_for_service",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ Sending gratuitous ARPs on .+\"):msg@>",
-         "msg_id" : "Keepalived:sending_gratuitous_arps",
          "table" : "Message",
+         "id" : "sending_gratuitous_arps",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Registering Kernel .+\"):msg@>  ",
-         "msg_id" : "Keepalived:registering_kernel",
          "table" : "Message",
+         "id" : "registering_kernel",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Error connecting server .+\"):msg@>",
-         "msg_id" : "Keepalived:error_connecting_server",
          "table" : "Message",
+         "id" : "error_connecting_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Removing service .+ from VS .+\"):msg@>",
-         "msg_id" : "Keepalived:removing_service_from_vs",
          "table" : "Message",
+         "id" : "removing_service_from_vs",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ setting protocol .+\"):msg@>",
-         "msg_id" : "Keepalived:setting_protocol",
          "table" : "Message",
+         "id" : "setting_protocol",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>: <@REGEXP(\"Starting .+ child process, .+\"):msg@>",
-         "msg_id" : "Keepalived:starting_child_process",
          "table" : "Message",
+         "id" : "starting_child_process",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ removing protocol .+\"):msg@>",
-         "msg_id" : "Keepalived:removing_protocol",
          "table" : "Message",
+         "id" : "removing_protocol",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Terminating .+ child process.+\"):msg@>",
-         "msg_id" : "Keepalived:terminating_child_process",
          "table" : "Message",
+         "id" : "terminating_child_process",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Registering gratutious ARP shared channel\"):msg@> ",
-         "msg_id" : "Keepalived:registering_gratutious_arp_channel",
          "table" : "Message",
+         "id" : "registering_gratutious_arp_channel",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Timeout connect, timeout server .+\"):msg@>",
-         "msg_id" : "Keepalived:timeout_connect_timeout_server",
          "table" : "Message",
+         "id" : "timeout_connect_timeout_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>: <@REGEXP(\"Starting Keepalived .+\"):msg@>",
-         "msg_id" : "Keepalived:starting_keepalived",
          "table" : "Message",
+         "id" : "starting_keepalived",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Using LinkWatch kernel netlink reflector...\"):msg@> ",
-         "msg_id" : "Keepalived:using_kernel_netlink_reflector",
          "table" : "Message",
+         "id" : "using_kernel_netlink_reflector",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>: <@REGEXP(\"Stopping Keepalived .+\"):msg@>",
-         "msg_id" : "Keepalived:stopping_keepalived",
          "table" : "Message",
+         "id" : "stopping_keepalived",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Netlink reflector reports IP .+ removed\"):msg@>",
-         "msg_id" : "Keepalived:ip_removed",
          "table" : "Message",
+         "id" : "ip_removed",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"VRRP Error : VRID not valid !\"):msg@> ",
-         "msg_id" : "Keepalived:vrid_not_valid",
          "table" : "Message",
+         "id" : "vrid_not_valid",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".* must be between 1 & 255. reconfigure !\"):msg@> ",
-         "msg_id" : "Keepalived:vrid_not_valid2",
          "table" : "Message",
+         "id" : "vrid_not_valid2",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>: <@REGEXP(\"VRRP child process.+ died: Respawning\"):msg@> ",
-         "msg_id" : "Keepalived:vrrp_child_process_respawning",
          "table" : "Message",
+         "id" : "vrrp_child_process_respawning",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>: <@REGEXP(\"Remove a zombie pid file .+\"):msg@>",
-         "msg_id" : "Keepalived:remove_zombie_pid_file",
          "table" : "Message",
+         "id" : "remove_zombie_pid_file",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ the virtual id must be set!\"):msg@> ",
-         "msg_id" : "Keepalived:virtual_id_must_set",
          "table" : "Message",
+         "id" : "virtual_id_must_set",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Opening file .+\"):msg@>",
-         "msg_id" : "Keepalived:opening_file",
          "table" : "Message",
+         "id" : "opening_file",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Configuration is using : \\d+ Bytes\"):msg@> ",
-         "msg_id" : "Keepalived:configuration_using_bytes",
          "table" : "Message",
+         "id" : "configuration_using_bytes",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"VRRP sockpool:.+\"):msg@>",
-         "msg_id" : "Keepalived:vrrp_sockpool",
          "table" : "Message",
+         "id" : "vrrp_sockpool",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ Transition to MASTER STATE\"):msg@> ",
-         "msg_id" : "Keepalived:transition_to_master_state",
          "table" : "Message",
+         "id" : "transition_to_master_state",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ Entering MASTER STATE\"):msg@> ",
-         "msg_id" : "Keepalived:entering_master_state",
          "table" : "Message",
+         "id" : "entering_master_state",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Adding service .+ to VS .+\"):msg@>",
-         "msg_id" : "Keepalived:adding_service_to_vs",
          "table" : "Message",
+         "id" : "adding_service_to_vs",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"HTTP status code success to .+\"):msg@>",
-         "msg_id" : "Keepalived:http_status_code_success",
          "table" : "Message",
+         "id" : "http_status_code_success",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Remote Web server .+ succeed on service.\"):msg@>",
-         "msg_id" : "Keepalived:remote_web_server_succeed",
          "table" : "Message",
+         "id" : "remote_web_server_succeed",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ Entering BACKUP STATE\"):msg@>  ",
-         "msg_id" : "Keepalived:entering_backup_state",
          "table" : "Message",
+         "id" : "entering_backup_state",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ Received higher prio advert\"):msg@> ",
-         "msg_id" : "Keepalived:received_higher_prio_advert",
          "table" : "Message",
+         "id" : "received_higher_prio_advert",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>: <@REGEXP(\"Terminating on signal\"):msg@> ",
-         "msg_id" : "Keepalived:terminating_on_signal",
          "table" : "Message",
+         "id" : "terminating_on_signal",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Netlink: error: File exists,.+\"):msg@>",
-         "msg_id" : "Keepalived:netlink_error_file_exists",
          "table" : "Message",
+         "id" : "netlink_error_file_exists",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\".+ Received lower prio advert, forcing new election\"):msg@> ",
-         "msg_id" : "Keepalived:received_lower_prio_alert",
          "table" : "Message",
+         "id" : "received_lower_prio_alert",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"IPVS: No such destination\"):msg@> ",
-         "msg_id" : "Keepalived:ipvs_no_such_destination",
          "table" : "Message",
+         "id" : "ipvs_no_such_destination",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"IPVS: Destination already exists\"):msg@> ",
-         "msg_id" : "Keepalived:ipvs_destination_already_exists",
          "table" : "Message",
+         "id" : "ipvs_destination_already_exists",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Read error with server .+: Connection reset by peer\"):msg@>",
-         "msg_id" : "Keepalived:read_error_with_server",
          "table" : "Message",
+         "id" : "read_error_with_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Timeout \\w+ read server .+\"):msg@>",
-         "msg_id" : "Keepalived:timeout_read_server",
          "table" : "Message",
+         "id" : "timeout_read_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"TCP connection to .+ success.\"):msg@> ",
-         "msg_id" : "Keepalived:tcp_connection_success",
          "table" : "Message",
+         "id" : "tcp_connection_success",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"TCP connection to .+ failed !!!\"):msg@> ",
-         "msg_id" : "Keepalived:tcp_connection_failed",
          "table" : "Message",
+         "id" : "tcp_connection_failed",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Remote SMTP server .+ connected.\"):msg@> ",
-         "msg_id" : "Keepalived:remote_smtp_server_connected",
          "table" : "Message",
+         "id" : "remote_smtp_server_connected",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"SMTP alert successfully sent.\"):msg@> ",
-         "msg_id" : "Keepalived:smtp_alert_successfully_sent",
          "table" : "Message",
+         "id" : "smtp_alert_successfully_sent",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Adding sorry server .+ to VS .+\"):msg@>",
-         "msg_id" : "Keepalived:adding_sorry_server",
          "table" : "Message",
+         "id" : "adding_sorry_server",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Removing sorry server .+ from VS .+\"):msg@>",
-         "msg_id" : "Keepalived:removing_sorry_server",
          "table" : "Message",
+         "id" : "removing_sorry_server",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Timeout reading data to remote SMTP server .+\"):msg@>",
-         "msg_id" : "Keepalived:timeout_remote_smtp_server",
          "table" : "Message",
+         "id" : "timeout_remote_smtp_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Suspending healtchecker for service .+\"):msg@>",
-         "msg_id" : "Keepalived:suspending_healtchecker_for_service",
          "table" : "Message",
+         "id" : "suspending_healtchecker_for_service",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Kernel is reporting: interface .+ DOWN\"):msg@>",
-         "msg_id" : "Keepalived:vrrp_interface_down",
          "table" : "Message",
+         "id" : "vrrp_interface_down",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"VRRP_Instance\\(.+\\) Entering FAULT STATE\"):msg@>",
-         "msg_id" : "Keepalived:vrrp_entering_fault_state",
          "table" : "Message",
+         "id" : "vrrp_entering_fault_state",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"VRRP_Instance\\(.+\\) Now in FAULT state\"):msg@>",
-         "msg_id" : "Keepalived:vrrp_in_fault_state",
          "table" : "Message",
+         "id" : "vrrp_in_fault_state",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Kernel is reporting: interface .+ UP\"):msg@>",
-         "msg_id" : "Keepalived:vrrp_interface_up",
          "table" : "Message",
+         "id" : "vrrp_interface_up",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"VRRP_Script.+ timed out\"):msg@>",
-         "msg_id" : "Keepalived:vvrp_script_timeout",
          "table" : "Message",
+         "id" : "vvrp_script_timeout",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"VRRP_Script.+ succeeded\"):msg@>",
-         "msg_id" : "Keepalived:vvrp_script_succeeded",
          "table" : "Message",
+         "id" : "vvrp_script_succeeded",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"VRRP_Instance.+ forcing a new MASTER election\"):msg@>",
-         "msg_id" : "Keepalived:vvrp_instance_forcing_election",
          "table" : "Message",
+         "id" : "vvrp_instance_forcing_election",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Process .+ didn't respond to SIGTERM\"):msg@>",
-         "msg_id" : "Keepalived:process_didnt_respond_sigterm",
          "table" : "Message",
+         "id" : "process_didnt_respond_sigterm",
          "taxonomy" : "Application",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Keepalived\"):daemon@>_<@WORD:module@>: <@REGEXP(\"Netlink: error: Cannot assign requested address, .+\"):msg@>",
-         "msg_id" : "Keepalived:netlink_error",
          "table" : "Message",
+         "id" : "netlink_error",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       }

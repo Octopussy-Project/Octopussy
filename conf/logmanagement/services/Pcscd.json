@@ -2,232 +2,232 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\"ifdhandler.+IFDHTransmitToICC.+\"):msg@>",
-         "msg_id" : "Pcscd:apdu_exchange_with_smartcard_or_cardreader",
          "table" : "Message",
+         "id" : "apdu_exchange_with_smartcard_or_cardreader",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+get_data_rates.+declared.+bps\"):msg@>",
-         "msg_id" : "Pcscd:data_rates",
          "table" : "Message",
+         "id" : "data_rates",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Preparing for suicide\"):msg@>",
-         "msg_id" : "Pcscd:preparing_for_suicide",
          "table" : "Message",
+         "id" : "preparing_for_suicide",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+daemon ready.\"):msg@>",
-         "msg_id" : "Pcscd:deamon_ready",
          "table" : "Message",
+         "id" : "deamon_ready",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Adding USB device.+\"):msg@>",
-         "msg_id" : "Pcscd:adding_usb_device",
          "table" : "Message",
+         "id" : "adding_usb_device",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+InitializeReader.+\"):msg@>",
-         "msg_id" : "Pcscd:initialize_reader",
          "table" : "Message",
+         "id" : "initialize_reader",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Loading IFD Handler.+\"):msg@>",
-         "msg_id" : "Pcscd:loading_ifd_handler",
          "table" : "Message",
+         "id" : "loading_ifd_handler",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+init_driver.+\"):msg@>",
-         "msg_id" : "Pcscd:init_driver",
          "table" : "Message",
+         "id" : "init_driver",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+CreateChannelByName.+\"):msg@>",
-         "msg_id" : "Pcscd:create_channel_by_name",
          "table" : "Message",
+         "id" : "create_channel_by_name",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+OpenUSBByName.+\"):msg@>",
-         "msg_id" : "Pcscd:open_usb_by_name",
          "table" : "Message",
+         "id" : "open_usb_by_name",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+GetCapabilities.+\"):msg@>",
-         "msg_id" : "Pcscd:get_capabilities",
          "table" : "Message",
+         "id" : "get_capabilities",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+AddReader.+\"):msg@>",
-         "msg_id" : "Pcscd:add_reader",
          "table" : "Message",
+         "id" : "add_reader",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+PowerICC.+PowerUp\"):msg@>",
-         "msg_id" : "Pcscd:power_up",
          "table" : "Message",
+         "id" : "power_up",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\"Card ATR.+\"):msg@>",
-         "msg_id" : "Pcscd:card_atr",
          "table" : "Message",
+         "id" : "card_atr",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+EstablishUSBNotifications.+\"):msg@>",
-         "msg_id" : "Pcscd:establish_usb_notifications",
          "table" : "Message",
+         "id" : "establish_usb_notifications",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+SetProtocol.+\"):msg@>",
-         "msg_id" : "Pcscd:set_protocol",
          "table" : "Message",
+         "id" : "set_protocol",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Hotplug stopped\"):msg@>",
-         "msg_id" : "Pcscd:hotplug_stopped",
          "table" : "Message",
+         "id" : "hotplug_stopped",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Stopping reader:.+\"):msg@>",
-         "msg_id" : "Pcscd:reader_stop",
          "table" : "Message",
+         "id" : "reader_stop",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Stomping thread.\"):msg@>",
-         "msg_id" : "Pcscd:stomping_thread",
          "table" : "Message",
+         "id" : "stomping_thread",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Thread stomped.\"):msg@>",
-         "msg_id" : "Pcscd:thread_stomped",
          "table" : "Message",
+         "id" : "thread_stomped",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+entering cleaning function\"):msg@>",
-         "msg_id" : "Pcscd:entering_cleaning_function",
          "table" : "Message",
+         "id" : "entering_cleaning_function",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+CloseChannel.+\"):msg@>",
-         "msg_id" : "Pcscd:close_channel",
          "table" : "Message",
+         "id" : "close_channel",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Unloading reader driver.\"):msg@>",
-         "msg_id" : "Pcscd:unloading_reader_driver",
          "table" : "Message",
+         "id" : "unloading_reader_driver",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+at_exit.+ cleaning.+.\"):msg@>",
-         "msg_id" : "Pcscd:at_exit_cleaning",
          "table" : "Message",
+         "id" : "at_exit_cleaning",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+Card inserted into.+\"):msg@>",
-         "msg_id" : "Pcscd:card_inserted_into_reader",
          "table" : "Message",
+         "id" : "card_inserted_into_reader",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+ Card Removed From .+\"):msg@>",
-         "msg_id" : "Pcscd:card_removed_from_reader",
          "table" : "Message",
+         "id" : "card_removed_from_reader",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\"APDU:.+\"):msg@>",
-         "msg_id" : "Pcscd:apdu_message",
          "table" : "Message",
+         "id" : "apdu_message",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\"SW:.+\"):msg@>",
-         "msg_id" : "Pcscd:sw_message",
          "table" : "Message",
+         "id" : "sw_message",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+annot create public shared file.+Permission denied\"):msg@>",
-         "msg_id" : "Pcscd:cannot_create_public_shared_file",
          "table" : "Message",
+         "id" : "cannot_create_public_shared_file",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+annot create.+Permission denied\"):msg@>",
-         "msg_id" : "Pcscd:cannot_create_file_or_directory_permission_denied",
          "table" : "Message",
+         "id" : "cannot_create_file_or_directory_permission_denied",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+LogSetLevel.+level=.+\"):msg@>",
-         "msg_id" : "Pcscd:log_level_set",
          "table" : "Message",
+         "id" : "log_level_set",
          "taxonomy" : "Application",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+annot remove.+No such file or directory\"):msg@>",
-         "msg_id" : "Pcscd:cannot_remove_no_such_file_or_directory",
          "table" : "Message",
+         "id" : "cannot_remove_no_such_file_or_directory",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pcscd\"):daemon@>: <@REGEXP(\".+annot remove.+Permission denied\"):msg@>",
-         "msg_id" : "Pcscd:cannot_remove_file_or_directory_permission_denied",
          "table" : "Message",
+         "id" : "cannot_remove_file_or_directory_permission_denied",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       }

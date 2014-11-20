@@ -3,22 +3,22 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@WORD:NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"traffic.*\"):category@>, <@REGEXP(\"traffic.*\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, <@WORD:NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, <@REGEXP(\".+\"):NULL@>",
-         "msg_id" : "Netscreen_NSM_Traffic:traffic",
          "table" : "Netscreen_NSM",
+         "id" : "traffic",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@WORD:NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"self\"):category@>, <@REGEXP(\"self log\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, <@WORD:NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, <@REGEXP(\".+\"):NULL@>",
-         "msg_id" : "Netscreen_NSM_Traffic:self_log",
          "table" : "Netscreen_NSM",
+         "id" : "self_log",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@WORD:NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, <@WORD:NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, idp, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, <@REGEXP(\".+\"):NULL@>",
-         "msg_id" : "Netscreen_NSM_Traffic:idp",
          "table" : "Netscreen_NSM",
+         "id" : "idp",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       }

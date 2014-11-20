@@ -3,50 +3,50 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: recovery complete.\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Ext3:recovery_complete",
          "table" : "Message",
+         "id" : "recovery_complete",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3 FS on \\S+, internal journal\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Ext3:internal_journal",
          "table" : "Message",
+         "id" : "internal_journal",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ext3_orphan_cleanup: deleting unreferenced inode \\d+\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Ext3:deleting_unreferenced_inode",
          "table" : "Message",
+         "id" : "deleting_unreferenced_inode",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: .*\\d+ orphan inode deleted\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Ext3:orphan_inode_deleted",
          "table" : "Message",
+         "id" : "orphan_inode_deleted",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: mounted filesystem with ordered data mode.\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Ext3:mounted_ordered_data_mode",
          "table" : "Message",
+         "id" : "mounted_ordered_data_mode",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs warning: checktime reached.*\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Ext3:checktime_reached",
          "table" : "Message",
+         "id" : "checktime_reached",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs error .+\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Ext3:error",
          "table" : "Message",
+         "id" : "error",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Critical"
       }

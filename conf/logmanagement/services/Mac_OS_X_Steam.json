@@ -3,22 +3,22 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*com.valvesoftware.steam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"unlinked \\d+ orphaned pipes\"):msg@>",
-         "msg_id" : "Mac_OS_X_Steam:unlinked_orphaned_pipes",
          "table" : "Message",
+         "id" : "unlinked_orphaned_pipes",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*com.valvesoftware.steam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"CAsyncIOManager: .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_Steam:casynciomanager_msgs",
          "table" : "Message",
+         "id" : "casynciomanager_msgs",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*com.valvesoftware.steam.ipctool\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ipcserver .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_Steam:ipcserver_msgs",
          "table" : "Message",
+         "id" : "ipcserver_msgs",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

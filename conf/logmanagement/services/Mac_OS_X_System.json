@@ -3,253 +3,253 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.SecurityServer\"):daemon@>: <@REGEXP(\"authinternal authenticated user .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:authinternal_authenticated_user",
          "table" : "Message",
+         "id" : "authinternal_authenticated_user",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.SecurityServer\"):daemon@>: <@REGEXP(\"authinternal failed to authenticate user .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:authinternal_failed_authenticate_user",
          "table" : "Message",
+         "id" : "authinternal_failed_authenticate_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.SecurityServer\"):daemon@>: <@REGEXP(\"Entering service\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:entering_service",
          "table" : "Message",
+         "id" : "entering_service",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"SecurityAgent\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Showing Login Window\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:showing_login_window",
          "table" : "Message",
+         "id" : "showing_login_window",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.SecurityServer\"):daemon@>: <@REGEXP(\"Succeeded authorizing right .+ by process .+ for authorization created by .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:succeeded_authorizing_right_process",
          "table" : "Message",
+         "id" : "succeeded_authorizing_right_process",
          "taxonomy" : "Access.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"SecurityAgent\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"User Authenticated: continue login process\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:user_authenticated_continue_login",
          "table" : "Message",
+         "id" : "user_authenticated_continue_login",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> SystemStarter[<@PID:pid@>]: <@REGEXP(\"The following StartupItems failed to properly start:\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:startupitems_failed_properly_start",
          "table" : "Message",
+         "id" : "startupitems_failed_properly_start",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> SystemStarter[<@PID:pid@>]: <@REGEXP(\".+ execution of Startup script failed\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:execution_startup_script_failed",
          "table" : "Message",
+         "id" : "execution_startup_script_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> SystemStarter[<@PID:pid@>]: <@REGEXP(\"/System/Library/StartupItems/.+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:system_library_startupitems",
          "table" : "Message",
+         "id" : "system_library_startupitems",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> memberd[<@PID:pid@>]: <@REGEXP(\"memberd starting up\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:memberd_starting_up",
          "table" : "Message",
+         "id" : "memberd_starting_up",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mDNSResponder-.+: starting\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:mdnsresponder_starting",
          "table" : "Message",
+         "id" : "mdnsresponder_starting",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> lookupd[<@PID:pid@>]: <@REGEXP(\"lookupd.+starting.+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:lookupd_starting",
          "table" : "Message",
+         "id" : "lookupd_starting",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport: Could not find \".+\" on.+channel.+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:airport_couldnt_find_network",
          "table" : "Message",
+         "id" : "airport_couldnt_find_network",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport: Already scanned channels.+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:airport_already_scanned_channels",
          "table" : "Message",
+         "id" : "airport_already_scanned_channels",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> configd[<@PID:pid@>]: <@REGEXP(\"executing /System/Library/SystemConfiguration/Kicker.bundle/Contents/Resources/enable-network\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:configd_enable_network",
          "table" : "Message",
+         "id" : "configd_enable_network",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> configd[<@PID:pid@>]: <@REGEXP(\"posting notification com.apple.system.config.network_change\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:configd_posting_network_change",
          "table" : "Message",
+         "id" : "configd_posting_network_change",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport: Error: Apple80211Scan\\(\\) failed.+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:airport_apple80211_scan_failed",
          "table" : "Message",
+         "id" : "airport_apple80211_scan_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mDNSResponder: Adding browse domain local.\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:mdnsresponder_adding_domain_local",
          "table" : "Message",
+         "id" : "mdnsresponder_adding_domain_local",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> configd[<@PID:pid@>]: <@REGEXP(\"setting hostname to .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:configd_setting_hostname",
          "table" : "Message",
+         "id" : "configd_setting_hostname",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow: Login Window Application Started\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:login_window_application_started",
          "table" : "Message",
+         "id" : "login_window_application_started",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> loginwindow[<@PID:pid@>]: <@REGEXP(\"Login Window Started Security Agent\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:loginwindow_started_security_agent",
          "table" : "Message",
+         "id" : "loginwindow_started_security_agent",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+: removeDisplayMapping: _CGSUnmapFramebuffer returns .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:unmapframebuffer_returns",
          "table" : "Message",
+         "id" : "unmapframebuffer_returns",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dashboardadivsoryd[<@PID:pid@>]: <@REGEXP(\"fetch.*: unable to fetch data.*\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:dashboardadivsoryd_unable_fetch_data",
          "table" : "Message",
+         "id" : "dashboardadivsoryd_unable_fetch_data",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@>  [<@PID:pid@>] <@REGEXP(\"kCGErrorIllegalArgument: CGXGetWindow\\w+: Invalid window.+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:cgx_invalid_window",
          "table" : "Message",
+         "id" : "cgx_invalid_window",
          "taxonomy" : "System.Errors",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.SecurityServer\"):daemon@>: <@REGEXP(\"uid \\d+ succeeded authenticating as user .+ for right .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:succeeded_authenticating_as_user",
          "table" : "Message",
+         "id" : "succeeded_authenticating_as_user",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> SystemStarter[<@PID:pid@>]: <@REGEXP(\"authentication service .+ did not complete successfully\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:authentication_service_didnt_complete",
          "table" : "Message",
+         "id" : "authentication_service_didnt_complete",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:ath|AppleMobileDeviceHelper)\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_AMDDeviceAttachedCallbackv3 \\(thread \\S+\\): Device '.+' attached.\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:device_attached",
          "table" : "Message",
+         "id" : "device_attached",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"AppleMobileDeviceHelper\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_AMDDeviceDetached \\(thread \\S+\\): Device '.+' detached.\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:device_detached",
          "table" : "Message",
+         "id" : "device_detached",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.usbmuxd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_SendAttachNotification .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:usbmuxd_sendattachnotification",
          "table" : "Message",
+         "id" : "usbmuxd_sendattachnotification",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.usbmuxd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_SendDetachNotification .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:usbmuxd_senddetachnotification",
          "table" : "Message",
+         "id" : "usbmuxd_senddetachnotification",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"usbmuxd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_AMDeviceConnectByAddressAndPort .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:usbmuxd_connect_address_port",
          "table" : "Message",
+         "id" : "usbmuxd_connect_address_port",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"authorizationhost\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"in pam_sm_authenticate\\(\\): .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:authorizationhost_pam_sm_authenticate",
          "table" : "Message",
+         "id" : "authorizationhost_pam_sm_authenticate",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"authorizationhost\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"in pam_sm_setcred\\(\\): .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:authorizationhost_pam_sm_setcred",
          "table" : "Message",
+         "id" : "authorizationhost_pam_sm_setcred",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.SecurityServer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Succeeded authorizing right .+ by client .+ for authorization created by .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:succeeded_authorizing_right",
          "table" : "Message",
+         "id" : "succeeded_authorizing_right",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"com.apple.SecurityServer\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Failed to authorize right .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:failed_to_authorize_right",
          "table" : "Message",
+         "id" : "failed_to_authorize_right",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Dock\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"kCGErrorIllegalArgument: .+\"):msg@>",
-         "msg_id" : "Mac_OS_X_System:kcgerrorillegalargument",
          "table" : "Message",
+         "id" : "kcgerrorillegalargument",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Debug"
       }

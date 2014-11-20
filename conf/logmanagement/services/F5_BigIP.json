@@ -3,904 +3,904 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@STRING:object@> <@IP_ADDR:address@>:<@NUMBER:port@> monitor status <@WORD:status@>. ",
-         "msg_id" : "F5_BigIP:monitor_address_port",
          "table" : "F5_BigIP_Monitor",
+         "id" : "monitor_address_port",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@STRING:object@> <@IP_ADDR:address@> monitor status <@WORD:status@>. ",
-         "msg_id" : "F5_BigIP:monitor_address",
          "table" : "F5_BigIP_Monitor",
+         "id" : "monitor_address",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"AUDIT - user \\S+ - transaction .+ - create { .+ }\"):msg@>  ",
-         "msg_id" : "F5_BigIP:object_create",
          "table" : "Message",
+         "id" : "object_create",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"AUDIT - user \\S+ - transaction .+ - obj_delete { .+ }\"):msg@>  ",
-         "msg_id" : "F5_BigIP:object_delete",
          "table" : "Message",
+         "id" : "object_delete",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm tmm[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Config error: .+\"):msg@>",
-         "msg_id" : "F5_BigIP:config_error",
          "table" : "Message",
+         "id" : "config_error",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pvad\\S*\"):NULL@>: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\".+ - couldn't find profile with key=.+\"):msg@>",
-         "msg_id" : "F5_BigIP:couldnt_find_profile",
          "table" : "Message",
+         "id" : "couldnt_find_profile",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pvad\\S*\"):NULL@>: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Log level changed to: \\S+\"):msg@>",
-         "msg_id" : "F5_BigIP:log_level_changed",
          "table" : "Message",
+         "id" : "log_level_changed",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pam_console[<@NUMBER:NULL@>]: <@REGEXP(\"getpwnam failed for \\S+\"):msg@> ",
-         "msg_id" : "F5_BigIP:getpwnam_failed",
          "table" : "Message",
+         "id" : "getpwnam_failed",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pvad[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Constraining entire tree...\"):msg@> ",
-         "msg_id" : "F5_BigIP:constraining_tree",
          "table" : "Message",
+         "id" : "constraining_tree",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pvad[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Done constraining entire tree.\"):msg@>",
-         "msg_id" : "F5_BigIP:constraining_tree_done",
          "table" : "Message",
+         "id" : "constraining_tree_done",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"address conflict detected for .+\"):msg@>",
-         "msg_id" : "F5_BigIP:address_conflict_detected",
          "table" : "Message",
+         "id" : "address_conflict_detected",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pvad[<@NUMBER:NULL@>]: <@REGEXP(\".+ connected!\"):msg@>",
-         "msg_id" : "F5_BigIP:pvad_service_connected",
          "table" : "Message",
+         "id" : "pvad_service_connected",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> sod: <@WORD:NULL@>: Active ",
-         "msg_id" : "F5_BigIP:sod_active",
          "table" : "Message",
+         "id" : "sod_active",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> sod: <@WORD:NULL@>: Standby",
-         "msg_id" : "F5_BigIP:sod_standby",
          "table" : "Message",
+         "id" : "sod_standby",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pvad: <@WORD:NULL@>: Starting pvad",
-         "msg_id" : "F5_BigIP:starting_pvad",
          "table" : "Message",
+         "id" : "starting_pvad",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@NUMBER:NULL@>: <@REGEXP(\"repeated \\d+ time.\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_repeated_n_time",
          "table" : "Message",
+         "id" : "tmm_repeated_n_time",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+: .+ Unable to get peers local time\"):msg@> ",
-         "msg_id" : "F5_BigIP:unable_get_peers_localtime",
          "table" : "Message",
+         "id" : "unable_get_peers_localtime",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> httpd[<@NUMBER:NULL@>]: [error] <@REGEXP(\"[client \\S+] PAM: user \\S+ - not authenticated: User not known to the underlying authentication module\"):msg@>",
-         "msg_id" : "F5_BigIP:user_not_authenticated",
          "table" : "Message",
+         "id" : "user_not_authenticated",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> httpd(pam_unix)[<@NUMBER:NULL@>]: <@REGEXP(\"authentication failure; logname=.+\"):msg@>",
-         "msg_id" : "F5_BigIP:authentication_failure",
          "table" : "Message",
+         "id" : "authentication_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"AUDIT - user \\S+ - transaction .+ - create_if { .+ }\"):msg@>",
-         "msg_id" : "F5_BigIP:create_if",
          "table" : "Message",
+         "id" : "create_if",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"DB changed: \\S+, configsync needed\"):msg@> ",
-         "msg_id" : "F5_BigIP:configsync_needed",
          "table" : "Message",
+         "id" : "configsync_needed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\".+ feature not licensed.\"):msg@> ",
-         "msg_id" : "F5_BigIP:feature_not_licensed",
          "table" : "Message",
+         "id" : "feature_not_licensed",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Pool member\"):object@> <@IP_ADDR:address@>:<@NUMBER:port@> session status <@STRING:status@>. ",
-         "msg_id" : "F5_BigIP:pool_member_status",
          "table" : "F5_BigIP_Monitor",
+         "id" : "pool_member_status",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bigpipe: <@REGEXP(\"Begin config sync .+ operation\"):msg@>",
-         "msg_id" : "F5_BigIP:begin_config_sync",
          "table" : "Message",
+         "id" : "begin_config_sync",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bigpipe: <@REGEXP(\"Completed config sync .+ operation\"):msg@>",
-         "msg_id" : "F5_BigIP:completed_config_sync",
          "table" : "Message",
+         "id" : "completed_config_sync",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> httpd[<@NUMBER:NULL@>]: [error] <@REGEXP(\".+ Error connecting to tomcat .+\"):msg@>",
-         "msg_id" : "F5_BigIP:error_connecting_tomcat",
          "table" : "Message",
+         "id" : "error_connecting_tomcat",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@WORD:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Limiting open port RST response from \\d+ to \\d+ packets/sec\"):msg@>",
-         "msg_id" : "F5_BigIP:limiting_rst_response",
          "table" : "Message",
+         "id" : "limiting_rst_response",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm tmm[<@NUMBER:NULL@>]: <@WORD:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Limiting icmp unreach response from \\d+ to \\d+ packets/sec\"):msg@> ",
-         "msg_id" : "F5_BigIP:limiting_icmp_response",
          "table" : "Message",
+         "id" : "limiting_icmp_response",
          "taxonomy" : "Network",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bigpipe: <@WORD:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"The configuration was successfully loaded.\"):msg@> ",
-         "msg_id" : "F5_BigIP:config_successfully_loaded",
          "table" : "Message",
+         "id" : "config_successfully_loaded",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"evWrite finished with no byte sent to connection .+ - connection deleted.\"):msg@>",
-         "msg_id" : "F5_BigIP:evwrite_no_byte_sent",
          "table" : "Message",
+         "id" : "evwrite_no_byte_sent",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> httpd(pam_unix)[<@NUMBER:NULL@>]: <@REGEXP(\"bad username \\[\\]\"):msg@>",
-         "msg_id" : "F5_BigIP:bad_username",
          "table" : "Message",
+         "id" : "bad_username",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Node\"):object@> <@IP_ADDR:address@> session status <@WORD:status@>.",
-         "msg_id" : "F5_BigIP:node_session_status",
          "table" : "F5_BigIP_Monitor",
+         "id" : "node_session_status",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@WORD:NULL@>: <@REGEXP(\"MCP Daemon's extreme DB storage extended by \\d+ bytes, now using a total of \\d+ bytes\"):msg@> ",
-         "msg_id" : "F5_BigIP:db_storage_extended",
          "table" : "Message",
+         "id" : "db_storage_extended",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@WORD:NULL@>: <@REGEXP(\"Attempting to write an auth configuration to .+\"):msg@>",
-         "msg_id" : "F5_BigIP:attempting_write_auth_configuration",
          "table" : "Message",
+         "id" : "attempting_write_auth_configuration",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bigpipe: <@REGEXP(\"Begin config install operation: \\S+\"):msg@>",
-         "msg_id" : "F5_BigIP:config_install_begin",
          "table" : "Message",
+         "id" : "config_install_begin",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bigpipe: <@REGEXP(\"Completed config install operation\"):msg@> ",
-         "msg_id" : "F5_BigIP:config_install_completed",
          "table" : "Message",
+         "id" : "config_install_completed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"last message repeated \\d+ times\"):msg@>",
-         "msg_id" : "F5_BigIP:last_message_repeated",
          "table" : "Message",
+         "id" : "last_message_repeated",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm tmm[<@NUMBER:NULL@>]: <@REGEXP(\"\\S+: repeated \\d+ time.+\"):msg@> ",
-         "msg_id" : "F5_BigIP:tmm_repeated_times",
          "table" : "Message",
+         "id" : "tmm_repeated_times",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm tmm[<@NUMBER:NULL@>]: <@REGEXP(\"\\S+: http_process_state_prepend - Invalid action \\S+ during \\S+\"):msg@>",
-         "msg_id" : "F5_BigIP:http_invalid_action",
          "table" : "Message",
+         "id" : "http_invalid_action",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+: STATE:big3d started ===.+\"):msg@>",
-         "msg_id" : "F5_BigIP:big3d_started",
          "table" : "Message",
+         "id" : "big3d_started",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"connection .+ was closed with active requests\"):msg@>",
-         "msg_id" : "F5_BigIP:connection_closed_active_requests",
          "table" : "Message",
+         "id" : "connection_closed_active_requests",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"end_transaction message timeout on connection .+\"):msg@> ",
-         "msg_id" : "F5_BigIP:end_transaction_msg_timeout",
          "table" : "Message",
+         "id" : "end_transaction_msg_timeout",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bigpipe: <@REGEXP(\".+: Error running configsync\"):msg@>",
-         "msg_id" : "F5_BigIP:error_running_configsync",
          "table" : "Message",
+         "id" : "error_running_configsync",
          "taxonomy" : "System.Errors",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+: \\S+: Unable to set configsync.peerconfigtimeraw:\\d+\"):msg@> ",
-         "msg_id" : "F5_BigIP:unable_set_configsync",
          "table" : "Message",
+         "id" : "unable_set_configsync",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> statsd: <@REGEXP(\"\\S+: Error 'illegal attempt to update using time \\d+ when last update time is \\d+ .+\"):msg@>",
-         "msg_id" : "F5_BigIP:illegal_update_time",
          "table" : "Message",
+         "id" : "illegal_update_time",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"\\S+ event in rule \\S+ requires an associated .+ profile on the virtual server \\S+.\"):msg@>",
-         "msg_id" : "F5_BigIP:event_requires_profile",
          "table" : "Message",
+         "id" : "event_requires_profile",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> cssd: <@REGEXP(\"\\S+: Error execing peerStatus script: \\d+\"):msg@>",
-         "msg_id" : "F5_BigIP:error_execing_script",
          "table" : "Message",
+         "id" : "error_execing_script",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Pool .+ is referenced by one or more virtual servers\"):msg@> ",
-         "msg_id" : "F5_BigIP:pool_multi_referenced",
          "table" : "Message",
+         "id" : "pool_multi_referenced",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> httpd[<@NUMBER:NULL@>]: <@REGEXP(\"pam_radius_auth: RADIUS server \\S+ failed to respond\"):msg@> ",
-         "msg_id" : "F5_BigIP:radius_failed_respond",
          "table" : "Message",
+         "id" : "radius_failed_respond",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"AUDIT - user \\S+ - transaction .+ - modify { .+ }\"):msg@> ",
-         "msg_id" : "F5_BigIP:object_modify",
          "table" : "Message",
+         "id" : "object_modify",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\".+ initialization phase triggered.\"):msg@> ",
-         "msg_id" : "F5_BigIP:initialization_phase_triggered",
          "table" : "Message",
+         "id" : "initialization_phase_triggered",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pvad[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Resetting PVA i/o channel after \\d+ failed retries.\"):msg@> ",
-         "msg_id" : "F5_BigIP:resetting_pva_io_channel",
          "table" : "Message",
+         "id" : "resetting_pva_io_channel",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> fpdd[<@NUMBER:NULL@>]: <@REGEXP(\".+: HalOpen: sendMessage failed\"):msg@> ",
-         "msg_id" : "F5_BigIP:halopen_sendmsg_failed",
          "table" : "Message",
+         "id" : "halopen_sendmsg_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> fpdd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Cannot open HAL\"):msg@>",
-         "msg_id" : "F5_BigIP:cannot_open_hal",
          "table" : "Message",
+         "id" : "cannot_open_hal",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Removed publication with publisher id .+\"):msg@>",
-         "msg_id" : "F5_BigIP:removed_publication",
          "table" : "Message",
+         "id" : "removed_publication",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Removed subscription with subscriber id .+\"):msg@>",
-         "msg_id" : "F5_BigIP:removed_subscription",
          "table" : "Message",
+         "id" : "removed_subscription",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> fpdd[<@NUMBER:NULL@>]: <@REGEXP(\".+: HAL API returned .+\"):msg@>",
-         "msg_id" : "F5_BigIP:hal_api_returned",
          "table" : "Message",
+         "id" : "hal_api_returned",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> fpdd[<@NUMBER:NULL@>]: <@REGEXP(\".+: HalmsgTerminalImpl_::sendMessage\\(\\) Unable to send to any .+ address\"):msg@>",
-         "msg_id" : "F5_BigIP:halmsg_terminal_impl",
          "table" : "Message",
+         "id" : "halmsg_terminal_impl",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd: <@REGEXP(\".+: AUDIT - user \\S+ - transaction .+ - modify { .+ }\"):msg@> ",
-         "msg_id" : "F5_BigIP:object_modify2",
          "table" : "Message",
+         "id" : "object_modify2",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd<@REGEXP(\".+: Add a new Publication for publisherID .+\"):msg@>",
-         "msg_id" : "F5_BigIP:add_new_publication",
          "table" : "Message",
+         "id" : "add_new_publication",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd<@REGEXP(\".+: Add a new Subscription for subscriberID .+\"):msg@>",
-         "msg_id" : "F5_BigIP:add_new_subscription",
          "table" : "Message",
+         "id" : "add_new_subscription",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Initialization complete.  The MCP is up and running\"):msg@>",
-         "msg_id" : "F5_BigIP:mcp_up_running",
          "table" : "Message",
+         "id" : "mcp_up_running",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> fpdd[<@NUMBER:NULL@>]: <@REGEXP(\"\\S+: halAnnunciatorSet: .+\"):msg@>",
-         "msg_id" : "F5_BigIP:halannunciatorset_msg",
          "table" : "Message",
+         "id" : "halannunciatorset_msg",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> chmand<@REGEXP(\".+: Registered .+ as a publisher .+\"):msg@>",
-         "msg_id" : "F5_BigIP:registered_as_publisher",
          "table" : "Message",
+         "id" : "registered_as_publisher",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> logger: <@REGEXP(\".+ Unable to get peers local time\"):msg@> ",
-         "msg_id" : "F5_BigIP:unable_get_peers_time",
          "table" : "Message",
+         "id" : "unable_get_peers_time",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> logger: <@REGEXP(\".+POST .+ HTTP.+\"):msg@>",
-         "msg_id" : "F5_BigIP:post_http",
          "table" : "Message",
+         "id" : "post_http",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> logger: <@REGEXP(\".+GET .+ HTTP.+\"):msg@>",
-         "msg_id" : "F5_BigIP:get_http",
          "table" : "Message",
+         "id" : "get_http",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> httpd[<@NUMBER:NULL@>]: <@REGEXP(\"[warn] .+ AUTHCACHE Error processing cookie .+\"):msg@>",
-         "msg_id" : "F5_BigIP:autcache_error_processing_cookie",
          "table" : "Message",
+         "id" : "autcache_error_processing_cookie",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\"Rule .+: .+\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_rule",
          "table" : "Message",
+         "id" : "tmm_rule",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\S+: Starting tomcat4\"):msg@> ",
-         "msg_id" : "F5_BigIP:starting_tomcat4",
          "table" : "Message",
+         "id" : "starting_tomcat4",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+pam_bigip_authz: couldn't open .+, returning notfound\"):msg@>",
-         "msg_id" : "F5_BigIP:pam_bigip_authz_error",
          "table" : "Message",
+         "id" : "pam_bigip_authz_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+HA Connection with peer .+ lost.\"):msg@> ",
-         "msg_id" : "F5_BigIP:ha_connection_peer_lost",
          "table" : "Message",
+         "id" : "ha_connection_peer_lost",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+HA Connection with peer .+ established.\"):msg@> ",
-         "msg_id" : "F5_BigIP:ha_connection_peer_established",
          "table" : "Message",
+         "id" : "ha_connection_peer_established",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+Limiting closed port RST response .+\"):msg@>",
-         "msg_id" : "F5_BigIP:limiting_closed_port_response",
          "table" : "Message",
+         "id" : "limiting_closed_port_response",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Limiting icmp unreach response .+\"):msg@>",
-         "msg_id" : "F5_BigIP:limiting_icmp_unreach_response",
          "table" : "Message",
+         "id" : "limiting_icmp_unreach_response",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bcm56xxd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Link: .+ is DOWN\"):msg@> ",
-         "msg_id" : "F5_BigIP:link_down",
          "table" : "Message",
+         "id" : "link_down",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bcm56xxd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Link: .+ is UP\"):msg@> ",
-         "msg_id" : "F5_BigIP:link_up",
          "table" : "Message",
+         "id" : "link_up",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> subsnmpd[<@NUMBER:NULL@>]: <@REGEXP(\"subsnmpd subagent is up.\"):msg@> ",
-         "msg_id" : "F5_BigIP:subsnmpd_subagent_up",
          "table" : "Message",
+         "id" : "subsnmpd_subagent_up",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> rmonsnmpd[<@NUMBER:NULL@>]: <@REGEXP(\"rmonsnmpd subagent is up.\"):msg@> ",
-         "msg_id" : "F5_BigIP:rmonsnmpd_subagent_up",
          "table" : "Message",
+         "id" : "rmonsnmpd_subagent_up",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Add Self IP: .+\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_add_self_ip",
          "table" : "Message",
+         "id" : "tmm_add_self_ip",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Created vlan .+\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_created_vlan",
          "table" : "Message",
+         "id" : "tmm_created_vlan",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Added tagged trunk .+\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_added_tagged_trunk",
          "table" : "Message",
+         "id" : "tmm_added_tagged_trunk",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Interface .+ added to trunk .+\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_interface_added_trunk",
          "table" : "Message",
+         "id" : "tmm_interface_added_trunk",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Vlan .+ - \\w+ mac .+\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_vlan_mac",
          "table" : "Message",
+         "id" : "tmm_vlan_mac",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+ no IPv6 routers present\"):msg@> ",
-         "msg_id" : "F5_BigIP:no_ipv6_routers",
          "table" : "Message",
+         "id" : "no_ipv6_routers",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Trunk .+ initialized\"):msg@> ",
-         "msg_id" : "F5_BigIP:tmm_trunk_initialized",
          "table" : "Message",
+         "id" : "tmm_trunk_initialized",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Interface .+ - device .+\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_interface_device",
          "table" : "Message",
+         "id" : "tmm_interface_device",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Trunk .+ - \\d+ links active\"):msg@> ",
-         "msg_id" : "F5_BigIP:tmm_trunk_links_active",
          "table" : "Message",
+         "id" : "tmm_trunk_links_active",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Vlan .+ - failsafe disabled.+\"):msg@>",
-         "msg_id" : "F5_BigIP:tmm_vlan_failsafe_disabled",
          "table" : "Message",
+         "id" : "tmm_vlan_failsafe_disabled",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sod: .+: Toggle from .+ to .+\"):msg@>",
-         "msg_id" : "F5_BigIP:sod_toggle_from_to",
          "table" : "Message",
+         "id" : "sod_toggle_from_to",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> SubDomain: <@REGEXP(\"REJECTING access to capability .+\"):msg@>",
-         "msg_id" : "F5_BigIP:subdomain_rejecting_capability_access",
          "table" : "Message",
+         "id" : "subdomain_rejecting_capability_access",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> SubDomain: <@REGEXP(\"REJECTING .+ access to .+\"):msg@>",
-         "msg_id" : "F5_BigIP:subdomain_rejecting_access_to",
          "table" : "Message",
+         "id" : "subdomain_rejecting_access_to",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Cookie persistence requires an HTTP profile to be associated with the virtual server\"):msg@> ",
-         "msg_id" : "F5_BigIP:cookie_persistence_requires_httpprofile",
          "table" : "Message",
+         "id" : "cookie_persistence_requires_httpprofile",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+snmpd\"):NULL@>[<@NUMBER:NULL@>]: <@REGEXP(\"AgentX master agent failed to respond to ping.  Attempting to re-register.\"):msg@> ",
-         "msg_id" : "F5_BigIP:agentx_failed_to_respond",
          "table" : "Message",
+         "id" : "agentx_failed_to_respond",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> logger: <@REGEXP(\".+: Disk partition .+ has less than 40% free\"):msg@> ",
-         "msg_id" : "F5_BigIP:disk_partition_less_free",
          "table" : "Message",
+         "id" : "disk_partition_less_free",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bigpipe: <@REGEXP(\".+: Error running config sync all\"):msg@>",
-         "msg_id" : "F5_BigIP:error_config_sync_all",
          "table" : "Message",
+         "id" : "error_config_sync_all",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@REGEXP(\".+: .+ profile on .+ cannot be used with persistence.\"):msg@> ",
-         "msg_id" : "F5_BigIP:profile_cant_use_persistence",
          "table" : "Message",
+         "id" : "profile_cant_use_persistence",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> lacpd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Link .+ removed from aggregation.*\"):msg@> ",
-         "msg_id" : "F5_BigIP:link_removed_from_aggregation",
          "table" : "Message",
+         "id" : "link_removed_from_aggregation",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> lacpd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Link .+ added to aggregation.*\"):msg@> ",
-         "msg_id" : "F5_BigIP:link_added_to_aggregation",
          "table" : "Message",
+         "id" : "link_added_to_aggregation",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> lacpd[<@NUMBER:NULL@>]: <@REGEXP(\".+: Link .+ Out of Sync.*\"):msg@>",
-         "msg_id" : "F5_BigIP:link_out_of_sync",
          "table" : "Message",
+         "id" : "link_out_of_sync",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> iControlPortal.cgi[<@NUMBER:NULL@>]: <@REGEXP(\"f5km_init.+\"):msg@>",
-         "msg_id" : "F5_BigIP:icontrolportal_f5km_init",
          "table" : "Message",
+         "id" : "icontrolportal_f5km_init",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> iControlPortal.cgi[<@NUMBER:NULL@>]: <@REGEXP(\"f5km_shutdown.+\"):msg@>",
-         "msg_id" : "F5_BigIP:icontrolportal_f5km_shutdown",
          "table" : "Message",
+         "id" : "icontrolportal_f5km_shutdown",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"root: Starting .*snmpd\"):msg@> ",
-         "msg_id" : "F5_BigIP:starting_snmpd",
          "table" : "Message",
+         "id" : "starting_snmpd",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: HTTP header .+ exceeded maximum allowed size .+\"):msg@>",
-         "msg_id" : "F5_BigIP:http_header_exceeded_size",
          "table" : "Message",
+         "id" : "http_header_exceeded_size",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> bigd: <@REGEXP(\".+ Health check would route via .+ Check routing table.\"):msg@> ",
-         "msg_id" : "F5_BigIP:error_check_routing_table",
          "table" : "Message",
+         "id" : "error_check_routing_table",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Out of Memory: Killed process .+\"):msg@>",
-         "msg_id" : "F5_BigIP:out_of_memory",
          "table" : "Message",
+         "id" : "out_of_memory",
          "taxonomy" : "System.Errors",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pvad[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"SDRAM size is .+\"):msg@>",
-         "msg_id" : "F5_BigIP:sdram_size",
          "table" : "Message",
+         "id" : "sdram_size",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Interface \\S+ not found\"):msg@> ",
-         "msg_id" : "F5_BigIP:tmm_interface_not_found",
          "table" : "Message",
+         "id" : "tmm_interface_not_found",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"Rule .+ error: .+\"):msg@>",
-         "msg_id" : "F5_BigIP:mcpd_rule_error",
          "table" : "Message",
+         "id" : "mcpd_rule_error",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Zone:\\w+ freepages: .+ min: .+ low: .+ high:   .+\"):msg@>",
-         "msg_id" : "F5_BigIP:zone_freepages",
          "table" : "Message",
+         "id" : "zone_freepages",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Swap cache: .+\"):msg@>",
-         "msg_id" : "F5_BigIP:swap_cache_info",
          "table" : "Message",
+         "id" : "swap_cache_info",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\d+ pages of RAM\"):msg@> ",
-         "msg_id" : "F5_BigIP:pages_of_ram",
          "table" : "Message",
+         "id" : "pages_of_ram",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\d+ pages of .+\"):msg@>",
-         "msg_id" : "F5_BigIP:memory_pages_of",
          "table" : "Message",
+         "id" : "memory_pages_of",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> mcpd[<@NUMBER:NULL@>]: <@NUMBER:NULL@>:<@NUMBER:NULL@>: <@REGEXP(\"AUDIT - user \\S+ - transaction .+ - modify_delete { .+ }\"):msg@>",
-         "msg_id" : "F5_BigIP:object_modify_delete",
          "table" : "Message",
+         "id" : "object_modify_delete",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: No members available for pool .+\"):msg@>",
-         "msg_id" : "F5_BigIP:no_members_available_pool",
          "table" : "Message",
+         "id" : "no_members_available_pool",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+: someone advertises our address!\"):msg@> ",
-         "msg_id" : "F5_BigIP:someone_advertises_our_address",
          "table" : "Message",
+         "id" : "someone_advertises_our_address",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+: duplicate address detected!\"):msg@> ",
-         "msg_id" : "F5_BigIP:duplicate_address_detected",
          "table" : "Message",
+         "id" : "duplicate_address_detected",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pvad[<@NUMBER:NULL@>]: <@REGEXP(\".+ PVA Version is .+\"):msg@>",
-         "msg_id" : "F5_BigIP:pva_version",
          "table" : "Message",
+         "id" : "pva_version",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"root: Re-starting tmm\"):msg@> ",
-         "msg_id" : "F5_BigIP:restarting_tmm",
          "table" : "Message",
+         "id" : "restarting_tmm",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"LOGIN: Bigstart killing service .+\"):msg@>",
-         "msg_id" : "F5_BigIP:bigstart_killing_service",
          "table" : "Message",
+         "id" : "bigstart_killing_service",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> lacpd[<@NUMBER:NULL@>]: <@REGEXP(\".+ - Invalid LACPDU received on .+\"):msg@>",
-         "msg_id" : "F5_BigIP:invalid_lacpdu",
          "table" : "Message",
+         "id" : "invalid_lacpdu",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+ http_process_state_prepend - Invalid action .+\"):msg@>",
-         "msg_id" : "F5_BigIP:http_process_state_prepend",
          "table" : "Message",
+         "id" : "http_process_state_prepend",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+Persistence cookie hash failed\"):msg@> ",
-         "msg_id" : "F5_BigIP:persistence_cookie_hash_failed",
          "table" : "Message",
+         "id" : "persistence_cookie_hash_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> chmand[<@NUMBER:NULL@>]: <@REGEXP(\"\\S+: Initialized .+\"):msg@>",
-         "msg_id" : "F5_BigIP:chmand_initilized_something",
          "table" : "Message",
+         "id" : "chmand_initilized_something",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sod: \\S+: Failover condition, this standby will not be able to go active.\"):msg@> ",
-         "msg_id" : "F5_BigIP:failover_condition_unable_active",
          "table" : "Message",
+         "id" : "failover_condition_unable_active",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sod: \\S+: Failover condition, active attempting to go standby.\"):msg@> ",
-         "msg_id" : "F5_BigIP:failover_condition_attemting_standby",
          "table" : "Message",
+         "id" : "failover_condition_attemting_standby",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> pvad[<@NUMBER:NULL@>]: <@REGEXP(\".+ Tmm disconnected!\"):msg@> ",
-         "msg_id" : "F5_BigIP:tmm_disconnected",
          "table" : "Message",
+         "id" : "tmm_disconnected",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"bigd: .+ Monitoring starts - tmm up.\"):msg@> ",
-         "msg_id" : "F5_BigIP:monitoring_starts_tmm_up",
          "table" : "Message",
+         "id" : "monitoring_starts_tmm_up",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"bigd: .+ Monitoring stops - tmm down.\"):msg@>",
-         "msg_id" : "F5_BigIP:monitoring_stops_tmm_down",
          "table" : "Message",
+         "id" : "monitoring_stops_tmm_down",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       }

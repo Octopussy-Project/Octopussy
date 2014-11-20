@@ -3,148 +3,148 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Registering new address record for .+\"):msg@>",
-         "msg_id" : "Avahi:registering_new_address_record",
          "table" : "Message",
+         "id" : "registering_new_address_record",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Joining mDNS multicast group on .+\"):msg@>",
-         "msg_id" : "Avahi:joining_mdns_multicast_group",
          "table" : "Message",
+         "id" : "joining_mdns_multicast_group",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"New relevant interface .+\"):msg@>",
-         "msg_id" : "Avahi:new_relevant_interface",
          "table" : "Message",
+         "id" : "new_relevant_interface",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Server startup complete. Host name is .+\"):msg@>",
-         "msg_id" : "Avahi:server_startup_complete",
          "table" : "Message",
+         "id" : "server_startup_complete",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"avahi-daemon \\S+ starting up.\"):msg@>",
-         "msg_id" : "Avahi:starting_up",
          "table" : "Message",
+         "id" : "starting_up",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Successfully dropped .+\"):msg@>",
-         "msg_id" : "Avahi:successfully_dropped",
          "table" : "Message",
+         "id" : "successfully_dropped",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Found user.+\\(UID \\d+\\) and group.+\\(GID \\d+\\).\"):msg@>",
-         "msg_id" : "Avahi:found_user_and_group",
          "table" : "Message",
+         "id" : "found_user_and_group",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Network interface enumeration completed.\"):msg@>",
-         "msg_id" : "Avahi:network_interface_enumeration_completed",
          "table" : "Message",
+         "id" : "network_interface_enumeration_completed",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Registering \\w+ record with values .+\"):msg@>",
-         "msg_id" : "Avahi:registering_record_with_walues",
          "table" : "Message",
+         "id" : "registering_record_with_walues",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+quitting.\"):msg@>",
-         "msg_id" : "Avahi:quitting",
          "table" : "Message",
+         "id" : "quitting",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Leaving .+ on interface .+ with address .+\"):msg@>",
-         "msg_id" : "Avahi:leaving_on_interface_with_address",
          "table" : "Message",
+         "id" : "leaving_on_interface_with_address",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Loading service file .+\"):msg@>",
-         "msg_id" : "Avahi:loading_service_file",
          "table" : "Message",
+         "id" : "loading_service_file",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received response with invalid source port .+ on interface .+\"):msg@>",
-         "msg_id" : "Avahi:response_with_invalid_source_port_received",
          "table" : "Message",
+         "id" : "response_with_invalid_source_port_received",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Service group file .+ changed, reloading.\"):msg@>",
-         "msg_id" : "Avahi:service_group_file_changed_reloading",
          "table" : "Message",
+         "id" : "service_group_file_changed_reloading",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Invalid .+ query packet.\"):msg@>",
-         "msg_id" : "Avahi:invalid_query_packet",
          "table" : "Message",
+         "id" : "invalid_query_packet",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Files changed, reloading.\"):msg@>",
-         "msg_id" : "Avahi:files_changed_reloading",
          "table" : "Message",
+         "id" : "files_changed_reloading",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Service .+ successfully established.\"):msg@>",
-         "msg_id" : "Avahi:service_successfully_established",
          "table" : "Message",
+         "id" : "service_successfully_established",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received response from host .+ with invalid source port .+ on interface .+\"):msg@>",
-         "msg_id" : "Avahi:received_response_with_invalid_source_port",
          "table" : "Message",
+         "id" : "received_response_with_invalid_source_port",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ called but no querier to remove.\"):msg@>",
-         "msg_id" : "Avahi:no_querier_to_remove",
          "table" : "Message",
+         "id" : "no_querier_to_remove",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Withdrawing address record for .+ on .+\"):msg@>",
-         "msg_id" : "Avahi:withdrawing_address_record_for_ip_on_interface",
          "table" : "Message",
+         "id" : "withdrawing_address_record_for_ip_on_interface",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"avahi-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Interface .+ no longer relevant for mDNS.\"):msg@>",
-         "msg_id" : "Avahi:interface_no_longer_relevant_for_mDNS",
          "table" : "Message",
+         "id" : "interface_no_longer_relevant_for_mDNS",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

@@ -3,36 +3,36 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] [error] [client <@IP_ADDR:client@>] ModSecurity: <@STRING:msg@> [id \"<@NUMBER:msg_id@>\"] [msg \"<@STRING:msg_category@>\"] [severity \"<@WORD:severity@>\"] [hostname \"<@WORD:hostname@>\"] [uri \"<@STRING:uri@>\"] [unique_id \"<@WORD:unique_id@>\"]",
-         "msg_id" : "Apache_Mod_Security:access_denied",
          "table" : "Apache_Mod_Security",
+         "id" : "access_denied",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] [error] [client <@IP_ADDR:client@>] ModSecurity: <@REGEXP(\"Error reading request body: .+\"):msg@> [hostname \"<@WORD:hostname@>\"] [uri \"<@STRING:uri@>\"] [unique_id \"<@WORD:unique_id@>\"]",
-         "msg_id" : "Apache_Mod_Security:error_reading_request_body",
          "table" : "Apache_Mod_Security",
+         "id" : "error_reading_request_body",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] \\[client .+\\] client denied by server configuration.*\"):msg@>",
-         "msg_id" : "Apache_Mod_Security:client_denied_server_configuration",
          "table" : "Message",
+         "id" : "client_denied_server_configuration",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] \\[client .+\\] File does not exist: .+\"):msg@>",
-         "msg_id" : "Apache_Mod_Security:file_does_not_exist",
          "table" : "Message",
+         "id" : "file_does_not_exist",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> [<@DATE_TIME_APACHE_ERROR:apachetime@>] <@REGEXP(\"\\[error\\] \\[client .+\\] request failed: error reading the headers.*\"):msg@>",
-         "msg_id" : "Apache_Mod_Security:error_reading_headers",
          "table" : "Message",
+         "id" : "error_reading_headers",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       }

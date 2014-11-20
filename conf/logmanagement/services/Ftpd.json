@@ -2,43 +2,43 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection from .+ at .+\"):msg@>",
-         "msg_id" : "Ftpd:connection_from",
          "table" : "Message",
+         "id" : "connection_from",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"FTP LOGIN FROM .+\"):msg@>",
-         "msg_id" : "Ftpd:ftp_login_from",
          "table" : "Message",
+         "id" : "ftp_login_from",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*Couldn't open \\/etc\\/ftpusers\"):msg@>",
-         "msg_id" : "Ftpd:couldnt_open_etc_ftpusers",
          "table" : "Message",
+         "id" : "couldnt_open_etc_ftpusers",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: Transport endpoint is not connected\"):msg@>",
-         "msg_id" : "Ftpd:transport_endpoint_not_connected",
          "table" : "Message",
+         "id" : "transport_endpoint_not_connected",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: conversation failed\"):msg@>",
-         "msg_id" : "Ftpd:conversation_failed",
          "table" : "Message",
+         "id" : "conversation_failed",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"User \\S+ timed out after \\d+ seconds.*\"):msg@>",
-         "msg_id" : "Ftpd:user_timed_out",
          "table" : "Message",
+         "id" : "user_timed_out",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

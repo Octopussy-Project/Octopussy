@@ -3,36 +3,36 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ReiserFS: \\S+: found reiserfs format .+\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Reiser:found_reiserfs_format",
          "table" : "Message",
+         "id" : "found_reiserfs_format",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ReiserFS: \\S+: using ordered data mode\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Reiser:using_ordered_data_mode",
          "table" : "Message",
+         "id" : "using_ordered_data_mode",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ReiserFS: \\S+: journal params: device \\S+, size \\d+, .+\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Reiser:journal_params",
          "table" : "Message",
+         "id" : "journal_params",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ReiserFS: \\S+: checking transaction log.*\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Reiser:checking_transaction_log",
          "table" : "Message",
+         "id" : "checking_transaction_log",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ReiserFS: \\S+: Using \\S+ hash to sort names\"):msg@>",
-         "msg_id" : "Linux_Kernel_FS_Reiser:using_hash_sort_names",
          "table" : "Message",
+         "id" : "using_hash_sort_names",
          "taxonomy" : "System",
          "loglevel" : "Information"
       }

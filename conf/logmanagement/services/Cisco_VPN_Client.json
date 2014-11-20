@@ -3,15 +3,15 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"vpnc\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"select: Interrupted system call\"):msg@>",
-         "msg_id" : "Cisco_VPN_Client:interrupted_system_call",
          "table" : "Message",
+         "id" : "interrupted_system_call",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"vpnc\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection terminated by peer\"):msg@>",
-         "msg_id" : "Cisco_VPN_Client:connection_terminated_by_peer",
          "table" : "Message",
+         "id" : "connection_terminated_by_peer",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

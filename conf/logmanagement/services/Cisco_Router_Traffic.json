@@ -3,29 +3,29 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SEC-6-IPACCESSLOGP\"):msg_id@>: list <@WORD:acl@> <@WORD:status@> <@WORD:protocol@> <@IP_ADDR:src_addr@>(<@NUMBER:src_port@>) -> <@IP_ADDR:dst_addr@>(<@NUMBER:dst_port@>), <@NUMBER:nb_packets@> <@REGEXP(\"packet.*\"):NULL@>",
-         "msg_id" : "Cisco_Router_Traffic:traffic1",
          "table" : "Cisco_Router_traffic",
+         "id" : "traffic1",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SEC-6-IPACCESSLOGDP\"):msg_id@>: list <@WORD:acl@> <@WORD:status@> <@WORD:protocol@> <@IP_ADDR:src_addr@> -> <@IP_ADDR:dst_addr@> (<@NUMBER:NULL@>/<@NUMBER:NULL@>), <@NUMBER:nb_packets@> <@REGEXP(\"packet.*\"):NULL@>",
-         "msg_id" : "Cisco_Router_Traffic:traffic2",
          "table" : "Cisco_Router_traffic",
+         "id" : "traffic2",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SEC-6-IPACCESSLOGNP\"):msg_id@>: list <@WORD:acl@> <@WORD:status@> <@WORD:protocol@> <@IP_ADDR:src_addr@> -> <@IP_ADDR:dst_addr@>, <@NUMBER:nb_packets@> <@REGEXP(\"packet.*\"):NULL@>",
-         "msg_id" : "Cisco_Router_Traffic:traffic3",
          "table" : "Cisco_Router_traffic",
+         "id" : "traffic3",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SEC-6-IPACCESSLOGS\"):msg_id@>: list <@WORD:acl@> <@WORD:status@> <@IP_ADDR:src_addr@> <@NUMBER:nb_packets@> <@REGEXP(\"packet.*\"):NULL@>",
-         "msg_id" : "Cisco_Router_Traffic:traffic4",
          "table" : "Cisco_Router_traffic",
+         "id" : "traffic4",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       }

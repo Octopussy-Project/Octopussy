@@ -3,8 +3,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> dcc[<@NUMBER:NULL@>]: <@STRING:NULL@>: [SECEV] Request violations: <@STRING:request_violations@> support id: <@NUMBER:support_id@>, source ip: <@IP_ADDR:src_ip@>, xff ip: <@IP_ADDR:NULL@>, HTTP classifier: <@STRING:http_classifier@> request: <@STRING:request@>",
-         "msg_id" : "F5_BigIP_ASM_Filtering:secev_request_violations",
          "table" : "F5_BigIP_ASM_Filtering",
+         "id" : "secev_request_violations",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Notice"
       }

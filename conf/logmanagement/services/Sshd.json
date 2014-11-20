@@ -2,617 +2,617 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*session .+ for user .+\"):msg@>",
-         "msg_id" : "Sshd:session_for_user",
          "table" : "Message",
+         "id" : "session_for_user",
          "taxonomy" : "Auth",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Accepted publickey for .+\"):msg@>",
-         "msg_id" : "Sshd:accepted_publickey",
          "table" : "Message",
+         "id" : "accepted_publickey",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]:   <@REGEXP(\".*authentication failure;.+\"):msg@>",
-         "msg_id" : "Sshd:authentication_failure",
          "table" : "Message",
+         "id" : "authentication_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Accepted password for .+\"):msg@>",
-         "msg_id" : "Sshd:accepted_password",
          "table" : "Message",
+         "id" : "accepted_password",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: .+\"):msg@>",
-         "msg_id" : "Sshd:nss_ldap_msg",
          "table" : "Message",
+         "id" : "nss_ldap_msg",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ more authentication failure.+\"):msg@>",
-         "msg_id" : "Sshd:more_authentication_failure",
          "table" : "Message",
+         "id" : "more_authentication_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Accepted keyboard-interactive/pam for \\S+ from \\S+ port .+\"):msg@>",
-         "msg_id" : "Sshd:accepted_keyboard_interactive",
          "table" : "Message",
+         "id" : "accepted_keyboard_interactive",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: Authentication failure for .+\"):msg@>",
-         "msg_id" : "Sshd:pam_auth_failure",
          "table" : "Message",
+         "id" : "pam_auth_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Could not reverse map address \\S+\"):msg@>",
-         "msg_id" : "Sshd:couldnt_reverse_address",
          "table" : "Message",
+         "id" : "couldnt_reverse_address",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"subsystem request for sftp\"):msg@> ",
-         "msg_id" : "Sshd:subsystem_request_sftp",
          "table" : "Message",
+         "id" : "subsystem_request_sftp",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Connection closed by \\S+\"):msg@>",
-         "msg_id" : "Sshd:connection_closed",
          "table" : "Message",
+         "id" : "connection_closed",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ POSSIBLE BREAKIN ATTEMPT!\"):msg@>",
-         "msg_id" : "Sshd:possible_breakin_attempt",
          "table" : "Message",
+         "id" : "possible_breakin_attempt",
          "taxonomy" : "Attack",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: Have exhasted maximum number of retries for service.+\"):msg@>",
-         "msg_id" : "Sshd:pam_maximum_retries",
          "table" : "Message",
+         "id" : "pam_maximum_retries",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: error trying to bind as user .+\"):msg@>",
-         "msg_id" : "Sshd:pam_error_trying_bind",
          "table" : "Message",
+         "id" : "pam_error_trying_bind",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Failed password for .+ from .+\"):msg@>",
-         "msg_id" : "Sshd:failed_password",
          "table" : "Message",
+         "id" : "failed_password",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"lastlog_filetype: Couldn't stat .+: No such file or directory\"):msg@> ",
-         "msg_id" : "Sshd:lastlog_filetype_error",
          "table" : "Message",
+         "id" : "lastlog_filetype_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Illegal user .+\"):msg@>",
-         "msg_id" : "Sshd:illegal_user",
          "table" : "Message",
+         "id" : "illegal_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Failed publickey for .+ from .+\"):msg@>",
-         "msg_id" : "Sshd:failed_publickey",
          "table" : "Message",
+         "id" : "failed_publickey",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received disconnect from .+\"):msg@> ",
-         "msg_id" : "Sshd:received_disconnect_from",
          "table" : "Message",
+         "id" : "received_disconnect_from",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Did not receive identification string from .+\"):msg@>",
-         "msg_id" : "Sshd:didnot_receive_identification_string",
          "table" : "Message",
+         "id" : "didnot_receive_identification_string",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Bad protocol version identification .+\"):msg@>",
-         "msg_id" : "Sshd:bad_protocol_version_identification",
          "table" : "Message",
+         "id" : "bad_protocol_version_identification",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Failed \\S+ for invalid user .+\"):msg@>",
-         "msg_id" : "Sshd:failed_for_invalid_user",
          "table" : "Message",
+         "id" : "failed_for_invalid_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Invalid user .+\"):msg@>",
-         "msg_id" : "Sshd:invalid_user",
          "table" : "Message",
+         "id" : "invalid_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Failed keyboard-interactive.+\"):msg@>",
-         "msg_id" : "Sshd:failed_keyboard_interactive",
          "table" : "Message",
+         "id" : "failed_keyboard_interactive",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: Authentication service cannot retrieve authentication info.+\"):msg@>",
-         "msg_id" : "Sshd:pam_cannot_retrieve_info",
          "table" : "Message",
+         "id" : "pam_cannot_retrieve_info",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*service(ssh.*) ignoring max retries;.+\"):msg@>",
-         "msg_id" : "Sshd:ignoring_max_retries",
          "table" : "Message",
+         "id" : "ignoring_max_retries",
          "taxonomy" : "Auth",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received signal \\d+; terminating.\"):msg@> ",
-         "msg_id" : "Sshd:received_signal_terminating",
          "table" : "Message",
+         "id" : "received_signal_terminating",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Server listening on \\S+ port \\d+.\"):msg@> ",
-         "msg_id" : "Sshd:server_listening_on",
          "table" : "Message",
+         "id" : "server_listening_on",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>: <@REGEXP(\"sshd -TERM succeeded\"):msg@>",
-         "msg_id" : "Sshd:sshd_term_succeeded",
          "table" : "Message",
+         "id" : "sshd_term_succeeded",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>: <@REGEXP(\".+succeeded\"):msg@>",
-         "msg_id" : "Sshd:succeeded",
          "table" : "Message",
+         "id" : "succeeded",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>: <@REGEXP(\"Starting sshd:.*\"):msg@> ",
-         "msg_id" : "Sshd:starting_sshd",
          "table" : "Message",
+         "id" : "starting_sshd",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Failed \\S+ for \\S+ from .+\"):msg@>",
-         "msg_id" : "Sshd:failed_from",
          "table" : "Message",
+         "id" : "failed_from",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>: <@REGEXP(\"...60G.\"):msg@>   ",
-         "msg_id" : "Sshd:60G",
          "table" : "Message",
+         "id" : "60G",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Cannot release PAM authentication\\[\\d+\\]: System error\"):msg@> ",
-         "msg_id" : "Sshd:cannot_release_pam",
          "table" : "Message",
+         "id" : "cannot_release_pam",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: ldap_result Timed out\"):msg@>",
-         "msg_id" : "Sshd:ldap_result_timed_out",
          "table" : "Message",
+         "id" : "ldap_result_timed_out",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: .+ Can't contact LDAP server\"):msg@>",
-         "msg_id" : "Sshd:cant_contact_ldap_server",
          "table" : "Message",
+         "id" : "cant_contact_ldap_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"fatal: PAM session setup failed\\S+: Cannot make/remove an entry for the specified session\"):msg@>",
-         "msg_id" : "Sshd:cannot_make_entry_session",
          "table" : "Message",
+         "id" : "cannot_make_entry_session",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM rejected by account configuration.+\"):msg@>",
-         "msg_id" : "Sshd:pam_rejected",
          "table" : "Message",
+         "id" : "pam_rejected",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"fatal: .+\"):msg@>",
-         "msg_id" : "Sshd:fatal_error",
          "table" : "Message",
+         "id" : "fatal_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Authentication refused: .+\"):msg@>",
-         "msg_id" : "Sshd:authentication_refused",
          "table" : "Message",
+         "id" : "authentication_refused",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ROOT LOGIN REFUSED FROM .+\"):msg@>",
-         "msg_id" : "Sshd:root_login_refused_from",
          "table" : "Message",
+         "id" : "root_login_refused_from",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM unable to resolve symbol: .+\"):msg@>",
-         "msg_id" : "Sshd:pam_unable_resolve_symbol",
          "table" : "Message",
+         "id" : "pam_unable_resolve_symbol",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: Permission denied for .+\"):msg@>",
-         "msg_id" : "Sshd:pam_permission_denied",
          "table" : "Message",
+         "id" : "pam_permission_denied",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: Module is unknown for .+\"):msg@>",
-         "msg_id" : "Sshd:pam_module_unknown",
          "table" : "Message",
+         "id" : "pam_module_unknown",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: subsystem: cannot stat .+ No such file or directory\"):msg@> ",
-         "msg_id" : "Sshd:no_such_file",
          "table" : "Message",
+         "id" : "no_such_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*check pass; user unknown\"):msg@>",
-         "msg_id" : "Sshd:check_pass_user_unknown",
          "table" : "Message",
+         "id" : "check_pass_user_unknown",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: Success for .+\"):msg@>",
-         "msg_id" : "Sshd:pam_success",
          "table" : "Message",
+         "id" : "pam_success",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"lastlog_openseek: .+ is not a file or directory!\"):msg@> ",
-         "msg_id" : "Sshd:lastlog_openseek_error",
          "table" : "Message",
+         "id" : "lastlog_openseek_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"User .+ not allowed because account is locked\"):msg@> ",
-         "msg_id" : "Sshd:account_is_locked",
          "table" : "Message",
+         "id" : "account_is_locked",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"fatal: Timeout before authentication .+\"):msg@>",
-         "msg_id" : "Sshd:timeout_before_authentication",
          "table" : "Message",
+         "id" : "timeout_before_authentication",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"reverse mapping checking .+ failed - POSSIBLE BREAKIN ATTEMPT!\"):msg@> ",
-         "msg_id" : "Sshd:reverse_mapping_checking_failed",
          "table" : "Message",
+         "id" : "reverse_mapping_checking_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: User not known to the underlying authentication module for illegal user.+\"):msg@>",
-         "msg_id" : "Sshd:underlying_authentication_module_error",
          "table" : "Message",
+         "id" : "underlying_authentication_module_error",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: Authentication information cannot be recovered .+\"):msg@>",
-         "msg_id" : "Sshd:authentication_information_cannot_recovered",
          "table" : "Message",
+         "id" : "authentication_information_cannot_recovered",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM adding faulty module: .+\"):msg@>",
-         "msg_id" : "Sshd:pam_adding_faulty_module",
          "table" : "Message",
+         "id" : "pam_adding_faulty_module",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM unable to dlopen.+\"):msg@>",
-         "msg_id" : "Sshd:pam_unable_to_dlopen",
          "table" : "Message",
+         "id" : "pam_unable_to_dlopen",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Failed \\w+ for illegal user .+\"):msg@>",
-         "msg_id" : "Sshd:failed_for_illegal_user",
          "table" : "Message",
+         "id" : "failed_for_illegal_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: Bind to port .+ failed:.*\"):msg@>",
-         "msg_id" : "Sshd:bind_to_port_failed",
          "table" : "Message",
+         "id" : "bind_to_port_failed",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*auth could not identify password for .+\"):msg@>",
-         "msg_id" : "Sshd:auth_couldnt_identify_password",
          "table" : "Message",
+         "id" : "auth_couldnt_identify_password",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Disconnecting: Timeout, your session not responding.\"):msg@> ",
-         "msg_id" : "Sshd:disconnecting_session_not_responding",
          "table" : "Message",
+         "id" : "disconnecting_session_not_responding",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: missing file .+\"):msg@>",
-         "msg_id" : "Sshd:pam_ldap_missing_file",
          "table" : "Message",
+         "id" : "pam_ldap_missing_file",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>: <@REGEXP(\".+error trying to bind as user .+\"):msg@>",
-         "msg_id" : "Sshd:error_trying_bind_user",
          "table" : "Message",
+         "id" : "error_trying_bind_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received SIGHUP; restarting.\"):msg@> ",
-         "msg_id" : "Sshd:received_sighup_restarting",
          "table" : "Message",
+         "id" : "received_sighup_restarting",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ssh\\S*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"fatal: Cannot bind any address.\"):msg@> ",
-         "msg_id" : "Sshd:cannot_bind_any_address",
          "table" : "Message",
+         "id" : "cannot_bind_any_address",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"User \\S+ not allowed because /etc/nologin exists\"):msg@> ",
-         "msg_id" : "Sshd:user_denied_nologin_exists",
          "table" : "Message",
+         "id" : "user_denied_nologin_exists",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*password for user \\w+ will expire in \\d+ days\"):msg@> ",
-         "msg_id" : "Sshd:password_will_expire",
          "table" : "Message",
+         "id" : "password_will_expire",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Protocol major versions differ for .+\"):msg@>",
-         "msg_id" : "Sshd:protocol_major_versions_differ",
          "table" : "Message",
+         "id" : "protocol_major_versions_differ",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*expired password for user .+\"):msg@>",
-         "msg_id" : "Sshd:expired_password_for_user",
          "table" : "Message",
+         "id" : "expired_password_for_user",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Public key .+ blacklisted.*\"):msg@>",
-         "msg_id" : "Sshd:public_key_blacklisted",
          "table" : "Message",
+         "id" : "public_key_blacklisted",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: Host key .+ blacklisted.*\"):msg@>",
-         "msg_id" : "Sshd:host_key_blacklisted",
          "table" : "Message",
+         "id" : "host_key_blacklisted",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Could not write ident string to .+\"):msg@>",
-         "msg_id" : "Sshd:couldnt_write_ident_string",
          "table" : "Message",
+         "id" : "couldnt_write_ident_string",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: Could not load host key: .+\"):msg@>",
-         "msg_id" : "Sshd:couldnt_load_host_key",
          "table" : "Message",
+         "id" : "couldnt_load_host_key",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*Password for .+ was changed\"):msg@>",
-         "msg_id" : "Sshd:pam_password_for_user_changed",
          "table" : "Message",
+         "id" : "pam_password_for_user_changed",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"warning: can't get client address: Connection reset by peer\"):msg@>",
-         "msg_id" : "Sshd:cannot_get_client_address_connection_reset_by_peer",
          "table" : "Message",
+         "id" : "cannot_get_client_address_connection_reset_by_peer",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@WORD:level@>: <@REGEXP(\"ssh_msg_send: write\"):msg@>",
-         "msg_id" : "Sshd:ssh_msg_send_write",
          "table" : "Message",
+         "id" : "ssh_msg_send_write",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error writing \\/proc\\/self\\/oom_adj: Operation not permitted\"):msg@>",
-         "msg_id" : "Sshd:error_writing_oom_adj",
          "table" : "Message",
+         "id" : "error_writing_oom_adj",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*: conversation failed\"):msg@>",
-         "msg_id" : "Sshd:conversation_failed",
          "table" : "Message",
+         "id" : "conversation_failed",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Postponed publickey for .+\"):msg@>",
-         "msg_id" : "Sshd:postponed_publickey",
          "table" : "Message",
+         "id" : "postponed_publickey",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Excess permission or bad ownership on file .+\"):msg@>",
-         "msg_id" : "Sshd:excess_permission_bad_ownership",
          "table" : "Message",
+         "id" : "excess_permission_bad_ownership",
          "taxonomy" : "Access.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Disconnecting: Too many authentication failures for .+\"):msg@>",
-         "msg_id" : "Sshd:too_many_authentication_failures",
          "table" : "Message",
+         "id" : "too_many_authentication_failures",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*error retrieving information about user .+\"):msg@>",
-         "msg_id" : "Sshd:error_retrieving_information",
          "table" : "Message",
+         "id" : "error_retrieving_information",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"input_userauth_request: invalid user .+\"):msg@>",
-         "msg_id" : "Sshd:input_userauth_invalid_user",
          "table" : "Message",
+         "id" : "input_userauth_invalid_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Timeout, client not responding.\"):msg@>",
-         "msg_id" : "Sshd:timeout_client_not_responding",
          "table" : "Message",
+         "id" : "timeout_client_not_responding",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*bad id: channel free\"):msg@>",
-         "msg_id" : "Sshd:bad_id_channel_free",
          "table" : "Message",
+         "id" : "bad_id_channel_free",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Disconnecting: Received oclose for nonexistent channel.+\"):msg@>",
-         "msg_id" : "Sshd:disconnecting_received_oclose",
          "table" : "Message",
+         "id" : "disconnecting_received_oclose",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM .+ ignoring max retries.+\"):msg@>",
-         "msg_id" : "Sshd:pam_ignoring_max_retries",
          "table" : "Message",
+         "id" : "pam_ignoring_max_retries",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: fork: Cannot allocate memory\"):msg@>",
-         "msg_id" : "Sshd:fork_cannot_allocate_memory",
          "table" : "Message",
+         "id" : "fork_cannot_allocate_memory",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error: PAM: authentication error for .+ from\"):msg@> <@IP_ADDR:client_ip@>",
-         "msg_id" : "Sshd:pam_auth_error",
          "table" : "Message",
+         "id" : "pam_auth_error",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sshd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"SSH: Server;Ltype: .+\"):msg@>",
-         "msg_id" : "Sshd:server_ltype",
          "table" : "Message",
+         "id" : "server_ltype",
          "taxonomy" : "Auth",
          "loglevel" : "Notice"
       }

@@ -2,92 +2,92 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: paper out\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:out_of_paper",
          "table" : "Message",
+         "id" : "out_of_paper",
          "taxonomy" : "Printer.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: error cleared\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:error_cleared",
          "table" : "Message",
+         "id" : "error_cleared",
          "taxonomy" : "Printer",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: peripheral low-power state\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:peripheral_low_power_state",
          "table" : "Message",
+         "id" : "peripheral_low_power_state",
          "taxonomy" : "Printer",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: offline or intervention needed\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:offline_or_intervention_needed",
          "table" : "Message",
+         "id" : "offline_or_intervention_needed",
          "taxonomy" : "Printer.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: powered up\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:powered_up",
          "table" : "Message",
+         "id" : "powered_up",
          "taxonomy" : "Printer",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: ready to print\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:ready_to_print",
          "table" : "Message",
+         "id" : "ready_to_print",
          "taxonomy" : "Printer",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: registered system name .+ with WINS server .+\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:register_system_name",
          "table" : "Message",
+         "id" : "register_system_name",
          "taxonomy" : "Printer",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: peripheral is disconnected\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:peripheral_disconnected",
          "table" : "Message",
+         "id" : "peripheral_disconnected",
          "taxonomy" : "Printer.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: connection with .+ aborted\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:connection_aborted",
          "table" : "Message",
+         "id" : "connection_aborted",
          "taxonomy" : "Printer.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: paper jam\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:paper_jam",
          "table" : "Message",
+         "id" : "paper_jam",
          "taxonomy" : "Printer.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: cover\\/door open\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:cover_open",
          "table" : "Message",
+         "id" : "cover_open",
          "taxonomy" : "Printer.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: paper problem\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:paper_problem",
          "table" : "Message",
+         "id" : "paper_problem",
          "taxonomy" : "Printer.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"printer: toner\\/ink low\"):msg@>",
-         "msg_id" : "Printer_HP_LaserJet:toner_low",
          "table" : "Message",
+         "id" : "toner_low",
          "taxonomy" : "Printer.Errors",
          "loglevel" : "Notice"
       }

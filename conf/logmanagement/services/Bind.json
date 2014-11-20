@@ -2,589 +2,589 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: client <@IP_ADDR:client@>#<@NUMBER:NULL@>: query: <@WORD:query@> <@STRING:query_type@>",
-         "msg_id" : "Bind:query",
          "table" : "Bind_query",
+         "id" : "query",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"lame server resolving .+\"):msg@>",
-         "msg_id" : "Bind:lame_server_resolving",
          "table" : "Message",
+         "id" : "lame_server_resolving",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: client <@IP_ADDR:client@>#<@NUMBER:NULL@>: <@STRING:action@> zone <@SINGLE_QUOTED_STRING:zone@>: <@STRING:status@>",
-         "msg_id" : "Bind:action_on_zone",
          "table" : "Bind_zone",
+         "id" : "action_on_zone",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: client <@IP_ADDR:client@>#<@NUMBER:NULL@>: <@STRING:action@> <@SINGLE_QUOTED_STRING:zone@> <@REGEXP(\"denied \"):status@>",
-         "msg_id" : "Bind:action_on_zone_denied",
          "table" : "Bind_zone",
+         "id" : "action_on_zone_denied",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: client <@IP_ADDR:client@>#<@NUMBER:NULL@>: <@REGEXP(\"updating zone\"):action@>",
-         "msg_id" : "Bind:updating_zone",
          "table" : "Bind_zone",
+         "id" : "updating_zone",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: client <@IP_ADDR:client@>#<@NUMBER:NULL@>: <@STRING:action@> <@SINGLE_QUOTED_STRING:NULL@>: <@STRING:status@>",
-         "msg_id" : "Bind:action_on_zone2",
          "table" : "Bind_zone",
+         "id" : "action_on_zone2",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"loading configuration from '.+'\"):msg@> ",
-         "msg_id" : "Bind:loading_configuration",
          "table" : "Message",
+         "id" : "loading_configuration",
          "taxonomy" : "Config",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"no IPv\\d+ interfaces found\"):msg@> ",
-         "msg_id" : "Bind:no_ip_interface",
          "table" : "Message",
+         "id" : "no_ip_interface",
          "taxonomy" : "Config",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"zone .+: loading master file .+: file not found\"):msg@> ",
-         "msg_id" : "Bind:loading_master_file",
          "table" : "Message",
+         "id" : "loading_master_file",
          "taxonomy" : "Config",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: zone <@STRING:zone@>: <@REGEXP(\"loaded serial \\d+\"):status@> ",
-         "msg_id" : "Bind:zone_loaded_serial",
          "table" : "Bind_zone",
+         "id" : "zone_loaded_serial",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: zone <@STRING:zone@>: <@REGEXP(\"sending notifies \\(serial \\d+\\)\"):status@> ",
-         "msg_id" : "Bind:zone_sending_notifies",
          "table" : "Bind_zone",
+         "id" : "zone_sending_notifies",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"notify question section contains no \\S+\"):msg@> ",
-         "msg_id" : "Bind:notify_question_contains_no",
          "table" : "Message",
+         "id" : "notify_question_contains_no",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: zone <@STRING:zone@>: <@REGEXP(\"refresh\"):action@>: <@STRING:status@>",
-         "msg_id" : "Bind:zone_refresh",
          "table" : "Bind_zone",
+         "id" : "zone_refresh",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: zone <@STRING:zone@>: <@REGEXP(\"transferred serial \\d+\"):status@> ",
-         "msg_id" : "Bind:zone_transferred_serial",
          "table" : "Bind_zone",
+         "id" : "zone_transferred_serial",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: zone <@STRING:zone@>: <@REGEXP(\"loading master file .+\"):action@>: <@STRING:status@>",
-         "msg_id" : "Bind:zone_loading_master_file",
          "table" : "Bind_zone",
+         "id" : "zone_loading_master_file",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"listening on .+\"):msg@>",
-         "msg_id" : "Bind:listening_on",
          "table" : "Message",
+         "id" : "listening_on",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ no TTL specified; using SOA MINTTL instead\"):msg@> ",
-         "msg_id" : "Bind:no_ttl_specified",
          "table" : "Message",
+         "id" : "no_ttl_specified",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"command channel listening on .+\"):msg@>",
-         "msg_id" : "Bind:command_channel_listening_on",
          "table" : "Message",
+         "id" : "command_channel_listening_on",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"zone \\S+: could not find .+ records\"):msg@> ",
-         "msg_id" : "Bind:zone_couldnt_find_records",
          "table" : "Message",
+         "id" : "zone_couldnt_find_records",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"zone \\S+: has \\S+ NS records\"):msg@> ",
-         "msg_id" : "Bind:zone_has_ns_records",
          "table" : "Message",
+         "id" : "zone_has_ns_records",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"zone \\S+: has \\S+ SOA records\"):msg@>",
-         "msg_id" : "Bind:zone_has_soa_records",
          "table" : "Message",
+         "id" : "zone_has_soa_records",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"starting BIND .+\"):msg@>",
-         "msg_id" : "Bind:starting_bind",
          "table" : "Message",
+         "id" : "starting_bind",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"transfer\"):action@> of <@SINGLE_QUOTED_STRING:zone@> from <@IP_ADDR:client@>#<@NUMBER:NULL@>: <@STRING:status@>",
-         "msg_id" : "Bind:zone_transfer",
          "table" : "Bind_zone",
+         "id" : "zone_transfer",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: zone <@STRING:zone@>: <@REGEXP(\"expired\"):status@> ",
-         "msg_id" : "Bind:zone_expired",
          "table" : "Bind_zone",
+         "id" : "zone_expired",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: zone <@STRING:zone@>: <@REGEXP(\"saved\"):action@> <@SINGLE_QUOTED_STRING:status@> as <@SINGLE_QUOTED_STRING:NULL@> ",
-         "msg_id" : "Bind:zone_saved",
          "table" : "Bind_zone",
+         "id" : "zone_saved",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dns_master_load\"):action@>: <@STRING:zone@>:<@NUMBER:NULL@>: <@REGEXP(\"ignoring out-of-zone data .+\"):status@>",
-         "msg_id" : "Bind:ignoring_out_zone_data",
          "table" : "Bind_zone",
+         "id" : "ignoring_out_zone_data",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"received notify\"):action@> for zone <@SINGLE_QUOTED_STRING:zone@>: <@REGEXP(\"not authoritative\"):status@>",
-         "msg_id" : "Bind:not_authoritative",
          "table" : "Bind_zone",
+         "id" : "not_authoritative",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dns_rdata_fromtext\"):action@>: <@STRING:zone@>:<@NUMBER:NULL@>: <@REGEXP(\"near .+: out of range\"):status@>",
-         "msg_id" : "Bind:near_out_of_range",
          "table" : "Bind_zone",
+         "id" : "near_out_of_range",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"using \\d+ CPU.*\"):msg@>",
-         "msg_id" : "Bind:using_cpu",
          "table" : "Message",
+         "id" : "using_cpu",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"running\"):msg@> ",
-         "msg_id" : "Bind:running",
          "table" : "Message",
+         "id" : "running",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: dns_master_load: <@WORD:zone@>:<@NUMBER:NULL@>: <@REGEXP(\"using RFC \\d+ TTL semantics\"):status@>",
-         "msg_id" : "Bind:using_rfc_ttl_semantics",
          "table" : "Bind_zone",
+         "id" : "using_rfc_ttl_semantics",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@WORD:zone@>:<@NUMBER:NULL@>: <@REGEXP(\"file does not end with newline\"):status@>",
-         "msg_id" : "Bind:file_doesnt_end_newline",
          "table" : "Bind_zone",
+         "id" : "file_doesnt_end_newline",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dispatch \\S+: shutting down due to TCP receive error: connection reset\"):msg@>",
-         "msg_id" : "Bind:shutting_down_tcp_error",
          "table" : "Message",
+         "id" : "shutting_down_tcp_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>:<@REGEXP(\".+succeeded\"):msg@> ",
-         "msg_id" : "Bind:succeeded",
          "table" : "Message",
+         "id" : "succeeded",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: missing ';' before .+\"):msg@>",
-         "msg_id" : "Bind:missing_before",
          "table" : "Message",
+         "id" : "missing_before",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"reloading configuration failed: .+\"):msg@> ",
-         "msg_id" : "Bind:reloading_configuration_failed",
          "table" : "Message",
+         "id" : "reloading_configuration_failed",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dumping master file: .+\"):msg@>",
-         "msg_id" : "Bind:dumping_master_file_error",
          "table" : "Message",
+         "id" : "dumping_master_file_error",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: option '\\S+' is not allowed in 'slave' zone '\\S+'\"):msg@>",
-         "msg_id" : "Bind:not_allowed_in_slave",
          "table" : "Message",
+         "id" : "not_allowed_in_slave",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"received notify\"):action@> for zone <@SINGLE_QUOTED_STRING:zone@>",
-         "msg_id" : "Bind:received_notify",
          "table" : "Bind_zone",
+         "id" : "received_notify",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"unknown control channel command '.+'\"):msg@> ",
-         "msg_id" : "Bind:unknown_control_channel_command",
          "table" : "Message",
+         "id" : "unknown_control_channel_command",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: unexpected end of \\S+\"):msg@> ",
-         "msg_id" : "Bind:unexpected_end_of",
          "table" : "Message",
+         "id" : "unexpected_end_of",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ expected near .+\"):msg@>",
-         "msg_id" : "Bind:error_expected_near",
          "table" : "Message",
+         "id" : "error_expected_near",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: unexpected error.+\"):msg@>",
-         "msg_id" : "Bind:unexpected_error",
          "table" : "Message",
+         "id" : "unexpected_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"internal_send: \\S+#\\d+: Invalid argument\"):msg@> ",
-         "msg_id" : "Bind:internal_invalid_argument",
          "table" : "Message",
+         "id" : "internal_invalid_argument",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dns_rdata_fromtext: .+ near .+: bad dotted quad\"):msg@>",
-         "msg_id" : "Bind:bad_dotted_quad",
          "table" : "Message",
+         "id" : "bad_dotted_quad",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"shutting down: flushing changes\"):msg@> ",
-         "msg_id" : "Bind:shutting_down_flushing_changes",
          "table" : "Message",
+         "id" : "shutting_down_flushing_changes",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+:\\d+: when using 'view' statements, all zones must be in views\"):msg@>",
-         "msg_id" : "Bind:zones_in_views",
          "table" : "Message",
+         "id" : "zones_in_views",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"stopping command channel on .+\"):msg@>",
-         "msg_id" : "Bind:stopping_command_channel",
          "table" : "Message",
+         "id" : "stopping_command_channel",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"no longer listening on .+\"):msg@>",
-         "msg_id" : "Bind:no_longer_listening",
          "table" : "Message",
+         "id" : "no_longer_listening",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"client \\S+: error sending response: connection reset\"):msg@> ",
-         "msg_id" : "Bind:connection_reset",
          "table" : "Message",
+         "id" : "connection_reset",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dns_rdata_fromtext: .+:\\d+: .+: not a valid number\"):msg@> ",
-         "msg_id" : "Bind:config_not_valid_number",
          "table" : "Message",
+         "id" : "config_not_valid_number",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"exiting\"):msg@> ",
-         "msg_id" : "Bind:exiting",
          "table" : "Message",
+         "id" : "exiting",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"zone .+: zone serial has gone backwards\"):msg@> ",
-         "msg_id" : "Bind:zone_serial_gone_backwards",
          "table" : "Message",
+         "id" : "zone_serial_gone_backwards",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: unknown option .+\"):msg@>",
-         "msg_id" : "Bind:unknown_option",
          "table" : "Message",
+         "id" : "unknown_option",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"unable to rename log file .+\"):msg@> ",
-         "msg_id" : "Bind:unable_rename_file",
          "table" : "Message",
+         "id" : "unable_rename_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"client .+: update forwarding denied\"):msg@> ",
-         "msg_id" : "Bind:update_forwarding_denied",
          "table" : "Message",
+         "id" : "update_forwarding_denied",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"logging channel .+ permission denied\"):msg@> ",
-         "msg_id" : "Bind:logging_channel_permission_denied",
          "table" : "Message",
+         "id" : "logging_channel_permission_denied",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"isc_log_open .+ failed: permission denied\"):msg@> ",
-         "msg_id" : "Bind:isc_log_open_failed",
          "table" : "Message",
+         "id" : "isc_log_open_failed",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: dns_master_load: <@STRING:NULL@>: <@STRING:zone@>: <@REGEXP(\"CNAME and other data\"):action@> ",
-         "msg_id" : "Bind:cname_other_data",
          "table" : "Bind_zone",
+         "id" : "cname_other_data",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"nss_ldap: could not connect to any LDAP server .+\"):msg@>",
-         "msg_id" : "Bind:couldnt_connect_ldap_server",
          "table" : "Message",
+         "id" : "couldnt_connect_ldap_server",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"client .+: no more recursive clients: quota reached\"):msg@> ",
-         "msg_id" : "Bind:recursive_clients_quota_reached",
          "table" : "Message",
+         "id" : "recursive_clients_quota_reached",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"loading configuration: failure\"):msg@> ",
-         "msg_id" : "Bind:loading_configuration_failure",
          "table" : "Message",
+         "id" : "loading_configuration_failure",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ is not a decimal dotted quad\"):msg@> ",
-         "msg_id" : "Bind:not_decimal_dotted_quad",
          "table" : "Message",
+         "id" : "not_decimal_dotted_quad",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dns_rdata_fromtext: .+:\\d+: near .+: extra input text\"):msg@> ",
-         "msg_id" : "Bind:extra_input_text",
          "table" : "Message",
+         "id" : "extra_input_text",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Forwarding source address is .+\"):msg@>",
-         "msg_id" : "Bind:forwarding_source_address_is",
          "table" : "Message",
+         "id" : "forwarding_source_address_is",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: WARNING SOA expire value is less than .+\"):msg@>",
-         "msg_id" : "Bind:soa_expire_value_warning",
          "table" : "Message",
+         "id" : "soa_expire_value_warning",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: Database error .+\"):msg@>",
-         "msg_id" : "Bind:database_error",
          "table" : "Message",
+         "id" : "database_error",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: syntax error near .+\"):msg@>",
-         "msg_id" : "Bind:syntax_error_near",
          "table" : "Message",
+         "id" : "syntax_error_near",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\w+ zone .+ loaded \\(serial \\d+\\)\"):msg@>",
-         "msg_id" : "Bind:zone_loaded",
          "table" : "Message",
+         "id" : "zone_loaded",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"USAGE \\d+ \\d+ CPU=.+ CHILDCPU=.+\"):msg@>",
-         "msg_id" : "Bind:usage",
          "table" : "Message",
+         "id" : "usage",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\wSTATS \\d+ \\d+ .+\"):msg@>",
-         "msg_id" : "Bind:stats",
          "table" : "Message",
+         "id" : "stats",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Ready to answer queries.\"):msg@>",
-         "msg_id" : "Bind:ready_to_answer_queries",
          "table" : "Message",
+         "id" : "ready_to_answer_queries",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Cleaned cache of .+\"):msg@>",
-         "msg_id" : "Bind:cleaned_cache",
          "table" : "Message",
+         "id" : "cleaned_cache",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\w+ zone .+ rejected due to errors .+\"):msg@>",
-         "msg_id" : "Bind:zone_rejected_due_errors",
          "table" : "Message",
+         "id" : "zone_rejected_due_errors",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"sysquery: findns error .+\"):msg@>",
-         "msg_id" : "Bind:findns_error",
          "table" : "Message",
+         "id" : "findns_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: Line \\d+: Unknown type:.+\"):msg@>",
-         "msg_id" : "Bind:config_unknown_type",
          "table" : "Message",
+         "id" : "config_unknown_type",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"No root nameservers for class .+\"):msg@>",
-         "msg_id" : "Bind:no_root_nameservers",
          "table" : "Message",
+         "id" : "no_root_nameservers",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"found \\d+ CPU.*\"):msg@>",
-         "msg_id" : "Bind:found_cpu",
          "table" : "Message",
+         "id" : "found_cpu",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+:\\d+: expected a .+, got .+\"):msg@>",
-         "msg_id" : "Bind:error_expected_but_got",
          "table" : "Message",
+         "id" : "error_expected_but_got",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"included from .+ line \\d+\"):msg@>",
-         "msg_id" : "Bind:included_from_line",
          "table" : "Message",
+         "id" : "included_from_line",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+:\\d+: option '.+' is obsolete\"):msg@> ",
-         "msg_id" : "Bind:option_obsolete",
          "table" : "Message",
+         "id" : "option_obsolete",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"automatic empty zone: .+\"):msg@> ",
-         "msg_id" : "Bind:automatic_empty_zone",
          "table" : "Message",
+         "id" : "automatic_empty_zone",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"couldn't add command channel .+\"):msg@> ",
-         "msg_id" : "Bind:couldnt_add_command_channel",
          "table" : "Message",
+         "id" : "couldnt_add_command_channel",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"named\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"too many timeouts resolving .+\"):msg@>",
-         "msg_id" : "Bind:too_many_timeout_resolving",
          "table" : "Message",
+         "id" : "too_many_timeout_resolving",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       }

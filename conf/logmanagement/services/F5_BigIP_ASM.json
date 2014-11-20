@@ -3,43 +3,43 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> ts_configsync.pl[<@NUMBER:NULL@>]: <@REGEXP(\"ASM config saved to .+\"):msg@>",
-         "msg_id" : "F5_BigIP_ASM:asm_config_saved",
          "table" : "Message",
+         "id" : "asm_config_saved",
          "taxonomy" : "Config.Backup",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> event_backup.pl[<@NUMBER:NULL@>]: <@REGEXP(\"ASM events saved to .+\"):msg@>",
-         "msg_id" : "F5_BigIP_ASM:asm_events_saved",
          "table" : "Message",
+         "id" : "asm_events_saved",
          "taxonomy" : "Config.Backup",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> log_manager[<@NUMBER:NULL@>]: <@REGEXP(\".+: \\[USER_ACTIVITY\\] User \\S+ cleared all illegal requests that were associated with .+\"):msg@>",
-         "msg_id" : "F5_BigIP_ASM:cleared_illegal_requests",
          "table" : "Message",
+         "id" : "cleared_illegal_requests",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> log_manager[<@NUMBER:NULL@>]: <@REGEXP(\".+: \\[USER_ACTIVITY\\] User \\S+ performed Apply Policy operation on .+\"):msg@>",
-         "msg_id" : "F5_BigIP_ASM:performed_apply_policy_operation",
          "table" : "Message",
+         "id" : "performed_apply_policy_operation",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> tmm[<@NUMBER:NULL@>]: <@REGEXP(\".+: Rule \\S+ \\S+:.*\"):msg@>",
-         "msg_id" : "F5_BigIP_ASM:rule",
          "table" : "Message",
+         "id" : "rule",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> log_manager[<@NUMBER:NULL@>]: <@REGEXP(\".+: \\[USER_ACTIVITY\\] User \\S+ created history version for .+\"):msg@>",
-         "msg_id" : "F5_BigIP_ASM:created_history_version",
          "table" : "Message",
+         "id" : "created_history_version",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       }

@@ -3,50 +3,50 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pulseaudio\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Daemon already running.\"):msg@>",
-         "msg_id" : "PulseAudio:daemon_already_running",
          "table" : "Message",
+         "id" : "daemon_already_running",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pulseaudio\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+High-priority scheduling enabled in configuration but not allowed by policy.\"):msg@>",
-         "msg_id" : "PulseAudio:high_priority_scheduling_not_allowed_by_policy",
          "table" : "Message",
+         "id" : "high_priority_scheduling_not_allowed_by_policy",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pulseaudio\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Increasing wakeup watermark to.+\"):msg@>",
-         "msg_id" : "PulseAudio:increasing_wakeup_watermark",
          "table" : "Message",
+         "id" : "increasing_wakeup_watermark",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pulseaudio\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Most likely this is an ALSA driver bug. Please report this issue to the PulseAudio developers.\"):msg@>",
-         "msg_id" : "PulseAudio:alsa_driver_bug",
          "table" : "Message",
+         "id" : "alsa_driver_bug",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pulseaudio\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Stale PID file, overwriting.\"):msg@>",
-         "msg_id" : "PulseAudio:stale_pid_file_overwriting",
          "table" : "Message",
+         "id" : "stale_pid_file_overwriting",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pulseaudio\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Error opening .+ Device or resource busy\"):msg@>",
-         "msg_id" : "PulseAudio:error_opening_device_or_resource_busy",
          "table" : "Message",
+         "id" : "error_opening_device_or_resource_busy",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"pulseaudio\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Failed to load.+\"):msg@>",
-         "msg_id" : "PulseAudio:failed_to_load",
          "table" : "Message",
+         "id" : "failed_to_load",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       }

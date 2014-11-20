@@ -3,22 +3,22 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ipfail: \\[\\d+\\]: ERROR: No managed resources\"):msg@>",
-         "msg_id" : "Linux_HA_Ipfail:no_managed_resources",
          "table" : "Message",
+         "id" : "no_managed_resources",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ipfail: \\[\\d+\\]: debug: Signing in with heartbeat\"):msg@>",
-         "msg_id" : "Linux_HA_Ipfail:signing_in_with_heartbeat",
          "table" : "Message",
+         "id" : "signing_in_with_heartbeat",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ipfail: \\[\\d+\\]: debug: PID=\\d+\"):msg@>",
-         "msg_id" : "Linux_HA_Ipfail:pid",
          "table" : "Message",
+         "id" : "pid",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       }

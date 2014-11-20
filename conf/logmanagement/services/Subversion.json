@@ -2,8 +2,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"svn\"):daemon@>: <@REGEXP(\"No worthy mechs found\"):msg@>",
-         "msg_id" : "Subversion:no_worthy_mechs_found",
          "table" : "Message",
+         "id" : "no_worthy_mechs_found",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

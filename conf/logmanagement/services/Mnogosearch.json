@@ -3,64 +3,64 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@STRING:NULL@> URL: <@STRING:url@>",
-         "msg_id" : "Mnogosearch:indexer_url",
          "table" : "Mnogosearch",
+         "id" : "indexer_url",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@REGEXP(\".+ Unsupported Content-Type .+\"):msg@>",
-         "msg_id" : "Mnogosearch:indexer_unsupported_content_type",
          "table" : "Mnogosearch",
+         "id" : "indexer_unsupported_content_type",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@REGEXP(\".+ No data received\"):msg@> ",
-         "msg_id" : "Mnogosearch:indexer_no_data_received",
          "table" : "Mnogosearch",
+         "id" : "indexer_no_data_received",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@REGEXP(\".+ Writing words .+\"):msg@>",
-         "msg_id" : "Mnogosearch:indexer_writing_words",
          "table" : "Mnogosearch",
+         "id" : "indexer_writing_words",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@REGEXP(\".+ The words are written successfully.+\"):msg@>",
-         "msg_id" : "Mnogosearch:indexer_words_written_successfully",
          "table" : "Mnogosearch",
+         "id" : "indexer_words_written_successfully",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@REGEXP(\".+ Done .+ seconds, .+ documents, .+bytes, .+\"):msg@> ",
-         "msg_id" : "Mnogosearch:indexer_done",
          "table" : "Mnogosearch",
+         "id" : "indexer_done",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@REGEXP(\"indexer from mnogosearch-\\S+ started with .+\"):msg@>",
-         "msg_id" : "Mnogosearch:indexer_started",
          "table" : "Mnogosearch",
+         "id" : "indexer_started",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@REGEXP(\".+ Deleting .+\"):msg@>",
-         "msg_id" : "Mnogosearch:deleting_url",
          "table" : "Mnogosearch",
+         "id" : "deleting_url",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"indexer\"):module@>[<@PID:pid@>]: <@REGEXP(\".+ No 'Server' command for url\"):msg@>",
-         "msg_id" : "Mnogosearch:no_server_command",
          "table" : "Mnogosearch",
+         "id" : "no_server_command",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       }

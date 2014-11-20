@@ -3,64 +3,64 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCAN-MGR: Internal error occurred .+\"):msg@>",
-         "msg_id" : "Netscreen_System_Antivirus:scanmgr_internal_error_occured",
          "table" : "Message",
+         "id" : "scanmgr_internal_error_occured",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV: Content from .+ was not scanned .+\"):msg@>",
-         "msg_id" : "Netscreen_System_Antivirus:content_was_not_scanned",
          "table" : "Message",
+         "id" : "content_was_not_scanned",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCAN-MGR: New AV pattern file has been updated.+\"):msg@>",
-         "msg_id" : "Netscreen_System_Antivirus:scanmgr_pattern_file_updated",
          "table" : "Message",
+         "id" : "scanmgr_pattern_file_updated",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV .+ has been set to .+\"):msg@>",
-         "msg_id" : "Netscreen_System_Antivirus:av_parameter_been_set",
          "table" : "Message",
+         "id" : "av_parameter_been_set",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCAN-MGR: URL for AV pattern update server has been .+\"):msg@>",
-         "msg_id" : "Netscreen_System_Antivirus:scanmgr_update_server_modified",
          "table" : "Message",
+         "id" : "scanmgr_update_server_modified",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"SCAN-MGR: .+ has been set to .+\"):msg@>",
-         "msg_id" : "Netscreen_System_Antivirus:scanmgr_parameter_been_set",
          "table" : "Message",
+         "id" : "scanmgr_parameter_been_set",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV: Content from .+ is passed due to scan-engine error or constraint with code 5 for exceeding max decompress layer limit.+\"):msg@> (<@DATE_TIME_NS:NULL@>)",
-         "msg_id" : "Netscreen_System_Antivirus:exceeding_max_decompress_layer",
          "table" : "Message",
+         "id" : "exceeding_max_decompress_layer",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV: Content from .+ is passed because maximum content size is exceeded.+\"):msg@> (<@DATE_TIME_NS:NULL@>)",
-         "msg_id" : "Netscreen_System_Antivirus:max_size_exceeded",
          "table" : "Message",
+         "id" : "max_size_exceeded",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>: NetScreen device_id=<@WORD:NULL@>  <@BRACKETED_STRING:NULL@><@WORD:msg_id@>: <@REGEXP(\"AV: VIRUS FOUND:.+\"):msg@>(<@DATE_TIME_NS:NULL@>)",
-         "msg_id" : "Netscreen_System_Antivirus:virus_found",
          "table" : "Message",
+         "id" : "virus_found",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       }

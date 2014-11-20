@@ -3,533 +3,533 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> /etc/init.d/mysql[<@PID:pid@>]: <@REGEXP(\"error: 'Can't connect to local MySQL server through socket.+\"):msg@>",
-         "msg_id" : "MySQL:cant_connect_through_socket",
          "table" : "Message",
+         "id" : "cant_connect_through_socket",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> /etc/init.d/mysql[<@PID:pid@>]: <@REGEXP(\"Check that mysqld is running and that the socket: .+ exists!\"):msg@>",
-         "msg_id" : "MySQL:check_mysqld_is_running",
          "table" : "Message",
+         "id" : "check_mysqld_is_running",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> /etc/init.d/mysql[<@PID:pid@>]: <@REGEXP(\".+mysqladmin: connect to server at .+ failed\"):msg@>",
-         "msg_id" : "MySQL:mysqladmin_connect_server_failed",
          "table" : "Message",
+         "id" : "mysqladmin_connect_server_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld_safe\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ended\"):msg@>",
-         "msg_id" : "MySQL:ended",
          "table" : "Message",
+         "id" : "ended",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld_safe\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*started\"):msg@>",
-         "msg_id" : "MySQL:started",
          "table" : "Message",
+         "id" : "started",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>[<@PID:pid@>]: <@REGEXP(\"Checking for crashed MySQL tables.\"):msg@>",
-         "msg_id" : "MySQL:check_crashed_tables",
          "table" : "Message",
+         "id" : "check_crashed_tables",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Can't init databases\"):msg@>",
-         "msg_id" : "MySQL:cant_init_databases",
          "table" : "Message",
+         "id" : "cant_init_databases",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ InnoDB: Error: unable to create temporary file;.+\"):msg@>",
-         "msg_id" : "MySQL:unable_create_temporary_file",
          "table" : "Message",
+         "id" : "unable_create_temporary_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:NULL@>[<@PID:pid@>]: <@REGEXP(\"WARNING: mysqlcheck has found corrupt tables\"):msg@>",
-         "msg_id" : "MySQL:found_corrupt_tables",
          "table" : "Message",
+         "id" : "found_corrupt_tables",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*mysql.*\"):NULL@>[<@PID:pid@>]: <@REGEXP(\".+: ready for connections.\"):msg@>",
-         "msg_id" : "MySQL:ready_for_connections",
          "table" : "Message",
+         "id" : "ready_for_connections",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld_safe\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Number of processes running now: \\d+\"):msg@>",
-         "msg_id" : "MySQL:number_processes_running",
          "table" : "Message",
+         "id" : "number_processes_running",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Version: '\\S+'  socket: '\\S+'  port: .+\"):msg@>",
-         "msg_id" : "MySQL:version_socket_port",
          "table" : "Message",
+         "id" : "version_socket_port",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+InnoDB: Starting shutdown...\"):msg@>",
-         "msg_id" : "MySQL:innodb_starting_shutdown",
          "table" : "Message",
+         "id" : "innodb_starting_shutdown",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+InnoDB: Shutdown completed.*\"):msg@>",
-         "msg_id" : "MySQL:innodb_shutdown_completed",
          "table" : "Message",
+         "id" : "innodb_shutdown_completed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+mysqld: Shutdown Complete\"):msg@> ",
-         "msg_id" : "MySQL:shutdown_complete",
          "table" : "Message",
+         "id" : "shutdown_complete",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+mysqld: Normal shutdown\"):msg@> ",
-         "msg_id" : "MySQL:normal_shutdown",
          "table" : "Message",
+         "id" : "normal_shutdown",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+InnoDB: Database was not shut down normally.\"):msg@>",
-         "msg_id" : "MySQL:innodb_notshut_normally",
          "table" : "Message",
+         "id" : "innodb_notshut_normally",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"InnoDB: Starting .+\"):msg@>",
-         "msg_id" : "MySQL:innodb_starting_something",
          "table" : "Message",
+         "id" : "innodb_starting_something",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"/usr/sbin/mysqld: \\S+ pour des connections  Source distribution\"):msg@>",
-         "msg_id" : "MySQL:pret_connection_source",
          "table" : "Message",
+         "id" : "pret_connection_source",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] DROP USER: Can't drop user: .+; Database privileges exists\"):msg@> ",
-         "msg_id" : "MySQL:cant_drop_user",
          "table" : "Message",
+         "id" : "cant_drop_user",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+mysqld: Can't create/write to file .+\"):msg@>",
-         "msg_id" : "MySQL:cant_write_file",
          "table" : "Message",
+         "id" : "cant_write_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*mysql.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ERROR: The partition with .+ is too full!\"):msg@>",
-         "msg_id" : "MySQL:partition_is_too_full",
          "table" : "Message",
+         "id" : "partition_is_too_full",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Aborting\"):msg@>",
-         "msg_id" : "MySQL:aborting",
          "table" : "Message",
+         "id" : "aborting",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ InnoDB: Warning: shutting down a not properly started\"):msg@>",
-         "msg_id" : "MySQL:innodb_not_properly_started",
          "table" : "Message",
+         "id" : "innodb_not_properly_started",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Note\\] Slave SQL thread initialized, starting replication .+\"):msg@>",
-         "msg_id" : "MySQL:slave_sql_thread_initialized",
          "table" : "Message",
+         "id" : "slave_sql_thread_initialized",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: Sort aborted\"):msg@>",
-         "msg_id" : "MySQL:sort_aborted",
          "table" : "Message",
+         "id" : "sort_aborted",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> <@REGEXP(\".*mysql.*\"):NULL@>[<@PID:NULL@>]:",
-         "msg_id" : "MySQL:empty",
          "table" : "Message",
+         "id" : "empty",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ERROR.+ Slave \\S+ thread.+\"):msg@>",
-         "msg_id" : "MySQL:slave_io_thread_error",
          "table" : "Message",
+         "id" : "slave_io_thread_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ERROR.+Error reading packet from server: .+\"):msg@>",
-         "msg_id" : "MySQL:error_reading_packet_server",
          "table" : "Message",
+         "id" : "error_reading_packet_server",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ERROR.+Got fatal error .+\"):msg@>",
-         "msg_id" : "MySQL:got_fatal_error",
          "table" : "Message",
+         "id" : "got_fatal_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Failed to open log .+\"):msg@>",
-         "msg_id" : "MySQL:failed_to_open_log",
          "table" : "Message",
+         "id" : "failed_to_open_log",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Error reading relay log event: slave SQL thread was killed\"):msg@> ",
-         "msg_id" : "MySQL:error_reading_relay_log",
          "table" : "Message",
+         "id" : "error_reading_relay_log",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ /usr/sbin/mysqld: Shutdown complete\"):msg@> ",
-         "msg_id" : "MySQL:mysqld_shutdown_complete",
          "table" : "Message",
+         "id" : "mysqld_shutdown_complete",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Slave: received end packet from server, apparent master shutdown.+\"):msg@>",
-         "msg_id" : "MySQL:apparent_master_shutdown",
          "table" : "Message",
+         "id" : "apparent_master_shutdown",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ERROR.+ \\(Errcode: 145\\)\"):msg@> ",
-         "msg_id" : "MySQL:unable_open_file",
          "table" : "Message",
+         "id" : "unable_open_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*mysqld.*\"):NULL@>: <@REGEXP(\".*Disk is full writing .+\"):msg@>",
-         "msg_id" : "MySQL:disk_is_full_writing",
          "table" : "Message",
+         "id" : "disk_is_full_writing",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Error writing file .+\"):msg@>",
-         "msg_id" : "MySQL:error_writing_file",
          "table" : "Message",
+         "id" : "error_writing_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: unknown variable '.+'\"):msg@> ",
-         "msg_id" : "MySQL:unknown_variable",
          "table" : "Message",
+         "id" : "unknown_variable",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+\\[Note\\] Slave I/O thread: .+\"):msg@>",
-         "msg_id" : "MySQL:slave_io_thread_note",
          "table" : "Message",
+         "id" : "slave_io_thread_note",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*InnoDB: .+\"):msg@>",
-         "msg_id" : "MySQL:innodb_message",
          "table" : "Message",
+         "id" : "innodb_message",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] The slave I/O thread stops because master and slave have equal MySQL server ids.+\"):msg@>",
-         "msg_id" : "MySQL:master_slave_equal_ids",
          "table" : "Message",
+         "id" : "master_slave_equal_ids",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Error running query.+\"):msg@>",
-         "msg_id" : "MySQL:error_running_query",
          "table" : "Message",
+         "id" : "error_running_query",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Error 'Duplicate entry .+\"):msg@>",
-         "msg_id" : "MySQL:error_duplicate_entry",
          "table" : "Message",
+         "id" : "error_duplicate_entry",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Slave: connected to master .+\"):msg@>",
-         "msg_id" : "MySQL:slave_connected_to_master",
          "table" : "Message",
+         "id" : "slave_connected_to_master",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\"Stopping MySQL:.*succeeded\"):msg@> ",
-         "msg_id" : "MySQL:stopping_mysql_succeeded",
          "table" : "Message",
+         "id" : "stopping_mysql_succeeded",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Forcing close of thread .+\"):msg@>",
-         "msg_id" : "MySQL:forcing_close_thread",
          "table" : "Message",
+         "id" : "forcing_close_thread",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Warning\\] Found invalid password for user.+\"):msg@>",
-         "msg_id" : "MySQL:found_invalid_password_user",
          "table" : "Message",
+         "id" : "found_invalid_password_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Can't change dir to .+\"):msg@>",
-         "msg_id" : "MySQL:cant_change_dir",
          "table" : "Message",
+         "id" : "cant_change_dir",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] Failed to open the relay log .+\"):msg@>",
-         "msg_id" : "MySQL:failed_open_relay_log",
          "table" : "Message",
+         "id" : "failed_open_relay_log",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] Could not find target log during relay log initialization\"):msg@> ",
-         "msg_id" : "MySQL:couldnt_find_target_log",
          "table" : "Message",
+         "id" : "couldnt_find_target_log",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] Failed to initialize the master info structure\"):msg@> ",
-         "msg_id" : "MySQL:failed_initialize_master_info",
          "table" : "Message",
+         "id" : "failed_initialize_master_info",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] Could not open log file\"):msg@> ",
-         "msg_id" : "MySQL:couldnt_open_log_file",
          "table" : "Message",
+         "id" : "couldnt_open_log_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] Can't start server : Bind on unix socket: Permission denied\"):msg@> ",
-         "msg_id" : "MySQL:bind_socket_permission_denied",
          "table" : "Message",
+         "id" : "bind_socket_permission_denied",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> /etc/init.d/mysql[<@PID:pid@>]: <@REGEXP(\"\\d+ processes alive .+\"):msg@>",
-         "msg_id" : "MySQL:processes_alive",
          "table" : "Message",
+         "id" : "processes_alive",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] Failed to create a new master info file .+\"):msg@>",
-         "msg_id" : "MySQL:failed_create_master_info",
          "table" : "Message",
+         "id" : "failed_create_master_info",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ \\[Error\\] Do you already have another mysqld server running on socket.+\"):msg@>",
-         "msg_id" : "MySQL:already_mysqld_server_running",
          "table" : "Message",
+         "id" : "already_mysqld_server_running",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*\\[Note\\] Recovering after a crash using .+\"):msg@>",
-         "msg_id" : "MySQL:recovering_after_crash",
          "table" : "Message",
+         "id" : "recovering_after_crash",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*\\[Note\\] Starting crash recovery...\"):msg@>",
-         "msg_id" : "MySQL:starting_crash_recovery",
          "table" : "Message",
+         "id" : "starting_crash_recovery",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*\\[Note\\] Crash recovery finished.\"):msg@>",
-         "msg_id" : "MySQL:crash_recovery_finished",
          "table" : "Message",
+         "id" : "crash_recovery_finished",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> /etc/init.d/mysql[<@PID:pid@>]: <@REGEXP(\"Fatal error in defaults handling. Program aborted\"):msg@>",
-         "msg_id" : "MySQL:fatal_error_defaults_handling",
          "table" : "Message",
+         "id" : "fatal_error_defaults_handling",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld_safe\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Fatal error: Can't remove the pid file: .+\"):msg@>",
-         "msg_id" : "MySQL:cant_remove_pid_file",
          "table" : "Message",
+         "id" : "cant_remove_pid_file",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> /etc/init.d/mysql[<@PID:pid@>]: <@REGEXP(\"Could not open required defaults file: .+\"):msg@>",
-         "msg_id" : "MySQL:couldnt_open_defaults_file",
          "table" : "Message",
+         "id" : "couldnt_open_defaults_file",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"lock: 0x.+\"):msg@>",
-         "msg_id" : "MySQL:lock",
          "table" : "Message",
+         "id" : "lock",
          "taxonomy" : "Application",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* \\[ERROR\\] .+: Incorrect information in file:.+\"):msg@>",
-         "msg_id" : "MySQL:incorrect_information_in_file",
          "table" : "Message",
+         "id" : "incorrect_information_in_file",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld_safe\"):daemon@>: <@REGEXP(\"Starting mysqld daemon with databases from .+\"):msg@>",
-         "msg_id" : "MySQL:starting_with_databases",
          "table" : "Message",
+         "id" : "starting_with_databases",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld_safe\"):daemon@>: <@REGEXP(\"mysqld from pid file .+ ended\"):msg@>",
-         "msg_id" : "MySQL:mysqld_from_pidfile_ended",
          "table" : "Message",
+         "id" : "mysqld_from_pidfile_ended",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\".*InnoDB: Started; .+\"):msg@>",
-         "msg_id" : "MySQL:innodb_started",
          "table" : "Message",
+         "id" : "innodb_started",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\".*Event Scheduler: .+\"):msg@>",
-         "msg_id" : "MySQL:event_scheduler_messages",
          "table" : "Message",
+         "id" : "event_scheduler_messages",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\".+InnoDB: Shutdown completed.*\"):msg@>",
-         "msg_id" : "MySQL:innodb_shutdown_completed2",
          "table" : "Message",
+         "id" : "innodb_shutdown_completed2",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\".*InnoDB: Starting .+\"):msg@>",
-         "msg_id" : "MySQL:innodb_starting_something2",
          "table" : "Message",
+         "id" : "innodb_starting_something2",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\"Version: .+socket: .+ port: .+\"):msg@>",
-         "msg_id" : "MySQL:version_socket_port2",
          "table" : "Message",
+         "id" : "version_socket_port2",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\".+mysqld: Normal shutdown\"):msg@>",
-         "msg_id" : "MySQL:normal_shutdown2",
          "table" : "Message",
+         "id" : "normal_shutdown2",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\".+mysqld: Shutdown complete\"):msg@>",
-         "msg_id" : "MySQL:shutdown_complete2",
          "table" : "Message",
+         "id" : "shutdown_complete2",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mysqld\"):daemon@>: <@REGEXP(\".*Plugin .+ is disabled.\"):msg@>",
-         "msg_id" : "MySQL:plugin_disabled",
          "table" : "Message",
+         "id" : "plugin_disabled",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*mysql.*\"):NULL@>: <@REGEXP(\".+: ready for connections.\"):msg@>",
-         "msg_id" : "MySQL:ready_for_connections2",
          "table" : "Message",
+         "id" : "ready_for_connections2",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> <@REGEXP(\".*mysql.*\"):NULL@>:",
-         "msg_id" : "MySQL:empty2",
          "table" : "Message",
+         "id" : "empty2",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       }

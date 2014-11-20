@@ -2,64 +2,64 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Started dispatcher: .+\"):msg@>",
-         "msg_id" : "Audit:started_dispatcher",
          "table" : "Message",
+         "id" : "started_dispatcher",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>: <@REGEXP(\"Cannot daemonize .+\"):msg@>",
-         "msg_id" : "Audit:cannot_daemonize",
          "table" : "Message",
+         "id" : "cannot_daemonize",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"The audit daemon is exiting.\"):msg@>",
-         "msg_id" : "Audit:exiting",
          "table" : "Message",
+         "id" : "exiting",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error sending signal_info request.+\"):msg@>",
-         "msg_id" : "Audit:error_sending_signal_info_request",
          "table" : "Message",
+         "id" : "error_sending_signal_info_request",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Init complete, auditd .+ listening for events .+\"):msg@>",
-         "msg_id" : "Audit:init_complete_listening_for_events",
          "table" : "Message",
+         "id" : "init_complete_listening_for_events",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Audit daemon rotating log files\"):msg@>",
-         "msg_id" : "Audit:rotating_log_files",
          "table" : "Message",
+         "id" : "rotating_log_files",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"client .+ socket closed unexpectedly\"):msg@>",
-         "msg_id" : "Audit:client_socket_closed_unexpectedly",
          "table" : "Message",
+         "id" : "client_socket_closed_unexpectedly",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>: <@REGEXP(\".+ permissions should be .+\"):msg@>",
-         "msg_id" : "Audit:permissions_should_be",
          "table" : "Message",
+         "id" : "permissions_should_be",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>: <@REGEXP(\"The audit daemon is exiting.\"):msg@>",
-         "msg_id" : "Audit:exiting2",
          "table" : "Message",
+         "id" : "exiting2",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       }

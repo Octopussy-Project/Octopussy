@@ -2,22 +2,22 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhclient\"):daemon@>: <@REGEXP(\"DHCPREQUEST .+\"):msg@>",
-         "msg_id" : "Dhclient:dhcprequest",
          "table" : "Message",
+         "id" : "dhcprequest",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhclient\"):daemon@>: <@REGEXP(\"DHCPACK .+\"):msg@>",
-         "msg_id" : "Dhclient:dhcpack",
          "table" : "Message",
+         "id" : "dhcpack",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhclient\"):daemon@>: <@REGEXP(\"bound to .+\"):msg@>",
-         "msg_id" : "Dhclient:bound_to",
          "table" : "Message",
+         "id" : "bound_to",
          "taxonomy" : "Network",
          "loglevel" : "Information"
       }

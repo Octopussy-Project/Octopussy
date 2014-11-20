@@ -3,85 +3,85 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"Syntax error on line \\d+ of .+:\"):msg@>",
-         "msg_id" : "Apache:syntax_error_on_line",
          "table" : "Message",
+         "id" : "syntax_error_on_line",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"Invalid command .+, perhaps mis-spelled or defined by a module not included in the server configuration\"):msg@>",
-         "msg_id" : "Apache:invalid_command",
          "table" : "Message",
+         "id" : "invalid_command",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"Cannot load .+ into server: .*\"):msg@>",
-         "msg_id" : "Apache:cannot_load_module",
          "table" : "Message",
+         "id" : "cannot_load_module",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"\\S+ startup failed\"):msg@> ",
-         "msg_id" : "Apache:startup_failed",
          "table" : "Message",
+         "id" : "startup_failed",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"\\S+ shutdown failed\"):msg@> ",
-         "msg_id" : "Apache:shutdown_failed",
          "table" : "Message",
+         "id" : "shutdown_failed",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"\\S+ -HUP succeeded\"):msg@>",
-         "msg_id" : "Apache:hup_succeeded",
          "table" : "Message",
+         "id" : "hup_succeeded",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"[error] .+ unable to include .+ in parsed file .+\"):msg@>",
-         "msg_id" : "Apache:unable_include_file",
          "table" : "Message",
+         "id" : "unable_include_file",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"[error] .+ File does not exist: .+\"):msg@> ",
-         "msg_id" : "Apache:file_does_not_exist",
          "table" : "Message",
+         "id" : "file_does_not_exist",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"[error] .+ Authentication failure.+\"):msg@>",
-         "msg_id" : "Apache:authentication_failure",
          "table" : "Message",
+         "id" : "authentication_failure",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:server@>: <@REGEXP(\"[error] .+\"):msg@>",
-         "msg_id" : "Apache:various_errors",
          "table" : "Message",
+         "id" : "various_errors",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"httpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_ldap: error trying to bind as user .+\"):msg@>",
-         "msg_id" : "Apache:pam_ldap_error_bind",
          "table" : "Message",
+         "id" : "pam_ldap_error_bind",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"httpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"[warn] RSA server certificate CommonName .+ does NOT match server name.+\"):msg@>",
-         "msg_id" : "Apache:certificate_doesnt_match_servername",
          "table" : "Message",
+         "id" : "certificate_doesnt_match_servername",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       }

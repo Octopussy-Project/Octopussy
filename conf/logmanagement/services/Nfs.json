@@ -2,36 +2,36 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> nfsd[<@PID:pid@>]: <@REGEXP(\"Could not bind .+\"):msg@>  ",
-         "msg_id" : "Nfs:could_not_bind",
          "table" : "Message",
+         "id" : "could_not_bind",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: nfs: <@REGEXP(\"server \\S+ not responding, still trying\"):msg@> ",
-         "msg_id" : "Nfs:server_not_responding",
          "table" : "Message",
+         "id" : "server_not_responding",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: nfs: <@REGEXP(\"server \\S+ OK\"):msg@> ",
-         "msg_id" : "Nfs:server_ok",
          "table" : "Message",
+         "id" : "server_ok",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"lockd: cannot monitor .+\"):msg@>",
-         "msg_id" : "Nfs:lockd_cannot_monitor",
          "table" : "Message",
+         "id" : "lockd_cannot_monitor",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"lockd: failed to monitor .+\"):msg@> ",
-         "msg_id" : "Nfs:lockd_failed_to_monitor",
          "table" : "Message",
+         "id" : "lockd_failed_to_monitor",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       }

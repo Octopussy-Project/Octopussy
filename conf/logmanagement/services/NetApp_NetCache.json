@@ -3,862 +3,862 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[kern.uptime.nc:info\\]: .+ \\d+ URLs, \\d+ streams\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:uptime_info",
          "table" : "Message",
+         "id" : "uptime_info",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[kern.timed.adjust:info\\]: server \\S+ reports the appliance date is \\S+ by \\S+ seconds which is more than timed.min_skew .+. Adjusting date.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:timed_adjust",
          "table" : "Message",
+         "id" : "timed_adjust",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[wwfilterWorker:error\\]: I/O error in communicating with WebWasher server.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:webwasher_communicating_server",
          "table" : "Message",
+         "id" : "webwasher_communicating_server",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[wwfilterWorker:info\\]: wwfilter:Download to occur in \\d+ seconds\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:webwasher_download",
          "table" : "Message",
+         "id" : "webwasher_download",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin_backup_push_t:info\\]: Configuration backed up by user \\S+.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:backup_push",
          "table" : "Message",
+         "id" : "backup_push",
          "taxonomy" : "Config.Backup",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:warning\\]: Client \\S+ trying to connect to appliance port \\d+ using the appliance\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:trying_connect_appliance",
          "table" : "Message",
+         "id" : "trying_connect_appliance",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[telnet_0:info\\]: \\S+ logged in from host: \\S+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:user_logged_in",
          "table" : "Message",
+         "id" : "user_logged_in",
          "taxonomy" : "Access.Success",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[wwfilterWorker:info\\]: WebWasher download successful.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:webwasher_download_successful",
          "table" : "Message",
+         "id" : "webwasher_download_successful",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[wwfilterWorker:info\\]: Current time: day:hr:min = .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:webwasher_current_time",
          "table" : "Message",
+         "id" : "webwasher_current_time",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[wwfilterWorker:info\\]: Download time: day:hr:min = .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:webwasher_download_time",
          "table" : "Message",
+         "id" : "webwasher_download_time",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[rc:info\\]: Configuration backed up by user \\S+.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:config_backed_up",
          "table" : "Message",
+         "id" : "config_backed_up",
          "taxonomy" : "Config.Backup",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+too many bad logins from host .+, IP address .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:too_many_bad_logins",
          "table" : "Message",
+         "id" : "too_many_bad_logins",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin.config.backup.push.fail:error\\]: config backup push failed for file: .+ to destination URL: .+ Error: \\[code=CANT_CONNECT\\] Could not connect because of networking problems. Contact your system administrator.+\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:backup_failed_network",
          "table" : "Message",
+         "id" : "backup_failed_network",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[asup.smtp.sent:notice\\]: System Notification mail sent: .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:system_notification_mail_sent",
          "table" : "Message",
+         "id" : "system_notification_mail_sent",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[kern.log.rotate:notice\\]: System .+ is running NetApp Release \\S+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:running_netapp_release",
          "table" : "Message",
+         "id" : "running_netapp_release",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:warning\\]: \\[HTTP\\]: CONNECT request  issued by client \\S+ to host .+ is being terminated to prevent routing loops\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:prevent_routing_loops",
          "table" : "Message",
+         "id" : "prevent_routing_loops",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.stack.framename:notice\\]: Stack frame \\d+: .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:stack_frame",
          "table" : "Message",
+         "id" : "stack_frame",
          "taxonomy" : "System",
          "loglevel" : "Debug"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+ pktt: \\d+ packets seen, \\d+ dropped, \\d+ bytes written to \\S+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:packet_trace",
          "table" : "Message",
+         "id" : "packet_trace",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: File .+ deleted by host \\S+, user \\S+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:file_deleted",
          "table" : "Message",
+         "id" : "file_deleted",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin.config.changed:info\\]: Configuration changed by .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:configuration_changed",
          "table" : "Message",
+         "id" : "configuration_changed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[pktt:notice\\]: pktt: stopped writing packets to .+ because size exceeds \\d+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:stopped_wrtiting_packets",
          "table" : "Message",
+         "id" : "stopped_wrtiting_packets",
          "taxonomy" : "System.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.tetris.media.recommend.reassign.err:info\\]: Block recommended for reassignment on Disk .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:disk_recommended_reassignment",
          "table" : "Message",
+         "id" : "disk_recommended_reassignment",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: DNS cache flushed by .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:dns_cache_flushed",
          "table" : "Message",
+         "id" : "dns_cache_flushed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin.login.failure:info\\]: Failed admin login attempt for .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:failed_login_attempt",
          "table" : "Message",
+         "id" : "failed_login_attempt",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:warning\\]: \\S+: detected possible routing loop\"):msg@>",
-         "msg_id" : "NetApp_NetCache:detected_possible_routing_loop",
          "table" : "Message",
+         "id" : "detected_possible_routing_loop",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[ncldap_loop:warning\\]: \\[Auth/ldap\\]: Latency is high.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:ldap_latency_high",
          "table" : "Message",
+         "id" : "ldap_latency_high",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[coredump.mini.completed:info\\]: .+ generation completed\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:coredump_generation_completed",
          "table" : "Message",
+         "id" : "coredump_generation_completed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:warning\\]: Potential Routing loop detected in HTTP Via header: .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:routing_loop_detected",
          "table" : "Message",
+         "id" : "routing_loop_detected",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[asup.smtp.sent.minicore:notice\\]: Core file .+ sent to Network Appliance\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:core_file_sent_netapp",
          "table" : "Message",
+         "id" : "core_file_sent_netapp",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin_worker:info\\]: SSH Setup: SSH Setup is done. Host keys are stored in .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:ssh_setup_done",
          "table" : "Message",
+         "id" : "ssh_setup_done",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: SSH keys generated by .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:ssh_keys_generated",
          "table" : "Message",
+         "id" : "ssh_keys_generated",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: SSL certificate generated by .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:ssl_certificate_generated",
          "table" : "Message",
+         "id" : "ssl_certificate_generated",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.boot.disk_done:info\\]: NetApp Release .+ boot complete. Last disk update written at .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:boot_complete",
          "table" : "Message",
+         "id" : "boot_complete",
          "taxonomy" : "System.Boot",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[.+\\]: Listening for .+ requests on .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:listening_for_requests",
          "table" : "Message",
+         "id" : "listening_for_requests",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[rc:info\\]: Listening promiscuously for .+ requests on .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:listening_promiscuously_for_requests",
          "table" : "Message",
+         "id" : "listening_promiscuously_for_requests",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[kern.shutdown:notice\\]: System shut down because : .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:system_shutdown_because",
          "table" : "Message",
+         "id" : "system_shutdown_because",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[console_login_mgr:info\\]: .+ logged in from console\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:logged_in_from_console",
          "table" : "Message",
+         "id" : "logged_in_from_console",
          "taxonomy" : "Access.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[.+\\]: Failed password for illegal user .+ from .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:failed_password_illegal_user",
          "table" : "Message",
+         "id" : "failed_password_illegal_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[.+\\]: Failed none for illegal user .+ from .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:failed_none_illegal_user",
          "table" : "Message",
+         "id" : "failed_none_illegal_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[.+\\]: input_userauth_request: illegal user .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:userauth_request_illegal_user",
          "table" : "Message",
+         "id" : "userauth_request_illegal_user",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.boot.reason_ok:notice\\]: System rebooted after running WAFL_check.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:system_rebooted_after_waflcheck",
          "table" : "Message",
+         "id" : "system_rebooted_after_waflcheck",
          "taxonomy" : "System.Boot",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_\\d+:info\\]: Accepted password for .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:sshd_accepted_password",
          "table" : "Message",
+         "id" : "sshd_accepted_password",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: File .+ uploaded by .+\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:file_uploaded",
          "table" : "Message",
+         "id" : "file_uploaded",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: NetCache rebooted by .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:netcache_rebooted",
          "table" : "Message",
+         "id" : "netcache_rebooted",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[ltm_services:info\\]: Ethernet \\S+: Link down, check cable\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:ethernet_down_check_cable",
          "table" : "Message",
+         "id" : "ethernet_down_check_cable",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[ltm_services:info\\]: Ethernet \\S+: Link up\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:ethernet_link_up",
          "table" : "Message",
+         "id" : "ethernet_link_up",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.boot.new_OS2:notice\\]: This system is running a new version of NetCache .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:running_new_version",
          "table" : "Message",
+         "id" : "running_new_version",
          "taxonomy" : "System.Boot",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.boot.reason_ok:notice\\]: System rebooted after a reboot command.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:rebooted_after_reboot_command",
          "table" : "Message",
+         "id" : "rebooted_after_reboot_command",
          "taxonomy" : "System.Boot",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_\\d+:info\\]: Failed password for .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:sshd_failed_password",
          "table" : "Message",
+         "id" : "sshd_failed_password",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_\\d+:info\\]: .+ logged in from .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:sshd_logged_in",
          "table" : "Message",
+         "id" : "sshd_logged_in",
          "taxonomy" : "Auth.Success",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[cache_entry_admin:notice\\]: Finished rebuilding objects:.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:cache_finished_rebuilding_objects",
          "table" : "Message",
+         "id" : "cache_finished_rebuilding_objects",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_\\d+:error\\]: error: Disconnecting: protocol error: .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:sshd_protocol_error",
          "table" : "Message",
+         "id" : "sshd_protocol_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_\\d+:info\\]: dispatch_protocol_error: .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:sshd_dispatch_protocol_error",
          "table" : "Message",
+         "id" : "sshd_dispatch_protocol_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin.software.installed:info\\]: Software installed by .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:software_installed",
          "table" : "Message",
+         "id" : "software_installed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[download.request\\S+\\]: Operator requested download \\S+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:operator_requested_download",
          "table" : "Message",
+         "id" : "operator_requested_download",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: Log management scheduled by .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:log_management_scheduled",
          "table" : "Message",
+         "id" : "log_management_scheduled",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[rc:info\\]: \\S+ time: day:hr:min = .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:time_info",
          "table" : "Message",
+         "id" : "time_info",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin_worker:info\\]: Starting SSL with new certificate.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:ssl_with_new_certificate",
          "table" : "Message",
+         "id" : "ssl_with_new_certificate",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[rc:ALERT\\]: timed: time daemon started\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:time_daemon_started",
          "table" : "Message",
+         "id" : "time_daemon_started",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.stack.openFail:warning\\]: Unable to open function name/address mapping file .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:unable_open_mapping_file",
          "table" : "Message",
+         "id" : "unable_open_mapping_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin_worker:info\\]: Closing \\(TCP\\) listen socket for .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:closing_listen_socket",
          "table" : "Message",
+         "id" : "closing_listen_socket",
          "taxonomy" : "Network",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[rc:info\\]: wwfilter:Download to occur in \\d+ seconds\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:wwfilter_download_occur",
          "table" : "Message",
+         "id" : "wwfilter_download_occur",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[wafl.scan.typebits.done:info\\]: Type bit scan done on .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:type_bit_scan_done",
          "table" : "Message",
+         "id" : "type_bit_scan_done",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[cache_entry_admin:notice\\]: Cache flush complete.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:cache_flush_complete",
          "table" : "Message",
+         "id" : "cache_flush_complete",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: NetCache flushed by .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:netcache_flushed",
          "table" : "Message",
+         "id" : "netcache_flushed",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: File .+ sent to .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:file_sent_to",
          "table" : "Message",
+         "id" : "file_sent_to",
          "taxonomy" : "System",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[asup.general.queue.deleted:info\\]: All autosupport message queue entries have been deleted.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:autosupport_message_queue_deleted",
          "table" : "Message",
+         "id" : "autosupport_message_queue_deleted",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin_worker:notice\\]: WAFL revert to .+ completed\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:wafl_revert_completed",
          "table" : "Message",
+         "id" : "wafl_revert_completed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.boot.reason_ok:notice\\]: System rebooted after revert.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:system_rebooted_after_revert",
          "table" : "Message",
+         "id" : "system_rebooted_after_revert",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[admin_worker:notice\\]: Starting revert to.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:starting_revert",
          "table" : "Message",
+         "id" : "starting_revert",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[rc:info\\]: wwfilter.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:wwfilter_info",
          "table" : "Message",
+         "id" : "wwfilter_info",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[telnetd:warning\\]: Failed Login from.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:telnet_failed_login",
          "table" : "Message",
+         "id" : "telnet_failed_login",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[telnetd:debug\\]: unknown:AUTH:error:Failed Login from.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:telnet_failed_login2",
          "table" : "Message",
+         "id" : "telnet_failed_login2",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[wwfilterWorker:error\\]: Webwasher license has expired.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:webwasher_license_expired",
          "table" : "Message",
+         "id" : "webwasher_license_expired",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.boot.reason_abnormal:ALERT\\]: System rebooted after a panic.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:system_rebooted_after_panic",
          "table" : "Message",
+         "id" : "system_rebooted_after_panic",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.stack.at:notice\\]: Panic occurred at.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:panic_occured",
          "table" : "Message",
+         "id" : "panic_occured",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.stack.proc:notice\\]: Panic in process.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:panic_in_process",
          "table" : "Message",
+         "id" : "panic_in_process",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[rc:ALERT\\]: relog syslog PANIC.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:relog_syslog_panic",
          "table" : "Message",
+         "id" : "relog_syslog_panic",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[wafl.vol.inconsistent:ALERT\\]: Volume .+ is inconsistent.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:volume_inconsistent",
          "table" : "Message",
+         "id" : "volume_inconsistent",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[coredump.save.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:saving_coredump",
          "table" : "Message",
+         "id" : "saving_coredump",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.stack.saved:notice\\]: Reboot with saved panic information in log file\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:reboot_with_panic_information",
          "table" : "Message",
+         "id" : "reboot_with_panic_information",
          "taxonomy" : "System.Boot",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:info\\]: Download of .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:download",
          "table" : "Message",
+         "id" : "download",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:error\\]: Failed to download file: .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:failed_to_download_file",
          "table" : "Message",
+         "id" : "failed_to_download_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_0:info\\]: Did not receive identification string from .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:sshd_identification_string_error",
          "table" : "Message",
+         "id" : "sshd_identification_string_error",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_0:info\\]: Bad protocol version identification .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:sshd_bad_protocol_version",
          "table" : "Message",
+         "id" : "sshd_bad_protocol_version",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[cecc_log.entry:warning\\]: .+ Correctable ECC error on DIMM .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:correctable_dimm_ecc_error",
          "table" : "Message",
+         "id" : "correctable_dimm_ecc_error",
          "taxonomy" : "Hardware.Memory",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[cecc_log.summary:warning\\]: .+ new correctable ecc errors just reported.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:correctable_ecc_error_reported",
          "table" : "Message",
+         "id" : "correctable_ecc_error_reported",
          "taxonomy" : "Hardware.Memory",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[monitor.globalStatus.nonCritical:warning\\]: \\\"Memory\\\": Correctable error .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:memory_correctable_error",
          "table" : "Message",
+         "id" : "memory_correctable_error",
          "taxonomy" : "Hardware.Memory",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+: Ethernet \\S+: Link down, check cable\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:link_down_check_cable",
          "table" : "Message",
+         "id" : "link_down_check_cable",
          "taxonomy" : "Hardware.Network",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.rg.recons.multidisk:warning\\]: .+: reconstruction encountered a multi-disk error\"):msg@>",
-         "msg_id" : "NetApp_NetCache:reconstruction_encountered_multidisk_error",
          "table" : "Message",
+         "id" : "reconstruction_encountered_multidisk_error",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[monitor.globalStatus.nonCritical:warning\\]: .* There are not enough spare disks.\"):msg@>  ",
-         "msg_id" : "NetApp_NetCache:not_enough_spare_disks",
          "table" : "Message",
+         "id" : "not_enough_spare_disks",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Emergency"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.rg.recons.aborted:notice\\]: .+ reconstruction aborted at disk block .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:reconstruction_aborted_disk_block",
          "table" : "Message",
+         "id" : "reconstruction_aborted_disk_block",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.rg.scrub..+\\]: Scrub found .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:scrub_found_something",
          "table" : "Message",
+         "id" : "scrub_found_something",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.+\\]: Read error on Disk .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:read_error_on_disk",
          "table" : "Message",
+         "id" : "read_error_on_disk",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[monitor.raid.reconstruct:warning\\]: Reconstructing broken data disk .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:reconstructing_broken_data_disk",
          "table" : "Message",
+         "id" : "reconstructing_broken_data_disk",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[download.inconsistency:info\\]: Inconsistent disk bootblock data detected\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:inconsistent_bootblock_data_detected",
          "table" : "Message",
+         "id" : "inconsistent_bootblock_data_detected",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.rg.recons.missing:notice\\]: RAID group .+ is missing \\d+ disk.+\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:raid_group_missing_disk",
          "table" : "Message",
+         "id" : "raid_group_missing_disk",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.disk.inserted:info\\]: Disk .+ has been inserted into the system\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:disk_inserted_into_system",
          "table" : "Message",
+         "id" : "disk_inserted_into_system",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sfu.firmwareUpToDate:info\\]: Firmware is up-to-date on all disk shelves.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:firmware_uptodate_all_disk",
          "table" : "Message",
+         "id" : "firmware_uptodate_all_disk",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[coredump.mini.starting:info\\]: Generating mini-core.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:generating_minicore",
          "table" : "Message",
+         "id" : "generating_minicore",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.rg.recons.info:notice\\]: Spare disk .+ will be used to reconstruct one missing disk in RAID group .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:spare_disk_reconstruct_missing",
          "table" : "Message",
+         "id" : "spare_disk_reconstruct_missing",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.rg.recons.start:notice\\]: .+ starting reconstruction, using disk .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:starting_reconstruction_using_disk",
          "table" : "Message",
+         "id" : "starting_reconstruction_using_disk",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[monitor.globalStatus.ok:info\\]: The system's global status is normal.\"):msg@>  ",
-         "msg_id" : "NetApp_NetCache:system_global_status_normal",
          "table" : "Message",
+         "id" : "system_global_status_normal",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.rg.recons.block.fail:error\\]: Block .+ can not be properly reconstructed on Disk .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:block_cannot_be_reconstructed",
          "table" : "Message",
+         "id" : "block_cannot_be_reconstructed",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[asup.smtp.host:info\\]: Autosupport cannot connect to .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:autosupport_cannot_connect_to",
          "table" : "Message",
+         "id" : "autosupport_cannot_connect_to",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+: duplicate IP address .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:duplicate_ip_address",
          "table" : "Message",
+         "id" : "duplicate_ip_address",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_\\d+:info\\]: Failed publickey for illegal user .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:sshd_failed_publickey",
          "table" : "Message",
+         "id" : "sshd_failed_publickey",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[asup.smtp.\\w+:error\\]: Autosupport mail was not sent because .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:autosupport_mail_not_sent",
          "table" : "Message",
+         "id" : "autosupport_mail_not_sent",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sshd_\\d+:error\\]: error: Disconnecting: Too many authentication failures for .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:too_many_authentication_failures",
          "table" : "Message",
+         "id" : "too_many_authentication_failures",
          "taxonomy" : "Auth.Failure",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.stack.longrun.proc:notice\\]: Long running process: .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:long_running_process",
          "table" : "Message",
+         "id" : "long_running_process",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[adpch_timeoutd:warning\\]: adpch_timeoutd: .+ command timeout, quiescing bus to allow outstanding I/O to complete.+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:adpch_command_timeout",
          "table" : "Message",
+         "id" : "adpch_command_timeout",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[adpch_intrd:warning\\]: adpch_timeoutd: .+ unquiescing bus\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:adpch_unquiescing_bus",
          "table" : "Message",
+         "id" : "adpch_unquiescing_bus",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.read.media.recommend.reassign.err:info\\]: Block recommended for reassignment on Disk .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:block_recommended_for_reassignment",
          "table" : "Message",
+         "id" : "block_recommended_for_reassignment",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[shm.threshold.allMediaErrors:error\\]: shm: Disk .+ has crossed the combination media error threshold in a \\d+ minute window and will be recommended for failure.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:disk_recommended_for_failure",
          "table" : "Message",
+         "id" : "disk_recommended_for_failure",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[adpch_asyncd:warning\\]: adpch asyncd: Resetting SCSI .+ to clear outstanding I/O.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:resetting_scsi_clear_outstanding",
          "table" : "Message",
+         "id" : "resetting_scsi_clear_outstanding",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.fdr.reminder:warning\\]: Failed Disk .+ is still present in the system and should be removed.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:failed_disk_still_present",
          "table" : "Message",
+         "id" : "failed_disk_still_present",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[kern.cron.reschedDst:notice\\]: Daylight Savings Time change: .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:daylight_savings_time_change",
          "table" : "Message",
+         "id" : "daylight_savings_time_change",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[mgr.stack.string:notice\\]: Panic string: wafl_inode_to_file_attr: unexpected file type .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:unexpected_file_type",
          "table" : "Message",
+         "id" : "unexpected_file_type",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.disk.missing:error\\]: Disk .+ is missing from the system\"):msg@>",
-         "msg_id" : "NetApp_NetCache:disk_missing_from_system",
          "table" : "Message",
+         "id" : "disk_missing_from_system",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.config.filesystem.disk.failed:error\\]: File system Disk .+ failed.\"):msg@> ",
-         "msg_id" : "NetApp_NetCache:filesystem_disk_failed",
          "table" : "Message",
+         "id" : "filesystem_disk_failed",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.rg.readerr.repair.data:notice\\]: Fixing bad data on Disk .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:disk_fixing_bad_data",
          "table" : "Message",
+         "id" : "disk_fixing_bad_data",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[raid.fdr.update.error:warning\\]: Unable to write FDR to Disk .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:unable_write_fdr_disk",
          "table" : "Message",
+         "id" : "unable_write_fdr_disk",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\[sthread_loop:warning\\]: Potential routing loop detected for .+\"):msg@>",
-         "msg_id" : "NetApp_NetCache:potential_routing_loop_detected",
          "table" : "Message",
+         "id" : "potential_routing_loop_detected",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       }

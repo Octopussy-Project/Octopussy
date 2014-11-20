@@ -3,22 +3,22 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"iTunes\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_AMDDeviceDetached \\(thread \\S+\\): Device '.+' detached.\"):msg@>",
-         "msg_id" : "Mac_OS_X_iTunes:device_detached",
          "table" : "Message",
+         "id" : "device_detached",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"iTunes\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_AMDDeviceAttachedCallbackv3 \\(thread \\S+\\): Device '.+' attached.\"):msg@>",
-         "msg_id" : "Mac_OS_X_iTunes:device_attached",
          "table" : "Message",
+         "id" : "device_attached",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"iTunes\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_NotificationSocketReadCallbackGCD .+: Unexpected connection closure...\"):msg@>",
-         "msg_id" : "Mac_OS_X_iTunes:unexpected_connection_closure",
          "table" : "Message",
+         "id" : "unexpected_connection_closure",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       }

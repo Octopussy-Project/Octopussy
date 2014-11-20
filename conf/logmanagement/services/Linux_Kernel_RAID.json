@@ -3,43 +3,43 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ RAID STATUS CHANGE for .+\"):msg@>",
-         "msg_id" : "Linux_Kernel_RAID:raid_status_change",
          "table" : "Message",
+         "id" : "raid_status_change",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ PhysDisk is now online.*\"):msg@> ",
-         "msg_id" : "Linux_Kernel_RAID:physdisk_now_online",
          "table" : "Message",
+         "id" : "physdisk_now_online",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ volume is now optimal.*\"):msg@>",
-         "msg_id" : "Linux_Kernel_RAID:volume_now_optimal",
          "table" : "Message",
+         "id" : "volume_now_optimal",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ PhysDisk is now missing.*\"):msg@> ",
-         "msg_id" : "Linux_Kernel_RAID:physdisk_now_missing",
          "table" : "Message",
+         "id" : "physdisk_now_missing",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ volume is now degraded.*\"):msg@>",
-         "msg_id" : "Linux_Kernel_RAID:volume_now_degraded",
          "table" : "Message",
+         "id" : "volume_now_degraded",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptsas: <@REGEXP(\".+ \\w+ing ssp device, channel \\d+, id \\d+, phy \\d+\"):msg@> ",
-         "msg_id" : "Linux_Kernel_RAID:attaching_removing_ssp_device",
          "table" : "Message",
+         "id" : "attaching_removing_ssp_device",
          "taxonomy" : "Hardware.Disk",
          "loglevel" : "Information"
       }

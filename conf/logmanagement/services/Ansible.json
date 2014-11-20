@@ -2,8 +2,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> ansible-<@WORD:module@>: Invoked with <@STRING:arguments@>",
-         "msg_id" : "Ansible:001",
          "table" : "Ansible",
+         "id" : "001",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       }

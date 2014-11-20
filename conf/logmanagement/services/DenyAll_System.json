@@ -3,246 +3,246 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ SSL handshake interrupted by system.+\"):msg@>",
-         "msg_id" : "DenyAll_System:sslhandshake_interrupted",
          "table" : "DenyAll_System",
+         "id" : "sslhandshake_interrupted",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ Connection reset by peer.+\"):msg@>",
-         "msg_id" : "DenyAll_System:connection_reset_peer",
          "table" : "DenyAll_System",
+         "id" : "connection_reset_peer",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ SSL handshake failed.+\"):msg@>",
-         "msg_id" : "DenyAll_System:sslhandshake_failed",
          "table" : "DenyAll_System",
+         "id" : "sslhandshake_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ SSL handshake timed out.+\"):msg@> ",
-         "msg_id" : "DenyAll_System:sslhandshake_timed_out",
          "table" : "DenyAll_System",
+         "id" : "sslhandshake_timed_out",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] .*No such file or directory: .+: error resolving name .+\"):msg@>",
-         "msg_id" : "DenyAll_System:error_resolving_name",
          "table" : "DenyAll_System",
+         "id" : "error_resolving_name",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ SSL proxy connect failed.+\"):msg@>",
-         "msg_id" : "DenyAll_System:sslproxy_connect_failed",
          "table" : "DenyAll_System",
+         "id" : "sslproxy_connect_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] \\[client \\S+\\] .+: proxy connect to \\S+ port \\d+ failed\"):msg@> ",
-         "msg_id" : "DenyAll_System:proxy_connect_failed",
          "table" : "DenyAll_System",
+         "id" : "proxy_connect_failed",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[notice\\] VALID LICENSE for \\d+/\\d+ server\\(s\\), \\d+ day\\(s\\).*\"):msg@>",
-         "msg_id" : "DenyAll_System:valid_license",
          "table" : "DenyAll_System",
+         "id" : "valid_license",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[notice\\] Accept mutex: sysvsem \\(Default: sysvsem\\)\"):msg@> ",
-         "msg_id" : "DenyAll_System:accept_mutex",
          "table" : "DenyAll_System",
+         "id" : "accept_mutex",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[notice\\] Apache configured -- resuming normal operations\"):msg@> ",
-         "msg_id" : "DenyAll_System:apache_configured",
          "table" : "DenyAll_System",
+         "id" : "apache_configured",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@>: <@REGEXP(\"Syntax error on line \\d+ of .+:\"):msg@> ",
-         "msg_id" : "DenyAll_System:syntax_error",
          "table" : "DenyAll_System",
+         "id" : "syntax_error",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] .+Connection timed out: proxy connect to .+ failed\"):msg@>",
-         "msg_id" : "DenyAll_System:proxy_timed_out",
          "table" : "DenyAll_System",
+         "id" : "proxy_timed_out",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] make_child: system load too high\"):msg@>",
-         "msg_id" : "DenyAll_System:load_too_high",
          "table" : "DenyAll_System",
+         "id" : "load_too_high",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] fork: Unable to fork new process\"):msg@>",
-         "msg_id" : "DenyAll_System:unable_to_fork",
          "table" : "DenyAll_System",
+         "id" : "unable_to_fork",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] make_child: system load is OK -> fork\\(\\) limitation removed\"):msg@>",
-         "msg_id" : "DenyAll_System:fork_limitation_removed",
          "table" : "DenyAll_System",
+         "id" : "fork_limitation_removed",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] .+Permission denied: proxy: utimes.+\"):msg@>",
-         "msg_id" : "DenyAll_System:permission_denied_utimes",
          "table" : "DenyAll_System",
+         "id" : "permission_denied_utimes",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ OpenSSL: error:.+\"):msg@> ",
-         "msg_id" : "DenyAll_System:openssl_error",
          "table" : "DenyAll_System",
+         "id" : "openssl_error",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] .+ Invalid URI in request .+\"):msg@>",
-         "msg_id" : "DenyAll_System:invalid_uri_request",
          "table" : "DenyAll_System",
+         "id" : "invalid_uri_request",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+truerand: \\d+ bits generated.\"):msg@> ",
-         "msg_id" : "DenyAll_System:truerand_generated",
          "table" : "DenyAll_System",
+         "id" : "truerand_generated",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] server reached \\S+ setting, consider raising the \\S+ setting\"):msg@>",
-         "msg_id" : "DenyAll_System:server_reached_setting",
          "table" : "DenyAll_System",
+         "id" : "server_reached_setting",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:instance@>: <@REGEXP(\".+ \\[warn\\] pid file .+ overwritten -- Unclean shutdown of previous Apache run\\?\"):msg@>",
-         "msg_id" : "DenyAll_System:apache_unclean_shutdown",
          "table" : "DenyAll_System",
+         "id" : "apache_unclean_shutdown",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] .+Permission denied: EAccess: cannot open tmp file .+\"):msg@>",
-         "msg_id" : "DenyAll_System:cannot_open_tmp_file",
          "table" : "DenyAll_System",
+         "id" : "cannot_open_tmp_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ SSL error on reading data.+\"):msg@>",
-         "msg_id" : "DenyAll_System:ssl_error_reading_data",
          "table" : "DenyAll_System",
+         "id" : "ssl_error_reading_data",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\"cat: write error: Broken pipe\"):msg@> ",
-         "msg_id" : "DenyAll_System:cat_broken_pipe",
          "table" : "DenyAll_System",
+         "id" : "cat_broken_pipe",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\].+Permission denied: proxy: error \\S+ing cache file .+\"):msg@>",
-         "msg_id" : "DenyAll_System:error_cache_file",
          "table" : "DenyAll_System",
+         "id" : "error_cache_file",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\"write error: Broken pipe\"):msg@> ",
-         "msg_id" : "DenyAll_System:write_error_broken_pipe",
          "table" : "DenyAll_System",
+         "id" : "write_error_broken_pipe",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> sProxy: <@REGEXP(\"Invalid command '.+'.*\"):msg@>",
-         "msg_id" : "DenyAll_System:invalid_command",
          "table" : "DenyAll_System",
+         "id" : "invalid_command",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] mod_ssl: Child could not open SSLMutex lockfile.+\"):msg@>",
-         "msg_id" : "DenyAll_System:couldnt_open_sslmutex_file",
          "table" : "DenyAll_System",
+         "id" : "couldnt_open_sslmutex_file",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] System: No such file or directory.*\"):msg@>",
-         "msg_id" : "DenyAll_System:no_such_file_directory",
          "table" : "DenyAll_System",
+         "id" : "no_such_file_directory",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] \\[NOCACHE\\] This request was not cached but can be cached elsewhere :.+\"):msg@>",
-         "msg_id" : "DenyAll_System:request_was_not_cached",
          "table" : "DenyAll_System",
+         "id" : "request_was_not_cached",
          "taxonomy" : "System",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] \\[client \\S+\\] File does not exist: .+\"):msg@>",
-         "msg_id" : "DenyAll_System:file_does_not_exist",
          "table" : "DenyAll_System",
+         "id" : "file_does_not_exist",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] \\[client \\S+\\] EAccess: truncated URL: .+\"):msg@>",
-         "msg_id" : "DenyAll_System:eaccess_truncated_url",
          "table" : "DenyAll_System",
+         "id" : "eaccess_truncated_url",
          "taxonomy" : "System.Errors",
          "loglevel" : "Critical"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] \\[client \\S+\\] proxy: server returned a response without headers\"):msg@>",
-         "msg_id" : "DenyAll_System:response_without_headers",
          "table" : "DenyAll_System",
+         "id" : "response_without_headers",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] \\[client \\S+\\] .*Connection reset by peer: proxy: error reading from .+\"):msg@>",
-         "msg_id" : "DenyAll_System:proxy_error_reading_from",
          "table" : "DenyAll_System",
+         "id" : "proxy_error_reading_from",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:denyall_product@> <@STRING:instance@>: <@REGEXP(\".+ \\[error\\] \\[client \\S+\\] Client sent malformed Host header\"):msg@>",
-         "msg_id" : "DenyAll_System:sent_malformed_host_header",
          "table" : "DenyAll_System",
+         "id" : "sent_malformed_host_header",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       }

@@ -3,71 +3,71 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: VE: <@WORD:id@>: <@WORD:action@>",
-         "msg_id" : "OpenVZ:VE_Action",
          "table" : "OpenVZ",
+         "id" : "VE_Action",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> ManageVE[<@PID:pid@>]: <@REGEXP(\".*ERROR: vzctl .+\"):msg@>",
-         "msg_id" : "OpenVZ:error_vzctl",
          "table" : "Message",
+         "id" : "error_vzctl",
          "taxonomy" : "Application",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> ManageVE[<@PID:pid@>]: <@REGEXP(\".*ERROR: \\S+ not set or not a number.\"):msg@>",
-         "msg_id" : "OpenVZ:not_set_not_number",
          "table" : "Message",
+         "id" : "not_set_not_number",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Fatal resource shortage: .+, UB .+\"):msg@>",
-         "msg_id" : "OpenVZ:fatal_resource_shortage",
          "table" : "Message",
+         "id" : "fatal_resource_shortage",
          "taxonomy" : "System.Errors",
          "loglevel" : "Alert"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"UBC: preparing to turn dcache accounting on.*\"):msg@>",
-         "msg_id" : "OpenVZ:preparing_dcache_accounting",
          "table" : "Message",
+         "id" : "preparing_dcache_accounting",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"UBC: turning dcache accounting on succeeded.*\"):msg@>",
-         "msg_id" : "OpenVZ:turning_dcache_accounting_on",
          "table" : "Message",
+         "id" : "turning_dcache_accounting_on",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel:<@STRING:NULL@>CT: <@WORD:id@>: <@REGEXP(\"stopped\"):action@>",
-         "msg_id" : "OpenVZ:ct_stopped",
          "table" : "OpenVZ",
+         "id" : "ct_stopped",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel:<@STRING:NULL@>CT: <@WORD:id@>: <@REGEXP(\"started\"):action@>",
-         "msg_id" : "OpenVZ:ct_started",
          "table" : "OpenVZ",
+         "id" : "ct_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Dropped packet, source wrong veid=\\S+ src-IP=\\S+ dst-IP=\\S+\"):msg@>",
-         "msg_id" : "OpenVZ:dropped_packet_source_wrong",
          "table" : "Message",
+         "id" : "dropped_packet_source_wrong",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*warning: `vzctl' uses deprecated v2 capabilities .+\"):msg@>",
-         "msg_id" : "OpenVZ:vzctl_uses_deprecated_capabilities",
          "table" : "Message",
+         "id" : "vzctl_uses_deprecated_capabilities",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       }

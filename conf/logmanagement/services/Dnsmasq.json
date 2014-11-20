@@ -2,36 +2,36 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"started, version .+\"):msg@>",
-         "msg_id" : "Dnsmasq:started",
          "table" : "Message",
+         "id" : "started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"compile time options: .+\"):msg@>",
-         "msg_id" : "Dnsmasq:compile_time_options",
          "table" : "Message",
+         "id" : "compile_time_options",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"no servers found in .+\"):msg@>",
-         "msg_id" : "Dnsmasq:no_servers_found",
          "table" : "Message",
+         "id" : "no_servers_found",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"read /etc/hosts - \\d+ addresses\"):msg@>",
-         "msg_id" : "Dnsmasq:read_etc_host_addresses",
          "table" : "Message",
+         "id" : "read_etc_host_addresses",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"exiting on receipt of \\w+\"):msg@>",
-         "msg_id" : "Dnsmasq:exiting_on_receipt_signal",
          "table" : "Message",
+         "id" : "exiting_on_receipt_signal",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Notice"
       }

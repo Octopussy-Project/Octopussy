@@ -2,148 +2,148 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"\\[origin software=\\\"rsyslogd\\\" .+\\] \\(re\\)start\"):msg@>",
-         "msg_id" : "Rsyslog:start_restart",
          "table" : "Message",
+         "id" : "start_restart",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"\\[origin software=\\\"rsyslogd\\\" .+\\] restart\"):msg@>",
-         "msg_id" : "Rsyslog:restart",
          "table" : "Message",
+         "id" : "restart",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"rklogd .+ started.\"):msg@>",
-         "msg_id" : "Rsyslog:rklogd_started",
          "table" : "Message",
+         "id" : "rklogd_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"\\[origin software=\\\"rsyslogd\\\" .+\\] exiting on signal \\d+.\"):msg@>",
-         "msg_id" : "Rsyslog:exiting_on_signal",
          "table" : "Message",
+         "id" : "exiting_on_signal",
          "taxonomy" : "Application.Stop",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"-- MARK --\"):msg@>",
-         "msg_id" : "Rsyslog:mark",
          "table" : "Message",
+         "id" : "mark",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"imklog .+ started.\"):msg@>",
-         "msg_id" : "Rsyslog:imklog_started",
          "table" : "Message",
+         "id" : "imklog_started",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"invalid or yet-unknown config file command.*\"):msg@>",
-         "msg_id" : "Rsyslog:invalid_config_file_command",
          "table" : "Message",
+         "id" : "invalid_config_file_command",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"the last error occured in .+\"):msg@>",
-         "msg_id" : "Rsyslog:last_error_occured_in",
          "table" : "Message",
+         "id" : "last_error_occured_in",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"\\[origin software=\\\"rsyslogd\\\" .+\\] rsyslogd was HUPed.*\"):msg@>",
-         "msg_id" : "Rsyslog:rsyslogd_was_huped",
          "table" : "Message",
+         "id" : "rsyslogd_was_huped",
          "taxonomy" : "Application",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"CONFIG ERROR:.+\"):msg@>",
-         "msg_id" : "Rsyslog:config_error",
          "table" : "Message",
+         "id" : "config_error",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"Option value must be.+\"):msg@>",
-         "msg_id" : "Rsyslog:config_value_error",
          "table" : "Message",
+         "id" : "config_value_error",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"error: extra characters in config line ignored:.+\"):msg@>",
-         "msg_id" : "Rsyslog:config_extra_characters_ignored",
          "table" : "Message",
+         "id" : "config_extra_characters_ignored",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"unknown priority name.+\"):msg@>",
-         "msg_id" : "Rsyslog:unknown_priority_name",
          "table" : "Message",
+         "id" : "unknown_priority_name",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"warning: selector line without actions will be discarded\"):msg@>",
-         "msg_id" : "Rsyslog:selector_line_without_actions_will_be_discarded",
          "table" : "Message",
+         "id" : "selector_line_without_actions_will_be_discarded",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"No character available.+\"):msg@>",
-         "msg_id" : "Rsyslog:no_character_available",
          "table" : "Message",
+         "id" : "no_character_available",
          "taxonomy" : "Config.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"Framing Error in received TCP message: .+\"):msg@>",
-         "msg_id" : "Rsyslog:framing_error_tcp_message",
          "table" : "Message",
+         "id" : "framing_error_tcp_message",
          "taxonomy" : "Network.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"rsyslogd's userid changed to .+\"):msg@>",
-         "msg_id" : "Rsyslog:userid_changed",
          "table" : "Message",
+         "id" : "userid_changed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\"rsyslogd's groupid changed to .+\"):msg@>",
-         "msg_id" : "Rsyslog:goupid_changed",
          "table" : "Message",
+         "id" : "goupid_changed",
          "taxonomy" : "Config.Changes",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd\"):daemon@>: <@REGEXP(\".+ swVersion=.+ start\"):msg@>",
-         "msg_id" : "Rsyslog:swversion_start",
          "table" : "Message",
+         "id" : "swversion_start",
          "taxonomy" : "Application.Start",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"Could not create \\S+ listener, .+\"):msg@>",
-         "msg_id" : "Rsyslog:could_not_create_listener",
          "table" : "Message",
+         "id" : "could_not_create_listener",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyslogd.*\"):daemon@>: <@REGEXP(\"Could not open output .+\"):msg@>",
-         "msg_id" : "Rsyslog:could_not_open_output",
          "table" : "Message",
+         "id" : "could_not_open_output",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Warning"
       }

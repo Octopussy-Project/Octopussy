@@ -3,43 +3,43 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:device@> apache: <@IP_ADDR:src_addr@> - - [<@DATE_TIME_APACHE_ACCESS:datetime@>] \"<@WORD:http_method@> <@STRING:url@> HTTP/<@WORD:http_version@>\" <@REGEXP(\"200\"):status@> <@BYTES:rec_bytes@> \"<@STRING:referer@>\" \"<@USER_AGENT:user_agent@>\" <@STRING:NULL@>",
-         "msg_id" : "Apache_Traffic:code_200",
          "table" : "Web_Traffic",
+         "id" : "code_200",
          "taxonomy" : "Traffic.Granted",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:device@> apache: <@IP_ADDR:src_addr@> - - [<@DATE_TIME_APACHE_ACCESS:datetime@>] \"<@WORD:http_method@> <@STRING:url@> HTTP/<@WORD:http_version@>\" <@REGEXP(\"302\"):status@> - \"<@STRING:referer@>\" \"<@USER_AGENT:user_agent@>\" <@STRING:NULL@>",
-         "msg_id" : "Apache_Traffic:code_302",
          "table" : "Web_Traffic",
+         "id" : "code_302",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:device@> apache: <@IP_ADDR:src_addr@> - - [<@DATE_TIME_APACHE_ACCESS:datetime@>] \"<@WORD:http_method@> <@STRING:url@> HTTP/<@WORD:http_version@>\" <@REGEXP(\"40\\d\"):status@> - \"<@STRING:referer@>\" \"<@USER_AGENT:user_agent@>\" <@STRING:NULL@>",
-         "msg_id" : "Apache_Traffic:code_40x",
          "table" : "Web_Traffic",
+         "id" : "code_40x",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:device@> apache: <@IP_ADDR:src_addr@> - - [<@DATE_TIME_APACHE_ACCESS:datetime@>] \"<@WORD:http_method@> <@STRING:url@> HTTP/<@WORD:http_version@>\" <@REGEXP(\"503\"):status@> - \"<@STRING:referer@>\" \"<@USER_AGENT:user_agent@>\" <@STRING:NULL@>",
-         "msg_id" : "Apache_Traffic:code_503",
          "table" : "Web_Traffic",
+         "id" : "code_503",
          "taxonomy" : "Traffic.Denied",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:device@> apache: <@IP_ADDR:src_addr@> - - [<@DATE_TIME_APACHE_ACCESS:datetime@>] \"<@WORD:http_method@> <@STRING:url@>\" <@REGEXP(\"400\"):status@> <@BYTES:rec_bytes@> \"<@STRING:referer@>\" \"<@USER_AGENT:user_agent@>\" <@STRING:NULL@>",
-         "msg_id" : "Apache_Traffic:code_400",
          "table" : "Web_Traffic",
+         "id" : "code_400",
          "taxonomy" : "Traffic",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:device@> apache: <@IP_ADDR:src_addr@> - - [<@DATE_TIME_APACHE_ACCESS:datetime@>] \"<@WORD:http_method@> <@STRING:url@> HTTP/<@WORD:http_version@>\" <@REGEXP(\"200\"):status@> - \"<@STRING:referer@>\" \"<@USER_AGENT:user_agent@>\" <@STRING:NULL@>",
-         "msg_id" : "Apache_Traffic:code_200_zero_data",
          "table" : "Web_Traffic",
+         "id" : "code_200_zero_data",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       }

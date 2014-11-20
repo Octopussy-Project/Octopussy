@@ -2,29 +2,29 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"tftpd\"):daemon@>[<@NUMBER:NULL@>]: <@REGEXP(\"tftpd: trying to get file: .+\"):msg@>",
-         "msg_id" : "Tftpd:trying_get_file",
          "table" : "Message",
+         "id" : "trying_get_file",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"tftpd\"):daemon@>[<@NUMBER:NULL@>]: <@REGEXP(\"tftpd: serving file from .+\"):msg@>",
-         "msg_id" : "Tftpd:serving_file_from",
          "table" : "Message",
+         "id" : "serving_file_from",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"in.tftpd\"):daemon@>[<@NUMBER:NULL@>]: <@REGEXP(\"connect from .+\"):msg@>",
-         "msg_id" : "Tftpd:connect_from",
          "table" : "Message",
+         "id" : "connect_from",
          "taxonomy" : "Access",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"in.tftpd\"):daemon@>[<@NUMBER:NULL@>]: <@REGEXP(\"cannot set groups for user .+\"):msg@>",
-         "msg_id" : "Tftpd:cannot_set_groups",
          "table" : "Message",
+         "id" : "cannot_set_groups",
          "taxonomy" : "System.Errors",
          "loglevel" : "Warning"
       }

@@ -3,8 +3,8 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> squid[<@NUMBER:NULL@>]: <@NUMBER:NULL@>.<@NUMBER:duration@> <@STRING:NULL@> <@IP_ADDR:client_ip@> <@WORD:squid_code@>/<@NUMBER:http_code@> <@BYTES:bytes@> <@WORD:http_method@> <@STRING:url@> - <@STRING:hierarchy_code@> <@STRING:type@>",
-         "msg_id" : "Squid_Traffic:traffic",
          "table" : "Squid_Traffic",
+         "id" : "traffic",
          "taxonomy" : "Traffic",
          "loglevel" : "Information"
       }

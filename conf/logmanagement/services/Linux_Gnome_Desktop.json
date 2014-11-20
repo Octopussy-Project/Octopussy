@@ -3,57 +3,57 @@
    "messages" : [
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gconfd\"):daemon@> <@STRING:msg@>",
-         "msg_id" : "Linux_Gnome_Desktop:gconfd_msg",
          "table" : "Message",
+         "id" : "gconfd_msg",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gdm\"):daemon@>[<@PID:pid@>]: <@STRING:msg@> ",
-         "msg_id" : "Linux_Gnome_Desktop:gdm_msg",
          "table" : "Message",
+         "id" : "gdm_msg",
          "taxonomy" : "System",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gdmgreeter\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"GdkPixbuf-CRITICAL:.+\"):msg@>  ",
-         "msg_id" : "Linux_Gnome_Desktop:gdmgreeter_gdkpixbuf_critical",
          "table" : "Message",
+         "id" : "gdmgreeter_gdkpixbuf_critical",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gdmgreeter\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"GLib-GObject-CRITICAL: .+\"):msg@> ",
-         "msg_id" : "Linux_Gnome_Desktop:gdmgreeter_glib_object_critical",
          "table" : "Message",
+         "id" : "gdmgreeter_glib_object_critical",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gdmgreeter\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"GLib-GObject-WARNING: .+\"):msg@> ",
-         "msg_id" : "Linux_Gnome_Desktop:gdmgreeter_glib_object_warning",
          "table" : "Message",
+         "id" : "gdmgreeter_glib_object_warning",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gdmgreeter\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Gtk-CRITICAL: .+\"):msg@> ",
-         "msg_id" : "Linux_Gnome_Desktop:gdmgreeter_gtk_critical",
          "table" : "Message",
+         "id" : "gdmgreeter_gtk_critical",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gnome-keyring-daemon\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"failed to shutdown HAL context.*\"):msg@> ",
-         "msg_id" : "Linux_Gnome_Desktop:failed_shutdown_hal_context",
          "table" : "Message",
+         "id" : "failed_shutdown_hal_context",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Notice"
       },
       {
          "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gdmchooser\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"GLib-GObject-WARNING: .+\"):msg@>",
-         "msg_id" : "Linux_Gnome_Desktop:gdmchooser_glib_object_warning",
          "table" : "Message",
+         "id" : "gdmchooser_glib_object_warning",
          "taxonomy" : "Application.Errors",
          "loglevel" : "Information"
       }
