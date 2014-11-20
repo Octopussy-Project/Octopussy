@@ -21,7 +21,7 @@ sub configuration
 {
     my $table_name = shift;
 
-    my $conf = OneTool::LogManagement::Configuration::get('tables', 
+    my $conf = OneTool::LogManagement::Configuration::load('tables', 
         $table_name);
 
     return ($conf);

@@ -23,7 +23,7 @@ sub configuration
 {
     my $self = shift;
 
-    my $conf = OneTool::LogManagement::Configuration::get(undef, 'taxonomy');
+    my $conf = OneTool::LogManagement::Configuration::load(undef, 'taxonomy');
 
     $self->render(json => $conf);
 }
