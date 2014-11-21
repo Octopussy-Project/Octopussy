@@ -18,4 +18,6 @@ See [Issue #611](https://github.com/sebthebert/Octopussy/issues/611)
 
 ## Mojolicious Web Interface connected with many Server Daemon publishing API
 
+See [Issue #613](https://github.com/sebthebert/Octopussy/issues/613)
+
 
