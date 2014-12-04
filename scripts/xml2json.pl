@@ -25,6 +25,8 @@ my %action = (
 	octopussy_service => \&json_service,
 	octopussy_table => \&json_table,
 	octopussy_taxonomy => \&json_taxonomy,
+	octopussy_types => \&json_types,
+	Octopussy_users => \&json_user,
 	);
 
 =head1 SUBROUTINES
@@ -112,6 +114,46 @@ sub json_taxonomy
     }
 
     return (to_json(\@taxonomy, {pretty => 1}));
+}
+
+=head2 json_types($conf)
+
+=cut
+
+sub json_types
+{
+    my $conf = shift;
+
+    my @types = ();
+    foreach my $t (sort { $a->{type_id} cmp $b->{type_id} } @{$conf->{type}})
+    {
+        $t->{id} = $t->{type_id};
+        delete $t->{type_id};
+        $t->{regex} = $t->{re};
+        delete $t->{re};
+        push @types, $t;
+    }
+
+    return (to_json(\@types, {pretty => 1}));
+}
+
+=head2 json_user($conf)
+
+=cut
+
+sub json_user
+{
+	my $conf = shift;
+
+	my @users = ();
+	foreach my $u (@{$conf->{user}})
+    {
+		delete $u->{menu_mode};
+		delete $u->{theme};
+        push @users, $u;
+    }
+
+	return (to_json({ users => \@users }, {pretty => 1}));	
 }
 
 =head2 xml_read($filename)

@@ -1,0 +1,135 @@
+[
+   {
+      "color" : "purple",
+      "regex" : "`.*?'",
+      "id" : "BAD_QUOTED_STRING",
+      "simple_type" : "STRING",
+      "sql_type" : "VARCHAR(250)"
+   },
+   {
+      "color" : "purple",
+      "regex" : "\\[\\D*?\\]",
+      "id" : "BRACKETED_STRING",
+      "simple_type" : "STRING",
+      "sql_type" : "VARCHAR(250)"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\d{4}\\/\\d{2}\\/\\d{2}",
+      "id" : "DATE",
+      "simple_type" : "DATE",
+      "sql_type" : "DATE"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\d{4}\\-\\d{2}\\-\\d{2}",
+      "id" : "DATE_SQL",
+      "simple_type" : "DATE",
+      "sql_type" : "DATE"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\d{2}\\/\\w{3}\\/\\d{4}:\\d{2}:\\d{2}:\\d{2} .\\d{4}",
+      "id" : "DATE_TIME_APACHE_ACCESS",
+      "simple_type" : "DATETIME",
+      "sql_type" : "DATETIME"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\w{3} \\w{3} \\s?\\d{1,2} \\d{2}:\\d{2}:\\d{2} \\d{4}",
+      "id" : "DATE_TIME_APACHE_ERROR",
+      "simple_type" : "DATETIME",
+      "sql_type" : "DATETIME"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?(?:Z|(?:.\\d{2}:\\d{2}))",
+      "id" : "DATE_TIME_ISO",
+      "simple_type" : "DATETIME",
+      "sql_type" : "DATETIME"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}",
+      "id" : "DATE_TIME_NS",
+      "simple_type" : "DATETIME",
+      "sql_type" : "DATETIME"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\d{2}\\/\\d{2}\\/\\d{4} \\d{2}:\\d{2}",
+      "id" : "DATE_TIME_STD",
+      "simple_type" : "DATETIME",
+      "sql_type" : "DATETIME"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\w{3} \\s?\\d{1,2} \\d{2}:\\d{2}:\\d{2}",
+      "id" : "DATE_TIME_SYSLOG",
+      "simple_type" : "DATETIME",
+      "sql_type" : "DATETIME"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\w{3} \\s?\\d{1,2} \\d{4} \\d{2}:\\d{2}:\\d{2}",
+      "id" : "DATE_TIME_SYSLOG_LONG",
+      "simple_type" : "DATETIME",
+      "sql_type" : "DATETIME"
+   },
+   {
+      "color" : "purple",
+      "regex" : "\".*?\"",
+      "id" : "DOUBLE_QUOTED_STRING",
+      "simple_type" : "STRING",
+      "sql_type" : "VARCHAR(250)"
+   },
+   {
+      "color" : "blue",
+      "regex" : "\\d+\\.\\d+",
+      "id" : "FLOAT_NUMBER",
+      "simple_type" : "FLOAT_NUMBER",
+      "sql_type" : "FLOAT"
+   },
+   {
+      "color" : "blue",
+      "regex" : "0x[0-9A-F]+",
+      "id" : "HEXA_NUMBER",
+      "simple_type" : "HEXA_NUMBER",
+      "sql_type" : "VARCHAR(16)"
+   },
+   {
+      "color" : "blue",
+      "regex" : "\\d+\\.\\d+\\.\\d+\\.\\d+",
+      "id" : "IP_ADDR",
+      "simple_type" : "IP_ADDR",
+      "sql_type" : "VARCHAR(16)"
+   },
+   {
+      "color" : "blue",
+      "regex" : "[0-9a-f]{1,2}:[0-9a-f]{1,2}:[0-9a-f]{1,2}:[0-9a-f]{1,2}:[0-9a-f]{1,2}:[0-9a-f]{1,2}",
+      "id" : "MAC_ADDR",
+      "simple_type" : "MAC_ADDR",
+      "sql_type" : "VARCHAR(18)"
+   },
+   {
+      "color" : "brown",
+      "regex" : "(?:br|eth|tun|vlan|wlan)\\d+",
+      "id" : "NET_INTERFACE",
+      "simple_type" : "NET_INTERFACE",
+      "sql_type" : "VARCHAR(16)"
+   },
+   {
+      "color" : "purple",
+      "regex" : "'.*?'",
+      "id" : "SINGLE_QUOTED_STRING",
+      "simple_type" : "STRING",
+      "sql_type" : "VARCHAR(250)"
+   },
+   {
+      "color" : "orange",
+      "regex" : "\\d{1,3}:\\d{2}:\\d{2}",
+      "id" : "TIME",
+      "simple_type" : "TIME",
+      "sql_type" : "TIME"
+   }
+]
