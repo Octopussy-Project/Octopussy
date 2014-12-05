@@ -16,7 +16,7 @@ cd download
 wget -c -nd http://www.cpan.org/src/5.0/perl-5.18.4.tar.gz
 tar -xf perl-5.18.4.tar.gz
 cd perl-5.18.4
-./Configure -des -Dprefix=~/app-root/data/perl-new
+./Configure -des -Dprefix=~/perl
 make && make install
 ```
 
@@ -34,7 +34,7 @@ cpanm Mojolicious
 ## Git configuration
 
 I need to `git push` on Github and on OpenShift:
-
 ```
-git remote set-url origin --push --add ssh://5481e9244382eca4f10001a3@demo-octopussy.rhcloud.com/~/git/demo.git/
+git remote set-url origin --push --add ssh://54823b5de0b8cd0fcd00014a@webconsole-octopussy.rhcloud.com/~/git/webconsole.git/
+git remote set-url origin --push --add ssh://54824468e0b8cd9b0c0001b3@api-octopussy.rhcloud.com/~/git/api.git/
 ```
