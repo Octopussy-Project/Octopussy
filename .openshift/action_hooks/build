@@ -1,0 +1,2 @@
+echo "[Build Hook]"
+echo "Nothing to do..."
