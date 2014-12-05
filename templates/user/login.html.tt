@@ -5,7 +5,7 @@
 [% END %]
 <form method='POST' action='/user/login' class="form-horizontal">
 <fieldset>
-    <legend>Octopussy [% octopussy_version %] Login</legend>
+    <legend>Octopussy [% config.octopussy_version %] Login</legend>
         <div class="control-group">
             <div class="input-prepend"><span class="add-on"><i class="fa fa-user"></i></span>
             <input name="login" id="login" type="text" class="input-medium" placeholder="login" value="[% login %]"></div>
@@ -22,3 +22,5 @@
 </form>
 </div>
 <div class="span4"></div>
+[% login %]
+[% password %]

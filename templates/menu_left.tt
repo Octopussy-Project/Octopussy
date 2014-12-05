@@ -1,0 +1,43 @@
+<!-- menu_left BEGIN -->
+[%-
+menu = [
+#    { label => '_SYSTEM_CONFIG', icon => 'wrench', url => '/system_config' },
+#    { label => '_ALERTS', icon => 'exclamation-triangle', url => '/alert/list' },
+#    { label => '_CONTACTS', icon => 'group', url => '/contact/list' },
+#    { label => '_DEVICES', icon => 'desktop', url => '/device/list' },
+#    { label => '_DEVICEGROUPS', icon => 'sitemap', url => '/devicegroup/list' },
+#    { label => '_LOCATIONS', icon => 'map-marker', url => '/location/list' },
+#   { label => '_MAPS', icon => '', url => '/map/list' },
+#    { label => '_MESSAGES', icon => 'list', url => '/message/list' },
+#    { label => '_REPORTS', icon => 'bar-chart-o', url => '/report/list' },
+#    { label => '_SCHEDULER', icon => 'calendar', url => '/scheduler/list' },
+#    { label => '_SEARCH_TEMPLATES', icon => 'edit', url => '/search_template/list' },
+    { label => '_SERVICES', icon => 'cog', url => '/logmanagement/services' },
+#    { label => '_SERVICEGROUPS', icon => 'cogs', url => '/servicegroup/list' },
+#    { label => '_STORAGES', icon => 'hdd-o', url => '/storage/list' },
+    { label => '_TABLES', icon => 'table', url => '/logmanagement/tables' },
+#    { label => '_TIMEPERIODS', icon => 'clock-o', url => '/timeperiod/list' },
+#    { label => '_USERS', icon => 'user', url => '/user/list' },
+    { divider => 1 },
+#    { label => '_ALERTS_VIEWER', icon => 'eye', icon2 => 'exclamation-triangle', url => '/alert/viewer' },
+#    { label => '_LOGS_AVAILABILITY', icon => 'eye', icon2 => 'table', url => '/log/availability' },
+#    { label => '_LOGS_VIEWER', icon => 'eye', icon2 => 'list', url => '/log/viewer' },
+#    { label => '_REPORTS_VIEWER', icon => 'eye', icon2 => 'bar-chart-o', url => '/report/viewer' },
+    { divider => 1 },
+#    { label => '_LOGS_WIZARD', icon => 'magic', url => '/log/wizard' },
+    { divider => 1 },
+#    { label => '_COMMUNITY', icon => 'globe', url => '/community' },
+    ]
+-%]
+    <ul class="nav nav-list bs-docs-sidenav">
+    [% FOREACH m IN menu -%]
+        [% IF m.divider -%]
+        <li class="divider"></li>
+        [% ELSIF m.icon2 -%]
+        <li><a href="[% m.url %]"><i class="fa fa-[% m.icon %]"></i> <i class="fa fa-[% m.icon2 %]"></i> [% c.l(m.label) %] </a></li>
+        [% ELSE -%]
+        <li><a href="[% m.url %]"><i class="fa fa-[% m.icon %]"></i> [% c.l(m.label) %] </a></li>
+        [% END -%]
+    [% END -%]
+    </ul>
+<!-- menu_left END -->
