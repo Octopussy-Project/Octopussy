@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "[build Hook]"
+echo "[post-deploy Hook]"
 echo "Nothing to do..."
