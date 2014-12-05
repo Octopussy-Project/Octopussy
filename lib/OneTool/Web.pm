@@ -43,6 +43,19 @@ sub startup
 	$self->plugin(charset => { charset => 'utf8' });
 	$self->plugin(I18N => { namespace => 'OneTool::I18N', default => 'fr' });
 
+    # Hook to redirect to login page when no active session
+    $self->hook(
+        before_routes => sub {
+            my $controller = shift;
+            $controller->redirect_to('/user/login')
+                if (
+                (!defined $controller->session->{user_login})
+                && ($controller->req->url->path->to_route !~
+                    m{^(?:/user/login|/css/.+|/js/.+)$})
+                   );
+        }
+    );
+    
     # sets routes
 	my $r = $self->routes;
 	
@@ -53,6 +66,11 @@ sub startup
 
     $r->get('/logmanagement/services')->to('LogManagement::Service#list');
     $r->get('/logmanagement/service/:service_name')->to('LogManagement::Service#messages');
+    
+    $r->get('/logmanagement/table/:table_name')->to('LogManagement::Table#configuration');
+    
+    $r->any('/user/login')->to('User#login');
+    $r->get('/user/logout')->to('User#logout');
 }
 
 1;
