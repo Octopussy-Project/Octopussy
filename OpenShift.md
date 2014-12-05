@@ -13,12 +13,11 @@ Octopussy 2.0 requires Mojolicious so we need a newer Perl version:
 cd ~/app-root/data/
 mkdir download
 cd download
-wget -c -nd http://www.cpan.org/src/5.0/perl-5.16.3.tar.gz
-tar -xf perl-5.16.3.tar.gz
-cd perl-5.16.3
+wget -c -nd http://www.cpan.org/src/5.0/perl-5.18.4.tar.gz
+tar -xf perl-5.18.4.tar.gz
+cd perl-5.18.4
 ./Configure -des -Dprefix=~/app-root/data/perl-new
-make
-make install
+make && make install
 ```
 
 ```shell
