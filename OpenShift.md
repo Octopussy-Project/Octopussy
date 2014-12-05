@@ -21,6 +21,15 @@ make
 make install
 ```
 
+```shell
+cpan install App::cpanminus
+
+cpanm --force IO::Socket::IP
+cpanm Time::HiRes
+
+cpanm Mojolicious
+```
+
 ### OpenShift Hooks
 
 ## Git configuration
@@ -28,5 +37,5 @@ make install
 I need to `git push` on Github and on OpenShift:
 
 ```
-
+git remote set-url origin --push --add ssh://5481e9244382eca4f10001a3@demo-octopussy.rhcloud.com/~/git/demo.git/
 ```
