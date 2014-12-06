@@ -17,7 +17,8 @@ wget -c -nd http://www.cpan.org/src/5.0/perl-5.18.4.tar.gz
 tar -xf perl-5.18.4.tar.gz
 cd perl-5.18.4
 ./Configure -des -Dprefix=~/perl
-make && make install
+make
+make install
 ```
 
 ```shell
