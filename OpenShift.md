@@ -13,21 +13,22 @@ Octopussy 2.0 requires Mojolicious so we need a newer Perl version:
 cd ~/app-root/data/
 mkdir download
 cd download
-wget -c -nd http://www.cpan.org/src/5.0/perl-5.18.4.tar.gz
-tar -xf perl-5.18.4.tar.gz
-cd perl-5.18.4
-./Configure -des -Dprefix=~/perl
+wget -c -nd http://www.cpan.org/src/5.0/perl-perl-5.16.3.tar.gz
+tar -xf perl-perl-5.16.3.tar.gz
+cd perl-perl-5.16.3
+./Configure -des -Dprefix=~/app-root/data/perl-5.16.3
 make
 make install
 ```
 
 ```shell
-cpan install App::cpanminus
+cd ~/app-root/data/perl-5.16.3/bin
+HOME=~/app-root/data/ 
+./perl cpan App::cpanminus
 
-cpanm --force IO::Socket::IP
-cpanm Time::HiRes
-
-cpanm Mojolicious
+./cpanm --force IO::Socket::IP
+./cpanm Time::HiRes
+./cpanm --force Mojolicious
 ```
 
 ### OpenShift Hooks
