@@ -29,6 +29,9 @@ HOME=~/app-root/data/
 ./cpanm --force IO::Socket::IP
 ./cpanm Time::HiRes
 ./cpanm --force Mojolicious
+./cpanm Template
+./cpanm --force Mojolicious::Plugin::TtRenderer
+./cpanm --force Mojolicious::Plugin::I18N
 ```
 
 ### OpenShift Hooks
