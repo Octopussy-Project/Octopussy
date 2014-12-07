@@ -51,7 +51,7 @@ sub startup
                 if (
                 (!defined $controller->session->{user_login})
                 && ($controller->req->url->path->to_route !~
-                    m{^(?:/user/login|/css/.+|/js/.+)$})
+                    m{^(?:/user/login|/css/.+|/fonts/.+|/js/.+)$})
                    );
         }
     );
