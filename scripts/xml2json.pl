@@ -25,6 +25,7 @@ my %action = (
 	octopussy_service => \&json_service,
 	octopussy_table => \&json_table,
 	octopussy_taxonomy => \&json_taxonomy,
+	octopussy_timeperiods => \&json_timeperiods,
 	octopussy_types => \&json_types,
 	Octopussy_users => \&json_user,
 	);
@@ -42,6 +43,8 @@ sub json_device
 
 =head2 json_loglevel($conf)
 
+Converts loglevel to JSON format
+
 =cut
 
 sub json_loglevel
@@ -58,6 +61,8 @@ sub json_loglevel
 }
 
 =head2 json_service($conf)
+
+Converts service to JSON format
 
 =cut
 
@@ -82,6 +87,8 @@ sub json_service
 
 =head2 json_table($conf)
 
+Converts table to JSON format
+
 =cut
 
 sub json_table
@@ -101,6 +108,8 @@ sub json_table
 
 =head2 json_taxonomy($conf)
 
+Converts taxonomy to JSON format
+
 =cut
 
 sub json_taxonomy
@@ -116,7 +125,30 @@ sub json_taxonomy
     return (to_json(\@taxonomy, {pretty => 1}));
 }
 
+=head2 json_timeperiods($conf)
+
+Converts timeperiods to JSON format
+
+=cut
+
+sub json_timeperiods
+{
+    my $conf = shift;
+
+    my @timeperiods = ();
+    foreach my $t (sort { $a->{label} cmp $b->{label} } @{$conf->{timeperiod}})
+    {
+        $t->{days} = $t->{dt};
+        delete $t->{dt};
+        push @timeperiods, $t;
+    }
+
+    return (to_json(\@timeperiods, {pretty => 1}));
+}
+
 =head2 json_types($conf)
+
+Converts types to JSON format
 
 =cut
 
