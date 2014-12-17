@@ -1,19 +1,26 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-        <a class="navbar-brand" href="/">Octopussy [% config.octopussy_version %]</a>
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="javascript:void(0)">Octopussy [% config.octopussy_version %]</a>
+    </div>
 		<div class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
 		</ul>
-        <ul class="nav pull-right">
-        	<li id="fat-menu" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          	<i class="fa fa-user"></i> [% c.session.user_login %] <span class="fa fa-caret-down"></span></a>
-      	<ul class="dropdown-menu dropdown-menu-right" role="menu">
-        	<li><a href="/user/preferences"><i class="fa fa-wrench"></i> [% c.l('_USER_PREFS') %]</a></li>
-           	<li class="divider"></li>
-           	<li><a href="/user/logout"><i class="fa fa-power-off"></i> [% c.l('_LOGOUT') %]</a></li>
-      	</ul>
-		</ul>
+		<ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+				<i class="fa fa-user"></i> [% c.session.user_login %]<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+					<li><a href="/user/preferences"><i class="mdi-action-settings"></i> [% c.l('_USER_PREFS') %]</a></li>
+            		<li class="divider"></li>
+            		<li><a href="/user/logout"><i class="mdi-action-settings-power"></i> [% c.l('_LOGOUT') %]</a></li>
+                </ul>
+            </li>
+        </ul>
 		</div>
 	</div>
 </div>

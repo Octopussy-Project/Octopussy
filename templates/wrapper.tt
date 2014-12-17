@@ -12,6 +12,11 @@
 
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 
+<!-- BootStrap Material Design begin -->
+<link href="/css/ripples.min.css" rel="stylesheet">
+<link href="/css/material-wfont.min.css" rel="stylesheet">
+<!-- BootStrap Material Design end -->
+
 </head>
 <body>
 [% INCLUDE 'menu_top.tt' %]
@@ -48,5 +53,16 @@
 Powered by <a href="http://mojolicio.us/">Mojolicious</a> - Designed with <a href="http://getbootstrap.com/">Bootstrap</a> & <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.
 </div>
 <script src="/js/bootstrap.min.js"></script>
+
+<!-- BootStrap Material Design begin -->
+<script src="/js/ripples.min.js"></script>
+<script src="/js/material.min.js"></script>
+<script>
+	$(document).ready(function() {
+    	$.material.init();
+    	});
+</script>
+<!-- BootStrap Material Design end -->
+
 </body>
 </html>
