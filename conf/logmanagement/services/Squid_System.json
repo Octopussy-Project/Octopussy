@@ -1,0 +1,632 @@
+{
+   "icon" : "software/logo_squid",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"urlParse: URL too large .+\"):msg@>",
+         "table" : "Message",
+         "id" : "url_too_large",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"logfileRotate.*: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "logfile_rotate",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"storeDirWriteCleanLogs: Starting...\"):msg@> ",
+         "table" : "Message",
+         "id" : "clean_logs_starting",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Accepting proxy .+ connections at .+\"):msg@>",
+         "table" : "Message",
+         "id" : "accepting_proxy_connections_at",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Starting Squid Cache version .+\"):msg@>",
+         "table" : "Message",
+         "id" : "starting_squid_cache_version",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Ready to serve requests.\"):msg@> ",
+         "table" : "Message",
+         "id" : "ready_to_serve_requests",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"WARNING: Closing client .+ connection due to lifetime timeout\"):msg@> ",
+         "table" : "Message",
+         "id" : "closing_connection_lifetime_timeout",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ is disabled.\"):msg@> ",
+         "table" : "Message",
+         "id" : "some_option_is_disabled",
+         "taxonomy" : "Config",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Disabled.\"):msg@> ",
+         "table" : "Message",
+         "id" : "some_protocol_disabled",
+         "taxonomy" : "Config",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*\\d+ Objects \\w+ed.\"):msg@> ",
+         "table" : "Message",
+         "id" : "objects_status",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Rebuilding storage in .+\"):msg@>",
+         "table" : "Message",
+         "id" : "rebuilding_storage_in",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Finished rebuilding storage from disk.\"):msg@> ",
+         "table" : "Message",
+         "id" : "finished_rebuilding_storage",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*\\d+ Entries scanned\"):msg@> ",
+         "table" : "Message",
+         "id" : "entries_scanned",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*store_swap_size = .+\"):msg@>",
+         "table" : "Message",
+         "id" : "store_swap_size",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"temporary disabling .* digest from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "temporary_disabling_digest",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Local cache digest enabled; .+\"):msg@>",
+         "table" : "Message",
+         "id" : "local_cache_digest_enabled",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Detected DEAD Parent:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "detected_dead_parent",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"TCP connection to .+ failed\"):msg@> ",
+         "table" : "Message",
+         "id" : "tcp_connection_failed",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Max Mem  size: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "max_mem_size",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Max Swap size: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "max_swap_size",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Failed to select source for .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "failed_select_source_for",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Waiting \\d+ seconds for active connections to finish\"):msg@> ",
+         "table" : "Message",
+         "id" : "waiting_active_connections_finish",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Using epoll for the IO loop\"):msg@> ",
+         "table" : "Message",
+         "id" : "epoll_for_io_loop",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*Validated \\d+ Entries\"):msg@> ",
+         "table" : "Message",
+         "id" : "validated_entries",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Detected REVIVED Parent: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "detected_revived_parent",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Adding .+ from .+resolv.conf\"):msg@>  ",
+         "table" : "Message",
+         "id" : "adding_from_resolv_conf",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Squid Cache .+: Exiting normally.\"):msg@>  ",
+         "table" : "Message",
+         "id" : "squid_cache_exiting_normally",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Set Current Directory to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "set_current_directory_to",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* Took .+ seconds .+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "took_seconds",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Squid Parent: child process \\d+ exited with status \\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "squid_parent_child_status",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Validation Procedure\"):msg@>  ",
+         "table" : "Message",
+         "id" : "validation_procedure",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>: <@REGEXP(\"Could not determine fully qualified hostname.+\"):msg@>",
+         "table" : "Message",
+         "id" : "couldnt_determine_qualified_hostname",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"clientReadRequest: .+ Invalid Request\"):msg@>  ",
+         "table" : "Message",
+         "id" : "invalid_request",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Preparing for shutdown after \\d+ requests\"):msg@> ",
+         "table" : "Message",
+         "id" : "preparing_shutdown_after_requests",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"DNS Socket created at .+\"):msg@>",
+         "table" : "Message",
+         "id" : "dns_socket_created",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Squid Parent: child process \\d+ started\"):msg@>",
+         "table" : "Message",
+         "id" : "chlid_process_start",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Process ID .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pid",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"With \\d+ file descriptors available\"):msg@>",
+         "table" : "Message",
+         "id" : "file_drescriptors",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s+Finished.\\s+Wrote \\d+ entries.\"):msg@>",
+         "table" : "Message",
+         "id" : "wrote_entries_number",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*Connection reset by peer.*\"):msg@> ",
+         "table" : "Message",
+         "id" : "connection_reset_by_peer",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Configuring Parent .+\"):msg@>",
+         "table" : "Message",
+         "id" : "configuring_parent",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Using \\d+ Store buckets\"):msg@> ",
+         "table" : "Message",
+         "id" : "using_store_buckets",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Target number of buckets: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "target_number_of_buckets",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Loaded Icons.\"):msg@> ",
+         "table" : "Message",
+         "id" : "loaded_icons",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Done reading .+ swaplog .+\"):msg@>",
+         "table" : "Message",
+         "id" : "done_reading_swaplog",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Closing unlinkd pipe on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "closing_unlinkd_pipe",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Unlinkd pipe opened on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "unlinkd_pipe_opened",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*\\d+ Duplicate URLs purged.\"):msg@> ",
+         "table" : "Message",
+         "id" : "nb_duplicate_urls_purged",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*\\d+ Invalid entries.\"):msg@> ",
+         "table" : "Message",
+         "id" : "nb_invalid_entries",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*\\d+ Swapfile clashes avoided.\"):msg@> ",
+         "table" : "Message",
+         "id" : "nb_swapfile_clashes_avoided",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*\\d+ With invalid flags.\"):msg@> ",
+         "table" : "Message",
+         "id" : "nb_with_invalid_flags",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Shutting down...\"):msg@> ",
+         "table" : "Message",
+         "id" : "shutting_down",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Using Least Load store dir selection\"):msg@> ",
+         "table" : "Message",
+         "id" : "using_least_load",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Closing HTTP connection\"):msg@>  ",
+         "table" : "Message",
+         "id" : "closing_http_connection",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Extension method .+ added.+\"):msg@>",
+         "table" : "Message",
+         "id" : "extension_method_added",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Swap maxSize .+, estimated \\d+ objects\"):msg@> ",
+         "table" : "Message",
+         "id" : "swap_maxsize_estimated_objects",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Warning: Could not find any nameservers. Trying to use localhost\"):msg@> ",
+         "table" : "Message",
+         "id" : "couldnt_find_any_nameservers",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Please check your .+resolv.conf file\"):msg@> ",
+         "table" : "Message",
+         "id" : "couldnt_find_any_nameservers2",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"or use the 'dns_nameservers' option in squid.conf.\"):msg@> ",
+         "table" : "Message",
+         "id" : "couldnt_find_any_nameservers3",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"storeLateRelease: released \\d+ objects\"):msg@> ",
+         "table" : "Message",
+         "id" : "storelaterelease_release_objects",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s+\\w+_direct = .+\"):msg@>",
+         "table" : "Message",
+         "id" : "debug_info",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s+timedout = .+\"):msg@>",
+         "table" : "Message",
+         "id" : "debug_info2",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Reconfiguring Squid Cache .+\"):msg@>",
+         "table" : "Message",
+         "id" : "reconfiguring_squid_cache",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Done scanning .+\"):msg@>",
+         "table" : "Message",
+         "id" : "done_scanning",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>: <@REGEXP(\"aclParseAclLine: Invalid ACL type .+\"):msg@>",
+         "table" : "Message",
+         "id" : "invalid_acl_type",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*resolv.conf.*No such file or directory.*\"):msg@>",
+         "table" : "Message",
+         "id" : "no_resolv_conf",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*Disk space over limit:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "disk_space_over_limit",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"storeLocateVary: Not our vary marker object, .+\"):msg@>",
+         "table" : "Message",
+         "id" : "not_vary_marker_object",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Exiting due to repeated, frequent failures\"):msg@> ",
+         "table" : "Message",
+         "id" : "exiting_due_to_failures",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Bungled squid.conf line .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bungled_squid_conf_line",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> (squid): <@REGEXP(\"Bungled squid.conf line \\d+: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bungled_squid_conf_line2",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"storeUfsDirOpenSwapLog: Failed to open swap log.\"):msg@> ",
+         "table" : "Message",
+         "id" : "failed_open_swap_log",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Squid Parent: child process \\d+ exited due to signal \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "child_process_exited_signal",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: .*Permission denied\"):msg@> ",
+         "table" : "Message",
+         "id" : "file_permission_denied",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"decode_addr: Invalid IP address .+\"):msg@>",
+         "table" : "Message",
+         "id" : "invalid_ip_address",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>: <@REGEXP(\"decode_addr: Invalid IP address .+\"):msg@>",
+         "table" : "Message",
+         "id" : "invalid_ip_address2",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> (<@REGEXP(\"squid\"):daemon@>): <@REGEXP(\"decode_addr: Invalid IP address .+\"):msg@>",
+         "table" : "Message",
+         "id" : "invalid_ip_address3",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"aclParseAclLine: WARNING: empty ACL: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "empty_acl",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>: <@REGEXP(\"aclParseAclLine: WARNING: empty ACL: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "empty_acl2",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> (<@REGEXP(\"squid\"):daemon@>): <@REGEXP(\"aclParseAclLine: WARNING: empty ACL: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "empty_acl3",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"parseHttpRequest: Unsupported method .+\"):msg@>",
+         "table" : "Message",
+         "id" : "parsehttprequest_unsupported_method",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"urlParse: Illegal hostname .+\"):msg@>",
+         "table" : "Message",
+         "id" : "illegal_hostname",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"urlParse: Illegal character .+\"):msg@>",
+         "table" : "Message",
+         "id" : "urlparse_illegal_character",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>: <@REGEXP(\"ACL name '.+' not defined!\"):msg@>",
+         "table" : "Message",
+         "id" : "acl_name_not_defined",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>: <@REGEXP(\"Bungled squid.conf line \\d+: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bungled_squid_conf",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"logfileOpen: opening log .+\"):msg@>",
+         "table" : "Message",
+         "id" : "logfileopen_opening_log",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"logfileClose: closing log .+\"):msg@>",
+         "table" : "Message",
+         "id" : "logfileclose_closing_log",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Accepting ICP messages at .+\"):msg@>",
+         "table" : "Message",
+         "id" : "accepting_icp_messages_at",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"squid\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"FD \\d+ Closing ICP connection\"):msg@>",
+         "table" : "Message",
+         "id" : "closing_icp_connection",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.squid-cache.org/",
+   "version" : "201002180009",
+   "name" : "Squid_System",
+   "description" : "Squid System Service"
+}

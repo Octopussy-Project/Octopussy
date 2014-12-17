@@ -1,0 +1,93 @@
+{
+   "icon" : "software/logo_nagios",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@NUMBER:NULL@>]: SERVICE CHECK -> Host Name: <@SINGLE_QUOTED_STRING:host@>, Service Description: <@SINGLE_QUOTED_STRING:service@>, Return Code: <@SINGLE_QUOTED_STRING:status@>, Output: <@SINGLE_QUOTED_STRING:msg@> ",
+         "table" : "Nagios_service",
+         "id" : "service_check",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Connection from .+ port \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_from",
+         "taxonomy" : "Access",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connect from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "connect_from",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Host address checks out ok\"):msg@>",
+         "table" : "Message",
+         "id" : "host_address_ok",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Handling the connection...\"):msg@> ",
+         "table" : "Message",
+         "id" : "handling_the_connection",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"End of connection...\"):msg@> ",
+         "table" : "Message",
+         "id" : "end_of_connection",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Host \\S+ is not allowed to talk to us!\"):msg@> ",
+         "table" : "Message",
+         "id" : "not_allowed_talk",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Command file .+ does not exist, attempting to use alternate dump file .+ for output\"):msg@>",
+         "table" : "Message",
+         "id" : "command_file_doesnot_exist",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Starting up daemon\"):msg@> ",
+         "table" : "Message",
+         "id" : "starting_up_daemon",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Dropping packet with stale timestamp - packet was \\d+ seconds old.\"):msg@> ",
+         "table" : "Message",
+         "id" : "dropping_packet_stale_timestamp",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Network server bind failure.+\"):msg@>",
+         "table" : "Message",
+         "id" : "network_server_bind_failure",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nsca\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Unknown option specified in config file .+\"):msg@>",
+         "table" : "Message",
+         "id" : "unknown_option_in_file",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www.nagios.org",
+   "version" : "201002180001",
+   "name" : "Nagios_NSCA",
+   "description" : "Nagios NSCA Service"
+}

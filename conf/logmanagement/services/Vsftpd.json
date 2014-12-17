@@ -1,0 +1,21 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"vsftpd\"):daemon@>: (pam_unix) <@REGEXP(\"authentication failure; logname=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "authentication_failure",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"vsftpd\"):daemon@>: (pam_unix) <@REGEXP(\"check pass; user unknown\"):msg@> ",
+         "table" : "Message",
+         "id" : "user_unknown",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      }
+   ],
+   "version" : "200801250001",
+   "name" : "Vsftpd",
+   "description" : "Vsftpd Service"
+}

@@ -1,0 +1,22 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> flow-capture[<@PID:pid@>]: STAT: now=<@SECONDS:now@> startup=<@SECONDS:startup@> src_ip=<@IP_ADDR:src_addr@> dst_ip=<@IP_ADDR:dst_addr@> d_ver=<@NUMBER:d_version@> pkts=<@NUMBER:pkts@> flows=<@NUMBER:flows@> lost=<@NUMBER:lost@> reset=<@NUMBER:reset@> filter_drops=<@NUMBER:filter_drops@>",
+         "table" : "NetFlow_Traffic",
+         "id" : "flow_capture_stat",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> flow-capture[<@PID:pid@>]: ftpdu_seq_check(): src_ip=<@IP_ADDR:src_addr@> dst_ip=<@IP_ADDR:dst_addr@> d_version=<@NUMBER:d_version@> expecting=<@NUMBER:expecting@> received=<@NUMBER:received@> lost=<@NUMBER:lost@>",
+         "table" : "NetFlow_Traffic",
+         "id" : "flow_capture_stat_ftpdu_seq_check",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://en.wikipedia.org/wiki/Netflow",
+   "version" : "201109150002",
+   "name" : "NetFlow",
+   "description" : "NetFlow Network Protocol"
+}

@@ -1,0 +1,29 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhclient\"):daemon@>: <@REGEXP(\"DHCPREQUEST .+\"):msg@>",
+         "table" : "Message",
+         "id" : "dhcprequest",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhclient\"):daemon@>: <@REGEXP(\"DHCPACK .+\"):msg@>",
+         "table" : "Message",
+         "id" : "dhcpack",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhclient\"):daemon@>: <@REGEXP(\"bound to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bound_to",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201211060004",
+   "name" : "Dhclient",
+   "description" : "Dhclient Service"
+}

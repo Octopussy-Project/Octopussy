@@ -1,0 +1,72 @@
+{
+   "icon" : "software/logo_rsync",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"opendir\"):action@>(<@STRING:object@>): <@REGEXP(\"Permission denied\"):status@>",
+         "table" : "Rsync_error",
+         "id" : "opendir_permission_denied",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"send_files failed to open\"):action@> <@STRING:object@>: <@REGEXP(\"Permission denied\"):status@>",
+         "table" : "Rsync_error",
+         "id" : "send_files_failed_open",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: rsync <@WORD:status@>: <@REGEXP(\"some files could not be transferred.+\"):action@>",
+         "table" : "Rsync_error",
+         "id" : "files_couldnt_be_transferred",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"rsync on .+ from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "rsync_on",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"wrote \\d+ bytes  read \\d+ bytes  total size \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "wrote_bytes_read_bytes",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"auth failed on module .+ from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "auth_failed_module",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"rsync: connection unexpectedly closed.+\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_unexpectedly_closed",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"rsync error: error in rsync protocol data stream.+\"):msg@>",
+         "table" : "Message",
+         "id" : "error_protocol_data_stream",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rsyncd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"rsync: read error: Connection reset by peer\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_reset_by_peer",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://samba.org/rsync/",
+   "version" : "201002180009",
+   "name" : "Rsync",
+   "description" : "Rsync Service"
+}

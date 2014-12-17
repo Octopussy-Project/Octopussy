@@ -1,0 +1,233 @@
+{
+   "icon" : "companies/logo_juniper",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Statistics Archive - \\S+ - \\S+ - .+\"):msg@>",
+         "table" : "Message",
+         "id" : "statistics_archive",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Connection from IP \\S+ not authenticated yet.+\"):msg@>",
+         "table" : "Message",
+         "id" : "not_authenticated_yet",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - \\S+ NIC down.\"):msg@>",
+         "table" : "Message",
+         "id" : "nic_down",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - VIP \\S+ deactivated on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "vip_deactivated",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - \\S+ gateway '\\S+' unreachable.\"):msg@>",
+         "table" : "Message",
+         "id" : "gateway_unreachable",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node '\\S+' activated in cluster '.+'.\"):msg@>",
+         "table" : "Message",
+         "id" : "node_activated",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Started syncing state\"):msg@>",
+         "table" : "Message",
+         "id" : "started_syncing_state",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - \\S+ gateway '\\S+' up.\"):msg@>",
+         "table" : "Message",
+         "id" : "gateway_up",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node '\\S+' is now reachable from node '\\S+'\"):msg@>",
+         "table" : "Message",
+         "id" : "node_reachable",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - VIP \\S+ activated on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "vip_activated",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - VIP \\S+ failed over to \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "vip_failed_over",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Detected duplicate IP address .+\"):msg@>",
+         "table" : "Message",
+         "id" : "detected_duplicate_ip",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node '\\S+' is now unreachable from node '\\S+'\"):msg@>",
+         "table" : "Message",
+         "id" : "node_unreachable",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - \\S+ NIC up.\"):msg@>",
+         "table" : "Message",
+         "id" : "nic_up",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Starting services: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "starting_services",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Started system software version .+ successfully\"):msg@>",
+         "table" : "Message",
+         "id" : "started_system_successfully",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ Allow all users to sign in\"):msg@>",
+         "table" : "Message",
+         "id" : "allow_all_sign_in",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - SiteMinder server: Caches flushed.\"):msg@>",
+         "table" : "Message",
+         "id" : "siteminder_caches_flushed",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Forming cluster: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "forming_cluster",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Completed syncing state.+\"):msg@>",
+         "table" : "Message",
+         "id" : "completed_syncing_state",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Activated in cluster: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "activated_in_cluster",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Number of concurrent .+\"):msg@>",
+         "table" : "Message",
+         "id" : "info_number_concurrent",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Caught signal 11 \\(Segmentation fault\\)\"):msg@>",
+         "table" : "Message",
+         "id" : "segmentation_fault",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - License for .+ activated\"):msg@>",
+         "table" : "Message",
+         "id" : "license_activated",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node '.+' deactivated in cluster '.+'.\"):msg@>",
+         "table" : "Message",
+         "id" : "node_deactivated_in_cluster",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Server restart\"):msg@>",
+         "table" : "Message",
+         "id" : "server_restart",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Server reboot\"):msg@>",
+         "table" : "Message",
+         "id" : "server_reboot",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Server reboot requested.+\"):msg@>",
+         "table" : "Message",
+         "id" : "server_reboot_requested",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Trace Info : .+\"):msg@>",
+         "table" : "Message",
+         "id" : "trace_info",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Created statistics file.\"):msg@>",
+         "table" : "Message",
+         "id" : "created_statistics_file",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Server restart requested.+\"):msg@>",
+         "table" : "Message",
+         "id" : "server_restart_requested",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Juniper\"):daemon@>: <@REGEXP(\".+ - Node .+ is now unreachable from node .+\"):msg@>",
+         "table" : "Message",
+         "id" : "node_is_now_unreachable",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www.juniper.net/products_and_services/ssl_vpn_secure_access/index.html",
+   "version" : "201002180001",
+   "name" : "Neoteris",
+   "description" : "Neoteris Service"
+}

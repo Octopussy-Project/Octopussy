@@ -1,0 +1,31 @@
+{
+   "fields" : [
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "module",
+         "type" : "WORD"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "url",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200702120001",
+   "name" : "Mnogosearch",
+   "description" : "Mnogosearch Web Search Engine Table"
+}

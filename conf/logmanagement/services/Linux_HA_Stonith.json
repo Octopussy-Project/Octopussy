@@ -1,0 +1,51 @@
+{
+   "icon" : "software/logo_linux_ha",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stonithd: \\[\\d+\\]: WARN: Consider setting .+ for maximum supportability\"):msg@>",
+         "table" : "Message",
+         "id" : "consider_setting_maximum_supportability",
+         "taxonomy" : "Config",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stonithd: \\[\\d+\\]: info: G_main_add_SignalHandler: Added signal handler for signal .+\"):msg@>",
+         "table" : "Message",
+         "id" : "added_signal_handler",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stonithd: \\[\\d+\\]: info: Signing in with heartbeat.\"):msg@>",
+         "table" : "Message",
+         "id" : "signing_in_with_heartbeat",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stonithd: \\[\\d+\\]: notice: .+ start up successfully.\"):msg@>",
+         "table" : "Message",
+         "id" : "start_up_successfully",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stonithd: \\[\\d+\\]: WARN: Core dumps could be lost if multiple dumps occur.\"):msg@>",
+         "table" : "Message",
+         "id" : "dumps_could_be_lost",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"stonithd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"notice: .+stonithd normally quit.\"):msg@>",
+         "table" : "Message",
+         "id" : "normally_quit",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "200904140001",
+   "name" : "Linux_HA_Stonith",
+   "description" : "Linux High Availability Stonith"
+}

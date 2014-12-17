@@ -1,0 +1,1710 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"OEM ID: .+ Product ID: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "oem_id",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"per-CPU timeslice cutoff: .+ usecs.\"):msg@>",
+         "table" : "Message",
+         "id" : "percpu_timeslice_cutoff",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\d+MB \\S+MEM available.\"):msg@>",
+         "table" : "Message",
+         "id" : "mem_available",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ESR value \\S+ enabling vector: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "esr_enabling_vector",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Booting processor .+\"):msg@>",
+         "table" : "Message",
+         "id" : "booting_processor",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+ed ExtINT on CPU#\\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "extint_on_cpu",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ENABLING IO-APIC IRQs\"):msg@>",
+         "table" : "Message",
+         "id" : "enabling_ioapic_irqs",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Detected .+ MHz processor.\"):msg@>",
+         "table" : "Message",
+         "id" : "detected_mhz_processor",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Enabling fast FPU save and restore.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "enabling_fast_fpu",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Total of \\d+ processors activated \\(.+ BogoMIPS\\).\"):msg@>",
+         "table" : "Message",
+         "id" : "total_processors_activated",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"number of MP IRQ sources: \\d+.\"):msg@>",
+         "table" : "Message",
+         "id" : "number_mp_irq_sources",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"LAPIC \\(.+\\)\"):msg@>",
+         "table" : "Message",
+         "id" : "lapic",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"init IO_APIC IRQs\"):msg@>",
+         "table" : "Message",
+         "id" : "init_ioapic_irqs",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Enabling unmasked SIMD FPU exception support.+\"):msg@>",
+         "table" : "Message",
+         "id" : "enabling_simd_fpu_exception",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"number of IO-APIC #\\d+ registers: \\d+.\"):msg@> ",
+         "table" : "Message",
+         "id" : "number_ioapic_registers",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".... register #\\d+: \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "register",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"POSIX conformance testing by UNIFIX\"):msg@>",
+         "table" : "Message",
+         "id" : "posix_conformance_testing",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IO-APIC \\(apicid-pin\\) .+ not connected.\"):msg@> ",
+         "table" : "Message",
+         "id" : "ioapic_not_connected",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Local APIC address \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "local_apic_address",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Kernel command line: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "kernel_command_line",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*martian source \\S+ from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "martian_source",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Intel machine check .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "intel_machine_check",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"found SMP MP-table at \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "found_smp_mptable",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"NET: \\d+ messages suppressed.\"):msg@> ",
+         "table" : "Message",
+         "id" : "net_messages_suppressed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"sending pkt_too_big .+ to self\"):msg@> ",
+         "table" : "Message",
+         "id" : "pkt_too_big",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"UDP: short packet: .+ to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "udp_short_packet",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"cpu \\d+ \\S+: low \\d+, high \\d+, batch \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "cpu_stats",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Free pages: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "free_pages",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Out of Memory: Killed process .+\"):msg@>",
+         "table" : "Message",
+         "id" : "out_of_memory",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+ free:\\d+kB min:\\d+kB low:\\d+kB high:\\d+kB .+\"):msg@>",
+         "table" : "Message",
+         "id" : "mem_stats",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+ per-cpu:\"):msg@>",
+         "table" : "Message",
+         "id" : "per_cpu",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"protections\\[\\]: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "protections",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\S+: \\d+\\*\\d+kB \\d+\\*\\d+kB.+ = \\d+kB\"):msg@>",
+         "table" : "Message",
+         "id" : "not_interesting3",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Swap cache: add \\d+, delete \\d+, find .+\"):msg@>",
+         "table" : "Message",
+         "id" : "swap_cache_info",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Active:\\d+ inactive:\\d+ dirty:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "active_inactive_dirty",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"oom-killer: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "oom_killer",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"__va_range\\(.+\\): idx=\\d+ mapped at \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "va_range",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ACPI table found: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "acpi_table_found",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ll header: \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "header",
+         "taxonomy" : "Network",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"BIOS-provided physical RAM map:\"):msg@>",
+         "table" : "Message",
+         "id" : "bios_provided_physical_ram",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel:<@REGEXP(\".*BIOS-e820:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "bios_e820",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"hm, page .+ reserved twice.\"):msg@>",
+         "table" : "Message",
+         "id" : "page_reserved_twice",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"I/O APIC .+ at \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "io_apic_at",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ hash table entries: \\d+ .+\"):msg@>",
+         "table" : "Message",
+         "id" : "hash_table_entries",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*device \\S+ \\S+ promiscuous mode\"):msg@>",
+         "table" : "Message",
+         "id" : "promiscuous_mode",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"icmp v4 hw csum failure\"):msg@> ",
+         "table" : "Message",
+         "id" : "icmp_csum_failure",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"klogd \\S+, log source = .+ started.\"):msg@>",
+         "table" : "Message",
+         "id" : "klogd_started",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"printk: \\d+ messages suppressed.\"):msg@> ",
+         "table" : "Message",
+         "id" : "printk_messages_suppressed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"NET: Registered protocol family \\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "registered_protocol_family",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ide-floppy driver \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "floppy_driver",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Uniform CD-ROM driver.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "cdrom_driver",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Loaded \\d+ symbols from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "loaded_symbols",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Intel MultiProcessor Specification \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "intel_multiproc_spec",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dd: \\S+ records \\S+\"):msg@> ",
+         "table" : "Message",
+         "id" : "dd_records",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sysctl: \\S+ = \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "sysctl",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rc.sysinit: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "rc_sysinit",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"random: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "random",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"keytable: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "keytable",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"init: Switching to runlevel: \\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "switching_runlevel",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"init: Entering runlevel: \\d+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "entering_runlevel",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"hpasm: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "hpasm",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rc: Starting \\S+:  succeeded\"):msg@>",
+         "table" : "Message",
+         "id" : "rc_starting_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rc: Starting \\S+:  failed\"):msg@> ",
+         "table" : "Message",
+         "id" : "rc_starting_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"sysstat:.*\"):msg@>",
+         "table" : "Message",
+         "id" : "sysstat",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IOAPIC .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ioapic",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"LAPIC_NMI .+\"):msg@>",
+         "table" : "Message",
+         "id" : "lapic_nmi",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*IO-APIC .+\"):msg@>",
+         "table" : "Message",
+         "id" : "io_apic",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\d+ CPUs total\"):msg@> ",
+         "table" : "Message",
+         "id" : "cpus_total",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Scanning bios .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "scanning_bios",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Calibrating delay .+\"):msg@>",
+         "table" : "Message",
+         "id" : "calibrating_delay",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU .+ enabledProcessor .+\"):msg@>",
+         "table" : "Message",
+         "id" : "cpu_enabledprocessor",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"RSD PTR.+\"):msg@>",
+         "table" : "Message",
+         "id" : "rsd_ptr",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"On node \\d+ totalpages: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "node_totalpages",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\.\\.\\.\\.\\.\\.\\.    : .+\"):msg@>",
+         "table" : "Message",
+         "id" : "not_interesting1",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*\\S\\S \\S\\S\\S \\S\\S\\s+\\d\\s+\\d\\s+\\d\\s+\\d\\s+\\d\\s+\\d\\s+\\d\\s+\\S\\S\"):msg@>",
+         "table" : "Message",
+         "id" : "not_interesting2",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*NR Log Phy Mask Trig IRR Pol Stat Dest Deli Vect:\"):msg@>",
+         "table" : "Message",
+         "id" : "not_interesting4",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+CPU clock speed is \\S+ MHz.\"):msg@>",
+         "table" : "Message",
+         "id" : "cpu_clock_speed",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+host bus clock speed is \\S+ MHz.\"):msg@> ",
+         "table" : "Message",
+         "id" : "bus_clock_spped",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"PCI BIOS .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pci_bios_msg",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ APIC timer .+\"):msg@>",
+         "table" : "Message",
+         "id" : "apic_timer",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Inspecting \\S+\"):msg@> ",
+         "table" : "Message",
+         "id" : "inspecting_boot_map",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Enabling the CPU's according to the ACPI table\"):msg@> ",
+         "table" : "Message",
+         "id" : "enabling_cpu_acpi",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Virtual Wire compatibility mode.\"):msg@> ",
+         "table" : "Message",
+         "id" : "virtual_wire_compatibility",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Serial driver version.+\"):msg@>",
+         "table" : "Message",
+         "id" : "serial_driver_version",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Initializing RT netlink socket\"):msg@> ",
+         "table" : "Message",
+         "id" : "initializing_rt_netlink",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Real Time Clock Driver.+\"):msg@>",
+         "table" : "Message",
+         "id" : "rtclock_driver",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"RAMDISK driver initialized:.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "ramdisk_driver_initialized",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"allocated \\d+ pages and \\d+ bhs reserved for the highmem bounces\"):msg@>",
+         "table" : "Message",
+         "id" : "allocated_highmem_bounces",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Uniform Multi-Platform E-IDE driver Revision: \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "e_ide_driver",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ServerWorks CSB5: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "serverworks_csb5",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"tty\\S+ at 0x\\S+ .+\"):msg@>",
+         "table" : "Message",
+         "id" : "tty_at",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ide\\d+ at 0x\\S+ .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ide_at",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"bigpage subsystem: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bigpage_subsystem",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IP Protocols: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ip_protocols",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Linux IP multicast router .+\"):msg@>",
+         "table" : "Message",
+         "id" : "linux_ip_multicast",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Symbols match kernel version .+\"):msg@>",
+         "table" : "Message",
+         "id" : "symbols_match_kernel",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SCSI subsystem driver Revision:.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "scsi_driver",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"exiting on signal \\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "exiting_on_signal",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*heads= \\d+, sectors= \\d+, cylinders= \\d+.+\"):msg@>",
+         "table" : "Message",
+         "id" : "heads_sectors_cylinders",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*blocks= \\d+ block_size= \\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "blocks_block_size",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"INT_SRC_OVR .+\"):msg@>",
+         "table" : "Message",
+         "id" : "int_src_ovr",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Journalled Block Device driver loaded\"):msg@> ",
+         "table" : "Message",
+         "id" : "journalled_block_device",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Initializing CPU#\\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "initializing_cpu",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"insmod: Module \\S+ loaded, with warnings\"):msg@> ",
+         "table" : "Message",
+         "id" : "insmod_loaded_warnings",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"insmod:.+See \\S+ for information about tainted modules\"):msg@>",
+         "table" : "Message",
+         "id" : "insmod_tainted_modules",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Enabling APIC mode: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "enabling_apic_mode",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IRQ \\d+, Control Regs at \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "irq_control_regs",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Rainbow Technologies CryptoSwift Linux Driver \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "rainbow_crypto_driver",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Kernel logging \\(proc\\) stopped.\"):msg@> ",
+         "table" : "Message",
+         "id" : "logging_stopped",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Kernel log daemon terminating.\"):msg@> ",
+         "table" : "Message",
+         "id" : "log_daemon_terminating",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: ",
+         "table" : "Message",
+         "id" : "empty_line",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"TCP: drop open request from \\S+/\\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "tcp_drop_open_request",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"TCP: Treason uncloaked! Peer \\S+ shrinks window \\S+ Repaired.\"):msg@> ",
+         "table" : "Message",
+         "id" : "tcp_treason_uncloaked",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"FIFO write timed out\"):msg@> ",
+         "table" : "Message",
+         "id" : "fifo_write_timed_out",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"parport\\d+: FIFO is stuck\"):msg@>",
+         "table" : "Message",
+         "id" : "parport_fifo_stuck",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"parport\\d+: BUSY timeout.+\"):msg@>",
+         "table" : "Message",
+         "id" : "parport_busy_timeout",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ENOMEM in journal_alloc_journal_head, retrying.\"):msg@>",
+         "table" : "Message",
+         "id" : "enomem_error",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*__ratelimit: \\d+ messages suppressed\"):msg@>",
+         "table" : "Message",
+         "id" : "ratelimit_messages_suppressed",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"\\[<\\S+>\\]\"):NULL@> <@STRING:NULL@>",
+         "table" : "Message",
+         "id" : "UNKNOWN",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: page allocation failure.+\"):msg@>",
+         "table" : "Message",
+         "id" : "page_allocation_failure",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"atkbd.c: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "keyboard_msg",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"smb_lookup: find .+ failed, error=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "smb_lookup_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"zone\\(\\d+\\): \\d+ pages.\"):msg@> ",
+         "table" : "Message",
+         "id" : "zone_pages",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IRQ\\d+ -> .+\"):msg@>",
+         "table" : "Message",
+         "id" : "irq",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ISO 9660 Extensions:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "iso_9660_extensions",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"smb_add_request: request .+ timed out!\"):msg@>",
+         "table" : "Message",
+         "id" : "smb_request_timed_out",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SMB connection re-established.+\"):msg@>",
+         "table" : "Message",
+         "id" : "smb_connection_reestablished",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"modprobe: modprobe: Can't locate module \\S+\"):msg@> ",
+         "table" : "Message",
+         "id" : "modprobe_cant_locate_module",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"smb_proc_readdir_long: .+ breaking\"):msg@> ",
+         "table" : "Message",
+         "id" : "smbproc_readdir_breaking",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Clock: inserting leap second .+\"):msg@>",
+         "table" : "Message",
+         "id" : "clock_inserting_leap_second",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU\\d+<.+>\"):msg@> ",
+         "table" : "Message",
+         "id" : "cpu",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"cpu_sibling_map\\[\\d+\\].+\"):msg@> ",
+         "table" : "Message",
+         "id" : "cpu_sibling_map",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: eth\\d+: transmit timed out\"):msg@> ",
+         "table" : "Message",
+         "id" : "interface_transmit_timed_out",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SCSI disk error : .+\"):msg@>",
+         "table" : "Message",
+         "id" : "scsi_disk_error",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ACPI: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "acpi_info",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU\\d*: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "cpu_info",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IOAPIC\\[\\d+\\]: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ioapic_info",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\w+ window: \\S{8}-\\S{8}\"):msg@>",
+         "table" : "Message",
+         "id" : "window_address",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\s+I/O error: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "io_error",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"md: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "md_messages",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+NIC .*Link is Up.*\"):msg@>",
+         "table" : "Message",
+         "id" : "nic_link_is_up",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+NIC .*Link is Down.*\"):msg@>",
+         "table" : "Message",
+         "id" : "nic_link_is_down",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"icmpv6_send: addr_any/mcast source\"):msg@> ",
+         "table" : "Message",
+         "id" : "icmpv6_send",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"FAT: Directory bread.+ failed\"):msg@> ",
+         "table" : "Message",
+         "id" : "fat_directory_bread_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ rejecting I/O to dead device\"):msg@> ",
+         "table" : "Message",
+         "id" : "rejecting_io_dead_device",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*kjournald starting.*\"):msg@>",
+         "table" : "Message",
+         "id" : "kjournald_starting",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"VM: killing process .+\"):msg@>",
+         "table" : "Message",
+         "id" : "vm_killing_process",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Emergency"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"No module symbols loaded - kernel modules not enabled.\"):msg@>  ",
+         "table" : "Message",
+         "id" : "no_module_symbols_loaded",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ default_wake_function.+\"):msg@>",
+         "table" : "Message",
+         "id" : "default_wake_function",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ syscall_call.+\"):msg@>",
+         "table" : "Message",
+         "id" : "syscall_call",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ \\w+_futex.+\"):msg@>",
+         "table" : "Message",
+         "id" : "futex",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ wake_up_process.+\"):msg@>",
+         "table" : "Message",
+         "id" : "wake_up_process",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ futex_wait.+\"):msg@>",
+         "table" : "Message",
+         "id" : "futex_wait",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ warning: maximal mount count reached, running e2fsck is recommended\"):msg@> ",
+         "table" : "Message",
+         "id" : "maximal_mount_count",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: Link is up at .+\"):msg@>",
+         "table" : "Message",
+         "id" : "link_is_up",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Buffer I/O error on device .+\"):msg@>",
+         "table" : "Message",
+         "id" : "buffer_io_error",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ allocation failed .+\"):msg@>",
+         "table" : "Message",
+         "id" : "allocation_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\w+ window: disabled.\"):msg@>",
+         "table" : "Message",
+         "id" : "window_disabled",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Attached scsi generic .+ type .+\"):msg@>",
+         "table" : "Message",
+         "id" : "attached_scsi_generic",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: the driver '.+' has been registered\"):msg@>",
+         "table" : "Message",
+         "id" : "pnp_driver_been_registered",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"portmap: server .+ not responding.+\"):msg@>",
+         "table" : "Message",
+         "id" : "portmap_server_not_responding",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"kernel: RPC: failed to contact portmap .+\"):msg@>",
+         "table" : "Message",
+         "id" : "rpc_failed_contact_portmap",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ zone: \\d+ pages.+\"):msg@>",
+         "table" : "Message",
+         "id" : "zone_pages2",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: .+ ioport range \\S+ could not be reserved\"):msg@>",
+         "table" : "Message",
+         "id" : "pnp_ioport_not_reserved",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: .+ ioport range \\S+ has been reserved\"):msg@>",
+         "table" : "Message",
+         "id" : "pnp_ioport_been_reserved",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"PCI: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pci_boot_info",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SCSI device \\S+: .+ hdwr sectors.*\"):msg@>",
+         "table" : "Message",
+         "id" : "scsi_device_hdwr_sectors",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"process .+ is using obsolete setsockopt SO_BSDCOMPAT\"):msg@> ",
+         "table" : "Message",
+         "id" : "using_obsolete_setsockopt",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ip_conntrack: table full, dropping packet.\"):msg@> ",
+         "table" : "Message",
+         "id" : "ip_conntrack_table_full",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Processor #\\d+.*APIC version .+\"):msg@>",
+         "table" : "Message",
+         "id" : "processor_apic_version",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Vendor: .+ Model: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "vendor_model",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"BUG: unable to handle kernel NULL pointer dereference at virtual address .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bug_null_pointer_dereference",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Bad page state in process '.+'\"):msg@> ",
+         "table" : "Message",
+         "id" : "bad_page_state_process",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"sys_write\\+.+\"):NULL@>",
+         "table" : "Message",
+         "id" : "debug_sys_write",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"sysenter_past_esp\\+.+\"):NULL@>",
+         "table" : "Message",
+         "id" : "debug_sysenter_past_esp",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"__alloc_pages\\+.+\"):NULL@>",
+         "table" : "Message",
+         "id" : "debug_alloc_pages",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"file_update_time\\+.+\"):NULL@>",
+         "table" : "Message",
+         "id" : "debug_file_update_time",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Trying to fix it up, but a reboot is needed\"):msg@> ",
+         "table" : "Message",
+         "id" : "trying_fix_reboot_needed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"SMP alternatives: switching to \\w+ code\"):msg@> ",
+         "table" : "Message",
+         "id" : "smp_alternatives_switching_code",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"io scheduler \\w+ registered.*\"):msg@>",
+         "table" : "Message",
+         "id" : "io_scheduler_registered",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"page:\\S+ flags:\\S+ mapping:\\S+ mapcount:\\d+ count:\\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "page_flags_mapping",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:NULL@> <@WORD:NULL@> kernel: <@REGEXP(\"Backtrace:\"):NULL@> ",
+         "table" : "Message",
+         "id" : "backtrace",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"error_code\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "error_code",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"bad_page\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "bad_page",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"get_page_from_freelist\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "get_page_from_freelist",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"vma_adjust\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "vma_adjust",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"vma_merge\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "vma_merge",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"__handle_mm_fault\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "handle_mm_fault",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"do_sync_read\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "do_sync_read",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"autoremove_wake_function\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "autoremove_wake_function",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"copy_process\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "copy_process",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"do_page_fault\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "do_page_fault",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"do_mmap_pgoff\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "do_mmap_pgoff",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"__activate_task\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "activate_task",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"sys_gettimeofday\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "sys_gettimeofday",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"__pagevec_lru_add_active\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "pagevec_lru_add_active",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"split_vma\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "split_vma",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"do_wp_page\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "do_wp_page",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"cache_alloc_refill\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "cache_alloc_refill",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"dnotify_parent\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "dnotify_parent",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"wake_up_new_task\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "wake_up_new_task",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"sys_open\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "sys_open",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"open_namei\\+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "open_namei",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"BUG: soft lockup detected on .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "bug_soft_lockup_detected",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"\\w+: received packet with  own address as source address\"):msg@> ",
+         "table" : "Message",
+         "id" : "own_address_source_address",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*\\w+: no IPv6 routers present\"):msg@>",
+         "table" : "Message",
+         "id" : "no_ipv6_routers_present",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"TCP \\w+ registered\"):msg@>",
+         "table" : "Message",
+         "id" : "tcp_module_registered",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Found MSI capability\"):msg@>",
+         "table" : "Message",
+         "id" : "found_msi_capability",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Allocating PCI resources starting at .+\"):msg@>",
+         "table" : "Message",
+         "id" : "allocating_pci_resources",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Brought up \\d+ CPUs\"):msg@> ",
+         "table" : "Message",
+         "id" : "brought_up_cpus",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"GSI \\d+ sharing vector .+ and IRQ .+\"):msg@>",
+         "table" : "Message",
+         "id" : "gsi_sharing_vector",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Link is .own.+\"):msg@>",
+         "table" : "Message",
+         "id" : "network_link_down",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Allocate Port Service.+\"):msg@>",
+         "table" : "Message",
+         "id" : "allocate_port_service",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: match found with the PnP device '.+' and the driver '.+'\"):msg@>",
+         "table" : "Message",
+         "id" : "pnp_match_found",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"pnp: ACPI device : .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pnp_acpi_device",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU \\d+: Syncing TSC to CPU \\d+.*\"):msg@>",
+         "table" : "Message",
+         "id" : "syncing_tsc_to_cpu",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"CPU \\d+: synchronized TSC with CPU \\d+ .*\"):msg@>",
+         "table" : "Message",
+         "id" : "synchronized_tsc_with_cpu",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+:.+: Flow control .+\"):msg@>",
+         "table" : "Message",
+         "id" : "Network_Link_up",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Linux version .+\"):msg@>",
+         "table" : "Message",
+         "id" : "linux_version",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*mapped \\w*APIC to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "mapped_apic",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ACPI.*: Dynamic SSDT Load - .+\"):msg@>",
+         "table" : "Message",
+         "id" : "acpi_dynamic_ssdt_load",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"Cannot allocate resource for EISA slot \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "cannot_allocate_resource_eisa",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"AMD8111: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "amd8111_info",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"EISA: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "eisa_info",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Entering add_active_range.+\"):msg@>",
+         "table" : "Message",
+         "id" : "entering_add_active_range",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*PM: Registered nosave memory:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "pm_registered_nosave_memory",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*early res: \\d+ .+\"):msg@>",
+         "table" : "Message",
+         "id" : "early_res",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ioctl32\\(\\S+\\): Unknown cmd .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ioctl32_unknown_cmd",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ethtool operation .+ not supported\"):msg@>",
+         "table" : "Message",
+         "id" : "ethtool_operation_not_supported",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"hd\\S+: drive_cmd: status=.+ \\{ DriveReady SeekComplete Error \\}\"):msg@>",
+         "table" : "Message",
+         "id" : "driveready_seekcomplete_error",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"hd\\S+: drive_cmd: error=.+ \\{ AbortedCommand \\}\"):msg@>",
+         "table" : "Message",
+         "id" : "drive_cmd_aborted_command",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"ide: failed opcode was: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ide_failed_opcode",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"host .+ ignores redirects for .+ to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "host_ignores_redirects_for",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*CE: hpet increasing min_delta_ns to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "hpet_increasing",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*TCP: too many of orphaned sockets.*\"):msg@>",
+         "table" : "Message",
+         "id" : "too_many_orphaned_sockets",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*BUG: soft lockup - CPU.+ stuck for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bug_soft_lockup",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"setitimer: .+ provided invalid timeval it_value: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "setitimer_provided_invalid_timeval",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*process .+ is using deprecated sysctl .+\"):msg@>",
+         "table" : "Message",
+         "id" : "process_using_deprecated_sysctl",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Orphaned socket dropped.+\"):msg@>",
+         "table" : "Message",
+         "id" : "orphaned_socket_dropped",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ACPI handle has no context!\"):msg@>",
+         "table" : "Message",
+         "id" : "acpi_handle_no_context",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*TCP: time wait bucket table overflow.*\"):msg@>",
+         "table" : "Message",
+         "id" : "tcp_bucket_table_overflow",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*possible SYN flooding on port .+\"):msg@>",
+         "table" : "Message",
+         "id" : "possible_syn_flooding",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"RPC: Registered .+ transport module.\"):msg@>",
+         "table" : "Message",
+         "id" : "registered_transport_module",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.kernel.org/",
+   "version" : "201002120016",
+   "name" : "Linux_Kernel",
+   "description" : "Linux Kernel Service"
+}

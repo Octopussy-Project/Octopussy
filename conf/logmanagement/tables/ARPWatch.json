@@ -1,0 +1,31 @@
+{
+   "fields" : [
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "interface",
+         "type" : "NET_INTERFACE"
+      },
+      {
+         "name" : "ip_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "mac_addr",
+         "type" : "MAC_ADDR"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200811060001",
+   "name" : "ARPWatch",
+   "description" : "ARPWatch Table"
+}

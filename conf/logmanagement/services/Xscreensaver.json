@@ -1,0 +1,50 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xscreensaver\"):daemon@>: <@REGEXP(\".*conversation failed\"):msg@>  ",
+         "table" : "Message",
+         "id" : "conversation_failed",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xscreensaver\"):daemon@>: <@REGEXP(\".*auth could not identify password for .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "auth_couldnt_identify_password",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xscreensaver\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*conversation failed\"):msg@> ",
+         "table" : "Message",
+         "id" : "conversation_failed2",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xscreensaver\"):daemon@>: <@REGEXP(\".*authentication failure; logname=.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "authentication_failure",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xscreensaver\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*authentication failure; logname=.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "authentication_failure2",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xscreensaver\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"FAILED LOGIN .+ ON DISPLAY .+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "failed_login_on_display",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "",
+   "version" : "200810310007",
+   "name" : "Xscreensaver",
+   "description" : "Screen Saver Session Locker"
+}

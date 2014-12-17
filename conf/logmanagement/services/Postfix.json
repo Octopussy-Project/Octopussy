@@ -1,0 +1,709 @@
+{
+   "icon" : "software/logo_postfix",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\".+onnect from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "connect_disconnect_from",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>: <@REGEXP(\"postalias hash:.+ failed\"):msg@>",
+         "table" : "Message",
+         "id" : "postalias_hash_failed",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postfix-script: <@REGEXP(\"warning: not owned by group \\S+: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "not_owned_by_group",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postfix-script: <@REGEXP(\"warning: not set-gid or not owner\\+group\\+world executable: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "not_setgid_executable",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postfix-script: <@REGEXP(\"starting the Postfix mail system\"):msg@>",
+         "table" : "Message",
+         "id" : "starting_postfix_mail_system",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/cleanup[<@NUMBER:NULL@>]: <@WORD:mail_id@>: message-id=<@WORD:msg_id@>",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_messageid",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtp[<@PID:pid@>]: <@REGEXP(\"warning: .+ configuration problem\"):msg@> ",
+         "table" : "Message",
+         "id" : "conf_problem",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix:\\s+succeeded\"):msg@>",
+         "table" : "Message",
+         "id" : "succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postfix-script: <@REGEXP(\"stopping the Postfix mail system\"):msg@> ",
+         "table" : "Message",
+         "id" : "stopping_postfix_mail_system",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postqueue[<@PID:pid@>]: <@REGEXP(\"fatal: Cannot flush mail queue - mail system is down\"):msg@> ",
+         "table" : "Message",
+         "id" : "cannot_flush_mailq",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/master[<@PID:pid@>]: <@REGEXP(\"terminating on signal \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "terminating_on_signal",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"fatal: config variable .+\"):msg@>",
+         "table" : "Message",
+         "id" : "config_variable_error",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postsuper[<@PID:pid@>]: <@REGEXP(\"Deleted: \\d+ message.*\"):msg@> ",
+         "table" : "Message",
+         "id" : "deleted_message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/qmgr[<@NUMBER:NULL@>]: <@WORD:mail_id@>: from=<<@EMAIL:sender@>>, size=<@NUMBER:size@>, nrcpt=<@NUMBER:nrcpt@> <@STRING:NULL@> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_from",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: to=<<@EMAIL:recipient@>>, relay=<@WORD:relay@>, delay=<@FLOAT_NUMBER:delay@>, status=<@STRING:status@> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_to",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: <@REGEXP(\"removed\"):status@> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_removed",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/anvil[<@PID:pid@>]: <@REGEXP(\"statistics: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "anvil_statistics",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@NUMBER:NULL@>]: <@WORD:mail_id@>: client=<@WORD:client@>",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_client",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"fatal: parameter \\S+: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "fatal_parameter_error",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/scache[<@PID:pid@>]: <@REGEXP(\"statistics: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "scache_statistics",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix:  failed\"):msg@> ",
+         "table" : "Message",
+         "id" : "failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postqueue[<@PID:pid@>]: <@REGEXP(\"fatal: usage: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "fatal_error_usage",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/cleanup[<@PID:pid@>]: <@REGEXP(\"\\S+: resent-message-id=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "cleanup_resent_messageid",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"timeout after END-OF-MESSAGE from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "timeout_after_eom",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"NOQUEUE: reject: RCPT from .+: Relay access denied;.+\"):msg@>",
+         "table" : "Message",
+         "id" : "relay_access_denied",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"lost connection after \\S+ from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "lost_connection_after_cmd",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"warning: Illegal address syntax from .+ in \\S+ command: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "illegal_address_syntax",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postalias[<@PID:pid@>]: <@REGEXP(\"fatal: file .+: parameter .+\"):msg@>",
+         "table" : "Message",
+         "id" : "postalias_error_file_parameter",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/master[<@PID:pid@>]: <@REGEXP(\"daemon started -- version \\S+, configuration .+\"):msg@>",
+         "table" : "Message",
+         "id" : "daemon_started",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postfix-script: <@REGEXP(\"fatal: the Postfix mail system is \\S+ running\"):msg@> ",
+         "table" : "Message",
+         "id" : "mail_system_running",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postdrop[<@PID:pid@>]: <@REGEXP(\"warning:.+: No space left on device\"):msg@> ",
+         "table" : "Message",
+         "id" : "no_space_left_device",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/sendmail[<@PID:pid@>]: <@REGEXP(\"fatal:.+: Error writing message file\"):msg@> ",
+         "table" : "Message",
+         "id" : "error_writing_message",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"warning: .+ address not listed for hostname .+\"):msg@>",
+         "table" : "Message",
+         "id" : "address_not_listed",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"warning: premature end-of-input on private/rewrite socket while reading input attribute name\"):msg@> ",
+         "table" : "Message",
+         "id" : "premature_end_of_input",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"warning: problem talking to service rewrite: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "problem_talking_service_rewrite",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/trivial-rewrite[<@PID:pid@>]: <@REGEXP(\"fatal: .+ table lookup problem\"):msg@> ",
+         "table" : "Message",
+         "id" : "table_lookup_problem",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/master[<@PID:pid@>]: <@REGEXP(\"warning: process .+ exit status .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "process_exit_status",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/trivial-rewrite[<@PID:pid@>]: <@REGEXP(\"warning: dict_ldap_connect: Unable to bind to server.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "unable_bind_ldap_server",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/master[<@PID:pid@>]: <@REGEXP(\"warning: .+ bad command .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bad_command",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"warning: Connection concurrency limit exceeded: .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "connection_concurrency_limit_exceeded",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"fatal: watchdog timeout\"):msg@> ",
+         "table" : "Message",
+         "id" : "watchdog_timeout",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"warning: timeout on private/rewrite socket while reading input attribute name\"):msg@> ",
+         "table" : "Message",
+         "id" : "timeout_socket",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/trivial-rewrite[<@PID:pid@>]: <@REGEXP(\"warning: dict_ldap_lookup: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "dict_ldap_lookup_error",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/trivial-rewrite[<@PID:pid@>]: <@REGEXP(\"warning: write rewrite reply: Broken pipe\"):msg@> ",
+         "table" : "Message",
+         "id" : "reply_broken_pipe",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/master[<@PID:pid@>]: <@REGEXP(\"reload .*configuration .+\"):msg@>",
+         "table" : "Message",
+         "id" : "reload_configuration",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: to=<<@EMAIL:recipient@>>, relay=<@WORD:relay@>, delay=<@FLOAT_NUMBER:delay@>, <@STRING:NULL@>, dsn=<@WORD:NULL@>, status=<@STRING:status@> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_to2",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"warning: support for restriction .+ will be removed from Postfix; use .+ instead\"):msg@> ",
+         "table" : "Message",
+         "id" : "support_will_be_removed",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/pickup[<@NUMBER:NULL@>]: <@WORD:mail_id@>: uid=<@NUMBER:NULL@> from=<<@EMAIL:sender@>> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_from2",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtp[<@NUMBER:NULL@>]: <@WORD:mail_id@>: to=<<@EMAIL:recipient@>>, relay=<@WORD:relay@>, conn_use=<@NUMBER:NULL@>, delay=<@FLOAT_NUMBER:delay@>, <@STRING:NULL@>, status=<@STRING:status@> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_to3",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: to=<<@EMAIL:recipient@>>, orig_to=<@WORD:NULL@>, relay=<@WORD:relay@>, delay=<@FLOAT_NUMBER:delay@>, <@STRING:NULL@>, status=<@STRING:status@>",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_orig_to",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/sendmail[<@PID:pid@>]: <@REGEXP(\"fatal: open /etc/postfix/.+: No such file or directory\"):msg@> ",
+         "table" : "Message",
+         "id" : "fatal_open_file_directory",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postmap[<@PID:pid@>]: <@REGEXP(\"fatal: .+ No such file or directory\"):msg@>",
+         "table" : "Message",
+         "id" : "postmap_fatal_open_file",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/local[<@PID:pid@>]: <@REGEXP(\"warning: database .+ is older than source file .+\"):msg@>",
+         "table" : "Message",
+         "id" : "database_older_source_file",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/postmap[<@PID:pid@>]: <@REGEXP(\"warning: .+aliases.+\"):msg@>",
+         "table" : "Message",
+         "id" : "etc_aliases",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: to=<<@EMAIL:recipient@>>, relay=<@WORD:relay@>, delay=<@NUMBER:delay@>, <@STRING:NULL@>, dsn=<@WORD:NULL@>, status=<@STRING:status@> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_to4",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtp[<@NUMBER:NULL@>]: <@WORD:mail_id@>: to=<<@EMAIL:recipient@>>, relay=<@WORD:relay@>, conn_use=<@NUMBER:NULL@>, delay=<@NUMBER:delay@>, <@STRING:NULL@>, status=<@STRING:status@> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_to5",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: to=<<@EMAIL:recipient@>>, orig_to=<@WORD:NULL@>, relay=<@WORD:relay@>, delay=<@NUMBER:delay@>, <@STRING:NULL@>, status=<@STRING:status@> ",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_orig_to3",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/pickup[<@PID:pid@>]: <@REGEXP(\"warning: .+ message has been queued for \\d+ days\"):msg@>",
+         "table" : "Message",
+         "id" : "message_queued_n_days",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtp[<@PID:pid@>]: <@REGEXP(\"connect to .+: No route to host.*\"):msg@>",
+         "table" : "Message",
+         "id" : "no_route_to_host",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtp[<@PID:pid@>]: <@REGEXP(\"connect to .+: Connection timed out.*\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_timed_out",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"\\S+: reject: RCPT from .+: Recipient address rejected:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "recipient_address_rejected",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtp[<@PID:pid@>]: <@REGEXP(\"connect to .+: Connection refused.*\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_refused",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/sendmail[<@PID:pid@>]: <@REGEXP(\"fatal: open .+: Permission denied\"):msg@>",
+         "table" : "Message",
+         "id" : "open_permission_denied",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/pickup[<@NUMBER:NULL@>]: <@WORD:mail_id@>: uid=<@NUMBER:NULL@> from=<<@WORD:sender@>>  ",
+         "table" : "Mail_Traffic",
+         "id" : "from_no_email",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"fatal: open database .+\"):msg@>",
+         "table" : "Message",
+         "id" : "fatal_open_database",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"fatal: watchdog timeout\"):msg@>",
+         "table" : "Message",
+         "id" : "fatal_wtachdog_timeout",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: SASL authentication problem: unknown password verifier\"):msg@>",
+         "table" : "Message",
+         "id" : "sasl_unknown_password_verifier",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dict_eval: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "dict_eval",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"fatal: no SASL authentication mechanisms\"):msg@>",
+         "table" : "Message",
+         "id" : "no_sasl_authentication_mechanisms",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: .+: SASL \\w+ authentication failed: no mechanism available\"):msg@>",
+         "table" : "Message",
+         "id" : "sasl_no_mechanism_available",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: .+: SASL \\w+ authentication failed: generic failure\"):msg@>",
+         "table" : "Message",
+         "id" : "sasl_generic_failure",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: .+: SASL \\w+ authentication failed: another step is needed in authentication\"):msg@>",
+         "table" : "Message",
+         "id" : "sasl_another_step_needed",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"timeout after \\w+ from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "timeout_after",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: .+: SASL \\w+ authentication failed: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "sasl_authentication_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: SASL authentication failure: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "sasl_authentication_failure",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>: <@REGEXP(\"refreshing the Postfix mail system\"):msg@>",
+         "table" : "Message",
+         "id" : "refreshing_postfix_mail_system",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: \\w+: no applicable SASL mechanisms\"):msg@>",
+         "table" : "Message",
+         "id" : "no_applicable_sasl_mechanisms",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtp[<@PID:pid@>]: <@REGEXP(\"connect to .+: Network is unreachable.*\"):msg@>",
+         "table" : "Message",
+         "id" : "network_is_unreachable",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"warning: not enough free space in mail queue:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "not_enough_free_space",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/cleanup[<@PID:pid@>]: <@REGEXP(\"warning: .+: write queue file: No space left on device\"):msg@>",
+         "table" : "Message",
+         "id" : "no_space_left",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtpd[<@PID:pid@>]: <@REGEXP(\"NOQUEUE: reject: MAIL from .+ Insufficient system storage.+\"):msg@>",
+         "table" : "Message",
+         "id" : "insufficient_system_storage",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/smtp[<@PID:pid@>]: <@REGEXP(\"\\S+: lost connection with .+ while receiving the initial server greeting\"):msg@>",
+         "table" : "Message",
+         "id" : "lost_connection_server_greeting",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: to=<<@WORD:recipient@>>, orig_to=<@WORD:NULL@>, relay=<@WORD:relay@>, delay=<@FLOAT_NUMBER:delay@>, <@STRING:NULL@>, status=<@STRING:status@>",
+         "table" : "Mail_Traffic",
+         "id" : "traffic_orig_to2",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix/qmgr\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"fatal: scan_dir_push: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "fatal_scan_dir_push",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\\/smtp\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S+: conversation with .+ timed out while receiving the initial server greeting\"):msg@>",
+         "table" : "Message",
+         "id" : "timeout_initial_server_greeting",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\\/smtpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"warning: non-SMTP command from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "non_smtp_command_from",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* Unable to accept message because the server is out of disk space.*\"):msg@>",
+         "table" : "Message",
+         "id" : "out_of_disk_space",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* Insufficient system storage.*\"):msg@>",
+         "table" : "Message",
+         "id" : "insufficient_system_storage2",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\".*No buffer space available\"):msg@>",
+         "table" : "Message",
+         "id" : "no_buffer_space_available",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"fatal: config variable .+\"):msg@>",
+         "table" : "Message",
+         "id" : "fatal_config_variable",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: .*malformed response\"):msg@>",
+         "table" : "Message",
+         "id" : "warning_malformed_response",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: transport (?:relay|smtp) failure.*\"):msg@>",
+         "table" : "Message",
+         "id" : "transport_failure",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: file system clock is \\d+ seconds behind local clock\"):msg@>",
+         "table" : "Message",
+         "id" : "filesystem_clock_behind_local",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"warning: .+: fork: Cannot allocate memory.*\"):msg@>",
+         "table" : "Message",
+         "id" : "fork_cannot_allocate_memory",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\\/smtp\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S+: conversation with .+ timed out while sending end of data -- message may be sent more than once\"):msg@>",
+         "table" : "Message",
+         "id" : "timeout_end_of_data",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/qmgr[<@NUMBER:NULL@>]: <@WORD:mail_id@>: from=<@REGEXP(\"<>\"):sender@>, size=<@NUMBER:size@>, nrcpt=<@NUMBER:nrcpt@> <@STRING:NULL@>",
+         "table" : "Mail_Traffic",
+         "id" : "from_sender_empty",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/bounce[<@NUMBER:NULL@>]: <@WORD:mail_id@>: <@REGEXP(\"sender non-delivery notification: .+\"):status@>",
+         "table" : "Mail_Traffic",
+         "id" : "sender_nondelivery_notification",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: from=<<@EMAIL:sender@>>, status=<@REGEXP(\"expired, returned to sender\"):status@>",
+         "table" : "Mail_Traffic",
+         "id" : "expired_returned_to_sender",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix\"):daemon@>/<@WORD:NULL@>[<@NUMBER:NULL@>]: <@WORD:mail_id@>: from=<@REGEXP(\"<>\"):sender@>, status=<@REGEXP(\"expired, returned to sender\"):status@>",
+         "table" : "Mail_Traffic",
+         "id" : "expired_returned_to_sender2",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postfix.+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"starting the Postfix mail system\"):msg@>",
+         "table" : "Message",
+         "id" : "starting_postfix_mail_system2",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.postfix.org/",
+   "version" : "201002100004",
+   "name" : "Postfix",
+   "description" : "Postfix Service"
+}

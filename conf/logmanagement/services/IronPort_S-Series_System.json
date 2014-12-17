@@ -1,0 +1,912 @@
+{
+   "icon" : "companies/logo_ironport",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: User \\S+ entered '.*'; prompt was .+\"):msg@>",
+         "table" : "Message",
+         "id" : "user_entered_to_prompt",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Listening for connections on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "listening_for_connections",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Time offset from UTC: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "time_offset_from_utc",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Process '.+' healthy\"):msg@>",
+         "table" : "Message",
+         "id" : "process_healthy",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Network Participation: failed to connect to host: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "failed_connect_to_host",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Version: .+ SN: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "version_sn",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"\\S+ service listening on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "service_listening_on",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Debug: Network Participation: Attempting to connect to host: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "attempting_connect_to_host",
+         "taxonomy" : "Network",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: Failed to bootstrap the DNS resolver. Unable to contact root servers.\"):msg@>",
+         "table" : "Message",
+         "id" : "unable_contact_dns_servers",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Active .+ db opened.\"):msg@>",
+         "table" : "Message",
+         "id" : "active_db_opened",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Begin Logfile\"):msg@>",
+         "table" : "Message",
+         "id" : "begin_logfile",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"End Logfile\"):msg@>",
+         "table" : "Message",
+         "id" : "end_logfile",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"message: shutting down .+\"):msg@>",
+         "table" : "Message",
+         "id" : "shutting_down",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+ service shutting down on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "service_shutting_down",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: User \\S+ login from \\S+ on \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "user_login_from",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"DB environment opened at .+\"):msg@>",
+         "table" : "Message",
+         "id" : "db_environment_opened",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"lame DNS referral:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "lame_dns_referral",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: DNS query network error .+\"):msg@>",
+         "table" : "Message",
+         "id" : "dns_query_network_error",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: Skipping, not opted in.\"):msg@>",
+         "table" : "Message",
+         "id" : "skipping_not_opted_in",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started processing .+\"):msg@>",
+         "table" : "Message",
+         "id" : "started_processing",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished processing .+\"):msg@>",
+         "table" : "Message",
+         "id" : "finished_processing",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Debug: Network Participation: Successfully connected to host:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "succesfully_connected_to_host",
+         "taxonomy" : "Network",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Debug: Network Participation: Closed connection to host:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "closed_connection_to_host",
+         "taxonomy" : "Network",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Queued for update:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "queued_for_update",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started downloading .+\"):msg@>",
+         "table" : "Message",
+         "id" : "started_downloading",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished downloading .+\"):msg@>",
+         "table" : "Message",
+         "id" : "finished_downloading",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started update.\"):msg@>",
+         "table" : "Message",
+         "id" : "started_update",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started downloads.\"):msg@>",
+         "table" : "Message",
+         "id" : "started_downloads",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started applying .*update.*\"):msg@>",
+         "table" : "Message",
+         "id" : "started_applying_update",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished applying .*update.*\"):msg@>",
+         "table" : "Message",
+         "id" : "finished_applying_update",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started manifest acquisition.+\"):msg@>",
+         "table" : "Message",
+         "id" : "started_manifest_acquisition",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished manifest acquisition.+\"):msg@>",
+         "table" : "Message",
+         "id" : "finished_manifest_acquisition",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Network Participation: Uploaded \\d+ bytes to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "uploaded_bytes_to",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished downloads.\"):msg@>",
+         "table" : "Message",
+         "id" : "finished_downloads",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Decrypted file .+\"):msg@>",
+         "table" : "Message",
+         "id" : "decrypted_file",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Restarting engine.\"):msg@>",
+         "table" : "Message",
+         "id" : "restarting_engine",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Updating version info.+\"):msg@>",
+         "table" : "Message",
+         "id" : "updating_version_info",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Accepted connection on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "accepted_connection_on",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Closing scoring socket.\"):msg@>",
+         "table" : "Message",
+         "id" : "closing_scoring_socket",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started updating version info.\"):msg@>",
+         "table" : "Message",
+         "id" : "started_updating_version_info",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"\\S+ db closed.\"):msg@>",
+         "table" : "Message",
+         "id" : "db_closed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Switched \\S+ db.\"):msg@>",
+         "table" : "Message",
+         "id" : "switched_db",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+User \\S+ commit changes:.*\"):msg@> ",
+         "table" : "Message",
+         "id" : "user_commit_changes",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"log\\S+:.+ user:.+ session:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "user_session",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Session \\S+ .*\"):msg@>",
+         "table" : "Message",
+         "id" : "session_info",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"PERIODIC REPORTS: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "periodic_reports",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Cannot open .+, non-existent.\"):msg@>",
+         "table" : "Message",
+         "id" : "cannot_open_non_existent",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: A RAID-event has occurred: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "raid_event_occured",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Internal SMTP system attempting to send a message to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "smtp_attempting_send_message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"bootstrapping DNS cache\"):msg@>",
+         "table" : "Message",
+         "id" : "bootstrapping_dns_cache",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Error while sending alert: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "error_while_sending_alert",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Internal SMTP Error: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "internal_smtp_error",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Network Participation: Timed out after \\d+ seconds.  Retrying in \\d+ seconds.\"):msg@>",
+         "table" : "Message",
+         "id" : "network_timed_out",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .+Failed to \\S+ server manifest.+\"):msg@>",
+         "table" : "Message",
+         "id" : "failed_server_manifest",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: Internal SMTP giving up on message to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "critical_smtp_giving_up",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+\\w+ed decryption.\"):msg@>",
+         "table" : "Message",
+         "id" : "started_finished_decryption",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: \\w+ed preparing full \\w+ db update.+\"):msg@>",
+         "table" : "Message",
+         "id" : "preparing_full_db_update",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Signalling switch of \\w+ db.\"):msg@>",
+         "table" : "Message",
+         "id" : "signalling_switch_of_db",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Received an invalid DNS Response:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "received_invalid_dns_response",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Closing management socket.\"):msg@>",
+         "table" : "Message",
+         "id" : "closing_management_socket",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished update.\"):msg@>",
+         "table" : "Message",
+         "id" : "finished_update",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Can't query nameserver .+ for its own IP without knowing its IP.\"):msg@>",
+         "table" : "Message",
+         "id" : "cant_query_nameserver",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Internal SMTP system successfully sent a message to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "smtp_successfully_sent_message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Started update handler thread.\"):msg@>",
+         "table" : "Message",
+         "id" : "started_update_handler_thread",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Process .+ deemed unhealthy or slow.+\"):msg@>",
+         "table" : "Message",
+         "id" : "process_deemed_unhealthy",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Process .+ not running so skipping health check\"):msg@>",
+         "table" : "Message",
+         "id" : "skipping_health_check",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+: \\w+ed preparing diff \\w+ db update .+\"):msg@>",
+         "table" : "Message",
+         "id" : "preparing_diff_db",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Finished updating version info.\"):msg@>",
+         "table" : "Message",
+         "id" : "finished_updating_version_info",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .+Failed to download .+\"):msg@>",
+         "table" : "Message",
+         "id" : "failed_to_download",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .+Download timed out for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "download_timed_out_for",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .+Failed to acquire manifest.\"):msg@>",
+         "table" : "Message",
+         "id" : "failed_acquire_manifest",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"System is coming up.\"):msg@>",
+         "table" : "Message",
+         "id" : "system_coming_up",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Table \\S+ has \\d+ unique keys\"):msg@>",
+         "table" : "Message",
+         "id" : "table_unique_keys",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+ \\w+ed decompression.\"):msg@>",
+         "table" : "Message",
+         "id" : "started_finished_decompression",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+Error in https connection from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "error_in_https_connection",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Period \\w+ using .+\"):msg@>",
+         "table" : "Message",
+         "id" : "period_using",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+Signalling switch of blacklist.\"):msg@>",
+         "table" : "Message",
+         "id" : "signalling_switch_of_blacklist",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"\\w+ service on .+ redirecting to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "service_redirecting",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Pages found in cache: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pages_found_in_cache",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Journal coeuslog.reporting .+ percent full using .+\"):msg@>",
+         "table" : "Message",
+         "id" : "journal_percent_full",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"HELPER checkpointed in .+ seconds\"):msg@>",
+         "table" : "Message",
+         "id" : "helper_checkpointed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Address .+ discovered for .+ added to firewall blacklist.\"):msg@>",
+         "table" : "Message",
+         "id" : "address_added_to_blacklist",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Address .+ for .+ removed from firewall blacklist.\"):msg@>",
+         "table" : "Message",
+         "id" : "address_removed_from_blacklist",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Log .+ pushed to remote host .+\"):msg@>",
+         "table" : "Message",
+         "id" : "log_pushed_to_remote",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Logfile rolled over\"):msg@>",
+         "table" : "Message",
+         "id" : "logfile_rolled_over",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Firewall blocked data from .+ to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "firewall_blocked_data",
+         "taxonomy" : "Traffic.Denied",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Firewall noted data from .+ to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "firewall_noted_data",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"A .+ alert was sent to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "alert_was_sent_to",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"System is shutting down.\"):msg@>",
+         "table" : "Message",
+         "id" : "system_shutting_down",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: SSL error with client .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ssl_error_with_client",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"DNS cache bootstrapped\"):msg@>",
+         "table" : "Message",
+         "id" : "dns_cache_bootstrapped",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+User \\w+ logged out of CLI session\"):msg@>",
+         "table" : "Message",
+         "id" : "user_logged_out_cli",
+         "taxonomy" : "Access",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: .*General exception.\"):msg@>",
+         "table" : "Message",
+         "id" : "general_exception",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Warning: <@REGEXP(\".+ Unable to apply update file .+\"):msg@>",
+         "table" : "Message",
+         "id" : "unable_apply_update_file",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Warning: <@REGEXP(\"Network Participation: Error sending data: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "network_participation_error_sending",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Critical: <@REGEXP(\"Log Error: Push error for subscription .+\"):msg@>",
+         "table" : "Message",
+         "id" : "push_error_for_subscription",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+ feature key not enabled.\"):msg@>",
+         "table" : "Message",
+         "id" : "feature_key_not_enabled",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"System Health Daemon started.+\"):msg@>",
+         "table" : "Message",
+         "id" : "system_health_daemon_started",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+User .+ executed batch command: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "user_executed_batch_command",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: \\d+: wbrs: Signaling switch of \\w+ db.\"):msg@>",
+         "table" : "Message",
+         "id" : "wbrs_signaling_switch_db",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: \\d+: wbrs: Switch of \\w+ db succeeded.\"):msg@>",
+         "table" : "Message",
+         "id" : "wbrs_switch_db_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: \\d+: wbrs: Switch of \\w+ db failed.\"):msg@>",
+         "table" : "Message",
+         "id" : "wbrs_switch_db_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: \\d+: \\S+: Skipping, not enabled.\"):msg@>",
+         "table" : "Message",
+         "id" : "service_skipping_not_enabled",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"\\w+: Process .+ failed health checks.+\"):msg@>",
+         "table" : "Message",
+         "id" : "process_failed_health_checks",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Network Participation error: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "network_participation_error",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Warning: Report Query Failed\"):msg@>",
+         "table" : "Message",
+         "id" : "report_query_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Query: The maximum number of concurrent queries has been exceeded.\"):msg@>",
+         "table" : "Message",
+         "id" : "maximum_concurrent_queries_exceeded",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Query: Closing \\S+ handle \\d+.\"):msg@>",
+         "table" : "Message",
+         "id" : "query_closing_handle",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: An application fault occurred:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "application_fault_occured",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: .+ has been disabled\"):msg@>",
+         "table" : "Message",
+         "id" : "service_has_been_disabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: .+ is currently not enabled\"):msg@>",
+         "table" : "Message",
+         "id" : "service_currently_not_enabled",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Query: Merge query with handle .+\"):msg@>",
+         "table" : "Message",
+         "id" : "merge_query_with_handle",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: .+ has been enabled\"):msg@>",
+         "table" : "Message",
+         "id" : "service_has_been_enabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Wrote .+ interval with time .+\"):msg@>",
+         "table" : "Message",
+         "id" : "wrote_interval_with_time",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Query: Interval query with handle .+\"):msg@>",
+         "table" : "Message",
+         "id" : "interval_query_with_handle",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Info: Space management removed .+ interval with time .+\"):msg@>",
+         "table" : "Message",
+         "id" : "space_management_removed_interval",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"HELPER has joined the database\"):msg@>",
+         "table" : "Message",
+         "id" : "helper_joined_database",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"HELPER RPC server has been started\"):msg@>",
+         "table" : "Message",
+         "id" : "helper_rpc_started",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Critical: The reporting system has encountered a critical error while opening the database.+\"):msg@>",
+         "table" : "Message",
+         "id" : "reporting_encountered_critical_error",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Replacing current .+ with new .+\"):msg@>",
+         "table" : "Message",
+         "id" : "replacing_current_with_new",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Requests: total \\d+ current \\d+ Maxrss .+ Cpu: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "system_info",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Got an info query\"):msg@>",
+         "table" : "Message",
+         "id" : "got_info_query",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Webroot\\s+spy found \\d+ scanned \\d+ avg scan time .+\"):msg@>",
+         "table" : "Message",
+         "id" : "webroot_spy_found_scanned",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> CRITICAL : <@REGEXP(\"Unable to connect to proxy .+\"):msg@>",
+         "table" : "Message",
+         "id" : "unable_connect_proxy",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Webroot versions: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "webroot_versions",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Webroot process ready to process events\"):msg@>",
+         "table" : "Message",
+         "id" : "webroot_ready_process_events",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> INFO : <@REGEXP(\"Webroot initialized.\"):msg@>",
+         "table" : "Message",
+         "id" : "webroot_initialized",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"WARNING : EOF on querySocket\"):msg@>",
+         "table" : "Message",
+         "id" : "eof_on_querysocket",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"WARNING : .+ is pending\"):msg@>",
+         "table" : "Message",
+         "id" : "is_pending",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.ironport.com/products/web_security_appliances.html",
+   "version" : "200702200010",
+   "name" : "IronPort_S-Series_System",
+   "description" : "IronPort S-Series System Service"
+}

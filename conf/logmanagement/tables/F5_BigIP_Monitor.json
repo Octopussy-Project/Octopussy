@@ -1,0 +1,31 @@
+{
+   "fields" : [
+      {
+         "name" : "address",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "object",
+         "type" : "STRING"
+      },
+      {
+         "name" : "port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "F5_BigIP_Monitor",
+   "description" : "F5 BigIP Monitor Table"
+}

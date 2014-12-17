@@ -1,0 +1,55 @@
+{
+   "fields" : [
+      {
+         "name" : "acl",
+         "type" : "STRING"
+      },
+      {
+         "name" : "action",
+         "type" : "WORD"
+      },
+      {
+         "name" : "client_ip",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "content_type",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "elapsed_time",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "http_method",
+         "type" : "WORD"
+      },
+      {
+         "name" : "http_response",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "total_bytes",
+         "type" : "BYTES"
+      },
+      {
+         "name" : "url",
+         "type" : "STRING"
+      },
+      {
+         "name" : "user",
+         "type" : "WORD"
+      }
+   ],
+   "version" : "200610090001",
+   "name" : "IronPort_S_Series_Traffic",
+   "description" : "IronPort S-Series Traffic Table"
+}

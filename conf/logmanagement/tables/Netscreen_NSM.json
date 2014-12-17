@@ -1,0 +1,75 @@
+{
+   "fields" : [
+      {
+         "name" : "action",
+         "type" : "WORD"
+      },
+      {
+         "name" : "category",
+         "type" : "STRING"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "dst_nat_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "dst_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "dst_zone",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "protocol",
+         "type" : "WORD"
+      },
+      {
+         "name" : "rule",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "severity",
+         "type" : "WORD"
+      },
+      {
+         "name" : "src_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "src_nat_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "src_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "src_zone",
+         "type" : "STRING"
+      },
+      {
+         "name" : "subcategory",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200705070001",
+   "name" : "Netscreen_NSM",
+   "description" : "Netscreen NSM Table"
+}

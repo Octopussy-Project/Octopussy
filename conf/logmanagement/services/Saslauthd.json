@@ -1,0 +1,64 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"saslauthd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ipc_init.*: listening on socket: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "listening_on_socket",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"saslauthd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"detach_tty.*: master pid is: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "detach_tty",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"saslauthd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"server_exit.*: master exited: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "server_exit",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"saslauthd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM unable to dlopen.+\"):msg@>",
+         "table" : "Message",
+         "id" : "pam_unable_to_dlopen",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"saslauthd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM adding faulty module:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "pam_adding_faulty_module",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"saslauthd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM \\(smtp\\) illegal module type: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pam_illegal_module_type",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"saslauthd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"do_auth.*: auth failure: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "auth_failure",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"saslpasswd2\"):daemon@>: <@REGEXP(\"error deleting entry from sasldb.*\"):msg@>",
+         "table" : "Message",
+         "id" : "error_deleting_entry_sasldb",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "",
+   "version" : "200901210001",
+   "name" : "Saslauthd",
+   "description" : "SASL Authentication Server Service"
+}

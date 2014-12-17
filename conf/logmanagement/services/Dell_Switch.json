@@ -1,0 +1,72 @@
+{
+   "icon" : "companies/logo_dell",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"AAA-E-AUTHFAIL\"):msg_id@>: <@REGEXP(\"Authentication failed for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "authentication_failed_for",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"MSCM-I-TERMTERMINATED\"):msg_id@>: <@REGEXP(\"SSH connection from .+ terminated\"):msg@>  ",
+         "table" : "Message",
+         "id" : "ssh_connection_terminated",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"COPY-W-TRAP\"):msg_id@>: <@REGEXP(\"The copy operation was completed successfully\"):msg@>  ",
+         "table" : "Message",
+         "id" : "copy_completed_successfully",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"MSCM-I-NEWTERM\"):msg_id@>: <@REGEXP(\"New SSH connection from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "new_ssh_connection",
+         "taxonomy" : "Auth",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"LINK-W-Down\"):msg_id@>: <@STRING:msg@>  ",
+         "table" : "Message",
+         "id" : "link_down",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"LINK-I-Up\"):msg_id@>: <@STRING:msg@>",
+         "table" : "Message",
+         "id" : "link_up",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"STP-W-PORTSTATUS\"):msg_id@>: <@REGEXP(\".+ STP status .+\"):msg@>",
+         "table" : "Message",
+         "id" : "stp_status",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"MSCM-I-NEWTERM\"):msg_id@>: <@REGEXP(\"New TELNET connection from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "new_telnet_connection",
+         "taxonomy" : "Access.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> %<@REGEXP(\"MSCM-I-TERMTERMINATED\"):msg_id@>: <@REGEXP(\"TELNET connection from .+ terminated\"):msg@>  ",
+         "table" : "Message",
+         "id" : "telnet_connection_terminated",
+         "taxonomy" : "Access",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.dell.com/content/products/category.aspx/networking?c=us&cs=555&l=en&s=biz",
+   "version" : "201002180009",
+   "name" : "Dell_Switch",
+   "description" : "Dell Switch Service"
+}

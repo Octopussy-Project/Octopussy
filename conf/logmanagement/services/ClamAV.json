@@ -1,0 +1,127 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ClamAV update process started at .+\"):msg@>",
+         "table" : "Message",
+         "id" : "clamav_update_process_started",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Reading CVD header .+\"):msg@>",
+         "table" : "Message",
+         "id" : "reading_CVD_header",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* is up to date .+\"):msg@>",
+         "table" : "Message",
+         "id" : "is_up_to_date",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Invalid DNS reply. Falling back to HTTP mode.\"):msg@>",
+         "table" : "Message",
+         "id" : "invalid_dns_reply",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Can't query current.cvd.clamav.net\"):msg@>",
+         "table" : "Message",
+         "id" : "cant_query_clamav_net",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Connecting via .+\"):msg@>",
+         "table" : "Message",
+         "id" : "connecting_via",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Received signal: wake up\"):msg@>",
+         "table" : "Message",
+         "id" : "received_signal_wake_up",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"OK.*\"):msg@>",
+         "table" : "Message",
+         "id" : "ok",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Database updated .+ from db.local.clamav.net\"):msg@>",
+         "table" : "Message",
+         "id" : "database_updated",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Clamd successfully notified about the update.\"):msg@>",
+         "table" : "Message",
+         "id" : "clamd_successfully_notified_update",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Your ClamAV installation is OUTDATED!\"):msg@>",
+         "table" : "Message",
+         "id" : "clamav_installation_outdated",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Current functionality level = \\d+, recommended = \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "current_functionality_level_recommended",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Can't read .+ from db.local.clamav.net.*\"):msg@>",
+         "table" : "Message",
+         "id" : "cant_read_clamav_net",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daily.c[lv]d updated.*\"):msg@>",
+         "table" : "Message",
+         "id" : "daily_updated",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Downloading .+\"):msg@>",
+         "table" : "Message",
+         "id" : "downloading",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Trying again in 5 secs.*\"):msg@>",
+         "table" : "Message",
+         "id" : "trying_again_5_secs",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"freshclam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"DON'T PANIC!.*\"):msg@>",
+         "table" : "Message",
+         "id" : "dont_panic",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.clamav.net/",
+   "version" : "200912140001",
+   "name" : "ClamAV",
+   "description" : "Clam AntiVirus Service"
+}

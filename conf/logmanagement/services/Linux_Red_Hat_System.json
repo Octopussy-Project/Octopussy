@@ -1,0 +1,16 @@
+{
+   "icon" : "operating_systems/os_linux_redhat",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"rhnsd\"):daemon@>[<@PID:pid@>]: <@STRING:msg@>",
+         "table" : "Message",
+         "id" : "rhnsd",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.redhat.com/",
+   "version" : "200606060001",
+   "name" : "Linux_Red_Hat_System",
+   "description" : "Linux Red Hat System Service"
+}

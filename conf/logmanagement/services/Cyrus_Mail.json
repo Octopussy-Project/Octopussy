@@ -1,0 +1,99 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"archiving log file: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "archiving_log_file",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"done checkpointing cyrus databases\"):msg@>",
+         "table" : "Message",
+         "id" : "done_checkpointing_cyrus_databases",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"checkpointing cyrus databases\"):msg@>",
+         "table" : "Message",
+         "id" : "checkpointing_cyrus_databases",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"archiving database file: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "archiving_database_file",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"about to exec .+\"):msg@>",
+         "table" : "Message",
+         "id" : "about_to_exec",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"process \\d+ exited, status \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "process_exited",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"duplicate_prune: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "duplicate_prune_action",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"tls_prune: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "tls_prune_action",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"WARNING: cannot find executable for service '.+' -- ignored\"):msg@>",
+         "table" : "Message",
+         "id" : "cannot_find_executable_service",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\".*recovering cyrus databases\"):msg@>",
+         "table" : "Message",
+         "id" : "recovering_cyrus_databases",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"process started\"):msg@>",
+         "table" : "Message",
+         "id" : "process_started",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"ready for work\"):msg@>",
+         "table" : "Message",
+         "id" : "ready_for_work",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cyrus\"):daemon@>/<@WORD:module@>[<@PID:pid@>]: <@REGEXP(\"executed\"):msg@>",
+         "table" : "Message",
+         "id" : "executed",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://cyrusimap.web.cmu.edu/",
+   "version" : "200901230004",
+   "name" : "Cyrus_Mail",
+   "description" : "Cyrus Mail Service"
+}

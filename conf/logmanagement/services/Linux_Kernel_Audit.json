@@ -1,0 +1,51 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@STRING:NULL@>type=<@NUMBER:type@> audit(<@WORD:NULL@>): arch=<@NUMBER:NULL@> syscall=<@NUMBER:NULL@> success=<@WORD:NULL@> exit=<@NUMBER:NULL@> a0=<@WORD:NULL@> a1=<@WORD:NULL@> a2=<@WORD:NULL@> a3=<@WORD:NULL@> items=<@NUMBER:NULL@> ppid=<@PID:ppid@> pid=<@PID:pid@> auid=<@NUMBER:NULL@> uid=<@NUMBER:uid@> gid=<@NUMBER:gid@> euid=<@NUMBER:NULL@> suid=<@NUMBER:NULL@> fsuid=<@NUMBER:NULL@> egid=<@NUMBER:NULL@> sgid=<@NUMBER:NULL@> fsgid=<@NUMBER:NULL@> tty=<@WORD:tty@> ses=<@NUMBER:session@> comm=\"<@STRING:command@>\" exe=\"<@STRING:exec@>\" key=\"<@STRING:key@>\"",
+         "table" : "Linux_Kernel_Audit",
+         "id" : "syscall",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: audit(<@WORD:NULL@>): user pid=<@PID:pid@> uid=<@NUMBER:uid@> auid=<@NUMBER:auid@> subj=<@WORD:subject@> msg='<@STRING:msg@>'",
+         "table" : "Linux_Kernel_Audit",
+         "id" : "subject_message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: audit(<@WORD:NULL@>): login pid=<@PID:pid@> uid=<@NUMBER:uid@> old auid=<@NUMBER:auid@> new auid=<@NUMBER:NULL@>",
+         "table" : "Linux_Kernel_Audit",
+         "id" : "old_auid_new_auid",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: audit(<@WORD:NULL@>): audit_pid=<@PID:pid@> old=<@NUMBER:NULL@> by auid=<@NUMBER:auid@> subj=<@WORD:subject@>",
+         "table" : "Linux_Kernel_Audit",
+         "id" : "subject",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: audit(<@WORD:NULL@>): user pid=<@PID:pid@> uid=<@NUMBER:uid@> auid=<@NUMBER:auid@> subj=<@WORD:subject@> msg=''",
+         "table" : "Linux_Kernel_Audit",
+         "id" : "subject_message_empty",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: audit(<@WORD:NULL@>): auid=<@NUMBER:auid@> subj=<@WORD:subject@> op=<@REGEXP(\"remove rule\"):operation@> key=<@STRING:key@> list=<@NUMBER:list@> res=<@NUMBER:NULL@>",
+         "table" : "Linux_Kernel_Audit",
+         "id" : "remove_rule",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201208290007",
+   "name" : "Linux_Kernel_Audit",
+   "description" : "Linux Kernel Auditing Service"
+}

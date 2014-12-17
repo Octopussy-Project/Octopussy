@@ -1,0 +1,30 @@
+{
+   "icon" : "operating_systems/os_mac",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Software Update\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Distribution: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "distribution",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Software Update\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"run (?:pre|post)flight script for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "run_postflight_script",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"Software Update\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"(?:Configu|Prepa)ring volume .+\"):msg@>",
+         "table" : "Message",
+         "id" : "configuring_preparing_volume",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.apple.com/macosx/",
+   "version" : "200911080008",
+   "name" : "Mac_OS_X_Software_Update",
+   "description" : "Mac OS X Software Update"
+}

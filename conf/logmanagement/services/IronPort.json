@@ -1,0 +1,492 @@
+{
+   "icon" : "companies/logo_ironport",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"close\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_close",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> Subject <@STRING:subject@>",
+         "table" : "IronPort",
+         "id" : "mid_subject",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Message finished\"):msg@> MID <@NUMBER:mid@> done",
+         "table" : "IronPort",
+         "id" : "mid_message_finished_done",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"Message-ID .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_message_id",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> ICID <@NUMBER:icid@> From: <@STRING:sender@>",
+         "table" : "IronPort",
+         "id" : "mid_from",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> ICID <@NUMBER:icid@> RID <@NUMBER:rid@> To: <@STRING:rcpt@>",
+         "table" : "IronPort",
+         "id" : "mid_to",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"queued for delivery\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_queued_for_delivery",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"antivirus negative.*\"):msg@> ",
+         "table" : "IronPort",
+         "id" : "mid_antivirus_negative",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: New SMTP DCID <@NUMBER:dcid@> <@REGEXP(\"interface .+ address .+ port .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "dcid_new_smtp",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Delivery start\"):msg@> DCID <@NUMBER:dcid@> MID <@NUMBER:mid@> <@REGEXP(\"to RID.+\"):NULL@>",
+         "table" : "IronPort",
+         "id" : "mid_delivery_start",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"matched all recipients for per-recipient policy .+ in the \\w+bound table\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_matched_all_recipients",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Message done\"):msg@> DCID <@NUMBER:dcid@> MID <@NUMBER:mid@> <@REGEXP(\"to RID.+\"):NULL@>",
+         "table" : "IronPort",
+         "id" : "mid_message_done",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> RID [<@STRING:rid@>] Response <@STRING:response@>",
+         "table" : "IronPort",
+         "id" : "mid_response",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: New SMTP ICID <@NUMBER:icid@> <@REGEXP(\"interface .+ address .+ reverse dns host .+ verified yes\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_new_smtp_verified",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: New SMTP ICID <@NUMBER:icid@> <@REGEXP(\"interface .+ address .+ reverse dns host .+ verified no\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_new_smtp_unverified",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"ACCEPT SG .+ SBRS .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_sendergroup_accept",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"REJECT SG .+ match .+ SBRS .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_sendergroup_reject",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"using engine: .+ spam negative\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_spam_negative",
+         "taxonomy" : "Email.Spam",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"lost\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_lost",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"ready \\d+ bytes from .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_ready_bytes_from",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Start\"):msg@> MID <@NUMBER:mid@> ICID <@NUMBER:icid@>",
+         "table" : "IronPort",
+         "id" : "mid_start",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"using engine: .+ spam positive\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_spam_positive",
+         "taxonomy" : "Email.Spam",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Message aborted\"):msg@> MID <@NUMBER:mid@> <@STRING:NULL@>",
+         "table" : "IronPort",
+         "id" : "mid_message_aborted",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Message finished\"):msg@> MID <@NUMBER:mid@> aborted",
+         "table" : "IronPort",
+         "id" : "mid_message_finished_aborted",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"RELAY SG .+ match .+ SBRS .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_sendergroup_relay",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: DCID <@NUMBER:dcid@> <@REGEXP(\"close\"):msg@>",
+         "table" : "IronPort",
+         "id" : "dcid_close",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"Unknown command:.*\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_unknown_command",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> ICID <@NUMBER:icid@> <@REGEXP(\"To: <.*> Rejected by RAT\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_to_rejected_rat",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: Connection Error: DCID: <@NUMBER:dcid@> <@REGEXP(\".+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "dcid_connection_error",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"was too big .+ for scanning by .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_too_big_scanning",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"Receiving Failed: .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_receiving_failed",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\".+ pending till .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_pending_till",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"antivirus positive '.+'\"):msg@> ",
+         "table" : "IronPort",
+         "id" : "mid_antivirus_positive",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Scanning .+ for expiration candidates.\"):msg@>",
+         "table" : "Message",
+         "id" : "scanning_expiration_candidates",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Done scanning .+ remain in queue.\"):msg@>",
+         "table" : "IronPort",
+         "id" : "done_scanning_remain_queue",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: Delayed: DCID <@NUMBER:dcid@> MID <@NUMBER:mid@> <@REGEXP(\".+Unknown address error.+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_delayed_unknown_address",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"was generated for bounce of .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_generated_for_bounce",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Bounced\"):msg@>: DCID <@NUMBER:dcid@> MID <@NUMBER:mid@> to RID <@NUMBER:rid@> - <@STRING:NULL@> - <@REGEXP(\".+\"):bounce_reason@>",
+         "table" : "IronPort",
+         "id" : "mid_bounced",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Double bounce\"):msg@>: MID <@NUMBER:mid@> <@STRING:NULL@>",
+         "table" : "IronPort",
+         "id" : "mid_double_bounce",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"was split creating MID \\d+ due to .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_split_creating",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"rewritten to MID \\d+ by .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_rewritten_to_by",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"using engine: .+ spam suspect\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_spam_suspect",
+         "taxonomy" : "Email.Spam",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"antivirus repaired .+\"):msg@> ",
+         "table" : "IronPort",
+         "id" : "mid_antivirus_repaired",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"antivirus encrypted.*\"):msg@>  ",
+         "table" : "IronPort",
+         "id" : "mid_antivirus_encrypted",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"antivirus unscannable .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_antivirus_unscannable",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: Delayed: DCID <@NUMBER:dcid@> MID <@NUMBER:mid@> <@STRING:msg@>",
+         "table" : "IronPort",
+         "id" : "mid_delayed",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: Alias match: MID <@NUMBER:mid@> <@REGEXP(\".+ recipient .+ mapped to .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "alias_match_recipient_mapped",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> MID <@NUMBER:mid@> <@REGEXP(\"Invalid recipient address:.+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_invalid_recipient_address",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"Connection from .+ lost after \\d+ seconds .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_connection_lost_after",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Queue: Checkpoint \\w+ed\"):msg@>",
+         "table" : "IronPort",
+         "id" : "checkpoint_started_finished",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"Possible Delivery\"):msg@>: DCID <@NUMBER:dcid@> MID <@NUMBER:mid@> <@STRING:NULL@>",
+         "table" : "IronPort",
+         "id" : "mid_possible_delivery",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Warning: MID <@NUMBER:mid@>, <@REGEXP(\"Message Scanning Problem: .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_message_scanning_problem",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"Invalid sender address: .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_invalid_sender_address",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"Could not convert character set: .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "couldnt_convert_character_set",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"disconnected address .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_disconnected_address",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"released from.+quarantine.+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_released_from_quarantine",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: ICID <@NUMBER:icid@> <@REGEXP(\"Bad syntax for command: .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "icid_bad_syntax_command",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"Virus Threat Level=\\d+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_virus_threat_level",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Critical: MID <@NUMBER:mid@> <@REGEXP(\"antivirus timeout error\"):msg@> ",
+         "table" : "IronPort",
+         "id" : "mid_antivirus_timeout_error",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"attachment types .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_attachment_types",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\".+ alert was sent to .+ with subject .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "alert_sent_to",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"was generated based on MID \\d+ .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_generated_based_on",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"quarantined to .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_quarantined_to",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"From: .+ To: .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_from_to",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"quarantine .+ new reason .+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "mid_quarantine_new_reason",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: <@REGEXP(\"IronPort Virus Outbreak Filters Alert sent.+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "virus_outbreak_filters_alert",
+         "taxonomy" : "Email.Antivirus",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: MID <@NUMBER:mid@> <@REGEXP(\"CASE sent a poorly formatted response.+\"):msg@>",
+         "table" : "IronPort",
+         "id" : "case_poorly_formatted_response",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Info: New SMTP ICID <@NUMBER:icid@> <@REGEXP(\"interface .+ address .+ reverse dns host unkno\"):msg@>",
+         "table" : "IronPort",
+         "id" : "new_smtp_reverse_unkno",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> Critical: MID <@NUMBER:mid@> <@REGEXP(\"CASE could not be reached\"):msg@>",
+         "table" : "IronPort",
+         "id" : "case_couldnt_be_reached",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.ironport.com/products/email_security_appliances.html",
+   "version" : "200706060003",
+   "name" : "IronPort",
+   "description" : "IronPort"
+}

@@ -1,0 +1,37 @@
+{
+   "icon" : "operating_systems/os_windows",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+An error occurred while retrieving a digital certificate from the inserted smart card.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "error_retrieving_digital_certificate",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+An error occurred while signing a message using the inserted smart card: An unexpected card error has occurred.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "unexpected_error",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+An error occurred while signing a message using the inserted smart card: The supplied PIN is incorrect.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "pin_error",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Error\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"None\"):category@>;<@REGEXP(\".+An error occurred while signing a message using the inserted smart card: The card cannot be accessed because the wrong PIN was presented.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "wrong_pin",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.intersectalliance.com/projects/SnareWindows/index.html",
+   "version" : "201005190018",
+   "name" : "Windows_System_SmartCard",
+   "description" : "Windows System Smart Card"
+}

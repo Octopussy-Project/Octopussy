@@ -1,0 +1,51 @@
+{
+   "icon" : "software/logo_lvs",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: sync thread stopped!\"):msg@> ",
+         "table" : "Message",
+         "id" : "sync_thread_stopped",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: sync thread started: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "sync_thread_started",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: stopping sync thread .+\"):msg@>",
+         "table" : "Message",
+         "id" : "stopping_sync_thread",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: Registered protocols .+\"):msg@>",
+         "table" : "Message",
+         "id" : "registered_protocols",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: Connection hash table configured.*\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_hash_table_configured",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"IPVS: ipvs loaded.\"):msg@>",
+         "table" : "Message",
+         "id" : "ipvs_loaded",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.linuxvirtualserver.org/software/ipvs.html",
+   "version" : "200812120003",
+   "name" : "IPVS",
+   "description" : "IP Virtual Server Service"
+}

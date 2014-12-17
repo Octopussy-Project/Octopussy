@@ -1,0 +1,121 @@
+{
+   "icon" : "operating_systems/os_linux_debian",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"warning  : 1 client is using or hasn't closed the table properly\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_closed_table_properly",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]:  <@REGEXP(\"Improperly closed tables are also reported if clients are accessing\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_closed_table_properly2",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]:  <@REGEXP(\"the tables \\*now\\*. A list of current connections is below.\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_closed_table_properly3",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\+-+\\+-+.+\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_row",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"| \\S+.+ | \\S+.+\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_row2",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"/usr/bin/mysqlcheck: Got error: 2002: Can't connect to local MySQL server through socket .+\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_cant_connect_socket",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]:  ",
+         "table" : "Message",
+         "id" : "mysql_empty",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Uptime: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_uptime",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S+\\.\\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_table",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"error .+ Table upgrade required.+\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_table_upgrade_required",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S+\\s+OK\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_table_ok",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Checking for crashed MySQL tables.\"):msg@>",
+         "table" : "Message",
+         "id" : "checking_crashed_mysql_tables",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Upgrading MySQL tables if necessary.\"):msg@>",
+         "table" : "Message",
+         "id" : "upgrading_mysql_if_necessary",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Looking for '.+' in: .+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "mysql_looking_for",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Checking for insecure root accounts.\"):msg@>  ",
+         "table" : "Message",
+         "id" : "mysql_checking_insecure_accounts",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"/etc/mysql/debian-start\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ERROR 2006 .+: MySQL server has gone away\"):msg@>",
+         "table" : "Message",
+         "id" : "mysql_server_gone_away",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.debian.org",
+   "version" : "200904140001",
+   "name" : "Linux_Debian_System",
+   "description" : "Linux Debian System Service"
+}

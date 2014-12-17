@@ -1,0 +1,87 @@
+{
+   "fields" : [
+      {
+         "name" : "auid",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "command",
+         "type" : "STRING"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "exec",
+         "type" : "STRING"
+      },
+      {
+         "name" : "gid",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "inode",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "item",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "key",
+         "type" : "STRING"
+      },
+      {
+         "name" : "list",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "name",
+         "type" : "STRING"
+      },
+      {
+         "name" : "operation",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "ppid",
+         "type" : "PID"
+      },
+      {
+         "name" : "session",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "subject",
+         "type" : "WORD"
+      },
+      {
+         "name" : "tty",
+         "type" : "WORD"
+      },
+      {
+         "name" : "type",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "uid",
+         "type" : "NUMBER"
+      }
+   ],
+   "version" : "200908120001",
+   "name" : "Linux_Kernel_Audit",
+   "description" : "Linux Kernel Auditing Table"
+}

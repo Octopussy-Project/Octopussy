@@ -1,0 +1,44 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Bluetooth: .+ layer initialized\"):msg@>",
+         "table" : "Message",
+         "id" : "layer_initialized",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Bluetooth: Core ver .+\"):msg@>",
+         "table" : "Message",
+         "id" : "core_version",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Bluetooth: L2CAP ver .+\"):msg@>",
+         "table" : "Message",
+         "id" : "l2cap_version",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Bluetooth: RFCOMM ver .+\"):msg@>",
+         "table" : "Message",
+         "id" : "rfcomm_version",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*Bluetooth: HCI device and connection manager initialized\"):msg@>",
+         "table" : "Message",
+         "id" : "hci_device_initialized",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "200908120004",
+   "name" : "Linux_Kernel_Bluetooth",
+   "description" : "Linux Kernel Bluetooth Service"
+}

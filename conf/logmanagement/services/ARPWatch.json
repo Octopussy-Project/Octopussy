@@ -1,0 +1,92 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"new station\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> <@NET_INTERFACE:interface@>",
+         "table" : "ARPWatch",
+         "id" : "new_station",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"Running as uid=\\d+ gid=\\d+\"):msg@>",
+         "table" : "ARPWatch",
+         "id" : "running_as",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"listening on\"):msg@> <@NET_INTERFACE:interface@>",
+         "table" : "ARPWatch",
+         "id" : "listening_on",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"exiting\"):msg@>",
+         "table" : "ARPWatch",
+         "id" : "exiting",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"changed ethernet address\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> (<@MAC_ADDR:NULL@>) <@NET_INTERFACE:interface@>",
+         "table" : "ARPWatch",
+         "id" : "changed_ethernet_address",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"0-source\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@>",
+         "table" : "ARPWatch",
+         "id" : "zero_source",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"bogon\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@>",
+         "table" : "ARPWatch",
+         "id" : "bogon",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"changed MAC address\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> (<@MAC_ADDR:NULL@>)",
+         "table" : "ARPWatch",
+         "id" : "changed_mac_address",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"last message repeated .+ times\"):msg@>",
+         "table" : "ARPWatch",
+         "id" : "last_message_repeated",
+         "taxonomy" : "Other",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"reused old MAC address\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> (<@MAC_ADDR:NULL@>)",
+         "table" : "ARPWatch",
+         "id" : "reused_old_mac_address",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"flip flop\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@> (<@MAC_ADDR:NULL@>)",
+         "table" : "ARPWatch",
+         "id" : "flip_flop",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> arpwatch: <@REGEXP(\"new activity\"):msg@> <@IP_ADDR:ip_addr@> <@MAC_ADDR:mac_addr@>",
+         "table" : "ARPWatch",
+         "id" : "new_activity",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201404110008",
+   "name" : "ARPWatch",
+   "description" : "ARPWatch Service"
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-type" content="text/html; charset=[% settings.charset %]" />
+<title>Octopussy</title>
+
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/Octopussy.css" />
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+
+<!-- BootStrap Material Design begin -->
+<link href="/css/ripples.min.css" rel="stylesheet">
+<link href="/css/material-wfont.min.css" rel="stylesheet">
+<!-- BootStrap Material Design end -->
+
+</head>
+<body>
+[% INCLUDE 'menu_top.tt' %]
+
+<div class="container">
+<div class="row">
+<div class="col-xs-3  bs-docs-sidebar">
+    [% INCLUDE 'menu_left.tt' %]
+</div>
+<div class="col-xs-9">
+
+<script type="text/javascript">
+    $(function(){
+       $('.btn').tooltip({ delay: { show: 1000, hide: 100 } });
+    });
+</script>
+
+[% flash_messages = c.flash('messages') %]
+[% FOREACH m IN flash_messages %]
+<div class="alert [% m.type == 'ERROR' ? 'alert-danger' : 'alert-warning' %] alert-dismissable" align="center">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    [% m.msg %]
+</div>
+[% END %]
+
+[% content %]
+</div>
+</row>
+</div>
+
+<hr>
+
+<div id="footer" align="center">
+Powered by <a href="http://mojolicio.us/">Mojolicious</a> - Designed with <a href="http://getbootstrap.com/">Bootstrap</a> & <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.
+</div>
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- BootStrap Material Design begin -->
+<script src="/js/ripples.min.js"></script>
+<script src="/js/material.min.js"></script>
+<script>
+	$(document).ready(function() {
+    	$.material.init();
+    	});
+</script>
+<!-- BootStrap Material Design end -->
+
+</body>
+</html>

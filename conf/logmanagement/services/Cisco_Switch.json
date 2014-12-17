@@ -1,0 +1,547 @@
+{
+   "icon" : "companies/logo_cisco",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SYS-5-CONFIG_I\"):msg_id@>: <@REGEXP(\"Configured from \\S+ by .+\"):msg@>",
+         "table" : "Message",
+         "id" : "configured_from",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%LINEPROTO-5-UPDOWN\"):msg_id@>: <@REGEXP(\"Line protocol on Interface \\S+, changed state to \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "line_protocol_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%LINK-3-UPDOWN\"):msg_id@>: <@REGEXP(\"Interface \\S+, changed state to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "interface_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%ETHCNTR-3-LOOP_BACK_DETECTED\"):msg_id@>: <@REGEXP(\"Loop-back detected on \\S+.\"):msg@>",
+         "table" : "Message",
+         "id" : "loopback_detected",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%PM-4-ERR_DISABLE\"):msg_id@>: <@REGEXP(\".+ error detected on .+ in err-disable state\"):msg@>",
+         "table" : "Message",
+         "id" : "error_detected_disable_state",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%CLEAR-5-COUNTERS\"):msg_id@>: <@REGEXP(\"Clear counter on interface \\S+ by .+\"):msg@>",
+         "table" : "Message",
+         "id" : "clear_counter_interface",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%MGMT-5-LOGIN_FAIL\"):msg_id@>:<@REGEXP(\"User.+failed to log in from .+ - max attempt reached\"):msg@>",
+         "table" : "Message",
+         "id" : "max_failed_login",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%CLEAR-5-COUNTERS\"):msg_id@>: <@REGEXP(\"Clear counter on all interfaces by .+\"):msg@>",
+         "table" : "Message",
+         "id" : "clear_counter_interfaces",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-SPAN_CFGSTATECHG\"):msg_id@>:<@REGEXP(\"local span session \\S+tive for destination port \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "local_span_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%MGMT-5-ENABLE_FAIL\"):msg_id@>:<@REGEXP(\"User.* failed to enter enable mode .+\"):msg@>",
+         "table" : "Message",
+         "id" : "failed_enter_enable",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%MGMT-6-ENABLEPASS\"):msg_id@>:<@REGEXP(\"User .*entered enable mode from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "entered_enable",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%MGMT-6-LOGINPASS\"):msg_id@>:<@REGEXP(\"User .*logged in from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "user_logged_in",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%RADIUS-5-ALLDEADSERVER\"):msg_id@>:<@REGEXP(\"All Radius servers dead:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "radius_servers_dead",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%RADIUS-5-SERVERALIVE\"):msg_id@>:<@REGEXP(\"Radius server .+ alive\"):msg@>",
+         "table" : "Message",
+         "id" : "radius_server_alive",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%IP-3-TCP_BADCKSUM\"):msg_id@>:<@REGEXP(\"TCP bad checksum\"):msg@>",
+         "table" : "Message",
+         "id" : "tcp_bad_checksum",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%LINK-5-CHANGED\"):msg_id@>: <@REGEXP(\"Interface \\S+, changed state to administratively \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "link_changed_state",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%DTP-5-TRUNKPORTON\"):msg_id@>:<@REGEXP(\"Port \\S+ has become dot1q trunk\"):msg@>",
+         "table" : "Message",
+         "id" : "become_dot1q_trunk",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%DTP-5-NONTRUNKPORTON\"):msg_id@>:<@REGEXP(\"Port \\S+ has become non-trunk\"):msg@>",
+         "table" : "Message",
+         "id" : "become_nontrunk",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%RADIUS-4-RADIUS_DEAD\"):msg_id@>: <@REGEXP(\"RADIUS server \\S+ is not responding.\"):msg@>",
+         "table" : "Message",
+         "id" : "radius_server_not_responding",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SYS-5-RESTART\"):msg_id@>: <@REGEXP(\"System restarted.+\"):msg@>",
+         "table" : "Message",
+         "id" : "system_restarted",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%CDP-4-NATIVE_VLAN_MISMATCH\"):msg_id@>: <@REGEXP(\"Native VLAN mismatch discovered on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "vlan_mismatch_discovered",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%CDP-4-NVLANMISMATCH\"):msg_id@>:<@REGEXP(\"Native vlan mismatch detected on port .+\"):msg@>",
+         "table" : "Message",
+         "id" : "native_vlan_mismatch_detected",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SPANTREE-2-UNBLOCK_CONSIST_PORT\"):msg_id@>: <@REGEXP(\"Unblocking .+ on .+. Port consistency restored.\"):msg@>",
+         "table" : "Message",
+         "id" : "port_consistency_restored",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SYS-5-RELOAD\"):msg_id@>: <@REGEXP(\"Reload requested\"):msg@>",
+         "table" : "Message",
+         "id" : "reload_requested",
+         "taxonomy" : "System",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>: <@REGEXP(\"Compiled .+ by .+\"):msg@>",
+         "table" : "Message",
+         "id" : "compiled_by",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>: <@REGEXP(\"Copyright .+ Cisco Systems, Inc.*\"):msg@>",
+         "table" : "Message",
+         "id" : "copyright_cisco",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+Cisco IOS Software, .+\"):msg@>",
+         "table" : "Message",
+         "id" : "cisco_release",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%RADIUS-3-ALLDEADSERVER\"):msg_id@>: <@REGEXP(\".*No active radius servers found.+\"):msg@>",
+         "table" : "Message",
+         "id" : "no_active_radius_found",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%RADIUS-6-SERVERALIVE\"):msg_id@>: <@REGEXP(\".*Radius server .+ is responding again.+\"):msg@>",
+         "table" : "Message",
+         "id" : "radius_server_responding_again",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%MGMT-6-LOGINPASS\"):msg_id@>:<@REGEXP(\"User.+logged in from Console\"):msg@>",
+         "table" : "Message",
+         "id" : "user_logged_from_console",
+         "taxonomy" : "Access.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-MOD_OK:Module .+ is online\"):msg@>",
+         "table" : "Message",
+         "id" : "module_is_online",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-3-MOD_PORTINTFINSYNC:Port Interface in sync for Module .+\"):msg@>",
+         "table" : "Message",
+         "id" : "port_interface_in_sync",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%EC-5-CANNOT_BUNDLE2\"):msg_id@>: <@REGEXP(\".+ is not compatible with .+ and will be suspended (vlan mask is different)\"):msg@>",
+         "table" : "Message",
+         "id" : "vlan_mask_different",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-1-SYS_DISABLEPS\"):msg_id@>: <@REGEXP(\"Rating of power supplies in redundancy not equal, power supply \\S+ disabled\"):msg@>",
+         "table" : "Message",
+         "id" : "power_supply_disabled",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-SUP_IMGSYNCFINISH\"):msg_id@>:<@REGEXP(\"Active supervisor has synchronized .+\"):msg@>",
+         "table" : "Message",
+         "id" : "supervisor_has_synchronized",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-SUP_IMGSYNCSTART\"):msg_id@>:<@REGEXP(\"Active supervisor is synchronizing .+\"):msg@>",
+         "table" : "Message",
+         "id" : "supervisor_is_synchronizing",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-SYS_RESET\"):msg_id@>:<@REGEXP(\"System reset from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "system_reset_from",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-SUP_MODSBY\"):msg_id@>:<@REGEXP(\"Module .+ is in standby mode\"):msg@>",
+         "table" : "Message",
+         "id" : "module_in_standby_mode",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-PORT_SSUPOK\"):msg_id@>:<@REGEXP(\"Ports on standby .+ are up\"):msg@>",
+         "table" : "Message",
+         "id" : "ports_on_standby_up",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-SUP_IMGSYNC\"):msg_id@>:<@REGEXP(\"File synchronization process will start in .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "file_synchronization_will_start",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%CDP-4-DUPLEX_MISMATCH\"):msg_id@>: <@REGEXP(\"duplex mismatch discovered on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "cdp_duplex_mismatch_discovered",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-2-PS_FAIL\"):msg_id@>:<@REGEXP(\"Power supply .+ failed\"):msg@>",
+         "table" : "Message",
+         "id" : "power_supply_failed",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-1-SYS_ENABLEPS\"):msg_id@>: <@REGEXP(\"Power supply .+ enabled\"):msg@>",
+         "table" : "Message",
+         "id" : "power_supply_enabled",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%RADIUS-4-RADIUS_ALIVE\"):msg_id@>: <@REGEXP(\"RADIUS server .+ has returned.\"):msg@>",
+         "table" : "Message",
+         "id" : "radius_server_has_returned",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%RADIUS-3-SECRETDEFINEFAILED\"):msg_id@>: <@REGEXP(\"Key definition ignored.\"):msg@>",
+         "table" : "Message",
+         "id" : "secret_key_definition_ignored",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SSH-5-ENABLED\"):msg_id@>: <@REGEXP(\"SSH \\S+ has been enabled\"):msg@>",
+         "table" : "Message",
+         "id" : "ssh_been_enabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SYS-6-CLOCKUPDATE\"):msg_id@>: <@REGEXP(\"System clock has been updated from .+\"):msg@>",
+         "table" : "Message",
+         "id" : "system_clock_updated",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%LINK-4-ERROR\"):msg_id@>: <@REGEXP(\"\\S+ is experiencing errors\"):msg@>",
+         "table" : "Message",
+         "id" : "fast_ethernet_error",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-PS_REMOVE\"):msg_id@>:<@REGEXP(\"Power supply \\d+ has been removed\"):msg@>",
+         "table" : "Message",
+         "id" : "power_supply_been_removed",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-5-PS_INSERT\"):msg_id@>:<@REGEXP(\"Power supply \\d+ has been inserted\"):msg@>",
+         "table" : "Message",
+         "id" : "power_supply_been_inserted",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-2-PS_OK\"):msg_id@>:<@REGEXP(\"Power supply \\d+ okay\"):msg@>",
+         "table" : "Message",
+         "id" : "power_supply_okay",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SW_MATM-4-MACFLAP_NOTIF\"):msg_id@>: <@REGEXP(\"Host .+ is flapping .+\"):msg@>",
+         "table" : "Message",
+         "id" : "host_is_flapping",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%STACKMGR-4-STACK_LINK_CHANGE\"):msg_id@>: <@REGEXP(\"Stack .+ has changed to state .+\"):msg@>",
+         "table" : "Message",
+         "id" : "stack_changed_state",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%STACKMGR-4-SWITCH_ADDED\"):msg_id@>: <@REGEXP(\"Switch .+ has been ADDED to the stack.*\"):msg@>",
+         "table" : "Message",
+         "id" : "switch_added_to_stack",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%STACKMGR-5-.+_READY\"):msg_id@>: <@REGEXP(\".*Switch \\d+ is READY.*\"):msg@>",
+         "table" : "Message",
+         "id" : "switch_is_ready",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%SYS-4-PS1_EMPTYALERT\"):msg_id@>:<@REGEXP(\"Single power supply system should utilize slot.+\"):msg@>",
+         "table" : "Message",
+         "id" : "power_supply_should_utilize",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%EC-5-CANNOT_BUNDLE2\"):msg_id@>: <@REGEXP(\"\\S+ is not compatible with \\S+ and will be suspended .+\"):msg@>",
+         "table" : "Message",
+         "id" : "incompatible_will_be_suspended",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%EC-5-ERRPROT\"):msg_id@>: <@REGEXP(\"Channel protocol mismatch for interface .+\"):msg@>",
+         "table" : "Message",
+         "id" : "channel_protocol_mismatch",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%EC-5-L3DONTBNDL2\"):msg_id@>: <@REGEXP(\"\\S+ suspended: LACP currently not enabled on the remote port.\"):msg@>",
+         "table" : "Message",
+         "id" : "lacp_not_enabled",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%EC-5-COMPATIBLE\"):msg_id@>: <@REGEXP(\"\\S+ is compatible with port-channel members\"):msg@>",
+         "table" : "Message",
+         "id" : "compatible_with_portchannel_members",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SPANTREE-5-EXTENDED_SYSID\"):msg_id@>: <@REGEXP(\"Extended SysId enabled for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "extended_sysid_enabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%EC-5-ERRPROT\\d+\"):msg_id@>: <@REGEXP(\"Command rejected: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "command_rejected",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%STORM_CONTROL-3-SHUTDOWN\"):msg_id@>: <@REGEXP(\"A packet storm was detected on .+\\. The interface has been disabled.\"):msg@>",
+         "table" : "Message",
+         "id" : "packet_storm_detected",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%STORM_CONTROL-2-SHUTDOWN\"):msg_id@>: <@REGEXP(\"Storm control shut down .+\"):msg@>",
+         "table" : "Message",
+         "id" : "storm_control_shut_down",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%PORT_SECURITY-2-PSECURE_VIOLATION\"):msg_id@>: <@REGEXP(\"Security violation occurred, caused by MAC address .+ on port \\S+\"):msg@>.",
+         "table" : "Message",
+         "id" : "security_violation_occured",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SW_MATM-4-MACFLAP_NOTIF\"):msg_id@>: <@REGEXP(\"Host .+ in vlan \\S+ is flapping between port \\S+ and port \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "host_is_flapping",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%DHCP_SNOOPING-5 -DHCP_SNOOPING_.+\"):msg_id@>: <@REGEXP(\"DHCP_SNOOPING drop message .+\"):msg@>",
+         "table" : "Message",
+         "id" : "dhcp_snooping",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%C4K_EBM-4-HOSTF LAPPING\"):msg_id@>: <@REGEXP(\"Host .+ in vlan \\S+ is flapping between port \\S+ and port \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "host_is_flapping_2",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%STORM_CONTROL-3 -FILTERED\"):msg_id@>: <@REGEXP(\"A Broadcast storm detected on .+\\. A packet filter action has been applied on the int erface.\"):msg@>",
+         "table" : "Message",
+         "id" : "broadcast_storm_detected",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SSH-4-SSH2_UNEX PECTED_MSG\"):msg_id@>: <@REGEXP(\"Unexpected message type has arrived. Terminating the connection\"):msg@>",
+         "table" : "Message",
+         "id" : "ssh_unexpected_message_type",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%DHCPD-4-PING_CONFLICT\"):msg_id@>: <@REGEXP(\"DHCP address conflict:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "dhcp_address_conflict",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%PARSER-5-CFGLOG_LOGGEDCMD\"):msg_id@>: <@REGEXP(\"User:.+ logged command:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "user_logged_command",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%PM-4-ERR_RECOVER\"):msg_id@>: <@REGEXP(\"Attempting to recover from loopback err-disable state on \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "attempting_recover_from_loopback",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%ETHCNTR-3-LOOP_BACK_DETECTED\"):msg_id@>: <@REGEXP(\"Keepalive packet loop-back detected on \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "keepaine_packet_loopback_detected",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SYS-6-LOGGINGHOST_STARTSTOP\"):msg_id@>: <@REGEXP(\"Logging to host \\S+ Port \\S+ started - CLI initiated\"):msg@>",
+         "table" : "Message",
+         "id" : "logging_started_cli_initiated",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%ETHC-5-PORTTOSTP\"):msg_id@>:<@REGEXP(\"Port \\S+ joined bridge port \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "joined_bridge_port",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@> <@REGEXP(\"\\%ETHC-5-PORTFROMSTP\"):msg_id@>:<@REGEXP(\"Port \\S+ left bridge port \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "left_bridge_port",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Warning"
+      }
+   ],
+   "version" : "201402010006",
+   "name" : "Cisco_Switch",
+   "description" : "Cisco Switch Service"
+}

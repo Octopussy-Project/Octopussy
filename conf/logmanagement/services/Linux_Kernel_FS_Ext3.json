@@ -1,0 +1,58 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: recovery complete.\"):msg@>",
+         "table" : "Message",
+         "id" : "recovery_complete",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3 FS on \\S+, internal journal\"):msg@>",
+         "table" : "Message",
+         "id" : "internal_journal",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*ext3_orphan_cleanup: deleting unreferenced inode \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "deleting_unreferenced_inode",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: .*\\d+ orphan inode deleted\"):msg@>",
+         "table" : "Message",
+         "id" : "orphan_inode_deleted",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs: mounted filesystem with ordered data mode.\"):msg@>",
+         "table" : "Message",
+         "id" : "mounted_ordered_data_mode",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs warning: checktime reached.*\"):msg@>",
+         "table" : "Message",
+         "id" : "checktime_reached",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*EXT3-fs error .+\"):msg@>",
+         "table" : "Message",
+         "id" : "error",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "",
+   "version" : "200901290003",
+   "name" : "Linux_Kernel_FS_Ext3",
+   "description" : "Linux Kernel FileSystem Ext3"
+}

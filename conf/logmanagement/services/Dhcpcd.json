@@ -1,0 +1,50 @@
+{
+   "icon" : "",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+renewing lease of.+\"):msg@>",
+         "table" : "Message",
+         "id" : "renewing_lease",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+leased.+for \\d+ seconds\"):msg@>",
+         "table" : "Message",
+         "id" : "lease_time_seconds",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+adding IP address.+\"):msg@>",
+         "table" : "Message",
+         "id" : "adding_ip_address",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+adding default route via.+\"):msg@>",
+         "table" : "Message",
+         "id" : "adding_default_route",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dhcpcd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+lost lease, attemping to rebind\"):msg@>",
+         "table" : "Message",
+         "id" : "lost_lease_attemping_rebind",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"automount\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+Federated Naming service not supported\"):msg@>",
+         "table" : "Message",
+         "id" : "federated_naming_service_not_supported",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      }
+   ],
+   "version" : "201006040001",
+   "name" : "Dhcpcd",
+   "description" : "DHCP Client Daemon Service"
+}

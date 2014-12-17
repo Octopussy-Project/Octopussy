@@ -1,0 +1,51 @@
+{
+   "fields" : [
+      {
+         "name" : "apachetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "http_method",
+         "type" : "WORD"
+      },
+      {
+         "name" : "http_version",
+         "type" : "WORD"
+      },
+      {
+         "name" : "rec_bytes",
+         "type" : "BYTES"
+      },
+      {
+         "name" : "referer",
+         "type" : "STRING"
+      },
+      {
+         "name" : "src_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "status",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "url",
+         "type" : "STRING"
+      },
+      {
+         "name" : "user_agent",
+         "type" : "USER_AGENT"
+      }
+   ],
+   "version" : "200801250001",
+   "name" : "Web_Traffic",
+   "description" : "Generic Web Traffic Table"
+}

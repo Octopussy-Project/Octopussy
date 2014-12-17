@@ -1,0 +1,12 @@
+{
+   "users" : [
+      {
+         "language" : "EN",
+         "login" : "admin",
+         "password" : "admin",
+         "type" : "local",
+         "role" : "admin",
+         "restrictions" : ""
+      }
+   ]
+}

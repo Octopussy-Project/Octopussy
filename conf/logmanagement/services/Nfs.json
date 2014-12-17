@@ -1,0 +1,43 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> nfsd[<@PID:pid@>]: <@REGEXP(\"Could not bind .+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "could_not_bind",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: nfs: <@REGEXP(\"server \\S+ not responding, still trying\"):msg@> ",
+         "table" : "Message",
+         "id" : "server_not_responding",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: nfs: <@REGEXP(\"server \\S+ OK\"):msg@> ",
+         "table" : "Message",
+         "id" : "server_ok",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"lockd: cannot monitor .+\"):msg@>",
+         "table" : "Message",
+         "id" : "lockd_cannot_monitor",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\"lockd: failed to monitor .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "lockd_failed_to_monitor",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://nfs.sourceforge.net/",
+   "version" : "200703020002",
+   "name" : "Nfs",
+   "description" : "Nfs Service"
+}

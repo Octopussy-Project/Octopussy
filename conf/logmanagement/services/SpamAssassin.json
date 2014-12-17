@@ -1,0 +1,58 @@
+{
+   "icon" : "software/logo_spamassassin",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"spamd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"spamd: server started on port .+\"):msg@>",
+         "table" : "Message",
+         "id" : "server_started_on_port",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"spamd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"spamd: server successfully spawned child process.+\"):msg@>",
+         "table" : "Message",
+         "id" : "successfully_spawned_child_process",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"spamd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"spamd: server pid: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "server_pid",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"spamd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"rules: .+ has undefined dependency .+\"):msg@>",
+         "table" : "Message",
+         "id" : "rules_undefined_dependency",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"spamd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"logger: removing .+ method\"):msg@>",
+         "table" : "Message",
+         "id" : "logger_removing_method",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"spamd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"prefork: child states:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "prefork_child_states",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"spamd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"spamd: server killed by SIGTERM, shutting down\"):msg@>",
+         "table" : "Message",
+         "id" : "server_killed_shutting_down",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://spamassassin.apache.org/",
+   "version" : "201002180007",
+   "name" : "SpamAssassin",
+   "description" : "SpamAssassin Service"
+}

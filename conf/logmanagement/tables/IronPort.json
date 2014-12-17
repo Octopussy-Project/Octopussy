@@ -1,0 +1,55 @@
+{
+   "fields" : [
+      {
+         "name" : "bounce_reason",
+         "type" : "STRING"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "dcid",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "icid",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "mid",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "rcpt",
+         "type" : "STRING"
+      },
+      {
+         "name" : "response",
+         "type" : "STRING"
+      },
+      {
+         "name" : "rid",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "sender",
+         "type" : "STRING"
+      },
+      {
+         "name" : "subject",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "201101190001",
+   "name" : "IronPort",
+   "description" : "IronPort"
+}

@@ -1,0 +1,1045 @@
+{
+   "icon" : "companies/logo_juniper",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+IP spoofing! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ip_spoofing",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+Port scan! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "port_scan",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+Teardrop attack! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "teardrop_attack",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ICMP flood! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "icmp_flood",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+SYN flood! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "syn_flood",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+Address sweep! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "address_sweep",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+UDP flood! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "udp_flood",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"info\"):category@>, <@REGEXP(\"snmp\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SNMP: NetScreen device has responded successfully to the SNMP request from .+\"):msg@>, <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "responded_successfully_snmp_request",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"System clock configurations have been changed by.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "clock_configurations_changed_by",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Log setting was modified to.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "log_setting_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Syslog server.+was \\w+ed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "syslog_server_added_removed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"System configuration saved by.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "system_configuration_saved_by",
+         "taxonomy" : "Config.Backup",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Syslog has been \\w+ed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "syslog_enabled_disabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Admin user .+ has been accepted via the Radius server .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "user_accepted_via_radius",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Syslog.*facility for .+ has been changed to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "syslog_facility_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Logging of dropped traffic to self.* has been \\w+ed\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "logging_dropped_traffic_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Admin user .+ logged in for .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "user_logged_in",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Admin user .+ has logged on .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "user_logged_on",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Admin user .+ has been forced to log out .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "user_forced_log_out",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SNMP request from an unknown SNMP community .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "snmp_request_unknown_community",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: Password authentication successful for .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ssh_password_authentication_successful",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: .+ attempted to be authenticated with no authentication methods enabled.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "attempted_authentication_no_methods",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Management session .+ has timed out\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "management_session_timed_out",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Policy .+ was \\w+ed by .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "policy_added_deleted",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Service .+ has been \\w+ed by .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "service_added_deleted",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Rejected an IKE packet on .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "rejected_ike_packet",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Address .+ for \\w+ address .+ has been \\w+ed .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "address_added_deleted",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Lock configuration ended.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@> ",
+         "table" : "Netscreen_NSM",
+         "id" : "lock_configuration_ended",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Admin user .+ logged out.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "admin_user_logged_out",
+         "taxonomy" : "Access",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Address group .+ has \\w+ed member .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "addressgroup_added_deleted_member",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ device .+ changed state from .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "device_changed_state",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"The physical state of interface .+ has changed to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "physical_state_interface_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+Ping of Death! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ping_of_death",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+Large ICMP packet! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "large_icmp_packet",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+Fragmented traffic! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "fragmented_traffic",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ICMP fragment! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "icmp_fragment",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ was added to policy .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "added_to_policy",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Policy .+ has been moved .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "policy_has_been_moved",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"System clock \\S+ changed manually.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "clock_changed_manually",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: Password authentication failed for .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>       ",
+         "table" : "Netscreen_NSM",
+         "id" : "ssh_password_authentication_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: Client .+ attempted to connect with invalid version string.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ssh_invalid_version_string",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Trying primary server .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "trying_primary_server",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Address group .+ has been \\w+ed .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "addressgroup_added_deleted",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Admin user .+ has been rejected via the Radius server .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "user_rejected_via_radius",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Transport protocol for syslog server .+ was changed .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "syslog_protocol_was_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Syslog server .+ host port number has been changed .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "syslog_port_number_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Traffic logging for syslog server .+ has been \\w+ed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "syslog_logging_enabled_disabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SIP parser error Message: Cannot find CRLF\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "sip_cannot_find_crlf",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: Device failed to send initialization string .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ssh_failed_initialization_string",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Source-based routing \\w+abled in .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "source_based_routing_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Session utilization has reached .+ of the system capacity!\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "session_utilization_reached_capacity",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"NSRP: HA \\w+ channel change to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "nsrp_ha_channel_changed",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"No NTP server could be contacted.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ntp_server_not_contacted",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Source route(s) .+ \\w+ed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "source_route_created_deleted",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ was deleted from policy .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "deleted_from_policy",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Admin user .+ login attempt .+ failed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "admin_login_attempt_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"System clock configurations have been changed.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "system_clock_configurations_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"NSM: Cannot connect to NSM server at .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@> ",
+         "table" : "Netscreen_NSM",
+         "id" : "cannot_connect_nsm_server",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"NSM: Connection to NSM server .+ is down.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "nsm_server_connection_down",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Route(s) in virtual router .+ deleted.*\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "route_deleted",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Peer device \\d+ was discovered.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "peer_device_discovered",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Peer device .+ disappeared.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "peer_device_disappeared",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"A route .+ been created.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "route_created",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"NSM: Sent 2B message\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "nsm_sent_2b_message",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"config\"):category@>, <@REGEXP(\"policy load\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, (NULL), (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "policy_load",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"self\"):category@>, <@REGEXP(\"self log\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@STRING:severity@>, no, (NULL), (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "self_log",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"The system clock was updated from primary NTP server.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "clock_updated_from_ntp",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"NSM: Connected to NSM server .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "nsm_connected_to_server",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"screen\"):category@>, <@REGEXP(\"ids ip spoofing\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@STRING:NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "screen_ids_ip_spoofing",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"info\"):category@>, <@REGEXP(\"clock\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@STRING:NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "info_clock",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Lock configuration started .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "lock_configuration_started",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+Source Route IP option! From.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "source_route_ip_option",
+         "taxonomy" : "Attack",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Ping has been enabled on interface .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ping_enabled_on_interface",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Environment variable .+ changed to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "environment_variable_changed_to",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"PKI: Completed NSRP cold start sync after .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "nsrp_cold_start_sync",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Trying \\S+ server .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "trying_server",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Primary .+ servers failed.*\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "servers_failed",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Auth server .+ set to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "auth_server_set_to",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Auth server .+ modified.*\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "auth_server_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ protection has been enabled on .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "protection_enabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ detection has been enabled on .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "detection_enabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Daylight Saving Time ended.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "daylight_saving_time_ended",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ threshold has been set to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "threshold_set",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"PKI: Saved .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "pki_saved",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ log was reviewed by .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "log_was_reviewed",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Zone .+ was .*bound .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "zone_bound_unbound",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Connection to device is restored\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "connection_to_device_restored",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Interface .+ was .*bound .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "interface_bound_unbound_to",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Interface .+ has been changed.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "interface_has_been_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ filtering has been enabled on .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "filtering_enabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Security Board \\d+ CPU \\d+ Packet Drop Counter \\d+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "security_board_packet_drop",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"802.1Q VLAN tag .+ \\S+ed.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "vlan_modification",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"MTU for interface.+ has been changed to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "mtu_interface_been_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Interface .+ removed by .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "interface_removed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Extraneous exit is issued by .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "extraneous_exit_issued",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"IKE.+: .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ike_any_message",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"alarm\"):category@>, <@REGEXP(\"vpn\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"IPSec tunnel on interface .+ received a packet with a bad SPI.+\"):msg@>, <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ipsec_tunnel_bad_spi",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"NSM: Cannot connect to NSM server .+ Reason: .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "nsm_cannot_connect_server",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Interface .+ created by .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "interface_created",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Network Time Protocol settings changed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ntp_settings_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Administrator .+ changed the Network Time Protocol .+ value .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "administrator_changed_ntp_value",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"The NSRP configuration is out of synchronization between .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "nsrp_configuration_outof_synchronization",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Syslog cannot connect to the TCP server .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "syslog_cant_connect_server",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"PKI: Cannot load .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "pki_cannot_load",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"PKI: .+ has been deleted. .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "pki_object_been_deleted",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Route in virtual router .+ created.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "route_created2",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"The local device .+ changed state from .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "local_device_changed_state",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"VPN .+ has been \\w+d .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "vpn_has_been_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"VPN monitoring .+ has been disabled.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "vpn_monitoring_been_disabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"DNS proxy was disabled on .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "dns_proxy_disabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Device .+ has joined NSRP cluster .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "device_joined_nsrp_cluster",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"In policy \\d+, the application was modified to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "in_policy_application_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Gateway .+ has been \\w+ed .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "gateway_has_been_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ has been disabled on interface .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "service_disabled_on_interface",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Service group .+ has \\w+ed member .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "service_group_modified_member",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"ADM: Local admin authentication failed for .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "local_admin_authentication_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Domain set to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "domain_set_to",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Daily DNS lookup has been \\w+ed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "daily_dns_lookup_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"DHCP server IP address pool is changed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "dhcp_address_pool_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\".+ issued command .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "issued_command",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"info\"):category@>, <@REGEXP(\"snmp\"):subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SNMP request from .+ has been received, but the SNMP version type is incorrect.\"):msg@>, <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "snmp_version_type_incorrect",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"All syslog servers were removed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "all_syslog_servers_removed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"All .+ were cleared by .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@> ",
+         "table" : "Netscreen_NSM",
+         "id" : "all_were_cleared_by",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Trial keys are available to download .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "trial_keys_available",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"DIP IP pool .+ has been \\w+ed .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "dip_ip_pool_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"PKI: Cannot build certificate.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "pki_cannot_build_certificate",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"web SSL certificate is changed .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "web_ssl_certificate_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Interface \\S+ IP address cannot be used to manage .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "interface_cannot_manage",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Secondary IP address \\S+ has been added to interface .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "secondary_ip_address_added",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"The console page size changed .+\"):msg@>, <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "console_page_size_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: PKA authentication successful for .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ssh_pka_authentication_successful",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: .+ requested unsupported PKA algorithm .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ssh_requested_unsupported_pka",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Multiple login failures occurred for .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "multiples_login_failures_occured",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"PKI: Cannot save .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "pki_cannot_save",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SCP: .+ executed invalid scp command.+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "scp_executed_invalid_command",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: PKA key has been bound .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ssh_pka_key_bound",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@REGEXP(\"alarm\"):category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Replay packet detected on IPSec tunnel.+\"):msg@>, <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ipsec_replay_packet_detected",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Daylight Saving Time has started.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "daylight_saving_time_started",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Device disconnected from Data Collector .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "device_disconnected_data_collector",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Service group .+ has been changed to .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "service_group_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Connection to device is lost\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "connection_to_device_lost",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Reporting of .+ has been enabled.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "reporting_been_enabled",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Vsys profile .+ has been set .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "vsys_profile_been_set",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"The power supply \\d+ is not functioning properly.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "power_supply_problem",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Interface .+ was removed from the monitoring list for NSRP.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "interface_removed_from_monitoring",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"SSH: PKA authentication failed for .+\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "ssh_pka_authentication_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"HA: Synchronization file.+ sent to backup device in cluster.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "synchronization_file_cluster_sent",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>, <@NUMBER:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@DATE:NULL@> <@TIME:NULL@>, <@REGEXP(\"global.*\"):NULL@>, <@NUMBER:NULL@>, <@WORD:NULL@>, <@IP_ADDR:NULL@>, <@STRING:category@>, <@STRING:subcategory@>, <@STRING:src_zone@>, (NULL), <@IP_ADDR:src_addr@>, <@NUMBER:src_port@>, <@IP_ADDR:src_nat_addr@>, <@NUMBER:NULL@>, <@STRING:dst_zone@>, (NULL), <@IP_ADDR:dst_addr@>, <@NUMBER:dst_port@>, <@IP_ADDR:dst_nat_addr@>, <@NUMBER:NULL@>, <@WORD:protocol@>, SYSTEM, <@NUMBER:NULL@>, <@WORD:NULL@>, <@WORD:NULL@>, <@NUMBER:rule@>, <@STRING:action@>, <@WORD:severity@>, no, <@REGEXP(\"Zone .+ was \\w+ed.\"):msg@>, (NULL), (NULL), (NULL), <@REGEXP(\".+\"):NULL@>",
+         "table" : "Netscreen_NSM",
+         "id" : "zone_modified",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "http://www.juniper.net/products_and_services/firewall_slash_ipsec_vpn/",
+   "version" : "200704300011",
+   "name" : "Netscreen_NSM_System",
+   "description" : "Netscreen NSM System Service"
+}

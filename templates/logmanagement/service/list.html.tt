@@ -1,0 +1,23 @@
+[% USE LogManagement.Service(config) %]
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+<thead>
+<tr>
+	<th>[% c.l("_NAME") %]</th>
+	<th>[% c.l("_DESCRIPTION") %]</th>
+	<th>[% c.l("_ACTION") %]</th>
+</tr>
+</thead>
+<tbody>
+[% FOREACH service IN LogManagement.Service.list() %]
+<tr>
+	<td>[% service %]</td>
+	<td>[% service %]</td>
+	<td>
+	<button type="button" class="btn btn-default btn-sm active" data-toggle="tooltip" data-placement="top" title="[% c.l("_REMOVE") %]"
+		href="/service/remove/[% service.name %]"><i class="fa fa-trash-o"></i> </button>
+	</td>
+</tr>
+[% END %]
+</tbody>
+</table>

@@ -1,0 +1,30 @@
+{
+   "icon" : "operating_systems/os_mac",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"iTunes\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_AMDDeviceDetached \\(thread \\S+\\): Device '.+' detached.\"):msg@>",
+         "table" : "Message",
+         "id" : "device_detached",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"iTunes\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_AMDDeviceAttachedCallbackv3 \\(thread \\S+\\): Device '.+' attached.\"):msg@>",
+         "table" : "Message",
+         "id" : "device_attached",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"iTunes\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"_NotificationSocketReadCallbackGCD .+: Unexpected connection closure...\"):msg@>",
+         "table" : "Message",
+         "id" : "unexpected_connection_closure",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "",
+   "version" : "201110290004",
+   "name" : "Mac_OS_X_iTunes",
+   "description" : "Mac OS X iTunes Service"
+}

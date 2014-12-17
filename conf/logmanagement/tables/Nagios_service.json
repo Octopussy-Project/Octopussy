@@ -1,0 +1,43 @@
+{
+   "fields" : [
+      {
+         "name" : "criticity",
+         "type" : "STRING"
+      },
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "STRING"
+      },
+      {
+         "name" : "host",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "nb_check",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "service",
+         "type" : "STRING"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Nagios_service",
+   "description" : "Nagios Service Table"
+}

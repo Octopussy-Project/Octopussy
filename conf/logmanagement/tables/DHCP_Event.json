@@ -1,0 +1,35 @@
+{
+   "fields" : [
+      {
+         "name" : "action",
+         "type" : "WORD"
+      },
+      {
+         "name" : "client_ip",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "client_mac",
+         "type" : "MAC_ADDR"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "server_nic",
+         "type" : "NET_INTERFACE"
+      }
+   ],
+   "version" : "200911240001",
+   "name" : "DHCP_Event",
+   "description" : "DHCP Event Table"
+}

@@ -1,0 +1,23 @@
+{
+   "icon" : "companies/logo_cisco",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"vpnc\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"select: Interrupted system call\"):msg@>",
+         "table" : "Message",
+         "id" : "interrupted_system_call",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"vpnc\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection terminated by peer\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_terminated_by_peer",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201004280003",
+   "name" : "Cisco_VPN_Client",
+   "description" : "Cisco VPN Client Service"
+}

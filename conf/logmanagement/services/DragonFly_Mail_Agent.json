@@ -1,0 +1,50 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dma\"):daemon@>[<@WORD:mail_id@>]: mail to=<<@EMAIL:recipient@>> <@WORD:status@> as <@STRING:msg_id@>",
+         "table" : "Mail_Traffic",
+         "id" : "mail_queued",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dma\"):daemon@>[<@WORD:msg_id@>]: <@REGEXP(\".+ delivery\"):status@>",
+         "table" : "Mail_Traffic",
+         "id" : "delivery_status_1",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dma\"):daemon@>[<@WORD:msg_id@>]: <@REGEXP(\"delivery .+\"):status@>",
+         "table" : "Mail_Traffic",
+         "id" : "delivery_status_2",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dma\"):daemon@>[<@WORD:msg_id@>]: using smarthost (<@STRING:relay@>)",
+         "table" : "Mail_Traffic",
+         "id" : "relay",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dma\"):daemon@>[<@WORD:mail_id@>]: <@REGEXP(\"new mail from user=.+ uid=.+\"):status@> envelope_from=<@STRING:sender@>",
+         "table" : "Mail_Traffic",
+         "id" : "new_mail",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dma\"):daemon@>[<@WORD:msg_id@>]: <@REGEXP(\"trying remote delivery to smtpserver\"):status@> [<@WORD:relay@>] <@REGEXP(\"pref \\d+\"):NULL@>",
+         "table" : "Mail_Traffic",
+         "id" : "trying_remote_delivery",
+         "taxonomy" : "Email.Traffic",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "https://gitorious.org/dma",
+   "version" : "201312070006",
+   "name" : "DragonFly_Mail_Agent",
+   "description" : "A small Mail Transport Agent (MTA), designed for home and office use"
+}

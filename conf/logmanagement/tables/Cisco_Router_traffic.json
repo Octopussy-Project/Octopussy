@@ -1,0 +1,51 @@
+{
+   "fields" : [
+      {
+         "name" : "acl",
+         "type" : "STRING"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "dst_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "msg_id",
+         "type" : "STRING"
+      },
+      {
+         "name" : "nb_packets",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "protocol",
+         "type" : "STRING"
+      },
+      {
+         "name" : "src_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "src_port",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Cisco_Router_traffic",
+   "description" : "Cisco Router traffic Table"
+}

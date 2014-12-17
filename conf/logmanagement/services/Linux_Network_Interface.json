@@ -1,0 +1,43 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"if.*\"):daemon@>: <@REGEXP(\".+ changed config file: config --> restart interface!\"):msg@>",
+         "table" : "Message",
+         "id" : "interface_config_changed_restart_interface",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"if.*\"):daemon@>: <@REGEXP(\".+ device: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "device_information",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"if.*\"):daemon@> <@NET_INTERFACE:interface@>",
+         "table" : "Message",
+         "id" : "interface",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"if.*\"):daemon@>: <@REGEXP(\"IP address: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ip_address",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"if.*\"):daemon@>:",
+         "table" : "Message",
+         "id" : "empty",
+         "taxonomy" : "Hardware.Network",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201004300006",
+   "name" : "Linux_Network_Interface",
+   "description" : "Linux Network Interface Services"
+}

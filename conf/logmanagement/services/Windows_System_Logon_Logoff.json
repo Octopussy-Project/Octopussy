@@ -1,0 +1,177 @@
+{
+   "icon" : "operating_systems/os_windows",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"Successful Network Logon:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "successful_network_logon",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"User Logoff:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "user_logoff",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Service Ticket Granted:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "service_ticket_granted",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Failure Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Service Ticket Request Failed:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "service_ticket_request_failed",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Authentication Ticket Granted:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "authentication_ticket_granted",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Ticket Granted Renewed:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "ticket_granted_renewed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Account Used for Logon by:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "account_used_for_logon",
+         "taxonomy" : "Auth",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"Session disconnected from winstation:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "session_disconnected_from_winstation",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"Session reconnected to winstation:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "session_reconnected_to_winstation",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"Successful Logon:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "successful_logon",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Failure Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"The logon to account: .+ failed.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "logon_to_account_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Failure Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"Logon Failure:.+Unknown user name or bad password.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "unknown_user_bad_password",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Failure Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Pre-authentication failed: .+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "pre_authentication_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Failure Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Authentication Ticket Request Failed:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "authentication_ticket_request_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@STRING:category@>;;<@REGEXP(\"Special privileges assigned to new logon:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "special_privileges_assigned_to_new_logon",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"System Event\"):category@>;;<@REGEXP(\"A trusted logon process has registered with the Local Security Authority.+This logon process will be trusted to submit logon requests.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "trusted_logon_process_registered_with_local_security_authority",
+         "taxonomy" : "Auth",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Logon attempt by:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "logon_attempt",
+         "taxonomy" : "Auth",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"User initiated logoff:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "user_initiated_logoff",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Success Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"Logon attempt using explicit credentials.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "logon_using_explicit_credentials",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Service Ticket Request:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "service_ticket_request",
+         "taxonomy" : "Auth",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Authentication Ticket Request:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "authentication_ticket_request",
+         "taxonomy" : "Auth",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\".+ Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Account Logon\"):category@>;;<@REGEXP(\"Service Ticket Renewed:.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "service_ticket_renewed",
+         "taxonomy" : "Auth",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Failure Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\"Logon Failure:.+An error occurred during logon.+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "logon_failure_error_occured",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> MSWinEventLog;<@NUMBER:criticity@>;<@WORD:src@>;<@NUMBER:event_count@>;<@DATE_TIME_APACHE_ERROR:datetime2@>;<@NUMBER:event_id@>;<@STRING:source@>;<@STRING:user@>;<@WORD:sid_type@>;<@REGEXP(\"Failure Audit\"):event_type@>;<@WORD:computer@>;<@REGEXP(\"Logon/Logoff\"):category@>;;<@REGEXP(\".+The specified account's password has expired .+\"):msg@>",
+         "table" : "Windows_Message",
+         "id" : "logon_failure_password_expired",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.intersectalliance.com/projects/SnareWindows/index.html",
+   "version" : "201005190018",
+   "name" : "Windows_System_Logon_Logoff",
+   "description" : "Windows System Logon Logoff"
+}

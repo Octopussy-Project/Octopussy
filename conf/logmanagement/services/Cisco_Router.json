@@ -1,0 +1,190 @@
+{
+   "icon" : "companies/logo_cisco",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SEC-6-IPACCESSLOGRL\"):msg_id@>: <@REGEXP(\"access-list logging rate-limited or missed \\d+ packet.*\"):msg@>",
+         "table" : "Message",
+         "id" : "acl_logging_limited",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SYS-5-CONFIG_I\"):msg_id@>: <@REGEXP(\"Configured from \\S+ by .+\"):msg@>",
+         "table" : "Message",
+         "id" : "configured_from",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%BGP-5-ADJCHANGE\"):msg_id@>: <@REGEXP(\"neighbor \\S+ Down.+\"):msg@>",
+         "table" : "Message",
+         "id" : "bgp_neighbor_down",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Emergency"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%BGP-3-NOTIFICATION\"):msg_id@>: <@REGEXP(\"sent to neighbor \\S+ \\S+ (hold time expired) \\d+ bytes\"):msg@>",
+         "table" : "Message",
+         "id" : "bgp_notification_sent_neighbor",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%BGP-5-ADJCHANGE\"):msg_id@>: <@REGEXP(\"neighbor \\S+ Up\"):msg@>",
+         "table" : "Message",
+         "id" : "bgp_neighbor_up",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%LINK-3-UPDOWN\"):msg_id@>: <@REGEXP(\"Interface \\S+, changed state to \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "link_updown",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%LINEPROTO-5-UPDOWN\"):msg_id@>: <@REGEXP(\"Line protocol on Interface \\S+, changed state to \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "lineprotocol_updown",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@NUMBER:NULL@>: <@REGEXP(\"-Traceback= .+\"):msg@>",
+         "table" : "Message",
+         "id" : "traceback",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SYS-3-CPUHOG\"):msg_id@>: <@REGEXP(\"Task is running for \\S+msecs, more than \\S+msecs \\S+,process = .+\"):msg@>",
+         "table" : "Message",
+         "id" : "cpuhog",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%STANDBY-6-STATECHANGE\"):msg_id@>: <@REGEXP(\"\\S+ Group \\d+ state \\S+ -> \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "standby_statechange",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%WS_ALARM-6-INFO\"):msg_id@>: <@REGEXP(\"\\S+ INFO \\S+ Physical Port Administrative State \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "port_administrative_state",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%WS_ALARM-6-INFO\"):msg_id@>: <@REGEXP(\"\\S+ CRITICAL \\S+ Physical Port Link \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "physical_port_link",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%LINK-5-CHANGED\"):msg_id@>: <@REGEXP(\"Interface \\S+, changed state to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "interface_changed_state",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%AMDP2_FE-3-UNDERFLO\"):msg_id@>: <@REGEXP(\"\\S+ transmit error\"):msg@>",
+         "table" : "Message",
+         "id" : "transmit_error",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%OSPF-5-ADJCHG\"):msg_id@>: <@REGEXP(\".+, Neighbor Down: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ospf_neighbor_down",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%OSPF-5-ADJCHG\"):msg_id@>: <@REGEXP(\".+, Loading Done\"):msg@>",
+         "table" : "Message",
+         "id" : "ospf_loading_done",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%RCMD-4-RSHPORTATTEMPT\"):msg_id@>: <@REGEXP(\"Attempted to connect to RSHELL from .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "attempted_connect_rshell",
+         "taxonomy" : "Access",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%ENVM-6-PSLEV\"):msg_id@>: <@REGEXP(\"Power \\wupply .+ state changed.+\"):msg@>",
+         "table" : "Message",
+         "id" : "power_supply_state_changed",
+         "taxonomy" : "Hardware.Power",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%RADIUS-3-ALLDEADSERVER\"):msg_id@>: <@REGEXP(\".*No active radius servers found.+\"):msg@>",
+         "table" : "Message",
+         "id" : "no_radius_servers_found",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%RADIUS-6-SERVERALIVE\"):msg_id@>: <@REGEXP(\".*Radius server .+ is responding again.+\"):msg@>",
+         "table" : "Message",
+         "id" : "radius_server_responding_again",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%NSE100-3-VA_ERROR\"):msg_id@>: <@REGEXP(\".+ ASIC detected an error condition: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "asic_detected_error_condition",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Alert"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%CLEAR-5-COUNTERS\"):msg_id@>: <@REGEXP(\"Clear counter on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "clear_counter",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%BGP-3-NOTIFICATION\"):msg_id@>: <@REGEXP(\"received from neighbor .+ \\d+ bytes\"):msg@>",
+         "table" : "Message",
+         "id" : "bgp_received_from_neighbor",
+         "taxonomy" : "Network",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%HSRP-5-STATECHANGE\"):msg_id@>: <@REGEXP(\".+ state \\w+ -> \\w+\"):msg@>",
+         "table" : "Message",
+         "id" : "hsrp_state_change",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%SYS-5-RELOAD\"):msg_id@>: <@REGEXP(\"Reload requested by .+\"):msg@>",
+         "table" : "Message",
+         "id" : "reload_requested_by",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>: <@REGEXP(\"\\%BGP-6-BIGCHUNK\"):msg_id@>: <@REGEXP(\"Big chunk pool request .+\"):msg@>",
+         "table" : "Message",
+         "id" : "big_chunk_pool_request",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      }
+   ],
+   "version" : "200801250001",
+   "name" : "Cisco_Router",
+   "description" : "Cisco Router Service"
+}

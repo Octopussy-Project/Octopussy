@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "[pre-build Hook]"
+echo "Nothing to do..."

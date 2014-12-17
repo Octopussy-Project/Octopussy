@@ -1,0 +1,128 @@
+{
+   "icon" : "software/logo_postgresql",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  autovacuum : traitement de la base de données .+\"):msg@>",
+         "table" : "Message",
+         "id" : "autovacuum_traitement_base",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  La limite de réinitialisation de l'ID de transaction est .+, limité par la base de données .+\"):msg@>",
+         "table" : "Message",
+         "id" : "limite_reinitialisation_transaction",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  prochain identifiant de transaction : \\d+ ; prochain OID : \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "prochain_identifiant_transaction",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  prochain MultiXactId: \\d+; prochain MultiXactOffset: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "prochain_multixactid_multixactoffset",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  Paquet de démarrage incomplet\"):msg@>",
+         "table" : "Message",
+         "id" : "paquet_demarrage_incomplet",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ LOG:  Réception d'une demande d'arrêt rapide\"):msg@>",
+         "table" : "Message",
+         "id" : "reception_demande_arret_rapide",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  Annulation des transactions actives\"):msg@>",
+         "table" : "Message",
+         "id" : "annulation_transactions_actives",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  n'a pas pu charger le fichier du certificat racine .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pas_charger_certificat_racine",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* DÉTAIL:  Ne vérifiera pas les certificats du client.\"):msg@>",
+         "table" : "Message",
+         "id" : "verifiera_pas_certificats_client",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  l'enregistrement du point de vérification est à .+\"):msg@>",
+         "table" : "Message",
+         "id" : "enregistrement_point_verification",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  ré-exécution de l'enregistrement à .+\"):msg@>",
+         "table" : "Message",
+         "id" : "reexecution_enregistrement",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  arrêt en cours\"):msg@>",
+         "table" : "Message",
+         "id" : "arret_en_cours",
+         "taxonomy" : "Application",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  le système de bases de données a été arrêté à .+\"):msg@>",
+         "table" : "Message",
+         "id" : "systeme_a_ete_arrete",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  le système de bases de données est prêt\"):msg@>",
+         "table" : "Message",
+         "id" : "systeme_est_pret",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  n'a pas pu écrire le fichier temporaire des statistiques .+: Aucun espace disponible sur le\"):msg@> ",
+         "table" : "Message",
+         "id" : "pas_pu_ecrire_statistiques",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@NUMBER:NULL@>]: <@REGEXP(\".*  périphérique\"):NULL@> ",
+         "table" : "Message",
+         "id" : "pas_pu_ecrire_statistiques2",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"postgres\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".* LOG:  le système de base de données est arrêté\"):msg@> ",
+         "table" : "Message",
+         "id" : "systeme_est_arrete",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "http://www.postgresql.org",
+   "version" : "200802210003",
+   "name" : "PostgreSQL_FR",
+   "description" : "PostgreSQL Service (FR version)"
+}

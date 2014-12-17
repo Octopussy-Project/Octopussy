@@ -1,0 +1,63 @@
+{
+   "fields" : [
+      {
+         "name" : "category",
+         "type" : "STRING"
+      },
+      {
+         "name" : "computer",
+         "type" : "WORD"
+      },
+      {
+         "name" : "criticity",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "datetime2",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "event_count",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "event_id",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "event_type",
+         "type" : "STRING"
+      },
+      {
+         "name" : "msg",
+         "type" : "STRING"
+      },
+      {
+         "name" : "sid_type",
+         "type" : "WORD"
+      },
+      {
+         "name" : "source",
+         "type" : "WORD"
+      },
+      {
+         "name" : "src",
+         "type" : "WORD"
+      },
+      {
+         "name" : "user",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200804170001",
+   "name" : "Windows_Message",
+   "description" : "Windows Message Table"
+}

@@ -1,0 +1,35 @@
+{
+   "fields" : [
+      {
+         "name" : "client",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "query",
+         "type" : "STRING"
+      },
+      {
+         "name" : "query_type",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "201002220001",
+   "name" : "Bind_query",
+   "description" : "Bind query Table"
+}

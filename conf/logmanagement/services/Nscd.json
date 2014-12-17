@@ -1,0 +1,56 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nscd shutdown succeeded\"):msg@>",
+         "table" : "Message",
+         "id" : "shutdown_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nss_ldap: reconnecting to LDAP server.+\"):msg@>",
+         "table" : "Message",
+         "id" : "reconnecting_ldap_server",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nss_ldap: reconnected to LDAP server.*\"):msg@>",
+         "table" : "Message",
+         "id" : "reconnected_ldap_server",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nscd shutdown failed\"):msg@>",
+         "table" : "Message",
+         "id" : "shutdown_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nss_ldap: .+ Can't contact LDAP server\"):msg@>",
+         "table" : "Message",
+         "id" : "cant_contact_ldap_server",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nss_ldap: could not search LDAP server - Server is unavailable\"):msg@>",
+         "table" : "Message",
+         "id" : "could_not_search_ldap",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"nscd\"):daemon@>: <@REGEXP(\"nscd startup succeeded\"):msg@>",
+         "table" : "Message",
+         "id" : "startup_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "version" : "201002180007",
+   "name" : "Nscd",
+   "description" : "Nscd Service"
+}

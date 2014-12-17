@@ -1,0 +1,30 @@
+{
+   "icon" : "operating_systems/os_mac",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*com.valvesoftware.steam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"unlinked \\d+ orphaned pipes\"):msg@>",
+         "table" : "Message",
+         "id" : "unlinked_orphaned_pipes",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*com.valvesoftware.steam\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"CAsyncIOManager: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "casynciomanager_msgs",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".*com.valvesoftware.steam.ipctool\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ipcserver .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ipcserver_msgs",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://store.steampowered.com/browse/mac",
+   "version" : "201110290004",
+   "name" : "Mac_OS_X_Steam",
+   "description" : "Mac OS X Steam Service"
+}

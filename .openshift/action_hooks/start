@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DIR_PERL=$OPENSHIFT_HOMEDIR/app-root/data/perl-5.16.3
+DIR_APP_REPO=$OPENSHIFT_HOMEDIR/app-root/repo/
+
+nohup $DIR_PERL/bin/perl $DIR_APP_REPO/bin/octopussy_api.pl --listen 'http://$OPENSHIFT_PERL_IP:$OPENSHIFT_PERL_PORT' > /dev/null  2>&1 &

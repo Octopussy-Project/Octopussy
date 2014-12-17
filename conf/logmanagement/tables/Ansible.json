@@ -1,0 +1,23 @@
+{
+   "fields" : [
+      {
+         "name" : "arguments",
+         "type" : "STRING"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "module",
+         "type" : "WORD"
+      }
+   ],
+   "version" : "201311220001",
+   "name" : "Ansible",
+   "description" : "Ansible Actions Table"
+}

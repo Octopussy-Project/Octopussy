@@ -1,0 +1,162 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ SMART Usage Attribute:.+ Airflow_Temperature_Cel changed from \\d+ to \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "airflow_temperature_cel_changed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ SMART Usage Attribute:.+ Temperature_Celsius changed from \\d+ to \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "temperature_celsius_changed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"smartd received signal \\d+: Terminated\"):msg@>",
+         "table" : "Message",
+         "id" : "terminated",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"smartd is exiting \\(exit status \\d+\\)\"):msg@>",
+         "table" : "Message",
+         "id" : "exiting",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ state (?:written|read) (?:to|from) .+\"):msg@>",
+         "table" : "Message",
+         "id" : "written_or_read_device_state",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"smartd .+ http://smartmontools.sourceforge.net.+\"):msg@>",
+         "table" : "Message",
+         "id" : "copyright_information",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Opened configuration file .+\"):msg@>",
+         "table" : "Message",
+         "id" : "opened_config_file",
+         "taxonomy" : "Config",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Drive: .+ implied .+ Directive on line \\d+ of file .+\"):msg@>",
+         "table" : "Message",
+         "id" : "implied_directive",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ opened\"):msg@>",
+         "table" : "Message",
+         "id" : "device_opened",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Configuration file .+ was parsed.+ found .+ scanning devices\"):msg@>",
+         "table" : "Message",
+         "id" : "config_file_parsed_scanning_devices",
+         "taxonomy" : "Config",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Unable to monitor any SMART enabled devices. Try debug .+ option. Exiting.+\"):msg@>",
+         "table" : "Message",
+         "id" : "unable_to_monitor_devices",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ not enabled.+ skip device.+\"):msg@>",
+         "table" : "Message",
+         "id" : "smart_disabled_device_skip",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ is SMART capable.+ Adding to .+ list.\"):msg@>",
+         "table" : "Message",
+         "id" : "capable_device_adding_to_list",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ type changed from .+ to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "device_type_changed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ found in .+ database.\"):msg@>",
+         "table" : "Message",
+         "id" : "device_found_in_database",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Monitoring .+ devices\"):msg@>",
+         "table" : "Message",
+         "id" : "monitoring_devices",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"smartd has .+ into \\w+ground mode. New PID=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "background_foreground_mode",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ SMART Prefailure Attribute: .+ Raw_Read_Error_Rate changed from \\d+ to \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "raw_read_error_rate_changed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ SMART Usage Attribute: .+ Hardware_ECC_Recovered changed from \\d+ to \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "hardware_ecc_recovered_changed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ SMART Usage Attribute: .+ Power_On_Hours changed from \\d+ to \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "power_on_hours_changed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device:.+state read from.+\"):msg@>",
+         "table" : "Message",
+         "id" : "read_device_state",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"smartd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Device: .+ SMART Prefailure Attribute:.+ Seek_Error_Rate changed from \\d+ to \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "seek_error_rate_changed",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://sourceforge.net/projects/smartmontools/",
+   "version" : "201004090006",
+   "name" : "Smartd",
+   "description" : "Smart Monitoring Service"
+}

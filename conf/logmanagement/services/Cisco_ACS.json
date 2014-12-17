@@ -1,0 +1,317 @@
+{
+   "icon" : "companies/logo_cisco",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"$\"):msg@>",
+         "table" : "Message",
+         "id" : "empty",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"\\.\"):msg@>",
+         "table" : "Message",
+         "id" : "dot",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@> <@REGEXP(\"daemonizing...\"):msg@>",
+         "table" : "Message",
+         "id" : "daemonizing",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"running\"):msg@>",
+         "table" : "Message",
+         "id" : "running",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"initializing\"):msg@>",
+         "table" : "Message",
+         "id" : "initializing",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@> <@REGEXP(\"executing .+\"):msg@>",
+         "table" : "Message",
+         "id" : "executing",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"Creating file .+ with PID\"):msg@> <@PID:pid@>",
+         "table" : "Message",
+         "id" : "creating_file_with_pid",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"starting .+ in .+\"):msg@>",
+         "table" : "Message",
+         "id" : "starting",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"Number of .+ processes running is \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "number_of_processes_running",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"Waiting for .+ to come up..\"):msg@>",
+         "table" : "Message",
+         "id" : "waiting_for_to_come_up",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"LD_LIBRARY_PATH is set to: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ld_library_path_is_set_to",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+Database upgrade logging start\"):msg@>",
+         "table" : "Message",
+         "id" : "database_upgrade_logging_start",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+ Debugging\"):msg@> <@WORD:status@>",
+         "table" : "Message",
+         "id" : "debugging_status",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+ Current database version: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "current_database_version",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+ storeUpgrade start upgrade.\"):msg@>",
+         "table" : "Message",
+         "id" : "storeUpgrade_start_upgrade",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+ Current swSchema version: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "current_swSchema_version",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+ Database is already upgraded.\"):msg@>",
+         "table" : "Message",
+         "id" : "database_is_already_upgraded",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+ storeUpgrade end upgrade.\"):msg@>",
+         "table" : "Message",
+         "id" : "storeUpgrade_end_upgrade",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+ just nothing to do - upgrade not needed.\"):msg@>",
+         "table" : "Message",
+         "id" : "just_nothing_to_do_upgrade_not_needed",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dbupgrade\"):daemon@>: <@WORD:level@>:<@REGEXP(\".+ storeUpgrade Done.\"):msg@>",
+         "table" : "Message",
+         "id" : "storeUpgrade_done",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"database\"):daemon@> <@WORD:level@>: <@REGEXP(\"Database certificate found.\"):msg@>",
+         "table" : "Message",
+         "id" : "database_certificate_found",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"database\"):daemon@> <@WORD:level@>: <@REGEXP(\"Starting SQL Anwyhere service ACSDB : network\"):msg@>[ <@STRING:status@> ]",
+         "table" : "Message",
+         "id" : "starting_sql_anywhere_service_ACSDB_network_status",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmt\"):daemon@> <@WORD:level@>: <@REGEXP(\"Certificate found, starting .+\"):msg@>",
+         "table" : "Message",
+         "id" : "certificate_found_starting_program",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"mgmt\"):daemon@> <@WORD:level@>: <@REGEXP(\"After startup removing file\"):msg@>",
+         "table" : "Message",
+         "id" : "after_startup_removing_file",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"adclient\"):daemon@> <@WORD:level@>: <@REGEXP(\"Run, Initializing DB query...\"):msg@>",
+         "table" : "Message",
+         "id" : "run_initializing_db_query",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"adclient\"):daemon@> <@WORD:level@>: <@REGEXP(\".+WARN No appenders could be found for logger.+\"):msg@>",
+         "table" : "Message",
+         "id" : "no_appenders_found_for_logger",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"adclient\"):daemon@> <@WORD:level@>: <@REGEXP(\".+WARN Please initialize the .+ system properly.\"):msg@>",
+         "table" : "Message",
+         "id" : "please_initialize_system_properly",
+         "taxonomy" : "Application",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"adclient\"):daemon@> <@WORD:level@>: <@REGEXP(\"Active Directory object founded.\"):msg@>",
+         "table" : "Message",
+         "id" : "ad_object_founded",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"adclient\"):daemon@> <@WORD:level@>: <@REGEXP(\"Active directory check returned \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "ad_check_returned_code",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"adclient\"):daemon@> <@WORD:level@>: <@REGEXP(\"Not joined - going up...\"):msg@>",
+         "table" : "Message",
+         "id" : "not_joined_going_up",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"adclient\"):daemon@> <@WORD:level@>: <@REGEXP(\"adclient monitoring already enabled\"):msg@>",
+         "table" : "Message",
+         "id" : "adclient_monitoring_already_enabled",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"runtime\"):daemon@> <@WORD:level@>: <@REGEXP(\".+ All rights preserved. All unpublished rights reserved.\"):msg@>",
+         "table" : "Message",
+         "id" : "rights_information",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"runtime\"):daemon@> <@WORD:level@>: <@REGEXP(\"Copyright .+\"):msg@>",
+         "table" : "Message",
+         "id" : "copyright_information",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"runtime\"):daemon@> <@WORD:level@>: <@REGEXP(\"Finished initialization\"):msg@>",
+         "table" : "Message",
+         "id" : "finished_initialization",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"runtime\"):daemon@> <@WORD:level@>: <@REGEXP(\"in init\"):msg@>",
+         "table" : "Message",
+         "id" : "ini_init",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"runtime\"):daemon@> <@WORD:level@>: <@REGEXP(\"iAnywhere Solutions, .+\"):msg@>A",
+         "table" : "Message",
+         "id" : "ianywhere_solutions_address",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"runtime\"):daemon@> <@WORD:level@>: <@REGEXP(\"Core cleanup complete.\"):msg@>",
+         "table" : "Message",
+         "id" : "core_cleanup_completed",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"runtime\"):daemon@> <@WORD:level@>: <@REGEXP(\"Checking core files. Total size .+\"):msg@>",
+         "table" : "Message",
+         "id" : "checking_core_files_total_size",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"MAIN_WORKER_THREADS_COUNT = \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "main_worker_threads_count",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"Number of processors = \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "number_of_processors",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"LDAP_IN_MAIN_POOL = \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "ldap_in_main_pool",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"LOGGING_IN_MAIN_POOL = \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "logging_in_main_pool",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"INTERNAL_ID_STORE_THREADS_COUNT = \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "internal_id_store_threads_count",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@> <@WORD:level@>: <@REGEXP(\"AD_ID_STORE_THREADS_COUNT = \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "ad_id_store_threads_count",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201005190007",
+   "name" : "Cisco_ACS",
+   "description" : "Cisco ACS Service"
+}

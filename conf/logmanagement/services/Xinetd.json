@@ -1,0 +1,70 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"START: \\S+ pid=\\d+ from=\\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "start_service",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Reading included configuration file: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "reading_included_configuration",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"removing \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "removing_service",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"missing service keyword.+\"):msg@>",
+         "table" : "Message",
+         "id" : "missing_service_keyword",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Started working: \\d+ available service.*\"):msg@>",
+         "table" : "Message",
+         "id" : "started_available_services",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Exiting...\"):msg@>",
+         "table" : "Message",
+         "id" : "exiting",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>: <@REGEXP(\"xinetd \\S+ succeeded\"):msg@>",
+         "table" : "Message",
+         "id" : "xinetd_startup_shutdown_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"xinetd Version .+\"):msg@>",
+         "table" : "Message",
+         "id" : "version",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"xinetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"EXIT: \\S+ status=\\d+ pid=\\d+ .+\"):msg@>",
+         "table" : "Message",
+         "id" : "exit_service",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      }
+   ],
+   "version" : "201002190009",
+   "name" : "Xinetd",
+   "description" : "Xinetd Service"
+}

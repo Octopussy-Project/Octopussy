@@ -1,0 +1,67 @@
+{
+   "fields" : [
+      {
+         "name" : "d_version",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "dst_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "expecting",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "filter_drops",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "flows",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "lost",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "now",
+         "type" : "SECONDS"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "pkts",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "received",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "reset",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "src_addr",
+         "type" : "IP_ADDR"
+      },
+      {
+         "name" : "startup",
+         "type" : "SECONDS"
+      }
+   ],
+   "version" : "201109010001",
+   "name" : "NetFlow_Traffic",
+   "description" : "Generic NetFlow Traffic Table"
+}

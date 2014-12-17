@@ -1,0 +1,44 @@
+{
+   "icon" : "software/logo_exim",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"exim\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Cannot open main log file .+: Permission denied: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "cannot_open_main_logfile",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"exim\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ U=\\S+ P=\\S+ S=\\d+ id=\\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "message_id",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"exim\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ U=\\S+ P=\\S+ S=\\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "message_id2",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"exim\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"write failed on panic log: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "write_failed_panic_log",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"exim\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ failed to write to main log: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "failed_write_main_log",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www.exim.org/",
+   "version" : "201002180005",
+   "name" : "Exim",
+   "description" : "Exim Service"
+}

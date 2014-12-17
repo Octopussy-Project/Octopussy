@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "[deploy Hook]"
+echo "Nothing to do..."

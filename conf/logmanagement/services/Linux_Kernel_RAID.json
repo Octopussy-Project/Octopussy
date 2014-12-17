@@ -1,0 +1,51 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ RAID STATUS CHANGE for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "raid_status_change",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ PhysDisk is now online.*\"):msg@> ",
+         "table" : "Message",
+         "id" : "physdisk_now_online",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ volume is now optimal.*\"):msg@>",
+         "table" : "Message",
+         "id" : "volume_now_optimal",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ PhysDisk is now missing.*\"):msg@> ",
+         "table" : "Message",
+         "id" : "physdisk_now_missing",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptbase: <@REGEXP(\".+ volume is now degraded.*\"):msg@>",
+         "table" : "Message",
+         "id" : "volume_now_degraded",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: mptsas: <@REGEXP(\".+ \\w+ing ssp device, channel \\d+, id \\d+, phy \\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "attaching_removing_ssp_device",
+         "taxonomy" : "Hardware.Disk",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.kernel.org/",
+   "version" : "200702160013",
+   "name" : "Linux_Kernel_RAID",
+   "description" : "Linux Kernel RAID Service"
+}

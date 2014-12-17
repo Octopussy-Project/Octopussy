@@ -1,0 +1,30 @@
+{
+   "icon" : "software/logo_linux_ha",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ipfail: \\[\\d+\\]: ERROR: No managed resources\"):msg@>",
+         "table" : "Message",
+         "id" : "no_managed_resources",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ipfail: \\[\\d+\\]: debug: Signing in with heartbeat\"):msg@>",
+         "table" : "Message",
+         "id" : "signing_in_with_heartbeat",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ipfail: \\[\\d+\\]: debug: PID=\\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "pid",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      }
+   ],
+   "website" : "",
+   "version" : "200808260004",
+   "name" : "Linux_HA_Ipfail",
+   "description" : "Linux High Availability Ipfail"
+}

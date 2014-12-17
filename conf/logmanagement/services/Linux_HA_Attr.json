@@ -1,0 +1,72 @@
+{
+   "icon" : "software/logo_linux_ha",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: main: Starting mainloop...\"):msg@>",
+         "table" : "Message",
+         "id" : "starting_mainloop",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: register_with_ha: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "register_with_ha",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: .+: Added signal handler for signal .+\"):msg@>",
+         "table" : "Message",
+         "id" : "added_signal_handler",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: attrd_local_callback: Sending full refresh\"):msg@>",
+         "table" : "Message",
+         "id" : "sending_full_refresh",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]:<@REGEXP(\"info: attrd_shutdown: Exiting\"):msg@>",
+         "table" : "Message",
+         "id" : "shutdown_exiting",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: main: Exiting...\"):msg@>",
+         "table" : "Message",
+         "id" : "main_exiting",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"info: attrd_cib_connection_destroy: Connection to the CIB terminated...\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_cib_terminated",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"ERROR: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "error",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"attrd\"):daemon@>: [<@PID:pid@>]: <@REGEXP(\"CRIT: .+: Lost connection to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "critical_lost_connection",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      }
+   ],
+   "website" : "",
+   "version" : "200906020002",
+   "name" : "Linux_HA_Attr",
+   "description" : "Linux High Availability Attr"
+}

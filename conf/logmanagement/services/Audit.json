@@ -1,0 +1,71 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Started dispatcher: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "started_dispatcher",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>: <@REGEXP(\"Cannot daemonize .+\"):msg@>",
+         "table" : "Message",
+         "id" : "cannot_daemonize",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"The audit daemon is exiting.\"):msg@>",
+         "table" : "Message",
+         "id" : "exiting",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Error sending signal_info request.+\"):msg@>",
+         "table" : "Message",
+         "id" : "error_sending_signal_info_request",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Init complete, auditd .+ listening for events .+\"):msg@>",
+         "table" : "Message",
+         "id" : "init_complete_listening_for_events",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Audit daemon rotating log files\"):msg@>",
+         "table" : "Message",
+         "id" : "rotating_log_files",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"client .+ socket closed unexpectedly\"):msg@>",
+         "table" : "Message",
+         "id" : "client_socket_closed_unexpectedly",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>: <@REGEXP(\".+ permissions should be .+\"):msg@>",
+         "table" : "Message",
+         "id" : "permissions_should_be",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"auditd\"):daemon@>: <@REGEXP(\"The audit daemon is exiting.\"):msg@>",
+         "table" : "Message",
+         "id" : "exiting2",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201208290005",
+   "name" : "Audit",
+   "description" : "Linux Kernel Audit Service"
+}

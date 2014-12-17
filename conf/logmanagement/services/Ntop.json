@@ -1,0 +1,84 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*THREADMGMT\\[\\S+\\]: RRD: Throughput data collection: Thread starting .+\"):msg@>",
+         "table" : "Message",
+         "id" : "rrd_data_collection_starting",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*THREADMGMT\\[\\S+\\]: RRD: Started thread for throughput data collection\"):msg@>",
+         "table" : "Message",
+         "id" : "rrd_data_collection_started",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*THREADMGMT\\[\\S+\\]: RRD: .+ata collection.+hread running.+\"):msg@>",
+         "table" : "Message",
+         "id" : "rrd_data_collection_running",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*\\*\\*WARNING\\*\\* RRD: rrd_update\\(.+\\) error: illegal attempt to update using time .+\"):msg@>",
+         "table" : "Message",
+         "id" : "rrd_illegal_attempt_update",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*THREADMGMT\\[\\S+\\]: ntop RUNSTATE:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "runstate",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*ASN: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "asn",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*INITWEB: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "initweb",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*I18N: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "i18n",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*IP2CC: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ip2cc",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*VENDOR: Checking for MAC address table file\"):msg@>",
+         "table" : "Message",
+         "id" : "checking_mac_address_file",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ntop\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\s*\\w+: Welcome to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "welcome_to",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      }
+   ],
+   "version" : "201002180011",
+   "name" : "Ntop",
+   "description" : "Ntop Service"
+}

@@ -1,0 +1,233 @@
+{
+   "icon" : "operating_systems/os_mac",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"AppleACPICPU: ProcessorApicId=\\d+ LocalApicId=\\d+ Enabled\"):msg@>",
+         "table" : "Message",
+         "id" : "appleacpicpu_enabled",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\".+auditing.* present\"):msg@>",
+         "table" : "Message",
+         "id" : "auditing_present",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"USB caused wake event.+\"):msg@>",
+         "table" : "Message",
+         "id" : "usb_caused_wake_event",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"FireWire .+ now active.+\"):msg@>",
+         "table" : "Message",
+         "id" : "firewire_now_active",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"BSD root: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bsd_root",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"Got boot device = .+\"):msg@>",
+         "table" : "Message",
+         "id" : "got_boot_device",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"IOAPIC: Version .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ioapic_version",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"AppleIntelCPUPowerManagement: ready\"):msg@>",
+         "table" : "Message",
+         "id" : "cpu_power_management_ready",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"CSRHIDTransitionDriver:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "csrhid_transition_driver_msg",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"HFS: Removed \\d+ orphaned unlinked files\"):msg@>",
+         "table" : "Message",
+         "id" : "hfs_removed_orphaned_unlinked",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"Matching service count = \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "matching_service_count",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\".+: family specific matching fails\"):msg@>",
+         "table" : "Message",
+         "id" : "family_specific_matching_fails",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"ath_descdma_setup: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ath_descdma_setup",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"\\d+ bit mode enabled\"):msg@>",
+         "table" : "Message",
+         "id" : "nb_bit_mode_enabled",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"yukonosx: Ethernet address .+\"):msg@>",
+         "table" : "Message",
+         "id" : "yukonosx_ethernet_address",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"AirPort_\\S+: Ethernet address .+\"):msg@>",
+         "table" : "Message",
+         "id" : "airport_ethernet_address",
+         "taxonomy" : "Network",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"hibernate_page_list_\\w+ .+\"):msg@>",
+         "table" : "Message",
+         "id" : "hibernate_page_list_msg",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"sleep\"):msg@>",
+         "table" : "Message",
+         "id" : "sleep",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"System SafeSleep\"):msg@>",
+         "table" : "Message",
+         "id" : "system_safesleep",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"System Wake\"):msg@>",
+         "table" : "Message",
+         "id" : "system_wake",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"hibernate image .+\"):msg@>",
+         "table" : "Message",
+         "id" : "hibernate_image_info",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"standard timeslicing quantum is \\d+ us\"):msg@>",
+         "table" : "Message",
+         "id" : "standard_timeslicing_quantum_is",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"writing \\d+ pages\"):msg@>",
+         "table" : "Message",
+         "id" : "writing_pages",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"pages \\d+, wire \\d+, act \\d+, inact \\d+, .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pages_wire_act_inact",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"Enabling XMM register .+ opcodes\"):msg@>",
+         "table" : "Message",
+         "id" : "enabling_xmm_register_opcodes",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"\\d+ prelinked modules\"):msg@>",
+         "table" : "Message",
+         "id" : "prelinked_modules",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"image1Size \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "image1_size",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"image \\d+, uncompressed \\d+ \\(\\d+\\), compressed \\d+ \\(\\d+%\\), sum1 \\S+, sum2 \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "image_info",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"Started CPU \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "started_cpu",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel[<@PID:pid@>]: <@REGEXP(\"IPv6 packet filtering initialized.*\"):msg@>",
+         "table" : "Message",
+         "id" : "ipv6_packet_filtering_initialized",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"kernel\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"IOSurface: buffer allocation size is zero\"):msg@>",
+         "table" : "Message",
+         "id" : "iosurface_buffer_allocation_zero",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"kernel\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Apple\\S+Ethernet: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "apple_ethernet_msgs",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://www.apple.com/macosx/",
+   "version" : "201111010001",
+   "name" : "Mac_OS_X_Kernel",
+   "description" : "Mac OS X Kernel"
+}

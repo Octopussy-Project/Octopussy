@@ -1,0 +1,64 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"COGNOS\"):daemon@>:<@REGEXP(\".+Gateway stopped successfully\"):msg@>.",
+         "table" : "Message",
+         "id" : "gateway_stopped_successfully",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"COGNOS\"):daemon@>:<@REGEXP(\".+Cognos stopped successfully.\"):msg@>",
+         "table" : "Message",
+         "id" : "cognos_stopped_successfully",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"COGNOS\"):daemon@>:<@REGEXP(\".+Gateway started successfully\"):msg@>",
+         "table" : "Message",
+         "id" : "gateway_started_successfully",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"COGNOS\"):daemon@>:<@REGEXP(\".+Cognos started successfully.\"):msg@>",
+         "table" : "Message",
+         "id" : "cognos_started_successfully",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"Error while stopping gateway\"):msg@>",
+         "table" : "Message",
+         "id" : "error_while_stopping_gateway",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"Error while stopping cognos\"):msg@>",
+         "table" : "Message",
+         "id" : "error_while_stopping_cognos",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"Error while starting gateway\"):msg@>",
+         "table" : "Message",
+         "id" : "error_while_starting_gateway",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\"Error while starting cognos\"):msg@>",
+         "table" : "Message",
+         "id" : "error_while_starting_cognos",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      }
+   ],
+   "website" : "http://www-01.ibm.com/software/analytics/cognos/",
+   "version" : "201211220004",
+   "name" : "IBM_Cognos",
+   "description" : "ibm cognos BI"
+}

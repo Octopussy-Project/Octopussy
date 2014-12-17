@@ -1,0 +1,35 @@
+{
+   "fields" : [
+      {
+         "name" : "action",
+         "type" : "STRING"
+      },
+      {
+         "name" : "daemon",
+         "type" : "WORD"
+      },
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "WORD"
+      },
+      {
+         "name" : "object",
+         "type" : "STRING"
+      },
+      {
+         "name" : "pid",
+         "type" : "PID"
+      },
+      {
+         "name" : "status",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Rsync_error",
+   "description" : "Rsync Error Messages Table"
+}

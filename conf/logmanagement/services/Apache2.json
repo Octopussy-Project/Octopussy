@@ -1,0 +1,100 @@
+{
+   "icon" : "software/logo_apache",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\[error\\] .+ File does not exist: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "file_does_not_exist",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ script .+ not found or unable to stat.+\"):msg@>",
+         "table" : "Message",
+         "id" : "script_not_found",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\[error\\] .+ Directory index forbidden by rule: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "directory_index_forbidden",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\[error\\] .+ unable to include .+ in parsed file .+\"):msg@>",
+         "table" : "Message",
+         "id" : "unable_include_file",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\\S*: PHP Warning: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "php_warning",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\\S*: PHP Fatal error: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "php_fatal_error",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\\S*: PHP Parse error:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "php_parse_error",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\\S*: PHP Notice: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "php_notice",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAJAX: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pajax_any_message",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache\\S+\"):NULL@>: <@REGEXP(\"nss_ldap: could not connect to any LDAP server.+\"):msg@>",
+         "table" : "Message",
+         "id" : "couldnt_connect_ldap_server",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\[alert\\] \\[client \\S+\\] .+htaccess: Invalid command .+\"):msg@>",
+         "table" : "Message",
+         "id" : "htaccess_invalid_command",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\[error\\] \\[client .+\\] client denied by server configuration: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "denied_by_server_configuration",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"apache2\"):daemon@>: <@REGEXP(\"PAJAX: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "pajax_any_message2",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://httpd.apache.org/",
+   "version" : "201002180008",
+   "name" : "Apache2",
+   "description" : "Apache2 Service"
+}

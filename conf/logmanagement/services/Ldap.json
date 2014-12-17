@@ -1,0 +1,541 @@
+{
+   "icon" : "software/logo_openldap",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: activity on \\d+ descriptors\"):msg@>",
+         "table" : "Message",
+         "id" : "daemon_activity_on_descriptors",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: select: listen=\\d+ active_threads=\\d+ tvp=.+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "daemon_select",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: added \\d+r\"):msg@>  ",
+         "table" : "Message",
+         "id" : "daemon_added",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]:  <@REGEXP(\"\\d+r\"):msg@>",
+         "table" : "Message",
+         "id" : "debug",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: read activity on \\d+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "daemon_read_activity_on",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: new connection on \\d+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "daemon_new_connection_on",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: removing \\d+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "daemon_removing",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"slapd shutdown: waiting for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "shutdown_waiting_for",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: closing \\d+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "daemon_closing",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection_read\\(\\d+\\): checking for input on id=\\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_read_checking_input",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ber_get_next on fd \\d+ failed errno=\\d+ .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ber_get_next_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"send_ldap_response: msgid=\\d+ tag=\\d+ err=\\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "send_ldap_response",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection_get\\(\\d+\\): got connid=\\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "connection_get",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection_read\\(\\d+\\): input error=.+ id=\\d+, closing.\"):msg@>  ",
+         "table" : "Message",
+         "id" : "connection_read",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection_closing: readying conn=\\d+ sd=\\d+ for close\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_closing",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"do_bind.+\"):msg@>",
+         "table" : "Message",
+         "id" : "do_bind",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S{2} ldbm_cache_open.+\"):msg@>",
+         "table" : "Message",
+         "id" : "ldbm_cache_open",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*equality_candidates.*\"):msg@>",
+         "table" : "Message",
+         "id" : "equality_candidates",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"send_ldap_result:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "send_ldap_result",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S{2} list_candidates.*\"):msg@>",
+         "table" : "Message",
+         "id" : "list_candidates",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ldbm_search: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ldbm_search",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"search_candidates: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "search_candidates",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"====> cache_find_entry_dn2id\\(.+\"):msg@>",
+         "table" : "Message",
+         "id" : "cache_find_entry_dn2id",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S{2} id2entry_r\\(.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "id2entry_r",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S{2} filter_candidates.*\"):msg@>",
+         "table" : "Message",
+         "id" : "filter_candidates",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"====> cache_find_entry_id\\(.+\"):msg@>",
+         "table" : "Message",
+         "id" : "cache_find_entry_id",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S{2} dn2id.*\"):msg@>",
+         "table" : "Message",
+         "id" : "dn2id",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"====> cache_return_entry_r.+\"):msg@>",
+         "table" : "Message",
+         "id" : "cache_return_entry_r",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection_close: conn=\\d+ sd=\\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_close",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"do_search\"):msg@>",
+         "table" : "Message",
+         "id" : "do_search",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"dn2entry_r: dn: .+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "dn2entry_r",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"=> ldbm_back_search\"):msg@>  ",
+         "table" : "Message",
+         "id" : "ldbm_back_search",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"<= index_read \\d+ candidates\"):msg@>",
+         "table" : "Message",
+         "id" : "index_read_candidates",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"=> key_read\"):msg@>",
+         "table" : "Message",
+         "id" : "key_read",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ldbm backend syncing  \"):msg@>",
+         "table" : "Message",
+         "id" : "ldbm_backend_syncing",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ldbm flushing db .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ldbm_flushing_db",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ldbm closing db .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ldbm_closing_db",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ldbm backend done syncing\"):msg@>",
+         "table" : "Message",
+         "id" : "ldbm_backend_done_syncing",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"====> cache_release_all\"):msg@>",
+         "table" : "Message",
+         "id" : "cache_release_all",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: conn=\\d+ fd=\\d+ connection from IP=.+ accepted.\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_from_ip_accepted",
+         "taxonomy" : "Access.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: activity on:\"):msg@> ",
+         "table" : "Message",
+         "id" : "activity_on",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\d+ op=\\d+ SRCH base=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "conn_srch",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\d+ op=\\d+ RESULT .+\"):msg@>",
+         "table" : "Message",
+         "id" : "conn_result",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"deferring operation\"):msg@>",
+         "table" : "Message",
+         "id" : "deferring_operation",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\d+ op=\\d+ BIND dn=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "conn_bind",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\d+ op=\\d+ SEARCH RESULT .+\"):msg@>",
+         "table" : "Message",
+         "id" : "conn_search_result",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: shutdown requested and initiated.\"):msg@>  ",
+         "table" : "Message",
+         "id" : "shutdown_requested_and_initiated",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"slapd shutdown: freeing system resources.\"):msg@>  ",
+         "table" : "Message",
+         "id" : "freeing_system_resources",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"slap_sig_shutdown: signal \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "slap_sig_shutdown",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\d+ op=\\d+ UNBIND\"):msg@>",
+         "table" : "Message",
+         "id" : "conn_unbind",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection_read\\(\\d+\\): no connection!\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_read_no_connection",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\S+ fd=\\S+ closed\"):msg@>",
+         "table" : "Message",
+         "id" : "conn_closed",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"slapd shutdown: initiated\"):msg@> ",
+         "table" : "Message",
+         "id" : "slapd_shutdown_initiated",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"slapd stopped.\"):msg@>  ",
+         "table" : "Message",
+         "id" : "slapd_stopped",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"slapd starting\"):msg@>",
+         "table" : "Message",
+         "id" : "slapd_starting",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"send_ldap_search_result \\d+::\"):msg@> ",
+         "table" : "Message",
+         "id" : "send_ldap_search_result",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\d+ op=\\d+ MOD dn=.+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "action_modify",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ldap\"):daemon@>: <@REGEXP(\"slapd shutdown succeeded\"):msg@> ",
+         "table" : "Message",
+         "id" : "slapd_shutdown_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ldap\"):daemon@>: <@REGEXP(\"slurpd shutdown succeeded\"):msg@>",
+         "table" : "Message",
+         "id" : "slurpd_shutdown_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\d+ op=\\d+ ADD dn=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "action_add",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"conn=\\d+ op=\\d+ DEL dn=.+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "action_delete",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"warning: cannot open .+: Too many open files\"):msg@>",
+         "table" : "Message",
+         "id" : "too_many_open_files",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: accept.+ failed errno=\\d+ \\(Too many open files\\)\"):msg@>",
+         "table" : "Message",
+         "id" : "too_many_open_files2",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"entry failed schema check: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "entry_failed_schema_check",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Entry .+: object class .+ requires attribute .+\"):msg@>",
+         "table" : "Message",
+         "id" : "object_class_requires_attribute",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: bind\\(\\d+\\) failed.*\"):msg@>",
+         "table" : "Message",
+         "id" : "bind_failed",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connections_destroy: nothing to destroy.+\"):msg@>  ",
+         "table" : "Message",
+         "id" : "connections_destroy",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*bind: invalid dn.+\"):msg@>",
+         "table" : "Message",
+         "id" : "bind_invalid_dn",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*OpenLDAP: slapd .+\"):msg@>",
+         "table" : "Message",
+         "id" : "openldap_slapd_version",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ do_extended: unsupported operation .+\"):msg@>",
+         "table" : "Message",
+         "id" : "unsupported_operation",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"<= root access granted\"):msg@>",
+         "table" : "Message",
+         "id" : "root_access_granted",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"=> access_allowed:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "access_allowed",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"<= bdb_\\w+_candidates:.+\"):msg@>",
+         "table" : "Message",
+         "id" : "bdb_candidates",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: activity on \\d+ descriptor.*\"):msg@>",
+         "table" : "Message",
+         "id" : "daemon_activity_on_descriptor",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]:",
+         "table" : "Message",
+         "id" : "empty_line",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"slapd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"daemon: epoll: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "daemon_epoll",
+         "taxonomy" : "Application",
+         "loglevel" : "Debug"
+      }
+   ],
+   "website" : "http://www.openldap.org",
+   "version" : "201304040007",
+   "name" : "Ldap",
+   "description" : "Ldap Service"
+}

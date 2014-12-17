@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "[build Hook]"
+echo "Nothing to do..."

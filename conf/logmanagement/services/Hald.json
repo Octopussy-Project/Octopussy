@@ -1,0 +1,29 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"hald\"):daemon@>: <@REGEXP(\"mounted .+ on behalf of uid \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "mounted_by_uid",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"hald\"):daemon@>: <@REGEXP(\"unmounted .+ from .+ on behalf of uid \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "unmounted_by_uid",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"hald\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+attempting to.+unmount.+as enclosing drive was disconnected\"):msg@>",
+         "table" : "Message",
+         "id" : "attempting_to_unmount_as_enclosing_drive_was_disconnected",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://freedesktop.org/wiki/Software/hal",
+   "version" : "201002180004",
+   "name" : "Hald",
+   "description" : "Hardware Abstraction Layer Service"
+}

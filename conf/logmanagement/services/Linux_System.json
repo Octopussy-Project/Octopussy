@@ -1,0 +1,589 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\".*session opened for user .+\"):msg@>",
+         "table" : "Message",
+         "id" : "session_opened_for_user",
+         "taxonomy" : "Access.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\".*session closed for user \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "session_closed_for_user",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]:<@REGEXP(\".+check pass; user unknown\"):msg@> ",
+         "table" : "Message",
+         "id" : "check_pass_user_unknown",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_authenticate: Authentication failure\"):msg@> ",
+         "table" : "Message",
+         "id" : "su_pam_authentication_failure",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"udev\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"removing device node .+\"):msg@>",
+         "table" : "Message",
+         "id" : "removing_device_node",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"-- MARK --\"):msg@>",
+         "table" : "Message",
+         "id" : "mark",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\"new user: name=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "new_user",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]:<@REGEXP(\".* password changed for \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "password_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\".*authentication failure; logname=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "authentication_failure",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@STRING:NULL@>[<@PID:pid@>]: <@REGEXP(\"DIALUP AT .+\"):msg@>",
+         "table" : "Message",
+         "id" : "dialup_at",
+         "taxonomy" : "Access",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"passwd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ Password for \\S+ was changed\"):msg@>",
+         "table" : "Message",
+         "id" : "password_was_changed",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"chfn\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"changed user \\S+ information\"):msg@>",
+         "table" : "Message",
+         "id" : "changed_user_info",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:groupadd|useradd|adduser)\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"new group: name=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "new_group",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslogd\"):daemon@> <@WORD:NULL@>: <@REGEXP(\"restart\"):msg@>. ",
+         "table" : "Message",
+         "id" : "syslogd_restart",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"shutdown\"):daemon@>: <@REGEXP(\"shutting down for system halt\"):msg@>",
+         "table" : "Message",
+         "id" : "system_halt",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Emergency"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslog\"):daemon@>: <@REGEXP(\"\\S+ startup succeeded\"):msg@>",
+         "table" : "Message",
+         "id" : "syslog_startup_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"userdel\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"delete user .+\"):msg@>",
+         "table" : "Message",
+         "id" : "userdel_delete_user",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"userdel\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"removed group .+ owned by .+\"):msg@>",
+         "table" : "Message",
+         "id" : "userdel_removed_group",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"usermod\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"change user .+ password\"):msg@>",
+         "table" : "Message",
+         "id" : "usermod_change_user_password",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"gpasswd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"set members of \\w+ to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "set_members_to",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\".+ startup succeeded\"):msg@> ",
+         "table" : "Message",
+         "id" : "daemon_startup_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>: <@REGEXP(\".+ shutdown succeeded\"):msg@>  ",
+         "table" : "Message",
+         "id" : "daemon_shutdown_succeeded",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"FAILED su for \\S+ by \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "failed_su",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"network\"):daemon@>: <@REGEXP(\"Bringing up interface \\S+:  succeeded\"):msg@>",
+         "table" : "Message",
+         "id" : "bringing_up_interface",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:atd|login|su)\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*session closed for user \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "any_session_closed",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"login\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"FAILED LOGIN .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "failed_login",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Successful su for \\S+ by \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "successful_su",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\+ \\?\\?\\? \\S+:\\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "su_something",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:groupdel|userdel)\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"remove group `.+'\"):msg@>",
+         "table" : "Message",
+         "id" : "groupdel_userdel_remove_group",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"\\S \\S*pts\\S* \\S+:\\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "su_pts_something",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"init\"):daemon@>: <@REGEXP(\"Trying to re-exec init\"):msg@>",
+         "table" : "Message",
+         "id" : "trying_reexec_init",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@>  -- <@WORD:NULL@>[<@PID:pid@>]: <@REGEXP(\".*LOGIN ON .+\"):msg@> ",
+         "table" : "Message",
+         "id" : "login_on",
+         "taxonomy" : "Auth.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:passwd|su)\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*could not recover authentication token\"):msg@>",
+         "table" : "Message",
+         "id" : "any_recover_authentication_token",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"syslogd\"):daemon@> <@REGEXP(\".+: restart.*remote reception.*\"):msg@>",
+         "table" : "Message",
+         "id" : "syslog_restart",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"chage\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"changed password expiry .+\"):msg@>",
+         "table" : "Message",
+         "id" : "change_password_expiry",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"shutdown\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"shutting down for system .+\"):msg@>",
+         "table" : "Message",
+         "id" : "shutdown",
+         "taxonomy" : "System",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"pam_.+: Permission denied\"):msg@> ",
+         "table" : "Message",
+         "id" : "pam_permission_denied",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:ls|login|su)\"):daemon@>: <@REGEXP(\"\\w+_ldap: .+ Can't contact LDAP server\"):msg@>",
+         "table" : "Message",
+         "id" : "any_cant_contact_ldap",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\"ROOT LOGIN .+\"):msg@>",
+         "table" : "Message",
+         "id" : "root_login_on",
+         "taxonomy" : "Access.Success",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"VFS\"):daemon@>: <@REGEXP(\"busy inodes on changed media.\"):msg@> ",
+         "table" : "Message",
+         "id" : "vfs_busy_inodes",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\".+ RADIUS server .+ failed to respond\"):msg@> ",
+         "table" : "Message",
+         "id" : "radius_server_failed_respond",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\".*bad username .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bad_username",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"network\"):daemon@>: <@REGEXP(\"Shutting down interface .+\"):msg@>",
+         "table" : "Message",
+         "id" : "shutting_down_interface",
+         "taxonomy" : "Network",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"login\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"User not known to the underlying authentication module\"):msg@> ",
+         "table" : "Message",
+         "id" : "login_underlying_authentication_module",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"shutdown\"):daemon@>: <@REGEXP(\"shutting down for system reboot\"):msg@>",
+         "table" : "Message",
+         "id" : "shutdown_reboot",
+         "taxonomy" : "System",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Unknown UID: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "su_unknown_uid",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"FAILED su for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "su_failed",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"login\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*could not identify user .+\"):msg@>",
+         "table" : "Message",
+         "id" : "could_not_identify_user",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logrotate\"):daemon@>: <@REGEXP(\"ALERT exited abnormally with.+\"):msg@>",
+         "table" : "Message",
+         "id" : "logrotate_exited_abnormally",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"inetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: Address already in use\"):msg@> ",
+         "table" : "Message",
+         "id" : "inetd_address_already_used",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"inetd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ server failing \\(looping\\), service terminated\"):msg@>",
+         "table" : "Message",
+         "id" : "inetd_service_terminated",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"LOGIN: Starting \\w+\"):msg@>",
+         "table" : "Message",
+         "id" : "login_starting_module",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"login\"):daemon@>: <@REGEXP(\"Authentication service cannot retrieve authentication info.\"):msg@> ",
+         "table" : "Message",
+         "id" : "cannot_retrieve_authentication_info",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM adding faulty module: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "supam_adding_faulty_module",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ls: nss_ldap: could not search LDAP server - Server is unavailable\"):msg@> ",
+         "table" : "Message",
+         "id" : "ls_couldnt_search_ldap",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"PAM unable to dlopen.+\"):msg@>",
+         "table" : "Message",
+         "id" : "su_pam_unable_dlopen",
+         "taxonomy" : "System.Errors",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@WORD:daemon@>[<@PID:pid@>]: <@REGEXP(\".*could not identify .+\"):msg@>",
+         "table" : "Message",
+         "id" : "could_not_identify",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"fsck\"):daemon@>: <@REGEXP(\".*has gone \\d+ days without being checked.*\"):msg@>",
+         "table" : "Message",
+         "id" : "fsck_days_without_checked",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"login.*\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+ ignoring max retries.+\"):msg@>",
+         "table" : "Message",
+         "id" : "login_ignoring_max_retries",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"userdel\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"delete .+ from .*group .+\"):msg@>",
+         "table" : "Message",
+         "id" : "delete_user_from_group",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*password for user \\w+ will expire in \\d+ days\"):msg@>",
+         "table" : "Message",
+         "id" : "password_will_expire",
+         "taxonomy" : "System",
+         "loglevel" : "Critical"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"passwd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"password for \\S+ changed by \\S+\"):msg@> ",
+         "table" : "Message",
+         "id" : "password_changed_by",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"passwd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*new password not acceptable\"):msg@> ",
+         "table" : "Message",
+         "id" : "new_password_not_acceptable",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"init\"):daemon@>: <@REGEXP(\"no more processes left in this runlevel\"):msg@>",
+         "table" : "Message",
+         "id" : "init_system_stop",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"[-+] tty\\d+ \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "tty",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"init\"):daemon@>: <@REGEXP(\"Re-reading inittab\"):msg@>",
+         "table" : "Message",
+         "id" : "init_rereading_inittab",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>: <@REGEXP(\".+ session closed for user \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "session_closed_for_user2",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>: <@REGEXP(\".*session opened for user .+\"):msg@>",
+         "table" : "Message",
+         "id" : "session_opened_for_user2",
+         "taxonomy" : "Access.Success",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"udevd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"add_to_rules: unknown key '.+' in .+\"):msg@>",
+         "table" : "Message",
+         "id" : "udevd_unknown_key",
+         "taxonomy" : "Config.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"usermod\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"add .+ to group .+\"):msg@>",
+         "table" : "Message",
+         "id" : "usermod_add_to_group",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"passwd\"):daemon@>:<@REGEXP(\".* password changed for \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "password_changed2",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logrotate\"):daemon@>: <@REGEXP(\".+logrotate\\.d\\/mysql failed.+\"):msg@>",
+         "table" : "Message",
+         "id" : "logrotate_mysql_failed",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logrotate\"):daemon@>: <@REGEXP(\".+acount is protected by password.\"):msg@>",
+         "table" : "Message",
+         "id" : "logrotate_acount_protected_by_password",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logrotate\"):daemon@>: <@REGEXP(\"See comments in .+ on how to fix this\"):msg@>",
+         "table" : "Message",
+         "id" : "logrotate_see_comments_how_to_fix",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logrotate\"):daemon@>: <@REGEXP(\"error: .Access denied for user .+\"):msg@>",
+         "table" : "Message",
+         "id" : "logrotate_access_denied_for_user",
+         "taxonomy" : "Access.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logrotate\"):daemon@>: <@REGEXP(\"error: error running .+ postrotate script for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "logrotate_running_postrotate_script_error",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"logrotate\"):daemon@>: <@REGEXP(\".+ connect to server at .+ failed\"):msg@>",
+         "table" : "Message",
+         "id" : "logrotate_server_connection_failed",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"checkproc\"):daemon@>: <@REGEXP(\"checkproc: can not get session id for process .+\"):msg@>",
+         "table" : "Message",
+         "id" : "checkproc_can_not_get_session_id_for_process",
+         "taxonomy" : "System",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"(?:groupadd|useradd|adduser)\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"account already exists - account=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "account_already_exists",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\".+\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"group already exists - group=.+\"):msg@>",
+         "table" : "Message",
+         "id" : "group_already_exists",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"su\"):daemon@>: <@REGEXP(\"\\(to .+\\) .+ on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "su",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"kcheckpass\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Authentication failure for .+ \\(invoked by uid \\d+\\)\"):msg@>",
+         "table" : "Message",
+         "id" : "kcheckpass_auth_failure",
+         "taxonomy" : "Auth.Failure",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"groupadd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"group added to .+\"):msg@>",
+         "table" : "Message",
+         "id" : "group_added_to",
+         "taxonomy" : "Config.Changes",
+         "loglevel" : "Warning"
+      }
+   ],
+   "version" : "201208090002",
+   "name" : "Linux_System",
+   "description" : "Linux System Service"
+}

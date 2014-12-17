@@ -1,0 +1,85 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"client connected.+\"):msg@>",
+         "table" : "Message",
+         "id" : "client_connected",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"client.+ has disconnected\"):msg@>",
+         "table" : "Message",
+         "id" : "client_has_disconnected",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\".+ rule loaded\"):msg@>",
+         "table" : "Message",
+         "id" : "rule_loaded",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"exiting\"):msg@>",
+         "table" : "Message",
+         "id" : "exiting",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"received event .+\"):msg@>",
+         "table" : "Message",
+         "id" : "received_event",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"notifying client .+\"):msg@>",
+         "table" : "Message",
+         "id" : "notifying_client",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"completed event .+\"):msg@>",
+         "table" : "Message",
+         "id" : "completed_event",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"executing action .+\"):msg@>",
+         "table" : "Message",
+         "id" : "executing_action",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"action exited with status.+\"):msg@>",
+         "table" : "Message",
+         "id" : "action_exited_with_status",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"starting up with .+\"):msg@>",
+         "table" : "Message",
+         "id" : "starting_up_with",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"acpid\"):daemon@>: <@REGEXP(\"waiting for events: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "waiting_for_events",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "http://sourceforge.net/projects/acpid/",
+   "version" : "201208090003",
+   "name" : "ACPI",
+   "description" : "ACPI Service"
+}

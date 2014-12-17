@@ -1,0 +1,50 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"connection from .+ at .+\"):msg@>",
+         "table" : "Message",
+         "id" : "connection_from",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"FTP LOGIN FROM .+\"):msg@>",
+         "table" : "Message",
+         "id" : "ftp_login_from",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".*Couldn't open \\/etc\\/ftpusers\"):msg@>",
+         "table" : "Message",
+         "id" : "couldnt_open_etc_ftpusers",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: Transport endpoint is not connected\"):msg@>",
+         "table" : "Message",
+         "id" : "transport_endpoint_not_connected",
+         "taxonomy" : "Network.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\".+: conversation failed\"):msg@>",
+         "table" : "Message",
+         "id" : "conversation_failed",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"ftpd\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"User \\S+ timed out after \\d+ seconds.*\"):msg@>",
+         "table" : "Message",
+         "id" : "user_timed_out",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "200907030001",
+   "name" : "Ftpd",
+   "description" : "FTP Daemon Service"
+}

@@ -1,0 +1,36 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"audispd\"):daemon@>: <@REGEXP(\"max_restarts_parser called with: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "max_restarts_parser_called_with",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"audispd\"):daemon@>: <@REGEXP(\"priority_boost_parser called with: \\d+\"):msg@>",
+         "table" : "Message",
+         "id" : "priority_boost_parser_called_with",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"audispd\"):daemon@>: <@REGEXP(\".+ plugin initialized\"):msg@>",
+         "table" : "Message",
+         "id" : "plugin_initialized",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"audispd\"):daemon@>: <@REGEXP(\"audispd initialized with q_depth=\\d+ and \\d+ active plugins\"):msg@>",
+         "table" : "Message",
+         "id" : "audispd_initialized_with_q_depth_and_active_plugins",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201004300005",
+   "name" : "Audispd",
+   "description" : "Audit Event Multiplexor Service"
+}

@@ -1,0 +1,39 @@
+{
+   "fields" : [
+      {
+         "name" : "datetime",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "device",
+         "type" : "STRING"
+      },
+      {
+         "name" : "filedate",
+         "type" : "DATETIME"
+      },
+      {
+         "name" : "module",
+         "type" : "STRING"
+      },
+      {
+         "name" : "nb_events",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "seconds",
+         "type" : "NUMBER"
+      },
+      {
+         "name" : "server",
+         "type" : "STRING"
+      },
+      {
+         "name" : "service",
+         "type" : "STRING"
+      }
+   ],
+   "version" : "200608020001",
+   "name" : "Octopussy",
+   "description" : "Octopussy Table"
+}

@@ -1,0 +1,57 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"incrond\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"loading \\S+ tables\"):msg@>",
+         "table" : "Message",
+         "id" : "loading_tables",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"incrond\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"table for user \\S+ changed, reloading\"):msg@>",
+         "table" : "Message",
+         "id" : "table_changed_reloading",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"incrond\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"cannot create watch for .+\"):msg@>",
+         "table" : "Message",
+         "id" : "cannot_create_watch",
+         "taxonomy" : "Application.Errors",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"incrond\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"starting service.*\"):msg@>",
+         "table" : "Message",
+         "id" : "starting_service",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"incrond\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"ready to process filesystem events\"):msg@>",
+         "table" : "Message",
+         "id" : "ready_process_filesystem_events",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"incrond\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"stopping service\"):msg@>",
+         "table" : "Message",
+         "id" : "stopping_service",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"incrond\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"loading table for user \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "loading_table_for_user",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "200908070008",
+   "name" : "Incron",
+   "description" : "Incron Service"
+}

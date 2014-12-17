@@ -1,0 +1,170 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*usb-storage: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "storage_info",
+         "taxonomy" : "System",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*USB Mass Storage support registered.*\"):msg@>",
+         "table" : "Message",
+         "id" : "support_registered",
+         "taxonomy" : "System",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: new .+ USB device using .+\"):msg@>",
+         "table" : "Message",
+         "id" : "new_device_using",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: Cannot enable port \\d+.  Maybe the USB cable is bad.+\"):msg@> ",
+         "table" : "Message",
+         "id" : "maybe_usb_cable_bad",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Warning"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: USB disconnect, address \\d+\"):msg@> ",
+         "table" : "Message",
+         "id" : "disconnect",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Notice"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*usb .+: configuration #\\d+ chosen from \\d+ choice.*\"):msg@>",
+         "table" : "Message",
+         "id" : "configuration_chosen",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*usbcore: registered new driver .+\"):msg@>",
+         "table" : "Message",
+         "id" : "usbcore_registered_new_driver",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*scsi\\d+ : SCSI emulation for USB Mass Storage devices\"):msg@>",
+         "table" : "Message",
+         "id" : "scsi_emulation_mass_storage",
+         "taxonomy" : "System.Boot",
+         "loglevel" : "Debug"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+: New USB device .+\"):msg@>",
+         "table" : "Message",
+         "id" : "new_usb_device",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*hub .+: USB hub found\"):msg@>",
+         "table" : "Message",
+         "id" : "usb_hub_found",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".*hub .+: \\d+ ports detected\"):msg@>",
+         "table" : "Message",
+         "id" : "ports_detected",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Product: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "product",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Manufacturer: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "manufacturer",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ SerialNumber: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "serialnumber",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ scsi .+ Direct-Access.+\"):msg@>",
+         "table" : "Message",
+         "id" : "scsi_direct_access",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Attached scsi .+\"):msg@>",
+         "table" : "Message",
+         "id" : "attached_scsi",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+byte logical blocks.+\"):msg@>",
+         "table" : "Message",
+         "id" : "logical_blocks",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Write Protect is .+\"):msg@>",
+         "table" : "Message",
+         "id" : "write_protect_status",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Mode Sense: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "mode_sense",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Assuming drive cache: write through\"):msg@>",
+         "table" : "Message",
+         "id" : "assuming_drive_cache_write_through",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ Attached .+ removable disk\"):msg@>",
+         "table" : "Message",
+         "id" : "attached_removable_disk",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+ bread failed in .+\"):msg@>",
+         "table" : "Message",
+         "id" : "bread_failed",
+         "taxonomy" : "Hardware",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> kernel: <@REGEXP(\".+sd.: sd.+\"):msg@>",
+         "table" : "Message",
+         "id" : "sd",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "website" : "",
+   "version" : "201004300006",
+   "name" : "Linux_Kernel_USB",
+   "description" : "Linux Kernel USB Service"
+}

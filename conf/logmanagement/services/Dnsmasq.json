@@ -1,0 +1,43 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"started, version .+\"):msg@>",
+         "table" : "Message",
+         "id" : "started",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"compile time options: .+\"):msg@>",
+         "table" : "Message",
+         "id" : "compile_time_options",
+         "taxonomy" : "Application.Start",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"no servers found in .+\"):msg@>",
+         "table" : "Message",
+         "id" : "no_servers_found",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"read /etc/hosts - \\d+ addresses\"):msg@>",
+         "table" : "Message",
+         "id" : "read_etc_host_addresses",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"dnsmasq\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"exiting on receipt of \\w+\"):msg@>",
+         "table" : "Message",
+         "id" : "exiting_on_receipt_signal",
+         "taxonomy" : "Application.Stop",
+         "loglevel" : "Notice"
+      }
+   ],
+   "website" : "",
+   "version" : "200902130003",
+   "name" : "Dnsmasq",
+   "description" : "Lightweight DHCP and caching DNS server Service"
+}

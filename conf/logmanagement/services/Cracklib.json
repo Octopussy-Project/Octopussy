@@ -1,0 +1,21 @@
+{
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cracklib:.+updated dictionary.+\"):msg@>",
+         "table" : "Message",
+         "id" : "updated_dictionary",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"cracklib: no dictionary update necessary.\"):msg@>",
+         "table" : "Message",
+         "id" : "no_dictionary_update_necessary",
+         "taxonomy" : "Application",
+         "loglevel" : "Information"
+      }
+   ],
+   "version" : "200812170003",
+   "name" : "Cracklib",
+   "description" : "Pro-active password checker library"
+}

@@ -1,0 +1,57 @@
+{
+   "icon" : "operating_systems/os_linux_generic",
+   "messages" : [
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Job .+ started\"):msg@>",
+         "table" : "Message",
+         "id" : "job_started",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Job .+ terminated.*\"):msg@>",
+         "table" : "Message",
+         "id" : "job_terminated",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Updated timestamp for job `\\S+' to \\S+\"):msg@>",
+         "table" : "Message",
+         "id" : "updated_timestamp_for_job",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Normal exit .+\"):msg@>",
+         "table" : "Message",
+         "id" : "normal_exit",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Jobs will be executed sequentially\"):msg@>",
+         "table" : "Message",
+         "id" : "jobs_executed_sequentially",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Will run job .+ in .+\"):msg@>",
+         "table" : "Message",
+         "id" : "will_run_job",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      },
+      {
+         "pattern" : "<@DATE_TIME_ISO:datetime@> <@WORD:device@> <@REGEXP(\"anacron\"):daemon@>[<@PID:pid@>]: <@REGEXP(\"Anacron .+ started on .+\"):msg@>",
+         "table" : "Message",
+         "id" : "started_on",
+         "taxonomy" : "System",
+         "loglevel" : "Information"
+      }
+   ],
+   "version" : "200905180003",
+   "name" : "Anacron",
+   "description" : "Anacron Service"
+}
