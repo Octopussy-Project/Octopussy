@@ -28,8 +28,6 @@ severity = 5
 # 'exclude_functions' option not available on Debian package :(
 [-InputOutput::RequireCheckedSyscalls]
 
-[-Miscellanea::RequireRcsKeywords]
-
 # I don't want a $VERSION in each module
 [-Modules::RequireVersionVar]
 
