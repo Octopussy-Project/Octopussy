@@ -1,3 +1,4 @@
+package AAT::Download;
 
 =head1 NAME
 
@@ -5,12 +6,11 @@ AAT::Download - AAT Download module
 
 =cut
 
-package AAT::Download;
-
 use strict;
 use warnings;
 
 use LWP;
+use Path::Tiny;
 
 use AAT::Proxy;
 use AAT::Syslog;
@@ -42,7 +42,7 @@ sub File
     my $res = $ua->request($req);
     if ($res->is_success)
     {
-
+		path($dest)->parent->mkpath;
         if (defined open(my $FILE, '>', $dest))
         {
             print $FILE $res->content;

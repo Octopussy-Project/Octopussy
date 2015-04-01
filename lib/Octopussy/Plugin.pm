@@ -7,7 +7,6 @@ Octopussy::Plugin - Octopussy Plugin module
 =cut
 
 use strict;
-no strict 'refs';
 use warnings;
 
 use File::Slurp;
@@ -44,7 +43,8 @@ BEGIN
             {
                 my $file_module = "$1$2";
                 eval {
-                    require $file_module;    ## no critic
+					no strict 'refs';	## no critic (strict)
+                    require $file_module;
                     1;
                 }
                     or do
@@ -98,6 +98,7 @@ sub Init
         {
             my $func = 'Octopussy::Plugin::' . $1 . '::Init';
             $done{$1} = 1;
+			no strict 'refs';	## no critic (strict)
             &{$func}($conf);
         }
     }
