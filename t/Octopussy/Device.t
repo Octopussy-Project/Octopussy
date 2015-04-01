@@ -36,6 +36,8 @@ my $NB_MIN_SELECT_MODELS = 14;
 
 require_ok('Octopussy::Device');
 
+rmtree $DIR_DEVICES;
+
 Octopussy::Device::New(
     {
         name    => "${PREFIX}device",

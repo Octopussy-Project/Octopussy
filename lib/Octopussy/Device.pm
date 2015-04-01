@@ -279,6 +279,8 @@ Gets the configuration for devices filtered by DeviceType/Model
 sub Filtered_Configurations
 {
     my ($type, $model, $sort) = @_;
+
+	$sort ||= 'name';
     my (@configurations, @sorted_configurations) = ((), ());
     my @devices = List();
 
