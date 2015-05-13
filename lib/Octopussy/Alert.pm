@@ -392,12 +392,16 @@ sub From_Device
 
 Substitute reserved words 
 	__device__, __device.name__
-	__device.type__, __device.model__
-	__device.location.city__, __device.location.building__
-	__device.location.room__, __device.location.rack__
-	 __alert__, __alert.name__
+	__device.type__
+	__device.model__
+	__device.location.city__ 
+	__device.location.building__
+	__device.location.room__
+	__device.location.rack__
+	__alert__, __alert.name__
 	__level__, __alert.level__
-	__log__, __field_<name>__ 
+	__log__
+	__field_<name>__ 
 by its field value
 
 =cut
@@ -406,23 +410,23 @@ sub Message_Replace
 {
     my ($str, $alert, $devicename, $line, $field) = @_;
 
-	my $conf_device = Octopussy::Device::Configuration($devicename);
-	if (defined $devicename)
-	{
-    	$str =~ s/__device(\.name)?__/$devicename/gi;
-		$str =~ s/__device\.model__/$conf_device->{model}/gi;
-		$str =~ s/__device\.type__/$conf_device->{type}/gi;
-		$str =~ s/__device\.location\.city__/$conf_device->{city}/gi;
-		$str =~ s/__device\.location\.building__/$conf_device->{building}/gi;
-		$str =~ s/__device\.location\.room__/$conf_device->{room}/gi;
-		$str =~ s/__device\.location\.rack__/$conf_device->{rack}/gi;
-	}
-	if (defined $alert)
-	{
-    	$str =~ s/__alert(\.name)?__/$alert->{name}/gi;
-    	$str =~ s/__(alert\.)?level__/$alert->{level}/gi;
+    my $conf_device = Octopussy::Device::Configuration($devicename);
+    if (defined $devicename)
+    {
+        $str =~ s/__device(\.name)?__/$devicename/gi;
+        $str =~ s/__device\.model__/$conf_device->{model}/gi;
+        $str =~ s/__device\.type__/$conf_device->{type}/gi;
+        $str =~ s/__device\.location\.city__/$conf_device->{city}/gi;
+        $str =~ s/__device\.location\.building__/$conf_device->{building}/gi;
+        $str =~ s/__device\.location\.room__/$conf_device->{room}/gi;
+        $str =~ s/__device\.location\.rack__/$conf_device->{rack}/gi;
     }
-	$str =~ s/__log__/$line/gi                if (defined $line);
+    if (defined $alert)
+    {
+        $str =~ s/__alert(\.name)?__/$alert->{name}/gi;
+        $str =~ s/__(alert\.)?level__/$alert->{level}/gi;
+    }
+    $str =~ s/__log__/$line/gi if (defined $line);
     $str =~ s/__field_(\w+)__/$field->{$1}/gi if (defined $field);
 
     return ($str);
