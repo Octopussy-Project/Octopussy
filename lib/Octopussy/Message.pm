@@ -1,11 +1,10 @@
+package Octopussy::Message;
 
 =head1 NAME
 
 Octopussy::Message - Octopussy Message module
 
 =cut
-
-package Octopussy::Message;
 
 use strict;
 use warnings;
@@ -23,7 +22,7 @@ use Octopussy::Type;
 
 my $WIZARD_MAX_SAME_MSG = 100;
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 Configuration($service, $msg_id)
 
@@ -590,11 +589,19 @@ sub Fields_Values
         push @fields, $1 if ($1 !~ /NULL/i);
         $pattern =~ s/.*?(<\@([^\@]+?)\@>)//;
     }
-    my @data = $line =~ /$msg->{re}/;
-    my $last_data = scalar(@data) - 1;
-    foreach my $i (0 .. $last_data) { $field{$fields[$i]} = $data[$i]; }
+	my @lines = split /\n/, $line;
+    foreach my $l (@lines)
+    {
+        if (my @data = $l =~ /$msg->{re}/)
+        {
+            my $last_data = scalar(@data) - 1;
+            foreach my $i (0 .. $last_data) { $field{$fields[$i]} = $data[$i]; }
 
-    return (%field);
+            return (%field);
+        }
+    }
+
+    return (undef);
 }
 
 =head2 Regexped_Fields($query)
