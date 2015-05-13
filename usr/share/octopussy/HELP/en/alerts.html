@@ -25,9 +25,15 @@ Alerts will be colored respectively in <font color="orange">Orange</font> and <f
 <br>
 In '<b>Subject</b>' and '<b>Body</b>' fields, you can add some predefined words:
 <ul>
-<li><b>__device__</b> will be replaced by the device that sends log that raise this alert.</li>
-<li><b>__alert__</b> will be replaced by the alert name of this alert.</li>
-<li><b>__level__</b> will be replaced by the alert level of this alert.</li>
+<li><b>__device.name__</b> or <b>__device__</b> will be replaced by the device that sends log that raise this alert.</li>
+<li><b>__device.type__</b> will be replaced by the type of the device that sends log that raise this alert.</li>
+<li><b>__device.model__</b> will be replaced by the model of the device that sends log that raise this alert.</li>
+<li><b>__device.location.city__</b> will be replaced by the city location of the device that sends log that raise this alert.</li>
+<li><b>__device.location.building__</b> will be replaced by the building location of the device that sends log that raise this alert.</li>
+<li><b>__device.location.room__</b> will be replaced by the room location of the device that sends log that raise this alert.</li>
+<li><b>__device.location.rack__</b> will be replaced by the rack location of the device that sends log that raise this alert.</li>
+<li><b>__alert.name__</b> or <b>__alert__</b> will be replaced by the alert name of this alert.</li>
+<li><b>__alert.level__</b> or <b>__level__</b> will be replaced by the alert level of this alert.</li>
 <li><b>__log__</b> will be replaced by the log line that raise this alert.</li>
 <li><b>__field_<i>fieldname</i>__</b> will be replaced by the value of the field 'fieldname' of the log line.</li>
 </ul>
