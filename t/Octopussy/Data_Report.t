@@ -9,8 +9,8 @@ t/Octopussy/Data_Report.t - Test Suite for Octopussy::Data_Report module
 use strict;
 use warnings;
 
-use File::Path;
 use FindBin;
+use Path::Tiny;
 use Test::More;
 
 use lib "$FindBin::Bin/../../lib";
@@ -28,18 +28,19 @@ my $DATA_REPORT      = "${PREFIX}Data_Report";
 
 # create fake Data Reports
 my $dir = "$DIR_DATA_REPORTS$DATA_REPORT/";
-rmtree($dir);
+path($dir)->remove_tree({ safe => 0 });
 
 require_ok('Octopussy::Data_Report');
 
 my @list1 = Octopussy::Data_Report::Type_List();
 
-mkpath($dir);
+path($dir)->mkpath;
 system "touch $dir${DATA_REPORT}-20100120-2000.html";
 system "touch $dir${DATA_REPORT}-20100130-2000.html";
 system "touch $dir${DATA_REPORT}-20100210-2000.html";
 
 my @list2 = Octopussy::Data_Report::Type_List();
+
 cmp_ok(
     scalar @list1 + 1,
     '==',
@@ -72,7 +73,7 @@ ok($pattern eq $dir && !-f "$dir${DATA_REPORT}-20100210-2000.html",
     'Octopussy::Data_Report::Remove_All()');
 
 # Make sure we destroy all the stuff we created with these tests
-rmtree($dir);
+path($dir)->remove_tree;
 
 done_testing(1 + 5);
 

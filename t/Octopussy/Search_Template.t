@@ -73,6 +73,11 @@ ok(
     'Octopussy::Search_Template::List_Any_User()'
   );
 
+use Data::Printer;
+
+p @list2;
+p @list3;
+
 my $tconf = Octopussy::Search_Template::Configuration($USER, $SRCH_TPL_TITLE);
 ok($tconf->{begin} eq $BEGIN_TPL && $tconf->{end} eq $END_TPL,
     'Octopussy::Search_Template::Configuration()');

@@ -15,6 +15,10 @@ use Test::More;
 
 use lib "$FindBin::Bin/../../lib";
 
+use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+
 use AAT::XML;
 
 my $DIR_LISTS   = "$FindBin::Bin/../../usr/share/aat/Lists/";

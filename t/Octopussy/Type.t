@@ -1,8 +1,14 @@
 #!/usr/bin/perl
 
+=encoding utf8
+
 =head1 NAME
 
-t/Octopussy/Type.t - Test Suite for Octopussy::Type module
+t/Octopussy/Type.t
+
+=head1 DESCRIPTION
+
+Test Suite for Octopussy::Type module
 
 =cut
 
@@ -130,10 +136,14 @@ cmp_ok($re_ip_addr, 'eq', $RE_IP_ADDR,
 my $re_undef = Octopussy::Type::Regexp('INVALID_TYPE');
 ok(!defined $re_undef, "Octopussy::Type::Regexp('INVALID_TYPE') => undef");
 
-done_testing(1 + 5 + 1 + 4 + 6 + 1 + 3);
+my $re_hexa_number = Octopussy::Type::Regexp('HEXA_NUMBER');
+ok('0x12a3' =~ /^$re_hexa_number$/, "Octopussy::Type::Regexp('HEXA_NUMBER') matches '0x12a3'");
+ok('0x12A3' =~ /^$re_hexa_number$/, "Octopussy::Type::Regexp('HEXA_NUMBER') matches '0x12A3'"); 
+
+done_testing(1 + 5 + 1 + 4 + 6 + 1 + 3 + 2);
 
 =head1 AUTHOR
 
-Sebastien Thebert <octopussy@onetool.pm>
+Sébastien Thébert <octopussy@onetool.pm>
 
 =cut

@@ -73,6 +73,8 @@ cmp_ok(
     'Octopussy::Report::Configuration()'
 );
 
+sleep 3;
+
 $conf{description} = "${PREFIX}report New Description";
 Octopussy::Report::Modify($REPORT_TITLE, \%conf);
 $conf = Octopussy::Report::Configuration($REPORT_TITLE);

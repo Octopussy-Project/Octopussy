@@ -86,7 +86,7 @@
    	sql_type="VARCHAR(16)"
    	color="brown" />
 	<type type_id="HEXA_NUMBER" 
-		re="0x[0-9A-F]+" 
+		re="0x[0-9a-fA-F]+" 
 		simple_type="HEXA_NUMBER"
 		sql_type="VARCHAR(16)"
    	color="blue" />
