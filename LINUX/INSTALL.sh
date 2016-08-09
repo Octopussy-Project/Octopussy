@@ -28,7 +28,7 @@ DIR_PERL=`perl -MConfig -e 'print $Config::Config{installsitelib}'`;
 #
 # Display information (requirements, ...)
 #
-$CAT README.txt
+$CAT LINUX/README.txt
 sleep 2
 
 #
@@ -72,7 +72,7 @@ $MKDIR /var/run/$OCTO/
 # Copy Files
 #
 $ECHO "Copying directories & files..."
-$CP -r --preserve=mode usr/sbin/* /usr/sbin/
+$CP -r --preserve=mode bin/* /usr/sbin/
 $CHOWN /usr/sbin/octo* || true
 $CP -r etc/* /etc/
 $CP -r usr/share/$AAT/* /usr/share/$AAT/
@@ -80,7 +80,7 @@ $CP -r usr/share/$OCTO/* /usr/share/$OCTO/
 $CHOWN /etc/$AAT/ /etc/$OCTO/ /usr/share/$AAT/ /usr/share/$OCTO/ || true
 $CP -r var/lib/$OCTO/* /var/lib/$OCTO/
 $CHOWN /var/lib/$OCTO/ /var/run/$AAT/ /var/run/$OCTO/ || true
-$CP -r usr/share/perl5/AAT* usr/share/perl5/Octo* $DIR_PERL/
+$CP -r lib/AAT* lib/Octo* $DIR_PERL/
 $CHMOD_R $DIR_PERL/AAT.pm $DIR_PERL/Octopussy.pm
 $FIND $DIR_PERL/AAT/ -name *.pm -exec $CHMOD_R {} \;
 $FIND $DIR_PERL/Octopussy/ -name *.pm -exec $CHMOD_R {} \;
@@ -124,6 +124,10 @@ $MKDIR /var/lib/$OCTO/rrd_png/
 $CHOWN /var/lib/$OCTO/rrd_png/
 $LN /var/lib/$OCTO/rrd_png/ /usr/share/$OCTO/rrd 
 
+# Patch Apache::ASP::StateManager for HttpOnly cookie flag
+file_to_patch=$( find / -name StateManager.pm | grep "Apache/ASP" )
+patch $file_to_patch < LINUX/apache-asp-statemanager.patch
+
 #
 # Octopussy FIFO creation (for Rsyslog)
 #
@@ -136,7 +140,7 @@ $CHOWN $DIR_FIFO
 # Create Octopussy MySQL Database with file 'OCTOPUSSY.sql'
 #
 $ECHO "Preparing MySQL Database..."
-/usr/bin/mysql -u root -p < OCTOPUSSY.sql
+/usr/bin/mysql -u root -p < LINUX/OCTOPUSSY.sql
 
 #
 # Generates Certificate for Octopussy WebServer
