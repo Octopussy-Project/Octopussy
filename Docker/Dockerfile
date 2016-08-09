@@ -1,36 +1,66 @@
-FROM debian:squeeze
+FROM debian:7
 
 MAINTAINER Sebastien Thebert <stt@octopussy.pm>
 
 EXPOSE 8888
 
 RUN \
-    echo "deb http://ftp.fr.debian.org/debian/ squeeze non-free" >> /etc/apt/sources.list && \
-    echo "deb-src http://ftp.fr.debian.org/debian/ squeeze non-free" >> /etc/apt/sources.list && \
-	apt-get update && \
-    apt-get install --force-yes -y \
-	adduser curl debconf apache2 rsyslog nscd perl perl-modules sudo mysql-server \
-    libapache2-mod-perl2 libapache-asp-perl libapp-info-perl libunix-syslog-perl \
-    libxml-simple-perl libcrypt-passwdmd5-perl libdbi-perl libdbd-mysql-perl libsys-cpu-perl \
-    libdate-manip-perl libnet-scp-perl libnet-telnet-perl libnet-xmpp-perl libmail-sender-perl \
-    libnet-ldap-perl librrd4 rrdtool htmldoc liblinux-inotify2-perl libcache-cache-perl \
-    libproc-processtable-perl liburi-perl libproc-pid-file-perl \
-    libwww-perl libjson-perl libreadonly-perl libregexp-assemble-perl liblist-moreutils-perl \
-    libterm-progressbar-perl liblocale-maketext-lexicon-perl libdatetime-format-strptime-perl libfile-slurp-perl
+#    echc "deb http://ftp.fr.debian.org/debian/ squeeze non-free" >> /etc/apt/sources.list && \
+#    echo "deb-src http://ftp.fr.debian.org/debian/ squeeze non-free" >> /etc/apt/sources.list && \
+	apt-get update && apt-get upgrade -y
 
-RUN curl -L -s -o /tmp/Octopussy-1.0.14.tar.gz https://github.com/sebthebert/Octopussy/archive/Octopussy-1.0.14.tar.gz && \
-	cd /tmp && \
-	tar xfz Octopussy-1.0.14.tar.gz
+RUN echo 'mysql-server mysql-server/root_password password octopussy' | debconf-set-selections
+RUN echo 'mysql-server mysql-server/root_password_again password octopussy' | debconf-set-selections
 
-ADD INSTALL.sh /tmp/Octopussy-Octopussy-1.0.14/LINUX/INSTALL.sh
+RUN apt-get install -y mysql-server
 
-ADD octo_docker.sh /usr/sbin/octo_docker.sh
+RUN apt-get install -y \
+	adduser curl debconf apache2 rsyslog nscd perl perl-modules sudo
+    
+RUN apt-get install -y \
+	libapache2-mod-perl2 libapache-asp-perl libapp-info-perl \
+	libunix-syslog-perl libxml-simple-perl libcrypt-passwdmd5-perl 
 
-RUN chmod 755 /usr/sbin/octo_docker.sh
+RUN apt-get install -y \
+	libdbi-perl libdbd-mysql-perl libsys-cpu-perl \
+    	libdate-manip-perl libnet-scp-perl libnet-telnet-perl \
+	libnet-xmpp-perl libemail-sender-perl libnet-ldap-perl 
 
-RUN \
-	cd /tmp/Octopussy-Octopussy-1.0.14/LINUX/ && \
-	chmod 755 *.sh && \
-	./INSTALL.sh
+RUN apt-get install -y \
+	librrd4 rrdtool htmldoc liblinux-inotify2-perl libcache-cache-perl \
+    	libproc-processtable-perl liburi-perl libproc-pid-file-perl \
+    	libwww-perl libjson-perl libreadonly-perl libregexp-assemble-perl 
 
-ENTRYPOINT [ "/usr/sbin/octo_docker.sh" ]
+RUN apt-get install -y \
+	liblist-moreutils-perl libterm-progressbar-perl \
+	liblocale-maketext-lexicon-perl libdatetime-format-strptime-perl \
+	libfile-slurp-perl
+
+RUN mkdir /home/octopussy
+
+# WHATS MISSING
+
+#RUN apt-get install -y libpath-tiny-perl
+#	or cpan Path::Tiny -> apt-get install make
+
+#RUN apt-get install patch
+
+
+
+
+#RUN curl -L -s -o /tmp/Octopussy-1.0.14.tar.gz https://github.com/sebthebert/Octopussy/archive/Octopussy-1.0.14.tar.gz \
+#	&& cd /tmp \ 
+#	&& tar xfz Octopussy-1.0.14.tar.gz
+
+#ADD INSTALL.sh /tmp/Octopussy-Octopussy-1.0.14/LINUX/INSTALL.sh
+
+#ADD octo_docker.sh /usr/sbin/octo_docker.sh
+
+#RUN chmod 755 /usr/sbin/octo_docker.sh
+
+#RUN \
+#	cd /tmp/Octopussy-Octopussy-1.0.14/LINUX/ && \
+#	chmod 755 *.sh && \
+#	./INSTALL.sh
+
+#ENTRYPOINT [ "/usr/sbin/octo_docker.sh" ]
