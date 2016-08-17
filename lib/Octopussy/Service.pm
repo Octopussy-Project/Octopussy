@@ -822,6 +822,32 @@ sub Valid_Name
     return (0);
 }
 
+=head2 Valid_Name_Or_Any($name)
+
+Checks that '$name' is valid for a Service name or is '-ANY-' reserved word
+
+=cut
+
+sub Valid_Name_Or_Any
+{
+    my $name = shift;
+
+    if (ref($name) eq 'ARRAY')
+    {
+        foreach my $n (@{$name})
+        {
+            return (0) if (!Valid_Name_Or_Any($n));
+        }
+        return (1);
+    }
+
+    return (1)
+        if ((NOT_NULL($name))
+        && (($name =~ /^[a-z][a-z0-9_-]*$/i) || (uc($name) eq '-ANY-')));
+
+    return (0);
+}
+
 1;
 
 =head1 AUTHOR

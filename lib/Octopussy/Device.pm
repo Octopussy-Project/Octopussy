@@ -280,7 +280,7 @@ sub Filtered_Configurations
 {
     my ($type, $model, $sort) = @_;
 
-	$sort ||= 'name';
+    $sort ||= 'name';
     my (@configurations, @sorted_configurations) = ((), ());
     my @devices = List();
 
@@ -719,8 +719,8 @@ sub Parse_Status
     if (defined $conf)
     {
         $dir_pid ||= Octopussy::FS::Directory('running');
-        my @files = grep { /^octo_parser_\Q$device\E\.pid$/ } 
-			read_dir($dir_pid, , err_mode => 'quiet');
+        my @files = grep { /^octo_parser_\Q$device\E\.pid$/ }
+            read_dir($dir_pid,, err_mode => 'quiet');
 
         return (
             scalar(@files) > 0 ? 2
@@ -871,6 +871,36 @@ sub Valid_Name
         (NOT_NULL($name))
         && (   ($name =~ /^[a-z0-9][a-z0-9_\.-]*$/i)
             || ($name =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/))
+           );
+
+    return (0);
+}
+
+=head2 Valid_Name_Or_Any($name)
+
+Checks that '$name' is valid for a Device name or is '-ANY-' reserved word
+
+=cut
+
+sub Valid_Name_Or_Any
+{
+    my $name = shift;
+
+    if (ref($name) eq 'ARRAY')
+    {
+        foreach my $n (@{$name})
+        {
+            return (0) if (!Valid_Name_Or_Any($n));
+        }
+        return (1);
+    }
+
+    return (1)
+        if (
+        (NOT_NULL($name))
+        && (   ($name =~ /^[a-z0-9][a-z0-9_\.-]*$/i)
+            || ($name =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)
+            || (uc($name) eq '-ANY-'))
            );
 
     return (0);

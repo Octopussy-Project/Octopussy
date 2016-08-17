@@ -214,7 +214,7 @@ sub Levels
 
 =head2 Valid_Name($name)
 
-Checks that '$name' is valid for an Alert name
+Checks that '$name' is valid for a Loglevel name
 
 =cut
 

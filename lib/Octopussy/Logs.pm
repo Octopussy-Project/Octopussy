@@ -18,9 +18,11 @@ use Octopussy;
 use Octopussy::Device;
 use Octopussy::DeviceGroup;
 use Octopussy::FS;
+use Octopussy::Loglevel;
 use Octopussy::Logs;
 use Octopussy::Service;
 use Octopussy::Storage;
+use Octopussy::Taxonomy;
 
 # Multipliers to get Date Number (YYYYMMDDHHMM)
 my $DIGIT_YEAR  = 100_000_000;
@@ -197,8 +199,10 @@ sub Files_Year_Month_Day
                     {
                         push @files, map {
                             {file => "$y/$m/$d/" . $_, numday => $num_day}
-                            } 
-							grep { /^msg_/ } read_dir("$dir_service/$y/$m/$d", err_mode => 'quiet');
+                            }
+                            grep { /^msg_/ }
+                            read_dir("$dir_service/$y/$m/$d",
+                            err_mode => 'quiet');
                     }
                 }
             }
@@ -446,7 +450,7 @@ sub Get
             while (my $line = <$FILE>)
             {
                 my $match = 1;
-                foreach my $inc (@includes) { $match = 0 if ($line !~ $inc); }
+                foreach my $inc  (@includes) { $match = 0 if ($line !~ $inc); }
                 foreach my $excl (@excludes) { $match = 0 if ($line =~ $excl); }
                 if ($match)
                 {
@@ -622,7 +626,36 @@ Generate Command Line for octo_extractor
 
 sub Extract_Cmd_Line
 {
-    my $conf     = shift;
+    my $conf = shift;
+
+    return undef
+        if (!Octopussy::Device::Valid_Name_Or_Any($conf->{devices}));
+    return undef
+        if (!Octopussy::Service::Valid_Name_Or_Any($conf->{services}));
+
+    my $loglevel = $conf->{loglevel};
+    return undef
+        if (
+        (!defined $loglevel)
+        || (   (!Octopussy::Loglevel::Valid_Name($loglevel))
+            && ($loglevel !~ /^-ANY-$/i))
+           );
+
+    my $taxonomy = $conf->{taxonomy};
+    return undef
+        if (
+        (!defined $taxonomy)
+        || (   (!Octopussy::Taxonomy::Valid_Name($taxonomy))
+            && ($taxonomy !~ /^-ANY-$/i))
+           );
+
+    my ($begin, $end) = ($conf->{begin}, $conf->{end});
+    return undef
+        if ((!defined $begin)
+        || (!defined $end)
+        || ($begin !~ /^\d{12}$/)
+        || ($end !~ /^\d{12}$/));
+
     my @devices  = ARRAY($conf->{devices});
     my @services = ARRAY($conf->{services});
     my $dev_str  = '--device "' . join('" --device "', @devices) . '"';
@@ -630,21 +663,27 @@ sub Extract_Cmd_Line
     my ($incl_str, $excl_str) = ('', '');
     foreach my $inc (ARRAY($conf->{includes}))
     {
-        $inc =~ s/"/\\"/g;
-        $incl_str .= qq[--include "$inc" ] if (NOT_NULL($inc));
+        $incl_str .= qq[--include "] . quotemeta($inc) . qq[" ]
+            if (NOT_NULL($inc));
     }
     foreach my $exc (ARRAY($conf->{excludes}))
     {
-        $exc =~ s/"/\\"/g;
-        $excl_str .= qq[--exclude "$exc" ] if (NOT_NULL($exc));
+        $excl_str .= qq[--exclude "] . quotemeta($exc) . qq[" ]
+            if (NOT_NULL($exc));
     }
     my $cmd =
-          "/usr/sbin/octo_extractor $dev_str $serv_str"
-        . qq[ --loglevel "$conf->{loglevel}" --taxonomy "$conf->{taxonomy}"]
-        . qq[ --msgid "$conf->{msgid}"]
-        . qq[ --begin $conf->{begin} --end $conf->{end} $incl_str $excl_str]
-        . qq[ --pid_param "$conf->{pid_param}" --user "$conf->{user}"]
-        . qq[ --output "$conf->{output}"];
+          qq [/usr/sbin/octo_extractor $dev_str $serv_str]
+        . qq[ --loglevel "$loglevel" --taxonomy "$taxonomy"]
+        . qq[ --msgid "]
+        . quotemeta($conf->{msgid}) . qq["]
+        . qq[ --begin $begin --end $end]
+        . qq[ $incl_str $excl_str]
+        . qq[ --pid_param "]
+        . quotemeta($conf->{pid_param}) . qq["]
+        . qq[ --user "]
+        . quotemeta($conf->{user}) . qq["]
+        . qq[ --output "]
+        . quotemeta($conf->{output}) . qq["];
 
     return ($cmd);
 }
