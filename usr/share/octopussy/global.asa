@@ -59,15 +59,22 @@ Stores all parameters (QueryString & Form) in $Session hash
 =cut
 sub Script_OnStart()
 {
-  my $q = $Request->QueryString();
+	my $q = $Request->QueryString();
 	my $f = $Request->Form();
-  foreach my $k (keys %{$q})
-  {
+
+	if ((keys %{$f}) && 
+	((!defined $f->{CSRFtoken}) || ($f->{CSRFtoken} ne $Session->{CSRFtoken})))
+	{
+		$Response->Redirect("./CSRF.asp");		
+	}	
+
+	foreach my $k (keys %{$q})
+  	{	
 		$k = $1	if ($k =~ /(.{1000}).*/); #(SDBM limited to 1008 bytes key)
 		$Session->{$k} = $q->{$k} if ($k !~ /^AAT_/); 
 	}
 	foreach my $k (keys %{$f})
-  {
+  	{
 		$k = $1 if ($k =~ /(.{1000}).*/); #(SDBM limited to 1008 bytes key)
 		$Session->{$k} = $f->{$k} if ($k !~ /^AAT_/); 
 	}
