@@ -24,6 +24,7 @@ Readonly my $DEFAULT_ROLE      => 'rw';
 Readonly my $DEFAULT_STATUS    => 'Enabled';
 Readonly my $DEFAULT_THEME     => 'DEFAULT';
 
+my $PASSWORD_POLICY_FILE = undef;
 my $ROLES_FILE = undef;
 my $USERS_FILE = undef;
 
@@ -190,6 +191,45 @@ sub Update
     }
 
     return (scalar @users);
+}
+
+=head Check_Password_Rules($appli, $password)
+
+Check that password '$password' matches Password Rules
+
+=cut
+
+sub Check_Password_Rules
+{
+    my ($appli, $password) = @_;
+
+    my @rules = Get_Password_Rules($appli);
+    foreach my $r (@rules)
+    {
+      if ($password !~ $r->{re})
+      {
+        return ({ status => 'KO', error => "Password Policy Rule '$r->{description}' failed" });
+      }
+    }
+
+    return ({status => 'OK'});
+}
+
+=head2 Get_Password_Rules($appli)
+
+Returns Password Rules for application '$appli'
+
+=cut
+
+sub Get_Password_Rules
+{
+	my $appli = shift;
+
+	$PASSWORD_POLICY_FILE ||= AAT::Application::File($appli, 'password_policy');
+	my $conf = AAT::XML::Read($PASSWORD_POLICY_FILE);
+	return ()	if (!defined $conf);
+
+	return (@{$conf->{rule}});
 }
 
 =head2 Restrictions($appli, $login, $type)

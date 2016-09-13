@@ -49,6 +49,7 @@
 		<file name="locations" value="./t/data/conf/locations.xml" />
 		<file name="loglevel" value="./t/data/conf/loglevel.xml" />
 		<file name="nsca" value="./t/data/conf/nsca.xml" />
+		<file name="password_policy" value="./t/data/conf/password_policy.xml" />
 		<file name="proxy" value="./t/data/conf/proxy.xml" />
 		<file name="schedule" value="./t/data/conf/schedule.xml" />
 		<file name="servicegroups" value="./t/data/conf/servicegroups.xml" />

@@ -49,6 +49,7 @@
 		<file name="locations" value="/var/lib/octopussy/conf/locations.xml" />
 		<file name="loglevel" value="/var/lib/octopussy/conf/loglevel.xml" />
 		<file name="nsca" value="/var/lib/octopussy/conf/nsca.xml" />
+		<file name="password_policy" value="/var/lib/octopussy/conf/password_policy.xml" />
 		<file name="proxy" value="/var/lib/octopussy/conf/proxy.xml" />
 		<file name="schedule" value="/var/lib/octopussy/conf/schedule.xml" />
 		<file name="servicegroups" value="/var/lib/octopussy/conf/servicegroups.xml" />
