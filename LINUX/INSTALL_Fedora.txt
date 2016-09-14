@@ -11,7 +11,7 @@
 > yum install -y perl-DBD-MySQL perl-DBI
 > yum install -y perl-JSON perl-Linux-Inotify2 perl-List-MoreUtils perl-Locale-Maketext-Lexicon perl-Locale-Maketext-Simple perl-Mail-Sender
 > yum install -y perl-LDAP perl-Net-SCP perl-Net-Telnet perl-Net-XMPP
-> yum install -y perl-Proc-PID-File perl-Proc-ProcessTable perl-Readonly-XS perl-Regexp-Assemble perl-Sys-CPU perl-Unix-Syslog perl-URI perl-version perl-XML-Simple
+> yum install -y perl-Path-Tiny perl-Proc-PID-File perl-Proc-ProcessTable perl-Readonly-XS perl-Regexp-Assemble perl-Sys-CPU perl-Unix-Syslog perl-URI perl-version perl-XML-Simple
 
 > yum install -y make perl-CPAN
 > cpan Apache::ASP App::Info LWP Net::FTP

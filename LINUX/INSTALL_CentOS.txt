@@ -28,7 +28,7 @@ enabled=1
 
 > cpan Net::FTP Net::LDAP Net::SCP Net::Telnet Net::XMPP
 
-> cpan Proc::PID::File Proc::ProcessTable Readonly Regexp::Assemble Sys::CPU Unix::Syslog URI version XML::Simple
+> cpan Path::Tiny Proc::PID::File Proc::ProcessTable Readonly Regexp::Assemble Sys::CPU Unix::Syslog URI version XML::Simple
 
 
 

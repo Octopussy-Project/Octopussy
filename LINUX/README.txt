@@ -37,6 +37,7 @@ and these Perl modules (from CPAN):
 - Net::SCP
 - Net::Telnet
 - Net::XMPP
+- Path::Tiny
 - Proc::PID::File
 - Proc::ProcessTable
 - Readonly
@@ -51,4 +52,4 @@ and these Perl modules (from CPAN):
 Good Luck !
 
 For more information about Octopussy installation:
-http://www.octopussy.pm/dokuwiki/doku.php?id=install
+https://github.com/sebthebert/Octopussy_Documentation/blob/master/01_Installation.md

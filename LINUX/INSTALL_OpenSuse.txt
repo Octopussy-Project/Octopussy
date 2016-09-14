@@ -26,7 +26,7 @@ mod_ssl ?
 > cpan Cache::Cache Crypt::PasswdMD5
 > cpan JSON Locale::Maketext::Simple LWP Mail::Sender 
 > cpan Net::FTP Net::LDAP Net::SCP
-> cpan Proc::PID::File Proc::ProcessTable Readonly Regexp::Assemble Sys::CPU version
+> cpan Path::Tiny Proc::PID::File Proc::ProcessTable Readonly Regexp::Assemble Sys::CPU version
 
 
 ==>
