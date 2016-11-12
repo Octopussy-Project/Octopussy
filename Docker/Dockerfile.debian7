@@ -57,9 +57,4 @@ RUN apt-get install -y patch unzip \
 
 #RUN chmod 755 /usr/sbin/octo_docker.sh
 
-#RUN \
-#	cd /tmp/Octopussy-Octopussy-1.0.14/LINUX/ && \
-#	chmod 755 *.sh && \
-#	./INSTALL.sh
-
 #ENTRYPOINT [ "/usr/sbin/octo_docker.sh" ]
