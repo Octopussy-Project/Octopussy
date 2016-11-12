@@ -36,6 +36,13 @@ RUN apt-get install -y \
 	liblocale-maketext-lexicon-perl libdatetime-format-strptime-perl \
 	libfile-slurp-perl
 
+RUN apt-get install -y patch unzip \
+	&& curl -L -s -o /tmp/Octopussy-master.zip https://github.com/sebthebert/Octopussy/archive/master.zip \
+	&& cd /tmp \ 
+	&& unzip Octopussy-master.zip
+	&& cd /tmp/Octopussy-master
+	&& bash LINUX/INSTALL.sh
+
 RUN mkdir /home/octopussy
 
 # WHATS MISSING
