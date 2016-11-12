@@ -19,19 +19,13 @@ RUN apt-get install -y \
     
 RUN apt-get install -y \
 	libapache2-mod-perl2 libapache-asp-perl libapp-info-perl \
-	libunix-syslog-perl libxml-simple-perl libcrypt-passwdmd5-perl 
-
-RUN apt-get install -y \
+	libunix-syslog-perl libxml-simple-perl libcrypt-passwdmd5-perl \
 	libdbi-perl libdbd-mysql-perl libsys-cpu-perl \
     	libdate-manip-perl libnet-scp-perl libnet-telnet-perl \
-	libnet-xmpp-perl libemail-sender-perl libnet-ldap-perl 
-
-RUN apt-get install -y \
+	libnet-xmpp-perl libemail-sender-perl libnet-ldap-perl \
 	librrd4 rrdtool htmldoc liblinux-inotify2-perl libcache-cache-perl \
     	libproc-processtable-perl liburi-perl libproc-pid-file-perl \
-    	libwww-perl libjson-perl libreadonly-perl libregexp-assemble-perl 
-
-RUN apt-get install -y \
+    	libwww-perl libjson-perl libreadonly-perl libregexp-assemble-perl \
 	liblist-moreutils-perl libterm-progressbar-perl \
 	liblocale-maketext-lexicon-perl libdatetime-format-strptime-perl \
 	libfile-slurp-perl
