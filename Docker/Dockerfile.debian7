@@ -43,7 +43,8 @@ RUN apt-get install -y patch unzip \
 	&& cd /tmp \ 
 	&& unzip -q Octopussy-master.zip \
 	&& cd /tmp/Octopussy-master \
-	&& bash LINUX/INSTALL.sh
+	&& mv etc/octopussy/apache2_debian.conf etc/octopussy/apache2.conf \
+	&& bash LINUX/INSTALL.sh \
 	&& rm -f /tmp/Octopussy-master.zip
 
 # WHATS MISSING
