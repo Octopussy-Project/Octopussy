@@ -37,7 +37,8 @@ RUN apt-get install -y \
 	libfile-slurp-perl
 
 RUN apt-get install -y patch unzip \
-	&& apt-get install -y libpath-tiny-perl \
+	&& apt-get install -y cpanminus make \
+	&& cpanm Path::Tiny \
 	&& curl -L -s -o /tmp/Octopussy-master.zip https://github.com/sebthebert/Octopussy/archive/master.zip \
 	&& cd /tmp \ 
 	&& unzip -q Octopussy-master.zip \
