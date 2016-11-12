@@ -34,7 +34,6 @@ sleep 2
 #
 # Backups Octopussy configuration on upgrade
 #
-CHOWN="/bin/chown octopussy:octopussy"
 OCTO_TOOL="/usr/sbin/octo_tool"
 if [ -x $OCTO_TOOL ]; then
 	$OCTO_TOOL backup '/etc/octopussy/octopussy_ugrade_backup' >/dev/null 2>&1
