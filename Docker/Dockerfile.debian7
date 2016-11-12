@@ -41,7 +41,7 @@ RUN apt-get install -y patch unzip \
 	&& cd /tmp \ 
 	&& unzip Octopussy-master.zip \
 	&& cd /tmp/Octopussy-master \
-	&& bash LINUX/INSTALL.sh \
+	&& bash LINUX/INSTALL.sh
 
 
 # WHATS MISSING
