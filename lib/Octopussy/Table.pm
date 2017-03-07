@@ -1,11 +1,10 @@
+package Octopussy::Table;
 
 =head1 NAME
 
 Octopussy::Table - Octopussy Table module
 
 =cut
-
-package Octopussy::Table;
 
 use strict;
 use warnings;
@@ -255,7 +254,7 @@ sub Fields_Configurations
     return (@sorted_configurations);
 }
 
-=head2 SQL($table, $fields, $indexes)
+=head2 SQL($table, $fields)
 
 Generates SQL code to create the Table '$table'
 
@@ -263,7 +262,7 @@ Generates SQL code to create the Table '$table'
 
 sub SQL
 {
-    my ($table, $fields, $indexes) = @_;
+    my ($table, $fields) = @_;
     my $real_table = $table;
 
     $real_table =~ s/_\d+$//;
@@ -273,9 +272,6 @@ sub SQL
 
     foreach my $sf (ARRAY($fields))
     {
-
-        #foreach my $ind (ARRAY($indexes))
-        #	{ $index .= "INDEX ($ind), "  if ($ind eq $sf); }
         foreach my $f (ARRAY($conf->{field}))
         {
             if (   ($sf =~ /^$f->{title}$/i)
@@ -287,11 +283,6 @@ sub SQL
         }
     }
 
-    #foreach my $f (ARRAY($conf->{field}))
-    #{
-    #	if (Octopussy::Type::SQL_Type($f->{type}) =~ /TEXT/)
-    #		{ $sql .= "PRIMARY KEY ($f->{title}(250)), "; }
-    #}
     $sql .= $index;
     $sql =~ s/, $/\)/g;
 
@@ -321,7 +312,7 @@ sub Field_Type_List
 
 =head2 Devices_and_Services_With($table)
 
-Returns one arrayref of devicegroups, one of devices and one of services 
+Returns one arrayref of devicegroups, one of devices and one of services
 which contains messages with Table '$table'
 
 =cut

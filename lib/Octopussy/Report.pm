@@ -104,10 +104,10 @@ sub Modify
 
 =head2 List($category, $restriction_list)
 
-Returns list of Reports with category '$category' (if specified) 
+Returns list of Reports with category '$category' (if specified)
  and restricted to list '$restriction_list' (if specified)
 
-=cut 
+=cut
 
 sub List
 {
@@ -146,7 +146,7 @@ sub List
 
 Get the XML filename for the report '$report_name'
 
-=cut 
+=cut
 
 sub Filename
 {
@@ -163,7 +163,7 @@ sub Filename
 
 Get the configuration for the report '$report'
 
-=cut 
+=cut
 
 sub Configuration
 {
@@ -298,7 +298,7 @@ sub Table_Creation
     return (@fields);
 }
 
-=head2 Generate($rc, $begin, $end, $outputfile, $devices, $services, 
+=head2 Generate($rc, $begin, $end, $outputfile, $devices, $services,
 	$data, $conf_mail, $conf_ftp, $conf_scp, $stats, $lang)
 
 =cut
@@ -370,7 +370,7 @@ sub Generate
 
 =head2 CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
 
-Generates Command Line Export Options (mail/ftp/scp) 
+Generates Command Line Export Options (mail/ftp/scp)
 
 =cut
 
@@ -404,7 +404,7 @@ sub CmdLine_Export_Options
     return ($options);
 }
 
-=head2 CmdLine($device, $service, $loglevel, $taxonomy, $report, 
+=head2 CmdLine($device, $service, $loglevel, $taxonomy, $report,
 	$start, $finish, $pid_param, $conf_mail, $conf_ftp, $conf_scp, $lang)
 
 Generates Command Line and launch octo_reporter
@@ -420,7 +420,6 @@ sub CmdLine
        ) = @_;
 
     my $base    = Octopussy::FS::Directory('programs');
-    my $dir_pid = Octopussy::FS::Directory('running');
     my $date    = strftime("%Y%m%d-%H%M", localtime);
     my $dir = Octopussy::FS::Directory('data_reports') . $report->{name} . '/';
     my $output = "$dir$report->{name}-$date."
@@ -449,7 +448,6 @@ sub CmdLine
         . CmdLine_Export_Options($conf_mail, $conf_ftp, $conf_scp)
         . " --output \"$output\"";
 
-    #. " 2> \"$dir_pid/octo_reporter_$report->{name}-$date.err\"";
     Octopussy::Commander("$cmd &");
 
     return ($cmd);

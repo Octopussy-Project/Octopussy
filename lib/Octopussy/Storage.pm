@@ -1,11 +1,10 @@
+package Octopussy::Storage;
 
 =head1 NAME
 
 Octopussy::Storage - Octopussy Storage module
 
 =cut
-
-package Octopussy::Storage;
 
 use strict;
 use warnings;
@@ -32,7 +31,6 @@ Add a new Storage
 sub Add
 {
     my $conf_storage = shift;
-    my @storages     = ();
 
     my $file = Octopussy::FS::File($FILE_STORAGES);
     my $conf = AAT::XML::Read($file);
@@ -124,7 +122,7 @@ sub List
 =head2 Configuration($storage)
 
 Get the configuration for the storage '$storage'
- 
+
 Parameters:
 
 $storage - Name of the storage
@@ -133,7 +131,7 @@ Returns:
 
 \%conf - Hashref of the storage configuration
 
-=cut 
+=cut
 
 sub Configuration
 {
@@ -158,10 +156,10 @@ Get the configuration for all storages
 Parameters:
 
 $sort - selected field to sort configurations
- 
+
 Returns:
 
-@configurations - Array of Hashref storage configurations  
+@configurations - Array of Hashref storage configurations
 
 =cut
 

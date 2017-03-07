@@ -1,11 +1,10 @@
+package Octopussy::Type;
 
 =head1 NAME
 
 Octopussy::Type - Octopussy Type module
 
 =cut
-
-package Octopussy::Type;
 
 use strict;
 use warnings;
@@ -93,7 +92,7 @@ sub Colors
 
 Get list of types
 
-=cut 
+=cut
 
 sub List
 {
@@ -170,7 +169,7 @@ sub SQL_List
 
 Get regexp from type '$type'
 
-=cut 
+=cut
 
 sub Regexp
 {
@@ -214,7 +213,7 @@ sub Regexps
 
 Get Simple type from type '$type'
 
-=cut 
+=cut
 
 sub Simple_Type
 {
@@ -277,7 +276,7 @@ sub SQL_Datetime
 
     if ($dt =~ $QR_DT1)
     {
-        my ($year, $mon, $mday) = AAT::Utils::Now();
+        my ($year) = AAT::Utils::Now();
         return ("$year-$MONTH{$1}-$2 $3:$4:$5");
     }
     elsif ($dt =~ $QR_DT2) { return ("$6-$MONTH{$1}-$2 $3:$4:$5"); }

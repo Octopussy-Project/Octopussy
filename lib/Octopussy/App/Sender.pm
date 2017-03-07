@@ -48,56 +48,56 @@ sub run
 
     return (-1) if (!Octopussy::App::Valid_User($PROGRAM));
 
-	my $file_pid = Octopussy::PID_File($PROGRAM);
+    my $file_pid = Octopussy::PID_File($PROGRAM);
 
-	my %contact  = ();
-	$SIG{HUP} = \&Contact_Configuration(\%contact);
+    my %contact  = ();
+    $SIG{HUP} = \&Contact_Configuration(\%contact);
 
-	Contact_Configuration(\%contact);
-	my $cache = Octopussy::Cache::Init($PROGRAM);
+    Contact_Configuration(\%contact);
+    my $cache = Octopussy::Cache::Init($PROGRAM);
 
-	while (1)
-	{
-    	my @keys = $cache->get_keys();
-    foreach my $k (sort @keys)
+    while (1)
     {
-        my $c_item = $cache->get($k);
-        my $action = $c_item->{action};
+        my @keys = $cache->get_keys();
+        foreach my $k (sort @keys)
+        {
+            my $c_item = $cache->get($k);
+            my $action = $c_item->{action};
 
-        my ($svc) = split(/:/, $c_item->{msg_id});
-        my $msg = Octopussy::Message::Configuration($svc, $c_item->{msg_id});
-        my $re = Octopussy::Message::Pattern_To_Regexp($msg);
-        $msg->{re} = qr/^$re\s*[^\t\n\r\f -~]?$/i;
+            my ($svc) = split(/:/, $c_item->{msg_id});
+            my $msg = Octopussy::Message::Configuration($svc, $c_item->{msg_id});
+            my $re = Octopussy::Message::Pattern_To_Regexp($msg);
+            $msg->{re} = qr/^$re\s*[^\t\n\r\f -~]?$/i;
 
-        my ($subject, $body, $action_host, $action_service, $action_body) =
+            my ($subject, $body, $action_host, $action_service, $action_body) =
             Octopussy::Alert::Message_Building($action, $c_item->{device},
             $c_item->{data}, $msg);
 
-        if (defined $action->{action_jabber}
+            if (defined $action->{action_jabber}
             && AAT::XMPP::Configured('Octopussy'))
-        {
-            my @ims = Get_IM_Addresses($action, \%contact);
-            AAT::XMPP::Send_Message('Octopussy', "$subject\n\n$body\n", @ims);
-        }
-        if (defined $action->{action_mail})
-        {
-            my @mails = Get_Mail_Addresses($action, \%contact);
-            AAT::SMTP::Send_Message('Octopussy',
+            {
+                my @ims = Get_IM_Addresses($action, \%contact);
+                AAT::XMPP::Send_Message('Octopussy', "$subject\n\n$body\n", @ims);
+            }
+            if (defined $action->{action_mail})
+            {
+                my @mails = Get_Mail_Addresses($action, \%contact);
+                AAT::SMTP::Send_Message('Octopussy',
                 {subject => $subject, body => $body, dests => \@mails});
-        }
-        AAT::NSCA::Send('Octopussy', (($action->{level} =~ /Warning/i) ? 1 : 2),
+            }
+            AAT::NSCA::Send('Octopussy', (($action->{level} =~ /Warning/i) ? 1 : 2),
             $action_body, $action_host, $action_service)
             if (defined $action->{action_nsca});
-        AAT::Zabbix::Send('Octopussy', $action_body, $action_host,
+            AAT::Zabbix::Send('Octopussy', $action_body, $action_host,
             $action_service)
             if (defined $action->{action_zabbix});
 
-        $cache->remove($k);
+            $cache->remove($k);
+        }
+        sleep $LOOP_SLEEP_SECONDS;
     }
-    	sleep $LOOP_SLEEP_SECONDS;
-	}				
-	
-	return (0);
+
+    return (0);
 }
 
 =head2 Contact_Configuration(\%contact)
@@ -108,7 +108,7 @@ Loads Contact Configuration
 
 sub Contact_Configuration
 {
-	my $contact = shift;
+    my $contact = shift;
 
     foreach my $c (keys %{$contact})
     {
@@ -138,7 +138,7 @@ sub Get_IM_Addresses
     foreach my $c (ARRAY($action->{contacts}))
     {
         push @ims, $contact->{$c}->{im}
-            if (defined $contact->{$c}->{im});
+        if (defined $contact->{$c}->{im});
     }
 
     return (@ims);
@@ -158,7 +158,7 @@ sub Get_Mail_Addresses
     foreach my $c (ARRAY($action->{contacts}))
     {
         push @mails, $contact->{$c}->{email}
-            if (defined $contact->{$c}->{email});
+        if (defined $contact->{$c}->{email});
     }
 
     return (@mails);

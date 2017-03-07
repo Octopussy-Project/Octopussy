@@ -10,8 +10,8 @@ Module handling everything for octo_replay program
 
 =head1 SYNOPSIS
 
-octo_replay --device <device> --service <service> 
-	--begin YYYYMMDDHHMM --end YYYYMMDDHHMM
+octo_replay --device <device> --service <service>
+--begin YYYYMMDDHHMM --end YYYYMMDDHHMM
 
 =head1 OPTIONS
 
@@ -75,11 +75,11 @@ Runs Program with @ARGV options
 sub run
 {
     my $self = shift;
-	local @ARGV = @_;
+    local @ARGV = @_;
 
-	my %opt  = ();
+    my %opt  = ();
     my @options =
-        ('help|h', 'version|v', 'device=s', 'service=s', 'begin=s', 'end=s');
+    ('help|h', 'version|v', 'device=s', 'service=s', 'begin=s', 'end=s');
     my $status = GetOptions(\%opt, @options);
 
     if ($opt{version})
@@ -91,9 +91,9 @@ sub run
     return (usage()) if ((!$status) || ($opt{help}));
 
     return (usage(Octopussy::Device::String_List(undef)))
-        if (!defined $opt{device});
-	return (usage(Octopussy::Device::String_Services($opt{device})))
-        if (!defined $opt{service});
+    if (!defined $opt{device});
+    return (usage(Octopussy::Device::String_Services($opt{device})))
+    if (!defined $opt{service});
 
     return (usage()) if ((!defined $opt{begin}) || (!defined $opt{end}));
 
@@ -115,20 +115,20 @@ sub usage
     if (defined $msg)
     {
         pod2usage(
-            -input    => pod_where({-inc => 1}, __PACKAGE__),
-            -verbose  => 99,
-            -sections => [qw(SYNOPSIS OPTIONS)],
-            -message  => "\n$msg\n",
-            -exitval  => 'NOEXIT'
+        -input    => pod_where({-inc => 1}, __PACKAGE__),
+        -verbose  => 99,
+        -sections => [qw(SYNOPSIS OPTIONS)],
+        -message  => "\n$msg\n",
+        -exitval  => 'NOEXIT'
         );
     }
     else
     {
         pod2usage(
-            -input    => pod_where({-inc => 1}, __PACKAGE__),
-            -verbose  => 99,
-            -sections => [qw(SYNOPSIS OPTIONS)],
-            -exitval  => 'NOEXIT'
+        -input    => pod_where({-inc => 1}, __PACKAGE__),
+        -verbose  => 99,
+        -sections => [qw(SYNOPSIS OPTIONS)],
+        -exitval  => 'NOEXIT'
         );
     }
 
@@ -137,7 +137,7 @@ sub usage
 
 =head2 replay($opt)
 
-Replays logs 
+Replays logs
 
 =cut
 
@@ -145,23 +145,23 @@ sub replay
 {
     my $opt = shift;
 
-	my $count = 0;
+    my $count = 0;
 
-	# 'device', 'service', 'begin' and 'end' should be defined
-	return ($count)	if ((!defined $opt->{device}) 
-		|| (!defined $opt->{service})
-		|| (!defined $opt->{begin})
-		|| (!defined $opt->{end}));
+    # 'device', 'service', 'begin' and 'end' should be defined
+    return ($count)	if ((!defined $opt->{device})
+    || (!defined $opt->{service})
+    || (!defined $opt->{begin})
+    || (!defined $opt->{end}));
 
     my $dir_incoming = Octopussy::Storage::Directory_Incoming($opt->{device});
-	# $dir_incoming undefined => invalid device	
-	return ($count)	if (!defined $dir_incoming);
+    # $dir_incoming undefined => invalid device
+    return ($count)	if (!defined $dir_incoming);
 
     $dir_incoming .= "$opt->{device}/Incoming/";
 
-    my ($files, $total) =
-        Octopussy::Logs::Get_TimePeriod_Files($opt->{device}, $opt->{service},
-        $opt->{begin}, $opt->{end});
+    my ($files) =
+    Octopussy::Logs::Get_TimePeriod_Files($opt->{device}, $opt->{service},
+    $opt->{begin}, $opt->{end});
     foreach my $min (sort keys %{$files})
     {
         my @logs = ();

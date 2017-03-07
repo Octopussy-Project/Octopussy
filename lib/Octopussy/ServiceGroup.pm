@@ -25,12 +25,11 @@ my $XML_ROOT           = 'octopussy_servicegroups';
 
 Adds a new ServiceGroup
 
-=cut 
+=cut
 
 sub Add
 {
     my $conf_sg = shift;
-    my @sgs     = ();
 
     my $file = Octopussy::FS::File($FILE_SERVICEGROUPS);
     my $conf = AAT::XML::Read($file);

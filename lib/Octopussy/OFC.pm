@@ -117,7 +117,7 @@ sub Bar_3D
     {
         my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
         my $label = $line->{$x};
-        push @labels, $line->{$x};
+        push @labels, $label;
         push @values, $value;
         $max = (($value > $max) ? $value : $max);
     }
@@ -149,7 +149,7 @@ sub Bar_Cylinder
     {
         my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
         my $label = $line->{$x};
-        push @labels, $line->{$x};
+        push @labels, $label;
         push @values, $value;
         $max = (($value > $max) ? $value : $max);
     }
@@ -186,7 +186,7 @@ sub Bar_Glass
     {
         my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
         my $label = $line->{$x};
-        push @labels, $line->{$x};
+        push @labels, $label;
         push @values, $value;
         $max = (($value > $max) ? $value : $max);
     }
@@ -217,7 +217,7 @@ sub Bar_Sketch
     foreach my $line (ARRAY($data))
     {
         my $value = $line->{$y} + 0;    # ensuring it will be dumped as a number
-        my $label = $line->{$x};
+        my $label = $label;
         push @labels, $line->{$x};
         push @values, $value;
         $max = (($value > $max) ? $value : $max);
@@ -297,4 +297,3 @@ sub Pie
 Sebastien Thebert <octopussy@onetool.pm>
 
 =cut
-

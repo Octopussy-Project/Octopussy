@@ -1,11 +1,10 @@
+package AAT::LDAP;
 
 =head1 NAME
 
 AAT::LDAP - AAT LDAP module
 
 =cut
-
-package AAT::LDAP;
 
 use strict;
 use warnings;

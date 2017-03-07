@@ -86,10 +86,10 @@ Returns Delta in minutes between 2 dates (YYYYMMDD HH:MM:00)
 sub Delta
 {
     my ($date1, $date2) = @_;
-	
+
 	my $tp1 = Time::Piece->strptime($date1, "%Y%m%d %H:%M:%S");
 	my $tp2 = Time::Piece->strptime($date2, "%Y%m%d %H:%M:%S");
-	my $result = ($tp1 - $tp2) / 60; 
+	my $result = ($tp1 - $tp2) / 60;
 
     if ($result =~ /^[-+]?(\d+)/)
     {
@@ -175,12 +175,12 @@ sub YearWeek
 =head2 Current_Day()
 
 Returns an Array of 2 hashrefs with the Begin & End of the Day
- 
+
 =cut
 
 sub Current_Day
 {
-    my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
+    my ($year, $month, $day) = AAT::Utils::Now();
 
     my (%begin, %end) = ((), ());
     ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
@@ -199,7 +199,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Hour
 
 sub Current_Hour
 {
-    my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
+    my ($year, $month, $day, $hour) = AAT::Utils::Now();
 
     my (%begin, %end) = ((), ());
     ($begin{year}, $begin{month}, $begin{day}) = ($year, $month, $day);
@@ -218,7 +218,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Month
 
 sub Current_Month
 {
-    my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
+    my ($year, $month, $day) = AAT::Utils::Now();
 
     my (%begin, %end) = ((), ());
     ($begin{year}, $begin{month}, $begin{day}) =
@@ -263,7 +263,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Year
 
 sub Current_Year
 {
-    my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
+    my ($year, $month, $day) = AAT::Utils::Now();
 
     my (%begin, %end) = ((), ());
     ($begin{year}, $begin{month}, $begin{day}) = ($year, '01', '01');
@@ -284,7 +284,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Day
 sub Last_Day
 {
     my $date = Date::Manip::ParseDate('yesterday');
-    my ($year, $month, $day, $hour, $min) =
+    my ($year, $month, $day) =
         Date::Manip::UnixDate($date, '%Y', '%f', '%e', '%k', '%M');
 
     my (%begin, %end) = ((), ());
@@ -308,7 +308,7 @@ sub Last_Hour
 {
 	my $tp = Time::Piece->new();
 	$tp -= ONE_HOUR;
-	
+
     my (%begin, %end) = ((), ());
     ($begin{year}, $begin{month}, $begin{day}) =
         ($tp->year, sprintf("%02d", $tp->mon), sprintf("%02d", $tp->mday));
@@ -378,7 +378,7 @@ Returns an Array of 2 hashrefs with the Begin & End of the Last/Previous Year
 
 sub Last_Year
 {
-    my ($year, $month, $day, $hour, $min) = AAT::Utils::Now();
+    my ($year) = AAT::Utils::Now();
 
     my (%begin, %end) = ((), ());
     ($begin{year}, $begin{month}, $begin{day}) = ($year - 1, '01', '01');

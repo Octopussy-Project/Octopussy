@@ -30,7 +30,6 @@ Add a new Device Group
 sub Add
 {
     my $conf_dg = shift;
-    my @dgs     = ();
 
     my $conf = AAT::XML::Read($FILE_DEVICEGROUPS);
     if (any { $_->{dg_id} eq $conf_dg->{dg_id} } ARRAY($conf->{devicegroup}))

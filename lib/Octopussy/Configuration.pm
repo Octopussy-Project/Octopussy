@@ -16,10 +16,10 @@ use AAT;
 use Octopussy::FS;
 
 my $DIR_BACKUP = '/etc/octopussy/';
-my @DIRECTORIES_TO_BACKUP = qw/ 
+my @DIRECTORIES_TO_BACKUP = qw/
 	alerts
 	contacts
-	devices          
+	devices
 	maps
     plugins
 	reports
@@ -40,7 +40,7 @@ my @FILES_TO_BACKUP = qw/
 	storages
 	timeperiods
 	users
-	xmpp	
+	xmpp
 	/;
 
 =head1 SUBROUTINES/METHODS
@@ -74,7 +74,6 @@ sub Backup
     Octopussy::FS::Create_Directory($DIR_BACKUP);
     my $file_backup = $filename || "${DIR_BACKUP}backup_$timestamp.tgz";
 
-    my $dir_main = Octopussy::FS::Directory('main');
     my ($dirs, $files) = ('', '');
 
     foreach my $d (Octopussy::FS::Directories(@DIRECTORIES_TO_BACKUP))

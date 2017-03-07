@@ -1,3 +1,5 @@
+package Octopussy::App::Dispatcher;
+
 =head1 NAME
 
 Octopussy::App::Dispatcher
@@ -12,10 +14,10 @@ octo_dispatcher
 
 =cut
 
-package Octopussy::App::Dispatcher;
-
 use strict;
 use warnings;
+
+my %dir_device;
 
 =head2 Handle_Dir($device, $year, $month, $day, $hour, $min)
 
