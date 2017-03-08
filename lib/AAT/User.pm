@@ -1,11 +1,10 @@
+package AAT::User;
 
 =head1 NAME
 
 AAT::User - AAT User module
 
 =cut
-
-package AAT::User;
 
 use strict;
 use warnings;
@@ -193,7 +192,7 @@ sub Update
     return (scalar @users);
 }
 
-=head Check_Password_Rules($appli, $password)
+=head2 Check_Password_Rules($appli, $password)
 
 Check that password '$password' matches Password Rules
 
