@@ -17,6 +17,8 @@ octo_dispatcher
 use strict;
 use warnings;
 
+our $PROG_NAME = 'octo_dispatcher';
+
 my %dir_device;
 
 =head2 Handle_Dir($device, $year, $month, $day, $hour, $min)
