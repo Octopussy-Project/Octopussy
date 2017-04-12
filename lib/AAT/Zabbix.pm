@@ -1,11 +1,10 @@
+package AAT::Zabbix;
 
 =head1 NAME
 
 AAT::Zabbix - AAT Zabbix module
 
 =cut
-
-package AAT::Zabbix;
 
 use strict;
 use warnings;
@@ -51,7 +50,7 @@ sub Send
         my $host = $zabbix_host || $conf_zabbix->{zabbix_host};
         my $item = $zabbix_item || $conf_zabbix->{zabbix_item};
         my $cmd =
-"$conf_zabbix->{bin} -z $conf_zabbix->{zabbix_server} -s $conf_zabbix->{zabbix_host} -k $conf_zabbix->{zabbix_item} -o \"$msg\"";
+"$conf_zabbix->{bin} -z $conf_zabbix->{zabbix_server} -s $host -k $item -o \"$msg\"";
         system $cmd;
 
         return (1);

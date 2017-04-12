@@ -1,11 +1,10 @@
+package AAT::Certificate;
 
 =head1 NAME
 
 AAT::Certificate - AAT Certificate module
 
 =cut
-
-package AAT::Certificate;
 
 use strict;
 use warnings;
@@ -115,7 +114,7 @@ sub Client_Create
 
     my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
     my $info = AAT::Application::Info($appli);
-    my ($login, $pwd, $uid, $gid) = getpwnam $info->{user};
+    my ($uid, $gid) = (getpwnam $info->{user})[2,3];
 
     copy($CONF, "$CONF_CLIENT.tmp");
     if (   (defined open my $FILE, '<', "$CONF_CLIENT.tmp")
@@ -160,7 +159,7 @@ sub Server_Create
 
     my $dir_ca = AAT::Application::Directory($appli, 'certificate_authority');
     my $info = AAT::Application::Info($appli);
-    my ($login, $pwd, $uid, $gid) = getpwnam $info->{user};
+    my ($uid, $gid) = (getpwnam $info->{user})[2,3];
 
     copy($CONF, "$CONF_SERVER.tmp");
     if (   (defined open my $FILE, '<', "$CONF_SERVER.tmp")
