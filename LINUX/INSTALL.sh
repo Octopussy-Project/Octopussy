@@ -123,9 +123,12 @@ $MKDIR /var/lib/$OCTO/rrd_png/
 $CHOWN /var/lib/$OCTO/rrd_png/
 $LN /var/lib/$OCTO/rrd_png/ /usr/share/$OCTO/rrd 
 
-# Patch Apache::ASP::StateManager for HttpOnly cookie flag
+# Patch Apache::ASP::StateManager for: 
+# - HttpOnly cookie flag
+# - Apache 2.4 remote_ip
 file_to_patch=$( find / -name StateManager.pm | grep "Apache/ASP" )
-patch $file_to_patch < LINUX/apache-asp-statemanager.patch
+patch $file_to_patch < LINUX/apache-asp-statemanager_httponly.patch
+patch $file_to_patch < LINUX/apache-asp-statemanager_remote_ip.patch
 
 #
 # Octopussy FIFO creation (for Rsyslog)
