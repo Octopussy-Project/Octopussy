@@ -6,12 +6,12 @@ octo_msg_finder - Octopussy message finder program
 
 =head1 SYNOPSIS
 
-octo_msg_finder "<line>" | <filename>
+octo_msg_finder "<line>" | <filename>
 
 =head1 DESCRIPTION
 
 octo_msg_finder is the program used by the Octopussy Project
-to help users to determine to wich Message/Service a log belongs to
+to help users to determine to which Message/Service a log belongs to
 
 =cut
 
