@@ -19,6 +19,7 @@ and these Perl modules (from CPAN):
 - App::Info
 - Cache::Cache
 - Crypt::PasswdMD5
+- Data::GUID
 - Date::Manip
 - DateTime::Format::Strptime
 - DBD

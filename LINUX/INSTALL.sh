@@ -112,6 +112,11 @@ if [ -e "$RC_UPDATE" ]; then
 	$RC_UPDATE --add $OCTO default || true
 fi
 
+if [ -d /lib/systemd ]
+then
+	cp LINUX/octopussy.service /lib/systemd/system/
+	systemctl enable octopussy.service
+fi
 #
 # Apache2 Configuration
 #

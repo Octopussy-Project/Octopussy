@@ -1,6 +1,8 @@
 /etc/aat/aat.xml
 /etc/aat/openssl.cnf
 /etc/octopussy/apache2.conf
+/etc/octopussy/patches/apache-asp-statemanager_httponly.patch
+/etc/octopussy/patches/apache-asp-statemanager_remote_ip.patch
 /etc/rsyslog.d/10-octopussy.conf
 /etc/sysctl.d/octopussy
 /var/lib/octopussy/conf/ldap.xml
