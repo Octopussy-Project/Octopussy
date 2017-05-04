@@ -17,6 +17,7 @@ Before installing Octopussy, be sure to have installed:
 
 and these Perl modules (from CPAN):
 - App::Info
+- Authen::SASL
 - Cache::Cache
 - Crypt::PasswdMD5
 - Data::GUID
@@ -25,6 +26,8 @@ and these Perl modules (from CPAN):
 - DBD
 - DBD::mysql
 - DBI
+- Email::Sender
+- Email::Stuffer
 - File::Slurp
 - JSON
 - Linux::Inotify2
@@ -32,7 +35,6 @@ and these Perl modules (from CPAN):
 - Locale::Maketext::Lexicon
 - Locale::Maketext::Simple
 - LWP
-- Mail::Sender
 - Net::FTP
 - Net::LDAP
 - Net::SCP

@@ -117,8 +117,8 @@ if (defined $f->{config})
 	{
 		my $auth_type = $f->{"smtp_authtype"};
 		my %smtp_conf = ( smtp => { server => $f->{"smtp_server"}, 
+			port => $f->{"smtp_port"}, 
 			sender => $f->{"smtp_sender"}, 
-			auth_type => ($auth_type eq "-NONE-" ? undef : $auth_type), 
 			auth_login => $f->{"smtp_authlogin"}, 
 			auth_password => $f->{"smtp_authpassword"} } );
 		AAT::Update_Configuration("Octopussy", "smtp", \%smtp_conf, "aat_smtp");

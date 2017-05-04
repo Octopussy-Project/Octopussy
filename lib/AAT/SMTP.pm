@@ -9,7 +9,12 @@ AAT::SMTP - AAT SMTP module
 use strict;
 use warnings;
 
-use Mail::Sender;
+use Authen::SASL;
+
+use Email::Sender;
+use Email::Sender::Transport::SMTP;
+use Email::Stuffer;
+
 use Net::Telnet;
 
 use AAT::Application;
@@ -22,7 +27,7 @@ my $SMTP_TIMEOUT = 3;
 
 my %conf_file = ();
 
-=head1 SUBROUTINES/METHODS
+=head1 SUBROUTINES
 
 =head2 Configuration($appli)
 
@@ -48,7 +53,8 @@ Checks the SMTP connection
 
 sub Connection_Test
 {
-    my $appli  = shift;
+    my $appli = shift;
+
     my $status = 0;
     my $conf   = Configuration($appli);
     if (   NOT_NULL($conf->{server})
@@ -56,27 +62,17 @@ sub Connection_Test
     {
         my $con = Net::Telnet->new(
             Host    => $conf->{server},
-            Port    => $SMTP_PORT,
+            Port    => $conf->{port} || $SMTP_PORT,
             Errmode => 'return',
             Timeout => $SMTP_TIMEOUT
         );
-        my $sender = (
-            NOT_NULL($conf->{auth_type})
-            ? Mail::Sender->new(
-                {
-                    smtp    => $conf->{server},
-                    from    => $conf->{sender},
-                    auth    => $conf->{auth_type},
-                    authid  => $conf->{auth_login},
-                    authpwd => $conf->{auth_password}
-                }
-                )
-            : Mail::Sender->new(
-                {smtp => $conf->{server}, from => $conf->{sender}}
-            )
+        my $transport = Email::Sender::Transport::SMTP->new(
+            {
+                host => $conf->{server},
+                port => $conf->{port} || $SMTP_PORT,
+            }
         );
-
-        if ((defined $con) && (defined $sender) && (ref $sender))
+        if ((defined $con) && (defined $transport) && (ref $transport))
         {
             $status = 1;
             $con->close();
@@ -96,54 +92,48 @@ sub Send_Message
 {
     my ($appli, $msg_data) = @_;
 
-    my $conf = Configuration($appli);
+    my $conf = (ref $appli ? $appli : Configuration($appli));
+
     if (NOT_NULL($conf->{server}) && NOT_NULL($conf->{sender}))
     {
         my $from    = $msg_data->{from} || $conf->{sender};
         my $subject = $msg_data->{subject};
         my $body    = $msg_data->{body};
 
-        my $sender = (
-            NOT_NULL($conf->{auth_type})
-            ? Mail::Sender->new(
-                {
-                    smtp    => $conf->{server},
-                    from    => $from,
-                    auth    => $conf->{auth_type},
-                    authid  => $conf->{auth_login},
-                    authpwd => $conf->{auth_password}
-                }
-                )
-            : Mail::Sender->new({smtp => $conf->{server}, from => $from})
+        my $smtp_conf = (
+            NOT_NULL($conf->{auth_login})
+            ? {
+                host          => $conf->{server},
+                port          => $conf->{port} || $SMTP_PORT,
+                sasl_username => $conf->{auth_login},
+                sasl_password => $conf->{auth_password}
+              }
+            : {
+                host => $conf->{server},
+                port => $conf->{port} || $SMTP_PORT,
+              }
         );
+        my $transport = Email::Sender::Transport::SMTP->new($smtp_conf);
 
-        if ((defined $sender) && (ref $sender))
+        if (defined $transport)
         {
+            my $stuffer = Email::Stuffer->new();
             foreach my $dest (ARRAY($msg_data->{dests}))
             {
                 if (defined $msg_data->{file})
                 {
-                    $sender->MailFile(
-                        {
-                            to      => $dest,
-                            subject => $subject,
-                            msg     => $body,
-                            file    => $msg_data->{file}
-                        }
-                    );
+                    $stuffer->transport($transport)->to($dest)->from($from)
+                        ->subject($subject || 'Your Subject')
+                        ->text_body($body  || 'Your Body')
+                        ->attach_file($msg_data->{file})->send();
                 }
                 else
                 {
-                    $sender->MailMsg(
-                        {
-                            to      => $dest,
-                            subject => $subject || 'Your Subject',
-                            msg     => $body || 'Your Body'
-                        }
-                    );
+                    $stuffer->transport($transport)->to($dest)->from($from)
+                        ->subject($subject || 'Your Subject')
+                        ->text_body($body  || 'Your Body')->send();
                 }
             }
-            $sender->Close();
 
             return (1);
         }
