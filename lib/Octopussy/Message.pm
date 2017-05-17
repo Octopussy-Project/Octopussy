@@ -526,7 +526,7 @@ sub Pattern_Field_Unmatched_Substitution
 sub Pattern_To_Regexp_Fields
 {
     my ($msg, $field_regexp, $ref_fields, $field_list) = @_;
-    my (@fields_position, @fields_function) = ((), ());
+    my @fields_position  = ();
     my %re_types         = Octopussy::Type::Regexps();
     my $regexp           = Escape_Message($msg->{pattern});
     my $function         = undef;

@@ -154,7 +154,7 @@ sub Contacts
     my $appli    = shift;
     my @contacts = ();
 
-    my ($pkg, $filename, $line) = caller;
+    my ($pkg, $filename) = caller;
 
     my $ldap = Configuration($appli);
     if (defined $ldap)

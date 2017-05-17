@@ -29,7 +29,7 @@ my $SF_SITE          = 'http://sourceforge.net/projects/syslog-analyzer/files/';
 my $IDX_STAT_UID     = 4;
 my $IDX_STAT_GID     = 5;
 
-our $VERSION = '1.0.14';
+our $VERSION = '1.0.16';
 
 =head1 FUNCTIONS
 
@@ -136,8 +136,8 @@ sub Sourceforge_Version
 {
     my $dir_running = Octopussy::FS::Directory('running');
     my $version     = undef;
-    
-	AAT::Download::File($APPLICATION_NAME, $SF_SITE,
+
+    AAT::Download::File($APPLICATION_NAME, $SF_SITE,
         "${dir_running}/octopussy.sf_version");
     if (defined open my $UPDATE, '<', "${dir_running}/octopussy.sf_version")
     {
@@ -190,7 +190,7 @@ sub Create_Fifo
 
     if (!-p $fifo)
     {
-        my ($file, $dir, $suffix) = fileparse($fifo);
+        my ($dir) = (fileparse($fifo))[1];
         Octopussy::FS::Create_Directory($dir);
         mkfifo($fifo, '0700');
         Octopussy::FS::Chown($fifo);

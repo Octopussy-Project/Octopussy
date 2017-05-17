@@ -48,7 +48,7 @@ sub run
 
     return (-1) if (!Octopussy::App::Valid_User($PROGRAM));
 
-    my $file_pid = Octopussy::PID_File($PROGRAM);
+    Octopussy::PID_File($PROGRAM);
 
     my %contact  = ();
     $SIG{HUP} = \&Contact_Configuration(\%contact);

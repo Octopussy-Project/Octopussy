@@ -598,7 +598,7 @@ sub Sort_Messages_By_Statistics
     foreach my $p (keys %values)
     {
         print "Percent $p\n";
-        foreach my $m (ARRAY($conf->{message}))
+        foreach my $m (@conf_messages)
         {
             my $mid = $m->{msg_id};
             push @messages, $m
