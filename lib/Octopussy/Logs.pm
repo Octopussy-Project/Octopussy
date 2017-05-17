@@ -628,13 +628,11 @@ sub Extract_Cmd_Line
 {
     my $conf = shift;
 
-    return undef
-        if (!Octopussy::Device::Valid_Name_Or_Any($conf->{devices}));
-    return undef
-        if (!Octopussy::Service::Valid_Name_Or_Any($conf->{services}));
+    return if (!Octopussy::Device::Valid_Name_Or_Any($conf->{devices}));
+    return if (!Octopussy::Service::Valid_Name_Or_Any($conf->{services}));
 
     my $loglevel = $conf->{loglevel};
-    return undef
+    return
         if (
         (!defined $loglevel)
         || (   (!Octopussy::Loglevel::Valid_Name($loglevel))
@@ -642,7 +640,7 @@ sub Extract_Cmd_Line
            );
 
     my $taxonomy = $conf->{taxonomy};
-    return undef
+    return 
         if (
         (!defined $taxonomy)
         || (   (!Octopussy::Taxonomy::Valid_Name($taxonomy))
@@ -650,7 +648,7 @@ sub Extract_Cmd_Line
            );
 
     my ($begin, $end) = ($conf->{begin}, $conf->{end});
-    return undef
+    return 
         if ((!defined $begin)
         || (!defined $end)
         || ($begin !~ /^\d{12}$/)
