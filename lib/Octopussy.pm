@@ -29,7 +29,7 @@ my $SF_SITE          = 'http://sourceforge.net/projects/syslog-analyzer/files/';
 my $IDX_STAT_UID     = 4;
 my $IDX_STAT_GID     = 5;
 
-our $VERSION = '1.0.16';
+our $VERSION = '1.0.15';
 
 =head1 FUNCTIONS
 
@@ -376,6 +376,14 @@ sub Waiting_For_Process_Already_Running
 }
 
 1;
+
+=head1 COPYRIGHT AND LICENSE
+ 
+Copyright (c) 2017 by Sebastien Thebert
+ 
+This is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.  The full text of this license can be found in
+the LICENSE file included with this module.
 
 =head1 AUTHOR
 
