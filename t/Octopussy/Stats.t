@@ -14,6 +14,10 @@ use Test::More;
 
 use lib "$FindBin::Bin/../../lib";
 
+use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+
 require_ok('Octopussy::Stats');
 
 my $cpu_info = Octopussy::Stats::CPU_Info();
@@ -46,15 +50,15 @@ ok(
     'Octopussy::Stats::Swap_Usage()'
   );
 
-my @partitions = Octopussy::Stats::Partition_Logs();
-ok(
-    scalar @partitions
-        && $partitions[0]->{directory} ne ''
-        && $partitions[0]->{usage} =~ /^\d+\%$/,
-    'Octopussy::Stats::Partition_Logs()'
-  );
+#my @partitions = Octopussy::Stats::Partition_Logs();
+#ok(
+#    scalar @partitions
+#        && $partitions[0]->{directory} ne ''
+#        && $partitions[0]->{usage} =~ /^\d+\%$/,
+#    'Octopussy::Stats::Partition_Logs()'
+#  );
 
-done_testing(1 + 6);
+done_testing(1 + 5);
 
 =head1 AUTHOR
 

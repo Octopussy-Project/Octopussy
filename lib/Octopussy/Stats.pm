@@ -170,6 +170,7 @@ sub Partition_Logs
     my @result   = ();
     my %dir;
     my @lines = `df -k`;
+
     foreach my $l (@lines)
     {
         $dir{"$2"} = $1
@@ -177,7 +178,8 @@ sub Partition_Logs
     }
     foreach my $s (@storages)
     {
-        my $d     = $s->{directory};
+        my $d = $s->{directory};
+	next	if (!defined $d);
         my $match = 0;
         while (($d =~ /^(.*)\//) && (!$match))
         {
