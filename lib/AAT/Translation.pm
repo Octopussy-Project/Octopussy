@@ -26,12 +26,9 @@ BEGIN
     $SIG{__WARN__} = sub {
         warn @_ unless "@_" =~ /used only once/;
     };
-    require Locale::Maketext::Simple;
-    Locale::Maketext::Simple->import(
-        Path => '/usr/share/aat/Translations/'
 
-            # can't use AAT::Application::Directory('AAT', 'translations') :(
-    );
+    require Locale::Maketext::Simple;
+    Locale::Maketext::Simple->import( Path => AAT::Application::Directory('AAT', 'translations') );
 }
 
 =head1 FUNCTIONS

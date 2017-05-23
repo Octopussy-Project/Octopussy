@@ -16,26 +16,33 @@ use Test::More;
 
 use lib "$FindBin::Bin/../../lib";
 
+BEGIN
+{
+use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../data/etc/aat/aat.xml");
+}
+
 use AAT::Translation;
 
 my %trans = (
-    DE => {good => 'Benutzer'},
-    EN => {good => 'User'},
-    ES => {good => 'Usuario'},
-    FR => {good => 'Utilisateur'},
-    IT => {good => 'Utente'},
-    PT => {good => 'Usuário'},
-    RU => {good => 'Пользователь'},
-    TR => {good => 'Kullanıcı'},
+    de => 'Benutzer',
+    en => 'User',
+    es => 'Usuario',
+    fr => 'Utilisateur',
+    it => 'Utente',
+    pt => 'Usuário',
+    ru => 'Пользователь',
+    tr => 'Kullanıcı',
 );
 
 foreach my $lang (sort keys %trans)
 {
-    $trans{$lang}{get} = AAT::Translation::Get($lang, '_USER');
-    ok($trans{$lang}{get} eq $trans{$lang}{good},
-        "$lang Translation: 'User' => '$trans{$lang}{good}'")
+    my $translated = AAT::Translation::Get($lang, '_USER');
+    ok($translated eq $trans{$lang},
+        "$lang translation: 'User' => '$trans{$lang}'")
         or diag(
-"Translation $lang of '_USER' get '$trans{$lang}{get}' but should be '$trans{$lang}{good}'"
+"Translation $lang of '_USER' get '$translated' but should be '$trans{$lang}'"
         );
 }
 
