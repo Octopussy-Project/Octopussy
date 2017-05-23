@@ -3,12 +3,12 @@
 
 	<application name="AAT" version="0.7.2"
 							email="octo.devel@gmail.com"
-							website="http://www.octopussy.pm/dokuwiki/doku.php?id=aat">
+							website="http://www.octopussy.pm">
 
 		<directory name="lists" value="/usr/share/aat/Lists/" />
 		<directory name="objects" value="/usr/share/aat/Objects/" />
 		<directory name="themes" value="/usr/share/aat/THEMES/" />
-		<directory name="translations" value="/usr/share/aat/Translations/" />
+		<directory name="translations" value="./t/data/conf/Translations/" />
 
 		<file name="message_logs" value="./t/data/conf/message_logs.xml" />
 
