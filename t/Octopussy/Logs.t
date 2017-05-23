@@ -36,13 +36,25 @@ my $OUTPUT    = 'output_file.txt';
 my $CMD_DEV_SVC =
 qq(--device "${DEVICE}_1" --device "${DEVICE}_2" --service "${SERVICE}_1" --service "${SERVICE}_2");
 my $CMD_LEVEL_TAXO_ID =
-    qq(--loglevel "-ANY-" --taxonomy "-ANY-" --msgid "-ANY-");
+    qq(--loglevel "-ANY-" --taxonomy "-ANY-" --msgid "\\\\-ANY\\\\-");
 my $CMD_PERIOD = qq(--begin $BEGIN --end $END);
 my $RE_CMDLINE =
-qr{^$EXTRACTOR $CMD_DEV_SVC $CMD_LEVEL_TAXO_ID $CMD_PERIOD.*--output "$OUTPUT"};
+qr{$EXTRACTOR $CMD_DEV_SVC $CMD_LEVEL_TAXO_ID $CMD_PERIOD.*--output "output_file\\\.txt"};
 
 require_ok('Octopussy::Device');
 require_ok('Octopussy::Logs');
+
+#my $cmd = Octopussy::Logs::Extract_Cmd_Line({ 
+#	devices => [ "-ANY-" ],
+#	services => [ "-ANY-" ],
+#	loglevel => "-ANY-", 
+#	#"\" && echo 'test' >> /tmp/test.txt || echo \"boom",
+#	taxonomy => "-ANY-",
+#	begin => '201608010000', end => '201608152359',
+#	includes => [ qq[ " && echo 'test' >> /tmp/test.txt || echo "boom ] ],
+#	excludes => [ qq[ " && echo 'test2' >> /tmp/test.txt || echo "boom2 ] ],
+#	});
+#printf "sudo -u octopussy %s\n", $cmd;
 
 =head2 Generate_Fake_Logs_Files()
 

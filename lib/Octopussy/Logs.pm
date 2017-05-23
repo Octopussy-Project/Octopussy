@@ -672,16 +672,20 @@ sub Extract_Cmd_Line
     my $cmd =
           qq [/usr/sbin/octo_extractor $dev_str $serv_str]
         . qq[ --loglevel "$loglevel" --taxonomy "$taxonomy"]
-        . qq[ --msgid "]
-        . quotemeta($conf->{msgid}) . qq["]
+	. (defined $conf->{msgid} ?
+        	qq[ --msgid "]
+        	. quotemeta($conf->{msgid}) . qq["] : '')
         . qq[ --begin $begin --end $end]
         . qq[ $incl_str $excl_str]
-        . qq[ --pid_param "]
-        . quotemeta($conf->{pid_param}) . qq["]
-        . qq[ --user "]
-        . quotemeta($conf->{user}) . qq["]
-        . qq[ --output "]
-        . quotemeta($conf->{output}) . qq["];
+        . (defined $conf->{pid_param} ?
+		qq[ --pid_param "]
+		. quotemeta($conf->{pid_param}) . qq["] : '')
+	. (defined $conf->{user} ?
+        	qq[ --user "]
+        	. quotemeta($conf->{user}) . qq["] : '')
+	. (defined $conf->{output} ?
+        	qq[ --output "]
+        	. quotemeta($conf->{output}) . qq["] : '');
 
     return ($cmd);
 }
