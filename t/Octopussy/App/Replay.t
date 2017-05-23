@@ -15,6 +15,10 @@ use Test::Output;
 
 use lib "$FindBin::Bin/../../../lib";
 
+use AAT::Application;
+
+AAT::Application::Set_Config_File("$FindBin::Bin/../../data/etc/aat/aat.xml");
+
 BEGIN { use_ok('Octopussy::App::Replay'); }
 
 sub cmd_no_options { Octopussy::App::Replay->run(); }
