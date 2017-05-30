@@ -82,6 +82,35 @@ sub Connection_Test
     return ($status);
 }
 
+# Inspired by Email::Stuffer
+sub _detect_content_type
+{
+    my $filename = shift;
+
+    if (defined($filename))
+    {
+        if ($filename =~ /\.([a-z]{3,4})\z/i)
+        {
+            my $content_type = {
+                'gif'  => 'image/gif',
+                'png'  => 'image/png',
+                'jpg'  => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'txt'  => 'text/plain',
+                'htm'  => 'text/html',
+                'html' => 'text/html',
+                'xml'  => 'text/xml',
+                'csv'  => 'text/csv',
+                'pdf'  => 'application/pdf',
+            }->{lc($1)};
+
+            return $content_type if defined $content_type;
+        }
+    }
+
+    return 'application/octet-stream';
+}
+
 =head2 Send_Message($appli, $msg_data)
 
 Send message to @dests
@@ -99,6 +128,7 @@ sub Send_Message
         my $from    = $msg_data->{from} || $conf->{sender};
         my $subject = $msg_data->{subject};
         my $body    = $msg_data->{body};
+        my $file    = $msg_data->{file};
 
         my $smtp_conf = (
             NOT_NULL($conf->{auth_login})
@@ -117,45 +147,31 @@ sub Send_Message
 
         if (defined $transport)
         {
-			my $part_body = Email::MIME->create(body => $body  || 'Your Body');
-			my $part_attachment = (defined $msg_data->{file} 
-				? Email::MIME->create(
-            		body => path($msg_data->{file})->slurp_raw,
-           			attributes => {
-              			filename => $msg_data->{file}, 
-              			content_type => 'image/gif',
-				encoding => 'base64',
-                 		},
-               		)
-				: undef);
+            my $part_body = Email::MIME->create(body => $body || 'Your Body');
+            my $part_attachment = (
+                defined $file
+                ? Email::MIME->create(
+                    body       => path($file)->slurp_raw,
+                    attributes => {
+                        filename     => $file,
+                        content_type => _detect_content_type($file),
+                        encoding     => 'base64',
+                    },
+                    )
+                : undef
+            );
             foreach my $dest (ARRAY($msg_data->{dests}))
             {
-				my $email = Email::MIME->create(
-                	header => [
-                    	To => $dest,
-                    	From => $from,
-						Subject => $subject || 'Your Subject',
-                    	],
-                	parts => [
-                    	$part_body,
-                    	$part_attachment,
-                		],
-                	);
-		Email::Sender::Simple->try_to_send(
-			$email, { transport => $transport });
-=head2 comment
-                    $stuffer->transport($transport)->to($dest)->from($from)
-                        ->subject($subject || 'Your Subject')
-                        ->text_body($body  || 'Your Body')
-                        ->attach_file($msg_data->{file})->send();
-                }
-                else
-                {
-                    $stuffer->transport($transport)->to($dest)->from($from)
-                        ->subject($subject || 'Your Subject')
-                        ->text_body($body  || 'Your Body')->send();
-                }
-=cut
+                my $email = Email::MIME->create(
+                    header => [
+                        To      => $dest,
+                        From    => $from,
+                        Subject => $subject || 'Your Subject',
+                    ],
+                    parts => [$part_body, $part_attachment,],
+                );
+                Email::Sender::Simple->try_to_send($email,
+                    {transport => $transport});
             }
 
             return (1);
