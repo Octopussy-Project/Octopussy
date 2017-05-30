@@ -44,7 +44,7 @@ sub Set_Config_File
 
     $AAT_CONF_FILE = $file;
 
-	return ($AAT_CONF_FILE);
+    return ($AAT_CONF_FILE);
 }
 
 =head2 Info($appli)

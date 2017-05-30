@@ -11,6 +11,7 @@ use strict;
 use warnings;
 use Readonly;
 
+use AAT::Application;
 use AAT::Utils qw( NULL );
 
 my %AAT_Translation = ();

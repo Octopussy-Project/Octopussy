@@ -10,12 +10,12 @@ use strict;
 use warnings;
 
 use Authen::SASL;
-
+use Email::MIME;
 use Email::Sender;
+use Email::Sender::Simple;
 use Email::Sender::Transport::SMTP;
-use Email::Stuffer;
-
 use Net::Telnet;
+use Path::Tiny;
 
 use AAT::Application;
 use AAT::Syslog;
@@ -117,11 +117,33 @@ sub Send_Message
 
         if (defined $transport)
         {
-            my $stuffer = Email::Stuffer->new();
+			my $part_body = Email::MIME->create(body => $body  || 'Your Body');
+			my $part_attachment = (defined $msg_data->{file} 
+				? Email::MIME->create(
+            		body => path($msg_data->{file})->slurp_raw,
+           			attributes => {
+              			filename => $msg_data->{file}, 
+              			content_type => 'image/gif',
+				encoding => 'base64',
+                 		},
+               		)
+				: undef);
             foreach my $dest (ARRAY($msg_data->{dests}))
             {
-                if (defined $msg_data->{file})
-                {
+				my $email = Email::MIME->create(
+                	header => [
+                    	To => $dest,
+                    	From => $from,
+						Subject => $subject || 'Your Subject',
+                    	],
+                	parts => [
+                    	$part_body,
+                    	$part_attachment,
+                		],
+                	);
+		Email::Sender::Simple->try_to_send(
+			$email, { transport => $transport });
+=head2 comment
                     $stuffer->transport($transport)->to($dest)->from($from)
                         ->subject($subject || 'Your Subject')
                         ->text_body($body  || 'Your Body')
@@ -133,6 +155,7 @@ sub Send_Message
                         ->subject($subject || 'Your Subject')
                         ->text_body($body  || 'Your Body')->send();
                 }
+=cut
             }
 
             return (1);

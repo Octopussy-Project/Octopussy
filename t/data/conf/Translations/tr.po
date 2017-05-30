@@ -1,0 +1,1418 @@
+msgid "_ENGLISH"
+msgstr "İngilizce"
+
+msgid "_FRENCH"
+msgstr "Fransızca"
+
+msgid "_GERMAN"
+msgstr "Almanca"
+
+msgid "_ITALIAN"
+msgstr "İtalyanca"
+
+msgid "_PORTUGUESE"
+msgstr "Portekizce"
+
+msgid "_RUSSIAN"
+msgstr "Rusça"
+
+msgid "_SPANISH"
+msgstr "İspanyolca"
+
+msgid "_TURKISH"
+msgstr "Türk"
+
+msgid "_DISABLED"
+msgstr "Devre Dışı"
+
+msgid "_ENABLED"
+msgstr "Etkin"
+
+msgid "_YES"
+msgstr "Evet"
+
+msgid "_NO"
+msgstr "Hayır"
+
+msgid "_MINUTE"
+msgstr "Dakika"
+
+msgid "_MINUTES"
+msgstr "Dakika"
+
+msgid "_HOUR"
+msgstr "Saat"
+
+msgid "_HOURS"
+msgstr "Saat"
+
+msgid "_DAY"
+msgstr "Gün"
+
+msgid "_DAYS"
+msgstr "Gün"
+
+msgid "_WEEK"
+msgstr "Hafta"
+
+msgid "_MONTH"
+msgstr "Ay"
+
+msgid "_YEAR"
+msgstr "Yıl"
+
+msgid "_EVERY_DAY"
+msgstr "Her Gün"
+
+msgid "_EVERY_MONTH"
+msgstr "Her Ay"
+
+msgid "_TODAY"
+msgstr "Bugün"
+
+msgid "_YESTERDAY"
+msgstr "Dün"
+
+msgid "_CURRENT_HOUR"
+msgstr "Şuanki Saat"
+
+msgid "_CURRENT_DAY"
+msgstr "Bugün"
+
+msgid "_CURRENT_WEEK"
+msgstr "Bu Hafta"
+
+msgid "_CURRENT_MONTH"
+msgstr "Bu AY"
+
+msgid "_CURRENT_YEAR"
+msgstr "Bu Yıl"
+
+msgid "_CUSTOMIZED"
+msgstr "Özelleştirilmiş"
+
+msgid "_LAST_HOUR"
+msgstr "Geçen Saat"
+
+msgid "_LAST_DAY"
+msgstr "Geçen Gün"
+
+msgid "_LAST_WEEK"
+msgstr "Geçen Hafta"
+
+msgid "_LAST_MONTH"
+msgstr "Geçen Ay"
+
+msgid "_LAST_YEAR"
+msgstr "Geçen Yıl"
+
+msgid "_MONDAY"
+msgstr "Pazartesi"
+
+msgid "_TUESDAY"
+msgstr "Salı"
+
+msgid "_WEDNESDAY"
+msgstr "Çarşamba"
+
+msgid "_THURSDAY"
+msgstr "Perşembe"
+
+msgid "_FRIDAY"
+msgstr "Cuma"
+
+msgid "_SATURDAY"
+msgstr "Cumartesi"
+
+msgid "_SUNDAY"
+msgstr "Pazar"
+
+msgid "_JANUARY"
+msgstr "Ocak"
+
+msgid "_FEBRUARY"
+msgstr "Şubat"
+
+msgid "_MARCH"
+msgstr "Mart"
+
+msgid "_APRIL"
+msgstr "Nisan"
+
+msgid "_MAY"
+msgstr "Mayıs"
+
+msgid "_JUNE"
+msgstr "Haziran"
+
+msgid "_JULY"
+msgstr "Temmuz"
+
+msgid "_AUGUST"
+msgstr "Ağustos"
+
+msgid "_SEPTEMBER"
+msgstr "Eylül"
+
+msgid "_OCTOBER"
+msgstr "Ekim"
+
+msgid "_NOVEMBER"
+msgstr "Kasım"
+
+msgid "_DECEMBER"
+msgstr "Aralık"
+
+msgid "_HOURLY_STATS"
+msgstr "Saatlik İstatistik"
+
+msgid "_DAILY_STATS"
+msgstr "Günlük İstatistik"
+
+msgid "_WEEKLY_STATS"
+msgstr "Haftalık İstatistik"
+
+msgid "_MONTHLY_STATS"
+msgstr "Aylık İstatistik"
+
+msgid "_YEARLY_STATS"
+msgstr "Yıllık İstatistik"
+
+msgid "_ACTION"
+msgstr "Eylem"
+
+msgid "_BACKUP"
+msgstr "Yedek"
+
+msgid "_BEGIN"
+msgstr "Başla"
+
+msgid "_BINARY"
+msgstr "İkili"
+
+msgid "_BODY"
+msgstr "Gövde"
+
+msgid "_BUG_REPORT"
+msgstr "Bug Raporu"
+
+msgid "_BYTES"
+msgstr "Bytes"
+
+msgid "_CANCEL"
+msgstr "İptal"
+
+msgid "_CERTIFICATE"
+msgstr "Sertifika"
+
+msgid "_COLUMNS"
+msgstr "Sütunlar"
+
+msgid "_COLUMNS_NAMES"
+msgstr "Sütun Adı"
+
+msgid "_COMMON_NAME"
+msgstr "Ortak Ad"
+
+msgid "_CONFIG_FILE"
+msgstr "Konfigürasyon Dosyası"
+
+msgid "_DASHBOARD"
+msgstr "Pano"
+
+msgid "_DATASOURCE"
+msgstr "Data Kaynağı"
+
+msgid "_DATASOURCES"
+msgstr "Data Kaynağı"
+
+msgid "_DATASOURCE_VALUE"
+msgstr "Data Kaynağı Değeri"
+
+msgid "_DATASOURCES_VALUE"
+msgstr "Data Kaynağı Değeri"
+
+msgid "_DELETE"
+msgstr "Sil"
+
+msgid "_DELETE_FROM_DB"
+msgstr "Databaseden Sil"
+
+msgid "_DIRECTORY"
+msgstr "Dizin"
+
+msgid "_EDIT"
+msgstr "Düzenle"
+
+msgid "_END"
+msgstr "Son"
+
+msgid "_FEATURE_REQUEST"
+msgstr "Özellik İsteği"
+
+msgid "_FINISH"
+msgstr "Bitiş"
+
+msgid "_HELP"
+msgstr "Yardım"
+
+msgid "_HOMEPAGE"
+msgstr "Ana Sayfa"
+
+msgid "_HOST"
+msgstr "Host"
+
+msgid "_ICONS_AND_TEXT"
+msgstr "Küçük Resim ve Yazı"
+
+msgid "_ICONS_ONLY"
+msgstr "Küçük Resim"
+
+msgid "_INFORMATION"
+msgstr "Bilgilendirme"
+
+msgid "_KEY"
+msgstr "Anahtar"
+
+msgid "_LABEL"
+msgstr "Etiket"
+
+msgid "_LOGOUT"
+msgstr "Çıkış"
+
+msgid "_MENU_DISPLAY"
+msgstr "Menu Ekranı"
+
+msgid "_MODIFICATION"
+msgstr "Değişiklik"
+
+msgid "_MODIFY"
+msgstr "Değiştirme"
+
+msgid "_NEXT"
+msgstr "Sonraki"
+
+msgid "_OK"
+msgstr "Tamam"
+
+msgid "_PAUSE"
+msgstr "Duraklat"
+
+msgid "_PAUSED"
+msgstr "Duraklatıldı"
+
+msgid "_REMOVE"
+msgstr "Kaldır"
+
+msgid "_RESTORE"
+msgstr "Geri Getir"
+
+msgid "_RESTORE_FROM_FILE"
+msgstr "Dosyadan Geri Getir"
+
+msgid "_SAVE"
+msgstr "Kaydet"
+
+msgid "_SERVER"
+msgstr "Sunucu"
+
+msgid "_START"
+msgstr "Başlat"
+
+msgid "_STARTED"
+msgstr "Başlatıldı"
+
+msgid "_STATUS"
+msgstr "Durum"
+
+msgid "_STOP"
+msgstr "Durdur"
+
+msgid "_STOPPED"
+msgstr "Durduruldu"
+
+msgid "_TEXT_ONLY"
+msgstr "Yazı"
+
+msgid "_UPDATE"
+msgstr "Güncelle"
+
+msgid "_USER"
+msgstr "Kullanıcı"
+
+msgid "_USER_EDIT"
+msgstr "Kullanıcı Ayarlarını Güncelle"
+
+msgid "_USERS"
+msgstr "Kullanıcılar"
+
+msgid "_BIRTHDATE"
+msgstr "Doğum Tarihi"
+
+msgid "_CALENDAR"
+msgstr "Takvim"
+
+msgid "_CATEGORY"
+msgstr "Kategori"
+
+msgid "_COMMENT"
+msgstr "Yorum"
+
+msgid "_DATE_BEGIN"
+msgstr "Başlama Tarihi"
+
+msgid "_DATE_END"
+msgstr "Bitiş Tarihi"
+
+msgid "_DATETIME"
+msgstr "Tarih/Zaman"
+
+msgid "_DAY_OF_MONTH"
+msgstr "Ayın Günleri"
+
+msgid "_DAY_OF_WEEK"
+msgstr "Haftanın Günleri"
+
+msgid "_DEFAULT_STORAGES"
+msgstr "Varsayılan Depolama"
+
+msgid "_DESCRIPTION"
+msgstr "Açıklama"
+
+msgid "_EMAIL"
+msgstr "E-posta"
+
+msgid "_EXPORT_FTP"
+msgstr "FTP ile Aktar"
+
+msgid "_EXPORT_MAIL"
+msgstr "Mail ile Aktar"
+
+msgid "_EXPORT_SCP"
+msgstr "SCP ile Aktar"
+
+msgid "_FIELD"
+msgstr "Alan"
+
+msgid "_FIELDS_OF_TABLE"
+msgstr "Tablonun Alanları"
+
+msgid "_FILE"
+msgstr "Dosya"
+
+msgid "_FILTER"
+msgstr "Filtre"
+
+msgid "_FIRSTNAME"
+msgstr "İsim"
+
+msgid "_LASTNAME"
+msgstr "Soyisim"
+
+msgid "_LANGUAGE"
+msgstr "Dil"
+
+msgid "_LOGIN"
+msgstr "Giriş"
+
+msgid "_MAIL_SERVER"
+msgstr "Mail Sunucusu"
+
+msgid "_NAME"
+msgstr "Ad"
+
+msgid "_NB"
+msgstr "Nb"
+
+msgid "_NB_ITEMS"
+msgstr "Nb Öğeleri"
+
+msgid "_NEW_PASSWORD"
+msgstr "Yeni Parola"
+
+msgid "_PASSWORD"
+msgstr "Parola"
+
+msgid "_PORT"
+msgstr "Port"
+
+msgid "_QUERY"
+msgstr "Query"
+
+msgid "_RECIPIENTS"
+msgstr "Katılımcılar"
+
+msgid "_SELECT_ALL"
+msgstr "Hepsini Seç"
+
+msgid "_SQL_QUERY_DEFINITION"
+msgstr "SQL Query Tanımı"
+
+msgid "_SUBJECT"
+msgstr "Konu"
+
+msgid "_THEME"
+msgstr "Tema"
+
+msgid "_TITLE"
+msgstr "Başlık"
+
+msgid "_TYPE"
+msgstr "Tip"
+
+msgid "_UNKNOWN"
+msgstr "Bilinmeyen"
+
+msgid "_USED_SPACE"
+msgstr "Kullanılan Alan"
+
+msgid "_USER_PREFS"
+msgstr "Kullanıcı Tercihleri"
+
+msgid "_USER_RESTRICTIONS"
+msgstr "Kullanıcı Kısıtlamaları"
+
+msgid "_VALUE"
+msgstr "Değer"
+
+msgid "_VERSION"
+msgstr "Versiyon"
+
+msgid "_WEBSITE"
+msgstr "Web Sitesi"
+
+msgid "_ADD_NEW_SERVICE"
+msgstr "Yeni Servis Ekle"
+
+msgid "_ADD_SERVICE_TO_DEVICE"
+msgstr "Cihaza Yeni Servis Ekle"
+
+msgid "_ADD_SERVICE_TO_SERVICEGROUP"
+msgstr "Servisi Servis Grubuna Ekle"
+
+msgid "_ADD_STORAGE"
+msgstr "Depolama Alanı Ekle"
+
+msgid "_ALERT"
+msgstr "Alarm"
+
+msgid "_ALERT_DESCRIPTION"
+msgstr "Alarm Açıklaması"
+
+msgid "_ALERT_LEVEL"
+msgstr "Alarm Seviyesi"
+
+msgid "_ALERT_NAME"
+msgstr "Alarm Adı"
+
+msgid "_ALERTS"
+msgstr "Alarmlar"
+
+msgid "_ALERTS_VIEWER"
+msgstr "Alarm Görüntüleyici"
+
+msgid "_AUTHENTICATION"
+msgstr "Kimlik Doğrulama"
+
+msgid "_BACK"
+msgstr "Geri"
+
+msgid "_BASE"
+msgstr "Temel"
+
+msgid "_BUILDING"
+msgstr "Bina"
+
+msgid "_CITY"
+msgstr "Şehir"
+
+msgid "_COMPONENT_NAME"
+msgstr "Parça Adı"
+
+msgid "_CONNECTION_TYPE"
+msgstr "Bağlantı Tipi"
+
+msgid "_CONTACTS"
+msgstr "Kişiler"
+
+msgid "_CONTACTS_AUTH_DN"
+msgstr "*Kişi Kimlik DN*"
+
+msgid "_CONTACTS_AUTH_PASSWORD"
+msgstr "*Kişi Kimlik Şifresi*"
+
+msgid "_CONTACTS_BASE"
+msgstr "*Kişi Base*"
+
+msgid "_CONTACTS_FIELDS"
+msgstr "*Kişi Alanı*"
+
+msgid "_CONTACTS_FILTER"
+msgstr "*Kişi Filtresi*"
+
+msgid "_CONTACTS_SERVER"
+msgstr "*Kişi Sunucusu*"
+
+msgid "_COUNTRY"
+msgstr "Ülke"
+
+msgid "_CPU_USAGE"
+msgstr "CPU Kullanımı"
+
+msgid "_CREATE_REPORT"
+msgstr "Rapor Oluştur"
+
+msgid "_DEFAULT_DIR_INCOMING_LOGS"
+msgstr "Gelen Logların Varsayılan Dizini"
+
+msgid "_DEFAULT_DIR_KNOWN_LOGS"
+msgstr "Tanınan Logların Varsayılan Dizini"
+
+msgid "_DEFAULT_DIR_UNKNOWN_LOGS"
+msgstr "Tanınmayan Logların Varsayılan Dizini"
+
+msgid "_DEVICE"
+msgstr "Cihaz"
+
+msgid "_DEVICE_ADDRESS"
+msgstr "Cihaz Adresi"
+
+msgid "_DEVICE_DESCRIPTION"
+msgstr "Cihaz Açıklaması"
+
+msgid "_DEVICE_MODEL"
+msgstr "Cihaz Modeli"
+
+msgid "_DEVICE_NAME"
+msgstr "Cihaz Adı"
+
+msgid "_DEVICE_TYPE"
+msgstr "Cihaz Tipi"
+
+msgid "_DEVICES"
+msgstr "Cihazlar"
+
+msgid "_DEVICEGROUPS"
+msgstr "Cihaz Grupları"
+
+msgid "_DIR_INCOMING_LOGS"
+msgstr "Gelen Logların Dizini"
+
+msgid "_DIR_KNOWN_LOGS"
+msgstr "Tanınan Logların Dizini"
+
+msgid "_DIR_UNKNOWN_LOGS"
+msgstr "Tanınmayan Logların Dizini"
+
+msgid "_DOWNLOAD_CSV_FILE"
+msgstr "CSV Dosyasını İndir"
+
+msgid "_DOWNLOAD_FILE"
+msgstr "Dosyayı İndir"
+
+msgid "_DOWNLOAD_ZIP_FILE"
+msgstr "ZIP Dosyasını İndir"
+
+msgid "_DURATION_D"
+msgstr "Süre (d)"
+
+msgid "_FINISH_PERIOD"
+msgstr "Bitiş Periyodu"
+
+msgid "_GET_LOGS"
+msgstr "Logları Getir"
+
+msgid "_GRAPH_HEIGHT"
+msgstr "Grafik Boyu"
+
+msgid "_GRAPH_TITLE"
+msgstr "Grafik Başlığı"
+
+msgid "_GRAPH_TYPE"
+msgstr "Grafik Tipi"
+
+msgid "_GRAPH_WIDTH"
+msgstr "Grafik Genişliği"
+
+msgid "_GRAPH_Y_LABEL"
+msgstr "Grafik Y Etiketi"
+
+msgid "_GROUP_NAME"
+msgstr "Grup Adı"
+
+msgid "_IP_ADDRESS"
+msgstr "IP Adresi"
+
+msgid "_LAST_ALERTS"
+msgstr "Son Alarmlar"
+
+msgid "_LAST_LOGS"
+msgstr "Son Loglar"
+
+msgid "_LAUNCH_REPORT"
+msgstr "Raporlama Başlat "
+
+msgid "_LEVEL"
+msgstr "Seviye"
+
+msgid "_LOAD"
+msgstr "Yük"
+
+msgid "_LOCATION"
+msgstr "Yer"
+
+msgid "_LOCATIONS"
+msgstr "Yer"
+
+msgid "_LOG"
+msgstr "Log"
+
+msgid "_LOG_LEVEL"
+msgstr "Log Seviyesi"
+
+msgid "_LOG_REGEXP"
+msgstr "Log Regexp"
+
+msgid "_LOG_TYPE"
+msgstr "Log Tipi"
+
+msgid "_LOGROTATE"
+msgstr "*Logrotate*"
+
+msgid "_LOGS_AVAILABILITY"
+msgstr "Log Durumu"
+
+msgid "_LOGS_COMPRESSION"
+msgstr "Log Sıkıştırma"
+
+msgid "_LOGS_VIEWER"
+msgstr "Log Görüntüleyici"
+
+msgid "_LOGS_WIZARD"
+msgstr "Log Sihirbazı"
+
+msgid "_MAPS"
+msgstr "Harita"
+
+msgid "_MATCH"
+msgstr "Eşleşme"
+
+msgid "_MAX_MINUTES_SEARCH"
+msgstr "Maksimum Arama Süresi"
+
+msgid "_MAX_TIME_WITHOUT_LOG"
+msgstr "Maksimum Logsuz Süre"
+
+msgid "_MEM_USAGE"
+msgstr "RAM Kullanımı"
+
+msgid "_MESSAGES"
+msgstr "Mesajlar"
+
+msgid "_MINIMUM_DELAY_BETWEEN_2_ALERTS"
+msgstr "2 Alarm Arasındaki Minimum Gecikme (Saniye)"
+
+msgid "_MSG_ID"
+msgstr "Msg ID"
+
+msgid "_NAGIOS_HOST_DEFINED"
+msgstr "Nagios'ta Tanımlı Host"
+
+msgid "_NAGIOS_SERVER"
+msgstr "Nagios Sunucusu"
+
+msgid "_NAGIOS_SERVICE_DEFINED"
+msgstr "Nagios'ta Tanımlı Servis"
+
+msgid "_NB_MESSAGES"
+msgstr "Nb Mesajları"
+
+msgid "_NB_REPORTS"
+msgstr "Nb Raporları"
+
+msgid "_NEGATE"
+msgstr "*Olumsuz*"
+
+msgid "_NEW_ALERT"
+msgstr "Yeni Alarm"
+
+msgid "_NEW_BUILDING"
+msgstr "Yeni Bina"
+
+msgid "_NEW_CITY"
+msgstr "Yeni Şehir"
+
+msgid "_NEW_CONTACT"
+msgstr "Yeni Kişi"
+
+msgid "_NEW_DEVICE"
+msgstr "Yeni Cihaz"
+
+msgid "_NEW_DEVICEGROUP"
+msgstr "Yeni Cihaz Grubu"
+
+msgid "_NEW_DYNAMIC_ALERT"
+msgstr "Yeni Dinamik Alarm"
+
+msgid "_NEW_DYNAMIC_DEVICEGROUP"
+msgstr "Yeni Dinamik Cihaz Grubu"
+
+msgid "_NEW_FIELD"
+msgstr "Yeni Alan"
+
+msgid "_NEW_OCTOPUSSY_VERSION_AVAILABLE"
+msgstr "Octopussy'nin Yeni Bir Sürümü Mevcut"
+
+msgid "_NEW_RACK"
+msgstr "Yeni Raf"
+
+msgid "_NEW_REPORT"
+msgstr "Yeni Rapor"
+
+msgid "_NEW_ROOM"
+msgstr "Yeni Oda"
+
+msgid "_NEW_SERVICE"
+msgstr "Yeni Servis"
+
+msgid "_NEW_SERVICEGROUP"
+msgstr "Yeni Servis Grubu"
+
+msgid "_NEW_STATIC_ALERT"
+msgstr "Yeni Statik Alarm"
+
+msgid "_NEW_STATIC_DEVICEGROUP"
+msgstr "Yeni Statik Cihaz Grubu"
+
+msgid "_NEW_TABLE"
+msgstr "Yeni Tablo"
+
+msgid "_NEW_TIMEPERIOD"
+msgstr "Yeni Zaman Aralığı"
+
+msgid "_NEW_USER"
+msgstr "Yeni Kullanıcı"
+
+msgid "_OFFICIAL_WEBSITE"
+msgstr "Resmi Web Sitesi"
+
+msgid "_ORGANIZATION"
+msgstr "Kuruluş"
+
+msgid "_ORGANIZATIONAL_UNIT"
+msgstr "Kuruluş Birimi"
+
+msgid "_PAGE"
+msgstr "Sayfa"
+
+msgid "_PAGE_FIRST"
+msgstr "İlk Sayfa"
+
+msgid "_PAGE_LAST"
+msgstr "Son Sayfa"
+
+msgid "_PAGE_NEXT"
+msgstr "Sonraki Sayfa"
+
+msgid "_PAGE_PREVIOUS"
+msgstr "Önceki Sayfa"
+
+msgid "_PARTITION_LOGS"
+msgstr "Bölünmüş Loglar"
+
+msgid "_PERIOD"
+msgstr "Periyot"
+
+msgid "_PERIODS"
+msgstr "Periyot"
+
+msgid "_PERL_FUNCTION"
+msgstr "Perl Fonksiyonu"
+
+msgid "_PROCESSOR"
+msgstr "İşlemci"
+
+msgid "_QUICK_SEARCH_ON_THIS_PAGE"
+msgstr "Hızlı Ara"
+
+msgid "_RACK"
+msgstr "Raf"
+
+msgid "_RANK"
+msgstr "Kademe"
+
+msgid "_REAL_TIME_LOGS_VIEWER"
+msgstr "Gerçek Zamanlı Log Görüntüleyici"
+
+msgid "_REGEXP_EXC"
+msgstr "Regexp (Dışında)"
+
+msgid "_REGEXP_INC"
+msgstr "Regexp (İçinde)"
+
+msgid "_RELOAD"
+msgstr "Yeniden Başlat"
+
+msgid "_RELOAD_ALL"
+msgstr "Hepsini Yeniden Başlat"
+
+msgid "_RELOAD_REQUIRED"
+msgstr "Yeniden Başlatma Gerekli"
+
+msgid "_REMOVE_LOG_MINUTE"
+msgstr "Bu Dakikadaki Logları Sil"
+
+msgid "_REPETITION_N"
+msgstr "Tekrarlama (n)"
+
+msgid "_REPORT"
+msgstr "Rapor"
+
+msgid "_REPORT_CATEGORIES"
+msgstr "Rapor Kategorileri"
+
+msgid "_REPORT_CREATION"
+msgstr "Rapor Oluşturma"
+
+msgid "_REPORT_CSV"
+msgstr "Rapor (CSV Format)"
+
+msgid "_REPORT_EDITION"
+msgstr "Rapor Sürümü"
+
+msgid "_REPORT_FIELDS_ORDER"
+msgstr "Rapor Alanları Sırası"
+
+msgid "_REPORT_FILE_DOESNT_EXIST"
+msgstr "Rapor Dosyası Yok !"
+
+msgid "_REPORT_HTML"
+msgstr "Rapor (HTML Format)"
+
+msgid "_REPORT_IN_PROGRESS"
+msgstr "Rapor İşleniyor"
+
+msgid "_REPORT_NAME"
+msgstr "Rapor Adı"
+
+msgid "_REPORT_OFC"
+msgstr "*Open Flash Chart Report*"
+
+msgid "_REPORT_PDF"
+msgstr "Rapor (PDF Format)"
+
+msgid "_REPORT_RRD_GRAPH"
+msgstr "Rapor (RRD Grafik)"
+
+msgid "_REPORT_RRD_GRAPH_CREATION"
+msgstr "RRD Grafik Raporu Oluşturma"
+
+msgid "_REPORT_SCHEDULER"
+msgstr "Rapor Zamanlama"
+
+msgid "_REPORT_XML"
+msgstr "Rapor (XML Format)"
+
+msgid "_REPORTS"
+msgstr "Raporlar"
+
+msgid "_REPORTS_UPDATES"
+msgstr "Güncel Raporlar"
+
+msgid "_REPORTS_VIEWER"
+msgstr "Rapor Görüntüleyici"
+
+msgid "_RIGHTS"
+msgstr "Haklar"
+
+msgid "_ROLE"
+msgstr "Rol"
+
+msgid "_ROOM"
+msgstr "Oda"
+
+msgid "_ROTATE_LEFT"
+msgstr "Sola Döndür"
+
+msgid "_ROTATE_RIGHT"
+msgstr "Sağa Döndür"
+
+msgid "_RUNNING_REPORTS"
+msgstr "Rapor Çalışıyor"
+
+msgid "_SAVE_AS_SEARCH_TEMPLATE"
+msgstr "Arama Taslağı Olarak Kaydet"
+
+msgid "_SAVE_MSG_GO_BACK_TO_WIZARD"
+msgstr "Mesajı Kayder ve Sihirbaza Dön"
+
+msgid "_SAVE_MSG_GO_TO_SERVICE"
+msgstr "Mesajı Kaydet ve Servise Git"
+
+msgid "_SCHEDULE"
+msgstr "Zamanlama"
+
+msgid "_SCHEDULE_REPORT"
+msgstr "Zamanlanmış Rapor"
+
+msgid "_SCHEDULE_STATISTIC_REPORT"
+msgstr "Zamanlanmış Rapor İstatistiği"
+
+msgid "_SCHEDULER"
+msgstr "Zamanlayıcı"
+
+msgid "_SEARCH_TEMPLATES"
+msgstr "Taslak Ara"
+
+msgid "_SELECT_THIS_MSG"
+msgstr "Mesajı Seç"
+
+msgid "_SELECTION"
+msgstr "Seçenek"
+
+msgid "_SENDER"
+msgstr "Gönderen"
+
+msgid "_SERVER"
+msgstr "Sunucu"
+
+msgid "_SERVICE"
+msgstr "Servis"
+
+msgid "_SERVICE_NAME"
+msgstr "Servis Adı"
+
+msgid "_SERVICEGROUPS"
+msgstr "Servis Grubu"
+
+msgid "_SERVICES"
+msgstr "Servisler"
+
+msgid "_SERVICES_UPDATES"
+msgstr "Güncel Servisler"
+
+msgid "_SOURCE"
+msgstr "Kaynak"
+
+msgid "_SHOW_DIFF"
+msgstr "Farkları Göster"
+
+msgid "_START"
+msgstr "Başlangıç"
+
+msgid "_START_PERIOD"
+msgstr "Başlangıç Periyodu"
+
+msgid "_START_TIME"
+msgstr "Başlangıç Zamanı"
+
+msgid "_STATE"
+msgstr "Durum"
+
+msgid "_STATIC"
+msgstr "Statik"
+
+msgid "_STATIC_ALERT_CONFIGURATION"
+msgstr "Statik Alarm Konfigürasyonu"
+
+msgid "_STATISTICS"
+msgstr "İstatiktikler"
+
+msgid "_STATISTIC_REPORT_EDITION"
+msgstr "*İstatistik Raporu Sürümü*"
+
+msgid "_STATISTIC_REPORT_SCHEDULER"
+msgstr "İstatistik Raporu Zamanlama"
+
+msgid "_STATISTIC_REPORTS"
+msgstr "İstatistik Raporu"
+
+msgid "_STORAGES"
+msgstr "Depolama"
+
+msgid "_STREET"
+msgstr "Sokak"
+
+msgid "_SUPPORT_REQUEST"
+msgstr "Destek İsteği"
+
+msgid "_SWAP_USAGE"
+msgstr "Değişken Alan Kullanımı"
+
+msgid "_SYSLOG_OUTPUT"
+msgstr "Syslog Çıkışı"
+
+msgid "_SYSTEM_CONFIG"
+msgstr "Sistem Ayarları"
+
+msgid "_TABLE"
+msgstr "Tablo"
+
+msgid "_TABLE_NAME"
+msgstr "Table Adı"
+
+msgid "_TABLES"
+msgstr "Tablolar"
+
+msgid "_TABLES_UPDATES"
+msgstr "Güncel Tablolar"
+
+msgid "_TAXONOMY"
+msgstr "Taksonomi"
+
+msgid "_TICKET_CLOSED"
+msgstr "Kapatıldı"
+
+msgid "_TICKET_OPENED"
+msgstr "Açıldı"
+
+msgid "_TICKET_WAIT_FOR_INFO"
+msgstr "Bilgi Bekleniyor"
+
+msgid "_TICKET_WORK_PROGRESS"
+msgstr "İşlemde"
+
+msgid "_TIMELINE"
+msgstr "Zaman Çizelgesi"
+
+msgid "_TIMEPERIOD"
+msgstr "Periyot"
+
+msgid "_TIMEPERIOD_NAME"
+msgstr "Periyot Adı"
+
+msgid "_TIMEPERIODS"
+msgstr "Periyot"
+
+msgid "_TIMESTEP"
+msgstr "*Time Step*"
+
+msgid "_UNKNOWN_MSGS"
+msgstr "Tanınmayan Mesajlar"
+
+msgid "_USERS_AUTH_DN"
+msgstr "*Kullanıcı Auth. DN*"
+
+msgid "_USERS_AUTH_PASSWORD"
+msgstr "*Kullanıcı Auth. Password*"
+
+msgid "_USERS_BASE"
+msgstr "*Kullanıcı Base*"
+
+msgid "_USERS_FILTER"
+msgstr "Kullanıcı Filtresi"
+
+msgid "_USERS_SERVER"
+msgstr "Kullanıcı Sunucusu"
+
+msgid "_WORLD_STATISTICS"
+msgstr "Dünya İstatistikleri"
+
+msgid "_ZABBIX_HOST_DEFINED"
+msgstr "Zabbix'te Tanımlı Host"
+
+msgid "_ZABBIX_SERVER"
+msgstr "Zabbix Sunucusu"
+
+msgid "_ZABBIX_ITEM_DEFINED"
+msgstr "Zabbix'te Tanımlı Öğe"
+
+msgid "_ZOOM_IN"
+msgstr "Yakınlaş"
+
+msgid "_ZOOM_OUT"
+msgstr "Uzaklaş"
+
+msgid "_DLG_DELETE_ALERT"
+msgstr "Alarmı silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_CONTACT"
+msgstr "Kişiyi silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_DEVICE"
+msgstr "Cihazı silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_DEVICEGROUP"
+msgstr "Cihaz grubunu silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_DEVICE_SERVICE"
+msgstr "'%%arg1%%' servisini '%%arg2%%' cihazından silmek istiyor musun?"
+
+msgid "_DLG_DELETE_LOCATION_BUILDING"
+msgstr " Yer bilgisini Silmek İstiyor musun Şehir '%%arg1%%' Bina '%%arg2%%' ?"
+
+msgid "_DLG_DELETE_LOCATION_CITY"
+msgstr "Yer bilgisini Silmek İstiyor musun Şehir '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_LOCATION_RACK"
+msgstr "Yer bilgisini silmek istiyor musun Şehir '%%arg1%%' Bina '%%arg2%%' Oda '%%arg3%%' Raf '%%arg4%%' ?"
+
+msgid "_DLG_DELETE_LOCATION_ROOM"
+msgstr "Yer bilgisini silmek istiyor musun Şehir '%%arg1%%' Bina '%%arg2%%' Oda '%%arg3%%' ?"
+
+msgid "_DLG_DELETE_LOG"
+msgstr "Bu satırı silmek istiyor musun  #%%log%% ?"
+
+msgid "_DLG_DELETE_LOG_MINUTE"
+msgstr "Bu dosyayı silmek istiyor musun %%datetime%% ?"
+
+msgid "_DLG_DELETE_MESSAGE"
+msgstr " '%%msg%%' bu mesajı '%%service%%' bu servisten silmek istiyor musun?"
+
+msgid "_DLG_DELETE_REPORT"
+msgstr "'%%arg1%%' bu raporu silmek istiyor musun?"
+
+msgid "_DLG_DELETE_REPORT_DATA"
+msgstr "Bu raporu silmek istiyor musun'%%arg1%%' '%%arg2%%' ?"
+
+msgid "_DLG_DELETE_REPORT_MONTH"
+msgstr "Bu raporu silmek istiyor musun '%%arg1%%' '%%arg2%% %%arg3%%' ?"
+
+msgid "_DLG_DELETE_REPORT_SCHEDULE"
+msgstr "Bu zamanlanmış raporu silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_SEARCH_TEMPLATE"
+msgstr "Bu taslağı'%%arg1%%' bu kullanıcıdan'%%arg2%%' silmek istiyor musun?"
+
+msgid "_DLG_DELETE_SERVICE"
+msgstr "Servisi silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_SERVICEGROUP"
+msgstr "Servis grubunu silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_SERVICEGROUP_SERVICE"
+msgstr "Bu servisi '%%arg2%%' bu servis grubunda '%%arg1%%' silmek istiyor musun?"
+
+msgid "_DLG_DELETE_STATISTIC_REPORT"
+msgstr "İstatistik raporunu silmek istiyor musun'%%arg1%%' ?"
+
+msgid "_DLG_DELETE_STATISTIC_REPORT_SCHEDULE"
+msgstr "Zamanlanmış istatistik raporunu silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_STORAGE"
+msgstr "Depolama alanını silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_TABLE"
+msgstr "Tabloyu silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_TIMEPERIOD"
+msgstr "Periyodu silmek istiyor musun '%%arg1%%' ?"
+
+msgid "_DLG_DELETE_USER"
+msgstr "Bu kullanıcıyı '%%arg1%%' silmek istiyor musun ?"
+
+msgid "_DLG_LOGOUT"
+msgstr "Çıkmak istediğine emin misin?"
+
+msgid "_DLG_PARSE_PAUSE"
+msgstr " Bu cihazı '%%arg1%%' duraklatmak istiyor musun?"
+
+msgid "_DLG_PARSE_START"
+msgstr "Bu cihazı '%%arg1%%' başlatmak istiyor musun?"
+
+msgid "_DLG_PARSE_STOP"
+msgstr "Bu cihazı '%%arg1%%' durdurmak istiyor musun ?"
+
+msgid "_DLG_RESTORE_CONFIG"
+msgstr "Ayarları bu dosyadan '%%arg1%%' geri yüklemek istiyor musun?"
+
+msgid "_MSG_ALERT_RAISED_ONLY"
+msgstr "Alarm ancak en az d sürede n kere gerçekleşirse aktf olacaktır."
+
+msgid "_MSG_CHECK_UPDATES"
+msgstr "Güncelleştirme Kontrolü"
+
+msgid "_MSG_CONFIG_RESTORED"
+msgstr "Ayarlar bu dosyadan '%s' geri yüklendi."
+
+msgid "_MSG_CONTACT_ALREADY_EXIST"
+msgstr "Bu kişi zaten mevcut !"
+
+msgid "_MSG_CONTACT_INFO_INVALID"
+msgstr "Kişi bilgisi enazından E-posta ve ID içermelidir!"
+
+msgid "_MSG_CONTACT_ME"
+msgstr "Herhangi birşey için iletişime geçebilirsiniz: octo.devel@gmail.com"
+
+msgid "_MSG_DEVICEGROUP_ALREADY_EXISTS"
+msgstr "Cihaz grubu zaten mevcut !"
+
+msgid "_MSG_DYNAMIC_ALERT_CREATION"
+msgstr "Dinamik Alarm Oluşturma"
+
+msgid "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "Data Üzerinde çalışılıyor"
+
+msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "Dosyalar Listeleniyor..."
+
+msgid "_MSG_FIELD_DONT_EXIST"
+msgstr "Alan mevcut değil !"
+
+msgid "_MSG_INVALID_LOGIN_PASSWORD"
+msgstr "Geçersiz kullanıcı adı veya şifre !"
+
+msgid "_MSG_INVALID_SCHEDULE_PERIOD"
+msgstr "Geçersiz bir periyot seçtiniz !"
+
+msgid "_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
+msgstr "Cihazın log uygunluğu %s"
+
+msgid "_MSG_MAIL_SENT_TO_SUPPORT"
+msgstr "Destek için mail gönder."
+
+msgid "_MSG_MAP_CREATION_INFO"
+msgstr "Harita oluşturmak hakkında daha fazla bilgi için Octopussy websitesini ziyaret edin!"
+
+msgid "_MSG_MSGID_ALREADY_EXISTS"
+msgstr "Mesaj ID zaten mevcut!"
+
+msgid "_MSG_MSGID_CANT_BE_NULL"
+msgstr "Mesaj ID NULL olamaz !"
+
+msgid "_MSG_MSGS_FOR_SERVICE"
+msgstr "Servis için Mesaj %s (versiyon %s)"
+
+msgid "_MSG_NB_LINES"
+msgstr "Satır Sayısı: "
+
+msgid "_MSG_NEED_DEFINE_CONTACT"
+msgstr "Eğer Alarm için bilgilendirm istiyorsanız lütfen "Kişi" tanımlayın."
+
+msgid "_MSG_NEED_REPORT_FOR_SCHEDULE"
+msgstr "Herhangi birşey zamanlamak için "Rapor" oluşturmanız gerekmektedir."
+
+msgid "_MSG_NEED_SMTP_SERVER_TO_SUBMIT"
+msgstr "Octopussy'den mail almak için SMTP ayarlarını yapmış olmanız gerekmektedir !"
+
+msgid "_MSG_NO_GRAPH_AVAILABLE"
+msgstr "Uygun bir grafik yok !"
+
+msgid "_MSG_NO_MSG_FOR_SERVICE"
+msgstr "Bu servis için bir mesaj tanımlanmamış ! %s (versiyon %s)"
+
+msgid "_MSG_NO_UPDATES_AVAILABLE"
+msgstr "Uygun güncelleştirme yok"
+
+msgid "_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
+msgstr "Anonim olarak 8pussy.org'a bilgi göndermeyi onaylıyorum."
+
+msgid "_MSG_REACH_MAX_LINES"
+msgstr "Maksimum satır sayısına %d erişildi!"
+
+msgid "_MSG_REPORT_DATA_SOURCE"
+msgstr "Veri %d dosyadan / %d satırdan  %d dakika and %d saniyede elde edildi."
+
+msgid "_MSG_REPORT_GENERATED_BY"
+msgstr "Octopussy tarafından oluşturuldu."
+
+msgid "_MSG_REPORT_PROGRESS_BUILDING_REPORT"
+msgstr "Rapor Oluşturuluyor..."
+
+msgid "_MSG_REPORT_PROGRESS_INIT_DB"
+msgstr "Database işleniyor..."
+
+msgid "_MSG_REPORT_PROGRESS_INIT_PLUGIN"
+msgstr "Eklentiler işleniyor..."
+
+msgid "_MSG_REPORT_PROGRESS_INSERTING_DATA"
+msgstr "Veri aktarılıyor..."
+
+msgid "_MSG_REPORT_PROGRESS_LISTING_FILES"
+msgstr "Veri dosyaları alınıyor..."
+
+msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
+msgstr "Querying Database..."
+
+msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "Rapor Ayarları Yükleniyor..."
+
+msgid "_MSG_RESTART_OCTOPUSSY"
+msgstr "Octopussy'i Yeniden Başlat"
+
+msgid "_MSG_SCHEDULE_ALREADY_EXISTS"
+msgstr "Zamanlayıcı zaten mevcut !"
+
+msgid "_MSG_SEND_MY_NEW"
+msgstr "Bana gönder yeni/güncel Servis/Tablo"
+
+msgid "_MSG_SERVICES_FOR_DEVICE"
+msgstr "Bu cihaz için servis %s"
+
+msgid "_MSG_SERVICES_FOR_SERVICEGROUP"
+msgstr "Servis Grup için Servis %s"
+
+msgid "_MSG_SSH_PUBKEY_REQUIRED"
+msgstr "SSH Güvenlik Anahtarı Gerekli"
+
+msgid "_MSG_STATIC_ALERT_CREATION"
+msgstr "Statik Alarm Oluşturma"
+
+msgid "_MSG_STORAGES_DEFAULT_DIRECTORIES"
+msgstr "Varsayılan Depolama ayarları yeni cihazlara uygulanır. Eğer özel Cihaz/Servis için değiştirmek istiyorsanız  Cihaz/Depolama sayfasından değiştirebilirsiniz."
+
+msgid "_MSG_STORAGES_FOR_DEVICE"
+msgstr "Cihaz için Depolama %s"
+
+msgid "_MSG_SUBMIT_TO_IMPROVE"
+msgstr "Tablo/Servis 'i Octopussy'i geliştirmek için gönder."
+
+msgid "_MSG_THIS_IS_MY_NEW"
+msgstr "Bu yeni/güncel Servis/Tablo 'dur"
+
+msgid "_MSG_TOTAL_EVENTS_LAST_MINUTE"
+msgstr "Son dakikada Gerçekleşen Olaylar"
+
+msgid "_MSG_TOTAL_REPORTS"
+msgstr "Toplam: %d Rapor"
+
+msgid "_MSG_UPDATE_CONFIG"
+msgstr "Ayarları Güncelle"
+
+msgid "_MSG_UPDATE_PREFS"
+msgstr "Seçenekleri Güncelle"
+
+msgid "_MSG_UPDATE_SELECTED_REPORTS"
+msgstr "Seçilen Raporu Güncelle"
+
+msgid "_MSG_UPDATE_SELECTED_SERVICES"
+msgstr "Seçilen Servisi Güncelle"
+
+msgid "_MSG_UPDATE_SELECTED_TABLES"
+msgstr "Seçilen Tabloyu Güncelle"
+
+msgid "_MSG_USER_ALREADY_EXISTS"
+msgstr "Kullanıcı zaten mevcut !"
+
+msgid "_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"
+msgstr "Bu kullanıcı ancak logların %d dakikasını görebilir."
+
+msgid "_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
+msgstr "Varsayılanda sihirbazın maksimum mesaj görüntüleme sayısı %d sınırlandırılmıştır..(/AAT/AAT.xml)"
+
+msgid "_TOOLTIP_ALERT_MSG"
+msgstr "Konu ve gövdede önceden tanımlanmış ifadeler kullanabilirsiniz:<br> <b>__device__</b>:Alarmın aktif olmasını sağlayan logu gönderen cihaz.<br> <b>__alert__</b>: Alarm Adı.<br> <b>__level__</b>: Alarm Seviyesi.<br> <b>__log__</b>: Tüm log satırı.<br>"
+
+msgid "_TOOLTIP_DEVICE_STATUS"
+msgstr "Cihazın durumu:<br> <b>Stopped</b>: loglar kabul edilmez<br> <b>Paused</b>: loglar kabul edilir fakat işlenmez<br> <b>Started</b>: loglar kabul edilir ve uygun servise göre işlenir<br>"
+
+msgid "_TOOLTIP_SYSTEM_DB"
+msgstr "MySQL DataBase sadece Alarmları kaydetmek ve Raporlardaki SQL Queries kullanılır.<br> <b>Server:</b> (<i>default: localhost</i>)<br> <b>User:</b> (<i>default: octopussy</i>)<br> <b>Password:</b> (<i>default: octopussy</i>)<br> <b>Base:</b> (<i>default: octopussy</i>)<br>"
+
+msgid "_TOOLTIP_SYSTEM_JABBER"
+msgstr "Jabber Kişilere Alarmları anlık mesaj olarak gönderir.<br> <b>Server:</b> (<i>yourjabber.yourdomain.com</i>)<br> <b>User:</b> (<i>yourjabberuser</i>)<br> <b>Password:</b> (<i>yourjabberpassword</i>)<br> <hr> More info on Jabber: http://www.jabber.org/"
+
+msgid "_TOOLTIP_SYSTEM_LDAP"
+msgstr "LDAP kullanıcı ve kişileri kontrolde kullanılır.<br> <b>Contacts Server:</b> (<i>yourldapserver.yourdomain.com</i>)<br> <b>Contacts Base:</b> (<i>ou=Contacts,dc=yourdomain,dc=com</i>)<br> <b>Contacts Filter:</b> <br> <b>Users Server:</b> (<i>yourldapserver.yourdomain.com</i>)<br> <b>Users Base:</b> (<i>ou=Users,dc=yourdomain,dc=com</i>)<br> <b>Users Filter:</b> <br> <hr> More info on LDAP: http://www.openldap.org/"
+
+msgid "_TOOLTIP_SYSTEM_NSCA"
+msgstr "NSCA Alarmları Nagios Ekranına gönderir.<br> <b>Binary:</b> Name of the binary send_nsca<br> <b>Configuration File:</b> Filename of your send_nsca configuration file<br> <b>Nagios Server:</b> Address of your Nagios supervision console<br> <b>Host defined in Nagios:</b> Name of the Host defined in Nagios to handle Octopussy Alerts<br> <b>Service defined in Nagios:</b> Name of the Service defined in Nagios to handle Octopussy Alerts<br> <hr> More info on Nagios and NSCA: http://www.nagios.org/"
+
+msgid "_TOOLTIP_SYSTEM_PROXY"
+msgstr "Proxy güncellemeleri belirtilen proxy üzerinden almaya yarar.<br> <b>Server:</b> (<i>yourproxy.yourdomain.com</i>)<br> <b>Port:</b> (<i>proxy_port</i>)<br> <b>User:</b> (<i>proxy_user</i>)<br> <b>Password:</b> (<i>proxy_password</i>)<br>"
+
+msgid "_TOOLTIP_SYSTEM_SMTP"
+msgstr "SMTP Alarmları ve Raporları kişilere e-posta olarak iletmede kullanılır..<br> <b>Server:</b> (<i>yoursmtp.yourdomain.com</i>)<br> <b>Sender:</b> (<i>you@yourdomain.com</i>)<br>"
+
+msgid "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "Zabbix sunucusuna Alarmları bildirmek için ayarlar"

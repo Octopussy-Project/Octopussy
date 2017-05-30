@@ -1,0 +1,1418 @@
+msgid "_ENGLISH"
+msgstr "Английский"
+
+msgid "_FRENCH"
+msgstr "Французский"
+
+msgid "_GERMAN"
+msgstr "Немецкий"
+
+msgid "_ITALIAN"
+msgstr "§ITALIAN§"
+
+msgid "_PORTUGUESE"
+msgstr "Португальский"
+
+msgid "_RUSSIAN"
+msgstr "§RUSSIAN§"
+
+msgid "_SPANISH"
+msgstr "Испанский"
+
+msgid "_TURKISH"
+msgstr "§TURKISH§"
+
+msgid "_DISABLED"
+msgstr "Выключено"
+
+msgid "_ENABLED"
+msgstr "Включено"
+
+msgid "_YES"
+msgstr "Да"
+
+msgid "_NO"
+msgstr "Нет"
+
+msgid "_MINUTE"
+msgstr "Минута"
+
+msgid "_MINUTES"
+msgstr "Минут"
+
+msgid "_HOUR"
+msgstr "Час"
+
+msgid "_HOURS"
+msgstr "Часов"
+
+msgid "_DAY"
+msgstr "День"
+
+msgid "_DAYS"
+msgstr "Дней"
+
+msgid "_WEEK"
+msgstr "Неделя"
+
+msgid "_MONTH"
+msgstr "Месяц"
+
+msgid "_YEAR"
+msgstr "Год"
+
+msgid "_EVERY_DAY"
+msgstr "Каждый день"
+
+msgid "_EVERY_MONTH"
+msgstr "Каждый месяц"
+
+msgid "_TODAY"
+msgstr "Сегодня"
+
+msgid "_YESTERDAY"
+msgstr "Вчера"
+
+msgid "_CURRENT_HOUR"
+msgstr "Текущий час"
+
+msgid "_CURRENT_DAY"
+msgstr "Текущий день"
+
+msgid "_CURRENT_WEEK"
+msgstr "Текущая неделя"
+
+msgid "_CURRENT_MONTH"
+msgstr "Текущий месяц"
+
+msgid "_CURRENT_YEAR"
+msgstr "Текущий год"
+
+msgid "_CUSTOMIZED"
+msgstr "Настроено"
+
+msgid "_LAST_HOUR"
+msgstr "Последний час"
+
+msgid "_LAST_DAY"
+msgstr "Последний день"
+
+msgid "_LAST_WEEK"
+msgstr "Последняя неделя"
+
+msgid "_LAST_MONTH"
+msgstr "Последний месяц"
+
+msgid "_LAST_YEAR"
+msgstr "Последний год"
+
+msgid "_MONDAY"
+msgstr "Понедельник"
+
+msgid "_TUESDAY"
+msgstr "Вторник"
+
+msgid "_WEDNESDAY"
+msgstr "Среда"
+
+msgid "_THURSDAY"
+msgstr "Четверг"
+
+msgid "_FRIDAY"
+msgstr "Пятница"
+
+msgid "_SATURDAY"
+msgstr "Суббота"
+
+msgid "_SUNDAY"
+msgstr "Воскресенье"
+
+msgid "_JANUARY"
+msgstr "Январь"
+
+msgid "_FEBRUARY"
+msgstr "Февраль"
+
+msgid "_MARCH"
+msgstr "Март"
+
+msgid "_APRIL"
+msgstr "Апрель"
+
+msgid "_MAY"
+msgstr "Май"
+
+msgid "_JUNE"
+msgstr "Июнь"
+
+msgid "_JULY"
+msgstr "Июль"
+
+msgid "_AUGUST"
+msgstr "Август"
+
+msgid "_SEPTEMBER"
+msgstr "Сентябрь"
+
+msgid "_OCTOBER"
+msgstr "Октябрь"
+
+msgid "_NOVEMBER"
+msgstr "Ноябрь"
+
+msgid "_DECEMBER"
+msgstr "Декабрь"
+
+msgid "_HOURLY_STATS"
+msgstr "Почасовая статистика"
+
+msgid "_DAILY_STATS"
+msgstr "Ежедневная статистика"
+
+msgid "_WEEKLY_STATS"
+msgstr "Еженедельная статистика"
+
+msgid "_MONTHLY_STATS"
+msgstr "Ежемесячная статистика"
+
+msgid "_YEARLY_STATS"
+msgstr "Ежегодная статистика"
+
+msgid "_ACTION"
+msgstr "Действие"
+
+msgid "_BACKUP"
+msgstr "§BACKUP§"
+
+msgid "_BEGIN"
+msgstr "Начать"
+
+msgid "_BINARY"
+msgstr "Бинарный"
+
+msgid "_BODY"
+msgstr "Тело"
+
+msgid "_BUG_REPORT"
+msgstr "Отчёт об ошибке"
+
+msgid "_BYTES"
+msgstr "§BYTES§"
+
+msgid "_CANCEL"
+msgstr "Отменить"
+
+msgid "_CERTIFICATE"
+msgstr "§CERTIFICATE§"
+
+msgid "_COLUMNS"
+msgstr "§COLUMNS§"
+
+msgid "_COLUMNS_NAMES"
+msgstr "§COLUMNS_NAMES§"
+
+msgid "_COMMON_NAME"
+msgstr "§COMMON_NAME§"
+
+msgid "_CONFIG_FILE"
+msgstr "Конфигурационнай файл"
+
+msgid "_DASHBOARD"
+msgstr "Панель управления"
+
+msgid "_DATASOURCE"
+msgstr "§DATASOURCE§"
+
+msgid "_DATASOURCES"
+msgstr "§DATASOURCES§"
+
+msgid "_DATASOURCE_VALUE"
+msgstr "§DATASOURCE_VALUE§"
+
+msgid "_DATASOURCES_VALUE"
+msgstr "§DATASOURCES_VALUE§"
+
+msgid "_DELETE"
+msgstr "Удалить"
+
+msgid "_DELETE_FROM_DB"
+msgstr "§DELETE_FROM_DB§"
+
+msgid "_DIRECTORY"
+msgstr "Директория"
+
+msgid "_EDIT"
+msgstr "Редактировать"
+
+msgid "_END"
+msgstr "Конец"
+
+msgid "_FEATURE_REQUEST"
+msgstr "Просьба о функции"
+
+msgid "_FINISH"
+msgstr "Закончить"
+
+msgid "_HELP"
+msgstr "Помощь"
+
+msgid "_HOMEPAGE"
+msgstr "§HOMEPAGE§"
+
+msgid "_HOST"
+msgstr "Хост"
+
+msgid "_ICONS_AND_TEXT"
+msgstr "§ICONS_AND_TEXT§"
+
+msgid "_ICONS_ONLY"
+msgstr "§ICONS_ONLY§"
+
+msgid "_INFORMATION"
+msgstr "§INFORMATION§"
+
+msgid "_KEY"
+msgstr "Ключ"
+
+msgid "_LABEL"
+msgstr "§LABEL§"
+
+msgid "_LOGOUT"
+msgstr "Выйти"
+
+msgid "_MENU_DISPLAY"
+msgstr "§MENU_DISPLAY§"
+
+msgid "_MODIFICATION"
+msgstr "§MODIFICATION§"
+
+msgid "_MODIFY"
+msgstr "Изменить"
+
+msgid "_NEXT"
+msgstr "Следующий"
+
+msgid "_OK"
+msgstr "Ok"
+
+msgid "_PAUSE"
+msgstr "Пауза"
+
+msgid "_PAUSED"
+msgstr "На паузе"
+
+msgid "_REMOVE"
+msgstr "Убрать"
+
+msgid "_RESTORE"
+msgstr "§RESTORE§"
+
+msgid "_RESTORE_FROM_FILE"
+msgstr "§RESTORE_FROM_FILE§"
+
+msgid "_SAVE"
+msgstr "Сохранить"
+
+msgid "_SERVER"
+msgstr "Сервер"
+
+msgid "_START"
+msgstr "Пуск"
+
+msgid "_STARTED"
+msgstr "Запущено"
+
+msgid "_STATUS"
+msgstr "Статус"
+
+msgid "_STOP"
+msgstr "Стоп"
+
+msgid "_STOPPED"
+msgstr "Остановлено"
+
+msgid "_TEXT_ONLY"
+msgstr "§TEXT_ONLY§"
+
+msgid "_UPDATE"
+msgstr "Обновить"
+
+msgid "_USER"
+msgstr "Пользователь"
+
+msgid "_USER_EDIT"
+msgstr "§USER_EDIT§"
+
+msgid "_USERS"
+msgstr "Пользователи"
+
+msgid "_BIRTHDATE"
+msgstr "День рождения"
+
+msgid "_CALENDAR"
+msgstr "Календарь"
+
+msgid "_CATEGORY"
+msgstr "Категория"
+
+msgid "_COMMENT"
+msgstr "Заметка"
+
+msgid "_DATE_BEGIN"
+msgstr "Дата начала"
+
+msgid "_DATE_END"
+msgstr "Дата конца"
+
+msgid "_DATETIME"
+msgstr "§DATETIME§"
+
+msgid "_DAY_OF_MONTH"
+msgstr "День месяца"
+
+msgid "_DAY_OF_WEEK"
+msgstr "День недели"
+
+msgid "_DEFAULT_STORAGES"
+msgstr "Хранилища по умолчанию"
+
+msgid "_DESCRIPTION"
+msgstr "Описание"
+
+msgid "_EMAIL"
+msgstr "Email"
+
+msgid "_EXPORT_FTP"
+msgstr "Экспорт по FTP"
+
+msgid "_EXPORT_MAIL"
+msgstr "Экспорт по почте"
+
+msgid "_EXPORT_SCP"
+msgstr "Экспорт по SCP"
+
+msgid "_FIELD"
+msgstr "Поле"
+
+msgid "_FIELDS_OF_TABLE"
+msgstr "§FIELDS_OF_TABLE§"
+
+msgid "_FILE"
+msgstr "Файл"
+
+msgid "_FILTER"
+msgstr "Фильтр"
+
+msgid "_FIRSTNAME"
+msgstr "Имя"
+
+msgid "_LASTNAME"
+msgstr "Фамилия"
+
+msgid "_LANGUAGE"
+msgstr "Язык"
+
+msgid "_LOGIN"
+msgstr "Логин"
+
+msgid "_MAIL_SERVER"
+msgstr "Почтовый сервер"
+
+msgid "_NAME"
+msgstr "Название"
+
+msgid "_NB"
+msgstr "§NB§"
+
+msgid "_NB_ITEMS"
+msgstr "§NB_ITEMS§"
+
+msgid "_NEW_PASSWORD"
+msgstr "§NEW_PASSWORD§"
+
+msgid "_PASSWORD"
+msgstr "Пароль"
+
+msgid "_PORT"
+msgstr "Порт"
+
+msgid "_QUERY"
+msgstr "Запрос"
+
+msgid "_RECIPIENTS"
+msgstr "Получатели"
+
+msgid "_SELECT_ALL"
+msgstr "Выбрать всё"
+
+msgid "_SQL_QUERY_DEFINITION"
+msgstr "Формулировка SQL-запроса"
+
+msgid "_SUBJECT"
+msgstr "Тема"
+
+msgid "_THEME"
+msgstr "Стиль"
+
+msgid "_TITLE"
+msgstr "Название"
+
+msgid "_TYPE"
+msgstr "Тип"
+
+msgid "_UNKNOWN"
+msgstr "Неизвестно"
+
+msgid "_USED_SPACE"
+msgstr "Использовано места"
+
+msgid "_USER_PREFS"
+msgstr "Настройки пользователя"
+
+msgid "_USER_RESTRICTIONS"
+msgstr "Ограничения пользователя"
+
+msgid "_VALUE"
+msgstr "Значение"
+
+msgid "_VERSION"
+msgstr "Версия"
+
+msgid "_WEBSITE"
+msgstr "Веб-сайт"
+
+msgid "_ADD_NEW_SERVICE"
+msgstr "Добавить новый сервис"
+
+msgid "_ADD_SERVICE_TO_DEVICE"
+msgstr "Добавить сервис устройсву"
+
+msgid "_ADD_SERVICE_TO_SERVICEGROUP"
+msgstr "§ADD_SERVICE_TO_SERVICEGROUP§"
+
+msgid "_ADD_STORAGE"
+msgstr "Добавить хранилище"
+
+msgid "_ALERT"
+msgstr "Тревога"
+
+msgid "_ALERT_DESCRIPTION"
+msgstr "Описание тревоги"
+
+msgid "_ALERT_LEVEL"
+msgstr "Уровень тревоги"
+
+msgid "_ALERT_NAME"
+msgstr "Название тревоги"
+
+msgid "_ALERTS"
+msgstr "Тревоги"
+
+msgid "_ALERTS_VIEWER"
+msgstr "Просмотр тревог"
+
+msgid "_AUTHENTICATION"
+msgstr "§AUTHENTICATION§"
+
+msgid "_BACK"
+msgstr "§BACK§"
+
+msgid "_BASE"
+msgstr "База"
+
+msgid "_BUILDING"
+msgstr "Здание"
+
+msgid "_CITY"
+msgstr "Город"
+
+msgid "_COMPONENT_NAME"
+msgstr "§COMPONENT_NAME§"
+
+msgid "_CONNECTION_TYPE"
+msgstr "§CONNECTION_TYPE§"
+
+msgid "_CONTACTS"
+msgstr "Контакты"
+
+msgid "_CONTACTS_AUTH_DN"
+msgstr "§CONTACTS_AUTH_DN§"
+
+msgid "_CONTACTS_AUTH_PASSWORD"
+msgstr "§CONTACTS_AUTH_PASSWORD§"
+
+msgid "_CONTACTS_BASE"
+msgstr "База контактов"
+
+msgid "_CONTACTS_FIELDS"
+msgstr "§CONTACTS_FIELDS§"
+
+msgid "_CONTACTS_FILTER"
+msgstr "Фильтр контактов"
+
+msgid "_CONTACTS_SERVER"
+msgstr "Сервер контактов"
+
+msgid "_COUNTRY"
+msgstr "Страна"
+
+msgid "_CPU_USAGE"
+msgstr "Использование процессора"
+
+msgid "_CREATE_REPORT"
+msgstr "Создать отчёт"
+
+msgid "_DEFAULT_DIR_INCOMING_LOGS"
+msgstr "Директория по умолчанию для входящих логов"
+
+msgid "_DEFAULT_DIR_KNOWN_LOGS"
+msgstr "Директория по умолчанию для известных логов"
+
+msgid "_DEFAULT_DIR_UNKNOWN_LOGS"
+msgstr "Директория по умолчанию для неизвестных логов"
+
+msgid "_DEVICE"
+msgstr "Устройство"
+
+msgid "_DEVICE_ADDRESS"
+msgstr "Адрес устройства"
+
+msgid "_DEVICE_DESCRIPTION"
+msgstr "Описание устройства"
+
+msgid "_DEVICE_MODEL"
+msgstr "Модель устройства"
+
+msgid "_DEVICE_NAME"
+msgstr "Название устройства"
+
+msgid "_DEVICE_TYPE"
+msgstr "Тип устройства"
+
+msgid "_DEVICES"
+msgstr "Устройства"
+
+msgid "_DEVICEGROUPS"
+msgstr "Группы устройств"
+
+msgid "_DIR_INCOMING_LOGS"
+msgstr "Директория для входящих логов"
+
+msgid "_DIR_KNOWN_LOGS"
+msgstr "Директория для известных логов"
+
+msgid "_DIR_UNKNOWN_LOGS"
+msgstr "Директория для неизвестных логов"
+
+msgid "_DOWNLOAD_CSV_FILE"
+msgstr "Скачать CSV-файл"
+
+msgid "_DOWNLOAD_FILE"
+msgstr "Скачать файл"
+
+msgid "_DOWNLOAD_ZIP_FILE"
+msgstr "§DOWNLOAD_ZIP_FILE§"
+
+msgid "_DURATION_D"
+msgstr "§DURATION_D§"
+
+msgid "_FINISH_PERIOD"
+msgstr "Окончить период"
+
+msgid "_GET_LOGS"
+msgstr "Получить логи"
+
+msgid "_GRAPH_HEIGHT"
+msgstr "Высота графика"
+
+msgid "_GRAPH_TITLE"
+msgstr "Заголовок графика"
+
+msgid "_GRAPH_TYPE"
+msgstr "Тип графика"
+
+msgid "_GRAPH_WIDTH"
+msgstr "Ширина графика"
+
+msgid "_GRAPH_Y_LABEL"
+msgstr "§GRAPH_Y_LABEL§"
+
+msgid "_GROUP_NAME"
+msgstr "Название графика"
+
+msgid "_IP_ADDRESS"
+msgstr "IP-адрес"
+
+msgid "_LAST_ALERTS"
+msgstr "Последние тревоги"
+
+msgid "_LAST_LOGS"
+msgstr "Последние логи"
+
+msgid "_LAUNCH_REPORT"
+msgstr "Запустить отчёт"
+
+msgid "_LEVEL"
+msgstr "Уровень"
+
+msgid "_LOAD"
+msgstr "Загрузить"
+
+msgid "_LOCATION"
+msgstr "Местоположение"
+
+msgid "_LOCATIONS"
+msgstr "Местоположения"
+
+msgid "_LOG"
+msgstr "Лог"
+
+msgid "_LOG_LEVEL"
+msgstr "Уровень лога"
+
+msgid "_LOG_REGEXP"
+msgstr "§LOG_REGEXP§"
+
+msgid "_LOG_TYPE"
+msgstr "Тип лога"
+
+msgid "_LOGROTATE"
+msgstr "Вращение лога"
+
+msgid "_LOGS_AVAILABILITY"
+msgstr "§Logs Availability§"
+
+msgid "_LOGS_COMPRESSION"
+msgstr "§LOGS_COMPRESSION§"
+
+msgid "_LOGS_VIEWER"
+msgstr "Просмотр логов"
+
+msgid "_LOGS_WIZARD"
+msgstr "Мастер логов"
+
+msgid "_MAPS"
+msgstr "Карты"
+
+msgid "_MATCH"
+msgstr "Сопоставить"
+
+msgid "_MAX_MINUTES_SEARCH"
+msgstr "§MAX. number of minutes to search§"
+
+msgid "_MAX_TIME_WITHOUT_LOG"
+msgstr "Макс. время без логов"
+
+msgid "_MEM_USAGE"
+msgstr "Использование памяти"
+
+msgid "_MESSAGES"
+msgstr "Сообщения"
+
+msgid "_MINIMUM_DELAY_BETWEEN_2_ALERTS"
+msgstr "§MINIMUM_DELAY_BETWEEN_2_ALERTS§"
+
+msgid "_MSG_ID"
+msgstr "ID сообщения"
+
+msgid "_NAGIOS_HOST_DEFINED"
+msgstr "Хост задан в Nagios"
+
+msgid "_NAGIOS_SERVER"
+msgstr "Сервер Nagios"
+
+msgid "_NAGIOS_SERVICE_DEFINED"
+msgstr "Сервис задан в Nagios"
+
+msgid "_NB_MESSAGES"
+msgstr "Nb-сообщения"
+
+msgid "_NB_REPORTS"
+msgstr "Nb-отчёты"
+
+msgid "_NEGATE"
+msgstr "§NEGATE§"
+
+msgid "_NEW_ALERT"
+msgstr "Новая тревога"
+
+msgid "_NEW_BUILDING"
+msgstr "Новое здание"
+
+msgid "_NEW_CITY"
+msgstr "Новый город"
+
+msgid "_NEW_CONTACT"
+msgstr "Новый контакт"
+
+msgid "_NEW_DEVICE"
+msgstr "Новое устройство"
+
+msgid "_NEW_DEVICEGROUP"
+msgstr "Новая группа устройств"
+
+msgid "_NEW_DYNAMIC_ALERT"
+msgstr "Новая динамическая тервога"
+
+msgid "_NEW_DYNAMIC_DEVICEGROUP"
+msgstr "Новая динамическая группа устройств"
+
+msgid "_NEW_FIELD"
+msgstr "Новое поле"
+
+msgid "_NEW_OCTOPUSSY_VERSION_AVAILABLE"
+msgstr "§NEW_OCTOPUSSY_VERSION_AVAILABLE§"
+
+msgid "_NEW_RACK"
+msgstr "Новая стойка"
+
+msgid "_NEW_REPORT"
+msgstr "Новый отчёт"
+
+msgid "_NEW_ROOM"
+msgstr "Новая комната"
+
+msgid "_NEW_SERVICE"
+msgstr "Новый сервис"
+
+msgid "_NEW_SERVICEGROUP"
+msgstr "§NEW_SERVICEGROUP§"
+
+msgid "_NEW_STATIC_ALERT"
+msgstr "§NEW_STATIC_ALERT§"
+
+msgid "_NEW_STATIC_DEVICEGROUP"
+msgstr "Новая статическая группа устройств"
+
+msgid "_NEW_TABLE"
+msgstr "Новая таблица"
+
+msgid "_NEW_TIMEPERIOD"
+msgstr "Новый период времени"
+
+msgid "_NEW_USER"
+msgstr "Новый пользователь"
+
+msgid "_OFFICIAL_WEBSITE"
+msgstr "Официальный веб-сайт"
+
+msgid "_ORGANIZATION"
+msgstr "§ORGANIZATION§"
+
+msgid "_ORGANIZATIONAL_UNIT"
+msgstr "§ORGANIZATIONAL_UNIT§"
+
+msgid "_PAGE"
+msgstr "§PAGE§"
+
+msgid "_PAGE_FIRST"
+msgstr "§PAGE_FIRST§"
+
+msgid "_PAGE_LAST"
+msgstr "§PAGE_LAST§"
+
+msgid "_PAGE_NEXT"
+msgstr "§PAGE_NEXT§"
+
+msgid "_PAGE_PREVIOUS"
+msgstr "§PAGE_PREVIOUS§"
+
+msgid "_PARTITION_LOGS"
+msgstr "Разграничить логи"
+
+msgid "_PERIOD"
+msgstr "Период"
+
+msgid "_PERIODS"
+msgstr "Периоды"
+
+msgid "_PERL_FUNCTION"
+msgstr "§PERL_FUNCTION§"
+
+msgid "_PROCESSOR"
+msgstr "Процессор"
+
+msgid "_QUICK_SEARCH_ON_THIS_PAGE"
+msgstr "§QUICK_SEARCH_ON_THIS_PAGE§"
+
+msgid "_RACK"
+msgstr "Стойка"
+
+msgid "_RANK"
+msgstr "Ранг"
+
+msgid "_REAL_TIME_LOGS_VIEWER"
+msgstr "§REAL_TIME_LOGS_VIEWER§"
+
+msgid "_REGEXP_EXC"
+msgstr "Регулярное выражение (искл.)"
+
+msgid "_REGEXP_INC"
+msgstr "Регулярное выражение (вкл.)"
+
+msgid "_RELOAD"
+msgstr "§RELOAD§"
+
+msgid "_RELOAD_ALL"
+msgstr "§RELOAD_ALL§"
+
+msgid "_RELOAD_REQUIRED"
+msgstr "§RELOAD_REQUIRED§"
+
+msgid "_REMOVE_LOG_MINUTE"
+msgstr "Убрать минуту лога"
+
+msgid "_REPETITION_N"
+msgstr "§REPETITION_N§"
+
+msgid "_REPORT"
+msgstr "Отчёт"
+
+msgid "_REPORT_CATEGORIES"
+msgstr "Категории отчёта"
+
+msgid "_REPORT_CREATION"
+msgstr "Создание отчёта"
+
+msgid "_REPORT_CSV"
+msgstr "Отчёт в формате CSV"
+
+msgid "_REPORT_EDITION"
+msgstr "Правка отчёта"
+
+msgid "_REPORT_FIELDS_ORDER"
+msgstr "Порядок полей в отчёте"
+
+msgid "_REPORT_FILE_DOESNT_EXIST"
+msgstr "§REPORT_FILE_DOESNT_EXIST§"
+
+msgid "_REPORT_HTML"
+msgstr "Отчёт в формате HTML"
+
+msgid "_REPORT_IN_PROGRESS"
+msgstr "§REPORT_IN_PROGRESS§"
+
+msgid "_REPORT_NAME"
+msgstr "Название отчёта"
+
+msgid "_REPORT_OFC"
+msgstr "§REPORT_OFC§"
+
+msgid "_REPORT_PDF"
+msgstr "Отчёт в формате PDF"
+
+msgid "_REPORT_RRD_GRAPH"
+msgstr "§REPORT_RRD_GRAPH§"
+
+msgid "_REPORT_RRD_GRAPH_CREATION"
+msgstr "§REPORT_RRD_GRAPH_CREATION§"
+
+msgid "_REPORT_SCHEDULER"
+msgstr "Расписание отчёта"
+
+msgid "_REPORT_XML"
+msgstr "Отчёт в формате XML"
+
+msgid "_REPORTS"
+msgstr "Отчёты"
+
+msgid "_REPORTS_UPDATES"
+msgstr "Обновления отчётов"
+
+msgid "_REPORTS_VIEWER"
+msgstr "Просмотр отчётов"
+
+msgid "_RIGHTS"
+msgstr "Права"
+
+msgid "_ROLE"
+msgstr "Роль"
+
+msgid "_ROOM"
+msgstr "Комната"
+
+msgid "_ROTATE_LEFT"
+msgstr "§ROTATE_LEFT§"
+
+msgid "_ROTATE_RIGHT"
+msgstr "§ROTATE_RIGHT§"
+
+msgid "_RUNNING_REPORTS"
+msgstr "§RUNNING_REPORTS§"
+
+msgid "_SAVE_AS_SEARCH_TEMPLATE"
+msgstr "§SAVE_AS_SEARCH_TEMPLATE§"
+
+msgid "_SAVE_MSG_GO_BACK_TO_WIZARD"
+msgstr "§SAVE_MSG_GO_BACK_TO_WIZARD§"
+
+msgid "_SAVE_MSG_GO_TO_SERVICE"
+msgstr "§SAVE_MSG_GO_TO_SERVICE§"
+
+msgid "_SCHEDULE"
+msgstr "Расписание"
+
+msgid "_SCHEDULE_REPORT"
+msgstr "Отчёт по планировщику"
+
+msgid "_SCHEDULE_STATISTIC_REPORT"
+msgstr "§SCHEDULE_STATISTIC_REPORT§"
+
+msgid "_SCHEDULER"
+msgstr "Планировщик"
+
+msgid "_SEARCH_TEMPLATES"
+msgstr "§SEARCH_TEMPLATES§"
+
+msgid "_SELECT_THIS_MSG"
+msgstr "Выбрать это сообщение"
+
+msgid "_SELECTION"
+msgstr "§SELECTION§"
+
+msgid "_SENDER"
+msgstr "Отправитель"
+
+msgid "_SERVER"
+msgstr "Сервер"
+
+msgid "_SERVICE"
+msgstr "Сервис"
+
+msgid "_SERVICE_NAME"
+msgstr "Название сервиса"
+
+msgid "_SERVICEGROUPS"
+msgstr "Группы сервисов"
+
+msgid "_SERVICES"
+msgstr "Сервисы"
+
+msgid "_SERVICES_UPDATES"
+msgstr "Обновления сервисов"
+
+msgid "_SOURCE"
+msgstr "§SOURCE§"
+
+msgid "_SHOW_DIFF"
+msgstr "§SHOW_DIFF§"
+
+msgid "_START"
+msgstr "Пуск"
+
+msgid "_START_PERIOD"
+msgstr "Период пуска"
+
+msgid "_START_TIME"
+msgstr "Время пуска"
+
+msgid "_STATE"
+msgstr "§STATE§"
+
+msgid "_STATIC"
+msgstr "Статический"
+
+msgid "_STATIC_ALERT_CONFIGURATION"
+msgstr "§STATIC_ALERT_CONFIGURATION§"
+
+msgid "_STATISTICS"
+msgstr "§STATISTIC§"
+
+msgid "_STATISTIC_REPORT_EDITION"
+msgstr "§STATISTIC_REPORT_EDITION§"
+
+msgid "_STATISTIC_REPORT_SCHEDULER"
+msgstr "§STATISTIC_REPORT_SCHEDULER§"
+
+msgid "_STATISTIC_REPORTS"
+msgstr "Статистические отчёты"
+
+msgid "_STORAGES"
+msgstr "Хранилища"
+
+msgid "_STREET"
+msgstr "Улица"
+
+msgid "_SUPPORT_REQUEST"
+msgstr "Запрос поддержки"
+
+msgid "_SWAP_USAGE"
+msgstr "Использование swap"
+
+msgid "_SYSLOG_OUTPUT"
+msgstr "§SYSLOG_OUTPUT§"
+
+msgid "_SYSTEM_CONFIG"
+msgstr "Системная конфигурация"
+
+msgid "_TABLE"
+msgstr "Таблица"
+
+msgid "_TABLE_NAME"
+msgstr "Название таблицы"
+
+msgid "_TABLES"
+msgstr "Таблицы"
+
+msgid "_TABLES_UPDATES"
+msgstr "Обновления таблиц"
+
+msgid "_TAXONOMY"
+msgstr "Таксономия"
+
+msgid "_TICKET_CLOSED"
+msgstr "Закрыт"
+
+msgid "_TICKET_OPENED"
+msgstr "Открыт"
+
+msgid "_TICKET_WAIT_FOR_INFO"
+msgstr "Ожидание информации"
+
+msgid "_TICKET_WORK_PROGRESS"
+msgstr "В процессе"
+
+msgid "_TIMELINE"
+msgstr "§TIMELINE§"
+
+msgid "_TIMEPERIOD"
+msgstr "Период времени"
+
+msgid "_TIMEPERIOD_NAME"
+msgstr "Название периода времени"
+
+msgid "_TIMEPERIODS"
+msgstr "Периоды времени"
+
+msgid "_TIMESTEP"
+msgstr "§TIMESTEP§"
+
+msgid "_UNKNOWN_MSGS"
+msgstr "Неизвестные сообщения"
+
+msgid "_USERS_AUTH_DN"
+msgstr "§USERS_AUTH_DN§"
+
+msgid "_USERS_AUTH_PASSWORD"
+msgstr "§USERS_AUTH_PASSWORD§"
+
+msgid "_USERS_BASE"
+msgstr "База пользователей"
+
+msgid "_USERS_FILTER"
+msgstr "Фильтр пользователей"
+
+msgid "_USERS_SERVER"
+msgstr "Сервер пользователей"
+
+msgid "_WORLD_STATISTICS"
+msgstr "§WORLD_STATISTICS§"
+
+msgid "_ZABBIX_HOST_DEFINED"
+msgstr "§ZABBIX_HOST_DEFINED§"
+
+msgid "_ZABBIX_SERVER"
+msgstr "§ZABBIX_SERVER§"
+
+msgid "_ZABBIX_ITEM_DEFINED"
+msgstr "§ZABBIX_ITEM_DEFINED§"
+
+msgid "_ZOOM_IN"
+msgstr "§ZOOM_IN§"
+
+msgid "_ZOOM_OUT"
+msgstr "§ZOOM_OUT§"
+
+msgid "_DLG_DELETE_ALERT"
+msgstr "§Do you really want to delete Alert '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_CONTACT"
+msgstr "§Do you really want to delete Contact '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_DEVICE"
+msgstr "§Do you really want to delete Device '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_DEVICEGROUP"
+msgstr "§Do you really want to delete Device Group '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_DEVICE_SERVICE"
+msgstr "§Do you really want to delete Service '%%arg1%%' from Device '%%arg2%%' ?§"
+
+msgid "_DLG_DELETE_LOCATION_BUILDING"
+msgstr "§Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' ?§"
+
+msgid "_DLG_DELETE_LOCATION_CITY"
+msgstr "§Do you really want to delete Location City '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_LOCATION_RACK"
+msgstr "§Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' Rack '%%arg4%%' ?§"
+
+msgid "_DLG_DELETE_LOCATION_ROOM"
+msgstr "§Do you really want to delete Location City '%%arg1%%' Building '%%arg2%%' Room '%%arg3%%' ?§"
+
+msgid "_DLG_DELETE_LOG"
+msgstr "§Do you really want to delete this Log line #%%log%% ?§"
+
+msgid "_DLG_DELETE_LOG_MINUTE"
+msgstr "§Do you really want to delete this Log File %%datetime%% ?§"
+
+msgid "_DLG_DELETE_MESSAGE"
+msgstr "§Do you really want to delete Message '%%msg%%' from Service '%%service%%' ?§"
+
+msgid "_DLG_DELETE_REPORT"
+msgstr "§Do you really want to delete Report '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_REPORT_DATA"
+msgstr "§Do you really want to delete Report '%%arg1%%' '%%arg2%%' ?§"
+
+msgid "_DLG_DELETE_REPORT_MONTH"
+msgstr "§Do you really want to delete Report Month '%%arg1%%' '%%arg2%% %%arg3%%' ?§"
+
+msgid "_DLG_DELETE_REPORT_SCHEDULE"
+msgstr "§Do you really want to delete Report Schedule '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_SEARCH_TEMPLATE"
+msgstr "§Do you really want to delete Search Template '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_SERVICE"
+msgstr "§Do you really want to delete Service '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_SERVICEGROUP"
+msgstr "§Do you really want to delete Service Group '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_SERVICEGROUP_SERVICE"
+msgstr "§Do you really want to delete Service '%%arg2%%' from Service Group '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_STATISTIC_REPORT"
+msgstr "§Do you really want to delete Statistic Report '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_STATISTIC_REPORT_SCHEDULE"
+msgstr "§Do you really want to delete Statistic Report Schedule '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_STORAGE"
+msgstr "§Do you really want to delete Storage '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_TABLE"
+msgstr "§Do you really want to delete Table '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_TIMEPERIOD"
+msgstr "§Do you really want to delete TimePeriod '%%arg1%%' ?§"
+
+msgid "_DLG_DELETE_USER"
+msgstr "§Do you really want to delete User '%%arg1%%' ?§"
+
+msgid "_DLG_LOGOUT"
+msgstr "§Do you really want to logout ?§"
+
+msgid "_DLG_PARSE_PAUSE"
+msgstr "§Do you really want to pause parsing Device '%%arg1%%' ?§"
+
+msgid "_DLG_PARSE_START"
+msgstr "§Do you really want to start parsing Device '%%arg1%%' ?§"
+
+msgid "_DLG_PARSE_STOP"
+msgstr "§Do you really want to stop parsing Device '%%arg1%%' ?§"
+
+msgid "_DLG_RESTORE_CONFIG"
+msgstr "§Do you really want to restore configuration from file '%%arg1%%' ?§"
+
+msgid "_MSG_ALERT_RAISED_ONLY"
+msgstr "Тревога будет поднята, только если мы попадём n раз меньше, чем за d секунд на одном устройстве"
+
+msgid "_MSG_CHECK_UPDATES"
+msgstr "Проверить обновления"
+
+msgid "_MSG_CONFIG_RESTORED"
+msgstr "§MSG_CONFIG_RESTORED %s§"
+
+msgid "_MSG_CONTACT_ALREADY_EXIST"
+msgstr "Контакт уже существует!"
+
+msgid "_MSG_CONTACT_INFO_INVALID"
+msgstr "Информация о контакте требует по крайней мере ID и Email/IM"
+
+msgid "_MSG_CONTACT_ME"
+msgstr "По всем другим вопросам обращайтесь ко мне на octo.devel@gmail.com"
+
+msgid "_MSG_DEVICEGROUP_ALREADY_EXISTS"
+msgstr "§MSG_DEVICEGROUP_ALREADY_EXISTS§"
+
+msgid "_MSG_DYNAMIC_ALERT_CREATION"
+msgstr "Создание динамической тревоги"
+
+msgid "_MSG_EXTRACT_PROGRESS_DATA"
+msgstr "§MSG_EXTRACT_PROGRESS_DATA§"
+
+msgid "_MSG_EXTRACT_PROGRESS_LISTING_FILES"
+msgstr "§MSG_EXTRACT_PROGRESS_LISTING_FILES§"
+
+msgid "_MSG_FIELD_DONT_EXIST"
+msgstr "Поле не существует!"
+
+msgid "_MSG_INVALID_LOGIN_PASSWORD"
+msgstr "Вы ввели неправильный логин/пароль!"
+
+msgid "_MSG_INVALID_SCHEDULE_PERIOD"
+msgstr "Вы ввели неправильный период для этого расписания!"
+
+msgid "_MSG_LOGS_AVAILABILITY_FOR_DEVICE"
+msgstr "§_LOGS availability for device %s§"
+
+msgid "_MSG_MAIL_SENT_TO_SUPPORT"
+msgstr "Письмо отправлено в поддержку Octopussy."
+
+msgid "_MSG_MAP_CREATION_INFO"
+msgstr "За более подробной информацией по созданию карт, зайдите на сайт Octopussy!"
+
+msgid "_MSG_MSGID_ALREADY_EXISTS"
+msgstr "ID сообщения уже существует!"
+
+msgid "_MSG_MSGID_CANT_BE_NULL"
+msgstr "§MSG_MSGID_CANT_BE_NULL§"
+
+msgid "_MSG_MSGS_FOR_SERVICE"
+msgstr "Сообщения для сервиса %s (версия %s)"
+
+msgid "_MSG_NB_LINES"
+msgstr "Число строк: "
+
+msgid "_MSG_NEED_DEFINE_CONTACT"
+msgstr "Если вы хотите посылать тревоги, задайте контакты."
+
+msgid "_MSG_NEED_REPORT_FOR_SCHEDULE"
+msgstr "Вы должны создать отчёт, прежде чем создавать расписание для чего-либо."
+
+msgid "_MSG_NEED_SMTP_SERVER_TO_SUBMIT"
+msgstr "Вы должны задать SMTP-сервер для связи с поддержкой Octopussy!"
+
+msgid "_MSG_NO_GRAPH_AVAILABLE"
+msgstr "Не доступно ни одного графика!"
+
+msgid "_MSG_NO_MSG_FOR_SERVICE"
+msgstr "Нет заданных сообщений для сервиса %s (версия %s)"
+
+msgid "_MSG_NO_UPDATES_AVAILABLE"
+msgstr "Обновлений нет"
+
+msgid "_MSG_OK_TO_SEND_DATA_TO_8PUSSY"
+msgstr "§_I'm OK to send anonymous data to 8pussy.org__§"
+
+msgid "_MSG_REACH_MAX_LINES"
+msgstr "Максимум %d строк достигнут!"
+
+msgid "_MSG_REPORT_DATA_SOURCE"
+msgstr "Данные из %d файлов / %d строк обработыны за %d минут %d секунд."
+
+msgid "_MSG_REPORT_GENERATED_BY"
+msgstr "Сгенерировано Octopussy"
+
+msgid "_MSG_REPORT_PROGRESS_BUILDING_REPORT"
+msgstr "Создание отчёта..."
+
+msgid "_MSG_REPORT_PROGRESS_INIT_DB"
+msgstr "Инициализация базы данных..."
+
+msgid "_MSG_REPORT_PROGRESS_INIT_PLUGIN"
+msgstr "Инициализация плагинов..."
+
+msgid "_MSG_REPORT_PROGRESS_INSERTING_DATA"
+msgstr "Загрузка данных..."
+
+msgid "_MSG_REPORT_PROGRESS_LISTING_FILES"
+msgstr "Получение файлов данных..."
+
+msgid "_MSG_REPORT_PROGRESS_QUERYING_DB"
+msgstr "Опрашивание базы данных..."
+
+msgid "_MSG_REPORT_PROGRESS_REPORT_CONFIG"
+msgstr "§MSG_REPORT_PROGRESS_REPORT_CONFIG§"
+
+msgid "_MSG_RESTART_OCTOPUSSY"
+msgstr "Перезагрузить Octopussy"
+
+msgid "_MSG_SCHEDULE_ALREADY_EXISTS"
+msgstr "Расписание уже существует!"
+
+msgid "_MSG_SEND_MY_NEW"
+msgstr "Отправить мой новый/обновленный сервис/таблицу"
+
+msgid "_MSG_SERVICES_FOR_DEVICE"
+msgstr "Сервисы устройства %s"
+
+msgid "_MSG_SERVICES_FOR_SERVICEGROUP"
+msgstr "Сервисы группы %s"
+
+msgid "_MSG_SSH_PUBKEY_REQUIRED"
+msgstr "Необходим публичный ключ SSH"
+
+msgid "_MSG_STATIC_ALERT_CREATION"
+msgstr "Создание статической тревоги"
+
+msgid "_MSG_STORAGES_DEFAULT_DIRECTORIES"
+msgstr "Эти директории хранилищ по умолчанию используются лишь для новых устройств! Если вы хотите сменить директорию логов для конкретного устройства/сервиса, сделайте это нв страничке Устройства/Хранилища."
+
+msgid "_MSG_STORAGES_FOR_DEVICE"
+msgstr "Хранилища для устройства %s"
+
+msgid "_MSG_SUBMIT_TO_IMPROVE"
+msgstr "Отправить мой Сервис/Таблицу, чтобы улучшить Octopussy"
+
+msgid "_MSG_THIS_IS_MY_NEW"
+msgstr "Это мой новый/обновленный сервис/таблица"
+
+msgid "_MSG_TOTAL_EVENTS_LAST_MINUTE"
+msgstr "Всего событий за последнюю минуту"
+
+msgid "_MSG_TOTAL_REPORTS"
+msgstr "Всего: %d отчётов"
+
+msgid "_MSG_UPDATE_CONFIG"
+msgstr "Обновить конфигурацию"
+
+msgid "_MSG_UPDATE_PREFS"
+msgstr "Обновить настройки"
+
+msgid "_MSG_UPDATE_SELECTED_REPORTS"
+msgstr "Обновить выбранные отчёты"
+
+msgid "_MSG_UPDATE_SELECTED_SERVICES"
+msgstr "Обноыить выбранные сервисы"
+
+msgid "_MSG_UPDATE_SELECTED_TABLES"
+msgstr "Обноыить выбранные таблицы"
+
+msgid "_MSG_USER_ALREADY_EXISTS"
+msgstr "Пользователь уже существует!"
+
+msgid "_MSG_USER_CAN_ONLY_VIEW_N_MINUTES_LOGS"
+msgstr "§YOUR user can only view %d minutes of logs§"
+
+msgid "_MSG_WIZARD_MSGS_LIST_LIMITED_TO"
+msgstr "Список сообщенией мастера ограничен %d по умолчанию."
+
+msgid "_TOOLTIP_ALERT_MSG"
+msgstr "§TOOLTIP_ALERT_MSG§"
+
+msgid "_TOOLTIP_DEVICE_STATUS"
+msgstr "§TOOLTIP_DEVICE_STATUS§"
+
+msgid "_TOOLTIP_SYSTEM_DB"
+msgstr "§TOOLTIP_SYSTEM_DB§"
+
+msgid "_TOOLTIP_SYSTEM_JABBER"
+msgstr "§TOOLTIP_SYSTEM_JABBER§"
+
+msgid "_TOOLTIP_SYSTEM_LDAP"
+msgstr "§TOOLTIP_SYSTEM_LDAP§"
+
+msgid "_TOOLTIP_SYSTEM_NSCA"
+msgstr "§TOOLTIP_SYSTEM_NSCA§"
+
+msgid "_TOOLTIP_SYSTEM_PROXY"
+msgstr "§TOOLTIP_SYSTEM_PROXY§"
+
+msgid "_TOOLTIP_SYSTEM_SMTP"
+msgstr "§TOOLTIP_SYSTEM_SMTP§"
+
+msgid "_TOOLTIP_SYSTEM_ZABBIX"
+msgstr "§TOOLTIP_SYSTEM_ZABBIX§"
