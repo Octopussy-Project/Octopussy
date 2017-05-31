@@ -29,7 +29,7 @@ my $SF_SITE          = 'http://sourceforge.net/projects/syslog-analyzer/files/';
 my $IDX_STAT_UID     = 4;
 my $IDX_STAT_GID     = 5;
 
-our $VERSION = '1.0.15';
+our $VERSION = '1.0.16';
 
 =head1 FUNCTIONS
 
