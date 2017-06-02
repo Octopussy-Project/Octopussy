@@ -1,3 +1,15 @@
+octopussy (1.0.16) stable; urgency=high
+
+  * Major Security fixes:
+    [Protection against CSRF attacks](https://github.com/sebthebert/Octopussy/issues/636)
+    [Cookie Security](https://github.com/sebthebert/Octopussy/issues/637)
+    [Password Policy Rules](https://github.com/sebthebert/Octopussy/issues/635#issuecomment-246844717) added
+  * [Apache::ASP with Apache 2.4 issue (remote_ip)](https://github.com/sebthebert/Octopussy/commit/287342bd8a5a9388d2450a2380e6c2bbe2db5440) fixed
+  * Code cleaning
+  * Debian package and installation script updated
+
+ -- Sebastien Thebert <octopussy@onetool.pm>  Sat 03 Jun 2017 00:30:00 +0100
+
 octopussy (1.0.14) stable; urgency=high
 
   * Bugfix #586, #587 & #588: Fixing read_dir issues
