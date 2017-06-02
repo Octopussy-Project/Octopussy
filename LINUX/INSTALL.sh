@@ -86,6 +86,8 @@ $FIND $DIR_PERL/Octopussy/ -name *.pm -exec $CHMOD_R {} \;
 $FIND $DIR_PERL/AAT/ -type d -exec $CHMOD_X {} \;
 $FIND $DIR_PERL/Octopussy/ -type d -exec $CHMOD_X {} \;
 
+mv /etc/$OCTO/apache2_other.conf /etc/$OCTO/apache2.conf
+
 #
 # Add octo_logrotate to cron.daily
 #
@@ -131,9 +133,9 @@ $LN /var/lib/$OCTO/rrd_png/ /usr/share/$OCTO/rrd
 # Patch Apache::ASP::StateManager for: 
 # - HttpOnly cookie flag
 # - Apache 2.4 remote_ip
-file_to_patch=$( find / -name StateManager.pm | grep "Apache/ASP" )
-patch $file_to_patch < LINUX/apache-asp-statemanager_httponly.patch
-patch $file_to_patch < LINUX/apache-asp-statemanager_remote_ip.patch
+file_to_patch=$( find / -name StateManager.pm | grep -v 'cpan' | grep "Apache/ASP" )
+patch $file_to_patch < etc/octopussy/patches/apache-asp-statemanager_httponly.patch
+patch $file_to_patch < etc/octopussy/patches/apache-asp-statemanager_remote_ip.patch
 
 #
 # Octopussy FIFO creation (for Rsyslog)
