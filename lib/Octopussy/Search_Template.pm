@@ -11,7 +11,7 @@ use warnings;
 use bytes;
 use utf8;
 
-use File::Slurp;
+use Path::Tiny;
 
 use AAT::Utils qw( NOT_NULL );
 use AAT::XML;
@@ -90,13 +90,13 @@ sub List
 
     $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
 
-    return ()	if (! -r "$dir_search_tpl/$user/");
+    return () if (!-r "$dir_search_tpl/$user/");
 
-	my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$user/");
-    my @tpls = ();
+    my @files = path("$dir_search_tpl/$user/")->children(qr/.+\.xml$/);
+    my @tpls  = ();
     foreach my $f (@files)
     {
-        my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
+        my $conf = AAT::XML::Read($f->stringify);
         push @tpls, $conf->{name} if (defined $conf->{name});
     }
 
@@ -124,15 +124,15 @@ sub List_Any_User
 
     $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
 
-	return ()   if (! -r $dir_search_tpl);
+    return () if (!-r $dir_search_tpl);
 
-    my @dirs = grep { /\w+$/ } read_dir($dir_search_tpl); 
+    my @dirs = path($dir_search_tpl)->children(qr/\w+$/);
     foreach my $d (@dirs)
     {
-        my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$d/", err_mode => 'quiet');
+        my @files = path($d->stringify)->children(qr/.+\.xml$/);
         foreach my $f (@files)
         {
-            my $conf = AAT::XML::Read("$dir_search_tpl/$d/$f");
+            my $conf = AAT::XML::Read($f->stringify);
             push @list, {name => $conf->{name}, user => $d}
                 if (defined $conf->{name});
         }
@@ -169,14 +169,14 @@ sub Filename
     if (NOT_NULL($search_tpl))
     {
         $dir_search_tpl ||= Octopussy::FS::Directory($DIR_SEARCH_TPL);
-        my @files = grep { /.+\.xml$/ } read_dir("$dir_search_tpl/$user/", err_mode => 'quiet'); 
+        my @files = path("$dir_search_tpl/$user/")->children(qr/.+\.xml$/);
         foreach my $f (@files)
         {
-            my $conf = AAT::XML::Read("$dir_search_tpl/$user/$f");
+            my $conf = AAT::XML::Read($f->stringify);
             if ((defined $conf) && ($conf->{name} =~ /^$search_tpl$/))
             {
-                $filename{$user}{$search_tpl} = "$dir_search_tpl/$user/$f";
-                return ("$dir_search_tpl/$user/$f");
+                $filename{$user}{$search_tpl} = $f->stringify;
+                return ($f->stringify);
             }
         }
     }

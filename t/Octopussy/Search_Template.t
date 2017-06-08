@@ -54,8 +54,8 @@ unlink $FILE_TPL;
 require_ok('Octopussy::Search_Template');
 
 my @list0 = Octopussy::Search_Template::List('invalid_user');
-cmp_ok(scalar @list0, '==', 0, 
-	"Octopussy::Search_Template::List('invalid_user') => ()");
+cmp_ok(scalar @list0,
+    '==', 0, "Octopussy::Search_Template::List('invalid_user') => ()");
 
 my @list1 = Octopussy::Search_Template::List($USER);
 
