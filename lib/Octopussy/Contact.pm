@@ -8,7 +8,8 @@ Octopussy::Contact - Octopussy Contact module
 
 use strict;
 use warnings;
-use File::Slurp;
+
+use Path::Tiny;
 
 use AAT::LDAP;
 use AAT::Utils qw( NOT_NULL );
@@ -95,13 +96,13 @@ sub List
 {
     $dir_contacts ||= Octopussy::FS::Directory('contacts');
 
-	return ()	if (! -r $dir_contacts);
+    return () if (!-r $dir_contacts);
 
-    my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
+    my @files    = path($dir_contacts)->children(qr/.+\.xml$/);
     my @contacts = ();
     foreach my $f (@files)
     {
-        my $conf = AAT::XML::Read("$dir_contacts/$f");
+        my $conf = AAT::XML::Read($f->stringify);
         push @contacts, $conf->{cid} if (defined $conf->{cid});
     }
     foreach my $c (AAT::LDAP::Contacts('Octopussy'))
@@ -136,16 +137,16 @@ sub Filename
     {
         $dir_contacts ||= Octopussy::FS::Directory('contacts');
 
-		return (undef)   if (! -r $dir_contacts);
+        return (undef) if (!-r $dir_contacts);
 
-        my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
+        my @files = path($dir_contacts)->children(qr/.+\.xml$/);
         foreach my $f (@files)
         {
-            my $conf = AAT::XML::Read("$dir_contacts/$f");
+            my $conf = AAT::XML::Read($f->stringify);
             if ((defined $conf) && ($conf->{cid} =~ /^$contact$/))
             {
-                $filename{$contact} = "$dir_contacts/$f";
-                return ("$dir_contacts/$f");
+                $filename{$contact} = $f->stringify;
+                return ($f->stringify);
             }
         }
     }
@@ -213,12 +214,12 @@ sub Configurations
 
     $dir_contacts ||= Octopussy::FS::Directory('contacts');
 
-	return ()	if (! -r $dir_contacts);
+    return () if (!-r $dir_contacts);
 
-    my @files = grep { /.+\.xml$/ } read_dir($dir_contacts);
+    my @files = path($dir_contacts)->children(qr/.+\.xml$/);
     foreach my $f (@files)
     {
-        my $conf = AAT::XML::Read("$dir_contacts/$f");
+        my $conf = AAT::XML::Read($f->stringify);
         $conf->{type} = 'local';
         push @configurations, $conf if (defined $conf->{cid});
     }
