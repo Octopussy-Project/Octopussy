@@ -9,41 +9,41 @@ Octopussy::Configuration - Octopussy Configuration module
 use strict;
 use warnings;
 
-use File::Slurp;
+use Path::Tiny;
 use POSIX qw(strftime);
 
 use AAT;
 use Octopussy::FS;
 
-my $DIR_BACKUP = '/etc/octopussy/';
+my $DIR_BACKUP            = '/etc/octopussy/';
 my @DIRECTORIES_TO_BACKUP = qw/
-	alerts
-	contacts
-	devices
-	maps
+    alerts
+    contacts
+    devices
+    maps
     plugins
-	reports
-	search_templates
-	services
-	tables
-	/;
+    reports
+    search_templates
+    services
+    tables
+    /;
 my @FILES_TO_BACKUP = qw/
-	db
-	devicegroups
-	ldap
-	locations
-	nsca
-	proxy
-	schedule
-	servicegroups
+    db
+    devicegroups
+    ldap
+    locations
+    nsca
+    proxy
+    schedule
+    servicegroups
     smtp
-	storages
-	timeperiods
-	users
-	xmpp
-	/;
+    storages
+    timeperiods
+    users
+    xmpp
+    /;
 
-=head1 SUBROUTINES/METHODS
+=head1 SUBROUTINES
 
 =head2 Set_Backup_Directory($dir)
 
@@ -101,9 +101,9 @@ sub Backup_List
 {
     my @backups = ();
 
-	return ()	if (! -r $DIR_BACKUP);
+    return () if (!-r $DIR_BACKUP);
 
-    my @list = grep { /^backup_.+$/ } read_dir($DIR_BACKUP);
+    my @list = path($DIR_BACKUP)->children(qr/^backup_.+/);
     foreach my $e (reverse sort @list)
     {
         push @backups, {label => "Backup $2/$3/$4 $5:$6:$7", value => $1}
