@@ -9,9 +9,9 @@ t/Octopussy/Contact.t - Test Suite for Octopussy::Contact module
 use strict;
 use warnings;
 
-use File::Path;
 use FindBin;
 use List::MoreUtils qw(any);
+use Path::Tiny;
 use Test::More;
 
 use lib "$FindBin::Bin/../../lib";
@@ -82,7 +82,7 @@ my @contacts2 = Octopussy::Contact::List();
 ok((scalar @contacts) == (scalar @contacts2 + 1),
     'Octopussy::Contact::Remove()');
 
-rmtree $DIR_CONTACTS;
+path($DIR_CONTACTS)->remove_tree({safe => 0});
 
 done_testing(1 + 5);
 
