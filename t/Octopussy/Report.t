@@ -9,8 +9,8 @@ t/Octopussy/Report.t - Test Suite for Octopussy::Report module
 use strict;
 use warnings;
 
-use File::Path;
 use FindBin;
+use Path::Tiny;
 use Test::More;
 
 use lib "$FindBin::Bin/../../lib";
@@ -104,7 +104,7 @@ foreach my $name ('valid-report', 'valid_report')
         'Octopussy::Report::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-rmtree $DIR_REPORTS;
+path($DIR_REPORTS)->remove_tree({safe => 0});
 
 done_testing(1 + 6 + 3 + 2);
 

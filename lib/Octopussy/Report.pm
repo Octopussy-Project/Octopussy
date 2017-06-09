@@ -9,7 +9,7 @@ Octopussy::Report - Octopussy Report module
 use strict;
 use warnings;
 
-use File::Slurp;
+use Path::Tiny;
 use POSIX qw(strftime);
 use Proc::ProcessTable;
 
@@ -41,7 +41,7 @@ my $MINUTE       = 60;
 my $dir_reports = undef;
 my %filename;
 
-=head1 SUBROUTINES/METHODS
+=head1 SUBROUTINES
 
 =head2 New($conf)
 
@@ -115,19 +115,20 @@ sub List
     my @res_list = ARRAY($report_restriction_list);
     $dir_reports ||= Octopussy::FS::Directory($DIR_REPORT);
 
-	return ()	if (! -r $dir_reports);
+    return () if (!-r $dir_reports);
 
-    my @files = grep { /.+\.xml$/ } read_dir($dir_reports);
+    my @files   = path($dir_reports)->children(qr/.+\.xml$/);
     my @reports = ();
     foreach my $f (@files)
     {
         my $in_restriction = (scalar(@res_list) > 0 ? 0 : 1);
-        my $conf = AAT::XML::Read("$dir_reports/$f");
+        my $conf = AAT::XML::Read($f->stringify);
         foreach my $res (@res_list)
         {
             $in_restriction = 1 if ($conf->{name} eq $res);
         }
-        push @reports, $conf->{name}
+        push @reports,
+            $conf->{name}
             if (
             ((defined $conf->{name}) && ($conf->{name} ne ''))
             && (
@@ -309,7 +310,8 @@ sub Generate
         $rc,       $begin,    $end,   $outputfile,
         $devices,  $services, $data,  $conf_mail,
         $conf_ftp, $conf_scp, $stats, $lang
-       ) = @_;
+       )
+        = @_;
     my $type = $rc->{graph_type};
 
     if ($type eq 'array')
@@ -417,11 +419,12 @@ sub CmdLine
         $device,    $service,  $loglevel, $taxonomy,
         $report,    $start,    $finish,   $pid_param,
         $conf_mail, $conf_ftp, $conf_scp, $lang
-       ) = @_;
+       )
+        = @_;
 
-    my $base    = Octopussy::FS::Directory('programs');
-    my $date    = strftime("%Y%m%d-%H%M", localtime);
-    my $dir = Octopussy::FS::Directory('data_reports') . $report->{name} . '/';
+    my $base = Octopussy::FS::Directory('programs');
+    my $date = strftime("%Y%m%d-%H%M", localtime);
+    my $dir  = Octopussy::FS::Directory('data_reports') . $report->{name} . '/';
     my $output = "$dir$report->{name}-$date."
         . (
         $report->{graph_type} eq 'array'
