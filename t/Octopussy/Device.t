@@ -9,9 +9,9 @@ t/Octopussy/Device.t - Test Suite for Octopussy::Device module
 use strict;
 use warnings;
 
-use File::Path;
 use FindBin;
 use List::MoreUtils qw(true);
+use Path::Tiny;
 use Test::More;
 
 use lib "$FindBin::Bin/../../lib";
@@ -36,7 +36,7 @@ my $NB_MIN_SELECT_MODELS = 14;
 
 require_ok('Octopussy::Device');
 
-rmtree $DIR_DEVICES;
+path($DIR_DEVICES)->remove_tree({safe => 0});
 
 Octopussy::Device::New(
     {
@@ -225,7 +225,7 @@ foreach my $name (
         'Octopussy::Device::Valid_Name(' . $param_str . ") => $is_valid");
 }
 
-rmtree $DIR_DEVICES;
+path($DIR_DEVICES)->remove_tree({safe => 0});
 
 done_testing(1 + 27 + 5 + 5 + 5);
 

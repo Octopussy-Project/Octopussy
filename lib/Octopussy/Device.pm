@@ -9,9 +9,8 @@ Octopussy::Device - Octopussy Device module
 use strict;
 use warnings;
 
-use File::Path qw(rmtree);
-use File::Slurp;
 use List::MoreUtils qw(uniq);
+use Path::Tiny;
 use POSIX qw(strftime);
 
 use AAT::Utils qw( ARRAY NOT_NULL NULL );
@@ -138,7 +137,7 @@ sub Remove
     my $dir_web = Octopussy::FS::Directory('web');
     system "rm -f $dir_web/rrd/taxonomy_${device}_*ly.png";
     my $dir_rrd = Octopussy::FS::Directory('data_rrd');
-    File::Path::rmtree("$dir_rrd/$device/");
+    path("$dir_rrd/$device")->remove_tree({safe => 0});
     unlink Filename($device);
     $filename{$device} = undef;
     Octopussy::System::Dispatcher_Reload();
@@ -234,7 +233,7 @@ sub Configuration
 
 =head2 Configurations($sort)
 
-Gets the configuration for all devices 
+Gets the configuration for all devices
 
 =cut
 
@@ -272,7 +271,7 @@ sub Configurations
 
 =head2 Filtered_Configurations($type, $model, $sort)
 
-Gets the configuration for devices filtered by DeviceType/Model 
+Gets the configuration for devices filtered by DeviceType/Model
 
 =cut
 
@@ -456,7 +455,7 @@ sub Update_Services_Rank
 
 =head2 Move_Service($device, $service, $direction)
 
-Moves Service '$service' into Device '$device' Services List 
+Moves Service '$service' into Device '$device' Services List
 in Direction Top, Bottom, Up or Down ('$direction')
 
 =cut
@@ -529,7 +528,7 @@ sub Services
 
 Returns Service List as a string like 'Service list: <service_list>'
 
-=cut 
+=cut
 
 sub String_Services
 {
@@ -719,9 +718,10 @@ sub Parse_Status
     if (defined $conf)
     {
         $dir_pid ||= Octopussy::FS::Directory('running');
-        my @files = grep { /^octo_parser_\Q$device\E\.pid$/ }
-            read_dir($dir_pid,, err_mode => 'quiet');
-
+        my @files =
+            (-d $dir_pid
+            ? path($dir_pid)->children(qr/^octo_parser_\Q$device\E\.pid$/)
+            : ());
         return (
             scalar(@files) > 0 ? 2
             : (
