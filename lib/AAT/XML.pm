@@ -11,7 +11,7 @@ use warnings;
 use open ':utf8';
 use English qw( -no_match_vars );
 
-use File::Slurp;
+use Path::Tiny;
 use XML::Simple;
 
 use AAT::Syslog;
@@ -26,7 +26,7 @@ my %filename  = ();
 
 =head2 Filename($dir, $name)
 
-Returns Filename of the XML File from Directory '$dir' 
+Returns Filename of the XML File from Directory '$dir'
 which XML Data field 'name' is '$name'
 
 =cut
@@ -36,15 +36,15 @@ sub Filename
     my ($dir, $name) = @_;
 
     return ($filename{$dir}{$name}) if (defined $filename{$dir}{$name});
-	
-	return (undef)	if (! -r $dir);
 
-    my @files = grep { /.+\.xml$/ } read_dir($dir);
+    return (undef) if (!-r $dir);
+
+    my @files = path($dir)->children(qr/.+\.xml$/);
     foreach my $f (@files)
     {
-        my $conf = AAT::XML::Read("$dir/$f");
-        $filename{$dir}{$conf->{name}} = "$dir/$f";
-        return ("$dir/$f") if ($conf->{name} eq $name);
+        my $conf = AAT::XML::Read($f->stringify);
+        $filename{$dir}{$conf->{name}} = $f->stringify;
+        return ($f->stringify) if ($conf->{name} eq $name);
     }
 
     return (undef);
@@ -58,15 +58,15 @@ Returns List of Names from XML Data from Directory '$dir'
 
 sub Name_List
 {
-    my $dir   = shift;
-    my @list  = ();
+    my $dir  = shift;
+    my @list = ();
 
-	return ()  if (! -r $dir);
+    return () if (!-r $dir);
 
-    my @files = grep { /.+\.xml$/ } read_dir($dir);
+    my @files = path($dir)->children(qr/.+\.xml$/);
     foreach my $f (@files)
     {
-        my $conf = AAT::XML::Read("$dir/$f");
+        my $conf = AAT::XML::Read($f->stringify);
         push @list, $conf->{name} if (defined $conf->{name});
     }
 
@@ -75,7 +75,7 @@ sub Name_List
 
 =head2 File_Array_Values
 
-Returns List of Values of each Field '$field' from File '$file', Array '$array' 
+Returns List of Values of each Field '$field' from File '$file', Array '$array'
 
 =cut
 
@@ -115,8 +115,7 @@ sub Read
         else
         {
             return (undef) if ((!defined $file) || (!-f $file));
-            my $xml = eval
-            {
+            my $xml = eval {
                 XMLin($file, (defined $no_option ? () : %XML_INPUT_OPTIONS));
             };
             AAT::Syslog::Message('AAT_XML', 'XML_READ_ERROR', $EVAL_ERROR)
