@@ -9,8 +9,7 @@ Octopussy::Logs - Octopussy Logs module
 use strict;
 use warnings;
 
-use File::Path qw(rmtree);
-use File::Slurp;
+use Path::Tiny;
 
 use AAT::Syslog;
 use AAT::Utils qw( ARRAY NOT_NULL );
@@ -152,16 +151,16 @@ sub Remove_Directories
     my $incoming = Octopussy::Storage::Directory($storage->{incoming});
     my $unknown  = Octopussy::Storage::Directory($storage->{unknown});
     my $known    = Octopussy::Storage::Directory($storage->{known});
-    File::Path::rmtree("$incoming/$device/");
-    File::Path::rmtree("$unknown/$device/");
-    File::Path::rmtree("$known/$device/");
+    path("$incoming/$device/")->remove_tree({safe => 0});
+    path("$unknown/$device/")->remove_tree({safe => 0});
+    path("$known/$device/")->remove_tree({safe => 0});
 
     foreach my $k (keys %{$conf})
     {
         if ($k =~ /^storage_.+$/)
         {
             my $dir = Octopussy::Storage::Directory($conf->{$k});
-            File::Path::rmtree("$dir/$device/");
+            path("$dir/$device/")->remove_tree({safe => 0});
         }
     }
 
@@ -198,11 +197,15 @@ sub Files_Year_Month_Day
                     if (($start_day <= $num_day) && ($num_day <= $finish_day))
                     {
                         push @files, map {
-                            {file => "$y/$m/$d/" . $_, numday => $num_day}
+                            {
+                                file   => "$y/$m/$d/" . path($_)->basename,
+                                numday => $num_day
                             }
-                            grep { /^msg_/ }
-                            read_dir("$dir_service/$y/$m/$d",
-                            err_mode => 'quiet');
+                            } (
+                            -d "$dir_service/$y/$m/$d"
+                            ? path("$dir_service/$y/$m/$d")->children(qr/^msg_/)
+                            : ()
+                            );
                     }
                 }
             }
@@ -239,7 +242,7 @@ sub Files_Year_Month_Day_Hour_Min
 
 =head2 Files($devices, $services, $start, $finish)
 
-Get logs files from '$services' on devices '$devices' 
+Get logs files from '$services' on devices '$devices'
 between '$start' & '$finish' (don't get Incoming logs files)
 
 =cut
@@ -375,7 +378,7 @@ sub Minutes_Hash
 
 =head2 Get_TimePeriod_Files($devices, $services, $begin, $end)
 
-Returns list of Files for Devices $devices, Services $services 
+Returns list of Files for Devices $devices, Services $services
 and Period $begin-$end
 
 =cut
@@ -640,7 +643,7 @@ sub Extract_Cmd_Line
            );
 
     my $taxonomy = $conf->{taxonomy};
-    return 
+    return
         if (
         (!defined $taxonomy)
         || (   (!Octopussy::Taxonomy::Valid_Name($taxonomy))
@@ -648,7 +651,7 @@ sub Extract_Cmd_Line
            );
 
     my ($begin, $end) = ($conf->{begin}, $conf->{end});
-    return 
+    return
         if ((!defined $begin)
         || (!defined $end)
         || ($begin !~ /^\d{12}$/)
@@ -672,20 +675,24 @@ sub Extract_Cmd_Line
     my $cmd =
           qq [/usr/sbin/octo_extractor $dev_str $serv_str]
         . qq[ --loglevel "$loglevel" --taxonomy "$taxonomy"]
-	. (defined $conf->{msgid} ?
-        	qq[ --msgid "]
-        	. quotemeta($conf->{msgid}) . qq["] : '')
+        . (
+        defined $conf->{msgid}
+        ? qq[ --msgid "] . quotemeta($conf->{msgid}) . qq["]
+        : '')
         . qq[ --begin $begin --end $end]
         . qq[ $incl_str $excl_str]
-        . (defined $conf->{pid_param} ?
-		qq[ --pid_param "]
-		. quotemeta($conf->{pid_param}) . qq["] : '')
-	. (defined $conf->{user} ?
-        	qq[ --user "]
-        	. quotemeta($conf->{user}) . qq["] : '')
-	. (defined $conf->{output} ?
-        	qq[ --output "]
-        	. quotemeta($conf->{output}) . qq["] : '');
+        . (
+        defined $conf->{pid_param}
+        ? qq[ --pid_param "] . quotemeta($conf->{pid_param}) . qq["]
+        : '')
+        . (
+        defined $conf->{user}
+        ? qq[ --user "] . quotemeta($conf->{user}) . qq["]
+        : '')
+        . (
+        defined $conf->{output}
+        ? qq[ --output "] . quotemeta($conf->{output}) . qq["]
+        : '');
 
     return ($cmd);
 }

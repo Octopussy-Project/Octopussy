@@ -44,10 +44,10 @@ qr{$EXTRACTOR $CMD_DEV_SVC $CMD_LEVEL_TAXO_ID $CMD_PERIOD.*--output "output_file
 require_ok('Octopussy::Device');
 require_ok('Octopussy::Logs');
 
-#my $cmd = Octopussy::Logs::Extract_Cmd_Line({ 
+#my $cmd = Octopussy::Logs::Extract_Cmd_Line({
 #	devices => [ "-ANY-" ],
 #	services => [ "-ANY-" ],
-#	loglevel => "-ANY-", 
+#	loglevel => "-ANY-",
 #	#"\" && echo 'test' >> /tmp/test.txt || echo \"boom",
 #	taxonomy => "-ANY-",
 #	begin => '201608010000', end => '201608152359',
