@@ -9,7 +9,7 @@ Octopussy::Plugin - Octopussy Plugin module
 use strict;
 use warnings;
 
-use File::Slurp;
+use Path::Tiny;
 use FindBin;
 
 use AAT::Syslog;
@@ -133,10 +133,10 @@ sub Functions
 
 	return ()	if (! -r $dir_plugins);
 
-    my @files = grep { /.+\.xml$/ } read_dir($dir_plugins);
+	my @files = path($dir_plugins)->children(qr/.+\.xml$/);
     foreach my $f (@files)
     {
-        my $conf = AAT::XML::Read("$dir_plugins/$f");
+        my $conf = AAT::XML::Read($f);
         push @functions,
             {plugin => $conf->{name}, functions => $conf->{function}}
             if (defined $conf->{function});
