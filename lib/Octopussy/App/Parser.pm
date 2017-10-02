@@ -13,8 +13,7 @@ Module with functions for octo_parser program
 use strict;
 use warnings;
 
-use File::Basename;
-use File::Slurp;
+use Path::Tiny;
 
 use AAT::Syslog;
 use Octopussy::App;
@@ -67,7 +66,7 @@ sub Write_Logfile
     {
         $logfile =~ s/(msg_\d\dh\d\d)_\d+/$1/;
         $logfile .= '.gz' if (($logfile !~ /^.+\.gz$/) && $compression);
-        Octopussy::FS::Create_Directory(dirname($logfile));
+        Octopussy::FS::Create_Directory(path($logfile)->parent->stringify);
         if ($compression &&
             (defined open my $FILEZIP, '|-', "gzip >> $logfile"))
         {
@@ -76,7 +75,7 @@ sub Write_Logfile
         }
         elsif (!$compression)
         {
-			write_file($logfile, { append => 1 }, @{$logs});
+			path($logfile)->append($logs);
         }
         else
         {
