@@ -9,7 +9,7 @@ Octopussy::Plugin - Octopussy Plugin module
 use strict;
 use warnings;
 
-use File::Slurp;
+use Path::Tiny;
 use FindBin;
 
 use AAT::Syslog;
@@ -43,9 +43,9 @@ BEGIN
             {
                 my $file_module = "$1$2";
                 eval {
-					no strict 'refs';	## no critic (strict)
-                    require $file_module;
-                    1;
+		  no strict 'refs';	## no critic (strict)
+		  require $file_module;
+		  1;
                 }
                     or do
                 {
@@ -70,7 +70,7 @@ sub Init_All
 {
     my $conf = shift;
 
-    my @plugins = grep { /.+\.pm$/ } read_dir($DIR_PLUGIN_MODULES, err_mode => 'quiet');
+    my @plugins = grep { /.+\.pm$/ } path($DIR_PLUGIN_MODULES)->children;
     foreach my $p (@plugins)
     {
         $p =~ s/\.pm$//;
@@ -131,9 +131,9 @@ sub Functions
 
     $dir_plugins ||= Octopussy::FS::Directory($DIR_PLUGIN);
 
-	return ()	if (! -r $dir_plugins);
+    return ()	if (! -r $dir_plugins);
 
-    my @files = grep { /.+\.xml$/ } read_dir($dir_plugins);
+    my @files = grep { /.+\.xml$/ } path($dir_plugins)->children;
     foreach my $f (@files)
     {
         my $conf = AAT::XML::Read("$dir_plugins/$f");
