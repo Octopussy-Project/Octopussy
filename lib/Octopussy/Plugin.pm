@@ -70,9 +70,15 @@ sub Init_All
 {
     my $conf = shift;
 
-    my @plugins = grep { /.+\.pm$/ } read_dir($DIR_PLUGIN_MODULES, err_mode => 'quiet');
+
+	# There is no err_mode => 'quiet' for Path::Tiny, so if we can't
+	# read the directory just return zero.
+	return 0 unless (-d $DIR_PLUGIN_MODULES and -r _);
+	
+	my @plugins = path($DIR_PLUGIN_MODULES)->children(qr/.+\.pm$/);
     foreach my $p (@plugins)
     {
+		$p = $p->basename;
         $p =~ s/\.pm$//;
         my $func = 'Octopussy::Plugin::' . $p . '::Init';
         &{$func}($conf);
