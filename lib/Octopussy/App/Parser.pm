@@ -14,11 +14,11 @@ use strict;
 use warnings;
 
 use File::Basename;
-use File::Slurp;
 
 use AAT::Syslog;
 use Octopussy::App;
 use Octopussy::FS;
+use Path::Tiny;
 
 our $PROG_NAME = 'octo_parser';
 
@@ -71,17 +71,17 @@ sub Write_Logfile
         if ($compression &&
             (defined open my $FILEZIP, '|-', "gzip >> $logfile"))
         {
-            foreach my $log (@{$logs}) { print {$FILEZIP} "$log\n"; }
-            close $FILEZIP;
+	  foreach my $log (@{$logs}) { print {$FILEZIP} "$log\n"; }
+	  close $FILEZIP;
         }
         elsif (!$compression)
         {
-			write_file($logfile, { append => 1 }, @{$logs});
+	  spew($logfile, { append => 1 }, @{$logs});
         }
         else
         {
-            print "Unable to open file '$logfile'\n";
-            AAT::Syslog::Message($PROG_NAME, 'UNABLE_OPEN_FILE', $logfile);
+	  print "Unable to open file '$logfile'\n";
+	  AAT::Syslog::Message($PROG_NAME, 'UNABLE_OPEN_FILE', $logfile);
         }
     }
 
