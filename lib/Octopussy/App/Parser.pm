@@ -75,7 +75,7 @@ sub Write_Logfile
         }
         elsif (!$compression)
         {
-			path($logfile)->append($logs);
+            path($logfile)->append($logs);
         }
         else
         {
