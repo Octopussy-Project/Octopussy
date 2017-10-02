@@ -14,7 +14,7 @@ use strict;
 use warnings;
 
 use File::Basename;
-use File::Slurp;
+use Path::Tiny;
 
 use AAT::Syslog;
 use Octopussy::App;
@@ -76,7 +76,7 @@ sub Write_Logfile
         }
         elsif (!$compression)
         {
-			write_file($logfile, { append => 1 }, @{$logs});
+                       path($logfile)->append(@{$logs});
         }
         else
         {
