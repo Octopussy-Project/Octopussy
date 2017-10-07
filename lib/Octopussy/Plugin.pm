@@ -9,7 +9,7 @@ Octopussy::Plugin - Octopussy Plugin module
 use strict;
 use warnings;
 
-use File::Slurp;
+use Path::Tiny;
 use FindBin;
 
 use AAT::Syslog;
@@ -70,9 +70,15 @@ sub Init_All
 {
     my $conf = shift;
 
-    my @plugins = grep { /.+\.pm$/ } read_dir($DIR_PLUGIN_MODULES, err_mode => 'quiet');
+
+    # There is no err_mode => 'quiet' for Path::Tiny, so if we can't
+    # read the directory just return zero.
+    return 0 unless (-d $DIR_PLUGIN_MODULES and -r _);
+
+    my @plugins = path($DIR_PLUGIN_MODULES)->children(qr/.+\.pm$/);
     foreach my $p (@plugins)
     {
+        $p = $p->basename;
         $p =~ s/\.pm$//;
         my $func = 'Octopussy::Plugin::' . $p . '::Init';
         &{$func}($conf);
@@ -131,12 +137,12 @@ sub Functions
 
     $dir_plugins ||= Octopussy::FS::Directory($DIR_PLUGIN);
 
-	return ()	if (! -r $dir_plugins);
+    return ()   if (! -r $dir_plugins);
 
-    my @files = grep { /.+\.xml$/ } read_dir($dir_plugins);
+    my @files = path($dir_plugins)->children(qr/.+\.xml$/);
     foreach my $f (@files)
     {
-        my $conf = AAT::XML::Read("$dir_plugins/$f");
+        my $conf = AAT::XML::Read($f);
         push @functions,
             {plugin => $conf->{name}, functions => $conf->{function}}
             if (defined $conf->{function});
