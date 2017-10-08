@@ -155,9 +155,12 @@ $ECHO "Preparing MySQL Database..."
 # Generates Certificate for Octopussy WebServer
 #
 $ECHO "Generating Certificate for Octopussy WebServer..."
-openssl genrsa > /etc/octopussy/server.key
-openssl req -new -x509 -nodes -sha1 -days 365 -key /etc/octopussy/server.key > /etc/octopussy/server.crt
-$CHOWN /etc/octopussy/
+if [ ! -e /etc/octopussy/server.crt ]
+then
+	openssl genrsa > /etc/octopussy/server.key
+	openssl req -new -x509 -nodes -sha1 -days 365 -key /etc/octopussy/server.key > /etc/octopussy/server.crt
+	$CHOWN /etc/octopussy/
+fi
 
 #
 # Restart Octopussy & Rsyslog
