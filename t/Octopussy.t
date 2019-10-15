@@ -26,19 +26,19 @@ my $version = Octopussy::Version();
 ok(defined $version, "Octopussy::Version() returned something");
 
 ok(defined $version && $version =~ /^\d+\.\d+.*$/,
-    "Octopussy::Version() => $version");
+    "Octopussy::Version() returns a version");
 
 my $sf_version = Octopussy::Sourceforge_Version();
 ok(
     defined $sf_version && $sf_version =~ /^\d+\.\d+.*$/,
-    "Octopussy::Sourceforge_Version() => $sf_version"
+    "Octopussy::Sourceforge_Version() returns a version"
   );
 
 ok(Octopussy::Parameter('logrotate') =~ /^\d+$/, 'Octopussy::Parameter()');
 
 my $ts_version = Octopussy::Timestamp_Version();
 like($ts_version, qr/^\d{12}$/,
-    "Octopussy::Timestamp_Version() => $ts_version");
+    "Octopussy::Timestamp_Version() returns timestamped version");
 
 done_testing(1 + 5);
 
