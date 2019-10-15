@@ -30,6 +30,8 @@ jobs:
         Dist::Zilla::Plugin::Test::Kwalitee
         Dist::Zilla::Plugin::Test::Kwalitee::Extra 
         Dist::Zilla::Plugin::Test::Perl::Critic
+        Dist::Zilla::Plugin::Test::Portability
+        Dist::Zilla::Plugin::Test::UnusedVars
       
     - name: Install required modules
       run: dzil listdeps | xargs cpanm --sudo
