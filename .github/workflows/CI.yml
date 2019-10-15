@@ -1,0 +1,40 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+      
+    - name: Install cpanminus
+      run: sudo apt install -y cpanminus
+      
+    - name: Install Dist::Zilla stuff
+      run: > 
+        cpanm --sudo -n Dist::Zilla 
+        Devel::Cover::Report::Coveralls 
+        Dist::Zilla::App::Command::cover
+        Dist::Zilla::Plugin::CheckChangeLog
+        Dist::Zilla::Plugin::ExtraTests
+        Dist::Zilla::Plugin::GitHub::Meta
+        Dist::Zilla::Plugin::MetaProvides::Package
+        Dist::Zilla::Plugin::MinimumPerl
+        Dist::Zilla::Plugin::PerlTidy
+        Dist::Zilla::Plugin::PodCoverageTests
+        Dist::Zilla::Plugin::PodSyntaxTests
+        Dist::Zilla::Plugin::RewriteVersion
+        Dist::Zilla::Plugin::Test::Kwalitee::Extra 
+        Dist::Zilla::Plugin::Test::Perl::Critic
+      
+    - name: Install required modules
+      run: dzil listdeps | xargs cpanm --sudo
+
+    - name: Tests
+      run: |
+        PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine prove -lrsv t
+        cover
+        dzil test
