@@ -27,6 +27,7 @@ jobs:
         Dist::Zilla::Plugin::PodCoverageTests
         Dist::Zilla::Plugin::PodSyntaxTests
         Dist::Zilla::Plugin::RewriteVersion
+        Dist::Zilla::Plugin::Test::Kwalitee
         Dist::Zilla::Plugin::Test::Kwalitee::Extra 
         Dist::Zilla::Plugin::Test::Perl::Critic
       
