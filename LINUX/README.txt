@@ -28,7 +28,6 @@ and these Perl modules (from CPAN):
 - DBI
 - Email::MIME
 - Email::Sender
-- File::Slurp
 - JSON
 - Linux::Inotify2
 - List::MoreUtils
