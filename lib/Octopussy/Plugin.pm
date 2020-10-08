@@ -9,6 +9,10 @@ Octopussy::Plugin - Octopussy Plugin module
 use strict;
 use warnings;
 
+<<<<<<< HEAD
+=======
+use Path::Tiny;
+>>>>>>> 7c2e716b2cc823e8b0d2e8c063c754e23088d6dd
 use FindBin;
 use Path::Tiny;
 
@@ -70,10 +74,24 @@ sub Init_All
 {
     my $conf = shift;
 
+<<<<<<< HEAD
     my @plugins = path($DIR_PLUGIN_MODULES)->children(qr/.+\.pm$/);
     foreach my $p (@plugins)
     {
         my $func = 'Octopussy::Plugin::' . path($p)->basename('.pm') . '::Init';
+=======
+
+    # There is no err_mode => 'quiet' for Path::Tiny, so if we can't
+    # read the directory just return zero.
+    return 0 unless (-d $DIR_PLUGIN_MODULES and -r _);
+
+    my @plugins = path($DIR_PLUGIN_MODULES)->children(qr/.+\.pm$/);
+    foreach my $p (@plugins)
+    {
+        $p = $p->basename;
+        $p =~ s/\.pm$//;
+        my $func = 'Octopussy::Plugin::' . $p . '::Init';
+>>>>>>> 7c2e716b2cc823e8b0d2e8c063c754e23088d6dd
         &{$func}($conf);
     }
 
@@ -130,12 +148,16 @@ sub Functions
 
     $dir_plugins ||= Octopussy::FS::Directory($DIR_PLUGIN);
 
-	return ()	if (! -r $dir_plugins);
+    return ()   if (! -r $dir_plugins);
 
     my @files = path($dir_plugins)->children(qr/.+\.xml$/);
     foreach my $f (@files)
     {
+<<<<<<< HEAD
         my $conf = AAT::XML::Read($f->stringify);
+=======
+        my $conf = AAT::XML::Read($f);
+>>>>>>> 7c2e716b2cc823e8b0d2e8c063c754e23088d6dd
         push @functions,
             {plugin => $conf->{name}, functions => $conf->{function}}
             if (defined $conf->{function});
