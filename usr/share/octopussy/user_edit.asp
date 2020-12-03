@@ -7,11 +7,19 @@ my $login = $Request->QueryString('user') || $f->{login};
 my $type = $Request->QueryString('type') || $f->{type};
 my $error = undef;
 
-if ((defined $f->{update}) && ($Session->{AAT_ROLE} =~ /^admin$/i))
+
+if (defined $f->{update})
 {
-  my $pwd_check = AAT::User::Check_Password_Rules('Octopussy', $f->{password});
-  if ($pwd_check->{status} eq 'OK')
-  {
+	if ($Session->{AAT_ROLE} !~ /^admin$/i)
+	{
+		my $pwd_check = AAT::User::Check_Password_Rules('Octopussy', $f->{password});
+		if ($pwd_check->{status} ne 'OK')
+		{
+			$error = $pwd_check->{error};
+		}
+	}
+	if (!defined $error)
+	{
  	  AAT::User::Update('Octopussy', $f->{login}, $f->{type},
  		 { 	   password => $f->{password},
 			     language => $f->{AAT_Language},
@@ -19,11 +27,7 @@ if ((defined $f->{update}) && ($Session->{AAT_ROLE} =~ /^admin$/i))
 			      status => $f->{status}, }
 		          );
 	  $Response->Redirect('./user.asp');
-  }
-  else
-  {
-    $error = $pwd_check->{error};
-  }
+	}
 }
 %>
 <WebUI:PageTop title="_USER_PREFS" help="users" />
